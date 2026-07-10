@@ -18,8 +18,8 @@ Predecessor: github.com/mlawsonking/PoliticianTweeting (2022, twint + trigrams +
 
 | Phase | Model | Job | Output | Status |
 |-------|-------|-----|--------|--------|
-| 1 | **Fable** | Expansive ideation — feature universe, virality theory, top artifacts. No code, no feasibility research. | `docs/01-VISION.md` | 🔨 in progress 2026-07-10 |
-| 2 | **Opus** | Validation research — verify every load-bearing assumption against reality (APIs, ToS, costs, prior art). Mark every feature VIABLE / VIABLE-WITH-CHANGES / DEAD, with evidence + links. Kill without sentiment. | `docs/02-RESEARCH.md` | — |
+| 1 | **Fable** | Expansive ideation — feature universe, virality theory, top artifacts. No code, no feasibility research. | `docs/01-VISION.md` | ✅ done 2026-07-10 |
+| 2 | **Opus** | Validation research — verify every load-bearing assumption against reality (APIs, ToS, costs, prior art). Mark every feature VIABLE / VIABLE-WITH-CHANGES / DEAD, with evidence + links. Kill without sentiment. | `docs/02-RESEARCH.md` | ⬅️ NEXT |
 | 3 | **Fable** | Gameplan — final v1 scope (must ship in one weekend), architecture, schemas, pipeline stages, distillation prompts, voice guide, launch sequence, phased roadmap with acceptance criteria. | `docs/03-GAMEPLAN.md` | — |
 | 4 | **Opus** | Implementation — build exactly what the gameplan specifies, end-to-end with real data on first run, tests where failure is expensive, README runbook. Verify against live sources. "Should work" is not done. | working pipeline + site | — |
 
@@ -40,4 +40,5 @@ Predecessor: github.com/mlawsonking/PoliticianTweeting (2022, twint + trigrams +
 
 ## Current status
 
-- **Phase 1 in progress** (Fable, 2026-07-10): repo bootstrapped, writing `docs/01-VISION.md`.
+- **Phase 1 complete** (Fable, 2026-07-10): `docs/01-VISION.md` written — end goals, five-family insight taxonomy (Coordination / Absence / Individuality / Framing / Lifecycle), 37-feature ranked universe (Tiers S/A/B/C), top-5 artifacts, virality theory, composite-voice guide, dashboard tour, naming candidates (front-runner: **Party Lines**), design tenets, and the §10 assumption register (R1–R11).
+- **Next: Phase 2 (Opus).** Read the handoff note at the top of `docs/01-VISION.md`, validate the §10 assumption register against reality (priority order: R1–R3 corpus existence, R5 news baseline, R4 X rules, R6–R7 cost fit), and produce `docs/02-RESEARCH.md` with every feature marked VIABLE / VIABLE-WITH-CHANGES / DEAD, with evidence and links.
