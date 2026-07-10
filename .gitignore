@@ -2,10 +2,23 @@
 node_modules/
 .env
 .env.*
+*.secret
 .vercel/
 __pycache__/
 *.pyc
 .venv/
+.pytest_cache/
 .DS_Store
 Thumbs.db
 *.log
+
+# Raw + ledger state are large + immutable: they live in GitHub Release assets,
+# never in git history (gameplan 03 §2/§7 hygiene: raw->Release assets, derived->repo).
+data/raw/
+data/state/
+data/releases/
+data/reference/
+
+# Site build output (Vercel builds it; not committed)
+site/dist/
+site/.astro/

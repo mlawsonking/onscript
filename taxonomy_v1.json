@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": "v1",
+  "note": "Fixed v1 topic taxonomy (gameplan 03 §3). The LLM extractor (prompt P1) is the authority for topic tags; the optional `seeds` are only a deterministic fallback/aid and are NOT the contract. The v2 GDELT theme->taxonomy mapping table joins onto these `id`s.",
+  "topics": [
+    { "id": "immigration", "label": "Immigration & the border", "seeds": ["border", "immigration", "migrant", "asylum", "deportation"] },
+    { "id": "economy_inflation", "label": "Economy & inflation", "seeds": ["inflation", "economy", "prices", "cost of living", "jobs report"] },
+    { "id": "healthcare", "label": "Healthcare", "seeds": ["healthcare", "medicaid", "affordable care", "prescription", "insurance"] },
+    { "id": "abortion", "label": "Abortion & reproductive rights", "seeds": ["abortion", "reproductive", "roe", "pro-life", "pro-choice"] },
+    { "id": "guns", "label": "Guns", "seeds": ["gun", "firearm", "second amendment", "shooting", "assault weapons"] },
+    { "id": "crime", "label": "Crime & public safety", "seeds": ["crime", "police", "fentanyl", "public safety", "law enforcement"] },
+    { "id": "education", "label": "Education", "seeds": ["school", "education", "student", "teacher", "curriculum"] },
+    { "id": "energy_climate", "label": "Energy & climate", "seeds": ["energy", "climate", "oil", "drilling", "emissions", "clean energy"] },
+    { "id": "israel_gaza", "label": "Israel & Gaza", "seeds": ["israel", "gaza", "hamas", "hostages", "antisemitism"] },
+    { "id": "ukraine_russia", "label": "Ukraine & Russia", "seeds": ["ukraine", "russia", "putin", "zelensky"] },
+    { "id": "china", "label": "China", "seeds": ["china", "ccp", "beijing", "taiwan", "xi jinping"] },
+    { "id": "tech_ai", "label": "Technology & AI", "seeds": ["artificial intelligence", "ai", "tiktok", "big tech", "data privacy"] },
+    { "id": "veterans", "label": "Veterans", "seeds": ["veteran", "va ", "servicemember", "military families"] },
+    { "id": "agriculture", "label": "Agriculture", "seeds": ["farm", "agriculture", "farmer", "crop", "rural"] },
+    { "id": "housing", "label": "Housing", "seeds": ["housing", "rent", "mortgage", "homeless", "affordable housing"] },
+    { "id": "taxes_debt", "label": "Taxes & the debt", "seeds": ["tax", "debt", "deficit", "spending", "budget"] },
+    { "id": "labor", "label": "Labor & workers", "seeds": ["union", "worker", "wages", "labor", "strike"] },
+    { "id": "elections_democracy", "label": "Elections & democracy", "seeds": ["election", "voting", "democracy", "ballot", "voter"] },
+    { "id": "courts", "label": "Courts & the judiciary", "seeds": ["supreme court", "judge", "judicial", "scotus", "nomination"] },
+    { "id": "infrastructure", "label": "Infrastructure", "seeds": ["infrastructure", "bridge", "roads", "broadband", "transit"] },
+    { "id": "social_security_medicare", "label": "Social Security & Medicare", "seeds": ["social security", "medicare", "retirement", "seniors"] },
+    { "id": "disasters", "label": "Disasters & emergencies", "seeds": ["hurricane", "wildfire", "disaster", "fema", "flood"] },
+    { "id": "trade_tariffs", "label": "Trade & tariffs", "seeds": ["tariff", "trade", "import", "export", "supply chain"] },
+    { "id": "district_funding", "label": "District funding & constituent service", "seeds": ["secured", "grant", "funding for", "my district", "federal funding"] },
+    { "id": "other", "label": "Other", "seeds": [] }
+  ]
+}
