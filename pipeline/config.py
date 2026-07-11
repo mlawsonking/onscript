@@ -56,8 +56,14 @@ NGRAM_MIN = 3
 NGRAM_MAX = 6
 # Boilerplate: suppress the top DF percentile of n-grams within a (congress, party)
 # corpus, plus a regex list. Per-Congress so 2005's template soup != 2025's (§11.9).
-BOILERPLATE_DF_TOP_PERCENTILE = 0.005        # top 0.5%
+BOILERPLATE_DF_TOP_PERCENTILE = 0.005        # (legacy percentile knob; superseded by share below)
 BOILERPLATE_DF_MIN_DOCS = 40                 # don't DF-suppress until a stratum has volume
+# A candidate phrase is template boilerplate if it appears in > this share of a
+# (congress, party) stratum's statements. Memory-bounded reformulation of the §13
+# "top 0.5% DF percentile" knob (the percentile-over-ALL-ngrams cannot be computed in the
+# two-pass streaming engine); same goal — suppress ubiquitous template soup, keep spiky
+# talking points (which concentrate on few days -> low overall share). Recorded in BUILDLOG.
+BOILERPLATE_DF_SHARE_MAX = 0.05
 # Ledger compaction (§13): prune n-grams with < this many total uses or only ever one
 # member/unit, evaluated per era so a rare-but-real historical phrase survives.
 LEDGER_MIN_TOTAL_USES = 3

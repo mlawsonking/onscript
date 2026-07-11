@@ -24,6 +24,14 @@ def test_political_ngrams_survive():
         assert not boilerplate.is_boilerplate_ngram(good), good
 
 
+def test_low_content_filler_dropped_but_real_phrases_kept():
+    for filler in ["at the same time", "this funding will", "we will continue to", "in order to"]:
+        assert boilerplate.is_low_content(filler), filler
+    for real in ["war in iran", "birthright citizenship and", "border czar failed record",
+                 "lower prescription drug prices"]:
+        assert not boilerplate.is_low_content(real), real
+
+
 def test_modal_may_survives_but_month_with_day_is_flagged():
     assert not boilerplate.is_boilerplate_ngram("we may consider this")   # modal "may" survives
     assert boilerplate.is_boilerplate_ngram("on may 5 we")                 # date "may 5" flagged

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from . import config, util
+from . import boilerplate, config, util
 
 
 def phrase_slug(ngram: str) -> str:
@@ -60,6 +60,10 @@ def top_synchronized(ledger: dict, day: str, k: int = 50) -> list[dict]:
     for ngram, e in ledger.items():
         d = e["daily"].get(day)
         if not d:
+            continue
+        # Display-time boilerplate guard: re-apply the current suppression rules so regex/knob
+        # updates take effect on an already-built ledger without re-running the engine.
+        if boilerplate.is_boilerplate_ngram(ngram) or boilerplate.is_low_content(ngram):
             continue
         peak = max((d.get(p, 0) for p in config.COMPOSITE_PARTIES), default=0)
         if peak < config.SYNC_MIN_MEMBERS:

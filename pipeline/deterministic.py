@@ -18,9 +18,7 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
     norm_stats = getattr(normalize.normalize_records, "last_stats", {})
 
     engine = PhraseEngine()
-    for s in statements:
-        engine.add(s)
-    ledger = engine.finalize()
+    ledger = engine.build(statements)
     fin_stats = engine.last_finalize_stats
 
     # Persist state (Release-asset-destined, gitignored).

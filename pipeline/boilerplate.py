@@ -35,7 +35,8 @@ _TOKEN = re.compile(r"[a-z0-9]+(?:['’-][a-z0-9]+)*")
 _NGRAM_BOILERPLATE = [
     re.compile(r"\btoday (announced|introduced|released|joined|voted|led|sent|urged|called|reintroduced)\b"),
     re.compile(r"\b(issued the following|released the following|made the following)\b"),
-    re.compile(r"\bthe following statement\b"),
+    re.compile(r"\bfollowing statement\b"),
+    re.compile(r"\bis endorsed\b"),
     re.compile(r"\bis proud to\b"),
     re.compile(r"\bcommittee on\b"),
     re.compile(r"\b(ranking member|chairman|chairwoman|chair) of the\b"),
@@ -56,7 +57,45 @@ _NGRAM_BOILERPLATE = [
         r"\b\d{1,2}(st|nd|rd|th)?\s+(january|february|march|april|may|june|july|august|september|october|november|december)\b"
     ),
     re.compile(r"\b(a\.?m\.?|p\.?m\.?|est|edt|cst|cdt|pst|pdt)\b"),
+    # institutional / process / courtesy language — recurring congressional plumbing, not a
+    # partisan stance (keeps "trump administration"/"republicans" etc., which ARE stances) ---
+    re.compile(r"\b(sent|send|wrote|write|read|signed|penned) (a |the )?letter\b"),
+    re.compile(r"\bfull letter\b"),
+    re.compile(r"\b(want|wish|would like|like) to thank\b"),
+    re.compile(r"\bfollowing questions?\b"),
+    re.compile(r"\banswers? to the\b"),
+    re.compile(r"\bendorsed by\b"),
+    re.compile(r"\bdepartment of\b"),
+    re.compile(r"\boffice of\b"),
+    re.compile(r"\bbureau of\b"),
+    re.compile(r"\bexecutive director\b"),
+    re.compile(r"\bfederal aviation\b"),
+    re.compile(r"\bstate and local\b"),
 ]
+
+
+# Function words: an n-gram needs >= MIN_CONTENT_WORDS tokens OUTSIDE this set to be a
+# phrase, which drops generic filler ("at the same time", "this funding will") while keeping
+# real talking points ("war in iran", "birthright citizenship"). Not a stance judgement —
+# purely structural, applied identically to both parties.
+STOPWORDS = frozenset("""
+a an the and or but nor for so yet of to in on at by with from as into onto upon about over
+under between through during before after above below off out up down this that these those
+it its we us our ours you your yours i me my mine he him his she her hers they them their
+theirs who whom whose which what is are was were be been being am do does did done have has
+had having will would shall should can could may might must not no than then also just very
+too more most much many some any all each every either neither both few several such same
+other another one here there where when while because if unless until since about
+""".split())
+MIN_CONTENT_WORDS = 2
+
+
+def content_word_count(ngram: str) -> int:
+    return sum(1 for t in ngram.split() if t not in STOPWORDS)
+
+
+def is_low_content(ngram: str) -> bool:
+    return content_word_count(ngram) < MIN_CONTENT_WORDS
 
 
 def clean_text(text: str) -> str:

@@ -6,13 +6,19 @@ Deterministic, $0 LLM (per R10). Given normalized statements it produces:
   * adoption-curve data (daily distinct-unit counts over time)
   * a per-party per-day discipline index
 
+MEMORY MODEL (two-pass, bounded — the single-pass version OOM'd at Stage-1 volume, 76k
+records -> tens of millions of rare n-grams held before compaction; see BUILDLOG 2026-07-10):
+  * Pass 1 (day-scoped): for each day independently, count per-(party,ngram) distinct units;
+    an n-gram that reaches SYNC_MIN_MEMBERS units on any (party,day) becomes a *candidate*.
+    Only the small candidate SET survives the day; the day's dense counts are discarded.
+  * Pass 2 (candidates only): re-scan statements, tracking full daily counts + document
+    frequency + first-appearance ONLY for candidate n-grams. Peak memory is bounded by the
+    number of synchronized phrases (tens/hundreds of thousands), not the raw vocabulary.
+
 Independent-adoption counting keys on the *unit* = joint_group (if any) else bioguide, so a
 40-member joint release counts once, not forty (§11 trap 2). Syndicated reprints and
-statements with no D/R/I party are excluded from coordination counts.
-
-Boilerplate is suppressed three ways: structural strip + n-gram regex (boilerplate.py) plus
-a per-(congress,party) document-frequency percentile computed here (§11.9: DF is per-era so
-2005's template soup does not poison 2025's coordination scores).
+statements with no D/R/I party are excluded. Boilerplate is suppressed by structural strip +
+n-gram regex (boilerplate.py) plus a per-(congress,party) document-frequency SHARE cap here.
 """
 from __future__ import annotations
 
@@ -22,105 +28,116 @@ from . import boilerplate, config, util
 
 
 def _doc_ngrams(text: str):
-    """Set of (ngram, n) for a document, deduped within the doc, n in [MIN, MAX]."""
+    """Set of (ngram, n) for a document, deduped within the doc, n in [MIN, MAX],
+    with boilerplate-regex n-grams already excluded."""
     grams: set[tuple[str, int]] = set()
     for toks in boilerplate.sentences(text):
         L = len(toks)
         for n in range(config.NGRAM_MIN, config.NGRAM_MAX + 1):
             for i in range(0, L - n + 1):
-                grams.add((" ".join(toks[i : i + n]), n))
+                ng = " ".join(toks[i : i + n])
+                if not boilerplate.is_boilerplate_ngram(ng) and not boilerplate.is_low_content(ng):
+                    grams.add((ng, n))
     return grams
 
 
-def _percentile_threshold(values: list[int], top_fraction: float) -> int:
-    """Return the DF value at the top `top_fraction` cut; n-grams with df >= it are suppressed."""
-    if not values:
-        return 1 << 30
-    s = sorted(values)
-    idx = int(len(s) * (1.0 - top_fraction))
-    idx = min(max(idx, 0), len(s) - 1)
-    return s[idx]
+def _unit_key(stmt: dict) -> str:
+    m = stmt.get("member") or {}
+    return stmt.get("joint_group") or m.get("bioguide") or stmt["id"]
 
 
 class PhraseEngine:
-    """Accumulate statements, then finalize a ledger. Re-runnable from raw (rebuild-safe)."""
-
     def __init__(self) -> None:
-        # df[(congress, party)][ngram] = document frequency
+        self.sync_ngrams: set[str] = set()
+        self.occ: dict[str, dict[str, dict[str, set]]] = {}
+        self.ngram_n: dict[str, int] = {}
         self.df: dict[tuple[int, str], dict[str, int]] = defaultdict(lambda: defaultdict(int))
         self.docs_in_stratum: dict[tuple[int, str], int] = defaultdict(int)
-        # occ[ngram][day][party] = set(unit_key)
-        self.occ: dict[str, dict[str, dict[str, set]]] = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))
-        self.ngram_n: dict[str, int] = {}
-        # first[ngram] = (day, bioguide, statement_id, precision); ties tracked
+        self.party_day_docs: dict[tuple[str, str], int] = defaultdict(int)
         self.first: dict[str, tuple] = {}
         self.first_ties: dict[str, list[str]] = defaultdict(list)
-        # statements-per (party, day) and which contained >=1 synchronized phrase
-        self.party_day_docs: dict[tuple[str, str], int] = defaultdict(int)
-        self._doc_sync_grams: list[tuple[str, str, set]] = []  # (party, day, ngrams) buffered for discipline
+        self._doc_sync_hits: list[tuple[str, str]] = []  # (party, day) for docs with >=1 sync phrase
+        self.last_finalize_stats: dict = {}
+        self._ledger_ngrams: set[str] = set()
 
-    def add(self, stmt: dict) -> None:
+    def _eligible(self, stmt: dict):
         party = (stmt.get("member") or {}).get("party")
         if stmt.get("syndicated") or party not in config.ALL_PARTIES:
-            return
-        day = stmt["published_at"]
-        congress = stmt.get("congress") or util.congress_for_date(day)
-        bio = (stmt.get("member") or {}).get("bioguide")
-        unit = stmt.get("joint_group") or bio or stmt["id"]
-        stratum = (congress, party)
-        self.docs_in_stratum[stratum] += 1
-        self.party_day_docs[(party, day)] += 1
+            return None
+        return party
 
-        grams = _doc_ngrams(stmt.get("text", ""))
-        doc_grams: set[str] = set()
-        for ngram, n in grams:
-            if boilerplate.is_boilerplate_ngram(ngram):
+    def build(self, statements: list[dict]) -> dict:
+        # ---- Pass 1: day-scoped candidate discovery ----
+        by_day: dict[str, list[dict]] = defaultdict(list)
+        for s in statements:
+            if self._eligible(s):
+                by_day[s["published_at"]].append(s)
+
+        for day, group in by_day.items():
+            day_counts: dict[str, dict[str, set]] = {}
+            for s in group:
+                party = s["member"]["party"]
+                unit = _unit_key(s)
+                for ngram, _n in _doc_ngrams(s.get("text", "")):
+                    d = day_counts.get(ngram)
+                    if d is None:
+                        d = day_counts[ngram] = {}
+                    d.setdefault(party, set()).add(unit)
+            for ngram, parties in day_counts.items():
+                if ngram in self.sync_ngrams:
+                    continue
+                if any(len(units) >= config.SYNC_MIN_MEMBERS for units in parties.values()):
+                    self.sync_ngrams.add(ngram)
+            del day_counts  # release the day's dense structure
+
+        # ---- Pass 2: track candidates only ----
+        for s in statements:
+            party = self._eligible(s)
+            if not party:
                 continue
-            self.df[stratum][ngram] += 1
-            self.ngram_n[ngram] = n
-            self.occ[ngram][day][party].add(unit)
-            doc_grams.add(ngram)
-            # first-appearance (day precision -> ties recorded, never a false hour-crown, §11.4)
-            prev = self.first.get(ngram)
-            cand = (day, bio, stmt["id"], stmt.get("precision", "day"))
-            if prev is None or day < prev[0]:
-                self.first[ngram] = cand
-                self.first_ties[ngram] = []
-            elif day == prev[0] and bio and bio != prev[1]:
-                self.first_ties[ngram].append(bio)
-        self._doc_sync_grams.append((party, day, doc_grams))
+            day = s["published_at"]
+            congress = s.get("congress") or util.congress_for_date(day)
+            bio = (s.get("member") or {}).get("bioguide")
+            unit = _unit_key(s)
+            stratum = (congress, party)
+            self.docs_in_stratum[stratum] += 1
+            self.party_day_docs[(party, day)] += 1
+            had_sync = False
+            for ngram, n in _doc_ngrams(s.get("text", "")):
+                if ngram not in self.sync_ngrams:
+                    continue
+                had_sync = True
+                self.ngram_n[ngram] = n
+                self.df[stratum][ngram] += 1  # once per doc (_doc_ngrams is a set)
+                self.occ.setdefault(ngram, {}).setdefault(day, {}).setdefault(party, set()).add(unit)
+                prev = self.first.get(ngram)
+                cand = (day, bio, s["id"], s.get("precision", "day"))
+                if prev is None or day < prev[0]:
+                    self.first[ngram] = cand
+                    self.first_ties[ngram] = []
+                elif day == prev[0] and bio and bio != prev[1]:
+                    self.first_ties[ngram].append(bio)
+            if had_sync:
+                self._doc_sync_hits.append((party, day))
 
-    # -- finalize -----------------------------------------------------------
-    def _boilerplate_df_set(self) -> set[str]:
-        """n-grams whose df is in the top percentile of their stratum (per-era, §11.9)."""
-        flagged: set[str] = set()
-        for stratum, counts in self.df.items():
-            if self.docs_in_stratum[stratum] < config.BOILERPLATE_DF_MIN_DOCS:
-                continue
-            thr = _percentile_threshold(list(counts.values()), config.BOILERPLATE_DF_TOP_PERCENTILE)
-            for ngram, c in counts.items():
-                if c >= thr:
-                    flagged.add(ngram)
-        return flagged
+        return self._finalize()
 
-    def _df_weight(self, ngram: str) -> float:
-        """1 - (max stratum document-frequency share): higher = more distinctive/less ubiquitous."""
+    def _df_share(self, ngram: str) -> float:
         worst = 0.0
         for stratum, counts in self.df.items():
             c = counts.get(ngram)
             if c and self.docs_in_stratum[stratum]:
                 worst = max(worst, c / self.docs_in_stratum[stratum])
-        return round(1.0 - min(1.0, worst), 3)
+        return worst
 
-    def finalize(self) -> dict[str, dict]:
-        """Build the ledger: keep non-boilerplate n-grams that reached SYNC_MIN_MEMBERS
-        distinct units on some (party, day), pruned by compaction thresholds (§13)."""
-        df_boiler = self._boilerplate_df_set()
+    def _finalize(self) -> dict:
         ledger: dict[str, dict] = {}
+        df_boiler = 0
         for ngram, by_day in self.occ.items():
-            if ngram in df_boiler:
-                continue
-            # peak distinct-unit count on any (party, day)
+            share = self._df_share(ngram)
+            if share > config.BOILERPLATE_DF_SHARE_MAX:
+                df_boiler += 1
+                continue  # ubiquitous template phrase
             peak = 0
             total = 0
             units_seen: set = set()
@@ -129,15 +146,13 @@ class PhraseEngine:
                 entry = {}
                 for party, units in by_party.items():
                     entry[party] = len(units)
-                    entry[f"members_{party}"] = sorted(u for u in units if not str(u).startswith("joint:"))
+                    entry[f"members_{party}"] = sorted(u for u in units if not str(u).startswith(("joint:", "njoint:")))
                     peak = max(peak, len(units))
                     total += len(units)
                     units_seen |= units
                 daily[day] = entry
-            if peak < config.SYNC_MIN_MEMBERS:
-                continue  # not synchronized -> not in the ledger
-            if total < config.LEDGER_MIN_TOTAL_USES or len(units_seen) < 2:
-                continue  # compaction (§13): prune rare / single-unit
+            if peak < config.SYNC_MIN_MEMBERS or total < config.LEDGER_MIN_TOTAL_USES or len(units_seen) < 2:
+                continue  # compaction (§13)
             first = self.first.get(ngram)
             ledger[ngram] = {
                 "ngram": ngram,
@@ -150,30 +165,33 @@ class PhraseEngine:
                     "precision": first[3] if first else "day",
                 },
                 "daily": daily,
-                "df_weight": self._df_weight(ngram),
+                "df_weight": round(1.0 - min(1.0, share), 3),
                 "peak_units": peak,
                 "boilerplate": False,
             }
+        self._ledger_ngrams = set(ledger)
         self.last_finalize_stats = {
-            "ngrams_tracked": len(self.occ),
-            "df_boilerplate": len(df_boiler),
+            "candidates": len(self.sync_ngrams),
+            "df_boilerplate": df_boiler,
             "ledger_entries": len(ledger),
         }
-        # discipline index needs the finalized synchronized-phrase set
-        self._ledger_ngrams = set(ledger)
         return ledger
 
     def discipline_index(self) -> dict[str, dict]:
-        """Per (party, day): share of that party's statements containing >=1 synchronized
-        phrase that day. A simple v1 message-alignment metric (A11 precursor)."""
-        sync = getattr(self, "_ledger_ngrams", set())
-        hits: dict[tuple[str, str], int] = defaultdict(int)
-        for party, day, grams in self._doc_sync_grams:
-            if grams & sync:
-                hits[(party, day)] += 1
+        """Per (party, day): share of that party's statements containing >=1 kept synchronized
+        phrase that day (A11 precursor). Uses only ledger phrases (post-boilerplate)."""
+        kept = self._ledger_ngrams
+        # _doc_sync_hits used any candidate; recompute hits against kept ledger set via occ.
+        hit_units: dict[tuple[str, str], int] = defaultdict(int)
+        # Count, per (party, day), distinct units that used >=1 kept phrase.
+        seen: dict[tuple[str, str], set] = defaultdict(set)
+        for ngram in kept:
+            for day, by_party in self.occ[ngram].items():
+                for party, units in by_party.items():
+                    seen[(party, day)] |= units
         out: dict[str, dict] = defaultdict(dict)
         for (party, day), docs in self.party_day_docs.items():
-            h = hits.get((party, day), 0)
-            out[party][day] = {"statements": docs, "on_message": h,
-                               "index": round(h / docs, 4) if docs else 0.0}
+            u = len(seen.get((party, day), ()))
+            out[party][day] = {"statements": docs, "on_message_units": u,
+                               "index": round(min(u, docs) / docs, 4) if docs else 0.0}
         return out
