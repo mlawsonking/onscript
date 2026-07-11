@@ -1,0 +1,66 @@
+name: RUN B — assemble
+
+# 07:30 ET (11:30 UTC), ~2h after collect so the Haiku extraction batch has completed.
+# Retrieve extractions, cluster into talking points, distill the two Daily Lines (Sonnet
+# batch -> direct-call fallback on timeout), run the BLOCKING verifier, render the site + og
+# cards, commit derived (Vercel deploys), post both Bluesky threads, publish the symmetry audit.
+on:
+  schedule:
+    - cron: "30 11 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: onscript-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # absent -> dry-run composites, $0
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      BSKY_BLUE_HANDLE: ${{ secrets.BSKY_BLUE_HANDLE }}
+      BSKY_BLUE_PASSWORD: ${{ secrets.BSKY_BLUE_PASSWORD }}
+      BSKY_RED_HANDLE: ${{ secrets.BSKY_RED_HANDLE }}
+      BSKY_RED_PASSWORD: ${{ secrets.BSKY_RED_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore state written by RUN A
+        run: |
+          mkdir -p data/state data/raw data/reference
+          gh release download data-latest --dir data/_restore --clobber || echo "no state — assemble will no-op"
+          if [ -d data/_restore ]; then
+            tar -xzf data/_restore/state.tar.gz -C . || true
+            tar -xzf data/_restore/raw.tar.gz -C . || true
+          fi
+
+      - name: RUN B assemble (cluster -> distill -> VERIFY -> symmetry)
+        run: python pipeline/run_assemble.py
+
+      - name: Render the static site
+        run: python pipeline/site.py
+
+      - name: Post the Daily Line threads to Bluesky (both accounts)
+        run: python pipeline/post_bluesky.py || echo "posting skipped/failed (skip-and-log)"
+
+      - name: Persist updated extraction cache
+        run: |
+          tar -czf state.tar.gz data/state data/reference
+          gh release upload data-latest state.tar.gz --clobber || true
+
+      - name: Commit derived + rendered site (Vercel auto-deploys)
+        run: |
+          git config user.name "onscript-bot"
+          git config user.email "bot@onscript.news"
+          git add data/derived site/public
+          git commit -m "data: assemble $(date -u +%F) [skip ci]" || echo "no changes"
+          git push || echo "push skipped"

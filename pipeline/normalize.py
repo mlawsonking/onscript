@@ -120,6 +120,7 @@ def normalize_records(records, *, run_id: str, roster: dict | None = None):
                 "observed_at": rec.get("collected_at") or util.now_utc_iso(),
                 "member": {
                     "bioguide": bio,
+                    "name": (m.get("name") or "").strip() or (r.get("name") if bio else None),
                     "party": party,
                     "state": state,
                     "chamber": chamber,

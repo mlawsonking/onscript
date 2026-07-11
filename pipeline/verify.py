@@ -62,11 +62,30 @@ def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[b
     return (len(reasons) == 0, reasons)
 
 
-def verify_daily_line(distillation: dict, stats_blob: str) -> tuple[bool, list[str]]:
-    ok_nums, offending = numbers_whitelisted(distillation.get("composite", ""), stats_blob)
+_QUOTE = re.compile(r'"([^"]+)"|“([^”]+)”')
+
+
+def quotes_grounded(composite_text: str, fragments: list[str]) -> tuple[bool, list[str]]:
+    """P2 rule 2: every quoted span in the composite must be a verbatim substring of some
+    provided fragment (which is itself a verbatim substring of a cited statement)."""
+    sources = [_norm(f) for f in fragments]
+    offending: list[str] = []
+    for m in _QUOTE.finditer(composite_text or ""):
+        q = _norm(m.group(1) or m.group(2) or "")
+        if q and not any(q in s for s in sources):
+            offending.append(q)
+    return (len(offending) == 0, offending)
+
+
+def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] | None = None) -> tuple[bool, list[str]]:
     reasons: list[str] = []
+    ok_nums, offending = numbers_whitelisted(distillation.get("composite", ""), stats_blob)
     if not ok_nums:
         reasons.append(f"un-whitelisted numbers in composite: {sorted(offending)}")
+    if fragments is not None:
+        ok_q, off_q = quotes_grounded(distillation.get("composite", ""), fragments)
+        if not ok_q:
+            reasons.append(f"un-grounded quotes in composite: {off_q}")
     return (len(reasons) == 0, reasons)
 
 

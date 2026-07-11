@@ -1,0 +1,60 @@
+name: RUN A — collect
+
+# 05:30 ET (09:30 UTC). Pull+mirror congress-press, normalize, build the phrase ledger,
+# extract talking-point fragments (Haiku batch when ANTHROPIC_API_KEY is set; $0 dry-run
+# otherwise). State (ledger + extraction cache + raw mirror) persists as Release assets so the
+# compounding series and the never-distill-twice cache survive between runs (gameplan §2).
+on:
+  schedule:
+    - cron: "30 9 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: onscript-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # commit derived JSON + manage the data Release
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # absent -> dry-run, $0
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore prior state (ledger + extraction cache + raw mirror)
+        run: |
+          mkdir -p data/state data/raw data/reference
+          gh release download data-latest --dir data/_restore --clobber || echo "no prior state (first run)"
+          if [ -d data/_restore ]; then
+            tar -xzf data/_restore/state.tar.gz -C . || true
+            tar -xzf data/_restore/raw.tar.gz -C . || true
+          fi
+
+      - name: RUN A collect
+        run: python pipeline/run_collect.py
+
+      - name: Persist state + raw mirror to the data Release
+        run: |
+          tar -czf state.tar.gz data/state data/reference
+          tar -czf raw.tar.gz data/raw
+          gh release create data-latest --title "OnScript data (rolling)" --notes "raw mirror + ledger + extraction cache" 2>/dev/null || true
+          gh release upload data-latest state.tar.gz raw.tar.gz --clobber
+
+      - name: Commit deterministic derived JSON (Vercel auto-deploys)
+        run: |
+          git config user.name "onscript-bot"
+          git config user.email "bot@onscript.news"
+          git add data/derived
+          git commit -m "data: collect $(date -u +%F) [skip ci]" || echo "no derived changes"
+          git push || echo "push skipped"
