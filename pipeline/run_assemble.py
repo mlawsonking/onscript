@@ -50,7 +50,8 @@ def assemble(day: str) -> dict:
         annotated = []
         for s in party_stmts:
             for f in extractions.get(s["id"], {}).get("fragments", []):
-                annotated.append({**f, "statement": s["id"], "bioguide": (s.get("member") or {}).get("bioguide")})
+                annotated.append({**f, "statement": s["id"], "joint_group": s.get("joint_group"),
+                                  "bioguide": (s.get("member") or {}).get("bioguide")})
         tps = cluster.cluster_day(party, day, annotated)
 
         # verify talking points (>=3 distinct members + verbatim fragments); drop failures

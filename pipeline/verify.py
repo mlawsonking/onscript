@@ -45,15 +45,17 @@ def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[b
     """Return (ok, reasons). A talking point is publishable iff >=3 distinct members and
     every fragment is verbatim in its cited statement."""
     reasons: list[str] = []
-    members: set[str] = set()
+    # Count the quorum by UNIT (joint_group or bioguide): a joint/delegation release is one
+    # coordinated document, so it counts as 1 toward the >=3 floor — never a false quorum (§11 trap 2).
+    units: set = set()
     for sid in tp.get("statements", []):
         s = statements_by_id.get(sid)
         if s:
-            bio = (s.get("member") or {}).get("bioguide")
-            if bio:
-                members.add(bio)
-    if len(members) < 3:
-        reasons.append(f"quorum: {len(members)} distinct members (<3)")
+            unit = s.get("joint_group") or (s.get("member") or {}).get("bioguide")
+            if unit:
+                units.add(unit)
+    if len(units) < 3:
+        reasons.append(f"quorum: {len(units)} distinct units (<3)")
     for frag in tp.get("fragments", []):
         sid = frag.get("statement")
         src = statements_by_id.get(sid, {})

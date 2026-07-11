@@ -36,6 +36,38 @@ def test_cluster_requires_three_distinct_members():
     assert cluster.cluster_day("D", "2026-06-30", two) == []
 
 
+def test_cluster_collapses_joint_release_to_one_unit():
+    """A joint/delegation release must count as 1 unit in the talking-point path, not N (§11 trap 2)."""
+    frag = "we demand a full and independent investigation now"
+    # all 3 signatories share one joint_group -> 1 unit -> below the >=3 floor -> not published
+    joint = [{"text": frag, "topics": [], "statement": f"sha256:{c}", "bioguide": c, "joint_group": "joint:x"}
+             for c in "ABC"]
+    assert cluster.cluster_day("D", "2026-06-30", joint) == []
+    # 2 independent members + a joint block (counts as 1) = 3 units -> published, member_count 3
+    mixed = [{"text": frag, "topics": [], "statement": "sha256:A", "bioguide": "A", "joint_group": None},
+             {"text": frag, "topics": [], "statement": "sha256:B", "bioguide": "B", "joint_group": None},
+             {"text": frag, "topics": [], "statement": "sha256:C", "bioguide": "C", "joint_group": "joint:x"},
+             {"text": frag, "topics": [], "statement": "sha256:D", "bioguide": "D", "joint_group": "joint:x"}]
+    tps = cluster.cluster_day("D", "2026-06-30", mixed)
+    assert len(tps) == 1 and tps[0]["member_count"] == 3
+    assert len(tps[0]["fragments"]) == 3  # one receipt per unit, not per signatory
+
+
+def test_iter_jsonl_skips_malformed_lines():
+    """Skip-and-log: a truncated line in a mirror file must not crash the degraded-mode read."""
+    import os
+    import tempfile
+    from pipeline import util
+    fd, path = tempfile.mkstemp(suffix=".jsonl")
+    os.close(fd)
+    Path(path).write_text('{"a":1}\n{"a":2,"trunc\n{"a":3}\n', encoding="utf-8")
+    try:
+        rows = list(util.iter_jsonl(Path(path)))
+        assert [r["a"] for r in rows] == [1, 3]
+    finally:
+        os.unlink(path)
+
+
 def test_dry_daily_line_passes_verifier_and_uses_only_stats_numbers():
     tps = [{"id": "2026-06-30-D-00", "party": "D", "day": "2026-06-30", "label": "l",
             "member_count": 3, "statements": ["sha256:a", "sha256:b", "sha256:c"],

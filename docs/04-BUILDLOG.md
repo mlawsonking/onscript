@@ -179,6 +179,28 @@ instrument hashes. **24 tests pass** including both kill-tests.
 — dev box has no Node; the choice is explicitly sanctioned by §13 and keeps the site locally
 verifiable. Astro remains swappable against the same derived JSON.
 
+### Session 2 addendum — adversarial self-review (6 dimensions, findings verified)
+
+Ran a multi-agent adversarial review of the load-bearing modules (dry-run billing safety,
+verifier soundness, neutrality symmetry, coordination/joint-collapse, determinism, robustness).
+**Dry-run billing safety: zero findings** — no path reaches the Anthropic API when
+`ANTHROPIC_API_KEY` is unset. Two defects were adversarially CONFIRMED and **fixed**:
+
+1. **HIGH — joint-collapse wasn't carried into the talking-point path** (`cluster.py`,
+   `run_assemble.py`, `verify.py`). The phrase *ledger* collapsed a joint/delegation release to
+   one unit, but the *Daily Line* cluster + verifier counted by raw bioguide — so N signatories
+   of one identical letter could publish as an "N-member coordination" claim (the §11 trap-2
+   false positive, on the marketing surface). Fix: carry `joint_group` through the fragment
+   annotation and count the quorum by **unit** (`joint_group or bioguide`) in both cluster and
+   verifier, mirroring `phrases._unit_key`. After the fix, 2026-06-30's D talking points dropped
+   4→2 (a delegation-inflated cluster correctly removed) while the genuine 53-member birthright
+   coordination survived. Test: `test_cluster_collapses_joint_release_to_one_unit`,
+   `test_quorum_counts_joint_release_as_one_unit`.
+2. **MEDIUM — `util.iter_jsonl` had no per-line guard**, so one truncated line in a mirror file
+   would crash RUN A on the degraded-mode recovery path (violating skip-and-log). Fix: per-line
+   `try/except JSONDecodeError: continue`, matching `fetch.fetch_month`. Test:
+   `test_iter_jsonl_skips_malformed_lines`. 28 tests pass.
+
 ## Next sessions / follow-ups
 
 1. **Michael's launch errands (the actual gate, §7.3/§9):** public GitHub repo + push;

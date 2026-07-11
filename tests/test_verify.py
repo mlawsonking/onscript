@@ -44,6 +44,19 @@ def test_talking_point_requires_three_distinct_members():
     assert not ok and any("quorum" in r for r in reasons)
 
 
+def test_quorum_counts_joint_release_as_one_unit():
+    """§11 trap 2: a joint/delegation release is one coordinated document, not N members."""
+    body = "we demand a full account of what happened"
+    joint = {f"sha256:{c}": {"member": {"bioguide": c}, "text": body, "joint_group": "joint:x"} for c in "ABC"}
+    tp = {"id": "t", "statements": ["sha256:A", "sha256:B", "sha256:C"],
+          "fragments": [{"text": "a full account of what happened", "statement": "sha256:A"}]}
+    ok, reasons = verify.verify_talking_point(tp, joint)
+    assert not ok and any("quorum" in r for r in reasons)
+    indep = {f"sha256:{c}": {"member": {"bioguide": c}, "text": body} for c in "ABC"}  # no joint_group
+    ok2, _ = verify.verify_talking_point(tp, indep)
+    assert ok2
+
+
 def test_talking_point_rejects_non_verbatim_fragment():
     statements = {"sha256:a": {"member": {"bioguide": "A"}, "text": "we will protect the border"},
                   "sha256:b": {"member": {"bioguide": "B"}, "text": "we will protect the border"},

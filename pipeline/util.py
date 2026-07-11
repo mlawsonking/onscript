@@ -100,8 +100,14 @@ def iter_jsonl(path: Path) -> Iterator[dict]:
     with opener(path, "rt", encoding="utf-8") as fh:  # type: ignore[operator]
         for line in fh:
             line = line.strip()
-            if line:
+            if not line:
+                continue
+            try:
                 yield json.loads(line)
+            except json.JSONDecodeError:
+                # Skip-and-log: a truncated/corrupt line in a mirror file must never crash the
+                # daily run (this is the degraded-mode recovery path). Matches fetch.fetch_month.
+                continue
 
 
 def write_jsonl(path: Path, rows: Iterable[dict], *, gzipped: bool | None = None) -> int:

@@ -56,7 +56,11 @@ def cluster_day(party: str, day: str, annotated_fragments: list[dict]) -> list[d
 
     out: list[dict] = []
     for k, idxs in clusters.items():
-        members = {frs[i]["bioguide"] for i in idxs if frs[i].get("bioguide")}
+        # Count coordination by UNIT (joint_group or bioguide), mirroring phrases._unit_key, so a
+        # joint/delegation release counts as 1 — never inflates a talking point (§11 trap 2).
+        def _unit(i):
+            return frs[i].get("joint_group") or frs[i].get("bioguide")
+        members = {_unit(i) for i in idxs if _unit(i)}
         if len(members) < config.SYNC_MIN_MEMBERS:
             continue
         # label = most common distinctive trigram across the cluster (grounded in fragments)
@@ -64,14 +68,14 @@ def cluster_day(party: str, day: str, annotated_fragments: list[dict]) -> list[d
         label = gram_counts.most_common(1)[0][0] if gram_counts else frs[idxs[0]]["text"]
         topics = Counter(t for i in idxs for t in frs[i].get("topics", []))
         statements = sorted({frs[i]["statement"] for i in idxs})
-        # one representative fragment per member (dedupe so receipts are clean)
-        seen_member: set[str] = set()
+        # one representative fragment per unit (dedupe so a joint release yields one receipt)
+        seen_unit: set = set()
         frags: list[dict] = []
         for i in idxs:
-            b = frs[i].get("bioguide")
-            if b and b not in seen_member:
+            u = _unit(i)
+            if u and u not in seen_unit:
                 frags.append({"text": frs[i]["text"], "statement": frs[i]["statement"]})
-                seen_member.add(b)
+                seen_unit.add(u)
         out.append({
             "id": f"{day}-{party}-{len(out):02d}",
             "party": party, "day": day, "label": label,

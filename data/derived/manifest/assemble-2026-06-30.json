@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "run_id": "assemble-2026-07-10",
+  "run_id": "assemble-2026-07-11",
   "kind": "assemble",
-  "generated_at": "2026-07-11T02:53:11Z",
+  "generated_at": "2026-07-11T11:50:44Z",
   "day": "2026-06-30",
   "dry_run": true,
   "extract_cost": {
@@ -16,9 +16,9 @@
   },
   "per_party_llm": {
     "D": {
-      "tokens_in": 1757,
+      "tokens_in": 1667,
       "tokens_out": 400,
-      "claims_published": 4,
+      "claims_published": 2,
       "claims_dropped": 0
     },
     "R": {
@@ -28,7 +28,7 @@
       "claims_dropped": 0
     }
   },
-  "daily_voice_cost_usd": 0.0074,
+  "daily_voice_cost_usd": 0.0073,
   "governor_state": "nominal",
   "degraded": false,
   "symmetry": {
