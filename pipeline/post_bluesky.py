@@ -97,9 +97,13 @@ def _post_real(handle: str, pw: str, thread: list[str], party: str) -> dict:  # 
 
 
 def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--day", default=None)
+    args = ap.parse_args()
     latest = util.read_json(config.DERIVED / "manifest" / "collect-latest.json", {}) \
         or util.read_json(config.DERIVED / "manifest" / "latest.json", {})
-    day = latest.get("focus_day") or util.product_day()
+    day = args.day or latest.get("focus_day") or util.product_day()
     day_json = util.read_json(config.DERIVED / "days" / f"{day}.json", None)
     if not day_json or not day_json.get("daily_lines"):
         print(f"no Daily Lines for {day} — nothing to post")
