@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Adoption curve for the phrase “small business owners”.">
+<title>OnScript · “small business owners”</title>
+<style>:root{
+  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#8a8a8a; --line:#e2e2e2;
+  --bg:#fbfbf9; --panel:#ffffff; --accent:#333;
+  --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
+  --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
+  --warn-bg:#fff6e0; --warn-line:#e8cf8a; --warn-ink:#6b4e00;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6; font-size:17px;
+}
+.wrap{max-width:1000px; margin:0 auto; padding:0 20px 80px}
+a{color:var(--blue); text-decoration:none}
+a:hover{text-decoration:underline}
+header.site{border-bottom:2px solid var(--ink); margin-bottom:8px; padding:22px 0 12px}
+header.site .brand{font-size:30px; font-weight:800; letter-spacing:-0.02em; color:var(--ink)}
+header.site .brand a{color:var(--ink)}
+header.site .tag{color:var(--muted); font-size:15px; margin-top:2px; font-style:italic}
+nav.top{display:flex; flex-wrap:wrap; gap:16px; padding:10px 0; border-bottom:1px solid var(--line);
+  margin-bottom:26px; font-size:15px}
+nav.top a{color:var(--muted)}
+nav.top a:hover{color:var(--ink)}
+h1{font-size:26px; line-height:1.25; margin:26px 0 6px; letter-spacing:-0.01em}
+h2{font-size:20px; margin:34px 0 10px; padding-bottom:5px; border-bottom:1px solid var(--line)}
+h3{font-size:17px; margin:22px 0 8px}
+p{margin:10px 0}
+.subhead{color:var(--muted); font-size:15px; margin-top:0}
+.mono,code,.sha{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.sha{font-size:12px; color:var(--faint); word-break:break-all}
+.muted{color:var(--muted)}
+.faint{color:var(--faint)}
+small{font-size:13px}
+
+.banner{border:1px solid var(--warn-line); background:var(--warn-bg); color:var(--warn-ink);
+  border-radius:6px; padding:10px 14px; margin:16px 0; font-size:14.5px}
+.banner strong{color:var(--warn-ink)}
+
+.lines{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0 8px}
+@media(max-width:720px){.lines{grid-template-columns:1fr}}
+.line{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:16px 18px}
+.line.D{border-top:4px solid var(--blue)}
+.line.R{border-top:4px solid var(--red)}
+.line .who{font-weight:700; font-size:15px; text-transform:uppercase; letter-spacing:.04em}
+.line.D .who{color:var(--blue)}
+.line.R .who{color:var(--red)}
+.line .composite{margin:8px 0 0; font-size:17px; line-height:1.55}
+.line .metaflags{margin-top:8px; font-size:12.5px; color:var(--faint)}
+
+.receipts{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
+.receipts .rlabel{font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--faint); margin-bottom:8px}
+.receipt{margin:0 0 12px; padding-left:12px; border-left:3px solid var(--line)}
+.line.D .receipt{border-left-color:var(--blue-line)}
+.line.R .receipt{border-left-color:var(--red-line)}
+.receipt .rhead{font-size:13px; color:var(--muted); margin-bottom:2px}
+.receipt .rcount{font-weight:700; color:var(--ink)}
+.receipt .quote{font-size:14.5px; color:var(--ink)}
+.receipt .quote:before{content:"\201C"} .receipt .quote:after{content:"\201D"}
+.receipt .rtopics{font-size:12px; color:var(--faint); margin-top:2px}
+
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; font-size:14.5px}
+th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:middle}
+th{font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:600; white-space:nowrap}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+tr:hover td{background:#faf9f6}
+.pill{display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; line-height:1.5}
+.pill.D{background:var(--blue-bg); color:var(--blue)}
+.pill.R{background:var(--red-bg); color:var(--red)}
+.pill.I{background:#eee; color:#555}
+.spark{display:block}
+
+.nav-pn{display:flex; justify-content:space-between; gap:12px; margin:26px 0; font-size:15px}
+.chartbox{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:12px; margin:16px 0}
+.legend{font-size:13px; color:var(--muted); margin:6px 0 0}
+.legend .sw{display:inline-block; width:22px; height:0; border-top:3px solid; vertical-align:middle; margin-right:5px}
+
+.kv{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:14.5px; margin:10px 0}
+.kv dt{color:var(--faint)}
+.kv dd{margin:0}
+
+pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
+  border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px; line-height:1.5; color:#2a2a2a; overflow-x:auto}
+.promptmeta{font-size:12.5px; color:var(--faint); margin:4px 0 2px}
+
+ul.tight{margin:8px 0; padding-left:22px}
+ul.tight li{margin:3px 0}
+
+footer.site{border-top:1px solid var(--line); margin-top:50px; padding-top:16px; color:var(--faint); font-size:13px}
+footer.site a{color:var(--muted)}</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">OnScript</a></div>
+  <div class="tag">This is literally what each party said today, compressed to one voice, with receipts.</div>
+</header>
+<nav class="top"><a href="../index.html">Today</a><a href="../phrases/index.html">Phrases</a><a href="../methodology.html">Methodology</a><a href="../about.html">About</a></nav>
+<h1>&ldquo;small business owners&rdquo;</h1><p class="subhead">Adoption curve: how many independent members of each party used this exact phrase, by day.</p><div class="chartbox scroll"><svg width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="adoption curve" preserveAspectRatio="xMinYMin meet" style="min-width:900px"><line x1="44" y1="226.0" x2="886" y2="226.0" stroke="#ececec" stroke-width="1"/><text x="38" y="230.0" text-anchor="end" font-size="11" fill="#8a8a8a">0</text><line x1="44" y1="120.0" x2="886" y2="120.0" stroke="#ececec" stroke-width="1"/><text x="38" y="124.0" text-anchor="end" font-size="11" fill="#8a8a8a">6</text><line x1="44" y1="14.0" x2="886" y2="14.0" stroke="#ececec" stroke-width="1"/><text x="38" y="18.0" text-anchor="end" font-size="11" fill="#8a8a8a">13</text><line x1="44" y1="14" x2="44" y2="226" stroke="#ccc" stroke-width="1"/><line x1="44" y1="226" x2="886" y2="226" stroke="#ccc" stroke-width="1"/><polyline fill="none" stroke="#8a2f2f" stroke-width="1.8" stroke-linejoin="round" points="44.0,226.0 46.4,193.4 48.8,209.7 51.2,226.0 53.6,209.7 56.0,209.7 58.4,209.7 60.8,226.0 63.2,209.7 65.7,160.8 68.1,177.1 70.5,160.8 72.9,209.7 75.3,209.7 77.7,209.7 80.1,193.4 82.5,226.0 84.9,209.7 87.3,209.7 89.7,226.0 92.1,226.0 94.5,209.7 96.9,209.7 99.3,226.0 101.7,177.1 104.1,209.7 106.5,144.5 109.0,209.7 111.4,193.4 113.8,226.0 116.2,209.7 118.6,177.1 121.0,160.8 123.4,193.4 125.8,226.0 128.2,226.0 130.6,177.1 133.0,226.0 135.4,209.7 137.8,209.7 140.2,226.0 142.6,177.1 145.0,226.0 147.4,226.0 149.9,226.0 152.3,193.4 154.7,193.4 157.1,209.7 159.5,209.7 161.9,209.7 164.3,209.7 166.7,226.0 169.1,226.0 171.5,209.7 173.9,209.7 176.3,209.7 178.7,209.7 181.1,209.7 183.5,193.4 185.9,193.4 188.3,193.4 190.7,226.0 193.2,226.0 195.6,209.7 198.0,209.7 200.4,226.0 202.8,193.4 205.2,177.1 207.6,226.0 210.0,226.0 212.4,209.7 214.8,209.7 217.2,209.7 219.6,226.0 222.0,209.7 224.4,226.0 226.8,226.0 229.2,193.4 231.6,209.7 234.1,209.7 236.5,177.1 238.9,226.0 241.3,209.7 243.7,226.0 246.1,193.4 248.5,226.0 250.9,160.8 253.3,177.1 255.7,209.7 258.1,226.0 260.5,193.4 262.9,209.7 265.3,209.7 267.7,128.2 270.1,226.0 272.5,226.0 274.9,226.0 277.4,209.7 279.8,209.7 282.2,226.0 284.6,209.7 287.0,209.7 289.4,226.0 291.8,193.4 294.2,226.0 296.6,226.0 299.0,226.0 301.4,193.4 303.8,209.7 306.2,226.0 308.6,209.7 311.0,226.0 313.4,209.7 315.8,193.4 318.3,193.4 320.7,177.1 323.1,226.0 325.5,95.5 327.9,226.0 330.3,209.7 332.7,209.7 335.1,177.1 337.5,209.7 339.9,209.7 342.3,209.7 344.7,160.8 347.1,226.0 349.5,209.7 351.9,226.0 354.3,226.0 356.7,209.7 359.1,226.0 361.6,209.7 364.0,226.0 366.4,209.7 368.8,209.7 371.2,226.0 373.6,226.0 376.0,193.4 378.4,209.7 380.8,226.0 383.2,226.0 385.6,209.7 388.0,209.7 390.4,209.7 392.8,226.0 395.2,209.7 397.6,209.7 400.0,209.7 402.5,193.4 404.9,209.7 407.3,209.7 409.7,209.7 412.1,226.0 414.5,226.0 416.9,177.1 419.3,144.5 421.7,177.1 424.1,209.7 426.5,209.7 428.9,209.7 431.3,226.0 433.7,226.0 436.1,226.0 438.5,177.1 440.9,177.1 443.3,209.7 445.8,226.0 448.2,209.7 450.6,226.0 453.0,209.7 455.4,226.0 457.8,209.7 460.2,226.0 462.6,226.0 465.0,226.0 467.4,209.7 469.8,209.7 472.2,226.0 474.6,226.0 477.0,193.4 479.4,226.0 481.8,226.0 484.2,209.7 486.7,209.7 489.1,226.0 491.5,209.7 493.9,193.4 496.3,209.7 498.7,193.4 501.1,177.1 503.5,226.0 505.9,177.1 508.3,193.4 510.7,209.7 513.1,209.7 515.5,226.0 517.9,226.0 520.3,193.4 522.7,193.4 525.1,226.0 527.5,209.7 530.0,226.0 532.4,193.4 534.8,226.0 537.2,193.4 539.6,226.0 542.0,209.7 544.4,226.0 546.8,226.0 549.2,226.0 551.6,226.0 554.0,226.0 556.4,209.7 558.8,226.0 561.2,177.1 563.6,226.0 566.0,226.0 568.4,209.7 570.9,209.7 573.3,177.1 575.7,209.7 578.1,209.7 580.5,209.7 582.9,144.5 585.3,144.5 587.7,177.1 590.1,209.7 592.5,209.7 594.9,209.7 597.3,209.7 599.7,209.7 602.1,209.7 604.5,226.0 606.9,226.0 609.3,193.4 611.7,209.7 614.2,226.0 616.6,209.7 619.0,209.7 621.4,209.7 623.8,209.7 626.2,209.7 628.6,209.7 631.0,226.0 633.4,209.7 635.8,226.0 638.2,226.0 640.6,193.4 643.0,226.0 645.4,209.7 647.8,226.0 650.2,226.0 652.6,226.0 655.1,209.7 657.5,226.0 659.9,193.4 662.3,209.7 664.7,209.7 667.1,209.7 669.5,193.4 671.9,226.0 674.3,209.7 676.7,160.8 679.1,193.4 681.5,193.4 683.9,209.7 686.3,209.7 688.7,193.4 691.1,193.4 693.5,193.4 695.9,209.7 698.4,193.4 700.8,177.1 703.2,209.7 705.6,193.4 708.0,209.7 710.4,209.7 712.8,226.0 715.2,209.7 717.6,177.1 720.0,209.7 722.4,209.7 724.8,209.7 727.2,209.7 729.6,209.7 732.0,209.7 734.4,193.4 736.8,193.4 739.3,209.7 741.7,209.7 744.1,193.4 746.5,128.2 748.9,160.8 751.3,226.0 753.7,226.0 756.1,209.7 758.5,209.7 760.9,177.1 763.3,226.0 765.7,226.0 768.1,209.7 770.5,177.1 772.9,193.4 775.3,209.7 777.7,226.0 780.1,209.7 782.6,177.1 785.0,177.1 787.4,144.5 789.8,226.0 792.2,226.0 794.6,193.4 797.0,193.4 799.4,193.4 801.8,209.7 804.2,209.7 806.6,209.7 809.0,226.0 811.4,193.4 813.8,209.7 816.2,209.7 818.6,226.0 821.0,226.0 823.5,226.0 825.9,226.0 828.3,209.7 830.7,193.4 833.1,209.7 835.5,209.7 837.9,209.7 840.3,209.7 842.7,226.0 845.1,226.0 847.5,193.4 849.9,209.7 852.3,226.0 854.7,226.0 857.1,193.4 859.5,226.0 861.9,226.0 864.3,209.7 866.8,209.7 869.2,209.7 871.6,226.0 874.0,226.0 876.4,209.7 878.8,193.4 881.2,209.7 883.6,226.0 886.0,226.0"/><polyline fill="none" stroke="#2b4c7e" stroke-width="2" stroke-linejoin="round" points="44.0,209.7 46.4,209.7 48.8,226.0 51.2,209.7 53.6,226.0 56.0,209.7 58.4,160.8 60.8,193.4 63.2,226.0 65.7,128.2 68.1,226.0 70.5,209.7 72.9,209.7 75.3,209.7 77.7,209.7 80.1,226.0 82.5,209.7 84.9,177.1 87.3,193.4 89.7,209.7 92.1,209.7 94.5,193.4 96.9,209.7 99.3,209.7 101.7,193.4 104.1,193.4 106.5,226.0 109.0,226.0 111.4,226.0 113.8,193.4 116.2,209.7 118.6,209.7 121.0,226.0 123.4,209.7 125.8,209.7 128.2,193.4 130.6,177.1 133.0,193.4 135.4,160.8 137.8,193.4 140.2,193.4 142.6,177.1 145.0,193.4 147.4,177.1 149.9,193.4 152.3,193.4 154.7,226.0 157.1,209.7 159.5,226.0 161.9,226.0 164.3,209.7 166.7,193.4 169.1,209.7 171.5,209.7 173.9,226.0 176.3,226.0 178.7,226.0 181.1,193.4 183.5,177.1 185.9,226.0 188.3,209.7 190.7,209.7 193.2,111.8 195.6,177.1 198.0,226.0 200.4,209.7 202.8,209.7 205.2,209.7 207.6,193.4 210.0,209.7 212.4,209.7 214.8,209.7 217.2,209.7 219.6,193.4 222.0,160.8 224.4,193.4 226.8,209.7 229.2,177.1 231.6,226.0 234.1,209.7 236.5,209.7 238.9,193.4 241.3,209.7 243.7,209.7 246.1,209.7 248.5,209.7 250.9,177.1 253.3,144.5 255.7,177.1 258.1,177.1 260.5,209.7 262.9,226.0 265.3,209.7 267.7,177.1 270.1,209.7 272.5,193.4 274.9,209.7 277.4,226.0 279.8,193.4 282.2,177.1 284.6,209.7 287.0,193.4 289.4,209.7 291.8,209.7 294.2,193.4 296.6,209.7 299.0,209.7 301.4,226.0 303.8,209.7 306.2,209.7 308.6,209.7 311.0,209.7 313.4,226.0 315.8,226.0 318.3,226.0 320.7,226.0 323.1,209.7 325.5,226.0 327.9,209.7 330.3,226.0 332.7,226.0 335.1,193.4 337.5,209.7 339.9,177.1 342.3,177.1 344.7,193.4 347.1,193.4 349.5,226.0 351.9,209.7 354.3,209.7 356.7,193.4 359.1,209.7 361.6,226.0 364.0,193.4 366.4,209.7 368.8,226.0 371.2,209.7 373.6,193.4 376.0,160.8 378.4,177.1 380.8,193.4 383.2,209.7 385.6,226.0 388.0,226.0 390.4,209.7 392.8,128.2 395.2,209.7 397.6,226.0 400.0,226.0 402.5,226.0 404.9,160.8 407.3,209.7 409.7,209.7 412.1,209.7 414.5,209.7 416.9,193.4 419.3,226.0 421.7,209.7 424.1,209.7 426.5,209.7 428.9,209.7 431.3,177.1 433.7,193.4 436.1,177.1 438.5,209.7 440.9,193.4 443.3,177.1 445.8,193.4 448.2,209.7 450.6,177.1 453.0,209.7 455.4,193.4 457.8,209.7 460.2,177.1 462.6,144.5 465.0,209.7 467.4,193.4 469.8,209.7 472.2,209.7 474.6,193.4 477.0,193.4 479.4,193.4 481.8,193.4 484.2,193.4 486.7,209.7 489.1,144.5 491.5,193.4 493.9,177.1 496.3,193.4 498.7,193.4 501.1,177.1 503.5,209.7 505.9,193.4 508.3,193.4 510.7,111.8 513.1,128.2 515.5,209.7 517.9,193.4 520.3,193.4 522.7,193.4 525.1,193.4 527.5,160.8 530.0,209.7 532.4,30.3 534.8,209.7 537.2,193.4 539.6,193.4 542.0,193.4 544.4,177.1 546.8,193.4 549.2,193.4 551.6,209.7 554.0,209.7 556.4,177.1 558.8,193.4 561.2,193.4 563.6,160.8 566.0,177.1 568.4,144.5 570.9,193.4 573.3,111.8 575.7,193.4 578.1,209.7 580.5,226.0 582.9,193.4 585.3,177.1 587.7,193.4 590.1,193.4 592.5,226.0 594.9,226.0 597.3,209.7 599.7,226.0 602.1,14.0 604.5,209.7 606.9,209.7 609.3,193.4 611.7,193.4 614.2,160.8 616.6,226.0 619.0,160.8 621.4,209.7 623.8,209.7 626.2,226.0 628.6,226.0 631.0,209.7 633.4,209.7 635.8,209.7 638.2,209.7 640.6,193.4 643.0,177.1 645.4,209.7 647.8,209.7 650.2,209.7 652.6,209.7 655.1,209.7 657.5,177.1 659.9,226.0 662.3,226.0 664.7,193.4 667.1,209.7 669.5,79.2 671.9,209.7 674.3,111.8 676.7,144.5 679.1,111.8 681.5,193.4 683.9,193.4 686.3,209.7 688.7,226.0 691.1,209.7 693.5,226.0 695.9,226.0 698.4,193.4 700.8,193.4 703.2,226.0 705.6,226.0 708.0,226.0 710.4,209.7 712.8,209.7 715.2,209.7 717.6,160.8 720.0,193.4 722.4,226.0 724.8,226.0 727.2,209.7 729.6,226.0 732.0,209.7 734.4,209.7 736.8,209.7 739.3,177.1 741.7,160.8 744.1,226.0 746.5,209.7 748.9,226.0 751.3,209.7 753.7,209.7 756.1,209.7 758.5,209.7 760.9,160.8 763.3,193.4 765.7,209.7 768.1,209.7 770.5,226.0 772.9,209.7 775.3,226.0 777.7,209.7 780.1,209.7 782.6,209.7 785.0,177.1 787.4,160.8 789.8,193.4 792.2,209.7 794.6,209.7 797.0,209.7 799.4,144.5 801.8,209.7 804.2,226.0 806.6,226.0 809.0,193.4 811.4,177.1 813.8,209.7 816.2,226.0 818.6,209.7 821.0,193.4 823.5,209.7 825.9,160.8 828.3,226.0 830.7,177.1 833.1,226.0 835.5,209.7 837.9,209.7 840.3,193.4 842.7,209.7 845.1,209.7 847.5,177.1 849.9,226.0 852.3,160.8 854.7,193.4 857.1,160.8 859.5,209.7 861.9,193.4 864.3,209.7 866.8,209.7 869.2,209.7 871.6,193.4 874.0,209.7 876.4,226.0 878.8,226.0 881.2,209.7 883.6,209.7 886.0,177.1"/><circle cx="602.1" cy="14.0" r="3.2" fill="#1a1a1a"/><text x="608.1" y="8.0" text-anchor="start" font-size="11" fill="#1a1a1a">peak 13 · 2026-01-08</text><text x="44.0" y="242.0" text-anchor="start" font-size="11" fill="#8a8a8a">2025-01-02</text><text x="255.7" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2025-05-09</text><text x="465.0" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2025-10-02</text><text x="674.3" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2026-02-23</text><text x="886.0" y="242.0" text-anchor="end" font-size="11" fill="#8a8a8a">2026-07-09</text></svg><p class="legend"><span class="sw" style="border-color:#2b4c7e"></span>Democrats&nbsp;&nbsp;<span class="sw" style="border-color:#8a2f2f"></span>Republicans</p></div><dl class="kv"><dt>First said</dt><dd>2025-01-02 by Tammy Duckworth (D-IL)</dd><dt>Peak</dt><dd>13 members in one day</dd><dt>Distinctiveness (df_weight)</dt><dd>0.968</dd><dt>Data points</dt><dd>351 active days</dd></dl><p class="muted"><small>Our corpus begins 2025-01. Historical coverage by year is shown on the <a href="../methodology.html">Methodology</a> page. (The full-history &ldquo;Alexandria&rdquo; backfill to 2001 is staged for a later phase.)</small></p><p style="margin-top:22px"><a href="../phrases/index.html">&larr; All phrases</a></p>
+<footer class="site">
+  <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
+  parties, audited nightly in public. See the <a href="../methodology.html">Methodology</a>.
+  Every distilled claim links to at least three real source statements. No tracking, no external requests.</p>
+</footer>
+</div>
+</body>
+</html>

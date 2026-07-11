@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "run_id": "backfill-stage1-2026-07-10",
+  "kind": "deterministic",
+  "generated_at": "2026-07-10T21:02:51Z",
+  "focus_day": "2026-07-09",
+  "days_present": [
+    "2025-01-01",
+    "2026-07-09"
+  ],
+  "source_freshness": {
+    "ok": true,
+    "note": "offline rebuild from mirror"
+  },
+  "normalize": {
+    "in": 76023,
+    "kept": 75989,
+    "rejects": 34,
+    "joint_groups": 161,
+    "near_joint_groups": 2123,
+    "syndicated": 62
+  },
+  "phrase_engine": {
+    "candidates": 465022,
+    "df_boilerplate": 491,
+    "ledger_entries": 464531
+  },
+  "per_party": {
+    "D": {
+      "statements_in": 44546,
+      "members_covered": 263
+    },
+    "R": {
+      "statements_in": 30980,
+      "members_covered": 272
+    },
+    "I": {
+      "statements_in": 360,
+      "members_covered": 3
+    }
+  },
+  "derived": {
+    "ledger_entries": 464531,
+    "phrase_pages": 63,
+    "focus_day": "2026-07-09",
+    "focus_day_top_phrases": 20,
+    "coverage_years": [
+      "2025",
+      "2026"
+    ]
+  },
+  "spend_estimate_usd": 0.0,
+  "governor_state": "nominal",
+  "alerts": []
+}

@@ -52,6 +52,35 @@ def test_dry_daily_line_passes_verifier_and_uses_only_stats_numbers():
     assert ok, off
 
 
+def test_two_lane_enforcement_lane2_excluded_from_ledger():
+    """§5.1 machine enforcement: Lane 2 (Bluesky/floor) records are blocked from every
+    comparative aggregator at the engine's eligibility gate — they cannot move a cross-party
+    number. Also verified end-to-end below with enough Lane-1 volume to clear the DF-share cap."""
+    from pipeline.phrases import PhraseEngine
+    eng = PhraseEngine()
+    assert eng._eligible({"lane": 1, "syndicated": False, "member": {"party": "D", "bioguide": "A"}}) == "D"
+    assert eng._eligible({"lane": 2, "syndicated": False, "member": {"party": "D", "bioguide": "Z"}}) is None
+    assert eng._eligible({"lane": None, "member": {"party": "R", "bioguide": "B"}}) is None
+
+    # End-to-end: 3 Lane-1 members share a phrase amid filler; a Lane-2 member using the SAME
+    # phrase must not appear in its member list. Filler keeps the phrase's DF-share under the cap.
+    phrase = "we will protect the affordable care act for every family"
+    stmts = [{"id": f"sha256:{c}", "text": f"Today {phrase}.", "published_at": "2026-06-30",
+              "lane": 1, "syndicated": False, "congress": 119, "member": {"bioguide": c, "party": "D"}}
+             for c in "ABC"]
+    for i in range(80):  # filler so the phrase is a small share of the stratum
+        stmts.append({"id": f"sha256:f{i}", "text": f"We support local project number {i} for our district roads.",
+                      "published_at": "2026-06-30", "lane": 1, "syndicated": False, "congress": 119,
+                      "member": {"bioguide": f"F{i}", "party": "D"}})
+    stmts.append({"id": "sha256:Z", "text": f"Online: {phrase} now.", "published_at": "2026-06-30",
+                  "lane": 2, "syndicated": False, "congress": 119, "member": {"bioguide": "Z", "party": "D"}})
+    ledger = PhraseEngine().build(stmts)
+    hit = next((k for k in ledger if "affordable care act" in k), None)
+    assert hit, "expected the synchronized phrase in the ledger"
+    day = ledger[hit]["daily"]["2026-06-30"]
+    assert day["D"] == 3 and "Z" not in day.get("members_D", [])
+
+
 def test_neutrality_hashes_are_single_valued_for_both_parties():
     # prompts_sha / thresholds_sha are computed once and applied to both parties by construction
     ps = ops.prompts_sha()

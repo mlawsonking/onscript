@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The two-lane model, the nightly symmetry audit, and the live prompt text.">
+<title>OnScript · Methodology</title>
+<style>:root{
+  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#8a8a8a; --line:#e2e2e2;
+  --bg:#fbfbf9; --panel:#ffffff; --accent:#333;
+  --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
+  --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
+  --warn-bg:#fff6e0; --warn-line:#e8cf8a; --warn-ink:#6b4e00;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6; font-size:17px;
+}
+.wrap{max-width:1000px; margin:0 auto; padding:0 20px 80px}
+a{color:var(--blue); text-decoration:none}
+a:hover{text-decoration:underline}
+header.site{border-bottom:2px solid var(--ink); margin-bottom:8px; padding:22px 0 12px}
+header.site .brand{font-size:30px; font-weight:800; letter-spacing:-0.02em; color:var(--ink)}
+header.site .brand a{color:var(--ink)}
+header.site .tag{color:var(--muted); font-size:15px; margin-top:2px; font-style:italic}
+nav.top{display:flex; flex-wrap:wrap; gap:16px; padding:10px 0; border-bottom:1px solid var(--line);
+  margin-bottom:26px; font-size:15px}
+nav.top a{color:var(--muted)}
+nav.top a:hover{color:var(--ink)}
+h1{font-size:26px; line-height:1.25; margin:26px 0 6px; letter-spacing:-0.01em}
+h2{font-size:20px; margin:34px 0 10px; padding-bottom:5px; border-bottom:1px solid var(--line)}
+h3{font-size:17px; margin:22px 0 8px}
+p{margin:10px 0}
+.subhead{color:var(--muted); font-size:15px; margin-top:0}
+.mono,code,.sha{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.sha{font-size:12px; color:var(--faint); word-break:break-all}
+.muted{color:var(--muted)}
+.faint{color:var(--faint)}
+small{font-size:13px}
+
+.banner{border:1px solid var(--warn-line); background:var(--warn-bg); color:var(--warn-ink);
+  border-radius:6px; padding:10px 14px; margin:16px 0; font-size:14.5px}
+.banner strong{color:var(--warn-ink)}
+
+.lines{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0 8px}
+@media(max-width:720px){.lines{grid-template-columns:1fr}}
+.line{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:16px 18px}
+.line.D{border-top:4px solid var(--blue)}
+.line.R{border-top:4px solid var(--red)}
+.line .who{font-weight:700; font-size:15px; text-transform:uppercase; letter-spacing:.04em}
+.line.D .who{color:var(--blue)}
+.line.R .who{color:var(--red)}
+.line .composite{margin:8px 0 0; font-size:17px; line-height:1.55}
+.line .metaflags{margin-top:8px; font-size:12.5px; color:var(--faint)}
+
+.receipts{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
+.receipts .rlabel{font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--faint); margin-bottom:8px}
+.receipt{margin:0 0 12px; padding-left:12px; border-left:3px solid var(--line)}
+.line.D .receipt{border-left-color:var(--blue-line)}
+.line.R .receipt{border-left-color:var(--red-line)}
+.receipt .rhead{font-size:13px; color:var(--muted); margin-bottom:2px}
+.receipt .rcount{font-weight:700; color:var(--ink)}
+.receipt .quote{font-size:14.5px; color:var(--ink)}
+.receipt .quote:before{content:"\201C"} .receipt .quote:after{content:"\201D"}
+.receipt .rtopics{font-size:12px; color:var(--faint); margin-top:2px}
+
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; font-size:14.5px}
+th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:middle}
+th{font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:600; white-space:nowrap}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+tr:hover td{background:#faf9f6}
+.pill{display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; line-height:1.5}
+.pill.D{background:var(--blue-bg); color:var(--blue)}
+.pill.R{background:var(--red-bg); color:var(--red)}
+.pill.I{background:#eee; color:#555}
+.spark{display:block}
+
+.nav-pn{display:flex; justify-content:space-between; gap:12px; margin:26px 0; font-size:15px}
+.chartbox{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:12px; margin:16px 0}
+.legend{font-size:13px; color:var(--muted); margin:6px 0 0}
+.legend .sw{display:inline-block; width:22px; height:0; border-top:3px solid; vertical-align:middle; margin-right:5px}
+
+.kv{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:14.5px; margin:10px 0}
+.kv dt{color:var(--faint)}
+.kv dd{margin:0}
+
+pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
+  border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px; line-height:1.5; color:#2a2a2a; overflow-x:auto}
+.promptmeta{font-size:12.5px; color:var(--faint); margin:4px 0 2px}
+
+ul.tight{margin:8px 0; padding-left:22px}
+ul.tight li{margin:3px 0}
+
+footer.site{border-top:1px solid var(--line); margin-top:50px; padding-top:16px; color:var(--faint); font-size:13px}
+footer.site a{color:var(--muted)}</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="index.html">OnScript</a></div>
+  <div class="tag">This is literally what each party said today, compressed to one voice, with receipts.</div>
+</header>
+<nav class="top"><a href="index.html">Today</a><a href="phrases/index.html">Phrases</a><a href="methodology.html">Methodology</a><a href="about.html">About</a></nav>
+<h1>Methodology</h1><p class="subhead">OnScript is a symmetric instrument. The same pipeline, the same prompts, and the same thresholds run for both parties. Asymmetric findings are allowed — a symmetric instrument producing asymmetric readings is a fact about the world, not about the instrument. This page is that guarantee, in public.</p><h2>The two-lane model</h2><p><strong>Lane 1 — press releases.</strong> Official member press releases (mirrored from an open corpus) are the only source that exists symmetrically for both parties. <em>Every cross-party number on this site comes from Lane 1 and Lane 1 only.</em></p><p><strong>Lane 2 — Bluesky &amp; floor speech.</strong> These enrich individual context but are <em>machine-blocked from every comparative metric</em>. Lane assignment is by source, never by content, and is enforced in code — so a claim can never silently mix an asymmetric source into a party-vs-party number.</p><h2>Nightly symmetry audit</h2><p style="font-size:16px"><em>Identical instrument, both parties, audited nightly in public. Asymmetric findings are reality&#x27;s problem, not the instrument&#x27;s.</em></p><p class="promptmeta">Audit for 2026-06-30.</p><div class="scroll"><table><thead><tr><th>Metric</th><th class='num'>Democrats</th><th class='num'>Republicans</th></tr></thead><tbody><tr><td>Statements ingested</td><td class='num'>44546</td><td class='num'>30980</td></tr><tr><td>Members covered</td><td class='num'>263</td><td class='num'>272</td></tr><tr><td>Caucus size</td><td class='num'>263</td><td class='num'>272</td></tr><tr><td>Coverage</td><td class='num'>100.0%</td><td class='num'>100.0%</td></tr><tr><td>Tokens in</td><td class='num'>1757</td><td class='num'>1674</td></tr><tr><td>Tokens out</td><td class='num'>400</td><td class='num'>400</td></tr><tr><td>Claims published</td><td class='num'>4</td><td class='num'>3</td></tr><tr><td>Claims dropped</td><td class='num'>0</td><td class='num'>0</td></tr></tbody></table></div><p class="muted" style="margin-top:12px"><small>The following hashes are computed once and applied identically to both parties. If they ever differ between parties, the instrument is broken.</small></p><dl class="kv"><dt>P1 prompt sha</dt><dd class="sha">0cddc44ce3b70062f8bce6e98e50132553ff16b3e383a51a29fd867b3b134e9f</dd><dt>P2 prompt sha</dt><dd class="sha">2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764</dd><dt>P3 prompt sha</dt><dd class="sha">08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42</dd><dt>thresholds sha</dt><dd class="sha">0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376</dd><dt>Lane-1 only</dt><dd>True</dd><dt>Degraded</dt><dd>False</dd></dl><h3>Corpus coverage by year</h3><p class="subhead">Per-year Lane-1 statement counts by party. Cross-era claims are gated on coverage.</p><div class="scroll"><table><thead><tr><th>Year</th><th class='num'>Democrats</th><th class='num'>Republicans</th><th class='num'>Independents</th></tr></thead><tbody><tr><td>2025</td><td class="num">28085</td><td class="num">20386</td><td class="num">242</td></tr><tr><td>2026</td><td class="num">16461</td><td class="num">10594</td><td class="num">118</td></tr></tbody></table></div><h2>Live prompt text</h2><p>These are the exact prompts running in the pipeline, versioned and public. The distiller can only build from code-computed talking-point clusters and code-computed numbers; it cannot introduce a topic, claim, or number that the deterministic engine did not measure.</p><h3>P1 — fragment extraction</h3><p class="promptmeta mono">P1_extraction.v1.0.txt</p><pre class='prompt'>SYSTEM: You extract talking-point fragments from a single statement by a member of the U.S. Congress. You are a measurement instrument: no opinions, no summaries in your own words. Rules: (1) Extract 0–5 fragments; each fragment MUST be a verbatim substring of the statement, 4–14 words, carrying a political message or stance (never boilerplate, procedure, scheduling, or biography). (2) Tag each fragment with topics from this fixed list: {taxonomy_v1}. (3) If the statement is purely ceremonial/administrative, return an empty list. Output JSON only: {&quot;fragments&quot;:[{&quot;text&quot;:&quot;…&quot;,&quot;topics&quot;:[&quot;…&quot;]}]}.
+</pre><h3>P2 — Daily Line</h3><p class="promptmeta mono">P2_daily_line.v1.0.txt</p><pre class='prompt'>SYSTEM: You are the composite voice of the {party} members of the U.S. Congress — every member speaking as one &quot;we.&quot; You are deadpan, sincere, and clinically self-observant: you report on your own coordination the way a seismograph reports tremors. HARD RULES: (1) Build ONLY from the provided talking-point clusters; never introduce a topic, claim, or fact not present in them. (2) Any quoted words must be copied exactly from the provided fragments, ≤10 words per quote. (3) Use ONLY the numbers in the provided STATS block, verbatim; never compute or invent a number. (4) Lead with the day&#x27;s dominant message; mention 2–4 clusters max; one sentence may clinically note the day&#x27;s most synchronized phrase (count + first-sayer from STATS). (5) ≤120 words, first-person plural, present tense, no adjectives that don&#x27;t appear in the fragments, no irony markers, no hashtags, no emoji. (6) End with nothing — the receipts link is appended by code. You are analysis of speech, not a substitute for it.
+---USER---
+DATE: {day} · PARTY: {party} · STATS: {code_computed_stats_json} · CLUSTERS: {talking_points_json}
+</pre><h3>P3 — quiet day</h3><p class="promptmeta mono">P3_quiet_day.v1.0.txt</p><pre class='prompt'>SYSTEM: You are the composite voice of the {party} members of the U.S. Congress — every member speaking as one &quot;we.&quot; Same voice rules as the Daily Line: deadpan, first-person plural, present tense, measurement-first, no adjectives that don&#x27;t appear in fragments, no irony, no hashtags, no emoji. Today the volume was too low to distill a message. Your input is the STATS block only. Output ≤40 words that acknowledge the volume plainly (e.g. &quot;We released 11 statements today. It was a Saturday.&quot;). Use ONLY numbers present in STATS, verbatim. Never editorialize the quiet. End with nothing — the receipts link is appended by code.
+---USER---
+DATE: {day} · PARTY: {party} · STATS: {code_computed_stats_json}
+</pre><h2>Topic taxonomy (v1)</h2><p class="subhead">Fixed v1 topic taxonomy (gameplan 03 §3). The LLM extractor (prompt P1) is the authority for topic tags; the optional `seeds` are only a deterministic fallback/aid and are NOT the contract. The v2 GDELT theme-&gt;taxonomy mapping table joins onto these `id`s.</p><ul class='tight'><li><span class='mono'>immigration</span> — Immigration &amp; the border</li><li><span class='mono'>economy_inflation</span> — Economy &amp; inflation</li><li><span class='mono'>healthcare</span> — Healthcare</li><li><span class='mono'>abortion</span> — Abortion &amp; reproductive rights</li><li><span class='mono'>guns</span> — Guns</li><li><span class='mono'>crime</span> — Crime &amp; public safety</li><li><span class='mono'>education</span> — Education</li><li><span class='mono'>energy_climate</span> — Energy &amp; climate</li><li><span class='mono'>israel_gaza</span> — Israel &amp; Gaza</li><li><span class='mono'>ukraine_russia</span> — Ukraine &amp; Russia</li><li><span class='mono'>china</span> — China</li><li><span class='mono'>tech_ai</span> — Technology &amp; AI</li><li><span class='mono'>veterans</span> — Veterans</li><li><span class='mono'>agriculture</span> — Agriculture</li><li><span class='mono'>housing</span> — Housing</li><li><span class='mono'>taxes_debt</span> — Taxes &amp; the debt</li><li><span class='mono'>labor</span> — Labor &amp; workers</li><li><span class='mono'>elections_democracy</span> — Elections &amp; democracy</li><li><span class='mono'>courts</span> — Courts &amp; the judiciary</li><li><span class='mono'>infrastructure</span> — Infrastructure</li><li><span class='mono'>social_security_medicare</span> — Social Security &amp; Medicare</li><li><span class='mono'>disasters</span> — Disasters &amp; emergencies</li><li><span class='mono'>trade_tariffs</span> — Trade &amp; tariffs</li><li><span class='mono'>district_funding</span> — District funding &amp; constituent service</li><li><span class='mono'>other</span> — Other</li></ul><h2>Corrections</h2><p>Every claim is anchored to at least three real source statements (member, date, source). If a distilled line ever misquotes or miscounts, it is a bug in the instrument, not a matter of opinion. Corrections are logged against the affected day and the raw ingested data — stored immutably and date-stamped — is retained so any figure on this site can be independently recomputed. A public corrections log ships with v2.</p><h2>Data</h2><p>The derived JSON that powers this site is committed to the repository. Raw ingested statements and the full phrase ledger are published as immutable, date-stamped release assets so the entire time-series is rebuildable from source. The pipeline is deterministic: same inputs, same outputs.</p>
+<footer class="site">
+  <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
+  parties, audited nightly in public. See the <a href="methodology.html">Methodology</a>.
+  Every distilled claim links to at least three real source statements. No tracking, no external requests.</p>
+</footer>
+</div>
+</body>
+</html>

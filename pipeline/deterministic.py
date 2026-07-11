@@ -28,7 +28,7 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
     days_present = sorted({s["published_at"] for s in statements})
     focus_day = focus_day or (days_present[-1] if days_present else util.product_day())
 
-    summary = build.build_derived(statements, ledger, engine, config.DERIVED, focus_day=focus_day)
+    summary = build.build_derived(statements, ledger, engine.discipline_index(), config.DERIVED, focus_day=focus_day)
 
     per_party = {}
     for p in config.ALL_PARTIES:

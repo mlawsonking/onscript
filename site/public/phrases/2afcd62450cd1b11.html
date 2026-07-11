@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Adoption curve for the phrase “all 50 states”.">
+<title>OnScript · “all 50 states”</title>
+<style>:root{
+  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#8a8a8a; --line:#e2e2e2;
+  --bg:#fbfbf9; --panel:#ffffff; --accent:#333;
+  --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
+  --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
+  --warn-bg:#fff6e0; --warn-line:#e8cf8a; --warn-ink:#6b4e00;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6; font-size:17px;
+}
+.wrap{max-width:1000px; margin:0 auto; padding:0 20px 80px}
+a{color:var(--blue); text-decoration:none}
+a:hover{text-decoration:underline}
+header.site{border-bottom:2px solid var(--ink); margin-bottom:8px; padding:22px 0 12px}
+header.site .brand{font-size:30px; font-weight:800; letter-spacing:-0.02em; color:var(--ink)}
+header.site .brand a{color:var(--ink)}
+header.site .tag{color:var(--muted); font-size:15px; margin-top:2px; font-style:italic}
+nav.top{display:flex; flex-wrap:wrap; gap:16px; padding:10px 0; border-bottom:1px solid var(--line);
+  margin-bottom:26px; font-size:15px}
+nav.top a{color:var(--muted)}
+nav.top a:hover{color:var(--ink)}
+h1{font-size:26px; line-height:1.25; margin:26px 0 6px; letter-spacing:-0.01em}
+h2{font-size:20px; margin:34px 0 10px; padding-bottom:5px; border-bottom:1px solid var(--line)}
+h3{font-size:17px; margin:22px 0 8px}
+p{margin:10px 0}
+.subhead{color:var(--muted); font-size:15px; margin-top:0}
+.mono,code,.sha{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.sha{font-size:12px; color:var(--faint); word-break:break-all}
+.muted{color:var(--muted)}
+.faint{color:var(--faint)}
+small{font-size:13px}
+
+.banner{border:1px solid var(--warn-line); background:var(--warn-bg); color:var(--warn-ink);
+  border-radius:6px; padding:10px 14px; margin:16px 0; font-size:14.5px}
+.banner strong{color:var(--warn-ink)}
+
+.lines{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0 8px}
+@media(max-width:720px){.lines{grid-template-columns:1fr}}
+.line{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:16px 18px}
+.line.D{border-top:4px solid var(--blue)}
+.line.R{border-top:4px solid var(--red)}
+.line .who{font-weight:700; font-size:15px; text-transform:uppercase; letter-spacing:.04em}
+.line.D .who{color:var(--blue)}
+.line.R .who{color:var(--red)}
+.line .composite{margin:8px 0 0; font-size:17px; line-height:1.55}
+.line .metaflags{margin-top:8px; font-size:12.5px; color:var(--faint)}
+
+.receipts{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
+.receipts .rlabel{font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--faint); margin-bottom:8px}
+.receipt{margin:0 0 12px; padding-left:12px; border-left:3px solid var(--line)}
+.line.D .receipt{border-left-color:var(--blue-line)}
+.line.R .receipt{border-left-color:var(--red-line)}
+.receipt .rhead{font-size:13px; color:var(--muted); margin-bottom:2px}
+.receipt .rcount{font-weight:700; color:var(--ink)}
+.receipt .quote{font-size:14.5px; color:var(--ink)}
+.receipt .quote:before{content:"\201C"} .receipt .quote:after{content:"\201D"}
+.receipt .rtopics{font-size:12px; color:var(--faint); margin-top:2px}
+
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; font-size:14.5px}
+th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:middle}
+th{font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:600; white-space:nowrap}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+tr:hover td{background:#faf9f6}
+.pill{display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; line-height:1.5}
+.pill.D{background:var(--blue-bg); color:var(--blue)}
+.pill.R{background:var(--red-bg); color:var(--red)}
+.pill.I{background:#eee; color:#555}
+.spark{display:block}
+
+.nav-pn{display:flex; justify-content:space-between; gap:12px; margin:26px 0; font-size:15px}
+.chartbox{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:12px; margin:16px 0}
+.legend{font-size:13px; color:var(--muted); margin:6px 0 0}
+.legend .sw{display:inline-block; width:22px; height:0; border-top:3px solid; vertical-align:middle; margin-right:5px}
+
+.kv{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:14.5px; margin:10px 0}
+.kv dt{color:var(--faint)}
+.kv dd{margin:0}
+
+pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
+  border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px; line-height:1.5; color:#2a2a2a; overflow-x:auto}
+.promptmeta{font-size:12.5px; color:var(--faint); margin:4px 0 2px}
+
+ul.tight{margin:8px 0; padding-left:22px}
+ul.tight li{margin:3px 0}
+
+footer.site{border-top:1px solid var(--line); margin-top:50px; padding-top:16px; color:var(--faint); font-size:13px}
+footer.site a{color:var(--muted)}</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">OnScript</a></div>
+  <div class="tag">This is literally what each party said today, compressed to one voice, with receipts.</div>
+</header>
+<nav class="top"><a href="../index.html">Today</a><a href="../phrases/index.html">Phrases</a><a href="../methodology.html">Methodology</a><a href="../about.html">About</a></nav>
+<h1>&ldquo;all 50 states&rdquo;</h1><p class="subhead">Adoption curve: how many independent members of each party used this exact phrase, by day.</p><div class="chartbox scroll"><svg width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="adoption curve" preserveAspectRatio="xMinYMin meet" style="min-width:900px"><line x1="44" y1="226.0" x2="886" y2="226.0" stroke="#ececec" stroke-width="1"/><text x="38" y="230.0" text-anchor="end" font-size="11" fill="#8a8a8a">0</text><line x1="44" y1="120.0" x2="886" y2="120.0" stroke="#ececec" stroke-width="1"/><text x="38" y="124.0" text-anchor="end" font-size="11" fill="#8a8a8a">3</text><line x1="44" y1="14.0" x2="886" y2="14.0" stroke="#ececec" stroke-width="1"/><text x="38" y="18.0" text-anchor="end" font-size="11" fill="#8a8a8a">6</text><line x1="44" y1="14" x2="44" y2="226" stroke="#ccc" stroke-width="1"/><line x1="44" y1="226" x2="886" y2="226" stroke="#ccc" stroke-width="1"/><polyline fill="none" stroke="#8a2f2f" stroke-width="1.8" stroke-linejoin="round" points="44.0,190.7 47.6,190.7 51.3,190.7 54.9,190.7 58.5,190.7 62.1,226.0 65.8,190.7 69.4,226.0 73.0,190.7 76.7,226.0 80.3,226.0 83.9,226.0 87.6,226.0 91.2,226.0 94.8,190.7 98.4,226.0 102.1,226.0 105.7,226.0 109.3,190.7 113.0,190.7 116.6,190.7 120.2,190.7 123.8,226.0 127.5,190.7 131.1,190.7 134.7,226.0 138.4,226.0 142.0,226.0 145.6,190.7 149.2,226.0 152.9,226.0 156.5,190.7 160.1,190.7 163.8,155.3 167.4,226.0 171.0,226.0 174.7,190.7 178.3,190.7 181.9,226.0 185.5,226.0 189.2,226.0 192.8,226.0 196.4,190.7 200.1,190.7 203.7,190.7 207.3,226.0 210.9,190.7 214.6,190.7 218.2,190.7 221.8,226.0 225.5,226.0 229.1,226.0 232.7,226.0 236.4,190.7 240.0,226.0 243.6,226.0 247.2,190.7 250.9,190.7 254.5,190.7 258.1,226.0 261.8,226.0 265.4,226.0 269.0,226.0 272.6,190.7 276.3,190.7 279.9,226.0 283.5,155.3 287.2,226.0 290.8,226.0 294.4,190.7 298.1,226.0 301.7,226.0 305.3,226.0 308.9,226.0 312.6,226.0 316.2,226.0 319.8,190.7 323.5,190.7 327.1,190.7 330.7,155.3 334.3,226.0 338.0,190.7 341.6,190.7 345.2,226.0 348.9,190.7 352.5,226.0 356.1,226.0 359.8,190.7 363.4,226.0 367.0,226.0 370.6,226.0 374.3,226.0 377.9,190.7 381.5,190.7 385.2,226.0 388.8,226.0 392.4,190.7 396.0,190.7 399.7,190.7 403.3,226.0 406.9,226.0 410.6,226.0 414.2,190.7 417.8,190.7 421.4,226.0 425.1,226.0 428.7,226.0 432.3,226.0 436.0,226.0 439.6,190.7 443.2,155.3 446.9,155.3 450.5,190.7 454.1,190.7 457.7,190.7 461.4,226.0 465.0,190.7 468.6,226.0 472.3,190.7 475.9,190.7 479.5,190.7 483.1,190.7 486.8,190.7 490.4,226.0 494.0,226.0 497.7,226.0 501.3,226.0 504.9,190.7 508.6,226.0 512.2,190.7 515.8,155.3 519.4,190.7 523.1,226.0 526.7,226.0 530.3,226.0 534.0,190.7 537.6,120.0 541.2,155.3 544.8,226.0 548.5,226.0 552.1,190.7 555.7,226.0 559.4,190.7 563.0,226.0 566.6,190.7 570.2,226.0 573.9,226.0 577.5,155.3 581.1,190.7 584.8,190.7 588.4,226.0 592.0,190.7 595.7,226.0 599.3,120.0 602.9,190.7 606.5,226.0 610.2,226.0 613.8,226.0 617.4,190.7 621.1,226.0 624.7,226.0 628.3,226.0 631.9,84.7 635.6,226.0 639.2,190.7 642.8,190.7 646.5,226.0 650.1,226.0 653.7,226.0 657.4,226.0 661.0,226.0 664.6,226.0 668.2,226.0 671.9,226.0 675.5,226.0 679.1,49.3 682.8,226.0 686.4,226.0 690.0,190.7 693.6,190.7 697.3,190.7 700.9,226.0 704.5,226.0 708.2,226.0 711.8,155.3 715.4,190.7 719.1,190.7 722.7,226.0 726.3,190.7 729.9,226.0 733.6,190.7 737.2,226.0 740.8,226.0 744.5,226.0 748.1,190.7 751.7,190.7 755.3,190.7 759.0,155.3 762.6,190.7 766.2,190.7 769.9,155.3 773.5,190.7 777.1,226.0 780.8,190.7 784.4,226.0 788.0,190.7 791.6,226.0 795.3,226.0 798.9,190.7 802.5,190.7 806.2,226.0 809.8,226.0 813.4,226.0 817.0,226.0 820.7,226.0 824.3,190.7 827.9,226.0 831.6,226.0 835.2,226.0 838.8,226.0 842.4,226.0 846.1,190.7 849.7,190.7 853.3,226.0 857.0,226.0 860.6,155.3 864.2,226.0 867.9,190.7 871.5,155.3 875.1,155.3 878.7,190.7 882.4,190.7 886.0,120.0"/><polyline fill="none" stroke="#2b4c7e" stroke-width="2" stroke-linejoin="round" points="44.0,226.0 47.6,226.0 51.3,226.0 54.9,226.0 58.5,226.0 62.1,190.7 65.8,190.7 69.4,190.7 73.0,226.0 76.7,190.7 80.3,190.7 83.9,190.7 87.6,155.3 91.2,190.7 94.8,155.3 98.4,155.3 102.1,155.3 105.7,190.7 109.3,226.0 113.0,120.0 116.6,190.7 120.2,190.7 123.8,190.7 127.5,84.7 131.1,49.3 134.7,14.0 138.4,190.7 142.0,155.3 145.6,190.7 149.2,190.7 152.9,190.7 156.5,226.0 160.1,226.0 163.8,226.0 167.4,120.0 171.0,190.7 174.7,226.0 178.3,226.0 181.9,49.3 185.5,155.3 189.2,190.7 192.8,190.7 196.4,226.0 200.1,226.0 203.7,226.0 207.3,190.7 210.9,155.3 214.6,84.7 218.2,155.3 221.8,120.0 225.5,190.7 229.1,49.3 232.7,120.0 236.4,190.7 240.0,155.3 243.6,190.7 247.2,190.7 250.9,155.3 254.5,226.0 258.1,120.0 261.8,190.7 265.4,190.7 269.0,190.7 272.6,190.7 276.3,190.7 279.9,190.7 283.5,190.7 287.2,190.7 290.8,226.0 294.4,226.0 298.1,190.7 301.7,120.0 305.3,155.3 308.9,155.3 312.6,190.7 316.2,155.3 319.8,190.7 323.5,226.0 327.1,226.0 330.7,226.0 334.3,190.7 338.0,226.0 341.6,226.0 345.2,155.3 348.9,190.7 352.5,190.7 356.1,190.7 359.8,190.7 363.4,190.7 367.0,155.3 370.6,155.3 374.3,190.7 377.9,226.0 381.5,190.7 385.2,190.7 388.8,155.3 392.4,226.0 396.0,226.0 399.7,226.0 403.3,155.3 406.9,190.7 410.6,155.3 414.2,226.0 417.8,226.0 421.4,190.7 425.1,190.7 428.7,190.7 432.3,190.7 436.0,155.3 439.6,226.0 443.2,190.7 446.9,155.3 450.5,226.0 454.1,190.7 457.7,226.0 461.4,190.7 465.0,226.0 468.6,190.7 472.3,190.7 475.9,226.0 479.5,226.0 483.1,226.0 486.8,120.0 490.4,155.3 494.0,120.0 497.7,190.7 501.3,155.3 504.9,226.0 508.6,190.7 512.2,190.7 515.8,155.3 519.4,226.0 523.1,190.7 526.7,190.7 530.3,190.7 534.0,226.0 537.6,226.0 541.2,155.3 544.8,190.7 548.5,155.3 552.1,226.0 555.7,120.0 559.4,155.3 563.0,190.7 566.6,190.7 570.2,190.7 573.9,190.7 577.5,84.7 581.1,226.0 584.8,155.3 588.4,190.7 592.0,226.0 595.7,120.0 599.3,226.0 602.9,226.0 606.5,190.7 610.2,190.7 613.8,190.7 617.4,226.0 621.1,155.3 624.7,190.7 628.3,190.7 631.9,226.0 635.6,190.7 639.2,190.7 642.8,226.0 646.5,190.7 650.1,155.3 653.7,190.7 657.4,190.7 661.0,190.7 664.6,190.7 668.2,190.7 671.9,190.7 675.5,190.7 679.1,226.0 682.8,190.7 686.4,190.7 690.0,226.0 693.6,226.0 697.3,226.0 700.9,190.7 704.5,190.7 708.2,120.0 711.8,84.7 715.4,155.3 719.1,226.0 722.7,120.0 726.3,226.0 729.9,190.7 733.6,190.7 737.2,190.7 740.8,190.7 744.5,190.7 748.1,226.0 751.7,226.0 755.3,190.7 759.0,226.0 762.6,155.3 766.2,190.7 769.9,190.7 773.5,190.7 777.1,190.7 780.8,190.7 784.4,155.3 788.0,226.0 791.6,155.3 795.3,190.7 798.9,226.0 802.5,190.7 806.2,155.3 809.8,190.7 813.4,190.7 817.0,190.7 820.7,190.7 824.3,226.0 827.9,190.7 831.6,190.7 835.2,190.7 838.8,190.7 842.4,190.7 846.1,226.0 849.7,226.0 853.3,190.7 857.0,155.3 860.6,190.7 864.2,120.0 867.9,155.3 871.5,190.7 875.1,226.0 878.7,226.0 882.4,190.7 886.0,226.0"/><circle cx="134.7" cy="14.0" r="3.2" fill="#1a1a1a"/><text x="140.7" y="8.0" text-anchor="start" font-size="11" fill="#1a1a1a">peak 6 · 2025-02-18</text><text x="44.0" y="242.0" text-anchor="start" font-size="11" fill="#8a8a8a">2025-01-02</text><text x="254.5" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2025-04-29</text><text x="465.0" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2025-09-21</text><text x="675.5" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2026-02-21</text><text x="886.0" y="242.0" text-anchor="end" font-size="11" fill="#8a8a8a">2026-07-09</text></svg><p class="legend"><span class="sw" style="border-color:#2b4c7e"></span>Democrats&nbsp;&nbsp;<span class="sw" style="border-color:#8a2f2f"></span>Republicans</p></div><dl class="kv"><dt>First said</dt><dd>2025-01-02 by Earl L. &quot;Buddy&quot; Carter (R-GA)</dd><dt>Peak</dt><dd>6 members in one day</dd><dt>Distinctiveness (df_weight)</dt><dd>0.972</dd><dt>Data points</dt><dd>233 active days</dd></dl><p class="muted"><small>Our corpus begins 2025-01. Historical coverage by year is shown on the <a href="../methodology.html">Methodology</a> page. (The full-history &ldquo;Alexandria&rdquo; backfill to 2001 is staged for a later phase.)</small></p><p style="margin-top:22px"><a href="../phrases/index.html">&larr; All phrases</a></p>
+<footer class="site">
+  <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
+  parties, audited nightly in public. See the <a href="../methodology.html">Methodology</a>.
+  Every distilled claim links to at least three real source statements. No tracking, no external requests.</p>
+</footer>
+</div>
+</body>
+</html>

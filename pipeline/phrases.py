@@ -61,6 +61,11 @@ class PhraseEngine:
         self._ledger_ngrams: set[str] = set()
 
     def _eligible(self, stmt: dict):
+        # Two-lane enforcement (§5.1): only Lane 1 (press releases) feeds any cross-party
+        # number. Lane 2 (Bluesky/floor) is enrichment/citations only and is machine-blocked
+        # from the ledger, adoption curves, and the discipline index here.
+        if stmt.get("lane") != 1:
+            return None
         party = (stmt.get("member") or {}).get("party")
         if stmt.get("syndicated") or party not in config.ALL_PARTIES:
             return None

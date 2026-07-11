@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Adoption curve for the phrase “to states and”.">
+<title>OnScript · “to states and”</title>
+<style>:root{
+  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#8a8a8a; --line:#e2e2e2;
+  --bg:#fbfbf9; --panel:#ffffff; --accent:#333;
+  --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
+  --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
+  --warn-bg:#fff6e0; --warn-line:#e8cf8a; --warn-ink:#6b4e00;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6; font-size:17px;
+}
+.wrap{max-width:1000px; margin:0 auto; padding:0 20px 80px}
+a{color:var(--blue); text-decoration:none}
+a:hover{text-decoration:underline}
+header.site{border-bottom:2px solid var(--ink); margin-bottom:8px; padding:22px 0 12px}
+header.site .brand{font-size:30px; font-weight:800; letter-spacing:-0.02em; color:var(--ink)}
+header.site .brand a{color:var(--ink)}
+header.site .tag{color:var(--muted); font-size:15px; margin-top:2px; font-style:italic}
+nav.top{display:flex; flex-wrap:wrap; gap:16px; padding:10px 0; border-bottom:1px solid var(--line);
+  margin-bottom:26px; font-size:15px}
+nav.top a{color:var(--muted)}
+nav.top a:hover{color:var(--ink)}
+h1{font-size:26px; line-height:1.25; margin:26px 0 6px; letter-spacing:-0.01em}
+h2{font-size:20px; margin:34px 0 10px; padding-bottom:5px; border-bottom:1px solid var(--line)}
+h3{font-size:17px; margin:22px 0 8px}
+p{margin:10px 0}
+.subhead{color:var(--muted); font-size:15px; margin-top:0}
+.mono,code,.sha{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.sha{font-size:12px; color:var(--faint); word-break:break-all}
+.muted{color:var(--muted)}
+.faint{color:var(--faint)}
+small{font-size:13px}
+
+.banner{border:1px solid var(--warn-line); background:var(--warn-bg); color:var(--warn-ink);
+  border-radius:6px; padding:10px 14px; margin:16px 0; font-size:14.5px}
+.banner strong{color:var(--warn-ink)}
+
+.lines{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0 8px}
+@media(max-width:720px){.lines{grid-template-columns:1fr}}
+.line{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:16px 18px}
+.line.D{border-top:4px solid var(--blue)}
+.line.R{border-top:4px solid var(--red)}
+.line .who{font-weight:700; font-size:15px; text-transform:uppercase; letter-spacing:.04em}
+.line.D .who{color:var(--blue)}
+.line.R .who{color:var(--red)}
+.line .composite{margin:8px 0 0; font-size:17px; line-height:1.55}
+.line .metaflags{margin-top:8px; font-size:12.5px; color:var(--faint)}
+
+.receipts{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
+.receipts .rlabel{font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--faint); margin-bottom:8px}
+.receipt{margin:0 0 12px; padding-left:12px; border-left:3px solid var(--line)}
+.line.D .receipt{border-left-color:var(--blue-line)}
+.line.R .receipt{border-left-color:var(--red-line)}
+.receipt .rhead{font-size:13px; color:var(--muted); margin-bottom:2px}
+.receipt .rcount{font-weight:700; color:var(--ink)}
+.receipt .quote{font-size:14.5px; color:var(--ink)}
+.receipt .quote:before{content:"\201C"} .receipt .quote:after{content:"\201D"}
+.receipt .rtopics{font-size:12px; color:var(--faint); margin-top:2px}
+
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; font-size:14.5px}
+th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:middle}
+th{font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:600; white-space:nowrap}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+tr:hover td{background:#faf9f6}
+.pill{display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; line-height:1.5}
+.pill.D{background:var(--blue-bg); color:var(--blue)}
+.pill.R{background:var(--red-bg); color:var(--red)}
+.pill.I{background:#eee; color:#555}
+.spark{display:block}
+
+.nav-pn{display:flex; justify-content:space-between; gap:12px; margin:26px 0; font-size:15px}
+.chartbox{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:12px; margin:16px 0}
+.legend{font-size:13px; color:var(--muted); margin:6px 0 0}
+.legend .sw{display:inline-block; width:22px; height:0; border-top:3px solid; vertical-align:middle; margin-right:5px}
+
+.kv{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:14.5px; margin:10px 0}
+.kv dt{color:var(--faint)}
+.kv dd{margin:0}
+
+pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
+  border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px; line-height:1.5; color:#2a2a2a; overflow-x:auto}
+.promptmeta{font-size:12.5px; color:var(--faint); margin:4px 0 2px}
+
+ul.tight{margin:8px 0; padding-left:22px}
+ul.tight li{margin:3px 0}
+
+footer.site{border-top:1px solid var(--line); margin-top:50px; padding-top:16px; color:var(--faint); font-size:13px}
+footer.site a{color:var(--muted)}</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">OnScript</a></div>
+  <div class="tag">This is literally what each party said today, compressed to one voice, with receipts.</div>
+</header>
+<nav class="top"><a href="../index.html">Today</a><a href="../phrases/index.html">Phrases</a><a href="../methodology.html">Methodology</a><a href="../about.html">About</a></nav>
+<h1>&ldquo;to states and&rdquo;</h1><p class="subhead">Adoption curve: how many independent members of each party used this exact phrase, by day.</p><div class="chartbox scroll"><svg width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="adoption curve" preserveAspectRatio="xMinYMin meet" style="min-width:900px"><line x1="44" y1="226.0" x2="886" y2="226.0" stroke="#ececec" stroke-width="1"/><text x="38" y="230.0" text-anchor="end" font-size="11" fill="#8a8a8a">0</text><line x1="44" y1="120.0" x2="886" y2="120.0" stroke="#ececec" stroke-width="1"/><text x="38" y="124.0" text-anchor="end" font-size="11" fill="#8a8a8a">2</text><line x1="44" y1="14.0" x2="886" y2="14.0" stroke="#ececec" stroke-width="1"/><text x="38" y="18.0" text-anchor="end" font-size="11" fill="#8a8a8a">3</text><line x1="44" y1="14" x2="44" y2="226" stroke="#ccc" stroke-width="1"/><line x1="44" y1="226" x2="886" y2="226" stroke="#ccc" stroke-width="1"/><polyline fill="none" stroke="#8a2f2f" stroke-width="1.8" stroke-linejoin="round" points="44.0,155.3 128.2,226.0 212.4,226.0 296.6,226.0 380.8,226.0 465.0,155.3 549.2,226.0 633.4,226.0 717.6,226.0 801.8,226.0 886.0,155.3"/><polyline fill="none" stroke="#2b4c7e" stroke-width="2" stroke-linejoin="round" points="44.0,226.0 128.2,155.3 212.4,155.3 296.6,155.3 380.8,155.3 465.0,155.3 549.2,84.7 633.4,84.7 717.6,155.3 801.8,155.3 886.0,14.0"/><circle cx="886.0" cy="14.0" r="3.2" fill="#1a1a1a"/><text x="880.0" y="8.0" text-anchor="end" font-size="11" fill="#1a1a1a">peak 3 · 2026-07-09</text><text x="44.0" y="242.0" text-anchor="start" font-size="11" fill="#8a8a8a">2026-06-03</text><text x="212.4" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2026-06-10</text><text x="465.0" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2026-06-25</text><text x="717.6" y="242.0" text-anchor="middle" font-size="11" fill="#8a8a8a">2026-07-02</text><text x="886.0" y="242.0" text-anchor="end" font-size="11" fill="#8a8a8a">2026-07-09</text></svg><p class="legend"><span class="sw" style="border-color:#2b4c7e"></span>Democrats&nbsp;&nbsp;<span class="sw" style="border-color:#8a2f2f"></span>Republicans</p></div><dl class="kv"><dt>First said</dt><dd>2026-06-03 by Michael K. Simpson (R-ID)</dd><dt>Peak</dt><dd>3 members in one day</dd><dt>Distinctiveness (df_weight)</dt><dd>0.995</dd><dt>Data points</dt><dd>11 active days</dd></dl><p class="muted"><small>Our corpus begins 2025-01. Historical coverage by year is shown on the <a href="../methodology.html">Methodology</a> page. (The full-history &ldquo;Alexandria&rdquo; backfill to 2001 is staged for a later phase.)</small></p><p style="margin-top:22px"><a href="../phrases/index.html">&larr; All phrases</a></p>
+<footer class="site">
+  <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
+  parties, audited nightly in public. See the <a href="../methodology.html">Methodology</a>.
+  Every distilled claim links to at least three real source statements. No tracking, no external requests.</p>
+</footer>
+</div>
+</body>
+</html>
