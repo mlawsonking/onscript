@@ -59,6 +59,7 @@ _PROMPT_FILES = {
     "P1": "P1_extraction.v1.0.txt",
     "P2": "P2_daily_line.v1.0.txt",
     "P3": "P3_quiet_day.v1.0.txt",
+    "P4": "P4_era_chapter.v1.0.txt",  # Alexandria era chapters (subscription-generated, §1.3)
 }
 _VERSION_RE = re.compile(r"\.v(\d+\.\d+)\.txt$")
 

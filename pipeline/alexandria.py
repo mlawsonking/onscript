@@ -103,4 +103,4 @@ def merge(focus_day: str | None = None) -> dict:
         "epoch": [days_present[0], days_present[-1]] if days_present else None,
     }
     util.write_json(config.DERIVED / "manifest" / "alexandria.json", manifest)
-    return {"manifest": manifest, "ledger_entries": len(merged), "coverage": coverage}
+    return {"manifest": manifest, "ledger_entries": len(merged), "coverage": coverage, "ledger": merged}
