@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2020-02-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2020-02",
+  "text": "In February 2020 we spoke, most of us, in one direction. On February 4, 123 of us said \"state of the union\" and 117 said \"state of the union address,\" peaking the same day. On February 5, 83 of us reached for \"articles of impeachment,\" and we recorded ourselves acquitting: 77 said \"to acquit president,\" 57 said \"voted to acquit,\" 51 said \"voted to acquit president,\" each cresting that day. We named the occasion as his: 56 said \"trump's state of the union,\" 54 said \"trump's state of the union address.\" The first to say \"state of the union\" was John Barrasso, in 2013; \"articles of impeachment,\" Susan M. Collins, in 2017. The address and the acquittal fell across two days, and on each we converged by the dozens. That is the shape of the record we left.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['4', '5']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "state of the union",
+        "peak_members": 123,
+        "peak_day": "2020-02-04",
+        "first_date": "2013-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "state of the union address",
+        "peak_members": 117,
+        "peak_day": "2020-02-04",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "articles of impeachment",
+        "peak_members": 83,
+        "peak_day": "2020-02-05",
+        "first_date": "2017-05-31",
+        "first_sayer": "Susan M. Collins"
+      },
+      {
+        "phrase": "to acquit president",
+        "peak_members": 77,
+        "peak_day": "2020-02-05",
+        "first_date": "2019-10-04",
+        "first_sayer": "F000449"
+      },
+      {
+        "phrase": "voted to acquit",
+        "peak_members": 57,
+        "peak_day": "2020-02-05",
+        "first_date": "2019-10-04",
+        "first_sayer": "F000449"
+      },
+      {
+        "phrase": "trump's state of the union",
+        "peak_members": 56,
+        "peak_day": "2020-02-04",
+        "first_date": "2017-01-17",
+        "first_sayer": "Ted Lieu"
+      },
+      {
+        "phrase": "trump's state of the union address",
+        "peak_members": 54,
+        "peak_day": "2020-02-04",
+        "first_date": "2018-01-26",
+        "first_sayer": "Suzanne Bonamici"
+      },
+      {
+        "phrase": "voted to acquit president",
+        "peak_members": 51,
+        "peak_day": "2020-02-05",
+        "first_date": "2019-10-04",
+        "first_sayer": "F000449"
+      }
+    ]
+  }
+}

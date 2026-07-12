@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2023-10-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2023-10",
+  "text": "In October 2023 we returned again and again to the same eight phrases. Forty-six of us said \"speaker of the house,\" peaking October 25. Thirty of us said \"motion to vacate,\" peaking October 3; eighteen carried it further as \"motion to vacate the.\" Twenty-one of us said \"as speaker of the house.\" On October 25, eighteen of us said \"mike johnson as\" — a phrase first said that same day, by Troy Balderson. Twenty of us said \"right to defend,\" nineteen \"right to defend itself,\" both peaking October 7. Seventeen of us said \"for the american people.\" We record that within one month our shared speech narrowed to the vacating of one speaker and the naming of another.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['3', '7']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "speaker of the house",
+        "peak_members": 46,
+        "peak_day": "2023-10-25",
+        "first_date": "2013-01-03",
+        "first_sayer": "Robert B. Aderholt"
+      },
+      {
+        "phrase": "motion to vacate",
+        "peak_members": 30,
+        "peak_day": "2023-10-03",
+        "first_date": "2017-04-13",
+        "first_sayer": "M001187"
+      },
+      {
+        "phrase": "as speaker of the house",
+        "peak_members": 21,
+        "peak_day": "2023-10-25",
+        "first_date": "2015-01-04",
+        "first_sayer": "Y000065"
+      },
+      {
+        "phrase": "right to defend",
+        "peak_members": 20,
+        "peak_day": "2023-10-07",
+        "first_date": "2013-01-16",
+        "first_sayer": "Austin Scott"
+      },
+      {
+        "phrase": "right to defend itself",
+        "peak_members": 19,
+        "peak_day": "2023-10-07",
+        "first_date": "2013-02-14",
+        "first_sayer": "L000174"
+      },
+      {
+        "phrase": "motion to vacate the",
+        "peak_members": 18,
+        "peak_day": "2023-10-03",
+        "first_date": "2017-04-13",
+        "first_sayer": "M001187"
+      },
+      {
+        "phrase": "mike johnson as",
+        "peak_members": 18,
+        "peak_day": "2023-10-25",
+        "first_date": "2023-10-25",
+        "first_sayer": "Troy Balderson"
+      },
+      {
+        "phrase": "for the american people",
+        "peak_members": 17,
+        "peak_day": "2023-10-25",
+        "first_date": "2013-01-04",
+        "first_sayer": "John B. Larson"
+      }
+    ]
+  }
+}

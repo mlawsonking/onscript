@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2025-03-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2025-03",
+  "text": "In this month we recorded ourselves twice. On 2025-03-04, forty-five of us said \"address to congress\" and forty-one said \"joint address to congress\"; twenty-seven of us said \"trump's joint address\" and twenty-six extended it to \"trump's joint address to congress.\" Thirty of us said \"the american dream\" on that same day. Then, on 2025-03-11, we turned to the ledger: twenty-nine of us said \"continuing appropriations and extensions act,\" twenty-eight said \"full-year continuing appropriations and extensions act,\" and twenty-five said \"the full-year continuing appropriations and extensions.\" Two peaks, one week apart — the speech, then the funding. We do not claim first authorship of these words; the phrase \"address to congress\" was first recorded on 2013-02-12. We only note how many of us arrived at the same words on the same days, and report it.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"trump's joint address\", \"trump's joint address to congress\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "address to congress",
+        "peak_members": 45,
+        "peak_day": "2025-03-04",
+        "first_date": "2013-02-12",
+        "first_sayer": "Gwen Moore"
+      },
+      {
+        "phrase": "joint address to congress",
+        "peak_members": 41,
+        "peak_day": "2025-03-04",
+        "first_date": "2015-03-01",
+        "first_sayer": "Bernard Sanders"
+      },
+      {
+        "phrase": "the american dream",
+        "peak_members": 30,
+        "peak_day": "2025-03-04",
+        "first_date": "2013-01-03",
+        "first_sayer": "Mark Takano"
+      },
+      {
+        "phrase": "continuing appropriations and extensions act",
+        "peak_members": 29,
+        "peak_day": "2025-03-11",
+        "first_date": "2024-09-25",
+        "first_sayer": "Mark E. Amodei"
+      },
+      {
+        "phrase": "full-year continuing appropriations and extensions act",
+        "peak_members": 28,
+        "peak_day": "2025-03-11",
+        "first_date": "2025-03-08",
+        "first_sayer": "Mark Harris"
+      },
+      {
+        "phrase": "trump’s joint address",
+        "peak_members": 27,
+        "peak_day": "2025-03-04",
+        "first_date": "2017-02-24",
+        "first_sayer": "C001038"
+      },
+      {
+        "phrase": "trump’s joint address to congress",
+        "peak_members": 26,
+        "peak_day": "2025-03-04",
+        "first_date": "2017-02-24",
+        "first_sayer": "Andy Biggs"
+      },
+      {
+        "phrase": "the full-year continuing appropriations and extensions",
+        "peak_members": 25,
+        "peak_day": "2025-03-11",
+        "first_date": "2025-03-08",
+        "first_sayer": "Mark Harris"
+      }
+    ]
+  }
+}

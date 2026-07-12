@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2013-01-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2013-01",
+  "text": "We opened as \"the 113th congress\" — fourteen of us said it, peaking January 3, though it first appeared November 14, 2012. Nine of us said \"the fiscal cliff.\" Seven said \"a bipartisan group of,\" first from Peter Welch; seven said \"secretary of state.\" Then the number settled at six, four times over: six of us said \"comprehensive immigration reform,\" six \"to reduce gun violence,\" six \"of the 113th congress,\" six \"gun violence in,\" the last first from Richard J. Durbin on January 10. Read back, the record shows us converging by sixes — immigration, guns, the fiscal cliff, the new session's name — each phrase carried by a small, matching count of us. We did not all say the same thing. We said a few things, together, in the same weeks.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['3']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the 113th congress",
+        "peak_members": 14,
+        "peak_day": "2013-01-03",
+        "first_date": "2012-11-14",
+        "first_sayer": "Virginia Foxx"
+      },
+      {
+        "phrase": "the fiscal cliff",
+        "peak_members": 9,
+        "peak_day": "2013-01-02",
+        "first_date": "2012-12-05",
+        "first_sayer": "L000551"
+      },
+      {
+        "phrase": "a bipartisan group of",
+        "peak_members": 7,
+        "peak_day": "2013-01-28",
+        "first_date": "2013-01-06",
+        "first_sayer": "Peter Welch"
+      },
+      {
+        "phrase": "secretary of state",
+        "peak_members": 7,
+        "peak_day": "2013-01-29",
+        "first_date": "2013-01-03",
+        "first_sayer": "M000303"
+      },
+      {
+        "phrase": "comprehensive immigration reform",
+        "peak_members": 6,
+        "peak_day": "2013-01-29",
+        "first_date": "2013-01-03",
+        "first_sayer": "C000141"
+      },
+      {
+        "phrase": "to reduce gun violence",
+        "peak_members": 6,
+        "peak_day": "2013-01-16",
+        "first_date": "2013-01-04",
+        "first_sayer": "P000593"
+      },
+      {
+        "phrase": "of the 113th congress",
+        "peak_members": 6,
+        "peak_day": "2013-01-03",
+        "first_date": "2013-01-03",
+        "first_sayer": "D000621"
+      },
+      {
+        "phrase": "gun violence in",
+        "peak_members": 6,
+        "peak_day": "2013-01-16",
+        "first_date": "2013-01-10",
+        "first_sayer": "Richard J. Durbin"
+      }
+    ]
+  }
+}

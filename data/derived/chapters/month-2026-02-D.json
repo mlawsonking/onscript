@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2026-02-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2026-02",
+  "text": "In February 2026 we converged on the calendar. Ninety of us said \"state of the union\" by February 24; sixty-nine of us said \"state of the union address\" on that date. Fifty of us said \"trump's state of the union\"; forty-four said \"trump's state of the union address.\" The ledger marks \"state of the union\" from 2013-01-20, first spoken by someone other than us. As the month closed we turned outward: sixty-nine of us said \"the middle east\" on February 28, sixty-one said \"in the middle east,\" and sixty-six said \"war powers resolution,\" all on February 28. On February 20, sixty-four of us said \"the supreme court.\" We record what we repeated together; we do not here explain why.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"trump's state of the union\", \"trump's state of the union address\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "state of the union",
+        "peak_members": 90,
+        "peak_day": "2026-02-24",
+        "first_date": "2013-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "state of the union address",
+        "peak_members": 69,
+        "peak_day": "2026-02-24",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "the middle east",
+        "peak_members": 69,
+        "peak_day": "2026-02-28",
+        "first_date": "2013-01-04",
+        "first_sayer": "Virginia Foxx"
+      },
+      {
+        "phrase": "war powers resolution",
+        "peak_members": 66,
+        "peak_day": "2026-02-28",
+        "first_date": "2013-06-25",
+        "first_sayer": "Michael T. McCaul"
+      },
+      {
+        "phrase": "the supreme court",
+        "peak_members": 64,
+        "peak_day": "2026-02-20",
+        "first_date": "2013-01-04",
+        "first_sayer": "C001078"
+      },
+      {
+        "phrase": "in the middle east",
+        "peak_members": 61,
+        "peak_day": "2026-02-28",
+        "first_date": "2013-01-04",
+        "first_sayer": "G000571"
+      },
+      {
+        "phrase": "trump’s state of the union",
+        "peak_members": 50,
+        "peak_day": "2026-02-24",
+        "first_date": "2019-02-04",
+        "first_sayer": "John R. Carter"
+      },
+      {
+        "phrase": "trump’s state of the union address",
+        "peak_members": 44,
+        "peak_day": "2026-02-24",
+        "first_date": "2019-02-05",
+        "first_sayer": "Mike Bost"
+      }
+    ]
+  }
+}

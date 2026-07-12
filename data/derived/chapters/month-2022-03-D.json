@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2022-03-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2022-03",
+  "text": "In March 2022, fifty-three of us said \"state of the union\" and fifty said \"state of the union address,\" each peaking on March 1. Twenty-eight of us said \"community project funding,\" peaking March 9. Twenty-five said \"the honoring our pact act\"; twenty said \"exposed to toxic,\" both peaking March 3. Twenty-four of us said \"the affordable insulin now act,\" and twenty-three said \"35 per month,\" each peaking March 31. Twenty-three of us said \"1 000 000.\"\n\nThe record notes that \"state of the union\" first entered the ledger on 2013-01-20, first said by John Barrasso; \"community project funding\" by Dwight Evans on 2021-03-18; \"the honoring our pact act\" by Raul Ruiz; \"the affordable insulin now act\" by Charles E. Schumer. We arrived at these words together, and we recorded the day each of us arrived.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['3', '9']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "state of the union",
+        "peak_members": 53,
+        "peak_day": "2022-03-01",
+        "first_date": "2013-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "state of the union address",
+        "peak_members": 50,
+        "peak_day": "2022-03-01",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "community project funding",
+        "peak_members": 28,
+        "peak_day": "2022-03-09",
+        "first_date": "2021-03-18",
+        "first_sayer": "Dwight Evans"
+      },
+      {
+        "phrase": "the honoring our pact act",
+        "peak_members": 25,
+        "peak_day": "2022-03-03",
+        "first_date": "2021-05-26",
+        "first_sayer": "Raul Ruiz"
+      },
+      {
+        "phrase": "the affordable insulin now act",
+        "peak_members": 24,
+        "peak_day": "2022-03-31",
+        "first_date": "2022-02-21",
+        "first_sayer": "Charles E. Schumer"
+      },
+      {
+        "phrase": "35 per month",
+        "peak_members": 23,
+        "peak_day": "2022-03-31",
+        "first_date": "2021-11-01",
+        "first_sayer": "Scott H. Peters"
+      },
+      {
+        "phrase": "1 000 000",
+        "peak_members": 23,
+        "peak_day": "2022-03-09",
+        "first_date": "2013-05-06",
+        "first_sayer": "E000285"
+      },
+      {
+        "phrase": "exposed to toxic",
+        "peak_members": 20,
+        "peak_day": "2022-03-03",
+        "first_date": "2019-01-03",
+        "first_sayer": "Thom Tillis"
+      }
+    ]
+  }
+}

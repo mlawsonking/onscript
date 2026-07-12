@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2017-03-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2017-03",
+  "text": "In this month we converged twice. On March 2, one hundred two of us said \"attorney general jeff sessions,\" seventy-four said \"attorney general sessions,\" and sixty-four said \"that attorney general\" — three phrasings of one name, first said among us by Donald Norcross on January 4. On March 13, seventy-six of us said \"congressional budget office.\" Then on March 24 we turned together: sixty-four of us said \"american health care act,\" sixty-five said \"health care act,\" sixty-seven said \"american health care,\" and sixty-one said \"the american health care.\" We record these counts as we found them. Two dates hold most of our agreement. We do not characterize what we did not say.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['2', '4']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "attorney general jeff sessions",
+        "peak_members": 102,
+        "peak_day": "2017-03-02",
+        "first_date": "2017-01-04",
+        "first_sayer": "Donald Norcross"
+      },
+      {
+        "phrase": "congressional budget office",
+        "peak_members": 76,
+        "peak_day": "2017-03-13",
+        "first_date": "2013-01-03",
+        "first_sayer": "B001274"
+      },
+      {
+        "phrase": "attorney general sessions",
+        "peak_members": 74,
+        "peak_day": "2017-03-02",
+        "first_date": "2017-01-11",
+        "first_sayer": "R000409"
+      },
+      {
+        "phrase": "american health care",
+        "peak_members": 67,
+        "peak_day": "2017-03-24",
+        "first_date": "2013-05-16",
+        "first_sayer": "R000582"
+      },
+      {
+        "phrase": "health care act",
+        "peak_members": 65,
+        "peak_day": "2017-03-24",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "american health care act",
+        "peak_members": 64,
+        "peak_day": "2017-03-24",
+        "first_date": "2017-02-27",
+        "first_sayer": "R000570"
+      },
+      {
+        "phrase": "that attorney general",
+        "peak_members": 64,
+        "peak_day": "2017-03-02",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "the american health care",
+        "peak_members": 61,
+        "peak_day": "2017-03-24",
+        "first_date": "2013-05-16",
+        "first_sayer": "R000582"
+      }
+    ]
+  }
+}

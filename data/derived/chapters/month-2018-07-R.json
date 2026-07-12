@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2018-07-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2018-07",
+  "text": "In July 2018, sixty-six of us said \"the supreme court.\" Fifty-four of us said \"judge brett kavanaugh,\" a phrase Tom Cotton first said. Fifty-three of us said \"brett kavanaugh to,\" thirty-nine \"nomination of judge,\" thirty-nine \"of judge brett,\" thirty-eight \"judge brett kavanaugh to.\" Our repetition peaked together on July 9. Later that month, on July 26, fifty-one of us said \"defense authorization act\" and fifty of us said \"national defense authorization act.\" We record that two subjects organized our speech in this era: a nomination and an authorization. On the ninth we converged on one name; on the twenty-sixth we converged on one act. We are not characterizing our reasons here, only the count of us who said the same words on the same days.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['9']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the supreme court",
+        "peak_members": 66,
+        "peak_day": "2018-07-09",
+        "first_date": "2013-01-04",
+        "first_sayer": "C001078"
+      },
+      {
+        "phrase": "judge brett kavanaugh",
+        "peak_members": 54,
+        "peak_day": "2018-07-09",
+        "first_date": "2017-07-20",
+        "first_sayer": "Tom Cotton"
+      },
+      {
+        "phrase": "brett kavanaugh to",
+        "peak_members": 53,
+        "peak_day": "2018-07-09",
+        "first_date": "2018-07-09",
+        "first_sayer": "H000324"
+      },
+      {
+        "phrase": "defense authorization act",
+        "peak_members": 51,
+        "peak_day": "2018-07-26",
+        "first_date": "2013-01-03",
+        "first_sayer": "M001166"
+      },
+      {
+        "phrase": "national defense authorization act",
+        "peak_members": 50,
+        "peak_day": "2018-07-26",
+        "first_date": "2013-01-03",
+        "first_sayer": "M001166"
+      },
+      {
+        "phrase": "nomination of judge",
+        "peak_members": 39,
+        "peak_day": "2018-07-09",
+        "first_date": "2015-07-30",
+        "first_sayer": "C001070"
+      },
+      {
+        "phrase": "of judge brett",
+        "peak_members": 39,
+        "peak_day": "2018-07-09",
+        "first_date": "2018-07-09",
+        "first_sayer": "H000324"
+      },
+      {
+        "phrase": "judge brett kavanaugh to",
+        "peak_members": 38,
+        "peak_day": "2018-07-09",
+        "first_date": "2018-07-09",
+        "first_sayer": "H000324"
+      }
+    ]
+  }
+}

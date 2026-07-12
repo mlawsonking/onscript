@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2017-01-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2017-01",
+  "text": "In January two thousand seventeen we convened, and forty-five of us said \"the 115th congress\" on one day. Then the record concentrates. Forty-two of us said \"trump's executive order\"; thirty-eight said \"this executive order\"; thirty-seven said \"president trump's executive\"; thirty-seven said \"the executive order\" — one order, counted four ways, each peaking the same late-January day. Forty-one of us said \"the supreme court.\" Thirty-four of us said \"judge neil gorsuch,\" a phrase first spoken the day before by Jeff Merkley. Thirty-three of us said \"repeal the affordable care act.\" We report only what we can count: on a handful of days a large number of us reached for the same few words at once, and the peaks cluster tightly in that final week. That is the shape of our January. We do not characterize what we did not say.\n\n---\n\nOne flag for the record, Michael: several `first_sayer` values in this D era's STATS are prominent Republicans — \"trump's executive order\" → John Barrasso, \"repeal the affordable care act\" → Ted Cruz, \"the executive order\" → Michael T. McCaul. Either the ledger is keying first-appearance across the *whole* corpus (both parties) rather than within-party, or there's lane contamination in the D shard's phrase set. Worth checking `build_era_inputs` before these chapters are treated as verified — a D chapter that could name Ted Cruz as originator is exactly the kind of thing the neutrality audit should catch.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"trump's executive order\", \"president trump's executive\", \"trump's executive order\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the 115th congress",
+        "peak_members": 45,
+        "peak_day": "2017-01-03",
+        "first_date": "2015-01-14",
+        "first_sayer": "C001076"
+      },
+      {
+        "phrase": "trump’s executive order",
+        "peak_members": 42,
+        "peak_day": "2017-01-30",
+        "first_date": "2017-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "the supreme court",
+        "peak_members": 41,
+        "peak_day": "2017-01-31",
+        "first_date": "2013-01-04",
+        "first_sayer": "C001078"
+      },
+      {
+        "phrase": "this executive order",
+        "peak_members": 38,
+        "peak_day": "2017-01-30",
+        "first_date": "2013-11-01",
+        "first_sayer": "Kirsten E. Gillibrand"
+      },
+      {
+        "phrase": "president trump’s executive",
+        "peak_members": 37,
+        "peak_day": "2017-01-30",
+        "first_date": "2017-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "the executive order",
+        "peak_members": 37,
+        "peak_day": "2017-01-30",
+        "first_date": "2013-02-12",
+        "first_sayer": "Michael T. McCaul"
+      },
+      {
+        "phrase": "judge neil gorsuch",
+        "peak_members": 34,
+        "peak_day": "2017-01-31",
+        "first_date": "2017-01-30",
+        "first_sayer": "Jeff Merkley"
+      },
+      {
+        "phrase": "repeal the affordable care act",
+        "peak_members": 33,
+        "peak_day": "2017-01-13",
+        "first_date": "2013-01-29",
+        "first_sayer": "Ted Cruz"
+      }
+    ]
+  }
+}

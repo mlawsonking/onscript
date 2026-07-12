@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2016-02-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2016-02",
+  "text": "In February 2016 the record shows us returning most often to \"the presidents budget\"—23 of us at peak on February 9. That same day 11 of us said \"president obamas budget,\" and 11 gave a \"statement in response to.\" On February 13, 15 of us named \"supreme court justice antonin scalia.\" Twelve of us reached \"at guantanamo bay\" on February 23, and twelve spoke of a \"plan to close\" the same day. Twelve invoked \"the 21st century\" on February 9, and twelve pointed to the \"full text of the\" on February 12. The first dates for each phrase precede this era, so we do not claim from this record who among us said them first. We report the repetition and its counts, and characterize it no further.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['9']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the presidents budget",
+        "peak_members": 23,
+        "peak_day": "2016-02-09",
+        "first_date": "2015-02-02",
+        "first_sayer": "Brian Babin"
+      },
+      {
+        "phrase": "supreme court justice antonin scalia",
+        "peak_members": 15,
+        "peak_day": "2016-02-13",
+        "first_date": "2015-02-21",
+        "first_sayer": "G000571"
+      },
+      {
+        "phrase": "at guantanamo bay",
+        "peak_members": 12,
+        "peak_day": "2016-02-23",
+        "first_date": "2013-03-08",
+        "first_sayer": "L000174"
+      },
+      {
+        "phrase": "the 21st century",
+        "peak_members": 12,
+        "peak_day": "2016-02-09",
+        "first_date": "2013-01-07",
+        "first_sayer": "Virginia Foxx"
+      },
+      {
+        "phrase": "full text of the",
+        "peak_members": 12,
+        "peak_day": "2016-02-12",
+        "first_date": "2013-01-11",
+        "first_sayer": "Kirsten E. Gillibrand"
+      },
+      {
+        "phrase": "plan to close",
+        "peak_members": 12,
+        "peak_day": "2016-02-23",
+        "first_date": "2015-01-04",
+        "first_sayer": "C001071"
+      },
+      {
+        "phrase": "statement in response to",
+        "peak_members": 11,
+        "peak_day": "2016-02-09",
+        "first_date": "2013-01-06",
+        "first_sayer": "M001187"
+      },
+      {
+        "phrase": "president obamas budget",
+        "peak_members": 11,
+        "peak_day": "2016-02-09",
+        "first_date": "2015-02-02",
+        "first_sayer": "Michael T. McCaul"
+      }
+    ]
+  }
+}

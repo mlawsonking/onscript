@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2019-03-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2019-03",
+  "text": "Looking back at March 2019, the phrase most of us carried was \"green new deal\": 39 of us said it, peaking March 26, though it entered the record on January 3. On that peak day, 34 of us said \"the green new deal.\" We said \"special counsel robert,\" 23 of us, peaking March 24. On \"our southern border,\" 23 of us converged, peaking March 14. That same day, 20 of us said \"national emergency declaration\" and 19 said \"the national emergencies act.\" On March 8, 22 of us stood \"against h r,\" and 21 spoke \"on h r.\" We report the counts. We were reading from one list.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['3', '8']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "green new deal",
+        "peak_members": 39,
+        "peak_day": "2019-03-26",
+        "first_date": "2019-01-03",
+        "first_sayer": "B000574"
+      },
+      {
+        "phrase": "the green new deal",
+        "peak_members": 34,
+        "peak_day": "2019-03-26",
+        "first_date": "2019-01-04",
+        "first_sayer": "Mike Levin"
+      },
+      {
+        "phrase": "special counsel robert",
+        "peak_members": 23,
+        "peak_day": "2019-03-24",
+        "first_date": "2017-05-17",
+        "first_sayer": "S001187"
+      },
+      {
+        "phrase": "our southern border",
+        "peak_members": 23,
+        "peak_day": "2019-03-14",
+        "first_date": "2013-03-04",
+        "first_sayer": "F000444"
+      },
+      {
+        "phrase": "against h r",
+        "peak_members": 22,
+        "peak_day": "2019-03-08",
+        "first_date": "2013-01-04",
+        "first_sayer": "Virginia Foxx"
+      },
+      {
+        "phrase": "on h r",
+        "peak_members": 21,
+        "peak_day": "2019-03-08",
+        "first_date": "2013-01-08",
+        "first_sayer": "R000582"
+      },
+      {
+        "phrase": "national emergency declaration",
+        "peak_members": 20,
+        "peak_day": "2019-03-14",
+        "first_date": "2019-01-09",
+        "first_sayer": "Christopher Murphy"
+      },
+      {
+        "phrase": "the national emergencies act",
+        "peak_members": 19,
+        "peak_day": "2019-03-14",
+        "first_date": "2019-02-04",
+        "first_sayer": "F000062"
+      }
+    ]
+  }
+}

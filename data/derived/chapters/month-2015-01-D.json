@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2015-01-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2015-01",
+  "text": "In January 2015, seventy-eight of us said \"state of the union\" on 2015-01-20, seventy-five said \"of the union address,\" and seventy-four said \"state of the union address\" — the same day, the same words. Twenty-nine of us said \"obama's state of the union,\" and twenty-seven said \"obama's state of the union address.\" Forty-one of us said \"the middle class,\" also on 2015-01-20. Earlier that month, on 2015-01-06, forty-six of us said \"the 114th congress.\" On 2015-01-14, twenty-six of us said \"of homeland security.\" Our record from this era converges on one date and one speech. We did not originate these phrases; the first \"state of the union\" on record here is dated 2013-01-20. We repeated. We were reading, together, from the same evening.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"obama's state of the union\", \"obama's state of the union address\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "state of the union",
+        "peak_members": 78,
+        "peak_day": "2015-01-20",
+        "first_date": "2013-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "of the union address",
+        "peak_members": 75,
+        "peak_day": "2015-01-20",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "state of the union address",
+        "peak_members": 74,
+        "peak_day": "2015-01-20",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "the 114th congress",
+        "peak_members": 46,
+        "peak_day": "2015-01-06",
+        "first_date": "2013-04-09",
+        "first_sayer": "G000571"
+      },
+      {
+        "phrase": "the middle class",
+        "peak_members": 41,
+        "peak_day": "2015-01-20",
+        "first_date": "2011-07-19",
+        "first_sayer": "André Carson"
+      },
+      {
+        "phrase": "obama’s state of the union",
+        "peak_members": 29,
+        "peak_day": "2015-01-20",
+        "first_date": "2013-02-12",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "obama’s state of the union address",
+        "peak_members": 27,
+        "peak_day": "2015-01-20",
+        "first_date": "2013-02-12",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "of homeland security",
+        "peak_members": 26,
+        "peak_day": "2015-01-14",
+        "first_date": "2013-01-03",
+        "first_sayer": "Richard J. Durbin"
+      }
+    ]
+  }
+}

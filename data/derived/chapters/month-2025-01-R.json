@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "month-2025-01-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2025-01",
+  "text": "We convened as \"the 119th congress\": 82 of us said it, peaking January 3, though \"Ed Case\" first said it in 2023. That day 41 named the \"speaker of the house,\" 38 spoke the \"oath of office,\" 37 \"the oath of office,\" and 32 said \"get to work.\" 35 placed ourselves \"in the 119th congress.\" Four days later 34 had converged on \"the laken riley act.\" By January 20, 32 named the \"president of the united states.\" We counted ourselves, swore in, and named one bill. That is most of what the record holds from us.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['3']",
+      "un-grounded quotes: ['ed case']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the 119th congress",
+        "peak_members": 82,
+        "peak_day": "2025-01-03",
+        "first_date": "2023-01-03",
+        "first_sayer": "Ed Case"
+      },
+      {
+        "phrase": "speaker of the house",
+        "peak_members": 41,
+        "peak_day": "2025-01-03",
+        "first_date": "2013-01-03",
+        "first_sayer": "Robert B. Aderholt"
+      },
+      {
+        "phrase": "oath of office",
+        "peak_members": 38,
+        "peak_day": "2025-01-03",
+        "first_date": "2013-01-03",
+        "first_sayer": "Robert B. Aderholt"
+      },
+      {
+        "phrase": "the oath of office",
+        "peak_members": 37,
+        "peak_day": "2025-01-03",
+        "first_date": "2013-01-03",
+        "first_sayer": "Robert B. Aderholt"
+      },
+      {
+        "phrase": "in the 119th congress",
+        "peak_members": 35,
+        "peak_day": "2025-01-03",
+        "first_date": "2024-03-21",
+        "first_sayer": "Joyce Beatty"
+      },
+      {
+        "phrase": "the laken riley act",
+        "peak_members": 34,
+        "peak_day": "2025-01-07",
+        "first_date": "2024-03-05",
+        "first_sayer": "Claudia Tenney"
+      },
+      {
+        "phrase": "president of the united states",
+        "peak_members": 32,
+        "peak_day": "2025-01-20",
+        "first_date": "2013-01-11",
+        "first_sayer": "L000551"
+      },
+      {
+        "phrase": "get to work",
+        "peak_members": 32,
+        "peak_day": "2025-01-03",
+        "first_date": "2013-01-03",
+        "first_sayer": "Tim Scott"
+      }
+    ]
+  }
+}

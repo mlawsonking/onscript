@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2014-01-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2014-01",
+  "text": "In January 2014 we converged on the State of the Union. Seventy-two of us said \"state of the union\" and sixty-seven said \"state of the union address,\" both peaking January 28, the day of the address. Twenty-five of us said \"obama's state of the union.\" Fifty-one of us said \"the farm bill.\" Thirty-two of us said \"the middle class,\" and thirty-two said \"the minimum wage.\" Twenty-seven of us said \"1 3 million.\" Twenty-four of us said \"supplemental nutrition assistance.\" We record that the address organized us: these phrases surfaced together, from many of us at once, on the same day. We do not know from this record what any of us meant by them. We know how many of us said each, and when.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"obama's state of the union\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "state of the union",
+        "peak_members": 72,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "state of the union address",
+        "peak_members": 67,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "the farm bill",
+        "peak_members": 51,
+        "peak_day": "2014-01-29",
+        "first_date": "2013-01-09",
+        "first_sayer": "Michael F. Bennet"
+      },
+      {
+        "phrase": "the middle class",
+        "peak_members": 32,
+        "peak_day": "2014-01-28",
+        "first_date": "2011-07-19",
+        "first_sayer": "André Carson"
+      },
+      {
+        "phrase": "the minimum wage",
+        "peak_members": 32,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-02-13",
+        "first_sayer": "L000551"
+      },
+      {
+        "phrase": "1 3 million",
+        "peak_members": 27,
+        "peak_day": "2014-01-07",
+        "first_date": "2013-01-29",
+        "first_sayer": "C000141"
+      },
+      {
+        "phrase": "obama’s state of the union",
+        "peak_members": 25,
+        "peak_day": "2014-01-29",
+        "first_date": "2013-02-12",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "supplemental nutrition assistance",
+        "peak_members": 24,
+        "peak_day": "2014-01-29",
+        "first_date": "2013-01-10",
+        "first_sayer": "C000141"
+      }
+    ]
+  }
+}

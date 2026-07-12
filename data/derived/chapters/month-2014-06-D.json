@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2014-06-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2014-06",
+  "text": "June 2014, in retrospect: we spoke mostly in two directions. On 2014-06-02, 31 of us said \"the environmental protection\" and 29 said \"environmental protection agency\"; that same day 24 said \"existing power plants\" and 24 said \"of climate change,\" while 22 said \"the environmental protection agency.\" Then on 2014-06-30, 36 of us said \"the supreme court\" and 25 said \"the supreme court's.\" Also on 2014-06-30, 25 of us said \"in burwell v,\" a phrase first recorded that day. We reached 36 on the court and 31 on the agency. That is the record from this era. We will not characterize what we did not say.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"the supreme court's\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the supreme court",
+        "peak_members": 36,
+        "peak_day": "2014-06-30",
+        "first_date": "2013-01-04",
+        "first_sayer": "C001078"
+      },
+      {
+        "phrase": "the environmental protection",
+        "peak_members": 31,
+        "peak_day": "2014-06-02",
+        "first_date": "2013-01-09",
+        "first_sayer": "Randy K. Weber, Sr."
+      },
+      {
+        "phrase": "environmental protection agency",
+        "peak_members": 29,
+        "peak_day": "2014-06-02",
+        "first_date": "2013-01-09",
+        "first_sayer": "Randy K. Weber, Sr."
+      },
+      {
+        "phrase": "the supreme court’s",
+        "peak_members": 25,
+        "peak_day": "2014-06-30",
+        "first_date": "2013-01-17",
+        "first_sayer": "S001168"
+      },
+      {
+        "phrase": "in burwell v",
+        "peak_members": 25,
+        "peak_day": "2014-06-30",
+        "first_date": "2014-06-30",
+        "first_sayer": "H000324"
+      },
+      {
+        "phrase": "existing power plants",
+        "peak_members": 24,
+        "peak_day": "2014-06-02",
+        "first_date": "2013-04-24",
+        "first_sayer": "Lisa Murkowski"
+      },
+      {
+        "phrase": "of climate change",
+        "peak_members": 24,
+        "peak_day": "2014-06-02",
+        "first_date": "2013-01-23",
+        "first_sayer": "F000010"
+      },
+      {
+        "phrase": "the environmental protection agency",
+        "peak_members": 22,
+        "peak_day": "2014-06-02",
+        "first_date": "2013-01-09",
+        "first_sayer": "Randy K. Weber, Sr."
+      }
+    ]
+  }
+}

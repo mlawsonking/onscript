@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2022-01-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2022-01",
+  "text": "In this month we recorded ourselves converging. Our most-repeated phrase was \"the supreme court,\" said by 22 of us at peak on 2022-01-13, though one of us first said it on 2013-01-04. On that same day 14 of us said \"vaccine mandate for,\" 11 said \"occupational safety and health,\" 9 said \"vaccine mandate on,\" 9 said \"court's decision to,\" and 8 said \"occupational safety and health administration.\" A separate cluster surfaced 2022-01-20: 9 of us said \"first year in office,\" 9 said \"our southern border.\" We note that two strands ran together — the court and the mandate, the border and the year in office — and that the earliest utterances long preceded the peaks. We report the record; we do not explain it.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"court's decision to\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the supreme court",
+        "peak_members": 22,
+        "peak_day": "2022-01-13",
+        "first_date": "2013-01-04",
+        "first_sayer": "C001078"
+      },
+      {
+        "phrase": "vaccine mandate for",
+        "peak_members": 14,
+        "peak_day": "2022-01-13",
+        "first_date": "2021-08-05",
+        "first_sayer": "Nicole Malliotakis"
+      },
+      {
+        "phrase": "occupational safety and health",
+        "peak_members": 11,
+        "peak_day": "2022-01-13",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "first year in office",
+        "peak_members": 9,
+        "peak_day": "2022-01-20",
+        "first_date": "2017-01-23",
+        "first_sayer": "Linda T. Sánchez"
+      },
+      {
+        "phrase": "our southern border",
+        "peak_members": 9,
+        "peak_day": "2022-01-20",
+        "first_date": "2013-03-04",
+        "first_sayer": "F000444"
+      },
+      {
+        "phrase": "court’s decision to",
+        "peak_members": 9,
+        "peak_day": "2022-01-13",
+        "first_date": "2013-06-24",
+        "first_sayer": "S000051"
+      },
+      {
+        "phrase": "vaccine mandate on",
+        "peak_members": 9,
+        "peak_day": "2022-01-13",
+        "first_date": "2021-09-09",
+        "first_sayer": "Kevin Hern"
+      },
+      {
+        "phrase": "occupational safety and health administration",
+        "peak_members": 8,
+        "peak_day": "2022-01-13",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      }
+    ]
+  }
+}

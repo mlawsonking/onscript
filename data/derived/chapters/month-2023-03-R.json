@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2023-03-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2023-03",
+  "text": "In March 2023 our record converged on energy. On March 30, 48 of us said \"energy costs act,\" 44 said \"lower energy costs act,\" and 43 said \"the lower energy costs act.\" Steve Scalise said it first, on March 9. The fragment \"1 the lower\" appears from 35 of us, and \"1 the lower energy costs act\" from 34, on that same March 30 — the seams of a shared numbered document showing through.\n\nA second line ran alongside. On March 24, 33 of us said \"bill of rights\" and 32 said \"the parents bill of rights\"; Daniel Meuser said the latter first, on January 10. And 31 of us said \"domestic energy production,\" first entered under I000024.\n\nWe report this as the instrument reads itself: two bills, one voice, the same days, the same words in the same order.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['9']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "energy costs act",
+        "peak_members": 48,
+        "peak_day": "2023-03-30",
+        "first_date": "2023-03-09",
+        "first_sayer": "Steve Scalise"
+      },
+      {
+        "phrase": "lower energy costs act",
+        "peak_members": 44,
+        "peak_day": "2023-03-30",
+        "first_date": "2023-03-09",
+        "first_sayer": "Steve Scalise"
+      },
+      {
+        "phrase": "the lower energy costs act",
+        "peak_members": 43,
+        "peak_day": "2023-03-30",
+        "first_date": "2023-03-09",
+        "first_sayer": "Steve Scalise"
+      },
+      {
+        "phrase": "1 the lower",
+        "peak_members": 35,
+        "peak_day": "2023-03-30",
+        "first_date": "2023-03-09",
+        "first_sayer": "Steve Scalise"
+      },
+      {
+        "phrase": "1 the lower energy costs act",
+        "peak_members": 34,
+        "peak_day": "2023-03-30",
+        "first_date": "2023-03-09",
+        "first_sayer": "Steve Scalise"
+      },
+      {
+        "phrase": "bill of rights",
+        "peak_members": 33,
+        "peak_day": "2023-03-24",
+        "first_date": "2013-01-16",
+        "first_sayer": "Ted Cruz"
+      },
+      {
+        "phrase": "the parents bill of rights",
+        "peak_members": 32,
+        "peak_day": "2023-03-24",
+        "first_date": "2023-01-10",
+        "first_sayer": "Daniel Meuser"
+      },
+      {
+        "phrase": "domestic energy production",
+        "peak_members": 31,
+        "peak_day": "2023-03-30",
+        "first_date": "2013-01-23",
+        "first_sayer": "I000024"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2013-09-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2013-09",
+  "text": "In September 2013, 39 of us reached \"a government shutdown\" by the thirtieth, the day the shutdown began. Before that, 38 of us said \"a continuing resolution\" on the twentieth, and 34 said \"the continuing resolution\" the same day. John Cornyn was first to \"a government shutdown,\" back on January 4th. On the eleventh, 33 of us marked \"12th anniversary of\" and 30 of us \"the 12th anniversary of.\" Thirty-three of us said \"medical device tax\" by the twenty-ninth; Tim Walberg was first, on January 25th. Thirty-one of us said \"members of congress\" by the thirtieth, and 30 of us said \"the government open\" that same day. We converged on the funding fight and the shutdown in the final ten days, and on the anniversary at midmonth. That is the record of what we repeated, and how many of us repeated it.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-whitelisted numbers: ['4']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "a government shutdown",
+        "peak_members": 39,
+        "peak_day": "2013-09-30",
+        "first_date": "2013-01-04",
+        "first_sayer": "John Cornyn"
+      },
+      {
+        "phrase": "a continuing resolution",
+        "peak_members": 38,
+        "peak_day": "2013-09-20",
+        "first_date": "2013-02-07",
+        "first_sayer": "I000024"
+      },
+      {
+        "phrase": "the continuing resolution",
+        "peak_members": 34,
+        "peak_day": "2013-09-20",
+        "first_date": "2013-01-23",
+        "first_sayer": "Michael F. Bennet"
+      },
+      {
+        "phrase": "12th anniversary of",
+        "peak_members": 33,
+        "peak_day": "2013-09-11",
+        "first_date": "2013-09-08",
+        "first_sayer": "C000174"
+      },
+      {
+        "phrase": "medical device tax",
+        "peak_members": 33,
+        "peak_day": "2013-09-29",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "members of congress",
+        "peak_members": 31,
+        "peak_day": "2013-09-30",
+        "first_date": "2013-01-03",
+        "first_sayer": "Diana DeGette"
+      },
+      {
+        "phrase": "the 12th anniversary of",
+        "peak_members": 30,
+        "peak_day": "2013-09-11",
+        "first_date": "2013-09-08",
+        "first_sayer": "C000174"
+      },
+      {
+        "phrase": "the government open",
+        "peak_members": 30,
+        "peak_day": "2013-09-30",
+        "first_date": "2013-03-06",
+        "first_sayer": "Randy K. Weber, Sr."
+      }
+    ]
+  }
+}

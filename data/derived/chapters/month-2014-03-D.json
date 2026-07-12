@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2014-03-D",
+  "kind": "month",
+  "congress": null,
+  "party": "D",
+  "label": "2014-03",
+  "text": "In March 2014, twenty-five of us said \"the president's budget,\" first among us P000601. Then twenty-two of us said \"comprehensive immigration reform.\" On the same late-March day, twenty of us reached for \"a discharge petition\" — John B. Larson said it first, back in 2013 — and fifteen of us moved together to \"force a vote.\" Fifteen of us named the bill three ways in the same breath: \"border security economic opportunity and immigration,\" \"security economic opportunity and immigration modernization,\" \"economic opportunity and immigration modernization act.\" Fifteen of us said \"on h r.\" We converged on March 26: the petition, the vote, the bill's long name, repeated across us on one day. We record it as it happened. The budget came first and widest; the immigration mechanism came later and narrower, and we said it in near-unison.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"the president's budget\"]"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "the president’s budget",
+        "peak_members": 25,
+        "peak_day": "2014-03-04",
+        "first_date": "2013-03-21",
+        "first_sayer": "P000601"
+      },
+      {
+        "phrase": "comprehensive immigration reform",
+        "peak_members": 22,
+        "peak_day": "2014-03-26",
+        "first_date": "2013-01-03",
+        "first_sayer": "C000141"
+      },
+      {
+        "phrase": "a discharge petition",
+        "peak_members": 20,
+        "peak_day": "2014-03-26",
+        "first_date": "2013-04-17",
+        "first_sayer": "John B. Larson"
+      },
+      {
+        "phrase": "security economic opportunity and immigration modernization",
+        "peak_members": 15,
+        "peak_day": "2014-03-26",
+        "first_date": "2013-04-16",
+        "first_sayer": "Martin Heinrich"
+      },
+      {
+        "phrase": "economic opportunity and immigration modernization act",
+        "peak_members": 15,
+        "peak_day": "2014-03-26",
+        "first_date": "2013-04-16",
+        "first_sayer": "Martin Heinrich"
+      },
+      {
+        "phrase": "border security economic opportunity and immigration",
+        "peak_members": 15,
+        "peak_day": "2014-03-26",
+        "first_date": "2013-04-16",
+        "first_sayer": "Martin Heinrich"
+      },
+      {
+        "phrase": "force a vote",
+        "peak_members": 15,
+        "peak_day": "2014-03-26",
+        "first_date": "2013-01-25",
+        "first_sayer": "L000174"
+      },
+      {
+        "phrase": "on h r",
+        "peak_members": 15,
+        "peak_day": "2014-03-26",
+        "first_date": "2013-01-08",
+        "first_sayer": "R000582"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "month-2014-01-R",
+  "kind": "month",
+  "congress": null,
+  "party": "R",
+  "label": "2014-01",
+  "text": "In January 2014, 96 of us said \"state of the union,\" peaking on January 28. 89 of us said \"state of the union address\" that same day. 41 of us said \"obama's state of the union,\" 40 of us said \"obama's state of the union address,\" and 35 of us said \"president obama's state of the union.\" One day held most of our words. Before it, 40 of us said \"the health exchange security and transparency act,\" peaking January 10, first entered by L000567. 49 of us said \"the farm bill.\" We repeated each other, and we converged on the 28th.",
+  "generator": "subscription_agent",
+  "prompt_version": "1.0",
+  "verifier": {
+    "passed": false,
+    "reasons": [
+      "un-grounded quotes: [\"obama's state of the union\", \"obama's state of the union address\", \"president obama's state of the union\", 'the health exchange security and transparency act']"
+    ]
+  },
+  "stats": {
+    "top_phrases": [
+      {
+        "phrase": "state of the union",
+        "peak_members": 96,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-01-20",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "state of the union address",
+        "peak_members": 89,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-01-25",
+        "first_sayer": "Tim Walberg"
+      },
+      {
+        "phrase": "the farm bill",
+        "peak_members": 49,
+        "peak_day": "2014-01-29",
+        "first_date": "2013-01-09",
+        "first_sayer": "Michael F. Bennet"
+      },
+      {
+        "phrase": "obama’s state of the union",
+        "peak_members": 41,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-02-12",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "the health exchange security and transparency",
+        "peak_members": 40,
+        "peak_day": "2014-01-10",
+        "first_date": "2014-01-06",
+        "first_sayer": "L000567"
+      },
+      {
+        "phrase": "health exchange security and transparency act",
+        "peak_members": 40,
+        "peak_day": "2014-01-10",
+        "first_date": "2014-01-06",
+        "first_sayer": "L000567"
+      },
+      {
+        "phrase": "obama’s state of the union address",
+        "peak_members": 40,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-02-12",
+        "first_sayer": "John Barrasso"
+      },
+      {
+        "phrase": "president obama’s state of the union",
+        "peak_members": 35,
+        "peak_day": "2014-01-28",
+        "first_date": "2013-02-12",
+        "first_sayer": "John Barrasso"
+      }
+    ]
+  }
+}
