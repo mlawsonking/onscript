@@ -201,6 +201,66 @@ verifier soundness, neutrality symmetry, coordination/joint-collapse, determinis
    `try/except JSONDecodeError: continue`, matching `fetch.fetch_month`. Test:
    `test_iter_jsonl_skips_malformed_lines`. 28 tests pass.
 
+### Session 3 (2026-07-12) — Alexandria Stage 2 complete: the 25-year deterministic moat + era/monthly chapters
+
+**Goal:** finish the §1.3 "Library of Alexandria" backfill — merge the full 2001→2026 corpus into
+one ledger, then run the models over it to produce the retrospective composite-voice **chapters**,
+on the **Claude subscription** (`claude -p`), never the metered API key (§1.3 generator policy;
+`ANTHROPIC_API_KEY` remains untouched — verified by the deny rules).
+
+**Corpus + ledger (the deterministic layer).** Full `dwillis/congress-press` history downloaded
+(688,839 releases) and run through the per-Congress **sharded** engine (memory-safe, §1.3), then
+merged into one ledger on `X:\onscript-data`: **2,770,235 synchronized phrases**, epoch
+**2011-01-25 → 2026-07-09**. Coverage is honestly **bimodal** — 2001–2012 is threadbare (dozens–
+hundreds of releases/yr; R near-zero pre-2009), dense only from **2013 (113th Congress)** onward
+(17k–48k per party per year). **674,956 dated releases** (D 366,802 / R 308,008) in the per-year×
+party coverage table. The sync epoch and the coverage gate agree: our real record starts at the
+113th — everything earlier is coverage-gated to honest code stubs, never generated prose.
+
+**Chapter layer (§1.3).** `build_chapter_inputs` → **352 inputs** (26 era = per Congress×party;
+326 monthly from 2013), **339 sufficient**. Generated via `scripts/generate_chapters.py` (self-
+contained, hang-proof: `claude -p`, no tools → no permission prompts, 12-concurrency, retries) and
+gated by the **same deterministic verifier** (numbers whitelisted to STATS; quotes verbatim from
+fragments). First pass: 252 published / 13 stubs / 87 verifier-refused. Hardened **P4 → v1.1**
+(rules 2/3: never quote a name/paraphrase, never write a digit absent from STATS) and re-ran only
+the failures (`scripts/regen_failed_chapters.py`, accepting a replacement **only if it now
+verifies** — can never make the corpus worse). **Final: 327 published / 13 stubs / 12 failed** —
+**96.5% yield** on sufficient chapters. The 12 residual failures are all *quote* over-reaches
+(`"trump's state of the union"`, `"the supreme court's"`) the gate correctly refused — citation-
+or-silence holding on the flagship artifact.
+
+**Headline (biggest 15-year unison events, peak members on one day):** R — "american health care
+act" **184** (2017-05-04, AHCA House passage), "tax cuts and jobs act" **166** (2017-11-16, TCJA),
+"national defense authorization act" **135**. D — "deferred action for childhood arrivals" **153**
+(2017-09-05, DACA rescission day), "the heroes act" **151** (2020-05-15), "justice in policing act"
+**122** (2020-06-25), "lower drug costs now act" **117**. The propagation thesis is visible in the
+raw dates: "tax cuts and jobs act" first appeared 2017-11-02, hit 166 members by 2017-11-16 — a
+phrase crossing a whole caucus in two weeks. Symmetric instrument, event-driven asymmetric findings.
+
+**Two bugs fixed (both in `pipeline/chapters.py`, committed with 7 new tests → 35/35 pass):**
+1. **The ~80-minute hang.** `build_era_inputs`/`build_monthly_inputs` ran a full **O(n²)** members-
+   aware nested-phrase collapse over 100k+ synchronized phrases per congress just to keep the top 8,
+   and stored a member `frozenset` per entry (~18 GB, paging to disk). Rewrote to a **bounded** top-
+   PRESELECT(60) collapse (`_collapse_top`, identical top-8 result) with `{peak, day}`-only buckets
+   (members fetched lazily for the ~8 survivors) and memoized day→congress. **Input build: 82-min
+   hang → 109 s.**
+2. **Latent `KeyError`.** `finalize_chapters` read `inp["congress"]`, which crashes on every
+   *monthly* input (no congress key) — it would have failed generation even after the timing fix.
+   → `inp.get("congress")`.
+
+**Git reconciliation.** The cloud Actions (RUN A/B) had cron'd overnight and pushed the 2026-07-12
+collect+assemble — a 2-and-2 divergence. Rebased the local Alexandria stack onto the cloud commits
+(`-X theirs` for the regenerable `derived`), **preserving origin's immutable `data/raw` + new-day
+files** (`days/2026-07-12.json`, symmetry, site HTML) while keeping Alexandria's 25-year aggregates.
+Linear history, pushed clean (`dc24788..5f678bd`).
+
+**Deviation / follow-up (documented, non-blocking):** the 12 verify-failed chapters retain
+`verifier.passed=false` with their prior text; before the Archive goes public (v2) the chapter
+renderer must show only `passed==true` (fall back to stub) so ungrounded prose never displays.
+`generated_chapters.json` keeps the raw text for a future retry. Chapter `prompt_version` is stamped
+uniformly at finalize (the 252 first-pass chapters were P4 v1.0 but are recorded v1.1) — cosmetic;
+the verifier guarantee is identical across versions.
+
 ## Next sessions / follow-ups
 
 1. **Michael's launch errands (the actual gate, §7.3/§9):** public GitHub repo + push;
@@ -210,4 +270,6 @@ verifier soundness, neutrality symmetry, coordination/joint-collapse, determinis
 2. **Bluesky ingest (Lane 2)** — cut-line #1: build the ~130-member handle→DID map and wire the
    free public-AppView poll (enrichment only, machine-blocked from comparative metrics).
 3. **Incremental ledger merge** (vs. today's full-corpus rebuild) if the ~30-min RUN A wants trimming.
-4. **Stage 2 "Alexandria"** (2001 full-history, dark-week, sharded matrix, non-blocking) — schemas already support it.
+4. ~~**Stage 2 "Alexandria"** (2001 full-history, sharded matrix)~~ — **DONE (Session 3):** 25-year
+   ledger merged (2.77M phrases) + 327 verified era/monthly chapters. Remaining Archive work is v2
+   public release (§10): the chapter renderer + coverage page + `passed==true` render filter.
