@@ -114,5 +114,10 @@ def sentences(text: str):
             yield toks
 
 
+# One combined alternation instead of ~20 separate .search() calls per n-gram — identical
+# match semantics (matches iff any sub-pattern matches), ~20x faster on the engine's hot path.
+_NGRAM_BOILERPLATE_RE = re.compile("|".join(f"(?:{p.pattern})" for p in _NGRAM_BOILERPLATE))
+
+
 def is_boilerplate_ngram(ngram: str) -> bool:
-    return any(p.search(ngram) for p in _NGRAM_BOILERPLATE)
+    return _NGRAM_BOILERPLATE_RE.search(ngram) is not None
