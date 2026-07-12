@@ -18,7 +18,7 @@ except Exception:
 from pipeline import alexandria, chapters, config, util  # noqa: E402
 
 CONGRESSES = list(range(alexandria.FIRST_CONGRESS, alexandria.LAST_CONGRESS + 1))
-MAX_WAIT_S = 120 * 60  # give up waiting after 2h and merge whatever shards exist (robustness)
+MAX_WAIT_S = 6 * 60 * 60  # give up after 6h (well beyond the ~3h shard run) and merge what exists
 
 # 1. wait for every shard to have written its summary (or MAX_WAIT, then proceed)
 waited = 0
