@@ -18,7 +18,7 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
     norm_stats = getattr(normalize.normalize_records, "last_stats", {})
 
     engine = PhraseEngine()
-    ledger = engine.build(statements)
+    ledger = engine.build(statements, progress=len(statements) > 100_000)  # Alexandria-scale progress
     fin_stats = engine.last_finalize_stats
 
     # Persist state (Release-asset-destined, gitignored).

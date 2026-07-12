@@ -71,14 +71,21 @@ class PhraseEngine:
             return None
         return party
 
-    def build(self, statements: list[dict]) -> dict:
+    def build(self, statements: list[dict], *, progress: bool = False) -> dict:
+        import sys as _sys
         # ---- Pass 1: day-scoped candidate discovery ----
         by_day: dict[str, list[dict]] = defaultdict(list)
         for s in statements:
             if self._eligible(s):
                 by_day[s["published_at"]].append(s)
+        if progress:
+            print(f"[engine] pass 1 over {len(by_day):,} days ({len(statements):,} statements)…",
+                  file=_sys.stderr, flush=True)
 
-        for day, group in by_day.items():
+        for _di, (day, group) in enumerate(by_day.items()):
+            if progress and _di and _di % 500 == 0:
+                print(f"[engine] pass 1: {_di:,}/{len(by_day):,} days, {len(self.sync_ngrams):,} candidates",
+                      file=_sys.stderr, flush=True)
             day_counts: dict[str, dict[str, set]] = {}
             for s in group:
                 party = s["member"]["party"]
@@ -96,7 +103,11 @@ class PhraseEngine:
             del day_counts  # release the day's dense structure
 
         # ---- Pass 2: track candidates only ----
-        for s in statements:
+        if progress:
+            print(f"[engine] pass 2: {len(self.sync_ngrams):,} candidate phrases to track", file=_sys.stderr, flush=True)
+        for _si, s in enumerate(statements):
+            if progress and _si and _si % 100_000 == 0:
+                print(f"[engine] pass 2: {_si:,}/{len(statements):,} statements", file=_sys.stderr, flush=True)
             party = self._eligible(s)
             if not party:
                 continue
