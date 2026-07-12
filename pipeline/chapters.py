@@ -129,8 +129,9 @@ def stub_text(inp: dict) -> str:
 
 
 def verify_chapter(inp: dict, text: str) -> dict:
-    """Deterministic gate (§6.3 reused): numbers must be in STATS; quotes must be verbatim phrases."""
-    stats_blob = json.dumps(inp["stats"], ensure_ascii=False)
+    """Deterministic gate (§6.3 reused): numbers must be in STATS (or the era label — e.g. the
+    "119" in "119th Congress"); quotes must be verbatim phrases (surrounding punctuation ok)."""
+    stats_blob = json.dumps(inp["stats"], ensure_ascii=False) + " " + inp.get("label", "")
     ok_num, offending = verify.numbers_whitelisted(text, stats_blob)
     ok_q, off_q = verify.quotes_grounded(text, inp["fragments"])
     reasons = []

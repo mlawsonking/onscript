@@ -67,13 +67,18 @@ def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[b
 _QUOTE = re.compile(r'"([^"]+)"|“([^”]+)”')
 
 
+_QUOTE_TRIM = " \t\n,.;:!?\"'“”‘’—–-"
+
+
 def quotes_grounded(composite_text: str, fragments: list[str]) -> tuple[bool, list[str]]:
-    """P2 rule 2: every quoted span in the composite must be a verbatim substring of some
-    provided fragment (which is itself a verbatim substring of a cited statement)."""
+    """P2 rule 2: the quoted WORDS in the composite must be a verbatim substring of some
+    provided fragment. Leading/trailing punctuation on the quoted span is stripped first, so
+    American comma-inside-quotes ("... states,") still validates against the clean fragment —
+    it's the words that must be verbatim, not the surrounding punctuation."""
     sources = [_norm(f) for f in fragments]
     offending: list[str] = []
     for m in _QUOTE.finditer(composite_text or ""):
-        q = _norm(m.group(1) or m.group(2) or "")
+        q = _norm(m.group(1) or m.group(2) or "").strip(_QUOTE_TRIM)
         if q and not any(q in s for s in sources):
             offending.append(q)
     return (len(offending) == 0, offending)
