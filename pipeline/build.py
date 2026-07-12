@@ -116,16 +116,19 @@ def coverage_tables(statements: list[dict]) -> dict:
     return {y: dict(parties) for y, parties in sorted(by_year.items())}
 
 
-def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_phrases: int = 50) -> dict:
+def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_phrases: int = 50,
+                  coverage: dict | None = None) -> dict:
     """Write all deterministic derived JSON. Returns a summary for the manifest. Takes the
     precomputed discipline dict (not the engine) so derived can be regenerated for any focus
-    day from saved state without re-running the ~30-min engine."""
+    day from saved state without re-running the ~30-min engine. `coverage` may be passed
+    precomputed (Alexandria merge) to avoid needing all statements in memory."""
     from . import util as _u
     phrases_dir = out_dir / "phrases"
     days_dir = out_dir / "days"
 
     _u.write_json(out_dir / "discipline.json", discipline)
-    coverage = coverage_tables(statements)
+    if coverage is None:
+        coverage = coverage_tables(statements)
     _u.write_json(out_dir / "coverage.json", coverage)
 
     top_recent = top_synchronized(ledger, focus_day, k=k_phrases)
