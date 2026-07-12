@@ -81,10 +81,50 @@ def build_era_inputs(ledger: dict, coverage: dict) -> list[dict]:
     return inputs
 
 
+def build_monthly_inputs(ledger: dict, *, min_peak: int = 5, min_phrases: int = 3,
+                         start_month: str = "2013-01") -> list[dict]:
+    """One chapter input per (month, party) from ~2013 on (before that the corpus is too thin).
+    Single ledger pass buckets each phrase's peak by (party, month) — fast. Coverage-gated:
+    a month needs >= min_phrases phrases at >= min_peak members to be generated (else skipped)."""
+    from collections import defaultdict
+    rmap = roster.load()
+    bucket: dict[tuple, dict] = defaultdict(dict)  # (party, month) -> ngram -> {peak, day, members}
+    for ng, e in ledger.items():
+        for day, d in e["daily"].items():
+            month = day[:7]
+            if month < start_month:
+                continue
+            for party in config.COMPOSITE_PARTIES:
+                c = d.get(party, 0)
+                if c >= config.SYNC_MIN_MEMBERS:
+                    cur = bucket[(party, month)].get(ng)
+                    if cur is None or c > cur["peak"]:
+                        bucket[(party, month)][ng] = {"peak": c, "day": day}
+    inputs: list[dict] = []
+    for (party, month), phrases in bucket.items():
+        rows = sorted(phrases.items(), key=lambda kv: (kv[1]["peak"], len(kv[0])), reverse=True)
+        kept: list[tuple] = []  # substring-collapse nested sub-phrases (keep the longer)
+        for ng, v in rows:
+            if not any(f" {ng} " in f" {k2} " for k2, _ in kept):
+                kept.append((ng, v))
+        top = []
+        for ng, v in kept[:8]:
+            fs = ledger[ng]["first_seen"]
+            top.append({"phrase": ng, "peak_members": v["peak"], "peak_day": v["day"],
+                        "first_date": fs.get("date"), "first_sayer": _name(fs.get("bioguide"), rmap)})
+        sufficient = sum(1 for t in top if t["peak_members"] >= min_peak) >= min_phrases
+        inputs.append({"id": f"month-{month}-{party}", "kind": "month", "month": month, "party": party,
+                       "label": month, "stats": {"top_phrases": top}, "fragments": [t["phrase"] for t in top],
+                       "sufficient": sufficient})
+    inputs.sort(key=lambda i: (i["month"], i["party"]))
+    return inputs
+
+
 def stub_text(inp: dict) -> str:
-    s = inp["stats"]["statements"]
-    return (f"The record of the {inp['party']} caucus in the {inp['label']} is too thin to "
-            f"characterize: {s} statements in our corpus, with no coordinated phrasing above threshold. "
+    s = inp["stats"].get("statements")
+    vol = f"{s} statements in our corpus, " if s is not None else ""
+    return (f"The record of the {inp['party']} caucus in {inp['label']} is too thin to "
+            f"characterize: {vol}with no coordinated phrasing above threshold. "
             f"Our corpus begins in 2001; coverage by year is shown on the Archive Coverage page.")
 
 
