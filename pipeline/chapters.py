@@ -58,18 +58,39 @@ def era_top_phrases(ledger: dict, party: str, start: str, end: str, k: int = 8) 
 
 
 def build_era_inputs(ledger: dict, coverage: dict) -> list[dict]:
-    """One chapter input per (Congress, party): code-computed stats + verbatim phrase fragments."""
+    """One chapter input per (Congress, party): code-computed stats + verbatim phrase fragments.
+    SINGLE pass over the ledger (buckets each phrase's peak by Congress×party) — the earlier
+    26-scan version took ~1h on the 2.77M-phrase Alexandria ledger."""
+    from collections import defaultdict
     rmap = roster.load()
+    bucket: dict[tuple, dict] = defaultdict(dict)  # (congress, party) -> ngram -> {peak, day, members}
+    for ng, e in ledger.items():
+        for day, d in e["daily"].items():
+            cong = util.congress_for_date(day)
+            for party in config.COMPOSITE_PARTIES:
+                c = d.get(party, 0)
+                if c >= config.SYNC_MIN_MEMBERS:
+                    cur = bucket[(cong, party)].get(ng)
+                    if cur is None or c > cur["peak"]:
+                        bucket[(cong, party)][ng] = {"peak": c, "day": day,
+                                                     "members": frozenset(d.get(f"members_{party}", []))}
     inputs: list[dict] = []
     for n in range(alexandria.FIRST_CONGRESS, alexandria.LAST_CONGRESS + 1):
         start, end = alexandria.congress_range(n)
         years = [str(y) for y in range(int(start[:4]), int(end[:4]))]
         for party in config.COMPOSITE_PARTIES:
             stmts = sum((coverage.get(y, {}) or {}).get(party, 0) for y in years)
-            top = era_top_phrases(ledger, party, start, end)
-            for t in top:
-                t["first_sayer"] = _name(t.get("first_bioguide"), rmap)
-                t.pop("first_bioguide", None)
+            rows = sorted(bucket.get((n, party), {}).items(), key=lambda kv: (kv[1]["peak"], len(kv[0])), reverse=True)
+            kept: list[tuple] = []  # members-aware nested-phrase collapse
+            for ng, v in rows:
+                short = f" {ng} "
+                if not any(short in f" {k2} " and v["members"] and v["members"] <= vv["members"] for k2, vv in kept):
+                    kept.append((ng, v))
+            top = []
+            for ng, v in kept[:8]:
+                fs = ledger[ng]["first_seen"]
+                top.append({"phrase": ng, "peak_members": v["peak"], "peak_day": v["day"],
+                            "first_date": fs.get("date"), "first_sayer": _name(fs.get("bioguide"), rmap)})
             inputs.append({
                 "id": f"era-{n}-{party}", "kind": "era", "congress": n, "party": party,
                 "label": f"{n}th Congress ({start[:4]}–{end[:4]})",
