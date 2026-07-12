@@ -19,6 +19,9 @@ from . import alexandria, build, config, llm, roster, util, verify
 CHAPTERS_DIR = config.DERIVED / "chapters"
 MIN_STATEMENTS = 3000          # coverage gate: below this an era is "too thin to characterize"
 MIN_TOP_PHRASES = 3
+PRESELECT = 60                 # collapse only the top-N candidates/bucket (was a full O(n^2)
+                               # pairwise collapse over 100k+ phrases/congress — the ~80min hang)
+TOP_K = 8                      # phrases surfaced per chapter
 
 
 def _name(bio: str | None, rmap: dict) -> str:
@@ -57,37 +60,67 @@ def era_top_phrases(ledger: dict, party: str, start: str, end: str, k: int = 8) 
     return out
 
 
+def _members_at(ledger: dict, ng: str, party: str, day: str) -> frozenset:
+    """The set of members who used `ng` on its peak `day` for `party` — fetched lazily (only
+    for the few top candidates) so the bucket itself never stores 2.77M member frozensets."""
+    return frozenset(((ledger.get(ng, {}).get("daily", {}) or {}).get(day, {}) or {})
+                     .get(f"members_{party}", []))
+
+
+def _collapse_top(rows: list[tuple], ledger: dict, party: str, *, members_aware: bool) -> list[tuple]:
+    """Members-aware nested-phrase collapse over a BOUNDED candidate set (`rows` already the
+    top-PRESELECT by (peak,len)). Keeps a phrase unless it's a sub-phrase of an already-kept
+    longer phrase covering a superset of its members. Stops at TOP_K. O(PRESELECT·TOP_K)."""
+    kept: list[tuple] = []          # (ng, v, members)
+    for ng, v in rows:
+        mem = _members_at(ledger, ng, party, v["day"]) if members_aware else frozenset()
+        short = f" {ng} "
+        nested = any(short in f" {k2} " and (not members_aware or (mem and mem <= km))
+                     for k2, _kv, km in kept)
+        if not nested:
+            kept.append((ng, v, mem))
+            if len(kept) >= TOP_K:
+                break
+    return kept
+
+
 def build_era_inputs(ledger: dict, coverage: dict) -> list[dict]:
     """One chapter input per (Congress, party): code-computed stats + verbatim phrase fragments.
-    SINGLE pass over the ledger (buckets each phrase's peak by Congress×party) — the earlier
-    26-scan version took ~1h on the 2.77M-phrase Alexandria ledger."""
+    SINGLE pass buckets each phrase's peak by Congress×party storing only {peak, day} (member
+    sets fetched lazily for the ~8 survivors — not stored for all 2.77M phrases), with
+    day->congress memoized, and the nested-collapse bounded to the top PRESELECT candidates.
+    The prior version stored a frozenset per entry (~18GB, paged to disk) and ran a full O(n^2)
+    collapse over 100k+ phrases/congress — an ~80-minute hang."""
     from collections import defaultdict
     rmap = roster.load()
-    bucket: dict[tuple, dict] = defaultdict(dict)  # (congress, party) -> ngram -> {peak, day, members}
+    day_cong: dict[str, int] = {}
+    parties = config.COMPOSITE_PARTIES
+    smin = config.SYNC_MIN_MEMBERS
+    bucket: dict[tuple, dict] = defaultdict(dict)  # (congress, party) -> ngram -> {peak, day}
     for ng, e in ledger.items():
         for day, d in e["daily"].items():
-            cong = util.congress_for_date(day)
-            for party in config.COMPOSITE_PARTIES:
+            cong = day_cong.get(day)
+            if cong is None:
+                cong = util.congress_for_date(day)
+                day_cong[day] = cong
+            for party in parties:
                 c = d.get(party, 0)
-                if c >= config.SYNC_MIN_MEMBERS:
-                    cur = bucket[(cong, party)].get(ng)
+                if c >= smin:
+                    b = bucket[(cong, party)]
+                    cur = b.get(ng)
                     if cur is None or c > cur["peak"]:
-                        bucket[(cong, party)][ng] = {"peak": c, "day": day,
-                                                     "members": frozenset(d.get(f"members_{party}", []))}
+                        b[ng] = {"peak": c, "day": day}
     inputs: list[dict] = []
     for n in range(alexandria.FIRST_CONGRESS, alexandria.LAST_CONGRESS + 1):
         start, end = alexandria.congress_range(n)
         years = [str(y) for y in range(int(start[:4]), int(end[:4]))]
-        for party in config.COMPOSITE_PARTIES:
+        for party in parties:
             stmts = sum((coverage.get(y, {}) or {}).get(party, 0) for y in years)
-            rows = sorted(bucket.get((n, party), {}).items(), key=lambda kv: (kv[1]["peak"], len(kv[0])), reverse=True)
-            kept: list[tuple] = []  # members-aware nested-phrase collapse
-            for ng, v in rows:
-                short = f" {ng} "
-                if not any(short in f" {k2} " and v["members"] and v["members"] <= vv["members"] for k2, vv in kept):
-                    kept.append((ng, v))
+            rows = sorted(bucket.get((n, party), {}).items(),
+                          key=lambda kv: (kv[1]["peak"], len(kv[0])), reverse=True)[:PRESELECT]
+            kept = _collapse_top(rows, ledger, party, members_aware=True)
             top = []
-            for ng, v in kept[:8]:
+            for ng, v, _mem in kept:
                 fs = ledger[ng]["first_seen"]
                 top.append({"phrase": ng, "peak_members": v["peak"], "peak_day": v["day"],
                             "first_date": fs.get("date"), "first_sayer": _name(fs.get("bioguide"), rmap)})
@@ -123,13 +156,11 @@ def build_monthly_inputs(ledger: dict, *, min_peak: int = 5, min_phrases: int = 
                         bucket[(party, month)][ng] = {"peak": c, "day": day}
     inputs: list[dict] = []
     for (party, month), phrases in bucket.items():
-        rows = sorted(phrases.items(), key=lambda kv: (kv[1]["peak"], len(kv[0])), reverse=True)
-        kept: list[tuple] = []  # substring-collapse nested sub-phrases (keep the longer)
-        for ng, v in rows:
-            if not any(f" {ng} " in f" {k2} " for k2, _ in kept):
-                kept.append((ng, v))
+        rows = sorted(phrases.items(),
+                      key=lambda kv: (kv[1]["peak"], len(kv[0])), reverse=True)[:PRESELECT]
+        kept = _collapse_top(rows, ledger, party, members_aware=False)  # substring-only, bounded
         top = []
-        for ng, v in kept[:8]:
+        for ng, v, _mem in kept:
             fs = ledger[ng]["first_seen"]
             top.append({"phrase": ng, "peak_members": v["peak"], "peak_day": v["day"],
                         "first_date": fs.get("date"), "first_sayer": _name(fs.get("bioguide"), rmap)})
@@ -188,7 +219,7 @@ def finalize_chapters(inputs: list[dict], generated: dict[str, str]) -> dict:
                 published += 1
             else:
                 failed += 1
-        rec = {"schema_version": 1, "id": cid, "kind": inp["kind"], "congress": inp["congress"],
+        rec = {"schema_version": 1, "id": cid, "kind": inp["kind"], "congress": inp.get("congress"),
                "party": inp["party"], "label": inp["label"], "text": text, "generator": gen,
                "prompt_version": (prompt or {}).get("version", "1.0"), "verifier": ver,
                "stats": inp["stats"]}
