@@ -5,14 +5,12 @@
   "congress": null,
   "party": "D",
   "label": "2017-01",
-  "text": "In January two thousand seventeen we convened, and forty-five of us said \"the 115th congress\" on one day. Then the record concentrates. Forty-two of us said \"trump's executive order\"; thirty-eight said \"this executive order\"; thirty-seven said \"president trump's executive\"; thirty-seven said \"the executive order\" — one order, counted four ways, each peaking the same late-January day. Forty-one of us said \"the supreme court.\" Thirty-four of us said \"judge neil gorsuch,\" a phrase first spoken the day before by Jeff Merkley. Thirty-three of us said \"repeal the affordable care act.\" We report only what we can count: on a handful of days a large number of us reached for the same few words at once, and the peaks cluster tightly in that final week. That is the shape of our January. We do not characterize what we did not say.\n\n---\n\nOne flag for the record, Michael: several `first_sayer` values in this D era's STATS are prominent Republicans — \"trump's executive order\" → John Barrasso, \"repeal the affordable care act\" → Ted Cruz, \"the executive order\" → Michael T. McCaul. Either the ledger is keying first-appearance across the *whole* corpus (both parties) rather than within-party, or there's lane contamination in the D shard's phrase set. Worth checking `build_era_inputs` before these chapters are treated as verified — a D chapter that could name Ted Cruz as originator is exactly the kind of thing the neutrality audit should catch.",
+  "text": "This month our record converges on an order and a court. 42 of us said \"trump’s executive order\"; 38 said \"this executive order\"; 37 said \"president trump’s executive\"; 37 said \"the executive order\" — the same order under several names. 41 of us said \"the supreme court\", and 34 said \"judge neil gorsuch\". 45 of us said \"the 115th congress\". 33 said \"repeal the affordable care act\". We report only what the record holds: an order we returned to, a court we named, a nomination we named, a repeal we named. What we said this month, we said together — and we can still count how many of us said it.",
   "generator": "subscription_agent",
-  "prompt_version": "1.0",
+  "prompt_version": "1.1",
   "verifier": {
-    "passed": false,
-    "reasons": [
-      "un-grounded quotes: [\"trump's executive order\", \"president trump's executive\", \"trump's executive order\"]"
-    ]
+    "passed": true,
+    "reasons": []
   },
   "stats": {
     "top_phrases": [

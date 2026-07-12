@@ -5,15 +5,12 @@
   "congress": null,
   "party": "R",
   "label": "2015-01",
-  "text": "We opened the 114th congress, and the record shows where we converged. On January 20, 118 of us said \"state of the union,\" and 109 said \"state of the union address\"; 45 of us said \"obama's state of the union\" the same day. John Barrasso first said \"state of the union\" on 2013-01-20. Earlier that month, on January 9, 82 of us said \"the keystone xl pipeline\" and 45 said \"of the keystone xl.\" On January 14, 84 of us said \"of homeland security\" and 59 said \"homeland security appropriations.\" On January 6, 68 of us said \"the 114th congress.\" These were the phrases we repeated, and these are the counts of us who repeated them. We report them as they stand.",
+  "text": "The record from January 2015 shows us converging on a few phrases. The most repeated was \"state of the union\" — 118 of us said it, peaking on 2015-01-20 — with \"state of the union address\" at 109 and \"obama’s state of the union\" at 45. We turned to \"the keystone xl pipeline,\" 82 of us, and \"of the keystone xl,\" 45. On security we aligned: \"of homeland security\" drew 84 of us, \"homeland security appropriations\" 59. We had opened the 114th congress, 68 of us marking it. \"state of the union\" first appeared among us in 2013, first said by John Barrasso; we were still saying it. This is what we said, and how many of us said each.",
   "generator": "subscription_agent",
-  "prompt_version": "1.0",
+  "prompt_version": "1.1",
   "verifier": {
-    "passed": false,
-    "reasons": [
-      "un-whitelisted numbers: ['6', '9']",
-      "un-grounded quotes: [\"obama's state of the union\"]"
-    ]
+    "passed": true,
+    "reasons": []
   },
   "stats": {
     "top_phrases": [
