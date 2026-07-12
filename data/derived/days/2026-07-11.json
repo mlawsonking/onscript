@@ -1,0 +1,654 @@
+{
+  "day": "2026-07-11",
+  "daily_lines": {
+    "D": {
+      "schema_version": 1,
+      "day": "2026-07-11",
+      "party": "D",
+      "composite": "We released 12 statements today.",
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-07-11-D-00"
+          ]
+        }
+      ],
+      "model": "P3:dry_run",
+      "generator": "dry_run",
+      "prompt_version": "1.0",
+      "prompt_sha": "08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42",
+      "stats": {
+        "party": "D",
+        "day": "2026-07-11",
+        "statements": 12,
+        "talking_points": [
+          {
+            "label": "road to housing act",
+            "members": 9,
+            "quote": "the landmark 21st century road to housing act",
+            "topics": [
+              "housing",
+              "other"
+            ]
+          }
+        ],
+        "top_phrase": {
+          "text": "road to housing act",
+          "members": 11,
+          "first_sayer": "Tim Scott",
+          "in_fragments": true
+        }
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "day": "2026-07-11",
+      "party": "R",
+      "composite": "We released 10 statements today.",
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-07-11-R-00"
+          ]
+        }
+      ],
+      "model": "P3:dry_run",
+      "generator": "dry_run",
+      "prompt_version": "1.0",
+      "prompt_sha": "08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42",
+      "stats": {
+        "party": "R",
+        "day": "2026-07-11",
+        "statements": 10,
+        "talking_points": [
+          {
+            "label": "21st century road to",
+            "members": 5,
+            "quote": "the signing of the 21st century road to housing act",
+            "topics": [
+              "housing",
+              "other"
+            ]
+          }
+        ],
+        "top_phrase": null
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-07-11-D-00",
+        "party": "D",
+        "day": "2026-07-11",
+        "label": "road to housing act",
+        "member_count": 9,
+        "statements": [
+          "sha256:1fdd8512999696802af65a193c403e24c2c15a226906d145ed338339e4a7f04f",
+          "sha256:352d5324e2a626955d657ec05675cf2e6ecc5fdd42897b4715a09b7203a77038",
+          "sha256:674b0961da5167a2480a40ce7aa7d78fc84110b060bf22adc104a0cd3f244867",
+          "sha256:7d98143f5a07e9c2fcd0131c05043f276fe21129dd07fdae26141d7cd5727e67",
+          "sha256:8086a3dba0e119bc7c5445e2cc7ab69ce5844c4b537981744df9d0af0bc20f5a",
+          "sha256:8cdf68f2224f80e63e3ce7efde9dc79056bd83399016a59cb286d4a8596df6fe",
+          "sha256:b4e9ebc6c4aa962013c19d074cddc6b3f4b21cd2d6bfda0b53e8502586468c66",
+          "sha256:c9183fc5243a7e79689f676166c7871b118893298d18795d86546accd9c6bf92",
+          "sha256:dc3df58f84bdac8e5cf12ef83d81e3fc731780711d3cf175d6e4481e02bec731"
+        ],
+        "fragments": [
+          {
+            "text": "the landmark 21st century road to housing act",
+            "statement": "sha256:8086a3dba0e119bc7c5445e2cc7ab69ce5844c4b537981744df9d0af0bc20f5a"
+          },
+          {
+            "text": "statement after the 21st century road to housing act became law",
+            "statement": "sha256:674b0961da5167a2480a40ce7aa7d78fc84110b060bf22adc104a0cd3f244867"
+          },
+          {
+            "text": "the bipartisan 21st century road to housing act officially became law",
+            "statement": "sha256:b4e9ebc6c4aa962013c19d074cddc6b3f4b21cd2d6bfda0b53e8502586468c66"
+          },
+          {
+            "text": "the road to housing act became law without president trump’s",
+            "statement": "sha256:8cdf68f2224f80e63e3ce7efde9dc79056bd83399016a59cb286d4a8596df6fe"
+          },
+          {
+            "text": "act included in the final version of the bipartisan 21st",
+            "statement": "sha256:7d98143f5a07e9c2fcd0131c05043f276fe21129dd07fdae26141d7cd5727e67"
+          },
+          {
+            "text": "fact that the bipartisan 21st century road to housing act has",
+            "statement": "sha256:352d5324e2a626955d657ec05675cf2e6ecc5fdd42897b4715a09b7203a77038"
+          },
+          {
+            "text": "announced that the 21st century road to housing act",
+            "statement": "sha256:1fdd8512999696802af65a193c403e24c2c15a226906d145ed338339e4a7f04f"
+          },
+          {
+            "text": "the bipartisan road to housing act becoming law",
+            "statement": "sha256:c9183fc5243a7e79689f676166c7871b118893298d18795d86546accd9c6bf92"
+          },
+          {
+            "text": "the historic 21st century road to housing act",
+            "statement": "sha256:dc3df58f84bdac8e5cf12ef83d81e3fc731780711d3cf175d6e4481e02bec731"
+          }
+        ],
+        "topics": [
+          "housing",
+          "other"
+        ],
+        "leadership_first": false
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-07-11-R-00",
+        "party": "R",
+        "day": "2026-07-11",
+        "label": "21st century road to",
+        "member_count": 5,
+        "statements": [
+          "sha256:37d815a64aec5a8cd0cfb2d8b2a44308623a819d577c5d0afb73bf326a164826",
+          "sha256:86e2714b219de5d167dc917a3355c5bfc0d997792d664816d939fc5745507396",
+          "sha256:910810683e804d965f149c01cbe3a928c378fcb6d70dec4e6669601424e9ff63",
+          "sha256:ad11cd4d6a336e144153b315f43a7f9c9d6113691ecd1ec34bc0b3456c5a3c0a",
+          "sha256:f00038c812daf55bf829559827a7bb3c9cf8ac26788e437f2cb1a54a2303db89"
+        ],
+        "fragments": [
+          {
+            "text": "the signing of the 21st century road to housing act into",
+            "statement": "sha256:ad11cd4d6a336e144153b315f43a7f9c9d6113691ecd1ec34bc0b3456c5a3c0a"
+          },
+          {
+            "text": "enactment of the bipartisan 21st century road to housing act into",
+            "statement": "sha256:37d815a64aec5a8cd0cfb2d8b2a44308623a819d577c5d0afb73bf326a164826"
+          },
+          {
+            "text": "celebrated the 21st century road to housing act becoming law",
+            "statement": "sha256:86e2714b219de5d167dc917a3355c5bfc0d997792d664816d939fc5745507396"
+          },
+          {
+            "text": "21st century road to housing act became law",
+            "statement": "sha256:f00038c812daf55bf829559827a7bb3c9cf8ac26788e437f2cb1a54a2303db89"
+          },
+          {
+            "text": "become law as part of the 21st century road to housing",
+            "statement": "sha256:910810683e804d965f149c01cbe3a928c378fcb6d70dec4e6669601424e9ff63"
+          }
+        ],
+        "topics": [
+          "housing",
+          "other"
+        ],
+        "leadership_first": false
+      }
+    ]
+  },
+  "top_synchronized": [
+    {
+      "ngram": "road to housing act",
+      "slug": "65881459f31b9bf2",
+      "n": 4,
+      "day_peak": 11,
+      "party": "D",
+      "counts": {
+        "D": 11,
+        "R": 7,
+        "I": 0
+      },
+      "velocity": 2.57,
+      "first_seen": {
+        "date": "2025-01-16",
+        "bioguide": "S001184",
+        "statement": "sha256:8fe0021c776206fc28bc5c565302ea5c6bdfc67d9e582233dce23df801f37743",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.994
+    },
+    {
+      "ngram": "21st century road to housing act",
+      "slug": "b7e4df08e07408ab",
+      "n": 6,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 7,
+        "I": 0
+      },
+      "velocity": 2.17,
+      "first_seen": {
+        "date": "2026-03-03",
+        "bioguide": "S001184",
+        "statement": "sha256:97d513e1fa100271f15e48b3131347b0566888d052ca4a5677578a62c8ac7296",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.996
+    },
+    {
+      "ngram": "the 21st century road to housing",
+      "slug": "ba0ff270b5591aa9",
+      "n": 6,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 7,
+        "I": 0
+      },
+      "velocity": 1.54,
+      "first_seen": {
+        "date": "2026-03-03",
+        "bioguide": "S001184",
+        "statement": "sha256:97d513e1fa100271f15e48b3131347b0566888d052ca4a5677578a62c8ac7296",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.996
+    },
+    {
+      "ngram": "the housing supply",
+      "slug": "7f660435dffc4973",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "velocity": 2.9,
+      "first_seen": {
+        "date": "2025-01-13",
+        "bioguide": "W000817",
+        "statement": "sha256:d665c16a08081163cc92ee7d475082fc7ccdc7f7498029f670f80ac7d3ab1212",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.998
+    },
+    {
+      "ngram": "housing and urban",
+      "slug": "038e56d17a8aed88",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 5,
+        "I": 0
+      },
+      "velocity": 1.75,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001053",
+        "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.972
+    },
+    {
+      "ngram": "home investment partnerships",
+      "slug": "eb385dbefc63c4c8",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 2.59,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "R000122",
+        "statement": "sha256:244d88fda3409a6a512d63c1acfc35a97b25c024f236043957dad281568da750",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.998
+    },
+    {
+      "ngram": "of housing and urban development",
+      "slug": "60e581adbe2fa13d",
+      "n": 5,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 2,
+        "I": 0
+      },
+      "velocity": 1.94,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001257",
+        "statement": "sha256:615154e166da1558471be3b75ad75c61739eb2d79ae6288b16109757703d4a39",
+        "tie": [
+          "B001295",
+          "D000622"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.992
+    },
+    {
+      "ngram": "the american dream",
+      "slug": "9c750fae1954fc5c",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 5,
+        "I": 0
+      },
+      "velocity": 1.35,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000381",
+        "statement": "sha256:9149914d64d7fd83768dab24b282fa3787e56e44c9eab8ec2be7a489d0ab88a6",
+        "tie": [
+          "B001285",
+          "C001061",
+          "C001133",
+          "M000194",
+          "R000395",
+          "S001184",
+          "S001217",
+          "V000138"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.981
+    },
+    {
+      "ngram": "without the president’s signature",
+      "slug": "ff9103046a5af506",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-07-11",
+        "bioguide": "C001061",
+        "statement": "sha256:0e5dbcc5e0d481740be2fb8b9a77d89f680616221d38ece238d4a323cba413eb",
+        "tie": [
+          "A000382",
+          "W000790",
+          "W000805"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 1.0
+    },
+    {
+      "ngram": "legislation became law",
+      "slug": "9c0c5f3d1877ff16",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2025-07-08",
+        "bioguide": "B001322",
+        "statement": "sha256:12125aae6fe3e6b046e54b0011022f8e4805951fce86c1970d816ca3453ced7d",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 1.0
+    },
+    {
+      "ngram": "is now law",
+      "slug": "f4942428e9f9408c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 3.73,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001103",
+        "statement": "sha256:07beaf43ab61b6ae7fb5d7211df4b6f0dc0378d87296eb95c480c8a2cba7fcfc",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.972
+    },
+    {
+      "ngram": "rural housing service",
+      "slug": "2f029c6b8565dd87",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-04-03",
+        "bioguide": "S001203",
+        "statement": "sha256:b8aeeeb8a2bbfb3c1ebea7a7e472e7a46812aeff6d08ff295eb2dc0c060724d6",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.997
+    },
+    {
+      "ngram": "in affordable housing",
+      "slug": "64abab77d2a7dbe6",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "B001281",
+        "statement": "sha256:a60d70161d47e54067fa47264c563ea62dffad29660a04ad4580e9e760e28058",
+        "tie": [
+          "R000122"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.998
+    },
+    {
+      "ngram": "of housing and urban development hud",
+      "slug": "6b325f9b0ffdf33f",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "velocity": 2.24,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001257",
+        "statement": "sha256:615154e166da1558471be3b75ad75c61739eb2d79ae6288b16109757703d4a39",
+        "tie": [
+          "B001295",
+          "D000622"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.994
+    },
+    {
+      "ngram": "home investment partnerships program",
+      "slug": "cab520587d87171d",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 2.24,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "R000122",
+        "statement": "sha256:244d88fda3409a6a512d63c1acfc35a97b25c024f236043957dad281568da750",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.999
+    },
+    {
+      "ngram": "century road to housing act is",
+      "slug": "8da76fa1cb99c71d",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 2,
+        "I": 0
+      },
+      "velocity": 2.07,
+      "first_seen": {
+        "date": "2026-03-05",
+        "bioguide": "K000376",
+        "statement": "sha256:e62ada2c14b39a60ab8a4c9db802c505356e663bce825dae6ae73303b7e7f844",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.999
+    },
+    {
+      "ngram": "dream of homeownership",
+      "slug": "4d41452d08de7b13",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 4,
+        "I": 0
+      },
+      "velocity": 1.93,
+      "first_seen": {
+        "date": "2025-01-16",
+        "bioguide": "S001184",
+        "statement": "sha256:8fe0021c776206fc28bc5c565302ea5c6bdfc67d9e582233dce23df801f37743",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.996
+    },
+    {
+      "ngram": "lower housing costs",
+      "slug": "fed08c14007bf6f4",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 1.7,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001061",
+        "statement": "sha256:58f029188b935b38276b23a2ce8691cebab66dd7a688b8d1970f44ecf21d99ee",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.997
+    },
+    {
+      "ngram": "road to housing act became law",
+      "slug": "318281c6cb8ac2e2",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 1,
+        "I": 0
+      },
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-07-11",
+        "bioguide": "E000299",
+        "statement": "sha256:674b0961da5167a2480a40ce7aa7d78fc84110b060bf22adc104a0cd3f244867",
+        "tie": [
+          "A000382",
+          "C001113",
+          "S001184"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 1.0
+    },
+    {
+      "ngram": "officially became law",
+      "slug": "2388ac05c3a110a4",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-07-11",
+        "bioguide": "C001061",
+        "statement": "sha256:0e5dbcc5e0d481740be2fb8b9a77d89f680616221d38ece238d4a323cba413eb",
+        "tie": [
+          "A000382",
+          "S000344"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 1.0
+    }
+  ]
+}
