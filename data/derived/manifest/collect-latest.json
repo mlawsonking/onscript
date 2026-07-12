@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "collect-2026-07-12",
-  "kind": "deterministic",
+  "kind": "collect",
   "generated_at": "2026-07-12T11:24:15Z",
   "focus_day": "2026-07-12",
   "days_present": [
@@ -52,5 +52,22 @@
   },
   "spend_estimate_usd": 0.0,
   "governor_state": "nominal",
-  "alerts": []
+  "alerts": [
+    "volume 1 < 40% of median 99.0"
+  ],
+  "degraded": false,
+  "volume": {
+    "today": 1,
+    "trailing_median": 99.0,
+    "anomalously_low": true
+  },
+  "extract": {
+    "stage": "extract",
+    "model": "claude-haiku-4-5",
+    "generator": "dry_run",
+    "new_statements": 76136,
+    "tokens_in": 91589094,
+    "tokens_out": 9136320,
+    "est_cost_usd": 68.635347
+  }
 }
