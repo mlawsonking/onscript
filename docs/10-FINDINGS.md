@@ -68,6 +68,16 @@ events) and a rural-Senate cluster (Rounds + Sullivan 40×, + Hyde-Smith, Cramer
 just re-finds the high-volume Senate Democrats (lift ~3-4×). ✅ (lift can inflate for low-volume
 members — mitigated by a ≥40-event floor). NEUTRALITY-GATED.
 
+**Backtest the Detector — a clean NO-GO (the null is the finding).** Across 1.9M candidate phrases
+(day-2 breadth ≥3, 2013-2026), only **0.3% break out** to ≥20 members within 30 days. Day-2 breadth
+"predicts" breakout only at the trivial extreme (K=20 → precision 1.0, but that phrase has *already*
+broken out); the operating point doesn't transfer across time (fit precision 0.77 → holdout 0.50).
+Decisive: **median lead time −1 day; 65% of breakouts had already peaked by day 2** — coordinated
+phrases are born at scale, not ramped. Per backtest-before-predict, this **retires the proposed v3
+"memo warning / breakout watch" alert feature**: you cannot see the memo coming from public output,
+because the memo *is* the simultaneous drop, not an organic pre-phase. The negative result is a strong
+finding about the coordination's nature — pre-scheduled, not emergent. ✅ (as a null).
+
 ## ◐ Partial — real signal, needs refinement
 
 **Authors vs. Vessels.** Naive origination-by-first-use is **tenure-confounded** (prolific veterans
