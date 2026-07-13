@@ -50,6 +50,24 @@ economic security" = CARES, lower drug costs now act) died 2020-2022 with their 
 (AHCA post-midterm) from natural legislative-cycle deaths (a bill's phrase dies when the bill
 resolves) and seasonal-phrase artifacts (NDAA).
 
+**Era Fingerprints (the Archive front page).** Log-odds-distinctive phrases per Congress per party
+render each era's defining vocabulary — and the **partisan frame-fight is visible in the same bill**:
+119th R "one big beautiful bill" / "working families tax cuts" vs D "big **ugly** bill"; 117th D
+"build back better" / "american rescue plan" vs R "$3.5 trillion" (the cost attack); 118th R "secure
+the border act" / "fiscal responsibility act" vs D "national security supplemental" / "alliance for
+hippocratic medicine"; 115th both AHCA, but R adds Gorsuch/Kavanaugh/"corporate tax rate", D adds
+"attorney general sessions" / "the trump administration". *One fix needed:* generic procedural
+boilerplate ("of the united states", "a member of the senate") leaks to the top — needs a stoplist
+on the fingerprint output; the real signal sits just below it. ✅ (compelling; the public Archive's
+natural landing page.)
+
+**Distribution List (memo recipient cells).** Member-pair co-launch **lift** (co-appearances vs
+volume-predicted) surfaces genuine coordination cells invisible to raw counts: a tight freshman-GOP
+House cohort (Kennedy, Onder, Fine, Biggs, Knott, Jack — 30-66× expected, many in the exact same 66
+events) and a rural-Senate cluster (Rounds + Sullivan 40×, + Hyde-Smith, Cramer). Raw co-occurrence
+just re-finds the high-volume Senate Democrats (lift ~3-4×). ✅ (lift can inflate for low-volume
+members — mitigated by a ≥40-event floor). NEUTRALITY-GATED.
+
 ## ◐ Partial — real signal, needs refinement
 
 **Authors vs. Vessels.** Naive origination-by-first-use is **tenure-confounded** (prolific veterans
