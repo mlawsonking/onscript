@@ -36,11 +36,14 @@ intraday.
 (R) from ~12-20 weeks out to the final 0-3 weeks; both parties hit exactly **0.773 at election week**.
 `discipline.json` aligned across the 2014-2024 cycles.
 
-**Anatomy of the Ratchet (the off-message day is vanishing).** The FLOOR rose more than the ceiling:
-daily-index p10 climbed +0.105 (D) / +0.091 (R) since 2013 vs the p90 ceiling's +0.088 / +0.054. The
-ceiling was always high (~0.83); the floor came up to meet it. *Flag:* a large 2021 discontinuity
-(p50 D 0.61→0.83) coincides with a release-volume drop — **regime shift vs volume artifact, needs
-density control** before claiming.
+**Anatomy of the Ratchet — CORRECTED (Session 3): the "off-message day is vanishing" claim is
+RETRACTED.** I originally reported the floor (p10) rising toward the ceiling as a secular trend. Under
+the tail-pass lesson (trend words die), it fails: the floor is **flat 2013→2020** (D p10 0.531 →
+0.525; R 0.559 → 0.568) — the *entire* apparent rise is the single 2021 step (D p10 0.525 → 0.716),
+the same volume-confounded 2021 regime shift that killed Vanishing Common Tongue. It is a one-time
+level shift in a low-volume window, **not** a gradual behavioral ratchet. Still true and descriptive:
+the ceiling (p90) was always high (~0.83), discipline is right-skewed. The "vanishing off-day"
+narrative does not survive — do not use it.
 
 **Phrase Obituaries (the STOP memo).** Big sustained phrases that died and never returned:
 R "american health care act" (peak 184) died **2018-12-20** — GOP stopped saying it right after
