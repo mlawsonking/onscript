@@ -12,7 +12,9 @@ is a verbatim substring of the member's release and the party matches (the citat
 8/8 targets cleared ≥3 (AHCA 347 R · TCJA 526 R · DACA 304 D · HEROES 517 D · "by an illegal
 immigrant" 16 R · drug-price negotiation D · pre-existing-conditions D · OBBB 290 R). The URL
 back-join the menu called "the one unblocker" is thus done for the flagship set (data was in hand,
-not blocked).
+not blocked). Extended to the Archive front page in `data/derived/citations_era.json` — 25/28
+Era-Fingerprint signature phrases cited ≥3 (the 3 misses are number/acronym fragments like "$10.10",
+"$3.5 trillion", "(TPA)" where the ledger's digit-split n-gram doesn't match raw-text formatting).
 
 ## Meta-finding (the important one)
 
