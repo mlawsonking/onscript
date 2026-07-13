@@ -18,6 +18,8 @@ data/raw/
 data/state/
 data/releases/
 data/reference/
+# ...except the public corrections log: corrections are dated posts that must deploy to the site.
+!data/reference/corrections.json
 
 # Site build output (Vercel builds it; not committed)
 site/dist/
