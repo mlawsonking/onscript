@@ -17,8 +17,9 @@ Thumbs.db
 data/raw/
 data/state/
 data/releases/
-data/reference/
+data/reference/*
 # ...except the public corrections log: corrections are dated posts that must deploy to the site.
+# (glob the dir CONTENTS, not the dir itself, so a single-file re-include is possible.)
 !data/reference/corrections.json
 
 # Site build output (Vercel builds it; not committed)
