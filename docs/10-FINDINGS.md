@@ -60,21 +60,26 @@ born-coordinated** (multiple day-0 first-sayers = no single author). Per design-
 raw per-member first-sayer/echo COUNTS with receipts, **refuse the composite "Vessel Score."**
 NEUTRALITY-GATED.
 
-**Forbidden Lexicon.** Exclusive high-convergence phrases genuinely exist — R side is clean and
-revealing ("by an illegal immigrant" 33; "the keystone xl pipeline approval act"; "penalties for
-deported felons"; "is not a security threat"). But the D side is swamped by one bill's verbatim text
-(the 2020-03-23 HEROES Act fragments). *Refinement needed:* filter to phrases used across ≥N distinct
-days (sustained framing) to separate rhetoric from one-day bill-text bursts; the D/R count gap is
-confounded by corpus size. NEUTRALITY-GATED.
+**Forbidden Lexicon.** Exclusive high-convergence phrases genuinely exist. v3 added a sustained-days
+filter: the R side is now clean and revealing — persistent framings with a days-active column
+("by an illegal immigrant" sustained **144 days**, peak 33; "penalties for deported felons" 21 days;
+"is not a security threat" 21 days; "the keystone xl pipeline approval act"). The D side stays
+gravity-locked to the 2020 CARES/HEROES bill text (fragments used across ~2 weeks, so ≥5-days doesn't
+drop them); a ≥30-day cross-bill filter is needed. **Hypothesis surfaced:** Democrats quote bill text
+verbatim; Republicans coin rhetorical framings — the exclusive-phrase asymmetry may be behavioral,
+not just corpus-size. NEUTRALITY-GATED.
 
 ## ⚠ Confounded — needs methodology before any claim
 
-**Memo Detector.** The SCHEDULED/CASCADE/SLOW-BURN archetype classification runs, but the
-year-over-year trend is confounded by the 2013 ramp-in boundary (2013 phrases show T50 of 500-1500
-days) and per-year release-density variation — **no clean "speech is getting more pre-coordinated /
-faster" headline survives**. One suggestive pattern: even (election) years show markedly more
-SCHEDULED launches (2016/2020/2022/2024 all high). Fable's mandated **density-controlled subsample**
-is required before this ships; retry with a fixed-density per-year sample and exclude the 113th.
+**Memo Detector.** The SCHEDULED/CASCADE/SLOW-BURN archetype classification runs. After density
+control (restricted to peak 15-30 mid-size phrases, 2013 excluded): **the "getting faster over time"
+trend does NOT survive** — year-to-year %scheduled bounces 0-65% with no monotonic acceleration. BUT
+a clean, symmetric **election-year effect DOES survive**: phrases launched in election years are
+markedly more likely to be born pre-coordinated (SCHEDULED) — **R 33% (election) vs 21% (off-year);
+D 25% vs 13%**. Coordination intensifies on the electoral calendar, both parties. → moved from
+⚠ confounded to ◐ partial: the election-cycle finding is publishable (neutrality-gated); the secular
+acceleration claim is retired. Caveat: driven partly by specific cycles (2020, 2022) — a per-cycle
+breakdown should accompany it.
 
 **On-script member leaderboard (naive S4).** Saturates ~99.7% ("used any synced phrase" is
 universal). Formally retire the S4-as-specified metric in `01-VISION.md`; replaced by Authors-vs-
