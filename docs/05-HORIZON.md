@@ -158,7 +158,84 @@ gating research. **The feature most likely to be quoted in a media-studies sylla
 
 ---
 
-## §3 Sequencing sanity (so this reservoir doesn't distort the roadmap)
+## §2.5 The Appendix — the verified-oddity shelf (Freakonomics-class correlations)
+
+> **The case for weird.** Verified oddities are the most shareable genre in data publishing,
+> and OnScript holds the two things the genre always lacks: a 25-year corpus to validate
+> against, and a voice that never over-claims. The discipline *is* the comedy: "correlation,
+> cause unknown, receipts included" is funnier deadpan than any editorialized version. The
+> governing insight: **the juiciest findings here are power-position effects, not party
+> effects** — they attach to whoever is in/out of power, majority/minority, safe/swing — which
+> makes them symmetric by construction (Constitution IV) *and* more interesting: this is what
+> losing sounds like, whoever is losing.
+
+**The Appendix rules (extends Constitution IX for correlation content):**
+1. Every oddity ships labeled **"correlation, not cause"** — the artifact says so on its face.
+2. **Split-era validation:** found on one half of the corpus, confirmed on the other, or it
+   doesn't publish. The split is disclosed.
+3. **Publish the graveyard:** each Appendix drop states how many hypotheses were tested and
+   how many died (an annual "Correlation Graveyard" post lists the casualties). Forking-paths
+   disclosure is the anti-p-hack flex *and* a better joke.
+4. **Aggregate-only for behavioral claims** — party / chamber / cohort / delegation level;
+   never a weird-correlation artifact about one named member (leaderboard-class metrics stay
+   governed by their own rules).
+5. External joins are 🔬 each (FRED, NOAA, FEC, sports schedules, congress.gov votes — public
+   and license-clean candidates only), validated per the standing mini-register process.
+
+**Product form:** *OnScript: The Appendix* — **monthly**, one verified oddity with methodology
++ the running tested/died tally; **annual Graveyard** post. Monthly, not weekly: the pool must
+outlast the format, and rigor doesn't rush.
+
+### Top shelf (the seven likeliest "holy shit"s)
+- **The memo travels west with the sun** — adoption-curve lag by member time zone: if
+  coordinated phrases land in eastern releases hours before Pacific ones, the private memo's
+  morning distribution schedule is visible from public data alone. [ledger only — near-free]
+- **The gas-price thermostat** — the exact price at which each party *starts* and *stops*
+  saying "gas prices," by in-/out-of-power position. Hypothesis: the activation thresholds
+  differ by who holds the White House, not by party. [FRED 🔬]
+- **The Performance Gap** — every member's commemorative/birthday statements are their sincere
+  linguistic baseline; distance between that voice and their political voice = how much of the
+  job is performance, measurable per party/cohort/era. [corpus only]
+- **The Voldemort Index** — how long before an opposing president stops being *named*
+  ("Trump" → "the administration"; "Biden" → "the White House"): name-avoidance rate per
+  president per party, 2001→now. [corpus only]
+- **The Friday Night Dump + the Super Bowl burial window** — the folk theory of news-burying,
+  finally measured across 25 years: walk-back vocabulary by day-of-week, holiday eves, and
+  big-game weeks; which party buries harder; whether the Dump died with the 24/7 cycle.
+  [corpus + calendar]
+- **Adjective inflation** — the devaluation curve of "unprecedented," "radical," "extreme,"
+  "historic": usage vs. era, the year each word lost its meaning, measured like currency
+  collapse. [corpus only]
+- **What losing sounds like** — the minority-party linguistic signature: "the American people"
+  invocation rate, rhetorical-question rate, and exclamation density as a function of majority
+  status — hypothesis: you cite the boss more when you're losing, in both parties, in every
+  era. [corpus + control-of-chambers table]
+
+### The rest of the shelf (one line each; all obey the Appendix rules)
+- **Recess metabolism** — reading level drops when Congress goes home (DC voice vs. district voice, by calendar). [corpus]
+- **The August effect** — message discipline by month: does coordination collapse or *tighten* when comms staff pre-schedule the beach weeks? [ledger]
+- **The 90-day snap** — discipline as dose-response to days-until-election; the shape of the curve is the finding. [ledger + election calendar]
+- **The half-life of "bipartisan"** — spikes N days before shutdown deadlines, vanishes after; measured across every fiscal cliff since 2001. [corpus + deadline table]
+- **Daylight-saving typos** — error/correction rate the week after spring-forward (Memory Hole edit-detection as typo telemetry). [Memory Hole]
+- **Heat-wave vocabulary** — district-level NOAA extremes vs. that delegation's topic/outrage mix that week; who gets loud and who goes quiet when it's 100°F at home. [NOAA 🔬 ⚠]
+- **Disaster latency map** — hours-to-first-statement after FEMA declarations: own-district vs. other-party districts, 25 years. [FEMA 🔬 ⚠]
+- **The mascot commodity** — each era's chosen inflation symbol (gas '08, eggs '24) vs. its actual CPI weight; Congress's grocery cart vs. yours. [FRED/BLS 🔬]
+- **Congress as lagging indicator** — crypto/AI/housing mention curves peak N weeks after the underlying price/trend peaks; the measured lag of institutional attention. [FRED + trends 🔬]
+- **The seniority vocabulary curse** — unique-vocabulary count vs. terms served; how many words a decade in office costs. [corpus + roster]
+- **Adoption speed vs. age/cohort** — do younger members parrot faster (extremely online) or slower (less leadership-plugged)? Either answer surprises half the audience. [ledger + roster]
+- **The safe-seat vessel hypothesis** — margin-of-victory vs. on-script score: does safety free a member's voice or complete the assimilation? [ledger + election results 🔬]
+- **Committee vocabulary infection** — days from committee assignment to "family farms" (Ag), "readiness" (Armed Services) entering a member's active vocabulary. [corpus + committee rosters]
+- **The lawyer hedge** — JD holders' hedged-language rate ("alleged," "pursuant") vs. everyone else; do lawyers dodge measurably more? [corpus + bios]
+- **Pronoun economics** — the I/we ratio by party, tenure, chamber, and days-to-election ("I" season is primary season). [corpus]
+- **Punctuation archaeology** — first exclamation point, first ALL-CAPS, first emoji in an official congressional press release (date, chamber, member-cohort); the exclamation divide by party/era. [corpus]
+- **Thoughts-and-prayers half-life** — the decay curve of condolence vocabulary across repeated mass-casualty events, 2001→now; whether the playbook's timing has changed. [corpus + event dates ⚠ — handle with the gravity it deserves]
+- **Bipartisan unison on nature** — eclipses, cicada years, and space landings as the only reliable cross-party unison events; the "we agree about the sky" baseline against which all other unison is measured. [ledger]
+- **The pander-latency leaderboard** — hours from cultural moment (final, album drop, viral event) to first congressional invocation, by party/cohort. [corpus + events 🔬]
+- **Home-team mood** — delegation-level Monday-release sentiment after the local NFL team wins/loses (there is real literature on game outcomes moving judicial and electoral behavior — cite it, then measure Congress). [schedules 🔬 ⚠ aggregate-only]
+- **Fast-parrot fundraising** — do early talking-point adopters raise more small-dollar money than mavericks, or less? Committee-level FEC aggregates only; either answer is a headline. [FEC 🔬 ⚠]
+- **The null-result banger** — "congressional messaging has zero predictive power for markets — we checked, here's how": publishing rigorous *absence* is on-brand, credible, and rarer than any positive finding. [FRED 🔬]
+
+
 
 Nothing here preempts gameplan §10 (v2 silence/leaderboard/floor → v3 alerts/Memory
 Hole/upstream → season-2 assimilation). The natural insertion points: **H1/H2/H6 ride the
@@ -167,7 +244,10 @@ layer + embeddings** (v2/v3 infrastructure) plus the neutrality review; **H4/H8 
 items need a Phase-2-style validation pass first** — new sources get the same adversarial
 treatment R1–R11 got, no exceptions; **expansion items are 2027+ decisions** made from a
 position of authority, not ambition. When a future session plans v4+, it starts here, scores
-against the standing rubric, and kills without sentiment — same as ever.
+against the standing rubric, and kills without sentiment — same as ever. **Appendix (§2.5)
+items are post-v3 content features:** the corpus-only ones ride the existing ledger nearly
+free and make ideal S∞ steward-state material (one validated oddity a month is a sustainable
+solo cadence); every external join stays behind its 🔬 gate.
 
 ---
 
