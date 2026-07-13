@@ -68,10 +68,10 @@ render each era's defining vocabulary — and the **partisan frame-fight is visi
 "build back better" / "american rescue plan" vs R "$3.5 trillion" (the cost attack); 118th R "secure
 the border act" / "fiscal responsibility act" vs D "national security supplemental" / "alliance for
 hippocratic medicine"; 115th both AHCA, but R adds Gorsuch/Kavanaugh/"corporate tax rate", D adds
-"attorney general sessions" / "the trump administration". *One fix needed:* generic procedural
-boilerplate ("of the united states", "a member of the senate") leaks to the top — needs a stoplist
-on the fingerprint output; the real signal sits just below it. ✅ (compelling; the public Archive's
-natural landing page.)
+"attorney general sessions" / "the trump administration". *Fixed (Session 3):* a procedural-token stoplist
+removes the boilerplate leak ("of the united states", "a member of the senate"); the clean
+per-era-per-party fingerprints are written to `data/derived/era_fingerprints.json` (the artifact the
+public Archive front page renders). ✅ (compelling; the public Archive's natural landing page.)
 
 **Distribution List (memo recipient cells).** Member-pair co-launch **lift** (co-appearances vs
 volume-predicted) surfaces genuine coordination cells invisible to raw counts: a tight freshman-GOP
