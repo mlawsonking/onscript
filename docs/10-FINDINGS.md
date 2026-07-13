@@ -113,6 +113,63 @@ breakdown should accompany it.
 universal). Formally retire the S4-as-specified metric in `01-VISION.md`; replaced by Authors-vs-
 Vessels raw counts.
 
+## Tail pass — adversarially verified (Session 3)
+
+Nine more analyses were run, then put through a hostile-skeptic verification workflow (one refuter per
+finding + adjudicator) **before** recording. The skeptics killed the headline claim on every one; the
+record below is the *survivors only*, reframed to what actually holds.
+
+**The lesson (load-bearing): trend words are where these findings die.** Every finding framed as a
+secular trend — "narrowing," "vanishing," "half-life shrinking" — turned out to be an artifact of the
+2021 volume regime or birth-date censoring, and each betrayed itself by **rebounding/reversing when the
+confound reversed** (a real secular change does not un-happen). Everything that survived did so only
+after conversion to a **volume-invariant / fixed-observation-window / marginal-preserving-null**
+instrument and downgrade to a **stable-level, sign, or cyclical** claim.
+
+**✅ Reportable (reframed):**
+- **Discipline gap is STABLE, not narrowing.** The R-over-D on-script gap holds across all 14 dense
+  years (odds ratio ~1.15-1.20; R leads every year *as a sign*, not a magnitude). My "gap is
+  narrowing" was **killed** — the erosion was carried entirely by 2023-24 (the 118th House-GOP
+  fracture: McCarthy ouster, 3-week speakerless stretch) and fully reversed by 2025-26 with *equal
+  endpoints*. The **lockstep** finding survives (YoY co-movement corr 0.68 after removing the 2021
+  jump; 11/13 transitions same-direction) and **"does losing make you louder" is a robust null** (the
+  2022→23 winner R got *quieter*). Caveats: press-release voice specifically (2022 Twitter gave the
+  opposite sign); sign-not-magnitude; neutrality gate.
+- **Both parties coin durable exclusive framings** (Forbidden Lexicon v4, ≥30 active days) — this
+  *falsifies the absolute* "only R coins framings, D just quotes bill text." **Killed:** the stronger
+  "filter-artifact / framing-vs-bill-text refuted" claim — that rate distinction was never tested and
+  "framing vs bill text" is subjective human coding (a neutrality-gate violation). A code-owned
+  bill-text/CRS-overlap classifier is required before any per-party *rate* claim.
+- **Election-year phrases decay far faster** (Phrase Survival, fixed 180-day window, volume-invariant)
+  — **CONFIRMED: 19.7% (election-year) vs 71.1% (off-year) six-month survival = 3.6× faster decay**,
+  every one of 5 cycles with *no overlap* (every even year below every odd year); volume-invariant
+  (2020 had the most phrase births yet the lowest survival, 0.191); holds under the matched-timing
+  H1-only control (25% vs 82%). Mechanism = the electoral/Congress transition resetting the agenda,
+  not intrinsic election-year coordination. This *replaces* the killed "median half-life" metric
+  (right-censoring). The secular "language dying faster over time" version is **rejected** — survival
+  is flat within each cycle phase; only the cyclical structure is real. **The single clean new finding
+  to survive the full adversarial gauntlet this pass.**
+
+**⚠ Killed / needs a new run (not reported):**
+- **Sub-Caucus "coordination cells" — KILLED.** Bare lift ranks *inverse-volume*, so it surfaced the
+  party's most *passive echoers* as its "tightest cell" (a freshman pair in the exact same 66 events =
+  offices whose entire output IS the party-wide pile-ons) — the opposite of an inner circle — and can
+  only re-derive public rosters (freshman class, Senate GOP). Salvageable *only* as a marginal-
+  preserving-permutation-null "co-timing graph **recovers** institutional structure (chamber, cohort)"
+  — recovery, not discovery; per-chamber thresholds; a convergence-share column to separate followers
+  from sources. Do not publish the lift version.
+- **Vanishing Common Tongue — KILLED** (volume artifact; the share rebounds to 5.3% when volume
+  returns in 2024). **Aisle-Jumpers — KILLED** (surfaces shared institutional vocabulary — NDAA, farm
+  bill — peaking in different years, not ownership flips). **The Hush — weak/calendar-confounded**
+  (0.87× pre-blast, 55% vs 50% chance). **Lazarus revivals — killed as computed** (measures external
+  events' periodicity — appropriations, debt ceiling, two Netanyahu visits); a filtered ledger-only
+  pass (periodicity exclusion + context-divergence) is exploratory-untested.
+
+## Verified re-run queue (data in hand, outcome uncertain)
+Permutation-null Sub-Caucus (recovery framing) · Lexicon per-party rate via a bill-text/CRS classifier
+· Lazarus filtered pass (non-empty = finding, empty = publishable null) · Vanishing Common Tongue
+fixed-N Jaccard (lowest priority — predicted to flatten to noise).
+
 ## Still queued (this menu)
 
 Backtest the Detector (large; the go/no-go for live alerts). Distribution List, Asymmetric Silence
