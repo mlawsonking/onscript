@@ -235,6 +235,63 @@ outlast the format, and rigor doesn't rush.
 - **Fast-parrot fundraising** — do early talking-point adopters raise more small-dollar money than mavericks, or less? Committee-level FEC aggregates only; either answer is a headline. [FEC 🔬 ⚠]
 - **The null-result banger** — "congressional messaging has zero predictive power for markets — we checked, here's how": publishing rigorous *absence* is on-brand, credible, and rarer than any positive finding. [FRED 🔬]
 
+### Second run (2026-07-12) — diminishing-returns pass, bangers only
+
+Fresh vein: not Congress-vs-the-world joins but **X-rays of the machine's own plumbing** —
+money claims, recycled text, authorship seams, rebuttal timing. ~20 generated, 12 culled
+(graveyard note below). All eight obey the Appendix rules; leaderboard-shaped ones are
+governed as leaderboards (disclosed metric, receipts expandable), not as §2.5 aggregates.
+
+- **Vote No, Take the Dough — industrialized.** The established gotcha genre (member votes
+  against the bill, then announces its money at home), done today by journalists by hand, one
+  case at a time. We do it systematically: roll-call votes × credit-claiming releases matched
+  on program language, every member, every flagship bill, receipts automatic. ⚠ context
+  honesty per Constitution II: report the vote + the announcement, note that members vote
+  against packages for many reasons, let the pairing speak. [corpus + congress.gov roll calls
+  🔬-easy — join already planned for the whip-count proxy]
+- **The Credit-Claiming Multiplier.** Match identical dollar figures + program tokens across
+  members' releases in a time window: how many politicians announce the same federal grant?
+  "The average federal dollar is claimed by N members of Congress" — nobody has ever measured
+  the credit-multiplication constant of American politics. Congressional multiplier now; the
+  full number (governors, mayors) after Statehouse expansion. [corpus only]
+- **The Xerox Index.** Within-member near-duplicate detection across time (the joint-collapse
+  shingle machinery, pointed inward): what share of each office's output is the same release
+  re-issued with nouns swapped? "Rep. X has published the same press release 47 times since
+  2019, changing the county and the amount." Aggregate rate + leaderboard. Deadpan framing:
+  recycling constituent-service templates is *normal* — that's exactly why measuring it is
+  funny. [corpus only]
+- **The Ghostwriter Seams.** Stylometric regime-change detection on each office's output
+  (function-word distributions, sentence rhythm): the day the office's *writer* visibly
+  changed, and style lineages that migrate between offices. "You're not reading the member —
+  you're reading staff, and we can see the staff change." ⚠⚠ Constitution XIII hard line:
+  report **style regimes of offices**, never identify, name, or imply any human staffer.
+  [corpus only, local stylometry]
+- **The Escalation Clock.** Party-to-party rebuttal lag: when one party ignites a phrase, how
+  long until the other's counter-phrase? Measured 2001→now: the counter-messaging machine's
+  speedup, era by era ("a counter-narrative took 4 days in 2005; it takes hours now" — or
+  whatever the data says). [ledger + topic layer]
+- **The Concern Conversion Rate.** Map the empirical escalation ladder ("concerned" → "deeply
+  concerned" → "gravely concerned" → "alarmed") and the share of expressed concern ever
+  followed by that member sponsoring anything on the topic. The flagship stat of the
+  speech-to-action family: "X% of congressional concern is never followed by a bill."
+  [corpus + congress.gov 🔬-easy]
+- **Bipartisanship Has a Season.** Friendly cross-party co-mentions ("proud to partner with
+  Rep. [other party]", deterministic verb allowlist) as a function of days-to-election:
+  collegiality's annual migration, tracked like a bird. Hypothesis: it flies south ~90 days
+  out and returns the week after. [corpus + roster]
+- **The Boogeyman Index.** Each party's villain-of-the-era: hostile-context mention share of
+  named opposing figures, 2001→now — watch villains get crowned, ridden, and dethroned across
+  25 years, both parties, identical instrument. The historical chart is the artifact.
+  [corpus + roster]
+
+*Culled this pass (the ideation graveyard, per Appendix rule 3):* phrase-inheritance after
+in-office deaths (beautiful, too thin/rare to be a format), eulogy-warmth floor (real but
+duplicative of bipartisan-unison baselines), release-length vs. earned coverage and the
+member-level vanity ratio (useful, not holy-shit; void-ratio exists at topic level in v2),
+recurring quoted-constituent characters (cute, niche), prediction-market joins (licensing
+murk), Wikipedia edit-war joins (off-jurisdiction), round-number bias in cited statistics
+(shelf-grade, not banger — may ride along with the Multiplier build).
+
 
 
 Nothing here preempts gameplan §10 (v2 silence/leaderboard/floor → v3 alerts/Memory
