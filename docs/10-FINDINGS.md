@@ -5,6 +5,15 @@ hand. **All numbers are internal/exploratory** — every cross-party or cross-me
 Constitution's neutrality-review gate + the "press-release voice specifically" framing before it
 ships. Verdict legend: ✅ clean · ◐ partial (needs refinement) · ⚠ confounded (needs methodology).
 
+**Citation-backed (Session 3).** The flagship findings are now anchored to real citations in
+`data/derived/citations.json` — a deterministic back-join over the raw `congress-press` files on X:
+that attaches, for each finding's key phrase, ≥3 real `(member, date, URL)` triples where the phrase
+is a verbatim substring of the member's release and the party matches (the citation-or-silence rule).
+8/8 targets cleared ≥3 (AHCA 347 R · TCJA 526 R · DACA 304 D · HEROES 517 D · "by an illegal
+immigrant" 16 R · drug-price negotiation D · pre-existing-conditions D · OBBB 290 R). The URL
+back-join the menu called "the one unblocker" is thus done for the flagship set (data was in hand,
+not blocked).
+
 ## Meta-finding (the important one)
 
 **Descriptive time-series analyses work cleanly; single-threshold classifiers and per-member
