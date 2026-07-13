@@ -168,10 +168,34 @@ instrument and downgrade to a **stable-level, sign, or cyclical** claim.
   events' periodicity — appropriations, debt ceiling, two Netanyahu visits); a filtered ledger-only
   pass (periodicity exclusion + context-divergence) is exploratory-untested.
 
-## Verified re-run queue (data in hand, outcome uncertain)
-Permutation-null Sub-Caucus (recovery framing) · Lexicon per-party rate via a bill-text/CRS classifier
-· Lazarus filtered pass (non-empty = finding, empty = publishable null) · Vanishing Common Tongue
-fixed-N Jaccard (lowest priority — predicted to flatten to noise).
+## Prescribed re-run outcomes (Session 3 — the skeptics' fixes, executed)
+
+- **Sub-Caucus, permutation-null (done).** Replacing lift with a marginal-preserving null (each member
+  re-draws its event count; z = observed vs null) **refutes the "cells."** The lift-topping freshman
+  pairs drop out entirely; what genuinely co-occurs beyond volume is the **Senate Democratic caucus**
+  (Bennet+Heinrich obs 906 vs null 259, z≈58; Luján/Murray/Padilla/Welch/Booker/Murphy). Convergence-
+  share: freshmen 0.18–0.37 lean follower-ish vs entrepreneurs Cruz/Roy/Thune 0.01–0.05, but nobody is
+  a pure follower (share≈1 prediction too strong). **Surviving claim (narrow):** a volume-controlled
+  null *recovers* the Senate Dem caucus as the tightest beyond-volume co-timing group — recovery of a
+  known institution, not discovery of a cell. NEUTRALITY-GATED (top-z is one-party — do not over-read).
+- **Lazarus, filtered (done) → publishable NULL.** After periodicity exclusion (761 clean 2-burst
+  candidates), the residual is *still* exogenous-event-driven: two Netanyahu addresses (2015/2024),
+  two Trump first-addresses (2017/2025), appropriations, and a Scalia→Ginsburg condolence-**template**
+  party-flip. My member-turnover proxy is too weak to separate "same event returning" from real
+  redeployment, but the residual is clearly event-dominated. **Bounded null:** press-release revivals
+  are event-driven (recurring event types + procedural/condolence templates); no evidence of a
+  strategic dormant-framing reservoir. A definitive test needs co-occurring-n-gram context-divergence.
+- **Lexicon per-party rate (done) → INCONCLUSIVE.** A code-owned symmetric token proxy (contains
+  act/reauthorization/appropriations/…) gives R 90% / D 86% "coined" (not formal-title-derived) — no
+  meaningful asymmetry. BUT the proxy tests *formal bill titles*, not the *verbatim bill-text
+  fragments* the original hypothesis was about (those fragments contain no title tokens), so it does
+  NOT resolve it. The rate asymmetry remains **untested** pending real CRS/bill-text overlap.
+
+**Net:** of the three prescribed re-runs, one corrected a finding (Sub-Caucus → recovery), one produced
+a publishable null (Lazarus), one is blocked on external data (Lexicon rate). Lowest-priority
+Vanishing-Common-Tongue fixed-N re-run not run (predicted to flatten to noise). **The compute-now well
+is dry; further clean findings require the external data (CRS/bill-text, roll-calls, GDELT, the URL
+back-join).**
 
 ## Still queued (this menu)
 
