@@ -44,6 +44,7 @@ OUT = config.REPO_ROOT / "site" / "public"
 PROMPTS_DIR = config.REPO_ROOT / "pipeline" / "prompts"
 ROSTER_FILE = config.REFERENCE / "roster.json"
 TAXONOMY_FILE = config.TAXONOMY_FILE
+CORRECTIONS_FILE = config.REFERENCE / "corrections.json"  # operator-appended; corrections are public posts
 
 PARTY_NAME = {"D": "Democrats", "R": "Republicans", "I": "Independents"}
 PARTY_LONG = {
@@ -99,6 +100,7 @@ def _pct(value) -> str:
 # ---------------------------------------------------------------------------
 ROSTER = _load_json(ROSTER_FILE) or {}
 TAXONOMY = _load_json(TAXONOMY_FILE) or {}
+CORRECTIONS = _load_json(CORRECTIONS_FILE) or []
 TOPIC_LABEL = {t.get("id"): t.get("label", t.get("id")) for t in TAXONOMY.get("topics", [])}
 
 
@@ -914,14 +916,35 @@ def methodology_body():
     else:
         parts.append('<p class="muted">Taxonomy not found.</p>')
 
-    # (e) corrections policy
+    # (e) corrections policy + public log (neutrality armor: corrections are dated posts, never silent edits)
     parts.append("<h2>Corrections</h2>")
     parts.append(
         "<p>Every claim is anchored to at least three real source statements (member, date, source). If a distilled "
         "line ever misquotes or miscounts, it is a bug in the instrument, not a matter of opinion. Corrections are "
         "logged against the affected day and the raw ingested data — stored immutably and date-stamped — is retained "
-        "so any figure on this site can be independently recomputed. A public corrections log ships with v2.</p>"
+        "so any figure on this site can be independently recomputed. Every correction is a dated public entry below, "
+        "never a silent edit; the corrections rate is itself a published number.</p>"
     )
+    n_corr = len(CORRECTIONS)
+    if not n_corr:
+        parts.append(
+            "<p class='muted'>Corrections to date: <strong>0</strong>. No published line has yet required a "
+            "correction. The first that does appears here — dated, with the affected day and the fix.</p>"
+        )
+    else:
+        parts.append(f"<p>Corrections to date: <strong>{n_corr}</strong>.</p>")
+        parts.append('<div class="scroll"><table><thead><tr><th>Logged</th><th>Affected day</th>'
+                     "<th>What</th><th>Status</th></tr></thead><tbody>")
+        for c in sorted(CORRECTIONS, key=lambda c: c.get("logged", ""), reverse=True):
+            parts.append(
+                "<tr><td class='mono'>{logged}</td><td class='mono'>{day}</td><td>{what}</td>"
+                "<td>{status}</td></tr>".format(
+                    logged=esc(c.get("logged", "")), day=esc(c.get("day", "—")),
+                    what=esc(c.get("description", "")),
+                    status=esc(c.get("resolution") or c.get("status", "open")),
+                )
+            )
+        parts.append("</tbody></table></div>")
 
     # (f) data downloads pointer
     parts.append("<h2>Data</h2>")
