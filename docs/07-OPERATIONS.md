@@ -15,9 +15,9 @@ do your job, ignore everything else.
 
 | State | Name | You are here if… | Your job this state | Exit gate |
 |---|---|---|---|---|
-| **S0** | Built, dark | Machine verified in dry-run; no remote/keys **(← current, 2026-07-11)** | The 90-min errand batch: public repo + push, domains, Bluesky accounts, secrets, Console $10 cap | First cloud **dry-run** RUN A+B green |
-| **S1** | Cloud-proven | Workflows green in the cloud, still $0 | Watch 3 consecutive dry-run days; fix YAML friction (Opus session if needed) | 3 green days + Release assets populating |
-| **S2** | Live voice, dark | `ANTHROPIC_API_KEY` set; real Daily Lines; accounts unannounced | The dark week: hand-audit 5 receipts/day, tune P2 taste (free now, public diffs later), attorney hour | §1.4.1 gate (3 consecutive unattended real runs) + audits clean |
+| **S0** | Built, dark | Machine verified in dry-run; no remote/keys | The 90-min errand batch: public repo + push, domains, Bluesky accounts, secrets, Console $10 cap | First cloud **dry-run** RUN A+B green *(passed 07-12)* |
+| **S1** | Cloud-proven | Workflows green in the cloud, still $0 | Watch 3 consecutive dry-run days; fix YAML friction (Opus session if needed) | 3 green days + Release assets populating *(passed 07-14)* |
+| **S2** | Live voice, dark | `ANTHROPIC_API_KEY` set; real Daily Lines; accounts unannounced **(← current, 2026-07-14: first live run green, $0.0072; posting held dark)** | The dark week: hand-audit 5 receipts/day, tune P2 taste (free now, public diffs later), attorney hour | §1.4.1 gate (3 consecutive unattended real runs) + audits clean |
 | **S3** | Launched | Accounts public, launch artifact out | The §9 circuit; then *let the streak work* — your only daily job is the 15-min ritual (§3) | 30 unbroken days AND (first external citation/embed OR 1k combined followers) |
 | **S4** | v2 — the insight release | Building silence detector, leaderboard, floor leg, The Archive/Alexandria | Opus sessions against gameplan §10 v2; chapters via `claude -p` (before Sep 1) | v2 acceptance (gameplan §10) |
 | **S5** | v3 — the coordination release | Building alerts, Memory Hole, upstream graph, bill-brands, API | Opus sessions against §10 v3 | v3 acceptance, by Oct 5 |

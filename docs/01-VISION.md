@@ -63,7 +63,7 @@ Tiers are not a schedule. **S** is the spine (v1 candidates), **A** is compoundi
 | S1 | **Daily Party Voice** | One composite statement per party per day, assembled from real quotes, every claim cited. The product. | 4 | 4 | M |
 | S2 | **Adoption Curves (the Memo Detector)** | First-appearance tracking + adoption curve per phrase: 2 members → 90 members in 26 hours, annotated with the first-sayer. | 5 | 5 | M |
 | S3 | **The Silence Detector** | Daily news baseline vs. each party's corpus → the topics nobody will touch, ranked by news volume × speech absence. | 5 | 5 | M |
-| S4 | **On-Script Index + Leaderboard** | Per-member: % of output matching party language vs. own words. Top 10 vessels, top 10 mavericks. | 4 | 5 | M |
+| S4 | **On-Script Index + Leaderboard** | Per-member: % of output matching party language vs. own words. Top 10 vessels, top 10 mavericks. **[AMENDED 2026-07-14: the %-match metric saturates (~99.7% of releases use synchronized language — `10-FINDINGS`); ships instead as Authors-vs-Vessels raw origination/echo counts with receipts, never a composite score (`09-DESIGN-REVIEW` #8 resolution).]** | 4 | 5 | M |
 | S5 | **Receipts pages** | The citation UI under every artifact: member, quote, date, source URL. Not a feature — armor. Every share links here. | 3 | 2 | S |
 | S6 | **Phrase Explorer** | Search any phrase → its curve, roster, first-sayer, mutations. The dashboard's core loop. | 4 | 3 | M |
 | S7 | **Share-card renderer** | Every insight auto-renders as a self-contained image artifact (chart + claim + receipts pointer + date). The distribution multiplier for everything else. | 2 | 5 | M |
@@ -133,6 +133,8 @@ A one-page artifact styled like the thing everyone imagines: TODAY'S MESSAGE —
 A heat grid: rows = the week's top news topics by baseline volume, columns = parties; cells = speech volume. The holes glow. Caption: *"Topic #1 in American news this week. Combined statements from 535 members of Congress: 3."* Nobody has shipped the absence map. Absence is unfalsifiable-feeling until you quantify it — then it's a chart, and charts get embedded.
 
 ### 4. The On-Script Leaderboard (S4) — the Ventriloquism Award
+*[Amended 2026-07-14 — see the S4 table note: the artifact survives, but built on origination/echo
+raw counts with receipts (Authors-vs-Vessels), not a saturating %-match score or any composite.]*
 Top 10 vessels, top 10 mavericks, updated daily, receipts behind every score. The weekly award post: *"This week's Ventriloquism Award goes to Sen. Y, 96% of whose public output matched party language. Sen. Y's most original sentence this week was a birthday message."* Names beat aggregates; leaderboards are engagement machines; and the metric is inherently bipartisan — every week burns one of each.
 
 ### 5. The Phrase Lifecycle Card (A2) — genealogy + obituary

@@ -261,15 +261,65 @@ renderer must show only `passed==true` (fall back to stub) so ungrounded prose n
 uniformly at finalize (the 252 first-pass chapters were P4 v1.0 but are recorded v1.1) — cosmetic;
 the verifier guarantee is identical across versions.
 
-## Next sessions / follow-ups
+### Session 4 (2026-07-14) — Fable governance audit: first live run, S2 ruling, posting-leg finding
 
-1. **Michael's launch errands (the actual gate, §7.3/§9):** public GitHub repo + push;
-   `onscript.news`/`theonscript.com` + `blue.`/`red.onscript.news` Bluesky accounts; Actions
-   secrets (`ANTHROPIC_API_KEY`, `NTFY_TOPIC`, `BSKY_*`); $10 Console hard cap. Then the
-   **3-consecutive-unattended-runs** gate (§1.4.1) runs in the cloud with the real voice.
-2. **Bluesky ingest (Lane 2)** — cut-line #1: build the ~130-member handle→DID map and wire the
-   free public-AppView poll (enrichment only, machine-blocked from comparative metrics).
-3. **Incremental ledger merge** (vs. today's full-corpus rebuild) if the ~30-min RUN A wants trimming.
-4. ~~**Stage 2 "Alexandria"** (2001 full-history, sharded matrix)~~ — **DONE (Session 3):** 25-year
-   ledger merged (2.77M phrases) + 327 verified era/monthly chapters. Remaining Archive work is v2
-   public release (§10): the chapter renderer + coverage page + `passed==true` render filter.
+**The machine went on-air overnight, unattended.** First live run (cron, 2026-07-14): `generator:
+sonnet_batch` / `claude-sonnet-5`, daily voice cost **$0.0072** (≈46× headroom under the $10 cap),
+governor `nominal`, verifier clean, zero alerts, symmetry hashes published. Site live at
+**onscript.news** (Vercel auto-deploy confirmed — it was already showing the next day's build).
+Release assets (`data-latest` rolling: raw + state) populating. Ladder ruling: **S0 and S1 exit
+gates passed (07-12, 07-14); current state = S2 "live voice, dark."** Ladder marker moved in
+`07-OPERATIONS.md` §1; "You are here" updated.
+
+**Material finding — the posting leg silently no-ops (day-selection coupling).** `post_bluesky.main`
+resolves its day from `collect-latest.json:focus_day`, but assemble chooses its own build day; on
+07-14 collect's focus moved 07-12→07-14 across two runs while assemble built 07-13 → the post step
+found no `daily_lines` for its day and exited 0, for both parties. Post outcomes are not recorded in
+the manifest, so the run stayed green with the marketing leg dark. **Governance read: this
+accidentally enforced the S2 dark week (accounts have never posted — correct!), but it is luck, not
+a hold** — the heuristics can agree any morning, which would make the first-ever brand post an
+unattended cron accident rather than the deliberate §9 launch. Interim hold tasked to Michael
+(blank both `BSKY_*_PASSWORD` secrets → posting path becomes a deterministic dry-run print). Also:
+red's custom handle **did** eventually verify — `red.onscript.news` is now canonical and the
+`BSKY_RED_HANDLE` secret (set to the `.bsky.social` fallback) is stale.
+
+**Constitution audit (all 15 articles checked):** I–XIII healthy in the live run (II strengthened
+this week by `citations.json`/`citations_era.json` + the live corrections ledger; V intact — site
+published every day; VII/IV verified in the manifest hashes). Two dated gaps, both scheduled work,
+no violations: **XIV** (repo still private — flips public at S3 launch) and **XII** (the site does
+not yet list the brand accounts — small Opus item). One Article-VI observation: the committed
+analysis artifacts (`citations*.json`, `era_fingerprints.json`) were produced by scratchpad scripts
+— promote their generators into `scripts/` so every committed number is reproducible from committed
+code.
+
+**Fable-owned amendments made:** `01-VISION.md` S4 leaderboard amended (naive %-match retired —
+saturates ~99.7%; ships as Authors-vs-Vessels raw origination/echo counts with receipts, never a
+composite score, per `09-DESIGN-REVIEW` #8 + `10-FINDINGS`); `08-ANALYSIS-MENU.md` gained the
+**trend-language publication gate** (the Session-3 verified lesson, now doctrine); ladder + "You
+are here" updated. The gameplan §10 v2 item "on-script leaderboard" is to be read through the S4
+amendment (deviation recorded here per doc-map convention — the gameplan file stays frozen).
+
+## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
+
+1. **Michael, urgent (tasked on the bus):** blank `BSKY_BLUE_PASSWORD` + `BSKY_RED_PASSWORD`
+   (deterministic dark week — prevents an accidental first post) and correct `BSKY_RED_HANDLE` →
+   `red.onscript.news` while there. Then the S2 dark-week job: hand-audit 5 receipts/day across 3
+   live runs + the attorney hour; first Monday 15-min ritual 2026-07-20.
+2. **Next Opus session (S2 hardening, small):** (a) posting fix — assemble passes its own built
+   `--day` to `post_bluesky` (kill the `collect-latest` coupling) + explicit `POSTING_ENABLED`
+   gate (repo variable = the launch switch) + write post results into the assemble manifest with a
+   dead-man alert on expected-but-absent posts; (b) promote the citation/era-fingerprint generators
+   from scratchpad into `scripts/` (Art. VI); (c) About page lists the real accounts (Art. XII).
+3. **S2→S3 launch (deliberate, gameplan §9):** after the §1.4.1 gate (3 unattended real runs) +
+   Michael's audits: re-add passwords, flip `POSTING_ENABLED`, **flip repo public** (Art. XIV),
+   announce. Launch is a decision, not a cron side effect.
+4. **v2 (§10, by Aug 10):** silence detector (internal-baseline first, GDELT after), Authors-vs-
+   Vessels raw-counts page (the amended S4), floor leg, The Script, awards, **Archive/Alexandria
+   public release** (chapter renderer + coverage page + `passed==true` render filter). The
+   credit-claim ledger (09 adopt-later) is now **unblocked** — `DATA_GOV_API_KEY` is set.
+5. Deferred/non-blocking: Bluesky Lane-2 handle map (~130 members), incremental ledger merge,
+   `theonscript.com` (decided: skip).
+
+*(The pre-Session-4 follow-ups list is superseded by the rewrite above: launch errands done —
+domains, accounts, all 7 secrets, cap — and Alexandria done in Session 3; the Bluesky Lane-2 handle
+map and incremental ledger merge carry forward as item 5.)*

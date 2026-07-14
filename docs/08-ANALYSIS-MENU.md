@@ -62,6 +62,12 @@ full news-diffed detector).
 
 ## Gates before publication
 
+**Trend-language gate (added 2026-07-14, from the verified Session-3 lesson):** no secular-trend
+claim ("rising," "vanishing," "narrowing," "accelerating") publishes without a volume-invariant or
+fixed-observation-window instrument — every trend claim in the first analysis pass died to the 2021
+volume regime or birth-date censoring, and each betrayed itself by rebounding when the confound
+reversed. Stable-level, sign, and cyclical claims are the defensible forms (`10-FINDINGS`).
+
 All member-naming outputs (Vessels, Authors, Silent Minority, Caucus-Breakers, Distribution List,
 Leadership DOA, drift): mandatory neutrality review, identical thresholds, **both-party lists ship
 simultaneously**, ≥3 dated citations per named member. Memo-Detector party-mix / velocity and any
