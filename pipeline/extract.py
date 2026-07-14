@@ -74,7 +74,10 @@ def extract(statements: list[dict], sync_ngrams: set[str], taxonomy: list[dict])
     cache = _load_cache()
     new_rows: list[dict] = []
     tokens_in = tokens_out = 0
-    generator = "dry_run" if llm.dry_run() else "haiku_batch"
+    # Real Haiku extraction (llm.submit_batch) is NOT yet wired — both branches use the deterministic
+    # fragment extractor, so label it honestly ('deterministic', not 'haiku_batch'). The est_cost below
+    # is a PROJECTION of what the real Haiku pass would cost, not a charge. §Session-5 (HIGH-2).
+    generator = "dry_run" if llm.dry_run() else "deterministic"
 
     for s in statements:
         sid = s["id"]
@@ -83,7 +86,7 @@ def extract(statements: list[dict], sync_ngrams: set[str], taxonomy: list[dict])
         if llm.dry_run():
             frags = _dry_fragments(s, sync_ngrams, taxonomy)
         else:  # pragma: no cover - requires ANTHROPIC_API_KEY
-            frags = _dry_fragments(s, sync_ngrams, taxonomy)  # placeholder; real batch wired in run_assemble
+            frags = _dry_fragments(s, sync_ngrams, taxonomy)  # real Haiku batch not yet wired (see above)
         # budget telemetry (what the real Haiku pass WOULD cost, even in dry-run)
         tokens_in += llm.approx_tokens(s.get("text", "")) + 400  # + system/taxonomy prompt
         tokens_out += 120

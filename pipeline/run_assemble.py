@@ -29,6 +29,28 @@ def _name(bio: str, rmap: dict) -> str:
     return (rmap.get(bio, {}) or {}).get("name") or bio
 
 
+def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]:
+    """Resolve a verified talking point to >=k real (member, date, URL) citations — one per
+    distinct unit (joint/delegation collapses to one, §11 trap 2). This is the citation-or-silence
+    receipt the public pages render (Art. XII). Persisted into the day JSON so the site is
+    self-contained (no roster re-resolution at render time)."""
+    cites, seen = [], set()
+    for sid in tp.get("statements", []):
+        s = stmt_by_id.get(sid)
+        if not s:
+            continue
+        m = s.get("member") or {}
+        unit = s.get("joint_group") or m.get("bioguide")
+        if not unit or unit in seen:
+            continue
+        seen.add(unit)
+        cites.append({"member": _name(m.get("bioguide"), rmap), "party": m.get("party"),
+                      "state": m.get("state"), "date": s.get("published_at"), "url": s.get("url")})
+        if len(cites) >= k:
+            break
+    return cites
+
+
 def assemble(day: str) -> dict:
     statements = list(util.iter_jsonl(config.STATE / "statements.jsonl.gz"))
     ledger = util.read_json(config.STATE / "ledger.json", {})
@@ -60,6 +82,7 @@ def assemble(day: str) -> dict:
         for tp in tps:
             ok, _ = verify.verify_talking_point(tp, stmt_by_id)
             if ok:
+                tp["citations"] = _citations(tp, stmt_by_id, rmap)  # >=3 real (member,date,url)
                 published.append(tp)
             else:
                 dropped += 1
@@ -111,6 +134,10 @@ def assemble(day: str) -> dict:
         "alerts": (["degraded"] if degraded else []),
     }
     util.write_json(config.DERIVED / "manifest" / f"assemble-{day}.json", manifest)
+    # Pointer to the day THIS run built — post_bluesky reads it (not collect's focus_day), which
+    # fixes the Session-4 day-selection no-op. Posting targets exactly what assemble published.
+    util.write_json(config.DERIVED / "manifest" / "assemble-latest.json",
+                    {"day": day, "generated_at": util.now_utc_iso(), "run_id": manifest["run_id"]})
     if degraded or governor != "nominal":
         ops.ntfy("OnScript assemble", f"day={day} governor={governor} degraded={degraded}",
                  priority="high" if degraded else "default")

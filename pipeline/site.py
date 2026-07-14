@@ -192,6 +192,9 @@ small{font-size:13px}
 .receipt .quote{font-size:14.5px; color:var(--ink)}
 .receipt .quote:before{content:"\\201C"} .receipt .quote:after{content:"\\201D"}
 .receipt .rtopics{font-size:12px; color:var(--faint); margin-top:2px}
+.receipt ul.cites{list-style:none; margin:6px 0 0; padding:0; font-size:12.5px}
+.receipt ul.cites li{margin:2px 0; color:var(--ink)}
+.receipt ul.cites a{color:var(--blue)}
 
 .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
 table{border-collapse:collapse; width:100%; font-size:14.5px}
@@ -231,9 +234,15 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
     """Wrap page ``body`` in the shared shell. ``depth`` = subdir levels below
     the site root (0 for /index.html, 1 for /day/*.html and /phrases/*.html)."""
     root = "../" * depth
+    # Dark features (docs/11-BUILD-PROGRAM.md) link into the nav only once their FEATURES flag
+    # flips True in a commit (the release act). Built-but-unreleased => no public link.
+    dark_nav = ""
+    if config.feature_on("archive"):
+        dark_nav += f'<a href="{root}archive/index.html">Archive</a>'
     nav = (
         f'<a href="{root}index.html">Today</a>'
         f'<a href="{root}phrases/index.html">Phrases</a>'
+        f'{dark_nav}'
         f'<a href="{root}methodology.html">Methodology</a>'
         f'<a href="{root}about.html">About</a>'
     )
@@ -426,9 +435,26 @@ def has_daily_lines(day_data) -> bool:
 # ---------------------------------------------------------------------------
 # Honesty banner
 # ---------------------------------------------------------------------------
+# Genuine LLM-voice generators — the ONLY values that mean the composite came from the language
+# model. Any other generator (dry_run, deterministic, or a legacy 'sonnet_batch' label) is a
+# template stub: the honesty banner discloses it as "not a language model". The real Sonnet voice
+# is not yet wired (§Session-5 HIGH-2) — until it is, no day carries one of these, so every day is
+# honestly flagged as a stub. When the live voice IS wired, its generator label is added here in the
+# SAME commit that wires it.
+PRODUCTION_GENERATORS = {"llm", "production", "sonnet_direct"}
+_STUB_VOICE_MSG = {
+    "dry_run": "dry-run stub",
+    "deterministic": "deterministic template (not the language model)",
+}
+
+
 def honesty_state(day_data, symmetry):
-    """Return (needs_banner, message) describing any non-production condition."""
+    """Return (needs_banner, message, has_stub_voice). has_stub_voice is True when EITHER party's
+    Daily Line was composed by a non-LLM template (dry_run / deterministic / any legacy non-production
+    generator) — so the banner discloses "not a language model". It is False for a genuine LLM day
+    that merely carries a transparency flag (quiet / fallback / degraded)."""
     flags = []
+    has_stub_voice = False
     dl = day_data.get("daily_lines")
     if isinstance(dl, dict):
         for p in ("D", "R"):
@@ -436,10 +462,10 @@ def honesty_state(day_data, symmetry):
             if not isinstance(party, dict):
                 continue
             gen = party.get("generator")
-            if gen == "dry_run":
-                flags.append(f"{PARTY_NAME[p]}' Daily Line is a <strong>dry-run stub</strong> (generator=dry_run)")
-            elif gen and gen not in ("llm", "production"):
-                flags.append(f"{PARTY_NAME[p]}' Daily Line generator is <strong>{esc(gen)}</strong>")
+            if gen and gen not in PRODUCTION_GENERATORS:
+                has_stub_voice = True
+                label = _STUB_VOICE_MSG.get(gen, f"template stub (generator={esc(gen)})")
+                flags.append(f"{PARTY_NAME[p]}' Daily Line is a <strong>{label}</strong>")
             if party.get("quiet"):
                 flags.append(f"{PARTY_NAME[p]}' line is a <strong>quiet-day</strong> line (low volume)")
             if party.get("fallback"):
@@ -450,30 +476,41 @@ def honesty_state(day_data, symmetry):
     if isinstance(symmetry, dict) and symmetry.get("degraded"):
         flags.append("today's run is <strong>degraded</strong> (see the symmetry audit)")
     if not flags:
-        return False, ""
-    # de-dup while keeping order
+        return False, "", has_stub_voice
     seen = []
     for f in flags:
         if f not in seen:
             seen.append(f)
-    return True, "; ".join(seen)
+    return True, "; ".join(seen), has_stub_voice
 
 
 def banner_html(day_data, symmetry) -> str:
-    need, msg = honesty_state(day_data, symmetry)
+    need, msg, has_stub_voice = honesty_state(day_data, symmetry)
     if not need:
         return ""
-    return (
-        f'<div class="banner">Honesty note: {msg}. '
-        f'The composite voice below is not yet the production model — it is generated '
-        f'deterministically for build verification. Numbers and receipts are real; the '
-        f'phrasing is a placeholder until the live voice model is enabled.</div>'
-    )
+    if has_stub_voice:
+        tail = (" The composite voice for any line above marked a stub/template is <strong>not a "
+                "language model</strong> — it is composed deterministically from the day's measured "
+                "statistics. The numbers, quotes, and receipts are real and verified; the phrasing is "
+                "a placeholder until the live model voice is wired in.")
+    else:
+        # Genuine LLM voice, just a transparency flag (quiet / fallback / degraded).
+        tail = " Numbers, quotes, and receipts are real and verified; the note above is a transparency flag."
+    return f'<div class="banner">Honesty note: {msg}.{tail}</div>'
 
 
 # ---------------------------------------------------------------------------
 # Receipts strip + Daily Line panels
 # ---------------------------------------------------------------------------
+def _safe_http_url(url) -> str:
+    """Return url only if it is an http(s) URL, else "". The corpus is external/mirrorable and thus
+    poisonable — a citation with a javascript:/data: scheme would become a clickable XSS sink on a
+    site that advertises zero JS. Whitelist the scheme before ever emitting an href. §Session-5."""
+    u = str(url or "").strip()
+    lo = u.lower()
+    return u if (lo.startswith("http://") or lo.startswith("https://")) else ""
+
+
 def receipts_strip(party: str, talking_points: list) -> str:
     """Build the receipts strip from a party's talking_points (the visual signature)."""
     tps = [tp for tp in (talking_points or []) if isinstance(tp, dict)]
@@ -499,9 +536,24 @@ def receipts_strip(party: str, talking_points: list) -> str:
             if isinstance(count, int)
             else "members said"
         )
+        # Citation-or-silence made VISIBLE (Art. XII): >=3 real member·date·source rows, each
+        # linking to the member's own .gov release. Persisted into the day JSON by run_assemble.
+        cites = [c for c in (tp.get("citations") or []) if isinstance(c, dict)]
+        cites_html = ""
+        if cites:
+            lis = []
+            for c in cites[:3]:
+                nm = esc(c.get("member"))
+                pp, st = c.get("party"), c.get("state")
+                suffix = f" ({esc(pp)}-{esc(st)})" if pp and st else (f" ({esc(st)})" if st else "")
+                url = _safe_http_url(c.get("url"))
+                src = (f'<a href="{esc(url)}" rel="nofollow noopener">source</a>'
+                       if url else '<span class="faint">source</span>')
+                lis.append(f'<li>{nm}{suffix} <span class="faint">· {esc(c.get("date"))} ·</span> {src}</li>')
+            cites_html = '<ul class="cites">' + "".join(lis) + "</ul>"
         rows.append(
             f'<div class="receipt"><div class="rhead">{count_html}</div>'
-            f'{quotes}{topics_html}</div>'
+            f'{quotes}{topics_html}{cites_html}</div>'
         )
     return (
         '<div class="receipts"><div class="rlabel">Receipts</div>'
@@ -981,6 +1033,36 @@ def about_body():
         "parties, audited nightly in public on the <a href='methodology.html'>Methodology</a> page. Asymmetric "
         "findings are allowed; an asymmetric instrument is not.</p>"
     )
+    parts.append("<h2>Who operates OnScript</h2>")
+    parts.append(
+        "<p>OnScript is built and operated by <strong>Michael King</strong> as an independent project. It is not "
+        "affiliated with any party, campaign, committee, PAC, or newsroom, and it takes no outside funding. "
+        "<strong>The operator's personal political views appear nowhere on this instrument</strong> — not in the "
+        "composites, not on the accounts, not in the rankings. The instrument is symmetric by construction; if it "
+        "is ever caught being otherwise, that is a bug, and the fix is logged in public. This page is the "
+        "operator disclosure of record.</p>"
+    )
+    parts.append(
+        "<p><strong>Contact &amp; corrections</strong> run through the public source repository and the corrections "
+        "process on the <a href='methodology.html'>Methodology</a> page — every correction is a dated public entry, "
+        "never a silent edit. OnScript has no comment section and solicits no engagement; it broadcasts a "
+        "measurement and links its receipts.</p>"
+    )
+    parts.append("<h2>The accounts</h2>")
+    parts.append(
+        "<p>Two automated composite accounts on Bluesky — one per party, the identical instrument, only the field "
+        "color differs:</p>"
+    )
+    parts.append(
+        "<ul class='tight'>"
+        "<li><strong>blue.onscript.news</strong> — the composite voice of Democratic members of Congress</li>"
+        "<li><strong>red.onscript.news</strong> — the composite voice of Republican members of Congress</li>"
+        "</ul>"
+    )
+    parts.append(
+        "<p>Each is labeled automated, posts one citation-backed thread per day, follows only the other, and never "
+        "replies, likes, or reposts. Their bios point here for disclosure.</p>"
+    )
     parts.append("<h2>How it's built</h2>")
     parts.append(
         "<p>Three layers, in order: (1) a <strong>deterministic phrase engine</strong> that measures which exact "
@@ -990,9 +1072,9 @@ def about_body():
         "quotes or counts don't check out against the source.</p>"
     )
     parts.append(
-        '<div class="banner">Honest disclosure: this build may show <strong>dry-run</strong> composite lines until '
-        "the live voice model is enabled. Dry-run lines are generated deterministically for verification. The "
-        "numbers and receipts under them are real; the phrasing is a placeholder, and any day showing one says so.</div>"
+        '<div class="banner">Honest disclosure: the composite voice is live, but on rare degraded days a line may '
+        "fall back to a <strong>dry-run</strong> deterministic stub. Whenever that happens the day's page labels it "
+        "plainly; the numbers, quotes, and receipts under every line are always real and verified.</div>"
     )
     return "".join(parts)
 

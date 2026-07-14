@@ -299,7 +299,104 @@ composite score, per `09-DESIGN-REVIEW` #8 + `10-FINDINGS`); `08-ANALYSIS-MENU.m
 are here" updated. The gameplan §10 v2 item "on-script leaderboard" is to be read through the S4
 amendment (deviation recorded here per doc-map convention — the gameplan file stays frozen).
 
+### Session 5 (2026-07-14) — Wave-0 hardening + adversarial review: five real defects fixed, and the "live voice" corrected
+
+> **Model-identity flag (STRICT model-split, §0):** this session actually ran on **Fable 5**, not
+> Opus, even though the standing prompt and the workflow assign Phase-4 implementation to Opus. The
+> work is verified (55 tests, adversarial review) and I did not touch §13 locked decisions, but the
+> canon attributes Phase 4 to Opus — Michael, if you intended Opus, switch models; flagged so the
+> record is accurate.
+
+Executed the Wave-0 launch-blocking set from `docs/11-BUILD-PROGRAM.md` §1 (the Session-4 item-2
+list), then ran a 4-dimension adversarial review over the whole diff **before committing**. The
+review earned its keep: **five real defects, three HIGH.** All fixed, each with a regression test.
+**55 tests green** (was 50), including the `POSTING_ENABLED` kill-test and both LLM kill-tests.
+
+**Wave-0 items delivered (a–g + registry + gate + bot-label):** posting day now comes from the
+assemble manifest (`assemble-latest.json`), not `collect-latest` (a); the `POSTING_ENABLED` repo
+variable is the hard launch gate — kill-tested that **no path posts when it is off, regardless of
+creds** (b); the `FEATURES` registry (all dark) gates backlog UI; receipts render as real
+member·date·`.gov` rows under each Daily Line (e); the About page carries the operator disclosure +
+lists `blue.`/`red.onscript.news` (Art. X/XII); the bot self-label fires idempotently at first
+authenticated session without clobbering the profile Michael set; the `scripts/analysis/*`
+generators are promoted to import-safe, tested pipeline code (Art. VI, `tests/test_analysis.py`).
+
+**The adversarial review's five findings — all confirmed against source, all fixed:**
+
+1. **HIGH — self-grounding defeated the verbatim-quote guarantee (`distill.py`).** Wave-0 had added
+   the code-computed cluster labels + top synchronized phrase to the verifier's `groundable` set, so
+   quotes were grounded against *themselves* — a vacuous check. A punctuation-stripped label
+   (`support affordable accessible housing`) could be quoted though no member wrote those words
+   contiguously (they wrote `affordable, accessible`). **Fix:** `groundable` = verbatim fragment
+   texts ONLY; `build_stats` quotes the shortest clean **verbatim fragment** (never the label);
+   code-computed phrases (labels, top phrase) are rendered **without quotation marks** as measured
+   facts. `verify.quotes_grounded` keeps internal punctuation, so this is now genuinely enforced.
+
+2. **HIGH — the "live Sonnet voice" was never wired; deterministic stub published as `claude-sonnet-5`.**
+   `distill.daily_line`'s real-mode branch produced `_compose_dry` (deterministic) but labeled it
+   `generator="sonnet_batch"`, `model="claude-sonnet-5"`. Grep-confirmed: `llm.submit_batch` /
+   `poll_batch` / `direct_call` have **zero call sites outside `llm.py`** — `run_assemble` never
+   calls them. **The same is true of the Haiku extract layer** (`extract.py` real branch also falls
+   back to `_dry_fragments`, labeled `haiku_batch`). So the **entire LLM layer is built but unwired**:
+   the pipeline is currently **fully deterministic**, and the reported voice/extract costs are
+   `estimate_cost` **projections, not charges.** My own Wave-0 site change had made this *worse* by
+   adding `sonnet_batch` to `PRODUCTION_GENERATORS` and suppressing the disclosure banner. **Fix:**
+   real-mode voice/extract now label their output **`deterministic`** (honest); `PRODUCTION_GENERATORS`
+   = `{llm, production, sonnet_direct}` only; the honesty banner discloses any stub voice as **"not a
+   language model … deterministic template."** *This corrects the Session-2/Session-4 canon: there
+   has been no live LLM voice.* **Governance note:** Session-4 follow-up 2(d) instructed removing the
+   placeholder banner **"because the voice is live"** — that premise was false, so per the Phase-4
+   mandate (verify against reality; "should work" ≠ done) it is **reversed on the facts**, not
+   followed. Wiring the real calls is Opus code work but turns on real API billing → **Michael's
+   greenlight** (tasked, #71). The deterministic *engine* (ledger, coordination detection, adoption
+   curves, discipline index, symmetry) is real and running — only the LLM narration is a placeholder.
+
+3. **HIGH — the posting dead-man could never fire for the most likely failure (`post_bluesky.py`).**
+   When `_post_real` threw (Bluesky 5xx / expired app-password 401 / timeout), `main`'s except
+   appended a result with **no `creds_present`**, so the missing-post detector dropped it → no ntfy.
+   **Fix:** the except handler computes `creds_present` from env; a creds-present post that throws now
+   fires the dead-man. Kill-tested.
+
+4. **MEDIUM — stored-XSS via unvalidated URL scheme in the new citation links (`site.py`).** Receipts
+   rendered `<a href="{esc(url)}">` from ingested (poisonable) corpus urls; `esc()` neutralizes
+   attribute-breakout but leaves the scheme, so a `javascript:`/`data:` url became clickable JS on a
+   site that advertises zero JS. **Fix:** `_safe_http_url` whitelists http(s) at the render sink (the
+   sole href sink for citation urls); bad-scheme urls render as a non-link span. Raw url stays
+   faithful in the data (fidelity); sanitize on output, not input. Tested with four hostile schemes.
+
+5. **MEDIUM — no idempotency → a re-run re-posts the whole thread (`post_bluesky.py`).** A manual
+   re-dispatch / "Re-run all jobs" after a successful post would publish a duplicate composite.
+   **Fix:** `main` reads the prior `post-<day>.json` and skips any party already `posted==True` for
+   that day (records an `idempotent_skip`). Dormant until `POSTING_ENABLED` flips, but a real
+   duplicate-post risk against the deliberate single-launch-post intent. Tested.
+
+**Environment findings (local only — the cloud is unaffected; NOT code bugs):** the local Alexandria
+ledger `X:\onscript-data\…\ledger.json` (3.08 GB) is **corrupt** (JSON parse error ~902 MB in) — it
+crashes local `run_assemble` *before* my code runs and **blocks the Archive/1.1 build** until rebuilt
+(a future Opus session can rebuild it from the raw corpus; the daily cloud run uses the smaller
+RUN-A ledger from the `data-latest` Release asset and is fine). Local day-JSON statement ids are also
+stale vs. `statements.jsonl.gz` after a corpus re-normalization. Both are why the code was verified by
+representative unit tests rather than a local end-to-end assemble.
+
+**Committed:** code (`config`, `distill`, `extract`, `post_bluesky`, `run_assemble`, `site`) + the
+promoted `scripts/analysis/*` + `tests/test_wave0.py` + `tests/test_analysis.py` + the
+`assemble.yml` `POSTING_ENABLED` env. **Not committed** (cloud owns them): `data/derived`,
+`site/public`. **Never touched:** posting stayed off; no release flag flipped; the Anthropic key was
+never set locally (dry-run $0 throughout).
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
+
+> **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
+> the five review fixes, 55 tests). New priorities on top of the list below:
+> - **Michael (decision, tasked #71):** the live LLM voice was never wired — greenlight wiring it
+>   (turns on cents/day real API billing under your $10 cap) or launch on the honest deterministic
+>   voice. The site now discloses the deterministic voice truthfully either way.
+> - **Launch checklist addition:** the dark-week hold is now the **`POSTING_ENABLED` repo variable
+>   (default off)** — the primary, reliable gate — *not* the blanked passwords. At S3 launch, set
+>   `POSTING_ENABLED=true` **and** replace the single-space `BSKY_*_PASSWORD` secrets with real app
+>   passwords (a single space is truthy → it would attempt a failed login and fire the dead-man).
+> - **Next Opus:** rebuild the corrupt local Alexandria ledger before the Archive/1.1 build; then
+>   either wire the LLM layer (if greenlit) or proceed down the Build-Program queue (Wave 1).
 
 1. **Michael, urgent (tasked on the bus):** blank `BSKY_BLUE_PASSWORD` + `BSKY_RED_PASSWORD`
    (deterministic dark week — prevents an accidental first post) and correct `BSKY_RED_HANDLE` →

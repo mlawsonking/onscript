@@ -27,6 +27,10 @@ jobs:
       BSKY_BLUE_PASSWORD: ${{ secrets.BSKY_BLUE_PASSWORD }}
       BSKY_RED_HANDLE: ${{ secrets.BSKY_RED_HANDLE }}
       BSKY_RED_PASSWORD: ${{ secrets.BSKY_RED_PASSWORD }}
+      # The S3 launch switch (gameplan §9): a repo VARIABLE, default absent/off. While off, the
+      # posting leg is a deterministic dry-run print — no path posts, regardless of the creds above.
+      # Michael flips this to "true" in the repo variables UI at launch. (kill-tested)
+      POSTING_ENABLED: ${{ vars.POSTING_ENABLED }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4

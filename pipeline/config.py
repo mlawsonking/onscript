@@ -114,3 +114,36 @@ TIMEZONE = "America/New_York"    # product day = prior NY calendar day (§2)
 # Env-overridable (Actions sets these; safe defaults for local dev)
 def env(name: str, default: str = "") -> str:
     return os.environ.get(name, default)
+
+
+# ---------------------------------------------------------------------------
+# Release-switch architecture (docs/11-BUILD-PROGRAM.md §1). "Build dark, release by gate":
+# every backlog feature builds its artifacts and lands verified, but does NOT render/link
+# publicly until its flag flips True in a commit — that flip is the release act (dated, public,
+# diffable; Constitution VIII spirit). Keys mirror the Build-Program queue. All False = dark.
+# ---------------------------------------------------------------------------
+FEATURES = {
+    # Wave 1 (v2)
+    "archive": False, "silence_board": False, "authors_vessels": False, "the_script": False,
+    "awards": False, "floor": False, "duet": False, "phrase_search": False,
+    "owners_brief": False, "credit_claim": False, "memo_cadence_flag": False,
+    # Wave 2 (v3)
+    "memory_hole": False, "off_script_alerts": False, "upstream_graph": False,
+    "bill_brand": False, "public_api": False, "eval_table": False,
+}
+
+
+def feature_on(name: str) -> bool:
+    """True iff the named dark feature has been released (its FEATURES flag flipped)."""
+    return bool(FEATURES.get(name, False))
+
+
+# ---------------------------------------------------------------------------
+# POSTING_ENABLED — the S3 launch switch (gameplan §9). A GitHub Actions repo VARIABLE
+# (not a commit, not a secret): Michael flips it in the UI at launch. Default OFF (dark).
+# When off, the Bluesky posting leg is a deterministic dry-run print — NO path posts,
+# regardless of whether the app-password secrets are present (kill-tested). This is what
+# turns the first-ever brand post from a cron accident into a deliberate act.
+# ---------------------------------------------------------------------------
+def posting_enabled() -> bool:
+    return env("POSTING_ENABLED", "").strip().lower() in ("1", "true", "yes", "on")
