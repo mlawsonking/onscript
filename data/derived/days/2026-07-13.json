@@ -5,64 +5,27 @@
       "schema_version": 1,
       "day": "2026-07-13",
       "party": "D",
-      "composite": "We lead today with housing. Ten of us reference \"the bipartisan 21st century road to housing act,\" a designation applied uniformly across our statements. We note the day's most synchronized phrase, \"21st century road to housing,\" recorded across 13 members, first spoken by Tim Scott. A smaller cluster of three addresses \"immigration system and the trump administration's white nationalist agenda,\" a narrower but consistent formulation. Seventy-four statements were logged today across the party. We observe our own repetition without further comment on its causes. The housing language dominates; the immigration language trails behind it in volume but not in phrasing consistency.",
+      "composite": "We speak today of the bipartisan 21st century road to housing act. Across 74 statements, this is the message we return to, echoed by 10 of us, with the phrase \"21st century road to housing\" marked as the day's most synchronized, appearing among 13 of us, first recorded from Tim Scott (R-SC).",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
         {
           "sentence_idx": 0,
           "talking_points": [
-            "2026-07-13-D-00",
-            "2026-07-13-D-01"
+            "2026-07-13-D-00"
           ]
         },
         {
           "sentence_idx": 1,
           "talking_points": [
-            "2026-07-13-D-00",
-            "2026-07-13-D-01"
-          ]
-        },
-        {
-          "sentence_idx": 2,
-          "talking_points": [
-            "2026-07-13-D-00",
-            "2026-07-13-D-01"
-          ]
-        },
-        {
-          "sentence_idx": 3,
-          "talking_points": [
-            "2026-07-13-D-00",
-            "2026-07-13-D-01"
-          ]
-        },
-        {
-          "sentence_idx": 4,
-          "talking_points": [
-            "2026-07-13-D-00",
-            "2026-07-13-D-01"
-          ]
-        },
-        {
-          "sentence_idx": 5,
-          "talking_points": [
-            "2026-07-13-D-00",
-            "2026-07-13-D-01"
-          ]
-        },
-        {
-          "sentence_idx": 6,
-          "talking_points": [
-            "2026-07-13-D-00",
-            "2026-07-13-D-01"
+            "2026-07-13-D-00"
           ]
         }
       ],
       "model": "claude-sonnet-5",
       "generator": "sonnet_direct",
-      "prompt_version": "1.0",
-      "prompt_sha": "2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764",
+      "prompt_version": "1.1",
+      "prompt_sha": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
       "stats": {
         "party": "D",
         "day": "2026-07-13",
@@ -76,21 +39,14 @@
               "housing",
               "other"
             ]
-          },
-          {
-            "label": "and the trump administration's",
-            "members": 3,
-            "quote": "immigration system and the trump administration's white nationalist agenda",
-            "topics": [
-              "immigration",
-              "other"
-            ]
           }
         ],
         "top_phrase": {
           "text": "21st century road to housing",
           "members": 13,
-          "first_sayer": "Tim Scott"
+          "first_sayer": "Tim Scott",
+          "first_sayer_party": "R",
+          "first_sayer_state": "SC"
         },
         "sync_min": 3
       },
@@ -98,11 +54,11 @@
         "checked": true,
         "passed": true,
         "reasons": [],
-        "talking_points_published": 2
+        "talking_points_published": 1
       },
       "usage": {
-        "tokens_in": 696,
-        "tokens_out": 202,
+        "tokens_in": 1023,
+        "tokens_out": 102,
         "model": "claude-sonnet-5"
       }
     },
@@ -110,47 +66,19 @@
       "schema_version": 1,
       "day": "2026-07-13",
       "party": "R",
-      "composite": "We report no dominant message today. The clusters are empty; the talking points are empty; the top phrase is null. We recorded 51 statements and produced no shared line above the sync minimum of 3. We note this the way we note any reading: without comment on cause. We have nothing to quote, so we quote nothing. We have no cluster to name, so we name none. We remain 51 statements wide and zero phrases deep. We stand by, awaiting signal.",
+      "composite": "Across 51 statements, no phrase was shared by more than a few of us today.",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
         {
           "sentence_idx": 0,
           "talking_points": []
-        },
-        {
-          "sentence_idx": 1,
-          "talking_points": []
-        },
-        {
-          "sentence_idx": 2,
-          "talking_points": []
-        },
-        {
-          "sentence_idx": 3,
-          "talking_points": []
-        },
-        {
-          "sentence_idx": 4,
-          "talking_points": []
-        },
-        {
-          "sentence_idx": 5,
-          "talking_points": []
-        },
-        {
-          "sentence_idx": 6,
-          "talking_points": []
-        },
-        {
-          "sentence_idx": 7,
-          "talking_points": []
         }
       ],
       "model": "claude-sonnet-5",
       "generator": "sonnet_direct",
-      "prompt_version": "1.0",
-      "prompt_sha": "2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764",
+      "prompt_version": "1.1",
+      "prompt_sha": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
       "stats": {
         "party": "R",
         "day": "2026-07-13",
@@ -166,8 +94,8 @@
         "talking_points_published": 0
       },
       "usage": {
-        "tokens_in": 435,
-        "tokens_out": 142,
+        "tokens_in": 857,
+        "tokens_out": 26,
         "model": "claude-sonnet-5"
       }
     }
@@ -245,76 +173,24 @@
             "party": "D",
             "state": "MO",
             "date": "2026-07-13",
-            "url": "https://cleaver.house.gov/media-center/press-releases/congressman-cleaver-receives-carl-coan-sr-lifetime-achievement-award"
+            "url": "https://cleaver.house.gov/media-center/press-releases/congressman-cleaver-receives-carl-coan-sr-lifetime-achievement-award",
+            "quote": "helping pass the bipartisan 21st century road to housing act"
           },
           {
             "member": "Nikema Williams",
             "party": "D",
             "state": "GA",
             "date": "2026-07-13",
-            "url": "https://nikemawilliams.house.gov/posts/congresswoman-nikema-williams-applauds-21st-century-road-to-housing-act-becoming-law-secures-key-provisions-to-preserve-homeownership-and-generational-wealth"
+            "url": "https://nikemawilliams.house.gov/posts/congresswoman-nikema-williams-applauds-21st-century-road-to-housing-act-becoming-law-secures-key-provisions-to-preserve-homeownership-and-generational-wealth",
+            "quote": "statement on the 21st century road to housing act becoming law"
           },
           {
             "member": "Susie Lee",
             "party": "D",
             "state": "NV",
             "date": "2026-07-13",
-            "url": "https://susielee.house.gov/media/press-releases/icymi-now-law-rep-lee-helped-pass-most-significant-housing-reform-decades"
-          }
-        ]
-      },
-      {
-        "id": "2026-07-13-D-01",
-        "party": "D",
-        "day": "2026-07-13",
-        "label": "and the trump administration's",
-        "member_count": 3,
-        "statements": [
-          "sha256:2399173a47b8b4a49cee1a490b92b43e29be859b1d4aab113c83702a56ea4409",
-          "sha256:40b6deffe573ec29eac8ccd920995efed45f8ab96152650f6625cef7e9ead253",
-          "sha256:5b65c3a6a03fa72b51f67d8f6ae16a4e419b3c9c9f52c163bbc5b63882201623",
-          "sha256:9bb5955b2256e0e6a86d0ca00fdf10d2e3123e1185777afe4ae60e3f55d50bd4"
-        ],
-        "fragments": [
-          {
-            "text": "immigration system and the trump administration's white nationalist agenda",
-            "statement": "sha256:9bb5955b2256e0e6a86d0ca00fdf10d2e3123e1185777afe4ae60e3f55d50bd4"
-          },
-          {
-            "text": "the usda and the trump administration's efforts to decommission",
-            "statement": "sha256:5b65c3a6a03fa72b51f67d8f6ae16a4e419b3c9c9f52c163bbc5b63882201623"
-          },
-          {
-            "text": "immigration system and the trump administration's white nationalist agenda",
-            "statement": "sha256:2399173a47b8b4a49cee1a490b92b43e29be859b1d4aab113c83702a56ea4409"
-          }
-        ],
-        "topics": [
-          "immigration",
-          "other"
-        ],
-        "leadership_first": false,
-        "citations": [
-          {
-            "member": "Delia C. Ramirez",
-            "party": "D",
-            "state": "IL",
-            "date": "2026-07-13",
-            "url": "https://ramirez.house.gov/media/press-releases/ramirez-statement-oversight-visit-cuba-and-humanitarian-crisis-island"
-          },
-          {
-            "member": "Mark Pocan",
-            "party": "D",
-            "state": "WI",
-            "date": "2026-07-13",
-            "url": "https://pocan.house.gov/media-center/press-releases/reps-pocan-dexter-leger-fernandez-and-ramirez-return-cuba-fact-finding"
-          },
-          {
-            "member": "Glenn Ivey",
-            "party": "D",
-            "state": "MD",
-            "date": "2026-07-13",
-            "url": "https://ivey.house.gov/media/press-releases/statement-congressman-ivey-support-prince-georges-county-lawsuit-against-usda"
+            "url": "https://susielee.house.gov/media/press-releases/icymi-now-law-rep-lee-helped-pass-most-significant-housing-reform-decades",
+            "quote": "the bipartisan 21st century road to housing act"
           }
         ]
       }
@@ -341,7 +217,23 @@
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.995
+      "df_weight": 0.995,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        5,
+        4,
+        1,
+        2,
+        1,
+        2,
+        2,
+        9,
+        14,
+        13
+      ]
     },
     {
       "ngram": "21st century road to housing act",
@@ -362,7 +254,23 @@
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.995
+      "df_weight": 0.995,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        5,
+        4,
+        1,
+        2,
+        1,
+        2,
+        2,
+        9,
+        14,
+        12
+      ]
     },
     {
       "ngram": "the 21st century road to housing",
@@ -383,30 +291,23 @@
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.996
-    },
-    {
-      "ngram": "the bipartisan 21st century road to",
-      "slug": "5ee93db5cfe2f84d",
-      "n": 6,
-      "day_peak": 6,
-      "party": "D",
-      "counts": {
-        "D": 6,
-        "R": 1,
-        "I": 0
-      },
-      "velocity": 2.1,
-      "first_seen": {
-        "date": "2026-03-10",
-        "bioguide": "C001088",
-        "statement": "sha256:bc12122ba0830d1fface1183d0f8abb3b79829b0f0e25353bc08a2f85430a838",
-        "tie": [
-          "D000563"
-        ],
-        "precision": "day"
-      },
-      "df_weight": 0.998
+      "df_weight": 0.996,
+      "series": [
+        19,
+        4,
+        1,
+        1,
+        1,
+        1,
+        4,
+        2,
+        1,
+        1,
+        2,
+        8,
+        14,
+        10
+      ]
     },
     {
       "ngram": "bipartisan 21st century road to housing",
@@ -429,7 +330,62 @@
         ],
         "precision": "day"
       },
-      "df_weight": 0.997
+      "df_weight": 0.997,
+      "series": [
+        7,
+        10,
+        4,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        4,
+        4,
+        6
+      ]
+    },
+    {
+      "ngram": "the bipartisan 21st century road to",
+      "slug": "5ee93db5cfe2f84d",
+      "n": 6,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 1,
+        "I": 0
+      },
+      "velocity": 2.1,
+      "first_seen": {
+        "date": "2026-03-10",
+        "bioguide": "C001088",
+        "statement": "sha256:bc12122ba0830d1fface1183d0f8abb3b79829b0f0e25353bc08a2f85430a838",
+        "tie": [
+          "D000563"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.998,
+      "series": [
+        7,
+        10,
+        4,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        4,
+        4,
+        6
+      ]
     },
     {
       "ngram": "an important step",
@@ -450,28 +406,23 @@
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.972
-    },
-    {
-      "ngram": "trump administration officials",
-      "slug": "04d694a0e8dffff6",
-      "n": 3,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 3.33,
-      "first_seen": {
-        "date": "2025-01-15",
-        "bioguide": "C001075",
-        "statement": "sha256:c7c374513ab72db12fafe43d95e52592984e9b3209e0b311be9b5d013684bc8d",
-        "tie": [],
-        "precision": "day"
-      },
-      "df_weight": 0.992
+      "df_weight": 0.972,
+      "series": [
+        2,
+        1,
+        7,
+        3,
+        6,
+        2,
+        1,
+        3,
+        2,
+        1,
+        1,
+        1,
+        2,
+        6
+      ]
     },
     {
       "ngram": "century road to housing act which",
@@ -495,7 +446,177 @@
         ],
         "precision": "day"
       },
-      "df_weight": 0.999
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        6,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "federal financial assistance",
+      "slug": "0d1e9384ce92f7cf",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 2.59,
+      "first_seen": {
+        "date": "2025-01-22",
+        "bioguide": "P000610",
+        "statement": "sha256:5a6aeb82c86f786d0a16675c3d9f885e554c74b76bdc8de999d16941ac84fb91",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5,
+        1,
+        7,
+        1,
+        3,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "trump administration officials",
+      "slug": "04d694a0e8dffff6",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 3.33,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "C001075",
+        "statement": "sha256:c7c374513ab72db12fafe43d95e52592984e9b3209e0b311be9b5d013684bc8d",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        5,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "the proposed rule",
+      "slug": "adda95ee3389f61e",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 1.79,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "S001216",
+        "statement": "sha256:f3de9ead3f3613c18a5ceafbc78debe4a74e0a3834e87824451e660a14207894",
+        "tie": [
+          "B001277",
+          "H001079",
+          "T000278"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.997,
+      "series": [
+        2,
+        1,
+        1,
+        2,
+        4,
+        9,
+        1,
+        2,
+        6,
+        1,
+        5,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "the housing crisis",
+      "slug": "e64b1b3e72bb2f7d",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 2.06,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000602",
+        "statement": "sha256:652318fd984dc5e3ff8b0eb891ff8bc6080c0d5c7b4b1b9b94c11a473e041360",
+        "tie": [
+          "V000081"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.996,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        7,
+        7,
+        6,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        5
+      ]
     },
     {
       "ngram": "house and senate",
@@ -525,97 +646,23 @@
         ],
         "precision": "day"
       },
-      "df_weight": 0.983
-    },
-    {
-      "ngram": "federal financial assistance",
-      "slug": "0d1e9384ce92f7cf",
-      "n": 3,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 2.59,
-      "first_seen": {
-        "date": "2025-01-22",
-        "bioguide": "P000610",
-        "statement": "sha256:5a6aeb82c86f786d0a16675c3d9f885e554c74b76bdc8de999d16941ac84fb91",
-        "tie": [],
-        "precision": "day"
-      },
-      "df_weight": 0.998
-    },
-    {
-      "ngram": "the housing crisis",
-      "slug": "e64b1b3e72bb2f7d",
-      "n": 3,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 2.06,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "L000602",
-        "statement": "sha256:652318fd984dc5e3ff8b0eb891ff8bc6080c0d5c7b4b1b9b94c11a473e041360",
-        "tie": [
-          "V000081"
-        ],
-        "precision": "day"
-      },
-      "df_weight": 0.996
-    },
-    {
-      "ngram": "president trump and",
-      "slug": "7e38fb59b8b11306",
-      "n": 3,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 5,
-        "I": 0
-      },
-      "velocity": 1.94,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "S001172",
-        "statement": "sha256:48364a2b36d000a62426f07595ee90132f08472fd2f5b1cd42c6c75da1753190",
-        "tie": [],
-        "precision": "day"
-      },
-      "df_weight": 0.953
-    },
-    {
-      "ngram": "the proposed rule",
-      "slug": "adda95ee3389f61e",
-      "n": 3,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 1.79,
-      "first_seen": {
-        "date": "2025-01-07",
-        "bioguide": "S001216",
-        "statement": "sha256:f3de9ead3f3613c18a5ceafbc78debe4a74e0a3834e87824451e660a14207894",
-        "tie": [
-          "B001277",
-          "H001079",
-          "T000278"
-        ],
-        "precision": "day"
-      },
-      "df_weight": 0.997
+      "df_weight": 0.983,
+      "series": [
+        1,
+        4,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        3,
+        2,
+        5
+      ]
     },
     {
       "ngram": "in federal funding",
@@ -636,12 +683,65 @@
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.968
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        3,
+        3,
+        7,
+        4,
+        1,
+        3,
+        10,
+        3,
+        5,
+        5,
+        1,
+        5
+      ]
     },
     {
-      "ngram": "a comprehensive plan to",
-      "slug": "ff42c3bdb5417707",
-      "n": 4,
+      "ngram": "president trump and",
+      "slug": "7e38fb59b8b11306",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 5,
+        "I": 0
+      },
+      "velocity": 1.94,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "S001172",
+        "statement": "sha256:48364a2b36d000a62426f07595ee90132f08472fd2f5b1cd42c6c75da1753190",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.953,
+      "series": [
+        3,
+        2,
+        4,
+        3,
+        1,
+        3,
+        1,
+        3,
+        2,
+        1,
+        4,
+        4,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "regulation for federal financial assistance",
+      "slug": "d6a30310963d07e5",
+      "n": 5,
       "day_peak": 4,
       "party": "D",
       "counts": {
@@ -649,36 +749,60 @@
         "R": 0,
         "I": 0
       },
-      "velocity": 3.73,
+      "velocity": 2.22,
       "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "L000557",
-        "statement": "sha256:d2d95cdd8e5d4e95c8d9d194cbc72b3d16233c86a57988c81caa54c775c53072",
+        "date": "2026-06-25",
+        "bioguide": "N000015",
+        "statement": "sha256:bd26a68ceeda285fab2e427a30eb4da5fbe74a043e3e43484aa762c557160540",
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.999
+      "df_weight": 1.0,
+      "series": [
+        1,
+        4,
+        1,
+        1,
+        2,
+        4
+      ]
     },
     {
-      "ngram": "for south carolina",
-      "slug": "5287416c23dd95d1",
-      "n": 3,
+      "ngram": "century road to housing act is",
+      "slug": "8da76fa1cb99c71d",
+      "n": 6,
       "day_peak": 4,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 0,
-        "R": 4,
+        "D": 4,
+        "R": 0,
         "I": 0
       },
-      "velocity": 3.73,
+      "velocity": 1.81,
       "first_seen": {
-        "date": "2025-01-22",
-        "bioguide": "C000537",
-        "statement": "sha256:604ff59b17fde433915024e91bf6d331c80cf4b0330f67c83a2affc1975d33a5",
+        "date": "2026-03-05",
+        "bioguide": "K000376",
+        "statement": "sha256:e62ada2c14b39a60ab8a4c9db802c505356e663bce825dae6ae73303b7e7f844",
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.999
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        4,
+        6,
+        3,
+        1,
+        1,
+        1,
+        5,
+        4
+      ]
     },
     {
       "ngram": "air force reserve",
@@ -699,11 +823,105 @@
         "tie": [],
         "precision": "day"
       },
-      "df_weight": 0.999
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
     },
     {
-      "ngram": "the most significant housing",
-      "slug": "a3c6dd0be2f6217a",
+      "ngram": "the save america act",
+      "slug": "ceadef539fcc3a52",
+      "n": 4,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 4,
+        "I": 0
+      },
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2026-01-29",
+        "bioguide": "R000614",
+        "statement": "sha256:427e45ca4af7904540b6c651ca0ab3066ca98af953d33f215d5c5480d3f4fa23",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.994,
+      "series": [
+        2,
+        5,
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "of management and budget omb",
+      "slug": "db4fa55556565221",
+      "n": 5,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "velocity": 1.75,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "K000389",
+        "statement": "sha256:5f702a62665e9d5b8b9805893cbc70907a3f1101c6bc208f18f0f5e2c794c41d",
+        "tie": [
+          "B001277",
+          "M001153",
+          "T000476"
+        ],
+        "precision": "day"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        3,
+        1,
+        4,
+        2,
+        8,
+        2,
+        3,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "million in federal funding",
+      "slug": "3edf9fb2999b89ff",
       "n": 4,
       "day_peak": 4,
       "party": "D",
@@ -712,59 +930,33 @@
         "R": 1,
         "I": 0
       },
-      "velocity": 3.2,
+      "velocity": 1.75,
       "first_seen": {
-        "date": "2026-02-10",
-        "bioguide": "N000193",
-        "statement": "sha256:6b3c0dfa7c25f70e5134b66bc665cead7bf27e3341f2d6250cfce539d17979a9",
-        "tie": [],
-        "precision": "day"
-      },
-      "df_weight": 1.0
-    },
-    {
-      "ngram": "the fight against",
-      "slug": "ff506848f27e58cb",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 2.95,
-      "first_seen": {
-        "date": "2025-01-09",
-        "bioguide": "M001235",
-        "statement": "sha256:f38124a65a50d5ccc0045da40c9e75865ecb0a419bd86b06e457f16c76094ba8",
+        "date": "2025-01-06",
+        "bioguide": "H001061",
+        "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
         "tie": [
-          "B001243"
+          "S000148"
         ],
         "precision": "day"
       },
-      "df_weight": 0.993
-    },
-    {
-      "ngram": "the trump administration's",
-      "slug": "ade2b558b74e7757",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 2.67,
-      "first_seen": {
-        "date": "2025-01-07",
-        "bioguide": "M001211",
-        "statement": "sha256:144b68c74023dd87dedeced2eae63852ab4ea300c25e0ad74da18b59089f79ad",
-        "tie": [],
-        "precision": "day"
-      },
-      "df_weight": 0.991
+      "df_weight": 0.983,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        2,
+        4,
+        3,
+        1,
+        5,
+        2,
+        2,
+        2,
+        1,
+        4
+      ]
     }
   ]
 }

@@ -54,6 +54,8 @@ small{font-size:13px}
 .line.D .who{color:var(--blue)}
 .line.R .who{color:var(--red)}
 .line .composite{margin:8px 0 0; font-size:17px; line-height:1.55}
+.line .cnote{margin:8px 0 0; font-size:12.5px; color:var(--faint); font-style:italic}
+.line .nocite{margin:12px 0 0; font-size:13px; color:var(--faint)}
 .line .metaflags{margin-top:8px; font-size:12.5px; color:var(--faint)}
 
 .receipts{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
@@ -67,7 +69,10 @@ small{font-size:13px}
 .receipt .quote:before{content:"\201C"} .receipt .quote:after{content:"\201D"}
 .receipt .rtopics{font-size:12px; color:var(--faint); margin-top:2px}
 .receipt ul.cites{list-style:none; margin:6px 0 0; padding:0; font-size:12.5px}
-.receipt ul.cites li{margin:2px 0; color:var(--ink)}
+.receipt ul.cites li{margin:8px 0 0; color:var(--ink)}
+.receipt ul.cites li:first-child{margin-top:4px}
+.receipt .citemeta{font-size:12px; color:var(--muted); margin-top:2px}
+.receipt .rmore{font-size:11.5px; color:var(--faint); margin-top:6px}
 .receipt ul.cites a{color:var(--blue)}
 
 .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
@@ -106,14 +111,14 @@ footer.site a{color:var(--muted)}</style>
 <div class="wrap">
 <header class="site">
   <div class="brand"><a href="../index.html">OnScript</a></div>
-  <div class="tag">This is literally what each party said today, compressed to one voice, with receipts.</div>
+  <div class="tag">This is what each party said today, compressed to one voice, with receipts.</div>
 </header>
 <nav class="top"><a href="../index.html">Today</a><a href="../phrases/index.html">Phrases</a><a href="../methodology.html">Methodology</a><a href="../about.html">About</a></nav>
 <h1>&ldquo;killing of lorenzo <private-individual-A>&rdquo;</h1><p class="subhead">Adoption curve: how many independent members of each party used this exact phrase, by day.</p><div class="chartbox scroll"><p class="faint">Not enough data points to plot an adoption curve.</p><p class="legend"><span class="sw" style="border-color:#2b4c7e"></span>Democrats&nbsp;&nbsp;<span class="sw" style="border-color:#8a2f2f"></span>Republicans</p></div><dl class="kv"><dt>First said</dt><dd>2026-07-09 by Al Green (D-TX) <span class="faint">(tied with Sylvia R. Garcia (D-TX), Pramila Jayapal (D-WA), Christian D. Menefee (D-TX))</span></dd><dt>Peak</dt><dd>4 members in one day</dd><dt>Distinctiveness (df_weight)</dt><dd>0.999</dd><dt>Data points</dt><dd>1 active days</dd></dl><p class="muted"><small>Our corpus begins 2025-01. Historical coverage by year is shown on the <a href="../methodology.html">Methodology</a> page. (The full-history &ldquo;Alexandria&rdquo; backfill to 2001 is staged for a later phase.)</small></p><p style="margin-top:22px"><a href="../phrases/index.html">&larr; All phrases</a></p>
 <footer class="site">
   <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
   parties, audited nightly in public. See the <a href="../methodology.html">Methodology</a>.
-  Every distilled claim links to at least three real source statements. No tracking, no external requests.</p>
+  Every distilled talking point links to at least three real source statements. No tracking, no external requests.</p>
 </footer>
 </div>
 </body>
