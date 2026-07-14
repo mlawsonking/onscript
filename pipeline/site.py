@@ -928,6 +928,18 @@ def methodology_body():
         parts.append(f'<dt>Lane-1 only</dt><dd>{esc(sym.get("lane1_only"))}</dd>')
         parts.append(f'<dt>Degraded</dt><dd>{esc(sym.get("degraded"))}</dd>')
         parts.append("</dl>")
+        # Model-voice spend, made public (radical-transparency + a live budget monitor). The composite
+        # voice is a Sonnet call bounded by a $9 code ceiling and the $10 Console cap; on days it is the
+        # deterministic template instead, spend is $0.
+        _month = str(sym.get("day", ""))[:7]
+        _cost = _load_json(DERIVED / "cost" / f"{_month}.json") if _month else None
+        if isinstance(_cost, dict) and _cost.get("total_usd") is not None:
+            parts.append(
+                f'<p class="muted" style="margin-top:12px"><small>Model-voice spend this month '
+                f'({esc(_month)}): <strong>${esc(format(float(_cost["total_usd"]), ".4f"))}</strong> — '
+                f'the composite is a Sonnet call bounded by a $9 code ceiling and a $10 hard cap; on '
+                f'deterministic-template days it is $0.</small></p>'
+            )
     else:
         parts.append('<p class="muted">No symmetry audit is available yet.</p>')
 
