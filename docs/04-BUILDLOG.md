@@ -460,6 +460,30 @@ apply to new days going forward.
 assemble (or wait for cron), watch 2-3 runs for cost (~$0.01/day) + verifier pass + prose quality,
 then it's validated for launch alongside the streak. Off = `false`/delete → instant $0.
 
+**Session 6b (same day) — the voice went LIVE + a Vercel-deploy bug fixed.** Michael greenlit turning
+it on; I set `LLM_VOICE_ENABLED=true` via `gh` (auth confirmed; repo variables were empty, so
+POSTING_ENABLED stays absent = posting off) and dispatched assemble (run 29358642659, green in 52s).
+**First real Sonnet run, fully validated on 2026-07-13:** both parties `generator=sonnet_direct`,
+verifier passed, no fallback; **cost $0.005572 for the day** (month-to-date the same; ~$0.17/mo
+projected — a fraction of the $9 ceiling); budget/governor nominal; the cost ledger persisted
+(`data/derived/cost/2026-07.json`); **posting stayed off** (post manifest: both parties
+`posted=False, reason="posting disabled"`). The prose is on-voice (deadpan-clinical, first-person
+plural) and the R no-coordination case is narrated gracefully by the model ("We report no dominant
+message today… 51 statements… synchronization minimum 3…"). Receipts render live with real member·
+date·.gov links. **Flagship-claim audit:** the D line's "first said by Tim Scott" was verified from
+the raw corpus — S001184 IS Tim Scott (R-SC), who coined "21st century road to housing act" on
+2026-03-03 as its Republican champion; Democrats adopted it at passage. A **real cross-party
+origination**, not a lookup bug — the tool's core signal working, correctly reported and honestly
+hedged by the voice.
+
+**CI/deploy bug fixed:** the collect/assemble commit messages carried `[skip ci]`, and Vercel skips
+deploying such commits — but the workflows are schedule/dispatch-only (never push-triggered), so the
+marker did nothing for Actions while silently **freezing the live site** (every automated daily commit
+was committed but never deployed; the site only moved on manual pushes). Removed `[skip ci]` from both
+workflows (commit e87763d, no marker, which itself deployed the live voice). The site now genuinely
+auto-deploys on every data commit — the missing piece of the "updates itself unattended" guarantee.
+Follow-up worth noting: re-verify the daily auto-deploy actually fires on the next cron commit.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
