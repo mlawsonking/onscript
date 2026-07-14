@@ -180,6 +180,8 @@ small{font-size:13px}
 .line.D .who{color:var(--blue)}
 .line.R .who{color:var(--red)}
 .line .composite{margin:8px 0 0; font-size:17px; line-height:1.55}
+.line .cnote{margin:8px 0 0; font-size:12.5px; color:var(--faint); font-style:italic}
+.line .nocite{margin:12px 0 0; font-size:13px; color:var(--faint)}
 .line .metaflags{margin-top:8px; font-size:12.5px; color:var(--faint)}
 
 .receipts{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
@@ -193,7 +195,10 @@ small{font-size:13px}
 .receipt .quote:before{content:"\\201C"} .receipt .quote:after{content:"\\201D"}
 .receipt .rtopics{font-size:12px; color:var(--faint); margin-top:2px}
 .receipt ul.cites{list-style:none; margin:6px 0 0; padding:0; font-size:12.5px}
-.receipt ul.cites li{margin:2px 0; color:var(--ink)}
+.receipt ul.cites li{margin:8px 0 0; color:var(--ink)}
+.receipt ul.cites li:first-child{margin-top:4px}
+.receipt .citemeta{font-size:12px; color:var(--muted); margin-top:2px}
+.receipt .rmore{font-size:11.5px; color:var(--faint); margin-top:6px}
 .receipt ul.cites a{color:var(--blue)}
 
 .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
@@ -260,14 +265,14 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
 <div class="wrap">
 <header class="site">
   <div class="brand"><a href="{root}index.html">OnScript</a></div>
-  <div class="tag">This is literally what each party said today, compressed to one voice, with receipts.</div>
+  <div class="tag">This is what each party said today, compressed to one voice, with receipts.</div>
 </header>
 <nav class="top">{nav}</nav>
 {body}
 <footer class="site">
   <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
   parties, audited nightly in public. See the <a href="{root}methodology.html">Methodology</a>.
-  Every distilled claim links to at least three real source statements. No tracking, no external requests.</p>
+  Every distilled talking point links to at least three real source statements. No tracking, no external requests.</p>
 </footer>
 </div>
 </body>
@@ -278,8 +283,13 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
 # ---------------------------------------------------------------------------
 # Inline SVG charts (no external libs)
 # ---------------------------------------------------------------------------
-def sparkline_svg(values, width: int = 120, height: int = 28) -> str:
-    """Tiny inline SVG sparkline for a list of numeric values (max(D,R) per day)."""
+_SPARK_COLOR = {"D": "#2b4c7e", "R": "#8a2f2f"}
+
+
+def sparkline_svg(values, width: int = 120, height: int = 28, party: str | None = None) -> str:
+    """Tiny inline SVG sparkline for a list of numeric values (max(D,R) per day). Colored by the
+    phrase's leading party so a red-dominant phrase's trend isn't drawn in Democratic blue (§S7 D)."""
+    color = _SPARK_COLOR.get(party or "", "#2b4c7e")
     vals = [max(0, int(v)) for v in values if v is not None]
     if len(vals) < 2:
         # Not enough points: draw a flat baseline so the cell isn't empty.
@@ -303,9 +313,9 @@ def sparkline_svg(values, width: int = 120, height: int = 28) -> str:
     return (
         f'<svg class="spark" width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
         f'role="img" aria-label="{n}-day trend, peak {vmax}">'
-        f'<polyline fill="none" stroke="#2b4c7e" stroke-width="1.5" '
+        f'<polyline fill="none" stroke="{color}" stroke-width="1.5" '
         f'stroke-linejoin="round" stroke-linecap="round" points="{poly}"/>'
-        f'<circle cx="{lastx}" cy="{lasty}" r="1.8" fill="#2b4c7e"/></svg>'
+        f'<circle cx="{lastx}" cy="{lasty}" r="1.8" fill="{color}"/></svg>'
     )
 
 
@@ -538,10 +548,6 @@ def receipts_strip(party: str, talking_points: list) -> str:
     rows = []
     for tp in tps[:4]:
         count = tp.get("member_count")
-        frags = [f for f in (tp.get("fragments") or []) if isinstance(f, dict) and f.get("text")]
-        quotes = "".join(
-            f'<div class="quote">{esc(f.get("text"))}</div>' for f in frags[:2]
-        )
         topics = tp.get("topics") or []
         topics_html = ""
         if topics:
@@ -555,24 +561,36 @@ def receipts_strip(party: str, talking_points: list) -> str:
             if isinstance(count, int)
             else "members said"
         )
-        # Citation-or-silence made VISIBLE (Art. XII): >=3 real member·date·source rows, each
-        # linking to the member's own .gov release. Persisted into the day JSON by run_assemble.
+        # Citation-or-silence made VISIBLE (Art. XII), quote BOUND to source (§Session-7 C-ii): each
+        # row is one member's OWN verbatim quote next to their name and their .gov link, so a reader
+        # can click and confirm that exact quote — never a decoupled quote/citation pair.
         cites = [c for c in (tp.get("citations") or []) if isinstance(c, dict)]
-        cites_html = ""
-        if cites:
-            lis = []
-            for c in cites[:3]:
-                nm = esc(c.get("member"))
-                pp, st = c.get("party"), c.get("state")
-                suffix = f" ({esc(pp)}-{esc(st)})" if pp and st else (f" ({esc(st)})" if st else "")
-                url = _safe_http_url(c.get("url"))
-                src = (f'<a href="{esc(url)}" rel="nofollow noopener">source</a>'
-                       if url else '<span class="faint">source</span>')
-                lis.append(f'<li>{nm}{suffix} <span class="faint">· {esc(c.get("date"))} ·</span> {src}</li>')
-            cites_html = '<ul class="cites">' + "".join(lis) + "</ul>"
+        lis = []
+        for c in cites[:3]:
+            nm = esc(c.get("member"))
+            pp, st = c.get("party"), c.get("state")
+            suffix = f" ({esc(pp)}-{esc(st)})" if pp and st else (f" ({esc(st)})" if st else "")
+            url = _safe_http_url(c.get("url"))
+            src = (f'<a href="{esc(url)}" rel="nofollow noopener">source</a>'
+                   if url else '<span class="faint">source</span>')
+            q = c.get("quote")
+            qhtml = f'<div class="quote">{esc(q)}</div>' if q else ""
+            lis.append(
+                f'<li>{qhtml}<div class="citemeta">{nm}{suffix} '
+                f'<span class="faint">· {esc(c.get("date"))} ·</span> {src}</div></li>'
+            )
+        cites_html = ('<ul class="cites">' + "".join(lis) + "</ul>") if lis else ""
+        more_html = ""
+        if isinstance(count, int) and count > len(lis) and lis:
+            more_html = f'<div class="rmore"><small>showing {len(lis)} of {esc(count)} members</small></div>'
+        # Fallback for historical days assembled before per-citation quotes existed: render the
+        # verbatim fragment quotes so NO talking point ever renders empty receipts. §Session-7 (#7).
+        if not lis:
+            frags = [f for f in (tp.get("fragments") or []) if isinstance(f, dict) and f.get("text")]
+            cites_html = "".join(f'<div class="quote">{esc(f.get("text"))}</div>' for f in frags[:2])
         rows.append(
             f'<div class="receipt"><div class="rhead">{count_html}</div>'
-            f'{quotes}{topics_html}{cites_html}</div>'
+            f'{topics_html}{cites_html}{more_html}</div>'
         )
     return (
         '<div class="receipts"><div class="rlabel">Receipts</div>'
@@ -605,11 +623,26 @@ def daily_line_panel(party: str, day_data) -> str:
         flags.append("verifier: passed" if ver.get("passed") else "verifier: FAILED")
     flags_html = f'<div class="metaflags">{" · ".join(flags)}</div>' if flags else ""
 
+    # In-card composite disclaimer (A3): a cropped screenshot of a single card must carry its own
+    # "this is a composite, not a member quote" caption — the composite is machine-written; only the
+    # quoted spans in the receipts are verbatim.
+    cnote = ('<p class="cnote">A composite voice, machine-composed from the day&rsquo;s measured '
+             'phrases. No member spoke these exact sentences; the quoted spans are verbatim (see receipts).</p>')
+
+    # Zero-cluster honesty (A2): a party with statements but no published talking points has nothing
+    # to cite — say so, so the "every talking point is citation-backed" promise is never contradicted
+    # by a receipt-free card.
+    body_tail = receipts_strip(party, tps)
+    if not [t for t in (tps or []) if isinstance(t, dict)]:
+        body_tail = (f'<p class="nocite">No talking point cleared the {config.SYNC_MIN_MEMBERS}-member '
+                     f'threshold today &mdash; nothing to cite.</p>')
+
     return (
         f'<div class="line {esc(party)}">{who}'
         f'<p class="composite">{esc(composite)}</p>'
+        f'{cnote}'
         f'{flags_html}'
-        f'{receipts_strip(party, tps)}'
+        f'{body_tail}'
         f'</div>'
     )
 
@@ -644,15 +677,10 @@ def sync_table(day_data, slugs_with_pages, depth: int) -> str:
         fs = r.get("first_seen") or {}
         fs_date = fs.get("date", "")
 
-        # sparkline: from that phrase's own series (last 14 present days), max(D,R)
-        spark = ""
-        if slug in slugs_with_pages:
-            pdata = _load_json(DERIVED / "phrases" / f"{slug}.json")
-            if isinstance(pdata, dict):
-                last = _series_last_present(pdata.get("series"), 14)
-                spark = sparkline_svg([max(int(x.get("D") or 0), int(x.get("R") or 0)) for x in last])
-        if not spark:
-            spark = '<span class="faint">—</span>'
+        # sparkline from the row's own 14-day series (carried by build.top_synchronized), colored by
+        # the phrase's leading party — EVERY row gets a trend, not just phrases with a detail page.
+        series = [int(v) for v in (r.get("series") or []) if v is not None]
+        spark = sparkline_svg(series, party=party) if len(series) >= 2 else '<span class="faint">—</span>'
 
         if slug in slugs_with_pages:
             phrase_cell = f'<a href="{root}phrases/{esc(slug)}.html">{esc(ngram)}</a>'
@@ -687,6 +715,14 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
     parts = [f"<h1>{title_line}</h1>"]
     parts.append(f'<p class="subhead">What each party said on {esc(day)}, compressed to one voice, with receipts.</p>')
 
+    # Cadence note (A5): the header says "Today" but a day's press releases are only complete the next
+    # morning, so the freshest complete reading is yesterday. Say so, so the page never looks stale.
+    if is_today:
+        parts.append(
+            f'<div class="banner">Press releases for a given day are complete the next morning, so this '
+            f'&ldquo;today&rdquo; reading covers the most recent complete day: <strong>{esc(day)}</strong>.</div>'
+        )
+
     parts.append(banner_html(day_data, symmetry))
 
     # Two Daily Lines side by side
@@ -716,7 +752,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         if not symmetry
         else f'<a href="{root}methodology.html">nightly symmetry audit</a>'
     )
-    parts.append(f'<p class="muted"><small>Neutrality armor: {audit_link}. Every claim above is citation-backed.</small></p>')
+    parts.append(f'<p class="muted"><small>Neutrality armor: {audit_link}. Every distilled talking point above is citation-backed.</small></p>')
 
     # Top synchronized phrases
     parts.append("<h2>Top synchronized phrases</h2>")
@@ -793,7 +829,8 @@ def phrases_index_body(top):
     parts = ["<h1>Tracked phrases</h1>"]
     parts.append(
         '<p class="subhead">First-appearance tracking and adoption curves across members. '
-        "A phrase jumping from a handful of accounts to dozens in a day is the public output of a private memo.</p>"
+        "When a phrase jumps from a handful of members to dozens in a day, the convergence is the measurement — "
+        "we record who said what, and when, and let you draw your own conclusions about why.</p>"
     )
 
     def render_table(rows, heading, sort_label):
@@ -969,10 +1006,14 @@ def methodology_body():
         "build from code-computed talking-point clusters and code-computed numbers; it cannot introduce a topic, "
         "claim, or number that the deterministic engine did not measure.</p>"
     )
+    # Drive the displayed files from the SAME registry that computes the published prompts_sha
+    # (llm._PROMPT_FILES) so the text shown here always matches the hash on this page — an auditor who
+    # re-hashes the displayed prompt gets the published value. Never hardcode versions here. §S7 (#8).
+    from pipeline import llm as _llm
     prompt_files = [
-        ("P1 — fragment extraction", "P1_extraction.v1.0.txt"),
-        ("P2 — Daily Line", "P2_daily_line.v1.0.txt"),
-        ("P3 — quiet day", "P3_quiet_day.v1.0.txt"),
+        ("P1 — fragment extraction", _llm._PROMPT_FILES["P1"]),
+        ("P2 — Daily Line", _llm._PROMPT_FILES["P2"]),
+        ("P3 — quiet day", _llm._PROMPT_FILES["P3"]),
     ]
     for label, fname in prompt_files:
         text = _read_text(PROMPTS_DIR / fname)
@@ -1000,8 +1041,8 @@ def methodology_body():
     # (e) corrections policy + public log (neutrality armor: corrections are dated posts, never silent edits)
     parts.append("<h2>Corrections</h2>")
     parts.append(
-        "<p>Every claim is anchored to at least three real source statements (member, date, source). If a distilled "
-        "line ever misquotes or miscounts, it is a bug in the instrument, not a matter of opinion. Corrections are "
+        "<p>Every distilled talking point is anchored to at least three real source statements (member, date, source). "
+        "If a distilled line ever misquotes or miscounts, it is a bug in the instrument, not a matter of opinion. Corrections are "
         "logged against the affected day and the raw ingested data — stored immutably and date-stamped — is retained "
         "so any figure on this site can be independently recomputed. Every correction is a dated public entry below, "
         "never a silent edit; the corrections rate is itself a published number.</p>"
@@ -1040,7 +1081,7 @@ def methodology_body():
 def about_body():
     parts = ["<h1>About OnScript</h1>"]
     parts.append(
-        '<p class="subhead">This is literally what each party said today, compressed to one voice, with receipts.</p>'
+        '<p class="subhead">This is what each party said today, compressed to one voice, with receipts.</p>'
     )
     parts.append(
         "<p><strong>Compression, not parody.</strong> OnScript ingests what elected U.S. officials publicly say "
@@ -1049,9 +1090,10 @@ def about_body():
         "substitute for it.</p>"
     )
     parts.append(
-        "<p><strong>The data is the joke.</strong> When dozens of members converge on the same phrase within a day, "
-        "that convergence is the story — the public output of private coordination. We track first appearances, plot "
-        "adoption curves, and score how on-script each party's language runs, day over day.</p>"
+        "<p><strong>The data is the story.</strong> When dozens of members converge on the same phrase within a day, "
+        "that convergence is the measurement — independent members reaching for identical language. We record it; we "
+        "do not assert its cause. We track first appearances, plot adoption curves, and score how on-script each "
+        "party's language runs, day over day.</p>"
     )
     parts.append(
         "<p><strong>Citation-backed.</strong> Every distilled talking point links to at least three real source "
@@ -1089,8 +1131,9 @@ def about_body():
         "</ul>"
     )
     parts.append(
-        "<p>Each is labeled automated, posts one citation-backed thread per day, follows only the other, and never "
-        "replies, likes, or reposts. Their bios point here for disclosure.</p>"
+        "<p>At public launch, each will post one citation-backed thread per day, labeled automated, following only "
+        "the other, and never replying, liking, or reposting. The accounts are live but have not begun posting; "
+        "their bios point here for disclosure.</p>"
     )
     parts.append("<h2>How it's built</h2>")
     parts.append(
@@ -1150,11 +1193,13 @@ def build_site():
     written.append("index.html")
 
     # ---- day/<day>.html for every day (with daily_lines OR at least top_synchronized) ----
-    for i, (d, data) in enumerate(days):
-        if not (has_daily_lines(data) or data.get("top_synchronized")):
-            continue
-        prev_day = day_order[i - 1] if i > 0 else None
-        next_day = day_order[i + 1] if i < len(day_order) - 1 else None
+    # prev/next must reference only days that ACTUALLY get a page (a stub day with neither daily_lines
+    # nor top_synchronized is skipped) — else the newest page links a 404 "next day". §Session-7 (D).
+    rendered = [(d, data) for d, data in days if has_daily_lines(data) or data.get("top_synchronized")]
+    rendered_order = [d for d, _ in rendered]
+    for i, (d, data) in enumerate(rendered):
+        prev_day = rendered_order[i - 1] if i > 0 else None
+        next_day = rendered_order[i + 1] if i < len(rendered_order) - 1 else None
         body = day_view_body(d, data, SLUGS_WITH_PAGES, depth=1,
                              prev_day=prev_day, next_day=next_day, is_today=False)
         (OUT / "day" / f"{d}.html").write_text(
@@ -1166,6 +1211,14 @@ def build_site():
 
     # ---- phrases/index.html ----
     top = _load_json(DERIVED / "phrases" / "top.json") or {}
+    if not (top.get("by_peak") or top.get("by_velocity")):
+        # A thin focus day leaves top.json empty; fall back to the most recent rendered day's top
+        # phrases so the linked hub is never a blank page. §Session-7 (D).
+        for d, data in reversed(rendered):
+            ts = data.get("top_synchronized")
+            if ts:
+                top = {"day": d, "by_peak": ts, "by_velocity": []}
+                break
     (OUT / "phrases" / "index.html").write_text(
         page("OnScript · Tracked phrases", phrases_index_body(top), depth=1,
              description="First-appearance tracking and adoption curves for coordinated political phrases."),

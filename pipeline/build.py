@@ -62,23 +62,34 @@ def top_synchronized(ledger: dict, day: str, k: int = 50) -> list[dict]:
         if not d:
             continue
         # Display-time boilerplate guard: re-apply the current suppression rules so regex/knob
-        # updates take effect on an already-built ledger without re-running the engine.
-        if boilerplate.is_boilerplate_ngram(ngram) or boilerplate.is_low_content(ngram):
+        # updates take effect on an already-built ledger without re-running the engine. is_weak_label
+        # also drops connective-glue phrases ("and the trump administration's") from the table (C-i).
+        if (boilerplate.is_boilerplate_ngram(ngram) or boilerplate.is_low_content(ngram)
+                or boilerplate.is_weak_label(ngram)):
             continue
         peak = max((d.get(p, 0) for p in config.COMPOSITE_PARTIES), default=0)
         if peak < config.SYNC_MIN_MEMBERS:
             continue
         party = max(config.COMPOSITE_PARTIES, key=lambda p: d.get(p, 0))
+        # 14-day series (max party count per present day) carried on the row so EVERY table row can
+        # draw a sparkline without needing a per-phrase detail page. §Session-7 (D).
+        daily = e["daily"]
+        sdays = sorted(dd for dd in daily if dd <= day)[-14:]
+        series = [max(daily[dd].get("D", 0), daily[dd].get("R", 0)) for dd in sdays]
         rows.append({
             "ngram": ngram, "slug": phrase_slug(ngram), "n": e["n"],
             "day_peak": peak, "party": party,
             "counts": {p: d.get(p, 0) for p in config.ALL_PARTIES},
             "velocity": _velocity(e["daily"], day),
-            "first_seen": e["first_seen"], "df_weight": e["df_weight"],
+            "first_seen": e["first_seen"], "df_weight": e["df_weight"], "series": series,
             "_members": _members_on(e, day, party),
         })
     rows = _collapse_nested(rows)
-    rows.sort(key=lambda r: (r["day_peak"], r["velocity"]), reverse=True)
+    # Rank: coordination magnitude first (biggest converged phrase leads), then CONTENT-richness so a
+    # generic 2-word phrase ("an important step") sinks below a substantive one of equal peak
+    # ("federal financial assistance"), then distinctiveness, then velocity. §Session-7 (C-iii).
+    rows.sort(key=lambda r: (r["day_peak"], boilerplate.content_word_count(r["ngram"]),
+                             r.get("df_weight", 0), r["velocity"]), reverse=True)
     rows = rows[:k]
     for r in rows:
         r.pop("_members", None)

@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-from pipeline import build, cluster, config, distill, extract, llm, ops, roster, util  # noqa: E402
+from pipeline import boilerplate, build, cluster, config, distill, extract, llm, ops, roster, util  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -34,6 +34,14 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     distinct unit (joint/delegation collapses to one, §11 trap 2). This is the citation-or-silence
     receipt the public pages render (Art. XII). Persisted into the day JSON so the site is
     self-contained (no roster re-resolution at render time)."""
+    # C-ii: bind each citation to the specific fragment THAT member's statement contributed, so a
+    # displayed quote sits next to the member who said it and their .gov link — a reader can click and
+    # verify that exact quote, instead of a decoupled quote/citation pair that points at unrelated
+    # topics. §Session-7.
+    frag_by_stmt: dict = {}
+    for f in tp.get("fragments", []):
+        if f.get("statement") and f.get("text") and f["statement"] not in frag_by_stmt:
+            frag_by_stmt[f["statement"]] = f["text"]
     cites, seen = [], set()
     for sid in tp.get("statements", []):
         s = stmt_by_id.get(sid)
@@ -45,7 +53,8 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
             continue
         seen.add(unit)
         cites.append({"member": _name(m.get("bioguide"), rmap), "party": m.get("party"),
-                      "state": m.get("state"), "date": s.get("published_at"), "url": s.get("url")})
+                      "state": m.get("state"), "date": s.get("published_at"), "url": s.get("url"),
+                      "quote": frag_by_stmt.get(sid)})
         if len(cites) >= k:
             break
     return cites
@@ -88,6 +97,12 @@ def assemble(day: str) -> dict:
         from pipeline import verify
         for tp in tps:
             ok, _ = verify.verify_talking_point(tp, stmt_by_id)
+            # C-i: a coherent quorum (>=3 members, verbatim) is not enough — the BINDING PHRASE must
+            # be a real talking point, not connective glue. A weak label ("and the trump
+            # administration's") means the members share grammar, not a message, and its receipts
+            # would point at unrelated topics. Suppress it (never published, never narrated).
+            if ok and boilerplate.is_weak_label(tp.get("label", "")):
+                ok = False
             if ok:
                 tp["citations"] = _citations(tp, stmt_by_id, rmap)  # >=3 real (member,date,url)
                 published.append(tp)
@@ -99,8 +114,17 @@ def assemble(day: str) -> dict:
         top_phrase = None
         if top_rows:
             r = top_rows[0]
-            top_phrase = {"text": r["ngram"], "members": r["day_peak"],
-                          "first_sayer": _name(r["first_seen"]["bioguide"], rmap)}
+            fsb = (r.get("first_seen") or {}).get("bioguide")
+            fsm = rmap.get(fsb) or {}
+            top_phrase = {"text": r["ngram"], "members": r["day_peak"]}
+            # Expose a first-sayer ONLY when the roster fully resolves it (name + party + state).
+            # first_seen is corpus-wide, so the bioguide is often a former member absent from the
+            # current roster — in that case omit it entirely, so the voice has nothing to fabricate
+            # (the verifier does not ground names/party/state). §Session-7 (#4). Present => the voice
+            # tags it "Name (R-SC)"; may be the OTHER party (real cross-party origination).
+            if fsm.get("party") and fsm.get("state") and fsm.get("name"):
+                top_phrase.update({"first_sayer": _name(fsb, rmap),
+                                   "first_sayer_party": fsm["party"], "first_sayer_state": fsm["state"]})
 
         distillation = distill.daily_line(party, day, party_stmts, published, top_phrase, stmt_by_id,
                                           allow_llm_voice=allow_llm_voice)

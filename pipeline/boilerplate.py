@@ -98,6 +98,27 @@ def is_low_content(ngram: str) -> bool:
     return content_word_count(ngram) < MIN_CONTENT_WORDS
 
 
+# A talking-point LABEL that is connective GLUE — begins with a coordinating conjunction AND trails
+# off in a possessive ("and the trump administration's", which glued three unrelated statements —
+# Cuba, USDA, immigration — by that span) — is a mid-sentence fragment, not a message. This pairing is
+# high-precision: real conjunction-led phrases end in a content noun ("and civil rights", "and
+# republicans in congress", "and transparent investigation into the killing") and are KEPT; only the
+# possessive-trailing connective is dropped. Rejecting on the leading conjunction ALONE over-suppresses
+# real coordinated phrases (adversarial-review finding), so we require both signals. §Session-7 (C-i).
+_CONJUNCTION_START = frozenset("and but or nor yet so".split())
+
+
+def is_weak_label(ngram: str) -> bool:
+    """True if an n-gram is a poor talking-point NAME: low-content, or connective glue (begins with a
+    coordinating conjunction AND ends in a possessive). Used to suppress clusters bound by grammar,
+    not by a message — precisely, so coherent conjunction-led phrases survive."""
+    toks = (ngram or "").split()
+    if not toks or is_low_content(ngram):
+        return True
+    tail = (ngram or "").rstrip()
+    return toks[0] in _CONJUNCTION_START and (tail.endswith("'s") or tail.endswith("s'"))
+
+
 def clean_text(text: str) -> str:
     """Remove structural boilerplate before tokenization."""
     t = text or ""

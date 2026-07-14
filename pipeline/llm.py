@@ -73,8 +73,8 @@ def approx_tokens(text: str) -> int:
 # ---------------------------------------------------------------------------
 _PROMPT_FILES = {
     "P1": "P1_extraction.v1.0.txt",
-    "P2": "P2_daily_line.v1.0.txt",
-    "P3": "P3_quiet_day.v1.0.txt",
+    "P2": "P2_daily_line.v1.1.txt",   # v1.1 (§Session-7 B): no fourth-wall leaks, number style, party-tagged first-sayer
+    "P3": "P3_quiet_day.v1.1.txt",    # v1.1: same fourth-wall + number-style rules
     "P4": "P4_era_chapter.v1.1.txt",  # Alexandria era chapters (subscription-generated, §1.3);
     #                                   v1.1 hardened rules 2/3 (no quoted names, no invented digits)
 }
