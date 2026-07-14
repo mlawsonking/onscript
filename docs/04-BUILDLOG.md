@@ -426,6 +426,40 @@ constraint. Symmetry follow-up (iii above) is now **fixed** (day-scoped audit, d
 assemble). This corrects the "corrupt local ledger" framing used earlier in this BUILDLOG and in
 CLAUDE.md "You are here".
 
+### Session 6 (2026-07-14) — the real Sonnet voice, wired dark behind a kill-switch + strict budget
+
+Michael greenlit wiring the live LLM voice (#71). Executed the Phase-3 plan — the composite voice was
+always meant to be Sonnet; the deterministic template was the $0 placeholder. Built **dark**:
+`LLM_VOICE_ENABLED` repo variable defaults off, so the commit bills nothing; the voice only calls the
+API when Michael flips the switch, and flipping it off reverts to $0 instantly (the POSTING_ENABLED
+pattern). **Scope: voice only** (2 Sonnet direct calls/day, ~$0.01/day ≈ $0.30/mo); extraction stays
+deterministic ($0). Every composite still passes the blocking verifier or drops to the deterministic
+fallback — an ungrounded LLM claim can never publish.
+
+**Strict budget:** a month-to-date spend ledger (`data/derived/cost/YYYY-MM.json`) accumulates REAL
+token usage; `voice_budget_state` HALTS the voice at a **$9 code ceiling** (below the $10 Console
+cap); ntfy warns at $8; cost is recorded BEFORE the day-JSON write and is date-aware for Sonnet-5's
+2026-09-01 price step. Monitoring surfaces: Console (authoritative), the cost ledger (committed), the
+assemble manifest (`month_to_date_usd`/`voice_used`/`voice_budget_state`), ntfy, methodology tokens.
+
+**Adversarial review found + fixed 7 defects before commit** (2 HIGH, 3 MED, 2 LOW): the
+fabricated-number whitelist hole (a digit inside a member quote could publish as a fake aggregate —
+now only code-computed counts/dates are allowed unquoted, quote-numbers exempt via grounding); a
+blank Sonnet response publishing as a verified line (now guarded); quote grounding accepting
+negation-dropping truncations + cross-fragment stitching (now min-length + negation-guard); the cost
+ledger overwriting instead of accumulating and excluding today from the halt check (now accumulates,
+halt includes today); undated Sonnet-5 pricing (now date-aware); verifier-fail keeping the
+sonnet_direct label; null API usage recording $0. Also shipped the **honest no-coordination line**
+("No phrase was shared by N or more of us today") so an empty party column reads as a measured finding
+(the silence story), not a gap — answers the "why is the R column empty" question. **69 tests green;
+dry-run $0 throughout; nothing billed; the gate is off.** These distill/verify changes deploy on the
+next cloud assemble (they regenerate the composite); the no-coordination line + hardened verifier
+apply to new days going forward.
+
+**Michael to turn it on (dark-week validation):** set repo variable `LLM_VOICE_ENABLED=true`, run
+assemble (or wait for cron), watch 2-3 runs for cost (~$0.01/day) + verifier pass + prose quality,
+then it's validated for launch alongside the streak. Off = `false`/delete → instant $0.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
