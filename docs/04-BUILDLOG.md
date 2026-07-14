@@ -380,9 +380,36 @@ representative unit tests rather than a local end-to-end assemble.
 
 **Committed:** code (`config`, `distill`, `extract`, `post_bluesky`, `run_assemble`, `site`) + the
 promoted `scripts/analysis/*` + `tests/test_wave0.py` + `tests/test_analysis.py` + the
-`assemble.yml` `POSTING_ENABLED` env. **Not committed** (cloud owns them): `data/derived`,
-`site/public`. **Never touched:** posting stayed off; no release flag flipped; the Anthropic key was
-never set locally (dry-run $0 throughout).
+`assemble.yml` `POSTING_ENABLED` env. **Never touched:** posting stayed off; no release flag flipped;
+the Anthropic key was never set locally (dry-run $0 throughout).
+
+**Session 5b (same day) — live-site correctness audit + honesty render deployed.** A four-lens audit
+of the LIVE onscript.news found its shape right (coordination signal first; neutrality/symmetry
+disclosures honest) but three live defects, all the pre-Session-5 render: the per-line flag stamped
+`model: claude-sonnet-5 · generator: sonnet_batch` beside a banner admitting the text is
+"deterministic" (a self-contradicting false-provenance claim); no member·date·.gov receipt rows; and
+a bare About page. Root cause the Session-5 code already fixed — but the commit was **unpushed**, so
+none of it was live; the site is served statically from the committed `site/public/` (no vercel.json).
+One residual the fix missed: `site.py` printed the STORED `model`/`generator` verbatim, so historical
+day pages would keep the false `claude-sonnet-5` even after redeploy. **Fixed** with a render-time
+`_voice_flags` (any non-production generator renders uniformly as "voice: deterministic template (not
+a language model)" and the stale model id is suppressed — corrects EVERY page without re-assembly; new
+test; 56 green). Then **regenerated `site/public` locally with `site.py` only** ($0, no API, no
+ledger — it renders committed derived JSONs) and **pushed** (commits 09acd99 + 041ffd7, clean
+fast-forward). Verified on the live page: `claude-sonnet-5` is eradicated site-wide, About discloses
+the operator + both accounts, the honesty banner is sharp, and the signal/symmetry are intact.
+Freshness confirmed correct: `util.product_day` = yesterday, so showing 07-13 on 07-14 is by design
+(07-14 is an empty stub). Deviation from the build-session convention "cloud owns site/public": the
+owner explicitly asked to make the public site correct now, and with no `gh` to dispatch a run, a
+local `site.py` render + push was the only immediate path — the next cloud assemble cleanly supersedes
+it (same data, adds receipts). **Follow-ups the redeploy does NOT fix (grind queue, all Opus-doable):**
+(i) member·date·.gov receipt ROWS + the cleaner distill quote wording need a fresh cloud assemble
+(they live in the stored day JSON, not the render) — the 11:30 UTC cron or a manual dispatch applies
+them; (ii) the Tracked-Phrases index is empty on thin days because `build.py` keys `phrases/top.json`
+to the current (often stub) focus day, not a rolling window / last-substantive day; (iii) the nightly
+symmetry audit appears to present cumulative corpus totals as if daily (verify + fix); (iv) prompt git
+history is not rendered on Methodology (Art. VIII); (v) guard the on-script/discipline value against
+meaningless low-N days; phrases index caps at 40 vs the spec's 50.
 
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
