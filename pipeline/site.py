@@ -859,15 +859,18 @@ def symmetry_table(sym):
             dv, rv = esc(dv if dv is not None else "—"), esc(rv if rv is not None else "—")
         return f"<tr><td>{esc(label)}</td><td class='num'>{dv}</td><td class='num'>{rv}</td></tr>"
 
+    # Every row is scoped to the audited day (labeled so no one reads a cumulative corpus total as
+    # "ingested today"); caucus size is the full corpus caucus proxy, so Coverage = the share of the
+    # caucus that spoke that day. §Session-5.
     rows = [
-        row("Statements ingested", "statements_ingested"),
-        row("Members covered", "members_covered"),
-        row("Caucus size", "caucus_size"),
-        row("Coverage", "coverage_pct", "pct"),
-        row("Tokens in", "tokens_in"),
-        row("Tokens out", "tokens_out"),
-        row("Claims published", "claims_published"),
-        row("Claims dropped", "claims_dropped"),
+        row("Statements ingested (this day)", "statements_ingested"),
+        row("Members covered (this day)", "members_covered"),
+        row("Caucus size (corpus)", "caucus_size"),
+        row("Coverage (this day)", "coverage_pct", "pct"),
+        row("Tokens in (this day)", "tokens_in"),
+        row("Tokens out (this day)", "tokens_out"),
+        row("Claims published (this day)", "claims_published"),
+        row("Claims dropped (this day)", "claims_dropped"),
     ]
     return (
         '<div class="scroll"><table>'

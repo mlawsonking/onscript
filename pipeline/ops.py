@@ -71,10 +71,15 @@ def ntfy(title: str, message: str, *, priority: str = "default") -> dict:
 def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, freshness: dict,
                     degraded: bool) -> dict:
     """The §5.2 audit, per party, published on the Methodology page every day."""
-    caucus = caucus_sizes(statements)
+    caucus = caucus_sizes(statements)  # full corpus caucus proxy (all members with official sites)
     parties: dict[str, dict] = {}
     for p in config.COMPOSITE_PARTIES:
-        stmts = [s for s in statements if (s.get("member") or {}).get("party") == p and s.get("lane") == 1]
+        # DAY-SCOPED: every per-party row is THIS DAY's Lane-1 ingestion, consistent with the per-day
+        # token/claim rows below — never the cumulative corpus total mislabeled under the day
+        # (which read as "44,767 statements ingested today / 100% coverage"). §Session-5 fix.
+        stmts = [s for s in statements
+                 if (s.get("member") or {}).get("party") == p and s.get("lane") == 1
+                 and s.get("published_at") == day]
         members = {(s.get("member") or {}).get("bioguide") for s in stmts if (s.get("member") or {}).get("bioguide")}
         llm_p = per_party_llm.get(p, {})
         parties[p] = {

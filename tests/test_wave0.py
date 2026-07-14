@@ -316,6 +316,30 @@ def test_idempotency_skips_already_posted_party():
         restore()
 
 
+def test_symmetry_report_is_day_scoped_not_cumulative():
+    """The nightly symmetry audit reports THIS DAY's ingestion/coverage, not cumulative corpus totals
+    mislabeled under the day. caucus_size stays the full-corpus proxy, so coverage = share of the
+    caucus that spoke that day. §Session-5."""
+    from pipeline import ops
+    stmts = (
+        [{"member": {"party": "D", "bioguide": f"D{i}"}, "lane": 1, "published_at": "2026-07-13"} for i in range(3)]
+        + [{"member": {"party": "D", "bioguide": "DOLD"}, "lane": 1, "published_at": "2025-01-01"}]  # older, must not count today
+        + [{"member": {"party": "R", "bioguide": "R1"}, "lane": 1, "published_at": "2026-07-13"}]
+    )
+    saved = ops.util.write_json
+    ops.util.write_json = lambda p, o: None  # no data/derived side effects in the test
+    try:
+        rep = ops.symmetry_report("2026-07-13", stmts, {}, freshness={}, degraded=False)
+    finally:
+        ops.util.write_json = saved
+    d = rep["parties"]["D"]
+    assert d["statements_ingested"] == 3      # only the day's 3, not the older 4th
+    assert d["members_covered"] == 3          # D0,D1,D2 — DOLD did not speak today
+    assert d["caucus_size"] == 4              # full corpus proxy still counts DOLD
+    assert d["coverage_pct"] == 75.0          # 3 of the 4 known D members spoke that day
+    assert rep["day"] == "2026-07-13"
+
+
 def test_deadman_fires_when_a_creds_present_post_throws():
     """HIGH-3: if the real post throws (network/401/timeout) the dead-man MUST still fire — the
     error result carries creds_present so the missing-post detector sees it."""
