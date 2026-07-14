@@ -310,6 +310,17 @@ amendment (deviation recorded here per doc-map convention — the gameplan file 
    gate (repo variable = the launch switch) + write post results into the assemble manifest with a
    dead-man alert on expected-but-absent posts; (b) promote the citation/era-fingerprint generators
    from scratchpad into `scripts/` (Art. VI); (c) About page lists the real accounts (Art. XII).
+   **Polish punch list (from the 2026-07-14 live-page editorial review):** (d) the index honesty
+   banner still renders the "not yet the production model / placeholder" copy while generators are
+   `sonnet_batch` — condition that copy on dry-run generators only (the voice is live; the site
+   under-claims); (e) **receipts are not visible on the public pages** — index and day page render
+   zero member `.gov` citation links even though claims verify upstream; persist the Daily Lines'
+   talking-point citations into the day JSON and render member·date·source rows under each line
+   (wire in `citations*.json` where useful) — Art. XII armor, S5 "receipts pages" spirit; (f) P2
+   taste (the dark week's sanctioned tuning): composite quoted an ungrammatical sub-fragment
+   ("who supports the … act's historic") — prefer maximal collapsed phrases for quotes; (g) the
+   thin/quiet fallback line ("Today 51 of us released statements." full stop) should deterministically
+   append the day's top synchronized phrase + count (code-computed, no LLM claim needed).
 3. **S2→S3 launch (deliberate, gameplan §9):** after the §1.4.1 gate (3 unattended real runs) +
    Michael's audits: re-add passwords, flip `POSTING_ENABLED`, **flip repo public** (Art. XIV),
    announce. Launch is a decision, not a cron side effect.
