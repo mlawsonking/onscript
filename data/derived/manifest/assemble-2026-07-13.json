@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "run_id": "assemble-2026-07-14",
+  "kind": "assemble",
+  "generated_at": "2026-07-14T12:47:46Z",
+  "day": "2026-07-13",
+  "dry_run": false,
+  "extract_cost": {
+    "stage": "extract",
+    "model": "claude-haiku-4-5",
+    "generator": "haiku_batch",
+    "new_statements": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "est_cost_usd": 0.0
+  },
+  "per_party_llm": {
+    "D": {
+      "tokens_in": 1671,
+      "tokens_out": 400,
+      "claims_published": 2,
+      "claims_dropped": 0
+    },
+    "R": {
+      "tokens_in": 1529,
+      "tokens_out": 400,
+      "claims_published": 0,
+      "claims_dropped": 0
+    }
+  },
+  "daily_voice_cost_usd": 0.0072,
+  "governor_state": "nominal",
+  "degraded": false,
+  "symmetry": {
+    "prompts_sha": {
+      "P1": "0cddc44ce3b70062f8bce6e98e50132553ff16b3e383a51a29fd867b3b134e9f",
+      "P2": "2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764",
+      "P3": "08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42"
+    },
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  },
+  "alerts": []
+}
