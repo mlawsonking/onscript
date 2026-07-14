@@ -498,6 +498,71 @@ the spec's 50. (5) Optional: wire Haiku extraction (voice-only was the deliberat
 stays deterministic + $0). (6) The prompt git *history* on Methodology (the live prompts already
 render; history is a nice-to-have). Prompt-transparency (Art. VIII) is otherwise satisfied.
 
+### Session 7 (2026-07-14, Fable) — the bones review: editorial ruling + pre-launch punch list
+
+Four-lens review (cold-read / editorial-voice / hostile-skeptic / fact-checker) of the live site with
+the Sonnet voice on, plus a direct Fable read. **Ruling: the bones are strong.** The accuracy lens
+found **zero numeric errors** (every figure on the homepage/day page reconciles with the day JSON;
+all six receipts resolve to real members with correct party/state and own-domain .gov URLs; live
+matches committed). The neutrality architecture survives a hostile read (R's null day reads as a
+measured result; the 24%/14% coverage gap is disclosed with denominators; identical prompt SHAs).
+And the attention thesis validated: the cold reader "got it" in ten seconds and named the R line
+("We remain 51 statements wide and zero phrases deep") as the thing they'd screenshot. The failures
+are all in the last inch — labeling, wording, and ONE machine-level defect — and they cluster exactly
+where skeptics will look. **Pre-launch punch list (Opus, in order):**
+
+**A. Wording/copy (cheap, high-value — next Opus session, deploys next assemble):**
+1. Drop "literally" from the every-page tagline → "This is what each party said today, compressed to
+   one voice, with receipts." ("literally" over an LLM composite is the pedantic rebuttal we can least
+   afford — skeptic HIGH.)
+2. Scope the citation promise to what's true as rendered: index/footer "Every claim above is
+   citation-backed" → "Every distilled **talking point** above is citation-backed" (match About).
+   On zero-cluster days add a card note: "No talking point cleared the 3-member bar today — nothing
+   to cite." (The receipt-free R card directly under the universal claim is screenshot ammunition —
+   skeptic HIGH.)
+3. In-card composite cue so a cropped screenshot carries its own disclaimer: a small caption under
+   each Daily Line — "A composite voice, machine-written from the day's measured phrases. No member
+   spoke these sentences; quoted spans are verbatim (see receipts)."
+4. About present-tense fix: accounts "post one thread per day" → "will post one citation-backed
+   thread per day (posting begins at public launch)" — they have never posted; tense = accuracy on
+   the disclosure page.
+5. Cadence banner under the H1 (the .banner class already exists, unused): "Press releases for a day
+   are complete the next morning — today's reading covers {day}."
+6. Causal overclaim in About/Phrases marketing copy ("the public output of private coordination"/"a
+   private memo") → measured co-usage language ("when dozens of members converge on identical
+   phrasing in a day, the convergence is the story; we measure it, we don't assert its cause").
+   The instrument pages already have this right; the marketing copy must match (Constitution:
+   correlation-not-cause).
+
+**B. Prompt bump P2/P3 → v1.1 (public, versioned):** (a) never name the input mechanics — "cluster(s),
+talking point(s), STATS, null, sync minimum, provided" must not appear; the "we" is the party, not a
+system describing its data (the live R line says "the top phrase is null" — the JSON leaking into the
+party's mouth; editorial HIGH). Zero-cluster days in plain speech: "Across 51 statements, no phrase
+was shared by three or more of us." (b) one number style both parties (spell one–nine, numerals 10+).
+(c) first-sayer named with party-state ("Tim Scott (R-SC)") — requires first_sayer_party in STATS.
+Keep corpus-wide first-sayer (cross-party origination IS the product); just annotate it.
+
+**C. Engine (the one machine-level defect, root of three findings):** cluster label quality. The
+"and the trump administration's" cluster — a connective-glue n-gram — published, got receipts pointing
+at Cuba trips and a USDA lawsuit, and the voice upgraded it to an "immigration… consistent
+formulation." The one reader who clicks to verify the most charged quote on the page lands on
+receipts that don't support it — receipts sowing doubt is the product's exact failure mode (3 lenses
+flagged independently). Fix: (i) publish-time gate — a cluster whose label fails the low-content/
+connective test is not published or narrated (the boilerplate machinery exists; apply it to labels);
+(ii) bind each displayed fragment quote to its own member/source (data already links fragments →
+statements); (iii) same root as the generic phrase-table tail Michael spotted — fold df_weight/
+low-content into the daily table ranking.
+
+**D. Wiring polish:** phrases hub must never render empty (fall back to all-time/last-substantive-day
+top list — 292 phrase pages already exist); marquee phrases clickable with sparklines (wire detail
+pages for highest-count rows first); prev/next links only to pages that exist (07-13 currently links
+a 404 "next day"); lowercase verbatim quotes (usda, trump) get display-case restoration while keeping
+the lowercase form for matching; sparkline color should follow the phrase's leading party.
+
+**Noise, filtered (do not spend time):** sparkline window semantics (invisible without decoding the
+SVG), CSS nitpicks, CDN cache lag, missing dark features (deliberate), re-runs rewriting the day's
+line (recorded fact, manifest tracks it; single daily cron in practice).
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
