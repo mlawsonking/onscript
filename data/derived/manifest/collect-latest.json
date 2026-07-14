@@ -2,49 +2,49 @@
   "schema_version": 1,
   "run_id": "collect-2026-07-14",
   "kind": "collect",
-  "generated_at": "2026-07-14T05:20:45Z",
-  "focus_day": "2026-07-12",
+  "generated_at": "2026-07-14T11:39:03Z",
+  "focus_day": "2026-07-14",
   "days_present": [
     "2025-01-01",
-    "2026-07-12"
+    "2026-07-14"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-07-13T08:15:51Z",
-    "age_hours": 20.49
+    "pushed_at": "2026-07-14T07:11:55Z",
+    "age_hours": 3.85
   },
   "normalize": {
-    "in": 76192,
-    "kept": 76158,
+    "in": 76374,
+    "kept": 76340,
     "rejects": 34,
     "joint_groups": 161,
-    "near_joint_groups": 2128,
+    "near_joint_groups": 2135,
     "syndicated": 62
   },
   "phrase_engine": {
-    "candidates": 461600,
+    "candidates": 462626,
     "df_boilerplate": 458,
-    "ledger_entries": 461142
+    "ledger_entries": 462168
   },
   "per_party": {
     "D": {
-      "statements_in": 44646,
+      "statements_in": 44767,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 31048,
+      "statements_in": 31107,
       "members_covered": 272
     },
     "I": {
-      "statements_in": 360,
+      "statements_in": 361,
       "members_covered": 3
     }
   },
   "derived": {
-    "ledger_entries": 461142,
-    "phrase_pages": 14,
-    "focus_day": "2026-07-12",
-    "focus_day_top_phrases": 14,
+    "ledger_entries": 462168,
+    "phrase_pages": 0,
+    "focus_day": "2026-07-14",
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -53,21 +53,21 @@
   "spend_estimate_usd": 0.0,
   "governor_state": "nominal",
   "alerts": [
-    "volume 23 < 40% of median 99.0"
+    "volume 1 < 40% of median 102.5"
   ],
   "degraded": false,
   "volume": {
-    "today": 23,
-    "trailing_median": 99.0,
+    "today": 1,
+    "trailing_median": 102.5,
     "anomalously_low": true
   },
   "extract": {
     "stage": "extract",
     "model": "claude-haiku-4-5",
     "generator": "haiku_batch",
-    "new_statements": 0,
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "est_cost_usd": 0.0
+    "new_statements": 183,
+    "tokens_in": 227138,
+    "tokens_out": 21960,
+    "est_cost_usd": 0.168469
   }
 }
