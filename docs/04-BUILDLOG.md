@@ -309,7 +309,10 @@ amendment (deviation recorded here per doc-map convention — the gameplan file 
    `--day` to `post_bluesky` (kill the `collect-latest` coupling) + explicit `POSTING_ENABLED`
    gate (repo variable = the launch switch) + write post results into the assemble manifest with a
    dead-man alert on expected-but-absent posts; (b) promote the citation/era-fingerprint generators
-   from scratchpad into `scripts/` (Art. VI); (c) About page lists the real accounts (Art. XII).
+   from scratchpad into `scripts/` (Art. VI); (c) About page lists the real accounts (Art. XII)
+   **and carries the operator-disclosure line (Art. X):** who operates it + a contact + "the
+   operator's personal views appear nowhere on this instrument" — Michael has no personal Bluesky,
+   so both account bios point `Operator: onscript.news/about` and About is the disclosure of record.
    **Polish punch list (from the 2026-07-14 live-page editorial review):** (d) the index honesty
    banner still renders the "not yet the production model / placeholder" copy while generators are
    `sonnet_batch` — condition that copy on dry-run generators only (the voice is live; the site
