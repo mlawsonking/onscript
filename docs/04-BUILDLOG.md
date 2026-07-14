@@ -411,6 +411,21 @@ symmetry audit appears to present cumulative corpus totals as if daily (verify +
 history is not rendered on Methodology (Art. VIII); (v) guard the on-script/discipline value against
 meaningless low-N days; phrases index caps at 40 vs the spec's 50.
 
+**Ledger re-diagnosis (Session 5b) — the "corrupt" Alexandria ledger is very likely NOT corrupt.**
+Direct byte inspection: the file tail is a clean `…"boilerplate": false}}` and the bytes at the
+exact reported failure offset (~902 MB) are valid JSON (`… "2018-02-09": {"R": 1, …}`). So the
+earlier `JSONDecodeError` was almost certainly a **memory/scale** failure — `json.load` on a single
+3.08 GB object exceeds this box's RAM — NOT on-disk corruption. Corroborating: the **per-Congress
+shards in `state/alexandria/` are all intact** (`ledger-113…119.json`, discipline/coverage), and the
+daily cloud pipeline is unaffected (it uses the smaller RUN-A ledger, never this one). Implication:
+the Archive/1.1 build does **not** need a from-scratch rebuild — it needs a **streaming/sharded
+reader** (e.g. `ijson`, or read the per-Congress shards directly) instead of `json.load` on the
+merged file. `alexandria.merge()` can still re-emit `ledger.json` from the intact shards ($0, pure
+function) if a single merged file is wanted, but the memory ceiling to *read* it back is the real
+constraint. Symmetry follow-up (iii above) is now **fixed** (day-scoped audit, deploys next cloud
+assemble). This corrects the "corrupt local ledger" framing used earlier in this BUILDLOG and in
+CLAUDE.md "You are here".
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
