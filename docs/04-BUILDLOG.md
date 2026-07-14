@@ -482,7 +482,21 @@ marker did nothing for Actions while silently **freezing the live site** (every 
 was committed but never deployed; the site only moved on manual pushes). Removed `[skip ci]` from both
 workflows (commit e87763d, no marker, which itself deployed the live voice). The site now genuinely
 auto-deploys on every data commit — the missing piece of the "updates itself unattended" guarantee.
-Follow-up worth noting: re-verify the daily auto-deploy actually fires on the next cron commit.
+**Verified end-to-end:** a second dispatched assemble (run 29359973881) committed as `data: assemble
+2026-07-14` **without** `[skip ci]` and auto-deployed (the live Methodology now shows the day-scoped
+symmetry — "Statements ingested (this day): 74/51", not the old cumulative 44,767 — proving the cloud
+commit reached Vercel). The **cost ledger accumulated correctly** across the two runs (`total_usd
+0.011274`, `calls: 2`, tokens 2262 = 2×1131) — the MEDIUM-4 accumulation fix confirmed live. Also
+shipped: the **month-to-date model-voice spend is now published on the Methodology page** (from the
+cost ledger) — radical-transparency + a public budget monitor. **69 tests green.**
+
+**Grind queue (Opus, next sessions — none blocking):** (1) Archive/1.1 needs a **streaming/sharded
+ledger reader** (the 3 GB Alexandria ledger is valid-but-too-big, not corrupt; shards intact). (2)
+Phrases index is empty on thin focus days (`build.py` keys `top.json` to the current stub day, not a
+rolling window). (3) Low-N guard on the on-script/discipline value. (4) Phrases index caps at 40 vs
+the spec's 50. (5) Optional: wire Haiku extraction (voice-only was the deliberate scope; extraction
+stays deterministic + $0). (6) The prompt git *history* on Methodology (the live prompts already
+render; history is a nice-to-have). Prompt-transparency (Art. VIII) is otherwise satisfied.
 
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
