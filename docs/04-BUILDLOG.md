@@ -563,6 +563,27 @@ the lowercase form for matching; sparkline color should follow the phrase's lead
 SVG), CSS nitpicks, CDN cache lag, missing dark features (deliberate), re-runs rewriting the day's
 line (recorded fact, manifest tracks it; single daily cron in practice).
 
+**Session 7 execution (Opus, 2026-07-14) — punch list DONE, deployed, verified.** All of A–D shipped
++ an adversarial review that found and fixed 6 defects before commit (commit 54aa81a; 75 tests green;
+dry-run $0). Review catches worth recording: (#1) my first cluster-gate rule rejected ANY
+conjunction-led label and would have erased real coordinated phrases ("and civil rights", "and
+transparent investigation into the killing") — corrected to conjunction-led **AND** possessive-
+trailing, which catches the "and the trump administration's" glue precisely while keeping real
+phrases; (#7) the reworked receipts sourced quotes only from citations, which would have rendered
+EMPTY receipts on historical days (the 53-member "born in the united states" flagship) that predate
+citations — fixed with a fragment-quote fallback; (#8) the methodology "live prompt text" was
+hardcoded to v1.0 while the published sha moved to v1.1 (an auditor hashing the shown text would get
+a mismatch — falsifying the neutrality armor) — now driven from `llm._PROMPT_FILES`; (#4) the
+party-tagged first-sayer would fabricate on a roster-miss — now emitted only when name+party+state
+fully resolve; plus the quote ≥3-word floor and the "sync" vs "synchronized" prompt fixes. The
+numerals-only rule (my pre-emptive fix) closed a real hole: a spelled-out number would bypass the
+digit whitelist. **Verified live on 2026-07-13 after a dispatch:** the D voice reads clean —
+"…first recorded from Tim Scott (R-SC)…", no schema words, one talking point (the glue cluster
+suppressed); R says "Across 51 statements, no phrase was shared by more than a few of us today."; the
+housing receipt shows three members' own quotes bound to their .gov links with a "showing 3 of 10
+members" cue; the methodology prompt text matches the v1.1 sha. Cost nominal ($0.0163 MTD). The bones
+are launch-strong.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
