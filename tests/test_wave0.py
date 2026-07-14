@@ -152,6 +152,21 @@ def test_dry_run_is_disclosed_as_stub():
     assert "placeholder" in site.banner_html(dry, None)
 
 
+def test_voice_flags_suppress_false_model_on_stub_generators():
+    """Render-time honesty (fixes EVERY day page incl. historical): a non-production generator never
+    stamps a model id — a stale 'claude-sonnet-5' would falsely claim LLM authorship and contradict
+    the banner. A genuine production generator shows its model truthfully."""
+    for gen, model in (("sonnet_batch", "claude-sonnet-5"), ("deterministic", "P2:deterministic"),
+                       ("dry_run", "P2:dry_run")):
+        joined = " ".join(site._voice_flags({"generator": gen, "model": model}))
+        assert "deterministic template" in joined and "not a language model" in joined, gen
+        assert "claude-sonnet-5" not in joined and model not in joined, gen
+        assert "generator: sonnet_batch" not in joined, gen  # legacy mislabel never re-surfaced
+    prod = " ".join(site._voice_flags({"generator": "llm", "model": "claude-sonnet-5"}))
+    assert "generator: llm" in prod and "model: claude-sonnet-5" in prod
+    assert site._voice_flags({}) == []  # no generator -> no flags
+
+
 # --- receipts (e) -------------------------------------------------------------------------
 def test_citations_resolve_three_members_with_urls():
     stmt_by_id = {

@@ -499,6 +499,25 @@ def banner_html(day_data, symmetry) -> str:
     return f'<div class="banner">Honesty note: {msg}.{tail}</div>'
 
 
+def _voice_flags(line: dict) -> list[str]:
+    """Honest per-line voice provenance for the metaflags line, at RENDER time (so it corrects EVERY
+    day page — including historical ones written before Session 5 — without re-assembly). A
+    non-production generator (dry_run, deterministic, or the legacy 'sonnet_batch' mislabel) is
+    deterministic TEMPLATE output; render it uniformly as such and SUPPRESS the stored model id — a
+    stale 'claude-sonnet-5' would falsely claim language-model authorship and contradict the honesty
+    banner. Only a genuine production generator (§PRODUCTION_GENERATORS) shows its real model."""
+    gen = line.get("generator")
+    if not gen:
+        return []
+    if gen in PRODUCTION_GENERATORS:
+        out = [f"generator: {esc(gen)}"]
+        model = line.get("model")
+        if model:
+            out.append(f"model: {esc(model)}")
+        return out
+    return ["voice: deterministic template (not a language model)"]
+
+
 # ---------------------------------------------------------------------------
 # Receipts strip + Daily Line panels
 # ---------------------------------------------------------------------------
@@ -576,12 +595,7 @@ def daily_line_panel(party: str, day_data) -> str:
         )
     composite = line.get("composite") or ""
     flags = []
-    gen = line.get("generator")
-    if gen:
-        flags.append(f"generator: {esc(gen)}")
-    model = line.get("model")
-    if model:
-        flags.append(f"model: {esc(model)}")
+    flags += _voice_flags(line)
     if line.get("quiet"):
         flags.append("quiet day")
     if line.get("fallback"):
