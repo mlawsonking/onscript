@@ -67,6 +67,13 @@ def assemble(day: str) -> dict:
     per_party_llm: dict[str, dict] = {}
     day_payload: dict[str, dict] = {}
 
+    # Real Sonnet voice gate + STRICT pre-flight budget check (voice-wiring). The voice fires only
+    # when a key is present (not dry_run), the LLM_VOICE_ENABLED switch is on, AND month-to-date spend
+    # leaves room under the code ceiling (config.LLM_MONTHLY_CEILING_USD). Otherwise: deterministic, $0.
+    projected = 2 * llm.estimate_cost(llm.VOICE_MODEL, 3000, 400, batched=False)  # ~2 voice calls, generous
+    voice_state = ops.voice_budget_state(day, projected)
+    allow_llm_voice = config.llm_voice_enabled() and voice_state != "halt"
+
     for party in config.COMPOSITE_PARTIES:
         party_stmts = [s for s in focus if (s.get("member") or {}).get("party") == party]
         annotated = []
@@ -95,15 +102,31 @@ def assemble(day: str) -> dict:
             top_phrase = {"text": r["ngram"], "members": r["day_peak"],
                           "first_sayer": _name(r["first_seen"]["bioguide"], rmap)}
 
-        distillation = distill.daily_line(party, day, party_stmts, published, top_phrase, stmt_by_id)
+        distillation = distill.daily_line(party, day, party_stmts, published, top_phrase, stmt_by_id,
+                                          allow_llm_voice=allow_llm_voice)
 
-        # tokens telemetry (what the real Sonnet voice call would cost; Sonnet 5 budget +30% tokens)
-        tin = int(llm.approx_tokens(str(distillation.get("stats", ""))) * 1.3) + 1500
+        # REAL token usage from the voice call (0 when the deterministic voice was used) — the
+        # symmetry audit + cost ledger report actual spend, never an estimate. §voice-wiring.
+        usage = distillation.get("usage") or {}
         per_party_llm[party] = {
-            "tokens_in": tin, "tokens_out": 400,
+            "tokens_in": int(usage.get("tokens_in", 0)), "tokens_out": int(usage.get("tokens_out", 0)),
             "claims_published": len(published), "claims_dropped": dropped,
         }
         day_payload[party] = {"daily_line": distillation, "talking_points": published}
+
+    # STRICT budget accounting FIRST — persist the real spend to the month ledger BEFORE any risky
+    # day-JSON write, so a write failure can never lose a billed call. Cost each run at its OWN day's
+    # Sonnet rate (date-aware). The governor reads true month-to-date; the $10 Console cap is the
+    # last-line backstop. §voice-wiring (LOW-7b, MEDIUM-5).
+    day_cost = round(sum(llm.estimate_cost(llm.VOICE_MODEL, per_party_llm[p]["tokens_in"],
+                                           per_party_llm[p]["tokens_out"], batched=False, on_date=day)
+                         for p in config.COMPOSITE_PARTIES), 6)
+    if not llm.dry_run():
+        ops.record_cost(day, day_cost, model=llm.VOICE_MODEL,
+                        tokens_in=sum(per_party_llm[p]["tokens_in"] for p in config.COMPOSITE_PARTIES),
+                        tokens_out=sum(per_party_llm[p]["tokens_out"] for p in config.COMPOSITE_PARTIES))
+    month_to_date = ops.month_to_date_usd(day, include_day=True)
+    governor = ops.budget_governor(month_to_date)
 
     # merge Daily Lines into the day's derived JSON (deterministic top phrases already there)
     day_file = config.DERIVED / "days" / f"{day}.json"
@@ -112,13 +135,6 @@ def assemble(day: str) -> dict:
     day_json["talking_points"] = {p: day_payload[p]["talking_points"] for p in config.COMPOSITE_PARTIES}
     day_json["top_synchronized"] = build.top_synchronized(ledger, day, k=20)
     util.write_json(day_file, day_json)
-
-    # budget: extraction (all-corpus, one-time in backfill) + 2 voice calls/day
-    voice_cost = sum(llm.estimate_cost(llm.VOICE_MODEL, per_party_llm[p]["tokens_in"],
-                                       per_party_llm[p]["tokens_out"], batched=True)
-                     for p in config.COMPOSITE_PARTIES)
-    day_cost = round(voice_cost, 4)  # extraction is amortized/one-time; daily marginal = the 2 voice calls
-    governor = ops.budget_governor(day_cost * 22)  # rough monthly projection at in-session cadence
 
     freshness = {"note": "assemble stage; freshness measured in RUN A"}
     degraded = any(day_payload[p]["daily_line"]["fallback"] for p in config.COMPOSITE_PARTIES)
@@ -129,6 +145,9 @@ def assemble(day: str) -> dict:
         "generated_at": util.now_utc_iso(), "day": day,
         "dry_run": llm.dry_run(), "extract_cost": extract_cost,
         "per_party_llm": per_party_llm, "daily_voice_cost_usd": day_cost,
+        "llm_voice_enabled": config.llm_voice_enabled(),
+        "voice_used": bool(allow_llm_voice and not llm.dry_run()),
+        "voice_budget_state": voice_state, "month_to_date_usd": month_to_date,
         "governor_state": governor, "degraded": degraded,
         "symmetry": {"prompts_sha": report["prompts_sha"], "thresholds_sha": report["thresholds_sha"]},
         "alerts": (["degraded"] if degraded else []),
@@ -138,9 +157,11 @@ def assemble(day: str) -> dict:
     # fixes the Session-4 day-selection no-op. Posting targets exactly what assemble published.
     util.write_json(config.DERIVED / "manifest" / "assemble-latest.json",
                     {"day": day, "generated_at": util.now_utc_iso(), "run_id": manifest["run_id"]})
-    if degraded or governor != "nominal":
-        ops.ntfy("OnScript assemble", f"day={day} governor={governor} degraded={degraded}",
-                 priority="high" if degraded else "default")
+    if degraded or governor != "nominal" or voice_state in ("warn", "halt"):
+        ops.ntfy("OnScript assemble",
+                 f"day={day} governor={governor} voice={voice_state} "
+                 f"mtd=${month_to_date:.2f} degraded={degraded}",
+                 priority="high" if (degraded or voice_state == "halt") else "default")
     return {"manifest": manifest, "day_json": day_json, "report": report}
 
 

@@ -35,16 +35,24 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
         tps.append({"label": tp["label"], "members": tp["member_count"], "quote": quote,
                     "topics": tp.get("topics", [])})
     return {"party": party, "day": day, "statements": party_statement_count,
-            "talking_points": tps, "top_phrase": top_phrase}
+            "talking_points": tps, "top_phrase": top_phrase,
+            "sync_min": config.SYNC_MIN_MEMBERS}  # the coordination threshold (for the no-coordination line)
 
 
 def _compose_dry(stats: dict) -> str:
     """Deterministic composite: numbers from STATS, quotes from fragments only, first-person plural."""
     parts = [f"Today {stats['statements']} of us released statements."]
+    quoted = 0
     for tp in stats["talking_points"][:3]:
         if tp["quote"]:
             parts.append(f'{tp["members"]} of us said "{tp["quote"]}".')
+            quoted += 1
     tp = stats.get("top_phrase")
+    if quoted == 0 and not (tp and tp.get("text")):
+        # Honest measured ABSENCE: statements went out, but no phrase cleared the coordination bar.
+        # This turns an empty column into a finding (the silence story), not a missing feature.
+        parts.append(f"No phrase was shared by {stats.get('sync_min', config.SYNC_MIN_MEMBERS)} "
+                     f"or more of us today.")
     if tp and tp.get("text"):
         # No quotation marks: the top synchronized phrase is a code-computed ledger n-gram, not a
         # verbatim member quote — render it as the measured phrase it is (§Session-5 HIGH-1 fix).
@@ -68,9 +76,38 @@ def _quiet_dry(stats: dict) -> str:
     return " ".join(parts)
 
 
+_PARTY_FULL = {"D": "Democratic", "R": "Republican"}
+
+
+def _compose_llm(prompt: dict, stats: dict, party: str, day: str) -> tuple[str, int, int]:
+    """Call the real Sonnet voice (synchronous direct call — 2/day, pennies). Returns
+    (composite_text, tokens_in, tokens_out) from the API's own usage. Raises on transport error;
+    the caller falls back to the deterministic voice, and the blocking verifier still gates whatever
+    text is ultimately used, so an ungrounded LLM claim can never publish. §voice-wiring."""
+    fills = {"{day}": day, "{party}": _PARTY_FULL.get(party, party),
+             "{code_computed_stats_json}": json.dumps(stats, ensure_ascii=False),
+             "{talking_points_json}": json.dumps(stats.get("talking_points", []), ensure_ascii=False)}
+    system, user = prompt["system"], prompt["user_template"]
+    for k, v in fills.items():
+        system = system.replace(k, v)
+        user = user.replace(k, v)
+    res = llm.direct_call(llm.VOICE_MODEL, system, user, max_tokens=400)
+    text = (res.get("text") or "").strip()
+    # If the API omits usage, ESTIMATE (never record a billed call as free) — over-count is the safe
+    # direction for a spend ledger. §voice-wiring (LOW-7a).
+    tin = int(res.get("tokens_in") or 0) or (llm.approx_tokens(system) + llm.approx_tokens(user))
+    tout = int(res.get("tokens_out") or 0) or max(1, llm.approx_tokens(text))
+    return text, tin, tout
+
+
 def daily_line(party: str, day: str, party_statements: list[dict], talking_points: list[dict],
-               top_phrase: dict | None, statements_by_id: dict) -> dict:
-    """Produce + verify one party-day Daily Line. Returns the daily_distillation record (§3)."""
+               top_phrase: dict | None, statements_by_id: dict, allow_llm_voice: bool = False) -> dict:
+    """Produce + verify one party-day Daily Line. Returns the daily_distillation record (§3).
+
+    Voice selection: the real Sonnet voice fires ONLY when allow_llm_voice (run_assemble computes it
+    from config.llm_voice_enabled() AND the budget governor) AND a key is present. Otherwise — gate
+    off, budget halt, no key, or an API error — it is the honest deterministic voice. Either way the
+    blocking verifier gates the output; a failure drops to the honest fallback, never silence."""
     n = len(party_statements)
     quiet = n < config.QUIET_DAY_MAX_STATEMENTS
     prompt = llm.load_prompt("P3" if quiet else "P2")
@@ -86,27 +123,43 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     stats = build_stats(party, day, n, talking_points, top_phrase)
     stats_blob = json.dumps(stats, ensure_ascii=False)
 
-    if llm.dry_run():
+    tokens_in = tokens_out = 0
+    if allow_llm_voice and not llm.dry_run():
+        try:  # pragma: no cover - requires ANTHROPIC_API_KEY + LLM_VOICE_ENABLED
+            composite, tokens_in, tokens_out = _compose_llm(prompt, stats, party, day)
+            if not composite.strip():
+                raise ValueError("empty composite from voice")   # never publish a blank line (HIGH-2)
+            generator = "sonnet_direct"     # a real production voice (site.PRODUCTION_GENERATORS)
+            model = llm.VOICE_MODEL
+        except Exception as e:  # transport/API error/empty -> deterministic; a voice failure never crashes
+            print(f"[voice:{party}] LLM voice failed ({e}); deterministic fallback")
+            composite = _quiet_dry(stats) if quiet else _compose_dry(stats)
+            generator = "deterministic"
+            model = prompt["id"] + ":deterministic"
+    elif llm.dry_run():
         composite = _quiet_dry(stats) if quiet else _compose_dry(stats)
         generator = "dry_run"
         model = prompt["id"] + ":dry_run"
-    else:  # pragma: no cover - requires ANTHROPIC_API_KEY
-        # The real Sonnet voice (llm.submit_batch / direct_call) is NOT yet wired into this branch.
-        # Until it is, real mode falls back to the SAME deterministic composer as dry-run, labeled
-        # HONESTLY as 'deterministic' (NOT in site.PRODUCTION_GENERATORS) so the honesty banner
-        # discloses it — this is not Sonnet output. Wiring the live voice turns on real API billing
-        # and is a deliberate, gated step (docs/11-BUILD-PROGRAM.md); when wired, set generator to a
-        # value listed in site.PRODUCTION_GENERATORS in the SAME commit. §Session-5 (HIGH-2 fix).
-        composite = _compose_dry(stats)
+    else:
+        # Key present but the voice is gated OFF (LLM_VOICE_ENABLED) or the budget halted it:
+        # the honest deterministic voice, $0. §voice-wiring.
+        composite = _quiet_dry(stats) if quiet else _compose_dry(stats)
         generator = "deterministic"
         model = prompt["id"] + ":deterministic"
 
-    # B4 verifier (blocking): numbers whitelisted + quotes grounded in fragments.
-    ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, fragments=groundable)
+    # B4 verifier (blocking): every UNQUOTED number must be a code-computed count (the strict `stats`
+    # whitelist — a digit inside a member quote can never become a fabricated aggregate), and every
+    # quoted span must be verbatim, in-context member text. Failure -> honest fallback, never silence.
+    ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, fragments=groundable,
+                                           stats=stats)
     fallback = False
     if not ok:
         composite = f"Some of our output could not be verified today. Measured from what did: we released {n} statements."
         fallback = True
+        # The published text is now the deterministic fallback — attribute it honestly, never as the
+        # model (the honesty banner + _voice_flags must not claim Sonnet wrote this). §LOW-6.
+        generator = "deterministic"
+        model = prompt["id"] + ":fallback"
 
     # sentence -> talking-point receipts mapping (which clusters back each sentence)
     receipts = [{"sentence_idx": i, "talking_points": [tp["id"] for tp in talking_points[:3]]}
@@ -121,4 +174,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
         "stats": stats,
         "verifier": {"checked": True, "passed": ok, "reasons": reasons,
                      "talking_points_published": len(talking_points)},
+        # Real token usage for the spend ledger (0 unless the Sonnet voice actually fired). Tokens
+        # are charged even if the verifier later dropped the line to fallback — record them honestly.
+        "usage": {"tokens_in": tokens_in, "tokens_out": tokens_out, "model": model},
     }

@@ -31,6 +31,11 @@ jobs:
       # posting leg is a deterministic dry-run print — no path posts, regardless of the creds above.
       # Michael flips this to "true" in the repo variables UI at launch. (kill-tested)
       POSTING_ENABLED: ${{ vars.POSTING_ENABLED }}
+      # The billing switch for the real Sonnet Daily-Line voice: a repo VARIABLE, default absent/off.
+      # While off, the daily voice is the deterministic template ($0) even with the key present.
+      # Michael flips this to "true" to turn on the ~$0.01/day voice; the code ceiling ($9 MTD) +
+      # the $10 Console cap bound the spend, and flipping it off reverts to $0 instantly. §voice-wiring.
+      LLM_VOICE_ENABLED: ${{ vars.LLM_VOICE_ENABLED }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4

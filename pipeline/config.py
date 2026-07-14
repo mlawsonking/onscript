@@ -147,3 +147,18 @@ def feature_on(name: str) -> bool:
 # ---------------------------------------------------------------------------
 def posting_enabled() -> bool:
     return env("POSTING_ENABLED", "").strip().lower() in ("1", "true", "yes", "on")
+
+
+# ---------------------------------------------------------------------------
+# LLM_VOICE_ENABLED — the billing switch for the real Sonnet Daily-Line voice. Same pattern as
+# POSTING_ENABLED: a GitHub Actions repo VARIABLE, default OFF. When off, the daily voice is the
+# deterministic template ($0), EVEN IF ANTHROPIC_API_KEY is present — so wiring the voice can be
+# committed dark and bills nothing until Michael flips this. Flipping it off instantly reverts to
+# $0. The hard ceiling below is the code-side budget backstop (the $10 Console cap is the last line).
+# ---------------------------------------------------------------------------
+def llm_voice_enabled() -> bool:
+    return env("LLM_VOICE_ENABLED", "").strip().lower() in ("1", "true", "yes", "on")
+
+
+LLM_MONTHLY_CEILING_USD = 9.0   # pre-flight HARD stop (< the $10 Console cap); halts the LLM voice
+LLM_MONTHLY_WARN_USD = 8.0      # ntfy warn threshold (month-to-date)

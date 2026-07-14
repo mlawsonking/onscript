@@ -70,27 +70,89 @@ _QUOTE = re.compile(r'"([^"]+)"|“([^”]+)”')
 _QUOTE_TRIM = " \t\n,.;:!?\"'“”‘’—–-"
 
 
+# Negation tokens: a quoted span that begins immediately AFTER one of these inside its source
+# fragment is a meaning-inverting truncation ("never vote to defund" -> "vote to defund"), so it
+# does not count as grounded even though it is a verbatim substring. §voice-wiring (MEDIUM-3).
+_NEGATION = {"not", "never", "no", "without", "cannot", "nor", "n't", "don't", "doesn't", "didn't",
+             "won't", "can't", "isn't", "aren't", "wasn't", "weren't", "shouldn't", "wouldn't"}
+_MIN_QUOTE_WORDS = 3   # NGRAM_MIN is 3, so real fragment quotes clear this; trivial spans do not
+
+
 def quotes_grounded(composite_text: str, fragments: list[str]) -> tuple[bool, list[str]]:
-    """P2 rule 2: the quoted WORDS in the composite must be a verbatim substring of some
-    provided fragment. Leading/trailing punctuation on the quoted span is stripped first, so
-    American comma-inside-quotes ("... states,") still validates against the clean fragment —
-    it's the words that must be verbatim, not the surrounding punctuation."""
+    """P2 rule 2: the quoted WORDS in the composite must be a verbatim substring of some provided
+    fragment, AND not a meaning-inverting truncation. Leading/trailing punctuation on the span is
+    stripped first (American comma-inside-quotes stays valid). Now that the LLM picks its own spans:
+    a span must be >= _MIN_QUOTE_WORDS words and must NOT start immediately after a negation token in
+    its source fragment (which would drop a 'never'/'not' and invert meaning). §voice-wiring."""
     sources = [_norm(f) for f in fragments]
     offending: list[str] = []
     for m in _QUOTE.finditer(composite_text or ""):
         q = _norm(m.group(1) or m.group(2) or "").strip(_QUOTE_TRIM)
-        if q and not any(q in s for s in sources):
+        if not q:
+            continue
+        if len(q.split()) < _MIN_QUOTE_WORDS:
+            offending.append(q)
+            continue
+        grounded = False
+        for s in sources:
+            idx = s.find(q)
+            if idx < 0:
+                continue
+            preceding = s[:idx].split()
+            if preceding and preceding[-1].strip(".,;:!?\"'") in _NEGATION:
+                continue  # verbatim but drops a leading negation -> inverts meaning; not grounded
+            grounded = True
+            break
+        if not grounded:
             offending.append(q)
     return (len(offending) == 0, offending)
 
 
-def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] | None = None) -> tuple[bool, list[str]]:
+def _numbers_outside_quotes(text: str) -> set[str]:
+    """Numbers in the composite that are NOT inside a quoted span. Numbers inside a quote are exempt
+    from the whitelist because the quote itself is separately grounded to verbatim member text; only
+    UNQUOTED numbers are aggregate claims that must be code-computed. §voice-wiring (HIGH-1)."""
+    return _numbers(_QUOTE.sub(" ", text or ""))
+
+
+def code_allowed_numbers(stats: dict) -> set[str]:
+    """The ONLY numbers a composite may state UNQUOTED: code-computed counts (statement + member
+    counts) and the audited date, plus digits that are part of a code-selected phrase NAME (labels,
+    top phrase). Deliberately EXCLUDES the member-quote text — so the LLM cannot lift a number from a
+    quote (e.g. 'cut all 87 programs') and publish it as a fabricated aggregate ('87 of us'). §HIGH-1."""
+    allowed: set[str] = set()
+    if stats.get("statements") is not None:
+        allowed.add(str(stats["statements"]))
+    for tp in stats.get("talking_points") or []:
+        if tp.get("members") is not None:
+            allowed.add(str(tp["members"]))
+        allowed |= _numbers(tp.get("label", ""))   # a number that is part of the phrase NAME (e.g. "21st")
+    tp = stats.get("top_phrase") or {}
+    if tp.get("members") is not None:
+        allowed.add(str(tp["members"]))
+    allowed |= _numbers(tp.get("text", ""))
+    allowed |= _numbers(str(stats.get("day", "")))  # 2026 / 07 / 13
+    if stats.get("sync_min") is not None:
+        allowed.add(str(stats["sync_min"]))         # the coordination threshold (no-coordination line)
+    return {a for a in allowed if a}
+
+
+def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] | None = None,
+                      *, stats: dict | None = None) -> tuple[bool, list[str]]:
+    """Block a Daily Line unless every UNQUOTED number is a code-computed count/date (never a digit
+    lifted from a member quote) and every quoted span is verbatim, in-context member text. When
+    `stats` (the code-computed STATS dict) is passed, the strict per-field number whitelist is used;
+    otherwise it falls back to the whole-blob check (legacy verify_day path). §voice-wiring HIGH-1."""
     reasons: list[str] = []
-    ok_nums, offending = numbers_whitelisted(distillation.get("composite", ""), stats_blob)
-    if not ok_nums:
+    composite = distillation.get("composite", "")
+    if stats is not None:
+        offending = _numbers_outside_quotes(composite) - code_allowed_numbers(stats)
+    else:
+        _, offending = numbers_whitelisted(composite, stats_blob)
+    if offending:
         reasons.append(f"un-whitelisted numbers in composite: {sorted(offending)}")
     if fragments is not None:
-        ok_q, off_q = quotes_grounded(distillation.get("composite", ""), fragments)
+        ok_q, off_q = quotes_grounded(composite, fragments)
         if not ok_q:
             reasons.append(f"un-grounded quotes in composite: {off_q}")
     return (len(reasons) == 0, reasons)

@@ -50,6 +50,58 @@ def budget_governor(month_to_date_usd: float) -> str:
     return "nominal"
 
 
+# ---------------------------------------------------------------------------
+# Real LLM-spend ledger (strict budget). Per-month file, keyed by day so a re-run OVERWRITES that
+# day's cost instead of double-counting. This is the code-side source of truth for month-to-date
+# spend; the Anthropic Console is the authoritative backstop. Committed under data/derived/cost/.
+# ---------------------------------------------------------------------------
+def _cost_ledger_path(day: str):
+    return config.DERIVED / "cost" / f"{day[:7]}.json"
+
+
+def record_cost(day: str, usd: float, *, tokens_in: int = 0, tokens_out: int = 0, model: str = "") -> dict:
+    """ACCUMULATE this run's real LLM spend into the day. Real re-runs (a manual re-dispatch, an
+    overlapping cron) each bill fresh Anthropic money, so they ADD — overwriting would let the ledger
+    keep only the last run and the $9 ceiling would under-count. A $0 deterministic re-run adds
+    nothing and never clobbers a prior real cost. The Console cap is the hard backstop; a concurrent
+    read-modify-write is still possible (documented) but the daily cadence makes it rare. Returns
+    the updated month ledger. §voice-wiring (MEDIUM-4)."""
+    path = _cost_ledger_path(day)
+    ledger = util.read_json(path, {"month": day[:7], "days": {}})
+    prev = ledger.setdefault("days", {}).get(day, {})
+    ledger["days"][day] = {
+        "usd": round(prev.get("usd", 0) + usd, 6),
+        "tokens_in": prev.get("tokens_in", 0) + tokens_in,
+        "tokens_out": prev.get("tokens_out", 0) + tokens_out,
+        "calls": prev.get("calls", 0) + (1 if usd > 0 else 0),
+        "model": model or prev.get("model", ""), "updated_at": util.now_utc_iso(),
+    }
+    ledger["total_usd"] = round(sum(d.get("usd", 0) for d in ledger["days"].values()), 6)
+    util.write_json(path, ledger)
+    return ledger
+
+
+def month_to_date_usd(day: str, *, include_day: bool = False) -> float:
+    """Total real LLM spend for day's month. Pre-flight checks exclude `day` (the run not yet made);
+    displays/governor after record_cost pass include_day=True."""
+    ledger = util.read_json(_cost_ledger_path(day), {})
+    days = ledger.get("days") or {}
+    return round(sum(v.get("usd", 0) for k, v in days.items() if include_day or k != day), 6)
+
+
+def voice_budget_state(day: str, projected_usd: float = 0.0) -> str:
+    """Pre-flight budget decision for the real LLM voice. 'halt' => use the deterministic voice
+    (this run would cross the code ceiling); 'warn' => call but alert; 'nominal' => call. The $10
+    Console cap is the last-line backstop below this. Includes today's ALREADY-recorded spend so a
+    same-day re-dispatch still counts toward the ceiling. §voice-wiring (MEDIUM-4)."""
+    mtd = month_to_date_usd(day, include_day=True)
+    if mtd + max(0.0, projected_usd) >= config.LLM_MONTHLY_CEILING_USD:
+        return "halt"
+    if mtd >= config.LLM_MONTHLY_WARN_USD:
+        return "warn"
+    return "nominal"
+
+
 def ntfy(title: str, message: str, *, priority: str = "default") -> dict:
     """Dead-man switch. Posts to ntfy.sh/<NTFY_TOPIC> if the secret is set; else logs (the topic
     is a secret and NEVER lives in the repo — CLAUDE.md constraint)."""
