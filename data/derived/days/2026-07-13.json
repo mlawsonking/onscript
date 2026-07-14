@@ -5,7 +5,7 @@
       "schema_version": 1,
       "day": "2026-07-13",
       "party": "D",
-      "composite": "Today 74 of us released statements. 10 of us said \"who supports the 21st century road to housing act’s historic\". 3 of us said \"immigration system and the trump administration's white nationalist agenda\". Our most synchronized phrase was \"21st century road to housing\", in 13 of our statements.",
+      "composite": "We lead today with housing. Ten of us cite \"the bipartisan 21st century road to housing act,\" treating it as the day's shared reference point. We note, clinically, that \"21st century road to housing\" registers as the most synchronized phrase, 13 members, first said by Tim Scott — an observation about our own repetition, not a claim of authorship. Separately, three of us reference \"immigration system and the trump administration's white nationalist agenda,\" a smaller but present cluster. We report these patterns as they occur across our statements today, without further elaboration beyond the fragments themselves.",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
@@ -36,10 +36,17 @@
             "2026-07-13-D-00",
             "2026-07-13-D-01"
           ]
+        },
+        {
+          "sentence_idx": 4,
+          "talking_points": [
+            "2026-07-13-D-00",
+            "2026-07-13-D-01"
+          ]
         }
       ],
       "model": "claude-sonnet-5",
-      "generator": "sonnet_batch",
+      "generator": "sonnet_direct",
       "prompt_version": "1.0",
       "prompt_sha": "2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764",
       "stats": {
@@ -50,7 +57,7 @@
           {
             "label": "21st century road to",
             "members": 10,
-            "quote": "who supports the 21st century road to housing act’s historic",
+            "quote": "the bipartisan 21st century road to housing act",
             "topics": [
               "housing",
               "other"
@@ -69,32 +76,65 @@
         "top_phrase": {
           "text": "21st century road to housing",
           "members": 13,
-          "first_sayer": "Tim Scott",
-          "in_fragments": true
-        }
+          "first_sayer": "Tim Scott"
+        },
+        "sync_min": 3
       },
       "verifier": {
         "checked": true,
         "passed": true,
         "reasons": [],
         "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 696,
+        "tokens_out": 184,
+        "model": "claude-sonnet-5"
       }
     },
     "R": {
       "schema_version": 1,
       "day": "2026-07-13",
       "party": "R",
-      "composite": "Today 51 of us released statements.",
+      "composite": "We report no dominant message today. The clusters provided contain no talking points, no top phrase, and no quoted fragments to build from. Statements recorded: 51. Synchronization minimum: 3. We note the absence of coordinated language rather than manufacture one. We observe our own silence on substance the way an instrument logs a flat line. Nothing in the record permits quotation, claim, or topic beyond this. We are 51 statements without a shared phrase today.",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
         {
           "sentence_idx": 0,
           "talking_points": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": []
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": []
+        },
+        {
+          "sentence_idx": 4,
+          "talking_points": []
+        },
+        {
+          "sentence_idx": 5,
+          "talking_points": []
+        },
+        {
+          "sentence_idx": 6,
+          "talking_points": []
+        },
+        {
+          "sentence_idx": 7,
+          "talking_points": []
         }
       ],
       "model": "claude-sonnet-5",
-      "generator": "sonnet_batch",
+      "generator": "sonnet_direct",
       "prompt_version": "1.0",
       "prompt_sha": "2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764",
       "stats": {
@@ -102,13 +142,19 @@
         "day": "2026-07-13",
         "statements": 51,
         "talking_points": [],
-        "top_phrase": null
+        "top_phrase": null,
+        "sync_min": 3
       },
       "verifier": {
         "checked": true,
         "passed": true,
         "reasons": [],
         "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 435,
+        "tokens_out": 147,
+        "model": "claude-sonnet-5"
       }
     }
   },
@@ -178,7 +224,30 @@
           "housing",
           "other"
         ],
-        "leadership_first": false
+        "leadership_first": false,
+        "citations": [
+          {
+            "member": "Emanuel Cleaver",
+            "party": "D",
+            "state": "MO",
+            "date": "2026-07-13",
+            "url": "https://cleaver.house.gov/media-center/press-releases/congressman-cleaver-receives-carl-coan-sr-lifetime-achievement-award"
+          },
+          {
+            "member": "Nikema Williams",
+            "party": "D",
+            "state": "GA",
+            "date": "2026-07-13",
+            "url": "https://nikemawilliams.house.gov/posts/congresswoman-nikema-williams-applauds-21st-century-road-to-housing-act-becoming-law-secures-key-provisions-to-preserve-homeownership-and-generational-wealth"
+          },
+          {
+            "member": "Susie Lee",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-07-13",
+            "url": "https://susielee.house.gov/media/press-releases/icymi-now-law-rep-lee-helped-pass-most-significant-housing-reform-decades"
+          }
+        ]
       },
       {
         "id": "2026-07-13-D-01",
@@ -210,7 +279,30 @@
           "immigration",
           "other"
         ],
-        "leadership_first": false
+        "leadership_first": false,
+        "citations": [
+          {
+            "member": "Delia C. Ramirez",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-07-13",
+            "url": "https://ramirez.house.gov/media/press-releases/ramirez-statement-oversight-visit-cuba-and-humanitarian-crisis-island"
+          },
+          {
+            "member": "Mark Pocan",
+            "party": "D",
+            "state": "WI",
+            "date": "2026-07-13",
+            "url": "https://pocan.house.gov/media-center/press-releases/reps-pocan-dexter-leger-fernandez-and-ramirez-return-cuba-fact-finding"
+          },
+          {
+            "member": "Glenn Ivey",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-07-13",
+            "url": "https://ivey.house.gov/media/press-releases/statement-congressman-ivey-support-prince-georges-county-lawsuit-against-usda"
+          }
+        ]
       }
     ],
     "R": []

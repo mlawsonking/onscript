@@ -2,13 +2,13 @@
   "schema_version": 1,
   "run_id": "assemble-2026-07-14",
   "kind": "assemble",
-  "generated_at": "2026-07-14T12:47:46Z",
+  "generated_at": "2026-07-14T18:38:29Z",
   "day": "2026-07-13",
   "dry_run": false,
   "extract_cost": {
     "stage": "extract",
     "model": "claude-haiku-4-5",
-    "generator": "haiku_batch",
+    "generator": "deterministic",
     "new_statements": 0,
     "tokens_in": 0,
     "tokens_out": 0,
@@ -16,19 +16,23 @@
   },
   "per_party_llm": {
     "D": {
-      "tokens_in": 1671,
-      "tokens_out": 400,
+      "tokens_in": 696,
+      "tokens_out": 184,
       "claims_published": 2,
       "claims_dropped": 0
     },
     "R": {
-      "tokens_in": 1529,
-      "tokens_out": 400,
+      "tokens_in": 435,
+      "tokens_out": 147,
       "claims_published": 0,
       "claims_dropped": 0
     }
   },
-  "daily_voice_cost_usd": 0.0072,
+  "daily_voice_cost_usd": 0.005572,
+  "llm_voice_enabled": true,
+  "voice_used": true,
+  "voice_budget_state": "nominal",
+  "month_to_date_usd": 0.005572,
   "governor_state": "nominal",
   "degraded": false,
   "symmetry": {
