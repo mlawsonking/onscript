@@ -71,5 +71,8 @@ jobs:
           git config user.name "onscript-bot"
           git config user.email "bot@onscript.news"
           git add data/derived site/public
-          git commit -m "data: assemble $(date -u +%F) [skip ci]" || echo "no changes"
+          # NO [skip ci]: these workflows are schedule/dispatch-only (never push-triggered), so the
+          # marker does nothing for Actions but makes VERCEL SKIP the deploy — which froze the live
+          # site at the last manual push. Without it, every daily data commit auto-deploys. §voice-wiring.
+          git commit -m "data: assemble $(date -u +%F)" || echo "no changes"
           git push || echo "push skipped"
