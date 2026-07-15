@@ -365,7 +365,36 @@ items. They stay in HORIZON; the quarterly-pick doctrine governs them.
 
 ## §6 Amendments
 
-*(none yet — every change lands here, dated, with the reason)*
+**A1 — 2026-07-15 (Opus, S0.1 data-inventory audit) — the analyzable symmetric span is ~2013–2026,
+not 2001–2026.** The audit measured the mirror's actual coverage and it is far thinner and more
+party-asymmetric before ~2011 than the "25-year archive" framing assumed:
+- congress **107 (2001–02): 94 records, 100% Democrat, ZERO Republican**; **108: 289 (99% D)**;
+  symmetric two-party balance is first reached at **112 (2011–12): 419 R / 428 D**.
+- the per-congress ledger shards reflect this: **107–111 are empty** (near-zero qualifying data),
+  112 partial (49 KB), **113–119 populated** (243 MB–1 GB). The 3 GB monolith is recent-heavy
+  (earliest first_seen 2011) and is NOT a reliable 25-year source. Discipline/coverage shards span
+  all eras but early-era cells are tiny (107 = 79 D-days, no R).
+
+**Consequences (binding for the whole program):**
+1. **Two-party / symmetric metrics run on congresses 113–119 (2013-01-03 → 2026).** The pre-2013
+   corpus is retained ONLY for single-party and descriptive / "first-ever" artifacts (e.g. S2.4
+   punctuation firsts), always with the coverage caveat on the card's face. No symmetric trend claim
+   crosses 2013 backward.
+2. **Split-halves default revised** (supersedes §1.4 for this program): **Era A = 113–116
+   (2013–2020), Era B = 117–119 (2021–2026).** Election-cycle metrics split odd/even *within*
+   2013–2026. This window still contains both parties in every power position (House control flips
+   2019/2023; WH: Obama '13–'16, Trump '17–'20 & '25–, Biden '21–'24) — so the power-position reframe
+   (§1.5) remains testable under both parties.
+3. **Published language:** "since 2013" for symmetric trends; "since 2001" permitted only for
+   single-party / first-ever artifacts carrying the explicit coverage-onset caveat. The
+   "in 2005 a talking point took a week…" framing in S1.1's blurb is retired — the honest baseline is
+   the 2013–2016 window.
+4. Power floors (§1.6) unchanged; more early-window cells will correctly read UNDERPOWERED. This is
+   the coverage confound (§1.3) confirmed empirically, not a surprise — the pre-registration
+   anticipated it; the audit sized it.
+
+*Nothing else in the catalog changes; the substrate (S0.2) is built from `raw/congress-press` (the
+confirmed-complete ground truth, 2001–2026) with the analyzable window applied per metric.*
 
 ---
 
