@@ -396,6 +396,31 @@ party-asymmetric before ~2011 than the "25-year archive" framing assumed:
 *Nothing else in the catalog changes; the substrate (S0.2) is built from `raw/congress-press` (the
 confirmed-complete ground truth, 2001–2026) with the analyzable window applied per metric.*
 
+**A2 — 2026-07-15 (Opus, Wave S1 run) — S1.1 and S1.3 as-specified are ARTIFACT; the genealogy
+metrics need a merged cross-era substrate + an event detector.** First S1 run produced a naive
+CONFIRMED for both, but the adversarial look at the series (mandated by §4.5) revealed a structural
+confound the gate missed:
+- The per-Congress ledger shards seat each Congress in its ODD year, so any `first_seen → span` metric
+  systematically differs between a Congress's **year 1 (a ~2-year runway → widths pin to the 60-day
+  cap, median 60, n=23,117)** and **year 2 (no runway → median 3, n=13,872)** — a **20× sawtooth**,
+  not a trend. By-Congress the medians are cap-dominated (`60,60,60,15,27,60,60`) with no direction.
+- Root causes: (a) per-Congress `first_seen` ≠ global first appearance; (b) a 2-year peak-search
+  window + 60-day cap; (c) recurring phrases conflate first-ever appearance with eventual biggest day;
+  (d) shard-edge right-censoring of `last_date` (S1.3's identical sawtooth).
+
+**Actions (per §4.4):** both **STOPPED as-specified → verdict ARTIFACT** (confound named). A
+self-honesty guard `_year_position_artifact` is added to `wave_s1.py` so the as-specified metric can
+never emit a false CONFIRMED on re-run. **Redefinition (deferred to S1.1′/S1.3′):** build a **merged
+cross-era daily series** for the 113–119 window (S0.2b — the shards have disjoint date ranges, so a
+per-ngram merge is clean), then measure **ignition as an EVENT** (a phrase-day where same-day adopters
+rise from `<k` to `≥15` within a `≤14`-day lookback) and **lifespan with explicit right-censoring**
+(survival-style, or only phrases whose death is observed inside the window). Each gets its own
+kill-fixture before it runs.
+
+**Wave lesson (binding):** genealogy / span hypotheses (S1.1, S1.3; S1.5's `first_seen` weekday is
+weakly affected) require the merged substrate; **single-day-event** hypotheses (S1.2 sync ceiling —
+one peak day, no span) are safe on the per-Congress substrate. Sequence S1 accordingly.
+
 ---
 
 *Fable, 2026-07-15. Forty-seven pre-registered hypotheses, five compute waves, one graveyard.

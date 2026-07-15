@@ -25,3 +25,6 @@ data/reference/*
 # Site build output (Vercel builds it; not committed)
 site/dist/
 site/.astro/
+
+# Search rebuildable intermediates (large; regenerate via pipeline.search.harness.build_phrase_index)
+data/derived/search/*.jsonl

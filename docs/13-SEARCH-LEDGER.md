@@ -8,7 +8,7 @@
 
 | tested | confirmed | refuted | underpowered | artifact | blocked |
 |---|---|---|---|---|---|
-| 0 | 0 | 0 | 0 | 0 | 0 |
+| 2 | 0 | 0 | 0 | 2 | 0 |
 
 ## S0 data-inventory findings (S0.1 complete, 2026-07-15)
 
@@ -48,8 +48,14 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 
 | ID | Name | Verdict | Headline number | Date | Notes |
 |----|------|---------|-----------------|------|-------|
-| — | *(none yet)* | | | | |
+| S1.1 | Industrialization of the Memo | **ARTIFACT** | year1 median 60 vs year2 median 3 (20× sawtooth); by-Congress 60,60,60,15,27,60,60 | 2026-07-15 | Congress-boundary/cap/recurrence confound (amendment A2). `first_seen→peak` ill-posed on per-Congress shards. Redefine as event-detection on a merged cross-era series → **S1.1′ deferred.** Guard added so it can't re-emit CONFIRMED. |
+| S1.3 | Phrase Lifespan Collapse | **ARTIFACT** | same odd/even sawtooth (665 vs 106…); shard-edge right-censoring | 2026-07-15 | Same A2 confound + `last_date` censored at the Congress boundary. Redefine with survival/censoring on the merged series → **S1.3′ deferred.** |
 
 ## Graveyard notes
 
-*(what died and why — published alongside what survived; the tally is itself a headline)*
+- **S1.1 / S1.3 (2026-07-15):** the two flagship genealogy metrics returned a naive CONFIRMED that was
+  a **congress-boundary artifact** — the machine's own adversarial pass (§4.5) + structural guard
+  caught it before it became a false "the memo industrialized" headline. This is the discipline paying
+  off on day one: *the first thing the sweep did was reject its own most-wanted result.* Both are
+  redefinable (event-detection on a merged substrate, S1.1′/S1.3′) — not dead, deferred. The lesson
+  (per-Congress shards can't answer within-phrase-genealogy questions) reshaped the S1 sequencing.
