@@ -752,6 +752,29 @@ denominators + methodology inscriptions regenerated into `site/public` and deplo
   durably asymmetric manifest with no alert. **Opus build item** (a startup reconciliation that scans
   recent post manifests and alerts on unacknowledged asymmetric/partial) — queued below, before flip.
 
+### Session 8d (2026-07-15, Opus) — #108 smoke test RAN LIVE and caught a launch-blocking 400
+
+Michael created a throwaway Bluesky account and handed over its app-password, so item (A) above ran
+**for real** this session (not deferred). `scratchpad/smoke_post.py` drives the **actual** `post_bluesky`
+primitives against the throwaway. It immediately found a **launch-blocking bug**: `app.bsky.feed.post`
+**rejects an arbitrary rkey** — `createRecord` returns `400 InvalidRequest: "Invalid record key for
+app.bsky.feed.post: Invalid TID string (got \"onscript-…\")"`. The Session-8c deterministic rkey
+`onscript-<day>-<party>` is **not a valid TID**, so real posting would have **400'd on the very first
+post at launch** — and the over-broad recovery `except` would have masked it as a phantom "collision
+recovery," then crashed on the follow-up getRecord (exactly the traceback the smoke test produced).
+
+**Fixed (commit 9e387f7, pushed):** (1) `_root_rkey` now builds a **valid deterministic TID** —
+timestamp = midnight UTC of the day, clock-id = party index; a valid 13-char base32-sortable string,
+unique per (day, party), roughly chronological. Verified live that **both past-dated (2001-01-20 →
+`2vvcci3yk2222`) and present-dated TIDs create cleanly.** (2) Recovery is now **probe-existence based,
+not error-code matching** — a rkey collision surfaces as **400 OR 500** depending on the PDS (500
+observed live), so on any create error we `getRecord` by rkey and recover only if the record exists,
+else **re-raise the original error** so the caller records `posted=False` + the dead-man fires. This
+also closes the swallow-a-real-failure bug. **13/13 live checks pass** (valid TID · threaded root+reply
+posted + verified · collision→recovery with no duplicate head · 401 raises on a wrong password · split
+invariants + oversize thread posts, all ≤300) **+ 89 unit tests.** Item (A) / task #108 is **done**;
+item (B) reconciliation still queued. (~10 test posts left on the throwaway — harmless.)
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
