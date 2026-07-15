@@ -50,49 +50,119 @@ _DAY_JSON = {
 }
 
 
-# --- POSTING_ENABLED kill-test (the launch switch) -----------------------------------------
-def test_killtest_posting_disabled_never_posts_even_with_creds():
-    """The core safety gate: creds present but POSTING_ENABLED off => no real post path, ever."""
-    restore = _env(POSTING_ENABLED=None, BSKY_BLUE_HANDLE="blue.onscript.news",
-                   BSKY_BLUE_PASSWORD="app-pass-xxxx")
-    called = {"real": False}
-    orig = post_bluesky._post_real
-    post_bluesky._post_real = lambda *a, **k: (_ for _ in ()).throw(AssertionError("_post_real was called with posting disabled!"))
+# --- POSTING_ENABLED kill-test + atomicity (the launch switch) -----------------------------
+def test_killtest_posting_disabled_never_authenticates_or_posts():
+    """The core safety gate: creds present but POSTING_ENABLED off => NO auth, NO post, ever."""
+    restore = _env(POSTING_ENABLED=None, BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
+
+    def boom(*a, **k):
+        raise AssertionError("network touched with posting disabled!")
+
     try:
         assert config.posting_enabled() is False
-        res = post_bluesky.post_party("2026-06-30", "D", _DAY_JSON)
-        assert res["posted"] is False
-        assert res["reason"] == "posting disabled"
-        assert res["creds_present"] is True  # creds WERE present; the gate still held
+        rc, m = _run_main_with("2026-06-30", _DAY_JSON, {}, authenticate=boom, post_thread=boom, ntfy_sink=[])
+        res = {r["party"]: r for r in m["results"]}
+        assert all(res[p]["posted"] is False and res[p]["reason"] == "posting disabled" for p in ("D", "R"))
+        assert res["D"]["creds_present"] is True and m["posting_enabled"] is False
     finally:
-        post_bluesky._post_real = orig
         restore()
 
 
-def test_posting_enabled_no_creds_is_dry_run():
-    restore = _env(POSTING_ENABLED="true", BSKY_BLUE_HANDLE=None, BSKY_BLUE_PASSWORD=None)
-    orig = post_bluesky._post_real
-    post_bluesky._post_real = lambda *a, **k: (_ for _ in ()).throw(AssertionError("posted with no creds!"))
+def test_posting_on_missing_creds_holds_both_atomically():
+    """Posting ON but a due party has no creds => hold BOTH (never post one alone) + alert."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE=None, BSKY_RED_PASSWORD=None)  # R has no creds
+
+    def boom(*a, **k):
+        raise AssertionError("network touched despite a missing-creds hold!")
+
+    ntfy = []
     try:
-        res = post_bluesky.post_party("2026-06-30", "D", _DAY_JSON)
-        assert res["posted"] is False and res["reason"] == "no creds (dry-run)"
+        rc, m = _run_main_with("2026-06-30", _DAY_JSON, {}, authenticate=boom, post_thread=boom, ntfy_sink=ntfy)
+        assert m["atomic_hold"] is True
+        res = {r["party"]: r for r in m["results"]}
+        assert all(res[p]["posted"] is False for p in ("D", "R")) and "creds missing" in res["D"]["reason"]
+        assert ntfy  # the misconfiguration is alerted, not silent
     finally:
-        post_bluesky._post_real = orig
         restore()
 
 
-def test_posting_enabled_with_creds_reaches_real_path():
-    """Positive direction: gate on + creds => the real path IS invoked (stubbed)."""
-    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="blue.onscript.news",
-                   BSKY_BLUE_PASSWORD="app-pass-xxxx")
-    orig = post_bluesky._post_real
-    post_bluesky._post_real = lambda handle, pw, thread, party: {"party": party, "posted": True, "posts": len(thread)}
+def test_atomic_hold_when_one_account_auth_fails():
+    """§Session-8 blocker: a wrong/expired app-password on ONE account holds BOTH — the good account
+    never posts alone (which reads as bias). The auth pre-flight catches it before any post."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="wrong")
+    posted = []
+
+    def auth(h, pw):
+        if pw == "wrong":
+            raise RuntimeError("401 Unauthorized")
+        return {"base": "x", "jwt": "j", "did": "did:plc:" + h}
+
+    def thread(session, thr, on_root=None, root_rkey=None):
+        posted.append(session["did"])
+        (on_root or (lambda u: None))("at://x/root")
+        return {"root_uri": "at://x/root", "posts_written": len(thr)}
+
+    ntfy = []
     try:
-        res = post_bluesky.post_party("2026-06-30", "D", _DAY_JSON)
-        assert res["posted"] is True and res["creds_present"] is True
+        rc, m = _run_main_with("2026-06-30", _DAY_JSON, {}, authenticate=auth, post_thread=thread, ntfy_sink=ntfy)
+        assert posted == []  # the well-authed account was HELD — nothing posted
+        assert m["atomic_hold"] is True and ntfy
+        res = {r["party"]: r for r in m["results"]}
+        assert all(res[p]["posted"] is False and "auth failed" in res[p]["reason"] for p in ("D", "R"))
     finally:
-        post_bluesky._post_real = orig
         restore()
+
+
+def test_both_post_when_all_accounts_authenticate():
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
+    try:
+        rc, m = _run_main_with("2026-06-30", _DAY_JSON, {}, ntfy_sink=[])  # defaults: auth ok, post ok
+        res = {r["party"]: r for r in m["results"]}
+        assert all(res[p]["posted"] is True and res[p].get("root_uri") for p in ("D", "R"))
+        assert m["asymmetric"] is False and m["atomic_hold"] is False
+    finally:
+        restore()
+
+
+def test_empty_composite_for_one_party_holds_both_atomically():
+    """§Session-8b (adversarial-review): one party's composite is missing/empty. Posting the other
+    party's real thread + a near-empty root reads as bias but slips past the asymmetric guard (both
+    'posted'). So a missing composite must hold BOTH + alert — never post one alone."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
+    day_json = {"day": "2026-06-30",
+                "daily_lines": {"D": {"composite": "Today we spoke.", "generator": "llm"},
+                                "R": {"composite": "   ", "generator": "llm"}},  # R blank
+                "top_synchronized": []}
+
+    def boom(*a, **k):
+        raise AssertionError("network touched despite an empty-composite hold!")
+
+    ntfy = []
+    try:
+        rc, m = _run_main_with("2026-06-30", day_json, {}, authenticate=boom, post_thread=boom, ntfy_sink=ntfy)
+        assert m["atomic_hold"] is True
+        res = {r["party"]: r for r in m["results"]}
+        assert all(res[p]["posted"] is False for p in ("D", "R")) and "no composite" in res["D"]["reason"]
+        assert ntfy  # the empty-output anomaly is alerted, not silently one-sided
+    finally:
+        restore()
+
+
+def test_split_never_emits_empty_or_overlength_posts():
+    """§Session-8b: the thread splitter's invariants — no empty post (would fail createRecord for one
+    party alone), no over-length post (a lone token past the limit is hard-sliced)."""
+    assert post_bluesky._split("") == [""]                          # degenerate: exactly one placeholder
+    packed = post_bluesky._split(("word " * 200).strip(), limit=50)
+    assert packed and all(0 < len(p) <= 50 for p in packed)         # no empty, none over-length
+    sliced = post_bluesky._split("x" * 130, limit=50)               # lone oversize token, hard-sliced
+    assert sliced == ["x" * 50, "x" * 50, "x" * 30]
+    mixed = post_bluesky._split("hi " + "y" * 120, limit=50)        # a normal word then an oversize one
+    assert all(0 < len(p) <= 50 for p in mixed) and "hi" in mixed[0]
 
 
 # --- FEATURES registry --------------------------------------------------------------------
@@ -262,8 +332,8 @@ def test_post_day_comes_from_assemble_manifest_not_collect():
 
 
 # --- main() integration: idempotency (MEDIUM-2) + dead-man on error (HIGH-3) ---------------
-def _run_main_with(day, day_json, prior, post_real, ntfy_sink):
-    """Drive post_bluesky.main() with all I/O stubbed. Returns the written post manifest."""
+def _run_main_with(day, day_json, prior, *, authenticate=None, post_thread=None, ntfy_sink=None):
+    """Drive post_bluesky.main() with all I/O + AT-Proto network stubbed. Returns (rc, manifest)."""
     from pathlib import Path as _P
     writes = {}
 
@@ -277,41 +347,80 @@ def _run_main_with(day, day_json, prior, post_real, ntfy_sink):
             return prior
         return {} if default is None else default
 
-    saved = (post_bluesky.util.read_json, post_bluesky.util.write_json,
-             post_bluesky._post_real, post_bluesky.ops.ntfy, sys.argv)
+    def default_auth(h, pw):
+        return {"base": "x", "jwt": "j", "did": "did:plc:" + str(h)}
+
+    def default_thread(session, thread, on_root=None, root_rkey=None):
+        uri = "at://" + session["did"] + "/root"
+        if on_root:
+            on_root(uri)
+        return {"root_uri": uri, "posts_written": len(thread)}
+
+    saved = (post_bluesky.util.read_json, post_bluesky.util.write_json, post_bluesky._authenticate,
+             post_bluesky._post_thread, post_bluesky._ensure_bot_label, post_bluesky.ops.ntfy, sys.argv)
     post_bluesky.util.read_json = fake_read
     post_bluesky.util.write_json = lambda p, obj: writes.__setitem__(_P(str(p)).name, obj)
-    post_bluesky._post_real = post_real
-    post_bluesky.ops.ntfy = lambda *a, **k: ntfy_sink.append((a, k))
+    post_bluesky._authenticate = authenticate or default_auth
+    post_bluesky._post_thread = post_thread or default_thread
+    post_bluesky._ensure_bot_label = lambda s: None
+    post_bluesky.ops.ntfy = lambda *a, **k: (ntfy_sink if ntfy_sink is not None else []).append((a, k))
     sys.argv = ["post", "--day", day]
     try:
         rc = post_bluesky.main()
     finally:
-        (post_bluesky.util.read_json, post_bluesky.util.write_json,
-         post_bluesky._post_real, post_bluesky.ops.ntfy, sys.argv) = saved
+        (post_bluesky.util.read_json, post_bluesky.util.write_json, post_bluesky._authenticate,
+         post_bluesky._post_thread, post_bluesky._ensure_bot_label, post_bluesky.ops.ntfy, sys.argv) = saved
     return rc, writes.get(f"post-{day}.json", {})
 
 
-def test_idempotency_skips_already_posted_party():
-    """MEDIUM-2: a re-run never re-posts a party a prior run already posted; the other party still runs."""
-    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="blue.onscript.news",
-                   BSKY_BLUE_PASSWORD="x", BSKY_RED_HANDLE="red.onscript.news", BSKY_RED_PASSWORD="y")
+def test_idempotency_skips_party_already_posted_with_root_uri():
+    """MEDIUM-2: a re-run never re-posts a party whose prior run recorded a real root URI; the other
+    party still runs."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
     day = "2026-06-30"
-    day_json = {"day": day, "daily_lines": {"D": {"composite": "d"}, "R": {"composite": "r"}},
-                "top_synchronized": []}
-    prior = {"results": [{"party": "D", "posted": True}]}  # D already posted last run
-    real_calls = []
+    prior = {"results": [{"party": "D", "posted": True, "root_uri": "at://d/root", "thread": ["d"]}]}
+    posted = []
+
+    def thread(session, thr, on_root=None, root_rkey=None):
+        posted.append(session["did"])
+        if on_root:
+            on_root("at://r/root")
+        return {"root_uri": "at://r/root", "posts_written": len(thr)}
+
     try:
-        rc, manifest = _run_main_with(
-            day, day_json, prior,
-            post_real=lambda h, pw, thread, party: (real_calls.append(party) or
-                                                    {"party": party, "posted": True, "posts": len(thread)}),
-            ntfy_sink=[])
-        assert rc == 0
-        assert "D" not in real_calls and "R" in real_calls  # D skipped, R posted
-        res = {r["party"]: r for r in manifest["results"]}
-        assert res["D"].get("idempotent_skip") is True and res["D"]["posted"] is True
+        rc, m = _run_main_with(day, _DAY_JSON, prior, post_thread=thread, ntfy_sink=[])
+        assert rc == 0 and posted == ["did:plc:r"]  # only R posted; D skipped (had a root URI)
+        res = {r["party"]: r for r in m["results"]}
+        assert res["D"].get("idempotent_skip") is True and res["D"]["root_uri"] == "at://d/root"
         assert res["R"]["posted"] is True
+    finally:
+        restore()
+
+
+def test_partial_post_records_root_and_a_rerun_does_not_duplicate():
+    """§Session-8 blocker: when a thread fails AFTER its root post is live, the root URI is recorded
+    (posted=True, partial), so a re-run SKIPS that party — never a duplicate head post."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
+    day = "2026-06-30"
+
+    def partial(session, thr, on_root=None, root_rkey=None):
+        on_root("at://" + session["did"] + "/root")     # root goes live...
+        if session["did"].endswith("b"):
+            raise RuntimeError("network died after root")  # ...then D's replies fail
+        return {"root_uri": "at://" + session["did"] + "/root", "posts_written": len(thr)}
+
+    try:
+        rc, m1 = _run_main_with(day, _DAY_JSON, {}, post_thread=partial, ntfy_sink=[])
+        r1 = {r["party"]: r for r in m1["results"]}
+        assert r1["D"]["posted"] is True and r1["D"]["root_uri"].endswith("b/root") and r1["D"].get("partial") is True
+        # re-run with m1 as prior: BOTH already have a root URI -> nothing is re-posted (no duplicate)
+        reposted = []
+        rc, m2 = _run_main_with(day, _DAY_JSON, m1, ntfy_sink=[],
+                                post_thread=lambda s, t, on_root=None, root_rkey=None: reposted.append(s["did"]))
+        assert reposted == []
+        assert {r["party"]: r for r in m2["results"]}["D"].get("idempotent_skip") is True
     finally:
         restore()
 
@@ -340,25 +449,25 @@ def test_symmetry_report_is_day_scoped_not_cumulative():
     assert rep["day"] == "2026-07-13"
 
 
-def test_deadman_fires_when_a_creds_present_post_throws():
-    """HIGH-3: if the real post throws (network/401/timeout) the dead-man MUST still fire — the
-    error result carries creds_present so the missing-post detector sees it."""
-    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="blue.onscript.news",
-                   BSKY_BLUE_PASSWORD="x", BSKY_RED_HANDLE="red.onscript.news", BSKY_RED_PASSWORD="y")
+def test_deadman_fires_on_asymmetric_post():
+    """If one account posts but the paired account fails after both authed (a rare mid-post network
+    failure), the ASYMMETRIC outcome must fire the dead-man — it must never sit silent."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
     day = "2026-06-30"
-    day_json = {"day": day, "daily_lines": {"D": {"composite": "d"}, "R": {"composite": "r"}},
-                "top_synchronized": []}
-    ntfy_calls = []
+    ntfy = []
 
-    def boom(h, pw, thread, party):
-        raise RuntimeError("bsky 500")
+    def thread(session, thr, on_root=None, root_rkey=None):
+        if session["did"].endswith("r"):        # R fails before its root -> clean failure
+            raise RuntimeError("bsky 500")
+        on_root("at://d/root")                   # D posts fully
+        return {"root_uri": "at://d/root", "posts_written": len(thr)}
 
     try:
-        rc, manifest = _run_main_with(day, day_json, {}, post_real=boom, ntfy_sink=ntfy_calls)
-        assert rc == 0
-        assert ntfy_calls, "dead-man must fire when a creds-present post throws"
-        res = {r["party"]: r for r in manifest["results"]}
-        assert res["D"]["creds_present"] is True and res["D"]["posted"] is False
-        assert res["R"]["creds_present"] is True and res["R"]["posted"] is False
+        rc, m = _run_main_with(day, _DAY_JSON, {}, post_thread=thread, ntfy_sink=ntfy)
+        assert rc == 0 and m["asymmetric"] is True and ntfy
+        res = {r["party"]: r for r in m["results"]}
+        assert res["D"]["posted"] is True and res["R"]["posted"] is False
+        assert res["R"]["creds_present"] is True   # so the missing-post detector also sees it
     finally:
         restore()

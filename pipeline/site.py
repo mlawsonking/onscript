@@ -544,6 +544,15 @@ def _safe_http_url(url) -> str:
     return u if (lo.startswith("http://") or lo.startswith("https://")) else ""
 
 
+def _wayback_url(url: str, date: str | None) -> str:
+    """A Wayback Machine capture link for a cited release. Member sites migrate CMSs and delete
+    releases, so the live .gov link rots; the Wayback capture (nearest to the ingest date) survives.
+    The full text is ALSO preserved in our immutable data release — this is the reader-facing fallback.
+    §Session-8 (link rot)."""
+    ts = "".join(ch for ch in str(date or "") if ch.isdigit())[:8] or "2"
+    return f"https://web.archive.org/web/{ts}/{url}"
+
+
 def receipts_strip(party: str, talking_points: list, caucus: int | None = None) -> str:
     """Build the receipts strip from a party's talking_points (the visual signature). `caucus` is the
     party's caucus size, so every count travels with its denominator ("10 of 263 · 3.8%")."""
@@ -580,8 +589,13 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
             pp, st = c.get("party"), c.get("state")
             suffix = f" ({esc(pp)}-{esc(st)})" if pp and st else (f" ({esc(st)})" if st else "")
             url = _safe_http_url(c.get("url"))
-            src = (f'<a href="{esc(url)}" rel="nofollow noopener">source</a>'
-                   if url else '<span class="faint">source</span>')
+            if url:
+                # source + an archival fallback (Wayback), so a rotted .gov link never dead-ends a
+                # receipt; the full text is also in our immutable data release. §Session-8.
+                src = (f'<a href="{esc(url)}" rel="nofollow noopener">source</a> · '
+                       f'<a href="{esc(_wayback_url(url, c.get("date")))}" rel="nofollow noopener">archived</a>')
+            else:
+                src = '<span class="faint">source</span>'
             q = c.get("quote")
             qhtml = f'<div class="quote">{esc(q)}</div>' if q else ""
             lis.append(
@@ -1114,6 +1128,13 @@ def methodology_body():
         "statements and the full phrase ledger are published as immutable, date-stamped release assets (repository "
         "and assets are public at launch) so the entire time-series is rebuildable from source. The pipeline is "
         "deterministic: same inputs, same outputs.</p>"
+    )
+    parts.append(
+        "<p><strong>Source links and the archive.</strong> Each receipt links to the member's own .gov release "
+        "and, alongside it, to a Wayback Machine capture. Member sites migrate and delete, so a live link can rot "
+        "over time — but the exact text we quoted is preserved verbatim in the immutable data release above, so a "
+        "dead source link never means lost evidence. A release that is <em>deleted after we cited it</em> is not a "
+        "gap in our record; it is a finding, and surfacing those is a planned feature.</p>"
     )
     return "".join(parts)
 

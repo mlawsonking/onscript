@@ -1,16 +1,20 @@
 """B7 — post the Daily Line thread to both composite accounts (§7.2/§7.3).
 
-blue.onscript.news = D, red.onscript.news = R. Posting is GATED three ways, in order:
-  1. POSTING_ENABLED (config, from the GitHub Actions repo variable) — the S3 launch switch.
-     Off (default) => deterministic dry-run print, NO network, regardless of creds. This is the
-     deliberate-launch gate: the first brand post is Michael's act, never a cron accident.
-  2. app-password secrets present — absent => dry-run print (the pre-launch/no-creds path).
-  3. only then the real AT-Protocol path (createSession + app.bsky.feed.post, threaded).
+blue.onscript.news = D, red.onscript.news = R. Posting is GATED, in order:
+  1. POSTING_ENABLED (repo variable) — the S3 launch switch. Off (default) => dry-run print, NO
+     network, regardless of creds (kill-tested). The first brand post is Michael's act, never a cron
+     accident.
+  2. Creds present for every due party — else dry-run (pre-launch).
+  3. ATOMIC PRE-FLIGHT auth — a real createSession is established for EVERY due party BEFORE any post.
+     If any fails (wrong/expired app-password), NEITHER posts (atomic hold) — an asymmetric post
+     (one account up, one erroring) reads as bias. §Session-8.
+  4. Post each thread, persisting the root URI the instant the root post is live (before the replies)
+     so a mid-thread failure can never be re-posted as a DUPLICATE on a re-run. §Session-8.
 
-The day comes from the day ASSEMBLE built (manifest/assemble-latest.json), not from collect —
-decoupling the two fixes the Session-4 no-op bug. Post outcomes are written to
-manifest/post-<day>.json, and an expected-but-absent post fires the dead-man (ntfy). Bluesky
-posting is free and never touches the Anthropic API. Skip-and-log: a failure never crashes the run.
+The day comes from the day ASSEMBLE built (manifest/assemble-latest.json). Outcomes (incl. the full
+thread text, for the on-domain signed archive) are written to manifest/post-<day>.json, flushed after
+every root so a crash leaves a durable, non-duplicating record. Bluesky posting is free and never
+touches the Anthropic API. Skip-and-log: a failure never crashes the run.
 """
 from __future__ import annotations
 
@@ -34,9 +38,19 @@ _ACCOUNTS = {
 
 
 def _split(text: str, limit: int = 300) -> list[str]:
-    words, out, cur = text.split(), [], ""
-    for w in words:
-        if len(cur) + len(w) + 1 > limit:
+    """Pack words into <=limit-char posts. Invariant: never emit an EMPTY post and never emit an
+    OVER-length one — a lone token longer than the limit (a URL, a pathological run) is hard-sliced.
+    An empty leading post or an uncut oversize word would fail createRecord for that party alone,
+    reading as bias (adversarial-review finding). §Session-8b."""
+    out, cur = [], ""
+    for w in text.split():
+        if len(w) > limit:                          # lone oversize token: flush, then hard-slice it
+            if cur.strip():
+                out.append(cur.strip())
+            cur = ""
+            while len(w) > limit:
+                out.append(w[:limit]); w = w[limit:]
+        if cur.strip() and len(cur) + len(w) + 1 > limit:
             out.append(cur.strip()); cur = ""
         cur += " " + w
     if cur.strip():
@@ -44,13 +58,20 @@ def _split(text: str, limit: int = 300) -> list[str]:
     return out or [""]
 
 
+def _has_composite(party: str, day_json: dict) -> bool:
+    """True iff this party has a non-empty Daily Line composite for the day. A missing/empty composite
+    would post a near-empty root; and if only ONE party's is missing, BOTH still post (asymmetric is
+    False — both are technically 'posted'), a SILENT neutrality failure that slips past the asymmetric
+    guard. So a due party with no composite holds ALL posting. §Session-8b (adversarial-review)."""
+    dl = (day_json.get("daily_lines") or {}).get(party) or {}
+    return bool((dl.get("composite") or "").strip())
+
+
 def build_thread(day: str, party: str, day_json: dict) -> list[str]:
     # Total-failure-proof: a malformed day entry (null composite, a top-phrase row missing keys) must
-    # never raise here — post_party builds the thread BEFORE the gates, and a raise would crash the
-    # run (one account posts, the other doesn't, no manifest, no dead-man). All accesses are guarded.
+    # never raise here — a raise would crash the run. All accesses are guarded.
     dl = (day_json.get("daily_lines") or {}).get(party) or {}
     posts = _split(dl.get("composite") or "")
-    # receipts post: link + the day's most synchronized phrase (count + first-sayer)
     top = next((r for r in (day_json.get("top_synchronized") or []) if r.get("party") == party), None)
     receipts = f"Receipts: {SITE}/day/{day}.html"
     if top and top.get("ngram"):
@@ -70,48 +91,25 @@ def _print_thread(label: str, party: str, thread: list[str], reason: str) -> Non
 
 
 def can_post(party: str) -> bool:
-    """True iff this party's account creds are present (the atomicity pre-flight uses this)."""
+    """True iff this party's account creds are PRESENT. Presence is necessary but not sufficient — the
+    atomic pre-flight (_authenticate) proves they actually work before anything posts."""
     a = _ACCOUNTS[party]
     return bool(os.environ.get(a["handle_env"]) and os.environ.get(a["pw_env"]))
 
 
-def post_party(day: str, party: str, day_json: dict, dry_only: bool = False) -> dict:
-    """Post (or dry-run) one party's thread. Returns a structured result the caller records — includes
-    the full `thread` text so the on-domain signed archive can mirror exactly what was posted."""
-    acct = _ACCOUNTS[party]
-    handle = os.environ.get(acct["handle_env"])
-    pw = os.environ.get(acct["pw_env"])
+def _dry_result(day: str, party: str, day_json: dict, reason: str, creds_present=None) -> dict:
+    """A non-posting result (dry-run / gated / atomic-hold). Prints the would-be thread; NO network."""
     thread = build_thread(day, party, day_json)
-    base = {"party": party, "thread": thread, "posts": len(thread), "creds_present": bool(handle and pw)}
-
-    # Atomicity hold (§Session-8): the paired party can't post, so we post NEITHER — an asymmetric
-    # post (one account up, one erroring) reads as bias.
-    if dry_only:
-        _print_thread(acct["label"], party, thread, reason="atomic hold (paired party not postable)")
-        return {**base, "posted": False, "reason": "atomic hold (paired party not postable)"}
-
-    # Gate 1 — the launch switch. Off => never post, regardless of creds (kill-tested).
-    if not config.posting_enabled():
-        _print_thread(acct["label"], party, thread, reason="POSTING_ENABLED off (hold)")
-        return {**base, "posted": False, "reason": "posting disabled"}
-
-    # Gate 2 — creds. Absent => dry-run print (pre-launch / secrets not set).
-    if not handle or not pw:
-        _print_thread(acct["label"], party, thread, reason="no creds (dry-run)")
-        return {**base, "posted": False, "reason": "no creds (dry-run)"}
-
-    # Gate 3 — the real path.
-    res = _post_real(handle, pw, thread, party)  # pragma: no cover - requires creds
-    return {**base, **res, "creds_present": True}
+    _print_thread(_ACCOUNTS[party]["label"], party, thread, reason=reason)
+    return {"party": party, "thread": thread, "posts": len(thread), "posted": False,
+            "reason": reason, "creds_present": can_post(party) if creds_present is None else creds_present}
 
 
 # --- real AT-Protocol path (pragma: no cover — requires live app-password creds) -----------
 def _http(url, jwt=None):  # pragma: no cover
     import json
     import urllib.request
-    headers = {}
-    if jwt:
-        headers["authorization"] = f"Bearer {jwt}"
+    headers = {"authorization": f"Bearer {jwt}"} if jwt else {}
     req = urllib.request.Request(url, headers=headers, method="GET")
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.load(r)
@@ -128,11 +126,19 @@ def _call(url, body, token=None):  # pragma: no cover
         return json.load(r)
 
 
-def _ensure_bot_label(base, jwt, did):  # pragma: no cover - requires creds
-    """Idempotently declare the {val:'bot'} self-label on the account profile (§7.3), WITHOUT
-    clobbering the display name / bio / avatar Michael set. Fetches the existing profile record,
-    adds the label only if absent, and re-puts the FULL record. If the profile can't be read (or
-    is empty), it does nothing — never risks creating a bare profile. Never breaks posting."""
+def _authenticate(handle: str, pw: str) -> dict:  # pragma: no cover - requires creds
+    """Establish an authenticated session (createSession). Raises on a wrong/expired app-password —
+    the caller uses that to hold ALL posting atomically, so a bad credential can never let the paired
+    account post alone. §Session-8 (auth-real atomic pre-flight)."""
+    base = "https://bsky.social/xrpc"
+    sess = _call(f"{base}/com.atproto.server.createSession", {"identifier": handle, "password": pw})
+    return {"base": base, "jwt": sess["accessJwt"], "did": sess["did"]}
+
+
+def _ensure_bot_label(session: dict):  # pragma: no cover - requires creds
+    """Idempotently declare the {val:'bot'} self-label (§7.3) WITHOUT clobbering the display name/bio/
+    avatar. If the profile can't be read or is empty, do nothing. Never blocks posting."""
+    base, jwt, did = session["base"], session["jwt"], session["did"]
     try:
         got = _http(f"{base}/com.atproto.repo.getRecord?repo={did}"
                     f"&collection=app.bsky.actor.profile&rkey=self", jwt)
@@ -140,14 +146,12 @@ def _ensure_bot_label(base, jwt, did):  # pragma: no cover - requires creds
     except Exception as e:
         print(f"[bot-label:{did[:12]}] profile unreadable, skipping self-label: {e}")
         return
-    # Only touch a profile that actually exists with content (protects Michael's display name/bio).
     if not (rec.get("displayName") or rec.get("description")):
         print(f"[bot-label:{did[:12]}] profile has no display name/bio yet, skipping self-label")
         return
-    labels = rec.get("labels") or {}
-    values = list(labels.get("values") or [])
+    values = list((rec.get("labels") or {}).get("values") or [])
     if any((v or {}).get("val") == "bot" for v in values):
-        return  # already labeled — idempotent no-op
+        return
     values.append({"val": "bot"})
     rec["labels"] = {"$type": "com.atproto.label.defs#selfLabels", "values": values}
     rec.setdefault("$type", "app.bsky.actor.profile")
@@ -156,103 +160,207 @@ def _ensure_bot_label(base, jwt, did):  # pragma: no cover - requires creds
     print(f"[bot-label:{did[:12]}] declared self-label val=bot")
 
 
-def _post_real(handle: str, pw: str, thread: list[str], party: str) -> dict:  # pragma: no cover
-    base = "https://bsky.social/xrpc"
-    sess = _call(f"{base}/com.atproto.server.createSession", {"identifier": handle, "password": pw})
-    jwt, did = sess["accessJwt"], sess["did"]
-    try:
-        _ensure_bot_label(base, jwt, did)  # disclosure hygiene; never blocks posting
-    except Exception as e:
-        print(f"[bot-label] non-fatal: {e}")
+def _root_rkey(day: str, party: str) -> str:
+    """A DETERMINISTIC record key for the root post, unique per day+party. Because it's fixed, a
+    retried root (after a lost createRecord response, or a failed manifest write) COLLIDES server-side
+    instead of creating a second post — closing the duplicate-head-post window the local manifest alone
+    can't. §Session-8."""
+    return f"onscript-{day}-{party.lower()}"
+
+
+def _post_thread(session: dict, thread: list[str], on_root=None, root_rkey=None) -> dict:
+    """Post a thread. The root uses a DETERMINISTIC rkey (idempotent server-side); on collision — the
+    root already exists from a prior run whose response was lost — it is RECOVERED via getRecord and we
+    STOP (never a duplicate head post, never re-posted replies). on_root(uri) fires the instant the root
+    URI is known so the caller can persist it before any reply. Returns {root_uri, posts_written}."""
+    base, jwt, did = session["base"], session["jwt"], session["did"]
     root = parent = None
+    written = 0
     for text in thread:
-        rec = {"$type": "app.bsky.feed.post", "text": text, "createdAt": util.now_utc_iso(),
-               "langs": ["en"]}
+        rec = {"$type": "app.bsky.feed.post", "text": text, "createdAt": util.now_utc_iso(), "langs": ["en"]}
         if root:
             rec["reply"] = {"root": root, "parent": parent}
-        res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt,
-                    body={"repo": did, "collection": "app.bsky.feed.post", "record": rec})
+        body = {"repo": did, "collection": "app.bsky.feed.post", "record": rec}
+        if root is None and root_rkey:
+            body["rkey"] = root_rkey
+            try:
+                res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt, body=body)
+            except Exception:
+                # Root already live (lost response). Recover it — never duplicate — and STOP: replies
+                # may already exist. A head-only thread beats a duplicate; the party is now recorded so
+                # future runs skip it.
+                got = _http(f"{base}/com.atproto.repo.getRecord?repo={did}"
+                            f"&collection=app.bsky.feed.post&rkey={root_rkey}", jwt)
+                if on_root:
+                    on_root(got["uri"])
+                return {"root_uri": got["uri"], "posts_written": 0, "recovered": True}
+        else:
+            res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt, body=body)
         ref = {"uri": res["uri"], "cid": res["cid"]}
-        root = root or ref
+        if root is None:
+            root = ref
+            if on_root:
+                on_root(ref["uri"])   # durable checkpoint BEFORE any reply
         parent = ref
-    return {"party": party, "posted": True, "posts": len(thread), "root_uri": (root or {}).get("uri")}
+        written += 1
+    return {"root_uri": (root or {}).get("uri"), "posts_written": written}
 
 
 def resolve_day(arg: str | None) -> str:
-    """The day to post = the day ASSEMBLE built (assemble-latest.json), NOT collect's focus_day.
-    Explicit --day wins; falls back to the assemble manifest, then product_day (§2)."""
+    """The day to post = the day ASSEMBLE built (assemble-latest.json). Explicit --day wins."""
     if arg:
         return arg
     latest = util.read_json(config.DERIVED / "manifest" / "assemble-latest.json", {})
     return latest.get("day") or util.product_day()
 
 
+def _deadman(posting_enabled: bool, results: list[dict], atomic_hold: bool) -> None:
+    """Alert when posting is ON and something needs a human: an expected-but-absent post, an atomic
+    hold (bad/missing creds — post neither), a partial thread (root up, replies failed), or an
+    ASYMMETRIC outcome (exactly one account up — the bias-looking failure). §Session-8."""
+    if not posting_enabled:
+        return
+    posted = [r["party"] for r in results if r.get("posted") and not r.get("idempotent_skip")]
+    missing = [r["party"] for r in results if r.get("creds_present") and not r.get("posted")]
+    partial = [r["party"] for r in results if r.get("partial")]
+    live = [r["party"] for r in results if r.get("posted")]
+    asymmetric = len(live) == 1
+    if missing or atomic_hold or asymmetric or partial:
+        ops.ntfy("OnScript posting",
+                 f"posted={posted} missing={missing} partial={partial} "
+                 f"atomic_hold={atomic_hold} asymmetric={asymmetric}", priority="high")
+
+
 def main() -> int:
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--day", default=None)
-    args = ap.parse_args()
-    day = resolve_day(args.day)
+    day = resolve_day(ap.parse_args().day)
     day_json = util.read_json(config.DERIVED / "days" / f"{day}.json", None)
+    manifest_path = config.DERIVED / "manifest" / f"post-{day}.json"
 
-    # Idempotency: never re-post a party that a prior run already posted for THIS day. A manual
-    # re-dispatch / "Re-run all jobs" after a successful post would otherwise publish a duplicate
-    # composite thread. The prior post manifest is the source of truth. §Session-5 (MEDIUM-2).
-    prior = util.read_json(config.DERIVED / "manifest" / f"post-{day}.json", {})
+    prior = util.read_json(manifest_path, {})
     prior_results = prior.get("results") or []
-    already_posted = {r.get("party") for r in prior_results if r.get("posted")}
+    # A party is "already posted" only if a prior run recorded a real root URI — so a partial thread
+    # (root live) is NEVER re-posted (no duplicate), but a clean failure (no root) IS retried.
+    already_posted = {r.get("party") for r in prior_results if r.get("posted") and r.get("root_uri")}
     posting_enabled = config.posting_enabled()
     have_day = bool(day_json and day_json.get("daily_lines"))
 
-    # ATOMICITY (§Session-8): for a REAL post, both composites go or NEITHER does. If any not-yet-posted
-    # party can't proceed (missing creds), hold ALL of them rather than post one — an asymmetric post
-    # reads as bias. (Recovery of a prior partial failure still works: an already-posted party is left
-    # alone; only the not-yet-posted set is gated together.)
-    to_post = [p for p in config.COMPOSITE_PARTIES if p not in already_posted] if have_day else []
-    atomic_hold = bool(posting_enabled and to_post and not all(can_post(p) for p in to_post))
+    result_by_party: dict = {}
+    atomic_hold = False
 
-    results: list[dict] = []
+    def _ordered():
+        return [result_by_party[p] for p in config.COMPOSITE_PARTIES if p in result_by_party]
+
+    def _flush():
+        # A manifest write failure must never crash the run (module contract) — and the deterministic
+        # root rkey means the manifest is a fast-path record, not the sole idempotency guard.
+        try:
+            live = [r["party"] for r in _ordered() if r.get("posted")]
+            util.write_json(manifest_path, {
+                "schema_version": 1, "kind": "post", "day": day, "generated_at": util.now_utc_iso(),
+                "posting_enabled": posting_enabled, "atomic_hold": atomic_hold,
+                "asymmetric": len(live) == 1, "results": _ordered(),
+            })
+        except Exception as e:
+            print(f"[post] manifest write failed (non-fatal): {e}")
+
     if not have_day:
         print(f"no Daily Lines for {day} — nothing to post")
-    else:
-        for party in config.COMPOSITE_PARTIES:
-            if party in already_posted:
-                # Carry the prior result forward (preserves its thread + root_uri for the archive; the
-                # manifest is overwritten each run, so we must not drop it). §Session-8.
-                prev = next((r for r in prior_results if r.get("party") == party and r.get("posted")), {})
-                print(f"[post:{party}] already posted for {day} — idempotent skip")
-                results.append({**prev, "party": party, "posted": True,
-                                "reason": "already posted (idempotent)", "creds_present": True,
-                                "idempotent_skip": True})
-                continue
+        _flush()
+        return 0
+
+    # Carry prior successes forward (idempotent skip — never re-post; preserves thread + root_uri).
+    for party in config.COMPOSITE_PARTIES:
+        if party in already_posted:
+            prev = next((r for r in prior_results if r.get("party") == party and r.get("root_uri")), {})
+            print(f"[post:{party}] already posted for {day} — idempotent skip")
+            result_by_party[party] = {**prev, "party": party, "posted": True,
+                                      "reason": "already posted (idempotent)", "creds_present": True,
+                                      "idempotent_skip": True}
+
+    to_post = [p for p in config.COMPOSITE_PARTIES if p not in already_posted]
+
+    # Gated / dry-run: posting off, or nothing due -> hold all as dry (no network).
+    if not (posting_enabled and to_post):
+        for p in to_post:
+            result_by_party[p] = _dry_result(
+                day, p, day_json, "posting disabled" if not posting_enabled else "no creds (dry-run)")
+        _flush()
+        _deadman(posting_enabled, _ordered(), atomic_hold)
+        return 0
+
+    # A due party missing creds -> hold ALL atomically (post neither).
+    no_creds = [p for p in to_post if not can_post(p)]
+    if no_creds:
+        atomic_hold = True
+        for p in to_post:
+            result_by_party[p] = _dry_result(day, p, day_json, f"atomic hold (creds missing: {no_creds})")
+        _flush()
+        _deadman(posting_enabled, _ordered(), atomic_hold)
+        return 0
+
+    # A due party with an empty/missing composite -> hold ALL atomically. Posting a near-empty root for
+    # one party while the other posts a real thread reads as bias yet slips past the asymmetric guard
+    # (both are technically "posted"). Hold both + alert. §Session-8b (adversarial-review).
+    no_content = [p for p in to_post if not _has_composite(p, day_json)]
+    if no_content:
+        atomic_hold = True
+        for p in to_post:
+            result_by_party[p] = _dry_result(day, p, day_json, f"atomic hold (no composite: {no_content})")
+        _flush()
+        _deadman(posting_enabled, _ordered(), atomic_hold)
+        return 0
+
+    # ATOMIC PRE-FLIGHT AUTH — a real session for EVERY due party before any post. A wrong/expired
+    # password holds ALL posting, so a bad credential never lets the paired account post alone.
+    sessions: dict = {}
+    auth_fail: dict = {}
+    for p in to_post:
+        a = _ACCOUNTS[p]
+        try:
+            sessions[p] = _authenticate(os.environ[a["handle_env"]], os.environ[a["pw_env"]])
+        except Exception as e:
+            auth_fail[p] = str(e)
+            print(f"[post-auth-failed:{p}] {e}")
+    if auth_fail:
+        atomic_hold = True
+        for p in to_post:
+            result_by_party[p] = _dry_result(
+                day, p, day_json, f"atomic hold (auth failed: {sorted(auth_fail)})", creds_present=True)
+        _flush()
+        _deadman(posting_enabled, _ordered(), atomic_hold)
+        return 0
+
+    # POST each authed party, checkpointing the root URI the instant it is live.
+    for p in to_post:
+        thread = build_thread(day, p, day_json)
+        try:
             try:
-                results.append(post_party(day, party, day_json, dry_only=atomic_hold))
-            except Exception as e:  # skip-and-log — a posting failure never crashes the run
-                print(f"[post-failed:{party}] {e}")
-                # Record creds presence + thread so the dead-man fires and the archive can still mirror.
-                results.append({"party": party, "posted": False, "reason": f"error: {e}", "posts": 0,
-                                "thread": build_thread(day, party, day_json), "creds_present": can_post(party)})
+                _ensure_bot_label(sessions[p])
+            except Exception as e:
+                print(f"[bot-label:{p}] non-fatal: {e}")
 
-    posted_parties = [r["party"] for r in results if r.get("posted")]
-    asymmetric = len(posted_parties) == 1  # exactly one account up — the bias-looking outcome
-    manifest = {
-        "schema_version": 1, "kind": "post", "day": day,
-        "generated_at": util.now_utc_iso(),
-        "posting_enabled": posting_enabled, "atomic_hold": atomic_hold, "asymmetric": asymmetric,
-        "results": results,
-    }
-    util.write_json(config.DERIVED / "manifest" / f"post-{day}.json", manifest)
+            def _on_root(uri, p=p, thread=thread):
+                result_by_party[p] = {"party": p, "thread": thread, "posts": len(thread),
+                                      "posted": True, "root_uri": uri, "creds_present": True, "partial": True}
+                _flush()  # durable BEFORE replies -> a re-run skips this party (no duplicate)
 
-    # Dead-man: when posting is ON, alert on (a) an expected post that didn't happen, (b) an atomic
-    # hold (we deliberately posted neither — needs a human to fix creds), or (c) an ASYMMETRIC outcome
-    # (exactly one account up — the bias-looking failure that must never sit silent). §Session-8.
-    if posting_enabled:
-        missing = [r["party"] for r in results if r.get("creds_present") and not r.get("posted")]
-        if missing or atomic_hold or asymmetric:
-            ops.ntfy("OnScript posting",
-                     f"day={day} posted={posted_parties} missing={missing} "
-                     f"atomic_hold={atomic_hold} asymmetric={asymmetric}",
-                     priority="high")
+            out = _post_thread(sessions[p], thread, on_root=_on_root, root_rkey=_root_rkey(day, p))
+            result_by_party[p] = {"party": p, "thread": thread, "posts": out["posts_written"],
+                                  "posted": True, "root_uri": out["root_uri"], "creds_present": True}
+        except Exception as e:  # skip-and-log — a posting failure never crashes the run
+            print(f"[post-failed:{p}] {e}")
+            if not (result_by_party.get(p) or {}).get("root_uri"):
+                result_by_party[p] = {"party": p, "thread": thread, "posts": 0, "posted": False,
+                                      "reason": f"error: {e}", "creds_present": True}
+            # else: on_root already recorded posted=True + root_uri (a partial thread) -> leave it so a
+            # re-run does NOT duplicate; the dead-man flags the partial/asymmetric state below.
+        _flush()
+
+    _flush()
+    _deadman(posting_enabled, _ordered(), atomic_hold)
     return 0
 
 

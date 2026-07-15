@@ -35,21 +35,41 @@ def _members_on(entry: dict, day: str, party: str) -> frozenset:
     return frozenset((entry["daily"].get(day, {}) or {}).get(f"members_{party}", []))
 
 
+def _padding_variant(a: str, b: str) -> bool:
+    """True iff a and b are the SAME phrase differing only by STOPWORD padding — one is a contiguous
+    token-run inside the other and every extra token is a stopword ("the water resources development
+    act" vs "water resources development act"). A CONTENT difference is NOT padding: "sue the trump
+    administration" vs "the trump administration" differ by "sue", and "…act" vs "…act wrda" differ by
+    the acronym — those are distinct rows. This precision is what stops a generic entity phrase from
+    absorbing every real message that mentions it. §Session-8."""
+    ta, tb = a.split(), b.split()
+    if len(ta) == len(tb):
+        return a == b
+    short, long = (ta, tb) if len(ta) < len(tb) else (tb, ta)
+    for i in range(len(long) - len(short) + 1):
+        if long[i:i + len(short)] == short:
+            extra = long[:i] + long[i + len(short):]
+            return all(t in boilerplate.STOPWORDS for t in extra)
+    return False
+
+
 def _collapse_nested(rows: list[dict]) -> list[dict]:
-    """Drop a shorter phrase when a longer phrase contains it word-for-word AND was said by
-    the same set of members that day — e.g. keep "a full account of what", drop "full account".
-    This removes the sub-gram nesting explosion so the top list is one row per real phrase."""
+    """Collapse STOPWORD-padding variants of a phrase to ONE row so a bill title doesn't show as 3-6
+    near-identical signals ("the water resources development act" folds into "water resources
+    development act"). Deliberately conservative: a permissive substring merge would let a generic
+    entity ("the trump administration", peak 20) ABSORB every distinct message containing it ("sue the
+    trump administration", "hold … accountable") — hiding the real coordination behind a useless label
+    (adversarial-review finding). So only pure-stopword differences merge; a content difference (incl.
+    an acronym) stays its own row. Representative = the LEAST-padded form (fewest tokens), carrying the
+    family's max peak. Display-only; the ledger keeps every variant. §Session-8 (near-dup)."""
     kept: list[dict] = []
-    for r in sorted(rows, key=lambda x: len(x["ngram"]), reverse=True):
-        short = f" {r['ngram']} "
-        redundant = False
-        for longer in kept:
-            if r["party"] == longer["party"] and short in f" {longer['ngram']} " \
-                    and r["_members"] and r["_members"] <= longer["_members"]:
-                redundant = True
-                break
-        if not redundant:
+    # least-padded first (fewest tokens), then highest peak -> the clean phrase represents its family
+    for r in sorted(rows, key=lambda x: (len(x["ngram"].split()), -x["day_peak"])):
+        fam = next((k for k in kept if r["party"] == k["party"] and _padding_variant(k["ngram"], r["ngram"])), None)
+        if fam is None:
             kept.append(r)
+        else:
+            fam["day_peak"] = max(fam["day_peak"], r["day_peak"])  # keep the family's magnitude
     return kept
 
 

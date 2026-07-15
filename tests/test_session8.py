@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from pipeline import post_bluesky, site  # noqa: E402
+from pipeline import build, post_bluesky, site  # noqa: E402
 
 
 def _env(**kv):
@@ -24,80 +24,47 @@ _DAY = {"day": "2026-06-30", "daily_lines": {"D": {"composite": "d"}, "R": {"com
         "top_synchronized": []}
 
 
-def _run_main(day, day_json, prior, post_real, ntfy_sink):
-    writes = {}
-
-    def fake_read(p, default=None):
-        n = Path(str(p)).name
-        if n == "assemble-latest.json":
-            return {"day": day}
-        if n == f"{day}.json":
-            return day_json
-        if n == f"post-{day}.json":
-            return prior
-        return {} if default is None else default
-
-    saved = (post_bluesky.util.read_json, post_bluesky.util.write_json,
-             post_bluesky._post_real, post_bluesky.ops.ntfy, sys.argv)
-    post_bluesky.util.read_json = fake_read
-    post_bluesky.util.write_json = lambda p, o: writes.__setitem__(Path(str(p)).name, o)
-    post_bluesky._post_real = post_real
-    post_bluesky.ops.ntfy = lambda *a, **k: ntfy_sink.append((a, k))
-    sys.argv = ["post", "--day", day]
-    try:
-        rc = post_bluesky.main()
-    finally:
-        (post_bluesky.util.read_json, post_bluesky.util.write_json,
-         post_bluesky._post_real, post_bluesky.ops.ntfy, sys.argv) = saved
-    return rc, writes.get(f"post-{day}.json", {})
-
-
-# --- atomicity: both composites or neither -------------------------------------------------
-def test_atomic_hold_posts_neither_when_one_party_lacks_creds():
-    """Posting ON, D has creds but R doesn't -> post NEITHER (never one account up, one silent), and
-    the dead-man fires so a human fixes it."""
-    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="blue.onscript.news", BSKY_BLUE_PASSWORD="x",
-                   BSKY_RED_HANDLE=None, BSKY_RED_PASSWORD=None)
-    real, ntfy = [], []
-    try:
-        rc, man = _run_main("2026-06-30", _DAY, {},
-                            post_real=lambda *a, **k: real.append(a) or {"party": "?", "posted": True, "posts": 2},
-                            ntfy_sink=ntfy)
-        assert rc == 0
-        assert real == []                       # NOTHING posted for real — the atomic hold held
-        assert man["atomic_hold"] is True
-        res = {r["party"]: r for r in man["results"]}
-        assert res["D"]["posted"] is False and "atomic hold" in res["D"]["reason"]
-        assert ntfy, "dead-man must fire on an atomic hold"
-    finally:
-        restore()
-
-
-def test_asymmetric_outcome_is_flagged_and_alerts():
-    """Both have creds, D posts, R throws mid-post -> exactly one account up -> asymmetric flag + alert."""
-    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
-                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
-    ntfy = []
-
-    def real(handle, pw, thread, party):
-        if party == "R":
-            raise RuntimeError("bsky 500")
-        return {"party": party, "posted": True, "posts": len(thread),
-                "root_uri": "at://did:plc:abc/app.bsky.feed.post/xyz"}
-    try:
-        rc, man = _run_main("2026-06-30", _DAY, {}, post_real=real, ntfy_sink=ntfy)
-        assert man["asymmetric"] is True and ntfy
-    finally:
-        restore()
-
-
-def test_post_result_carries_thread_for_the_archive():
+# Full atomicity (both-or-neither, atomic auth pre-flight, partial-post idempotency, asymmetric
+# dead-man) is covered against the new API in test_wave0.py. Here: the archive + denominators.
+def test_post_result_records_thread_for_the_archive():
+    """Even a non-posting (dry / held) result carries the full thread text, so the on-domain signed
+    archive can mirror exactly what was — or would be — posted."""
     restore = _env(POSTING_ENABLED=None, BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x")
     try:
-        r = post_bluesky.post_party("2026-06-30", "D", _DAY)  # posting off -> dry-run, still records thread
+        r = post_bluesky._dry_result("2026-06-30", "D", _DAY, "posting disabled")
         assert isinstance(r.get("thread"), list) and len(r["thread"]) >= 1
     finally:
         restore()
+
+
+def test_root_rkey_is_deterministic_per_day_and_party():
+    assert post_bluesky._root_rkey("2026-07-14", "D") == "onscript-2026-07-14-d"
+    assert post_bluesky._root_rkey("2026-07-14", "D") != post_bluesky._root_rkey("2026-07-14", "R")
+    assert post_bluesky._root_rkey("2026-07-14", "D") != post_bluesky._root_rkey("2026-07-15", "D")
+
+
+def test_post_thread_recovers_root_on_rkey_collision_without_duplicating():
+    """§Session-8: if the root create's response is lost, a re-run's root create collides on the
+    deterministic rkey; we RECOVER the root via getRecord — never a duplicate head post, never
+    re-posted replies (posts_written=0)."""
+    def fake_call(url, body, token=None):
+        raise RuntimeError("could not process request (record already exists)")
+
+    def fake_http(url, jwt=None):
+        return {"uri": "at://did/app.bsky.feed.post/onscript-2026-07-14-d", "cid": "cid1"}
+
+    rooted = []
+    saved = (post_bluesky._call, post_bluesky._http)
+    post_bluesky._call, post_bluesky._http = fake_call, fake_http
+    try:
+        out = post_bluesky._post_thread({"base": "b", "jwt": "j", "did": "did"},
+                                        ["head", "reply1", "reply2"],
+                                        on_root=lambda u: rooted.append(u), root_rkey="onscript-2026-07-14-d")
+        assert out["root_uri"].endswith("onscript-2026-07-14-d")
+        assert out["posts_written"] == 0 and out.get("recovered") is True  # replies NOT re-posted
+        assert rooted == [out["root_uri"]]                                 # root_uri persisted for idempotency
+    finally:
+        post_bluesky._call, post_bluesky._http = saved
 
 
 # --- signed post archive -------------------------------------------------------------------
@@ -112,7 +79,7 @@ def test_posts_archive_renders_and_maps_at_uri_to_web():
     assert "No posts yet" in site.posts_log_body([])                 # empty state
 
 
-# --- denominators in view ------------------------------------------------------------------
+# --- denominators + archival fallback in the receipts --------------------------------------
 def test_receipts_denominator_travels_with_count_and_said_is_gone():
     tps = [{"member_count": 10, "topics": ["housing"],
             "citations": [{"member": "Jane Doe", "party": "D", "state": "CA", "date": "2026-07-13",
@@ -120,3 +87,36 @@ def test_receipts_denominator_travels_with_count_and_said_is_gone():
     html = site.receipts_strip("D", tps, caucus=263)
     assert "carried" in html and "members</span> said" not in html   # said -> carried
     assert "10 of 263" in html and "3.8%" in html                    # denominator + % in view
+    # every source carries a Wayback archival fallback so a rotted .gov link never dead-ends
+    assert ">source</a>" in html and ">archived</a>" in html
+    assert "web.archive.org/web/20260713/https://x.house.gov/y" in html
+
+
+# --- near-duplicate phrase collapse (stopword padding only) --------------------------------
+def test_collapse_merges_stopword_padding_keeps_content_variants():
+    """A stopword-only variant ("the …") folds into the clean phrase; a content difference (an
+    acronym) stays its own row. The clean phrase is the representative, carrying the family max peak."""
+    rows = [
+        {"ngram": "water resources development act", "day_peak": 14, "party": "D"},
+        {"ngram": "the water resources development act", "day_peak": 13, "party": "D"},   # 'the' -> merges
+        {"ngram": "water resources development act wrda", "day_peak": 8, "party": "D"},   # 'wrda' -> stays
+        {"ngram": "transportation and infrastructure", "day_peak": 13, "party": "D"},
+    ]
+    kept = {r["ngram"]: r for r in build._collapse_nested(rows)}
+    assert "the water resources development act" not in kept          # stopword variant merged away
+    assert kept["water resources development act"]["day_peak"] == 14  # clean rep, family max peak
+    assert "water resources development act wrda" in kept             # acronym (content) kept separate
+    assert "transportation and infrastructure" in kept
+
+
+def test_collapse_does_not_let_a_generic_hub_absorb_distinct_messages():
+    """The critical guard (adversarial-review finding): a generic entity phrase must NOT swallow the
+    distinct coordinated messages that contain it — that would hide the real signal behind a label."""
+    rows = [
+        {"ngram": "the trump administration", "day_peak": 20, "party": "D"},
+        {"ngram": "sue the trump administration", "day_peak": 6, "party": "D"},
+        {"ngram": "hold the trump administration accountable", "day_peak": 5, "party": "D"},
+    ]
+    kept = {r["ngram"] for r in build._collapse_nested(rows)}
+    assert kept == {"the trump administration", "sue the trump administration",
+                    "hold the trump administration accountable"}  # all three survive
