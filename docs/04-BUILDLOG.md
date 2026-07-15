@@ -793,6 +793,29 @@ from the **filename** (authoritative), not a possibly-missing `"day"` field. (3)
 other days (honors the module's never-crash contract). Commit `be86eba`, **94 tests** (+5). Posting
 stays OFF. **The Opus pre-flip queue is now empty** — nothing on the build side blocks the launch flip.
 
+### Session 8f (2026-07-15, Opus) — near-dup phrase collapse finished: safe sub-gram containment + historical rebuild
+
+Michael flagged the top-synchronized table still showed near-duplicate rows. Diagnosed two residuals
+beyond the Session-8b stopword-padding collapse: (1) overlapping **sub-grams of the same coordinated
+message** ("statement after the supreme" next to "statement after the supreme court"; "children born
+in" next to "children born in the united states"), and (2) the flagship page was **stale** (rendered
+before any collapse). Built `_collapse_subgrams` (in `build.py`): folds a fragment into the fuller
+phrase that CONTAINS it when peaks are comparable — keeping the longer, more-specific label at its OWN
+honest peak — **guarded by a peak RATIO (1.25)** so a generic HUB is never absorbed ("born in the
+united states" (36) is NOT folded into "children born in the united states" (12); the "the trump
+administration" entity hub is protected). This is the safe realization of the docstring's long-standing
+"nested sub-grams → maximal phrase" without the over-merge trap a naive substring merge caused.
+`collapse_and_rank` (collapse+rank+truncate) is now **shared** by build-time `top_synchronized` and
+applied at **render time** in `site.py` (`sync_table` + the peak table), so **already-built historical
+day pages** reflect the current merge rules without re-running the engine (the display-time refresh
+pattern the boilerplate guard uses). Re-rendered `site/public` + verified live: the 06-30 flagship
+**20 → 16 rows** (4 fragments/padding folded; flagship hub + every distinct message intact — checked
+against the stored ledger snapshot; "statement after the supreme"/"children born in" now absent live,
+"born in the united states" present). **98 tests** (+4: content-subrun, fragment-fold, HUB-guard,
+flagship end-to-end). Commit `710e1ba`, deployed. **Known residual (queued):** the `14th`/`fourteenth`
+numeral-vs-word synonym pair still shows twice — that's a normalization-map problem, not containment,
+and is a separate small feature (not a launch blocker).
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
