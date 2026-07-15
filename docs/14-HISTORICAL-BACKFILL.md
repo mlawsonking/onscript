@@ -28,7 +28,7 @@ clears — but 2001–2012 **floor-speech** symmetry is fully recoverable today.
 | **2** | **DCinbox — congressional e-newsletters** (Cormack) | **2010–2012** | Jan'10 112 D / 110 R (0.98); Jun'11 121 D / 206 R (0.59); Nov'12 107 D / 175 R (0.61); **0 unmapped bioguides.** | **VIABLE-WITH-CHANGES** | Independent both-party **cross-check**; its R-lean is *uncorrelated* with the spine's D-lean → a genuine validation instrument for 2011–12, not filler. Keyless bulk CSVs (141 monthly; dumps end 2021-09 → mirror on first ingest). |
 | **3** | **Academic — Grimmer (Senate press releases) + Wang** | **2005–2012** | Grimmer Senate ~50/50; Wang ~40 R / 60 D over 142 members — but per-year balance NOT uniform (span = tenure). | **VIABLE-WITH-CHANGES** | Real both-party *press releases* for a bounded window. **Cross-checks + "did this phrase exist in 2008?" lookups only — never headline census** (survivor-biased population). Keyless GitHub/Dataverse. |
 | **4** | **Wayback/CDX — members' own press pages** | per-member sub-windows | **Fails aggregate symmetry:** 100×+ per-member yield variance (Leahy ~2,384 vs Grassley pre-2008 ~0); soft-404 stubs inflate raw counts; dynamic-CMS members unrecoverable. | **VIABLE-WITH-CHANGES** | Right genre (merge-compatible press text) but no aggregate two-party density. **Single-member longitudinal color only, coverage-gated.** |
-| **5** | **LoC "United States Congressional Web Archive"** ⭐ | **Dec 2002 →** | *Curated, all-member by design* (targets every member incl. departed ones — symmetric on the axis that kills generic Wayback). Not yet sampled. | **NEEDS-DEEPER-PROBE** | **The #1 lead** — could be the symmetric **press-genre** backfill for **2003–2012** that nothing else provides. Keyless, catalogued (coverage measurable pre-ingest). **Probe before accepting any press-genre gap for 2003+.** |
+| **5** | **LoC "United States Congressional Web Archive"** ⭐ | **~1997–2024** | **Coverage CONFIRMED symmetric-by-design** (deep-probe below): 1,247 member sites catalogued, **815 (65%) overlap 2003–2012**, both parties, `access_restricted:false`, machine-enumerable → symmetry *measurable pre-ingest*. **But text extraction is GATED.** | **VIABLE-WITH-CHANGES / NEEDS-DEEPER-PROBE** | **The best press-*genre* symmetric option for 2003–2012** — decisively beats Wayback on symmetry. Open question is EXTRACTION (playback is Cloudflare-gated; needs a browser-based crawl or LoC research/WARC access), then the same dynamic-CMS sub-page problem as Wayback. |
 
 **DEAD (instructive):** *GovInfo/GPO-other* — no press releases exist in that window anywhere in the
 collection; ProPublica's press corpus starts 2013. *Reachback/commercial* — the dwillis "legacy import"
@@ -77,6 +77,28 @@ just docs.
    **Cross-era comparisons are permitted ONLY within a single instrument** (crec-2008 vs crec-2015;
    press-2013 vs press-2026), never across lanes. **Enforce in code.**
 7. **Temporal-coverage gate (A1):** every cross-era claim gated on measured coverage in *both* eras.
+
+## LoC deep-probe (Opus, 2026-07-15) — coverage confirmed, extraction is the open question
+
+Ran the #1 lead directly. **Coverage is the real symmetry win:** the collection's keyless JSON API
+(`loc.gov/collections/united-states-congressional-web-archive/?fo=json`) enumerates **1,247 individual
+member sites** ("Member of Congress Official Website - Name") + committees, catalogued with capture date
+ranges; **815 (65%) overlap 2003–2012**, both parties (Abercrombie D, Aderholt R, Akaka D, Allard R,
+Allen R…), `access_restricted:false`. Since ~800–900 distinct members served across 2003–2012, that is
+**near-complete, curated, both-party member coverage** — I can measure per-member/per-party symmetry
+*before* ingesting, which is exactly what generic Wayback cannot offer. Each item carries the historical
+archived domains (e.g. `ackerman.house.gov`) + real `capture_range` (e.g. 2009-10-18 → 2012-12-04).
+
+**Extraction is the gate.** The playback endpoint `webarchive.loc.gov/all/<ts>/<url>` returns a
+**Cloudflare 403 "Just a moment…" JS challenge** to keyless curl; `extract_urls` points to MODS metadata,
+not extracted press text; the guessed `tile.loc.gov` WARC path 404s. LoC publishes a
+`rights-and-access/web-archive` page ("educational and research purposes; permission obtained for many
+materials"). So getting the *text* needs one of: (a) a **browser-based crawl** (our in-app browser
+executes JS and can pass the Cloudflare challenge, render the archived member sites, and extract the
+press-release sub-pages), (b) **LoC research/WARC access** (read the rights page; likely a request), then
+(c) the same dynamic-CMS sub-page-discovery problem Wayback has, once past the gate. **Verdict:
+VIABLE-WITH-CHANGES on coverage, NEEDS-DEEPER-PROBE on extraction** — the single best press-genre
+symmetric option for 2003–2012 if the extraction path pans out; a real project, not a keyless pull.
 
 ## Recommendation
 
