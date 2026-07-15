@@ -775,6 +775,24 @@ posted + verified · collision→recovery with no duplicate head · 401 raises o
 invariants + oversize thread posts, all ≤300) **+ 89 unit tests.** Item (A) / task #108 is **done**;
 item (B) reconciliation still queued. (~10 test posts left on the throwaway — harmless.)
 
+### Session 8e (2026-07-15, Opus) — finding (B) built: the hard-kill reconciliation backstop
+
+Closed the last Opus pre-flip item. `_reconcile_prior()` (in `post_bluesky.py`) runs at the **start**
+of every posting run: it scans the post manifests and fires the dead-man **once** per unacknowledged
+`asymmetric`/`partial` prior day (marking it `reconciled`), so a run **hard-killed** (Actions timeout/
+OOM/SIGKILL — not a Python exception) *between* the two parties' posts can no longer leave a durable
+silent one-sided post that alerts nobody. **Alert-only** — it never auto-posts or repairs (that stays
+with the deterministic-rkey idempotency path); a human check+repair is the correct remediation. Gated
+on `POSTING_ENABLED` (no-op in dark mode; dark manifests are `asymmetric=False`, so the first live run
+never false-alarms — confirmed against a real on-disk dark manifest). **Adversarial review confirmed 6
+invariants + found 3 fixes, all applied:** (1) scan **ALL** manifests, not a `[-14:]` window — the
+operator-disables-posting-for-weeks reflex would otherwise age the bad day out unseen (the exact failure
+this exists to catch); the `reconciled` marker keeps a full scan cheap + idempotent. (2) day derived
+from the **filename** (authoritative), not a possibly-missing `"day"` field. (3) each manifest read is
+**guarded** — a corrupt manifest is skip-and-logged, never crashes the run, never blocks reconciling
+other days (honors the module's never-crash contract). Commit `be86eba`, **94 tests** (+5). Posting
+stays OFF. **The Opus pre-flip queue is now empty** — nothing on the build side blocks the launch flip.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
