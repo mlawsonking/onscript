@@ -151,3 +151,52 @@ def test_collapse_does_not_let_a_generic_hub_absorb_distinct_messages():
     kept = {r["ngram"] for r in build._collapse_nested(rows)}
     assert kept == {"the trump administration", "sue the trump administration",
                     "hold the trump administration accountable"}  # all three survive
+
+
+# --- sub-gram containment collapse (fold a fragment into its fuller phrase; never absorb a hub) -----
+def test_content_subrun_detects_contiguous_fragments_only():
+    assert build._content_subrun("children born in", "children born in the united states")
+    assert build._content_subrun("born in the united states", "children born in the united states")
+    assert not build._content_subrun("children states", "children born in the united states")   # gap
+    assert not build._content_subrun("children born in the united states", "children born in")   # not shorter
+
+
+def test_subgram_folds_a_fragment_into_the_fuller_phrase():
+    """A fragment used by ~the same members as the fuller phrase it sits inside folds into that fuller,
+    more specific label — kept at its OWN honest peak, never inflated."""
+    rows = [{"ngram": "children born in", "day_peak": 14, "party": "D"},
+            {"ngram": "children born in the united states", "day_peak": 12, "party": "D"}]
+    kept = {r["ngram"]: r for r in build._collapse_subgrams(rows)}
+    assert "children born in" not in kept                                  # fragment folded away
+    assert kept["children born in the united states"]["day_peak"] == 12    # fuller label, own peak
+
+
+def test_subgram_guard_a_hub_is_never_absorbed():
+    """The critical guard: a fragment whose peak GREATLY exceeds the fuller phrase's is a hub (used
+    across many messages) and stays its own row — never absorbed, never absorbing."""
+    rows = [{"ngram": "born in the united states", "day_peak": 36, "party": "D"},         # flagship hub
+            {"ngram": "children born in the united states", "day_peak": 12, "party": "D"},
+            {"ngram": "the trump administration", "day_peak": 20, "party": "D"},           # entity hub
+            {"ngram": "sue the trump administration", "day_peak": 6, "party": "D"},
+            {"ngram": "hold the trump administration accountable", "day_peak": 5, "party": "D"}]
+    kept = {r["ngram"] for r in build._collapse_subgrams(rows)}
+    assert {"born in the united states", "children born in the united states"} <= kept    # 36 !≈ 12
+    assert {"the trump administration", "sue the trump administration",
+            "hold the trump administration accountable"} <= kept                          # hub intact
+
+
+def test_collapse_and_rank_dedups_flagship_without_over_merging():
+    """End-to-end on real 06-30 flagship rows: redundant fragments fold (statement-after-the-supreme,
+    children-born-in, the-supreme-court-upheld) while the flagship hub + distinct messages all survive,
+    peak-ranked."""
+    def P(ng, pk):
+        return {"ngram": ng, "day_peak": pk, "party": "D"}
+    rows = [P("born in the united states", 36), P("statement after the supreme", 20),
+            P("statement after the supreme court", 18), P("children born in", 14),
+            P("children born in the united states", 12), P("supreme court upheld", 11),
+            P("the supreme court upheld", 9)]
+    kept = [r["ngram"] for r in build.collapse_and_rank(rows, k=20)]
+    assert "statement after the supreme" not in kept and "statement after the supreme court" in kept
+    assert "children born in" not in kept and "children born in the united states" in kept
+    assert "the supreme court upheld" not in kept and "supreme court upheld" in kept   # padding pass
+    assert "born in the united states" in kept and kept[0] == "born in the united states"  # hub, peak-ranked

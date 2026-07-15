@@ -73,6 +73,57 @@ def _collapse_nested(rows: list[dict]) -> list[dict]:
     return kept
 
 
+# A fragment may exceed its fuller phrase's peak by at most this and still count as "the same
+# coordinated message"; beyond it the short phrase appears in too many other contexts (a hub) and must
+# stay its own row. Since a strict sub-gram's member count is always >= the fuller phrase's, this bounds
+# how much MORE the fragment is used. Tuned so the real cases (~1.1-1.2x) merge and hubs (>3x) don't.
+_SUBGRAM_PEAK_RATIO = 1.25
+
+
+def _content_subrun(short: str, long: str) -> bool:
+    """True iff `short` is a strict contiguous token sub-run of `long`. After the padding pass, any such
+    pair differs by ≥1 CONTENT token, so `long` is the more specific/informative label."""
+    ts, tl = short.split(), long.split()
+    if len(ts) >= len(tl):
+        return False
+    return any(tl[i:i + len(ts)] == ts for i in range(len(tl) - len(ts) + 1))
+
+
+def _collapse_subgrams(rows: list[dict]) -> list[dict]:
+    """Second collapse pass: fold a shorter phrase into a longer one that CONTAINS it when their peaks
+    are comparable — i.e. the fragment essentially only appears as part of the longer coordinated
+    message ("children born in" → "children born in the united states"). Keeps the LONGER (more
+    specific) label at ITS OWN, honest peak — never inflated by the fragment. Guarded by the peak RATIO
+    so a generic hub is never absorbed: "born in the united states" (36) is NOT folded into "children
+    born in the united states" (12) because 36 ≫ 12 (it appears across many messages, not just that
+    one), and "the trump administration" (20) is not folded into "sue the trump administration" (6).
+    This is the safe realization of "nested sub-grams → maximal phrase" without the over-merge trap.
+    §Session-8f."""
+    kept: list[dict] = []
+    for r in sorted(rows, key=lambda x: (-len(x["ngram"].split()), -x["day_peak"])):  # longest first
+        host = next((k for k in kept if r["party"] == k["party"]
+                     and _content_subrun(r["ngram"], k["ngram"])
+                     and r["day_peak"] <= k["day_peak"] * _SUBGRAM_PEAK_RATIO), None)
+        if host is None:
+            kept.append(r)      # else: r is a redundant fragment of `host` -> drop it (host keeps its own peak)
+    return kept
+
+
+def collapse_and_rank(rows: list[dict], k: int = 50) -> list[dict]:
+    """Collapse near-duplicate phrase families, then rank for display and truncate. Two SAFE merges:
+    (1) stopword-padding variants ("the X" → "X"), (2) a fragment folded into the fuller phrase that
+    contains it when peaks are comparable (a hub is never absorbed). Reusable at BUILD time (from the
+    ledger) AND at RENDER time (re-applied to a stored day's list so the CURRENT merge rules take effect
+    on already-built pages without re-running the engine — the same display-time refresh the boilerplate
+    guard uses). §Session-8f."""
+    rows = _collapse_subgrams(_collapse_nested(rows))
+    # Rank: coordination magnitude first, then CONTENT-richness (a generic 2-word phrase sinks below a
+    # substantive one of equal peak), then distinctiveness, then velocity. §Session-7 (C-iii).
+    rows.sort(key=lambda r: (r.get("day_peak", 0), boilerplate.content_word_count(r["ngram"]),
+                             r.get("df_weight", 0), r.get("velocity", 0)), reverse=True)
+    return rows[:k]
+
+
 def top_synchronized(ledger: dict, day: str, k: int = 50) -> list[dict]:
     """Top synchronized phrases active on `day`, ranked by that day's peak party count,
     with nested sub-grams collapsed to their maximal phrase."""
@@ -104,13 +155,7 @@ def top_synchronized(ledger: dict, day: str, k: int = 50) -> list[dict]:
             "first_seen": e["first_seen"], "df_weight": e["df_weight"], "series": series,
             "_members": _members_on(e, day, party),
         })
-    rows = _collapse_nested(rows)
-    # Rank: coordination magnitude first (biggest converged phrase leads), then CONTENT-richness so a
-    # generic 2-word phrase ("an important step") sinks below a substantive one of equal peak
-    # ("federal financial assistance"), then distinctiveness, then velocity. §Session-7 (C-iii).
-    rows.sort(key=lambda r: (r["day_peak"], boilerplate.content_word_count(r["ngram"]),
-                             r.get("df_weight", 0), r["velocity"]), reverse=True)
-    rows = rows[:k]
+    rows = collapse_and_rank(rows, k)
     for r in rows:
         r.pop("_members", None)
     return rows

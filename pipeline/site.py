@@ -27,7 +27,7 @@ from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import config  # noqa: E402
+from pipeline import build, config  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
 try:
@@ -681,6 +681,9 @@ def _series_last_present(series, k=14):
 
 def sync_table(day_data, slugs_with_pages, depth: int) -> str:
     ts = [r for r in (day_data.get("top_synchronized") or []) if isinstance(r, dict)]
+    # Re-apply the CURRENT near-dup collapse at render time, so already-built (historical) day pages
+    # reflect the latest merge rules without re-running the engine — the display-time refresh pattern.
+    ts = build.collapse_and_rank(ts, k=20)
     if not ts:
         return '<p class="muted">No synchronized phrases recorded for this day.</p>'
     root = "../" * depth
@@ -895,7 +898,9 @@ def phrases_index_body(top):
         return "".join(out)
 
     parts.append(render_table(top.get("by_velocity"), "Fastest-spreading", "Ranked by adoption velocity — phrases going viral within a caucus."))
-    parts.append(render_table(top.get("by_peak"), "Most synchronized", "Ranked by peak single-day member count."))
+    # collapse near-dups on the peak table (render-time refresh); the velocity table keeps its own order.
+    parts.append(render_table(build.collapse_and_rank(top.get("by_peak") or [], k=40),
+                              "Most synchronized", "Ranked by peak single-day member count."))
     return "".join(parts)
 
 
