@@ -254,6 +254,53 @@ def _deadman(posting_enabled: bool, results: list[dict], atomic_hold: bool) -> N
                  f"atomic_hold={atomic_hold} asymmetric={asymmetric}", priority="high")
 
 
+def _list_manifests() -> list:  # pragma: no cover - real FS listing (seam stubbed in tests)
+    import glob
+    return sorted(glob.glob(str(config.DERIVED / "manifest" / "post-*.json")))
+
+
+def _reconcile_prior(current_day: str, posting_enabled: bool) -> list:
+    """Backstop for a HARD process-kill (Actions timeout/OOM/SIGKILL) BETWEEN the two parties' posts:
+    the end-of-run dead-man never runs, so a durably ASYMMETRIC (one party live) or PARTIAL manifest
+    from a prior run would otherwise alert nobody — a silent one-sided post, the worst neutrality
+    failure. On the next posting run, scan recent post manifests and fire the dead-man ONCE per
+    unacknowledged asymmetric/partial day (marking it `reconciled` so it never re-alerts). Excludes the
+    current day — this run's own end-of-run dead-man owns that. Returns the days alerted. §Session-8d
+    (adversarial-review finding B)."""
+    if not posting_enabled:
+        return []
+    alerted = []
+    for path in _list_manifests():   # ALL manifests, not a recent window: after a one-sided post the
+        # operator may disable posting for weeks to investigate — a bounded window would age the bad day
+        # out unseen. The `reconciled` marker keeps a full scan idempotent and cheap. §Session-8d review.
+        base = os.path.basename(path)
+        mday = base[len("post-"):-len(".json")] if base.startswith("post-") and base.endswith(".json") else base
+        if mday == current_day:   # day from the FILENAME (authoritative) — never trust a missing "day" field
+            continue
+        try:
+            m = util.read_json(path, {}) or {}   # a corrupt manifest never crashes the run (module contract)
+        except Exception as e:
+            print(f"[reconcile] unreadable manifest {base} (skipped): {e}")
+            continue
+        if m.get("reconciled"):
+            continue
+        partial = any((r or {}).get("partial") for r in (m.get("results") or []))
+        if not (m.get("asymmetric") or partial):   # atomic_hold is the SAFE outcome — never re-alert it
+            continue
+        live = [r.get("party") for r in (m.get("results") or []) if r.get("posted")]
+        ops.ntfy("OnScript posting",
+                 f"UNRECONCILED prior run {mday}: a hard-kill left a one-sided/partial post "
+                 f"(asymmetric={m.get('asymmetric')} partial={partial} live={live}) — check + repair by hand",
+                 priority="high")
+        m["reconciled"] = True
+        try:
+            util.write_json(path, m)   # mark once so the alert fires exactly once
+        except Exception as e:
+            print(f"[reconcile] mark-reconciled write failed (non-fatal): {e}")
+        alerted.append(mday)
+    return alerted
+
+
 def main() -> int:
     import argparse
     ap = argparse.ArgumentParser()
@@ -269,6 +316,9 @@ def main() -> int:
     already_posted = {r.get("party") for r in prior_results if r.get("posted") and r.get("root_uri")}
     posting_enabled = config.posting_enabled()
     have_day = bool(day_json and day_json.get("daily_lines"))
+
+    # Backstop a prior run that was hard-killed mid-post (silent asymmetric/partial) before doing today.
+    _reconcile_prior(day, posting_enabled)
 
     result_by_party: dict = {}
     atomic_hold = False

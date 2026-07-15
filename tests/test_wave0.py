@@ -332,13 +332,20 @@ def test_post_day_comes_from_assemble_manifest_not_collect():
 
 
 # --- main() integration: idempotency (MEDIUM-2) + dead-man on error (HIGH-3) ---------------
-def _run_main_with(day, day_json, prior, *, authenticate=None, post_thread=None, ntfy_sink=None):
-    """Drive post_bluesky.main() with all I/O + AT-Proto network stubbed. Returns (rc, manifest)."""
+def _run_main_with(day, day_json, prior, *, authenticate=None, post_thread=None, ntfy_sink=None,
+                   list_manifests=None, extra_reads=None):
+    """Drive post_bluesky.main() with all I/O + AT-Proto network stubbed. Returns (rc, manifest).
+    `list_manifests` defaults to [] so the hard-kill reconciliation scan is a no-op here — a test that
+    exercises reconciliation injects prior manifest paths + their content via `extra_reads` (keyed by
+    file basename)."""
     from pathlib import Path as _P
     writes = {}
+    extra_reads = extra_reads or {}
 
     def fake_read(p, default=None):
         name = _P(str(p)).name
+        if name in extra_reads:
+            return extra_reads[name]
         if name == "assemble-latest.json":
             return {"day": day}
         if name == f"{day}.json":
@@ -357,19 +364,22 @@ def _run_main_with(day, day_json, prior, *, authenticate=None, post_thread=None,
         return {"root_uri": uri, "posts_written": len(thread)}
 
     saved = (post_bluesky.util.read_json, post_bluesky.util.write_json, post_bluesky._authenticate,
-             post_bluesky._post_thread, post_bluesky._ensure_bot_label, post_bluesky.ops.ntfy, sys.argv)
+             post_bluesky._post_thread, post_bluesky._ensure_bot_label, post_bluesky.ops.ntfy,
+             post_bluesky._list_manifests, sys.argv)
     post_bluesky.util.read_json = fake_read
     post_bluesky.util.write_json = lambda p, obj: writes.__setitem__(_P(str(p)).name, obj)
     post_bluesky._authenticate = authenticate or default_auth
     post_bluesky._post_thread = post_thread or default_thread
     post_bluesky._ensure_bot_label = lambda s: None
     post_bluesky.ops.ntfy = lambda *a, **k: (ntfy_sink if ntfy_sink is not None else []).append((a, k))
+    post_bluesky._list_manifests = list_manifests or (lambda: [])
     sys.argv = ["post", "--day", day]
     try:
         rc = post_bluesky.main()
     finally:
         (post_bluesky.util.read_json, post_bluesky.util.write_json, post_bluesky._authenticate,
-         post_bluesky._post_thread, post_bluesky._ensure_bot_label, post_bluesky.ops.ntfy, sys.argv) = saved
+         post_bluesky._post_thread, post_bluesky._ensure_bot_label, post_bluesky.ops.ntfy,
+         post_bluesky._list_manifests, sys.argv) = saved
     return rc, writes.get(f"post-{day}.json", {})
 
 
@@ -471,3 +481,125 @@ def test_deadman_fires_on_asymmetric_post():
         assert res["R"]["creds_present"] is True   # so the missing-post detector also sees it
     finally:
         restore()
+
+
+# --- (B) hard-kill reconciliation: a prior run's SILENT one-sided post must not sit unalerted -------
+def _reconcile_fixtures(manifests):
+    """Wire _reconcile_prior against an in-memory set of manifests keyed by path. Returns
+    (alerts, writes, restore) where alerts/writes capture ntfy + mark-reconciled writes."""
+    from pathlib import Path as _P
+    store = dict(manifests)
+    alerts, writes = [], {}
+    saved = (post_bluesky._list_manifests, post_bluesky.util.read_json,
+             post_bluesky.util.write_json, post_bluesky.ops.ntfy)
+    post_bluesky._list_manifests = lambda: list(store.keys())
+    post_bluesky.util.read_json = lambda p, d=None: store.get(str(p), {} if d is None else d)
+    post_bluesky.util.write_json = lambda p, o: (store.__setitem__(str(p), o), writes.__setitem__(str(p), o))
+    post_bluesky.ops.ntfy = lambda *a, **k: alerts.append((a, k))
+
+    def restore():
+        (post_bluesky._list_manifests, post_bluesky.util.read_json,
+         post_bluesky.util.write_json, post_bluesky.ops.ntfy) = saved
+    return alerts, writes, restore
+
+
+def test_reconcile_alerts_once_on_a_prior_silent_asymmetric_manifest():
+    """A prior day whose run was hard-killed mid-post (asymmetric, never end-of-run-deadman'd) is
+    surfaced on the next run — exactly once — and marked reconciled so it never re-alerts."""
+    path = "/m/post-2026-07-15.json"
+    m = {"day": "2026-07-15", "asymmetric": True,
+         "results": [{"party": "D", "posted": True, "root_uri": "at://d/x"},
+                     {"party": "R", "posted": False}]}
+    alerts, writes, restore = _reconcile_fixtures({path: m})
+    try:
+        out = post_bluesky._reconcile_prior("2026-07-16", posting_enabled=True)
+        assert out == ["2026-07-15"] and len(alerts) == 1
+        assert "UNRECONCILED" in alerts[0][0][1] and "2026-07-15" in alerts[0][0][1]
+        assert writes[path]["reconciled"] is True          # marked so it won't re-fire
+        alerts.clear()
+        assert post_bluesky._reconcile_prior("2026-07-16", posting_enabled=True) == []   # idempotent
+        assert alerts == []
+    finally:
+        restore()
+
+
+def test_reconcile_alerts_on_a_partial_thread_too():
+    path = "/m/post-2026-07-15.json"
+    m = {"day": "2026-07-15", "asymmetric": False,
+         "results": [{"party": "D", "posted": True, "root_uri": "at://d/x", "partial": True},
+                     {"party": "R", "posted": True, "root_uri": "at://r/y"}]}
+    alerts, _writes, restore = _reconcile_fixtures({path: m})
+    try:
+        assert post_bluesky._reconcile_prior("2026-07-16", posting_enabled=True) == ["2026-07-15"]
+        assert len(alerts) == 1 and "partial=True" in alerts[0][0][1]
+    finally:
+        restore()
+
+
+def test_reconcile_skips_current_day_clean_atomic_hold_and_dark():
+    fixtures = {
+        "/m/post-2026-07-16.json": {"day": "2026-07-16", "asymmetric": True,          # CURRENT day -> skip
+                                    "results": [{"party": "D", "posted": True}]},
+        "/m/post-2026-07-14.json": {"day": "2026-07-14", "asymmetric": False,         # clean symmetric
+                                    "results": [{"party": "D", "posted": True}, {"party": "R", "posted": True}]},
+        "/m/post-2026-07-13.json": {"day": "2026-07-13", "asymmetric": False, "atomic_hold": True,
+                                    "results": [{"party": "D", "posted": False}, {"party": "R", "posted": False}]},
+    }
+    alerts, _w, restore = _reconcile_fixtures(fixtures)
+    try:
+        assert post_bluesky._reconcile_prior("2026-07-16", posting_enabled=True) == []   # nothing to alert
+        assert alerts == []
+        assert post_bluesky._reconcile_prior("2026-07-16", posting_enabled=False) == []  # dark -> no-op
+    finally:
+        restore()
+
+
+def test_main_reconciles_a_prior_silent_post_before_todays_work():
+    """End-to-end: main() runs the reconciliation scan up front, so a prior day's silent asymmetric
+    post fires an alert even on a normal (clean) posting run today."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
+    prior_path = "post-2026-06-29.json"
+    prior_manifest = {"day": "2026-06-29", "asymmetric": True,
+                      "results": [{"party": "D", "posted": True, "root_uri": "at://d/x"},
+                                  {"party": "R", "posted": False}]}
+    ntfy = []
+    try:
+        rc, m = _run_main_with(
+            "2026-06-30", _DAY_JSON, {}, ntfy_sink=ntfy,
+            list_manifests=lambda: [prior_path], extra_reads={prior_path: prior_manifest})
+        # today posts cleanly (symmetric) AND the reconcile alert for the prior silent day fired
+        msgs = " ".join(str(a) for a in ntfy)
+        assert "UNRECONCILED prior run 2026-06-29" in msgs
+        assert m["asymmetric"] is False   # today itself is clean/symmetric
+    finally:
+        restore()
+
+
+def test_reconcile_scans_all_and_survives_a_corrupt_manifest():
+    """No recent-window cap — a bad day must never age out (operator disables posting for weeks) — AND
+    a corrupt manifest is skip-and-logged, never fatal, and never blocks reconciling other days."""
+    good, bad = "/m/post-2020-01-01.json", "/m/post-2026-07-10.json"   # good is far past any 14-day window
+    store = {good: {"day": "2020-01-01", "asymmetric": True,
+                    "results": [{"party": "R", "posted": True}, {"party": "D", "posted": False}]},
+             bad: "CORRUPT"}
+    alerts = []
+    saved = (post_bluesky._list_manifests, post_bluesky.util.read_json,
+             post_bluesky.util.write_json, post_bluesky.ops.ntfy)
+
+    def rd(p, d=None):
+        v = store.get(str(p), {} if d is None else d)
+        if v == "CORRUPT":
+            raise ValueError("bad json")
+        return v
+
+    post_bluesky._list_manifests = lambda: list(store.keys())
+    post_bluesky.util.read_json = rd
+    post_bluesky.util.write_json = lambda p, o: store.__setitem__(str(p), o)
+    post_bluesky.ops.ntfy = lambda *a, **k: alerts.append(a)
+    try:
+        out = post_bluesky._reconcile_prior("2026-07-16", posting_enabled=True)
+        assert out == ["2020-01-01"] and len(alerts) == 1   # old day caught; corrupt one skipped, not fatal
+    finally:
+        (post_bluesky._list_manifests, post_bluesky.util.read_json,
+         post_bluesky.util.write_json, post_bluesky.ops.ntfy) = saved
