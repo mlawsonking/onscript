@@ -244,6 +244,10 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
     dark_nav = ""
     if config.feature_on("archive"):
         dark_nav += f'<a href="{root}archive/index.html">Archive</a>'
+    # The signed post log links into the nav only once the accounts have actually posted (§Session-8);
+    # pre-launch it exists at /posts.html but isn't advertised as an empty page.
+    if HAS_POSTS:
+        dark_nav += f'<a href="{root}posts.html">Posts</a>'
     nav = (
         f'<a href="{root}index.html">Today</a>'
         f'<a href="{root}phrases/index.html">Phrases</a>'
@@ -1190,9 +1194,63 @@ def about_body():
 
 
 # ---------------------------------------------------------------------------
+# Signed post archive (§Session-8): the on-domain mirror of every posted thread — forgery defense.
+# ---------------------------------------------------------------------------
+def posted_threads() -> list:
+    """Every thread the composite accounts have actually posted, from the post manifests."""
+    out = []
+    mdir = DERIVED / "manifest"
+    if not mdir.exists():
+        return out
+    for p in sorted(mdir.glob("post-*.json")):
+        m = _load_json(p)
+        if not isinstance(m, dict):
+            continue
+        for r in (m.get("results") or []):
+            if r.get("posted") and r.get("thread"):
+                out.append({"day": m.get("day"), "generated_at": m.get("generated_at"),
+                            "party": r.get("party"), "thread": r.get("thread"), "root_uri": r.get("root_uri")})
+    out.sort(key=lambda r: (str(r.get("day")), str(r.get("party"))), reverse=True)
+    return out
+
+
+def _bsky_web_url(uri):
+    """at://did/app.bsky.feed.post/rkey -> https://bsky.app/profile/did/post/rkey (best-effort)."""
+    if isinstance(uri, str) and uri.startswith("at://"):
+        rest = uri[len("at://"):]
+        did, sep, tail = rest.partition("/app.bsky.feed.post/")
+        if sep and did and tail:
+            return f"https://bsky.app/profile/{did}/post/{tail}"
+    return None
+
+
+def posts_log_body(threads) -> str:
+    parts = ["<h1>Posted threads &mdash; signed archive</h1>"]
+    parts.append(
+        '<p class="subhead">Every thread the composite accounts have posted, mirrored here on the domain '
+        "and timestamped. <strong>Any post attributed to these accounts that does not appear here is not "
+        "ours.</strong> The accounts never reply, like, or repost &mdash; there is nothing else to authenticate.</p>"
+    )
+    if not threads:
+        parts.append('<p class="muted">No posts yet. The accounts are live but have not begun posting.</p>')
+        return "".join(parts)
+    for t in threads:
+        party = t.get("party")
+        head = (f'<span class="pill {esc(party)}">{esc(party)}</span> <strong>{esc(t.get("day"))}</strong> '
+                f'<span class="faint">&middot; {esc(t.get("generated_at"))}</span>')
+        web = _bsky_web_url(t.get("root_uri"))
+        link = f' &middot; <a href="{esc(web)}" rel="nofollow noopener">on Bluesky</a>' if web else ""
+        posts = "".join(f'<div class="quote">{esc(p)}</div>' for p in (t.get("thread") or []))
+        parts.append(f'<div class="receipt"><div class="rhead">{head}{link}</div>{posts}</div>')
+    return "".join(parts)
+
+
+# ---------------------------------------------------------------------------
 # Build
 # ---------------------------------------------------------------------------
 SLUGS_WITH_PAGES = phrase_page_slugs()
+_POSTED_THREADS = posted_threads()
+HAS_POSTS = bool(_POSTED_THREADS)
 
 
 def build_site():
@@ -1296,6 +1354,15 @@ def build_site():
         encoding="utf-8",
     )
     written.append("about.html")
+
+    # ---- posts.html (signed post archive) — always rendered so the URL is stable; linked in nav
+    # only once HAS_POSTS. §Session-8.
+    (OUT / "posts.html").write_text(
+        page("OnScript · Posted threads", posts_log_body(_POSTED_THREADS), depth=0,
+             description="The on-domain signed archive of every thread the composite accounts have posted."),
+        encoding="utf-8",
+    )
+    written.append("posts.html")
 
     return written
 
