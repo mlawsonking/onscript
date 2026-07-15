@@ -95,6 +95,18 @@ at" costs zero clicks.
   you're inspired; S∞ has no deadline. Do not make product decisions in November. If you ever
   truly stop: Constitution XIV means stopping is graceful — the repo, data, and runbook are the
   legacy, and they keep working.
+- **P11 — The sunset (pre-written so the ending is never improvised; Session-8 adjudication).**
+  A zombie political bot posting from a half-broken pipeline is the worst available ending; this
+  playbook exists so it can't happen. Trigger: Michael decides to stop, or the weekly health
+  numbers have been red a full quarter with no session scheduled. Sequence, one sitting: (1) all
+  three accounts post the same two-sentence clinical close ("This instrument stopped measuring on
+  {date}. The archive, data, and methodology remain public and reproducible at onscript.news."),
+  pinned; (2) both workflow crons disabled in the same commit — the site freezes honestly instead
+  of rotting; (3) the site gets a dated banner: archive, not instrument; (4) raw + derived data +
+  the final ledger released as a versioned archive (Constitution XIV); (5) accounts stay up,
+  silent, self-labeled — never deleted (deletion reads as retraction). The corrections log stays
+  open one year post-sunset. Nothing else. The ending is a dated public act, like every release
+  before it.
 
 ## §5 Doc map — who's who (so nothing gets lost)
 

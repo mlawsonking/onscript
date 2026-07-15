@@ -584,6 +584,95 @@ housing receipt shows three members' own quotes bound to their .gov links with a
 members" cue; the methodology prompt text matches the v1.1 sha. Cost nominal ($0.0163 MTD). The bones
 are launch-strong.
 
+### Session 8 (2026-07-15, Fable) — external critique adjudicated against the code; unattended run #1 green
+
+**Unattended gate progress:** the first fully-unattended cron cycle ran green (collect 11:06Z,
+assemble 12:51Z, both `schedule`-triggered, auto-deployed — no `[skip ci]`). Fresh product-day
+2026-07-14: both parties `sonnet_direct`, verifier clean, D 8 / R 3 talking points (the asymmetry cut
+R-ward today — both-ways evidence), cost $0.0078 (MTD $0.024). **1 of ~3 unattended greens done.**
+
+**An external ("stranger Fable") critique was adjudicated claim-by-claim against the code.** Verdict:
+high-quality, ~70% valid, ~20% already-resolved-in-our-favor conditionals, ~10% wrong or
+constitutionally confused. Rulings that matter, with ground truth:
+
+**CONFIRMED — the big one (construct validity).** The top of the daily table is dominated by
+**nomenclature, not messaging**: 07-13's top phrase was a bill title; 07-14's unattended run topped
+with "water resources development act" (+ a committee name in the D composite). Convergence on a
+statute's only name conflates coordination, nomenclature, and calendar. Mitigants already live (we
+never assert cause; content ranking; weak-label gate) but the segregation is missing. **Queue (before
+any "coordination" headline claim): bill-title/institution tagging** — official short titles via the
+congress.gov API (`DATA_GOV_API_KEY` is set) + a committee/institution name list → "nomenclature"
+chips in the table, optionally a split view; longer-term a null baseline (how often do independent
+members writing about the same bill produce the same n-gram?) per the Appendix backtest doctrine.
+
+**CONFIRMED, with a constitutional correction (base rates).** D out-publishes R (07-14: 135 vs 87
+statements), so the absolute ≥3 bar is mechanically easier for D to clear. BUT the critique's remedy
+("rate-normalized thresholds") would mean **different absolute bars per party — an Article-III
+violation** (identical thresholds is the armor). The correct fix: **denominators in view** — render
+"14 of 263 (5.3%)" beside every member count (caucus_size is already computed), and rate-normalize
+any cross-party comparative CLAIM (the trend-language gate already requires this for eras). The
+operational quorum stays absolute and symmetric: it is a citation floor, not a comparative statistic.
+
+**CONFIRMED — real gaps, now queued (sequenced):**
+- *Before posting flips on:* **post atomicity** (today a per-party try/except means one bot can post
+  while the other errors — asymmetric failure reads as bias; build both threads, post both or
+  neither, degraded-notice path + dead-man already exists); **signed post archive** (mirror every
+  posted thread on the domain from the post manifests — doubles as forgery/compromise detection);
+  **golden-set tone regression** (frozen STATS inputs re-rendered on any prompt/model change, diffed
+  for register before deploy); **"said" → "carried"** (receipts header + composite verb: a release
+  can quote third parties — presenters, bill text — so "N members said X" overclaims; "N members'
+  statements carried X" is exact; the P1 no-quote-boundary gap is real — extraction takes any
+  sentence — so also run the **100-fragment speaker-contamination sample** (Opus builds the sample
+  sheet, Michael classifies during #77; >~2% → build deterministic quote-boundary detection));
+  **copy fix:** About/methodology claim a "public source repository" while the repo is private until
+  S3 — soften now or link at flip.
+- *Inscriptions (cheap now, expensive later):* the **verbatim-identity position** on Methodology
+  ("OnScript measures verbatim coordination; a decline in verbatim sync under observation is itself
+  a finding; any semantic instrument would ship separately with a weaker guarantee") — pre-writes
+  the future "they just paraphrase now" gotcha as a predicted result; the **model-free measurement
+  claim** ("no number on this site is produced by a model: the phrase ledger is deterministic code;
+  the LLM renders prose it cannot add facts to") — verified true in code, currently under-claimed;
+  **methodology-versioning doctrine** (any threshold change re-runs the full corpus; both series
+  published side by side — determinism makes this cheap).
+- *Standing:* per-member ingest-health flags ("silent >N days", volume-spike anomaly) published in
+  the nightly audit — silent CMS-migration decay is invisible today and plausibly party-correlated;
+  congress-press license audit + own-scraper-primary (mirror doctrine already stands); lookalike
+  handles; Bluesky PLC rotation-key backup.
+
+**RESOLVED IN OUR FAVOR (the critique hedged; the code answers):** the phrase ledger is **model-free**
+(pure deterministic n-grams; extraction feeds only the composite layer — and extraction itself is
+deterministic today); the verbatim/injection check lives in **code** (verify.is_verbatim), not the
+prompt; posting runs on **GitHub Actions**, not the media server (no residential infra); the roster
+is a **committed snapshot** (poisoning requires a repo commit); the tokenizer handles curly
+apostrophes and the corpus is entity-clean (0/3000 sampled releases carry literal HTML entities) —
+the "normalization asymmetry" fear is largely closed by inspection; response posture ≈ playbooks
+P3–P6 already. **Recommendation flowing from this:** retire the plan to wire Haiku extraction — a
+permanently model-free measurement path is worth more than LLM fragments (a §13 knob change; needs
+Michael's nod; extraction stays deterministic, voice stays the only LLM surface).
+
+**WRONG or noise:** rate-normalized *thresholds* (Article III, above); the $1–4k backfill-extraction
+cost (moot — nothing LLM-extracts the corpus); "0 corrections = unexamined" (that examination IS the
+dark week, #77); member-level near-dup findings (already governed: Appendix aggregate-only doctrine —
+publish distributions, never names).
+
+**Michael-only decisions filed to the bus:** the funding-pledge wording (the current absolute "takes
+no outside funding" is un-amendable-later; decide "never" vs "no political money ever; disclosed
+philanthropic infrastructure grants permitted" NOW, while nobody watches) and the operator-protection
+bundle (WHOIS privacy, LLC decision, employer outside-activities policy, personal-account engagement
+policy, PLC key custody) + attorney-hour agenda additions (state synthetic-political-content
+statutes before midterm peak; vendor AUPs — Anthropic usage policy, Bluesky ToS, Vercel).
+
+**Added to 07-OPERATIONS: P11, the sunset playbook** (accounts announce a clinical close, crons
+disabled in one commit, site banner flips to "archive," data released, accounts stay up silent —
+never deleted) — the critique's "a zombie political bot in 2029 is the worst available ending" is
+correct, and improvised endings are how you get one.
+
+**My own analogous misses (same blind spot — everything around the instrument):** GitHub account =
+single point of failure (2FA/recovery/break-glass doc); a visible "generated at" timestamp + /status
+so a stale site never reads as editorial silence; GDELT (v2 silence detector) needs the same
+upstream-anomaly treatment as press releases the day it lands; DST shifts the cron's local-time
+meaning in November (benign; noted).
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
