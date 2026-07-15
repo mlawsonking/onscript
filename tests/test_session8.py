@@ -37,10 +37,41 @@ def test_post_result_records_thread_for_the_archive():
         restore()
 
 
-def test_root_rkey_is_deterministic_per_day_and_party():
-    assert post_bluesky._root_rkey("2026-07-14", "D") == "onscript-2026-07-14-d"
-    assert post_bluesky._root_rkey("2026-07-14", "D") != post_bluesky._root_rkey("2026-07-14", "R")
-    assert post_bluesky._root_rkey("2026-07-14", "D") != post_bluesky._root_rkey("2026-07-15", "D")
+def test_root_rkey_is_a_valid_deterministic_tid():
+    """app.bsky.feed.post REJECTS a non-TID rkey ("Invalid TID string", verified live #108). The
+    deterministic root key must therefore be a valid 13-char TID — unique per (day, party), stable
+    across runs — not a human-readable string."""
+    s32 = "234567abcdefghijklmnopqrstuvwxyz"
+    a = post_bluesky._root_rkey("2026-07-14", "D")
+    assert len(a) == 13 and all(c in s32 for c in a)             # valid TID shape (would 400 otherwise)
+    assert a == post_bluesky._root_rkey("2026-07-14", "D")       # deterministic
+    assert a != post_bluesky._root_rkey("2026-07-14", "R")       # party-unique
+    assert a != post_bluesky._root_rkey("2026-07-15", "D")       # day-unique
+    assert post_bluesky._root_rkey("garbage-not-a-date", "D")    # never raises (falls back)
+
+
+def test_post_thread_reraises_a_genuine_failure_not_masked_as_recovery():
+    """§Session-8c: the over-broad recovery `except` once swallowed a REAL create error (the launch-
+    blocking 400) as a 'collision'. Now recovery is probe-based: if the record does NOT exist after a
+    create error, the ORIGINAL error propagates so the caller records posted=False + the dead-man fires."""
+    def fake_call(url, body, token=None):
+        raise RuntimeError("400 bad content")
+
+    def fake_http(url, jwt=None):
+        raise RuntimeError("404 record does not exist")   # probe: the create genuinely failed
+
+    saved = (post_bluesky._call, post_bluesky._http)
+    post_bluesky._call, post_bluesky._http = fake_call, fake_http
+    try:
+        raised = ""
+        try:
+            post_bluesky._post_thread({"base": "b", "jwt": "j", "did": "did"}, ["head", "r1"],
+                                      on_root=lambda u: None, root_rkey="3mqng2mws2223")
+        except RuntimeError as e:
+            raised = str(e)
+        assert raised == "400 bad content"   # the create error, NOT the probe error, NOT swallowed
+    finally:
+        post_bluesky._call, post_bluesky._http = saved
 
 
 def test_post_thread_recovers_root_on_rkey_collision_without_duplicating():

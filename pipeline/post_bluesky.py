@@ -160,12 +160,28 @@ def _ensure_bot_label(session: dict):  # pragma: no cover - requires creds
     print(f"[bot-label:{did[:12]}] declared self-label val=bot")
 
 
+_S32 = "234567abcdefghijklmnopqrstuvwxyz"  # base32-sortable alphabet (AT-Proto TID encoding)
+
+
 def _root_rkey(day: str, party: str) -> str:
-    """A DETERMINISTIC record key for the root post, unique per day+party. Because it's fixed, a
-    retried root (after a lost createRecord response, or a failed manifest write) COLLIDES server-side
-    instead of creating a second post — closing the duplicate-head-post window the local manifest alone
-    can't. §Session-8."""
-    return f"onscript-{day}-{party.lower()}"
+    """A DETERMINISTIC record key for the root post, unique per day+party. Because it's fixed, a retried
+    root (after a lost createRecord response or a failed manifest write) COLLIDES server-side instead of
+    creating a second post — closing the duplicate-head-post window the local manifest alone can't.
+
+    `app.bsky.feed.post` REJECTS an arbitrary rkey ("Invalid TID string", verified live #108) — the
+    rkey MUST be a valid 13-char TID. So we build a real TID deterministically: timestamp = midnight
+    UTC of `day`, clock-id = the party index. That is valid, unique per (day, party), and roughly
+    chronological. §Session-8c (fixes the launch-blocking 400 the smoke test caught)."""
+    import calendar
+    from datetime import datetime, timezone
+    try:
+        dt = datetime.strptime(day, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        ts_us = int(calendar.timegm(dt.timetuple())) * 1_000_000
+    except Exception:
+        ts_us = int(calendar.timegm(datetime.now(timezone.utc).timetuple())) * 1_000_000
+    clock = 0 if str(party).upper() == "D" else 1  # two composite parties -> two clock ids
+    n = (ts_us << 10) | clock
+    return "".join(_S32[(n >> (5 * (12 - i))) & 0x1F] for i in range(13))
 
 
 def _post_thread(session: dict, thread: list[str], on_root=None, root_rkey=None) -> dict:
@@ -185,12 +201,19 @@ def _post_thread(session: dict, thread: list[str], on_root=None, root_rkey=None)
             body["rkey"] = root_rkey
             try:
                 res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt, body=body)
-            except Exception:
-                # Root already live (lost response). Recover it — never duplicate — and STOP: replies
-                # may already exist. A head-only thread beats a duplicate; the party is now recorded so
-                # future runs skip it.
-                got = _http(f"{base}/com.atproto.repo.getRecord?repo={did}"
-                            f"&collection=app.bsky.feed.post&rkey={root_rkey}", jwt)
+            except Exception as create_err:
+                # The create failed. Distinguish a rkey COLLISION (root already live from a prior run
+                # whose response was lost) from a GENUINE failure (bad content, rate limit, network) by
+                # PROBING existence — a collision surfaces as 400 OR 500 depending on the PDS (verified
+                # live #108), so we can't match on the code/message. If the record now exists, recover
+                # it and STOP (never a duplicate head, never re-posted replies). If it does NOT exist,
+                # the create genuinely failed — re-raise so the caller skip-and-logs + the dead-man
+                # fires (posted=False, no root_uri). §Session-8c.
+                try:
+                    got = _http(f"{base}/com.atproto.repo.getRecord?repo={did}"
+                                f"&collection=app.bsky.feed.post&rkey={root_rkey}", jwt)
+                except Exception:
+                    raise create_err
                 if on_root:
                     on_root(got["uri"])
                 return {"root_uri": got["uri"], "posts_written": 0, "recovered": True}
