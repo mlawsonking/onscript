@@ -673,6 +673,40 @@ so a stale site never reads as editorial silence; GDELT (v2 silence detector) ne
 upstream-anomaly treatment as press releases the day it lands; DST shifts the cron's local-time
 meaning in November (benign; noted).
 
+### Session 8b (2026-07-15, Opus) — pre-posting set built, reviewed, deployed
+
+Executed the Session-8 pre-posting queue + Michael's two decisions, 5 commits (…f00e27a), 82 tests.
+**Decisions applied:** funding pledge pivoted to "no political money — ever; grants disclosed" (#104
+done); **no LLC** (Michael) — operator protection is now the non-LLC bundle in #105 (WHOIS, employer
+policy, personal-account policy, PLC keys, lookalike handles) + the site disclosure is already
+personal-contact-free (routes through the repo/corrections, no email/address). **Built:** the three
+methodology inscriptions (verbatim-identity, model-free, versioning); denominators-in-view ("N of
+{caucus} (X%)"); "said"→"carried"; post **atomicity** (both-or-neither pre-flight, `asymmetric`/
+`atomic_hold` flags, dead-man on both); the **signed post archive** at /posts.html (on-domain mirror
+of posted threads, at://→bsky.app, forgery defense; nav-gated on HAS_POSTS); the **golden-set tone
+regression** (frozen deterministic snapshots + `register_violations`; `scripts/golden_render.py
+--freeze`); the **speaker-contamination sample** (`scripts/audit/speaker_sample.py` for #77).
+
+**Adversarial review found + fixed 4 defects before push** (the review earned it again): (HIGH) the
+versioning inscription was **present-tense for an unbuilt capability** — no old/new series retention
+exists (the ledger overwrites in place), a false claim on the neutrality page; reworded to a
+commitment. (MED) the deterministic composer **mislabeled a member count as a statement count** ("N
+of our statements carried") contradicting the receipts on the same page; fixed to "N of us carried" +
+golden re-frozen. (HIGH) **build_thread could crash the run** on a null composite / a top-phrase row
+missing keys (post_party builds the thread before the gates) — one account would post, the other skip
+the manifest+dead-man; hardened all accesses (launch-critical, dormant behind POSTING_ENABLED=off).
+(HIGH) the **committed site/public was stale** — regenerated + committed so the served copy matches
+source (the live About had still read "takes no outside funding").
+
+**Two posting-launch blockers deferred to a pre-flip Opus session (dormant now; fix BEFORE
+`POSTING_ENABLED` flips):** (2) on a mid-thread `_post_real` failure the result has `posted=False` +
+no `root_uri`, so a re-run **re-posts the already-live posts** (duplicates) — capture partial
+progress / persist the root uri once the root succeeds. (3) `can_post` pre-flight checks only env-var
+presence, not auth, so a **wrong/expired app-password** on one account lets the other post fully
+before it 401s — upgrade the atomic pre-flight to establish a `createSession` per to-post party and
+`atomic_hold` if any fails. Both are AT-Proto-network paths (untestable locally; verify on a live
+launch dry-run).
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
