@@ -45,7 +45,9 @@ def _compose_dry(stats: dict) -> str:
     quoted = 0
     for tp in stats["talking_points"][:3]:
         if tp["quote"]:
-            parts.append(f'{tp["members"]} of us said "{tp["quote"]}".')
+            # "carried", not "said": the phrase appeared in these members' statements — which may quote
+            # third parties. Precise attribution over punchier overclaim. §Session-8.
+            parts.append(f'{tp["members"]} of our statements carried "{tp["quote"]}".')
             quoted += 1
     tp = stats.get("top_phrase")
     if quoted == 0 and not (tp and tp.get("text")):

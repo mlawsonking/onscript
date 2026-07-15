@@ -540,8 +540,9 @@ def _safe_http_url(url) -> str:
     return u if (lo.startswith("http://") or lo.startswith("https://")) else ""
 
 
-def receipts_strip(party: str, talking_points: list) -> str:
-    """Build the receipts strip from a party's talking_points (the visual signature)."""
+def receipts_strip(party: str, talking_points: list, caucus: int | None = None) -> str:
+    """Build the receipts strip from a party's talking_points (the visual signature). `caucus` is the
+    party's caucus size, so every count travels with its denominator ("10 of 263 · 3.8%")."""
     tps = [tp for tp in (talking_points or []) if isinstance(tp, dict)]
     if not tps:
         return ""
@@ -556,11 +557,15 @@ def receipts_strip(party: str, talking_points: list) -> str:
                 + " · ".join(topic_label(t) for t in topics[:3])
                 + "</div>"
             )
-        count_html = (
-            f'<span class="rcount">{esc(count)} members</span> said'
-            if isinstance(count, int)
-            else "members said"
-        )
+        # "carried", not "said": a release can quote third parties (award presenters, bill text), so
+        # the exact claim is that the phrase appeared IN these members' statements. Denominator travels
+        # with the count so a peak never reads as typical. §Session-8.
+        if isinstance(count, int):
+            frac = (f' <span class="faint">&middot; {esc(count)} of {esc(caucus)} ({round(100 * count / caucus, 1)}%)</span>'
+                    if isinstance(caucus, int) and caucus > 0 else "")
+            count_html = f'<span class="rcount">{esc(count)} members&rsquo;</span> statements carried{frac}'
+        else:
+            count_html = "members&rsquo; statements carried"
         # Citation-or-silence made VISIBLE (Art. XII), quote BOUND to source (§Session-7 C-ii): each
         # row is one member's OWN verbatim quote next to their name and their .gov link, so a reader
         # can click and confirm that exact quote — never a decoupled quote/citation pair.
@@ -599,7 +604,7 @@ def receipts_strip(party: str, talking_points: list) -> str:
     )
 
 
-def daily_line_panel(party: str, day_data) -> str:
+def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     dl = day_data.get("daily_lines") or {}
     line = dl.get(party) if isinstance(dl, dict) else None
     tps = (day_data.get("talking_points") or {}).get(party, []) if isinstance(day_data.get("talking_points"), dict) else []
@@ -632,7 +637,7 @@ def daily_line_panel(party: str, day_data) -> str:
     # Zero-cluster honesty (A2): a party with statements but no published talking points has nothing
     # to cite — say so, so the "every talking point is citation-backed" promise is never contradicted
     # by a receipt-free card.
-    body_tail = receipts_strip(party, tps)
+    body_tail = receipts_strip(party, tps, caucus=caucus)
     if not [t for t in (tps or []) if isinstance(t, dict)]:
         body_tail = (f'<p class="nocite">No talking point cleared the {config.SYNC_MIN_MEMBERS}-member '
                      f'threshold today &mdash; nothing to cite.</p>')
@@ -725,10 +730,12 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
 
     parts.append(banner_html(day_data, symmetry))
 
-    # Two Daily Lines side by side
+    # Two Daily Lines side by side (caucus sizes from the day's symmetry audit → denominators in view)
+    caucus = {p: ((symmetry or {}).get("parties", {}).get(p, {}) or {}).get("caucus_size")
+              for p in ("D", "R")} if isinstance(symmetry, dict) else {}
     parts.append('<div class="lines">')
-    parts.append(daily_line_panel("D", day_data))
-    parts.append(daily_line_panel("R", day_data))
+    parts.append(daily_line_panel("D", day_data, caucus=caucus.get("D")))
+    parts.append(daily_line_panel("R", day_data, caucus=caucus.get("R")))
     parts.append("</div>")
 
     # discipline (on-script index) if present
@@ -939,6 +946,33 @@ def methodology_body():
         "and is enforced in code — so a claim can never silently mix an asymmetric source into a party-vs-party number.</p>"
     )
 
+    # (a2) what we measure — three standing positions, inscribed before the findings arrive
+    parts.append("<h2>What OnScript measures — and what it does not</h2>")
+    parts.append(
+        "<p><strong>Verbatim coordination, not paraphrase.</strong> OnScript measures exact shared wording — the "
+        "same phrase appearing in multiple members' published statements. This is what makes every count checkable: "
+        "you can read the releases and see the words. It also means a <em>decline</em> in verbatim overlap once the "
+        "instrument is watching is itself a finding, not a failure — when members stop reaching for identical "
+        "language, we record that too. Any future instrument that tried to measure paraphrased or semantic "
+        "coordination would be a separate tool with a weaker guarantee, and it would be labeled as such. It would "
+        "never be folded silently into these numbers.</p>"
+    )
+    parts.append(
+        "<p><strong>No number on this site is produced by a language model.</strong> Every count, first-appearance "
+        "date, adoption curve, and coverage figure is computed by deterministic code directly from the raw text. The "
+        "language model does exactly one thing: render the day's already-measured phrases into readable prose. It "
+        "cannot introduce a topic, a claim, or a figure the engine did not measure — a deterministic verifier blocks "
+        "any line whose quotes aren't verbatim or whose numbers aren't code-computed, dropping it to a plain "
+        "fallback rather than publishing it. The measurement path stays model-free through every model change.</p>"
+    )
+    parts.append(
+        "<p><strong>Method changes are versioned and retroactive.</strong> When a threshold or a rule changes, it is "
+        "a dated, public, diffable change (prompts and thresholds are hashed on this page). Because the pipeline is "
+        "deterministic, a method change re-runs the <em>entire</em> corpus and both the old and new series are "
+        "published side by side — nothing is silently re-scored to favor a result. The history is restated in the "
+        "open, never quietly.</p>"
+    )
+
     # (b) nightly symmetry audit
     parts.append("<h2>Nightly symmetry audit</h2>")
     if isinstance(sym, dict):
@@ -1071,9 +1105,10 @@ def methodology_body():
     # (f) data downloads pointer
     parts.append("<h2>Data</h2>")
     parts.append(
-        "<p>The derived JSON that powers this site is committed to the repository. Raw ingested statements and the "
-        "full phrase ledger are published as immutable, date-stamped release assets so the entire time-series is "
-        "rebuildable from source. The pipeline is deterministic: same inputs, same outputs.</p>"
+        "<p>The derived JSON that powers this site is committed to the project's source repository; raw ingested "
+        "statements and the full phrase ledger are published as immutable, date-stamped release assets (repository "
+        "and assets are public at launch) so the entire time-series is rebuildable from source. The pipeline is "
+        "deterministic: same inputs, same outputs.</p>"
     )
     return "".join(parts)
 
@@ -1107,15 +1142,18 @@ def about_body():
     parts.append("<h2>Who operates OnScript</h2>")
     parts.append(
         "<p>OnScript is built and operated by <strong>Michael King</strong> as an independent project. It is not "
-        "affiliated with any party, campaign, committee, PAC, or newsroom, and it takes no outside funding. "
+        "affiliated with any party, campaign, committee, PAC, or newsroom. It accepts <strong>no political money — "
+        "ever</strong>, from any party, campaign, committee, or PAC; any philanthropic or infrastructure grant it "
+        "ever accepts will be disclosed on this page. "
         "<strong>The operator's personal political views appear nowhere on this instrument</strong> — not in the "
         "composites, not on the accounts, not in the rankings. The instrument is symmetric by construction; if it "
         "is ever caught being otherwise, that is a bug, and the fix is logged in public. This page is the "
         "operator disclosure of record.</p>"
     )
     parts.append(
-        "<p><strong>Contact &amp; corrections</strong> run through the public source repository and the corrections "
-        "process on the <a href='methodology.html'>Methodology</a> page — every correction is a dated public entry, "
+        "<p><strong>Contact &amp; corrections</strong> run through the corrections process on the "
+        "<a href='methodology.html'>Methodology</a> page (and the project's source repository, which is public "
+        "at launch) — every correction is a dated public entry, "
         "never a silent edit. OnScript has no comment section and solicits no engagement; it broadcasts a "
         "measurement and links its receipts.</p>"
     )
