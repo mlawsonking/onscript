@@ -9,10 +9,33 @@ any violation drops the line to the honest fallback (§7.2), never silence.
 from __future__ import annotations
 
 import json
+import re
 
 from . import config, llm, util, verify
 
 _QUOTE_MAX_WORDS = 10
+
+# Register guard (§Session-8): mechanical checks that a composite has not drifted out of the deadpan-
+# clinical voice — no fourth-wall/schema words, no enthusiasm/irony markers, no hashtags/emoji. Runs
+# on the golden set on every prompt/model change, and could gate live output. Tone that survives all
+# of these (snark by word choice) is caught by the frozen golden snapshot diff, not this.
+_REGISTER_BANS = ("cluster", "talking point", "stats block", "sync_min", "sync minimum",
+                  "the top phrase", "provided fragment", " null", "json")
+
+
+def register_violations(text: str) -> list[str]:
+    t = text or ""
+    low = t.lower()
+    out = [f"schema word: {w.strip()!r}" for w in _REGISTER_BANS if w in low]
+    if "!" in t:
+        out.append("exclamation (enthusiasm/irony marker)")
+    if re.search(r"#\w", t):
+        out.append("hashtag")
+    if any(ord(c) >= 0x1F000 or 0x2190 <= ord(c) <= 0x2BFF for c in t):
+        out.append("emoji/pictograph")
+    if len(t.split()) > 120:
+        out.append("over 120 words")
+    return out
 
 
 def _quote(fragment_text: str) -> str:
