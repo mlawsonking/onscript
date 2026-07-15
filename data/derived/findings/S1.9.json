@@ -1,0 +1,30 @@
+{
+  "id": "S1.9",
+  "name": "The 2022 Self-Audit",
+  "tier": "T1",
+  "verdict": "CONFIRMED",
+  "date": "2026-07-15",
+  "claim": "It wasn't Twitter — it's the parties. Re-running OnScript's own 2022 predecessor finding on official congressional press releases (not tweets), with matched member counts and co-signed statements removed: Democrats' independent week-to-week language overlap is ~85% higher than Republicans', in 71% of weeks. The tighter-coordination signal is structural, not a platform artifact.",
+  "numbers": {
+    "window": "Congress 117 (2021-2022)",
+    "metric": "mean pairwise weekly content-5-gram Jaccard overlap, matched member counts (min per party per week, cap 40)",
+    "D_mean_overlap": 0.00176,
+    "R_mean_overlap": 0.00095,
+    "D_over_R": "~1.85x",
+    "weeks_matched": 105,
+    "weeks_D_exceeds_R": 75,
+    "share_weeks_D_higher": 0.71
+  },
+  "confounds_tested": [
+    "member-count asymmetry -> controlled: parties subsampled to equal N each week",
+    "joint/co-signed releases -> controlled: verbatim cross-member releases excluded; gap WIDENED (D 0.00173->0.00176, R 0.00102->0.00095); R co-signs MORE (48 vs 37 dropped), so co-signing works against the finding",
+    "coverage -> both parties measured in the same weeks, scale-free per-pair Jaccard"
+  ],
+  "labels": ["replication", "matched-controls", "symmetric-instrument"],
+  "split_result": "n/a (pre-registered as a targeted replication of the 2021-2022 window); internal robustness = 71% of weeks agree",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S1.9",
+  "chart_spec": "paired weekly overlap, D vs R, 105 weeks of 2021-2022; or the two mean bars with the 71%-of-weeks annotation",
+  "receipts_note": "receipts = specific high-peak D phrases in 117 from the phrase index (e.g. a phrase said by 30+ D members in one week, expandable to member+date+url); pull at publish time",
+  "graveyard_context": "shipped alongside the Wave-S1 graveyard: this CONFIRMED sits next to 4 REFUTED + 2 ARTIFACT — the discipline that rejected the artifacts is what makes this replication trustworthy",
+  "drip_slot": "flagship — the integrity-flex opener for the Search program"
+}

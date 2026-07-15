@@ -126,6 +126,58 @@ def build_phrase_index(congresses=range(113, 120), peak_floor: int = 2, progress
     return stats
 
 
+def build_member_index(congresses=range(113, 120), peak_floor=15, progress=True) -> dict:
+    """For phrases with peak>=floor, the UNION of members who used it (across all days, joint units
+    excluded) + the first-sayer bioguide -> data/derived/search/member_index.jsonl. The substrate for
+    S1.11 (delegation echo) and S1.12 (leadership ignites). Re-streams the shards (targeted: high-peak
+    only)."""
+    SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
+    out = SEARCH_CACHE / "member_index.jsonl"
+    n = 0
+    with open(out, "w", encoding="utf-8") as w:
+        for c in congresses:
+            shard = ALEX / f"ledger-{c}.json"
+            if not shard.exists() or shard.stat().st_size <= 2:
+                continue
+            for ng, entry in iter_ledger_entries(shard):
+                s = phrase_summary(ng, entry)
+                if not s or s["peak"] < peak_floor:
+                    continue
+                members = set()
+                for d in (entry.get("daily") or {}).values():
+                    for party in ("D", "R"):
+                        for u in (d.get(f"members_{party}") or []):
+                            if not str(u).startswith(("joint:", "njoint:")):
+                                members.add(u)
+                w.write(json.dumps({"ng": ng, "congress": c, "peak": s["peak"],
+                                    "peak_party": s["peak_party"], "first_bio": (entry.get("first_seen") or {}).get("bioguide"),
+                                    "members": sorted(members)}, separators=(",", ":")) + "\n")
+                n += 1
+            if progress:
+                print(f"  member-index ledger-{c}: {n} cumulative phrases (peak>={peak_floor})", flush=True)
+    util.write_json(SEARCH_CACHE / "member_index.stats.json", {"phrases": n, "peak_floor": peak_floor})
+    return {"phrases": n}
+
+
+def bioguide_states() -> dict:
+    """{bioguide: modal state} from the statement-metadata intermediate (roster join for delegation)."""
+    from collections import Counter
+    counts: dict = defaultdict(Counter)
+    for r in iter_stmt_meta():
+        if r.get("bioguide") and r.get("state"):
+            counts[r["bioguide"]][r["state"]] += 1
+    return {b: c.most_common(1)[0][0] for b, c in counts.items()}
+
+
+def iter_member_index():
+    p = SEARCH_CACHE / "member_index.jsonl"
+    if p.exists():
+        with open(p, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    yield json.loads(line)
+
+
 def iter_phrase_index():
     p = SEARCH_CACHE / "phrase_index.jsonl"
     if not p.exists():

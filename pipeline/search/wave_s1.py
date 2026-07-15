@@ -273,6 +273,164 @@ def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15):
             "proxy": "August = recess", "verdict": verdict}
 
 
+# --- S1.9 The 2022 Self-Audit (replicate the founder's finding on the symmetric corpus) ----------
+def _fivegrams(text: str) -> set:
+    """Distinctive content 5-grams (hashed to ints for fast set ops), boilerplate excluded. A shared
+    5-gram is strong evidence of phrase reuse; the smaller sets make the pairwise overlap tractable."""
+    from .. import boilerplate
+    out = set()
+    for toks in boilerplate.sentences(text):
+        for i in range(0, len(toks) - 4):
+            ng = " ".join(toks[i:i + 5])
+            if not boilerplate.is_boilerplate_ngram(ng):
+                out.add(hash(ng))
+    return out
+
+
+def s1_9_self_audit(congresses=(117,), min_members_week=6, cap=40, seed="s1.9", exclude_joint=True):
+    """Replicate the 2022 predecessor's finding (Democrats coordinate tighter) on PRESS RELEASES.
+    Metric: mean pairwise weekly content-5-gram Jaccard overlap per party, with MATCHED member counts
+    (subsample the larger party to the smaller each week — the pre-registered control so a party's
+    higher overlap isn't just more members). ADVERSARIAL CONTROL (§4.5): exclude_joint drops verbatim
+    co-signed releases (identical text under >=2 members in a week) so the overlap measures INDEPENDENT
+    coordination, not co-signing — press releases (unlike the 2022 tweets) contain joint statements.
+    Pre-committed: EITHER outcome publishes (replication or reversal). Deterministic (seeded)."""
+    import random
+    from itertools import combinations
+    # collect per-statement so joint (cross-member verbatim) releases can be identified + excluded
+    stmts = []  # (party, week, bio, texthash, grams)
+    for r in H.iter_statements(congresses=set(congresses), with_text=True):
+        p, bio = r.get("party"), r.get("bioguide")
+        if p not in ("D", "R") or not bio:
+            continue
+        try:
+            iy, iw, _ = date.fromisoformat(r["date"]).isocalendar()
+        except Exception:
+            continue
+        text = r.get("text") or ""
+        grams = _fivegrams(text)
+        if grams:
+            stmts.append((p, (iy, iw), bio, hash(text.strip()), grams))
+    # a texthash appearing under >=2 distinct bioguides in the same week = a joint/co-signed release
+    wk_text_bios = defaultdict(set)
+    for p, wk, bio, th, _g in stmts:
+        wk_text_bios[(wk, th)].add(bio)
+    joint = {k for k, bios in wk_text_bios.items() if len(bios) >= 2}
+    joint_dropped = {"D": 0, "R": 0}
+    by = {"D": defaultdict(lambda: defaultdict(set)), "R": defaultdict(lambda: defaultdict(set))}
+    for p, wk, bio, th, grams in stmts:
+        if exclude_joint and (wk, th) in joint:
+            joint_dropped[p] += 1
+            continue
+        by[p][wk][bio] |= grams
+
+    def mean_pairwise(sets):
+        tot = cnt = 0.0
+        for a, b in combinations(sets, 2):
+            u = len(a | b)
+            if u:
+                tot += len(a & b) / u
+                cnt += 1
+        return (tot / cnt) if cnt else None
+
+    weekly = {"D": [], "R": []}
+    weeks = sorted(set(by["D"]) | set(by["R"]))
+    for wk in weeks:
+        md = {b: g for b, g in by["D"].get(wk, {}).items() if g}
+        mr = {b: g for b, g in by["R"].get(wk, {}).items() if g}
+        n = min(len(md), len(mr))
+        if n < min_members_week:
+            continue
+        n = min(n, cap)
+        rng = random.Random(f"{seed}:{wk}")
+        sd = [md[b] for b in sorted(md)]; rng.shuffle(sd)
+        se = [mr[b] for b in sorted(mr)]; random.Random(f"{seed}:{wk}:r").shuffle(se)
+        jd, jr = mean_pairwise(sd[:n]), mean_pairwise(se[:n])
+        if jd is not None and jr is not None:
+            weekly["D"].append(jd); weekly["R"].append(jr)
+
+    from statistics import mean
+    nD, nR = len(weekly["D"]), len(weekly["R"])
+    mD = mean(weekly["D"]) if weekly["D"] else None
+    mR = mean(weekly["R"]) if weekly["R"] else None
+    # per-week paired sign test: in how many matched weeks does D exceed R?
+    d_gt_r = sum(1 for a, b in zip(weekly["D"], weekly["R"]) if a > b)
+    powered = nD >= 20 and nR >= 20
+    if not powered:
+        verdict = "UNDERPOWERED"
+    elif mD is not None and mR is not None:
+        # this is a REPLICATION test: it always resolves to a finding (both outcomes publish)
+        verdict = "CONFIRMED" if (mD > mR and d_gt_r > nD * 0.6) else "REFUTED"
+    else:
+        verdict = "UNDERPOWERED"
+    return {"id": "S1.9", "name": "The 2022 Self-Audit", "congresses": list(congresses),
+            "exclude_joint": exclude_joint, "joint_releases_dropped": joint_dropped,
+            "mean_weekly_overlap_D": mD and round(mD, 5), "mean_weekly_overlap_R": mR and round(mR, 5),
+            "weeks_matched": nD, "weeks_D_exceeds_R": d_gt_r,
+            "direction": ("D>R (replicates)" if (mD and mR and mD > mR) else "R>=D (reverses)"),
+            "verdict": verdict,
+            "note": "REPLICATION — 'CONFIRMED' means the 2022 finding replicates (D tighter); 'REFUTED' means it reverses. Both publish."}
+
+
+# --- S1.11 Delegation Echo (same-state members share phrases beyond chance) ----------------------
+def _same_state_pairs(members, state_of):
+    """Same-state pairs among a phrase's members = sum_s C(count_s, 2). O(M)."""
+    from collections import Counter
+    c = Counter(state_of[m] for m in members if m in state_of)
+    return sum(n * (n - 1) // 2 for n in c.values()), sum(c.values())
+
+
+def s1_11_delegation_echo(member_rows, state_of, k_perm=50, seed="s1.11"):
+    """Do same-state delegations share phrases beyond chance? Observed same-state co-use pairs vs a
+    permutation null that SHUFFLES the state labels across members (preserving each state's delegation
+    size — so California's size can't fake the effect). ratio = observed / mean(null). CONFIRM =
+    ratio >= 1.5 in BOTH halves. Deterministic (seeded permutations)."""
+    import random
+    halves = {"A": [], "B": []}
+    for r in member_rows:
+        h = "A" if r["congress"] <= 116 else "B"
+        ms = [m for m in r["members"] if m in state_of]
+        if len(ms) >= 2:
+            halves[h].append(ms)
+    all_members = sorted({m for rows in halves.values() for ms in rows for m in ms})
+    result = {}
+    for h, phrases in halves.items():
+        if not phrases:
+            result[h] = None
+            continue
+        obs = tot = 0
+        for ms in phrases:
+            sp, tp = _same_state_pairs(ms, state_of)
+            obs += sp
+            tot += len(ms) * (len(ms) - 1) // 2
+        # null: permute the state assignment across the member population, recompute
+        real_states = [state_of[m] for m in all_members]
+        nulls = []
+        for k in range(k_perm):
+            rng = random.Random(f"{seed}:{h}:{k}")
+            perm = real_states[:]
+            rng.shuffle(perm)
+            pmap = dict(zip(all_members, perm))
+            nobs = sum(_same_state_pairs(ms, pmap)[0] for ms in phrases)
+            nulls.append(nobs)
+        mean_null = sum(nulls) / len(nulls)
+        ratio = (obs / mean_null) if mean_null else None
+        result[h] = {"phrases": len(phrases), "observed_pairs": obs, "total_pairs": tot,
+                     "mean_null_pairs": round(mean_null, 1), "ratio": ratio and round(ratio, 2),
+                     "same_state_rate": round(obs / tot, 4) if tot else None}
+    ra = result.get("A", {}) and result["A"]["ratio"] if result.get("A") else None
+    rb = result.get("B", {}) and result["B"]["ratio"] if result.get("B") else None
+    powered = result.get("A") and result.get("B") and result["A"]["phrases"] >= 30 and result["B"]["phrases"] >= 30
+    if not powered:
+        verdict = "UNDERPOWERED"
+    elif ra and rb and ra >= 1.5 and rb >= 1.5:
+        verdict = "CONFIRMED"
+    else:
+        verdict = "REFUTED"
+    return {"id": "S1.11", "name": "Delegation Echo", "by_half": result,
+            "ratio_A": ra, "ratio_B": rb, "verdict": verdict}
+
+
 def monthly_statement_counts():
     """{YYYY-MM: count} over the statement-meta intermediate."""
     from collections import Counter
