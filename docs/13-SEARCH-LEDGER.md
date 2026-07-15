@@ -8,7 +8,9 @@
 
 | tested | confirmed | refuted | underpowered | artifact | blocked |
 |---|---|---|---|---|---|
-| 2 | 0 | 0 | 0 | 2 | 0 |
+| 5 | 0 | 3 | 0 | 2 | 0 |
+
+*(S1.4 measured on a proxy only → not counted as a verdict; proper metric queued. See notes.)*
 
 ## S0 data-inventory findings (S0.1 complete, 2026-07-15)
 
@@ -50,6 +52,10 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 |----|------|---------|-----------------|------|-------|
 | S1.1 | Industrialization of the Memo | **ARTIFACT** | year1 median 60 vs year2 median 3 (20× sawtooth); by-Congress 60,60,60,15,27,60,60 | 2026-07-15 | Congress-boundary/cap/recurrence confound (amendment A2). `first_seen→peak` ill-posed on per-Congress shards. Redefine as event-detection on a merged cross-era series → **S1.1′ deferred.** Guard added so it can't re-emit CONFIRMED. |
 | S1.3 | Phrase Lifespan Collapse | **ARTIFACT** | same odd/even sawtooth (665 vs 106…); shard-edge right-censoring | 2026-07-15 | Same A2 confound + `last_date` censored at the Congress boundary. Redefine with survival/censoring on the merged series → **S1.3′ deferred.** |
+| S1.2 | The Sync Ceiling | **REFUTED** | normalized ceiling: 2013 .23 → **2017 .35 (peak)** → 2026 .17; dir_A +1, dir_B −1, ratio 0.73 | 2026-07-15 | Not a monotone rise — synchronization **peaked ~2017 and declined.** Reversal candidate (needs its own pre-registration to publish "peaked-and-fell"). Boundary-safe (single-day peaks), coverage-normalized by active members. |
+| S1.5 | The Weekend Memo | **REFUTED** | Saturday excess 0.74–0.89 (avoided) but **Sunday 4.4–6.4× over-represented** | 2026-07-15 | Ignitions don't avoid weekends — they *avoid Saturday but love Sunday*. Opposite of the folk theory. The Sunday spike needs a small-baseline artifact check before it becomes its own finding (Sunday is a tiny share of the baseline). |
+| S1.7 | The August Effect | **REFUTED** | Aug ignition rate = **45–49% of session rate**, both halves | 2026-07-15 | Coordination does NOT persist through recess (<70% gate) — it roughly **halves in August**, consistently across both halves. Clean, both-half-agreeing null (a publishable finding in the un-predicted direction). Recess proxy = August, disclosed. |
+| S1.4 | The Copy-Paste Caucus | *(no verdict — proxy only)* | group-rate rose 19.7→30.1/1k (ratio 1.53, both halves +1) BUT tracks corpus volume (116=41.6@160k stmts, 117=14.2@37k) | 2026-07-15 | **Group-count/statements is DENSITY-SENSITIVE** — a denser corpus yields more near-dup matches regardless of behavior (the kill-fixture concern the protocol flagged). Proper metric = statements-in-groups share + a density-controlled detector + per-party split. **Queued, no verdict rendered.** |
 
 ## Graveyard notes
 
@@ -59,3 +65,20 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
   off on day one: *the first thing the sweep did was reject its own most-wanted result.* Both are
   redefinable (event-detection on a merged substrate, S1.1′/S1.3′) — not dead, deferred. The lesson
   (per-Congress shards can't answer within-phrase-genealogy questions) reshaped the S1 sequencing.
+- **S1.2 / S1.5 / S1.7 (2026-07-15):** three trend-guesses refuted — but *into* real findings, not
+  emptiness: message synchronization **peaked ~2017 and fell** (not ever-rising); ignitions **avoid
+  Saturday but spike 6× on Sunday** (not weekend-avoidant); coordination **halves in the August
+  recess** (not persistent). Each is a "reversal candidate" — publishable in its own right once
+  pre-registered in the un-guessed direction (can't claim the reverse after seeing data). The
+  graveyard is filling with *inversions*, which is exactly the Freakonomics genre the Appendix wanted.
+- **S1.4 (2026-07-15):** the leading CONFIRM candidate (copy-paste rising 1.5×) failed the adversarial
+  look — the group-rate is **density-confounded** (tracks corpus volume). No verdict rendered; proper
+  metric queued. Second time this session the discipline refused a promising-but-artifactual signal.
+
+## Running note (after 5 verdicts)
+Zero CONFIRMED so far, and that is the *correct, honest* state — the ambitious trend-guesses are
+refuting or artifacting, and the machine has refused every false positive it was handed (S1.1, S1.3,
+S1.4). The structural hypotheses most likely to CONFIRM — **S1.11 Delegation Echo, S1.12 Leadership
+Ignites, S1.9 2022 Self-Audit** — need member-level data (first-sayer bioguide + peak-day member sets,
+dropped from the compact index) and the leadership roster; those are the next build + the best shot at
+the first confirmed finding. Reversal candidates (S1.2/S1.5/S1.7) are a parallel content stream.

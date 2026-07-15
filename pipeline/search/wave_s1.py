@@ -159,6 +159,129 @@ def s1_3_lifespan(rows, peak_min=10, min_cell=8):
             "verdict": verdict, "note": "birth-year cohorts truncate near the window edge (right-censoring) — caveat on any card"}
 
 
+# --- S1.2 Sync Ceiling (boundary-SAFE: single-day peaks, no span) --------------------------------
+def s1_2_sync_ceiling(rows, active_by_year: dict):
+    """Loudest single-day unison per year = max phrase peak whose peak_day falls in that year, divided
+    by that year's active-member count (the coverage control — a bigger caucus can converge harder for
+    free). CONFIRM = normalized ceiling rising in BOTH halves AND late >= 1.5x early."""
+    ceil_raw = defaultdict(int)
+    for r in rows:
+        if not r.get("peak_day"):
+            continue
+        y = _year(r["peak_day"])
+        if _half(y) is not None:
+            ceil_raw[y] = max(ceil_raw[y], r["peak"])
+    series, raw = [], {}
+    for y in sorted(ceil_raw):
+        am = active_by_year.get(str(y)) or active_by_year.get(y)
+        raw[y] = ceil_raw[y]
+        if am:
+            series.append((y, ceil_raw[y] / am))
+    a = [(y, v) for (y, v) in series if y in HALF_A_YEARS]
+    b = [(y, v) for (y, v) in series if y in HALF_B_YEARS]
+    dir_a, dir_b = M.split_direction(a), M.split_direction(b)
+    early = a[0][1] if a else None
+    late = b[-1][1] if b else None
+    ratio = (late / early) if (early and late and early > 0) else None
+    powered = len(a) >= 2 and len(b) >= 2
+    if not powered:
+        verdict = "UNDERPOWERED"
+    elif dir_a == 1 and dir_b == 1 and ratio and ratio >= 1.5:
+        verdict = "CONFIRMED"
+    else:
+        verdict = "REFUTED"
+    return {"id": "S1.2", "name": "The Sync Ceiling", "series_norm": [(y, round(v, 4)) for y, v in series],
+            "raw_ceiling": raw, "dir_a": dir_a, "dir_b": dir_b, "early_norm": early, "late_norm": late,
+            "ratio": ratio, "verdict": verdict}
+
+
+# --- S1.5 Weekend Memo (ignition weekday vs the all-statement baseline) ---------------------------
+def s1_5_weekend_memo(rows, weekday_baseline: dict, peak_min=15):
+    """Do coordinated ignitions (first_date of peak>=15 phrases) avoid weekends MORE than statements
+    generally? Excess = ignition-weekday share / baseline-weekday share. CONFIRM = weekend excess < 1
+    (under-represented) in BOTH halves, and the business-day fingerprint is real (weekday excess > 1)."""
+    from collections import Counter
+    base = Counter({int(k): v for k, v in weekday_baseline.items()})
+    ig = {"A": Counter(), "B": Counter()}
+    for r in rows:
+        if r["peak"] < peak_min:
+            continue
+        y = _year(r["first_date"])
+        h = _half(y)
+        if h is None:
+            continue
+        try:
+            wd = date.fromisoformat(r["first_date"]).weekday()
+        except Exception:
+            continue
+        ig[h][wd] += 1
+    ex_a = M.weekday_excess(ig["A"], base)
+    ex_b = M.weekday_excess(ig["B"], base)
+    weekend_a = [ex_a.get(5), ex_a.get(6)]
+    weekend_b = [ex_b.get(5), ex_b.get(6)]
+    both_avoid = all(v is not None and v < 1.0 for v in weekend_a + weekend_b)
+    powered = sum(ig["A"].values()) >= 30 and sum(ig["B"].values()) >= 30
+    verdict = ("UNDERPOWERED" if not powered else "CONFIRMED" if both_avoid else "REFUTED")
+    return {"id": "S1.5", "name": "The Weekend Memo", "peak_min": peak_min,
+            "excess_A": {k: round(v, 2) if v is not None else None for k, v in ex_a.items()},
+            "excess_B": {k: round(v, 2) if v is not None else None for k, v in ex_b.items()},
+            "weekend_excess_A": weekend_a, "weekend_excess_B": weekend_b,
+            "n_A": sum(ig["A"].values()), "n_B": sum(ig["B"].values()), "verdict": verdict}
+
+
+# --- S1.7 The August Effect (recess proxy = the August district work period) ---------------------
+def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15):
+    """Does coordination collapse in recess, or is it pre-scheduled? Recess proxy = August (Congress is
+    reliably in its district work period). Ignition rate = ignitions per 1k statements, August vs the
+    rest of the year. CONFIRM (counterintuitive direction) = recess rate >= 70% of session rate in BOTH
+    halves (coordination persists through recess); REFUTE if it craters. Coarse proxy, disclosed."""
+    ig = {"A": {"aug": 0, "other": 0}, "B": {"aug": 0, "other": 0}}
+    for r in rows:
+        if r["peak"] < peak_min:
+            continue
+        y, mo = _year(r["first_date"]), int(r["first_date"][5:7])
+        h = _half(y)
+        if h is None:
+            continue
+        ig[h]["aug" if mo == 8 else "other"] += 1
+    # statement denominators per period per half
+    st = {"A": {"aug": 0, "other": 0}, "B": {"aug": 0, "other": 0}}
+    for ym, c in monthly_stmts.items():
+        y, mo = int(ym[:4]), int(ym[5:7])
+        h = _half(y)
+        if h is None:
+            continue
+        st[h]["aug" if mo == 8 else "other"] += c
+    out = {}
+    ratios = {}
+    for h in ("A", "B"):
+        aug_rate = M.rate_per_1k(ig[h]["aug"], st[h]["aug"])
+        oth_rate = M.rate_per_1k(ig[h]["other"], st[h]["other"])
+        out[h] = {"aug_rate": aug_rate and round(aug_rate, 3), "other_rate": oth_rate and round(oth_rate, 3),
+                  "aug_ig": ig[h]["aug"], "aug_stmts": st[h]["aug"]}
+        ratios[h] = (aug_rate / oth_rate) if (aug_rate and oth_rate) else None
+    powered = all(st[h]["aug"] >= 200 for h in ("A", "B"))
+    persists = all(ratios[h] is not None and ratios[h] >= 0.70 for h in ("A", "B"))
+    if not powered:
+        verdict = "UNDERPOWERED"
+    elif persists:
+        verdict = "CONFIRMED"
+    else:
+        verdict = "REFUTED"
+    return {"id": "S1.7", "name": "The August Effect", "peak_min": peak_min,
+            "by_half": out, "recess_vs_session_ratio": {h: r and round(r, 2) for h, r in ratios.items()},
+            "proxy": "August = recess", "verdict": verdict}
+
+
+def monthly_statement_counts():
+    """{YYYY-MM: count} over the statement-meta intermediate."""
+    from collections import Counter
+    c = Counter()
+    for r in H.iter_stmt_meta():
+        c[r["date"][:7]] += 1
+    return dict(c)
+
+
 def run(rows=None):
     rows = rows if rows is not None else _load_index()
     return [s1_1_ignition_width(rows), s1_3_lifespan(rows)]

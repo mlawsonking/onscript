@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import gzip
 import json
+from collections import defaultdict
 from pathlib import Path
 
 from .. import config, fetch, util
@@ -161,6 +162,45 @@ def yearly_statements(congresses=range(107, 120)) -> dict:
 
 
 # --- full-text statement stream (for S2; congress-press ground truth, all eras) ------------------
+def build_statement_meta(congresses=range(113, 120), progress=True) -> dict:
+    """Text-free per-statement metadata over congress-press -> data/derived/search/stmt_meta.jsonl
+    ({date, year, congress, party, bioguide, weekday}). Fast (no text); the substrate for the meta
+    hypotheses (weekday baselines, active-member denominators, delegation). Returns summary stats."""
+    from datetime import date as _date
+    SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
+    out = SEARCH_CACHE / "stmt_meta.jsonl"
+    n = 0
+    active = defaultdict(set)          # year -> {bioguide}
+    weekday = defaultdict(int)         # weekday -> count (all statements, the baseline)
+    with open(out, "w", encoding="utf-8") as w:
+        for r in iter_statements(congresses=congresses, with_text=False):
+            try:
+                wd = _date.fromisoformat(r["date"]).weekday()
+            except Exception:
+                continue
+            r["weekday"] = wd
+            w.write(json.dumps(r, separators=(",", ":")) + "\n")
+            n += 1
+            if r.get("bioguide"):
+                active[r["year"]].add(r["bioguide"])
+            weekday[wd] += 1
+    summary = {"statements": n, "active_members_by_year": {y: len(s) for y, s in sorted(active.items())},
+               "weekday_baseline": {str(k): v for k, v in sorted(weekday.items())}}
+    util.write_json(SEARCH_CACHE / "stmt_meta.summary.json", summary)
+    if progress:
+        print("stmt_meta:", n, "statements;", summary["active_members_by_year"], flush=True)
+    return summary
+
+
+def iter_stmt_meta():
+    p = SEARCH_CACHE / "stmt_meta.jsonl"
+    if p.exists():
+        with open(p, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    yield json.loads(line)
+
+
 def iter_statements(congresses=None, with_text=True):
     """Stream raw/congress-press records as {date, year, party, bioguide, state, chamber, congress,
     text?}. Party normalized to D/R/I. `congresses` filters to a set; None = all."""
