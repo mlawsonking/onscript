@@ -816,6 +816,31 @@ flagship end-to-end). Commit `710e1ba`, deployed. **Known residual (queued):** t
 numeral-vs-word synonym pair still shows twice — that's a normalization-map problem, not containment,
 and is a separate small feature (not a launch blocker).
 
+### Session 9 (2026-07-15, Fable) — THE SEARCH authored: 47 pre-registered hypotheses over the 25-year archive
+
+Michael asked what the archive is actually sitting on ("1–2 pieces a month of insight") and handed
+Fable the gameplan. Written: **`docs/12-SEARCH-PROGRAM.md`** — the pre-registered hypothesis sweep.
+**47 hypotheses in 5 compute waves** (S1 pure-ledger coordination mechanics · S2 full-text language
+evolution · S3 roster/lifecycle joins · S4 event joins · S5 keyed joins via one-shot Actions
+dispatch), each with a mechanical protocol (metric | denominator | split | CONFIRM threshold |
+named confound) so **Opus can confirm/refute the entirety without judgment calls.** Standards
+codified as law: pre-registration (silent tuning forbidden — amendments are dated), the coverage
+confound as refutation-attempt-#1 with a mandatory density-matched control, split-halves
+(107–113 vs 114–119), symmetry + power-position reframe, power floors (UNDERPOWERED ≠ REFUTED),
+kill-fixture-tested metrics, aggregate-only oddities, gravity ⚠ protocol (S4.3 thoughts-and-prayers,
+S4.7 Jan-6 ⚠⚠ measured-not-published), $0/local ($NO key ever local; S5 runs where the key already
+lives). Ambition math: expected ~22–28 CONFIRMED → 1–2 drip pieces/month for 12–24 months; the
+graveyard tally and the null-banger are themselves pre-committed publishable pieces. Lead T1 bets:
+Industrialization of the Memo (S1.1), Freshman Assimilation Speedrun (S3.1, 13 cohorts already in
+hand), Lame-Duck Honesty (S3.2), the Voldemort Index (S2.1), What Losing Sounds Like (S2.3), the
+SOTU Gravity Well (S1.8), the 2022 Self-Audit (S1.9 — either outcome publishes), One Court Two
+Languages (S4.1, birthright 06-30 is the live pilot card). **`docs/13-SEARCH-LEDGER.md`**
+initialized (append-only verdicts + tally). Out of scope by design: embeddings/topic-layer/external
+🔬 families (stay in HORIZON under the quarterly-pick doctrine). **Next Opus session: Wave S0**
+(data-inventory audit incl. the Alexandria shards, the query harness, kill-fixture metrics library,
+reference tables, card schema) — then S1. The streak is untouched; the Search is a parallel content
+program, releases remain Michael's act.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
