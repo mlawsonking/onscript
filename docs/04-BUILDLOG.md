@@ -707,6 +707,51 @@ before it 401s — upgrade the atomic pre-flight to establish a `createSession` 
 `atomic_hold` if any fails. Both are AT-Proto-network paths (untestable locally; verify on a live
 launch dry-run).
 
+### Session 8c (2026-07-15, Opus) — the two posting-launch blockers CLOSED + a third (silent-neutrality) fixed
+
+Directive: "make sure when we're ready for go-live our bots don't fall on their face." Rewrote the
+posting path (`pipeline/post_bluesky.py`) to close both Session-8b blockers, then ran a focused
+adversarial review that found and closed a third. Commit `3d6bd60`, **88 tests**. Posting stays OFF
+(POSTING_ENABLED default off) — this is dormant hardening, kill-tested that no path posts when off.
+
+**Blocker (3) — atomic pre-flight auth — CLOSED.** `main()` now does an ATOMIC PRE-FLIGHT:
+`_authenticate` (createSession) for **every** due party *before* any post; if any raises (wrong/
+expired app-password), `atomic_hold` + dead-man and **neither** party posts. A bad credential can no
+longer let the paired account post alone. Test: `test_atomic_hold_when_one_account_auth_fails`.
+
+**Blocker (2) — partial-post duplication — CLOSED, two layers.** (a) `_on_root(uri)` persists the
+root URI to the manifest **before** any reply, and `already_posted` requires `posted AND root_uri`,
+so a re-run after a mid-thread crash skips the head (no duplicate root). (b) The root now uses a
+**deterministic rkey** `onscript-<day>-<party>`: a retried root **collides server-side** (createRecord
+is create-not-put) and is RECOVERED via `getRecord` — returns `posts_written=0, recovered=True`,
+never a duplicate head, never re-posted replies. Tests: `test_partial_post_records_root_and_a_rerun_
+does_not_duplicate`, `test_post_thread_recovers_root_on_rkey_collision_without_duplicating`,
+`test_root_rkey_is_deterministic_per_day_and_party`.
+
+**New finding (adversarial review) — silent-neutrality on an empty composite — FIXED.** If one
+party's composite was missing/empty, BOTH still posted (a near-empty root) with `asymmetric=False` —
+it slipped past the asymmetric guard because both were technically "posted." Now a due party with no
+composite → `atomic_hold` + dead-man (hold both). Also `_split` now provably never emits an empty or
+over-length post (lone oversize token hard-sliced). Tests: `test_empty_composite_for_one_party_holds_
+both_atomically`, `test_split_never_emits_empty_or_overlength_posts`.
+
+**Also landed (deferred from 8b's review):** the near-dup phrase collapse now folds **only** stopword-
+padding variants (`_padding_variant`) so a generic hub ("the trump administration", peak 20) can no
+longer absorb the distinct coordinated messages that contain it (the over-merge the 8b review flagged);
+least-padded form is the representative carrying the family max peak. Guard test:
+`test_collapse_does_not_let_a_generic_hub_absorb_distinct_messages`. Receipts Wayback fallback +
+denominators + methodology inscriptions regenerated into `site/public` and deployed.
+
+**Two residual pre-flip items (NOT blockers; posting is off) from this review:**
+- **(A) Live AT-Proto smoke test before flip** — the rkey-collision-recovery + getRecord + oversize/
+  empty behavior are `# pragma: no cover` (never run against a real server). The create-not-put
+  assumption is correct per spec but has never executed live. **Filed as a Michael pre-flip task**
+  (throwaway accounts: create-with-rkey → retry-collision → recovery). Fold into the S3 launch dry-run.
+- **(B) Asymmetric-post reconciliation** — the dead-man fires only at end of `main()`; a hard process
+  kill (Actions timeout/OOM/SIGKILL) in the sub-second gap between the two parties' posts leaves a
+  durably asymmetric manifest with no alert. **Opus build item** (a startup reconciliation that scans
+  recent post manifests and alerts on unacknowledged asymmetric/partial) — queued below, before flip.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
