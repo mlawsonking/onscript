@@ -45,16 +45,18 @@ def _split(text: str, limit: int = 300) -> list[str]:
 
 
 def build_thread(day: str, party: str, day_json: dict) -> list[str]:
+    # Total-failure-proof: a malformed day entry (null composite, a top-phrase row missing keys) must
+    # never raise here — post_party builds the thread BEFORE the gates, and a raise would crash the
+    # run (one account posts, the other doesn't, no manifest, no dead-man). All accesses are guarded.
     dl = (day_json.get("daily_lines") or {}).get(party) or {}
-    composite = dl.get("composite", "")
-    posts = _split(composite)
+    posts = _split(dl.get("composite") or "")
     # receipts post: link + the day's most synchronized phrase (count + first-sayer)
-    top = next((r for r in day_json.get("top_synchronized", []) if r.get("party") == party), None)
+    top = next((r for r in (day_json.get("top_synchronized") or []) if r.get("party") == party), None)
     receipts = f"Receipts: {SITE}/day/{day}.html"
-    if top:
-        fs = top.get("first_seen", {})
-        receipts += (f'\nMost synchronized: "{top["ngram"]}" — {top["day_peak"]} of us'
-                     f' (first said {fs.get("date")}).')
+    if top and top.get("ngram"):
+        fs = top.get("first_seen") or {}
+        receipts += (f'\nMost synchronized: "{top.get("ngram")}" — {top.get("day_peak")} of us'
+                     f' (first recorded {fs.get("date")}).')
     posts.append(receipts)
     if dl.get("generator") == "dry_run":
         posts.append(f"[Automated composite — methodology + symmetry audit: {SITE}/methodology.html]")

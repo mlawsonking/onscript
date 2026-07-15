@@ -970,11 +970,12 @@ def methodology_body():
         "fallback rather than publishing it. The measurement path stays model-free through every model change.</p>"
     )
     parts.append(
-        "<p><strong>Method changes are versioned and retroactive.</strong> When a threshold or a rule changes, it is "
-        "a dated, public, diffable change (prompts and thresholds are hashed on this page). Because the pipeline is "
-        "deterministic, a method change re-runs the <em>entire</em> corpus and both the old and new series are "
-        "published side by side — nothing is silently re-scored to favor a result. The history is restated in the "
-        "open, never quietly.</p>"
+        "<p><strong>Method changes are versioned.</strong> When a threshold or a rule changes, it is a dated, "
+        "public, diffable change (prompts and thresholds are hashed on this page). Because the pipeline is "
+        "deterministic, a method change can be re-run against the <em>entire</em> corpus, and the commitment is to "
+        "publish both the old and new series side by side when one is made — so a change is a versioned, public "
+        "event, never a silent re-score. No method has changed since launch; when one does, the diff and both "
+        "series will appear here.</p>"
     )
 
     # (b) nightly symmetry audit

@@ -69,8 +69,8 @@ def _compose_dry(stats: dict) -> str:
     for tp in stats["talking_points"][:3]:
         if tp["quote"]:
             # "carried", not "said": the phrase appeared in these members' statements — which may quote
-            # third parties. Precise attribution over punchier overclaim. §Session-8.
-            parts.append(f'{tp["members"]} of our statements carried "{tp["quote"]}".')
+            # third parties. "N of us" (member count), not "N statements" — members is the unit. §S8.
+            parts.append(f'{tp["members"]} of us carried "{tp["quote"]}".')
             quoted += 1
     tp = stats.get("top_phrase")
     if quoted == 0 and not (tp and tp.get("text")):
@@ -81,7 +81,7 @@ def _compose_dry(stats: dict) -> str:
     if tp and tp.get("text"):
         # No quotation marks: the top synchronized phrase is a code-computed ledger n-gram, not a
         # verbatim member quote — render it as the measured phrase it is (§Session-5 HIGH-1 fix).
-        parts.append(f'Our most synchronized phrase, in {tp["members"]} of our statements: {tp["text"]}.')
+        parts.append(f'Our most synchronized phrase, used by {tp["members"]} of us: {tp["text"]}.')
     text = " ".join(parts)
     words = text.split()
     if len(words) > 120:
