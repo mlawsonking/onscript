@@ -8,7 +8,7 @@
 
 | tested | confirmed | refuted | underpowered | artifact | blocked | descriptive |
 |---|---|---|---|---|---|---|
-| 20 | **1** | 14 | 0 | 4 | 0 | 1 |
+| 22 | **1** | 16 | 0 | 4 | 0 | 1 |
 
 **Wave S1 complete** (1 CONFIRMED — S1.9; + 2 redefinitions; S1.12 blocked). **Wave S2 7/12 run**
 (0 confirmed, 6 refuted, 1 descriptive; 3 reversal candidates banked). The confirmation rate is low
@@ -99,6 +99,8 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 | S2.7 | Pronoun Economics | **REFUTED** | I/(I+we) stable ~0.33–0.40, dip ~2020; R slightly more "I" than D (small stable party gap). |
 | S2.10 | The Concern Ladder | **REFUTED** | concerned 39k > deeply 5.8k > gravely 650, but "alarmed" 2.1k breaks the ordering. Grammar isn't a clean ladder. |
 | S2.12 | The Apology Corpus | **REFUTED** | 1,226 total apologies, rate flat/noisy (73–309/100k), no era trend. T3 null footnote. |
+| S2.3 | What Losing Sounds Like | **REFUTED** (a CONFIRMED overturned by both-halves) | pooled: minority higher on "the American people" + rhetorical questions, both parties → looked CONFIRMED; **but Half A fails (Dems-in-MAJORITY 2013–20 asked MORE questions).** The minority signature is a **recent-era (2021–26) effect, not a stable law** (self-honest gate now returns REFUTED). 2nd pooled-CONFIRMED reversed by §4.5 (after S1.10). Reversal candidate; partially explains the S1.9/S1.4 asymmetry as recent + power-linked. |
+| S2.6 | Reading Level Drift | **REFUTED** | words/sentence stable; **Democrats consistently longer sentences (18–20) than Republicans (16–17)** — a stable party-style difference, not a trend. No recess-vs-DC effect (18.2 vs 17.9). |
 
 **Remaining S2 (need reference tables):** S2.3 What Losing Sounds Like (chamber-control), S2.6 Reading
 Level, S2.8 Seniority (tenure), S2.9 Boogeyman (name lists), S2.11 Euphemism Genealogies (seed pairs).

@@ -215,6 +215,80 @@ def s2_1_voldemort(rows, presidents):
             "median_opp_minus_own_avoidance_B": med_b and round(med_b, 3), "verdict": verdict}
 
 
+# --- S2.3 What Losing Sounds Like (the minority's linguistic signature; power-position test) -------
+def s2_3_what_losing_sounds_like(rows, chambers, roster):
+    """Markers of out-of-power rhetoric — 'the american people' rate, rhetorical-question rate,
+    exclamation density (all per 1k words) — by MAJORITY vs MINORITY status (member's party controls
+    their chamber?). CONFIRM (power-position, symmetric): minority > majority on >=2 of 3 markers for
+    BOTH parties (it's about being out of power, not about which party). Resolves the S1.9/S1.4
+    asymmetry question: is tighter/louder messaging a party trait or a minority trait?"""
+    cc = chambers["by_congress"]
+    markers = ["american_people", "questions", "exclamations"]
+    field = {"american_people": "ampeople", "questions": "quest", "exclamations": "excl"}
+
+    def markers_for(yrs):
+        agg = defaultdict(lambda: {"w": 0, "ampeople": 0, "quest": 0, "excl": 0, "n": 0})
+        for r in rows:
+            p, c = r["p"], str(r["c"])
+            if p not in ("D", "R") or c not in cc or int(r["y"]) not in yrs:
+                continue
+            ch = (roster.get(r["b"]) or {}).get("chamber")
+            if ch not in ("house", "senate"):
+                continue
+            a = agg[(p, "maj" if cc[c][ch] == p else "min")]
+            a["w"] += r["nw"]; a["n"] += 1
+            for m in markers:
+                a[field[m]] += r[field[m]]
+        rate = {}
+        for p in ("D", "R"):
+            for s in ("min", "maj"):
+                a = agg[(p, s)]; w = a["w"] or 1
+                rate[f"{p}_{s}"] = {**{m: round(1000 * a[field[m]] / w, 3) for m in markers}, "n": a["n"]}
+        return rate
+    full = markers_for(set(range(2013, 2027)))
+    half_a = markers_for(HALF_A)
+    half_b = markers_for(HALF_B)
+
+    def party_min_higher(rate, p):   # #markers where minority > majority
+        return sum(1 for m in markers if rate[f"{p}_min"][m] > rate[f"{p}_maj"][m])
+    # PRE-REGISTERED GATE: minority > majority on >=2 markers, BOTH parties, BOTH halves (§S2.3).
+    both_halves = all(party_min_higher(h, p) >= 2 for h in (half_a, half_b) for p in ("D", "R"))
+    powered = all(full[f"{p}_{s}"]["n"] >= 200 for p in ("D", "R") for s in ("min", "maj"))
+    verdict = "UNDERPOWERED" if not powered else ("CONFIRMED" if both_halves else "REFUTED")
+    return {"id": "S2.3", "name": "What Losing Sounds Like", "pooled": full,
+            "half_A": {p: party_min_higher(half_a, p) for p in ("D", "R")},
+            "half_B": {p: party_min_higher(half_b, p) for p in ("D", "R")},
+            "verdict": verdict,
+            "note": "pooled looked CONFIRMED, but Half A fails (Dems-in-MAJORITY asked more) -> the minority signature is a RECENT-era (2021-26) effect, not a stable law. Reversal candidate."}
+
+
+# --- S2.6 Reading Level (sentence-complexity proxy) -----------------------------------------------
+def s2_6_reading_level(rows):
+    """Words-per-sentence (a readability proxy; syllables not captured), per party per year, plus the
+    DC-vs-recess (August) sub-check. CONFIRM = a stable directional shift in both halves, both parties."""
+    wps = defaultdict(lambda: defaultdict(lambda: [0, 0]))  # party -> year -> [words, sentences]
+    aug = {"aug": [0, 0], "other": [0, 0]}
+    for r in rows:
+        y, p = int(r["y"]), r["p"]
+        if p in ("D", "R") and _half(y):
+            wps[p][y][0] += r["nw"]; wps[p][y][1] += r["ns"]
+        mo = int(r["d"][5:7])
+        k = "aug" if mo == 8 else "other"
+        aug[k][0] += r["nw"]; aug[k][1] += r["ns"]
+    out = {}
+    for p in ("D", "R"):
+        series = [(y, wps[p][y][0] / wps[p][y][1]) for y in sorted(wps[p]) if wps[p][y][1]]
+        out[p] = {"series": [(y, round(v, 2)) for y, v in series],
+                  "dir_a": M.split_direction([(y, v) for y, v in series if y in HALF_A]),
+                  "dir_b": M.split_direction([(y, v) for y, v in series if y in HALF_B])}
+    recess = {"aug_wps": round(aug["aug"][0] / (aug["aug"][1] or 1), 2),
+              "other_wps": round(aug["other"][0] / (aug["other"][1] or 1), 2)}
+    both = all(out[p]["dir_a"] == out[p]["dir_b"] and out[p]["dir_a"] in (1, -1) for p in ("D", "R"))
+    verdict = "CONFIRMED" if both else "REFUTED"
+    return {"id": "S2.6", "name": "Reading Level Drift", "by_party": out, "recess_vs_dc": recess,
+            "verdict": verdict}
+
+
 def run_all():
     rows = _load()
     pres = json.load(open(config.DERIVED.parent / "reference" / "search" / "presidents.json", encoding="utf-8"))
