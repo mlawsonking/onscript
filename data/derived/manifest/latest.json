@@ -1,49 +1,49 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-07-15",
+  "run_id": "collect-2026-07-16",
   "kind": "deterministic",
-  "generated_at": "2026-07-15T11:41:10Z",
-  "focus_day": "2026-07-15",
+  "generated_at": "2026-07-16T11:47:21Z",
+  "focus_day": "2026-07-16",
   "days_present": [
     "2025-01-01",
-    "2026-07-15"
+    "2026-07-16"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-07-15T07:14:54Z",
-    "age_hours": 3.86
+    "pushed_at": "2026-07-16T07:25:23Z",
+    "age_hours": 3.84
   },
   "normalize": {
-    "in": 76641,
-    "kept": 76607,
+    "in": 76998,
+    "kept": 76964,
     "rejects": 34,
-    "joint_groups": 162,
-    "near_joint_groups": 2145,
+    "joint_groups": 163,
+    "near_joint_groups": 2156,
     "syndicated": 62
   },
   "phrase_engine": {
-    "candidates": 464623,
-    "df_boilerplate": 459,
-    "ledger_entries": 464164
+    "candidates": 466583,
+    "df_boilerplate": 461,
+    "ledger_entries": 466122
   },
   "per_party": {
     "D": {
-      "statements_in": 44926,
+      "statements_in": 45143,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 31211,
+      "statements_in": 31346,
       "members_covered": 272
     },
     "I": {
-      "statements_in": 363,
+      "statements_in": 366,
       "members_covered": 3
     }
   },
   "derived": {
-    "ledger_entries": 464164,
+    "ledger_entries": 466122,
     "phrase_pages": 0,
-    "focus_day": "2026-07-15",
+    "focus_day": "2026-07-16",
     "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
