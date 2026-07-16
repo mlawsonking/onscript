@@ -1130,6 +1130,85 @@ is still crawlable and shareable.
 (gated on `DATA_GOV_API_KEY` via Actions dispatch), 1.10 memo-cadence (blocked on the Memo-Detector
 substrate that 1.3/1.4 will build).
 
+### Session 14 (2026-07-16, Opus, worktree `friendly-bardeen-a6aa2d`) — the Session-13 gate on the LIVE citation path
+
+**Scope:** evaluate + wire `duet.attributed_to_other` into `run_assemble._citations`. **228 tests
+green** (222 on the rebased trunk + 6 new; composes cleanly with the parallel lane's streak fix
+`20ea633`). No flag flipped, no posting touched, no published output changed. Files: only
+`pipeline/run_assemble.py` + `tests/test_session14.py` (parallel lane's `duet.py` untouched).
+
+**1. The live path is CLEAN — reproduced, and then widened.** All **103** published quotes
+(2026-07-13/14/15 — that is the entire live quote corpus; no other day carries citation quotes)
+re-joined to upstream `congress-press` and re-checked: **103/103 joined, 0 flagged**. Session 13's
+number confirmed exactly. Then the same check on the **whole `groundable` set** (item 4) by
+recomputing `util.statement_id` from upstream so uncited statements join too: **142/142 fragments
+clean, 0 unjoined, 0 cross-party**. Both exposures are latent. Not a live defect.
+
+**2. The stated blocker was wrong, and that is what unblocked this.** The Session-13 note held that
+"a dropped citation can push a talking point below the >=3-unit quorum". It cannot:
+`verify.verify_talking_point` fixes the quorum from `tp["statements"]` **before** `_citations` is
+ever called, and nothing in `_citations` feeds back. `_citations` is a pure receipt renderer. So the
+gate cannot move a published number **by construction** — the only thing at risk was the pull-quote.
+And `quote=None` is **already a live published state** (2 of 105 citations today) that `site.py:608`
+already renders gracefully (member/date/source/archived links, no quote block). Hence **demote,
+never drop**: the citation always publishes; only an unattributable quote is withheld.
+
+**3. "Prefer a self-attributed fragment" has no material — measured.** Each statement contributes
+exactly **one** fragment per talking point (107/107 at index 0), so the preference loop degenerates
+to a single check. It is still built that way (it is free, and it is the correct shape if extraction
+ever emits more), but the real choice is binary: the member's quote, or no quote.
+
+**4. THE HAZARD IS REAL AND LARGE.** Across 6,503 releases: **27.4% carry a colleague's attributed
+block**, and **21.8% of all sentences** sit inside one. Near-symmetric (D 27.6% / R 26.9%). The live
+0/103 is not structural safety — it is a small sample of a big surface.
+
+**5. THE GATE HAS A FALSE-POSITIVE MODE, and I did NOT "fix" it — the obvious fix is an Article IV
+trap.** `_SAY` contains ordinary English verbs (`continued|added|noted|says`) and `_NAME` matches any
+capitalized token, so **"protecting Dreamers from continued Republican attacks"** parses as *"Republican"
+said* — and under the leading-form rule that one bogus marker then governs **every sentence after it**.
+Real casualty: Whip Katherine Clark's release, where all 22 sentences of her own prepared remarks are
+flagged as "Republican's". Same shape: "intentionally **added** PFAS", "said **Congress** has the
+authority", "wrote **Monday** in a post" — verb objects read as speakers.
+- I prototyped the natural fix (require a closing quote before a leading marker) and **measured it into
+  the bin**: Rep. Don Davis's quote is reprinted in **three** offices' releases, and the closing quote
+  mark survives only in `dondavis.house.gov` — the `fedorchak` and `fischbach` scrapers dropped it. So
+  the fix would stop flagging Davis's words in exactly the two releases where he is the *colleague*.
+  **Quote marks are a per-office scraper artifact**, so any rule keyed on them makes the instrument's
+  sensitivity vary by whose scraper ran — the same trap docs/16 rejected capitalization for
+  (an asymmetric *instrument*). Rejected on measurement, not taste.
+- Honest precision: of flagged sentences, ~72% name a roster member outright, and most of the
+  remainder are **real non-member speakers** (`rod lenz`, `dreisen heath`, `salvador g. sarmiento` —
+  advocates quoted in releases), whose quotes are *correctly* refused. Genuine noise (`congress`,
+  `ways`, party labels) is ~1–4% of markers and **symmetric: D 4.22% / R 4.12%** — no Article IV
+  problem in either direction.
+- **So the current gate's over-flagging bias is the CORRECT bias here**, because demote-only fails
+  safe: an over-flag costs a pull-quote, an under-flag publishes a colleague's words under this
+  member's name. Wired as-is, deliberately.
+
+**6. Verified no-op on live data.** The **shipped** `_attributable` (not a reimplementation) re-run
+over all 103 published quotes with the real roster: **103 still attributable, 0 demoted.**
+
+**Kill-test is a real one, on real text** (`tests/test_session14.py`), and it is
+**mutation-checked**: neutering the gate makes it fail with *"published a colleague's words as
+Fedorchak's own"*. The fixture is the sharpest live shape found — **cross-party**: Rep. Julie
+Fedorchak (R-ND) published Rep. Don Davis's (D-NC) quote, so ungated, a **Democrat's words would
+publish under a Republican's name and .gov link**, verifier-clean. Both directions asserted (the
+colleague's line refused, the member's own line in the same document still published), plus both
+fail-open paths (unresolvable speaker, unlocatable fragment) pinned to today's behavior.
+
+**Left, deliberately, for a session of its own:**
+- **`distill.py` `groundable` (item 4) — measured 142/142 clean, NOT wired.** Gating it removes
+  fragments from the live Sonnet voice's grounding set, so an over-flag makes the voice fail verify
+  and fall back to the deterministic template — i.e. it *changes published prose* and needs its own
+  validated run. Measured need today: zero. Refusing to do it as a side effect of this change is the
+  same call Session 13 made about `_citations`.
+- **`site.py:618-622`** renders raw `tp["fragments"]` as quotes when a day has no citations
+  (historical days, pre-citations-backfill). That path is **ungated** — it should be folded into the
+  citations backfill item (e), not patched separately.
+- The `_SAY`/`_NAME` noise (`congress`, `ways`, party labels) is worth a principled pass someday —
+  the discriminator that survives measurement is *"only a person can be attributed speech"* (roster
+  + name-shape), **not** quote marks and **not** capitalization.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +

@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, ops, readiness, roster, util  # noqa: E402
+from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, ops, readiness, roster, util, verify  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -28,6 +28,42 @@ def _load_taxonomy() -> list[dict]:
 
 def _name(bio: str, rmap: dict) -> str:
     return (rmap.get(bio, {}) or {}).get("name") or bio
+
+
+def _attributable(frag: str, stmt: dict, rmap: dict) -> bool:
+    """Did the CITED MEMBER actually say this fragment, or is it a colleague's quote that merely
+    sits inside their release?
+
+    A congressional press release is a MULTI-SPEAKER document: a release from Castro's office
+    carries quotes from Castro, Houlahan AND Cisneros. `verify.is_verbatim` cannot tell these apart
+    BY DESIGN — it asks only whether the string occurs in the cited statement, and a colleague's
+    quote genuinely does. **Verbatim is not attributable**, and the gap is exactly where a receipt
+    would put another member's words next to this member's name and their .gov link (Art. XII).
+    Real shape, on real data: Rep. Cisneros's "I'm proud to support my colleagues, Congressman Castro
+    and Congresswoman Houlahan..." appears verbatim inside BOTH Castro's and Houlahan's releases.
+
+    So we re-ask the question the verifier structurally cannot, using the 1.7a Duet's gate: is the
+    nearest attribution marker this member's? ANY self-attributed occurrence is enough — a fragment
+    that appears once in a colleague's block and once in the member's own words is the member's.
+
+    Two deliberate fail-OPEN cases, both preserving today's behavior rather than inventing silence:
+    unresolvable speaker (no roster name to compare against), and a fragment that no single sentence
+    carries (extraction windows are built per-sentence, so this is rare — 0 of 103 live quotes).
+    Fail-open is safe HERE only because the caller demotes rather than drops: the worst case is the
+    status quo, never a fabricated receipt."""
+    text = stmt.get("text") or ""
+    speaker = duet._surname(_name((stmt.get("member") or {}).get("bioguide"), rmap))
+    if not speaker or not text:
+        return True
+    target = verify._norm(frag or "")
+    if not target:
+        return True
+    # Locate via the same sentence-span + normalize path the Duet matches on, never str.find: an
+    # identical string can occur in several blocks and the FIRST one may be a different speaker's.
+    hits = [(s, at) for s, at in duet._sentence_spans(text) if target in verify._norm(s)]
+    if not hits:
+        return True
+    return any(not duet.attributed_to_other(text, at, at + len(s), speaker) for s, at in hits)
 
 
 def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]:
@@ -39,10 +75,17 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     # displayed quote sits next to the member who said it and their .gov link — a reader can click and
     # verify that exact quote, instead of a decoupled quote/citation pair that points at unrelated
     # topics. §Session-7.
+    #
+    # The quote is DEMOTED, never the citation (§Session-14): an unattributable fragment costs this
+    # row its pull-quote, and the member/date/URL still publish. That is why this gate cannot thin
+    # the receipts or move a published number — `verify.verify_talking_point` has already fixed the
+    # >=3-UNIT quorum from tp["statements"] before we are called, and nothing here feeds back into it.
+    # It also means an over-eager flag is survivable (worst case: a row shows no quote) while a missed
+    # one is not (a colleague's words under this member's name), so the gate is tuned to over-flag.
     frag_by_stmt: dict = {}
     for f in tp.get("fragments", []):
-        if f.get("statement") and f.get("text") and f["statement"] not in frag_by_stmt:
-            frag_by_stmt[f["statement"]] = f["text"]
+        if f.get("statement") and f.get("text"):
+            frag_by_stmt.setdefault(f["statement"], []).append(f["text"])
     cites, seen = [], set()
     for sid in tp.get("statements", []):
         s = stmt_by_id.get(sid)
@@ -53,9 +96,11 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
         if not unit or unit in seen:
             continue
         seen.add(unit)
+        # PREFER a fragment this member actually said; fall back to no quote, never to a colleague's.
+        quote = next((q for q in frag_by_stmt.get(sid, []) if _attributable(q, s, rmap)), None)
         cites.append({"member": _name(m.get("bioguide"), rmap), "party": m.get("party"),
                       "state": m.get("state"), "date": s.get("published_at"), "url": s.get("url"),
-                      "quote": frag_by_stmt.get(sid)})
+                      "quote": quote})
         if len(cites) >= k:
             break
     return cites
