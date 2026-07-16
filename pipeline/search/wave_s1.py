@@ -273,6 +273,50 @@ def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15):
             "proxy": "August = recess", "verdict": verdict}
 
 
+# --- S1.6 The 90-Day Snap (does message discipline tighten before elections?) --------------------
+def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270):
+    """For each general election, weighted discipline (sum on_message / sum statements) in the 90 days
+    BEFORE election vs the prior 90-day window (E-270..E-90), per party. A 'snap' = pre-election
+    discipline exceeds the prior window. CONFIRM = snap in a MAJORITY of cycles in BOTH halves, both
+    parties (message discipline measurably tightens for the campaign)."""
+    def window_index(party, e_iso, lo, hi):
+        s = m = 0
+        for day, rec in disc_index.get(party, {}).items():
+            delta = (date.fromisoformat(e_iso) - date.fromisoformat(day)).days
+            if lo < delta <= hi:      # `delta` days BEFORE the election
+                s += rec["s"]; m += rec["m"]
+        return (m / s) if s else None
+    cycles = {}
+    for yr, e_iso in sorted(elections.items()):
+        y = int(yr)
+        h = _half(y)
+        if h is None:
+            continue
+        row = {}
+        for p in ("D", "R"):
+            pre = window_index(p, e_iso, 0, window)
+            base = window_index(p, e_iso, window, prior)
+            row[p] = {"pre90": pre and round(pre, 3), "prior": base and round(base, 3),
+                      "snap": (pre is not None and base is not None and pre > base)}
+        cycles[yr] = {"half": h, **row}
+    # tally snaps per half per party
+    tally = {("A", "D"): [0, 0], ("A", "R"): [0, 0], ("B", "D"): [0, 0], ("B", "R"): [0, 0]}
+    for yr, c in cycles.items():
+        for p in ("D", "R"):
+            key = (c["half"], p)
+            if c[p]["pre90"] is not None and c[p]["prior"] is not None:
+                tally[key][1] += 1
+                if c[p]["snap"]:
+                    tally[key][0] += 1
+    # majority in both halves, both parties
+    powered = all(tally[k][1] >= 2 for k in tally)
+    majorities = all(tally[k][0] > tally[k][1] / 2 for k in tally if tally[k][1] > 0)
+    verdict = "UNDERPOWERED" if not powered else ("CONFIRMED" if majorities else "REFUTED")
+    return {"id": "S1.6", "name": "The 90-Day Snap", "cycles": cycles,
+            "snap_tally": {f"{h}-{p}": f"{tally[(h,p)][0]}/{tally[(h,p)][1]}" for (h, p) in tally},
+            "verdict": verdict}
+
+
 # --- S1.9 The 2022 Self-Audit (replicate the founder's finding on the symmetric corpus) ----------
 def _fivegrams(text: str) -> set:
     """Distinctive content 5-grams (hashed to ints for fast set ops), boilerplate excluded. A shared

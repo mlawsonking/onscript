@@ -8,7 +8,7 @@
 
 | tested | confirmed | refuted | underpowered | artifact | blocked |
 |---|---|---|---|---|---|
-| 7 | **1** | 4 | 0 | 2 | 0 |
+| 8 | **1** | 5 | 0 | 2 | 0 |
 
 *(S1.4 measured on a proxy only → not counted as a verdict; proper metric queued. See notes.)*
 **First CONFIRMED: S1.9 — the 2022 Self-Audit replicates (and survived the joint-release control).**
@@ -59,6 +59,7 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 | S1.4 | The Copy-Paste Caucus | *(no verdict — proxy only)* | group-rate rose 19.7→30.1/1k (ratio 1.53, both halves +1) BUT tracks corpus volume (116=41.6@160k stmts, 117=14.2@37k) | 2026-07-15 | **Group-count/statements is DENSITY-SENSITIVE** — a denser corpus yields more near-dup matches regardless of behavior (the kill-fixture concern the protocol flagged). Proper metric = statements-in-groups share + a density-controlled detector + per-party split. **Queued, no verdict rendered.** |
 | **S1.9** | **The 2022 Self-Audit** | **CONFIRMED ✅** | **D weekly 5-gram overlap 0.00176 vs R 0.00095 (~85% higher), D>R in 75/105 weeks (71%)** | 2026-07-15 | **The founder's 2022 finding REPLICATES** on press releases (not Twitter), matched member counts. **Adversarial control passed:** excluding verbatim joint/co-signed releases *widened* the gap, and R actually co-signs more (48 vs 37) — so it's independent coordination, not co-signing. Congress 117 (2021–22, the pre-registered window). Card: `findings/S1.9.json`. **T1.** |
 | S1.11 | Delegation Echo | **REFUTED** | same-state co-use ratio 1.01 (A) / 1.09 (B) vs the 1.5× gate | 2026-07-15 | Same-state delegations do **not** share phrases beyond a size-preserving permutation null — coordination is **national/party-driven, not regional.** Clean null (50-permutation test), an informative structural finding. |
+| S1.6 | The 90-Day Snap | **REFUTED** (near-miss) | snap in 2022 & 2024 both parties, but not 2016/2020-R; tally A-R 2/4 fails the all-cells-majority gate | 2026-07-15 | Pre-election discipline tightening is **real and consistent in recent cycles** (2022/2024) but not across 2013–2026 — fails the strict gate by one cell. Reversal/refinement candidate (the effect may be a recent-era phenomenon). 2026 uncomputable (election is post-data-cutoff). |
 
 ## Graveyard notes
 

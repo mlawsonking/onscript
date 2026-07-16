@@ -201,6 +201,20 @@ def load_daily_statements(congresses=range(107, 120)) -> dict:
     return out
 
 
+def load_discipline_index(congresses=range(113, 120)) -> dict:
+    """{party: {date: {"s": statements, "m": on_message_units}}} merged across discipline shards — the
+    daily message-discipline source for S1.6/S1.7 (weighted index = sum m / sum s over any window)."""
+    out: dict = {"D": {}, "R": {}}
+    for n in congresses:
+        d = util.read_json(ALEX / f"discipline-{n}.json", {}) or {}
+        for party, days in d.items():
+            if party not in out:
+                continue
+            for day, rec in days.items():
+                out[party][day] = {"s": rec.get("statements", 0), "m": rec.get("on_message_units", 0)}
+    return out
+
+
 def yearly_statements(congresses=range(107, 120)) -> dict:
     """{year: {party: statements}} from the coverage shards (per-year denominators)."""
     out: dict = {}
