@@ -79,3 +79,35 @@ def test_verify_day_drops_bad_claims_and_flags_bad_numbers():
     assert report["claims_published"] == 1
     assert report["claims_dropped"] == 1
     assert report["daily_line_ok"] and report["failed"] == 0
+
+
+# --- typographic folding (§deploy-hardening 2026-07-16) -------------------------------------------
+def test_smart_quotes_ground_against_ascii_the_live_07_15_false_negative():
+    """THE LIVE BUG: press releases use smart quotes; the Sonnet emits ASCII. On 2026-07-15 it quoted a
+    REAL fragment as "applauded today's house passage..." against a source reading `today’s`, was
+    rejected as un-grounded, and the Daily Line fell back to a stub. `today’s` and `today's` are the
+    same word — folding fixes the false negative without touching any word."""
+    src = "applauded today’s house passage of the fiscal year"          # curly
+    ok, offending = verify.quotes_grounded('We noted "applauded today\'s house passage of the fiscal year".',
+                                           [src])                              # ASCII
+    assert ok is True and offending == []
+    # and the reverse direction (curly in the composite, ASCII in the source)
+    ok2, _ = verify.quotes_grounded('We noted “applauded today’s house passage”.',
+                                    ["applauded today's house passage of the fiscal year"])
+    assert ok2 is True
+
+
+def test_folding_closes_the_curly_contraction_hole_in_the_negation_guard():
+    """A REAL hole folding closed: _NEGATION holds ASCII "don't", so a source written `don’t` never
+    matched and a meaning-INVERTING truncation after it would have been wrongly grounded."""
+    ok, offending = verify.quotes_grounded('They said "support defunding the police".',
+                                           ["we don’t support defunding the police"])
+    assert ok is False and "support defunding the police" in offending
+
+
+def test_folding_never_weakens_the_check():
+    """Only typography folds — never a letter, digit, or word. Invented/paraphrased spans still fail."""
+    src = "applauded today’s house passage of the fiscal year"
+    ok, _ = verify.quotes_grounded('We said "a phrase nobody ever wrote here".', [src])
+    assert ok is False
+    assert verify.fold_typography("naïve — café ‘x’") == "naïve - café 'x'"  # letters untouched

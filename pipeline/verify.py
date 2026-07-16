@@ -20,9 +20,38 @@ import re
 _WS = re.compile(r"\s+")
 _NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
 
+# TYPOGRAPHIC FOLDING (§deploy-hardening 2026-07-16). Press releases are written with smart quotes;
+# any LLM or renderer routinely emits the ASCII form. `today’s` and `today's` are the SAME WORD, so
+# failing grounding on that difference is a FALSE NEGATIVE — and it was a live one: on 2026-07-15 the
+# Sonnet quoted a real fragment as "applauded today's house passage of the fiscal year" against a
+# source reading `today’s`, got rejected, and the Daily Line fell back. Folding delivers the "robust
+# to rendering" guarantee this module's docstring already claimed.
+#
+# It also closes a REAL hole in the negation guard: _NEGATION holds ASCII "don't", so a source written
+# `don’t` never matched, and a meaning-inverting truncation after a curly contraction would have been
+# wrongly grounded. Folding makes that check fire.
+#
+# This does not weaken verification: ONLY typography is folded — never a letter, digit, or word. An
+# invented or paraphrased word still fails exactly as before.
+_TYPOGRAPHY = {
+    "‘": "'", "’": "'", "‚": "'", "‛": "'",                  # single quotes
+    "“": '"', "”": '"', "„": '"', "‟": '"',                  # double quotes
+    "–": "-", "—": "-", "‑": "-", "‒": "-", "―": "-",   # dashes
+    "…": "...",                                                              # ellipsis
+    " ": " ", " ": " ", " ": " ",                                  # nbsp/thin spaces
+    "­": "",                                                                 # soft hyphen
+    "⁄": "/",                                                                # fraction slash
+}
+_TYPO_RE = re.compile("|".join(map(re.escape, _TYPOGRAPHY)))
+
+
+def fold_typography(text: str) -> str:
+    """Map smart punctuation to its ASCII equivalent. Words are never touched."""
+    return _TYPO_RE.sub(lambda m: _TYPOGRAPHY[m.group(0)], text or "")
+
 
 def _norm(text: str) -> str:
-    return _WS.sub(" ", (text or "")).strip().lower()
+    return _WS.sub(" ", fold_typography(text)).strip().lower()
 
 
 def is_verbatim(fragment: str, source_text: str) -> bool:
