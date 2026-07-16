@@ -8,6 +8,7 @@ nightly symmetry audit. $0 in dry-run.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from datetime import date
 from pathlib import Path
@@ -196,6 +197,15 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         "voice_used": bool(allow_llm_voice and not llm.dry_run()),
         "voice_budget_state": voice_state, "month_to_date_usd": month_to_date,
         "governor_state": governor, "degraded": degraded,
+        # WHO TRIGGERED THIS RUN. §1.4.1 acceptance is "three consecutive UNATTENDED real runs", and
+        # until now nothing recorded whether a run was a cron or a human dispatch — so the gate could
+        # only be tracked by hand in prose, and on 2026-07-16 it was tracked WRONG ("2/3, the 07-16
+        # cron completes it"; that cron actually published the fallback and reset the streak to 0).
+        # A gate the code cannot count is a gate that gets counted by wishful thinking (Constitution:
+        # numbers come from code). GITHUB_EVENT_NAME is 'schedule' for cron, 'workflow_dispatch' for a
+        # human, and absent locally.
+        "event": os.environ.get("GITHUB_EVENT_NAME") or "local",
+        "unattended": os.environ.get("GITHUB_EVENT_NAME") == "schedule",
         # §deploy-hardening: this day cleared the readiness gate (or waited out MAX_WAIT and was
         # finalized degraded). final=True means PUBLISHED — never re-assembled, and never skipped.
         "final": True, "forced_finalize": forced, "readiness": readiness_info,

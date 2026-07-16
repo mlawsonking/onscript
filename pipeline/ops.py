@@ -162,3 +162,74 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
     util.write_json(config.DERIVED / "symmetry" / f"{day}.json", report)
     util.write_json(config.DERIVED / "symmetry" / "latest.json", report)
     return report
+
+
+# ---------------------------------------------------------------------------
+# §1.4.1 acceptance gate — "three consecutive unattended real runs (>=1 weekend day)"
+#
+# This exists because the gate was tracked in PROSE and the prose was wrong. On 2026-07-16 the canon
+# read "the 3-consecutive gate is at 2/3 — the 07-16 cron completes it". That cron published the
+# apology stub for both parties and reset the streak to zero. The claim survived because `gh run list`
+# said `success` for all three runs: an Actions success means the workflow exited 0, which it does
+# just as happily when the Daily Line falls back. A launch gate counted by reading run status is a
+# launch gate counted by wishful thinking (Constitution: numbers come from code).
+#
+# FAILS CLOSED, in both directions that matter:
+#   * a manifest with no `event` field predates this instrumentation -> NOT counted as unattended.
+#     The streak therefore reads 0 until three genuinely-instrumented clean crons accumulate, which
+#     is honest: we cannot retroactively prove a run was unattended, so we do not claim it.
+#   * `degraded` covers BOTH the voice falling back and a forced-finalize, so a day that published an
+#     apology can never be counted as a real run.
+# ---------------------------------------------------------------------------
+GATE_RUNS_REQUIRED = 3
+
+
+def unattended_streak(today: str, manifest_dir=None) -> dict:
+    """Consecutive clean UNATTENDED assemble runs ending at the most recent one.
+
+    Returns {"value", "days", "weekend_day", "passes", "note"}. `passes` is the §1.4.1 gate itself:
+    GATE_RUNS_REQUIRED consecutive clean unattended runs INCLUDING at least one weekend day.
+    `manifest_dir` is injectable so tests never write into the real derived data."""
+    from datetime import date as _date
+
+    rows = []
+    for p in sorted((manifest_dir or (config.DERIVED / "manifest")).glob("assemble-*.json")):
+        day = p.stem.replace("assemble-", "")
+        if day == "latest":
+            continue
+        m = util.read_json(p, {}) or {}
+        rows.append((day, m))
+    rows.sort(key=lambda r: r[0])
+
+    streak: list[str] = []
+    for day, m in reversed(rows):                 # walk backwards from the newest
+        if not m.get("unattended"):               # absent (pre-instrumentation) or dispatched
+            break
+        if m.get("degraded") or m.get("forced_finalize"):
+            break                                 # published, but not a REAL run
+        streak.append(day)
+        if len(streak) >= GATE_RUNS_REQUIRED * 3:  # bounded; we only need the head of the streak
+            break
+    streak.reverse()
+
+    weekend = False
+    for d in streak:
+        try:
+            if _date.fromisoformat(d).weekday() >= 5:
+                weekend = True
+        except ValueError:
+            continue
+    n = len(streak)
+    passes = n >= GATE_RUNS_REQUIRED and weekend
+    if n == 0:
+        note = "no clean unattended run at the head — the streak is broken or uninstrumented"
+    elif passes:
+        note = f"{n} consecutive clean unattended runs incl. a weekend day — §1.4.1 PASSES"
+    else:
+        missing = []
+        if n < GATE_RUNS_REQUIRED:
+            missing.append(f"{GATE_RUNS_REQUIRED - n} more clean unattended run(s)")
+        if not weekend:
+            missing.append("a weekend day")
+        note = f"{n}/{GATE_RUNS_REQUIRED} — still needs " + " and ".join(missing)
+    return {"value": n, "days": streak, "weekend_day": weekend, "passes": passes, "note": note}
