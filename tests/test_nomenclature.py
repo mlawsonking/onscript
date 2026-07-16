@@ -199,8 +199,24 @@ def test_official_and_display_titles_never_enter_the_index():
     idx = N.load_index(C)
     prose = [n for n, _c in idx.get("to", ()) if n[:2] in (("to", "amend"), ("to", "provide"))]
     assert prose == []
-    assert all(len(n) <= 20 for entries in idx.values() for n, _c in entries)   # no 25-token prose
     assert not N.is_nomenclature("to amend the national voter registration act", C)
+    # NOT a length bound. This assertion used to read `len(n) <= 20`, on the assumption that a short
+    # title is short. Congress falsifies that: the 119 index legitimately carries 22-47 token SHORT
+    # titles, verified against the raw BILLSTATUS XML. Two kinds, both real:
+    #   * backronyms — "advancing critical connectivity expands service small business resources
+    #     opportunities..." IS the ACCESS BROADBAND Act's short title (also ANTI-SOCIAL CCP, HOUTHI);
+    #   * hres1225 registers "Original Resolution Commending the Islamic Republic of Pakistan..." under
+    #     titleTypeCode 101, "Short Title(s) as Introduced" — a 22-token sentence, by the clerk's own
+    #     hand.
+    # Length was only ever a proxy for "no official/display-title prose". Assert the thing itself: the
+    # gate is the code allowlist, and no Official (6/7/259) or Display (45/81) code may be in it. A
+    # length rule would evict real statutes AND still admit a short official title.
+    from pipeline import nomenclature_build as NB
+    assert not ({"6", "7", "45", "81", "259"} & set(NB.TITLE_TYPE_ALLOW))
+    assert all(t.startswith("short title") or t == "popular titles" for t in NB.TITLE_TYPE_PROSE_ALLOW)
+    # CITATION-OR-SILENCE at the index: a name whose cite is "" would license a suppression the reader
+    # cannot check. 3 such names reached the 119 index before parse_titles dropped uncitable bills.
+    assert all(c for entries in idx.values() for _n, c in entries)
 
 
 def test_anachronism_guard_index_is_era_scoped():

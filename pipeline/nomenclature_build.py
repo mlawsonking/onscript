@@ -238,6 +238,16 @@ def parse_titles(zip_path, stats: dict | None = None) -> dict[str, str]:
             if bill is None:
                 continue
             cite = ((bill.findtext("type") or "").strip() + (bill.findtext("number") or "").strip()).lower()
+            if not cite:
+                # CITATION-OR-SILENCE, applied to the reference table itself. A bill whose XML carries
+                # no type/number yields cite="", and a name indexed under it would license a tag whose
+                # receipt is the empty string — a suppression the reader cannot check, which is the one
+                # thing the whole design forbids ("every tag cites an official record"). Measured: 3
+                # such names reached the 119 index (incl. a 47-token appropriations omnibus). If we
+                # cannot point at the record, the name does not enter.
+                if stats is not None:
+                    stats["no_cite"] = stats.get("no_cite", 0) + 1
+                continue
             shorts = []
             for it in root.findall(".//titles/item"):
                 title = (it.findtext("title") or "").strip()
