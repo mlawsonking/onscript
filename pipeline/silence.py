@@ -49,6 +49,27 @@ def corpus_topics(statements, taxonomy=None) -> dict:
     return out
 
 
+def build_day_board(day: str, statements, taxonomy=None) -> dict:
+    """Compute + persist the day's board to data/derived/silence/{day}.json (the artifact the renderer
+    reads). Needs data/derived/news_baseline/{day}.json (the GDELT pull, an Actions job). If the
+    baseline is absent the board is written UNSCORED — never fabricated from a missing baseline."""
+    tax = taxonomy or load_taxonomy()
+    base_path = config.DERIVED / "news_baseline" / f"{day}.json"
+    if not base_path.exists():
+        board = {"schema_version": 1, "kind": "silence-board", "day": day, "scored": False,
+                 "silent": [], "void": [], "excluded": [],
+                 "gates": {"note": "no news baseline for this day — nothing is scored (a missing "
+                                   "baseline is never rendered as silence)"}}
+    else:
+        news = (json.loads(base_path.read_text(encoding="utf-8")) or {}).get("topics") or {}
+        board = silence_board(news, corpus_topics(statements, tax), tax)
+        board["day"] = day
+    out_dir = config.DERIVED / "silence"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / f"{day}.json").write_text(json.dumps(board, indent=1), encoding="utf-8")
+    return board
+
+
 def silence_board(news: dict, corpus: dict, taxonomy=None) -> dict:
     """Both directions, together. `news` = {topic_id: volume|None} (None = failed pull -> excluded).
     `corpus` = {topic_id: {'D': n, 'R': n}}. Returns silent[] + void[] + the gates that were applied."""

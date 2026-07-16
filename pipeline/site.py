@@ -1356,6 +1356,50 @@ def chapter_page_body(ch) -> str:
     return "".join(parts)
 
 
+# --- 1.2 The Silence Detector + "Shouting Into the Void" (dark, docs/11) --------------------------
+def _silence_rows(rows, empty_msg) -> str:
+    if not rows:
+        return f'<p class="muted">{empty_msg}</p>'
+    body = "".join(
+        f'<tr><td>{esc(r.get("label") or r.get("topic"))}</td>'
+        f'<td class="num">{esc(r.get("news_volume"))}</td>'
+        f'<td class="num">{esc(r.get("D"))}</td><td class="num">{esc(r.get("R"))}</td></tr>' for r in rows)
+    return ("<div class='scroll'><table><thead><tr><th>Topic</th><th class='num'>News volume</th>"
+            "<th class='num'>D statements</th><th class='num'>R statements</th></tr></thead>"
+            f"<tbody>{body}</tbody></table></div>")
+
+
+def silence_board_body(board) -> str:
+    """Both directions on one page — the release gate is that silence and its mirror ship together."""
+    day = board.get("day")
+    parts = [f"<h1>The absence map <span class='faint'>{esc(day)}</span></h1>",
+             '<p class="subhead">Left: topics the day\'s news is full of that <em>neither</em> party\'s '
+             'members will touch. Right: topics our members are pushing that the news isn\'t covering. '
+             'Both are computed by deterministic code from one published topic list — the same seeds '
+             'define the news query and our own match, so you can reproduce either claim.</p>']
+    if not board.get("scored"):
+        parts.append('<p class="muted"><strong>Not scored for this day.</strong> '
+                     f'{esc((board.get("gates") or {}).get("note"))}</p>')
+        return "".join(parts)
+    parts.append("<h2>Nobody will say it</h2>")
+    parts.append(_silence_rows(board.get("silent"), "No topic cleared the silence gate today."))
+    parts.append("<h2>Shouting into the void</h2>")
+    parts.append(_silence_rows(board.get("void"), "No topic cleared the void gate today."))
+    ex = board.get("excluded") or []
+    if ex:
+        parts.append("<h3>Excluded from scoring</h3><ul>" + "".join(
+            f'<li>{esc(e.get("topic"))} <span class="faint">&middot; {esc(e.get("reason"))}</span></li>'
+            for e in ex) + "</ul>")
+    g = board.get("gates") or {}
+    parts.append('<p class="muted"><small>A gap is not a silence: a topic whose news pull failed, or a '
+                 'day whose corpus is too thin or one-party, is excluded rather than reported as '
+                 f'avoidance. Gates: news&ge;{esc(g.get("news_floor"))}, party quiet&le;'
+                 f'{esc(g.get("quiet_max"))}, void&ge;{esc(g.get("void_min"))} with news&le;'
+                 f'{esc(g.get("void_news_max"))}. News baseline: GDELT DOC 2.0 (CC-licensed, '
+                 "reproducible).</small></p>")
+    return "".join(parts)
+
+
 def build_site():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
@@ -1482,6 +1526,28 @@ def build_site():
                 page(f"OnScript · {ch.get('label')} ({ch.get('party')})", chapter_page_body(ch), depth=1),
                 encoding="utf-8")
             written.append(f"archive/{ch['id']}.html")
+
+    # ---- 1.2 The absence map (dark) — renders ONLY when FEATURES["silence_board"] is on. Both
+    # directions ship together (the release gate); the newest scored board is the landing page.
+    if config.feature_on("silence_board"):
+        (OUT / "silence").mkdir(parents=True, exist_ok=True)
+        boards = sorted((DERIVED / "silence").glob("*.json")) if (DERIVED / "silence").exists() else []
+        latest = None
+        for f in boards:
+            b = _load_json(f)
+            if not b:
+                continue
+            (OUT / "silence" / f"{b.get('day')}.html").write_text(
+                page(f"OnScript · The absence map ({b.get('day')})", silence_board_body(b), depth=1),
+                encoding="utf-8")
+            written.append(f"silence/{b.get('day')}.html")
+            latest = b
+        (OUT / "silence" / "index.html").write_text(
+            page("OnScript · The absence map",
+                 silence_board_body(latest or {"scored": False, "gates": {"note": "No board has been built yet."}}),
+                 depth=1, description="What the news is full of that neither party will touch — and the inverse."),
+            encoding="utf-8")
+        written.append("silence/index.html")
 
     return written
 

@@ -115,3 +115,29 @@ def test_theme_map_is_committed_and_shares_the_taxonomy_seeds():
 
 def test_silence_board_ships_dark():
     assert config.feature_on("silence_board") is False
+
+
+def test_silence_render_ships_both_directions_together():
+    """The release gate: silence and its mirror twin render on the SAME page, or not at all."""
+    board = {"day": "2026-07-16", "scored": True,
+             "silent": [{"topic": "immigration", "label": "Immigration", "news_volume": 0.9, "D": 0, "R": 0}],
+             "void": [{"topic": "china", "label": "China", "news_volume": 0.0, "D": 40, "R": 40}],
+             "excluded": [], "gates": {"news_floor": 0.05, "quiet_max": 2, "void_min": 5,
+                                       "void_news_max": 0.01}}
+    body = site.silence_board_body(board)
+    assert "Nobody will say it" in body and "Shouting into the void" in body   # both directions, one page
+    assert "Immigration" in body and "China" in body
+    assert "A gap is not a silence" in body                                    # the guard is disclosed
+
+
+def test_silence_render_refuses_to_score_without_a_baseline():
+    """An unscored board must say so plainly — never render an empty silence list as 'nobody spoke'."""
+    body = site.silence_board_body({"day": "2026-07-16", "scored": False,
+                                    "gates": {"note": "no news baseline for this day"}})
+    assert "Not scored for this day" in body and "no news baseline" in body
+    assert "Nobody will say it" not in body                                   # no claim is rendered
+
+
+def test_build_day_board_without_baseline_is_unscored_not_fabricated():
+    board = silence.build_day_board("1999-01-01", _stmts(50, "D", "the border") + _stmts(50, "R", "china"))
+    assert board["scored"] is False and board["silent"] == [] and board["void"] == []
