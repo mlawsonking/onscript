@@ -385,3 +385,87 @@ Updated header table (replaces L9–L11):
    - **(d) Only then spec more hypotheses**, using S4.4's template: pre-registered speech act + time window, no reference table, K2-immune by construction.
 
 **4. The one protocol amendment S4 earns, and it is cheap:** *the placebo must be run against the exact statistic that appears in the headline.* S4.2 placeboed the blame rate, headlined the outward share, and passed itself. S4.4 placeboed the thing it claimed and killed its own best number (holiday-eve 1.31× → inside the null band; 6% of random date sets beat it). That one rule separates the wave's two event studies, and it is the whole difference between the graveyard being the product and the graveyard being the output.
+
+---
+
+## WARNING — INSTRUMENT DEFECT: THE PROVENANCE SEAM (2026-07-16). Read before trusting any verdict above.
+
+**`dwillis/congress-press` is a UNION OF TWO DATASETS**, distinguished by the record-level
+`date_source` field. The `legacy` lane (a ProPublica import; `scraper: null, source: null`) runs 2001
+through **2021-01-03 and stops forever** — the exact day the 117th Congress was seated. The `scraper`
+lane begins ~2018-01 with 49 offices and accretes. The "2021 coverage collapse" is not behavior: it is
+the union losing the legacy lane and being left holding a then-immature scraper.
+
+**VERDICT: UPSTREAM-REGRESSION.** A cliff, not a slide — legacy runs at full strength through 2020-12
+(4,691 records / 405 offices), 229 records in the 3-day 2021-01 stub, then zero. Distinct offices:
+2020-12 = 462 -> 2021-01 = 312 -> 2021-02 = 191. **Both adversarial skeptics CONFIRMED it (0 of 2
+refuted)**; one re-derived every load-bearing number directly from the 303 mirror files, deliberately
+bypassing `harness.iter_statements` so no harness quirk could propagate.
+
+### What it does to SPLIT-HALVES — the program's primary robustness control
+
+The A/B boundary of `scotus-landmarks.json` (A=2013-2020, B=2022-2026) and `shutdowns.json` sits
+**directly on the provenance seam**. Half A is ~95% legacy lane; half B is ~100% scraper lane.
+
+> **The halves are not two time periods. They are two different instruments.**
+> Split-halves has not been comparing 2013-2020 to 2022-2026 — it has been comparing ProPublica to a
+> scraper, across a ~2.6x change in office coverage, a ~2x change in statements-per-office, and a
+> **7.7-point shift in party mix (legacy D:R = 1.538, scraper D:R = 1.12)**.
+
+Every "replicates in both halves" PASS survived a weaker test than advertised. Every FAIL may be
+plumbing — **including S2.3, the reversal this ledger holds up as proof the control works.**
+
+Disappearance is party-SYMMETRIC (vanish rate D 0.634 / R 0.635), so no party is preferentially
+deleted — but the two lanes carry materially different party mixes over identical months, so any
+cross-party number spanning the seam is confounded regardless.
+
+### The two near-misses this caught
+
+- **S4.3** — its pre-registered CONFIRM ("monotone volume decay") is satisfied by **the legacy
+  import's death alone**. It was one run from publishing a data seam as a finding about political
+  speech.
+- **S4.7 (January 6) — a SIGN INVERSION, not an exaggeration.** Raw: **-69.9%** -> *"muted
+  congressional response to January 6"*: maximally quotable, publishable, and **false**. Lane-isolated:
+  **+75.5%**. Fixed-cohort: January 2021 is a local **maximum**. The 70% "drop" is the ProPublica
+  import ending three days before. This is the closest OnScript has come to publishing a damaging
+  falsehood, and only the review gate stopped it.
+
+### Verdicts needing revisit: ALL 34
+
+Every verdict that used split-halves as its control was validated against a boundary sitting on the
+seam. Highest priority: **S2.3** (the flagship reversal — the kill may be false), **S1.9 + S2.9** (the
+program's only two CONFIRMED; their both-halves validation was weaker than advertised, and S2.9 is the
+ancestor SD.2 would extend onto CREC as the "twice-confirmed" tier), **S4.1** (its UNDERPOWERED verdict
+is plausibly the artifact itself — half B has ~1/4 the statements per month for pure instrument
+reasons), **S4.4** (an equivalence claim measured across two instruments is not equivalence).
+
+### The remedy — LANE ISOLATION IN CODE, not normalization
+
+A scale factor cannot repair a changing roster or a lane-dependent party mix. `date_source` must
+become a first-class field: `harness.iter_statements` currently **drops it** (harness.py:399-427
+projects only date/year/party/bioguide/state/chamber/congress). The rule is the deep archive's
+genre-isolation law applied to provenance: **comparisons live within ONE lane, enforced in code.**
+
+### The inventory — the remainder is in BETTER shape than S3/S4 implied
+
+Of 18 un-adjudicated items: **8 RUNNABLE NOW**, 2 need a trivial offline parse, 7 gate on a single
+keyless CREC crawl (~11-13h unattended), 1 needs the `crisis-events.json` that never existed.
+
+**Two FALSE BLOCKS — the substrate landed while the ledger recorded it as absent:**
+
+- **S1.12** ("blocked, needs a leadership roster") — the roster is ON DISK. `legislators-{current,
+  historical}.json` carry `leadership_roles`: 156 dated bioguide-keyed rows, 33 titles, all 9 core
+  titles filled for every congress 113-119. Mirrored 2026-07-16 by the D3-A academic lane — **one day
+  after S1 ran and found the field null.** No acquisition; a ~30-min offline parse.
+- **S5** ("keyed joins; the key never comes local") — **that premise is obsolete.** GovInfo BILLSTATUS
+  113-119 is keyless and already local (56 zips / 332 MB / 9,709 bills in 117-hr alone) with sponsor
+  bioguideId, introducedDate, policyArea, subjects. **S5.2 is runnable now with no key and no
+  Actions.** congress.gov API is needed for nothing in S5.
+
+**The elections.json disease, 2nd and 3rd instance:** `presidents.json` starts at Obama 2009 — no Bush
+term — while the CREC data on disk is exactly 2001-2008 (the presidency it omits), and
+`chambers-control.json` covers only 113-119, so 2 of SD.3's 5 named flips have no control coding.
+Both are trivial offline edits; both are load-bearing.
+
+**A p-hacking hole, found by the gate-reachability audit docs/12 never got:** S5.2's floor is literally
+">=Floor per cell" — no number was ever pre-registered.
