@@ -981,6 +981,79 @@ zero-statement day** (the gate literally chose `day=2026-07-10, count=0, forced=
 Michael said must never happen. Zero-data days are now skipped (self-healing, no empty page); only
 real-but-thin days are force-published. 8 readiness kill-fixtures.
 
+### Session 12 (2026-07-16, Opus) — v2 Build Program: the dark shelf opens (1.1, 1.2, 1.8)
+
+Directive: *"v2 Build, grind until complete or blocked by my tasks/decisions."* Three features now
+sit **built / verified / UNRELEASED** behind their FEATURES flags. **188 tests green.** Nothing on
+the build side is blocked on Michael; no public surface changed (every flag is still False).
+
+- **1.1 The Archive** (`db877a2`) — era + month chapters, era fingerprints, verifier-gated loader
+  (only `verifier.passed` chapters render: 340 clean, 13 correctly excluded). Dark gate confirmed.
+- **1.2 Silence Detector + "Shouting Into the Void"** (`6f5934c`, render `9d75f43`) — the absence
+  map. `data/reference/gdelt_theme_map.json` (24 topics) is built from the SAME taxonomy_v1 seeds
+  that drive the corpus-side match, so both halves of a silence claim share one published
+  definition and a third party can reproduce it. `pipeline/gdelt.py` (keyless DOC 2.0, 1 req/5.2s,
+  raw stored immutably) + `pipeline/silence.py` + the board render.
+  **The load-bearing guard — a gap is not a silence:** a failed GDELT pull returns None (verified
+  live: a real 429 -> None -> topic EXCLUDED -> zero claims), and a thin/one-party day scores
+  nothing in either direction, because a corpus hole must never read as avoidance. A missing news
+  baseline writes an UNSCORED board rather than one fabricated from absence. Both directions render
+  on ONE page — that is the release gate, not a layout choice.
+- **1.8 The Owner's Brief** (`2902c44`) — the five health numbers (07-OPS §2) + streak + top phrase
+  + degraded days + the dark shelf, pushed to ntfy Mondays. Wired into `run_assemble.main()` on
+  **both** paths (including the NO-OP return — a Monday where nothing assembled is precisely the
+  Monday the owner needs a brief), skip-and-log because that workflow step has no `|| true`: a
+  report ABOUT the machine must never take the machine down.
+
+**The Session-12 adversarial review earned its keep — it caught a brief that lied.** The first cut
+held the honesty rule at FILE level and lost it at FIELD level: `row.get("claims_dropped") or 0`
+turns "the verifier never reported" into "the verifier dropped nothing", and zero is green. The
+review REPRODUCED a confident **ALL GREEN** brief with four things simultaneously broken (newest
+manifest zero-byte, ledger carrying no days, symmetry audit 12 days dead, claims_dropped never
+written) against a reality of: last publish 2 days prior, $9.40 spent, audit dead, drop unmeasured.
+That fixture is now the regression test. Every input reads through `_req()` (None for
+absent/non-numeric), and every None propagates to `unknown`. **A green means measured-and-healthy,
+never silent.**
+
+Also fixed, each a real defect:
+- **The false RED, on real data.** `statements_ingested` changed meaning in Session 5 (cumulative
+  corpus totals -> day-scoped) with no schema bump. Medianing across that boundary read a healthy
+  186-statement day as 0.4% of a 44,546 "median" -> a confident RED that would have sent Michael
+  into **Playbook P2 hunting an outage that never happened**. Pre-boundary reports are now excluded
+  *visibly* (`DAY_SCOPED_FROM`), and `ops.symmetry_report` emits **`day_scoped: true`** so no future
+  reader infers semantics from a date. **Lesson for the schema discipline: the meaning of a field
+  changed silently once. `schema_version` did not move. Assume it can happen again.**
+- **§2.3 was half-implemented** — upstream freshness was passed through, never gated. The real
+  `age_hours` lives in the **collect** manifest (RUN A measures it); the assemble-side symmetry
+  report carries only a placeholder note, which is why the gate was silently missing. A 40h-stale
+  upstream serving a healthy mirror replay read GREEN — P2's 72h cold-standby clock would have
+  started days late. Now gated.
+- **spend** projects over days the LEDGER covers, not days elapsed (the old denominator
+  under-projects in the GREEN direction exactly when spend starts mid-month: $5 over 5 ledger days
+  -> $16 projected RED, where elapsed-days math said $7.75 green). MTD is summed from `days` (the
+  ledger), not `total_usd` (a cache that can lie).
+- **headline by inclusion** — by exclusion, any unrecognized status inherited green.
+- **the render carries each number's MEASUREMENT, not just its method** ("[RED] coverage: each party
+  vs its trailing median" named no day, no party, no share — nothing a tired owner can act on, which
+  is the opposite of the zero-interpretation promise). Governor state now appears in the text.
+- `force=` can no longer bypass the **dark** gate (cadence only): the FEATURES flip is the release
+  act — dated, public, diffable — and a kwarg must not become a second, undated one.
+- **Test pollution that would have shipped a lie.** The v2 tests had written REAL artifacts into
+  `data/derived/brief/` — one recording `shelf.released: ["owners_brief"]` while the flag is False —
+  and `assemble.yml` does `git add data/derived`. A fabricated receipt claiming a dark feature was
+  released, committed into the repo whose entire thesis is honest receipts. Tests now run against a
+  synthetic derived tree with ntfy stubbed (which also stops the suite pushing to Michael's live
+  phone topic when `NTFY_TOPIC` is exported). A guard test fails loudly if the isolation ever lapses.
+
+**Deviation logged (§13 knob):** `verifier_drop`'s denominator is dropped+published (claims
+*offered*), where 07-OPS §2.4 says "dropped ÷ published". The code's is the rate the 25% line is
+meaningful against; flagged here rather than silently diverging — 07-OPS §2.4's wording should be
+reconciled to it at the next doc pass.
+
+**Queue after this:** 1.3 Authors-vs-Vessels (its citation back-join dependency is already done),
+then 1.4/1.5/1.6 (floor — CREC ingest already built in D1)/1.7/1.10; 1.9 stays gated on
+`DATA_GOV_API_KEY` via Actions dispatch.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
