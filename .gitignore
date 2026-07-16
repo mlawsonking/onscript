@@ -30,6 +30,11 @@ data/reference/*
 # tars data/reference into a public release asset. (pipeline/privacy.py)
 !data/reference/privacy-forms.json
 !data/reference/privacy-allowlist.json
+# ...and the nomenclature index tables (bill titles + committee names). The daily pipeline reads these
+# INSTEAD of touching the network, so they are not rebuildable intermediates — if they are not committed
+# the tagger is silently dead in Actions (docs/16 §4).
+!data/reference/nomenclature/
+!data/reference/nomenclature/*.json
 
 # Site build output (Vercel builds it; not committed)
 site/dist/
