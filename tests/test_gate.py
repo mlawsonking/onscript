@@ -115,3 +115,27 @@ def test_manifest_records_who_triggered_the_run():
     src = inspect.getsource(run_assemble.assemble)
     assert '"event": os.environ.get("GITHUB_EVENT_NAME") or "local"' in src
     assert '"unattended": os.environ.get("GITHUB_EVENT_NAME") == "schedule"' in src
+
+
+def test_a_skipped_day_breaks_the_streak_rather_than_being_hopped_over():
+    """Manifests are keyed by TARGET day, and a NO-OP day (readiness gate: upstream had not filled,
+    $0, nothing published) leaves NO manifest. Walking the manifest list without an adjacency check
+    would hop that gap and read 07-13/07-15/07-16 as "three consecutive" — passing a launch gate on a
+    machine that skipped a day. Caught while simulating tomorrow's cron against real state."""
+    with tempfile.TemporaryDirectory() as d:
+        tmp = _manifests(Path(d), [("2026-07-13", True, False),
+                                   # 2026-07-14 NO-OP -> no manifest at all
+                                   ("2026-07-15", True, False),
+                                   ("2026-07-16", True, False)])
+        r = ops.unattended_streak("2026-07-16", manifest_dir=tmp)
+        assert r["value"] == 2, "the gap must stop the walk, not be skipped over"
+        assert r["passes"] is False
+
+
+def test_adjacency_holds_across_a_month_boundary():
+    with tempfile.TemporaryDirectory() as d:
+        tmp = _manifests(Path(d), [("2026-07-30", True, False),   # Thu
+                                   ("2026-07-31", True, False),   # Fri
+                                   ("2026-08-01", True, False)])  # Sat
+        r = ops.unattended_streak("2026-08-01", manifest_dir=tmp)
+        assert r["value"] == 3 and r["weekend_day"] is True and r["passes"] is True

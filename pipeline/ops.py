@@ -202,11 +202,24 @@ def unattended_streak(today: str, manifest_dir=None) -> dict:
     rows.sort(key=lambda r: r[0])
 
     streak: list[str] = []
+    prev_day = None
     for day, m in reversed(rows):                 # walk backwards from the newest
         if not m.get("unattended"):               # absent (pre-instrumentation) or dispatched
             break
         if m.get("degraded") or m.get("forced_finalize"):
             break                                 # published, but not a REAL run
+        # ADJACENCY. Manifests are keyed by TARGET day and a day that never assembled leaves no
+        # manifest at all — the readiness gate's NO-OP is a legitimate $0 outcome, not a failure.
+        # Without this check the walk would hop the gap and read 07-13/07-15/07-16 as "three
+        # consecutive", quietly passing a launch gate on a machine that skipped a day. "Consecutive"
+        # has to mean consecutive.
+        try:
+            d = _date.fromisoformat(day)
+        except ValueError:
+            break
+        if prev_day is not None and (prev_day - d).days != 1:
+            break
+        prev_day = d
         streak.append(day)
         if len(streak) >= GATE_RUNS_REQUIRED * 3:  # bounded; we only need the head of the streak
             break
