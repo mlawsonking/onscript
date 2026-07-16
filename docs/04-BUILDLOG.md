@@ -900,6 +900,20 @@ Actions. **126 suite tests green.**
   symmetric. So **CREC's unique symmetric-fill value is 2001–2008**; 2009–2012 it's a densifying
   cross-check. **The rails are down; D1 (the CREC Extensions crawl) is the next Deep-Archive slot.**
 
+**D1.a/b built + verified end-to-end (same session):** `pipeline/deep/crec.py` — sitemap day
+enumerator, MODS parser (structured `congMember` attribution: bioGuideId/party/chamber/role, NO
+name-parsing), the Record-furniture stripper, the deep-schema normalizer (`source=crec`,
+`crec_section=E`, granule URL + package date as provenance via `lanes.tag()`), and the resumable/polite/
+immutable Extensions crawler (keyless GovInfo metadata+content+sitemap paths; `/bulkdata` zips avoided
+per the scout). Parser locked with `tests/test_deep_crec.py` (4 tests; **130 suite green**). **Verified
+on real data (CREC-2001-01-03): 41 Extensions granules, 97% attributed, and the day audit is D=10 / R=14
+members, ratio 0.71, PASS — symmetric two-party coverage in a year the PRESS lane is 100% D / 0 R.** That
+is the Deep-Archive thesis proven in one day. **The 2001–2008 Extensions crawl (the unique-fill window)
+is LAUNCHED in the background** (resumable, ~3 req/s, ~4–5h; raw MODS immutable, statements →
+`crec/state/E/statements-{year}.jsonl`). **Next: D1.c** (per-Congress CREC ledger shards via the existing
+engine, once the crawl lands) **+ D1.d** (per-Congress audit JSON committed), then 2009–2026 to complete
+the calibration overlap.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
