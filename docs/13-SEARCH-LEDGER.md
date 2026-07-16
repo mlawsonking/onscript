@@ -137,3 +137,142 @@ S1.6 / S1.8 / S1.10 (need sessions/SOTU tables — accurate sourcing), and the r
 (event-detection on a merged cross-era series) + S1.4-proper (statements-in-groups + density control).
 Reversal candidates S1.2/S1.5/S1.7 are a parallel content stream (re-pre-register in the found
 direction). Next best CONFIRM shots: S1.12 (leadership origination) and the S1.4-proper rebuild.
+
+## Wave S3 — roster joins / member lifecycle (2026-07-16, 7 of 7 adjudicated; 1 measured)
+
+| ID | Name | Verdict | Headline number | Date | Notes |
+|----|------|---------|-----------------|------|-------|
+| S3.1 | The Freshman Assimilation Speedrun | **BLOCKED** (source, not power) | **0 of the 2001 cohort clears the spec's own ≥20-statement entry floor**; cohorts 107–112 yield 0/0/0/0/1/3 qualifying freshmen; press lane holds **2,000 statements total for 2001–2012 = 0.3% of the corpus**, single-party before 2009 | 2026-07-16 | The pre-registered "≥25% decline 2001→2026" cannot be computed: the 2001 end of the comparison is empty. **7 usable cohorts (113–119), not 13** — i.e. Amendment A1's 2013 cliff bites the *entry* variable, which is the hypothesis's anchor. Any respec must also survive the member-coverage collapse (191–253 distinct members/month in 2021–22 vs ~500 in 2018–20). Re-home to the CREC lane (docs/15) or retire. **T1 downgraded to unbuildable-in-lane.** |
+| S3.2 | Lame-Duck Honesty | **BLOCKED** (twice: no IV, and the class is silent) | (a) `elections.json` = **7 dates, zero results** → general-election losers are not identifiable at all, and the roster records no departure reason; (b) departing members' lame-duck median output is **0–1 statements in all 6 cycles** (2%/2%/22%/28%/0%/0% publish ≥5) vs returning-member medians 8/9/10/11/2/4; only 2 of 6 cycles have a usable pre-period | 2026-07-16 | The "≥30 losers per half" floor is unreachable. **The emptiness is scraper mechanics** (offices wind down; upstream follows current-member sites) — so it is a *selection artifact* and must not be published as behavior either ("defeat silences the script" would be a lie about the crawler). Re-home to the CREC floor lane, where a departing member still speaks on the record. |
+| S3.3 | The Retirement Drift (H3 retrospective) | **BLOCKED** (reference table does not exist) | The required curated table of **announced-retirement dates has zero rows** — `data/reference/search/` holds 6 files, none of them retirements; the roster carries term start/end but **no `end_reason`, no intent signal**. Only the 2018 (67) and 2020 (47) cycles have members with ≥40 statements in the prior 12 months | 2026-07-16 | Billed in §12 as **"the flagship backtest — the machine's first firing"**; it is currently the least-supported hypothesis in the wave. Even if the table were built, the "≥40 retirements" floor is reachable only by pooling to one cycle per half — **exactly the pooling that killed S2.3**. Unblock = one acquisition (announced-retirement dates, offline-parse-and-commit) **plus** an honest restatement of the halves. HORIZON H3 error-bar rules still apply. |
+| **S3.4** | **The Party-Switch Fingerprint** | **REFUTED** (DESCRIPTIVE → REFUTED; killed by 2 of 3 skeptics) | Published headline was "**N=1 of 14 switches; Van Drew +0.0258 identity-controlled, 92.9th pctile**". Both figures fall: the enumerator missed ≥3 switches (**≥17 dated changes, not 14**) and **3 events clear the declared floor, not 1** — Sablan 2015-01-06 D→I is **240 pre / 322 post, more data than the one case built**. The identity control deleted **8,286 tokens incl. `trump`, `house`, `white`, `justice`** (roster-surname collisions over the impeachment window); correct target-scoped control gives **+0.0206 / 33-of-452 / 92.7th**, and the length-robust estimator gives **+0.0039 / 84.4th (70 of ~450 non-switchers drifted further)** | 2026-07-16 | **The graveyard row was the product and the graveyard row was wrong.** Root cause: `load_switches()` reads only each term's `party_affiliations` array and skips `i==0`, but congress-legislators encodes most switches as a **whole-term `party` field change with no affiliations array** — term-boundary switches are structurally invisible. It caught the one Sablan event with zero corpus and filed him as a "pre-2013 press-lane cliff" casualty; he is one of the best-covered members in the mirror (**2,318 statements**). Second kill: `controls_survived` is void — split-halves "all 4 pairings" is **one test restated four times** (algebraically max(pre)<min(post); verified 200,000/200,000; null pass rate exactly 1/6; **110/450 non-switching peers pass it**), and the "clean nulls" are **within-frame** (same idf, same centroid) compared against a cross-frame delta — near-zero by construction. Peer-calibrated, the p95 of *pure within-window drift* (+0.0267/+0.0330) **exceeds** the headline effect. **What survives (and is worth keeping):** D↔R switches since 2001 = **5, measurable = 1**; the LEVELS story (Van Drew at the **89.8th pctile of R-leaning-ness among Democrats *before* switching**, the 26.3rd among Republicans after — he never left the middle); the density bootstrap (**0/300 draws ≤ 0**); and the deflation (**Pelosi out-drifted the man who changed parties, +0.0367 raw, no switch**). Three attacks *failed* and two placebos say the author under-claimed. **Do not publish. Fix the enumerator, decide whether the tilt instrument admits Independents, re-run the graveyard.** |
+| S3.5 | Committee Vocabulary Infection | **BLOCKED** (by its own pre-registered gate) | The 🔬-lite audit ran: `committees-{current,historical}.yaml` are mirrored and contain **ZERO bioguide references** — they are name/metadata tables for the nomenclature lane. Upstream membership is `committee-membership-current.yaml`, **current-Congress only**; historical membership **does not exist upstream**. **Committee assignment dates — the metric's anchor — exist in no mirrored source** | 2026-07-16 | The spec said "BLOCKED if historical membership incomplete." It is not incomplete; it is absent. **Recommend retirement of the hypothesis** rather than a reconstruction program — rebuilding 25 years of committee rosters is a capex line item, not a wave step. The gate worked exactly as written: audited before measuring, cost ~nothing. |
+| S3.6 | Adoption Speed vs. Cohort Age | **UNDERPOWERED** | Inherits S3.1's **7 cohorts** (36–92 members each). "CONFIRM: monotone by cohort" over 7 points splits into halves of **3 and 4** — **a random ordering of 3 points is monotone 1 time in 3**, so the pre-registered halves-agree clause **cannot be satisfied under any future data in this lane**. Cohort 117 is a non-random **52% sample** of its class sitting mid-trend-line | 2026-07-16 | Publishes **DESCRIPTIVE at best**, with per-member cadence normalization mandatory. The gate is not merely unmet — it is unmeetable, which is a spec defect (a T3 ride-along inherited a T1's power requirement). |
+| S3.7 | The Safe-Seat Vessel Test | **BLOCKED** (source; **cheapest unblock in the wave**) | `elections.json` has **no margin of victory** (it is 7 computed election dates); **no MoV table is mirrored anywhere** in `data/**` or `X:\onscript-data\**`. **The independent variable has zero rows** | 2026-07-16 | **One acquisition turns this into a real GO:** MIT Election Lab / FEC results → `bioguide × cycle → margin` JSON, same offline-parse-and-commit pattern as `committee-names.json`. Yields **~90–100 members per quintile** — genuine power, and the spec is honest either way ("either direction confirms something; flat REFUTES both folk theories"). **This is the wave's one recoverable hypothesis and the highest-value item to unblock.** |
+
+### Wave S3 graveyard note (2026-07-16)
+
+**S3 is the first wave whose dominant failure mode is source absence, not confounding.** Five of seven
+were blocked *before measurement* — and four of those five (S3.2, S3.3, S3.5, S3.7) were blocked on
+**reference tables docs/12 assumed into existence at pre-registration**: election results, announced
+retirement dates, historical committee membership, margin of victory. The corpus is not the problem;
+**the joins are unbuilt.** That is a planning defect and it is cheap to name: the S3 specs were written
+as if `elections.json` were an election-results table (it is 7 dates), and as if the roster carried
+departure reasons (it does not).
+
+**The one hypothesis that ran (S3.4) died of a code bug in the very artifact it nominated as
+publishable** — the enumerator that builds the graveyard couldn't see the encoding congress-legislators
+actually uses for term-boundary switches, so the graveyard's flagship line ("only one switch in
+twenty-five years left a paper trail") was false in both figures. **The adversarial pass caught it. The
+subagent did not.** This is the fourth §4.5 reversal of the program (after S1.10, S2.3, and the
+S1.1/S1.3 artifacts) and the first one caused by an *enumeration* error rather than a confound — a new
+failure class worth a protocol line: **verdicts that rest on "we looked and found nothing" must show
+that the looking instrument can see a positive control.** S3.4's enumerator was never asked to find a
+switch it was known to have.
+
+**Reusable-code hazard, flagged for every future wave:** the S3.4 `identity_drop_set()` pattern (drop
+every ≥3-char token appearing in any name in `legislators-HISTORICAL.json`) deletes **`trump`, `house`,
+`white`, `wall`, `justice`, `green`, `washington`, `virginia`, `jordan`** and ~110 more political
+content words via 250-year surname collisions (Philadelph Van Trump, John House, Jim Justice, Garret
+Wall). **It will silently gut any Trump-era vocabulary analysis.** Identity controls must be
+target-scoped (that member's own name + state + titles), never roster-wide.
+
+**Process note (kept on the record):** the S3.4 author's first fast-path reimplementation of the
+speaker-attribution gate silently diverged from the tested `pipeline.duet` implementation
+(`re.finditer` is non-overlapping, so a fresh-slice scan finds markers a full-text scan misses); the
+selftest caught it at 1/7,383 sentences and it was reverted to an exact reimplementation, then
+re-verified at **0 mismatches over 62,990 real sentences**. The selftest existed because the protocol
+requires it. Also: a broad `Stop-Process` matched on the miniconda path rather than the author's own
+command line while parallel sessions were running — careless; PID-by-command-line targeting after.
+
+### Wave S3 — what it cost and what it bought
+
+| tested | confirmed | refuted | underpowered | artifact | blocked | descriptive |
+|---|---|---|---|---|---|---|
+| 33 | **2** | 17 | 1 | 4 | 5 | 4 |
+
+**Wave S3: 0 confirmed, 1 refuted, 1 underpowered, 5 blocked — the first wave with no measurement to
+speak of.** Six of seven never reached a number; the seventh (S3.4) reached numbers that two of three
+skeptics broke. Cumulative confirmation rate: **2 of 33 = 6.1%.** New finding cards from S3: **zero.**
+Standing card inventory unchanged at 8 (`data/derived/findings/`: 2 confirmed + 6 reversal/descriptive).
+
+Failure-mode split across S3's five blocks: **four are missing reference tables** (election results,
+retirement dates, historical committee membership, margin of victory) and **one is the 2013 press-lane
+cliff** (S3.1). One of the four is a one-acquisition fix (**S3.7 — MoV**); one is retirement-recommended
+(**S3.5 — the data does not exist upstream**); two re-home to the CREC floor lane (**S3.2, S3.3**).
+
+## What S3 says about the program's premise
+
+**The projection is arithmetically dead. Say so plainly.**
+
+docs/12 §0 projects **~22–28 CONFIRMED from 47** hypotheses (corpus-only families ~60% survival,
+joined families ~40%). After 33 tested: **2 CONFIRMED.** Hitting even the low end would require **20 of
+the remaining 14** hypotheses to confirm. There is no recovery path — this is not "behind pace," it is
+**an impossible remainder.** At the observed 6.1% rate the 47-hypothesis catalog terminates around
+**3 CONFIRMED**; at a generous 15% for the un-run remainder, **4–5**. The honest ceiling is **4–6, not
+22–28.** The §0 survival assumptions were off by roughly **5×**, and the error is now large enough that
+leaving the number in the doc is itself a small dishonesty.
+
+**But S3 does not refute the premise the way the number implies — and the distinction is load-bearing.**
+
+The 40% joined-family survival estimate was never *tested* in S3. **The joins do not exist.** Five of
+seven blocked before measurement, four of those on reference tables docs/12 assumed into existence at
+pre-registration (`elections.json` is 7 dates, not election results; the roster has no departure reason;
+historical committee membership is absent upstream; no MoV table is mirrored anywhere). That is a
+**planning defect, not an instrument verdict.** S3 says the joined families were *specced against
+imagined substrate* — which also means the 40% figure remains **unfalsified**, and S3.7 (~90–100 members
+per quintile after one acquisition) is evidence the joins can be genuinely well-powered once built.
+
+Two structural facts the earlier waves had already established, now confirmed at the roster level:
+1. **The 2013 cliff is not a caveat, it is the boundary of the instrument.** Amendment A1 said the
+   symmetric span is 113–119. S3.1 shows it bites the *entry* variable too: **0/0/0/0/1/3** qualifying
+   freshmen for congresses 107–112. Every "25-year" lifecycle hypothesis in the catalog is really a
+   12-year hypothesis until CREC lands.
+2. **The gates are calibrated for a corpus we don't have.** S3.6 is the proof: "monotone by cohort,
+   halves agree" over 7 points with halves of 3 and 4 **cannot pass under any future data** — a random
+   3-point ordering is monotone 1 time in 3. A T3 ride-along inherited a T1's power requirement. Several
+   surviving gates are probably in the same condition, and nobody has audited them.
+
+**Is the projection recoverable? No. Is the program? Yes — but only if the yield unit changes.**
+
+The program has been counting the wrong thing. **CONFIRMED-hypothesis is a scientific unit; the drip
+needs a publishable unit,** and by that measure the inventory is not thin — it is already oversubscribed:
+**S4.1 alone is 20 SCOTUS cases** (loser-party louder 14/14, same-day response 19/20, per-case series
+survives), **S2.11 is 12 euphemism pairs** (24/24 label-sides hold in both halves, counts reproduced
+exactly), **S4.2 is 7 shutdowns**, plus **2 CONFIRMED** (S1.9, S2.9), **the Great Intensification**
+four-series narrative, and ~8 banked reversal candidates. That is **~45+ drip-ready artifacts** against a
+target of 1–2/month for 12–24 months. **The drip is not at risk. The scoreboard is.**
+
+And the §3.S6 reserve is no longer a reserve — **it is the wave's actual product.** "We tested N folk
+theories about congressional speech; K are false" was pre-registered as a fallback; at 6.1% it is the
+main line, and it is *stronger* for the low rate, not weaker. The graveyard now contains four caught
+reversals (S1.10's placebo, S2.3's halves, S1.1/S1.3's boundary artifact, S3.4's enumerator) — that is
+the proof-of-instrument, and it is the most defensible asset the program has against the first bias
+accusation. **A shop that publishes its own overturned CONFIRMEDs is a shop whose CONFIRMEDs mean
+something.**
+
+### The honest goal (recommend replacing docs/12 §0)
+
+> **~4–6 CONFIRMED across the 47** (2 in hand), **~45+ publishable cards** (per-case series + reversals
+> + the graveyard), and **a published null rate as a headline asset, not an apology.** The CONFIRMED
+> tier is the rare tier — that is what makes S1.9 and S2.9 worth the banner. Yield is counted in cards.
+
+### Three concrete consequences
+
+1. **Amend §0 now, before Wave S4/S5 pre-registration inherits the same fantasy.** This is Fable's call
+   (§0 is a program doc), but Opus should file the arithmetic. **The number to strike: 22–28.**
+2. **Audit the un-run gates for reachability before running them** — S3.6's gate was unmeetable, and it
+   cost a wave slot to discover that at execution time rather than at spec time. A one-pass "can this
+   gate pass at the available N?" sweep over the remaining 14 is cheap and will likely reclassify
+   several to DESCRIPTIVE-by-design *before* they burn a session.
+3. **The acquisitions are now the highest-leverage work in the Search, not the analyses.** Ranked:
+   **(a) MoV table → unblocks S3.7** (cheapest, real power, publishable either direction); **(b)
+   election-results join → unblocks S3.2's IV** (though the lame-duck class is silent in *this* lane
+   regardless, so it re-homes to CREC); **(c) announced-retirement dates → S3.3**, the self-described
+   flagship backtest, currently zero rows. And **(d) retire S3.5** — its data does not exist upstream and
+   reconstructing 25 years of committee rosters is capex, not a wave step.
+
+**One line for the record:** Wave S3 spent its slot discovering that its substrate was imaginary, and
+its single measurement died of a bug in the enumerator that was supposed to prove the negative. Both are
+findings about *us*. The correct response is to fix the ledger's arithmetic and the doc's projection —
+not to soften either.
