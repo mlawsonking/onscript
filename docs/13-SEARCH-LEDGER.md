@@ -276,3 +276,112 @@ something.**
 its single measurement died of a bug in the enumerator that was supposed to prove the negative. Both are
 findings about *us*. The correct response is to fix the ledger's arithmetic and the doc's projection —
 not to soften either.
+
+## Wave S4 — event-anchored studies (2026-07-16, 3 of 8 run, 5 BLOCKED on absent reference tables)
+
+> **Supersedes L111–L112.** The earlier S4.1/S4.2 rows were first-pass verdicts. Both are amended
+> below: S4.1 gains its aggregate adjudication (no rebuild needed — `pipeline/search/wave_s4.py`
+> already implements it), and **S4.2 is downgraded DESCRIPTIVE → REFUTED by 3/3 skeptics.**
+> Do not read L112 ("7 shutdowns; self-blame D 4 / R 6") as live; it is a stale count from a
+> different window set (the real table merges to 5 events per its own note fields).
+
+| ID | Name | Verdict | Headline number | Date | Notes |
+|----|------|---------|-----------------|------|-------|
+| S4.1 | One Court, Two Languages (AMENDED) | **DESCRIPTIVE** (per-case) / **UNDERPOWERED → would fail anyway** (aggregate) | per-case: loser-party louder 14/14, same-day response 19/20. Aggregate: half B has **5** qualifying cases vs a floor of 8; `party_direction_gate=False` at **every** floor (5/8/10) and the dominant sign **REVERSES across halves (A=−1, B=+1)** | 2026-07-16 | Amends L111. Adjudicated from the existing `wave_s4.py::run(topk,min_cell)` — **nothing rebuilt.** The aggregate arm is not merely underpowered: it fails on direction at any power level, so more cases would not rescue it. The **top-phrases "two vocabularies" arm is DEAD on the nomenclature audit (~97% naming — the anchor is case names, so case names top the list; K2 fires)**, and its half-A median Jaccard of **0.60** shows *convergence*, not divergence — the opposite of the hypothesis. Per-case valence series remains shippable as **descriptive, per-case only**. |
+| S4.2 | The Shutdown Blame Grammar (AMENDED) | **REFUTED** (DESCRIPTIVE downgraded — 3/3 skeptics) | claimed: agent-assignment ~95% outward, self-blame ~0 (D 291/301, R 196/208). **Killed: the headline statistic was never placebo-tested. On the agent's own 10 matched non-event windows it is D 74/74 = 100.0% / R 16/18 = 88.9% — the placebo D share EXCEEDS the event D share (96.7%).** | 2026-07-16 | Supersedes L112. **Four independent kills, all reproduced:** (1) **PLACEBO FAILS THE HEADLINE** — the placebo was run against the blame *rate* (topicality) and the *outward share* was headlined; run correctly, the "response" appears at 100% on random dates. S1.10 verbatim. (2) **The denominator is not a partition** — self-blame units are a near-subset of outward units (8/10 D, 6/12 R overlap; 4/4 in 2025), so 291/301 adds numerator units to the denominator; true distinct = D 291/293, R 196/202. (3) **The statistic is bounded at 1 by construction** — the agent's own hand-code says 12/12 self-blame hits are false positives (opponent's frame quoted to rebut), so true self-blame = 0 and the only attainable value is 100%. A constant is a definition, not a measurement; the split-halves "PASS" is vacuous. (4) **Appropriations seasonality** — fiscal years end Sep 30 annually; the grammar fires in 8/11 non-shutdown Sep–Nov windows, and **two non-shutdowns out-score two real shutdowns** (2023 = 0.256 and 2015 = 0.202 vs real 2026 = 0.105 and real 2018-19 = 0.066, the longest lapse then on record). Mann-Whitney AUC 0.909. The agent diagnosed this itself ("the grammar tracks the FIGHT, not the LAPSE") and filed it as a reference-table footnote under a PASS. Also: "who stops talking first" is a **degenerate estimator** (single-day unsmoothed peak; the identical rule returns stop_day ≤ 2 on 95% of 410 *in-event* fake end-days, median 0) with an off-by-one (`range(0,…)` indexes the event's final day) and no weekday control (2/5 events end Friday, cross Saturday). "Which party blames harder" correctly REFUTED (direction flips 3-2). **Nothing in S4.2 is publishable.** Two byproducts outlive it (below). |
+| S4.4 | The Friday Night Dump | **REFUTED** (a clean, well-powered, instrument-validated null — the graveyard product) | Friday walk-back rate = **0.85× Mon–Thu in half A** [CI95 0.72–1.00], **0.96× in half B** [0.76–1.20]. Gate was **≥1.5× in BOTH halves.** Both CI upper bounds sit **below** the gate → equivalence, not failure-to-detect. **There is no Friday Night Dump.** | 2026-07-16 | **The load-bearing evidence is the POSITIVE CONTROL:** same machinery, same 1.5× gate, pre-registered week-ending vocabulary → **2.10× (A) / 1.75× (B), both clear the gate**, while a register-matched placebo lexicon is flat at 0.98×/0.96×. The instrument finds Friday effects where theory predicts them and not where it doesn't — that asymmetry converts "we didn't find it" into "it isn't there." **Pre-registration hashed before measurement** (sha256 `6cbee4a8…6b6d5`). Survived every control: rates-not-counts, density/length (no quartile reaches the gate), syndication collapse (7,870 dup rows), **leave-one-out across all 41 lexicon forms (A stays [0.83,0.88], B [0.93,1.01] — no single form drives it)**, office-day unit (0.82/0.99), day-block bootstrap ×2,000. **The holiday-eve arm's one suggestive number (1.31×) was KILLED by its own placebo** — 500 weekday-mix-matched random pseudo-eve sets put the real rate *inside* the null band [0.347%, 0.612%]; 6.0% of purely random date sets beat it. Sub-finding "did the Dump die with the 24/7 cycle?" = **NO, it was never alive** (ratio moves the wrong way, 0.85→0.96, CIs overlap). Honest caveats logged: core-B fails its own hit floor (139 < 200) so the verdict rests on half A (the gate is conjunctive); the tempting inverse ("Congress apologizes *less* on Fridays") is **not claimed** — within-quartile ratios (0.78–1.11) sit closer to 1.0 than the pooled 0.85, so the deficit is length composition, not behavior; and the pre-registration was written after the recon probe's answer (0.96/1.12) was known — mitigated, not eliminated. **0/34 nomenclature. K2 does not fire.** |
+| S4.3 | (crisis-response volume decay) | **BLOCKED** | — | 2026-07-16 | `crisis-events.json` **does not exist.** docs/12 L109/L282 name it; disk has six reference files and grep finds zero code or data. Also booby-trapped when unblocked: its pre-registered monotone volume-decay CONFIRM would be satisfied by the **2021 coverage collapse alone.** → REVIEW-GATED. |
+| S4.5 | (winner/loser-party language) | **BLOCKED** | — | 2026-07-16 | `elections.json` carries **seven dates and nothing else** — no winners, no losers, no margins. The spec's entire dependent variable is absent from its only join key. **This is the S3.7 failure verbatim.** Independently, the "13 cycles" gate is unreachable: 7 dates (2014–2026), 2026 is in the future (measured D=0/R=0) → 6 usable. Re-speccable as a 6-cycle DESCRIPTIVE using `chambers-control.json` as a coarse, disclosed winner proxy — **only as a new pre-registration, not a rescue.** |
+| S4.6 | (post-disaster cross-party unison) | **BLOCKED** | — | 2026-07-16 | Same non-existent `crisis-events.json`. Most K2-exposed item in the wave: cross-party unison after a disaster will be dominated by **the storm's name and the place name** — "disasters have proper nouns," not "disasters produce unison." The ≥3× gate must run on a **naming-stripped** phrase set or it measures nothing. |
+| S4.7 | (January 6 response) | **BLOCKED** (comparative arm) | within-event arm IS powered: D 324 stmts / 77 offices, R 341 / 94 (2021-01-06..01-20) | 2026-07-16 | Comparative arm needs `crisis-events.json`. **DO NOT RUN the volume comparison on raw counts:** Jan 6 sits at the exact bottom of the coverage collapse (2020: 177 stmts/office → 2021: 54), so raw volume would manufacture a false and **highly quotable** "muted response to January 6." → REVIEW-GATED, double gate. Recommend leaving unmeasured until the comparison table exists **and** coverage normalization is tested on a non-sensitive event first. |
+| S4.8 | (war-authorization language evolution) | **BLOCKED** | AUMF 2002 = **ZERO statements** | 2026-07-16 | Two independent grounds: (1) the "curated votes list" does not exist anywhere in the repo; (2) Sept/Oct/Nov 2002 are **absent from the mirror entirely** — all 23 Iraq-mentioning statements in 2001–2003 belong to a single member (Barbara Lee). "Evolution" is unrecoverable from a baseline of zero. Syria 2013 (D 2,782/165 offices, R 2,637/188) and Ukraine 2022 (D 1,173/117, R 1,009/119) **are** powered → a two-event 2013–2022 descriptive is available as a **new, retitled** registration. The pre-2013 leg belongs to the CREC lane (docs/15), where congress 107 already yields 11,867 symmetric two-party statements — gated behind SD.8 calibration and genre isolation.
+
+## Graveyard notes — Wave S4
+
+- **S4.4 (2026-07-16) — the model entry.** A famous folk theory, pre-registered and hashed *before*
+  measurement, well-powered (674,970 statements analyzed), killed cleanly at 0.85×/0.96× against a
+  1.5× gate — **with a validated instrument standing behind the kill** (positive control 2.10×/1.75×,
+  placebo lexicon 0.98×). Both CI upper bounds fall below the gate, so this is an **equivalence
+  result**: the Dump is bounded away from its claimed size, not merely undetected. Three skeptics
+  found nothing. This is what docs/05 §2.5 meant by the graveyard being the product.
+- **S4.4's design lesson belongs in docs/12 before Wave S4 is specced further.** S4.4 needed **no
+  reference table** and is **K2-immune for the same reason**: it measures a *pre-registered speech act
+  within a time window* instead of measuring *which phrases are common in an event-anchored selection*.
+  S4.1 is the mirror image — it anchors on case names, so ~97% of its emitted lines are case names.
+  **Event-anchored phrase selection manufactures nomenclature convergence by construction.**
+- **S4.2 (2026-07-16) — the fourth reversal, and the most instructive.** Its `honest_note` contained
+  three separate concessions ("mostly definitional"; "outward_share is a FLOOR"; "the grammar tracks
+  the FIGHT, not the LAPSE") and it filed all three **under a PASS**. The failure was not
+  computational — the instrument is honest, reproducible, symmetric (D/R regex skeletons byte-identical
+  after token substitution), and its multi-speaker gate was load-bearing (dropped 31 hits in 2018-19 D
+  alone). The failure was **placebo-testing statistic A and headlining statistic B**, then letting a
+  bounded-at-1 constant carry a card. Add to the protocol: *the placebo must be run against the exact
+  statistic that appears in the headline.*
+- **One correction the agent got backwards, worth keeping:** it claimed 95% is a "floor" because false
+  positives land in the self bucket. Removing outward-bucket FPs gives (291−f)/(301−f), which
+  **decreases**. It measured only the FP direction that helped its number.
+- **Two byproducts outlive S4.2 and are worth more than the arm was:**
+  1. **Corpus defect — bioguide `K000393` is a cross-chamber surname-collision roster mislabel.** 220
+     statements from `kennedy.house.gov` (Tim Kennedy, D-NY-26) are labeled "John Kennedy / Republican
+     / LA / Senate"; 50 more carry state "KY"; chamber contradicts domain in both directions. Dates
+     2024-05-06..2026-04-01 — **inside the 2025 and 2026 windows.** Impact on S4.2 was negligible, but
+     it is **~17% of the R self-blame bucket** (2 of 12 units), and a party-keyed denominator of 12 has
+     no tolerance for it. **Cheap detector: domain-vs-chamber disagreement** (322 of 888 bioguides map
+     to >1 domain; most benign — web.archive.org/bit.ly). Code fix, not a Michael action.
+  2. **`shutdowns.json` defines "non-event" wrongly.** It means "no funding gap occurred," but the
+     blame grammar tracks the **fight**, not the **lapse** — 2015-09/10 (Boehner CR) and 2023-09/11
+     (McCarthy CR/ouster) are brinkmanship windows that score like events. **A near-miss/brinkmanship
+     table would fix the placebo and is a better hypothesis than the cross-event trend arm the
+     substrate cannot support anyway.**
+
+## PROGRAM-LEVEL — two structural findings that outrank any new measurement
+
+- **The substrate-assumption pattern is now confirmed twice and is structural, not bad luck.** Wave S3
+  lost **5 of 7** to reference tables docs/12 assumed into existence. Wave S4 lost **4 of 8** (S4.3,
+  S4.5, S4.6, S4.8) to the same cause, plus S4.7's comparative arm. `elections.json` (7 bare dates)
+  failed S4.5 the *identical* way it failed S3.7. **Recommendation: a one-time inventory audit of every
+  remaining wave's named tables against disk before any further speccing — roughly an hour, and the
+  highest-yield hour available.**
+- **The 2021 coverage collapse is undocumented and is gating the program's primary robustness test.**
+  D statements 48,901 → 9,065; 177 → 54 statements per office; 276 → 167 offices; **symmetric across
+  parties.** It gates S4.1's half B, S4.2's cross-event arm, S4.3's CONFIRM, and S4.7 entirely. It also
+  sits **exactly on the A/B half boundary of BOTH `scotus-landmarks.json` and `shutdowns.json`** —
+  meaning split-halves, the program's primary robustness test, is currently testing
+  **high-coverage-vs-low-coverage as much as early-vs-late.** Whether this collapse is real or an
+  upstream `congress-press` regression is a **factual question that gates four hypotheses** and
+  deserves priority over any new measurement. (S4.4 handled it correctly — it chose the halves *at* the
+  cliff deliberately, as a real regime boundary, and reported per-office-per-day.)
+
+### Wave S4 — tally, review gates, and the re-baseline correction
+
+**Wave S4 tally (honest):** 8 pre-registered · **3 run** (S4.1, S4.2, S4.4) · **5 BLOCKED** on reference substrate docs/12 assumed into existence (S4.3, S4.5, S4.6, S4.8 fully; S4.7's comparative arm) · **0 CONFIRMED** · 1 REFUTED-and-survived (S4.4) · 1 DESCRIPTIVE→**REFUTED by 3/3 skeptics** (S4.2) · 1 DESCRIPTIVE-per-case with a dead aggregate and a dead phrase arm (S4.1) · **3 REVIEW-GATED** (S4.3, S4.6, S4.7).
+
+**Cumulative program tally: 34 tested / 2 CONFIRMED = 5.9%.** (33 before S4; S4.1 and S4.2 were already counted at L111–L112 and are amended here, not re-counted — S4.4 is the 34th and only new test.) The two CONFIRMEDs remain S1.9 (the 2022 Self-Audit) and S2.9 (the Boogeyman), both from Waves S1/S2. **Wave S3 added zero. Wave S4 added zero.**
+
+Updated header table (replaces L9–L11):
+
+| tested | confirmed | refuted | underpowered | artifact | blocked | descriptive |
+|---|---|---|---|---|---|---|
+| 34 | **2** | 24 | 1 | 4 | 5 | 3 |
+
+**Blocked is not tested** — the 5 blocked S4 items are excluded from the denominator, which is why the honest read is worse than the table looks: the program is now failing to *reach* hypotheses as often as it fails to confirm them. Two consecutive waves (S3: 5/7 lost; S4: 4/8 lost + 1 partial) have lost the majority of their hypotheses to absent reference tables, not to reality.
+
+**REVIEW-GATED (never auto-card; nothing publishes without Michael's explicit review):**
+
+- S4.3 (crisis-response volume decay) — NEEDS-NEUTRALITY-REVIEW **and** BLOCKED. Double problem: `crisis-events.json` does not exist (docs/12 L109/L282 name it; disk has six reference files, grep finds zero code or data), AND the hypothesis is booby-trapped when unblocked — its pre-registered monotone volume-decay CONFIRM would be satisfied by the 2021 coverage collapse alone (177 -> 54 statements per office). Building the table without first resolving the collapse would manufacture a CONFIRM out of a data regression. Not shippable; not even safely runnable.
+- S4.7 (January 6 response) — NEEDS-NEUTRALITY-REVIEW, DOUBLE GATE. The within-event arm IS powered (D 324 stmts / 77 offices, R 341 / 94, 2021-01-06..01-20) and the comparative arm is blocked on the same non-existent `crisis-events.json`. **DO NOT RUN the volume comparison on raw counts under any circumstances:** January 6 sits at the exact bottom of the 2021 coverage collapse, so raw volume would manufacture a false — and maximally quotable, maximally damaging — 'muted response to January 6' finding. RECOMMENDATION: leave unmeasured until (a) the comparison table exists, and (b) coverage normalization has been tested on a NON-SENSITIVE event first. This is the one item in the wave where a measurement error would be indistinguishable from a political accusation.
+- S4.6 (post-disaster cross-party unison) — BLOCKED on the same non-existent `crisis-events.json`, and the most K2-exposed item in the wave. When unblocked, its >=3x unison gate must run on a NAMING-STRIPPED phrase set or it measures nothing: cross-party unison after a disaster will be dominated by the storm's name and the place name, i.e. 'disasters have proper nouns' rather than 'disasters produce unison'. Flagging under review-gated rather than merely blocked because the failure mode is a publishable-looking coordination claim built entirely from naming.
+
+**S4 says the card-based re-baseline is right in principle and wrong on its inventory number — and that the binding constraint was never measurement supply.**
+
+**1. CONFIRMED-counting is dead, and S4 is the proof rather than the cause.** 2 of 34 (5.9%) with zero from two consecutive waves. But the wave's single best artifact — S4.4 — is a **REFUTED**. A hashed pre-registration, 674,970 statements, a 1.5× gate missed at 0.85×, an equivalence result (both CI uppers below the gate), and a **positive control at 2.10×** proving the instrument could have found the effect. Under CONFIRMED-counting that is a zero. Under card-counting it is the wave's flagship. The metric change is not a lowered bar — it is the correct bar, and S4.4 is the worked example.
+
+**2. The "~45+ cards in hand" number does not survive contact with disk.** `data/derived/findings/` contains **8 files**: GREAT-INTENSIFICATION, S1.4, S1.9, S1.10, S2.1, S2.3, S2.4, S2.9. The 45+ is a count of *candidates* claimed across sessions — per-case series, reversal candidates, per-pair mini-cards (S2.11's 12 euphemism pairs, S4.1's 20 rulings) — not written, verifier-passed, publishable cards. **Re-baselining onto a number that is 5.6× the on-disk reality would import exactly the failure mode S4.2 just died of: headlining a statistic other than the one that was actually validated.** The honest re-baseline needs the audit first: how many of the 45+ survive a nomenclature audit, a denominator check, and a placebo against *their own headline statistic*? S4 says the attrition is severe — S4.1 alone loses its entire 20-card top-phrases arm to a ~97% naming fraction, and S4.2 loses all of its.
+
+**3. Even so, the re-baseline holds — because 8 real cards ÷ 1–2/month is 4–8 months of drip, and the constraint is upstream.** Wave S4 spent 5 of 8 hypotheses on tables that do not exist. Wave S3 lost 5 of 7 the same way. **The program is not short of findings; it is short of substrate and of publication throughput.** At 1–2 cards/month, the existing 8 cards plus S4.4 plus a de-phrased S4.1 per-case series already exceed the next two quarters of drip capacity. Measuring faster produces nothing. Concretely, in yield order:
+   - **(a) The inventory audit — every remaining wave's named tables against disk. ~1 hour, the highest-yield hour available.** Two waves have now confirmed the pattern; `elections.json` (7 bare dates) failed S4.5 the *identical* way it failed S3.7. This is not bad luck, it is structural, and it will keep eating waves until someone reads the disk.
+   - **(b) Resolve the 2021 coverage collapse** (48,901 → 9,065 D statements; 177 → 54 per office; 276 → 167 offices; symmetric). It is a **factual question** — real behavior change or upstream `congress-press` regression? — that gates S4.1's half B, S4.2's cross-event arm, S4.3's CONFIRM and S4.7 entirely, and that sits **exactly on the A/B boundary of both `scotus-landmarks.json` and `shutdowns.json`**, so split-halves is currently testing coverage as much as time. **The program's primary robustness test is compromised until this is answered.** It outranks every new measurement.
+   - **(c) Audit the existing card inventory** against the S4.2 lesson before publishing any of it.
+   - **(d) Only then spec more hypotheses**, using S4.4's template: pre-registered speech act + time window, no reference table, K2-immune by construction.
+
+**4. The one protocol amendment S4 earns, and it is cheap:** *the placebo must be run against the exact statistic that appears in the headline.* S4.2 placeboed the blame rate, headlined the outward share, and passed itself. S4.4 placeboed the thing it claimed and killed its own best number (holiday-eve 1.31× → inside the null band; 6% of random date sets beat it). That one rule separates the wave's two event studies, and it is the whole difference between the graveyard being the product and the graveyard being the output.
