@@ -43,6 +43,33 @@ def test_streaming_reader_handles_empty_and_single():
     assert _roundtrip({"solo": {"peak": 1}}, 3) == {"solo": {"peak": 1}}
 
 
+def test_bursts_split_on_gaps_and_measure_local_width():
+    """Kill-fixture for the S1.1' event detector: bursts are gap-defined, so ignition width is the
+    LOCAL rise (days), never the congress- or calendar-spanning artifact that killed S1.1."""
+    from pipeline.search import wave_s1 as S1
+    # two bursts: a fast one (3-day rise to 20) and, 60 days later, a slow one (12-day rise to 18)
+    series = [["2019-03-01", 2], ["2019-03-02", 8], ["2019-03-04", 20],           # burst 1: width 3
+              ["2019-05-10", 3], ["2019-05-16", 9], ["2019-05-22", 18]]            # burst 2 (gap>14): width 12
+    bursts = S1._bursts(series, gap=14)
+    assert len(bursts) == 2
+    assert (bursts[0][-1][0].isoformat(), max(c for _, c in bursts[0])) == ("2019-03-04", 20)
+    # a synthetic speedup (contiguous bursts narrowing over years) confirms; flat refutes
+    from datetime import date as _d, timedelta
+
+    def contiguous_burst(y, w):   # active days every 10d (gap<=14) rising to peak 18 at day w
+        s = _d(y, 2, 1)
+        days = [[(s + timedelta(days=t)).isoformat(), 5] for t in range(0, w, 10)]
+        days.append([(s + timedelta(days=w)).isoformat(), 18])
+        return {"series": days}
+
+    rows = []
+    for y, w in [(2013, 30), (2015, 25), (2017, 20), (2019, 12), (2021, 10), (2023, 6), (2025, 3)]:
+        rows += [contiguous_burst(y, w) for _ in range(10)]   # >=min_cell per year
+    res = S1.s1_1_prime_ignition(rows)
+    assert res["dir_a"] == -1 and res["dir_b"] == -1 and res["verdict"] == "CONFIRMED"
+    assert res["artifact_guard"] is False   # the redefined metric shows NO year-position sawtooth
+
+
 def test_phrase_summary_computes_peak_and_span():
     entry = {"first_seen": {"date": "2013-06-01"},
              "daily": {"2013-06-01": {"D": 2, "members_D": ["a", "b"]},

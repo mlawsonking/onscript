@@ -159,6 +159,47 @@ def build_member_index(congresses=range(113, 120), peak_floor=15, progress=True)
     return {"phrases": n}
 
 
+def build_daily_series(progress=True) -> dict:
+    """Merged CROSS-ERA daily series for every phrase in the member index (global peak>=15): stream all
+    shards, accumulate {date: max(D,R)} per ngram (Congresses have disjoint date ranges, so the merge is
+    a clean concatenation). -> data/derived/search/daily_series.jsonl. Fixes the per-Congress boundary
+    artifact (A2): first_seen and the full adoption curve are now GLOBAL, enabling event-based ignition
+    detection (S1.1'/S1.3'). Filtered by the member-index ngram set so it stays bounded."""
+    keep = {r["ng"] for r in iter_member_index()}
+    if not keep:
+        raise RuntimeError("member index empty — build it first")
+    merged: dict = {}
+    for c in range(113, 120):
+        shard = ALEX / f"ledger-{c}.json"
+        if not shard.exists() or shard.stat().st_size <= 2:
+            continue
+        for ng, entry in iter_ledger_entries(shard):
+            if ng not in keep:
+                continue
+            d = merged.setdefault(ng, {})
+            for day, rec in (entry.get("daily") or {}).items():
+                d[day] = max(rec.get("D", 0), rec.get("R", 0))
+        if progress:
+            print(f"  daily-series ledger-{c}: {len(merged)} phrases so far", flush=True)
+    SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
+    out = SEARCH_CACHE / "daily_series.jsonl"
+    with open(out, "w", encoding="utf-8") as w:
+        for ng, days in merged.items():
+            series = sorted([d, c] for d, c in days.items())
+            w.write(json.dumps({"ng": ng, "series": series}, separators=(",", ":")) + "\n")
+    util.write_json(SEARCH_CACHE / "daily_series.stats.json", {"phrases": len(merged)})
+    return {"phrases": len(merged)}
+
+
+def iter_daily_series():
+    p = SEARCH_CACHE / "daily_series.jsonl"
+    if p.exists():
+        with open(p, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    yield json.loads(line)
+
+
 def bioguide_states() -> dict:
     """{bioguide: modal state} from the statement-metadata intermediate (roster join for delegation)."""
     from collections import Counter

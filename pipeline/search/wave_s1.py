@@ -159,6 +159,72 @@ def s1_3_lifespan(rows, peak_min=10, min_cell=8):
             "verdict": verdict, "note": "birth-year cohorts truncate near the window edge (right-censoring) — caveat on any card"}
 
 
+# --- S1.1' Industrialization of the Memo, REDEFINED (event-detection on the merged series) --------
+def _bursts(series, gap=14):
+    """Split a phrase's merged daily series into BURSTS = runs of active days no more than `gap` days
+    apart. Each burst is a single rise-and-fall; its width (start->peak) is a real ignition speed,
+    immune to the congress-boundary artifact (A2) because it's gap-defined, not congress- or
+    calendar-bounded. A recurring phrase yields multiple bursts (it re-ignites)."""
+    days = [(date.fromisoformat(d), c) for d, c in series if c > 0]
+    if not days:
+        return []
+    out, cur = [], [days[0]]
+    for prev, nxt in zip(days, days[1:]):
+        if (nxt[0] - prev[0]).days <= gap:
+            cur.append(nxt)
+        else:
+            out.append(cur); cur = [nxt]
+    out.append(cur)
+    return out
+
+
+def s1_1_prime_ignition(series_rows, peak_min=15, gap=14, min_cell=8):
+    """REDEFINED S1.1 (amendment A2). For every burst reaching peak>=peak_min, ignition width = days
+    from the burst's first active day to its peak day. Median per burst-start year; CONFIRM =
+    Spearman<0 in BOTH halves AND survives the density-matched control AND early >= 1.5x late."""
+    by_year = defaultdict(list)
+    for row in series_rows:
+        for burst in _bursts(row["series"], gap):
+            peak = max(c for _d, c in burst)
+            if peak < peak_min:
+                continue
+            start = burst[0][0]
+            peak_day = min(d for d, c in burst if c == peak)
+            y = start.year
+            if _half(y) is not None:
+                by_year[y].append((peak_day - start).days)
+    series = [(y, median(by_year[y])) for y in sorted(by_year) if len(by_year[y]) >= min_cell]
+    cells = {y: len(by_year[y]) for y in sorted(by_year)}
+    a = [(y, m) for (y, m) in series if y in HALF_A_YEARS]
+    b = [(y, m) for (y, m) in series if y in HALF_B_YEARS]
+    dir_a, dir_b = M.split_direction(a), M.split_direction(b)
+    early = a[0][1] if a else None
+    late = b[-1][1] if b else None
+    ratio = (early / late) if (early and late and late > 0) else None
+    # density control: match later-half yearly burst counts to the min A-half cell, recompute
+    density_survives = None
+    if a and b:
+        min_a = min(len(by_year[y]) for (y, _) in a)
+        sub_b = [(y, median(M.density_matched_subsample(by_year[y], min_a, f"s1.1p:{y}"))) for (y, _) in b]
+        density_survives = (M.split_direction(a + sub_b) == -1)
+    artifact = _year_position_artifact(by_year)
+    powered = len(a) >= 2 and len(b) >= 2
+    if artifact:
+        verdict = "ARTIFACT"        # if the boundary sawtooth somehow persists (it should not now)
+    elif not powered:
+        verdict = "UNDERPOWERED"
+    elif dir_a == -1 and dir_b == -1 and ratio and ratio >= 1.5 and density_survives:
+        verdict = "CONFIRMED"
+    elif dir_a == -1 and dir_b == -1 and not density_survives:
+        verdict = "ARTIFACT"
+    else:
+        verdict = "REFUTED"
+    return {"id": "S1.1'", "name": "Industrialization of the Memo (redefined)", "series": series,
+            "cells": cells, "dir_a": dir_a, "dir_b": dir_b, "early_median": early, "late_median": late,
+            "ratio": ratio and round(ratio, 2), "density_survives": density_survives,
+            "artifact_guard": artifact, "verdict": verdict}
+
+
 # --- S1.2 Sync Ceiling (boundary-SAFE: single-day peaks, no span) --------------------------------
 def s1_2_sync_ceiling(rows, active_by_year: dict):
     """Loudest single-day unison per year = max phrase peak whose peak_day falls in that year, divided

@@ -8,7 +8,7 @@
 
 | tested | confirmed | refuted | underpowered | artifact | blocked |
 |---|---|---|---|---|---|
-| 8 | **1** | 5 | 0 | 2 | 0 |
+| 9 | **1** | 6 | 0 | 2 | 0 |
 
 *(S1.4 measured on a proxy only → not counted as a verdict; proper metric queued. See notes.)*
 **First CONFIRMED: S1.9 — the 2022 Self-Audit replicates (and survived the joint-release control).**
@@ -60,6 +60,7 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 | **S1.9** | **The 2022 Self-Audit** | **CONFIRMED ✅** | **D weekly 5-gram overlap 0.00176 vs R 0.00095 (~85% higher), D>R in 75/105 weeks (71%)** | 2026-07-15 | **The founder's 2022 finding REPLICATES** on press releases (not Twitter), matched member counts. **Adversarial control passed:** excluding verbatim joint/co-signed releases *widened* the gap, and R actually co-signs more (48 vs 37) — so it's independent coordination, not co-signing. Congress 117 (2021–22, the pre-registered window). Card: `findings/S1.9.json`. **T1.** |
 | S1.11 | Delegation Echo | **REFUTED** | same-state co-use ratio 1.01 (A) / 1.09 (B) vs the 1.5× gate | 2026-07-15 | Same-state delegations do **not** share phrases beyond a size-preserving permutation null — coordination is **national/party-driven, not regional.** Clean null (50-permutation test), an informative structural finding. |
 | S1.6 | The 90-Day Snap | **REFUTED** (near-miss) | snap in 2022 & 2024 both parties, but not 2016/2020-R; tally A-R 2/4 fails the all-cells-majority gate | 2026-07-15 | Pre-election discipline tightening is **real and consistent in recent cycles** (2022/2024) but not across 2013–2026 — fails the strict gate by one cell. Reversal/refinement candidate (the effect may be a recent-era phenomenon). 2026 uncomputable (election is post-data-cutoff). |
+| S1.1′ | Industrialization of the Memo (REDEFINED) | **REFUTED** (redefinition vindicated) | burst-ignition width **34d (2013) → 3–4d (2019–20)** then plateaus 2–15d (2021–26); dir_A −1, dir_B +1, ratio 4.86, density-survives | 2026-07-15 | The A2 fix works — **artifact gone (`artifact_guard=False`, no sawtooth)** via burst-local event detection on the merged cross-era series. Real finding underneath: **the memo DID industrialize ~8× through the 2010s, then hit a floor ~2019–20.** Fails the strict both-halves-monotone gate (it's industrialized-then-plateaued, not ever-accelerating). Strong reversal candidate. Kill-fixture-tested event detector. |
 
 ## Graveyard notes
 
