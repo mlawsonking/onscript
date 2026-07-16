@@ -1280,6 +1280,82 @@ _POSTED_THREADS = posted_threads()
 HAS_POSTS = bool(_POSTED_THREADS)
 
 
+# --- The Archive (dark feature 1.1, docs/11) — 25-year era/month chapters + era fingerprints --------
+def _load_chapters() -> list[dict]:
+    """Every verifier-CLEAN chapter (the 1.1 release gate is 'zero uncited fragments' → only
+    verifier.passed chapters render). Eras first (newest Congress first), then months."""
+    out = []
+    cdir = DERIVED / "chapters"
+    if cdir.exists():
+        for f in sorted(cdir.glob("*.json")):
+            c = _load_json(f)
+            if c and (c.get("verifier") or {}).get("passed"):
+                out.append(c)
+    out.sort(key=lambda c: (c.get("kind") != "era", -(c.get("congress") or 0),
+                            c.get("label") or "", c.get("party") or ""))
+    return out
+
+
+def _fingerprint(top_phrases, k=5) -> str:
+    items = "".join(
+        f'<li>{esc(p.get("phrase"))} <span class="faint">&middot; {esc(p.get("peak_members"))} members, '
+        f'first {esc(p.get("first_date"))}</span></li>' for p in (top_phrases or [])[:k])
+    return f"<ul>{items}</ul>" if items else '<p class="muted">—</p>'
+
+
+def archive_index_body(chapters) -> str:
+    eras = [c for c in chapters if c.get("kind") == "era"]
+    by_congress: dict = {}
+    for c in eras:
+        by_congress.setdefault(c.get("congress"), {})[c.get("party")] = c
+    parts = ["<h1>The Archive</h1>",
+             '<p class="subhead">Twenty-five years of what each party said, distilled one Congress at a '
+             'time. Every phrase count is computed by deterministic code from the raw record; the prose is '
+             'a language model held to the same citation rule as everything else — and only verifier-clean '
+             'chapters appear here.</p>',
+             "<h2>Era fingerprints</h2>"]
+    for cong in sorted(by_congress, reverse=True):
+        d, r = by_congress[cong].get("D"), by_congress[cong].get("R")
+        label = (d or r or {}).get("label", f"{cong}th Congress")
+        parts.append(f"<h3>{esc(label)}</h3>")
+        for party, ch in (("D", d), ("R", r)):
+            head = (f'<a href="{esc(ch["id"])}.html">{esc((ch.get("stats") or {}).get("statements"))} '
+                    f'statements &rarr;</a>' if ch else '<span class="muted">no verifier-clean chapter</span>')
+            parts.append(f'<p><span class="pill {party}">{party}</span> {head}</p>')
+            if ch:
+                parts.append(_fingerprint((ch.get("stats") or {}).get("top_phrases")))
+    months = [c for c in chapters if c.get("kind") == "month"]
+    if months:
+        links = " · ".join(f'<a href="{esc(c["id"])}.html">{esc(c.get("label"))} {esc(c.get("party"))}</a>'
+                           for c in months)
+        parts.append(f"<h2>Monthly chapters</h2><p class='subhead'>{len(months)} verifier-clean monthly "
+                     f"distillations.</p><p class='muted'><small>{links}</small></p>")
+    return "".join(parts)
+
+
+def chapter_page_body(ch) -> str:
+    stats = ch.get("stats") or {}
+    party = ch.get("party")
+    parts = ['<p class="muted"><a href="index.html">&larr; The Archive</a></p>',
+             f'<h1>{esc(ch.get("label"))} <span class="pill {esc(party)}">{esc(party)}</span></h1>']
+    for para in (ch.get("text") or "").split("\n"):
+        if para.strip():
+            parts.append(f"<p>{esc(para.strip())}</p>")
+    tps = stats.get("top_phrases") or []
+    if tps:
+        rows = "".join(
+            f"<tr><td>{esc(p.get('phrase'))}</td><td class='num'>{esc(p.get('peak_members'))}</td>"
+            f"<td>{esc(p.get('peak_day'))}</td><td>{esc(p.get('first_date'))}</td>"
+            f"<td>{esc(p.get('first_sayer'))}</td></tr>" for p in tps)
+        parts.append("<h2>Most synchronized phrases</h2><div class='scroll'><table><thead><tr><th>Phrase</th>"
+                     "<th class='num'>Peak members</th><th>Peak day</th><th>First recorded</th>"
+                     f"<th>First sayer</th></tr></thead><tbody>{rows}</tbody></table></div>")
+    parts.append(f'<p class="muted"><small>{esc(stats.get("statements"))} statements this era. Phrase figures '
+                 f'deterministic; prose generator {esc(ch.get("generator"))} ({esc(ch.get("prompt_version"))}); '
+                 "verifier: passed (zero uncited fragments).</small></p>")
+    return "".join(parts)
+
+
 def build_site():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
@@ -1390,6 +1466,22 @@ def build_site():
         encoding="utf-8",
     )
     written.append("posts.html")
+
+    # ---- The Archive (dark feature 1.1, docs/11) — renders ONLY when FEATURES["archive"] is on
+    # (build-dark, §0.2: a dark feature does not render publicly until its flag flips). §BUILD-PROGRAM 1.1.
+    if config.feature_on("archive"):
+        (OUT / "archive").mkdir(parents=True, exist_ok=True)
+        chapters = _load_chapters()
+        (OUT / "archive" / "index.html").write_text(
+            page("OnScript · The Archive", archive_index_body(chapters), depth=1,
+                 description="Twenty-five years of each party's language, distilled per era, with receipts."),
+            encoding="utf-8")
+        written.append("archive/index.html")
+        for ch in chapters:
+            (OUT / "archive" / f"{ch['id']}.html").write_text(
+                page(f"OnScript · {ch.get('label')} ({ch.get('party')})", chapter_page_body(ch), depth=1),
+                encoding="utf-8")
+            written.append(f"archive/{ch['id']}.html")
 
     return written
 
