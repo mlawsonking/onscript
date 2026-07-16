@@ -1,0 +1,32 @@
+{
+  "id": "S2.1",
+  "name": "The Voldemort Reversal",
+  "tier": "T1",
+  "verdict": "REVERSAL",
+  "date": "2026-07-15",
+  "claim": "We expected parties to stop naming the opposing president — a Voldemort effect. The archive says the opposite: across Obama, Trump, and Biden, the out-party names the president MORE, while the in-party is the one that reaches for euphemism (\"the administration,\" \"the White House\") for its own. Opposing-minus-own euphemism avoidance is negative for both parties. Association only; the measure is word choice in official press releases, not intent.",
+  "numbers": {
+    "metric": "opp-minus-own euphemism-avoidance = (euphemism share for the opposing president) minus (euphemism share for the party's own president), per party",
+    "euphemism_list_preregistered": ["the administration", "the white house", "this president"],
+    "unit": "share of president-references that are euphemistic (per-1k-statements basis)",
+    "median_party_A": -0.033,
+    "median_party_B": -0.058,
+    "direction": "negative for both parties (opposite of the pre-registered CONFIRM direction)",
+    "presidencies_with_both_party_data": ["Obama", "Trump", "Biden"],
+    "preregistered_confirm_threshold": "euphemism (avoidance) share >= 10pp higher for opposing than own president, BOTH parties, BOTH halves",
+    "substrate": "text_features.jsonl (675k statements)"
+  },
+  "confounds_tested": [
+    "coverage/symmetry -> only presidencies with both-party press-lane data used (Obama, Trump, Biden); Bush excluded (press lane ~100% D pre-2009, no symmetric R baseline)",
+    "both-parties gate -> the negative direction holds for BOTH party A and party B, not one side driving it",
+    "list pre-registration -> the euphemism set was fixed before the run (presidents.json), so the reversal is not a post-hoc list choice",
+    "name-vs-euphemism basis -> measured as rate per 1k statements to remove volume asymmetry between parties/years"
+  ],
+  "labels": ["correlation-not-cause", "reversal", "power-position", "symmetric-instrument", "pre-registered-list"],
+  "split_result": "Consistent across all three presidencies carrying both-party data (Obama, Trump, Biden) — a stable direction, not a single-presidency artifact. The pre-registered split (halves + each both-party presidency) fails in the CONFIRM direction and passes in the reversed direction.",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S2.1",
+  "chart_spec": "Diverging bar of opp-minus-own euphemism avoidance per party (both bars land below zero, A -0.033 / B -0.058). Companion small-multiples: for each presidency, own-president vs opposing-president euphemism share, showing the in-party bar sitting higher (more euphemism) in every case.",
+  "receipts_note": "Receipts pull from text_features.jsonl (675k statements): out-party statements naming the president by name (e.g. 'President Trump' / 'President Obama' tokens) vs in-party 'the administration' / 'the White House' euphemism usages, each expandable to member + date + URL at publish time.",
+  "republication_note": "Refuted-then-reversed: the pre-registered hypothesis (parties avoid naming the opposing president) is REFUTED, and the found direction (the out-party names the president more; the in-party euphemizes its own) is a reversal candidate. It must be re-pre-registered in the found direction and re-run before publishing.",
+  "neutrality_gate": null
+}

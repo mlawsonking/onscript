@@ -1,0 +1,28 @@
+{
+  "id": "S2.4",
+  "name": "Exclamation Inflation (Punctuation Archaeology)",
+  "tier": "T2",
+  "verdict": "DESCRIPTIVE",
+  "date": "2026-07-15",
+  "claim": "Official congressional press releases carry about 50% more exclamation points per statement than they did in 2013 (0.032 rising to 0.048 across 2021-2026), and the earliest emoji found anywhere in the analyzable window landed on 2013-10-16 -- a description of the record, not a claim about what drove it.",
+  "numbers": {
+    "window": "congresses 113-119 (2013-01-03 -> 2026); analyzable window only",
+    "metric": "exclamation points per statement, per year (unicode scan of text_features.jsonl)",
+    "excl_per_statement_2013": 0.032,
+    "excl_per_statement_2021_2026": 0.048,
+    "relative_rise": "~+50%",
+    "first_in_window_emoji_date": "2013-10-16",
+    "coverage_caveat": "pre-2013 corpus coverage is too thin to claim the true first emoji/exclamation; all firsts are 'earliest in the 2013-2026 analyzable window', stated on the card's face"
+  },
+  "confounds_tested": [
+    "true-first ambiguity -> NOT claimed: pre-2013 coverage too sparse, so the 2013-10-16 emoji is labeled 'earliest in-window', never 'first ever' (§consequence-1: pre-2013 retained only for descriptive artifacts, always with the coverage caveat)",
+    "symmetric trend claim -> NOT made: the +50% rate is a single-window aggregate description, not a two-party symmetric trend crossing 2013 backward"
+  ],
+  "labels": ["correlation-not-cause", "descriptive", "single-artifact", "coverage-caveat-on-face"],
+  "split_result": "n/a -- descriptive single-window artifact, not a symmetric trend (per S2.4 protocol: 'No floor -- the receipt is the finding'). The exclamation curve and the earliest-emoji receipt are both measured strictly inside the 2013-2026 analyzable window; no claim crosses 2013 backward.",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S2.4",
+  "chart_spec": "exclamation points per statement by year, 2013-2026 (single line), with the 0.032->0.048 endpoints annotated; inset/callout marking the 2013-10-16 earliest-in-window emoji as a dated receipt",
+  "receipts_note": "receipts = the actual press releases behind the artifact: the 2013-10-16 emoji-bearing statement (member + date + url) and a sample of high-exclamation statements from the 2021-2026 tail, pulled from the phrase/statement index at publish time",
+  "republication_note": "DESCRIPTIVE/reversal-candidate -- must be re-pre-registered in the found direction (rate rose ~50%; earliest-in-window emoji 2013-10-16) before publishing, per the parallel-session protocol.",
+  "neutrality_gate": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "S2.3",
+  "name": "What Losing Sounds Like (recent-era)",
+  "tier": "T1",
+  "verdict": "REVERSAL-RECENT",
+  "date": "2026-07-15",
+  "claim": "In 2021-2026, whichever party is out of power invokes 'the American people' more often and asks more rhetorical questions than the party in power - a signature of being in the minority, not of either party in particular. But the pattern is recent, not a law: in 2013-2020 the majority-holding Democrats actually asked more rhetorical questions than the minority, so it fails the both-eras test. What losing sounds like, on this corpus, is a feature of the current era rather than a fixed property of American political speech.",
+  "numbers": {
+    "markers": [
+      "'the American people' invocation rate (per 1k statements)",
+      "rhetorical-question rate (per 1k statements)",
+      "exclamation density"
+    ],
+    "measured_by": "majority/minority status (chambers-control.json), party-symmetric, per-1k",
+    "confirm_criterion": "out-of-power > in-power on >=2 of 3 markers, for BOTH parties, in BOTH era-halves (2013-2020 and 2021-2026)",
+    "pooled_result": "minority higher on 'the American people' + rhetorical questions, both parties -> looked CONFIRMED on the pooled window",
+    "half_A_2013_2020": "FAILS the power-direction: Democrats while in the MAJORITY asked MORE rhetorical questions than the minority (wrong sign for a losing-signature law)",
+    "half_B_2021_2026": "PASSES: minority invokes 'the American people' more and asks more rhetorical questions, both parties",
+    "both_halves_gate": "FAILED (passes only in the recent half)",
+    "pooled_confirms_reversed_by_split": "2nd pooled-CONFIRMED overturned by the §4.5 both-halves / power-position rule (after S1.10)",
+    "substrate": "text_features.jsonl (675k statements); directional rates, exact per-1k decimals to be locked at re-pre-registration"
+  },
+  "confounds_tested": [
+    "party identity vs power position -> §1.5 power-position check: in the recent half the signal attaches to minority STATUS and appears for both parties, not one party",
+    "era stability -> both-halves gate (2013-2020 vs 2021-2026): FAILS; the minority signature is present only in 2021-2026, and 2013-2020 runs the opposite way on rhetorical questions",
+    "pooled-window artifact -> the pooled CONFIRM was an average masking a sign flip across eras; era-splitting per §4.5 dissolved it"
+  ],
+  "labels": ["correlation-not-cause", "power-position", "recent-era-only", "reversal-candidate", "party-asymmetric"],
+  "split_result": "Pooled 2013-2026 looked CONFIRMED (minority higher on 2 of 3 markers, both parties). The mandatory era-split kills it: Half A (2013-2020) fails the power-direction on rhetorical questions - majority Democrats asked more - while Half B (2021-2026) passes. Real but recent-only, hence REVERSAL-RECENT rather than a stable law. Partially explains the S1.9 / S1.4 party asymmetry as a recent + power-linked effect rather than a durable party trait.",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S2.3",
+  "chart_spec": "Two panels (2013-2020, 2021-2026). In each, plot in-power vs out-of-power lines for the two surviving markers ('the American people' rate and rhetorical-question rate), per-1k, one line pair per party. Annotate the 2013-2020 majority-Democrat rhetorical-question anomaly (the sign that breaks the both-halves gate) and show that only the recent panel runs minority-higher for both parties.",
+  "receipts_note": "Receipts drawn from text_features.jsonl (675k statements): specific 2021-2026 minority-party statements invoking 'the American people' and containing rhetorical questions, each expandable to member + date + url; pull at publish time. Include the 2013-2020 majority-Democrat rhetorical-question examples as the counter-evidence that defeats the 'law' framing.",
+  "republication_note": "REVERSAL/RECENT-only: must be re-pre-registered in the found direction - 'the minority linguistic signature ('the American people' + rhetorical questions) is a recent-era (2021-2026) effect that does not hold in 2013-2020' - with exact per-1k figures locked before publishing. Cannot be published as a general 'what losing sounds like' law.",
+  "neutrality_gate": "PARTY-ASYMMETRIC: before publish, reframe strictly in power-position terms (majority vs minority / in-power vs out-of-power), never as a party trait; the headline must present it as recent + power-linked and must not assert either party is 'worse'. Requires neutrality review, including surfacing the 2013-2020 majority-Democrat counter-case so the finding cannot be read as one-sided."
+}

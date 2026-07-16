@@ -1,0 +1,53 @@
+{
+  "id": "GREAT-INTENSIFICATION",
+  "name": "The Great Intensification",
+  "tier": "T1",
+  "verdict": "REVERSAL-COMPOSITE",
+  "date": "2026-07-15",
+  "claim": "Four independent measures of congressional message coordination all speed up through the 2010s and then stop around 2019-2020: the time for a new phrase to spread across members falls from ~34 days (2013) to ~3-4 days and holds there; a talking point's active life shrinks from ~92 days to ~12-15 and holds; single-day cross-member synchronization climbs to a 2017 peak and then falls back below its 2013 level; and pre-election message tightening shows up only in the most recent cycles (2022, 2024). The four series describe a machine that accelerated until roughly 2019-2020 and then plateaued -- a coincident pattern across metrics, not a demonstrated cause.",
+  "numbers": {
+    "burst_ignition_width_S1.1prime": {
+      "2013_days": 34,
+      "2019_2020_days": "3-4",
+      "shape": "steep decline then plateau",
+      "control": "event-detection on a merged cross-era series (defeats the per-Congress boundary/cap/recurrence confound A2 that made raw S1.1 an ARTIFACT)"
+    },
+    "flare_duration_S1.3prime": {
+      "2013_days": 92,
+      "2019_2020_days": "12-15",
+      "shape": "steep decline then plateau",
+      "control": "survival/censoring on the merged series (defeats the same shard-edge right-censoring that made raw S1.3 an ARTIFACT)"
+    },
+    "single_day_sync_S1.2": {
+      "2013_index": 0.23,
+      "2017_peak_index": 0.35,
+      "2026_index": 0.17,
+      "shape": "peaked 2017 then declined below 2013",
+      "dir_A": 1,
+      "dir_B": -1,
+      "party_ratio": 0.73,
+      "control": "coverage-normalized by active member count; boundary-safe (single-day peaks)"
+    },
+    "pre_election_discipline_S1.6": {
+      "snap_present_cycles": ["2022", "2024"],
+      "snap_absent_cycles": ["2016", "2020-R"],
+      "both_party_cell_tally_A_R": "2/4",
+      "gate": "fails the strict all-cells-majority gate across 2013-2026 by one cell; the effect is real and consistent only in recent cycles",
+      "note": "2026 uncomputable (election is post-data-cutoff)"
+    }
+  },
+  "confounds_tested": [
+    "per-Congress boundary / metadata-cap / recurrence confound (amendment A2) -> defeated by rebuilding S1.1'/S1.3' as event-detection on a merged cross-era series rather than per-shard first_seen->peak; a guard prevents the naive metric re-emitting CONFIRMED",
+    "shard-edge right-censoring of phrase lifespan -> defeated by survival/censoring treatment on the merged series (S1.3')",
+    "coverage / active-member growth over time -> S1.2 normalized by active member count; single-day peaks are boundary-safe",
+    "party asymmetry -> S1.2 both parties peak-and-fall (dir_A +1, dir_B -1); S1.6 snap present in BOTH parties in 2022/2024 -- the intensification-then-plateau is a symmetric machine property, not one party's behavior",
+    "each component independently density/boundary-controlled; the coherence across four differently-constructed metrics is the robustness, not any single series"
+  ],
+  "labels": ["correlation-not-cause", "reversal-composite", "pre-registration-required", "boundary-controlled", "graveyard-composed"],
+  "split_result": "Not a single split-half test -- a composite of four independently-run ledger results (S1.1', S1.3', S1.2, S1.6), each with its own confound control. Robustness = agreement across four differently-constructed metrics pointing at the same ~2019-2020 ceiling. Internal party-split holds: S1.2 dir_A +1 / dir_B -1 (both parties show the peak-and-fall), S1.6 snap present in both parties in the recent cycles.",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S1.1/S1.2/S1.3/S1.6 (composite)",
+  "chart_spec": "Four stacked small-multiple panels sharing an x-axis 2013->2026: (1) ignition width in days 34->~4; (2) flare duration in days 92->~13; (3) single-day sync index 0.23 -> 0.35 (2017 peak) -> 0.17; (4) pre-election snap present/absent by cycle (2016 absent, 2020-R absent, 2022 present, 2024 present). Add a shared shaded vertical band at 2019-2020 marking the plateau/ceiling that all four series hit.",
+  "receipts_note": "Every component traces to the deterministic substrate: S1.1'/S1.3' from the merged cross-era phrase-genealogy series (3.09M-phrase index + statement-meta); S1.2 from single-day cross-member synchronization on the member-augmented index; S1.6 from the pre-election-window ignition tally. At publish time, pull one concrete example phrase per era (member + date + url) from the phrase index to anchor each panel.",
+  "republication_note": "reversal candidates need re-pre-registration in the found direction before publishing. Each of the four components was recorded as a REFUTED/ARTIFACT against a naive monotone-rise guess; the 'intensified-then-plateaued-~2019-2020' story must be pre-registered as an inversion (all four series specified in advance) before it is published, per the search program's backtest-before-predict / reversal-candidate rule.",
+  "neutrality_gate": null
+}

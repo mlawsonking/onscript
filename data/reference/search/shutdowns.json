@@ -1,0 +1,14 @@
+{
+  "_source": "US federal government funding-gap shutdowns, verified via Wikipedia 'Government shutdowns in the United States' + '2025 United States federal government shutdown' + '2026 United States federal government shutdowns', cross-checked with NPR (2025-11-12), CNN, GovTrack; fetched 2026-07-16. Durations are full calendar days of the funding gap. window_days=+/-14 per S4.2 protocol.",
+  "_fetch_date": "2026-07-16",
+  "window_days": 14,
+  "shutdowns": [
+    {"id": "2013",        "start": "2013-10-01", "end": "2013-10-16", "days": 16, "half": "A", "congresses": [113],      "trigger": "ACA/CR (Obama era; R House vs D Senate)", "note": "full shutdown"},
+    {"id": "2018-jan",    "start": "2018-01-20", "end": "2018-01-23", "days": 3,  "half": "A", "congresses": [115],      "trigger": "DACA/CR (Trump era; #SchumerShutdown framing)", "note": "full shutdown"},
+    {"id": "2018-feb",    "start": "2018-02-09", "end": "2018-02-09", "days": 1,  "half": "A", "congresses": [115],      "trigger": "9-hour overnight funding gap", "note": "brief; window overlaps 2018-jan -> merged in analysis"},
+    {"id": "2018-19",     "start": "2018-12-22", "end": "2019-01-25", "days": 35, "half": "A", "congresses": [115, 116], "trigger": "border wall (Trump era); longest at the time", "note": "full shutdown; spans 115/116 congress boundary"},
+    {"id": "2025",        "start": "2025-10-01", "end": "2025-11-12", "days": 43, "half": "B", "congresses": [119],      "trigger": "FY2026 CR; ACA subsidies (Trump era; Senate D blocked CR)", "note": "full shutdown; longest in US history"},
+    {"id": "2026-jan",    "start": "2026-01-31", "end": "2026-02-03", "days": 4,  "half": "B", "congresses": [119],      "trigger": "immigration enforcement dispute", "note": "affected ~half of federal departments"},
+    {"id": "2026-feb-dhs","start": "2026-02-14", "end": "2026-04-30", "days": 76, "half": "B", "congresses": [119],      "trigger": "DHS-only stalemate", "note": "partial (DHS agencies only); window overlaps 2026-jan -> merged in analysis"}
+  ]
+}

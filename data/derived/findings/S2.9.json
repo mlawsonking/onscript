@@ -1,0 +1,30 @@
+{
+  "id": "S2.9",
+  "name": "The Boogeyman, Not Voldemort",
+  "tier": "T1",
+  "verdict": "CONFIRMED",
+  "date": "2026-07-16",
+  "claim": "The folk theory that parties stop naming an opposing president is backwards: the out-party names the sitting president about twice as often as his own party does — every year, both parties, 2013-2026 — and it tracks who holds the White House, not who holds Congress.",
+  "numbers": {
+    "window": "2013-2026 (congresses 113-119)",
+    "metric": "sitting-president name-token rate per 1k words, out-party vs in-party",
+    "out_over_in_years": "14/14",
+    "half_A_out_over_in": "8/8 (ratios 1.09-2.61)",
+    "half_B_out_over_in": "6/6 (ratios 1.58-3.09)",
+    "pooled_ratio": "~2.0x",
+    "power_position": "resolved to WHITE HOUSE control: 2013-14 Republicans held the House majority yet named Obama ~2.6x as the WH out-party"
+  },
+  "confounds_tested": [
+    "coverage -> rate per 1k words",
+    "both-halves gate -> PASSES (8/8 and 6/6), unlike S2.3/S1.10 which failed it",
+    "party-asymmetry -> resolved: it is WH-control (out-party) not chamber-minority; symmetric across both parties in both directions",
+    "reference dates -> president terms verified; chambers-control 118 potus corrected D (Biden)"
+  ],
+  "labels": ["correlation-not-cause", "mention-not-hostility", "symmetric-instrument", "power-position-resolved"],
+  "split_result": "holds in both halves and under both parties in each WH role",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S2.9",
+  "chart_spec": "14 years x2 lines (out-party vs in-party president-name rate), or the out/in ratio bar per year annotated with which president",
+  "receipts_note": "receipts = statements naming the sitting president, member+date+url; abundant",
+  "republication_note": "this is a CONFIRMED directional finding (refutes the pre-registered avoidance hypothesis); publishable as-is with the mention!=hostility label",
+  "neutrality_gate": "null (symmetric: the effect holds identically for whichever party is out of the White House; the reversal, not a party, is the story)"
+}

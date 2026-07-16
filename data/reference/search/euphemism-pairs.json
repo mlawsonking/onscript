@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "id": "euphemism-pairs",
+    "purpose": "Hand-curated set of well-known paired-referent framing terms in U.S. political discourse, for S2.11 Euphemism Genealogies (docs/12 §S2). Each pair names two competing surface labels for (roughly) the same policy referent; the conventional partisan lean of each label is recorded as metadata only and is NOT used in any gate. The measurement reports the actually-observed per-party usage split per label over congress-press 2013-2026. Descriptive: the artifact is the set of per-pair splits and any crossover (label used more by the party NOT conventionally associated with it).",
+    "curation": "Hand-curated from widely-documented, low-controversy public political-language pairs. These are famous framing contrasts, not novel claims. Surface forms are matched case-insensitively as substrings on lowercased statement text (so a form matches its own plural, e.g. 'estate tax' matches 'estate taxes').",
+    "_source": [
+      "Frank Luntz's messaging playbook is the documented provenance for several right-side labels: 'death tax' (over 'estate/inheritance tax'), 'climate change' (recommended over 'global warming' as 'less frightening' in his 2002-era environment memo, which he later publicly recanted in 2019 Senate testimony), and 'tax relief' (over 'tax cut'). Sources: https://en.wikipedia.org/wiki/Frank_Luntz ; https://grist.org/article/the-gops-most-famous-messaging-strategist-calls-for-climate-action/ ; https://scienceblogs.com/framing-science/2007/05/17/the-luntz-memo-and-the-framing ; https://www.salon.com/2007/01/23/luntz_4/",
+      "'Modern sporting rifle' is the firearms-industry (NSSF) trade term for AR-15-pattern rifles otherwise called 'assault weapons' by gun-restriction advocates. Source: https://www.nssf.org/msr/ ; https://congressionalsportsmen.org/policy/modern-sporting-rifle/",
+      "'Affordable Care Act' vs 'Obamacare', 'undocumented immigrant' vs 'illegal alien/immigrant', 'pro-choice' vs 'pro-life', 'gun safety' vs 'gun control', 'revenue' vs 'taxes', 'earned benefits' vs 'entitlements', 'public option' vs 'government-run healthcare' are all long-standing, widely-reported competing frames in mainstream U.S. political coverage; treated here as well-established common knowledge.",
+      "Verified 2026-07-16 via web search."
+    ],
+    "lean_legend": "lean = conventional partisan association of the label (D, R, or neutral). Metadata only; the finding is whether the MEASURED split matches or crosses this."
+  },
+  "pairs": [
+    {
+      "id": "estate_tax", "topic": "estate/inheritance taxation",
+      "left":  {"label": "estate tax",  "forms": ["estate tax"],  "lean": "neutral/D"},
+      "right": {"label": "death tax",   "forms": ["death tax"],   "lean": "R"},
+      "note": "Luntz-popularized 'death tax'. 'estate tax' substring also catches 'real estate tax' (minor noise)."
+    },
+    {
+      "id": "immigration", "topic": "unauthorized immigrants",
+      "left":  {"label": "undocumented immigrant", "forms": ["undocumented immigrant"], "lean": "D"},
+      "right": {"label": "illegal alien/immigrant", "forms": ["illegal alien", "illegal immigrant"], "lean": "R"},
+      "note": "Right label sums two surface variants."
+    },
+    {
+      "id": "abortion", "topic": "abortion",
+      "left":  {"label": "pro-choice", "forms": ["pro-choice", "pro choice"], "lean": "D"},
+      "right": {"label": "pro-life",   "forms": ["pro-life", "pro life"],     "lean": "R"},
+      "note": "Competing self-labels, not euphemisms for an identical referent; classic framing pair."
+    },
+    {
+      "id": "climate", "topic": "climate/environment",
+      "left":  {"label": "global warming", "forms": ["global warming"], "lean": "D-origin"},
+      "right": {"label": "climate change", "forms": ["climate change"], "lean": "R-recommended (Luntz)"},
+      "note": "Counterintuitive provenance: 'climate change' was the Luntz-recommended GOP substitute for the older 'global warming'; it has since become the dominant neutral term used across the spectrum. Crossover expected."
+    },
+    {
+      "id": "aca", "topic": "Affordable Care Act",
+      "left":  {"label": "Affordable Care Act", "forms": ["affordable care act"], "lean": "D"},
+      "right": {"label": "Obamacare",           "forms": ["obamacare"],           "lean": "R-origin"},
+      "note": "'Obamacare' began as an R pejorative, later reclaimed by Democrats. 'ACA' initialism excluded (too broad as substring)."
+    },
+    {
+      "id": "guns_control", "topic": "firearms regulation",
+      "left":  {"label": "gun safety",  "forms": ["gun safety"],  "lean": "D"},
+      "right": {"label": "gun control", "forms": ["gun control"], "lean": "R-framing/older-neutral"},
+      "note": "'gun safety' is the newer D reframe of what opponents/older usage call 'gun control'."
+    },
+    {
+      "id": "taxes_revenue", "topic": "raising taxes",
+      "left":  {"label": "revenue", "forms": ["revenue"], "lean": "D"},
+      "right": {"label": "taxes",   "forms": ["taxes"],   "lean": "neutral"},
+      "note": "HIGH NOISE: 'revenue' appears in many non-tax budget/business contexts (incl. 'Internal Revenue Service'); 'taxes' is generic. Reported with a noise flag; interpret directionally only."
+    },
+    {
+      "id": "entitlements", "topic": "Social Security / Medicare",
+      "left":  {"label": "earned benefits", "forms": ["earned benefit"], "lean": "D"},
+      "right": {"label": "entitlements",    "forms": ["entitlement"],    "lean": "R-framing"},
+      "note": "'earned benefits' is the D reframe of budget-speak 'entitlements'. 'entitlement' substring also catches 'sense of entitlement' (minor noise)."
+    },
+    {
+      "id": "public_option", "topic": "public health-insurance option",
+      "left":  {"label": "public option",           "forms": ["public option"],                                            "lean": "D"},
+      "right": {"label": "government-run healthcare", "forms": ["government-run health", "government run health", "government takeover of health"], "lean": "R"},
+      "note": "Low volume expected."
+    },
+    {
+      "id": "assault_weapon", "topic": "AR-15-pattern rifles",
+      "left":  {"label": "assault weapon",        "forms": ["assault weapon"],        "lean": "D"},
+      "right": {"label": "modern sporting rifle", "forms": ["modern sporting rifle"], "lean": "R/industry (NSSF)"},
+      "note": "'modern sporting rifle' is the firearms-industry trade term; very low volume expected in press releases."
+    },
+    {
+      "id": "inheritance_tax", "topic": "estate/inheritance taxation (variant)",
+      "left":  {"label": "inheritance tax", "forms": ["inheritance tax"], "lean": "neutral"},
+      "right": {"label": "death tax",       "forms": ["death tax"],       "lean": "R"},
+      "note": "Right label ('death tax') is shared with the estate_tax pair by design of the task list; redundant but reported as its own pair."
+    },
+    {
+      "id": "tax_relief", "topic": "cutting taxes",
+      "left":  {"label": "tax cut",    "forms": ["tax cut"],    "lean": "neutral/descriptive"},
+      "right": {"label": "tax relief", "forms": ["tax relief"], "lean": "R (Luntz)"},
+      "note": "Here the framed euphemism ('tax relief') is the RIGHT label and the plain descriptive term ('tax cut') is the LEFT."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "S1.10",
+  "name": "Bipartisanship Has a (Calendar) Season",
+  "tier": "T2",
+  "verdict": "REVERSAL",
+  "date": "2026-07-15",
+  "claim": "Congressional bipartisan-signaling language (\"bipartisan\", \"across the aisle\") dips every August–October and rebounds every November–January — but it troughs just as reliably in non-election years (7 of 7) as in election years (6 of 6), so the rhythm tracks the fall recess-and-campaign calendar, not the ballot. It's a season, not a strategy.",
+  "numbers": {
+    "phrases_tracked": ["bipartisan", "across the aisle"],
+    "trough_window": "Aug–Oct",
+    "rebound_window": "Nov–Jan",
+    "election_cycle_troughs": "6/6 election cycles show the Aug–Oct trough / Nov–Jan rebound",
+    "placebo_troughs": "7/7 non-election (odd) years show the same trough in the same window",
+    "original_confirm_gate": "trough inside 90 days of the election, rebound after, in both odd/even splits",
+    "what_overturned_it": "placebo (fake Nov-4 elections in odd/non-election years) troughs 7/7, matching the election-year 6/6"
+  },
+  "confounds_tested": [
+    "electoral timing vs seasonal calendar -> PLACEBO KILL: fake Nov-4 elections in odd/non-election years, same Aug-Oct window, trough 7/7 -> the 6/6 election-year troughs are fully explained by season, not the ballot",
+    "recess + campaign-season fall vs winter-legislating -> the surviving mechanism (seasonal), not electoral strategy"
+  ],
+  "labels": ["correlation-not-cause", "reversal-candidate", "seasonal-not-electoral", "placebo-controlled"],
+  "split_result": "election cycles: trough in 6/6; placebo (odd/non-election years, same windows): trough in 7/7. The placebo matching the treatment collapses the electoral reading and leaves the seasonal one.",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S1.10",
+  "chart_spec": "weekly bipartisan-signal rate over the calendar year, election-year cycles overlaid on non-election (placebo) years; both curves show the same Aug–Oct trough and Nov–Jan rebound. Annotate 6/6 (election) vs 7/7 (placebo) trough tallies.",
+  "receipts_note": "receipts = specific member statements containing \"bipartisan\"/\"across the aisle\" in trough (Aug–Oct) vs rebound (Nov–Jan) months from the phrase/statement index, expandable to member + date + url; pull at publish time",
+  "republication_note": "REVERSAL: the original electoral hypothesis is dead; the finding must be re-pre-registered in the found direction (bipartisan language has an autumn-vs-winter seasonal rhythm, recess/campaign vs winter-legislating) before publishing.",
+  "neutrality_gate": null,
+  "graveyard_context": "The marquee integrity catch of Wave S1: a clean 6/6 CONFIRM ('bipartisanship flees elections') was caught and reversed by the built-in placebo (§4.5 adversarial pass) before it shipped. The single best demonstration of why the discipline exists."
+}

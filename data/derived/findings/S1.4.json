@@ -1,0 +1,32 @@
+{
+  "id": "S1.4",
+  "name": "The Copy-Paste Asymmetry",
+  "tier": "T2",
+  "verdict": "REVERSAL-ASYMMETRIC",
+  "date": "2026-07-15",
+  "claim": "Once you strip out the corpus-density effect that sank the first cut, the share of a party's press releases that are near-verbatim copies of a colleague's climbs steadily for Democrats across the whole record (roughly 6% to 12% of statements) and survives the density control; for Republicans the same share rises and then falls. The Democratic climb is concentrated in the 2023-2025 House-minority years, so the pattern tracks a party's position in power at least as well as its label - a correlation, not a verdict on either party's message discipline.",
+  "numbers": {
+    "window": "2013-2025, per party per year",
+    "metric": "share of a party's statements that fall inside a near-identical copy-paste cluster (statements-in-groups share), density-controlled / matched detector",
+    "D_copypaste_share_raw": "~6% -> ~12% of statements (early -> late)",
+    "D_direction_both_halves": "+1 / +1 (rises in each split-half)",
+    "D_survives_density_control": "yes (matched detector)",
+    "R_direction": "rises then falls (inverted-U; both-halves disagree)",
+    "D_rise_concentration": "2023-2025 (House-minority years)",
+    "pre_registered_test": "share doubles A->B with BOTH parties' direction agreeing (symmetric CONFIRM)",
+    "pre_registered_outcome": "FAILS the symmetric criterion (R non-monotone); a Democrat-only matched rise remains -> asymmetric result, not the predicted symmetric doubling",
+    "superseded_proxy": "the original S1.4 group-rate (19.7 -> 30.1 per 1,000 statements, ratio 1.53) was density-confounded (Congress 116: 41.6 @ ~160k stmts vs Congress 117: 14.2 @ ~37k) and rendered NO verdict; this card is the density-controlled rebuild"
+  },
+  "confounds_tested": [
+    "corpus density (the original kill) -> controlled: statements-in-groups share with a matched/density-controlled detector; the Democratic rise survives, the proxy group-rate does not",
+    "collapse-detector era-sensitivity (the pre-registered kill-fixture risk) -> addressed by the density control so detector sensitivity is not itself the trend",
+    "power-position (majority vs minority) -> NOT resolved: the Democratic rise concentrates in the 2023-2025 House-minority years, so majority/minority status is a live alternative explanation to party -> flagged, and the reason for the neutrality gate"
+  ],
+  "labels": ["correlation-not-cause", "party-asymmetric", "power-position-candidate", "density-controlled", "reversal-candidate", "neutrality-gated"],
+  "split_result": "Democrats: direction is +1 in both split-halves and survives the matched density control. Republicans: direction disagrees across the arc (rises then falls). Split-half agreement holds for D, fails for R - that asymmetry IS the finding, and it fails the original symmetric-doubling pre-registration.",
+  "protocol_ref": "docs/12-SEARCH-PROGRAM.md S1.4",
+  "chart_spec": "Per-party per-year copy-paste (statements-in-groups) share, 2013-2025, two density-controlled lines D and R; annotate the 2023-2025 House-minority band on the D line; overlay the raw density-confounded proxy as a greyed reference line to show the control at work.",
+  "receipts_note": "Receipts = the actual near-identical statement clusters emitted by the joint/near-identical collapse machinery (normalize layer): each cluster is a set of >=2 members' verbatim-matching releases with member + date + url per member; pull representative clusters per year at publish time.",
+  "republication_note": "REVERSAL/ASYMMETRIC candidate: the original S1.4 was pre-registered for a symmetric A->B doubling. The found result (a Democrat-only, density-surviving, power-position-linked rise) must be re-pre-registered in the found direction BEFORE publishing - you cannot claim the asymmetric/power-position pattern after seeing it in the same data that suggested it.",
+  "neutrality_gate": "REQUIRED (party-asymmetric): reframe around power position (majority vs minority), not party identity, and route through neutrality review before any publication. The claim must not assert that either party is 'worse' or less disciplined; the House-minority concentration means the honest headline is about a structural position, not a partisan trait."
+}

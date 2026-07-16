@@ -1,0 +1,55 @@
+{
+  "_source": "Decision dates verified against primary/authoritative public record (supremecourt.gov slip-opinion PDFs where cited, else Justia U.S. Reports / Wikipedia / Ballotpedia), WebSearch 2026-07-16. Each PDF filename encodes the decision date. 'prevailing' codes the party whose litigating/policy position the ruling favored (public-record coding, used only for the power/valence reframe, not the primary framing metric). '_framing_lexicon' is pre-registered here BEFORE measurement (symmetric, applied identically to both parties). 'anchors' are stance-neutral subject/case-name terms selecting responding statements, applied identically to both parties.",
+  "_fetch_date": "2026-07-16",
+  "_window_days": 7,
+  "_verification_urls": {
+    "shelby": "https://en.wikipedia.org/wiki/Shelby_County_v._Holder",
+    "windsor": "https://www.law.cornell.edu/supremecourt/text/12-307",
+    "hobby_lobby": "https://supreme.justia.com/cases/federal/us/573/13-354/case.pdf (06/30/2014)",
+    "king_burwell": "https://supreme.justia.com/cases/federal/us/576/473/",
+    "obergefell": "https://www.law.cornell.edu/supremecourt/text/14-556",
+    "whole_womans_health": "https://www.oyez.org/cases/2015/15-274",
+    "trump_hawaii": "https://www.supremecourt.gov/opinions/17pdf/17-965_h315.pdf (06/26/2018)",
+    "janus": "https://www.supremecourt.gov/opinions/17pdf/16-1466_2b3j.pdf (06/27/2018)",
+    "bostock": "https://supreme.justia.com/cases/federal/us/590/17-1618/ (06/15/2020)",
+    "dhs_regents": "https://www.supremecourt.gov/opinions/19pdf/18-587_5ifl.pdf (06/18/2020)",
+    "bruen": "https://www.supremecourt.gov/opinions/21pdf/20-843_7j80.pdf (06/23/2022)",
+    "dobbs": "https://supreme.justia.com/cases/federal/us/597/19-1392/ (06/24/2022)",
+    "wv_epa": "https://www.supremecourt.gov/opinions/21pdf/20-1530_n758.pdf (06/30/2022)",
+    "sffa": "https://www.supremecourt.gov/opinions/22pdf/20-1199_hgdj.pdf (06/29/2023)",
+    "creative_303": "https://www.supremecourt.gov/opinions/22pdf/21-476_c185.pdf (06/30/2023)",
+    "biden_nebraska": "https://en.wikipedia.org/wiki/Biden_v._Nebraska (06/30/2023)",
+    "trump_anderson": "https://www.supremecourt.gov/opinions/23pdf/23-719_19m2.pdf (03/04/2024)",
+    "loper_bright": "https://www.law.cornell.edu/supremecourt/text/22-451 (06/28/2024)",
+    "trump_us_immunity": "https://www.supremecourt.gov/opinions/23pdf/23-939_e2pg.pdf (07/01/2024)",
+    "birthright": "https://www.scotusblog.com/2026/06/supreme-court-strikes-down-trumps-order-ending-birthright-citizenship/ ; https://www.npr.org/2026/06/30/nx-s1-5839358/ (06/30/2026; merits Trump v. Barbara)"
+  },
+  "_framing_lexicon": {
+    "celebration": ["applaud", "victory", "landmark", "historic", "welcome the", "praise", "celebrate", "great day", "thrilled", "long overdue", "win for", "victory for", "pleased", "common sense", "commonsense"],
+    "condemnation": ["devastating", "dangerous", "extreme", "shameful", "outrage", "disgrace", "attack on", "rip away", "ripped away", "strip away", "stripped away", "gut", "radical", "catastrophic", "appalled", "disappointed", "alarming", "reckless", "turns back the clock", "rolls back", "rolled back", "undermine", "assault on", "dark day"],
+    "court_ref": ["supreme court", "scotus", "the court", "the justices", "high court", "the ruling", "the decision"]
+  },
+  "cases": [
+    {"id": "shelby",              "name": "Shelby County v. Holder",                 "date": "2013-06-25", "half": "A", "congress": 113, "prevailing": "R", "topic": "voting rights (VRA preclearance struck)",         "anchors": ["shelby", "voting rights act", "preclearance", "section 5 of the voting", "section 4 of the voting"]},
+    {"id": "windsor",             "name": "United States v. Windsor",                "date": "2013-06-26", "half": "A", "congress": 113, "prevailing": "D", "topic": "DOMA struck (same-sex marriage)",              "anchors": ["windsor", "defense of marriage act", "doma", "same-sex marriage", "same sex marriage", "marriage equality"]},
+    {"id": "hobby_lobby",         "name": "Burwell v. Hobby Lobby",                  "date": "2014-06-30", "half": "A", "congress": 113, "prevailing": "R", "topic": "contraception mandate (religious liberty)",   "anchors": ["hobby lobby", "contraception mandate", "contraceptive mandate", "religious freedom restoration", "birth control coverage"]},
+    {"id": "king_burwell",        "name": "King v. Burwell",                         "date": "2015-06-25", "half": "A", "congress": 114, "prevailing": "D", "topic": "ACA subsidies upheld",                       "anchors": ["king v. burwell", "king v burwell", "health care subsidies", "healthcare subsidies", "affordable care act", "obamacare", "tax credits"]},
+    {"id": "obergefell",          "name": "Obergefell v. Hodges",                    "date": "2015-06-26", "half": "A", "congress": 114, "prevailing": "D", "topic": "same-sex marriage nationwide",              "anchors": ["obergefell", "marriage equality", "same-sex marriage", "same sex marriage", "right to marry", "freedom to marry"]},
+    {"id": "whole_womans_health", "name": "Whole Woman's Health v. Hellerstedt",     "date": "2016-06-27", "half": "A", "congress": 114, "prevailing": "D", "topic": "TX abortion restrictions struck",          "anchors": ["whole woman's health", "hellerstedt", "hb2", "abortion clinic", "admitting privileges", "texas abortion", "trap law"]},
+    {"id": "trump_hawaii",        "name": "Trump v. Hawaii",                         "date": "2018-06-26", "half": "A", "congress": 115, "prevailing": "R", "topic": "travel ban upheld",                         "anchors": ["travel ban", "muslim ban", "trump v. hawaii", "proclamation 9645", "entry ban"]},
+    {"id": "janus",               "name": "Janus v. AFSCME",                         "date": "2018-06-27", "half": "A", "congress": 115, "prevailing": "R", "topic": "public-sector agency fees struck",         "anchors": ["janus", "agency fees", "afscme", "public-sector union", "public sector union", "fair share fees", "union dues", "right to work"]},
+    {"id": "bostock",             "name": "Bostock v. Clayton County",               "date": "2020-06-15", "half": "A", "congress": 116, "prevailing": "D", "topic": "LGBT employment protection",                "anchors": ["bostock", "clayton county", "sexual orientation and gender identity", "lgbt employ", "title vii", "gay and transgender", "workplace discrimination"]},
+    {"id": "dhs_regents",         "name": "DHS v. Regents (DACA)",                   "date": "2020-06-18", "half": "A", "congress": 116, "prevailing": "D", "topic": "DACA rescission blocked",                   "anchors": ["daca", "dreamers", "deferred action", "regents"]},
+
+    {"id": "bruen",               "name": "NYSRPA v. Bruen",                         "date": "2022-06-23", "half": "B", "congress": 117, "prevailing": "R", "topic": "concealed-carry right expanded",           "anchors": ["bruen", "concealed carry", "conceal carry", "right to bear arms", "second amendment", "nysrpa"]},
+    {"id": "dobbs",               "name": "Dobbs v. Jackson",                        "date": "2022-06-24", "half": "B", "congress": 117, "prevailing": "R", "topic": "Roe overturned",                            "anchors": ["dobbs", "roe v. wade", "roe v wade", "overturn roe", "roe", "abortion"]},
+    {"id": "wv_epa",              "name": "West Virginia v. EPA",                    "date": "2022-06-30", "half": "B", "congress": 117, "prevailing": "R", "topic": "EPA authority limited",                     "anchors": ["west virginia v. epa", "clean power plan", "epa authority", "greenhouse gas", "major questions", "power plant"]},
+    {"id": "sffa",                "name": "Students for Fair Admissions v. Harvard", "date": "2023-06-29", "half": "B", "congress": 118, "prevailing": "R", "topic": "affirmative action struck",                 "anchors": ["affirmative action", "students for fair admissions", "race-conscious admissions", "race conscious admissions", "college admissions"]},
+    {"id": "creative_303",        "name": "303 Creative v. Elenis",                  "date": "2023-06-30", "half": "B", "congress": 118, "prevailing": "R", "topic": "compelled-speech exemption",               "anchors": ["303 creative", "web designer", "compelled speech", "same-sex wedding", "public accommodation"]},
+    {"id": "biden_nebraska",      "name": "Biden v. Nebraska",                       "date": "2023-06-30", "half": "B", "congress": 118, "prevailing": "R", "topic": "student-loan forgiveness struck",          "anchors": ["student loan", "student debt", "loan forgiveness", "debt relief", "biden v. nebraska", "loan cancellation"]},
+    {"id": "trump_anderson",      "name": "Trump v. Anderson",                       "date": "2024-03-04", "half": "B", "congress": 118, "prevailing": "R", "topic": "14th Amdt ballot eligibility",             "anchors": ["fourteenth amendment", "14th amendment", "colorado ballot", "section 3", "disqualif", "insurrection clause", "trump v. anderson"]},
+    {"id": "loper_bright",        "name": "Loper Bright v. Raimondo",                "date": "2024-06-28", "half": "B", "congress": 118, "prevailing": "R", "topic": "Chevron deference overturned",             "anchors": ["chevron", "loper bright", "administrative state", "agency deference", "chevron deference"]},
+    {"id": "trump_us_immunity",   "name": "Trump v. United States",                  "date": "2024-07-01", "half": "B", "congress": 118, "prevailing": "R", "topic": "presidential immunity",                    "anchors": ["presidential immunity", "trump v. united states", "official acts", "absolute immunity", "immune from prosecution"]},
+    {"id": "birthright",          "name": "Birthright citizenship (Trump v. Barbara)","date": "2026-06-30", "half": "B", "congress": 119, "prevailing": "D", "topic": "birthright citizenship upheld",             "anchors": ["birthright citizenship", "birthright", "citizenship clause", "born in the united states", "fourteenth amendment", "14th amendment"]}
+  ]
+}

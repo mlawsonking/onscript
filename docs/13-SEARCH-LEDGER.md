@@ -8,7 +8,11 @@
 
 | tested | confirmed | refuted | underpowered | artifact | blocked | descriptive |
 |---|---|---|---|---|---|---|
-| 22 | **1** | 16 | 0 | 4 | 0 | 1 |
+| 26 | **2** | 16 | 0 | 4 | 0 | 4 |
+
+**Second CONFIRMED: S2.9 (The Boogeyman) — the out-party names the sitting president ~2× more, 14/14
+years, both halves, self-verified (Opus re-ran it, not on the subagent's word).** Finding pipeline is
+now populated: 8 drip-ready cards in `data/derived/findings/` (2 confirmed + 6 reversal/descriptive).
 
 **Wave S1 complete** (1 CONFIRMED — S1.9; + 2 redefinitions; S1.12 blocked). **Wave S2 7/12 run**
 (0 confirmed, 6 refuted, 1 descriptive; 3 reversal candidates banked). The confirmation rate is low
@@ -102,8 +106,12 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 | S2.3 | What Losing Sounds Like | **REFUTED** (a CONFIRMED overturned by both-halves) | pooled: minority higher on "the American people" + rhetorical questions, both parties → looked CONFIRMED; **but Half A fails (Dems-in-MAJORITY 2013–20 asked MORE questions).** The minority signature is a **recent-era (2021–26) effect, not a stable law** (self-honest gate now returns REFUTED). 2nd pooled-CONFIRMED reversed by §4.5 (after S1.10). Reversal candidate; partially explains the S1.9/S1.4 asymmetry as recent + power-linked. |
 | S2.6 | Reading Level Drift | **REFUTED** | words/sentence stable; **Democrats consistently longer sentences (18–20) than Republicans (16–17)** — a stable party-style difference, not a trend. No recess-vs-DC effect (18.2 vs 17.9). |
 
-**Remaining S2 (need reference tables):** S2.3 What Losing Sounds Like (chamber-control), S2.6 Reading
-Level, S2.8 Seniority (tenure), S2.9 Boogeyman (name lists), S2.11 Euphemism Genealogies (seed pairs).
+**S2.9 The Boogeyman** | **CONFIRMED ✅** | out-party names sitting president ~2× more, **14/14 years, Half A 8/8, Half B 6/6** | 2026-07-16 | The confirmed inverse of the Voldemort hypothesis. Power-position RESOLVED to White-House control (2013–14 R House-majority still named Obama 2.6× as WH out-party). Symmetric, both-halves-passed (unlike S2.3). Fan-out measured it; **Opus re-verified independently** + fixed a chambers-control potus bug (118=D). Card: findings/S2.9.json. Label: mention≠hostility.
+**S2.11 Euphemism Genealogies** | **DESCRIPTIVE** | 12 famous pairs; e.g. "climate change" D 34,581 / R 3,964; "death tax" D 32 / R 2,348; "obamacare" D 2,095 / R 36,808 | 2026-07-16 | Per-pair party split is the artifact (each pair its own mini-card). Verify agent reproduced counts EXACTLY, 24/24 label-sides hold in both halves. (Prose caveat: don't say Luntz "coined" climate change — he recommended an existing IPCC-1988 term.)
+**S4.1 One Court, Two Languages** | **DESCRIPTIVE** (per-case) / aggregate **UNDERPOWERED** | 20 landmark SCOTUS rulings; loser-party louder 14/14; same-day response 19/20 | 2026-07-16 | Per-case series survives (each ruling = a drip card; birthright 06-30 is the live pilot). Verify agent caught a `_collect` count bug (cases counted per-day → 5–8× inflation); **fixed (dedup)**; corrected aggregate has only 5 half-B cases → UNDERPOWERED for the cross-case gate. All 20 decision dates verified (supremecourt.gov).
+**S4.2 The Shutdown Blame Grammar** | **DESCRIPTIVE** | 7 shutdowns; self-blame D 4 / R 6; every window denominator + top-frame count reproduced to the digit | 2026-07-16 | Small-N event study. Dates verified vs Wikipedia/NPR (recent 2025/2026 shutdowns rely on the agent's WebSearch — re-check before publish). Who-shut-it-down framing by party.
+
+**Remaining S2 (need reference tables):** S2.3 done; S2.6 done; S2.8 Seniority (tenure — needs historical roster).
 **Reversal candidates banked:** S2.1 (Voldemort-reversed), S2.4 (exclamation inflation), S2.2 (partial).
 Substrate: `text_features.jsonl` (675k statements, all lexicon/punctuation/pronoun/president features).
 

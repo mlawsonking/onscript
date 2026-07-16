@@ -4,27 +4,36 @@
   "tier": "T1",
   "verdict": "CONFIRMED",
   "date": "2026-07-15",
-  "claim": "It wasn't Twitter — it's the parties. Re-running OnScript's own 2022 predecessor finding on official congressional press releases (not tweets), with matched member counts and co-signed statements removed: Democrats' independent week-to-week language overlap is ~85% higher than Republicans', in 71% of weeks. The tighter-coordination signal is structural, not a platform artifact.",
+  "claim": "In Congress 117 (2021-2022), Democratic members' press releases repeated the same five-word phrases from one week to the next at a higher rate than Republican members' -- matched weekly 5-gram overlap 0.00176 vs 0.00095 (~85% higher), with Democrats higher in 75 of 105 weeks (71%), a gap that widened rather than closed when co-signed releases were removed -- replicating OnScript's 2022 Twitter-era result on official press releases; the figure measures week-to-week textual overlap, not coordination or intent.",
   "numbers": {
     "window": "Congress 117 (2021-2022)",
-    "metric": "mean pairwise weekly content-5-gram Jaccard overlap, matched member counts (min per party per week, cap 40)",
+    "metric": "mean pairwise weekly content-5-gram Jaccard overlap, member counts matched per party per week (min per party, cap 40)",
     "D_mean_overlap": 0.00176,
     "R_mean_overlap": 0.00095,
-    "D_over_R": "~1.85x",
+    "D_over_R": "~1.85x (~85% higher)",
     "weeks_matched": 105,
     "weeks_D_exceeds_R": 75,
-    "share_weeks_D_higher": 0.71
+    "share_weeks_D_higher": 0.71,
+    "joint_release_control": {
+      "D_before": 0.00173,
+      "D_after": 0.00176,
+      "R_before": 0.00102,
+      "R_after": 0.00095,
+      "R_releases_dropped": 48,
+      "D_releases_dropped": 37,
+      "effect": "excluding verbatim co-signed releases WIDENED the D>R gap; R co-signs more, so co-signing works against the finding"
+    }
   },
   "confounds_tested": [
-    "member-count asymmetry -> controlled: parties subsampled to equal N each week",
-    "joint/co-signed releases -> controlled: verbatim cross-member releases excluded; gap WIDENED (D 0.00173->0.00176, R 0.00102->0.00095); R co-signs MORE (48 vs 37 dropped), so co-signing works against the finding",
-    "coverage -> both parties measured in the same weeks, scale-free per-pair Jaccard"
+    "member-count asymmetry -> controlled: parties subsampled to equal N per week (min per party, cap 40)",
+    "joint/co-signed releases -> controlled: verbatim cross-member releases excluded; gap WIDENED (D 0.00173->0.00176, R 0.00102->0.00095); R dropped more (48 vs 37), so co-signing is not the driver",
+    "coverage -> both parties measured in the same weeks; scale-free per-pair Jaccard removes corpus-volume/density sensitivity"
   ],
-  "labels": ["replication", "matched-controls", "symmetric-instrument"],
-  "split_result": "n/a (pre-registered as a targeted replication of the 2021-2022 window); internal robustness = 71% of weeks agree",
+  "labels": ["correlation-not-cause", "replication", "matched-controls", "symmetric-instrument", "party-asymmetric"],
+  "split_result": "n/a as a chronological split (pre-registered as a targeted replication of the 2021-2022 window, not a two-half test); internal robustness = Democrats higher in 71% of the 105 matched weeks",
   "protocol_ref": "docs/12-SEARCH-PROGRAM.md S1.9",
-  "chart_spec": "paired weekly overlap, D vs R, 105 weeks of 2021-2022; or the two mean bars with the 71%-of-weeks annotation",
-  "receipts_note": "receipts = specific high-peak D phrases in 117 from the phrase index (e.g. a phrase said by 30+ D members in one week, expandable to member+date+url); pull at publish time",
-  "graveyard_context": "shipped alongside the Wave-S1 graveyard: this CONFIRMED sits next to 4 REFUTED + 2 ARTIFACT — the discipline that rejected the artifacts is what makes this replication trustworthy",
-  "drip_slot": "flagship — the integrity-flex opener for the Search program"
+  "chart_spec": "paired weekly overlap line, D vs R across the 105 weeks of 2021-2022 (shade the 75 weeks D>R); or two mean bars (0.00176 vs 0.00095) annotated '71% of weeks'",
+  "receipts_note": "receipts = specific high-peak Democratic 5-grams in Congress 117 from the phrase index (a phrase carried by 30+ D members in one week), each expandable to member + date + URL; pull at publish time from the member-augmented index",
+  "republication_note": "CONFIRMED in the pre-registered direction (2021-2022 replication of the 2022 predecessor finding) -- no re-pre-registration required; only reversal/descriptive candidates need re-pre-registration in the found direction before publishing, and this is not one",
+  "neutrality_gate": "PARTY-ASYMMETRIC (D > R): before publish, apply the power-position reframe -- higher week-to-week phrase overlap is a measurable property of each party's press operation (message discipline), stated symmetrically, not a virtue or vice -- and pass neutrality review; flag that the related Democratic rise concentrates in the 2023-25 House-minority years (see S1.4), so the finding is not read as an intrinsic partisan trait"
 }
