@@ -841,6 +841,32 @@ initialized (append-only verdicts + tally). Out of scope by design: embeddings/t
 reference tables, card schema) — then S1. The streak is untouched; the Search is a parallel content
 program, releases remain Michael's act.
 
+### Session 10 (2026-07-15, Fable) — the Deep Archive program authored (docs/15)
+
+Michael asked for the gameplan that turns the `docs/14` backfill feasibility into buildable work,
+rolled into the existing programs without interference — and an honest answer on whether it's
+meaningful. Written: **`docs/15-DEEP-ARCHIVE-PROGRAM.md`.** Architecture: five labeled lanes
+(`press` spine untouched · **`crec` 2001–2026** Extensions-first · `dcinbox` · `academic_archive` ·
+`loc_webarchive` conditional on the D2 probe gate) under **two binding laws** — genre isolation
+enforced in code (no cross-lane trend claims, kill-fixture required) and **the calibration law** (no
+CREC-only pre-2013 claim publishes until SD.8 shows directional concordance with the press spine on
+the 2013–2026 overlap). Waves: D0 rails (audit-as-code + mirrors + reference tables) → D1 CREC track
+(sitemap→MODS→granule ingest, resumable ≤3 req/s background crawls, E-lane ≈ 350–400k fetches ≈
+~35–40h; per-Congress ledger shards via the existing engine; per-Congress audit JSON committed) → D2
+LoC extraction probe (12-member stratified browser probe, **≥8/12 gate** else the lane is killed for
+v1) → D3 cross-check lanes → D4 the Deep Annex (SD.1–SD.7 pre-registered stubs: full-span SOTU
+gravity well, Voldemort across four presidencies, what-losing-sounds-like over five flips, the crisis
+playbook ⚠, escalation clock, the tribute economy, the anniversary engine FEATURES-dark; protocols
+freeze by dated amendment before each runs). **Non-interference contract:** zero Actions, zero
+daily-pipeline code paths (`pipeline/deep/` only, read-only reuse of the Search's reader/metrics),
+X:-only storage (~≤25 GB of 1.9 TB), FEATURES-dark, and **last place in the session-yield order** —
+crawls run between sessions so calendar time is cheap even when session time is contested. Synergy:
+D1's ingest IS Build-Program item 1.6's floor-leg ingest (one build, two consumers). Honest sizing
+(15 §8, verbatim ruling): meaningful **second-order** — it repairs Alexandria's "25-year" integrity
+debt, puts 9/11→Katrina→2008→Tea Party inside a symmetric instrument, and creates the twice-confirmed
+defensibility tier; it does nothing for the launch or the November window, and it holds last priority
+by design. Expected annex yield: +6–12 confirmed cards + calibration upgrades to existing findings.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
