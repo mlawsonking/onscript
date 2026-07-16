@@ -796,9 +796,9 @@
       "schema_version": 1,
       "day": "2026-07-15",
       "party": "D",
-      "composite": "Some of our output could not be verified today. Measured from what did: we released 186 statements.",
+      "composite": "Today 186 of us released statements. 6 of us carried \"and related programs appropriations act\". 6 of us carried \"at his senate judiciary committee confirmation hearing today\". 6 of us carried \"delauro in remarks on the house floor\". Our most synchronized phrase, used by 32 of us: national security department.",
       "quiet": false,
-      "fallback": true,
+      "fallback": false,
       "sentence_receipts": [
         {
           "sentence_idx": 0,
@@ -815,9 +815,33 @@
             "2026-07-15-D-01",
             "2026-07-15-D-02"
           ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-07-15-D-00",
+            "2026-07-15-D-01",
+            "2026-07-15-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [
+            "2026-07-15-D-00",
+            "2026-07-15-D-01",
+            "2026-07-15-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 4,
+          "talking_points": [
+            "2026-07-15-D-00",
+            "2026-07-15-D-01",
+            "2026-07-15-D-02"
+          ]
         }
       ],
-      "model": "P2:fallback",
+      "model": "P2:deterministic",
       "generator": "deterministic",
       "prompt_version": "1.1",
       "prompt_sha": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
@@ -872,25 +896,23 @@
       },
       "verifier": {
         "checked": true,
-        "passed": false,
-        "reasons": [
-          "un-grounded quotes in composite: ['national security department']"
-        ],
+        "passed": true,
+        "reasons": [],
         "talking_points_published": 16
       },
       "usage": {
         "tokens_in": 1319,
-        "tokens_out": 160,
-        "model": "P2:fallback"
+        "tokens_out": 169,
+        "model": "P2:deterministic"
       }
     },
     "R": {
       "schema_version": 1,
       "day": "2026-07-15",
       "party": "R",
-      "composite": "Some of our output could not be verified today. Measured from what did: we released 110 statements.",
+      "composite": "Today 110 of us released statements. 5 of us carried \"the transportation and infrastructure committee today unanimously approved\". 4 of us carried \"applauded today’s house passage of the fiscal year\". 4 of us carried \"introduced the senate version of this legislation\".",
       "quiet": false,
-      "fallback": true,
+      "fallback": false,
       "sentence_receipts": [
         {
           "sentence_idx": 0,
@@ -907,9 +929,25 @@
             "2026-07-15-R-01",
             "2026-07-15-R-02"
           ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-07-15-R-00",
+            "2026-07-15-R-01",
+            "2026-07-15-R-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [
+            "2026-07-15-R-00",
+            "2026-07-15-R-01",
+            "2026-07-15-R-02"
+          ]
         }
       ],
-      "model": "P2:fallback",
+      "model": "P2:deterministic",
       "generator": "deterministic",
       "prompt_version": "1.1",
       "prompt_sha": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
@@ -929,7 +967,7 @@
             ]
           },
           {
-            "label": "house passage of the",
+            "label": "passage of the fiscal",
             "members": 4,
             "quote": "applauded today’s house passage of the fiscal year",
             "topics": [
@@ -958,16 +996,14 @@
       },
       "verifier": {
         "checked": true,
-        "passed": false,
-        "reasons": [
-          "un-grounded quotes in composite: [\"applauded today's house passage of the fiscal year\"]"
-        ],
+        "passed": true,
+        "reasons": [],
         "talking_points_published": 7
       },
       "usage": {
-        "tokens_in": 1276,
-        "tokens_out": 167,
-        "model": "P2:fallback"
+        "tokens_in": 1282,
+        "tokens_out": 176,
+        "model": "P2:deterministic"
       }
     }
   },
@@ -1524,7 +1560,7 @@
         "id": "2026-07-15-D-08",
         "party": "D",
         "day": "2026-07-15",
-        "label": "secretary of defense pete",
+        "label": "secretary of defense pete hegseth",
         "member_count": 3,
         "statements": [
           "sha256:48aefe3bec1925601c83e88a847791b02377be0202fa2aaa10f99cb9f41d952c",
@@ -1864,7 +1900,7 @@
         "id": "2026-07-15-D-14",
         "party": "D",
         "day": "2026-07-15",
-        "label": "of the older americans",
+        "label": "passage of the older",
         "member_count": 3,
         "statements": [
           "sha256:0a398be98e6d377fac7bf52c33fb5f030e940f0592f94ae8b63a22df152730fb",
@@ -2047,7 +2083,7 @@
         "id": "2026-07-15-R-01",
         "party": "R",
         "day": "2026-07-15",
-        "label": "house passage of the",
+        "label": "passage of the fiscal",
         "member_count": 4,
         "statements": [
           "sha256:045c5f1a9254f142910231c920f4809a434844cf2274311f82dd85b647b5b64c",

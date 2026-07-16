@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "assemble-2026-07-16",
   "kind": "assemble",
-  "generated_at": "2026-07-16T13:00:01Z",
+  "generated_at": "2026-07-16T14:50:24Z",
   "day": "2026-07-15",
   "dry_run": false,
   "extract_cost": {
@@ -17,24 +17,27 @@
   "per_party_llm": {
     "D": {
       "tokens_in": 1319,
-      "tokens_out": 160,
+      "tokens_out": 169,
       "claims_published": 16,
       "claims_dropped": 0
     },
     "R": {
-      "tokens_in": 1276,
-      "tokens_out": 167,
+      "tokens_in": 1282,
+      "tokens_out": 176,
       "claims_published": 7,
       "claims_dropped": 0
     }
   },
-  "daily_voice_cost_usd": 0.00846,
+  "daily_voice_cost_usd": 0.008652,
   "llm_voice_enabled": true,
   "voice_used": true,
   "voice_budget_state": "nominal",
-  "month_to_date_usd": 0.032604,
+  "month_to_date_usd": 0.041256,
   "governor_state": "nominal",
-  "degraded": true,
+  "degraded": false,
+  "final": true,
+  "forced_finalize": false,
+  "readiness": null,
   "symmetry": {
     "prompts_sha": {
       "P1": "0cddc44ce3b70062f8bce6e98e50132553ff16b3e383a51a29fd867b3b134e9f",
@@ -43,7 +46,5 @@
     },
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   },
-  "alerts": [
-    "degraded"
-  ]
+  "alerts": []
 }
