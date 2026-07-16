@@ -402,8 +402,17 @@ def find_duets(day: str, ledger: dict, focus: list[dict], rmap: dict, k: int = 5
     A candidate that cannot field a real quorum of real quotes on BOTH sides is DROPPED, not
     downgraded — an uncitable duet is silence (Article XII). Because the drop rule reads only
     per-side citation counts, it cannot prefer a party."""
+    # §5.1 TWO-LANE MACHINE ENFORCEMENT. A duet is a CROSS-PARTY number ("three members of each
+    # party"), so Lane 1 (press releases, identical scraper both sides) is its only admissible input.
+    # assemble() already hands us a lane-1 focus, but a comparative aggregator must not depend on its
+    # caller filtering correctly — §5.1 says machine-enforced, and this gate is what makes that true
+    # here. It bites for real in v2: the floor leg lands floor speech as Lane 2, and Bluesky (Lane 2)
+    # is ~94% Democratic — one Lane-2 record reaching this function would put an asymmetric source
+    # inside a cross-party claim, which is the exact failure the two-lane model exists to prevent.
     by_party: dict[str, list[dict]] = {p: [] for p in config.COMPOSITE_PARTIES}
     for s in focus:
+        if s.get("lane") != 1:
+            continue
         p = (s.get("member") or {}).get("party")
         if p in by_party:
             by_party[p].append(s)

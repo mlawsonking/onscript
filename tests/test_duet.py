@@ -259,3 +259,38 @@ def test_render_is_empty_on_a_day_with_no_duets():
         assert site.duet_panel({}) == ""
     finally:
         config.FEATURES["duet"] = before
+
+
+# --- §5.1 two-lane machine enforcement ----------------------------------------------------------
+def test_lane2_record_cannot_move_a_duet():
+    """A duet is a CROSS-PARTY number, so Lane 1 is its only admissible input (§5.1). Bluesky (Lane 2
+    today) is ~94% Democratic and the v2 floor leg lands as Lane 2 as well, so a single Lane-2 record
+    reaching a cross-party claim would import an asymmetric source into it.
+
+    Enforced in find_duets itself rather than trusted to the caller: assemble() does pass a lane-1
+    focus, but "machine-enforced" means the aggregator refuses, not that the caller remembers."""
+    day = "2026-06-30"
+    ledger = _ledger("rule of law", day, ["D1", "D2", "D3"], ["R1", "R2", "R3"])
+    focus = [_stmt(f"d{i}", f"D{i}", "D", f"The rule of law matters, {i}.") for i in (1, 2, 3)]
+    focus += [_stmt(f"r{i}", f"R{i}", "R", f"They undermine the rule of law, {i}.") for i in (1, 2, 3)]
+    assert duet.find_duets(day, ledger, focus, _RMAP, k=5), "baseline: lane-1 duet publishes"
+
+    # Drop one R to lane 2 -> that side can no longer field its quorum -> no duet at all.
+    demoted = [dict(s, lane=2) if s["member"]["bioguide"] == "R3" else s for s in focus]
+    assert duet.find_duets(day, ledger, demoted, _RMAP, k=5) == []
+
+    # And a lane-2 record can never ADD a receipt: an extra Bluesky-style R post does not resurrect it.
+    padded = demoted + [_stmt("x1", "R4", "R", "They undermine the rule of law online.", state="TX")]
+    padded = [dict(s, lane=2) if s["id"] == "x1" else s for s in padded]
+    assert duet.find_duets(day, ledger, padded, _RMAP, k=5) == []
+
+
+def test_lane_none_is_also_excluded_from_duets():
+    """Fail closed: an untagged record is not assumed to be Lane 1 (the engine's own gate treats
+    lane=None as ineligible — tests/test_pipeline.py::test_two_lane_enforcement...)."""
+    day = "2026-06-30"
+    ledger = _ledger("rule of law", day, ["D1", "D2", "D3"], ["R1", "R2", "R3"])
+    focus = [_stmt(f"d{i}", f"D{i}", "D", f"The rule of law matters, {i}.") for i in (1, 2, 3)]
+    focus += [_stmt(f"r{i}", f"R{i}", "R", f"They undermine the rule of law, {i}.") for i in (1, 2, 3)]
+    untagged = [{k: v for k, v in s.items() if k != "lane"} for s in focus]
+    assert duet.find_duets(day, ledger, untagged, _RMAP, k=5) == []
