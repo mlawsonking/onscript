@@ -245,6 +245,17 @@ via SD.8 — a defensibility tier no one else in this lane can print.
 
 ## §9 Amendments
 
+**D1-B (2026-07-16, Opus) — the 2001–2008 CREC instrument is COMPLETE (the unique-fill window).** The
+Extensions crawl finished 2003–2008 (after a hang fix — day-done markers make resumes O(new-days), see
+BUILDLOG), and congresses 108/109/110 are built + audited alongside 107. **Every congress, every year,
+PASSES symmetric two-party:** 108 (2003 D=205/R=228; 2004 D=205/R=223), 109 (2005 D=201/R=224; 2006
+D=199/R=224), 110 (2007 D=232/R=193; 2008 D=233/R=194) — ratios 0.83–0.92, hundreds of members per
+party per year, in the exact window the press lane is 100% Democrat. ~57k Extensions statements,
+2001–2008; audit JSONs at `data/derived/crec/audit/congress-{107..110}.json`. This is the honest 25-year
+claim made real for its hardest segment. **Remaining CREC:** 2009–2026 (the SD.8 calibration overlap) +
+the crec-coordination gate (nomenclature segregation) before any phrase-coordination card; the
+speaker-attribution SD.* bets are unblocked now.
+
 **D3-A (2026-07-16, Opus) — the academic cross-check lane is LIVE; DCinbox is access-blocked.**
 - **`academic_archive` lane INGESTED + AUDITED** (`pipeline/deep/academic.py` + `tests/test_deep_academic.py`):
   Grimmer's Senate press releases parsed from the mirror (filename → ISO date + surname; senator →
