@@ -6,7 +6,12 @@ name: RUN A — collect
 # compounding series and the never-distill-twice cache survive between runs (gameplan §2).
 on:
   schedule:
-    - cron: "30 9 * * *"
+    # Two passes/day (§deploy-hardening 2026-07-16). The mirror publishes ~05:00 UTC; the 09:30 pass is
+    # the normal one. The 19:30 pass exists so a LATE upstream day is re-pulled the SAME day instead of
+    # waiting 24h — the readiness gate in RUN B then finalizes it (a late day is recovered, never
+    # skipped). Two rather than four: this repo is still PRIVATE (metered Actions minutes) and RUN A
+    # runs the phrase engine; it becomes free to add more passes when the repo flips public at S3.
+    - cron: "30 9,19 * * *"
   workflow_dispatch: {}
 
 concurrency:

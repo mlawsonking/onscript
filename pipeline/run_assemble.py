@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-from pipeline import boilerplate, build, cluster, config, distill, extract, llm, ops, roster, util  # noqa: E402
+from pipeline import boilerplate, build, cluster, config, distill, extract, llm, ops, readiness, roster, util  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -60,8 +60,24 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     return cites
 
 
-def assemble(day: str) -> dict:
-    statements = list(util.iter_jsonl(config.STATE / "statements.jsonl.gz"))
+def _is_final(day: str) -> bool:
+    """Was this day already published? A final day is never re-assembled (and never skipped). The
+    readiness gate uses this to walk the backlog oldest-first. §deploy-hardening.
+
+    BACK-COMPAT: manifests written before the readiness gate existed have no `final` field. Their mere
+    existence means the day WAS published, so default to True — otherwise the gate would treat all of
+    history as pending and re-assemble old days on its first run."""
+    m = util.read_json(config.DERIVED / "manifest" / f"assemble-{day}.json", {})
+    return bool(m) and bool(m.get("final", True))
+
+
+def _counts_by_day(statements) -> dict:
+    from collections import Counter
+    return dict(Counter(s["published_at"] for s in statements if s.get("lane") == 1))
+
+
+def assemble(day: str, statements=None, *, readiness_info=None, forced=False) -> dict:
+    statements = statements if statements is not None else list(util.iter_jsonl(config.STATE / "statements.jsonl.gz"))
     ledger = util.read_json(config.STATE / "ledger.json", {})
     if not statements or not ledger:
         raise SystemExit("no state — run RUN A (scripts/backfill_stage1.py or run_collect) first")
@@ -161,7 +177,9 @@ def assemble(day: str) -> dict:
     util.write_json(day_file, day_json)
 
     freshness = {"note": "assemble stage; freshness measured in RUN A"}
-    degraded = any(day_payload[p]["daily_line"]["fallback"] for p in config.COMPOSITE_PARTIES)
+    # `forced` = the readiness gate waited out MAX_WAIT_DAYS and upstream never filled: we publish what
+    # we have rather than leave a hole in the series, but it is honestly degraded. §deploy-hardening.
+    degraded = forced or any(day_payload[p]["daily_line"]["fallback"] for p in config.COMPOSITE_PARTIES)
     report = ops.symmetry_report(day, statements, per_party_llm, freshness=freshness, degraded=degraded)
 
     manifest = {
@@ -173,8 +191,11 @@ def assemble(day: str) -> dict:
         "voice_used": bool(allow_llm_voice and not llm.dry_run()),
         "voice_budget_state": voice_state, "month_to_date_usd": month_to_date,
         "governor_state": governor, "degraded": degraded,
+        # §deploy-hardening: this day cleared the readiness gate (or waited out MAX_WAIT and was
+        # finalized degraded). final=True means PUBLISHED — never re-assembled, and never skipped.
+        "final": True, "forced_finalize": forced, "readiness": readiness_info,
         "symmetry": {"prompts_sha": report["prompts_sha"], "thresholds_sha": report["thresholds_sha"]},
-        "alerts": (["degraded"] if degraded else []),
+        "alerts": (["degraded"] if degraded else []) + (["forced-finalize: upstream never filled"] if forced else []),
     }
     util.write_json(config.DERIVED / "manifest" / f"assemble-{day}.json", manifest)
     # Pointer to the day THIS run built — post_bluesky reads it (not collect's focus_day), which
@@ -191,11 +212,31 @@ def assemble(day: str) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--day", default=util.product_day())
+    ap.add_argument("--day", default=None,
+                    help="explicit day (manual/backfill) — bypasses the readiness gate")
     args = ap.parse_args()
-    res = assemble(args.day)
+
+    # §deploy-hardening (2026-07-16): do NOT blindly assemble product_day(). If the mirror is still
+    # landing, publishing a thin day and then advancing product_day() would SKIP that day forever —
+    # a permanent hole in the time-series. Instead: assemble the oldest not-yet-final day that is
+    # READY (oldest-first, so the series fills chronologically); if none is ready, NO-OP at $0 and let
+    # a later retry cron pick it up the moment upstream fills. A day that never fills is force-
+    # finalized after MAX_WAIT_DAYS so a quiet holiday can never livelock the streak.
+    statements = list(util.iter_jsonl(config.STATE / "statements.jsonl.gz"))
+    if args.day:
+        day, forced, sel = args.day, False, {"reason": "explicit --day override", "readiness": None}
+    else:
+        sel = readiness.select_target_day(_counts_by_day(statements), _is_final, util.product_day())
+        if sel["day"] is None:
+            print(f"===== RUN B assemble — NO-OP (no cluster, no distill, no API spend) =====")
+            print(sel["reason"])
+            return 0
+        day, forced = sel["day"], sel["forced"]
+        print(f"[readiness] target={day} forced={forced} :: {sel['reason']}")
+
+    res = assemble(day, statements, readiness_info=sel.get("readiness"), forced=forced)
     dj = res["day_json"]
-    print(f"===== RUN B assemble — {args.day} (dry_run={llm.dry_run()}) =====")
+    print(f"===== RUN B assemble — {day} (dry_run={llm.dry_run()}) =====")
     for p in config.COMPOSITE_PARTIES:
         dl = dj["daily_lines"][p]
         tps = dj["talking_points"][p]
