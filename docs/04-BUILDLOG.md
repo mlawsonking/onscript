@@ -1268,6 +1268,97 @@ Main is handed back on `main`, clean; the WIP runs in its own worktree with its 
 **REMAINS for nomenclature:** wire `tag()` at display time (**before distill**), `nomenclature_rate`
 per party in the nightly audit, adversarial review, merge. No flag flipped; nothing published changed.
 
+### Session 13b (2026-07-16, Opus, worktree `v2-lane-b`) — THE PROVENANCE SEAM; two zero waves; the gate was 0/3
+
+**The session's three headline outputs are all corrections to numbers WE wrote.** Recorded here because
+the pattern is the finding: every one survived because nobody checked the thing the number rested on.
+
+**1. THE PROVENANCE SEAM (docs/13, the big one).** `dwillis/congress-press` is a UNION OF TWO DATASETS
+keyed by the record-level `date_source` field. The `legacy` lane (a ProPublica import) runs 2001 →
+**2021-01-03 and stops forever** — the day the 117th Congress was seated. The `scraper` lane starts
+~2018 at 49 offices and accretes. The "2021 coverage collapse" is not behavior; it is the union losing
+a dataset. Both adversarial skeptics CONFIRMED (0/2 refuted); one re-derived every number straight from
+the 303 mirror files, bypassing the harness so no harness quirk could propagate.
+**Consequence: SPLIT-HALVES — the program's primary robustness control — has been comparing ProPublica
+to a scraper, not 2013-2020 to 2022-2026.** Half A is ~95% legacy, half B ~100% scraper, across a 2.6×
+coverage change and a 7.7-point party-mix shift (legacy D:R 1.538 vs scraper 1.12). Every both-halves
+PASS survived a weaker test than advertised; every FAIL may be plumbing — including **S2.3**, the
+reversal the ledger sells as proof the control works. All 34 verdicts need revisiting.
+**S4.7 (January 6) is a SIGN INVERSION**: raw −69.9% ("muted congressional response to January 6" —
+maximally quotable, publishable, FALSE) vs lane-isolated **+75.5%**; fixed-cohort makes Jan 2021 a local
+MAXIMUM. The 70% "drop" is the import ending three days earlier. Only the review gate stopped it.
+**Remedy is isolation, not normalization** — `date_source` must become first-class (harness.py:399-427
+drops it today), same shape as the deep archive's genre-isolation law.
+
+**2. §1.4.1 WAS 0/3, NOT 2/3-about-to-pass.** Measured from the run LOGS, not the run status: 07-14 and
+07-15 crons were genuinely clean, but the **07-16 12:59Z cron published the apology stub for BOTH
+parties** (pre-fix code; the typography fix landed 14:53Z). The published day was repaired by dispatch,
+so the site is correct — but the UNATTENDED streak reset to zero. **An Actions `success` is not a green:
+all three runs exited 0, and `gh run list` cannot tell a product from an apology.** Now a code-owned
+number (`ops.unattended_streak`, manifest `event`/`unattended`), failing closed. Earliest honest pass:
+07-19 (Sun), which also satisfies the weekend-day clause.
+
+**3. THE MEMO BET IS REFUTED BY ~90×.** Michael's "90+% accuracy if a line or two persists per member",
+tested literally (P(held-out member carries ≥2 of 3 memo lines built without them)): **1.01% same-party
+vs 0.00% strongest null**, pre-registered bar +10pp. 11 agents, 8 nulls, all 3 skeptics refuted. The
+earlier 94.3% was itself an artifact — **the instrument's own suppression layer removes −25.0pp of
+apparent coordination, 4× more than the attribution gate (−5.9pp) built this session.** The publishability
+skeptic found the reason The Script must ship as a CONCORDANCE, and it is better than the fabrication
+argument: **the memo format destroys the denominator** — "rule of law (5/78)" and "born in the united
+states (30/107)" both clear the ≥3 verifier floor and render as identical bullets. Article II is a FLOOR
+check; it cannot see a denominator.
+
+**WAVES S3 + S4: 15 hypotheses, 0 findings — and the cause is planning, not the instrument.** 9 of 15
+BLOCKED before measurement on reference tables docs/12 assumed into existence: `elections.json` is 7 bare
+dates (killed S3.2/S3.7/S4.5 — one table, four hypotheses), `crisis-events.json` does not exist (S4.3/
+S4.6), no retirement-date table (S3.3, billed as "the flagship backtest"), no historical committee
+membership (S3.5). **S4.4 is the wave's best artifact and it is a REFUTATION**: the Friday Night Dump is
+FALSE — 0.85×/0.96× against a ≥1.5× gate over 674,970 statements, with a positive control at 2.10×
+proving the detector works. S4.2 died 3/3 and earned a protocol amendment: **the placebo must run against
+the exact statistic in the headline** (it placebo-tested the blame RATE, headlined the outward SHARE, and
+the share hits 100% on random non-shutdown dates). S4.1 is refuted by its own metric — ~97% nomenclature
+because the case-name anchors ARE the selector, and median cross-party Jaccard 0.60 means the parties use
+the SAME words.
+
+**THE SUBSTRATE AUDIT — the remainder is in BETTER shape than two zero waves implied.** Of 18
+un-adjudicated items: **8 RUNNABLE NOW**, 7 gated on one keyless CREC crawl, 2 on a trivial parse. **Two
+FALSE BLOCKS** — the substrate landed while the ledger recorded it as absent: **S1.12**'s leadership
+roster is ON DISK (156 dated bioguide-keyed rows, all 9 core titles for 113-119; mirrored 2026-07-16 by
+the D3-A academic lane — **one day AFTER S1 ran and found the field null**), and **S5's "the key never
+comes local" premise is obsolete** — GovInfo BILLSTATUS 113-119 is keyless and already local (332MB,
+9,709 bills in 117-hr alone), so S5.2 runs with no key and no Actions. Also found: `presidents.json` has
+no Bush term while the CREC data on disk is exactly 2001-2008, `chambers-control.json` covers only
+113-119, and S5.2's floor is literally "≥Floor per cell" — **a pre-registration that never registered a
+number.**
+
+**BUILT THIS SESSION (all dark, every flag False, 222 tests green at hand-off):**
+- **1.7a The Duet** (`b9bd3c5`) + **1.7b phrase search** (`8ed87a5`) — built/verified/UNRELEASED.
+  The Duet's review produced **"verbatim != attributable"**: a press release is a MULTI-speaker document
+  and `verify.is_verbatim` passes a colleague's quote BY DESIGN. Gate: `duet.attributed_to_other` checks
+  the nearest attribution marker BOTH before and inside the span (reading only backwards passed the real
+  2026-06-30 text while silently accepting every trailing-attributed quote in the corpus).
+- **§5.1 lane-1 enforcement moved INSIDE `find_duets`** (`32e99b8`) — a comparative aggregator must not
+  depend on its caller filtering. Bites in v2: the floor leg lands as Lane 2 and Bluesky is ~94% D.
+- **The §1.4.1 gate as code** (`5dc963f`, `20ea633`) — incl. an adjacency fix caught by simulating the
+  next cron: without it a NO-OP day is hopped over and 07-13/07-15/07-16 reads as "three consecutive".
+- A parallel session (Session 14) wired the same speaker gate into the LIVE citation path (`a1be954`),
+  reusing `duet.py` rather than duplicating it, and improved on the brief: **demote the quote, never the
+  citation**, so the gate structurally cannot move a published number.
+
+**RUNNING AT HAND-OFF: the CREC 2009-2026 Extensions crawl** (detached, keyless, $0, zero Anthropic
+usage). Order is deliberate — **2013-2026 FIRST** because the calibration law makes the overlap the gate
+for SD.1-SD.6; 2009-2012 follows. Pace is ~4h, not the estimated 11-13h (2013: 5,955 stmts; 2014: 5,780).
+Log: `X:\onscript-data\crec\state\crawl-2009-2026.log`.
+**Non-clobber note for whoever finds it:** `crec.py:217` OVERWRITES `crawl-stats.json` with only the
+current run's stats, which would erase the parallel session's 2001-2008 record — so the driver snapshots
+it to `crawl-stats-2001-2008.snapshot.json` first and writes a MERGED file at the end. A
+`CRAWL-RUNNING.lock` names the PID/range/owner so a second crawler is a deliberate act. crec.py itself
+was NOT modified (it is the other lane's file).
+
+**Worktree note:** `../polispeak-v2` is left on disk ONLY because the running crawl imports from it. The
+branch `v2-lane-b` is closed (fully merged, 0 ahead). Prune the directory once the crawl exits:
+`git worktree remove ../polispeak-v2` (or `git worktree prune` after deleting it).
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
