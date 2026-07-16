@@ -18,6 +18,27 @@
     "for the record", "i include in the record", "i submit for the record"
   ],
   "header_patterns": ["\\[\\[Page [EHS]?\\d+\\]\\]"],
-  "note": "phrase_seeds are lowercased procedural n-grams; header_patterns strip Record page furniture pre-tokenization. Additions during D1 land as dated amendments in docs/15 §9.",
-  "amend_policy": "extend during D1 with dated amendments in docs/15 §9 only"
+  "procedural_formulas": [
+    "the committee of the whole house on the state of the union had under consideration the bill",
+    "committee of the whole house on the state of the union",
+    "the house in committee of the whole",
+    "had under consideration the bill",
+    "pursuant to house resolution",
+    "pursuant to the order of the house",
+    "the acting president pro tempore",
+    "mr speaker i yield myself such time as i may consume"
+  ],
+  "bill_title_seeds": [
+    "and for other purposes",
+    "to provide for",
+    "to amend the",
+    "to authorize the",
+    "to establish a",
+    "to reauthorize the"
+  ],
+  "note": "phrase_seeds/procedural_formulas are lowercased; suppress an ngram that IS a contiguous substring of a procedural_formula OR contains a phrase_seed. header_patterns strip Record page furniture pre-tokenization. bill_title_seeds flag legislative-title language (the nomenclature-segregation problem) — a coordination metric on CREC must strip these, else bill titles read as message coordination.",
+  "amend_policy": "extend during D1 with dated amendments in docs/15 §9 only",
+  "amendments": [
+    {"date": "2026-07-15", "by": "Opus, D1.c/d verification", "reason": "the real congress-107 Extensions ledger's top phrases were dominated by the Committee-of-the-Whole procedural formula + 'to provide for … and for other purposes' bill-title language (R1's 'weak carrier' confirmed). Added procedural_formulas + bill_title_seeds. This is a START — the full CREC coordination-boilerplate layer (with a kill-fixture) is queued for the crec-lane SD.* hypotheses (docs/15 D4), not yet complete."}
+  ]
 }

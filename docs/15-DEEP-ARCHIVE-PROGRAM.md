@@ -245,7 +245,27 @@ via SD.8 — a defensibility tier no one else in this lane can print.
 
 ## §9 Amendments
 
-*(none yet — protocol freezes for SD.* and any scope change land here, dated, with reasons)*
+**D1-A (2026-07-15, Opus) — congress 107 ingested + verified; the "weak carrier" confirmed.** The
+E-lane crawl + D1.c/d ran end-to-end on **congress 107 (2001–2002): 11,867 symmetric Extensions
+statements**, a schema-identical ledger shard (Search-reader-queryable), and a per-year audit that
+**PASSES symmetric** (2001 D=211/R=208 ratio 0.99; 2002 D=209/R=211 ratio 0.99) — two-party where the
+press lane is 100% Democrat. The D1.d audit caught + forced the fix of a real bug (`published_at` was
+the package id, not the ISO date). **BUT the ledger's top phrases are dominated by parliamentary
+procedure (the Committee-of-the-Whole formula) + bill-title language ("to provide for … and for other
+purposes")** — R1's "weak carrier" concern, confirmed on real data. Consequence, binding for the crec
+lane:
+- **CREC is a WEAK carrier for phrase-COORDINATION metrics** (S1-style adoption curves) without a heavy
+  genre-specific boilerplate layer. A first cut of procedural + bill-title seeds is in
+  `crec_boilerplate_seeds.json`; the **full CREC coordination-boilerplate suppressor (with its own
+  kill-fixture) is a prerequisite for any crec-lane SD.* coordination finding** and is queued for D4 —
+  not yet built. No crec coordination card publishes before it exists.
+- **CREC's near-term strength is SPEAKER-ATTRIBUTION analysis** — who spoke, when, on which *named*
+  entities — which is boilerplate-robust. So the ripe crec deep-annex bets are **SD.2 (Voldemort /
+  name-avoidance), SD.6 (the tribute economy), SD.3 (what-losing-sounds-like markers), and floor-vs-
+  press**, ahead of phrase-adoption curves. Re-sequence D4 accordingly.
+- **Status:** 2003–2008 crawling (background); congresses 108–112 shards build as the crawl lands; then
+  2009–2026 for the SD.8 calibration overlap. The instrument is real and audited; the coordination-
+  signal-extraction layer is the honest remaining work.
 
 ---
 

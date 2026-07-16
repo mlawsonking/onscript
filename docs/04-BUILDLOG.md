@@ -914,6 +914,23 @@ is LAUNCHED in the background** (resumable, ~3 req/s, ~4–5h; raw MODS immutabl
 engine, once the crawl lands) **+ D1.d** (per-Congress audit JSON committed), then 2009–2026 to complete
 the calibration overlap.
 
+**D1.c/d VERIFIED on congress 107 (2001–2002):** the crawl landed 107 complete (11,867 symmetric
+Extensions statements) before a DNS blip; `build_congress_shard(107)` produced a 6.9 MB ledger shard
+(4,141 phrases, schema-identical → the Search's streaming reader queries it unchanged), and
+`audit_congress(107)` is **per-year PASS + symmetric** (2001 D=211/R=208 ratio 0.99; 2002 D=209/R=211
+ratio 0.99) — two-party coverage where the press lane is 100% Democrat. **The D1.d audit caught a real
+bug** (`to_statement` received the package id `CREC-2001-01-03` where the ISO date belonged, so
+`published_at[:4]` read `'CREC'` and collapsed every year to one window) — fixed (`pkg_date()`),
+regression-tested, and the 11,867 already-written statements repaired in place; the shard rebuilt clean.
+**131 tests green.** Audit artifact committed to `data/derived/crec/audit/congress-107.json`.
+**Honest finding — R1's "weak carrier" confirmed (docs/15 §9 amend D1-A):** the ledger's top phrases are
+dominated by parliamentary procedure (Committee-of-the-Whole) + bill-title language ("to provide for …
+and for other purposes"), so CREC needs a **heavy genre-boilerplate layer before phrase-COORDINATION
+findings** (first seeds added; the full suppressor + kill-fixture queued for D4). Its boilerplate-robust
+near-term strength is **SPEAKER-attribution analysis** (SD.2 name-avoidance / SD.6 tributes / floor-vs-
+press), which is re-sequenced ahead of adoption curves. 2003–2008 crawling; 108–112 shards as the crawl
+lands; 2009–2026 for SD.8 calibration.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +

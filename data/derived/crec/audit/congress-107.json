@@ -1,0 +1,49 @@
+{
+ "lane": "crec",
+ "windows": {
+  "2001": {
+   "members": {
+    "D": 211,
+    "R": 208
+   },
+   "statements": {
+    "D": 3623,
+    "R": 2520
+   },
+   "symmetry_ratio": 0.9858,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  },
+  "2002": {
+   "members": {
+    "D": 209,
+    "R": 211
+   },
+   "statements": {
+    "D": 3312,
+    "R": 2388
+   },
+   "symmetry_ratio": 0.9905,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  }
+ },
+ "windows_passing": [
+  "2001",
+  "2002"
+ ]
+}
