@@ -73,10 +73,11 @@ def test_daily_ranking_demotes_generic_phrase_of_equal_peak():
 
 
 # --- B: the P2/P3 v1.1 prompts forbid fourth-wall leaks -----------------------------------
-def test_prompts_are_v1_1_with_fourth_wall_rules():
+def test_prompts_carry_the_fourth_wall_rules():
+    """Version-agnostic: pin the RULES, not the version number (P2 is v1.2 since §deploy-hardening)."""
     for pid in ("P2", "P3"):
         p = llm.load_prompt(pid)
-        assert p["version"] == "1.1", pid
+        assert p["version"] >= "1.1", pid            # never regress below the fourth-wall version
         sysl = p["system"].lower()
         assert "null" in sysl and "cluster" in sysl  # they are NAMED as forbidden words
         assert "must not appear" in sysl             # the fourth-wall rule is present
@@ -84,3 +85,15 @@ def test_prompts_are_v1_1_with_fourth_wall_rules():
     # party-tagged first-sayer rule
     p2 = llm.load_prompt("P2")["system"].lower()
     assert "every specific number as a numeral" in p2 and "party, and state" in p2
+
+
+def test_p2_forbids_QUOTING_the_code_computed_synchronized_phrase():
+    """§deploy-hardening (2026-07-16): the live 07-15 D fallback. v1.1 invited the voice to note the
+    most synchronized phrase but never said to leave it UNQUOTED, so the Sonnet quoted a code-computed
+    ledger n-gram. The verifier grounds quotes only against verbatim member speech (never against
+    code-computed strings — HIGH-1), so it was rejected and the Daily Line fell back every time."""
+    p2 = llm.load_prompt("P2")
+    assert p2["version"] == "1.2"
+    sysl = p2["system"].lower()
+    assert "without quotation marks" in sysl
+    assert "quotation marks are only for the exact member quotes" in sysl

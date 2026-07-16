@@ -73,7 +73,12 @@ def approx_tokens(text: str) -> int:
 # ---------------------------------------------------------------------------
 _PROMPT_FILES = {
     "P1": "P1_extraction.v1.0.txt",
-    "P2": "P2_daily_line.v1.1.txt",   # v1.1 (§Session-7 B): no fourth-wall leaks, number style, party-tagged first-sayer
+    # v1.2 (§deploy-hardening 2026-07-16): + never QUOTE the synchronized phrase. v1.1 invited the voice
+    # to note it but not to leave it unquoted, so the Sonnet quoted a code-computed ledger n-gram; the
+    # verifier grounds quotes only against verbatim member speech (never against code-computed strings,
+    # by design — HIGH-1), so it was rejected and the Daily Line fell back every time. The deterministic
+    # voice already renders it unquoted; the prompt now says so.
+    "P2": "P2_daily_line.v1.2.txt",
     "P3": "P3_quiet_day.v1.1.txt",    # v1.1: same fourth-wall + number-style rules
     "P4": "P4_era_chapter.v1.1.txt",  # Alexandria era chapters (subscription-generated, §1.3);
     #                                   v1.1 hardened rules 2/3 (no quoted names, no invented digits)
