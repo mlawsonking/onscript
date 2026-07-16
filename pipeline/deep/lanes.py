@@ -90,9 +90,13 @@ class CrawlManifest:
         self._seen: dict[str, str] = {}
         if self.path.exists():
             for line in self.path.read_text(encoding="utf-8").splitlines():
-                if line.strip():
+                if not line.strip():
+                    continue
+                try:
                     r = json.loads(line)
-                    self._seen[r["id"]] = r.get("sha")
+                except Exception:
+                    continue   # a torn final line from a hard-killed crawl -> skip; the crawl resumes clean
+                self._seen[r["id"]] = r.get("sha")
 
     def seen(self, uid: str) -> bool:
         return uid in self._seen

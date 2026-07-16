@@ -71,6 +71,23 @@ def test_endpoints_are_the_verified_keyless_paths():
         "https://www.govinfo.gov/content/pkg/CREC-2001-01-03/html/CREC-2001-01-03-pt1-PgE1.htm"
 
 
+def test_crawl_manifest_survives_a_torn_final_line():
+    """Resumability safety net: a hard-killed crawl can leave a partial final line in the manifest. The
+    reader must skip it and load every prior (valid) checkpoint — else a resume would re-fetch what was
+    already done (or crash)."""
+    import tempfile
+    from pipeline.deep import lanes
+    with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
+        f.write('{"id":"mods:CREC-2005-01-04","sha":"x","bytes":10}\n')
+        f.write('{"id":"day-done:CREC-2005-01-04","sha":"done"}\n')
+        f.write('{"id":"CREC-2005-01-04-pt1-PgE9","sha":  ')   # torn final line (crawl killed mid-write)
+        path = f.name
+    m = lanes.CrawlManifest(Path(path))
+    Path(path).unlink()
+    assert m.seen("mods:CREC-2005-01-04") and m.seen("day-done:CREC-2005-01-04")
+    assert not m.seen("CREC-2005-01-04-pt1-PgE9")             # torn line skipped, resume re-fetches it
+
+
 def test_published_date_is_iso_not_the_package_id():
     """Regression: the package id 'CREC-2001-01-03' is NOT the date. published_at/unit_date must be the
     ISO '2001-01-03' — else [:4] year/era logic reads 'CREC' and every year collapses to one window."""

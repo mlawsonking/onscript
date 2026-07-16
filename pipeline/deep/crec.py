@@ -159,6 +159,8 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
         yr = {"days": 0, "granules": 0, "attributed": 0, "unattributed": 0}
         with open(out_path, "a", encoding="utf-8") as w:
             for pkg in days:
+                if man.seen(f"day-done:{pkg}"):
+                    continue        # fully processed on a prior run -> skip WITHOUT re-reading its MODS
                 mods_key = f"mods:{pkg}"
                 mods_file = raw_root / "mods" / str(year) / f"{pkg}.mods.xml"
                 if man.seen(mods_key) and mods_file.exists():
@@ -180,6 +182,7 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
                     continue
                 stats["days"] += 1
                 yr["days"] += 1
+                day_ok = True
                 for g in granules:
                     if not g["access_id"] or man.seen(g["access_id"]):
                         continue
@@ -193,6 +196,7 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
                         raw = _get(granule_html_url(pkg, g["access_id"]))
                     except Exception as e:
                         print(f"[crec] granule {g['access_id']} FAILED: {e}", flush=True)
+                        day_ok = False   # a fetch failed -> day incomplete, don't mark it done
                         continue
                     time.sleep(lanes.POLITE["min_interval_s"])
                     title, text = strip_furniture(raw)
@@ -203,6 +207,8 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
                     yr["attributed"] += 1
                     stats["granules"] += 1
                     stats["attributed"] += 1
+                if day_ok:
+                    man.record(f"day-done:{pkg}", "done", 0)   # future resumes skip this day in O(1)
                 if progress and yr["days"] % 20 == 0:
                     print(f"[crec] {year}: {yr['days']} days, {yr['granules']} E-statements", flush=True)
         stats["by_year"][year] = yr
