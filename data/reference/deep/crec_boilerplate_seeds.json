@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "kind": "crec-boilerplate-seeds",
+  "source": "Congressional Record parliamentary conventions (recognition / yielding / page furniture)",
+  "fetch_date": "2026-07-15",
+  "rationale": "Floor and Extensions text is dense with procedural furniture a naive n-gram counter reads as 'coordination'. These seed the CREC-lane boilerplate suppression, applied at n-gram time exactly as the press spine suppresses its own boilerplate. Genre-specific: NEVER applied to the press lane.",
+  "phrase_seeds": [
+    "mr speaker", "madam speaker", "mr president", "madam president",
+    "i yield back", "i yield the balance", "i yield myself", "i reserve the balance of my time",
+    "unanimous consent", "without objection", "i ask unanimous consent",
+    "the gentleman from", "the gentlewoman from", "the gentlelady from", "my friend from",
+    "the senator from", "the junior senator from", "the senior senator from",
+    "i rise today", "i rise in support", "i rise in strong support", "i rise in opposition",
+    "the clerk will report", "the presiding officer", "point of order",
+    "the majority leader", "the minority leader", "the speaker pro tempore",
+    "the previous question", "the yeas and nays", "a quorum call", "suggest the absence of a quorum",
+    "extension of remarks", "in the house of representatives",
+    "for the record", "i include in the record", "i submit for the record"
+  ],
+  "header_patterns": ["\\[\\[Page [EHS]?\\d+\\]\\]"],
+  "note": "phrase_seeds are lowercased procedural n-grams; header_patterns strip Record page furniture pre-tokenization. Additions during D1 land as dated amendments in docs/15 §9.",
+  "amend_policy": "extend during D1 with dated amendments in docs/15 §9 only"
+}

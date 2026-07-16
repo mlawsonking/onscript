@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "kind": "crec-granule-allowlist",
+  "source": "GovInfo Congressional Record MODS granuleClass; per-section attribution measured by the docs/14 feasibility scout (2026-07-15)",
+  "fetch_date": "2026-07-15",
+  "rationale": "A CREC day-package splits into granules by class. Allowlist member-authored/spoken classes; exclude Daily Digest (summaries, 0% member attribution). Extensions is built first (D1) — it is the press-release analogue.",
+  "allow": {
+    "EXTENSIONS": {"role": "press_analogue", "attribution": "~98%", "note": "single-author member-inserted statements = the press-release analogue; E-lane built first"},
+    "HOUSE": {"role": "floor_debate", "attribution": "~48-55% at granule head", "note": "multi-speaker; carries an attribution-completeness flag; in-text 'Mr. X.' markers can raise attribution in a later pass"},
+    "SENATE": {"role": "floor_debate", "attribution": "~60-72%", "note": "as HOUSE"}
+  },
+  "exclude": {
+    "DAILYDIGEST": {"reason": "summaries, 0% member attribution — excluded from every metric"}
+  },
+  "amend_policy": "additions/changes land as dated amendments in docs/15 §9 only"
+}

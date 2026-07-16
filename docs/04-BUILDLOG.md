@@ -867,6 +867,39 @@ debt, puts 9/11→Katrina→2008→Tea Party inside a symmetric instrument, and 
 defensibility tier; it does nothing for the launch or the November window, and it holds last priority
 by design. Expected annex yield: +6–12 confirmed cards + calibration upgrades to existing findings.
 
+### Session 11 (2026-07-15, Opus) — Deep Archive Wave D0 (the rails) COMPLETE
+
+Executed docs/15 §2. All new code in `pipeline/deep/` (zero edits to daily-pipeline or `pipeline/search/`
+internals; read-only reuse of `config`), all data on X: (deep-lane dirs created), FEATURES-dark, no
+Actions. **126 suite tests green.**
+
+- **D0.2 lane plumbing (`pipeline/deep/lanes.py`):** the 6-lane registry (press spine untagged; crec /
+  dcinbox / academic_archive / loc_webarchive / wayback tagged); `DEEP_ROOT` derived from the state
+  junction (machine-portable, no hardcoded drive); `tag()` fail-closed provenance enforcement (url +
+  unit_date + stable_id or it doesn't enter); **`lane_of()` = GENRE ISOLATION (Law 1) in code** (raises
+  on any mixed-source set); `CrawlManifest` (append-only, hash-verified, resumable) + politeness config.
+- **D0.1 the 7-gate coverage audit (`pipeline/deep/audit.py`):** both-party floor (≥5 members/party) ·
+  symmetry ratio (min/max ≥ 1/3 on distinct MEMBERS) · attribution completeness (≥0.40) · integrity
+  rate (reported) · provenance (100%) · genre isolation · cross-era temporal gate. Deterministic +
+  JSON-reproducible. **Kill-fixtures (`tests/test_deep_audit.py`):** the 29 D/0 R lane rejected, a
+  mixed-lane series raises, sub-ratio/missing-provenance/thin-attribution all fail.
+- **Adversarial review (4-lens workflow) found + fixed 1 BLOCKER + 3 should-fixes before commit:**
+  (BLOCKER) `audit_cross_era` didn't check same-lane → a crec-2005→press-2015 trend would be
+  authorized — the exact genre confound gate 7 exists to stop; now raises on differing lanes.
+  (fix) `audit_coverage` was fail-OPEN on provenance/attribution → now fail-closed (omit = FAIL).
+  (fix) unregistered/typo'd lane sailed through → now rejected in both audit paths + `expect_lane`
+  guards an untagged deep set. (fix) `MIN_RATIO 0.33 → 1/3` (0.33 admitted 3.03:1). +5 tests.
+- **D0.4 reference tables** (`data/reference/deep/`): CREC granule-class allowlist (EXTENSIONS/HOUSE/
+  SENATE; DAILYDIGEST excluded) + CREC boilerplate seeds (procedural furniture). `elections.json`/
+  `presidents.json` reused from the Search, not rebuilt.
+- **D0.3 mirror-first (`pipeline/deep/mirror.py`):** the hash-manifested resumable fetcher; Grimmer
+  Senate corpus mirrored to X: (72,817 files, manifested). DCinbox URL discovery deferred to D3 (the
+  downloads page is JS-rendered — a page-structure detail, not a D0 blocker).
+- **Acceptance validated + refined:** the audit dry-run on the real press lane reproduces A1's structure
+  AND sharpens it — the honest single-party gap is **2001–2008** (not 2001–2012); 2009+ is already
+  symmetric. So **CREC's unique symmetric-fill value is 2001–2008**; 2009–2012 it's a densifying
+  cross-check. **The rails are down; D1 (the CREC Extensions crawl) is the next Deep-Archive slot.**
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
