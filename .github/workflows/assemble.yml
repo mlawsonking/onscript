@@ -11,7 +11,13 @@ on:
     # distill, no API call) and the next pass picks the day up the moment upstream fills. Two passes
     # also let a backlog DRAIN (one pass can only finalize one day).
     - cron: "30 11,21 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "Explicit day to (re)assemble, YYYY-MM-DD. Bypasses the readiness gate — use to
+          REPAIR a bad day or backfill one the gate already finalized. Blank = normal gated selection."
+        required: false
+        default: ""
 
 concurrency:
   group: onscript-pipeline
@@ -57,7 +63,14 @@ jobs:
           fi
 
       - name: RUN B assemble (cluster -> distill -> VERIFY -> symmetry)
-        run: python pipeline/run_assemble.py
+        # Blank day (the scheduled case) => the readiness gate picks the oldest not-yet-final READY day,
+        # or no-ops at $0. A supplied day is an explicit REPAIR/backfill and bypasses the gate.
+        run: |
+          if [ -n "${{ github.event.inputs.day }}" ]; then
+            python pipeline/run_assemble.py --day "${{ github.event.inputs.day }}"
+          else
+            python pipeline/run_assemble.py
+          fi
 
       - name: Render the static site
         run: python pipeline/site.py
