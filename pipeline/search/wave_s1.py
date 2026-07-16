@@ -225,6 +225,57 @@ def s1_1_prime_ignition(series_rows, peak_min=15, gap=14, min_cell=8):
             "artifact_guard": artifact, "verdict": verdict}
 
 
+# --- S1.3' Phrase Lifespan, REDEFINED (burst duration on the merged series; censoring-safe) --------
+def s1_3_prime_lifespan(series_rows, peak_min=15, gap=14, min_cell=8, cutoff="2026-07-09", censor_days=30):
+    """REDEFINED S1.3 (amendment A2). A 'talking point' = a burst (a flare reaching peak>=peak_min);
+    its lifespan = the burst's duration (first->last active day). Bursts self-terminate at a >gap-day
+    silence, so there is NO shard-edge censoring — except a burst still running near the data cutoff,
+    which is DROPPED (censor_days). Median per burst-start year; CONFIRM = durations shrinking (dir<0)
+    in BOTH halves AND >=30% drop early->late AND density-control survives (talking points burn out
+    faster than they used to)."""
+    from datetime import date as _d
+    cut = _d.fromisoformat(cutoff)
+    by_year = defaultdict(list)
+    for row in series_rows:
+        for burst in _bursts(row["series"], gap):
+            if max(c for _dd, c in burst) < peak_min:
+                continue
+            first, last = burst[0][0], burst[-1][0]
+            if (cut - last).days < censor_days:   # may still be active -> right-censored, drop
+                continue
+            if _half(first.year) is not None:
+                by_year[first.year].append((last - first).days)
+    series = [(y, median(by_year[y])) for y in sorted(by_year) if len(by_year[y]) >= min_cell]
+    cells = {y: len(by_year[y]) for y in sorted(by_year)}
+    a = [(y, m) for (y, m) in series if y in HALF_A_YEARS]
+    b = [(y, m) for (y, m) in series if y in HALF_B_YEARS]
+    dir_a, dir_b = M.split_direction(a), M.split_direction(b)
+    early = median([m for _y, m in a]) if a else None
+    late = median([m for _y, m in b]) if b else None
+    drop = (1 - late / early) if (early and late and early > 0) else None
+    density_survives = None
+    if a and b:
+        min_a = min(len(by_year[y]) for (y, _) in a)
+        sub_b = [(y, median(M.density_matched_subsample(by_year[y], min_a, f"s1.3p:{y}"))) for (y, _) in b]
+        density_survives = (M.split_direction(a + sub_b) == -1)
+    artifact = _year_position_artifact(by_year)
+    powered = len(a) >= 2 and len(b) >= 2
+    if artifact:
+        verdict = "ARTIFACT"
+    elif not powered:
+        verdict = "UNDERPOWERED"
+    elif dir_a == -1 and dir_b == -1 and drop is not None and drop >= 0.30 and density_survives:
+        verdict = "CONFIRMED"
+    elif dir_a == -1 and dir_b == -1 and not density_survives:
+        verdict = "ARTIFACT"
+    else:
+        verdict = "REFUTED"
+    return {"id": "S1.3'", "name": "Phrase Lifespan Collapse (redefined)", "series": series,
+            "cells": cells, "dir_a": dir_a, "dir_b": dir_b, "early_median_days": early,
+            "late_median_days": late, "median_drop": drop and round(drop, 3),
+            "density_survives": density_survives, "artifact_guard": artifact, "verdict": verdict}
+
+
 # --- S1.2 Sync Ceiling (boundary-SAFE: single-day peaks, no span) --------------------------------
 def s1_2_sync_ceiling(rows, active_by_year: dict):
     """Loudest single-day unison per year = max phrase peak whose peak_day falls in that year, divided

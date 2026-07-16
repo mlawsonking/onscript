@@ -8,7 +8,7 @@
 
 | tested | confirmed | refuted | underpowered | artifact | blocked |
 |---|---|---|---|---|---|
-| 9 | **1** | 6 | 0 | 2 | 0 |
+| 10 | **1** | 7 | 0 | 2 | 0 |
 
 *(S1.4 measured on a proxy only → not counted as a verdict; proper metric queued. See notes.)*
 **First CONFIRMED: S1.9 — the 2022 Self-Audit replicates (and survived the joint-release control).**
@@ -61,6 +61,7 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 | S1.11 | Delegation Echo | **REFUTED** | same-state co-use ratio 1.01 (A) / 1.09 (B) vs the 1.5× gate | 2026-07-15 | Same-state delegations do **not** share phrases beyond a size-preserving permutation null — coordination is **national/party-driven, not regional.** Clean null (50-permutation test), an informative structural finding. |
 | S1.6 | The 90-Day Snap | **REFUTED** (near-miss) | snap in 2022 & 2024 both parties, but not 2016/2020-R; tally A-R 2/4 fails the all-cells-majority gate | 2026-07-15 | Pre-election discipline tightening is **real and consistent in recent cycles** (2022/2024) but not across 2013–2026 — fails the strict gate by one cell. Reversal/refinement candidate (the effect may be a recent-era phenomenon). 2026 uncomputable (election is post-data-cutoff). |
 | S1.1′ | Industrialization of the Memo (REDEFINED) | **REFUTED** (redefinition vindicated) | burst-ignition width **34d (2013) → 3–4d (2019–20)** then plateaus 2–15d (2021–26); dir_A −1, dir_B +1, ratio 4.86, density-survives | 2026-07-15 | The A2 fix works — **artifact gone (`artifact_guard=False`, no sawtooth)** via burst-local event detection on the merged cross-era series. Real finding underneath: **the memo DID industrialize ~8× through the 2010s, then hit a floor ~2019–20.** Fails the strict both-halves-monotone gate (it's industrialized-then-plateaued, not ever-accelerating). Strong reversal candidate. Kill-fixture-tested event detector. |
+| S1.3′ | Phrase Lifespan Collapse (REDEFINED) | **REFUTED** (redefinition vindicated) | burst duration **92d (2013) → 12–15d (2019–20)** then plateaus/rises 12–52d (2021–26); dir_A −1, dir_B +1, drop 24%, density-survives, artifact gone | 2026-07-15 | Same A2 fix (burst duration on the merged series, censoring-safe). **Coherent with S1.1′: BOTH ignition speed and flare duration collapsed hard through the 2010s, then plateaued ~2019–20.** Fails the strict gate (not both-halves-monotone; 24% < 30%). The two together = a real T1/T2 narrative (below). Kill-fixture-tested (shortening + censoring guard). |
 
 ## Graveyard notes
 
@@ -79,6 +80,16 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 - **S1.4 (2026-07-15):** the leading CONFIRM candidate (copy-paste rising 1.5×) failed the adversarial
   look — the group-rate is **density-confounded** (tracks corpus volume). No verdict rendered; proper
   metric queued. Second time this session the discipline refused a promising-but-artifactual signal.
+
+## The "Great Intensification" narrative (emergent, 2026-07-15)
+Four verdicts point the same way and compose into one strong, re-pre-registrable story: **the
+congressional message machine intensified relentlessly through the 2010s, then hit a ceiling around
+2019–2020 and stopped.** Evidence: ignition speed collapsed 34→~4 days (S1.1′), talking-point flare
+duration collapsed 92→~13 days (S1.3′), single-day synchronization peaked in 2017 (S1.2) — all three
+then plateaued/reversed in the 2020s; and pre-election discipline tightening is now a *recent-cycle*
+phenomenon (S1.6). Each was a "REFUTED" against a naive monotone guess, but together they are a T1
+feature: *"The machine sped up until it couldn't, around 2019–20."* Publish as a pre-registered
+inversion with all four series shown. (This is why the graveyard is not waste — it composed a headline.)
 
 ## Running note (after 7 verdicts — FIRST CONFIRMED)
 **S1.9 is the first CONFIRMED finding — and it's the flagship** (the founder's own 2022 result

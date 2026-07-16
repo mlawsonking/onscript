@@ -70,6 +70,29 @@ def test_bursts_split_on_gaps_and_measure_local_width():
     assert res["artifact_guard"] is False   # the redefined metric shows NO year-position sawtooth
 
 
+def test_s1_3_prime_lifespan_detects_shortening_and_drops_censored_bursts():
+    """S1.3' burst-duration: a synthetic shortening confirms; and a burst still active near the data
+    cutoff is DROPPED (right-censoring guard), never counted as a short life."""
+    from datetime import date as _d, timedelta
+    from pipeline.search import wave_s1 as S1
+
+    def burst(y, dur):   # a contiguous flare of `dur` days, peak 18
+        s = _d(y, 2, 1)
+        days = [[(s + timedelta(days=t)).isoformat(), 5] for t in range(0, dur, 10)]
+        days.append([(s + timedelta(days=dur)).isoformat(), 18])
+        return {"series": days}
+
+    rows = []
+    for y, dur in [(2013, 80), (2015, 60), (2017, 40), (2019, 30), (2021, 20), (2023, 12), (2025, 6)]:
+        rows += [burst(y, dur) for _ in range(10)]
+    res = S1.s1_3_prime_lifespan(rows, cutoff="2027-01-01")   # far cutoff -> nothing censored
+    assert res["dir_a"] == -1 and res["dir_b"] == -1 and res["verdict"] == "CONFIRMED"
+    # a contiguous burst still running near the cutoff is censored out (would else look artificially short)
+    near = {"series": [["2026-06-20", 16], ["2026-06-30", 17], ["2026-07-05", 18]]}   # contiguous, ends 4d pre-cutoff
+    r2 = S1.s1_3_prime_lifespan([near] * 20, cutoff="2026-07-09", censor_days=30)
+    assert r2["cells"] == {}   # the still-active burst was dropped, not counted as a short life
+
+
 def test_phrase_summary_computes_peak_and_span():
     entry = {"first_seen": {"date": "2013-06-01"},
              "daily": {"2013-06-01": {"D": 2, "members_D": ["a", "b"]},
