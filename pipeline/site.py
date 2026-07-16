@@ -184,6 +184,13 @@ small{font-size:13px}
 .line .nocite{margin:12px 0 0; font-size:13px; color:var(--faint)}
 .line .metaflags{margin-top:8px; font-size:12.5px; color:var(--faint)}
 
+.duet{margin:18px 0 26px; padding:14px; border:1px solid var(--line); border-radius:8px}
+.duet-head{margin-bottom:10px; padding-bottom:8px; border-bottom:1px dashed var(--line)}
+/* The phrase is code-computed, so it is set in the UI's own voice (mono, unquoted) and never in
+   quotation marks — typographic quotes here would read as "a member said this". */
+.duet-phrase{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:700; color:var(--ink)}
+.duet .line{padding:0}
+.duet .rlabel{margin-bottom:8px}
 .receipts{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line)}
 .receipts .rlabel{font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--faint); margin-bottom:8px}
 .receipt{margin:0 0 12px; padding-left:12px; border-left:3px solid var(--line)}
@@ -733,6 +740,55 @@ def sync_table(day_data, slugs_with_pages, depth: int) -> str:
 # ---------------------------------------------------------------------------
 # The Today / per-day view (shared)
 # ---------------------------------------------------------------------------
+def duet_panel(day_data, depth: int = 0) -> str:
+    """1.7a The Duet — the same phrase, both parties, the same day, side by side.
+
+    Renders NOTHING unless FEATURES["duet"] is on (build dark / release by gate). Two rules the markup
+    enforces:
+      * the PHRASE is printed unquoted — it is a code-computed ledger n-gram, and quoting it would
+        attribute a computed string to a member (HIGH-1; the same rule P2 v1.2 carries for the voice);
+      * each side's sentence is that member's OWN verbatim words, next to their name and .gov link, so
+        a reader can click through and confirm it.
+
+    We describe what the phrase IS (both parties used it) and never what it MEANS. The exhibit's whole
+    argument is the two columns; any adjective we added would be us, not the record."""
+    if not config.feature_on("duet"):
+        return ""
+    duets = [d for d in (day_data.get("duets") or []) if isinstance(d, dict)]
+    if not duets:
+        return ""
+    out = ["<h2>The Duet</h2>",
+           '<p class="subhead">Phrases that three or more members of <em>each</em> party used on this '
+           'day &mdash; the same words, from both sides. Each quote is that member&rsquo;s own '
+           'sentence; read them next to each other and draw your own conclusion.</p>']
+    for d in duets:
+        counts = d.get("counts") or {}
+        out.append('<div class="duet">')
+        out.append(
+            f'<div class="duet-head"><span class="duet-phrase">{esc(d.get("ngram"))}</span>'
+            f'<span class="faint">&nbsp;&middot;&nbsp;{esc(_num(counts.get("D")))} D &amp; '
+            f'{esc(_num(counts.get("R")))} R members</span></div>'
+        )
+        out.append('<div class="lines">')
+        for party in ("D", "R"):
+            cites = [c for c in ((d.get("sides") or {}).get(party) or []) if isinstance(c, dict)]
+            col = [f'<div class="line {party}"><div class="rlabel"><span class="pill {party}">{party}</span></div>']
+            for c in cites:
+                nm = esc(c.get("member"))
+                pp, st = c.get("party"), c.get("state")
+                suffix = f" ({esc(pp)}-{esc(st)})" if pp and st else ""
+                url = _safe_http_url(c.get("url"))
+                src = (f' &middot; <a href="{esc(url)}" rel="nofollow noopener">source</a>'
+                       f' &middot; <a href="{esc(_wayback_url(url, c.get("date")))}" rel="nofollow noopener">archived</a>'
+                       if url else "")
+                col.append(f'<div class="receipt"><div class="rhead">{nm}{suffix}{src}</div>'
+                           f'<div class="quote">{esc(c.get("quote"))}</div></div>')
+            col.append("</div>")
+            out.append("".join(col))
+        out.append("</div></div>")
+    return "".join(out)
+
+
 def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_day=None, is_today=False):
     symmetry = _load_json(DERIVED / "symmetry" / f"{day}.json")
     root = "../" * depth
@@ -789,6 +845,10 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         "on this day. The sparkline is the phrase's 14-day trajectory (higher of the two parties' daily counts).</p>"
     )
     parts.append(sync_table(day_data, slugs_with_pages, depth))
+
+    # 1.7a The Duet — dark until FEATURES["duet"]; returns "" both when the flag is off and on the
+    # (common) days where no phrase clears the bar on both sides.
+    parts.append(duet_panel(day_data, depth))
 
     # prev/next nav (day pages only)
     if not is_today:

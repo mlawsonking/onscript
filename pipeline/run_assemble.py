@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-from pipeline import boilerplate, brief, build, cluster, config, distill, extract, llm, ops, readiness, roster, util  # noqa: E402
+from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, ops, readiness, roster, util  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -174,6 +174,11 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     day_json["daily_lines"] = {p: day_payload[p]["daily_line"] for p in config.COMPOSITE_PARTIES}
     day_json["talking_points"] = {p: day_payload[p]["talking_points"] for p in config.COMPOSITE_PARTIES}
     day_json["top_synchronized"] = build.top_synchronized(ledger, day, k=20)
+    # 1.7a The Duet — the same phrase, both parties, the same day. Computed EVERY day so the archive
+    # keeps it and the flag flip is a pure release act (no backfill needed); RENDERING is gated on
+    # FEATURES["duet"] (BUILD-PROGRAM §1, build dark / release by gate). Deterministic and $0 — it
+    # reads the ledger and the day's statements, and calls no model.
+    day_json["duets"] = duet.find_duets(day, ledger, focus, rmap, k=duet.DUET_MAX_PER_DAY)
     util.write_json(day_file, day_json)
 
     freshness = {"note": "assemble stage; freshness measured in RUN A"}
