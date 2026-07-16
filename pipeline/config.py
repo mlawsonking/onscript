@@ -79,6 +79,20 @@ NEAR_JOINT_MIN_TOKENS = 40        # skip short statements (unstable shingles)
 NEAR_JOINT_SHINGLE_K = 8          # word-shingle size
 NEAR_JOINT_WINDOW = 80            # length-sorted comparison window (bounds cost to ~O(n*w))
 
+# ---------------------------------------------------------------------------
+# Nomenclature segregation (docs/16). Official names (bill titles, committee names) are not
+# messages; the tagger cites an external party-blind record for every tag. A DISCLOSED KNOB, not
+# a validated constant: docs/16 §8.4 measured 'transportation and infrastructure' at 0.802 — one
+# thousandth above the threshold — which falsifies the "nothing lands in the dead zone" claim.
+# ---------------------------------------------------------------------------
+NOMENCLATURE_RATIO_MIN = 0.80             # tag iff the doc-level nomenclature ratio >= this
+NOMENCLATURE_INDEX_CONGRESS_MIN = 108     # BILLSTATUS bulkdata floor (107 -> 404, verified)
+NOMENCLATURE_MIN_NAME_CONTENT_TOKENS = 2  # a name thinner than this is not indexable
+# Generic-subcommittee hazard (measured on the real roster): 43 of the 181 current subcommittee
+# names are < 3 tokens and 65 are < 3 CONTENT tokens ('Defense', 'Readiness', 'Aviation'). Indexed
+# bare they would tag ordinary English, so they enter ONLY qualified ('subcommittee on aviation').
+COMMITTEE_UNQUALIFIED_MIN_TOKENS = 3
+
 # Cadence / quiet-day (§6.2 P3, §13)
 QUIET_DAY_MAX_STATEMENTS = 15                # < this many new Lane-1 statements -> quiet line
 
@@ -130,6 +144,9 @@ FEATURES = {
     # Wave 2 (v3)
     "memory_hole": False, "off_script_alerts": False, "upstream_graph": False,
     "bill_brand": False, "public_api": False, "eval_table": False,
+    # Cross-cutting instrument fix (docs/16) — prerequisite for authors_vessels/awards/the_script
+    # and for ANY coordination headline claim. Tags only; wiring tag->suppress is forbidden (§7).
+    "nomenclature_tag": False,
 }
 
 

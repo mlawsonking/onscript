@@ -24,6 +24,11 @@ data/reference/*
 # ...and the Search's pre-registered reference tables (small, factual, sourced — §S0.4 requires them committed)
 !data/reference/search/
 !data/reference/search/*.json
+# ...and the nomenclature index tables (bill titles + committee names). The daily pipeline reads these
+# INSTEAD of touching the network, so they are not rebuildable intermediates — if they are not committed
+# the tagger is silently dead in Actions (docs/16 §4).
+!data/reference/nomenclature/
+!data/reference/nomenclature/*.json
 
 # Site build output (Vercel builds it; not committed)
 site/dist/
