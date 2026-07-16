@@ -245,6 +245,21 @@ via SD.8 — a defensibility tier no one else in this lane can print.
 
 ## §9 Amendments
 
+**D3-A (2026-07-16, Opus) — the academic cross-check lane is LIVE; DCinbox is access-blocked.**
+- **`academic_archive` lane INGESTED + AUDITED** (`pipeline/deep/academic.py` + `tests/test_deep_academic.py`):
+  Grimmer's Senate press releases parsed from the mirror (filename → ISO date + surname; senator →
+  bioguide/party via congress-legislators, fetched keyless + mirrored). **72,635 statements, 112/114
+  dirs mapped** (the 2 unmatched are utility dirs), and the coverage audit **PASSES symmetric every year
+  2004–2008** (D=37.5k / R=33.4k statements; ratios 0.68–0.98; audit JSON at
+  `data/derived/academic/audit.json`). This is the second symmetric both-party historical instrument on
+  the shelf — an independent cross-check for **2005–2008**, exactly the window where the press lane is
+  single-party. Cross-check only, never census (survivor-biased population), enforced by the lane role.
+- **DCinbox BLOCKED (Michael errand #133):** the downloads page (lindseycormack.com) is now
+  **password-gated**, not the keyless bulk the scout expected — Opus cannot enter credentials. Filed for
+  Michael to request research access. Mirror-first flagged it at-risk (dumps stopped 2021-09); until
+  access is obtained, the 2010–2012 e-newsletter cross-check stays dark. The academic lane already
+  provides a 2005–2008 cross-check, so this is not blocking.
+
 **D1-A (2026-07-15, Opus) — congress 107 ingested + verified; the "weak carrier" confirmed.** The
 E-lane crawl + D1.c/d ran end-to-end on **congress 107 (2001–2002): 11,867 symmetric Extensions
 statements**, a schema-identical ledger shard (Search-reader-queryable), and a per-year audit that
