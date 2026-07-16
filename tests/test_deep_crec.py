@@ -69,3 +69,13 @@ def test_endpoints_are_the_verified_keyless_paths():
     assert crec.mods_url("CREC-2001-01-03").endswith("/metadata/pkg/CREC-2001-01-03/mods.xml")
     assert crec.granule_html_url("CREC-2001-01-03", "CREC-2001-01-03-pt1-PgE1") == \
         "https://www.govinfo.gov/content/pkg/CREC-2001-01-03/html/CREC-2001-01-03-pt1-PgE1.htm"
+
+
+def test_published_date_is_iso_not_the_package_id():
+    """Regression: the package id 'CREC-2001-01-03' is NOT the date. published_at/unit_date must be the
+    ISO '2001-01-03' — else [:4] year/era logic reads 'CREC' and every year collapses to one window."""
+    assert crec.pkg_date("CREC-2001-01-03") == "2001-01-03"
+    g = crec.parse_granules(_MODS.encode())[0]
+    stmt = crec.to_statement("CREC-2001-01-03", g, crec.extension_author(g), "T", "body")
+    assert stmt["published_at"] == "2001-01-03" and stmt["unit_date"] == "2001-01-03"
+    assert stmt["published_at"][:4] == "2001"                     # year extraction works

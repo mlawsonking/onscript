@@ -117,17 +117,23 @@ def strip_furniture(raw_html: bytes | str) -> tuple[str, str]:
 
 
 # --- normalize -> a lane-tagged statement (deep schema) ------------------------------------------
-def to_statement(pkg: str, day: str, granule: dict, author: dict, title: str, text: str) -> dict:
+def pkg_date(pkg: str) -> str:
+    """'CREC-2001-01-03' -> '2001-01-03' (the ISO date; NOT the package id)."""
+    return pkg[len("CREC-"):] if pkg.startswith("CREC-") else pkg
+
+
+def to_statement(pkg: str, granule: dict, author: dict, title: str, text: str) -> dict:
+    date = pkg_date(pkg)
     base = {
         "id": f"crec:{granule['access_id']}",
-        "title": title, "text": text, "published_at": day, "precision": "day",
+        "title": title, "text": text, "published_at": date, "precision": "day",
         "member": {"bioguide": author["bioguide"], "party": author["party"],
                    "state": author.get("state"), "chamber": author.get("chamber")},
         "congress": int(author["congress"]) if author.get("congress") else None,
         "crec_section": SECTION.get(granule["granule_class"], "?"),
     }
     return lanes.tag(base, "crec", url=granule_html_url(pkg, granule["access_id"]),
-                     unit_date=day, stable_id=granule["access_id"])
+                     unit_date=date, stable_id=granule["access_id"])
 
 
 # --- the resumable Extensions crawl --------------------------------------------------------------
@@ -190,7 +196,7 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
                         continue
                     time.sleep(lanes.POLITE["min_interval_s"])
                     title, text = strip_furniture(raw)
-                    stmt = to_statement(pkg, pkg, g, author, title, text)
+                    stmt = to_statement(pkg, g, author, title, text)
                     w.write(json.dumps(stmt, separators=(",", ":"), ensure_ascii=False) + "\n")
                     man.record(g["access_id"], lanes.sha256(raw), len(raw))
                     yr["granules"] += 1
@@ -204,3 +210,68 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
             print(f"[crec] {year} DONE: {yr}", flush=True)
     (state / "crawl-stats.json").write_text(__import__("json").dumps(stats, indent=1), encoding="utf-8")
     return stats
+
+
+# --- D1.c/d: per-Congress CREC ledger shard + published audit ------------------------------------
+def congress_years(congress: int) -> list[int]:
+    start = 2001 + 2 * (congress - 107)
+    return [start, start + 1]
+
+
+def _load_statements(years) -> list[dict]:
+    """Load crawled Extensions statements for the given years. Marks `lane=1` so the existing
+    PhraseEngine treats them as eligible for the CREC instrument's OWN ledger — `source=crec` is kept,
+    so genre isolation and the deep provenance are preserved."""
+    import json
+    e_dir = lanes.lane_state("crec") / "E"
+    out = []
+    for y in years:
+        p = e_dir / f"statements-{y}.jsonl"
+        if not p.exists():
+            continue
+        for line in p.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                s = json.loads(line)
+                s["lane"] = 1
+                out.append(s)
+    return out
+
+
+def build_congress_shard(congress: int, progress=True) -> dict:
+    """D1.c: build the per-Congress CREC ledger shard via the existing tested PhraseEngine —
+    schema-identical to Alexandria's, so the Search's streaming reader queries it unchanged. Writes to
+    crec/state/{ledger,discipline,coverage}-{congress}.json (a SEPARATE instrument, never the press
+    ledger)."""
+    from ..phrases import PhraseEngine
+    from .. import build as pbuild, util as putil
+    statements = _load_statements(congress_years(congress))
+    if not statements:
+        return {"congress": congress, "statements": 0, "note": "no crec statements yet"}
+    engine = PhraseEngine()
+    ledger = engine.build(statements, progress=progress)
+    state = lanes.lane_state("crec")
+    putil.write_json(state / f"ledger-{congress}.json", ledger, indent=None)
+    putil.write_json(state / f"discipline-{congress}.json", engine.discipline_index())
+    putil.write_json(state / f"coverage-{congress}.json", pbuild.coverage_tables(statements))
+    return {"congress": congress, "statements": len(statements), "ledger_entries": len(ledger)}
+
+
+def audit_congress(congress: int) -> dict:
+    """D1.d: the per-Congress CREC coverage audit — the checkable provenance artifact. Provenance is
+    complete by construction (every unit went through lanes.tag()); attribution is 1.0 on the ingested
+    set (unattributed granules were skipped + counted at crawl time)."""
+    from collections import defaultdict
+    from . import audit as A
+    statements = _load_statements(congress_years(congress))
+    cov = defaultdict(lambda: {"D": {"members": set(), "statements": 0},
+                               "R": {"members": set(), "statements": 0},
+                               "provenance_complete": True, "attribution_rate": 1.0})
+    for s in statements:
+        p = (s.get("member") or {}).get("party")
+        b = (s.get("member") or {}).get("bioguide")
+        y = s["published_at"][:4]
+        if p in ("D", "R"):
+            cov[y][p]["statements"] += 1
+            if b:
+                cov[y][p]["members"].add(b)
+    return A.audit_coverage(dict(cov), "crec")
