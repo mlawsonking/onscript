@@ -6,11 +6,13 @@
 
 ## Tally
 
-| tested | confirmed | refuted | underpowered | artifact | blocked |
-|---|---|---|---|---|---|
-| 13 | **1** | 8 | 0 | 4 | 0 |
+| tested | confirmed | refuted | underpowered | artifact | blocked | descriptive |
+|---|---|---|---|---|---|---|
+| 20 | **1** | 14 | 0 | 4 | 0 | 1 |
 
-**Wave S1 essentially complete** (12 base hypotheses: 1 CONFIRMED, others refuted/artifact/blocked; + 2 redefinitions). Only S1.12 remains, blocked on a leadership roster.
+**Wave S1 complete** (1 CONFIRMED — S1.9; + 2 redefinitions; S1.12 blocked). **Wave S2 7/12 run**
+(0 confirmed, 6 refuted, 1 descriptive; 3 reversal candidates banked). The confirmation rate is low
+and honest; the drip value is carried by CONFIRMED S1.9 + the emergent narratives/reversals.
 
 *(S1.4 measured on a proxy only → not counted as a verdict; proper metric queued. See notes.)*
 **First CONFIRMED: S1.9 — the 2022 Self-Audit replicates (and survived the joint-release control).**
@@ -85,6 +87,23 @@ hypothesis needs pre-2013 single-party data; S0.4 reference tables; S0.5 card sc
 - **S1.4 (2026-07-15):** the leading CONFIRM candidate (copy-paste rising 1.5×) failed the adversarial
   look — the group-rate is **density-confounded** (tracks corpus volume). No verdict rendered; proper
   metric queued. Second time this session the discipline refused a promising-but-artifactual signal.
+
+## Wave S2 — full-text language evolution (2026-07-15, 7 of 12 run)
+
+| ID | Name | Verdict | Number |
+|----|------|---------|--------|
+| S2.1 | The Voldemort Index | **REFUTED → REVERSED** | opp-minus-own euphemism avoidance is **negative** (A −0.033, B −0.058) across Obama/Trump/Biden — the out-party NAMES the president (villain); the **in-party euphemizes its own** ("the administration"). Reversal candidate. |
+| S2.2 | Adjective Inflation | **REFUTED** (partial) | only 0/1 words tripled (need ≥3 both parties) — but "extreme" ×2.7 (D), "radical" ×3.0 / "existential" ×2.6 (R): real partial inflation, party-asymmetric word choice. |
+| S2.4 | Punctuation Archaeology | **DESCRIPTIVE** | **exclamations/statement +50% (0.032→0.048)**; first in-window emoji 2013-10-16. Shareable artifacts. |
+| S2.5 | Death of the Semicolon | **REFUTED** | stable ~20–25 / 1k sentences (−12%, not −50%). Clean null. |
+| S2.7 | Pronoun Economics | **REFUTED** | I/(I+we) stable ~0.33–0.40, dip ~2020; R slightly more "I" than D (small stable party gap). |
+| S2.10 | The Concern Ladder | **REFUTED** | concerned 39k > deeply 5.8k > gravely 650, but "alarmed" 2.1k breaks the ordering. Grammar isn't a clean ladder. |
+| S2.12 | The Apology Corpus | **REFUTED** | 1,226 total apologies, rate flat/noisy (73–309/100k), no era trend. T3 null footnote. |
+
+**Remaining S2 (need reference tables):** S2.3 What Losing Sounds Like (chamber-control), S2.6 Reading
+Level, S2.8 Seniority (tenure), S2.9 Boogeyman (name lists), S2.11 Euphemism Genealogies (seed pairs).
+**Reversal candidates banked:** S2.1 (Voldemort-reversed), S2.4 (exclamation inflation), S2.2 (partial).
+Substrate: `text_features.jsonl` (675k statements, all lexicon/punctuation/pronoun/president features).
 
 ## The "Great Intensification" narrative (emergent, 2026-07-15)
 Four verdicts point the same way and compose into one strong, re-pre-registrable story: **the

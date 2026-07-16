@@ -329,6 +329,73 @@ def iter_stmt_meta():
                     yield json.loads(line)
 
 
+_ADJ_INFLATION = ("unprecedented", "historic", "radical", "extreme", "crisis", "existential", "catastrophic")
+_CONCERN = ("concerned", "deeply concerned", "gravely concerned", "alarmed", "troubled")
+_APOLOGY = ("i apologize", "i regret", "i misspoke", "i was wrong", "i am sorry", "i'm sorry")
+_I_SING = frozenset("i me my mine myself".split())
+_WE_PLUR = frozenset("we us our ours ourselves".split())
+_PRES_TOKENS = {"obama": "obama", "trump": "trump", "biden": "biden"}
+_PRES_EUPHEMISM = ("the administration", "the white house", "this president", "the president's")
+
+
+def build_text_features(congresses=range(113, 120), progress=True) -> dict:
+    """One pass over congress-press text -> data/derived/search/text_features.jsonl, one row/statement
+    with the counts the text-only S2 hypotheses need (punctuation, pronouns, adjective/concern/apology
+    lexicons, 'american people', president-name vs euphemism tokens, emoji/all-caps flags, word/sentence
+    counts). Compute once, aggregate many times. Deterministic, stdlib-only."""
+    import re
+    word_re = re.compile(r"[a-z']+")
+    emoji_re = re.compile("[\U0001F000-\U0001FAFF\U00002600-\U000027BF]")
+    allcaps_re = re.compile(r"\b[A-Z]{4,}\b")
+    SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
+    out = SEARCH_CACHE / "text_features.jsonl"
+    n = 0
+    with open(out, "w", encoding="utf-8") as w:
+        for r in iter_statements(congresses=congresses, with_text=True):
+            if r.get("party") not in ("D", "R", "I") or not r.get("bioguide"):
+                continue
+            raw = r.get("text") or ""
+            low = raw.lower()
+            words = word_re.findall(low)
+            nw = len(words)
+            if nw < 20:
+                continue
+            wc = defaultdict(int)
+            for tok in words:
+                wc[tok] += 1
+            feats = {
+                "y": r["year"], "p": r["party"], "b": r["bioguide"], "d": r["date"], "c": r["congress"],
+                "nw": nw, "ns": low.count(".") + low.count("!") + low.count("?") or 1,
+                "excl": raw.count("!"), "semic": raw.count(";"), "quest": raw.count("?"),
+                "isg": sum(wc[t] for t in _I_SING), "wpl": sum(wc[t] for t in _WE_PLUR),
+                "adj": {t: (low.count(t) if " " in t else wc[t]) for t in _ADJ_INFLATION},
+                "concern": {t: low.count(t) for t in _CONCERN},
+                "apol": sum(low.count(t) for t in _APOLOGY),
+                "ampeople": low.count("the american people"),
+                "pres": {k: wc[v] for k, v in _PRES_TOKENS.items()},
+                "euph": sum(low.count(t) for t in _PRES_EUPHEMISM),
+                "emoji": 1 if emoji_re.search(raw) else 0,
+                "caps": 1 if allcaps_re.search(raw) else 0,
+            }
+            w.write(json.dumps(feats, separators=(",", ":")) + "\n")
+            n += 1
+            if progress and n % 100000 == 0:
+                print(f"  text-features: {n} statements", flush=True)
+    util.write_json(SEARCH_CACHE / "text_features.stats.json", {"statements": n})
+    if progress:
+        print("text-features DONE:", n, flush=True)
+    return {"statements": n}
+
+
+def iter_text_features():
+    p = SEARCH_CACHE / "text_features.jsonl"
+    if p.exists():
+        with open(p, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    yield json.loads(line)
+
+
 def iter_statements(congresses=None, with_text=True):
     """Stream raw/congress-press records as {date, year, party, bioguide, state, chamber, congress,
     text?}. Party normalized to D/R/I. `congresses` filters to a set; None = all."""
