@@ -15,7 +15,12 @@
     "the majority leader", "the minority leader", "the speaker pro tempore",
     "the previous question", "the yeas and nays", "a quorum call", "suggest the absence of a quorum",
     "extension of remarks", "in the house of representatives",
-    "for the record", "i include in the record", "i submit for the record"
+    "for the record", "i include in the record", "i submit for the record",
+    "committee of the whole", "under consideration"
+  ],
+  "protected_phrases": [
+    "state of the union",
+    "state of the union address"
   ],
   "header_patterns": ["\\[\\[Page [EHS]?\\d+\\]\\]"],
   "procedural_formulas": [
@@ -39,6 +44,7 @@
   "note": "phrase_seeds/procedural_formulas are lowercased; suppress an ngram that IS a contiguous substring of a procedural_formula OR contains a phrase_seed. header_patterns strip Record page furniture pre-tokenization. bill_title_seeds flag legislative-title language (the nomenclature-segregation problem) — a coordination metric on CREC must strip these, else bill titles read as message coordination.",
   "amend_policy": "extend during D1 with dated amendments in docs/15 §9 only",
   "amendments": [
-    {"date": "2026-07-15", "by": "Opus, D1.c/d verification", "reason": "the real congress-107 Extensions ledger's top phrases were dominated by the Committee-of-the-Whole procedural formula + 'to provide for … and for other purposes' bill-title language (R1's 'weak carrier' confirmed). Added procedural_formulas + bill_title_seeds. This is a START — the full CREC coordination-boilerplate layer (with a kill-fixture) is queued for the crec-lane SD.* hypotheses (docs/15 D4), not yet complete."}
+    {"date": "2026-07-15", "by": "Opus, D1.c/d verification", "reason": "the real congress-107 Extensions ledger's top phrases were dominated by the Committee-of-the-Whole procedural formula + 'to provide for … and for other purposes' bill-title language (R1's 'weak carrier' confirmed). Added procedural_formulas + bill_title_seeds. This is a START — the full CREC coordination-boilerplate layer (with a kill-fixture) is queued for the crec-lane SD.* hypotheses (docs/15 D4), not yet complete."},
+    {"date": "2026-07-16", "by": "Opus, CREC boilerplate suppressor build", "reason": "built pipeline/deep/crec_boilerplate.py + tests/test_deep_crec_boilerplate.py (kill-fixture, marquee: procedural convergence != message coordination). Design = 3 precise rules: (1) ngram is a contiguous sub-run of a procedural_formula UNLESS whitelisted (protected_phrases guards the only real phrase embedded in the formulas — 'state of the union'/the SOTU); (2) ngram CONTAINS a phrase_seed (recognition/yielding/'committee of the whole'/'under consideration'); (3) ngram CONTAINS bill_title_seed language. Added 'committee of the whole'+'under consideration' seeds + protected_phrases; dropped the earlier procedural_anchors approach (it let procedural connective-tissue fragments leak). Validated on real 107: all Committee-of-the-Whole procedural furniture removed. KNOWN RESIDUAL (documented boundary): mid-clause fragments of a single inserted BILL PURPOSE clause still leak (e.g. the Energy bill's 'the energy supply for the american people') — full inserted-bill-text / bill-title suppression is the SEPARATE nomenclature-segregation item (needs the congress.gov bill corpus); and sub-gram redundancy is handled by the near-dup collapse layer, not here."}
   ]
 }

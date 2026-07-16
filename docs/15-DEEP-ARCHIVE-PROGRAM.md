@@ -267,6 +267,20 @@ lane:
   2009–2026 for the SD.8 calibration overlap. The instrument is real and audited; the coordination-
   signal-extraction layer is the honest remaining work.
 
+**D4-pre (2026-07-16, Opus) — the CREC boilerplate suppressor is BUILT (the procedural half).**
+`pipeline/deep/crec_boilerplate.py` + `tests/test_deep_crec_boilerplate.py` (kill-fixture, incl. the
+§1.12 marquee: procedural convergence is NOT read as message coordination). Three precise rules — (1)
+sub-run of a procedural formula unless whitelisted (SOTU protected); (2) contains a recognition/yielding/
+committee seed; (3) contains high-precision bill-title language — validated on real congress-107: **all
+Committee-of-the-Whole procedural furniture removed** (49 phrases suppressed at peak≥6), "state of the
+union" correctly survives. **138 tests green.** This clears the *procedural* half of the weak-carrier
+problem — enough to unlock the boilerplate-robust SD.* bets (SD.2/SD.6/floor-vs-press) that were already
+the priority. **Two documented residuals before a phrase-COORDINATION card ships:** (a) **inserted
+bill-text / full bill-title** suppression = the separate **nomenclature-segregation** item (a single
+inserted bill purpose-clause still leaks mid-clause fragments; needs the congress.gov bill corpus); (b)
+**sub-gram redundancy** = the near-dup collapse layer (already exists for the press lane). A crec
+coordination view runs `suppress()` + collapse + nomenclature-tagging; the first is done.
+
 ---
 
 *Fable, 2026-07-15. Build the past the way we built the present: mirrored, audited, labeled, and
