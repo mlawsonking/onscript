@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-from pipeline import boilerplate, build, cluster, config, distill, extract, llm, ops, readiness, roster, util  # noqa: E402
+from pipeline import boilerplate, brief, build, cluster, config, distill, extract, llm, ops, readiness, roster, util  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -210,6 +210,27 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     return {"manifest": manifest, "day_json": day_json, "report": report}
 
 
+def _owners_brief() -> None:
+    """07-OPS §3: "RUN B appends a Monday ntfy". Dark until FEATURES["owners_brief"] flips.
+
+    Two deliberate placements:
+      * **skip-and-log** — the workflow runs this step WITHOUT `|| true` (unlike the posting leg), so
+        an exception here would fail RUN B and break the streak. The brief is a report ABOUT the
+        machine; it must never be able to take the machine down (CLAUDE.md: never crash the run).
+      * **called from main(), not assemble()** — main() returns early when no day is ready, and a
+        Monday where nothing assembled is precisely the Monday the owner needs a brief (streak would
+        be RED). Wiring it inside assemble() would silence it exactly when it matters most.
+
+    The brief's day (`brief.brief_day()`) is the day it RUNS, not the day being assembled.
+    """
+    try:
+        day = brief.brief_day()
+        r = brief.send_brief(day)
+        print(f"[brief] {day}: {r['brief']['headline']} — {r.get('reason') or ('sent' if r['sent'] else 'not sent')}")
+    except Exception as e:  # pragma: no cover - the whole point is that nothing escapes
+        print(f"[brief] skipped (skip-and-log): {e}")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--day", default=None,
@@ -230,6 +251,7 @@ def main() -> int:
         if sel["day"] is None:
             print(f"===== RUN B assemble — NO-OP (no cluster, no distill, no API spend) =====")
             print(sel["reason"])
+            _owners_brief()      # a Monday with nothing to assemble is a Monday that needs a brief
             return 0
         day, forced = sel["day"], sel["forced"]
         print(f"[readiness] target={day} forced={forced} :: {sel['reason']}")
@@ -252,6 +274,7 @@ def main() -> int:
         print(f"  {p}: {pp['statements_ingested']} statements, {pp['members_covered']}/{pp['caucus_size']} members "
               f"({pp['coverage_pct']}%), claims {pp['claims_published']} published / {pp['claims_dropped']} dropped")
     print(f"  prompts_sha={list(r['prompts_sha'].values())[0][:12]}…  thresholds_sha={r['thresholds_sha'][:12]}… (identical both parties)")
+    _owners_brief()
     return 0
 
 

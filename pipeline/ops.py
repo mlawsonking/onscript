@@ -145,7 +145,11 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
             "claims_dropped": llm_p.get("claims_dropped", 0),
         }
     report = {
-        "schema_version": 1, "day": day,
+        # `day_scoped` marks `statements_ingested` as THIS DAY's ingest. It changed meaning once
+        # (Session 5: it used to be the cumulative corpus total under a per-day label), and a reader
+        # medianing across that boundary reads a healthy day as a 99.6% collapse. Reports now say
+        # which semantics they carry instead of leaving readers to infer it from a date.
+        "schema_version": 1, "day": day, "day_scoped": True,
         "statement": "Identical instrument, both parties, audited nightly in public. "
                      "Asymmetric findings are reality's problem, not the instrument's.",
         "prompts_sha": prompts_sha(),
