@@ -498,6 +498,68 @@ def s1_4_proper(congresses=range(113, 120), seed="s1.4"):
     return out
 
 
+# --- S1.10 Bipartisanship Has a Season (does bipartisan signaling flee before elections?) --------
+_BIPARTISAN = ("bipartisan", "across the aisle", "both sides of the aisle", "reach across the aisle",
+               "my republican colleague", "my democratic colleague", "republican and democratic colleague")
+
+
+def s1_10_bipartisan_season(elections, congresses=range(113, 120), window=90):
+    """Deterministic bipartisan-signal rate ('bipartisan', 'across the aisle', ...) in the `window` days
+    BEFORE each general election vs the `window` days AFTER. Hypothesis: collegiality 'flies south' ~90
+    days out and returns after. MANDATORY PLACEBO CONTROL (§4.5): the same before/after comparison on a
+    fake Nov-4 in ODD (non-election) years — if that ALSO troughs, the pattern is SEASONAL (recess/
+    campaign fall vs winter legislating), not electoral, and the verdict is ARTIFACT, not CONFIRMED.
+    Both computed in one pass. Symmetric (parties pooled — a calendar effect)."""
+    from datetime import date
+    real_dates = [date.fromisoformat(v) for v in elections.values()]
+    placebo_dates = [date(y, 11, 4) for y in range(2013, 2027, 2)]   # odd non-election years, same window
+
+    def blank():
+        return defaultdict(lambda: [0, 0])
+    pre, post = {"real": blank(), "plac": blank()}, {"real": blank(), "plac": blank()}
+    for r in H.iter_statements(congresses=set(congresses), with_text=True):
+        try:
+            d = date.fromisoformat(r["date"])
+        except Exception:
+            continue
+        bip = 1 if any(p in (r.get("text") or "").lower() for p in _BIPARTISAN) else 0
+        for kind, dates in (("real", real_dates), ("plac", placebo_dates)):
+            for e in dates:
+                delta = (e - d).days
+                if 0 < delta <= window:
+                    pre[kind][e.year][0] += bip; pre[kind][e.year][1] += 1
+                elif -window <= delta < 0:
+                    post[kind][e.year][0] += bip; post[kind][e.year][1] += 1
+
+    def cycles_of(kind):
+        out = {}
+        for y in sorted(set(pre[kind]) | set(post[kind])):
+            pr = (pre[kind][y][0] / pre[kind][y][1]) if pre[kind][y][1] else None
+            po = (post[kind][y][0] / post[kind][y][1]) if post[kind][y][1] else None
+            out[y] = {"pre_rate": pr and round(pr, 4), "post_rate": po and round(po, 4),
+                      "pre_n": pre[kind][y][1], "post_n": post[kind][y][1],
+                      "trough": (pr is not None and po is not None and pr < po)}
+        return out
+    real_c, plac_c = cycles_of("real"), cycles_of("plac")
+
+    def trough_frac(cyc):
+        t = [c for c in cyc.values() if c["pre_rate"] is not None and c["post_rate"] is not None]
+        return (sum(1 for c in t if c["trough"]), len(t))
+    rt, rn = trough_frac(real_c)
+    pt, pn = trough_frac(plac_c)
+    real_troughs = rn >= 4 and rt > rn / 2
+    placebo_troughs = pn >= 4 and pt > pn / 2
+    if placebo_troughs:
+        verdict = "ARTIFACT"        # seasonal, not electoral — the placebo shows the same trough
+    elif real_troughs:
+        verdict = "CONFIRMED"
+    else:
+        verdict = "REFUTED"
+    return {"id": "S1.10", "name": "Bipartisanship Has a Season", "cycles": real_c, "placebo": plac_c,
+            "real_troughs": f"{rt}/{rn}", "placebo_troughs": f"{pt}/{pn}",
+            "confound": "seasonal (placebo also troughs)" if placebo_troughs else None, "verdict": verdict}
+
+
 # --- S1.6 The 90-Day Snap (does message discipline tighten before elections?) --------------------
 def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270):
     """For each general election, weighted discipline (sum on_message / sum statements) in the 90 days
