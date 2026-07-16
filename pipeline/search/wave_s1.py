@@ -390,6 +390,114 @@ def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15):
             "proxy": "August = recess", "verdict": verdict}
 
 
+# --- S1.4-proper The Copy-Paste Caucus (statements-IN-groups share + density control) ------------
+def _ingroup_share(statements):
+    """Per party: (statements-in-a-near/joint-group share, total). joint_group != None = the statement
+    is part of a same-day (near-)identical multi-member release (the copy-paste machinery)."""
+    tot = {"D": 0, "R": 0}
+    ing = {"D": 0, "R": 0}
+    for s in statements:
+        p = (s.get("member") or {}).get("party")
+        if p in ("D", "R"):
+            tot[p] += 1
+            if s.get("joint_group"):
+                ing[p] += 1
+    return {p: {"share": (ing[p] / tot[p] if tot[p] else None), "n": tot[p], "in": ing[p]} for p in ("D", "R")}
+
+
+def s1_4_verbatim(congresses=range(113, 120)):
+    """The Copy-Paste Caucus — VERBATIM version (tractable + density-robust). A statement is 'copy-paste'
+    if its same-day whitespace-normalized text is byte-identical to that of >=1 OTHER member that day (a
+    verbatim co-signed / cloned release). Share per party per year. Unlike the fuzzy near-dup count
+    (density-sensitive, killed the proxy), byte-identical grouping does NOT inflate with corpus size, so
+    the share is inherently density-robust. CONFIRM = share rises in BOTH halves, both parties agreeing.
+    (Near-identical/templated variants are excluded here for tractability — the verbatim floor.)"""
+    import re
+    day_text = defaultdict(lambda: defaultdict(set))   # date -> normtext -> {bioguide}
+    rows = []
+    for r in H.iter_statements(congresses=set(congresses), with_text=True):
+        p, bio, txt = r.get("party"), r.get("bioguide"), (r.get("text") or "")
+        if p not in ("D", "R") or not bio or not txt.strip():
+            continue
+        norm = re.sub(r"\s+", " ", txt).strip().lower()
+        h = hash(norm)
+        day_text[r["date"]][h].add(bio)
+        rows.append((r["year"], p, r["date"], h))
+    tot = defaultdict(lambda: {"D": 0, "R": 0})
+    verb = defaultdict(lambda: {"D": 0, "R": 0})
+    for year, p, d, h in rows:
+        tot[year][p] += 1
+        if len(day_text[d][h]) >= 2:      # same text, >=2 distinct members that day = verbatim group
+            verb[year][p] += 1
+    share = {y: {p: (verb[y][p] / tot[y][p] if tot[y][p] else None) for p in ("D", "R")} for y in sorted(tot)}
+    dirs = {}
+    for p in ("D", "R"):
+        a = [(int(y), share[y][p]) for y in share if int(y) in HALF_A_YEARS and share[y][p] is not None]
+        b = [(int(y), share[y][p]) for y in share if int(y) in HALF_B_YEARS and share[y][p] is not None]
+        dirs[f"{p}_A"], dirs[f"{p}_B"] = M.split_direction(a), M.split_direction(b)
+    rises = all(dirs[f"{p}_{h}"] == 1 for p in ("D", "R") for h in ("A", "B"))
+    powered = all(tot[y]["D"] >= 200 and tot[y]["R"] >= 200 for y in tot)
+    verdict = "UNDERPOWERED" if not powered else ("CONFIRMED" if rises else "REFUTED")
+    return {"id": "S1.4", "name": "The Copy-Paste Caucus (verbatim)",
+            "share_by_year": {y: {p: round(v, 4) if v is not None else None for p, v in d.items()}
+                              for y, d in share.items()},
+            "directions": dirs, "verdict": verdict}
+
+
+def s1_4_proper(congresses=range(113, 120), seed="s1.4"):
+    """The Copy-Paste Caucus done right: SHARE of statements that are part of a near/joint-identical
+    group (not the density-sensitive group COUNT the proxy used), per party per Congress. DENSITY
+    CONTROL (§1.3): re-normalize each Congress's RAW records subsampled to the sparsest Congress's
+    volume — if the rising share survives, it's real; if it flattens, the detector just found more
+    near-dups in a denser corpus. CONFIRM = share rises in BOTH halves AND survives the control, both
+    parties agreeing in direction."""
+    from .. import normalize
+    from ..alexandria import load_congress_records
+    full, recs_by_c = {}, {}
+    for c in congresses:
+        recs = load_congress_records(c)
+        recs_by_c[c] = recs
+        st = normalize.normalize_records(recs, run_id=f"s1.4-{c}")
+        full[c] = _ingroup_share(st)
+    # density control: subsample each Congress's raw records to the sparsest Congress's total, re-normalize
+    totals = {c: full[c]["D"]["n"] + full[c]["R"]["n"] for c in congresses}
+    target = min(totals.values())
+    matched = {}
+    for c in congresses:
+        recs = recs_by_c[c]
+        n_target = min(len(recs), int(target * len(recs) / max(totals[c], 1)))
+        sub = M.density_matched_subsample(recs, n_target, f"{seed}:{c}")
+        st = normalize.normalize_records(sub, run_id=f"s1.4m-{c}")
+        matched[c] = _ingroup_share(st)
+
+    def half_series(data, party):
+        return ([(c, data[c][party]["share"]) for c in congresses if c <= 116 and data[c][party]["share"] is not None],
+                [(c, data[c][party]["share"]) for c in congresses if c >= 117 and data[c][party]["share"] is not None])
+
+    out = {"full": {c: {p: round(full[c][p]["share"], 4) if full[c][p]["share"] is not None else None
+                        for p in ("D", "R")} for c in congresses},
+           "matched": {c: {p: round(matched[c][p]["share"], 4) if matched[c][p]["share"] is not None else None
+                           for p in ("D", "R")} for c in congresses},
+           "target_volume": target}
+    dirs = {}
+    for label, data in (("full", full), ("matched", matched)):
+        for p in ("D", "R"):
+            a, b = half_series(data, p)
+            dirs[f"{label}_{p}_A"] = M.split_direction([(c, s) for c, s in a])
+            dirs[f"{label}_{p}_B"] = M.split_direction([(c, s) for c, s in b])
+    out["directions"] = dirs
+    rises_full = all(dirs.get(f"full_{p}_{h}") == 1 for p in ("D", "R") for h in ("A", "B"))
+    survives = all(dirs.get(f"matched_{p}_{h}") == 1 for p in ("D", "R") for h in ("A", "B"))
+    if rises_full and survives:
+        verdict = "CONFIRMED"
+    elif rises_full and not survives:
+        verdict = "ARTIFACT"       # rose at full volume, evaporated under the density control
+    else:
+        verdict = "REFUTED"
+    out.update({"id": "S1.4", "name": "The Copy-Paste Caucus", "verdict": verdict})
+    return out
+
+
 # --- S1.6 The 90-Day Snap (does message discipline tighten before elections?) --------------------
 def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270):
     """For each general election, weighted discipline (sum on_message / sum statements) in the 90 days
