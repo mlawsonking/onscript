@@ -251,6 +251,8 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
     dark_nav = ""
     if config.feature_on("archive"):
         dark_nav += f'<a href="{root}archive/index.html">Archive</a>'
+    if config.feature_on("phrase_search"):
+        dark_nav += f'<a href="{root}phrases/search.html">Search</a>'
     # The signed post log links into the nav only once the accounts have actually posted (§Session-8);
     # pre-launch it exists at /posts.html but isn't advertised as an empty page.
     if HAS_POSTS:
@@ -740,6 +742,83 @@ def sync_table(day_data, slugs_with_pages, depth: int) -> str:
 # ---------------------------------------------------------------------------
 # The Today / per-day view (shared)
 # ---------------------------------------------------------------------------
+def phrase_search_index() -> list[dict]:
+    """The client-side search index: one compact row per phrase that HAS a page.
+
+    Scoped to real pages on purpose. The ledger holds ~2.8M n-grams and cannot be shipped to a
+    browser; every row here resolves to a page a reader can actually open, so the search can never
+    offer a result that 404s. Keys are one letter because this ships inside the HTML."""
+    rows = []
+    pdir = DERIVED / "phrases"
+    if not pdir.exists():
+        return rows
+    for p in sorted(pdir.glob("*.json")):
+        if p.stem == "top":
+            continue
+        d = _load_json(p) or {}
+        ngram = d.get("ngram")
+        if not ngram:
+            continue
+        rows.append({"q": ngram, "s": d.get("slug") or p.stem,
+                     "p": _num(d.get("peak_units")), "f": (d.get("first_seen") or {}).get("date") or ""})
+    rows.sort(key=lambda r: (-r["p"], r["q"]))
+    return rows
+
+
+def phrase_search_body(rows: list[dict]) -> str:
+    """Phrase search (1.7b) — dark until FEATURES["phrase_search"].
+
+    The site is STATIC (no server, no query endpoint), so search is a prebuilt index filtered in the
+    browser. The index is embedded rather than fetched: it works with the page, needs no second
+    request, and cannot half-load.
+
+    Two safety rules, both load-bearing because every phrase is UNTRUSTED text lifted from a press
+    release: the JSON is embedded with "<" escaped so no phrase can close the <script> element early,
+    and results are built with textContent/createElement — never innerHTML — so a phrase is always
+    rendered as text and never as markup."""
+    payload = json.dumps(rows, separators=(",", ":"), ensure_ascii=False).replace("<", "\\u003c")
+    return f"""<h1>Phrase search</h1>
+<p class="subhead">Search every phrase with a tracked page &mdash; {len(rows)} of them. Each result opens
+that phrase&rsquo;s adoption curve, first sayer, and the members who carried it.</p>
+<p class="muted"><small>This searches phrases we have built pages for, not the full n-gram ledger:
+a phrase becomes trackable once at least three members of one party used it on a day. So a phrase
+being absent here means it never cleared that bar &mdash; not that nobody ever said it.</small></p>
+<input id="q" type="search" placeholder="Try: rule of law" autocomplete="off"
+       style="width:100%; padding:10px 12px; font-size:16px; border:1px solid var(--line); border-radius:6px; background:transparent; color:var(--ink)">
+<p class="muted" id="count" style="margin-top:10px"></p>
+<div id="results"></div>
+<script id="phrase-index" type="application/json">{payload}</script>
+<script>
+(function () {{
+  var rows = JSON.parse(document.getElementById("phrase-index").textContent);
+  var q = document.getElementById("q"), out = document.getElementById("results"), cnt = document.getElementById("count");
+  var LIMIT = 50;
+  function render() {{
+    var term = q.value.trim().toLowerCase();
+    var hits = term ? rows.filter(function (r) {{ return r.q.indexOf(term) !== -1; }}) : rows;
+    out.textContent = "";
+    cnt.textContent = term
+      ? hits.length + " phrase" + (hits.length === 1 ? "" : "s") + " matching \\u201C" + term + "\\u201D"
+        + (hits.length > LIMIT ? " \\u00B7 showing the first " + LIMIT : "")
+      : rows.length + " tracked phrases \\u00B7 showing the " + Math.min(LIMIT, rows.length) + " most synchronized";
+    hits.slice(0, LIMIT).forEach(function (r) {{
+      var d = document.createElement("div");
+      d.className = "receipt";
+      var a = document.createElement("a");
+      a.href = r.s + ".html";
+      a.textContent = r.q;                      // textContent: a phrase is text, never markup
+      var meta = document.createElement("div");
+      meta.className = "rhead";
+      meta.textContent = "peak " + r.p + " members" + (r.f ? " \\u00B7 first seen " + r.f : "");
+      d.appendChild(a); d.appendChild(meta); out.appendChild(d);
+    }});
+  }}
+  q.addEventListener("input", render);
+  render();
+}})();
+</script>"""
+
+
 def duet_panel(day_data, depth: int = 0) -> str:
     """1.7a The Duet — the same phrase, both parties, the same day, side by side.
 
@@ -1528,6 +1607,18 @@ def build_site():
         encoding="utf-8",
     )
     written.append("phrases/index.html")
+
+    # ---- phrases/search.html (1.7b) — dark until FEATURES["phrase_search"] ----
+    # Not written at all while dark: an unlinked page still gets crawled and shared, so "built dark"
+    # has to mean absent from the output, not merely absent from the nav.
+    if config.feature_on("phrase_search"):
+        idx = phrase_search_index()
+        (OUT / "phrases" / "search.html").write_text(
+            page("OnScript · Phrase search", phrase_search_body(idx), depth=1,
+                 description="Search every tracked political phrase: adoption curve, first sayer, receipts."),
+            encoding="utf-8",
+        )
+        written.append("phrases/search.html")
 
     # ---- phrases/<slug>.html for every phrase page ----
     pdir = DERIVED / "phrases"
