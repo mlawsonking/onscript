@@ -191,6 +191,27 @@ def build_daily_series(progress=True) -> dict:
     return {"phrases": len(merged)}
 
 
+def build_cross_party_daily(threshold=3, progress=True) -> dict:
+    """Per-day count of CROSS-PARTY unison phrases: phrases said by >=threshold members of BOTH parties
+    that day (a shared-reality signal). Stream all shards -> data/derived/search/cross_party_daily.json
+    ({date: count}). The substrate for S1.8 (SOTU gravity well) — no hardcoded SOTU dates needed; the
+    annual peak IS the SOTU day."""
+    unison: dict = defaultdict(int)
+    for c in range(113, 120):
+        shard = ALEX / f"ledger-{c}.json"
+        if not shard.exists() or shard.stat().st_size <= 2:
+            continue
+        for _ng, entry in iter_ledger_entries(shard):
+            for day, rec in (entry.get("daily") or {}).items():
+                if rec.get("D", 0) >= threshold and rec.get("R", 0) >= threshold:
+                    unison[day] += 1
+        if progress:
+            print(f"  cross-party ledger-{c}: {len(unison)} unison-days so far", flush=True)
+    SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
+    util.write_json(SEARCH_CACHE / "cross_party_daily.json", {"threshold": threshold, "by_day": dict(sorted(unison.items()))})
+    return {"unison_days": len(unison), "threshold": threshold}
+
+
 def iter_daily_series():
     p = SEARCH_CACHE / "daily_series.jsonl"
     if p.exists():

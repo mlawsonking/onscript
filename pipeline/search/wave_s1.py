@@ -542,6 +542,56 @@ def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270):
             "verdict": verdict}
 
 
+# --- S1.8 The SOTU Gravity Well (the annual cross-party unison peak + its decay) ------------------
+def s1_8_sotu(by_day, window=21, norm_by=None):
+    """Each year's PEAK cross-party unison day is the SOTU day (no hardcoded dates). Report its
+    magnitude + the shared-reality HALF-LIFE = days after the peak until daily unison first falls below
+    half the peak. CONFIRM (pre-registered) = half-life declining in BOTH halves AND >=40% total drop.
+    Also reports the peak-magnitude trend (is the biggest shared-language day shrinking?)."""
+    from datetime import date, timedelta
+    years = defaultdict(dict)
+    for d, c in by_day.items():
+        years[int(d[:4])][d] = c
+    peak_mag, half_life, peak_days = {}, {}, {}
+    for y, days in years.items():
+        if _half(y) is None or not days:
+            continue
+        pday = max(days, key=lambda d: days[d])
+        pm = days[pday]
+        peak_days[y] = pday
+        peak_mag[y] = pm
+        pd = date.fromisoformat(pday)
+        hl = window
+        for delta in range(1, window + 1):
+            if days.get((pd + timedelta(days=delta)).isoformat(), 0) < pm / 2:
+                hl = delta
+                break
+        half_life[y] = hl
+    hl_a = [(y, half_life[y]) for y in sorted(half_life) if y in HALF_A_YEARS]
+    hl_b = [(y, half_life[y]) for y in sorted(half_life) if y in HALF_B_YEARS]
+    pm_a = [(y, peak_mag[y]) for y in sorted(peak_mag) if y in HALF_A_YEARS]
+    pm_b = [(y, peak_mag[y]) for y in sorted(peak_mag) if y in HALF_B_YEARS]
+    hl_dir_a, hl_dir_b = M.split_direction(hl_a), M.split_direction(hl_b)
+    from statistics import median
+    hl_early = median([h for _y, h in hl_a]) if hl_a else None
+    hl_late = median([h for _y, h in hl_b]) if hl_b else None
+    hl_drop = (1 - hl_late / hl_early) if (hl_early and hl_late and hl_early > 0) else None
+    powered = len(hl_a) >= 2 and len(hl_b) >= 2
+    if not powered:
+        verdict = "UNDERPOWERED"
+    elif hl_dir_a == -1 and hl_dir_b == -1 and hl_drop is not None and hl_drop >= 0.40:
+        verdict = "CONFIRMED"
+    else:
+        verdict = "REFUTED"
+    return {"id": "S1.8", "name": "The SOTU Gravity Well",
+            "peak_day_by_year": peak_days, "peak_magnitude": dict(sorted(peak_mag.items())),
+            "half_life_days": dict(sorted(half_life.items())),
+            "hl_dir_a": hl_dir_a, "hl_dir_b": hl_dir_b, "hl_early": hl_early, "hl_late": hl_late,
+            "hl_drop": hl_drop and round(hl_drop, 3),
+            "peak_mag_dir_a": M.split_direction(pm_a), "peak_mag_dir_b": M.split_direction(pm_b),
+            "verdict": verdict}
+
+
 # --- S1.9 The 2022 Self-Audit (replicate the founder's finding on the symmetric corpus) ----------
 def _fivegrams(text: str) -> set:
     """Distinctive content 5-grams (hashed to ints for fast set ops), boilerplate excluded. A shared
