@@ -931,6 +931,56 @@ near-term strength is **SPEAKER-attribution analysis** (SD.2 name-avoidance / SD
 press), which is re-sequenced ahead of adoption curves. 2003–2008 crawling; 108–112 shards as the crawl
 lands; 2009–2026 for SD.8 calibration.
 
+### Session 9 (2026-07-16, Opus) — the live-site breakdown: three real defects, all fixed
+
+Michael reported the live site showing *"Some of our output could not be verified today"* for BOTH
+parties. Every Action was green — this was not a crash. Root-caused to **three separate defects**, all
+now fixed, tested, and pushed.
+
+**1. The fail-safe skipped the good voice** (`distill.py`, commit c3b7424). The Sonnet drifted two
+quotes; the verifier correctly rejected them — but `daily_line()` then dropped STRAIGHT to the
+apologetic stub, **skipping `_compose_dry()`**, the rich deterministic composite that is verifier-clean
+by construction. One drifted LLM quote nuked the whole Daily Line to an apology. Now: verify-fail →
+rich deterministic composite → re-verify → publish; the stub is the last resort only. **Confirmed live**
+on the 07-15 repair run: `verifier_passed=True fallback=False`, real line published.
+
+**2. Typographic false negative** (`verify.py`, commit c9e2d7f) — *the reason the Sonnet voice was
+never shipping*. Press releases use smart quotes; the Sonnet emits ASCII. It quoted a REAL fragment as
+`"applauded today's house passage…"` against a source reading `today’s` → "un-grounded". Same words.
+`_norm` folded whitespace/case but not typography, despite the docstring promising "robust to
+rendering". `fold_typography()` added. **Also closed a real hole**: `_NEGATION` holds ASCII `"don't"`, so
+a source written `don’t` never matched and a meaning-inverting truncation after a curly contraction
+would have been wrongly grounded. No bypass risk (the `_QUOTE` extractor already matched both quote
+styles); verification not weakened (only typography folds — invented words still fail).
+
+**3. The prompt invited the violation** (P2 **v1.2**, commit 97b112a). v1.1 told the voice it may "note
+the day's most synchronized phrase" but never to leave it UNQUOTED — so the Sonnet quoted a
+code-computed ledger n-gram, which the verifier refuses to ground (HIGH-1, by design). v1.2 says it
+plainly, matching what the deterministic voice already did.
+
+**Repair lever added** (c1b7edf): `assemble.yml` workflow_dispatch now takes an explicit `day` (the
+readiness gate correctly refuses to re-assemble a final day, so a plain dispatch can't repair one).
+
+**Also this session — the readiness gate** (`pipeline/readiness.py`, commit 097a000), from Michael's
+design catch: *"I don't want to publish 'nothing today' just because it wasn't out in time."* He was
+half right — the 1-day lag IS the designed cadence (`product_day()` = prior NY day) — but the gap he
+sensed was real and **worse than staleness**: a late mirror meant we ingested a thin day, published it,
+and the next run ADVANCED `product_day()`, **skipping that day permanently** — a hole in the
+time-series (the moat). The old `_volume_anomaly` only ALERTED. Now a run assembles the OLDEST
+not-yet-final READY day (5-day lookback, oldest-first so the series fills chronologically); if none is
+ready it **NO-OPS at $0** (no cluster/distill/API) and a later pass recovers it; a day that never fills
+is force-finalized after MAX_WAIT so a quiet holiday can't livelock the streak. RUN A/B now run twice
+daily (09:30+19:30 / 11:30+21:30) so a late day recovers same-day and a backlog drains (two passes, not
+four — repo is still PRIVATE = metered minutes).
+
+**Two traps encoded** (either would kill the streak): SAME-WEEKDAY baseline (an all-days median would
+hold every Saturday forever) and no-history⇒READY. **Two bugs caught by dry-running the gate against
+PRODUCTION state before shipping**: (a) pre-gate manifests lack `final`, so `_is_final` would have
+called all history pending and re-assembled old days; (b) force-finalize would have **published a
+zero-statement day** (the gate literally chose `day=2026-07-10, count=0, forced=True`) — precisely what
+Michael said must never happen. Zero-data days are now skipped (self-healing, no empty page); only
+real-but-thin days are force-published. 8 readiness kill-fixtures.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
