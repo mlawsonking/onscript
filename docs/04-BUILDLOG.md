@@ -1054,6 +1054,82 @@ reconciled to it at the next doc pass.
 then 1.4/1.5/1.6 (floor — CREC ingest already built in D1)/1.7/1.10; 1.9 stays gated on
 `DATA_GOV_API_KEY` via Actions dispatch.
 
+### Session 13 (2026-07-16, Opus, worktree `v2-lane-b`) — v2 1.7 The Duet + phrase search; the misattribution gate
+
+**Parallel-session note.** The `(fork)` session was live in the main tree the whole time (verified
+running, same cwd). A worktree fixes FILE collisions, not DUPLICATE FEATURES, so this session took a
+disjoint claim: the fork walks 1.3 -> 1.4 -> 1.5 (a dependency chain: awards need member pages), this
+lane took the independent leaves. **1.10 was dropped from the claim on inspection**: no `archetype`
+code exists anywhere yet, and the Memo-Detector it needs is shared substrate with the fork's 1.3/1.4
+(08 §87) — building it here would have duplicated exactly what 1.4 must build. Worktree at
+`../polispeak-v2` with junctions re-pointed at the same X: storage (read-only use of `state`; no
+ledger rebuild from this lane).
+
+**1.7a The Duet (`b9bd3c5`) — built/verified/dark. 1.7b phrase search (`8ed87a5`) — built/verified/
+dark. 210 tests green; every FEATURES flag still False.**
+
+**The spec was wrong and the data said so.** VISION A5 promises "same phrase, both parties, same day,
+**opposite intent**". Built on 2026-06-30 (the SCOTUS day), the strongest duet is both parties saying
+*the supreme court* about **entirely different cases** — Democrats on birthright citizenship,
+Republicans on Title IX. Not opposite intent: parallel universes. Asserting intent would have made
+the first real exhibit factually wrong. So the Duet ships the whole line EXCEPT the verdict: the
+phrase, then each side's own verbatim sentence, no adjective from us (Constitution: no verdict). When
+the framing IS opposed it needs no help — *rule of law* is D-immigrant-families vs
+R-sanctuary-cities, same three words, same day.
+
+**THE FIND: verbatim != attributable, and the verifier cannot know the difference.** A press release
+is a MULTI-SPEAKER document. Rep. Cisneros's sentence ("I'm proud to support my colleagues,
+Congressman Castro and Congresswoman Houlahan...") appears verbatim inside the releases published by
+BOTH Castro's and Houlahan's offices; the first cut published it as each of their own words.
+`verify.is_verbatim()` PASSES it — by design it asks only whether the string occurs in the cited
+statement, and it truly does. **This is a structural blind spot in the citation promise, not a bug in
+verify.py.** The gate now lives in `duet.attributed_to_other()`: a sentence is attributable only if
+the nearest attribution marker names that member, checking BOTH the leading form (`said Rep. X.
+"quote"`) and the trailing form (`"quote," said Rep. X`) — reading only backwards passed the real
+2026-06-30 text (which happens to be leading-form) while silently accepting every trailing-attributed
+quote in the corpus. My synthetic fixture caught that; the real data hid it. Name matching is
+token-equality, never substring (Smith != Smithson).
+
+**The live site was audited and is CLEAN — this is latent, not active.** All 103 published quotes
+(2026-07-13/14/15) were joined to upstream source text (`congress-press` 2026-07.jsonl) and checked
+with the same gate: 103/103 joined, **0 flagged**. `run_assemble._citations()` has no speaker check
+and is structurally exposed, but applying the gate there changes PUBLISHED output (a dropped citation
+can push a talking point below the >=3-unit quorum and remove it from the product), so it is filed as
+its own evaluated change rather than a side effect of a dark build. Same exposure applies to
+`distill.py`'s `groundable` fragments.
+
+Other gates, each earned on real output rather than imagined:
+- **furniture is rejected, never a fallback** — "WASHINGTON — Rep. X released the following
+  statement..." is verbatim and is not a thing anyone said; if the phrase appears only in a header,
+  that member simply did not say it and the next member is used.
+- **quotes are complete sentences, never clipped** — a trailing clip inverts meaning ("...a bill I
+  will never support" -> "...a bill I will"), which is why the verifier carries a negation guard at
+  all. A long sentence publishes whole.
+- **abbreviations are not sentence ends** — real output came back guillotined at "Trump v." and "with
+  U.S."; case names are the common path in this corpus, not an edge.
+- **fragments ending mid-construction are dropped** — "united states and" scored a duet by pairing
+  Democrats on birthright citizenship against Republicans on battlefield innovation: two parties
+  saying the country's name. Only the TAIL is tested — n-grams start at 3 tokens, so "the supreme
+  court" is the shortest real form of that phrase and a leading-article rule would delete the best
+  duet on the board.
+- **one duet per topic** (a SCOTUS day otherwise shows five spellings of one event), applied AFTER
+  the citation gate so an uncitable strong row cannot consume its topic and silently drop a citable
+  variant.
+- Duets are rare and event-driven as designed: 57 candidates on 2026-06-30, **0 on 2026-07-08**.
+
+**1.7b phrase search:** the site is STATIC and the ledger is 2.9GB / 2.8M n-grams, so search is a
+prebuilt index (one row per phrase PAGE — 291 today, ~23KB inline) filtered client-side. Scoped to
+real pages so a result can never 404, and the page discloses what it does NOT cover (a phrase absent
+from the index never cleared the 3-member bar; that is not "nobody said it"). Both injection defenses
+verified against a **live DOM**, not string asserts: a hostile phrase (`</script><img src=x
+onerror=...>`) fired no handler, produced zero elements, rendered as a text node with 0 children.
+Dark means ABSENT — search.html is not written at all while the flag is off, because an unlinked page
+is still crawlable and shareable.
+
+**Left for the fork / next:** 1.6 floor (buildable — CREC ingest exists from D1), 1.9 credit-claim
+(gated on `DATA_GOV_API_KEY` via Actions dispatch), 1.10 memo-cadence (blocked on the Memo-Detector
+substrate that 1.3/1.4 will build).
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
