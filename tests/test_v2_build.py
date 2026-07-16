@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from pipeline import config, site  # noqa: E402
+from pipeline import config, gdelt, silence, site  # noqa: E402
 
 
 # --- 1.1 The Archive -----------------------------------------------------------------------------
@@ -47,3 +47,71 @@ def test_archive_loader_is_the_verifier_gate():
 
 def test_archive_ships_dark():
     assert config.feature_on("archive") is False    # build-dark: no public render until the flag flips
+
+
+# --- 1.2 Silence Detector + "Shouting Into the Void" ---------------------------------------------
+def _tax():
+    return {"topics": [{"id": "immigration", "label": "Immigration", "seeds": ["border", "migrant"]},
+                       {"id": "china", "label": "China", "seeds": ["china"]},
+                       {"id": "other", "label": "Other", "seeds": []}]}
+
+
+def _stmts(n, party, text):
+    return [{"member": {"party": party}, "title": "", "text": text} for _ in range(n)]
+
+
+def test_corpus_topics_matches_deterministically_by_committed_seeds():
+    stmts = _stmts(3, "D", "the border crisis") + _stmts(2, "R", "trade with china")
+    c = silence.corpus_topics(stmts, _tax())
+    assert c["immigration"] == {"D": 3, "R": 0} and c["china"] == {"D": 0, "R": 2}
+
+
+def test_silence_requires_news_AND_both_parties_quiet():
+    """Silence = the news is loud and BOTH parties are quiet. One party talking = not a silence."""
+    corpus = {"immigration": {"D": 0, "R": 0}, "china": {"D": 40, "R": 0}}
+    corpus.update({k: corpus.get(k, {"D": 0, "R": 0}) for k in ("immigration", "china")})
+    # pad the day so it clears the corpus-thinness gate
+    corpus["china"] = {"D": 40, "R": 40}
+    board = silence.silence_board({"immigration": 0.9, "china": 0.9}, corpus, _tax())
+    assert board["scored"] is True
+    assert [r["topic"] for r in board["silent"]] == ["immigration"]   # china is loudly spoken -> not silent
+
+
+def test_a_failed_news_pull_is_excluded_not_called_silence():
+    """THE guard: a gap is not a silence. A failed GDELT pull (None) must never produce a claim."""
+    corpus = {"immigration": {"D": 0, "R": 0}, "china": {"D": 40, "R": 40}}
+    board = silence.silence_board({"immigration": None, "china": 0.9}, corpus, _tax())
+    assert board["silent"] == []                                     # no claim from a failed pull
+    assert board["excluded"] and board["excluded"][0]["topic"] == "immigration"
+
+
+def test_a_thin_or_one_party_day_is_not_scored():
+    """A corpus hole must never masquerade as avoidance — thin days score nothing, both directions."""
+    corpus = {"immigration": {"D": 0, "R": 0}, "china": {"D": 3, "R": 0}}
+    board = silence.silence_board({"immigration": 0.9, "china": 0.9}, corpus, _tax())
+    assert board["scored"] is False and board["silent"] == [] and board["void"] == []
+    assert "thin" in board["gates"]["note"]
+
+
+def test_void_is_the_mirror_twin_and_ships_with_silence():
+    """Both directions ship together: the same call returns silent[] and void[]."""
+    corpus = {"immigration": {"D": 0, "R": 0}, "china": {"D": 40, "R": 40}}
+    board = silence.silence_board({"immigration": 0.9, "china": 0.0}, corpus, _tax())
+    assert [r["topic"] for r in board["silent"]] == ["immigration"]
+    assert [r["topic"] for r in board["void"]] == ["china"]          # loud for us, absent from the news
+    assert "silent" in board and "void" in board
+
+
+def test_theme_map_is_committed_and_shares_the_taxonomy_seeds():
+    """The published topic definition is ONE list: the same seeds drive the news query and our match —
+    that's what makes a silence claim reproducible from published data."""
+    m = gdelt.load_theme_map()
+    tax = {t["id"]: t for t in silence.load_taxonomy()["topics"]}
+    assert m["topics"] and "other" not in m["topics"]                # a catch-all has no news baseline
+    for tid, spec in m["topics"].items():
+        assert spec["seeds"] == tax[tid]["seeds"]                    # one definition, both sides
+        assert "sourcecountry:unitedstates" in spec["query"]
+
+
+def test_silence_board_ships_dark():
+    assert config.feature_on("silence_board") is False

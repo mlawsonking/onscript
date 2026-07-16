@@ -1,0 +1,272 @@
+{
+ "schema_version": 1,
+ "kind": "gdelt-theme-map",
+ "taxonomy_version": "v1",
+ "source": "GDELT DOC 2.0 (keyless; 1 req/5s). Query = OR of the taxonomy seeds, US sources.",
+ "fetch_date": "2026-07-16",
+ "note": "Same seeds define the news query AND our corpus match \u2014 one published topic definition, both sides. Rate limit 1 req/5s is enforced in pipeline/gdelt.py. 'other' is excluded (a catch-all cannot have a news baseline).",
+ "topics": {
+  "immigration": {
+   "label": "Immigration & the border",
+   "seeds": [
+    "border",
+    "immigration",
+    "migrant",
+    "asylum",
+    "deportation"
+   ],
+   "query": "(border OR immigration OR migrant OR asylum OR deportation) sourcecountry:unitedstates"
+  },
+  "economy_inflation": {
+   "label": "Economy & inflation",
+   "seeds": [
+    "inflation",
+    "economy",
+    "prices",
+    "cost of living",
+    "jobs report"
+   ],
+   "query": "(inflation OR economy OR prices OR \"cost of living\" OR \"jobs report\") sourcecountry:unitedstates"
+  },
+  "healthcare": {
+   "label": "Healthcare",
+   "seeds": [
+    "healthcare",
+    "medicaid",
+    "affordable care",
+    "prescription",
+    "insurance"
+   ],
+   "query": "(healthcare OR medicaid OR \"affordable care\" OR prescription OR insurance) sourcecountry:unitedstates"
+  },
+  "abortion": {
+   "label": "Abortion & reproductive rights",
+   "seeds": [
+    "abortion",
+    "reproductive",
+    "roe",
+    "pro-life",
+    "pro-choice"
+   ],
+   "query": "(abortion OR reproductive OR roe OR pro-life OR pro-choice) sourcecountry:unitedstates"
+  },
+  "guns": {
+   "label": "Guns",
+   "seeds": [
+    "gun",
+    "firearm",
+    "second amendment",
+    "shooting",
+    "assault weapons"
+   ],
+   "query": "(gun OR firearm OR \"second amendment\" OR shooting OR \"assault weapons\") sourcecountry:unitedstates"
+  },
+  "crime": {
+   "label": "Crime & public safety",
+   "seeds": [
+    "crime",
+    "police",
+    "fentanyl",
+    "public safety",
+    "law enforcement"
+   ],
+   "query": "(crime OR police OR fentanyl OR \"public safety\" OR \"law enforcement\") sourcecountry:unitedstates"
+  },
+  "education": {
+   "label": "Education",
+   "seeds": [
+    "school",
+    "education",
+    "student",
+    "teacher",
+    "curriculum"
+   ],
+   "query": "(school OR education OR student OR teacher OR curriculum) sourcecountry:unitedstates"
+  },
+  "energy_climate": {
+   "label": "Energy & climate",
+   "seeds": [
+    "energy",
+    "climate",
+    "oil",
+    "drilling",
+    "emissions",
+    "clean energy"
+   ],
+   "query": "(energy OR climate OR oil OR drilling OR emissions OR \"clean energy\") sourcecountry:unitedstates"
+  },
+  "israel_gaza": {
+   "label": "Israel & Gaza",
+   "seeds": [
+    "israel",
+    "gaza",
+    "hamas",
+    "hostages",
+    "antisemitism"
+   ],
+   "query": "(israel OR gaza OR hamas OR hostages OR antisemitism) sourcecountry:unitedstates"
+  },
+  "ukraine_russia": {
+   "label": "Ukraine & Russia",
+   "seeds": [
+    "ukraine",
+    "russia",
+    "putin",
+    "zelensky"
+   ],
+   "query": "(ukraine OR russia OR putin OR zelensky) sourcecountry:unitedstates"
+  },
+  "china": {
+   "label": "China",
+   "seeds": [
+    "china",
+    "ccp",
+    "beijing",
+    "taiwan",
+    "xi jinping"
+   ],
+   "query": "(china OR ccp OR beijing OR taiwan OR \"xi jinping\") sourcecountry:unitedstates"
+  },
+  "tech_ai": {
+   "label": "Technology & AI",
+   "seeds": [
+    "artificial intelligence",
+    "ai",
+    "tiktok",
+    "big tech",
+    "data privacy"
+   ],
+   "query": "(\"artificial intelligence\" OR ai OR tiktok OR \"big tech\" OR \"data privacy\") sourcecountry:unitedstates"
+  },
+  "veterans": {
+   "label": "Veterans",
+   "seeds": [
+    "veteran",
+    "va ",
+    "servicemember",
+    "military families"
+   ],
+   "query": "(veteran OR \"va \" OR servicemember OR \"military families\") sourcecountry:unitedstates"
+  },
+  "agriculture": {
+   "label": "Agriculture",
+   "seeds": [
+    "farm",
+    "agriculture",
+    "farmer",
+    "crop",
+    "rural"
+   ],
+   "query": "(farm OR agriculture OR farmer OR crop OR rural) sourcecountry:unitedstates"
+  },
+  "housing": {
+   "label": "Housing",
+   "seeds": [
+    "housing",
+    "rent",
+    "mortgage",
+    "homeless",
+    "affordable housing"
+   ],
+   "query": "(housing OR rent OR mortgage OR homeless OR \"affordable housing\") sourcecountry:unitedstates"
+  },
+  "taxes_debt": {
+   "label": "Taxes & the debt",
+   "seeds": [
+    "tax",
+    "debt",
+    "deficit",
+    "spending",
+    "budget"
+   ],
+   "query": "(tax OR debt OR deficit OR spending OR budget) sourcecountry:unitedstates"
+  },
+  "labor": {
+   "label": "Labor & workers",
+   "seeds": [
+    "union",
+    "worker",
+    "wages",
+    "labor",
+    "strike"
+   ],
+   "query": "(union OR worker OR wages OR labor OR strike) sourcecountry:unitedstates"
+  },
+  "elections_democracy": {
+   "label": "Elections & democracy",
+   "seeds": [
+    "election",
+    "voting",
+    "democracy",
+    "ballot",
+    "voter"
+   ],
+   "query": "(election OR voting OR democracy OR ballot OR voter) sourcecountry:unitedstates"
+  },
+  "courts": {
+   "label": "Courts & the judiciary",
+   "seeds": [
+    "supreme court",
+    "judge",
+    "judicial",
+    "scotus",
+    "nomination"
+   ],
+   "query": "(\"supreme court\" OR judge OR judicial OR scotus OR nomination) sourcecountry:unitedstates"
+  },
+  "infrastructure": {
+   "label": "Infrastructure",
+   "seeds": [
+    "infrastructure",
+    "bridge",
+    "roads",
+    "broadband",
+    "transit"
+   ],
+   "query": "(infrastructure OR bridge OR roads OR broadband OR transit) sourcecountry:unitedstates"
+  },
+  "social_security_medicare": {
+   "label": "Social Security & Medicare",
+   "seeds": [
+    "social security",
+    "medicare",
+    "retirement",
+    "seniors"
+   ],
+   "query": "(\"social security\" OR medicare OR retirement OR seniors) sourcecountry:unitedstates"
+  },
+  "disasters": {
+   "label": "Disasters & emergencies",
+   "seeds": [
+    "hurricane",
+    "wildfire",
+    "disaster",
+    "fema",
+    "flood"
+   ],
+   "query": "(hurricane OR wildfire OR disaster OR fema OR flood) sourcecountry:unitedstates"
+  },
+  "trade_tariffs": {
+   "label": "Trade & tariffs",
+   "seeds": [
+    "tariff",
+    "trade",
+    "import",
+    "export",
+    "supply chain"
+   ],
+   "query": "(tariff OR trade OR import OR export OR \"supply chain\") sourcecountry:unitedstates"
+  },
+  "district_funding": {
+   "label": "District funding & constituent service",
+   "seeds": [
+    "secured",
+    "grant",
+    "funding for",
+    "my district",
+    "federal funding"
+   ],
+   "query": "(secured OR grant OR \"funding for\" OR \"my district\" OR \"federal funding\") sourcecountry:unitedstates"
+  }
+ }
+}
