@@ -178,10 +178,24 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, fragments=groundable,
                                            stats=stats)
     fallback = False
+    if not ok and generator == "sonnet_direct":
+        # HARDENING (deploy-breakdown 2026-07-16): the Sonnet drifted a quote — LLM verbatim-grounding is
+        # inherently brittle (07-15 shipped un-grounded quotes 'national security department' /
+        # "applauded today's house passage…"). Do NOT drop straight to the apologetic stub: fall back to
+        # the RICH deterministic composite, which is verifier-clean BY CONSTRUCTION (code numbers +
+        # verbatim fragments only), then re-verify. The site keeps a real, informative Daily Line.
+        print(f"[voice:{party}] Sonnet failed verify ({reasons}); deterministic-composite fallback")
+        composite = _quiet_dry(stats) if quiet else _compose_dry(stats)
+        generator = "deterministic"
+        model = prompt["id"] + ":deterministic"
+        ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, fragments=groundable,
+                                               stats=stats)
     if not ok:
+        # Last resort: even the deterministic composite failed to verify (should be impossible — it uses
+        # only code numbers + verbatim fragments). The honest stub, never silence. §7.2.
         composite = f"Some of our output could not be verified today. Measured from what did: we released {n} statements."
         fallback = True
-        # The published text is now the deterministic fallback — attribute it honestly, never as the
+        # The published text is the deterministic fallback — attribute it honestly, never as the
         # model (the honesty banner + _voice_flags must not claim Sonnet wrote this). §LOW-6.
         generator = "deterministic"
         model = prompt["id"] + ":fallback"

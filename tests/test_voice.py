@@ -83,20 +83,42 @@ def test_voice_on_calls_sonnet_and_records_real_usage():
         restore()
 
 
-def test_voice_output_failing_verifier_falls_back_but_records_tokens():
-    """An ungrounded LLM quote / invented number fails the blocking verifier => the deterministic
-    fallback text is published (never the hallucination), but the tokens we already paid ARE recorded."""
+def test_voice_output_failing_verifier_falls_back_to_deterministic_composite_not_stub():
+    """HARDENING (deploy-breakdown 2026-07-16): an ungrounded LLM quote fails the blocking verifier =>
+    fall back to the RICH deterministic composite (verifier-clean by construction), NEVER straight to
+    the apologetic stub. The hallucination is not published; the site keeps a real, informative Daily
+    Line; paid tokens are still recorded. This is the actual production regression: 07-15 shipped the
+    'Some of our output could not be verified today' stub because one drifted Sonnet quote skipped the
+    deterministic voice entirely."""
     restore = _swap(dry_run=lambda: False,
                     direct_call=lambda *a, **k: {
                         "text": 'We said "a phrase no member ever wrote" across 9999 statements.',
                         "tokens_in": 1400, "tokens_out": 200})
     try:
         dl = distill.daily_line("D", "2026-07-13", _party_stmts(40), _tps(), None, {}, allow_llm_voice=True)
-        assert dl["verifier"]["passed"] is False and dl["fallback"] is True
+        assert dl["generator"] == "deterministic"                    # fell back to the deterministic voice
+        assert dl["verifier"]["passed"] is True and dl["fallback"] is False   # the deterministic composite verifies
         assert "a phrase no member ever wrote" not in dl["composite"]  # hallucination never published
         assert "9999" not in dl["composite"]
-        assert dl["usage"]["tokens_in"] == 1400  # paid tokens are still recorded honestly
+        assert "we support border security now" in dl["composite"]   # the REAL rich composite...
+        assert "could not be verified" not in dl["composite"]        # ...NOT the degraded stub
+        assert dl["usage"]["tokens_in"] == 1400                       # paid tokens still recorded honestly
     finally:
+        restore()
+
+
+def test_apologetic_stub_only_as_last_resort_when_even_deterministic_fails():
+    """The 'could not be verified' stub fires ONLY if even the deterministic composite fails to verify
+    (should be impossible in production). Force every verify to fail and confirm it never goes silent."""
+    saved = distill.verify.verify_daily_line
+    distill.verify.verify_daily_line = lambda *a, **k: (False, ["forced fail"])
+    restore = _swap(dry_run=lambda: False,
+                    direct_call=lambda *a, **k: {"text": "anything", "tokens_in": 10, "tokens_out": 10})
+    try:
+        dl = distill.daily_line("D", "2026-07-13", _party_stmts(40), _tps(), None, {}, allow_llm_voice=True)
+        assert dl["fallback"] is True and "could not be verified" in dl["composite"]  # honest last resort, never silence
+    finally:
+        distill.verify.verify_daily_line = saved
         restore()
 
 
@@ -111,9 +133,10 @@ def test_fabricated_aggregate_from_a_quote_number_is_rejected():
                         "tokens_in": 1400, "tokens_out": 120})
     try:
         dl = distill.daily_line("D", "2026-07-13", _party_stmts(40), tps, None, {}, allow_llm_voice=True)
-        assert dl["verifier"]["passed"] is False and dl["fallback"] is True
-        assert "87 of us" not in dl["composite"]
-        assert dl["generator"] == "deterministic" and dl["model"].endswith(":fallback")  # LOW-6 relabel
+        assert "87 of us" not in dl["composite"]          # the fabricated AGGREGATE is never published...
+        assert dl["generator"] == "deterministic"          # ...the drifted line is replaced by the clean
+        assert dl["verifier"]["passed"] is True and dl["fallback"] is False   # deterministic composite (§hardening)
+        assert "could not be verified" not in dl["composite"]                 # not the degraded stub
     finally:
         restore()
 
@@ -141,7 +164,10 @@ def test_quote_dropping_a_leading_negation_is_rejected():
                         "tokens_in": 1400, "tokens_out": 120})
     try:
         dl = distill.daily_line("D", "2026-07-13", _party_stmts(40), tps, None, {}, allow_llm_voice=True)
-        assert dl["verifier"]["passed"] is False and dl["fallback"] is True
+        # the meaning-INVERTING span is rejected; the deterministic composite quotes the fragment in FULL
+        # (with the "never"), so the published line can never carry the inverted sense. §hardening
+        assert dl["generator"] == "deterministic" and dl["fallback"] is False
+        assert "never vote to defund the police" in dl["composite"]
     finally:
         restore()
 
