@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from . import boilerplate, config, util
+from . import boilerplate, config, privacy, util
 
 
 def phrase_slug(ngram: str) -> str:
@@ -116,6 +116,13 @@ def collapse_and_rank(rows: list[dict], k: int = 50) -> list[dict]:
     ledger) AND at RENDER time (re-applied to a stored day's list so the CURRENT merge rules take effect
     on already-built pages without re-running the engine — the same display-time refresh the boilerplate
     guard uses). §Session-8f."""
+    # Art. XIII privacy floor, FIRST and before any collapse — order is load-bearing. Filtered after
+    # the collapse, a suppressed row can be elected family representative for a clean sub-gram and
+    # carry a private name into the merged row. This one line is the chokepoint for every display
+    # path that routes through here: top_synchronized (-> every day JSON's table, phrases/top.json,
+    # and the `surfaced` set that decides which phrase pages exist), top_by_velocity, duet
+    # candidates, and site.sync_table's render-time refresh of ALREADY-BUILT day pages.
+    rows, _ = privacy.filter_rows(rows)
     rows = _collapse_subgrams(_collapse_nested(rows))
     # Rank: coordination magnitude first, then CONTENT-richness (a generic 2-word phrase sinks below a
     # substantive one of equal peak), then distinctiveness, then velocity. §Session-7 (C-iii).
@@ -137,6 +144,12 @@ def top_synchronized(ledger: dict, day: str, k: int = 50) -> list[dict]:
         # also drops connective-glue phrases ("and the trump administration's") from the table (C-i).
         if (boilerplate.is_boilerplate_ngram(ngram) or boilerplate.is_low_content(ngram)
                 or boilerplate.is_weak_label(ngram)):
+            continue
+        # Art. XIII: same established display-time-refresh position as the boilerplate guard, so an
+        # already-built ledger is corrected without re-running the engine. Stops a suppressed row
+        # before _members_on/_velocity do any work. (collapse_and_rank re-checks; this is the cheap
+        # early cut, not the only one.)
+        if privacy.is_suppressed(ngram):
             continue
         peak = max((d.get(p, 0) for p in config.COMPOSITE_PARTIES), default=0)
         if peak < config.SYNC_MIN_MEMBERS:

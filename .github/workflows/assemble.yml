@@ -33,6 +33,11 @@ jobs:
     env:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # absent -> dry-run composites, $0
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      # Art. XIII privacy gate (pipeline/privacy.py). REQUIRED: the gate is fail-closed, so an absent
+      # or wrong salt raises at import and the run dies rather than publishing unsuppressed. Never
+      # rotate it (that invalidates every committed HMAC + the canary), and never move the salt into
+      # data/reference/ — the archive step below tars that directory into a PUBLIC release asset.
+      PRIVACY_SALT: ${{ secrets.PRIVACY_SALT }}
       BSKY_BLUE_HANDLE: ${{ secrets.BSKY_BLUE_HANDLE }}
       BSKY_BLUE_PASSWORD: ${{ secrets.BSKY_BLUE_PASSWORD }}
       BSKY_RED_HANDLE: ${{ secrets.BSKY_RED_HANDLE }}

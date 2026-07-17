@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, ops, readiness, roster, util, verify  # noqa: E402
+from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, ops, privacy, readiness, roster, util, verify  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -164,6 +164,16 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
             # administration's") means the members share grammar, not a message, and its receipts
             # would point at unrelated topics. Suppress it (never published, never narrated).
             if ok and boilerplate.is_weak_label(tp.get("label", "")):
+                ok = False
+            # Art. XIII privacy floor — THE PRE-LLM CUT, and it must stay pre-LLM. 2026-07-14 is the
+            # empirical proof: that composite is generator='sonnet_direct', verifier.passed=True,
+            # fallback=False — and it named two murder victims. The verifier passed because the
+            # members really did type those words; no citation-integrity mechanism in this system has
+            # any opinion about privacy, by construction, so no receipts audit could ever have caught
+            # it. Cut here and the TP, its _citations call, its STATS entry, and the voice's ability
+            # to name a private individual all die together. (Same laundering argument as docs/16
+            # nomenclature, arriving early on a different payload.)
+            if ok and privacy.filter_talking_points([tp])[1]:
                 ok = False
             if ok:
                 tp["citations"] = _citations(tp, stmt_by_id, rmap)  # >=3 real (member,date,url)

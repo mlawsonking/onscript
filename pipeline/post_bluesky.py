@@ -28,7 +28,7 @@ try:
 except Exception:
     pass
 
-from pipeline import config, ops, util  # noqa: E402
+from pipeline import config, ops, privacy, util  # noqa: E402
 
 SITE = "https://onscript.news"
 _ACCOUNTS = {
@@ -65,6 +65,19 @@ def _has_composite(party: str, day_json: dict) -> bool:
     guard. So a due party with no composite holds ALL posting. §Session-8b (adversarial-review)."""
     dl = (day_json.get("daily_lines") or {}).get(party) or {}
     return bool((dl.get("composite") or "").strip())
+
+
+def _privacy_trips(party: str, day_json: dict) -> bool:
+    """True iff anything this party would POST names a private individual (Art. XIII) — the composite
+    or the 'most synchronized' phrase build_thread appends to the receipts post. Total-failure-proof
+    like _has_composite: a malformed day must never raise here."""
+    dl = (day_json.get("daily_lines") or {}).get(party) or {}
+    if privacy.is_suppressed(dl.get("composite") or ""):
+        return True
+    for r in day_json.get("top_synchronized") or []:
+        if isinstance(r, dict) and r.get("party") == party and privacy.is_suppressed(r.get("ngram") or ""):
+            return True
+    return False
 
 
 def build_thread(day: str, party: str, day_json: dict) -> list[str]:
@@ -382,6 +395,22 @@ def main() -> int:
         atomic_hold = True
         for p in to_post:
             result_by_party[p] = _dry_result(day, p, day_json, f"atomic hold (no composite: {no_content})")
+        _flush()
+        _deadman(posting_enabled, _ordered(), atomic_hold)
+        return 0
+
+    # ART. XIII — a HOLD, never a filter. A posted name is the one surface that cannot be
+    # un-published. We do NOT post a redacted thread: site.posts_log_body re-renders posted text from
+    # manifest/post-<day>.json and its copy promises a complete, unedited archive ("Any post
+    # attributed to these accounts that does not appear here is not ours"), so a redacted signed
+    # archive is a contradiction. The only available cut is never emitting. Both parties hold, so a
+    # suppressed day can never publish a one-sided thread.
+    suppressed = [p for p in to_post if _privacy_trips(p, day_json)]
+    if suppressed:
+        atomic_hold = True
+        for p in to_post:
+            result_by_party[p] = _dry_result(day, p, day_json,
+                                             f"atomic hold (privacy floor, Art. XIII: {suppressed})")
         _flush()
         _deadman(posting_enabled, _ordered(), atomic_hold)
         return 0

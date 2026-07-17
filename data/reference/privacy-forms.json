@@ -1,0 +1,26 @@
+{
+  "_comment": [
+    "Article XIII (privacy floor) suppression list — HMAC-SHA256 of each name form under the secret",
+    "PRIVACY_SALT. This file names nobody. You can audit its size, its dates, its rule, its code and",
+    "its guarantees without learning a name; that one omission is for the same reason as the",
+    "suppression itself — publishing a curated list of private individuals would be the violation,",
+    "not the fix. Add forms with scripts/privacy_add.py (a reviewed commit, never a secret edit).",
+    "The salt lives OUTSIDE this directory on purpose: assemble.yml tars data/reference into a PUBLIC",
+    "release asset. Do not move the salt here."
+  ],
+  "version": 1,
+  "max_form_tokens": 3,
+  "persons": 2,
+  "canary": "a45667588ea750569475cb5a415fb0c63e9d4841d49ac96976dd2f9a9194d8a3",
+  "forms": [
+    "447bf804cceb30d9fd862e276cc3d1c6953b11d505c79901202e451719ec5743",
+    "c001f5c3c429db2209a1550b75e4a1700037c7dc0893b28cbd56ba54329018ae"
+  ],
+  "entries": [
+    {
+      "added": "2026-07-16",
+      "forms": 2,
+      "reason": "private individuals (homicide victims) named in members' statements; multi-token spans, measured zero legitimate collateral (Art. XIII)"
+    }
+  ]
+}

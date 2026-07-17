@@ -28,6 +28,8 @@ jobs:
     env:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # absent -> dry-run, $0
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      # Art. XIII privacy gate (pipeline/privacy.py) — fail-closed; see assemble.yml for the rules.
+      PRIVACY_SALT: ${{ secrets.PRIVACY_SALT }}
       DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
       GH_TOKEN: ${{ github.token }}
     steps:

@@ -24,6 +24,12 @@ data/reference/*
 # ...and the Search's pre-registered reference tables (small, factual, sourced — §S0.4 requires them committed)
 !data/reference/search/
 !data/reference/search/*.json
+# ...and the Article XIII privacy gate: the form list is HASHED (it names nobody) and the allowlist is
+# a kill-fixture of legitimate speech. Both are PUBLIC on purpose — the mechanism is auditable, only
+# the four name forms are secret. The SALT is NOT here and must never be moved here: assemble.yml
+# tars data/reference into a public release asset. (pipeline/privacy.py)
+!data/reference/privacy-forms.json
+!data/reference/privacy-allowlist.json
 
 # Site build output (Vercel builds it; not committed)
 site/dist/

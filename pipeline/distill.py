@@ -62,8 +62,13 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
             "sync_min": config.SYNC_MIN_MEMBERS}  # the coordination threshold (for the no-coordination line)
 
 
-def _compose_dry(stats: dict) -> str:
-    """Deterministic composite: numbers from STATS, quotes from fragments only, first-person plural."""
+def _compose_dry(stats: dict, allow_absence_claim: bool = True) -> str:
+    """Deterministic composite: numbers from STATS, quotes from fragments only, first-person plural.
+
+    allow_absence_claim=False when STATS were emptied by the Art. XIII privacy filter rather than by
+    the corpus. The "no phrase cleared the bar" line below is a FINDING (the silence story), and a
+    silence manufactured by our own suppression is a fabricated finding — the privacy fix inventing
+    a claim would be a second integrity failure on top of the one it is fixing (Art. II)."""
     parts = [f"Today {stats['statements']} of us released statements."]
     quoted = 0
     for tp in stats["talking_points"][:3]:
@@ -73,9 +78,10 @@ def _compose_dry(stats: dict) -> str:
             parts.append(f'{tp["members"]} of us carried "{tp["quote"]}".')
             quoted += 1
     tp = stats.get("top_phrase")
-    if quoted == 0 and not (tp and tp.get("text")):
+    if quoted == 0 and not (tp and tp.get("text")) and allow_absence_claim:
         # Honest measured ABSENCE: statements went out, but no phrase cleared the coordination bar.
         # This turns an empty column into a finding (the silence story), not a missing feature.
+        # Gated: an absence produced by privacy suppression is not a measurement (see docstring).
         parts.append(f"No phrase was shared by {stats.get('sync_min', config.SYNC_MIN_MEMBERS)} "
                      f"or more of us today.")
     if tp and tp.get("text"):

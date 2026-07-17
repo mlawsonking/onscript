@@ -121,35 +121,6 @@
       ]
     },
     {
-      "ngram": "lorenzo <private-individual-A>",
-      "slug": "033061ea51146dcb",
-      "n": 3,
-      "day_peak": 10,
-      "party": "D",
-      "counts": {
-        "D": 10,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 4.17,
-      "first_seen": {
-        "date": "2026-07-07",
-        "bioguide": "M001245",
-        "statement": "sha256:d245e983f70dda5cde3bd557b70f1857fde85dfb709969a27cf0be978bdd081d",
-        "tie": [],
-        "precision": "day"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        4,
-        4,
-        1,
-        2,
-        10
-      ]
-    },
-    {
       "ngram": "billions of dollars",
       "slug": "ef73ccf05a80670c",
       "n": 3,
@@ -377,38 +348,6 @@
         2,
         1,
         1,
-        8
-      ]
-    },
-    {
-      "ngram": "joan <private-individual-B>",
-      "slug": "3f5cfb62e5f61826",
-      "n": 3,
-      "day_peak": 8,
-      "party": "D",
-      "counts": {
-        "D": 8,
-        "R": 0,
-        "I": 0
-      },
-      "velocity": 8.0,
-      "first_seen": {
-        "date": "2026-07-14",
-        "bioguide": "A000381",
-        "statement": "sha256:26e36a36edec6eaf61b550fe4a555c05ef7dc90c396d1dbe71041b91e5c8d681",
-        "tie": [
-          "C001091",
-          "D000563",
-          "E000299",
-          "G000585",
-          "G000586",
-          "L000557",
-          "P000145"
-        ],
-        "precision": "day"
-      },
-      "df_weight": 1.0,
-      "series": [
         8
       ]
     },
@@ -783,7 +722,7 @@
       "schema_version": 1,
       "day": "2026-07-14",
       "party": "D",
-      "composite": "Across 135 statements today, our most synchronized phrase is \"water resources development act,\" recorded from 14 of us, first recorded from Rick W. Allen (R-GA). Beyond that, we converge around the \"house transportation and infrastructure committee markup of the,\" shared by 10 of us. Smaller numbers of us also echo \"lorenzo <private-individual-A> and joan <private-individual-B>,\" at 4, and both \"of pennsylvania members of congress in demanding answers of\" and \"the nation's nsf regional innovation engines,\" each at 3.",
+      "composite": "Today 135 of us released statements. 10 of us carried \"house transportation and infrastructure committee markup of the\". 3 of us carried \"of pennsylvania members of congress in demanding answers of\". 3 of us carried \"the nation's nsf regional innovation engines\". Our most synchronized phrase, used by 14 of us: water resources development act.",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
@@ -820,8 +759,8 @@
           ]
         }
       ],
-      "model": "claude-sonnet-5",
-      "generator": "sonnet_direct",
+      "model": "claude-sonnet-5:deterministic",
+      "generator": "deterministic",
       "prompt_version": "1.1",
       "prompt_sha": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
       "stats": {
@@ -836,16 +775,6 @@
             "topics": [
               "infrastructure",
               "other"
-            ]
-          },
-          {
-            "label": "and joan <private-individual-B>",
-            "members": 4,
-            "quote": "lorenzo <private-individual-A> and joan <private-individual-B>",
-            "topics": [
-              "guns",
-              "other",
-              "tech_ai"
             ]
           },
           {
@@ -884,7 +813,8 @@
         "tokens_in": 1403,
         "tokens_out": 179,
         "model": "claude-sonnet-5"
-      }
+      },
+      "privacy_corrected": true
     },
     "R": {
       "schema_version": 1,
@@ -1053,69 +983,6 @@
             "date": "2026-07-14",
             "url": "https://robertgarcia.house.gov/media/press-releases/congressman-robert-garcia-secures-committee-approval-255-million-port-long",
             "quote": "member of the house transportation and infrastructure committee"
-          }
-        ]
-      },
-      {
-        "id": "2026-07-14-D-01",
-        "party": "D",
-        "day": "2026-07-14",
-        "label": "and joan <private-individual-B>",
-        "member_count": 4,
-        "statements": [
-          "sha256:695a95bcc598e0161230894ef2d5590466022c1546e5e2535aaa58cc93f8931d",
-          "sha256:8f8e84f63695c81b0dd801e0c9aaff236c31d54c9252bf36bd73d197ffe9565a",
-          "sha256:a5c58cc42863eea8eb4f809baa30b4b9fa8c12f4e65c2bd09e6f05211fbc0a3c",
-          "sha256:f2f7385e8106946c54f5a601b4c7e9cf718cfea1c86211c5b0953874e233ad86"
-        ],
-        "fragments": [
-          {
-            "text": "in texas and joan <private-individual-B> in maine",
-            "statement": "sha256:a5c58cc42863eea8eb4f809baa30b4b9fa8c12f4e65c2bd09e6f05211fbc0a3c"
-          },
-          {
-            "text": "murders of lorenzo <private-individual-A> in houston last week and",
-            "statement": "sha256:8f8e84f63695c81b0dd801e0c9aaff236c31d54c9252bf36bd73d197ffe9565a"
-          },
-          {
-            "text": "lorenzo <private-individual-A> and joan <private-individual-B>",
-            "statement": "sha256:695a95bcc598e0161230894ef2d5590466022c1546e5e2535aaa58cc93f8931d"
-          },
-          {
-            "text": "statement regarding the fatal shootings of lorenzo <private-individual-A>",
-            "statement": "sha256:f2f7385e8106946c54f5a601b4c7e9cf718cfea1c86211c5b0953874e233ad86"
-          }
-        ],
-        "topics": [
-          "guns",
-          "other",
-          "tech_ai"
-        ],
-        "leadership_first": false,
-        "citations": [
-          {
-            "member": "Jimmy Gomez",
-            "party": "D",
-            "state": "CA",
-            "date": "2026-07-14",
-            "url": "https://gomez.house.gov/news/documentsingle.aspx?DocumentID=6143",
-            "quote": "lorenzo <private-individual-A> and joan <private-individual-B>"
-          },
-          {
-            "member": "Veronica Escobar",
-            "party": "D",
-            "state": "TX",
-            "date": "2026-07-14",
-            "url": "https://escobar.house.gov/news/documentsingle.aspx?DocumentID=3255",
-            "quote": "murders of lorenzo <private-individual-A> in houston last week and"
-          },
-          {
-            "member": "Jesús G. \"Chuy\" García",
-            "party": "D",
-            "state": "IL",
-            "date": "2026-07-14",
-            "url": "https://chuygarcia.house.gov/media/press-releases/congressman-garcia-s-statement-on-ice-s-ongoing-criminality",
-            "quote": "in texas and joan <private-individual-B> in maine"
           }
         ]
       },

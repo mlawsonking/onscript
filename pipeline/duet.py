@@ -37,7 +37,7 @@ from __future__ import annotations
 
 import re
 
-from . import boilerplate, build, config, verify
+from . import boilerplate, build, config, privacy, verify
 
 # The duet bar: BOTH parties must independently clear the SAME synchronization threshold that a
 # single-party phrase must clear to be called synchronized at all. Not a new knob (§13) — the
@@ -373,6 +373,12 @@ def candidate_rows(ledger: dict, day: str, k: int = 50) -> list[dict]:
                 or boilerplate.is_weak_label(ngram)):
             continue
         if _ends_mid_construction(ngram):
+            continue
+        # Art. XIII. build.collapse_and_rank below is the real chokepoint, but duets are computed
+        # EVERY day in run_assemble regardless of the dark FEATURES flag, so without this the names
+        # accumulate silently in derived and ship the moment the flag flips. Same reason the §5.1
+        # lane guard lives INSIDE find_duets rather than trusting its caller.
+        if privacy.is_suppressed(ngram):
             continue
         counts = {p: d.get(p, 0) for p in config.ALL_PARTIES}
         both = min(counts["D"], counts["R"])

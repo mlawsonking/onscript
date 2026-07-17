@@ -35,7 +35,7 @@ import json
 
 import statistics
 
-from . import config, ops, util
+from . import config, ops, privacy, util
 
 COVERAGE_MIN_SHARE = 0.60     # §2.3 green: each party >= 60% of its own trailing median
 COVERAGE_WINDOW = 14          # §2.3 trailing window, in CALENDAR DAYS (not "the newest 14 files")
@@ -331,6 +331,10 @@ def top_phrase(today: str) -> dict | None:
     for i in range(1, 8):
         day = _iso(_parse(today) - dt.timedelta(days=i))
         rows = (_read(config.DERIVED / "days" / f"{day}.json") or {}).get("top_synchronized") or []
+        # Art. XIII. The destination is one private phone, so this is the lowest-severity emission
+        # path in the system — but it is a real one, and "we only sent it to Michael" is not a
+        # privacy floor. Filter BEFORE the [:1] slice, or a suppressed row is simply the answer.
+        rows = privacy.filter_rows(rows)[0]
         for r in rows[:1]:
             if best is None or (r.get("day_peak") or 0) > (best.get("day_peak") or 0):
                 best = {"ngram": r.get("ngram"), "party": r.get("party"),

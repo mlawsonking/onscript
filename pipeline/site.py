@@ -27,7 +27,7 @@ from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import build, config  # noqa: E402
+from pipeline import build, config, distill, privacy, verify  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
 try:
@@ -471,6 +471,75 @@ _STUB_VOICE_MSG = {
 }
 
 
+def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
+    """RENDER-TIME Article XIII correction for one party-day. Returns (line, talking_points, state)
+    where state is "clean" | "recomposed" | "withheld".
+
+    Why render-time and not a one-time JSON rewrite: a rewrite is undone by the next cloud run that
+    rebuilds the day, and protects no future day. Render-time is idempotent and re-applies forever —
+    the same argument _voice_flags already makes for correcting historical pages without re-assembly.
+    It is also the ONLY option here: local state ends 2026-07-09, so the affected days cannot be
+    rebuilt locally, and a cloud re-assemble would call the paid voice.
+
+    The re-composition is honest rather than cosmetic because distill._compose_dry(stats) takes STATS
+    AND NOTHING ELSE — no ledger, no network, $0 — so "generator: deterministic" is LITERALLY TRUE:
+    it is the same function the pipeline itself uses, and this system's established trusted
+    degradation path (distill.py already falls Sonnet -> deterministic on verify failure).
+
+    The rejected alternative — regex-excising the offending clause — would yield text Sonnet never
+    wrote, still badged sonnet_direct/claude-sonnet-5: fabrication-by-editing."""
+    dl = day_data.get("daily_lines") or {}
+    line = dl.get(party) if isinstance(dl, dict) else None
+    tps_all = (day_data.get("talking_points") or {}).get(party, []) \
+        if isinstance(day_data.get("talking_points"), dict) else []
+    tps, tps_dropped = privacy.filter_talking_points(tps_all)
+    if not isinstance(line, dict):
+        return line, tps, "clean"
+
+    composite = line.get("composite") or ""
+    stats_raw = line.get("stats")
+    stats, stats_dropped = privacy.filter_stats(stats_raw)
+    if not (tps_dropped or stats_dropped or privacy.is_suppressed(composite)):
+        return line, tps, "clean"
+
+    # Something in this line names a private individual. Re-derive from the FILTERED stats.
+    if not isinstance(stats, dict):
+        return None, tps, "withheld"           # no stats to recompose from -> withhold, never guess
+    has_quote = any((t or {}).get("quote") for t in (stats.get("talking_points") or []))
+    top = stats.get("top_phrase")
+    if not has_quote and not (isinstance(top, dict) and top.get("text")):
+        # Everything measurable was suppressed. Withholding is RIGHT here: _compose_dry would emit
+        # "No phrase was shared by 3 or more of us today" — a fabricated silence FINDING manufactured
+        # by our own privacy fix (Art. II). allow_absence_claim=False stops that line; withholding
+        # stops the empty shell it would leave.
+        return None, tps, "withheld"
+
+    text = distill._quiet_dry(stats) if line.get("quiet") \
+        else distill._compose_dry(stats, allow_absence_claim=False)
+
+    # The STORED verifier block describes the SONNET text; rendering "verifier: passed" over a
+    # swapped composite would attest text that is no longer published. Re-verify what we publish.
+    groundable = [f.get("text") for t in tps for f in (t.get("fragments") or [])
+                  if isinstance(f, dict) and f.get("text")]
+    ok, _reasons = verify.verify_daily_line({"composite": text}, json.dumps(stats, ensure_ascii=False),
+                                            groundable, stats=stats)
+    if not ok:
+        return None, tps, "withheld"
+    out = dict(line)
+    out["composite"] = text
+    out["generator"] = "deterministic"      # literally true: distill's own composer produced this
+    out.pop("model", None)                  # a stale 'claude-sonnet-5' would falsely claim authorship
+    out["verifier"] = {"checked": True, "passed": True, "reasons": []}
+    out["_privacy_corrected"] = True
+    return out, tps, "recomposed"
+
+
+def privacy_states(day_data) -> dict:
+    """{party: "clean"|"recomposed"|"withheld"} for the day — shared by the banner and the panels so
+    a corrected composite can never render under an uncorrected banner."""
+    return {p: privacy_correct_line(p, day_data)[2] for p in ("D", "R")}
+
+
 def honesty_state(day_data, symmetry):
     """Return (needs_banner, message, has_stub_voice). has_stub_voice is True when EITHER party's
     Daily Line was composed by a non-LLM template (dry_run / deterministic / any legacy non-production
@@ -507,8 +576,33 @@ def honesty_state(day_data, symmetry):
     return True, "; ".join(seen), has_stub_voice
 
 
-def banner_html(day_data, symmetry) -> str:
+def banner_html(day_data, symmetry, depth: int = 1) -> str:
     need, msg, has_stub_voice = honesty_state(day_data, symmetry)
+    # Art. XIII: a suppression-corrected day gets its OWN branch and its own reason. The
+    # has_stub_voice tail below says the phrasing is "a placeholder until the live model voice is
+    # wired in" — that copy is stale (the voice went live in Session 6b) and on a corrected day it
+    # would state a FALSE REASON (voice not built) for what is actually privacy protection.
+    pstates = privacy_states(day_data)
+    corrected = [p for p, s in pstates.items() if s == "recomposed"]
+    withheld = [p for p, s in pstates.items() if s == "withheld"]
+    if corrected or withheld:
+        bits = []
+        if corrected:
+            bits.append(
+                f"{' and '.join(PARTY_NAME[p] for p in sorted(corrected))}' Daily Line was "
+                f"<strong>re-composed by the deterministic composer</strong> because the model&rsquo;s "
+                f"version named a private individual")
+        if withheld:
+            bits.append(
+                f"{' and '.join(PARTY_NAME[p] for p in sorted(withheld))}' Daily Line is "
+                f"<strong>withheld under the privacy floor</strong>")
+        # depth-correct: this banner also renders on index.html (depth 0), where "../" would 404.
+        tail = (" Every number is the day&rsquo;s real measurement; nothing about the instrument or its "
+                "thresholds changed, and the same rule is applied identically to both parties. "
+                f'See the <a href="{"../" * depth}methodology.html">privacy floor</a> and the '
+                "corrections log.")
+        extra = f"{msg}; " if need else ""
+        return f'<div class="banner">Honesty note: {extra}{"; ".join(bits)}.{tail}</div>'
     if not need:
         return ""
     if has_stub_voice:
@@ -632,11 +726,21 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
 
 
 def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
-    dl = day_data.get("daily_lines") or {}
-    line = dl.get(party) if isinstance(dl, dict) else None
-    tps = (day_data.get("talking_points") or {}).get(party, []) if isinstance(day_data.get("talking_points"), dict) else []
+    # Art. XIII render-time correction, BEFORE anything is rendered — this also drops the suppressed
+    # talking point before receipts_strip can print its label and citation quotes.
+    line, tps, pstate = privacy_correct_line(party, day_data)
 
     who = f'<div class="who">{esc(PARTY_NAME.get(party, party))}</div>'
+    if pstate == "withheld":
+        return (
+            f'<div class="line {esc(party)}">{who}'
+            f'<p class="composite muted">This Daily Line is <strong>withheld under the privacy '
+            f'floor</strong>: the phrases it would have been composed from name a private '
+            f'individual. OnScript measures elected officials&rsquo; public statements and never '
+            f'publishes a private citizen as a data point. The underlying record of what members '
+            f'said is retained unaltered; only this instrument&rsquo;s ranking of it is withheld.</p>'
+            f'</div>'
+        )
     if not isinstance(line, dict):
         return (
             f'<div class="line {esc(party)}">{who}'
@@ -666,7 +770,12 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     # by a receipt-free card.
     body_tail = receipts_strip(party, tps, caucus=caucus)
     if not [t for t in (tps or []) if isinstance(t, dict)]:
-        body_tail = (f'<p class="nocite">No talking point cleared the {config.SYNC_MIN_MEMBERS}-member '
+        # "Nothing cleared the threshold" is a measured ABSENCE claim. If the list was emptied by the
+        # privacy filter rather than by the corpus, that sentence is a fabricated silence finding
+        # authored by our own fix (Art. II) — say what actually happened instead.
+        body_tail = (f'<p class="nocite">Talking points for this day are withheld under the privacy '
+                     f'floor &mdash; nothing to cite here.</p>') if pstate != "clean" else (
+                     f'<p class="nocite">No talking point cleared the {config.SYNC_MIN_MEMBERS}-member '
                      f'threshold today &mdash; nothing to cite.</p>')
 
     return (
@@ -759,6 +868,10 @@ def phrase_search_index() -> list[dict]:
         ngram = d.get("ngram")
         if not ngram:
             continue
+        # Art. XIII: dark today (FEATURES["phrase_search"]), but this globs the same JSONs and would
+        # ship a client-side name-lookup payload the instant the flag flips.
+        if privacy.is_suppressed(ngram):
+            continue
         rows.append({"q": ngram, "s": d.get("slug") or p.stem,
                      "p": _num(d.get("peak_units")), "f": (d.get("first_seen") or {}).get("date") or ""})
     rows.sort(key=lambda r: (-r["p"], r["q"]))
@@ -834,6 +947,14 @@ def duet_panel(day_data, depth: int = 0) -> str:
     if not config.feature_on("duet"):
         return ""
     duets = [d for d in (day_data.get("duets") or []) if isinstance(d, dict)]
+    # Art. XIII, at SENTENCE level and not just on the phrase: a duet renders each member's whole
+    # quoted sentence, which can carry a private name the duet phrase itself does not. Drop the whole
+    # duet rather than a side — a one-sided duet is not a duet, and dropping one side's receipts
+    # would publish an asymmetric cross-party claim.
+    duets = [d for d in duets if not privacy.is_suppressed(d.get("ngram") or "")
+             and not any(privacy.is_suppressed((c or {}).get("quote") or "")
+                         for p in ("D", "R")
+                         for c in ((d.get("sides") or {}).get(p) or []) if isinstance(c, dict))]
     if not duets:
         return ""
     out = ["<h2>The Duet</h2>",
@@ -884,7 +1005,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
             f'&ldquo;today&rdquo; reading covers the most recent complete day: <strong>{esc(day)}</strong>.</div>'
         )
 
-    parts.append(banner_html(day_data, symmetry))
+    parts.append(banner_html(day_data, symmetry, depth=depth))
 
     # Two Daily Lines side by side (caucus sizes from the day's symmetry audit → denominators in view)
     caucus = {p: ((symmetry or {}).get("parties", {}).get(p, {}) or {}).get("caucus_size")
@@ -893,6 +1014,19 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
     parts.append(daily_line_panel("D", day_data, caucus=caucus.get("D")))
     parts.append(daily_line_panel("R", day_data, caucus=caucus.get("R")))
     parts.append("</div>")
+
+    # Art. VIII (no silent edits): disclose that something was withheld, in AGGREGATE only. Never a
+    # per-row placeholder — a row reading "1 phrase withheld, 10 members" is itself a pointer to the
+    # person. The count names nobody.
+    n_withheld = privacy.filter_rows(day_data.get("top_synchronized") or [])[1]
+    if n_withheld:
+        parts.append(
+            f'<p class="muted"><small>{n_withheld} phrase famil'
+            f'{"y" if n_withheld == 1 else "ies"} withheld from this day under the '
+            f'<a href="{root}methodology.html">privacy floor</a> (phrases naming a private '
+            f'individual). Content-neutral protection applied identically to both parties: no '
+            f'threshold changed and no finding was produced.</small></p>'
+        )
 
     # discipline (on-script index) if present
     disc = day_data.get("discipline")
@@ -1036,7 +1170,9 @@ def phrases_index_body(top):
         )
         return "".join(out)
 
-    parts.append(render_table(top.get("by_velocity"), "Fastest-spreading", "Ranked by adoption velocity — phrases going viral within a caucus."))
+    # Art. XIII: the one display path that does NOT route through build.collapse_and_rank (the peak
+    # table below does), so it needs its own filter.
+    parts.append(render_table(privacy.filter_rows(top.get("by_velocity") or [])[0], "Fastest-spreading", "Ranked by adoption velocity — phrases going viral within a caucus."))
     # collapse near-dups on the peak table (render-time refresh); the velocity table keeps its own order.
     parts.append(render_table(build.collapse_and_rank(top.get("by_peak") or [], k=40),
                               "Most synchronized", "Ranked by peak single-day member count."))
@@ -1234,6 +1370,29 @@ def methodology_body():
         parts.append("</ul>")
     else:
         parts.append('<p class="muted">Taxonomy not found.</p>')
+
+    # (d2) the privacy floor (Art. XIII) — the rule, the count, the dates, the guarantees. Never a name.
+    pmeta = privacy.meta()
+    n_persons = pmeta.get("persons") or 0
+    n_forms = sum(int((e or {}).get("forms") or 0) for e in (pmeta.get("entries") or []))
+    added = ", ".join(sorted({str((e or {}).get("added")) for e in (pmeta.get("entries") or []) if e.get("added")}))
+    parts.append("<h2>The privacy floor</h2>")
+    parts.append(
+        "<p>OnScript measures what elected officials say in public. It never publishes a private individual as a "
+        "data point &mdash; regardless of how interesting. When a phrase our engine tracks contains the name of a "
+        "private individual, that phrase family is withheld from every published surface: the tables, the phrase "
+        "pages, the receipts, the composites, and the accounts.</p>"
+    )
+    parts.append(
+        f"<p>The suppression list holds <strong>{esc(n_persons)} people / {esc(n_forms)} name forms</strong>"
+        f"{f' (added {esc(added)})' if added else ''}. It is applied identically to both parties, it changes no "
+        "threshold and produces no finding, and it is checked on load against the full member roster and against a "
+        "public list of legitimate phrases &mdash; so it provably cannot silence an elected official or an "
+        "official&rsquo;s own words. The list itself is published in one-way keyed form: you can audit its size, its "
+        "dates, its code, and its guarantees, but it does not disclose the names. That one omission is for the same "
+        "reason as the suppression &mdash; publishing a curated list of private individuals would be the violation, "
+        "not the fix.</p>"
+    )
 
     # (e) corrections policy + public log (neutrality armor: corrections are dated posts, never silent edits)
     parts.append("<h2>Corrections</h2>")
@@ -1544,6 +1703,13 @@ def build_site():
     (OUT / "day").mkdir(parents=True, exist_ok=True)
     (OUT / "phrases").mkdir(parents=True, exist_ok=True)
 
+    # Art. XIII: delete contaminated phrase pages AND their rendered twins before anything renders.
+    # A render-time SKIP is not enough — build_site only ever WRITES (nothing here unlinks) and
+    # site/public is git-tracked and deployed, so a skipped page stays live at its public URL.
+    purged = privacy.purge_derived()
+    if purged:
+        print(f"[privacy] purged {len(purged)} contaminated derived/rendered file(s)")
+
     written = []
 
     days = all_day_files()  # sorted ascending by day
@@ -1628,6 +1794,9 @@ def build_site():
                 continue
             pdata = _load_json(p)
             if not isinstance(pdata, dict) or not pdata.get("ngram"):
+                continue
+            # Art. XIII belt to purge_derived's braces: a restored/re-generated JSON can never render.
+            if privacy.is_suppressed(pdata.get("ngram") or ""):
                 continue
             body = phrase_page_body(pdata, depth=1)
             (OUT / "phrases" / f"{p.stem}.html").write_text(

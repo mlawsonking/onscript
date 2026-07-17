@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import json
 
-from . import alexandria, build, config, llm, roster, util, verify
+from . import alexandria, build, config, llm, privacy, roster, util, verify
 
 CHAPTERS_DIR = config.DERIVED / "chapters"
 MIN_STATEMENTS = 3000          # coverage gate: below this an era is "too thin to characterize"
@@ -41,7 +41,11 @@ def era_top_phrases(ledger: dict, party: str, start: str, end: str, k: int = 8) 
                 if c > peak:
                     peak, peak_day = c, day
                     members = set(d.get(f"members_{party}", []))
-        if peak >= config.SYNC_MIN_MEMBERS:
+        if peak >= config.SYNC_MIN_MEMBERS and not privacy.is_suppressed(ng):
+            # Art. XIII. Chapters use their own _collapse_top, NOT build.collapse_and_rank, so the
+            # chokepoint there does not cover them. Same pre-LLM argument as run_assemble: a chapter
+            # is LLM prose, so an unfiltered name here gets laundered into fluent text that the
+            # verifier passes (the members really did type it).
             rows.append({"phrase": ng, "peak_members": peak, "peak_day": peak_day,
                          "first_date": e["first_seen"]["date"], "first_bioguide": e["first_seen"]["bioguide"],
                          "_members": frozenset(members)})
@@ -150,7 +154,10 @@ def build_monthly_inputs(ledger: dict, *, min_peak: int = 5, min_phrases: int = 
                 continue
             for party in config.COMPOSITE_PARTIES:
                 c = d.get(party, 0)
-                if c >= config.SYNC_MIN_MEMBERS:
+                if c >= config.SYNC_MIN_MEMBERS and not privacy.is_suppressed(ng):
+                    # Art. XIII: the month lane uses _collapse_top, not build.collapse_and_rank, so
+                    # it needs its own guard. Filtering here keeps it out of both `stats.top_phrases`
+                    # and the `fragments` grounding list the chapter voice quotes from.
                     cur = bucket[(party, month)].get(ng)
                     if cur is None or c > cur["peak"]:
                         bucket[(party, month)][ng] = {"peak": c, "day": day}
