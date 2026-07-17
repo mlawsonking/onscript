@@ -32,8 +32,11 @@ LANE_CUTOFF = {"propublica": "2021-01-03", "scraped": "2026-07-09"}   # docs/18 
 CACHE = config.DERIVED / "search"
 
 
-def build_caches(lane):
+def build_caches(lane, force=False):
     congs = S1.LANE_CONGRESSES[lane]
+    if not force and H.cache_path("phrase_index.jsonl", lane).exists():
+        print(f"  [caches] {lane}: reusing existing caches (pass --rebuild-caches to force)", flush=True)
+        return
     print(f"  [caches] {lane} congresses {list(congs)}", flush=True)
     H.build_phrase_index(congresses=congs, lane=lane, progress=False)
     H.build_member_index(congresses=congs, lane=lane, progress=False)
@@ -74,8 +77,10 @@ def run_lane(lane, elections):
 
 def main():
     lanes = [a for a in sys.argv[1:] if a in ("propublica", "scraped")] or ["scraped", "propublica"]
+    force = "--rebuild-caches" in sys.argv
     elections = json.loads((config.REFERENCE / "search" / "elections.json").read_text(encoding="utf-8"))["general"]
-    result = {}
+    dest = CACHE / "revalidate_s1_shards.json"
+    result = json.loads(dest.read_text(encoding="utf-8")) if dest.exists() else {}   # merge, don't clobber other lane
     for lane in lanes:
         # only run a lane whose shards exist
         from pipeline import alexandria as A
@@ -85,12 +90,11 @@ def main():
             print(f"[skip] {lane}: shards not built yet for congresses {missing}", flush=True)
             continue
         print(f"\n================= {lane} =================", flush=True)
-        build_caches(lane)
+        build_caches(lane, force=force)
         res = run_lane(lane, elections)
         result[lane] = res
         for r in res:
             print(f"  {r['id']:7} {r['name']:38} {r['verdict']}", flush=True)
-    dest = CACHE / "revalidate_s1_shards.json"
     dest.write_text(json.dumps(result, indent=1, default=list), encoding="utf-8")
     print(f"\nwrote {dest}", flush=True)
     return result

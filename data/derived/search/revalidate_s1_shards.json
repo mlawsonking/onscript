@@ -1,0 +1,461 @@
+{
+ "scraped": [
+  {
+   "id": "S1.1",
+   "name": "Industrialization of the Memo",
+   "lane": "scraped",
+   "peak_min": 15,
+   "artifact_guard": true,
+   "series": [
+    [
+     2021,
+     60.0
+    ],
+    [
+     2022,
+     0.0
+    ],
+    [
+     2023,
+     60.0
+    ],
+    [
+     2024,
+     15
+    ],
+    [
+     2025,
+     60
+    ],
+    [
+     2026,
+     1
+    ]
+   ],
+   "cells": {
+    "2021": 1386,
+    "2022": 1398,
+    "2023": 1250,
+    "2024": 185,
+    "2025": 1299,
+    "2026": 71
+   },
+   "dir_a": 0,
+   "dir_b": -1,
+   "early_median": 60.0,
+   "late_median": 1,
+   "ratio": 60.0,
+   "density_survives": true,
+   "verdict": "ARTIFACT"
+  },
+  {
+   "id": "S1.3",
+   "name": "Phrase Lifespan Collapse",
+   "lane": "scraped",
+   "peak_min": 10,
+   "artifact_guard": true,
+   "series": [
+    [
+     2021,
+     640
+    ],
+    [
+     2022,
+     115
+    ],
+    [
+     2023,
+     596
+    ],
+    [
+     2024,
+     16.0
+    ],
+    [
+     2025,
+     364.5
+    ],
+    [
+     2026,
+     56.0
+    ]
+   ],
+   "cells": {
+    "2021": 4933,
+    "2022": 4121,
+    "2023": 2655,
+    "2024": 1292,
+    "2025": 4166,
+    "2026": 186
+   },
+   "dir_a": -1,
+   "dir_b": 1,
+   "early_median_lifespan": 596,
+   "late_median_lifespan": 56.0,
+   "median_drop": 0.9060402684563759,
+   "verdict": "ARTIFACT",
+   "note": "birth-year cohorts truncate near the window edge (right-censoring) \u2014 caveat on any card"
+  },
+  {
+   "id": "S1.1'",
+   "name": "Industrialization of the Memo (redefined)",
+   "lane": "scraped",
+   "series": [
+    [
+     2021,
+     14.0
+    ],
+    [
+     2022,
+     2
+    ],
+    [
+     2023,
+     4.0
+    ],
+    [
+     2024,
+     8.5
+    ],
+    [
+     2025,
+     15
+    ],
+    [
+     2026,
+     7.0
+    ]
+   ],
+   "cells": {
+    "2021": 660,
+    "2022": 2347,
+    "2023": 662,
+    "2024": 1068,
+    "2025": 849,
+    "2026": 424
+   },
+   "dir_a": -1,
+   "dir_b": -1,
+   "early_median": 14.0,
+   "late_median": 7.0,
+   "ratio": 2.0,
+   "density_survives": false,
+   "artifact_guard": false,
+   "verdict": "ARTIFACT"
+  },
+  {
+   "id": "S1.3'",
+   "name": "Phrase Lifespan Collapse (redefined)",
+   "lane": "scraped",
+   "series": [
+    [
+     2021,
+     25
+    ],
+    [
+     2022,
+     12.0
+    ],
+    [
+     2023,
+     23.0
+    ],
+    [
+     2024,
+     26.0
+    ],
+    [
+     2025,
+     52
+    ],
+    [
+     2026,
+     24
+    ]
+   ],
+   "cells": {
+    "2021": 651,
+    "2022": 2346,
+    "2023": 660,
+    "2024": 952,
+    "2025": 751,
+    "2026": 267
+   },
+   "dir_a": -1,
+   "dir_b": -1,
+   "early_median_days": 23.0,
+   "late_median_days": 26.0,
+   "median_drop": -0.13,
+   "density_survives": false,
+   "artifact_guard": false,
+   "verdict": "ARTIFACT"
+  },
+  {
+   "id": "S1.2",
+   "name": "The Sync Ceiling",
+   "lane": "scraped",
+   "series_norm": [
+    [
+     2021,
+     0.3684
+    ],
+    [
+     2022,
+     0.236
+    ],
+    [
+     2023,
+     0.193
+    ],
+    [
+     2024,
+     0.1935
+    ],
+    [
+     2025,
+     0.2349
+    ],
+    [
+     2026,
+     0.1682
+    ]
+   ],
+   "raw_ceiling": {
+    "2021": 84,
+    "2022": 63,
+    "2023": 66,
+    "2024": 72,
+    "2025": 113,
+    "2026": 90
+   },
+   "dir_a": -1,
+   "dir_b": -1,
+   "early_norm": 0.3684210526315789,
+   "late_norm": 0.16822429906542055,
+   "ratio": 0.45660881174899864,
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.5",
+   "name": "The Weekend Memo",
+   "lane": "scraped",
+   "peak_min": 15,
+   "excess_A": {
+    "0": 0.79,
+    "1": 1.08,
+    "2": 0.75,
+    "3": 1.07,
+    "4": 0.95,
+    "5": 0.64,
+    "6": 7.1
+   },
+   "excess_B": {
+    "0": 0.98,
+    "1": 0.85,
+    "2": 1.05,
+    "3": 0.47,
+    "4": 1.72,
+    "5": 0.91,
+    "6": 2.42
+   },
+   "weekend_excess_A": [
+    0.6375190751554324,
+    7.099807548434706
+   ],
+   "weekend_excess_B": [
+    0.9080014447633364,
+    2.4249940898833677
+   ],
+   "n_A": 4034,
+   "n_B": 1555,
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.6",
+   "name": "The 90-Day Snap",
+   "lane": "scraped",
+   "cycles": {
+    "2022": {
+     "half": "A",
+     "D": {
+      "pre90": 0.796,
+      "prior": 0.763,
+      "snap": true
+     },
+     "R": {
+      "pre90": 0.828,
+      "prior": 0.774,
+      "snap": true
+     }
+    },
+    "2024": {
+     "half": "B",
+     "D": {
+      "pre90": 0.758,
+      "prior": 0.728,
+      "snap": true
+     },
+     "R": {
+      "pre90": 0.756,
+      "prior": 0.732,
+      "snap": true
+     }
+    },
+    "2026": {
+     "half": "B",
+     "D": {
+      "pre90": null,
+      "prior": 0.709,
+      "snap": false
+     },
+     "R": {
+      "pre90": null,
+      "prior": 0.756,
+      "snap": false
+     }
+    }
+   },
+   "snap_tally": {
+    "A-D": "1/1",
+    "A-R": "1/1",
+    "B-D": "1/1",
+    "B-R": "1/1"
+   },
+   "verdict": "UNDERPOWERED"
+  },
+  {
+   "id": "S1.7",
+   "name": "The August Effect",
+   "lane": "scraped",
+   "peak_min": 15,
+   "by_half": {
+    "A": {
+     "aug_rate": 32.144,
+     "other_rate": 62.083,
+     "aug_ig": 136,
+     "aug_stmts": 4231
+    },
+    "B": {
+     "aug_rate": 0.0,
+     "other_rate": 15.038,
+     "aug_ig": 0,
+     "aug_stmts": 4202
+    }
+   },
+   "recess_vs_session_ratio": {
+    "A": 0.52,
+    "B": null
+   },
+   "proxy": "August = recess",
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.8",
+   "name": "The SOTU Gravity Well",
+   "lane": "scraped",
+   "peak_day_by_year": {
+    "2021": "2021-01-20",
+    "2022": "2022-12-08",
+    "2023": "2023-12-14",
+    "2024": "2024-01-10",
+    "2025": "2025-01-03",
+    "2026": "2026-01-08"
+   },
+   "peak_magnitude": {
+    "2021": 90,
+    "2022": 203,
+    "2023": 260,
+    "2024": 1259,
+    "2025": 308,
+    "2026": 268
+   },
+   "half_life_days": {
+    "2021": 1,
+    "2022": 1,
+    "2023": 1,
+    "2024": 1,
+    "2025": 1,
+    "2026": 1
+   },
+   "hl_dir_a": 0,
+   "hl_dir_b": 0,
+   "hl_early": 1,
+   "hl_late": 1,
+   "hl_drop": 0.0,
+   "peak_mag_dir_a": 1,
+   "peak_mag_dir_b": -1,
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.11",
+   "name": "Delegation Echo",
+   "lane": "scraped",
+   "by_half": {
+    "A": {
+     "phrases": 2784,
+     "observed_pairs": 208829,
+     "total_pairs": 3780667,
+     "mean_null_pairs": 124178.4,
+     "ratio": 1.68,
+     "same_state_rate": 0.0552
+    },
+    "B": {
+     "phrases": 2805,
+     "observed_pairs": 689523,
+     "total_pairs": 20046149,
+     "mean_null_pairs": 666865.8,
+     "ratio": 1.03,
+     "same_state_rate": 0.0344
+    }
+   },
+   "ratio_A": 1.68,
+   "ratio_B": 1.03,
+   "verdict": "REFUTED"
+  },
+  {
+   "lane": "scraped",
+   "full": {
+    "117": {
+     "D": 0.0307,
+     "R": 0.03
+    },
+    "118": {
+     "D": 0.0801,
+     "R": 0.0278
+    },
+    "119": {
+     "D": 0.0962,
+     "R": 0.0222
+    }
+   },
+   "matched": {
+    "117": {
+     "D": 0.0307,
+     "R": 0.03
+    },
+    "118": {
+     "D": 0.0534,
+     "R": 0.0186
+    },
+    "119": {
+     "D": 0.0514,
+     "R": 0.0103
+    }
+   },
+   "target_volume": 36653,
+   "directions": {
+    "full_D_A": null,
+    "full_D_B": null,
+    "full_R_A": null,
+    "full_R_B": null,
+    "matched_D_A": null,
+    "matched_D_B": null,
+    "matched_R_A": null,
+    "matched_R_B": null
+   },
+   "id": "S1.4",
+   "name": "The Copy-Paste Caucus",
+   "verdict": "REFUTED"
+  }
+ ]
+}

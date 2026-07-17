@@ -545,15 +545,25 @@ def s1_4_proper(congresses=range(113, 120), seed="s1.4", *, lane=None, chalves=N
             dirs[f"{label}_{p}_A"] = M.split_direction([(c, s) for c, s in a])
             dirs[f"{label}_{p}_B"] = M.split_direction([(c, s) for c, s in b])
     out["directions"] = dirs
+    # POWER (docs/18 §5): the both-halves gate is a split_direction over CONGRESS-share points, which
+    # needs >=3 congresses per half. No single lane has that — propublica A/B are {113,114}/{115,116}
+    # (2 each), scraped A/B are {117}/{118,119} (1 and 2). So within a lane the congress-split gate is
+    # UNMEETABLE and every direction comes back None; reporting that as REFUTED would be a false
+    # negative (cf. S3.6 — a T1 power requirement no in-lane data can satisfy). The year-keyed verbatim
+    # floor (s1_4_verbatim, Session 18) is the runnable within-lane form of this hypothesis.
+    powered = all(len([c for c in congresses if c in chalves[h]]) >= 3 for h in ("A", "B"))
     rises_full = all(dirs.get(f"full_{p}_{h}") == 1 for p in ("D", "R") for h in ("A", "B"))
     survives = all(dirs.get(f"matched_{p}_{h}") == 1 for p in ("D", "R") for h in ("A", "B"))
-    if rises_full and survives:
+    if not powered:
+        verdict = "UNDERPOWERED"   # congress-split gate needs >=3 congresses/half; no lane has it
+    elif rises_full and survives:
         verdict = "CONFIRMED"
     elif rises_full and not survives:
         verdict = "ARTIFACT"       # rose at full volume, evaporated under the density control
     else:
         verdict = "REFUTED"
-    out.update({"id": "S1.4", "name": "The Copy-Paste Caucus", "verdict": verdict})
+    out.update({"id": "S1.4", "name": "The Copy-Paste Caucus", "lane_congress_split_powered": powered,
+                "verdict": verdict})
     return out
 
 

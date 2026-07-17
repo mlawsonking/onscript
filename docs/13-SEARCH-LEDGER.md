@@ -611,3 +611,44 @@ the migration's correctness proof.
    numbers), not loudly as docs/17 §4.4 assumes. This session migrated the S2 + the runnable-S1 sites
    to `load_rows(lane)`/explicit halves so their isolation is real; the BLOCKED-ON-SHARDS sites remain
    un-migrated and must not be trusted until the shard rebuild reaches them.
+
+---
+
+## SHARD-LANES RE-VALIDATION — the eleven BLOCKED-ON-SHARDS items, WITHIN one lane (2026-07-17, Opus Session 19; docs/18 brief). Append-only; supersedes named.
+
+Session 18 refused to run these eleven on the lane-blind alexandria shards. Per-lane shards now exist
+(`ALEX/lanes/`, built by `scripts/search/build_lane_shards.py`, PYTHONHASHSEED-pinned), the harness is
+lane-aware (lane-suffixed caches), and each hypothesis reads a lane-isolated substrate on that lane's
+within-lane halves (docs/18 §5). Driver: `scripts/search/revalidate_s1_shards.py`. Floors are the
+hypotheses' own pre-registered gates, applied per-lane (L4).
+
+**Shard acceptance (docs/18 §3):** congress 117 raw partition EXACT (propublica 144 + scraped 36,773 =
+36,917 combined; 0 statement delta; 0 cross-lane id-dups). `run_shard(n, lane=None)` is
+content-deterministic and leaves the live combined shards untouched (§3.4, reframed — the on-disk
+combined shards are a stale baseline: the ledger's key order is per-process randomized via
+`_doc_ngrams`' set iteration, harmless to analysis because the Search readers stream all entries).
+107-112 per-lane loaders RAISE.
+
+### SCRAPED lane (congresses 117-119; year-halves 2021-23 / 2024-26; congress-halves {117}/{118,119})
+
+| ID | new verdict | headline (within scraped lane) | vs Session-18/original | floors |
+|----|-------------|--------------------------------|------------------------|--------|
+| S1.1 | **ARTIFACT** (stands) | odd/even congress-boundary sawtooth INSIDE the lane: series 2021:60, 2022:0, 2023:60, 2024:15, 2025:60, 2026:1 (`artifact_guard=True`) | unchanged — proves the sawtooth is a per-shard artifact INDEPENDENT of the seam | min_cell 8; guard >5× odd/even |
+| S1.3 | **ARTIFACT** (stands) | same sawtooth (2021:640, 2022:115, 2023:596, 2024:16, 2025:365, 2026:56; `artifact_guard=True`) | unchanged — seam-independent congress-boundary + censoring artifact | min_cell 8 |
+| S1.1′ | **ARTIFACT** (coverage) | bursts shrink both halves (dir −1/−1, ratio 2.0) but **does NOT survive the density control** (`density_survives=False`) → coverage artifact | original REFUTED (industrialized-then-plateaued, 2013-26). WITHIN 2021-26 alone there is no clean ignition-speed trend — the "Great Intensification" was a **propublica-era (2013→2020) phenomenon** (to confirm when propublica runs) | min_cell 8; ≥2 powered yrs/half |
+| S1.3′ | **ARTIFACT** (coverage) | bursts noisy (25,12,23,26,52,24), median_drop −0.13 (lifespan rose), dir −1/−1 but `density_survives=False` | original REFUTED. Same read: no within-scraped lifespan-collapse; it lived in the propublica era | min_cell 8 |
+| S1.2 | **REFUTED** (stands) | normalized sync ceiling DECLINES both halves (dir −1/−1, ratio 0.457 — hypothesis wanted rising ≥1.5×) | consistent with original "peaked ~2017, declined"; within scraped it keeps falling | ≥2 yrs/half |
+| S1.5 | **REFUTED** (stands) | Saturday avoided (excess 0.64/0.91) but **Sunday over-represented 7.1×/2.4×** → not weekend-avoidant | consistent — the Sunday spike, within lane | ≥30 ignitions/half |
+| S1.6 | **UNDERPOWERED** (lane cost) | only 1 election cycle per half in the scraped lane (2022 in A, 2024 in B); tally 1/1 every cell (<2 floor) | the honest cost of isolation — the electoral-cycle gate needs cycles from both eras | ≥2 cycles/half/party |
+| S1.7 | **REFUTED** (stands) | August ignition rate = **52% of session rate** (half A); half B has no August ignitions | consistent — coordination roughly halves in recess, within lane | ≥200 Aug stmts/half |
+| S1.8 | **REFUTED** (stands) | SOTU-day unison half-life FLAT (dir 0/0, drop 0.0) | consistent — no half-life collapse within scraped | ≥2 yrs/half |
+| S1.11 | **REFUTED** (stands) | same-state echo ratio A **1.68** / B **1.03** (needs ≥1.5 BOTH halves) — half A shows some regional echo, B none | original REFUTED (1.01/1.09); within scraped half A is higher but B kills it | ≥30 phrases/half |
+| S1.4 (_proper) | **UNDERPOWERED** (gate unmeetable in-lane) | the congress-split both-halves gate needs ≥3 congresses/half; scraped has **1** (half A={117}) and 2 (half B={118,119}) → every direction None. Not a REFUTE — a false negative if reported so (cf. S3.6) | the year-keyed verbatim floor (S1.4-verbatim, Session 18) is the runnable within-lane form; REFUTED there | ≥3 congresses/half (unreachable) |
+
+**Scraped-lane read:** 5 REFUTED-stands, 2 ARTIFACT-stands (S1.1/S1.3 — proving the sawtooth is NOT the seam), 2 ARTIFACT-coverage (S1.1′/S1.3′ — the intensification story is absent within 2021-26, so it was a propublica-era effect), 2 UNDERPOWERED (S1.6 electoral cycles, S1.4-proper congress-split — both honest lane-isolation costs, not failures). **Zero verdicts flipped toward a false positive.**
+
+### PROPUBLICA lane (congresses 113-116) — PENDING (shards building; the ~3-hour long pole)
+
+Rows to be appended when the propublica per-lane shards (113-116) finish and the driver runs. The
+propublica lane is where the original 2013-2020 findings lived, so it is the load-bearing half for
+S1.1′/S1.3′ (the intensification narrative) and S1.2 (sync-ceiling peak).
