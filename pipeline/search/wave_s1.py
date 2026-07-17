@@ -13,10 +13,32 @@ from statistics import median
 from . import harness as H
 from . import metrics as M
 
-# Amendment A1 windows
-HALF_A_YEARS = set(range(2013, 2021))   # congresses 113-116
-HALF_B_YEARS = set(range(2021, 2027))   # congresses 117-119
+# Amendment A1 windows (the OLD seam-spanning split, retained for reference/graveyard only — NEVER
+# used to bucket: A=2013-2020 is the ProPublica lane, B=2021-2026 is the scraper lane, so this split
+# IS the provenance seam. Within-lane re-validation (docs/18 §5) uses the per-lane halves below.
+HALF_A_YEARS = set(range(2013, 2021))   # congresses 113-116  (DO NOT bucket with this)
+HALF_B_YEARS = set(range(2021, 2027))   # congresses 117-119  (DO NOT bucket with this)
 ALL_YEARS = sorted(HALF_A_YEARS | HALF_B_YEARS)
+
+# Within-lane halves (docs/17 §2, docs/18 §5). YEAR-keyed for the phrase/series/meta hypotheses;
+# CONGRESS-keyed for the ones that split on congress (S1.11). Never mix the two forms in one hypothesis.
+LANE_YEAR_HALVES = {
+    "propublica": {"A": set(range(2013, 2017)), "B": set(range(2017, 2021))},   # 113-114 vs 115-116
+    "scraped":    {"A": set(range(2021, 2024)), "B": set(range(2024, 2027))},   # 117 vs 118-119
+}
+LANE_CONGRESS_HALVES = {
+    "propublica": {"A": {113, 114}, "B": {115, 116}},
+    "scraped":    {"A": {117}, "B": {118, 119}},
+}
+LANE_CONGRESSES = {"propublica": range(113, 117), "scraped": range(117, 120)}
+
+
+def year_halves_for(lane):
+    return LANE_YEAR_HALVES[lane]
+
+
+def congress_halves_for(lane):
+    return LANE_CONGRESS_HALVES[lane]
 
 
 def _days(d1: str, d2: str) -> int:
@@ -27,12 +49,14 @@ def _year(d: str) -> int:
     return int(d[:4])
 
 
-def _half(year: int) -> str | None:
-    return "A" if year in HALF_A_YEARS else ("B" if year in HALF_B_YEARS else None)
+def _half(year: int, halves) -> str | None:
+    """Which pre-registered half a year (or congress) falls in, or None. `halves` is REQUIRED — a
+    default is exactly what let the seam-spanning split travel for 34 verdicts (docs/18 §5)."""
+    return "A" if year in halves["A"] else ("B" if year in halves["B"] else None)
 
 
-def _load_index():
-    return list(H.iter_phrase_index())
+def _load_index(lane=None):
+    return list(H.iter_phrase_index(lane=lane))
 
 
 def _year_position_artifact(by_year: dict) -> bool:
@@ -51,17 +75,18 @@ def _year_position_artifact(by_year: dict) -> bool:
 
 
 # --- S1.1 Industrialization of the Memo ----------------------------------------------------------
-def s1_1_ignition_width(rows, peak_min=15, cap=60, min_cell=8):
+def s1_1_ignition_width(rows, peak_min=15, cap=60, min_cell=8, *, lane=None, halves):
     """Ignition width = days(first_date -> peak_day), capped at `cap`, for phrases with peak>=peak_min.
     Median per ignition-year; CONFIRM = Spearman<0 (widths shrinking) in BOTH halves AND survives the
-    density-matched control. Effect floor restated per A1: early-window median >= 1.5x late-window."""
+    density-matched control. Effect floor restated per A1: early-window median >= 1.5x late-window.
+    Within-lane (docs/18 §5): `rows` are the lane's phrase index; `halves` are the lane's halves."""
     by_year = defaultdict(list)
     widths_by_year_records = defaultdict(list)  # for density control: keep the per-phrase widths
     for r in rows:
         if r["peak"] < peak_min or not r.get("peak_day"):
             continue
         y = _year(r["first_date"])
-        if _half(y) is None:
+        if _half(y, halves) is None:
             continue
         w = min(_days(r["first_date"], r["peak_day"]), cap)
         if w < 0:
@@ -71,8 +96,8 @@ def s1_1_ignition_width(rows, peak_min=15, cap=60, min_cell=8):
 
     series = [(y, median(by_year[y])) for y in sorted(by_year) if len(by_year[y]) >= min_cell]
     cells = {y: len(by_year[y]) for y in sorted(by_year)}
-    a = [(y, m) for (y, m) in series if y in HALF_A_YEARS]
-    b = [(y, m) for (y, m) in series if y in HALF_B_YEARS]
+    a = [(y, m) for (y, m) in series if y in halves["A"]]
+    b = [(y, m) for (y, m) in series if y in halves["B"]]
     dir_a = M.split_direction(a)
     dir_b = M.split_direction(b)
 
@@ -104,7 +129,7 @@ def s1_1_ignition_width(rows, peak_min=15, cap=60, min_cell=8):
         verdict = "ARTIFACT"        # trend evaporates under the coverage control
     else:
         verdict = "REFUTED"
-    return {"id": "S1.1", "name": "Industrialization of the Memo", "peak_min": peak_min,
+    return {"id": "S1.1", "name": "Industrialization of the Memo", "lane": lane, "peak_min": peak_min,
             "artifact_guard": artifact,
             "series": series, "cells": cells, "dir_a": dir_a, "dir_b": dir_b,
             "early_median": early, "late_median": late, "ratio": ratio,
@@ -112,10 +137,12 @@ def s1_1_ignition_width(rows, peak_min=15, cap=60, min_cell=8):
 
 
 # --- S1.3 Phrase Lifespan Collapse ---------------------------------------------------------------
-def s1_3_lifespan(rows, peak_min=10, min_cell=8):
+def s1_3_lifespan(rows, peak_min=10, min_cell=8, *, lane=None, halves):
     """Cross-era lifespan = days(global first_date -> global last_date) per phrase (peak>=peak_min,
     aggregated across congresses by ngram). Median per birth-year; CONFIRM = >=30% median drop A->B
-    with both halves' internal trend agreeing (Spearman<0)."""
+    with both halves' internal trend agreeing (Spearman<0). Within-lane (docs/18 §5): `rows` isolated
+    to the lane; note the lifespan first->last cannot cross the lane edge because the lane's shards do
+    not (propublica ends 2021-01-03)."""
     agg = {}
     for r in rows:
         if r["peak"] < peak_min:
@@ -131,13 +158,13 @@ def s1_3_lifespan(rows, peak_min=10, min_cell=8):
     by_year = defaultdict(list)
     for ng, a in agg.items():
         y = _year(a["first"])
-        if _half(y) is None:
+        if _half(y, halves) is None:
             continue
         by_year[y].append(_days(a["first"], a["last"]))
     series = [(y, median(by_year[y])) for y in sorted(by_year) if len(by_year[y]) >= min_cell]
     cells = {y: len(by_year[y]) for y in sorted(by_year)}
-    a_s = [(y, m) for (y, m) in series if y in HALF_A_YEARS]
-    b_s = [(y, m) for (y, m) in series if y in HALF_B_YEARS]
+    a_s = [(y, m) for (y, m) in series if y in halves["A"]]
+    b_s = [(y, m) for (y, m) in series if y in halves["B"]]
     dir_a, dir_b = M.split_direction(a_s), M.split_direction(b_s)
     early = median([m for (y, m) in a_s]) if a_s else None
     late = median([m for (y, m) in b_s]) if b_s else None
@@ -152,7 +179,7 @@ def s1_3_lifespan(rows, peak_min=10, min_cell=8):
         verdict = "CONFIRMED"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.3", "name": "Phrase Lifespan Collapse", "peak_min": peak_min,
+    return {"id": "S1.3", "name": "Phrase Lifespan Collapse", "lane": lane, "peak_min": peak_min,
             "artifact_guard": artifact,
             "series": series, "cells": cells, "dir_a": dir_a, "dir_b": dir_b,
             "early_median_lifespan": early, "late_median_lifespan": late, "median_drop": drop,
@@ -178,10 +205,12 @@ def _bursts(series, gap=14):
     return out
 
 
-def s1_1_prime_ignition(series_rows, peak_min=15, gap=14, min_cell=8):
+def s1_1_prime_ignition(series_rows, peak_min=15, gap=14, min_cell=8, *, lane=None, halves):
     """REDEFINED S1.1 (amendment A2). For every burst reaching peak>=peak_min, ignition width = days
     from the burst's first active day to its peak day. Median per burst-start year; CONFIRM =
-    Spearman<0 in BOTH halves AND survives the density-matched control AND early >= 1.5x late."""
+    Spearman<0 in BOTH halves AND survives the density-matched control AND early >= 1.5x late.
+    Within-lane (docs/18 §5): the lane's daily series never spans the seam, so a burst is a real
+    within-instrument flare; a burst at the lane edge is naturally gap-terminated by the shard end."""
     by_year = defaultdict(list)
     for row in series_rows:
         for burst in _bursts(row["series"], gap):
@@ -191,12 +220,12 @@ def s1_1_prime_ignition(series_rows, peak_min=15, gap=14, min_cell=8):
             start = burst[0][0]
             peak_day = min(d for d, c in burst if c == peak)
             y = start.year
-            if _half(y) is not None:
+            if _half(y, halves) is not None:
                 by_year[y].append((peak_day - start).days)
     series = [(y, median(by_year[y])) for y in sorted(by_year) if len(by_year[y]) >= min_cell]
     cells = {y: len(by_year[y]) for y in sorted(by_year)}
-    a = [(y, m) for (y, m) in series if y in HALF_A_YEARS]
-    b = [(y, m) for (y, m) in series if y in HALF_B_YEARS]
+    a = [(y, m) for (y, m) in series if y in halves["A"]]
+    b = [(y, m) for (y, m) in series if y in halves["B"]]
     dir_a, dir_b = M.split_direction(a), M.split_direction(b)
     early = a[0][1] if a else None
     late = b[-1][1] if b else None
@@ -219,20 +248,25 @@ def s1_1_prime_ignition(series_rows, peak_min=15, gap=14, min_cell=8):
         verdict = "ARTIFACT"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.1'", "name": "Industrialization of the Memo (redefined)", "series": series,
+    return {"id": "S1.1'", "name": "Industrialization of the Memo (redefined)", "lane": lane, "series": series,
             "cells": cells, "dir_a": dir_a, "dir_b": dir_b, "early_median": early, "late_median": late,
             "ratio": ratio and round(ratio, 2), "density_survives": density_survives,
             "artifact_guard": artifact, "verdict": verdict}
 
 
 # --- S1.3' Phrase Lifespan, REDEFINED (burst duration on the merged series; censoring-safe) --------
-def s1_3_prime_lifespan(series_rows, peak_min=15, gap=14, min_cell=8, cutoff="2026-07-09", censor_days=30):
+def s1_3_prime_lifespan(series_rows, peak_min=15, gap=14, min_cell=8, cutoff="2026-07-09", censor_days=30,
+                        *, lane=None, halves):
     """REDEFINED S1.3 (amendment A2). A 'talking point' = a burst (a flare reaching peak>=peak_min);
     its lifespan = the burst's duration (first->last active day). Bursts self-terminate at a >gap-day
     silence, so there is NO shard-edge censoring — except a burst still running near the data cutoff,
     which is DROPPED (censor_days). Median per burst-start year; CONFIRM = durations shrinking (dir<0)
     in BOTH halves AND >=30% drop early->late AND density-control survives (talking points burn out
-    faster than they used to)."""
+    faster than they used to).
+
+    LANE EDGE (docs/18 §5): the propublica lane ENDS at 2021-01-03, so its `cutoff` is the lane edge,
+    not 2026-07-09 — a burst still alive at lane-end must be censored exactly as at the corpus cutoff,
+    or its truncated duration reads as a (false) short lifespan. The driver passes the lane's cutoff."""
     from datetime import date as _d
     cut = _d.fromisoformat(cutoff)
     by_year = defaultdict(list)
@@ -243,12 +277,12 @@ def s1_3_prime_lifespan(series_rows, peak_min=15, gap=14, min_cell=8, cutoff="20
             first, last = burst[0][0], burst[-1][0]
             if (cut - last).days < censor_days:   # may still be active -> right-censored, drop
                 continue
-            if _half(first.year) is not None:
+            if _half(first.year, halves) is not None:
                 by_year[first.year].append((last - first).days)
     series = [(y, median(by_year[y])) for y in sorted(by_year) if len(by_year[y]) >= min_cell]
     cells = {y: len(by_year[y]) for y in sorted(by_year)}
-    a = [(y, m) for (y, m) in series if y in HALF_A_YEARS]
-    b = [(y, m) for (y, m) in series if y in HALF_B_YEARS]
+    a = [(y, m) for (y, m) in series if y in halves["A"]]
+    b = [(y, m) for (y, m) in series if y in halves["B"]]
     dir_a, dir_b = M.split_direction(a), M.split_direction(b)
     early = median([m for _y, m in a]) if a else None
     late = median([m for _y, m in b]) if b else None
@@ -270,23 +304,24 @@ def s1_3_prime_lifespan(series_rows, peak_min=15, gap=14, min_cell=8, cutoff="20
         verdict = "ARTIFACT"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.3'", "name": "Phrase Lifespan Collapse (redefined)", "series": series,
+    return {"id": "S1.3'", "name": "Phrase Lifespan Collapse (redefined)", "lane": lane, "series": series,
             "cells": cells, "dir_a": dir_a, "dir_b": dir_b, "early_median_days": early,
             "late_median_days": late, "median_drop": drop and round(drop, 3),
             "density_survives": density_survives, "artifact_guard": artifact, "verdict": verdict}
 
 
 # --- S1.2 Sync Ceiling (boundary-SAFE: single-day peaks, no span) --------------------------------
-def s1_2_sync_ceiling(rows, active_by_year: dict):
+def s1_2_sync_ceiling(rows, active_by_year: dict, *, lane=None, halves):
     """Loudest single-day unison per year = max phrase peak whose peak_day falls in that year, divided
     by that year's active-member count (the coverage control — a bigger caucus can converge harder for
-    free). CONFIRM = normalized ceiling rising in BOTH halves AND late >= 1.5x early."""
+    free). CONFIRM = normalized ceiling rising in BOTH halves AND late >= 1.5x early. Within-lane
+    (docs/18 §5): `active_by_year` is the LANE's active-member count (from the lane's stmt_meta)."""
     ceil_raw = defaultdict(int)
     for r in rows:
         if not r.get("peak_day"):
             continue
         y = _year(r["peak_day"])
-        if _half(y) is not None:
+        if _half(y, halves) is not None:
             ceil_raw[y] = max(ceil_raw[y], r["peak"])
     series, raw = [], {}
     for y in sorted(ceil_raw):
@@ -294,8 +329,8 @@ def s1_2_sync_ceiling(rows, active_by_year: dict):
         raw[y] = ceil_raw[y]
         if am:
             series.append((y, ceil_raw[y] / am))
-    a = [(y, v) for (y, v) in series if y in HALF_A_YEARS]
-    b = [(y, v) for (y, v) in series if y in HALF_B_YEARS]
+    a = [(y, v) for (y, v) in series if y in halves["A"]]
+    b = [(y, v) for (y, v) in series if y in halves["B"]]
     dir_a, dir_b = M.split_direction(a), M.split_direction(b)
     early = a[0][1] if a else None
     late = b[-1][1] if b else None
@@ -307,16 +342,19 @@ def s1_2_sync_ceiling(rows, active_by_year: dict):
         verdict = "CONFIRMED"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.2", "name": "The Sync Ceiling", "series_norm": [(y, round(v, 4)) for y, v in series],
+    return {"id": "S1.2", "name": "The Sync Ceiling", "lane": lane,
+            "series_norm": [(y, round(v, 4)) for y, v in series],
             "raw_ceiling": raw, "dir_a": dir_a, "dir_b": dir_b, "early_norm": early, "late_norm": late,
             "ratio": ratio, "verdict": verdict}
 
 
 # --- S1.5 Weekend Memo (ignition weekday vs the all-statement baseline) ---------------------------
-def s1_5_weekend_memo(rows, weekday_baseline: dict, peak_min=15):
+def s1_5_weekend_memo(rows, weekday_baseline: dict, peak_min=15, *, lane=None, halves):
     """Do coordinated ignitions (first_date of peak>=15 phrases) avoid weekends MORE than statements
     generally? Excess = ignition-weekday share / baseline-weekday share. CONFIRM = weekend excess < 1
-    (under-represented) in BOTH halves, and the business-day fingerprint is real (weekday excess > 1)."""
+    (under-represented) in BOTH halves, and the business-day fingerprint is real (weekday excess > 1).
+    Within-lane (docs/18 §4/§5): `weekday_baseline` is the LANE's weekday baseline — an era-pooled
+    baseline normalizing a scraper-only half was the Session-16 triage bug this whole fix addresses."""
     from collections import Counter
     base = Counter({int(k): v for k, v in weekday_baseline.items()})
     ig = {"A": Counter(), "B": Counter()}
@@ -324,7 +362,7 @@ def s1_5_weekend_memo(rows, weekday_baseline: dict, peak_min=15):
         if r["peak"] < peak_min:
             continue
         y = _year(r["first_date"])
-        h = _half(y)
+        h = _half(y, halves)
         if h is None:
             continue
         try:
@@ -339,7 +377,7 @@ def s1_5_weekend_memo(rows, weekday_baseline: dict, peak_min=15):
     both_avoid = all(v is not None and v < 1.0 for v in weekend_a + weekend_b)
     powered = sum(ig["A"].values()) >= 30 and sum(ig["B"].values()) >= 30
     verdict = ("UNDERPOWERED" if not powered else "CONFIRMED" if both_avoid else "REFUTED")
-    return {"id": "S1.5", "name": "The Weekend Memo", "peak_min": peak_min,
+    return {"id": "S1.5", "name": "The Weekend Memo", "lane": lane, "peak_min": peak_min,
             "excess_A": {k: round(v, 2) if v is not None else None for k, v in ex_a.items()},
             "excess_B": {k: round(v, 2) if v is not None else None for k, v in ex_b.items()},
             "weekend_excess_A": weekend_a, "weekend_excess_B": weekend_b,
@@ -347,17 +385,18 @@ def s1_5_weekend_memo(rows, weekday_baseline: dict, peak_min=15):
 
 
 # --- S1.7 The August Effect (recess proxy = the August district work period) ---------------------
-def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15):
+def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15, *, lane=None, halves):
     """Does coordination collapse in recess, or is it pre-scheduled? Recess proxy = August (Congress is
     reliably in its district work period). Ignition rate = ignitions per 1k statements, August vs the
     rest of the year. CONFIRM (counterintuitive direction) = recess rate >= 70% of session rate in BOTH
-    halves (coordination persists through recess); REFUTE if it craters. Coarse proxy, disclosed."""
+    halves (coordination persists through recess); REFUTE if it craters. Coarse proxy, disclosed.
+    Within-lane (docs/18 §5): `monthly_stmts` are the LANE's per-month statement denominators."""
     ig = {"A": {"aug": 0, "other": 0}, "B": {"aug": 0, "other": 0}}
     for r in rows:
         if r["peak"] < peak_min:
             continue
         y, mo = _year(r["first_date"]), int(r["first_date"][5:7])
-        h = _half(y)
+        h = _half(y, halves)
         if h is None:
             continue
         ig[h]["aug" if mo == 8 else "other"] += 1
@@ -365,7 +404,7 @@ def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15):
     st = {"A": {"aug": 0, "other": 0}, "B": {"aug": 0, "other": 0}}
     for ym, c in monthly_stmts.items():
         y, mo = int(ym[:4]), int(ym[5:7])
-        h = _half(y)
+        h = _half(y, halves)
         if h is None:
             continue
         st[h]["aug" if mo == 8 else "other"] += c
@@ -385,7 +424,7 @@ def s1_7_august_effect(rows, monthly_stmts: dict, peak_min=15):
         verdict = "CONFIRMED"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.7", "name": "The August Effect", "peak_min": peak_min,
+    return {"id": "S1.7", "name": "The August Effect", "lane": lane, "peak_min": peak_min,
             "by_half": out, "recess_vs_session_ratio": {h: r and round(r, 2) for h, r in ratios.items()},
             "proxy": "August = recess", "verdict": verdict}
 
@@ -403,14 +442,6 @@ def _ingroup_share(statements):
             if s.get("joint_group"):
                 ing[p] += 1
     return {p: {"share": (ing[p] / tot[p] if tot[p] else None), "n": tot[p], "in": ing[p]} for p in ("D", "R")}
-
-
-# Within-lane year halves (docs/17 §2) — mirror of wave_s2.LANE_HALVES, kept local so wave_s1 has no
-# import-time dependency on wave_s2. propublica: 2013-16 vs 2017-20; scraped: 2021-23 vs 2024-26.
-LANE_YEAR_HALVES = {
-    "propublica": {"A": set(range(2013, 2017)), "B": set(range(2017, 2021))},
-    "scraped":    {"A": set(range(2021, 2024)), "B": set(range(2024, 2027))},
-}
 
 
 def s1_4_verbatim(congresses=range(113, 120), *, lane=None, halves=None, min_cell=200):
@@ -465,20 +496,26 @@ def s1_4_verbatim(congresses=range(113, 120), *, lane=None, halves=None, min_cel
             "directions": dirs, "verdict": verdict}
 
 
-def s1_4_proper(congresses=range(113, 120), seed="s1.4"):
+def s1_4_proper(congresses=range(113, 120), seed="s1.4", *, lane=None, chalves=None):
     """The Copy-Paste Caucus done right: SHARE of statements that are part of a near/joint-identical
     group (not the density-sensitive group COUNT the proxy used), per party per Congress. DENSITY
     CONTROL (§1.3): re-normalize each Congress's RAW records subsampled to the sparsest Congress's
     volume — if the rising share survives, it's real; if it flattens, the detector just found more
     near-dups in a denser corpus. CONFIRM = share rises in BOTH halves AND survives the control, both
-    parties agreeing in direction."""
+    parties agreeing in direction.
+
+    LANE (docs/12 L1, docs/18 §5). `lane` gives `load_congress_records` the same lane filter, so the
+    density control runs WITHIN one instrument — the whole point, because a joint pair split across
+    lanes cannot near-dup-collapse within a lane, and the collapse rate is exactly what this measures.
+    `chalves` are the lane's CONGRESS halves; `congresses` must be the lane's congresses."""
     from .. import normalize
     from ..alexandria import load_congress_records
+    chalves = chalves or (LANE_CONGRESS_HALVES[lane] if lane else {"A": set(range(113, 117)), "B": set(range(117, 120))})
     full, recs_by_c = {}, {}
     for c in congresses:
-        recs = load_congress_records(c)
+        recs = load_congress_records(c, lane=lane)
         recs_by_c[c] = recs
-        st = normalize.normalize_records(recs, run_id=f"s1.4-{c}")
+        st = normalize.normalize_records(recs, run_id=f"s1.4-{c}" + (f"-{lane}" if lane else ""))
         full[c] = _ingroup_share(st)
     # density control: subsample each Congress's raw records to the sparsest Congress's total, re-normalize
     totals = {c: full[c]["D"]["n"] + full[c]["R"]["n"] for c in congresses}
@@ -488,14 +525,15 @@ def s1_4_proper(congresses=range(113, 120), seed="s1.4"):
         recs = recs_by_c[c]
         n_target = min(len(recs), int(target * len(recs) / max(totals[c], 1)))
         sub = M.density_matched_subsample(recs, n_target, f"{seed}:{c}")
-        st = normalize.normalize_records(sub, run_id=f"s1.4m-{c}")
+        st = normalize.normalize_records(sub, run_id=f"s1.4m-{c}" + (f"-{lane}" if lane else ""))
         matched[c] = _ingroup_share(st)
 
     def half_series(data, party):
-        return ([(c, data[c][party]["share"]) for c in congresses if c <= 116 and data[c][party]["share"] is not None],
-                [(c, data[c][party]["share"]) for c in congresses if c >= 117 and data[c][party]["share"] is not None])
+        return ([(c, data[c][party]["share"]) for c in congresses if c in chalves["A"] and data[c][party]["share"] is not None],
+                [(c, data[c][party]["share"]) for c in congresses if c in chalves["B"] and data[c][party]["share"] is not None])
 
-    out = {"full": {c: {p: round(full[c][p]["share"], 4) if full[c][p]["share"] is not None else None
+    out = {"lane": lane,
+           "full": {c: {p: round(full[c][p]["share"], 4) if full[c][p]["share"] is not None else None
                         for p in ("D", "R")} for c in congresses},
            "matched": {c: {p: round(matched[c][p]["share"], 4) if matched[c][p]["share"] is not None else None
                            for p in ("D", "R")} for c in congresses},
@@ -601,11 +639,13 @@ def s1_10_bipartisan_season(elections, congresses=range(113, 120), window=90, la
 
 
 # --- S1.6 The 90-Day Snap (does message discipline tighten before elections?) --------------------
-def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270):
+def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270, *, lane=None, halves):
     """For each general election, weighted discipline (sum on_message / sum statements) in the 90 days
     BEFORE election vs the prior 90-day window (E-270..E-90), per party. A 'snap' = pre-election
     discipline exceeds the prior window. CONFIRM = snap in a MAJORITY of cycles in BOTH halves, both
-    parties (message discipline measurably tightens for the campaign)."""
+    parties (message discipline measurably tightens for the campaign). Within-lane (docs/18 §5):
+    `disc_index` is the LANE's discipline. Both S1.6 windows are PRE-election, so unlike S1.10 the 2020
+    cycle stays entirely propublica (its windows are Feb-Nov 2020) — no seam straddle here."""
     def window_index(party, e_iso, lo, hi):
         s = m = 0
         for day, rec in disc_index.get(party, {}).items():
@@ -616,7 +656,7 @@ def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270):
     cycles = {}
     for yr, e_iso in sorted(elections.items()):
         y = int(yr)
-        h = _half(y)
+        h = _half(y, halves)
         if h is None:
             continue
         row = {}
@@ -639,24 +679,25 @@ def s1_6_ninety_day_snap(disc_index, elections, window=90, prior=270):
     powered = all(tally[k][1] >= 2 for k in tally)
     majorities = all(tally[k][0] > tally[k][1] / 2 for k in tally if tally[k][1] > 0)
     verdict = "UNDERPOWERED" if not powered else ("CONFIRMED" if majorities else "REFUTED")
-    return {"id": "S1.6", "name": "The 90-Day Snap", "cycles": cycles,
+    return {"id": "S1.6", "name": "The 90-Day Snap", "lane": lane, "cycles": cycles,
             "snap_tally": {f"{h}-{p}": f"{tally[(h,p)][0]}/{tally[(h,p)][1]}" for (h, p) in tally},
             "verdict": verdict}
 
 
 # --- S1.8 The SOTU Gravity Well (the annual cross-party unison peak + its decay) ------------------
-def s1_8_sotu(by_day, window=21, norm_by=None):
+def s1_8_sotu(by_day, window=21, norm_by=None, *, lane=None, halves):
     """Each year's PEAK cross-party unison day is the SOTU day (no hardcoded dates). Report its
     magnitude + the shared-reality HALF-LIFE = days after the peak until daily unison first falls below
     half the peak. CONFIRM (pre-registered) = half-life declining in BOTH halves AND >=40% total drop.
-    Also reports the peak-magnitude trend (is the biggest shared-language day shrinking?)."""
+    Also reports the peak-magnitude trend (is the biggest shared-language day shrinking?). Within-lane
+    (docs/18 §5): `by_day` is the LANE's cross-party unison series."""
     from datetime import date, timedelta
     years = defaultdict(dict)
     for d, c in by_day.items():
         years[int(d[:4])][d] = c
     peak_mag, half_life, peak_days = {}, {}, {}
     for y, days in years.items():
-        if _half(y) is None or not days:
+        if _half(y, halves) is None or not days:
             continue
         pday = max(days, key=lambda d: days[d])
         pm = days[pday]
@@ -669,10 +710,10 @@ def s1_8_sotu(by_day, window=21, norm_by=None):
                 hl = delta
                 break
         half_life[y] = hl
-    hl_a = [(y, half_life[y]) for y in sorted(half_life) if y in HALF_A_YEARS]
-    hl_b = [(y, half_life[y]) for y in sorted(half_life) if y in HALF_B_YEARS]
-    pm_a = [(y, peak_mag[y]) for y in sorted(peak_mag) if y in HALF_A_YEARS]
-    pm_b = [(y, peak_mag[y]) for y in sorted(peak_mag) if y in HALF_B_YEARS]
+    hl_a = [(y, half_life[y]) for y in sorted(half_life) if y in halves["A"]]
+    hl_b = [(y, half_life[y]) for y in sorted(half_life) if y in halves["B"]]
+    pm_a = [(y, peak_mag[y]) for y in sorted(peak_mag) if y in halves["A"]]
+    pm_b = [(y, peak_mag[y]) for y in sorted(peak_mag) if y in halves["B"]]
     hl_dir_a, hl_dir_b = M.split_direction(hl_a), M.split_direction(hl_b)
     from statistics import median
     hl_early = median([h for _y, h in hl_a]) if hl_a else None
@@ -685,7 +726,7 @@ def s1_8_sotu(by_day, window=21, norm_by=None):
         verdict = "CONFIRMED"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.8", "name": "The SOTU Gravity Well",
+    return {"id": "S1.8", "name": "The SOTU Gravity Well", "lane": lane,
             "peak_day_by_year": peak_days, "peak_magnitude": dict(sorted(peak_mag.items())),
             "half_life_days": dict(sorted(half_life.items())),
             "hl_dir_a": hl_dir_a, "hl_dir_b": hl_dir_b, "hl_early": hl_early, "hl_late": hl_late,
@@ -809,15 +850,19 @@ def _same_state_pairs(members, state_of):
     return sum(n * (n - 1) // 2 for n in c.values()), sum(c.values())
 
 
-def s1_11_delegation_echo(member_rows, state_of, k_perm=50, seed="s1.11"):
+def s1_11_delegation_echo(member_rows, state_of, k_perm=50, seed="s1.11", *, lane=None, chalves):
     """Do same-state delegations share phrases beyond chance? Observed same-state co-use pairs vs a
     permutation null that SHUFFLES the state labels across members (preserving each state's delegation
     size — so California's size can't fake the effect). ratio = observed / mean(null). CONFIRM =
-    ratio >= 1.5 in BOTH halves. Deterministic (seeded permutations)."""
+    ratio >= 1.5 in BOTH halves. Deterministic (seeded permutations). Within-lane (docs/18 §5):
+    `member_rows` are the lane's member index; `chalves` are the lane's CONGRESS halves (this
+    hypothesis splits on congress, not year) — propublica {113,114}/{115,116}, scraped {117}/{118,119}."""
     import random
     halves = {"A": [], "B": []}
     for r in member_rows:
-        h = "A" if r["congress"] <= 116 else "B"
+        h = _half(r["congress"], chalves)
+        if h is None:
+            continue
         ms = [m for m in r["members"] if m in state_of]
         if len(ms) >= 2:
             halves[h].append(ms)
@@ -856,19 +901,22 @@ def s1_11_delegation_echo(member_rows, state_of, k_perm=50, seed="s1.11"):
         verdict = "CONFIRMED"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.11", "name": "Delegation Echo", "by_half": result,
+    return {"id": "S1.11", "name": "Delegation Echo", "lane": lane, "by_half": result,
             "ratio_A": ra, "ratio_B": rb, "verdict": verdict}
 
 
-def monthly_statement_counts():
-    """{YYYY-MM: count} over the statement-meta intermediate."""
+def monthly_statement_counts(lane=None):
+    """{YYYY-MM: count} over the statement-meta intermediate (lane-isolated when lane is set)."""
     from collections import Counter
     c = Counter()
-    for r in H.iter_stmt_meta():
+    for r in H.iter_stmt_meta(lane=lane):
         c[r["date"][:7]] += 1
     return dict(c)
 
 
-def run(rows=None):
-    rows = rows if rows is not None else _load_index()
-    return [s1_1_ignition_width(rows), s1_3_lifespan(rows)]
+def run(lane, rows=None):
+    """Thin driver for the two phrase-index hypotheses WITHIN one lane. The full within-lane
+    re-validation of all eleven S1 items lives in scripts/search/revalidate_s1_shards.py (docs/18 §5)."""
+    rows = rows if rows is not None else _load_index(lane=lane)
+    h = year_halves_for(lane)
+    return [s1_1_ignition_width(rows, lane=lane, halves=h), s1_3_lifespan(rows, lane=lane, halves=h)]

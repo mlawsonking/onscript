@@ -65,7 +65,10 @@ def test_bursts_split_on_gaps_and_measure_local_width():
     rows = []
     for y, w in [(2013, 30), (2015, 25), (2017, 20), (2019, 12), (2021, 10), (2023, 6), (2025, 3)]:
         rows += [contiguous_burst(y, w) for _ in range(10)]   # >=min_cell per year
-    res = S1.s1_1_prime_ignition(rows)
+    # a MECHANICS test: the synthetic data spans 2013-2025, so it declares the old full split as its
+    # halves (halves is now a required kwarg — docs/18 §5; a real lane run passes the lane's halves).
+    full = {"A": set(range(2013, 2021)), "B": set(range(2021, 2027))}
+    res = S1.s1_1_prime_ignition(rows, halves=full)
     assert res["dir_a"] == -1 and res["dir_b"] == -1 and res["verdict"] == "CONFIRMED"
     assert res["artifact_guard"] is False   # the redefined metric shows NO year-position sawtooth
 
@@ -85,11 +88,12 @@ def test_s1_3_prime_lifespan_detects_shortening_and_drops_censored_bursts():
     rows = []
     for y, dur in [(2013, 80), (2015, 60), (2017, 40), (2019, 30), (2021, 20), (2023, 12), (2025, 6)]:
         rows += [burst(y, dur) for _ in range(10)]
-    res = S1.s1_3_prime_lifespan(rows, cutoff="2027-01-01")   # far cutoff -> nothing censored
+    full = {"A": set(range(2013, 2021)), "B": set(range(2021, 2027))}
+    res = S1.s1_3_prime_lifespan(rows, cutoff="2027-01-01", halves=full)   # far cutoff -> nothing censored
     assert res["dir_a"] == -1 and res["dir_b"] == -1 and res["verdict"] == "CONFIRMED"
     # a contiguous burst still running near the cutoff is censored out (would else look artificially short)
     near = {"series": [["2026-06-20", 16], ["2026-06-30", 17], ["2026-07-05", 18]]}   # contiguous, ends 4d pre-cutoff
-    r2 = S1.s1_3_prime_lifespan([near] * 20, cutoff="2026-07-09", censor_days=30)
+    r2 = S1.s1_3_prime_lifespan([near] * 20, cutoff="2026-07-09", censor_days=30, halves=full)
     assert r2["cells"] == {}   # the still-active burst was dropped, not counted as a short life
 
 

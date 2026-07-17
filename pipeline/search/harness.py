@@ -21,6 +21,26 @@ SEARCH_CACHE = config.DERIVED / "search"
 _PARTY = {"Democrat": "D", "Republican": "R", "Independent": "I"}
 
 
+# --- LANE-AWARE SUBSTRATE (docs/18 §4) -----------------------------------------------------------
+# Every builder gains `lane=`, and every cache file is lane-suffixed so lanes can NEVER share a cache
+# (a shared cache is how a scraper-only half got normalized against an era-pooled baseline — the
+# Session-16 triage finding behind S1.5). `lane=None` keeps today's combined filenames and behaviour.
+def shard_path(kind: str, n: int, lane: str | None):
+    """The per-Congress shard file (ledger/discipline/coverage/shard). Delegates to alexandria so the
+    lanes/ subdirectory convention and the 107-112 combined-only guard live in exactly one place."""
+    from .. import alexandria   # local import: keeps the (cheap) alexandria import graph off harness load
+    return alexandria.lane_shard_path(kind, n, lane)
+
+
+def cache_path(name: str, lane: str | None):
+    """A Search-cache file for a lane. `lane=None` -> the combined name unchanged. A lane splices the
+    lane before the extension: phrase_index.jsonl -> phrase_index.propublica.jsonl."""
+    if lane is None:
+        return SEARCH_CACHE / name
+    stem, _dot, ext = name.rpartition(".")
+    return SEARCH_CACHE / f"{stem}.{lane}.{ext}"
+
+
 # --- streaming reader for a big `{ "ngram": {entry}, ... }` shard --------------------------------
 class _Refillable:
     """A file-backed string buffer that raw_decode can parse against, refilling from disk on demand
@@ -99,15 +119,16 @@ def phrase_summary(ngram: str, entry: dict) -> dict | None:
             "peak_party": peak_party, "last_date": days[-1], "n_days": len(days)}
 
 
-def build_phrase_index(congresses=range(113, 120), peak_floor: int = 2, progress=True) -> dict:
-    """Stream the populated per-Congress shards into data/derived/search/phrase_index.jsonl — one line
-    per (phrase, congress) with peak>=floor. Memoized: reused by every S1 hypothesis. Returns stats."""
+def build_phrase_index(congresses=range(113, 120), peak_floor: int = 2, progress=True, lane=None) -> dict:
+    """Stream the populated per-Congress shards into data/derived/search/phrase_index[.lane].jsonl — one
+    line per (phrase, congress) with peak>=floor. Memoized: reused by every S1 hypothesis. `lane` reads
+    the per-lane shards (113-119 only) and writes a lane-suffixed cache. Returns stats."""
     SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
-    out = SEARCH_CACHE / "phrase_index.jsonl"
-    stats = {"congresses": {}, "rows": 0, "peak_floor": peak_floor}
+    out = cache_path("phrase_index.jsonl", lane)
+    stats = {"lane": lane, "congresses": {}, "rows": 0, "peak_floor": peak_floor}
     with open(out, "w", encoding="utf-8") as w:
         for n in congresses:
-            shard = ALEX / f"ledger-{n}.json"
+            shard = shard_path("ledger", n, lane)
             if not shard.exists() or shard.stat().st_size <= 2:
                 stats["congresses"][n] = {"rows": 0, "note": "empty/absent shard"}
                 continue
@@ -122,22 +143,22 @@ def build_phrase_index(congresses=range(113, 120), peak_floor: int = 2, progress
             stats["congresses"][n] = {"rows": rows, "total_entries": total}
             stats["rows"] += rows
             if progress:
-                print(f"  ledger-{n}: {total} entries -> {rows} rows (peak>={peak_floor})", flush=True)
-    util.write_json(SEARCH_CACHE / "phrase_index.stats.json", stats)
+                print(f"  ledger-{n}{'.' + lane if lane else ''}: {total} entries -> {rows} rows (peak>={peak_floor})", flush=True)
+    util.write_json(cache_path("phrase_index.stats.json", lane), stats)
     return stats
 
 
-def build_member_index(congresses=range(113, 120), peak_floor=15, progress=True) -> dict:
+def build_member_index(congresses=range(113, 120), peak_floor=15, progress=True, lane=None) -> dict:
     """For phrases with peak>=floor, the UNION of members who used it (across all days, joint units
-    excluded) + the first-sayer bioguide -> data/derived/search/member_index.jsonl. The substrate for
-    S1.11 (delegation echo) and S1.12 (leadership ignites). Re-streams the shards (targeted: high-peak
-    only)."""
+    excluded) + the first-sayer bioguide -> data/derived/search/member_index[.lane].jsonl. The substrate
+    for S1.11 (delegation echo) and S1.12 (leadership ignites). `lane` reads the per-lane shards and
+    writes a lane-suffixed cache. Re-streams the shards (targeted: high-peak only)."""
     SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
-    out = SEARCH_CACHE / "member_index.jsonl"
+    out = cache_path("member_index.jsonl", lane)
     n = 0
     with open(out, "w", encoding="utf-8") as w:
         for c in congresses:
-            shard = ALEX / f"ledger-{c}.json"
+            shard = shard_path("ledger", c, lane)
             if not shard.exists() or shard.stat().st_size <= 2:
                 continue
             for ng, entry in iter_ledger_entries(shard):
@@ -155,23 +176,25 @@ def build_member_index(congresses=range(113, 120), peak_floor=15, progress=True)
                                     "members": sorted(members)}, separators=(",", ":")) + "\n")
                 n += 1
             if progress:
-                print(f"  member-index ledger-{c}: {n} cumulative phrases (peak>={peak_floor})", flush=True)
-    util.write_json(SEARCH_CACHE / "member_index.stats.json", {"phrases": n, "peak_floor": peak_floor})
+                print(f"  member-index ledger-{c}{'.' + lane if lane else ''}: {n} cumulative phrases (peak>={peak_floor})", flush=True)
+    util.write_json(cache_path("member_index.stats.json", lane), {"lane": lane, "phrases": n, "peak_floor": peak_floor})
     return {"phrases": n}
 
 
-def build_daily_series(progress=True) -> dict:
-    """Merged CROSS-ERA daily series for every phrase in the member index (global peak>=15): stream all
-    shards, accumulate {date: max(D,R)} per ngram (Congresses have disjoint date ranges, so the merge is
-    a clean concatenation). -> data/derived/search/daily_series.jsonl. Fixes the per-Congress boundary
-    artifact (A2): first_seen and the full adoption curve are now GLOBAL, enabling event-based ignition
-    detection (S1.1'/S1.3'). Filtered by the member-index ngram set so it stays bounded."""
-    keep = {r["ng"] for r in iter_member_index()}
+def build_daily_series(progress=True, lane=None, congresses=range(113, 120)) -> dict:
+    """Merged daily series for every phrase in the member index (global peak>=15): stream the shards,
+    accumulate {date: max(D,R)} per ngram (Congresses have disjoint date ranges, so the merge is a clean
+    concatenation). -> data/derived/search/daily_series[.lane].jsonl. Fixes the per-Congress boundary
+    artifact (A2): first_seen and the full adoption curve are GLOBAL, enabling event-based ignition
+    detection (S1.1'/S1.3'). `lane` reads the per-lane shards + the lane's member index, and the series
+    stays WITHIN the lane's congresses — the propublica lane ends at 2021-01-03, so its series cannot
+    reach across the seam (docs/18 §5). Filtered by the member-index ngram set so it stays bounded."""
+    keep = {r["ng"] for r in iter_member_index(lane=lane)}
     if not keep:
-        raise RuntimeError("member index empty — build it first")
+        raise RuntimeError(f"member index empty (lane={lane}) — build it first")
     merged: dict = {}
-    for c in range(113, 120):
-        shard = ALEX / f"ledger-{c}.json"
+    for c in congresses:
+        shard = shard_path("ledger", c, lane)
         if not shard.exists() or shard.stat().st_size <= 2:
             continue
         for ng, entry in iter_ledger_entries(shard):
@@ -181,25 +204,25 @@ def build_daily_series(progress=True) -> dict:
             for day, rec in (entry.get("daily") or {}).items():
                 d[day] = max(rec.get("D", 0), rec.get("R", 0))
         if progress:
-            print(f"  daily-series ledger-{c}: {len(merged)} phrases so far", flush=True)
+            print(f"  daily-series ledger-{c}{'.' + lane if lane else ''}: {len(merged)} phrases so far", flush=True)
     SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
-    out = SEARCH_CACHE / "daily_series.jsonl"
+    out = cache_path("daily_series.jsonl", lane)
     with open(out, "w", encoding="utf-8") as w:
         for ng, days in merged.items():
-            series = sorted([d, c] for d, c in days.items())
+            series = sorted([d, cnt] for d, cnt in days.items())
             w.write(json.dumps({"ng": ng, "series": series}, separators=(",", ":")) + "\n")
-    util.write_json(SEARCH_CACHE / "daily_series.stats.json", {"phrases": len(merged)})
+    util.write_json(cache_path("daily_series.stats.json", lane), {"lane": lane, "phrases": len(merged)})
     return {"phrases": len(merged)}
 
 
-def build_cross_party_daily(threshold=3, progress=True) -> dict:
+def build_cross_party_daily(threshold=3, progress=True, lane=None, congresses=range(113, 120)) -> dict:
     """Per-day count of CROSS-PARTY unison phrases: phrases said by >=threshold members of BOTH parties
-    that day (a shared-reality signal). Stream all shards -> data/derived/search/cross_party_daily.json
+    that day (a shared-reality signal). Stream the shards -> data/derived/search/cross_party_daily[.lane].json
     ({date: count}). The substrate for S1.8 (SOTU gravity well) — no hardcoded SOTU dates needed; the
-    annual peak IS the SOTU day."""
+    annual peak IS the SOTU day. `lane` reads the per-lane shards + writes a lane-suffixed cache."""
     unison: dict = defaultdict(int)
-    for c in range(113, 120):
-        shard = ALEX / f"ledger-{c}.json"
+    for c in congresses:
+        shard = shard_path("ledger", c, lane)
         if not shard.exists() or shard.stat().st_size <= 2:
             continue
         for _ng, entry in iter_ledger_entries(shard):
@@ -207,14 +230,15 @@ def build_cross_party_daily(threshold=3, progress=True) -> dict:
                 if rec.get("D", 0) >= threshold and rec.get("R", 0) >= threshold:
                     unison[day] += 1
         if progress:
-            print(f"  cross-party ledger-{c}: {len(unison)} unison-days so far", flush=True)
+            print(f"  cross-party ledger-{c}{'.' + lane if lane else ''}: {len(unison)} unison-days so far", flush=True)
     SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
-    util.write_json(SEARCH_CACHE / "cross_party_daily.json", {"threshold": threshold, "by_day": dict(sorted(unison.items()))})
+    util.write_json(cache_path("cross_party_daily.json", lane),
+                    {"lane": lane, "threshold": threshold, "by_day": dict(sorted(unison.items()))})
     return {"unison_days": len(unison), "threshold": threshold}
 
 
-def iter_daily_series():
-    p = SEARCH_CACHE / "daily_series.jsonl"
+def iter_daily_series(lane=None):
+    p = cache_path("daily_series.jsonl", lane)
     if p.exists():
         with open(p, "r", encoding="utf-8") as f:
             for line in f:
@@ -223,17 +247,20 @@ def iter_daily_series():
 
 
 def bioguide_states() -> dict:
-    """{bioguide: modal state} from the statement-metadata intermediate (roster join for delegation)."""
+    """{bioguide: modal state} from the statement-metadata intermediate (roster join for delegation).
+    Stays POOLED (reads the combined stmt_meta, lane=None) ON PURPOSE: this is an IDENTITY map
+    (bioguide -> home state), not a comparison, so it is lane-independent by construction (docs/18 §4).
+    S1.11 uses it to label members; the comparison it feeds is isolated elsewhere."""
     from collections import Counter
     counts: dict = defaultdict(Counter)
-    for r in iter_stmt_meta():
+    for r in iter_stmt_meta(lane=None):
         if r.get("bioguide") and r.get("state"):
             counts[r["bioguide"]][r["state"]] += 1
     return {b: c.most_common(1)[0][0] for b, c in counts.items()}
 
 
-def iter_member_index():
-    p = SEARCH_CACHE / "member_index.jsonl"
+def iter_member_index(lane=None):
+    p = cache_path("member_index.jsonl", lane)
     if p.exists():
         with open(p, "r", encoding="utf-8") as f:
             for line in f:
@@ -241,8 +268,8 @@ def iter_member_index():
                     yield json.loads(line)
 
 
-def iter_phrase_index():
-    p = SEARCH_CACHE / "phrase_index.jsonl"
+def iter_phrase_index(lane=None):
+    p = cache_path("phrase_index.jsonl", lane)
     if not p.exists():
         return
     with open(p, "r", encoding="utf-8") as f:
@@ -252,24 +279,25 @@ def iter_phrase_index():
 
 
 # --- coverage denominators (from the complete discipline shards, all eras) -----------------------
-def load_daily_statements(congresses=range(107, 120)) -> dict:
+def load_daily_statements(congresses=range(107, 120), lane=None) -> dict:
     """{party: {date: statements}} merged across the discipline shards — the per-day denominators and
-    the density-control source. Complete for all eras (unlike the ledger shards)."""
+    the density-control source. `lane` reads per-lane discipline shards (113-119 only)."""
     out: dict[str, dict] = {"D": {}, "R": {}, "I": {}}
     for n in congresses:
-        d = util.read_json(ALEX / f"discipline-{n}.json", {}) or {}
+        d = util.read_json(shard_path("discipline", n, lane), {}) or {}
         for party, days in d.items():
             for day, rec in days.items():
                 out.setdefault(party, {})[day] = rec.get("statements", 0)
     return out
 
 
-def load_discipline_index(congresses=range(113, 120)) -> dict:
+def load_discipline_index(congresses=range(113, 120), lane=None) -> dict:
     """{party: {date: {"s": statements, "m": on_message_units}}} merged across discipline shards — the
-    daily message-discipline source for S1.6/S1.7 (weighted index = sum m / sum s over any window)."""
+    daily message-discipline source for S1.6/S1.7 (weighted index = sum m / sum s over any window).
+    `lane` reads the per-lane discipline shards so the index is measured within one instrument."""
     out: dict = {"D": {}, "R": {}}
     for n in congresses:
-        d = util.read_json(ALEX / f"discipline-{n}.json", {}) or {}
+        d = util.read_json(shard_path("discipline", n, lane), {}) or {}
         for party, days in d.items():
             if party not in out:
                 continue
@@ -278,11 +306,12 @@ def load_discipline_index(congresses=range(113, 120)) -> dict:
     return out
 
 
-def yearly_statements(congresses=range(107, 120)) -> dict:
-    """{year: {party: statements}} from the coverage shards (per-year denominators)."""
+def yearly_statements(congresses=range(107, 120), lane=None) -> dict:
+    """{year: {party: statements}} from the coverage shards (per-year denominators). `lane` reads
+    per-lane coverage shards (113-119 only)."""
     out: dict = {}
     for n in congresses:
-        cov = util.read_json(ALEX / f"coverage-{n}.json", {}) or {}
+        cov = util.read_json(shard_path("coverage", n, lane), {}) or {}
         for year, parties in cov.items():
             for p, c in parties.items():
                 out.setdefault(year, {}).setdefault(p, 0)
@@ -291,18 +320,23 @@ def yearly_statements(congresses=range(107, 120)) -> dict:
 
 
 # --- full-text statement stream (for S2; congress-press ground truth, all eras) ------------------
-def build_statement_meta(congresses=range(113, 120), progress=True) -> dict:
-    """Text-free per-statement metadata over congress-press -> data/derived/search/stmt_meta.jsonl
+def build_statement_meta(congresses=range(113, 120), progress=True, lane=None) -> dict:
+    """Text-free per-statement metadata over congress-press -> data/derived/search/stmt_meta[.lane].jsonl
     ({date, year, congress, party, bioguide, weekday}). Fast (no text); the substrate for the meta
-    hypotheses (weekday baselines, active-member denominators, delegation). Returns summary stats."""
+    hypotheses (weekday baselines, active-member denominators, delegation). Returns summary stats.
+
+    `lane` filters at the source via iter_statements(lane=...) and lane-suffixes the cache. The
+    `weekday_baseline` and `active_members_by_year` become PER-LANE by construction (docs/18 §4): an
+    era-pooled baseline normalizing a scraper-only half is exactly the S1.5 triage bug — a lane's
+    weekday shape must be measured in that lane."""
     from datetime import date as _date
     SEARCH_CACHE.mkdir(parents=True, exist_ok=True)
-    out = SEARCH_CACHE / "stmt_meta.jsonl"
+    out = cache_path("stmt_meta.jsonl", lane)
     n = 0
     active = defaultdict(set)          # year -> {bioguide}
     weekday = defaultdict(int)         # weekday -> count (all statements, the baseline)
     with open(out, "w", encoding="utf-8") as w:
-        for r in iter_statements(congresses=congresses, with_text=False):
+        for r in iter_statements(congresses=congresses, with_text=False, lane=lane):
             try:
                 wd = _date.fromisoformat(r["date"]).weekday()
             except Exception:
@@ -313,16 +347,16 @@ def build_statement_meta(congresses=range(113, 120), progress=True) -> dict:
             if r.get("bioguide"):
                 active[r["year"]].add(r["bioguide"])
             weekday[wd] += 1
-    summary = {"statements": n, "active_members_by_year": {y: len(s) for y, s in sorted(active.items())},
+    summary = {"lane": lane, "statements": n, "active_members_by_year": {y: len(s) for y, s in sorted(active.items())},
                "weekday_baseline": {str(k): v for k, v in sorted(weekday.items())}}
-    util.write_json(SEARCH_CACHE / "stmt_meta.summary.json", summary)
+    util.write_json(cache_path("stmt_meta.summary.json", lane), summary)
     if progress:
-        print("stmt_meta:", n, "statements;", summary["active_members_by_year"], flush=True)
+        print(f"stmt_meta{'.' + lane if lane else ''}:", n, "statements;", summary["active_members_by_year"], flush=True)
     return summary
 
 
-def iter_stmt_meta():
-    p = SEARCH_CACHE / "stmt_meta.jsonl"
+def iter_stmt_meta(lane=None):
+    p = cache_path("stmt_meta.jsonl", lane)
     if p.exists():
         with open(p, "r", encoding="utf-8") as f:
             for line in f:

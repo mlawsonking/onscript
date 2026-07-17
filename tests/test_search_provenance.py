@@ -264,6 +264,53 @@ def test_s2_half_requires_named_halves():
         raise AssertionError("_half accepted no halves — the seam split can travel again")
 
 
+# --- per-lane alexandria shards (docs/18 §2-§3.4) ------------------------------------------------
+def test_lane_shard_path_combined_is_unchanged_and_lane_is_subdirectory():
+    """lane=None must return the SAME combined path merge()/the site read (in ALEX/, not lanes/), so
+    the combined shards stay byte-untouched; a lane goes to the lanes/ subdirectory that merge()'s
+    non-recursive glob never descends into."""
+    from pipeline import alexandria as A
+    assert A.lane_shard_path("ledger", 117, None) == A.ALEX / "ledger-117.json"
+    assert A.lane_shard_path("ledger", 117, "propublica") == A.LANES_DIR / "ledger-117.propublica.json"
+    assert A.LANES_DIR.parent == A.ALEX and A.LANES_DIR.name == "lanes"
+
+
+def test_per_lane_shard_for_a_combined_only_congress_raises():
+    """107-112 are combined-only (docs/18 §2): their pre-2013 tails are 99.9% single-party, so a
+    per-lane shard there would be a poisoned statistic. The path, the record loader, and the builder
+    must all refuse — the guard that stops it being built OR read."""
+    from pipeline import alexandria as A
+    for n in (107, 110, 112):
+        try:
+            A.lane_shard_path("ledger", n, "propublica")
+        except P.LaneIsolationError:
+            pass
+        else:
+            raise AssertionError(f"per-lane path for combined-only congress {n} was allowed")
+        try:
+            A.load_congress_records(n, lane="scraped")   # guard fires before any mirror read
+        except P.LaneIsolationError:
+            pass
+        else:
+            raise AssertionError(f"per-lane record load for combined-only congress {n} was allowed")
+
+
+def test_per_lane_shard_unknown_lane_raises():
+    from pipeline import alexandria as A
+    try:
+        A.lane_shard_path("ledger", 117, "bogus")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("an unknown lane was accepted")
+
+
+def test_harness_cache_path_lane_suffixes_before_the_extension():
+    assert H.cache_path("phrase_index.jsonl", None) == H.SEARCH_CACHE / "phrase_index.jsonl"
+    assert H.cache_path("phrase_index.jsonl", "propublica") == H.SEARCH_CACHE / "phrase_index.propublica.jsonl"
+    assert H.cache_path("cross_party_daily.json", "scraped") == H.SEARCH_CACHE / "cross_party_daily.scraped.json"
+
+
 def test_s2_pre_registered_halves_never_span_the_seam():
     """Every lane's A and B windows must sit entirely on one side of 2021-01-03. The scraped lane's
     DATA starts 2021-01-04 (Jan 1-3 2021 is the excluded propublica stub), so its earliest real day is
