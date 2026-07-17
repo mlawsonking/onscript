@@ -419,6 +419,48 @@ Disappearance is party-SYMMETRIC (vanish rate D 0.634 / R 0.635), so no party is
 deleted — but the two lanes carry materially different party mixes over identical months, so any
 cross-party number spanning the seam is confounded regardless.
 
+### CORRECTION (2026-07-16, same session, after independent re-measurement)
+
+**The two numbers above are WRONG. The conclusion is right and was UNDERSTATED.** Both errors are
+mine: I lifted `legacy D:R 1.538 vs scraper 1.12 / 7.7-point shift` from a workflow agent's output
+and wrote it into canon WITHOUT reproducing it — the exact failure this ledger spends its length
+catching in others. A parallel session flagged the discrepancy; I re-measured the 303 mirror files
+directly and confirm their reading.
+
+**1. The corpus has THREE lanes, not two.** `date_source` values, counted over the full mirror:
+
+| lane | records |
+|---|---|
+| `legacy` | 485,948 |
+| `scraper` | 200,033 |
+| **`page_html`** | **2,839** |
+
+`page_html` (2014→2026) is small and it is the **most party-skewed lane in the corpus**. A
+two-valued enum built from the "union of two datasets" framing above would have silently
+mis-bucketed it — the isolation fix must be built against the field's REAL domain, not this
+paragraph's guess. Credit to the parallel L1 session for catching it before the enum was written.
+
+**2. The party-mix numbers do not reproduce, because the original comparison confounded era with
+lane** — it compared legacy-in-half-A against scraper-in-half-B, which is the very confound the
+finding is about. With **era held constant (2013-2020, half A)**:
+
+| lane | D | R | D:R |
+|---|---|---|---|
+| `legacy` | 257,401 | 218,817 | **1.176** |
+| `scraper` | 12,577 | 13,420 | **0.937** |
+| `page_html` | 536 | 43 | **12.465** |
+
+and in half B (2022-2026): `scraper` 1.302, `page_html` 1.829, `legacy` **absent** (it dies
+2021-01-03).
+
+**The lane effect is ~24 points of D:R ratio with era fixed (1.176 vs 0.937) — larger than the
+7.7-point cross-era figure originally published, and measured under the correct control.** The
+seam finding stands and hardens: half A is ~all legacy, half B is ~all scraper, so split-halves has
+been comparing LANES, not eras. Every conclusion above survives; only the arithmetic was wrong.
+
+**The lesson is the one this ledger already teaches, turned on its author:** a number that arrives
+from an agent is a number nobody reproduced. Canon is not a place to launder an unverified figure.
+
 ### The two near-misses this caught
 
 - **S4.3** — its pre-registered CONFIRM ("monotone volume decay") is satisfied by **the legacy
