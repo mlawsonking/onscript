@@ -1,5 +1,13 @@
 # 04-BUILDLOG — OnScript, Phase 4 (Implementation, Opus)
 
+> **SHA NOTICE (2026-07-17).** A `git filter-repo` history rewrite (Article XIII: the two
+> private-individual names replaced with their redaction labels in every historical blob)
+> changed **every commit SHA in this repository**. Commit hashes cited below that predate
+> 2026-07-17 are **pre-rewrite labels** — historical references, not live pointers. The
+> content of every commit is otherwise intact (HEAD tree byte-identical; 164 commits
+> preserved). Post-rewrite anchors: `fdcda1f` → `c44579c` (the #145 privacy deploy),
+> `d816066` → `457f90e` (L1 lane isolation).
+
 Running log of the multi-session build. Convention (per CLAUDE.md / gameplan §13): each
 session records **progress against the §1.4 acceptance criteria** and any **sanctioned §13
 deviations with rationale**, so a fresh session resumes without re-deriving state. The phase
@@ -1548,3 +1556,55 @@ healthy" while it was gone.
 
 **Next:** (3) the 34 within-lane re-validations (order: S2.3, then S1.9/S2.9) — now unblocked and
 now *enforced*; the `alexandria` shard-tag rebuild; then (4) rulings-shaped 1.3/1.4/1.5.
+
+## Session 17 (2026-07-17, Fable) — consolidation: the outage, the history rewrite, Article XVI
+
+Michael's directive: three parallel workers left him lost — consolidate, close strays, fix the
+pipeline, fix the history, bake validation in so canon stops drifting. Fable's lane (governance +
+repo surgery); the 34 re-validations and nomenclature wiring stay queued for Opus.
+
+**THE OUTAGE (root cause, fixed).** Every scheduled run from 2026-07-16 22:29Z to 07-17 11:03Z
+failed in 10-20 seconds: the #145 privacy gate (fail-closed, Art. XIII, correct) calls `load()` at
+module import, and the `PRIVACY_SALT` secret it requires **was never set** — `fdcda1f` verified 243
+tests locally, where the salt file exists, and never ran a cloud check. Worse, it failed **silently
+for 14 hours**: the in-process dead-man (`ops.ntfy`) cannot see a crash that happens before any
+pipeline code runs, and no workflow-level failure step existed. Fixed threefold: the salt set (piped
+from the salt file, value never displayed; the canary self-verifies it), a **preflight step** in both
+workflows that fails loudly when a required secret is absent, and an **`if: failure()` dead-man** at
+the workflow level, which sees every failure mode including import-time death. Verification run
+dispatched (29585706793) — dispatch runs do not count toward §1.4.1; tonight's 19:30/21:30Z crons are
+the first streak candidates, earliest honest 3-green pass **Sat 07-19**, before the Monday ritual.
+
+**THE HISTORY REWRITE (#161-as-described, executed).** Repo private, zero forks — the one moment
+this is cheap. Method: extracted the two gated names from pre-`fdcda1f` blobs **by running the live
+`privacy.is_suppressed` matcher over historical token n-grams** (the gate that suppresses them live
+is the authority on what they are); a full object-database scan found 52 blobs carrying exactly 2
+literal forms; `git filter-repo --replace-text` mapped each to its redaction label. **Proof:**
+post-rewrite scan = **0 occurrences in 2,898 blobs**; **HEAD tree hash byte-identical**
+(`84d1df16…` before and after — current content untouched); 164 commits preserved; 288 historical
+revisions now carry the redaction label; 255 tests green. Force-pushed `main`, `wip/nomenclature`,
+`data-latest`. The replacements file is deleted; the only place the names now exist is the
+pre-rewrite mirror backup at `X:\onscript-data\backup\polispeak-pre-rewrite.git` (Michael deletes
+after sign-off) and the raw corpus (see residual). Worktree cleanup rode along: `polispeak-v2`
+removed (scratch evidence archived to `X:\onscript-data\evidence\polispeak-v2-scratch\`),
+`polispeak-nom` worktree removed (**branch `wip/nomenclature` alive and pushed**), merged remote
+branch `claude/friendly-bardeen-a6aa2d` deleted. **One tree, one writer is now literal: one tree.**
+
+**RESIDUALS (filed on the bus, Michael's acts):** (a) GitHub retains unreachable pre-rewrite objects
+server-side until GC — before the public flip, either a GitHub-support purge request or
+delete-and-recreate the repo (old SHAs cited in this very buildlog would otherwise be fetchable
+pointers to name-bearing blobs). (b) The release asset's raw mirror contains 11 member statements
+that *mention* the names — members' own published .gov speech, so Art. XIII (privacy floor) and
+Art. VI (raw immutable/rebuildable) pull opposite ways; queued for the attorney hour, leave raw
+alone until ruled.
+
+**ARTICLE XVI ratified (v1 → v1.1, per Art. XV).** The validation article — every lesson of the
+last 48h made law: status codes inadmissible (the streak miscount), fail-closed ships with its key
+(the salt outage), failure visibility at the outermost layer (the silent 14 hours), liveness is
+data-not-process-match (the self-matching CREC watchdog), numbers enter canon with estimator +
+reproduction script (1.538-as-the-lane; my own ratio-as-points error), session-end
+expectation-vs-observation check (this consolidation exists because nobody ran one).
+
+**Also:** BSKY_RED_HANDLE corrected to `red.onscript.news` (pre-flip list item, public string).
+CREC crawl healthy under the Task Scheduler — past the seam (2020: 224 files, 2021: 223, 2022
+running). BCAD/Assessment-Commons response filed on that project's bus (not OnScript work).

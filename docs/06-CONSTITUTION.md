@@ -1,4 +1,4 @@
-# 06-CONSTITUTION — the invariants (v1, 2026-07-11)
+# 06-CONSTITUTION — the invariants (v1.1, 2026-07-17)
 
 > **What this is.** The rules that outlive every phase, session, model, and mood. Everything
 > here already exists scattered across the vision, research, gameplan, and horizon docs — this
@@ -77,6 +77,19 @@ with rationale, and a version bump in this header. **Articles II, III, IV, and X
 load-bearing: amending them makes this a different project and should be treated as founding a
 new one.** When any other doc conflicts with this one, this one wins.
 
+**XVI. The instrument is verified, not trusted.** Health is a measured state, never a status
+code: a run is green only by its own record (`verifier_passed`, `fallback`, `degraded`) — exit
+codes and CI statuses are inadmissible as evidence. A fail-closed gate and the key it requires
+ship as one act, proven by a live run in the target environment before the session that merged
+it ends; a gate without its key is an outage authored, not safety. Failure visibility belongs
+to the outermost layer: every scheduled workflow notifies on any failure, where a death before
+`main()` is still visible. A liveness probe observes progress — data advancing — never its own
+reflection in a process list. A number enters canon only with its estimator (units, window,
+denominator) and a re-runnable reproduction script; an unreproducible number is prose, not
+evidence. And every work session ends by checking expectation against observation — site
+freshness, streak state, flags, tests — filing discrepancies rather than assuming them.
+
 ---
 
-*Ratified 2026-07-11. Check decisions against it; don't re-derive it.*
+*Ratified 2026-07-11. Amended 2026-07-17 (XVI — validation, after the salt outage and the seam
+numbers). Check decisions against it; don't re-derive it.*
