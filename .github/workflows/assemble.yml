@@ -107,8 +107,10 @@ jobs:
           # NO [skip ci]: these workflows are schedule/dispatch-only (never push-triggered), so the
           # marker does nothing for Actions but makes VERCEL SKIP the deploy — which froze the live
           # site at the last manual push. Without it, every daily data commit auto-deploys. §voice-wiring.
-          git commit -m "data: assemble $(date -u +%F)" || echo "no changes"
-          git push || echo "push skipped"
+          git commit -m "data: assemble $(date -u +%F)" || { echo "no changes"; exit 0; }
+          # Art. XVI: rebase-retry the benign mid-run race; hard-fail after that so the dead-man
+          # fires (see collect.yml — a swallowed push rejection is a green run that published nothing).
+          git push origin main || { git pull --rebase origin main && git push origin main; }
 
       # Art. XVI: failure visibility belongs to the OUTERMOST layer (see collect.yml — an import-time
       # death is invisible to the in-process dead-man by construction).

@@ -78,8 +78,12 @@ jobs:
           git add data/derived
           # NO [skip ci]: schedule/dispatch-only workflow (never push-triggered), so the marker only
           # made Vercel skip the deploy. Removing it lets every data commit auto-deploy. §voice-wiring.
-          git commit -m "data: collect $(date -u +%F)" || echo "no derived changes"
-          git push || echo "push skipped"
+          git commit -m "data: collect $(date -u +%F)" || { echo "no derived changes"; exit 0; }
+          # Art. XVI: the push must survive a docs/canon commit landing mid-run. On 2026-07-17 a
+          # rejected non-fast-forward was swallowed by '|| echo' and a GREEN run published nothing.
+          # Rebase-retry handles the benign race; a failure after that is real and must FAIL the
+          # step so the dead-man fires. (Two pipeline runs cannot race each other: concurrency group.)
+          git push origin main || { git pull --rebase origin main && git push origin main; }
 
       # Art. XVI: failure visibility belongs to the OUTERMOST layer. The in-process dead-man
       # (pipeline/ops.ntfy) cannot see a crash that happens before main() — an import-time death is
