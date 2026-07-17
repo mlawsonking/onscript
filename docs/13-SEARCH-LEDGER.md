@@ -7,10 +7,12 @@
 ## Tally
 
 > **⚠ 2026-07-17 — every verdict below was validated on a split that sat on the provenance seam (see
-> the WARNING section). The runnable half has been RE-VALIDATED within one lane — see
-> "RE-VALIDATION — WITHIN-LANE" at the end of this file. Headline: no runnable verdict flipped; both
-> CONFIRMEDs survive (S2.9 now twice-confirmed); S2.3's kill was not plumbing. The BLOCKED-ON-SHARDS
-> half awaits the alexandria shard rebuild.**
+> the WARNING section). ALL 34 have now been RE-VALIDATED within one lane — the runnable half (Session
+> 18, "RE-VALIDATION — WITHIN-LANE") and the eleven BLOCKED-ON-SHARDS half (Session 19, "SHARD-LANES
+> RE-VALIDATION"), both at the end of this file. Headline: the seam overturned ZERO verdicts toward a
+> false positive, the two original CONFIRMEDs survive (S2.9 now twice-confirmed), AND lane isolation
+> surfaced TWO NEW within-lane CONFIRMED — S1.1′/S1.3′, the "Great Intensification" (2013→2020, absent
+> after the seam), pending Fable/neutrality review. Program CONFIRMED tally 2→4.**
 
 | tested | confirmed | refuted | underpowered | artifact | blocked | descriptive |
 |---|---|---|---|---|---|---|
@@ -647,8 +649,70 @@ combined shards are a stale baseline: the ledger's key order is per-process rand
 
 **Scraped-lane read:** 5 REFUTED-stands, 2 ARTIFACT-stands (S1.1/S1.3 — proving the sawtooth is NOT the seam), 2 ARTIFACT-coverage (S1.1′/S1.3′ — the intensification story is absent within 2021-26, so it was a propublica-era effect), 2 UNDERPOWERED (S1.6 electoral cycles, S1.4-proper congress-split — both honest lane-isolation costs, not failures). **Zero verdicts flipped toward a false positive.**
 
-### PROPUBLICA lane (congresses 113-116) — PENDING (shards building; the ~3-hour long pole)
+### PROPUBLICA lane (congresses 113-116; year-halves 2013-16 / 2017-20; congress-halves {113,114}/{115,116})
 
-Rows to be appended when the propublica per-lane shards (113-116) finish and the driver runs. The
-propublica lane is where the original 2013-2020 findings lived, so it is the load-bearing half for
-S1.1′/S1.3′ (the intensification narrative) and S1.2 (sync-ceiling peak).
+**THE HEADLINE: two new within-lane CONFIRMED — the "Great Intensification" is real, confirmed inside
+the instrument that measured it, and it stopped at the seam.** S1.1′ and S1.3′ were REFUTED across the
+2013-2026 seam split (the post-2021 plateau broke the monotone gate). Isolated to the propublica lane
+(2013-2020) on the brief's pre-registered within-lane halves (docs/18 §5), the SAME hypotheses and the
+SAME gate CONFIRM — and they are ARTIFACT/absent in the scraped lane. Lane isolation did not weaken
+these findings; it is what made them confirmable.
+
+| ID | new verdict | headline (within propublica lane) | vs original | floors |
+|----|-------------|-----------------------------------|-------------|--------|
+| S1.1 | **ARTIFACT** (stands) | odd/even congress-boundary sawtooth inside the lane (`artifact_guard=True`) | unchanged — same per-shard artifact, seam-independent | min_cell 8 |
+| S1.3 | **ARTIFACT** (stands) | same sawtooth (`artifact_guard=True`) | unchanged | min_cell 8 |
+| **S1.1′** | **CONFIRMED ✅** | ignition width **34d (2013) → 3d (2020)**, series 34,13,8,12 / 6,12,3,3; dir A −1, dir B −1; **ratio 11.33×** (≥1.5); **density_survives=True**; no sawtooth. Cells 928–12,548 bursts/yr | **original REFUTED (across seam) → CONFIRMED within propublica.** The memo industrialized ~11× through the 2010s | dir<0 both halves; ratio≥1.5; density-survives |
+| **S1.3′** | **CONFIRMED ✅** | burst lifespan **55.5d (2013) → ~15d (2020)**, series 55.5,32,29,31 / 24.5,35,10,15; dir A −1, dir B −1; **drop 37.3%** (≥30%); **density_survives=True** | **original REFUTED → CONFIRMED within propublica.** Talking-point flare duration collapsed 37% | dir<0 both halves; drop≥30%; density-survives |
+| S1.2 | **REFUTED** (stands, +peak) | normalized sync ceiling 0.228 (2013) → **0.330 (2017, peak)** → 0.250 (2020); dir A +1, dir B −1, ratio 1.09 | consistent — REFUTED against "monotone rising", and it **shows the 2017 peak-and-fall** within the lane | ≥2 yrs/half |
+| S1.5 | **REFUTED** (stands) | weekend-avoidance not both days (Sunday over-represented) | consistent | ≥30 ignitions/half |
+| S1.6 | **REFUTED** (powered now) | snap tally A-D 1/2, A-R 1/2, **B-D 2/2, B-R 2/2** — 2018/2020 snap, 2014/2016 don't; fails all-cells-majority (half A) | **now POWERED** (2 cycles/half, unlike scraped) — confirms the original "pre-election tightening is a RECENT-cycle phenomenon" | ≥2 cycles/half/party |
+| S1.7 | **REFUTED** (stands) | August ignition rate craters vs session | consistent | ≥200 Aug stmts/half |
+| S1.8 | **REFUTED** (stands) | SOTU half-life not declining | consistent | ≥2 yrs/half |
+| S1.11 | **REFUTED** (stands) | same-state echo ratio A 0.94 / B 0.94 (<1.5) — no regional echo | consistent (original 1.01/1.09) | ≥30 phrases/half |
+| S1.4 (_proper) | **UNDERPOWERED** (gate unmeetable) | congress-split gate needs ≥3 congresses/half; propublica has 2 ({113,114}/{115,116}) → directions None | the year-keyed verbatim floor (Session 18) is the runnable form | ≥3 congresses/half (unreachable) |
+
+**Propublica-lane read:** **2 CONFIRMED** (S1.1′/S1.3′ — the intensification, real and within-lane), 6
+REFUTED-stands (S1.2 also surfacing the 2017 sync peak; S1.6 now powered, confirming recent-cycle
+tightening), 2 ARTIFACT-stands (S1.1/S1.3 sawtooth), 1 UNDERPOWERED (S1.4-proper). Zero false positives.
+
+### The both-lanes picture — the eleven, re-validated
+
+| ID | propublica | scraped | reading |
+|----|-----------|---------|---------|
+| S1.1 | ARTIFACT | ARTIFACT | congress-boundary sawtooth in BOTH lanes → proven seam-independent (a per-shard artifact) |
+| S1.3 | ARTIFACT | ARTIFACT | same |
+| **S1.1′** | **CONFIRMED** | ARTIFACT-coverage | **the intensification is a 2013→2020 phenomenon that STOPPED at the seam** |
+| **S1.3′** | **CONFIRMED** | ARTIFACT-coverage | same — flare-duration collapse was a 2010s effect, absent 2021-26 |
+| S1.2 | REFUTED (2017 peak) | REFUTED (declining) | sync ceiling peaked ~2017 and fell — consistent both lanes |
+| S1.5 | REFUTED | REFUTED | Sunday spike, both lanes |
+| S1.6 | REFUTED (powered) | UNDERPOWERED | pre-election tightening is recent-cycle; scraped has too few cycles to test |
+| S1.7 | REFUTED | REFUTED | August coordination craters, both lanes |
+| S1.8 | REFUTED | REFUTED | no SOTU half-life collapse, both lanes |
+| S1.11 | REFUTED | REFUTED | no regional delegation echo, both lanes |
+| S1.4 (_proper) | UNDERPOWERED | UNDERPOWERED | congress-split gate unmeetable in either lane (≥3 congresses/half); the verbatim floor (Session 18) is the runnable form, REFUTED both lanes |
+
+**Publication gate (NOT a build-session act):** S1.1′/S1.3′ are REFUTED→CONFIRMED movements. Although
+the within-lane halves were PRE-REGISTERED in docs/18 §5 (so this is not a p-hacked reversal — the
+gate and hypothesis are unchanged, only the substrate is now lane-isolated), a REFUTED→CONFIRMED
+finding must clear Fable + neutrality review before it becomes a published card/article, and the
+density control's caveat (it matches burst COUNT, not within-day statement density — a denser day can
+still peak a phrase faster) must be disclosed on any card. The `data/derived/findings/GREAT-INTENSIFICATION.json`
+narrative card already exists as a banked reversal candidate; these two CONFIRMEDs are its within-lane
+evidence, now on the correct (isolated) substrate.
+
+### SHARD-LANES tally
+
+| item | count |
+|---|---|
+| eleven re-validated in BOTH lanes | 11 |
+| new within-lane CONFIRMED | **2 (S1.1′, S1.3′, propublica)** — pending publication review |
+| ARTIFACT-stands (seam-independent) | 2 (S1.1, S1.3, both lanes) |
+| REFUTED-stands | S1.2, S1.5, S1.7, S1.8, S1.11 (both lanes); S1.6 (propublica) |
+| UNDERPOWERED (honest lane cost) | S1.6 (scraped), S1.4-proper (both lanes) |
+| verdicts flipped toward a FALSE POSITIVE | **0** |
+
+Reconciliation (docs/18 §3): all 7 congresses EXACT raw partition, 0 statement delta, 0 cross-lane
+id-dups. Program CONFIRMED tally moves from 2 (S1.9, S2.9) to **4 pending review** (+S1.1′, +S1.3′).
+Scripts: `scripts/search/{build_lane_shards,revalidate_s1_shards}.py`; results
+`data/derived/search/revalidate_s1_shards.json`.

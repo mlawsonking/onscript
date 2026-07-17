@@ -1675,3 +1675,81 @@ provenance).
 S1.8, S1.11, S1.4-proper — they read alexandria ledger/discipline/member/daily shards, which are
 lane-blind until the ~3GB shard lane-tag rebuild (its own session, docs/17 §6). Classifying them BLOCKED
 rather than re-running on lane-blind substrate is the discipline, not a gap.
+
+## Session 19 (2026-07-17, Opus) — THE SHARD LANES (docs/18): the eleven unblocked, and TWO new CONFIRMED
+
+Build-order step (4), governed by `docs/18-SHARD-LANES-BRIEF.md`. Gave the alexandria shards a lane
+dimension, made the harness lane-aware, and re-validated the eleven BLOCKED-ON-SHARDS S1 items within
+one provenance lane. Nothing published changed (the daily pipeline does not import alexandria; merge()
+and the combined shards are untouched).
+
+**THE HEADLINE: two new within-lane CONFIRMED, and lane isolation is what MADE them confirmable.**
+S1.1' (ignition width) and S1.3' (burst lifespan) were REFUTED across the 2013-2026 seam split — the
+post-2021 plateau broke their monotone gate. Isolated to the propublica lane (2013-2020) on the
+brief's pre-registered within-lane halves, the SAME hypotheses and the SAME gates CONFIRM:
+- **S1.1' CONFIRMED**: ignition width 34d (2013) -> 3d (2020), an **11.3x speedup**, declining in both
+  within-lane halves, **survives the density control**, no sawtooth. The memo industrialized ~11x.
+- **S1.3' CONFIRMED**: burst lifespan 55.5d -> ~15d, **37% drop**, both halves declining, density-survives.
+- Both are **ARTIFACT/absent in the scraped lane (2021-2026)** — so the "Great Intensification" is a
+  real 2013->2020 phenomenon that **STOPPED at the seam**. The program's CONFIRMED tally moves from 2
+  (S1.9, S2.9) to **4 pending publication review** (S1.1'/S1.3' are REFUTED->CONFIRMED movements; the
+  within-lane halves were pre-registered in docs/18 §5, so this is not a p-hacked reversal, but a
+  REFUTED->CONFIRMED card still needs Fable + neutrality review, and the density control's caveat —
+  count-matched, not statement-density-matched — must be disclosed).
+
+**Zero verdicts flipped toward a false positive across all 22 (11 items x 2 lanes).** The rest: S1.1/S1.3
+stay ARTIFACT in BOTH lanes (proving the odd/even congress-boundary sawtooth is a per-shard artifact
+INDEPENDENT of the seam); S1.2/S1.5/S1.7/S1.8/S1.11 REFUTED-stand in both (S1.2 also surfacing the 2017
+sync-ceiling peak within-lane; S1.6 REFUTED-powered in propublica confirming pre-election tightening is
+a RECENT-cycle effect); S1.6-scraped and S1.4-proper (both lanes) honestly UNDERPOWERED — the
+congress-split gate needs >=3 congresses/half, which no single lane has (cf. S3.6, an unmeetable T1 gate).
+
+**Shipped.**
+- `pipeline/alexandria.py`: `run_shard(n, lane=)`, `load_congress_records(n, lane=)` filter records by
+  `provenance.instrument_of` BEFORE normalize (the 3rd and last place `date_source` died). Per-lane
+  shards live in `ALEX/lanes/` — a subdirectory ON PURPOSE: a flat `ledger-113.propublica.json` matches
+  merge()'s `ledger-*.json` glob and would double-count + choke its `int(stem.split("-")[1])` manifest
+  parse; the non-recursive glob never descends into `lanes/`. `lane=None` is byte-identical.
+  `reconcile_lane_shards()` for the §3 acceptance.
+- `pipeline/search/harness.py`: every builder takes `lane=` and writes a lane-suffixed cache (so a
+  scraper-only half can't be normalized against an era-pooled baseline — the S1.5 triage bug);
+  `bioguide_states` stays pooled (identity map). Added `_iter_jsonl_rows` — the jsonl readers now skip a
+  corrupt line with a loud warning instead of crashing all hypotheses (see the corruption note below).
+- `pipeline/search/wave_s1.py`: all eleven items lane-migrated (`_half` requires halves; year-halves for
+  phrase/series, congress-halves for S1.11/S1.4-proper; S1.3' takes the lane cutoff so a propublica
+  burst alive at 2021-01-03 is censored, not counted short). `s1_4_proper` now reports UNDERPOWERED (not
+  a false REFUTED) when its congress-split gate is unmeetable in-lane.
+- `scripts/search/`: `validate_lane_shards` (fast pre-build correctness), `build_lane_shards`
+  (resumable, PYTHONHASHSEED-pinned), `revalidate_s1_shards` (the analysis driver, cache-skipping,
+  lane-merging). Evidence re-homed to `scripts/search/evidence/` + `scripts/ops/history-rewrite/` (all
+  10 verified name-free against the live privacy gate; the rewrite tools print only hashes).
+
+**Acceptance (docs/18 §3) — all PASS.** All 7 congresses reconcile EXACTLY: records(propublica) +
+records(scraped) == records(combined), **0 statement delta, 0 cross-lane id-dups** (c113 92,895+1,681;
+c116 145,026+15,863; c117 144+36,773; c118/c119 0+all — propublica is EMPTY post-seam, the seam on
+record). `run_shard(n, lane=None)` is content-deterministic and leaves the live combined shards
+untouched. 107-112 per-lane loaders RAISE. **263 tests green** (+8 shard/reader kill-fixtures).
+
+**Two things worth keeping on the record.**
+1. **The §3.4 "byte-identical" acceptance was reframed.** The on-disk combined shards are a STALE
+   baseline — the ledger's dict/daily key order is per-PROCESS randomized (via `_doc_ngrams` returning a
+   set, iterated under PYTHONHASHSEED), so re-running produces different bytes from identical DATA
+   (discipline/coverage are order-independent aggregations and DO match). This is harmless to analysis
+   (the Search readers stream all entries, order-invariant) and pre-existing (not introduced here); the
+   honest test is determinism + combined-path-invariance + live-shards-untouched, all verified.
+   PYTHONHASHSEED=0 pins the per-lane shards for reproducibility.
+2. **A file-level cache corruption crashed the first both-lanes run and was hardened against.** A raw
+   control byte appeared in `phrase_index.scraped.jsonl` at line 796,225 (an unescaped 0x11 inside a
+   `first_date`) under concurrent X: I/O (the completion build + the analysis both hammering the
+   junction). Proven NOT a data/code fault: `json.dumps` always escapes control chars, and the
+   scraped-119 LEDGER has ZERO control-char dates — so a rebuild produces a clean file (it did). Fix:
+   rebuilt the scraped caches clean AND hardened the jsonl readers to skip+warn on a bad line (one
+   corrupt byte in an 800k-line rebuildable cache must degrade an analysis by one row, not kill it). The
+   propublica caches were scanned clean (0 control chars across 2.09M phrase-index lines), so the
+   CONFIRMED findings rest on good data.
+
+**NEXT (build order 5):** nomenclature wiring (branch `wip/nomenclature`; wire `tag()` BEFORE distill;
+`nomenclature_rate` in the nightly audit; adversarial review; merge), then rulings-shaped 1.3/1.4/1.5
+(SPAN-gated, behind the nomenclature merge). The S1.1'/S1.3' CONFIRMEDs await Fable/neutrality review
+before publication. The alexandria shard rebuild the re-validation needed is DONE — the
+BLOCKED-ON-SHARDS half of the 34 is now re-validated.

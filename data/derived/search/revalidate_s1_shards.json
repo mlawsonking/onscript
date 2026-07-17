@@ -455,7 +455,545 @@
    },
    "id": "S1.4",
    "name": "The Copy-Paste Caucus",
+   "lane_congress_split_powered": false,
+   "verdict": "UNDERPOWERED"
+  }
+ ],
+ "propublica": [
+  {
+   "id": "S1.1",
+   "name": "Industrialization of the Memo",
+   "lane": "propublica",
+   "peak_min": 15,
+   "artifact_guard": true,
+   "series": [
+    [
+     2013,
+     60.0
+    ],
+    [
+     2014,
+     8.5
+    ],
+    [
+     2015,
+     60.0
+    ],
+    [
+     2016,
+     8.0
+    ],
+    [
+     2017,
+     60.0
+    ],
+    [
+     2018,
+     11
+    ],
+    [
+     2019,
+     60
+    ],
+    [
+     2020,
+     3
+    ]
+   ],
+   "cells": {
+    "2013": 1394,
+    "2014": 490,
+    "2015": 2778,
+    "2016": 240,
+    "2017": 4984,
+    "2018": 593,
+    "2019": 7895,
+    "2020": 8887
+   },
+   "dir_a": -1,
+   "dir_b": -1,
+   "early_median": 60.0,
+   "late_median": 3,
+   "ratio": 20.0,
+   "density_survives": true,
+   "verdict": "ARTIFACT"
+  },
+  {
+   "id": "S1.3",
+   "name": "Phrase Lifespan Collapse",
+   "lane": "propublica",
+   "peak_min": 10,
+   "artifact_guard": true,
+   "series": [
+    [
+     2013,
+     655.5
+    ],
+    [
+     2014,
+     106
+    ],
+    [
+     2015,
+     478.0
+    ],
+    [
+     2016,
+     6
+    ],
+    [
+     2017,
+     429
+    ],
+    [
+     2018,
+     17.0
+    ],
+    [
+     2019,
+     470.0
+    ],
+    [
+     2020,
+     17
+    ]
+   ],
+   "cells": {
+    "2013": 3770,
+    "2014": 1649,
+    "2015": 6616,
+    "2016": 1165,
+    "2017": 12913,
+    "2018": 2876,
+    "2019": 16274,
+    "2020": 15999
+   },
+   "dir_a": -1,
+   "dir_b": -1,
+   "early_median_lifespan": 292.0,
+   "late_median_lifespan": 223.0,
+   "median_drop": 0.23630136986301364,
+   "verdict": "ARTIFACT",
+   "note": "birth-year cohorts truncate near the window edge (right-censoring) \u2014 caveat on any card"
+  },
+  {
+   "id": "S1.1'",
+   "name": "Industrialization of the Memo (redefined)",
+   "lane": "propublica",
+   "series": [
+    [
+     2013,
+     34.0
+    ],
+    [
+     2014,
+     13.0
+    ],
+    [
+     2015,
+     8.0
+    ],
+    [
+     2016,
+     12
+    ],
+    [
+     2017,
+     6.0
+    ],
+    [
+     2018,
+     12.0
+    ],
+    [
+     2019,
+     3
+    ],
+    [
+     2020,
+     3.0
+    ]
+   ],
+   "cells": {
+    "2013": 928,
+    "2014": 1356,
+    "2015": 2260,
+    "2016": 1139,
+    "2017": 3958,
+    "2018": 1942,
+    "2019": 4275,
+    "2020": 12548
+   },
+   "dir_a": -1,
+   "dir_b": -1,
+   "early_median": 34.0,
+   "late_median": 3.0,
+   "ratio": 11.33,
+   "density_survives": true,
+   "artifact_guard": false,
+   "verdict": "CONFIRMED"
+  },
+  {
+   "id": "S1.3'",
+   "name": "Phrase Lifespan Collapse (redefined)",
+   "lane": "propublica",
+   "series": [
+    [
+     2013,
+     55.5
+    ],
+    [
+     2014,
+     32
+    ],
+    [
+     2015,
+     29.0
+    ],
+    [
+     2016,
+     31.0
+    ],
+    [
+     2017,
+     24.5
+    ],
+    [
+     2018,
+     35
+    ],
+    [
+     2019,
+     10.0
+    ],
+    [
+     2020,
+     15
+    ]
+   ],
+   "cells": {
+    "2013": 768,
+    "2014": 1319,
+    "2015": 2230,
+    "2016": 1020,
+    "2017": 3906,
+    "2018": 1913,
+    "2019": 4188,
+    "2020": 11687
+   },
+   "dir_a": -1,
+   "dir_b": -1,
+   "early_median_days": 31.5,
+   "late_median_days": 19.75,
+   "median_drop": 0.373,
+   "density_survives": true,
+   "artifact_guard": false,
+   "verdict": "CONFIRMED"
+  },
+  {
+   "id": "S1.2",
+   "name": "The Sync Ceiling",
+   "lane": "propublica",
+   "series_norm": [
+    [
+     2013,
+     0.2282
+    ],
+    [
+     2014,
+     0.2287
+    ],
+    [
+     2015,
+     0.2407
+    ],
+    [
+     2016,
+     0.2696
+    ],
+    [
+     2017,
+     0.3295
+    ],
+    [
+     2018,
+     0.2653
+    ],
+    [
+     2019,
+     0.2364
+    ],
+    [
+     2020,
+     0.2495
+    ]
+   ],
+   "raw_ceiling": {
+    "2013": 89,
+    "2014": 94,
+    "2015": 104,
+    "2016": 124,
+    "2017": 173,
+    "2018": 139,
+    "2019": 122,
+    "2020": 125
+   },
+   "dir_a": 1,
+   "dir_b": -1,
+   "early_norm": 0.2282051282051282,
+   "late_norm": 0.249500998003992,
+   "ratio": 1.0933189800174932,
    "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.5",
+   "name": "The Weekend Memo",
+   "lane": "propublica",
+   "peak_min": 15,
+   "excess_A": {
+    "0": 0.94,
+    "1": 1.14,
+    "2": 1.17,
+    "3": 0.87,
+    "4": 0.78,
+    "5": 0.7,
+    "6": 2.27
+   },
+   "excess_B": {
+    "0": 1.15,
+    "1": 1.06,
+    "2": 0.88,
+    "3": 1.03,
+    "4": 0.88,
+    "5": 0.93,
+    "6": 1.76
+   },
+   "weekend_excess_A": [
+    0.7040542187580521,
+    2.2701303633786867
+   ],
+   "weekend_excess_B": [
+    0.9333790035585593,
+    1.7616126333826159
+   ],
+   "n_A": 4902,
+   "n_B": 22359,
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.6",
+   "name": "The 90-Day Snap",
+   "lane": "propublica",
+   "cycles": {
+    "2014": {
+     "half": "A",
+     "D": {
+      "pre90": 0.59,
+      "prior": 0.56,
+      "snap": true
+     },
+     "R": {
+      "pre90": 0.629,
+      "prior": 0.584,
+      "snap": true
+     }
+    },
+    "2016": {
+     "half": "A",
+     "D": {
+      "pre90": 0.648,
+      "prior": 0.656,
+      "snap": false
+     },
+     "R": {
+      "pre90": 0.696,
+      "prior": 0.711,
+      "snap": false
+     }
+    },
+    "2018": {
+     "half": "B",
+     "D": {
+      "pre90": 0.618,
+      "prior": 0.599,
+      "snap": true
+     },
+     "R": {
+      "pre90": 0.659,
+      "prior": 0.648,
+      "snap": true
+     }
+    },
+    "2020": {
+     "half": "B",
+     "D": {
+      "pre90": 0.621,
+      "prior": 0.573,
+      "snap": true
+     },
+     "R": {
+      "pre90": 0.631,
+      "prior": 0.605,
+      "snap": true
+     }
+    }
+   },
+   "snap_tally": {
+    "A-D": "1/2",
+    "A-R": "1/2",
+    "B-D": "2/2",
+    "B-R": "2/2"
+   },
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.7",
+   "name": "The August Effect",
+   "lane": "propublica",
+   "peak_min": 15,
+   "by_half": {
+    "A": {
+     "aug_rate": 2.153,
+     "other_rate": 26.545,
+     "aug_ig": 28,
+     "aug_stmts": 13004
+    },
+    "B": {
+     "aug_rate": 42.259,
+     "other_rate": 80.22,
+     "aug_ig": 779,
+     "aug_stmts": 18434
+    }
+   },
+   "recess_vs_session_ratio": {
+    "A": 0.08,
+    "B": 0.53
+   },
+   "proxy": "August = recess",
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.8",
+   "name": "The SOTU Gravity Well",
+   "lane": "propublica",
+   "peak_day_by_year": {
+    "2013": "2013-10-29",
+    "2014": "2014-03-13",
+    "2015": "2015-10-29",
+    "2016": "2016-09-28",
+    "2017": "2017-03-07",
+    "2018": "2018-02-06",
+    "2019": "2019-04-02",
+    "2020": "2020-05-22"
+   },
+   "peak_magnitude": {
+    "2013": 647,
+    "2014": 420,
+    "2015": 1880,
+    "2016": 434,
+    "2017": 1524,
+    "2018": 1429,
+    "2019": 3054,
+    "2020": 2081
+   },
+   "half_life_days": {
+    "2013": 1,
+    "2014": 1,
+    "2015": 1,
+    "2016": 1,
+    "2017": 1,
+    "2018": 1,
+    "2019": 1,
+    "2020": 1
+   },
+   "hl_dir_a": 0,
+   "hl_dir_b": 0,
+   "hl_early": 1.0,
+   "hl_late": 1.0,
+   "hl_drop": 0.0,
+   "peak_mag_dir_a": 0,
+   "peak_mag_dir_b": 1,
+   "verdict": "REFUTED"
+  },
+  {
+   "id": "S1.11",
+   "name": "Delegation Echo",
+   "lane": "propublica",
+   "by_half": {
+    "A": {
+     "phrases": 4902,
+     "observed_pairs": 807832,
+     "total_pairs": 25043180,
+     "mean_null_pairs": 855976.8,
+     "ratio": 0.94,
+     "same_state_rate": 0.0323
+    },
+    "B": {
+     "phrases": 22359,
+     "observed_pairs": 3065053,
+     "total_pairs": 94995324,
+     "mean_null_pairs": 3261658.7,
+     "ratio": 0.94,
+     "same_state_rate": 0.0323
+    }
+   },
+   "ratio_A": 0.94,
+   "ratio_B": 0.94,
+   "verdict": "REFUTED"
+  },
+  {
+   "lane": "propublica",
+   "full": {
+    "113": {
+     "D": 0.0597,
+     "R": 0.0359
+    },
+    "114": {
+     "D": 0.0984,
+     "R": 0.038
+    },
+    "115": {
+     "D": 0.108,
+     "R": 0.0498
+    },
+    "116": {
+     "D": 0.1253,
+     "R": 0.0602
+    }
+   },
+   "matched": {
+    "113": {
+     "D": 0.0597,
+     "R": 0.0359
+    },
+    "114": {
+     "D": 0.0903,
+     "R": 0.0342
+    },
+    "115": {
+     "D": 0.0776,
+     "R": 0.0363
+    },
+    "116": {
+     "D": 0.0885,
+     "R": 0.0415
+    }
+   },
+   "target_volume": 90385,
+   "directions": {
+    "full_D_A": null,
+    "full_D_B": null,
+    "full_R_A": null,
+    "full_R_B": null,
+    "matched_D_A": null,
+    "matched_D_B": null,
+    "matched_R_A": null,
+    "matched_R_B": null
+   },
+   "id": "S1.4",
+   "name": "The Copy-Paste Caucus",
+   "lane_congress_split_powered": false,
+   "verdict": "UNDERPOWERED"
   }
  ]
 }

@@ -41,6 +41,32 @@ def cache_path(name: str, lane: str | None):
     return SEARCH_CACHE / f"{stem}.{lane}.{ext}"
 
 
+def _iter_jsonl_rows(path):
+    """Stream a .jsonl cache, skipping (with a loud stderr warning) any line the decoder rejects.
+    The caches are REBUILDABLE intermediates on X: (via a junction), and a single-byte file-level
+    corruption under concurrent I/O should degrade an analysis by one row, not crash it across all
+    hypotheses (a real 0x11-in-a-date glitch did exactly that once). A rebuild produces a clean file;
+    this is the belt so one bad line is never load-bearing."""
+    import sys as _sys
+    if not path.exists():
+        return
+    bad = 0
+    with open(path, "r", encoding="utf-8") as f:
+        for i, line in enumerate(f, 1):
+            if not line.strip():
+                continue
+            try:
+                yield json.loads(line)
+            except json.JSONDecodeError as e:
+                bad += 1
+                if bad <= 3:
+                    print(f"[harness] WARNING: skipping corrupt line {i} in {path.name}: {e}",
+                          file=_sys.stderr, flush=True)
+    if bad:
+        print(f"[harness] WARNING: skipped {bad} corrupt line(s) in {path.name} — rebuild this cache",
+              file=_sys.stderr, flush=True)
+
+
 # --- streaming reader for a big `{ "ngram": {entry}, ... }` shard --------------------------------
 class _Refillable:
     """A file-backed string buffer that raw_decode can parse against, refilling from disk on demand
@@ -238,12 +264,7 @@ def build_cross_party_daily(threshold=3, progress=True, lane=None, congresses=ra
 
 
 def iter_daily_series(lane=None):
-    p = cache_path("daily_series.jsonl", lane)
-    if p.exists():
-        with open(p, "r", encoding="utf-8") as f:
-            for line in f:
-                if line.strip():
-                    yield json.loads(line)
+    yield from _iter_jsonl_rows(cache_path("daily_series.jsonl", lane))
 
 
 def bioguide_states() -> dict:
@@ -260,22 +281,11 @@ def bioguide_states() -> dict:
 
 
 def iter_member_index(lane=None):
-    p = cache_path("member_index.jsonl", lane)
-    if p.exists():
-        with open(p, "r", encoding="utf-8") as f:
-            for line in f:
-                if line.strip():
-                    yield json.loads(line)
+    yield from _iter_jsonl_rows(cache_path("member_index.jsonl", lane))
 
 
 def iter_phrase_index(lane=None):
-    p = cache_path("phrase_index.jsonl", lane)
-    if not p.exists():
-        return
-    with open(p, "r", encoding="utf-8") as f:
-        for line in f:
-            if line.strip():
-                yield json.loads(line)
+    yield from _iter_jsonl_rows(cache_path("phrase_index.jsonl", lane))
 
 
 # --- coverage denominators (from the complete discipline shards, all eras) -----------------------
@@ -356,12 +366,7 @@ def build_statement_meta(congresses=range(113, 120), progress=True, lane=None) -
 
 
 def iter_stmt_meta(lane=None):
-    p = cache_path("stmt_meta.jsonl", lane)
-    if p.exists():
-        with open(p, "r", encoding="utf-8") as f:
-            for line in f:
-                if line.strip():
-                    yield json.loads(line)
+    yield from _iter_jsonl_rows(cache_path("stmt_meta.jsonl", lane))
 
 
 _ADJ_INFLATION = ("unprecedented", "historic", "radical", "extreme", "crisis", "existential", "catastrophic")

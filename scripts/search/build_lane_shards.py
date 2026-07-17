@@ -22,12 +22,15 @@ except Exception:
 
 from pipeline import alexandria as A
 
-# (congress, lane) pairs, scraped lane first (smaller + 117 done), then propublica (the long pole).
-# BOTH lanes for every congress 113-119 (docs/18 §2), so reconcile covers all seven. propublica
-# 118/119 are 0-record (the lane dies 2021-01-03) and build instantly — but they are needed so the
-# per-congress reconcile can run, and their emptiness IS the seam ("legacy stops forever") on record.
+# BOTH lanes for every congress 113-119 (docs/18 §2), so the per-congress reconcile covers all seven.
+# The analysis only ever reads propublica@113-116 and scraped@117-119; the OTHER-lane shards exist for
+# the §3.1/§3.2 acceptance and the brief's "supplementary check" (the 2013-2020 scraped tail, never
+# pooled). propublica@118-119 are 0-record (the lane dies 2021-01-03) — their emptiness IS the seam on
+# record. Analysis-heavy pairs first (scraped 117-119, propublica 113-116), then the small remainder.
 PLAN = ([(c, "scraped") for c in (117, 118, 119)] +
-        [(c, "propublica") for c in (113, 114, 115, 116, 117, 118, 119)])
+        [(c, "propublica") for c in (113, 114, 115, 116)] +
+        [(c, "scraped") for c in (113, 114, 115, 116)] +      # 2013-2020 scraped tail (small; supplementary)
+        [(c, "propublica") for c in (117, 118, 119)])         # 117 tiny stub; 118/119 empty
 
 
 def main():
