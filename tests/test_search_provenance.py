@@ -1,0 +1,205 @@
+"""L1 LANE ISOLATION (docs/12 Law L1) — the guard, and the proof that it fires.
+
+The seam is not a subtle statistical worry. `dwillis/congress-press` is a union of datasets; the
+`legacy`/ProPublica lane stops forever on 2021-01-03, and the program's pre-registered halves sit on
+that date. So "replicates in both halves" has meant "reproduces on two different instruments".
+
+Every test here is a kill-fixture in the §1.12 sense: it first demonstrates that the PRE-EXISTING
+check passes the bad input — that is the whole point, the trend really is rising in both halves —
+and only then asserts the lane guard refuses it.
+"""
+import json
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from pipeline import fetch  # noqa: E402
+from pipeline.search import harness as H  # noqa: E402
+from pipeline.search import metrics as M  # noqa: E402
+from pipeline.search import provenance as P  # noqa: E402
+
+
+# --- fixtures ------------------------------------------------------------------------------------
+def _row(date, ds, party="D", bio="A000001", scraper=None, source=None):
+    """A mirror record shaped like the real thing: `legacy` <=> scraper/source both null, exactly."""
+    return {"date": date, "date_source": ds, "domain": "x.house.gov",
+            "scraper": scraper, "source": source,
+            "member": {"bioguide_id": bio, "name": "X", "party": party, "state": "CA", "chamber": "house"},
+            "text": "word " * 30, "title": "t", "url": "u"}
+
+
+def _mirror(tmp: Path, rows):
+    tmp.mkdir(parents=True, exist_ok=True)
+    with open(tmp / "2020-01.jsonl", "w", encoding="utf-8") as f:
+        for r in rows:
+            f.write(json.dumps(r) + "\n")
+    return tmp
+
+
+def _with_mirror(rows, fn):
+    """Hand-rolled monkeypatch + try/finally restore, per tests/test_killtests.py:25-43."""
+    tmp = _mirror(Path(__file__).resolve().parent / "_tmp_provenance", rows)
+    old = fetch.MIRROR
+    fetch.MIRROR = tmp
+    try:
+        return fn()
+    finally:
+        fetch.MIRROR = old
+        for p in tmp.glob("*.jsonl"):
+            p.unlink()
+        tmp.rmdir()
+
+
+# --- the root fix: the field survives iter_statements ---------------------------------------------
+def test_iter_statements_exposes_date_source_and_instrument():
+    """THE L1 ROOT. `date_source` was dropped by omission from the `rec` literal (harness.py:422-424),
+    destroying the one field that says whether a comparison is valid."""
+    rows = [_row("2020-05-01", "legacy"),
+            _row("2020-05-02", "scraper", scraper="himes", source="u"),
+            _row("2020-05-03", "page_html", scraper="himes", source="u")]
+    out = _with_mirror(rows, lambda: list(H.iter_statements()))
+    assert len(out) == 3
+    assert [r["date_source"] for r in out] == ["legacy", "scraper", "page_html"]
+    # the seam-relevant partition: page_html is scraper-COLLECTED, so it is the same instrument
+    assert [r["instrument"] for r in out] == ["propublica", "scraped", "scraped"]
+
+
+def test_iter_statements_lane_filter_isolates_one_lane():
+    rows = [_row("2020-05-01", "legacy"),
+            _row("2020-05-02", "scraper", scraper="s", source="u"),
+            _row("2020-05-03", "page_html", scraper="s", source="u")]
+    pro = _with_mirror(rows, lambda: list(H.iter_statements(lane="propublica")))
+    scr = _with_mirror(rows, lambda: list(H.iter_statements(lane="scraped")))
+    raw = _with_mirror(rows, lambda: list(H.iter_statements(lane="page_html")))
+    assert [r["date_source"] for r in pro] == ["legacy"]
+    assert [r["date_source"] for r in scr] == ["scraper", "page_html"]   # folded: same instrument
+    assert [r["date_source"] for r in raw] == ["page_html"]              # strict 3-way still available
+
+
+def test_untagged_rows_are_dropped_by_the_date_guard_not_defaulted_into_a_lane():
+    """The 19 real untagged records are himes date-parse failures with `date: null`; they are already
+    dropped by the len(date)!=10 guard. What must NEVER happen is defaulting them into a lane."""
+    rows = [_row(None, None, scraper="himes", source="u"), _row("2020-05-01", "legacy")]
+    out = _with_mirror(rows, lambda: list(H.iter_statements()))
+    assert [r["date_source"] for r in out] == ["legacy"]
+
+
+# --- THE KILL TEST: the CONFIRM gate refuses a cross-seam split -----------------------------------
+def test_killtest_confirms_in_both_halves_refuses_a_split_across_the_seam():
+    """THE KILL TEST. A trend that rises in BOTH halves — the program's strongest evidence — where
+    half A is the ProPublica lane and half B is the scraper. The old gate returns True. It must not.
+
+    This is S4.7's mechanism in miniature: the raw cross-seam number said "muted congressional
+    response to January 6" (-69.9%, maximally quotable, false); lane-isolated it is +75.5%."""
+    rising_a = [(2013, 1.0), (2014, 2.0), (2015, 3.0), (2016, 4.0)]   # legacy era
+    rising_b = [(2022, 1.0), (2023, 2.0), (2024, 3.0), (2025, 4.0)]   # scraper era
+
+    # The pre-existing check passes it. That is the point: the trend really does rise in both halves,
+    # so split_direction is right and still not enough.
+    assert M.split_direction(rising_a) == 1
+    assert M.split_direction(rising_b) == 1
+
+    try:
+        M.confirms_in_both_halves(rising_a, rising_b, expected_sign=1,
+                                  lane_a="propublica", lane_b="scraped")
+    except P.LaneIsolationError as e:
+        assert "two INSTRUMENTS, not two eras" in str(e)
+    else:
+        raise AssertionError("certified a finding across the provenance seam — two instruments "
+                             "compared as two eras (docs/12 L1)")
+
+
+def test_killtest_an_undeclared_lane_is_refused_rather_than_defaulted():
+    """A default would let an un-migrated call keep sliding through — which is how this travelled for
+    34 verdicts. Omitting the lane must fail loudly, not silently pass."""
+    a = [(2013, 1.0), (2014, 2.0), (2015, 3.0)]
+    b = [(2022, 1.0), (2023, 2.0), (2024, 3.0)]
+    try:
+        M.confirms_in_both_halves(a, b, expected_sign=1)
+    except P.LaneIsolationError as e:
+        assert "requires lane_a= and lane_b=" in str(e)
+    else:
+        raise AssertionError("an undeclared comparison was certified")
+
+
+def test_the_gate_is_not_a_blanket_refusal_within_one_lane():
+    """NO-OP PROOF: isolation must still permit the measurement it is protecting. Same lane, same
+    verdict as before the guard existed."""
+    a = [(2022, 1.0), (2023, 2.0), (2024, 3.0), (2025, 4.0)]
+    b = [(2022, 1.0), (2023, 2.0), (2024, 3.0), (2025, 4.0)]
+    flat = [(2022, 2.0), (2023, 2.0), (2024, 2.0), (2025, 2.0)]
+    assert M.confirms_in_both_halves(a, b, 1, lane_a="scraped", lane_b="scraped") is True
+    assert M.confirms_in_both_halves(a, flat, 1, lane_a="scraped", lane_b="scraped") is False
+
+
+# --- lane_of / the seam ---------------------------------------------------------------------------
+def test_lane_of_raises_on_a_mixed_set_and_returns_the_single_lane_otherwise():
+    legacy = [{"date_source": "legacy"}, {"date_source": "legacy"}]
+    scraped = [{"date_source": "scraper"}, {"date_source": "page_html"}]
+    assert P.lane_of(legacy) == "propublica"
+    assert P.lane_of(scraped) == "scraped"          # folded by instrument
+    assert P.lane_of([]) is None
+    try:
+        P.lane_of(legacy + scraped)
+    except P.LaneIsolationError as e:
+        assert "cross-lane series forbidden" in str(e)
+    else:
+        raise AssertionError("a cross-lane series was permitted")
+
+
+def test_lane_of_refuses_an_untagged_row_rather_than_guessing():
+    try:
+        P.lane_of([{"date_source": "scraper"}, {"no_tag": 1}])
+    except P.LaneIsolationError as e:
+        assert "untagged row" in str(e)
+    else:
+        raise AssertionError("an untagged row was silently given a lane")
+
+
+def test_strict_source_isolation_still_separates_page_html_when_asked():
+    scraped = [{"date_source": "scraper"}, {"date_source": "page_html"}]
+    assert P.lane_of(scraped, by="instrument") == "scraped"
+    try:
+        P.lane_of(scraped, by="source")
+    except P.LaneIsolationError:
+        pass
+    else:
+        raise AssertionError("by='source' must be the strict 3-way partition")
+
+
+def test_spans_seam_boundaries_are_exact():
+    """SEAM (2021-01-03) is the legacy lane's LAST day, so a window ending on it is all-legacy and
+    clean, while one starting on it reaches into scraper-only territory."""
+    assert P.spans_seam(["2020-11-04", "2021-02-01"]) is True     # the real s1_10 2020 post-window
+    assert P.spans_seam(["2020-01-01", "2020-12-31"]) is False    # legacy only
+    assert P.spans_seam(["2021-01-04", "2021-06-01"]) is False    # scraper only
+    assert P.spans_seam(["2020-01-01", "2021-01-03"]) is False    # ends ON the seam -> all legacy
+    assert P.spans_seam(["2021-01-03", "2021-06-01"]) is True     # starts ON the seam -> crosses
+    assert P.spans_seam([]) is False
+
+
+def test_killtest_the_2020_post_election_window_is_refused():
+    """s1_10_bipartisan_season's 2020 post-election window is 2020-11-04..2021-02-01: 60 days
+    two-lane, then 29 days scraper-only. Its placebo runs on ODD years only, so the mandatory control
+    is structurally blind to the artifact sitting next to it. The window itself must be refused."""
+    window = ["2020-11-04", "2020-12-15", "2021-01-02", "2021-02-01"]
+    try:
+        P.assert_no_seam_span(window, what="2020 post-election 90d window")
+    except P.LaneIsolationError as e:
+        assert "spans the provenance seam" in str(e)
+    else:
+        raise AssertionError("a window containing 2021-01-03 was permitted")
+    P.assert_no_seam_span(["2022-11-09", "2023-02-06"])   # a post-seam cycle is fine
+
+
+def test_assert_same_lane_names_the_lane_it_isolated():
+    a = [{"date_source": "scraper"}, {"date_source": "page_html"}]
+    b = [{"date_source": "scraper"}]
+    assert P.assert_same_lane(a, b) == "scraped"
+    try:
+        P.assert_same_lane([{"date_source": "legacy"}], b)
+    except P.LaneIsolationError as e:
+        assert "two INSTRUMENTS" in str(e)
+    else:
+        raise AssertionError("halves from two lanes were accepted")

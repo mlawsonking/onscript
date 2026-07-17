@@ -1449,3 +1449,102 @@ Recorded here verbatim; docs/12 carries A3+L1-L4; implementing sessions execute,
 *(The pre-Session-4 follow-ups list is superseded by the rewrite above: launch errands done —
 domains, accounts, all 7 secrets, cap — and Alexandria done in Session 3; the Bluesky Lane-2 handle
 map and incremental ledger merge carry forward as item 5.)*
+
+## Session 16 (2026-07-17, Opus) — L1 LANE ISOLATION: `date_source` is first-class, and the CONFIRM gate refuses the seam
+
+Build order item (2) of the Session-13c rulings. Item (1), the #145 privacy deploy, landed in the
+immediately-prior session (`fdcda1f`) which handed off on context and **left no BUILDLOG row** — this
+is that gap noted, not filled; its commit is the record.
+
+**Shipped.** `pipeline/search/provenance.py` (new) — the deep archive's genre-isolation law
+(`pipeline/deep/lanes.py`) applied to provenance: a measured lane registry, `SEAM = 2021-01-03`,
+`LaneIsolationError`, `lane_of()` (raises on a mixed set), `spans_seam` / `assert_no_seam_span`
+(for the single-window straddles), `assert_same_lane`. `harness.iter_statements` now emits
+`date_source` + derived `instrument` and takes `lane=` to isolate at the source; `build_text_features`
+carries the lane onto every feature row (**without this the fix dies again** — all seven S2
+hypotheses read `text_features.jsonl` two layers below the harness and could not otherwise see their
+own provenance). `metrics.confirms_in_both_halves` now takes **keyword-only `lane_a`/`lane_b` with no
+usable default** and raises on an undeclared or cross-lane call.
+
+**Verified on real data, not fixtures** (`scratchpad/l1_verify_real.py`): 688,820 records stream with
+the lane attached — that is 688,839 minus exactly the 19 untagged records, which the pre-existing
+`len(date)!=10` guard already drops, so no new rule was needed for them. Lane counts reproduce the
+mirror exactly (legacy 485,948 / scraper 200,033 / page_html 2,839 → propublica 485,948 / scraped
+202,872). The isolated `propublica` stream's last day **is** the seam, derived not asserted. The guard
+accepts each isolated stream and refuses their union. **255 tests green** (was 243; +12, all
+kill-fixtures that first prove the pre-existing check passes the bad input, then prove the guard
+fires). The daily pipeline is untouched and cannot be: `run_collect`/`run_assemble` do not import
+`pipeline.search` at all — the §1.4.1 streak is not at risk from this change.
+
+**Three findings that correct canon (evidence in `scratchpad/adv_partymix_pass1-5.py`, re-runnable):**
+
+1. **Canon's party-mix numbers do not reproduce, and the sign is inverted.** `docs/13:413` (echoed at
+   `CLAUDE.md:63` and `04-BUILDLOG.md:1284`) claims *"a 7.7-point shift in party mix (legacy D:R =
+   1.538, scraper D:R = 1.12)"*. **1.538 is the legacy lane's TERMINAL YEAR** (116th 2nd session: D
+   43,646 / R 28,378 = 1.5380, D-share 60.60% — matches canon's decode to 4 s.f.), mislabeled as the
+   lane. The lane is **1.184**; half A is **1.176**. **1.12 is not reproducible under any nameable
+   definition** (closest: 2023-only 1.135). Canon says half A is +7.7pt more D; the contrast it
+   describes actually runs **half B +2.52pt more D — opposite sign**. **Canon's CONCLUSION survives
+   and is well-supported**: over identical months (2013-2020) the lanes run **1.176 vs 0.937**
+   (+5.67pt D-share), robust to office-matching (+5.32pt) and year-standardizing (+8.28pt). L1 stands;
+   only the cited numbers are wrong. **Not corrected in `docs/13` by this session — that ledger row
+   belongs to the `v2-lane-b` session (CLAUDE.md:59/61: only the session that ran a measurement writes
+   its row). Reported to Michael for that session or Fable to enact.**
+2. **The corpus is THREE lanes, not two.** Canon's "union of TWO datasets" omits `page_html` (2,839
+   records, 2014-12-09→2026-07-09) — scraper-collected but date-parsed from the page body, and **D:R
+   12.47 in half A** (536 D / 43 R, 4 offices). A two-valued enum would have silently mis-bucketed the
+   most party-skewed lane in the corpus. `date_source=='legacy'` ⟺ `scraper is null` ⟺ `source is
+   null`, exactly — which is why the lane is recoverable at all.
+3. **Canon names one drop; there are THREE.** `harness.iter_statements` (fixed) is one of three
+   independent places `date_source` dies. **Still open:** `alexandria.load_congress_records`
+   (`pipeline/alexandria.py:30-44`) → every `ledger-N/discipline-N/coverage-N` shard carries no lane
+   tag, so every S1 phrase hypothesis reads lane-blind substrate (fixing it means a shard rebuild, ~3GB
+   — its own session); and `wave_s4._collect` (`pipeline/search/wave_s4.py:53-96`), a direct mirror read.
+
+**A RULING AN IMPLEMENTER MUST NOT SELF-AUTHORIZE (flagged, not taken):** fold-vs-isolate for
+`page_html`. Folding it into `scraped` (this build's default, because it is the same instrument) moves
+the same-era lane gap from **+5.67pt to +4.71pt**. Isolating it as a third lane makes the post-2021
+corpus permanently "mixed"; filtering `date_source=='scraper'` silently drops it. The code supports
+**both** (`lane_of(by="instrument"|"source")`) so the ruling changes which number is published, not the
+architecture. **Fable/Michael to rule before any lane number is published.**
+
+**Why the waves now raise, and why that is correct.** The pre-registered splits ARE the lane boundary —
+the 117th seats on 2021-01-03, so `A=2013-2020 / B=2021-2026` and `c<=116 / c>=117` are the same cut.
+`confirms_in_both_halves` was therefore certifying findings **using the confound as its validation
+split**; "replicates in both halves" meant "reproduces on two instruments", a weaker test than
+advertised. Every un-migrated call site now fails loudly with a teaching error rather than returning a
+confounded True. That IS the law ("MEASURE NOTHING NEW UNTIL IT LANDS"), and clearing it is item (3),
+the 34 re-validations. `density_matched_subsample` matches **volume only** and cannot repair a lane-mix
+change — it is false assurance for S1.1/S1.1'/S1.3'/S1.4.
+
+**Triage inherited by item (3)** (full map in this session's recon): literal window straddles —
+`s1_10_bipartisan_season`'s 2020 post-window (2020-11-04→2021-02-01), **whose placebo is structurally
+blind to it** (odd years only); `s1_3_lifespan` (unbounded `min(first)`→`max(last)`); `s1_1_prime` /
+`s1_3_prime` (the lane dropout injects a false >14d silence that severs a burst). Result-inverting —
+`s1_4_verbatim` (record-counted denominator vs member-counted numerator manufactures a "rise" landing
+exactly on the seam, in the CONFIRM direction) and `s2_3_what_losing_sounds_like` (its own docstring
+calls it a "RECENT-era (2021-26) effect" — 2021-26 **is** the scraper-only lane; prime lane-artifact
+suspect). Pooled A/B ratio as the headline — `s2_2_adjective_inflation`. **Lane-clean and safe:**
+`s1_9_self_audit` (`congresses=(117,)`, scraper-only by construction) — which matters, because S1.9 is
+one of the program's only two CONFIRMEDs. `_year_position_artifact` is **aliased with the seam**
+(congresses seat in odd years; the legacy lane dies on an odd-year Jan 3), so each can mask the other.
+
+**Traps written down so they are not rediscovered:** a `legacy` filter does **not** buy 2001-2021
+coverage — 99.67% of the lane is 2013-2020 and its pre-2013 tail is 1,594 records that are **99.9%
+Democrat** (D 1,592 / R 2); the `scraper` pre-2013 tail is the mirror image (~100% Republican). And
+`CLAUDE.md:63`'s "the scraper lane starts ~2018 at 49 offices" is **loose** — it starts **2009-01-06**
+and is merely tiny until ~2017; a filter trusting "~2018" silently admits 727 hyper-partisan records.
+
+**Also this session (ops, not build):** the CREC 2009-2026 crawl was **dead**, not running. It died
+with its parent session at ~22:25 local and left a stale `CRAWL-RUNNING.lock` naming a dead PID (9224)
+— and the driver **aborts when a lock exists**, so the stale lock was itself the block. 2013-2019 raw
+is complete (187/155/187/185/213/207/210 MODS files); it died inside 2020 at 18 of ~200 files.
+Relaunched **detached under Windows Task Scheduler** (`OnScript-CREC-Crawl`, one-shot, no recurring
+trigger) from `scratchpad/crec_crawl_2009_2026.py`, resuming at 2020; 2001-2008 record safe in the
+snapshot (1,014 days / 38,325 granules). **The `v2-lane-b` watchdog cannot detect the crawler's death:**
+its probe is a `python.exe` whose own command line contains the `*crec_crawl*` pattern it greps for, so
+it always matches itself — which is the likely reason a prior session reported the crawl "alive and
+healthy" while it was gone.
+
+**Next:** (3) the 34 within-lane re-validations (order: S2.3, then S1.9/S2.9) — now unblocked and
+now *enforced*; the `alexandria` shard-tag rebuild; then (4) rulings-shaped 1.3/1.4/1.5.

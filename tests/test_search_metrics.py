@@ -26,15 +26,22 @@ def test_spearman_direction_and_ties():
 
 def test_confirms_in_both_halves_rejects_a_one_half_only_trend():
     """The CONFIRM gate: a trend present only when the halves are pooled must FAIL — that's the
-    split-leakage the program forbids."""
+    split-leakage the program forbids.
+
+    The halves are now both `scraped` so this exercises the TREND logic alone. Note what the original
+    fixture was: A=2013-2016 vs B=2021-2024, which straddles the 2021-01-03 provenance seam — the test
+    encoded the very defect docs/12 L1 forbids. Cross-seam refusal is covered in
+    tests/test_search_provenance.py; here we hold the lane constant so a failure means the trend gate
+    broke, not the lane gate."""
     rising_a = [(2013, 1.0), (2014, 2.0), (2015, 3.0), (2016, 4.0)]
     rising_b = [(2021, 1.0), (2022, 2.0), (2023, 3.0), (2024, 4.0)]
     flat_b = [(2021, 2.0), (2022, 2.0), (2023, 2.0), (2024, 2.0)]
-    assert M.confirms_in_both_halves(rising_a, rising_b, expected_sign=1) is True
-    assert M.confirms_in_both_halves(rising_a, flat_b, expected_sign=1) is False   # half B doesn't hold
+    lanes = {"lane_a": "scraped", "lane_b": "scraped"}
+    assert M.confirms_in_both_halves(rising_a, rising_b, expected_sign=1, **lanes) is True
+    assert M.confirms_in_both_halves(rising_a, flat_b, expected_sign=1, **lanes) is False   # half B doesn't hold
     # a trend in the WRONG direction in one half also fails
     falling_b = [(2021, 4.0), (2022, 3.0), (2023, 2.0), (2024, 1.0)]
-    assert M.confirms_in_both_halves(rising_a, falling_b, expected_sign=1) is False
+    assert M.confirms_in_both_halves(rising_a, falling_b, expected_sign=1, **lanes) is False
 
 
 def test_median_style_metric_is_coverage_invariant_no_false_trend():

@@ -13,6 +13,12 @@ import math
 import random
 from collections import Counter
 
+from . import provenance
+
+# A caller that does not name its lanes has not declared them, and a missing declaration is exactly
+# how the confound travelled. `None` is a legal lane-ish value, so the sentinel must not be None.
+_UNDECLARED = object()
+
 
 # --- rates (never trend a raw count) -------------------------------------------------------------
 def rate_per_1k(numerator: float, denominator: float) -> float | None:
@@ -87,10 +93,36 @@ def split_direction(series_by_x: list[tuple[float, float]]) -> int | None:
 
 
 def confirms_in_both_halves(half_a: list[tuple[float, float]], half_b: list[tuple[float, float]],
-                            expected_sign: int) -> bool:
+                            expected_sign: int, *, lane_a=_UNDECLARED, lane_b=_UNDECLARED) -> bool:
     """The core CONFIRM gate: the expected trend direction must hold in BOTH pre-registered halves.
     A finding that only appears when the halves are pooled is exactly the split-leakage the program
-    forbids. expected_sign is fixed at pre-registration (+1 rising, -1 falling)."""
+    forbids. expected_sign is fixed at pre-registration (+1 rising, -1 falling).
+
+    LANE ISOLATION (docs/12 L1) is enforced HERE, and it has to be: this gate is what certifies a
+    finding, and the pre-registered halves ARE the provenance boundary. A=2013-2020 / B=2021-2026 and
+    congress<=116 / >=117 both sit on 2021-01-03 (the 117th seats the day the ProPublica import dies),
+    so half A is ~95% legacy and half B is ~100% scraper. Until this check existed the gate was
+    certifying findings USING the confound as its validation split — "replicates in both halves" meant
+    "reproduces on two different instruments", which is a weaker test than advertised, not a stronger
+    one. All 34 pre-seam verdicts are pending within-lane re-validation.
+
+    `lane_a`/`lane_b` are keyword-only and have NO usable default: a caller must NAME the lane each
+    half was measured in. That is deliberate — a default would let an undeclared call keep sliding
+    through, which is precisely how this travelled for 34 verdicts."""
+    if lane_a is _UNDECLARED or lane_b is _UNDECLARED:
+        raise provenance.LaneIsolationError(
+            "confirms_in_both_halves now requires lane_a= and lane_b= (docs/12 L1). Name the "
+            "provenance lane each half was measured in — 'propublica' or 'scraped' — and isolate the "
+            "data to it first (harness.iter_statements(lane=...)). If the two halves are not the same "
+            "lane, this comparison is two instruments, not two eras, and its verdict is pending "
+            "re-validation.")
+    if lane_a != lane_b:
+        raise provenance.LaneIsolationError(
+            f"split-halves across the provenance seam {provenance.SEAM}: half A is {lane_a!r} and half "
+            f"B is {lane_b!r}. These are two INSTRUMENTS, not two eras (docs/12 L1). The remedy is "
+            f"isolation, not normalization — density-matching cannot repair a roster or party-mix "
+            f"change, and the S4.7 Jan-6 sign inversion (-69.9% raw vs +75.5% lane-isolated) is the "
+            f"standing proof of what this produces.")
     da = split_direction(half_a)
     db = split_direction(half_b)
     return da == expected_sign and db == expected_sign

@@ -14,6 +14,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from .. import config, fetch, util
+from . import provenance
 
 ALEX = config.STATE / "alexandria"
 SEARCH_CACHE = config.DERIVED / "search"
@@ -365,6 +366,10 @@ def build_text_features(congresses=range(113, 120), progress=True) -> dict:
                 wc[tok] += 1
             feats = {
                 "y": r["year"], "p": r["party"], "b": r["bioguide"], "d": r["date"], "c": r["congress"],
+                # The lane rides with the row (docs/12 L1). Without it no S2 hypothesis can see its own
+                # provenance: every one of them reads this file via `iter_text_features`, two layers
+                # below `iter_statements`, so a lane exposed only at the harness would die again here.
+                "ds": r.get("date_source"), "inst": r.get("instrument"),
                 "nw": nw, "ns": low.count(".") + low.count("!") + low.count("?") or 1,
                 "excl": raw.count("!"), "semic": raw.count(";"), "quest": raw.count("?"),
                 "isg": sum(wc[t] for t in _I_SING), "wpl": sum(wc[t] for t in _WE_PLUR),
@@ -396,9 +401,23 @@ def iter_text_features():
                     yield json.loads(line)
 
 
-def iter_statements(congresses=None, with_text=True):
+def iter_statements(congresses=None, with_text=True, lane=None):
     """Stream raw/congress-press records as {date, year, party, bioguide, state, chamber, congress,
-    text?}. Party normalized to D/R/I. `congresses` filters to a set; None = all."""
+    date_source, instrument, text?}. Party normalized to D/R/I. `congresses` filters to a set;
+    None = all.
+
+    `date_source` and its derived `instrument` are FIRST-CLASS (docs/12 Law L1). They used to be
+    dropped here by omission from the `rec` literal, which destroyed the only field that says whether
+    a comparison is valid at all: the corpus is a union of datasets and the `legacy`/ProPublica lane
+    stops forever on 2021-01-03. Every downstream lane distinction died at this line.
+
+    `lane` filters to ONE lane and is how a caller isolates: 'propublica' | 'scraped' by instrument,
+    or a raw `date_source` ('legacy' | 'scraper' | 'page_html'). Records whose lane is unknown are
+    never admitted to a filtered stream — see `provenance.date_source_of` on why there is no default.
+    """
+    _known = set(provenance.INSTRUMENTS.values()) | set(provenance.DATE_SOURCES)
+    if lane is not None and lane not in _known:
+        raise ValueError(f"unknown lane {lane!r} — expected one of {sorted(_known)}")
     def congress_of(date: str) -> int | None:
         try:
             y = int(date[:4]); m = int(date[5:7]); d = int(date[8:10])
@@ -418,10 +437,15 @@ def iter_statements(congresses=None, with_text=True):
             c = congress_of(date)
             if want is not None and c not in want:
                 continue
+            src = provenance.date_source_of(r)
+            inst = provenance.INSTRUMENTS.get(src) if src is not None else None
+            if lane is not None and lane not in (src, inst):
+                continue
             m = r.get("member") or {}
             rec = {"date": date, "year": date[:4], "congress": c,
                    "party": _PARTY.get(m.get("party")), "bioguide": m.get("bioguide_id"),
-                   "state": m.get("state"), "chamber": m.get("chamber")}
+                   "state": m.get("state"), "chamber": m.get("chamber"),
+                   "date_source": src, "instrument": inst}
             if with_text:
                 rec["text"] = r.get("text") or ""
             yield rec
