@@ -1608,3 +1608,70 @@ expectation-vs-observation check (this consolidation exists because nobody ran o
 **Also:** BSKY_RED_HANDLE corrected to `red.onscript.news` (pre-flip list item, public string).
 CREC crawl healthy under the Task Scheduler — past the seam (2020: 224 files, 2021: 223, 2022
 running). BCAD/Assessment-Commons response filed on that project's bus (not OnScript work).
+
+## Session 18 (2026-07-17, Opus) — THE RE-VALIDATION (docs/17): the runnable 34, re-measured within one lane
+
+Build-order item (3) of the Session-13c rulings, governed by `docs/17-REVALIDATION-BRIEF.md`. Ran the
+runnable half of the 34 pre-seam verdicts inside ONE provenance lane, on the brief's pre-registered
+within-lane halves. **Nothing published changed** (the Search does not touch the daily pipeline); the
+deliverable is corrected verdicts + a lane-clean measurement path.
+
+**Headline: the seam overturned zero runnable verdicts, and hardened the two that matter.**
+- **S2.9 (the Boogeyman) is now genuinely twice-confirmed** — CONFIRMED in the propublica lane on its
+  own split (half A 4/4 + half B 4/4) AND in the scraped lane on its own split (3/3 + 3/3). My
+  reimplementation (S2.9 had NO code in the repo — only the finding card survived a fan-out) reproduces
+  the original 14/14 exactly as propublica-8/8 + scraped-6/6 across the old seam split, which is the
+  faithfulness check before trusting the lane split.
+- **S1.9 (the 2022 Self-Audit) re-affirmed** — CONFIRMED whether the 144 legacy 2021-01-03 records are
+  in or out (D 0.00176 vs R 0.00095, 75/105 weeks, identical both ways). Corrected the brief: "lane-clean
+  by construction" is 99.6%, and the exclusion is a measured no-op.
+- **S2.3 (the flagship reversal) stays REFUTED in BOTH lanes, well-powered in every cell** (smallest
+  5,520 vs a 200 floor). Reproduced the original seam-spanning arms exactly first (pooled 2013-26 gate
+  PASS → looked CONFIRMED; both-halves gate FAIL → REFUTED), then showed both lanes independently
+  REFUTE. **The kill was not plumbing** — the ledger's proof-that-the-control-works survives, though the
+  control was weaker than advertised.
+
+**Full S2 wave re-run within lanes:** 7 of 8 verdicts identical across both lanes. The one move — **S2.7
+Pronoun Economics CONFIRMS inside propublica only** (both parties I/(I+we) declining 2013-16 and 2017-20)
+but REFUTES in scraped — is a single-lane result that does not replicate, so it is a reversal candidate
+needing re-pre-registration, NOT a finding card. The lane split of `text_features` sums EXACTLY to the
+pre-seam totals (concern ladder 39,249/5,808/650/2,084) — the migration's correctness proof.
+
+**S1.4 (verbatim) REFUTED both lanes; the "D copy-paste rose in both halves" sub-claim does NOT survive
+lane isolation** (within each lane D rises in half A then falls in half B — the apparent both-halves rise
+was the 2013-2020→2021-2026 instrument change). Its density-controlled `_proper` arm is BLOCKED-ON-SHARDS
+(`load_congress_records` is lane-blind). **S1.10 ARTIFACT holds** — after dropping the seam-straddling
+2020 cycle, the placebo still troughs 7/7 → seasonal-not-electoral is robust, not a seam artifact.
+
+**S4 set:** fixed `wave_s4._collect`'s `date_source` drop (it reads the raw mirror directly) — every
+matched statement now carries `ds`/`inst`. This surfaced that **S4.1's half-A SCOTUS cases are ~95%
+propublica + a 5% scraped tail** (mixed-lane; half-B cases are clean scraper-only), so per-case
+DESCRIPTIVE needs half-A isolation and the aggregate A/B reversal is the seam (already UNDERPOWERED,
+half B 5<8). S4.2 stays REFUTED (died on placebo methodology, not the seam). **S4.4 stands and is
+arguably strengthened** — its half A (2013-2020) IS the propublica lane and half B (2021-2026) IS the
+scraper lane, so its 0.85×/0.96× equivalence is a within-lane null measured once per instrument.
+
+**Code (migrate call sites as re-run, docs/17 §4.4).** `wave_s2.py`: removed module-level seam-spanning
+`HALF_A/HALF_B`; added `LANE_HALVES`/`halves_for`/`load_rows(lane)` (rejects a pre-L1 cache loudly);
+every entry point is `*, lane[, halves]`; `run_all()` returns `{lane: [...]}`. `wave_s1.py`: `lane=` on
+`s1_4_verbatim`/`s1_9_self_audit`/`s1_10_bipartisan_season`, `LANE_YEAR_HALVES`, seam-cycle drop.
+`wave_s4.py`: `_collect` carries `ds`/`inst`. Re-runnable scripts committed under **`scripts/search/`**
+(NOT scratchpad — see below): `revalidate_s2_3.py`, `revalidate_s1_9_s2_9.py`, `revalidate_s2_wave.py`,
+`revalidate_s1_4_s1_10.py`. Ledger rows appended (docs/13, `supersedes` named). **259 tests green** (+4
+provenance).
+
+**Two discrepancies filed against canon (docs/17 §7):**
+1. **`confirms_in_both_halves` is unreachable from production.** The Session-16 L1 CONFIRM gate is
+   called only by tests — every wave module (S1 and S2) hand-rolls both-halves via `M.split_direction`,
+   which has no lane guard. So an un-migrated wave site fails **silently** (lane-blind numbers), not
+   loudly as docs/17 §4.4 assumed. This session made the S2 + runnable-S1 sites' isolation real via
+   `load_rows`/explicit halves; the BLOCKED-ON-SHARDS sites are still un-migrated and must not be
+   trusted until the shard rebuild reaches them.
+2. **The `scratchpad/adv_partymix_pass1-5.py` evidence cited in CLAUDE.md (Session 16) is UNTRACKED** —
+   the whole `scratchpad/` tree is gitignored, so those re-runnable scripts vanish on a re-clone, which
+   Art. XVI calls prose. This session put its re-validation scripts in tracked `scripts/search/`.
+
+**BLOCKED-ON-SHARDS (not re-run, per docs/17 §3):** S1.1, S1.1′, S1.2, S1.3, S1.3′, S1.5, S1.6, S1.7,
+S1.8, S1.11, S1.4-proper — they read alexandria ledger/discipline/member/daily shards, which are
+lane-blind until the ~3GB shard lane-tag rebuild (its own session, docs/17 §6). Classifying them BLOCKED
+rather than re-running on lane-blind substrate is the discipline, not a gap.

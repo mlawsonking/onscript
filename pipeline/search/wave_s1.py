@@ -405,17 +405,35 @@ def _ingroup_share(statements):
     return {p: {"share": (ing[p] / tot[p] if tot[p] else None), "n": tot[p], "in": ing[p]} for p in ("D", "R")}
 
 
-def s1_4_verbatim(congresses=range(113, 120)):
+# Within-lane year halves (docs/17 §2) — mirror of wave_s2.LANE_HALVES, kept local so wave_s1 has no
+# import-time dependency on wave_s2. propublica: 2013-16 vs 2017-20; scraped: 2021-23 vs 2024-26.
+LANE_YEAR_HALVES = {
+    "propublica": {"A": set(range(2013, 2017)), "B": set(range(2017, 2021))},
+    "scraped":    {"A": set(range(2021, 2024)), "B": set(range(2024, 2027))},
+}
+
+
+def s1_4_verbatim(congresses=range(113, 120), *, lane=None, halves=None, min_cell=200):
     """The Copy-Paste Caucus — VERBATIM version (tractable + density-robust). A statement is 'copy-paste'
     if its same-day whitespace-normalized text is byte-identical to that of >=1 OTHER member that day (a
     verbatim co-signed / cloned release). Share per party per year. Unlike the fuzzy near-dup count
     (density-sensitive, killed the proxy), byte-identical grouping does NOT inflate with corpus size, so
     the share is inherently density-robust. CONFIRM = share rises in BOTH halves, both parties agreeing.
-    (Near-identical/templated variants are excluded here for tractability — the verbatim floor.)"""
+    (Near-identical/templated variants are excluded here for tractability — the verbatim floor.)
+
+    LANE (docs/12 L1, docs/17 §4.3). The original REFUTED used A=2013-2020 / B=2021-2026 — the seam.
+    That split is doubly dangerous here: verbatim co-signing is detected by same-DAY identical text, and
+    the two lanes carry different rosters and different syndication behaviour, so a 'rise' across the
+    seam could be one collector grouping more aggressively than the other. `lane` isolates it; the
+    numerator and denominator are BOTH statement-counts within that lane (the ratio is a share, so the
+    denominator-unit note in docs/17 §3 resolves to: same unit top and bottom, no cross-unit rise).
+    The per-year power floor now applies WITHIN the lane."""
     import re
+    if lane is not None:
+        halves = halves or LANE_YEAR_HALVES[lane]
     day_text = defaultdict(lambda: defaultdict(set))   # date -> normtext -> {bioguide}
     rows = []
-    for r in H.iter_statements(congresses=set(congresses), with_text=True):
+    for r in H.iter_statements(congresses=set(congresses), with_text=True, lane=lane):
         p, bio, txt = r.get("party"), r.get("bioguide"), (r.get("text") or "")
         if p not in ("D", "R") or not bio or not txt.strip():
             continue
@@ -429,16 +447,19 @@ def s1_4_verbatim(congresses=range(113, 120)):
         tot[year][p] += 1
         if len(day_text[d][h]) >= 2:      # same text, >=2 distinct members that day = verbatim group
             verb[year][p] += 1
-    share = {y: {p: (verb[y][p] / tot[y][p] if tot[y][p] else None) for p in ("D", "R")} for y in sorted(tot)}
+    ha = halves["A"] if halves else HALF_A_YEARS
+    hb = halves["B"] if halves else HALF_B_YEARS
+    in_window = {y for y in tot if int(y) in ha or int(y) in hb}
+    share = {y: {p: (verb[y][p] / tot[y][p] if tot[y][p] else None) for p in ("D", "R")} for y in sorted(in_window)}
     dirs = {}
     for p in ("D", "R"):
-        a = [(int(y), share[y][p]) for y in share if int(y) in HALF_A_YEARS and share[y][p] is not None]
-        b = [(int(y), share[y][p]) for y in share if int(y) in HALF_B_YEARS and share[y][p] is not None]
+        a = [(int(y), share[y][p]) for y in share if int(y) in ha and share[y][p] is not None]
+        b = [(int(y), share[y][p]) for y in share if int(y) in hb and share[y][p] is not None]
         dirs[f"{p}_A"], dirs[f"{p}_B"] = M.split_direction(a), M.split_direction(b)
     rises = all(dirs[f"{p}_{h}"] == 1 for p in ("D", "R") for h in ("A", "B"))
-    powered = all(tot[y]["D"] >= 200 and tot[y]["R"] >= 200 for y in tot)
+    powered = all(tot[y]["D"] >= min_cell and tot[y]["R"] >= min_cell for y in in_window)
     verdict = "UNDERPOWERED" if not powered else ("CONFIRMED" if rises else "REFUTED")
-    return {"id": "S1.4", "name": "The Copy-Paste Caucus (verbatim)",
+    return {"id": "S1.4", "name": "The Copy-Paste Caucus (verbatim)", "lane": lane,
             "share_by_year": {y: {p: round(v, 4) if v is not None else None for p, v in d.items()}
                               for y, d in share.items()},
             "directions": dirs, "verdict": verdict}
@@ -503,21 +524,39 @@ _BIPARTISAN = ("bipartisan", "across the aisle", "both sides of the aisle", "rea
                "my republican colleague", "my democratic colleague", "republican and democratic colleague")
 
 
-def s1_10_bipartisan_season(elections, congresses=range(113, 120), window=90):
+def s1_10_bipartisan_season(elections, congresses=range(113, 120), window=90, lane=None):
     """Deterministic bipartisan-signal rate ('bipartisan', 'across the aisle', ...) in the `window` days
     BEFORE each general election vs the `window` days AFTER. Hypothesis: collegiality 'flies south' ~90
     days out and returns after. MANDATORY PLACEBO CONTROL (§4.5): the same before/after comparison on a
     fake Nov-4 in ODD (non-election) years — if that ALSO troughs, the pattern is SEASONAL (recess/
     campaign fall vs winter legislating), not electoral, and the verdict is ARTIFACT, not CONFIRMED.
-    Both computed in one pass. Symmetric (parties pooled — a calendar effect)."""
-    from datetime import date
-    real_dates = [date.fromisoformat(v) for v in elections.values()]
-    placebo_dates = [date(y, 11, 4) for y in range(2013, 2027, 2)]   # odd non-election years, same window
+    Both computed in one pass. Symmetric (parties pooled — a calendar effect).
+
+    SEAM (docs/12 L1, docs/17 §4.3). Each cycle is a before/after comparison across an anchor date, so
+    a cycle whose ±window straddles 2021-01-03 compares the ProPublica lane (its BEFORE) against the
+    scraper lane (its AFTER) — the difference-in-instruments dressed as a difference-in-season. The
+    real 2020 cycle (window 2020-08-06..2021-02-02) is exactly that, and so is the 2021 placebo. Any
+    cycle whose window spans the seam is DROPPED (assert_no_seam_span, applied per cycle rather than
+    raised, because dropping the one bad cycle is the fix — not aborting the whole comparison). With
+    `lane` set, statements are additionally isolated to that lane so a surviving cycle is single-lane
+    end to end."""
+    from datetime import date, timedelta
+    from . import provenance
+    real_all = [date.fromisoformat(v) for v in elections.values()]
+    placebo_all = [date(y, 11, 4) for y in range(2013, 2027, 2)]   # odd non-election years, same window
+
+    def straddles(anchor):
+        span = [(anchor - timedelta(days=window)).isoformat(), (anchor + timedelta(days=window)).isoformat()]
+        return provenance.spans_seam(span)
+    real_dates = [d for d in real_all if not straddles(d)]
+    placebo_dates = [d for d in placebo_all if not straddles(d)]
+    dropped = {"real": [d.year for d in real_all if straddles(d)],
+               "placebo": [d.year for d in placebo_all if straddles(d)]}
 
     def blank():
         return defaultdict(lambda: [0, 0])
     pre, post = {"real": blank(), "plac": blank()}, {"real": blank(), "plac": blank()}
-    for r in H.iter_statements(congresses=set(congresses), with_text=True):
+    for r in H.iter_statements(congresses=set(congresses), with_text=True, lane=lane):
         try:
             d = date.fromisoformat(r["date"])
         except Exception:
@@ -555,7 +594,8 @@ def s1_10_bipartisan_season(elections, congresses=range(113, 120), window=90):
         verdict = "CONFIRMED"
     else:
         verdict = "REFUTED"
-    return {"id": "S1.10", "name": "Bipartisanship Has a Season", "cycles": real_c, "placebo": plac_c,
+    return {"id": "S1.10", "name": "Bipartisanship Has a Season", "lane": lane,
+            "cycles": real_c, "placebo": plac_c, "dropped_seam_cycles": dropped,
             "real_troughs": f"{rt}/{rn}", "placebo_troughs": f"{pt}/{pn}",
             "confound": "seasonal (placebo also troughs)" if placebo_troughs else None, "verdict": verdict}
 
@@ -668,19 +708,27 @@ def _fivegrams(text: str) -> set:
     return out
 
 
-def s1_9_self_audit(congresses=(117,), min_members_week=6, cap=40, seed="s1.9", exclude_joint=True):
+def s1_9_self_audit(congresses=(117,), min_members_week=6, cap=40, seed="s1.9", exclude_joint=True,
+                    lane=None):
     """Replicate the 2022 predecessor's finding (Democrats coordinate tighter) on PRESS RELEASES.
     Metric: mean pairwise weekly content-5-gram Jaccard overlap per party, with MATCHED member counts
     (subsample the larger party to the smaller each week — the pre-registered control so a party's
     higher overlap isn't just more members). ADVERSARIAL CONTROL (§4.5): exclude_joint drops verbatim
     co-signed releases (identical text under >=2 members in a week) so the overlap measures INDEPENDENT
     coordination, not co-signing — press releases (unlike the 2022 tweets) contain joint statements.
-    Pre-committed: EITHER outcome publishes (replication or reversal). Deterministic (seeded)."""
+    Pre-committed: EITHER outcome publishes (replication or reversal). Deterministic (seeded).
+
+    LANE (docs/12 L1, docs/17 §4.2): the window is congress 117 (2021-22), which the brief calls
+    "lane-clean by construction". It is 99.6% clean, not 100%: 144 ProPublica-import records dated
+    exactly 2021-01-03 (the 117th's first day, the import's LAST day) fall in 117. `lane='scraped'`
+    excludes them so the whole window is one instrument. The measured effect of the exclusion is
+    nil — the CONFIRMED verdict holds identically — but the re-affirmation is only honest if it is
+    actually run within one lane rather than asserted to be."""
     import random
     from itertools import combinations
     # collect per-statement so joint (cross-member verbatim) releases can be identified + excluded
     stmts = []  # (party, week, bio, texthash, grams)
-    for r in H.iter_statements(congresses=set(congresses), with_text=True):
+    for r in H.iter_statements(congresses=set(congresses), with_text=True, lane=lane):
         p, bio = r.get("party"), r.get("bioguide")
         if p not in ("D", "R") or not bio:
             continue

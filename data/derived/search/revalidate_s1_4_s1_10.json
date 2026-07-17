@@ -1,0 +1,191 @@
+{
+ "s1_4": {
+  "propublica": {
+   "id": "S1.4",
+   "name": "The Copy-Paste Caucus (verbatim)",
+   "lane": "propublica",
+   "share_by_year": {
+    "2013": {
+     "D": 0.0004,
+     "R": 0.0015
+    },
+    "2014": {
+     "D": 0.0011,
+     "R": 0.0005
+    },
+    "2015": {
+     "D": 0.0012,
+     "R": 0.0021
+    },
+    "2016": {
+     "D": 0.0013,
+     "R": 0.0019
+    },
+    "2017": {
+     "D": 0.0023,
+     "R": 0.0026
+    },
+    "2018": {
+     "D": 0.0017,
+     "R": 0.0009
+    },
+    "2019": {
+     "D": 0.0038,
+     "R": 0.0036
+    },
+    "2020": {
+     "D": 0.0015,
+     "R": 0.004
+    }
+   },
+   "directions": {
+    "D_A": 1,
+    "D_B": -1,
+    "R_A": 1,
+    "R_B": 1
+   },
+   "verdict": "REFUTED"
+  },
+  "scraped": {
+   "id": "S1.4",
+   "name": "The Copy-Paste Caucus (verbatim)",
+   "lane": "scraped",
+   "share_by_year": {
+    "2021": {
+     "D": 0.0025,
+     "R": 0.005
+    },
+    "2022": {
+     "D": 0.0006,
+     "R": 0.0006
+    },
+    "2023": {
+     "D": 0.0096,
+     "R": 0.0022
+    },
+    "2024": {
+     "D": 0.0092,
+     "R": 0.0019
+    },
+    "2025": {
+     "D": 0.0076,
+     "R": 0.0025
+    },
+    "2026": {
+     "D": 0.005,
+     "R": 0.0015
+    }
+   },
+   "directions": {
+    "D_A": 1,
+    "D_B": -1,
+    "R_A": -1,
+    "R_B": -1
+   },
+   "verdict": "REFUTED"
+  }
+ },
+ "s1_10": {
+  "id": "S1.10",
+  "name": "Bipartisanship Has a Season",
+  "lane": null,
+  "cycles": {
+   "2014": {
+    "pre_rate": 0.136,
+    "post_rate": 0.2365,
+    "pre_n": 11224,
+    "post_n": 12531,
+    "trough": true
+   },
+   "2016": {
+    "pre_rate": 0.1716,
+    "post_rate": 0.2076,
+    "pre_n": 11697,
+    "post_n": 15666,
+    "trough": true
+   },
+   "2018": {
+    "pre_rate": 0.2483,
+    "post_rate": 0.2742,
+    "pre_n": 15259,
+    "post_n": 15154,
+    "trough": true
+   },
+   "2022": {
+    "pre_rate": 0.2445,
+    "post_rate": 0.2717,
+    "pre_n": 4045,
+    "post_n": 5934,
+    "trough": true
+   },
+   "2024": {
+    "pre_rate": 0.2784,
+    "post_rate": 0.293,
+    "pre_n": 6915,
+    "post_n": 7991,
+    "trough": true
+   }
+  },
+  "placebo": {
+   "2013": {
+    "pre_rate": 0.2208,
+    "post_rate": 0.2623,
+    "pre_n": 11804,
+    "post_n": 11330,
+    "trough": true
+   },
+   "2015": {
+    "pre_rate": 0.196,
+    "post_rate": 0.235,
+    "pre_n": 13922,
+    "post_n": 12801,
+    "trough": true
+   },
+   "2017": {
+    "pre_rate": 0.2423,
+    "post_rate": 0.2662,
+    "pre_n": 18172,
+    "post_n": 18005,
+    "trough": true
+   },
+   "2019": {
+    "pre_rate": 0.2521,
+    "post_rate": 0.3005,
+    "pre_n": 16595,
+    "post_n": 18262,
+    "trough": true
+   },
+   "2021": {
+    "pre_rate": 0.1962,
+    "post_rate": 0.296,
+    "pre_n": 3864,
+    "post_n": 3628,
+    "trough": true
+   },
+   "2023": {
+    "pre_rate": 0.2983,
+    "post_rate": 0.3276,
+    "pre_n": 7074,
+    "post_n": 7037,
+    "trough": true
+   },
+   "2025": {
+    "pre_rate": 0.2802,
+    "post_rate": 0.3083,
+    "pre_n": 9961,
+    "post_n": 11367,
+    "trough": true
+   }
+  },
+  "dropped_seam_cycles": {
+   "real": [
+    2020
+   ],
+   "placebo": []
+  },
+  "real_troughs": "5/5",
+  "placebo_troughs": "7/7",
+  "confound": "seasonal (placebo also troughs)",
+  "verdict": "ARTIFACT"
+ }
+}

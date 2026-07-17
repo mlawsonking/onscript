@@ -52,8 +52,16 @@ def _content_ngrams(text: str, lo=2, hi=4):
 
 def _collect(ref: dict):
     """Single streamed pass over the needed monthly mirror files. Returns
-    matched[case_id][party] = list of {off, low, nw} for each responding statement, where
-    `low` is the lowercased title+text and `off` is days after the decision."""
+    matched[case_id][party] = list of {off, low, nw, ds, inst} for each responding statement, where
+    `low` is the lowercased title+text and `off` is days after the decision.
+
+    LANE (docs/12 L1, docs/17 §3). This reads the raw mirror directly (not `iter_statements`), so it
+    used to drop `date_source` — the field that says whether an event's window sits in one instrument
+    or two. Each matched statement now carries `ds` (raw date_source) and `inst` (propublica|scraped).
+    An event that straddles 2021-01-03 (e.g. a Jan-6-2021 study) can then isolate to one lane rather
+    than compare the ProPublica import's tail against the scraper's start — the S4.7 sign inversion
+    (-69.9% raw vs +75.5% lane-isolated) is what happens when it does not."""
+    from . import provenance
     cases = ref["cases"]
     window = ref["_window_days"]
     by_month = defaultdict(dict)   # month -> {case_id: case}; DEDUPED (a case spans many days/2 months
@@ -82,6 +90,8 @@ def _collect(ref: dict):
                 dobj = date.fromisoformat(d)
             except Exception:
                 continue
+            src = provenance.date_source_of(r)
+            inst = provenance.INSTRUMENTS.get(src) if src is not None else None
             low = None
             nw = None
             for c in cand:
@@ -92,7 +102,7 @@ def _collect(ref: dict):
                     low = ((r.get("title") or "") + " . " + (r.get("text") or "")).lower()
                     nw = len(word_re.findall(low))
                 if any(a in low for a in c["anchors"]):
-                    matched[c["id"]][p].append({"off": off, "low": low, "nw": nw})
+                    matched[c["id"]][p].append({"off": off, "low": low, "nw": nw, "ds": src, "inst": inst})
     return matched
 
 

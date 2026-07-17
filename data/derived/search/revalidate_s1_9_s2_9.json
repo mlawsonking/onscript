@@ -1,0 +1,310 @@
+{
+ "s1_9": {
+  "full": {
+   "id": "S1.9",
+   "name": "The 2022 Self-Audit",
+   "congresses": [
+    117
+   ],
+   "exclude_joint": true,
+   "joint_releases_dropped": {
+    "D": 37,
+    "R": 48
+   },
+   "mean_weekly_overlap_D": 0.00176,
+   "mean_weekly_overlap_R": 0.00095,
+   "weeks_matched": 105,
+   "weeks_D_exceeds_R": 75,
+   "direction": "D>R (replicates)",
+   "verdict": "CONFIRMED",
+   "note": "REPLICATION \u2014 'CONFIRMED' means the 2022 finding replicates (D tighter); 'REFUTED' means it reverses. Both publish."
+  },
+  "scraped_only": {
+   "id": "S1.9",
+   "name": "The 2022 Self-Audit",
+   "congresses": [
+    117
+   ],
+   "exclude_joint": true,
+   "joint_releases_dropped": {
+    "D": 33,
+    "R": 46
+   },
+   "mean_weekly_overlap_D": 0.002,
+   "mean_weekly_overlap_R": 0.00119,
+   "weeks_matched": 105,
+   "weeks_D_exceeds_R": 75,
+   "direction": "D>R (replicates)",
+   "verdict": "CONFIRMED",
+   "note": "REPLICATION \u2014 'CONFIRMED' means the 2022 finding replicates (D tighter); 'REFUTED' means it reverses. Both publish."
+  },
+  "reaffirmed": true
+ },
+ "s2_9": {
+  "propublica": {
+   "lane": "propublica",
+   "halves": {
+    "A": [
+     2013,
+     2014,
+     2015,
+     2016
+    ],
+    "B": [
+     2017,
+     2018,
+     2019,
+     2020
+    ]
+   },
+   "per_year": {
+    "2013": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.1576,
+     "in_rate": 0.4422,
+     "out_over_in": 2.618,
+     "half": "A"
+    },
+    "2014": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.3315,
+     "in_rate": 0.5506,
+     "out_over_in": 2.419,
+     "half": "A"
+    },
+    "2015": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.0073,
+     "in_rate": 0.4391,
+     "out_over_in": 2.294,
+     "half": "A"
+    },
+    "2016": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.1036,
+     "in_rate": 0.5562,
+     "out_over_in": 1.984,
+     "half": "A"
+    },
+    "2017": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 2.5238,
+     "in_rate": 1.2302,
+     "out_over_in": 2.052,
+     "half": "B"
+    },
+    "2018": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 1.6903,
+     "in_rate": 0.8716,
+     "out_over_in": 1.939,
+     "half": "B"
+    },
+    "2019": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 1.4198,
+     "in_rate": 1.0845,
+     "out_over_in": 1.309,
+     "half": "B"
+    },
+    "2020": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 1.1296,
+     "in_rate": 1.009,
+     "out_over_in": 1.119,
+     "half": "B"
+    },
+    "2021": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 0.3055,
+     "in_rate": 0.5888,
+     "out_over_in": 0.519,
+     "half": null
+    }
+   },
+   "half_counts": {
+    "A": {
+     "years": 4,
+     "out_higher": 4,
+     "year_list": [
+      2013,
+      2014,
+      2015,
+      2016
+     ]
+    },
+    "B": {
+     "years": 4,
+     "out_higher": 4,
+     "year_list": [
+      2017,
+      2018,
+      2019,
+      2020
+     ]
+    }
+   },
+   "verdict": "CONFIRMED"
+  },
+  "scraped": {
+   "lane": "scraped",
+   "halves": {
+    "A": [
+     2021,
+     2022,
+     2023
+    ],
+    "B": [
+     2024,
+     2025,
+     2026
+    ]
+   },
+   "per_year": {
+    "2013": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.0084,
+     "in_rate": 0.4683,
+     "out_over_in": 2.153,
+     "half": null
+    },
+    "2014": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.14,
+     "in_rate": 0.4614,
+     "out_over_in": 2.471,
+     "half": null
+    },
+    "2015": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.2838,
+     "in_rate": 0.5997,
+     "out_over_in": 2.141,
+     "half": null
+    },
+    "2016": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 1.5904,
+     "in_rate": 0.7042,
+     "out_over_in": 2.258,
+     "half": null
+    },
+    "2017": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 2.9252,
+     "in_rate": 1.1923,
+     "out_over_in": 2.453,
+     "half": null
+    },
+    "2018": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 2.3153,
+     "in_rate": 1.2282,
+     "out_over_in": 1.885,
+     "half": null
+    },
+    "2019": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 1.4694,
+     "in_rate": 1.3502,
+     "out_over_in": 1.088,
+     "half": null
+    },
+    "2020": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 1.0385,
+     "in_rate": 1.2201,
+     "out_over_in": 0.851,
+     "half": null
+    },
+    "2021": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 2.1134,
+     "in_rate": 0.9871,
+     "out_over_in": 2.141,
+     "half": "A"
+    },
+    "2022": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 2.589,
+     "in_rate": 0.8373,
+     "out_over_in": 3.092,
+     "half": "A"
+    },
+    "2023": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 2.2832,
+     "in_rate": 0.7965,
+     "out_over_in": 2.867,
+     "half": "A"
+    },
+    "2024": {
+     "potus_party": "D",
+     "out_party": "R",
+     "out_rate": 2.0767,
+     "in_rate": 0.9205,
+     "out_over_in": 2.256,
+     "half": "B"
+    },
+    "2025": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 3.2735,
+     "in_rate": 2.0721,
+     "out_over_in": 1.58,
+     "half": "B"
+    },
+    "2026": {
+     "potus_party": "R",
+     "out_party": "D",
+     "out_rate": 3.2382,
+     "in_rate": 1.3027,
+     "out_over_in": 2.486,
+     "half": "B"
+    }
+   },
+   "half_counts": {
+    "A": {
+     "years": 3,
+     "out_higher": 3,
+     "year_list": [
+      2021,
+      2022,
+      2023
+     ]
+    },
+    "B": {
+     "years": 3,
+     "out_higher": 3,
+     "year_list": [
+      2024,
+      2025,
+      2026
+     ]
+    }
+   },
+   "verdict": "CONFIRMED"
+  },
+  "both_lanes_confirmed": true
+ }
+}

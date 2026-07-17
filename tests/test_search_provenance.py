@@ -203,3 +203,78 @@ def test_assert_same_lane_names_the_lane_it_isolated():
         assert "two INSTRUMENTS" in str(e)
     else:
         raise AssertionError("halves from two lanes were accepted")
+
+
+# --- Wave S2 within-lane loader (docs/17 §4.3) ----------------------------------------------------
+def _tf_row(ds, inst, y="2021", p="D", b="A000001", c=117):
+    """A text_features row shaped like harness.build_text_features emits post-L1."""
+    return {"y": y, "p": p, "b": b, "d": f"{y}-05-01", "c": c, "ds": ds, "inst": inst,
+            "nw": 40, "ns": 3, "excl": 0, "semic": 0, "quest": 0, "isg": 0, "wpl": 0,
+            "adj": {}, "concern": {}, "apol": 0, "ampeople": 0, "pres": {}, "euph": 0,
+            "emoji": 0, "caps": 0}
+
+
+def _with_text_features(rows, fn):
+    from pipeline.search import wave_s2 as S2
+    old = H.iter_text_features
+    H.iter_text_features = lambda: iter(rows)
+    try:
+        return fn()
+    finally:
+        H.iter_text_features = old
+
+
+def test_s2_load_rows_isolates_by_instrument_and_folds_page_html():
+    from pipeline.search import wave_s2 as S2
+    rows = [_tf_row("legacy", "propublica", y="2015", c=114),
+            _tf_row("scraper", "scraped"),
+            _tf_row("page_html", "scraped")]
+    pro = _with_text_features(rows, lambda: S2.load_rows("propublica"))
+    scr = _with_text_features(rows, lambda: S2.load_rows("scraped"))
+    assert [r["ds"] for r in pro] == ["legacy"]
+    assert sorted(r["ds"] for r in scr) == ["page_html", "scraper"]   # folded: same instrument
+    strict = _with_text_features(rows, lambda: S2.load_rows("scraper", by="source"))
+    assert [r["ds"] for r in strict] == ["scraper"]                    # page_html excluded
+
+
+def test_s2_load_rows_refuses_a_pre_L1_cache():
+    """A text_features.jsonl built before L1 has no `inst` field, so every lane filter would silently
+    select NOTHING and read as an empty lane. That staleness must fail loudly."""
+    from pipeline.search import wave_s2 as S2
+    stale = [{"y": "2015", "p": "D", "nw": 40}]   # no ds/inst
+    try:
+        _with_text_features(stale, lambda: S2.load_rows("propublica"))
+    except P.LaneIsolationError as e:
+        assert "predates lane isolation" in str(e)
+    else:
+        raise AssertionError("a pre-L1 lane-blind cache was accepted as an isolated lane")
+
+
+def test_s2_half_requires_named_halves():
+    """`_half` has no default halves — a default is exactly what let the seam-spanning A=2013-2020 /
+    B=2021-2026 split travel for 34 verdicts."""
+    from pipeline.search import wave_s2 as S2
+    h = S2.halves_for("propublica")
+    assert S2._half(2015, h) == "A" and S2._half(2019, h) == "B" and S2._half(2022, h) is None
+    try:
+        S2._half(2015)   # missing halves
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("_half accepted no halves — the seam split can travel again")
+
+
+def test_s2_pre_registered_halves_never_span_the_seam():
+    """Every lane's A and B windows must sit entirely on one side of 2021-01-03. The scraped lane's
+    DATA starts 2021-01-04 (Jan 1-3 2021 is the excluded propublica stub), so its earliest real day is
+    the day after the seam — the isolation is by instrument, and no instrument's data crosses the seam.
+    Propublica ends 2020; scraped begins 2021-01-04."""
+    from pipeline.search import wave_s2 as S2
+    # true data-start per lane (not the nominal Jan-1 of the first half-A year)
+    data_start = {"propublica": lambda y: f"{y}-01-01", "scraped": lambda y: ("2021-01-04" if y == 2021 else f"{y}-01-01")}
+    for lane, halves in S2.LANE_HALVES.items():
+        for h, years in halves.items():
+            span = [data_start[lane](min(years)), f"{max(years)}-12-31"]
+            P.assert_no_seam_span(span, what=f"{lane} half {h}")   # raises if it spans
+        # and the two halves are disjoint and ordered
+        assert max(halves["A"]) < min(halves["B"])

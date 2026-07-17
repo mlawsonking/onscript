@@ -6,6 +6,12 @@
 
 ## Tally
 
+> **⚠ 2026-07-17 — every verdict below was validated on a split that sat on the provenance seam (see
+> the WARNING section). The runnable half has been RE-VALIDATED within one lane — see
+> "RE-VALIDATION — WITHIN-LANE" at the end of this file. Headline: no runnable verdict flipped; both
+> CONFIRMEDs survive (S2.9 now twice-confirmed); S2.3's kill was not plumbing. The BLOCKED-ON-SHARDS
+> half awaits the alexandria shard rebuild.**
+
 | tested | confirmed | refuted | underpowered | artifact | blocked | descriptive |
 |---|---|---|---|---|---|---|
 | 26 | **2** | 16 | 0 | 4 | 0 | 4 |
@@ -511,3 +517,97 @@ Both are trivial offline edits; both are load-bearing.
 
 **A p-hacking hole, found by the gate-reachability audit docs/12 never got:** S5.2's floor is literally
 ">=Floor per cell" — no number was ever pre-registered.
+
+---
+
+## RE-VALIDATION — WITHIN-LANE (2026-07-17, Opus Session 18; docs/17 brief). Append-only; supersedes named.
+
+**The headline: the seam did not overturn a single measured verdict, and it hardened the two that
+matter.** The runnable half of the 34 was re-measured inside ONE provenance lane on the brief's
+pre-registered within-lane halves (propublica A=2013-16/B=2017-20; scraped A=2021-23/B=2024-26). Both
+CONFIRMED findings survive — S2.9 is now genuinely **twice-confirmed** (once per lane on that lane's
+own split), and S1.9 replicates identically whether or not the 144 legacy 2021-01-03 records are
+included. The flagship reversal S2.3 stays REFUTED **in both lanes independently and well-powered in
+every cell** — its kill was not plumbing. No runnable verdict flipped direction. One new within-lane
+wrinkle appeared (S2.7 confirms inside propublica only, does not replicate → not a card).
+
+**Substrate rebuilt first (docs/17 §3):** `text_features.jsonl` was regenerated with the L1 lane
+fields (`ds`/`inst`) — the on-disk cache dated 2026-07-16 01:58 predated L1 and every S2 re-run on it
+would have been lane-blind. 674,905 rows: legacy 475,315 / scraper 196,753 / page_html 2,837. Its
+lane split sums EXACTLY to the pre-seam totals (concern-ladder 39,249 / 5,808 / 650 / 2,084), which is
+the migration's correctness proof.
+
+### Classification of the 34 (docs/17 §3 — the required ledger artifact)
+
+| ID | old verdict | class | this session |
+|----|-------------|-------|--------------|
+| S1.9 | CONFIRMED | RUNNABLE-WITHIN-LANE | re-affirmed CONFIRMED (both full-117 and scraped-only) |
+| S2.9 | CONFIRMED | RUNNABLE-WITHIN-LANE | re-affirmed CONFIRMED in BOTH lanes = twice-confirmed |
+| S2.3 | REFUTED | RUNNABLE-WITHIN-LANE | REFUTED in both lanes, well-powered — kill was NOT plumbing |
+| S2.1 | REFUTED→REV | RUNNABLE-WITHIN-LANE | REFUTED both lanes (medA/medB negative both) |
+| S2.2 | REFUTED | RUNNABLE-WITHIN-LANE | REFUTED both lanes (n_tripled < 3) |
+| S2.4 | DESCRIPTIVE | RUNNABLE-WITHIN-LANE | DESCRIPTIVE both lanes; firsts now reported per-lane |
+| S2.5 | REFUTED | RUNNABLE-WITHIN-LANE | REFUTED both lanes (no ≥50% decline) |
+| S2.6 | REFUTED | RUNNABLE-WITHIN-LANE | REFUTED both lanes |
+| S2.7 | REFUTED | RUNNABLE-WITHIN-LANE | **propublica CONFIRMED / scraped REFUTED** — single-lane, not robust |
+| S2.10 | REFUTED | RUNNABLE-WITHIN-LANE | REFUTED both lanes ("alarmed" breaks ordering in both) |
+| S2.12 | REFUTED | RUNNABLE-WITHIN-LANE | REFUTED both lanes (flat rate) |
+| S1.4 (verbatim) | REFUTED | RUNNABLE-WITHIN-LANE | REFUTED both lanes; "D rises both halves" sub-claim does NOT survive |
+| S1.4 (_proper, density) | REFUTED-asym | BLOCKED-ON-SHARDS | `load_congress_records` is lane-blind — not re-run |
+| S1.10 | ARTIFACT | RUNNABLE-WITHIN-LANE | ARTIFACT holds (placebo 7/7) after dropping the seam-straddling 2020 cycle |
+| S4.1 (per-case) | DESCRIPTIVE | RUNNABLE-WITHIN-LANE | DESCRIPTIVE stands; half-A cases are ~95% propublica + 5% scraped tail → needs half-A isolation |
+| S4.1 (aggregate) | UNDERPOWERED | NEEDS-RESCOPE | the A(−1)/B(+1) direction reversal IS the seam (half A propublica, half B scraper); already dead |
+| S4.2 | REFUTED | RUNNABLE (seam not the cause) | died on placebo methodology (3/3 skeptics), not the seam — stands |
+| S4.4 | REFUTED | RUNNABLE (halves ARE the lanes) | half A=propublica, half B=scraper; equivalence holds WITHIN each lane → stands, arguably strengthened |
+| S1.1, S1.1′, S1.2, S1.3, S1.3′, S1.5, S1.6, S1.7, S1.8, S1.11 | (various) | BLOCKED-ON-SHARDS | read phrase_index/daily_series/member_index/discipline; alexandria shards lane-blind until the ~3GB shard rebuild (its own session). NOT re-run on lane-blind substrate. |
+| S3.1–S3.7 | 5 BLOCKED, S3.4 REFUTED, S3.6 UNDERPOWERED | BLOCKED-ON-SOURCE | never produced a seam-validated number (blocked on absent reference tables); seam-status moot |
+| S4.3, S4.5, S4.6, S4.7, S4.8 | BLOCKED | BLOCKED-ON-SOURCE / REVIEW-GATED | absent `crisis-events.json`/`elections.json` results; S4.7 is the standing Jan-6 sign-inversion proof — unchanged |
+
+### The runnable verdicts (append-only rows; `supersedes` = the pre-seam row)
+
+| ID | new verdict | headline (within-lane) | lanes / halves | floors (numerals) | script | supersedes |
+|----|-------------|------------------------|----------------|-------------------|--------|------------|
+| S2.3 | **REFUTED (both lanes)** | propublica A: D 3/3 R 1/3, B: D 0/3 R 2/3. scraped A: D 2/3 R 1/3, B: D 3/3 R 1/3. Pooled-within-lane gate FALSE in both. Never ≥2 for BOTH parties in any half. | propublica 2013-16/2017-20; scraped 2021-23/2024-26 | ≥200 stmts per (half×party×status); smallest cell 5,520 | `scripts/search/revalidate_s2_3.py` | L106/L290 S2.3 |
+| S1.9 | **CONFIRMED (re-affirmed)** | full-117: D 0.00176 vs R 0.00095, 75/105 wk (71%). scraped-only (144 legacy 2021-01-03 dropped): D 0.00200 vs R 0.00119, 75/105 (71%). Identical verdict. | scraped (congress 117 is 99.6% scraped; exclusion is a no-op) | ≥20 matched weeks each party; got 105 | `scripts/search/revalidate_s1_9_s2_9.py` | L69 S1.9 |
+| S2.9 | **CONFIRMED (twice-confirmed)** | propublica half A 4/4 + half B 4/4; scraped half A 3/3 + half B 3/3. Reimpl reproduces the original 14/14 = propublica-8/8 + scraped-6/6 across the old seam split (faithfulness check). | propublica 2013-16/2017-20; scraped 2021-23/2024-26 | out>in every year in both halves | `scripts/search/revalidate_s1_9_s2_9.py` | L109 S2.9 |
+| S2.1 | REFUTED (both lanes) | medA/medB opp-minus-own euphemism-avoidance: propublica −0.033/−0.012, scraped −0.081/+0.007 (need ≥0.10 both) | both lanes | — | `scripts/search/revalidate_s2_wave.py` | L99 S2.1 |
+| S2.2 | REFUTED (both lanes) | tripled words: propublica D1/R0, scraped D0/R0 (need ≥3 both parties) | both lanes | — | `revalidate_s2_wave.py` | L100 S2.2 |
+| S2.4 | DESCRIPTIVE (both lanes) | firsts + exclamation trend, per-lane | both lanes | — | `revalidate_s2_wave.py` | L101 S2.4 |
+| S2.5 | REFUTED (both lanes) | propublica rose +26% (dir A+1 B+1), scraped dir A−1 B+1 drop 14% — no ≥50% decline either lane | both lanes | ≥2 yrs each half | `revalidate_s2_wave.py` | L102 S2.5 |
+| S2.6 | REFUTED (both lanes) | words/sentence: no both-halves both-parties directional agreement in either lane | both lanes | — | `revalidate_s2_wave.py` | L107 S2.6 |
+| S2.7 | **propublica CONFIRMED / scraped REFUTED** | I/(I+we) declines in both propublica halves for both parties (D −1/−1, R −1/−1); scraped disagrees (R +1 then... mixed). Single-lane confirm — does NOT replicate → **reversal candidate, needs re-pre-registration (parallel-session protocol), NOT a finding card.** | both lanes | ≥3 yrs each half | `revalidate_s2_wave.py` | L103 S2.7 |
+| S2.10 | REFUTED (both lanes) | "alarmed" breaks the concern ladder in BOTH lanes (propublica 1,401 > gravely 434; scraped 683 > 216) | both lanes | — | `revalidate_s2_wave.py` | L104 S2.10 |
+| S2.12 | REFUTED (both lanes) | apologies propublica 954 / scraped 244; rate flat, no era trend either lane | both lanes | ≥100 apologies (propublica passes, scraped 244 passes) | `revalidate_s2_wave.py` | L105 S2.12 |
+| S1.4 (verbatim) | REFUTED (both lanes) | propublica D_A+1/D_B−1, R_A+1/R_B+1; scraped D_A+1/D_B−1, R_A−1/R_B−1. No lane has both parties rising in both halves. **The "D rose in both halves" claim was the seam.** | both lanes | ≥200 stmts/party/yr | `scripts/search/revalidate_s1_4_s1_10.py` | L68 S1.4 |
+| S1.10 | ARTIFACT (robust) | real troughs 5/5, placebo troughs 7/7 → seasonal not electoral; 2020 real cycle dropped (window 2020-08-06..2021-02-02 straddles seam); no placebo cycle straddles | lane=None, per-cycle single-lane after drop | ≥4 real cycles (got 5) | `revalidate_s1_4_s1_10.py` | L71 S1.10 |
+| S4.4 | REFUTED (stands; halves = lanes) | half A (2013-2020) = propublica, half B (2021-2026) = scraper; the 0.85×/0.96× equivalence is a within-lane null measured once per instrument, not a cross-instrument comparison | de-facto per-lane | as original | `pipeline/search/wave_s4.py` (Friday-dump path) | L292 S4.4 |
+| S4.2 | REFUTED (stands; seam not the cause) | killed by placebo-run-against-the-headline (3/3 skeptics); the seam is not why it died | n/a | n/a | (unchanged) | L291 S4.2 |
+| S4.1 | DESCRIPTIVE per-case / UNDERPOWERED aggregate (stands) | per-case survives; half-A cases carry a ~5% scraped tail (needs isolation), aggregate A/B reversal is the seam & already dead (half B 5<8) | per-case single-event | ≥8 qualifying/half (A=9, B=5) | `pipeline/search/wave_s4.py::run` (`_collect` now carries `ds`/`inst`) | L290 S4.1 |
+
+### What changed in code (docs/17 §4.4 — migrate call sites as re-run)
+
+- `pipeline/search/wave_s2.py`: module-level seam-spanning `HALF_A`/`HALF_B` removed; `LANE_HALVES` +
+  `halves_for()` + `load_rows(lane)` (rejects a pre-L1 cache loudly); every S2 entry point takes
+  `*, lane[, halves]`; `run_all()` returns `{lane: [...]}`. The lane-blind `_load()` is gone.
+- `pipeline/search/wave_s1.py`: `s1_4_verbatim` and `s1_10_bipartisan_season` gained `lane=`;
+  `s1_9_self_audit` gained `lane=` (144 legacy 2021-01-03 records confirmed non-load-bearing);
+  `LANE_YEAR_HALVES` added; S1.10 now drops seam-straddling cycles via `provenance.spans_seam`.
+- `pipeline/search/wave_s4.py`: `_collect` now carries `ds`/`inst` per matched statement (it reads the
+  raw mirror directly, so it dropped `date_source` before) — future S4 event studies can isolate.
+- `tests/test_search_provenance.py`: +5 tests (load_rows isolation/fold/pre-L1-refusal, `_half`
+  requires halves, halves never span the seam). **259 suite tests green.**
+
+### Two things the brief asserted that the measurement corrected (filed, docs/17 §7)
+
+1. **"S1.9 is lane-clean by construction" is 99.6%, not 100%.** Congress 117 contains 144 ProPublica
+   records dated exactly 2021-01-03 (the import's last day == the 117th's first day). The exclusion is
+   a measured no-op (verdict, weeks-matched, and D>R count all identical), so the finding is unmoved —
+   but "by construction" overstated it; it is "clean after excluding 144 records, which changes
+   nothing."
+2. **`confirms_in_both_halves` — the L1-guarded CONFIRM gate — is not reachable from any production
+   code path.** Only tests call it; every wave module (S1 and S2) hand-rolls both-halves via
+   `M.split_direction`, which has NO lane guard. So the Session-16 gate protects a function the
+   measurement path never touches, and an un-migrated wave site fails **silently** (lane-blind
+   numbers), not loudly as docs/17 §4.4 assumes. This session migrated the S2 + the runnable-S1 sites
+   to `load_rows(lane)`/explicit halves so their isolation is real; the BLOCKED-ON-SHARDS sites remain
+   un-migrated and must not be trusted until the shard rebuild reaches them.
