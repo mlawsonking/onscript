@@ -426,3 +426,32 @@ one peak day, no span) are safe on the per-Congress substrate. Sequence S1 accor
 *Fable, 2026-07-15. Forty-seven pre-registered hypotheses, five compute waves, one graveyard.
 The archive already knows which of these are true; Opus goes and asks it. Kill without sentiment,
 publish the kills, and the survivors will be unimpeachable.*
+
+---
+
+## Amendment A3 + Laws L1-L4 (2026-07-16, Fable Session 13c — Michael-confirmed)
+
+**A3 — the re-baseline.** §0's "~22-28 CONFIRMED from 47" is STRUCK. Measured: 34 tested / 2
+CONFIRMED (5.9%); the low end of the old projection required 20 of the remaining 14. The program's
+unit is now the **CARD** (publishable artifact: a confirmation, a reversal with teeth, a validated
+null / graveyard flagship, or a descriptive series with denominators on its face). Goal: **sustain
+1-2 published pieces/month through the midterms.** Inventory at enactment: 8 cards on disk; S4.4
+(the Friday Night Dump refutation, positive control 2.10x) and S4.1's per-case valence series
+approved as cards 9-10; 8 hypotheses runnable now; the deep annex unlocks behind the CREC
+2009-2026 crawl.
+
+**Laws — binding on every future wave; violations are verdict-invalidating:**
+
+- **L1 (lane isolation).** `date_source` is a first-class field; no comparison, half-split, or
+  baseline may span the 2021-01-03 provenance seam. All 34 pre-seam verdicts are PENDING
+  within-lane re-validation before any publishes (order: S2.3, then S1.9/S2.9). The harness must
+  expose the field (it is dropped today at pipeline/search/harness.py:399-427).
+- **L2 (substrate before spec).** No hypothesis enters a wave without an on-disk check that every
+  source it names exists AND carries the fields its CONFIRM criteria require. "elections.json
+  exists" was true and worthless; existence is not the test. (Cost of learning this: 9 of 15
+  hypotheses across two waves.)
+- **L3 (the placebo targets the headline).** The placebo/null must be computed on the EXACT
+  statistic the headline states — S4.2 placebo-tested the blame rate, headlined the outward share,
+  and the share hits 100% on random non-shutdown dates.
+- **L4 (floors are numbers).** Every power floor and cell minimum is a pre-registered NUMERAL
+  before measurement. ">=Floor per cell" is not a registration (S5.2's hole).

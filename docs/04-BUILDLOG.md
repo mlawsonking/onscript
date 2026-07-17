@@ -1359,6 +1359,46 @@ was NOT modified (it is the other lane's file).
 branch `v2-lane-b` is closed (fully merged, 0 ahead). Prune the directory once the crawl exits:
 `git worktree remove ../polispeak-v2` (or `git worktree prune` after deleting it).
 
+### Session 13c (2026-07-16, Fable) — six rulings, all confirmed by Michael in-session
+
+The three open construct rulings (#143, #146, #154) plus three earned by the day's measurements.
+Recorded here verbatim; docs/12 carries A3+L1-L4; implementing sessions execute, never re-litigate.
+
+- **R1 (#154, docs/12 A3 + L1-L4):** 22-28 CONFIRMED struck; the unit is CARDS (1-2/month through
+  the midterms); lane isolation, substrate-before-spec, placebo-targets-the-headline, and
+  numeric-floors are binding law. Nothing publishes from a pre-seam verdict until re-validated
+  within-lane (S2.3 first, then S1.9/S2.9).
+- **R2 (#143):** the "Author" CONSTRUCT is dead — measured as "first to type a bill's name" (Roy's
+  31 = SAVE Act windows; top-12 flips to all-D-senators at low floors; 59% of members tie at zero).
+  1.3 becomes **origination pages** (phrase -> first-seen-in-corpus member -> adoption curve,
+  labeled as first-in-corpus, gated on the SPAN tagger). The member-level author score/leaderboard
+  is DROPPED. **The Ventriloquism Award is KILLED, not repaired** — replaced by event-shaped,
+  symmetric-by-construction weekly awards: **The Unison** (each party's largest single-day
+  office-share phrase, denominator on its face) and **The Void** (the week's loudest silence, both
+  directions, from 1.2). No member-shaming award survives Article X.
+- **R3 (#146):** fix the VIEW, never the threshold. SYNC_MIN stays identical for both parties; the
+  pooled top-20 becomes side-by-side per-party columns, every row carrying N-of-caucus (x%). The
+  88%-D table was layout converting caucus size into rank.
+- **R4 (The Script / 1.4):** ships as **THE CONCORDANCE** — every line "N of M offices" with
+  receipts; no predictive/accuracy claim ever (the memo backtest refuted reconstruction ~90x and
+  the memo format erases denominators: 5-of-78 renders identical to 30-of-107). Header amended:
+  "Compiled from public statements. Every line counted, every count sourced. No memo was leaked.
+  None needed to be." Gated on the SPAN tagger.
+- **R5 (#145, Art. XIII):** IMMEDIATE manual suppression list at the display layer for the known
+  private-citizen names, disclosed in the methodology corrections log; a principled person-name
+  gate follows as its own reviewed build item. Execution = Opus lane, next session in the main
+  tree. #145 stays open on the bus until deployed.
+- **R6 (S4.7 posture, permanent):** no raw-volume comparative ever crosses the provenance seam —
+  January 6 above all (measured sign inversion: raw -69.9% vs lane-isolated +75.5%). Review-gate
+  indefinite.
+- **#119 (Michael's nod given):** Haiku extraction retired PERMANENTLY (§13 knob closed). The daily
+  path has been deterministic in every live run; a model in the extraction path is cost plus a
+  laundering surface for zero measured benefit. P1 stays in the repo as an archived, versioned
+  artifact (prompts are public history, Art. VIII).
+- **Launch-flip standard (confirmed):** the §1.4.1 evidence is `ops.unattended_streak()` reporting
+  `passes: True` — never an Actions run status. The flip sequence (#131 -> #132) waits on that
+  number.
+
 ## Next sessions / follow-ups (rewritten 2026-07-14, Session 4)
 
 > **Session-5 update:** item 2 below (S2 hardening) is **DONE** — see the Session-5 entry (Wave-0 +
