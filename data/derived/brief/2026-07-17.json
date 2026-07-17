@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-07-17",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 6,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "6 consecutive days published (through 2026-07-16)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0486,
+      "projected": 0.1848,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 4,
+      "note": "$0.0486 MTD, $0.18 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-07-16",
+      "parties": {
+        "D": {
+          "statements": 159,
+          "median": 135,
+          "share": 1.178,
+          "status": "green"
+        },
+        "R": {
+          "statements": 84,
+          "median": 87,
+          "share": 0.966,
+          "status": "green"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 13.13,
+        "day": "2026-07-17",
+        "status": "green"
+      },
+      "excluded_reports": 2,
+      "note": "2026-07-16: D 159/135=118% R 84/87=97% of own 14d median (green >= 60%); upstream 13.1h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.0612,
+      "dropped": 3,
+      "offered": 49,
+      "unmeasured_rows": 0,
+      "status": "green",
+      "note": "3/49 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "national security department",
+    "party": "D",
+    "day_peak": 32,
+    "day": "2026-07-15"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "off_script_alerts",
+      "owners_brief",
+      "phrase_search",
+      "public_api",
+      "silence_board",
+      "the_script",
+      "upstream_graph"
+    ],
+    "released": []
+  },
+  "headline": "ALL GREEN"
+}
