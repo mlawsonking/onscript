@@ -33,6 +33,19 @@ jobs:
       DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
       GH_TOKEN: ${{ github.token }}
     steps:
+      # Art. XVI: a fail-closed gate without its key is an outage authored, not safety. The privacy
+      # gate raises at IMPORT if PRIVACY_SALT is absent — 14 silent hours on 2026-07-17 proved that a
+      # missing secret otherwise surfaces as an unexplained 20-second failure. Fail here, loudly, first.
+      - name: Preflight — fail-closed gates must have their keys
+        run: |
+          missing=""
+          [ -n "$PRIVACY_SALT" ] || missing="$missing PRIVACY_SALT"
+          [ -n "$NTFY_TOPIC" ]   || missing="$missing NTFY_TOPIC"
+          if [ -n "$missing" ]; then
+            echo "::error::missing required secret(s):$missing — the privacy gate is fail-closed (dies at import) and the dead-man cannot fire without its topic. Set them in repo Settings > Secrets."
+            exit 1
+          fi
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
@@ -67,3 +80,15 @@ jobs:
           # made Vercel skip the deploy. Removing it lets every data commit auto-deploy. §voice-wiring.
           git commit -m "data: collect $(date -u +%F)" || echo "no derived changes"
           git push || echo "push skipped"
+
+      # Art. XVI: failure visibility belongs to the OUTERMOST layer. The in-process dead-man
+      # (pipeline/ops.ntfy) cannot see a crash that happens before main() — an import-time death is
+      # invisible to it by construction. This step sees every failure mode the job has.
+      - name: Dead-man — notify on ANY failure (workflow-level, sees import-time death)
+        if: failure()
+        run: |
+          curl -fsS -m 10 \
+            -H "Title: OnScript RUN A (collect) FAILED" \
+            -H "Priority: high" -H "Tags: rotating_light" \
+            -d "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            "https://ntfy.sh/${NTFY_TOPIC}" || echo "ntfy unreachable (topic unset or network)"
