@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-07-18",
   "kind": "collect",
-  "generated_at": "2026-07-18T11:19:57Z",
+  "generated_at": "2026-07-18T20:46:32Z",
   "focus_day": "2026-07-18",
   "days_present": [
     "2025-01-01",
@@ -11,7 +11,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-07-18T07:32:08Z",
-    "age_hours": 3.22
+    "age_hours": 12.66
   },
   "normalize": {
     "in": 77468,
@@ -65,9 +65,9 @@
     "stage": "extract",
     "model": "claude-haiku-4-5",
     "generator": "deterministic",
-    "new_statements": 172,
-    "tokens_in": 221479,
-    "tokens_out": 20640,
-    "est_cost_usd": 0.162339
+    "new_statements": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "est_cost_usd": 0.0
   }
 }
