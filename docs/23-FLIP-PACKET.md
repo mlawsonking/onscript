@@ -314,12 +314,24 @@ schedule" in any session stops everything). Flips execute Monday afternoons, AFT
 
 **Worker-session immediate duties (before Mon):** draft the announce text + P1/P2 raw drafts to
 `X:\onscript-data\drafts\` (never in-repo) · fix the vtask pagination bug · prepare each scheduled
-flip as a ready one-commit change · verify the launch sequence end-to-end in dry-run one final time.
+flip as a ready one-commit change · verify the launch sequence end-to-end in dry-run one final time ·
+**(added 07-19) the day-navigation fix**: the day pages are permanent but UNREACHABLE — index.html
+links to zero of them; add a "← Yesterday" link on the homepage day panel + a `/day/` date-archive
+index in the nav (navigation to already-public pages: launch polish, not a flagged feature; locked
+test that every published day JSON has a listed page) · **(added 07-19) the announce path**: Michael
+has set `BSKY_BRAND_HANDLE` (`onscript.news`) + `BSKY_BRAND_PASSWORD` — wire the house-account
+announce as a **manual-dispatch one-off** using the Session-8d smoke-tested AT-Proto primitives,
+gated on the approved text verbatim (fallback stays: Michael pastes it in the app; either path is
+fine, neither is a cron).
 
 ### 7.4 Michael's complete remaining list
 
-1. **#131** — create the two real app passwords, set the Actions secrets.
-2. **One reply** — "go" (approving or editing the announce text).
+1. ~~**#131** — create the two real app passwords, set the Actions secrets.~~ **DONE 2026-07-19**
+   (`BSKY_BLUE_PASSWORD`, `BSKY_RED_PASSWORD` set; plus `BSKY_BRAND_HANDLE`/`BSKY_BRAND_PASSWORD`
+   for the house account — announce wiring added to the worker duties above). `POSTING_ENABLED`
+   remains OFF, which is the designed pre-go state: real creds, kill-tested gate holding.
+2. **One reply** — "go" (approving or editing the announce text once it lands in
+   `X:\onscript-data\drafts\`). This is now the ONLY remaining human act before launch.
 
 Then: the 2-minute Monday digest glance, editorial acts per docs/20 at your leisure, and the standing
 veto. Everything else is scheduled, gated, and executed by the worker under this authorization.
