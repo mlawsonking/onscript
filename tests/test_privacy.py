@@ -409,9 +409,13 @@ def test_2026_07_14_composite_rederives_clean():
         assert not privacy.is_suppressed(html), "a suppressed name survived into the rendered D panel"
         assert "claude-sonnet-5" not in html
         assert "deterministic template" in html
-        # every other measured fact survives
+        # every other measured fact survives — EXCEPT the scaffold-key talking point, which docs/19 §4b
+        # now correctly drops (its key "…committee markup of the" is a fragment that terminates before
+        # its object). The substantive topic phrase and the top phrase both survive; this now also
+        # exercises the §4b + privacy interaction on a real-shaped day (both filters active on one line).
         assert "135" in html and "water resources development act" in html
-        assert "house transportation and infrastructure committee markup of the" in html
+        assert "nsf regional innovation engines" in html            # substantive key survives both filters
+        assert "committee markup of the" not in html                # §4b drops the fragment key
         banner = site.banner_html(day, None)
         assert "named a private individual" in banner
         assert "until the live model voice is wired in" not in banner

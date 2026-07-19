@@ -162,6 +162,20 @@ def _verdicts(congress: int) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def index_version(congress: int | None = None) -> str | None:
+    """The index_version stamped on the verdicts table (the reference-data snapshot the tagger reads).
+    ops.thresholds_sha folds this in WHEN the tagger is live (docs/19 §2a), so the daily symmetry
+    fingerprint reflects which name index shaped the output. Defaults to the highest congress that has
+    a verdicts table. Returns None when no table is present (dark box / fresh checkout)."""
+    if congress is None:
+        cands = sorted(int(p.stem.split("-")[1]) for p in _REF.glob("verdicts-*.json")
+                       if p.stem.split("-")[1].isdigit())
+        if not cands:
+            return None
+        congress = cands[-1]
+    return (_verdicts(congress) or {}).get("index_version")
+
+
 def is_nomenclature(ngram: str, congress: int) -> dict | None:
     """verdicts-{congress}.json lookup. Returns {'ratio','lane','cite','class','docs','nom_docs',
     'rule','index_version'} or None. MUST NOT accept a `party` argument (Article IV).

@@ -716,3 +716,29 @@ Reconciliation (docs/18 §3): all 7 congresses EXACT raw partition, 0 statement 
 id-dups. Program CONFIRMED tally moves from 2 (S1.9, S2.9) to **4 pending review** (+S1.1′, +S1.3′).
 Scripts: `scripts/search/{build_lane_shards,revalidate_s1_shards}.py`; results
 `data/derived/search/revalidate_s1_shards.json`.
+
+## NOMENCLATURE-ROBUSTNESS RIDER (docs/19 §4, Opus 2026-07-18) — all three exposed findings SURVIVE tag-stripping
+
+The three nomenclature-exposed CONFIRMED findings count phrase / n-gram co-use, and docs/16's core
+insight is that bill titles manufacture co-use. Per docs/19 §4 they were re-run on **tag-stripped
+substrate** — the pre-registered gate and within-lane halves unchanged, only nomenclature spans
+removed. **Every one holds; the bursts finding is if anything sharper without bill titles.** These
+rows `supersede` nothing — they ADD a robustness dimension to the same verdicts (the CONFIRMEDs stand,
+now also nomenclature-robust).
+
+| id | metric | baseline | tag-stripped | expectation (pre-registered) | verdict |
+|---|---|---|---|---|---|
+| **S1.9** | weekly 5-gram overlap, c117 scraped; exclude 5-grams overlapping a name span | D 0.00200 vs R 0.00119, D>R 75/105 wk (71%) | D 0.00189 vs R 0.00117, D>R 72/105 wk (68%) | D>R AND ≥60% of matched weeks | **HOLDS** — CONFIRMED both |
+| **S1.1′** | ignition width, propublica; drop nomenclature phrases (364/25188 = 1.4%) | dir −/−, ratio 11.33, density✓ | dir −/−, ratio **12.0**, density✓ | dir<0 both halves + density-survives | **HOLDS** — ratio rose |
+| **S1.3′** | burst lifespan, propublica; same phrase drop | dir −/−, drop 0.373, density✓ | dir −/−, drop **0.381**, density✓ | dir<0 both halves + density-survives | **HOLDS** — drop rose |
+
+S2.9 EXEMPT (a president's name is not bill nomenclature). Only 1.4% of propublica phrases were
+nomenclature, and removing them did not weaken the intensification — the ratio/drop both rose slightly,
+so the finding is NOT an artifact of two offices independently naming the same bill. Dropped examples
+(correct): "authorization for use of military force", "keep your health plan act", "the central
+intelligence agency", "federal law enforcement". Tag-strip mechanism: `_fivegrams(strip_idx=…)` (5-gram
+overlap) + `nomenclature.name_spans`/`classify_occ` (phrase drop). Re-runnable:
+`scripts/search/revalidate_nomenclature_rider.py`; results
+`data/derived/search/revalidate_nomenclature_rider.json`. **This clears the docs/19 §4 gate on the
+Aug/Sep drip pieces (docs/20); the S1.1′/S1.3′ publication still needs the standing Fable + neutrality
+review for any REFUTED→CONFIRMED movement, with the density caveat disclosed.**

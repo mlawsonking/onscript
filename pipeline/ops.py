@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import os
 
-from . import config, llm, roster, util
+from . import config, llm, nomenclature, roster, util
 
 
 def thresholds_sha() -> str:
@@ -22,11 +22,29 @@ def thresholds_sha() -> str:
         "LEDGER_MIN_TOTAL_USES": config.LEDGER_MIN_TOTAL_USES,
         "QUIET_DAY_MAX_STATEMENTS": config.QUIET_DAY_MAX_STATEMENTS,
     }
+    # docs/19 §2a — when the nomenclature tagger is LIVE, its ratio threshold + the name-index version
+    # shape published output, so they belong in the fingerprint proving both parties ran one instrument.
+    # DARK (flag off) it changes nothing, so it stays OUT of the hash and every historical day's
+    # thresholds_sha is byte-unchanged (docs/19 §3.4). Version is folded only when it exists.
+    if config.feature_on("nomenclature_tags"):
+        knobs["NOMENCLATURE_RATIO_MIN"] = config.NOMENCLATURE_RATIO_MIN
+        ver = nomenclature.index_version()
+        if ver:
+            knobs["nomenclature_index_version"] = ver
     return util.sha256_hex(json.dumps(knobs, sort_keys=True))
 
 
 def prompts_sha() -> dict:
-    return {pid: llm.load_prompt(pid)["sha"] for pid in ("P1", "P2", "P3")}
+    out = {pid: llm.load_prompt(pid)["sha"] for pid in ("P1", "P2", "P3")}
+    # docs/19 §2c — the live voice appends a nomenclature-handling clause to the P2/P3 system prompt at
+    # runtime WHEN the tagger is live. Baking it into the committed prompt files would change prompts_sha
+    # while the feature is dark (a public-bytes change, docs/19 §3.4); instead it is runtime-appended and
+    # its hash is disclosed HERE only when the flag is on, so the published fingerprint reflects what
+    # actually shaped the output without churning the dark state. Lazy import: cycle-proof.
+    if config.feature_on("nomenclature_tags"):
+        from . import distill
+        out["P2P3_nomenclature_clause"] = util.sha256_hex(distill.NOMENCLATURE_VOICE_CLAUSE)[:12]
+    return out
 
 
 def caucus_sizes(statements: list[dict]) -> dict:
@@ -121,9 +139,16 @@ def ntfy(title: str, message: str, *, priority: str = "default") -> dict:
 
 
 def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, freshness: dict,
-                    degraded: bool) -> dict:
-    """The §5.2 audit, per party, published on the Methodology page every day."""
+                    degraded: bool, nomen_measure: dict | None = None) -> dict:
+    """The §5.2 audit, per party, published on the Methodology page every day.
+
+    `nomen_measure` (docs/19 §2a) is the per-party {tagged,total,rate} share of this day's synchronized
+    phrases that are official names (bill titles / committee names). MEASUREMENT-ONLY and UNCONDITIONAL
+    (it does not read FEATURES["nomenclature_tags"]) so an asymmetric tagger can never be invisible to
+    the instrument that exists to catch asymmetry (docs/16 §6). It changes the audit JSON, not the
+    marketed phrase surfaces the release flag gates."""
     caucus = caucus_sizes(statements)  # full corpus caucus proxy (all members with official sites)
+    nomen = nomen_measure or {}
     parties: dict[str, dict] = {}
     for p in config.COMPOSITE_PARTIES:
         # DAY-SCOPED: every per-party row is THIS DAY's Lane-1 ingestion, consistent with the per-day
@@ -134,6 +159,7 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
                  and s.get("published_at") == day]
         members = {(s.get("member") or {}).get("bioguide") for s in stmts if (s.get("member") or {}).get("bioguide")}
         llm_p = per_party_llm.get(p, {})
+        nm = nomen.get(p) or {}
         parties[p] = {
             "statements_ingested": len(stmts),
             "members_covered": len(members),
@@ -143,6 +169,13 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
             "tokens_out": llm_p.get("tokens_out", 0),
             "claims_published": llm_p.get("claims_published", 0),
             "claims_dropped": llm_p.get("claims_dropped", 0),
+            # docs/19 §2a — share of this day's synchronized phrases that are official names. The
+            # denominator is the FULL synchronized set (not the truncated top-20 table), so a 103-D/15-R
+            # display skew can't masquerade as an asymmetric tag rate (docs/16 §8.4). None when no
+            # nomenclature tables are present (dark box).
+            "nomenclature_tagged": nm.get("tagged"),
+            "nomenclature_total": nm.get("total"),
+            "nomenclature_rate": nm.get("rate"),
         }
     report = {
         # `day_scoped` marks `statements_ingested` as THIS DAY's ingest. It changed meaning once

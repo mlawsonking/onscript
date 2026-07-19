@@ -144,9 +144,12 @@ FEATURES = {
     # Wave 2 (v3)
     "memory_hole": False, "off_script_alerts": False, "upstream_graph": False,
     "bill_brand": False, "public_api": False, "eval_table": False,
-    # Cross-cutting instrument fix (docs/16) — prerequisite for authors_vessels/awards/the_script
-    # and for ANY coordination headline claim. Tags only; wiring tag->suppress is forbidden (§7).
-    "nomenclature_tag": False,
+    # Cross-cutting instrument fix (docs/16, wired per docs/19) — prerequisite for
+    # authors_vessels/awards/the_script and for ANY coordination headline claim. Tags only; wiring
+    # tag->suppress is forbidden (§7). Name is `nomenclature_tags` (plural) per the docs/19 wiring
+    # brief §2/§7 and CLAUDE.md; gates SITE display-time + daily pre-distill annotation. The MEASURE
+    # wiring (nomenclature_rate in the nightly audit) is unconditional and does NOT read this flag.
+    "nomenclature_tags": False,
 }
 
 

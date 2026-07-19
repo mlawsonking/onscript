@@ -76,12 +76,16 @@ def test_kill_a_colleagues_quote_never_publishes_as_this_members_words():
 
 def test_the_citation_survives_the_demotion_receipts_never_thin_out():
     """Demote the QUOTE, never the CITATION: the row keeps member/date/URL, so the receipt still
-    stands and the >=3-unit quorum (already fixed upstream by verify_talking_point) cannot move."""
+    stands and the key-quorum (already fixed upstream by verify_talking_point) cannot move.
+
+    docs/19 §4b — a published cluster's cited statements all CARRY the key (the key-quorum guaranteed
+    it before _citations ran), so a realistic fixture has the bill name in every co-releasing office's
+    statement; s2/s3 name the bill exactly as three offices introducing it together would."""
     cites = run_assemble._citations(
         _tp([("it's a practical solution that supports jobs", "s1")], ["s1", "s2", "s3"]),
         {"s1": _stmt("s1", "F000900", _FEDORCHAK_RELEASE),
-         "s2": _stmt("s2", "B000111", "Farmers deserve better sensors."),
-         "s3": _stmt("s3", "C000222", "This bill helps our truckers.")},
+         "s2": _stmt("s2", "B000111", "Brooks introduced the Diesel Engine Flexibility Act for farmers."),
+         "s3": _stmt("s3", "C000222", "The Diesel Engine Flexibility Act helps our truckers, said Chen.")},
         _RMAP)
 
     assert len(cites) == 3                        # still a full quorum of receipts
@@ -116,7 +120,9 @@ def test_unlocatable_fragment_fails_open_to_current_behavior():
     """A fragment no single sentence carries cannot be speaker-checked. Fail OPEN (publish it, as
     today) rather than invent silence — safe only because the verifier already grounded it and the
     caller demotes rather than drops."""
-    stmt = _stmt("s1", "F000900", "Farmers rely on diesel equipment. Trucks matter too.")
+    # The statement carries the key (docs/19 §4b — else it would not be cited), but the FRAGMENT under
+    # test appears in no single sentence, so the speaker-check cannot locate it and fails open.
+    stmt = _stmt("s1", "F000900", "The Diesel Engine Flexibility Act matters. Trucks matter too.")
     cites = run_assemble._citations(
         _tp([("nowhere in this document", "s1")], ["s1"]), {"s1": stmt}, _RMAP)
     assert cites[0]["quote"] == "nowhere in this document"

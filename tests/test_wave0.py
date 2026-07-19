@@ -165,6 +165,20 @@ def test_split_never_emits_empty_or_overlength_posts():
     assert all(0 < len(p) <= 50 for p in mixed) and "hi" in mixed[0]
 
 
+def test_every_post_carries_the_composite_marker_and_stays_in_limit():
+    """docs/19 §4c — the AI-composite marker must survive a cropped screenshot, so it rides on EVERY
+    post unit (composite chunks + receipts + tail), not just the thread head or the account bio. And a
+    live post (generator != 'dry_run') must still carry it — the old tail was dry-run-only."""
+    dj = {"daily_lines": {"D": {"composite": ("Today 51 of us released statements. " * 12).strip(),
+                                "generator": "sonnet_direct"}},          # LIVE generator, not dry_run
+          "top_synchronized": [{"party": "D", "ngram": "border security now", "day_peak": 5,
+                                "first_seen": {"date": "2026-06-30"}}]}
+    thread = post_bluesky.build_thread("2026-06-30", "D", dj)
+    assert len(thread) >= 2
+    assert all(post_bluesky._POST_MARK in p for p in thread), "a post lacked the AI-composite marker"
+    assert all(0 < len(p) <= 300 for p in thread), "a marked post is empty or over the 300-char limit"
+
+
 # --- FEATURES registry --------------------------------------------------------------------
 def test_features_dark_by_default_and_gated():
     assert all(v is False for v in config.FEATURES.values()), "all backlog features must ship dark"

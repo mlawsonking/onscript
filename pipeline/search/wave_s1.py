@@ -746,13 +746,23 @@ def s1_8_sotu(by_day, window=21, norm_by=None, *, lane=None, halves):
 
 
 # --- S1.9 The 2022 Self-Audit (replicate the founder's finding on the symmetric corpus) ----------
-def _fivegrams(text: str) -> set:
+def _fivegrams(text: str, strip_idx=None) -> set:
     """Distinctive content 5-grams (hashed to ints for fast set ops), boilerplate excluded. A shared
-    5-gram is strong evidence of phrase reuse; the smaller sets make the pairwise overlap tractable."""
+    5-gram is strong evidence of phrase reuse; the smaller sets make the pairwise overlap tractable.
+
+    docs/19 §4 rider: when strip_idx (a nomenclature name index, nomenclature.load_index(congress)) is
+    given, drop every 5-gram whose token window overlaps an official-name span, so a shared 5-gram
+    measures MESSAGE reuse rather than two offices independently naming the same bill or committee."""
     from .. import boilerplate
     out = set()
     for toks in boilerplate.sentences(text):
+        runs = None
+        if strip_idx is not None:
+            from .. import nomenclature
+            runs = nomenclature.name_spans(toks, strip_idx)
         for i in range(0, len(toks) - 4):
+            if runs and any(not (i + 4 < r0 or i > r1) for r0, r1, _c in runs):
+                continue   # overlaps an official-name span -> nomenclature, not an independent message
             ng = " ".join(toks[i:i + 5])
             if not boilerplate.is_boilerplate_ngram(ng):
                 out.add(hash(ng))
@@ -760,7 +770,7 @@ def _fivegrams(text: str) -> set:
 
 
 def s1_9_self_audit(congresses=(117,), min_members_week=6, cap=40, seed="s1.9", exclude_joint=True,
-                    lane=None):
+                    lane=None, strip_nomenclature=False):
     """Replicate the 2022 predecessor's finding (Democrats coordinate tighter) on PRESS RELEASES.
     Metric: mean pairwise weekly content-5-gram Jaccard overlap per party, with MATCHED member counts
     (subsample the larger party to the smaller each week — the pre-registered control so a party's
@@ -777,6 +787,12 @@ def s1_9_self_audit(congresses=(117,), min_members_week=6, cap=40, seed="s1.9", 
     actually run within one lane rather than asserted to be."""
     import random
     from itertools import combinations
+    # docs/19 §4 rider: strip official-name spans from the 5-grams, so a shared 5-gram is message reuse,
+    # not two offices independently naming the same bill/committee. Index is cumulative 108..max(congress).
+    strip_idx = None
+    if strip_nomenclature:
+        from .. import nomenclature
+        strip_idx = nomenclature.load_index(max(congresses))
     # collect per-statement so joint (cross-member verbatim) releases can be identified + excluded
     stmts = []  # (party, week, bio, texthash, grams)
     for r in H.iter_statements(congresses=set(congresses), with_text=True, lane=lane):
@@ -788,7 +804,7 @@ def s1_9_self_audit(congresses=(117,), min_members_week=6, cap=40, seed="s1.9", 
         except Exception:
             continue
         text = r.get("text") or ""
-        grams = _fivegrams(text)
+        grams = _fivegrams(text, strip_idx=strip_idx)
         if grams:
             stmts.append((p, (iy, iw), bio, hash(text.strip()), grams))
     # a texthash appearing under >=2 distinct bioguides in the same week = a joint/co-signed release

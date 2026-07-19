@@ -1,0 +1,303 @@
+{
+ "s1_9": {
+  "baseline": {
+   "id": "S1.9",
+   "name": "The 2022 Self-Audit",
+   "congresses": [
+    117
+   ],
+   "exclude_joint": true,
+   "joint_releases_dropped": {
+    "D": 33,
+    "R": 46
+   },
+   "mean_weekly_overlap_D": 0.002,
+   "mean_weekly_overlap_R": 0.00119,
+   "weeks_matched": 105,
+   "weeks_D_exceeds_R": 75,
+   "direction": "D>R (replicates)",
+   "verdict": "CONFIRMED",
+   "note": "REPLICATION \u2014 'CONFIRMED' means the 2022 finding replicates (D tighter); 'REFUTED' means it reverses. Both publish."
+  },
+  "stripped": {
+   "id": "S1.9",
+   "name": "The 2022 Self-Audit",
+   "congresses": [
+    117
+   ],
+   "exclude_joint": true,
+   "joint_releases_dropped": {
+    "D": 33,
+    "R": 46
+   },
+   "mean_weekly_overlap_D": 0.00189,
+   "mean_weekly_overlap_R": 0.00117,
+   "weeks_matched": 105,
+   "weeks_D_exceeds_R": 72,
+   "direction": "D>R (replicates)",
+   "verdict": "CONFIRMED",
+   "note": "REPLICATION \u2014 'CONFIRMED' means the 2022 finding replicates (D tighter); 'REFUTED' means it reverses. Both publish."
+  },
+  "expectation_holds": true
+ },
+ "s1_1p_s1_3p": {
+  "dropped_count": 364,
+  "kept_count": 24824,
+  "dropped_examples": [
+   "authorization for use of military force",
+   "federal law enforcement",
+   "keep your health plan act",
+   "the keep your health plan act",
+   "and innovation act",
+   "the central intelligence agency",
+   "central intelligence agency",
+   "health and human services",
+   "of health and human services",
+   "the farm bill",
+   "of the farm bill",
+   "the veterans access to care act",
+   "to care act",
+   "veterans access to care act",
+   "energy and water development",
+   "a farm bill",
+   "respect for marriage act",
+   "the respect for marriage act",
+   "american jobs act",
+   "the dream act"
+  ],
+  "baseline": {
+   "s1_1_prime": {
+    "id": "S1.1'",
+    "name": "Industrialization of the Memo (redefined)",
+    "lane": "propublica",
+    "series": [
+     [
+      2013,
+      34.0
+     ],
+     [
+      2014,
+      13.0
+     ],
+     [
+      2015,
+      8.0
+     ],
+     [
+      2016,
+      12
+     ],
+     [
+      2017,
+      6.0
+     ],
+     [
+      2018,
+      12.0
+     ],
+     [
+      2019,
+      3
+     ],
+     [
+      2020,
+      3.0
+     ]
+    ],
+    "cells": {
+     "2013": 928,
+     "2014": 1356,
+     "2015": 2260,
+     "2016": 1139,
+     "2017": 3958,
+     "2018": 1942,
+     "2019": 4275,
+     "2020": 12548
+    },
+    "dir_a": -1,
+    "dir_b": -1,
+    "early_median": 34.0,
+    "late_median": 3.0,
+    "ratio": 11.33,
+    "density_survives": true,
+    "artifact_guard": false,
+    "verdict": "CONFIRMED"
+   },
+   "s1_3_prime": {
+    "id": "S1.3'",
+    "name": "Phrase Lifespan Collapse (redefined)",
+    "lane": "propublica",
+    "series": [
+     [
+      2013,
+      55.5
+     ],
+     [
+      2014,
+      32
+     ],
+     [
+      2015,
+      29.0
+     ],
+     [
+      2016,
+      31.0
+     ],
+     [
+      2017,
+      24.5
+     ],
+     [
+      2018,
+      35
+     ],
+     [
+      2019,
+      10.0
+     ],
+     [
+      2020,
+      15
+     ]
+    ],
+    "cells": {
+     "2013": 768,
+     "2014": 1319,
+     "2015": 2230,
+     "2016": 1020,
+     "2017": 3906,
+     "2018": 1913,
+     "2019": 4188,
+     "2020": 11687
+    },
+    "dir_a": -1,
+    "dir_b": -1,
+    "early_median_days": 31.5,
+    "late_median_days": 19.75,
+    "median_drop": 0.373,
+    "density_survives": true,
+    "artifact_guard": false,
+    "verdict": "CONFIRMED"
+   }
+  },
+  "stripped": {
+   "s1_1_prime": {
+    "id": "S1.1'",
+    "name": "Industrialization of the Memo (redefined)",
+    "lane": "propublica",
+    "series": [
+     [
+      2013,
+      36
+     ],
+     [
+      2014,
+      14.0
+     ],
+     [
+      2015,
+      8
+     ],
+     [
+      2016,
+      12.0
+     ],
+     [
+      2017,
+      6
+     ],
+     [
+      2018,
+      12
+     ],
+     [
+      2019,
+      2
+     ],
+     [
+      2020,
+      3
+     ]
+    ],
+    "cells": {
+     "2013": 889,
+     "2014": 1304,
+     "2015": 2183,
+     "2016": 1114,
+     "2017": 3895,
+     "2018": 1877,
+     "2019": 4209,
+     "2020": 12463
+    },
+    "dir_a": -1,
+    "dir_b": -1,
+    "early_median": 36,
+    "late_median": 3,
+    "ratio": 12.0,
+    "density_survives": true,
+    "artifact_guard": false,
+    "verdict": "CONFIRMED"
+   },
+   "s1_1_prime_expectation_holds": true,
+   "s1_3_prime": {
+    "id": "S1.3'",
+    "name": "Phrase Lifespan Collapse (redefined)",
+    "lane": "propublica",
+    "series": [
+     [
+      2013,
+      56
+     ],
+     [
+      2014,
+      33
+     ],
+     [
+      2015,
+      29
+     ],
+     [
+      2016,
+      30
+     ],
+     [
+      2017,
+      24.0
+     ],
+     [
+      2018,
+      35.0
+     ],
+     [
+      2019,
+      10
+     ],
+     [
+      2020,
+      15.0
+     ]
+    ],
+    "cells": {
+     "2013": 729,
+     "2014": 1267,
+     "2015": 2153,
+     "2016": 995,
+     "2017": 3844,
+     "2018": 1848,
+     "2019": 4123,
+     "2020": 11618
+    },
+    "dir_a": -1,
+    "dir_b": -1,
+    "early_median_days": 31.5,
+    "late_median_days": 19.5,
+    "median_drop": 0.381,
+    "density_survives": true,
+    "artifact_guard": false,
+    "verdict": "CONFIRMED"
+   },
+   "s1_3_prime_expectation_holds": true
+  }
+ }
+}

@@ -1753,3 +1753,91 @@ untouched. 107-112 per-lane loaders RAISE. **263 tests green** (+8 shard/reader 
 (SPAN-gated, behind the nomenclature merge). The S1.1'/S1.3' CONFIRMEDs await Fable/neutrality review
 before publication. The alexandria shard rebuild the re-validation needed is DONE — the
 BLOCKED-ON-SHARDS half of the 34 is now re-validated.
+
+## Session 21 (2026-07-18, Opus) — THE NOMENCLATURE WIRING + the connective-cluster P0 fix + the §4 rider
+
+Executed `docs/19-NOMENCLATURE-WIRING-BRIEF.md` (Fable, Session 20) in full. Rebased `wip/nomenclature`
+onto main (one `.gitignore` conflict: kept both the privacy and nomenclature re-include blocks); the
+21 tagger fixtures + full suite green on the rebased branch before any wiring. **301 tests green at
+close (was 263 on main; +38).** Flag renamed to the brief's name: `FEATURES["nomenclature_tags"]`
+(the branch's `nomenclature_tag` singular disagreed with docs/19 §2/§7 + CLAUDE.md — the binding docs win).
+
+**§2 WIRING (all DARK behind `nomenclature_tags`, default off):**
+- **§2a MEASURE — UNCONDITIONAL (does not read the flag).** `ops.symmetry_report` now carries
+  `nomenclature_tagged/total/rate` per party (denominator = the day's FULL synchronized set, not the
+  truncated top-20, so a 103-D/15-R display skew can't masquerade as an asymmetric tag rate).
+  `thresholds_sha` folds `NOMENCLATURE_RATIO_MIN` + the index version ONLY when the flag is live (dark
+  ⇒ every historical day's fingerprint is byte-unchanged). Measurement changes the audit JSON, never a
+  rendered surface.
+- **§2b SITE display-time (flag-gated).** `nomenclature.tag()` at RENDER time in `sync_table` (the
+  flagship day table) and `phrase_page_body`, tagging COPIES so a dark render can never see a stale key
+  from a live one; the `_nomenclature_chip` shows "official name · HR1" / "committee name" with a
+  cite tooltip. Fixes every historical page with no ledger rebuild.
+- **§2c DAILY pre-distill (flag-gated).** `distill.build_stats` annotates a talking-point key that is an
+  official name; `_compose_llm` appends a runtime clause telling the voice not to present a bill title
+  as coordination — runtime-appended so the committed P2/P3 files (and `prompts_sha` over them) stay
+  byte-stable dark; `prompts_sha` discloses the clause hash when live.
+
+**§3 ACCEPTANCE:** 21/21 fixtures + full suite green (§3.1); the verdicts re-derivation reproduced the
+spec anchors EXACTLY on the current corpus (sync 461,501, covered 14,175, histogram identical — the
+local corpus is frozen at 75,757 so this is a determinism proof) (§3.2); KILL/PROTECT re-verified both
+directions by the fixtures (§3.3); `test_nomenclature_wiring.py` locks flag-off = zero public bytes and
+flag-on = tags appear + nothing deleted (§3.4).
+
+**§4b THE CONNECTIVE-CLUSTER DEFECT (P0 — the launch-flip blocker) — FIXED, always-on (a correctness
+fix, NOT the dark feature):**
+- **req 1 — `boilerplate.is_scaffold_key`**: a deterministic, party-blind key-admission gate. Rejects a
+  key that terminates before its object (trailing function word or possessive, straight+curly) or is an
+  attribution frame ("colleagues …"). Both live 07-17 defect keys die; the birthright-06-30 flagship and
+  the R OBBBA flagship survive. Wired alongside `is_weak_label` at `run_assemble.py:166`.
+- **req 2 — key-span-gated family quorum**: `verify.key_carrying_units`/`verify_talking_point` now count
+  only distinct `joint_group or bioguide` families whose SOURCE actually carries the cluster key (via
+  the new `boilerplate.contains_gram`, matched on the tokenizer so punctuation never hides a real gram).
+  This independently kills both live clusters (the transitively-chained interlopers — Booker's flood
+  bill, Krishnamoorthi's Blanche, Rosen's different-wrapper — drop out) while the 53-family flagship is
+  untouched. `_citations` filters to the SAME key-carrying set, so a published cluster's receipts all
+  contain the phrase and never thin below 3.
+- **req 3 — receipt display**: `receipts_strip` highlights the exact key span in each quote
+  (`_mark_key`, punctuation-tolerant) and shows a per-test chip row (message-key · N families · phrase
+  shown x/y · sourced y/y) instead of one opaque badge.
+- **req 4 — audit + retroactive correction**: `scripts/audit_connective_keys.py` found **19 inadmissible
+  talking points across 7 of 10 published days, both parties (D 15 / R 4 — party-blind gate, the skew
+  tracks the caucus)** — the defect is systemic, not a 07-17 event. `daily_line_panel` drops scaffold
+  talking points at render (the display-time refresh idiom); a dated corrections-log entry discloses it.
+
+**THE ADVERSARIAL REVIEW (docs/19 §5) confirmed the four hard invariants HOLD** (tag-never-deletes;
+flag-off = zero public bytes on every rendered surface + both fingerprints; citations never mutated or
+thinned below quorum; party-blind) and caught **one P1**, now fixed: the render filter dropped the
+receipts but LEFT the stale Sonnet composite, so 07-17 D would have narrated the three interloper
+phrases over "nothing cleared the threshold" — an Art. II fabricated silence. FIX: the render-time
+correction (`privacy_correct_line`) now ALSO drops scaffold keys and RE-DERIVES the composite from the
+surviving stats via the deterministic composer (the exact trusted degradation path privacy uses), a
+distinct "readmitted" state (never the privacy claim), an honest scaffold-specific empty message, and a
+banner note. Verified on the real 07-17 D: interlopers gone, generator=deterministic, no false
+threshold line. Also fixed: P3 (`_mark_key` now comma-tolerant), test hygiene (a symmetry test had
+clobbered real derived data — monkeypatched `write_json`, restored the files), the 07-14 privacy golden
+updated (its "…committee markup of the" is a fragment §4b correctly drops now). P2 (the gate rejects any
+trailing stopword, broader than the brief's "possessive/preposition") KEPT as a conscious conservative
+choice — a missed line is cheaper than an admitted scaffold key (docs/19 §4b); the refinement
+(scaffold-aware key SELECTION, so a real cluster keeps a better key instead of dying) is a named
+follow-up.
+
+**§4 THE ROBUSTNESS RIDER — all three nomenclature-exposed CONFIRMEDs SURVIVE tag-stripping** (ledger
+row in docs/13; results `data/derived/search/revalidate_nomenclature_rider.json`). S1.9 holds (D>R in
+68% of weeks stripped, ≥60% gate); S1.1' ratio ROSE 11.33→12.0; S1.3' drop ROSE 0.373→0.381 — removing
+the 364/25188 (1.4%) nomenclature phrases SHARPENED the intensification, so it is not a bill-title
+artifact. S2.9 exempt. This clears the §4 gate on the Aug/Sep drip pieces (docs/20). Mechanism:
+`_fivegrams(strip_idx=…)` + `name_spans`/`classify_occ`; `scripts/search/revalidate_nomenclature_rider.py`.
+
+**§4c riders:** per-post AI-composite marker now on EVERY post unit (was dry-run-tail-only — a LIVE post
+carried no marker at all; `post_bluesky.build_thread`), sized so the marker never overflows 300 chars.
+The clause-ablation test, the "observed publishing member" R3 denominator definition, and the
+first/observed/earliest-in-lane timestamp distinction are QUEUED (named follow-ups; the first two are
+pre-v2-Concordance requirements).
+
+**MERGED DARK to main, flag off (the flip is Michael's).** Per-member ingest-health flags (§2a) and the
+phrase-page/archive-fingerprint tag surfaces beyond the day table are minor follow-ups (the day table is
+the flagship where the defect lives). Nothing published changed except the §4b always-on correctness fix
+(the 19 inadmissible talking points drop + the receipts gain chips + affected composites re-derive
+deterministically) and the corrections-log entry. Streak read from the record: **2/3** (07-16, 07-17
+clean unattended), earliest §1.4.1 pass Sat 07-19 — consistent with docs/19 §0.

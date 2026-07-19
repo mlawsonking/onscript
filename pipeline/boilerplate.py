@@ -119,6 +119,55 @@ def is_weak_label(ngram: str) -> bool:
     return toks[0] in _CONJUNCTION_START and (tail.endswith("'s") or tail.endswith("s'"))
 
 
+# docs/19 §4b — the cluster-key ADMISSION gate. is_weak_label caught ONE narrow scaffold shape
+# (conjunction-led possessive, "and the trump administration's"). The live 2026-07-17 defects wore two
+# others that it misses:
+#   * "into the trump administration's"        — a connective frame that TERMINATES before the policy
+#                                                 object (trailing possessive): it names a possessor,
+#                                                 never the thing possessed;
+#   * "democratic colleagues in demanding the" — an ATTRIBUTION frame (who joined/led), trailing off in
+#                                                 a determiner: it is about the speakers, not a message.
+# Both are string-valid and quorum-clean, so the verifier honestly verified a span that is not a
+# message. This gate reads ONLY the phrase's own grammar (deterministic, party-blind — Art. IV) and is
+# CONSERVATIVE by design (docs/19 §4b): a missed valid finding costs one line; an admitted scaffold key
+# anchors unrelated claims on the flagship surface.
+_ATTRIBUTION_TOKENS = frozenset(
+    "colleagues cosponsors co-sponsors cosigners co-signers signatories".split())
+_POSSESSIVE_TAILS = ("'s", "s'", "’s", "s’")   # straight + curly apostrophe
+
+
+def is_scaffold_key(ngram: str) -> bool:
+    """True if a cluster KEY is connective/attribution scaffolding, not a message (docs/19 §4b req 1).
+    Reject when the key (a) terminates before its object — a trailing function word ('...demanding the')
+    or possessive ('...administration's') names a connector/possessor rather than the object — or (b) is
+    an attribution frame naming WHO joined/led rather than WHAT was said. Party-blind."""
+    toks = (ngram or "").split()
+    if not toks:
+        return True
+    last = toks[-1]
+    if last in STOPWORDS or last.endswith(_POSSESSIVE_TAILS):   # (a) terminates before the object
+        return True
+    if any(t in _ATTRIBUTION_TOKENS for t in toks):             # (b) attribution frame
+        return True
+    return False
+
+
+def contains_gram(text: str, gram: str) -> bool:
+    """True if the token sequence `gram` appears as a contiguous run in `text`'s tokenized sentences —
+    the SAME notion of "this statement carries this phrase" that cluster.py used to build the cluster
+    (docs/19 §4b). Matched on the tokenizer, NOT a raw substring, so a comma or period between tokens in
+    the source can never hide a gram the member really used (nor admit one they did not)."""
+    gt = gram.split()
+    n = len(gt)
+    if n == 0:
+        return False
+    for toks in sentences(text):
+        for i in range(len(toks) - n + 1):
+            if toks[i:i + n] == gt:
+                return True
+    return False
+
+
 def clean_text(text: str) -> str:
     """Remove structural boilerplate before tokenization."""
     t = text or ""

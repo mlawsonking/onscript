@@ -17,6 +17,8 @@ from __future__ import annotations
 
 import re
 
+from . import boilerplate
+
 _WS = re.compile(r"\s+")
 _NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
 
@@ -70,21 +72,41 @@ def numbers_whitelisted(composite_text: str, stats_blob: str) -> tuple[bool, set
     return (len(offending) == 0, offending)
 
 
-def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[bool, list[str]]:
-    """Return (ok, reasons). A talking point is publishable iff >=3 distinct members and
-    every fragment is verbatim in its cited statement."""
-    reasons: list[str] = []
-    # Count the quorum by UNIT (joint_group or bioguide): a joint/delegation release is one
-    # coordinated document, so it counts as 1 toward the >=3 floor — never a false quorum (§11 trap 2).
+def key_carrying_units(tp: dict, statements_by_id: dict[str, dict]) -> set:
+    """The distinct document FAMILIES (joint_group or bioguide) whose SOURCE actually carries the
+    cluster key (docs/19 §4b). Shared by the quorum here and the citation path in run_assemble, so both
+    count the same set. A family whose text does not contain the key was chained into the cluster by a
+    DIFFERENT shared gram and is not evidence that THIS phrase is coordinated."""
+    label = tp.get("label", "")
     units: set = set()
     for sid in tp.get("statements", []):
         s = statements_by_id.get(sid)
-        if s:
-            unit = s.get("joint_group") or (s.get("member") or {}).get("bioguide")
-            if unit:
-                units.add(unit)
+        if not s:
+            continue
+        # An empty label (should not happen) degrades to the old "count every unit" behaviour.
+        if label and not boilerplate.contains_gram(s.get("text", ""), label):
+            continue
+        unit = s.get("joint_group") or (s.get("member") or {}).get("bioguide")
+        if unit:
+            units.add(unit)
+    return units
+
+
+def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[bool, list[str]]:
+    """Return (ok, reasons). A talking point is publishable iff >=3 distinct document FAMILIES carry
+    the cluster key AND every fragment is verbatim in its cited statement.
+
+    docs/19 §4b — "distinct collapsed document families passing span". The quorum was counting every
+    unit the transitive union-find chained in, including members dragged into a connective cluster by
+    a DIFFERENT shared gram (Booker on a flood bill under "into the trump administration's";
+    Krishnamoorthi on Blanche under "democratic colleagues in demanding the"). Requiring each counted
+    family to actually carry the key drops those interlopers below quorum, while the birthright-06-30
+    flagship — 53 families that each really typed "born in the united states" — is untouched. A joint
+    release is still ONE family (§11 trap 2); member REACH stays reported on tp["member_count"]."""
+    reasons: list[str] = []
+    units = key_carrying_units(tp, statements_by_id)
     if len(units) < 3:
-        reasons.append(f"quorum: {len(units)} distinct units (<3)")
+        reasons.append(f"key-quorum: {len(units)} distinct families carry the key phrase (<3)")
     for frag in tp.get("fragments", []):
         sid = frag.get("statement")
         src = statements_by_id.get(sid, {})

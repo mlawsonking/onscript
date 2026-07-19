@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, ops, privacy, readiness, roster, util, verify  # noqa: E402
+from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, nomenclature, ops, privacy, readiness, roster, util, verify  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -79,9 +79,17 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     # The quote is DEMOTED, never the citation (§Session-14): an unattributable fragment costs this
     # row its pull-quote, and the member/date/URL still publish. That is why this gate cannot thin
     # the receipts or move a published number — `verify.verify_talking_point` has already fixed the
-    # >=3-UNIT quorum from tp["statements"] before we are called, and nothing here feeds back into it.
+    # quorum before we are called, and nothing here feeds back into it.
     # It also means an over-eager flag is survivable (worst case: a row shows no quote) while a missed
     # one is not (a colleague's words under this member's name), so the gate is tuned to over-flag.
+    #
+    # docs/19 §4b — a receipt must support its LINE's meaning: only cite families whose source actually
+    # carries the cluster key. A member chained into the cluster by a DIFFERENT shared gram (Booker's
+    # flood bill under "into the trump administration's"; Krishnamoorthi's Blanche release under
+    # "democratic colleagues in demanding the") is not a receipt for THIS phrase. This is the SAME
+    # key-carrying set the quorum counts, so the receipts show exactly the families that passed quorum —
+    # a published cluster has >=3 of them, so this never thins receipts below the floor.
+    label = tp.get("label", "")
     frag_by_stmt: dict = {}
     for f in tp.get("fragments", []):
         if f.get("statement") and f.get("text"):
@@ -90,6 +98,8 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     for sid in tp.get("statements", []):
         s = stmt_by_id.get(sid)
         if not s:
+            continue
+        if label and not boilerplate.contains_gram(s.get("text", ""), label):
             continue
         m = s.get("member") or {}
         unit = s.get("joint_group") or m.get("bioguide")
@@ -159,11 +169,16 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         from pipeline import verify
         for tp in tps:
             ok, _ = verify.verify_talking_point(tp, stmt_by_id)
-            # C-i: a coherent quorum (>=3 members, verbatim) is not enough — the BINDING PHRASE must
-            # be a real talking point, not connective glue. A weak label ("and the trump
-            # administration's") means the members share grammar, not a message, and its receipts
-            # would point at unrelated topics. Suppress it (never published, never narrated).
-            if ok and boilerplate.is_weak_label(tp.get("label", "")):
+            # C-i / docs/19 §4b: a coherent quorum (>=3 families, verbatim) is not enough — the BINDING
+            # PHRASE must be a real talking point, not connective/attribution scaffolding. is_weak_label
+            # caught the conjunction-led possessive ("and the trump administration's"); is_scaffold_key
+            # adds the two shapes that got through on 2026-07-17 — a frame that terminates before its
+            # object ("into the trump administration's") and an attribution frame ("democratic colleagues
+            # in demanding the"). Both mean the members share grammar, not a message, and their receipts
+            # point at unrelated topics. Suppress (never published, never narrated). String correctness
+            # without message admissibility is insufficient for publication.
+            if ok and (boilerplate.is_weak_label(tp.get("label", ""))
+                       or boilerplate.is_scaffold_key(tp.get("label", ""))):
                 ok = False
             # Art. XIII privacy floor — THE PRE-LLM CUT, and it must stay pre-LLM. 2026-07-14 is the
             # empirical proof: that composite is generator='sonnet_direct', verifier.passed=True,
@@ -241,7 +256,21 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     # `forced` = the readiness gate waited out MAX_WAIT_DAYS and upstream never filled: we publish what
     # we have rather than leave a hole in the series, but it is honestly degraded. §deploy-hardening.
     degraded = forced or any(day_payload[p]["daily_line"]["fallback"] for p in config.COMPOSITE_PARTIES)
-    report = ops.symmetry_report(day, statements, per_party_llm, freshness=freshness, degraded=degraded)
+    # docs/19 §2a MEASURE — UNCONDITIONAL (does not read FEATURES["nomenclature_tags"]): of this day's
+    # FULL synchronized set per party, what share is an official name (bill title / committee name)?
+    # Tagged on a COPY so nothing here touches the published rows or the day JSON. An asymmetric tagger
+    # would otherwise be invisible to the nightly audit (docs/16 §6).
+    nomen_measure = {}
+    all_sync = build.top_synchronized(ledger, day, k=10_000)
+    cong = util.congress_for_date(day)
+    for p in config.COMPOSITE_PARTIES:
+        prows = [dict(r) for r in all_sync if r.get("party") == p]
+        nomenclature.tag(prows, congress=cong)
+        tagged = sum(1 for r in prows if r.get("nomenclature"))
+        nomen_measure[p] = {"tagged": tagged, "total": len(prows),
+                            "rate": round(tagged / len(prows), 4) if prows else None}
+    report = ops.symmetry_report(day, statements, per_party_llm, freshness=freshness, degraded=degraded,
+                                 nomen_measure=nomen_measure)
 
     manifest = {
         "schema_version": 1, "run_id": f"assemble-{date.today().isoformat()}", "kind": "assemble",

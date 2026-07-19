@@ -267,5 +267,5 @@ def test_bulkdata_masked_error_is_rejected():
 def test_feature_ships_dark():
     """Build dark / release by gate: the tagger is built, verified, and renders NOTHING until the flag
     flips in a commit. tag() itself must still work with the flag off — the gate is the call site."""
-    assert config.FEATURES["nomenclature_tag"] is False
-    assert config.feature_on("nomenclature_tag") is False
+    assert config.FEATURES["nomenclature_tags"] is False
+    assert config.feature_on("nomenclature_tags") is False

@@ -21,13 +21,14 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import build, config, distill, privacy, verify  # noqa: E402
+from pipeline import boilerplate, build, config, distill, nomenclature, privacy, util, verify  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
 try:
@@ -207,6 +208,13 @@ small{font-size:13px}
 .receipt .citemeta{font-size:12px; color:var(--muted); margin-top:2px}
 .receipt .rmore{font-size:11.5px; color:var(--faint); margin-top:6px}
 .receipt ul.cites a{color:var(--blue)}
+.receipt .quote mark.keyspan{background:#fff2ab; color:inherit; padding:0 1px; border-radius:2px}
+.receipt .rtests{margin:5px 0 2px; display:flex; flex-wrap:wrap; gap:5px}
+.tchip{display:inline-block; font-size:10.5px; font-weight:600; padding:0 6px; border-radius:9px;
+       border:1px solid var(--line); white-space:nowrap; line-height:1.7}
+.tchip.ok{color:#1a7f37; border-color:#b7e0c0}
+.tchip.no{color:var(--red); border-color:#e6b8b8}
+.tchip.info{color:var(--muted)}
 
 .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
 table{border-collapse:collapse; width:100%; font-size:14.5px}
@@ -218,6 +226,9 @@ tr:hover td{background:#faf9f6}
 .pill.D{background:var(--blue-bg); color:var(--blue)}
 .pill.R{background:var(--red-bg); color:var(--red)}
 .pill.I{background:#eee; color:#555}
+.nomtag{display:inline-block; font-size:10.5px; font-weight:600; padding:0 6px; margin-left:6px;
+        border:1px solid var(--line); border-radius:9px; color:var(--muted); background:var(--panel);
+        white-space:nowrap; vertical-align:1px; cursor:help}
 .spark{display:block}
 
 .nav-pn{display:flex; justify-content:space-between; gap:12px; margin:26px 0; font-size:15px}
@@ -493,16 +504,33 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     tps_all = (day_data.get("talking_points") or {}).get(party, []) \
         if isinstance(day_data.get("talking_points"), dict) else []
     tps, tps_dropped = privacy.filter_talking_points(tps_all)
+    # docs/19 §4b — the render-time ADMISSION floor rides HERE (alongside privacy) so the composite is
+    # re-derived from the SAME surviving set: drop connective/attribution scaffold talking points, so an
+    # already-published day's PROSE never narrates a phrase whose receipt was removed (the 07-17 D line
+    # narrated three scaffold keys that the receipts now drop). New days are gated at generation
+    # (run_assemble); this is the retroactive half, on the same trusted deterministic degradation path.
+    _n_tp = len(tps)
+    tps = [t for t in tps if not boilerplate.is_scaffold_key((t or {}).get("label", ""))]
+    adm_dropped = len(tps) < _n_tp
     if not isinstance(line, dict):
         return line, tps, "clean"
 
     composite = line.get("composite") or ""
     stats_raw = line.get("stats")
     stats, stats_dropped = privacy.filter_stats(stats_raw)
-    if not (tps_dropped or stats_dropped or privacy.is_suppressed(composite)):
+    if isinstance(stats, dict):
+        _s_all = stats.get("talking_points") or []
+        _s_kept = [t for t in _s_all if not boilerplate.is_scaffold_key((t or {}).get("label", ""))]
+        if len(_s_kept) < len(_s_all):
+            stats = {**stats, "talking_points": _s_kept}
+            adm_dropped = True
+    priv_dropped = tps_dropped or stats_dropped or privacy.is_suppressed(composite)
+    if not (priv_dropped or adm_dropped):
         return line, tps, "clean"
 
-    # Something in this line names a private individual. Re-derive from the FILTERED stats.
+    # Something in this line must not publish — it names a private individual (privacy) and/or a
+    # talking point was bound by connective/attribution scaffolding (docs/19 §4b). Either way, re-derive
+    # the composite from the FILTERED stats so the prose matches the surviving receipts.
     if not isinstance(stats, dict):
         return None, tps, "withheld"           # no stats to recompose from -> withhold, never guess
     has_quote = any((t or {}).get("quote") for t in (stats.get("talking_points") or []))
@@ -530,13 +558,19 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     out["generator"] = "deterministic"      # literally true: distill's own composer produced this
     out.pop("model", None)                  # a stale 'claude-sonnet-5' would falsely claim authorship
     out["verifier"] = {"checked": True, "passed": True, "reasons": []}
-    out["_privacy_corrected"] = True
-    return out, tps, "recomposed"
+    out["_privacy_corrected"] = priv_dropped
+    out["_admission_corrected"] = adm_dropped
+    # A privacy drop is the stronger disclosure and owns the banner; an ADMISSION-only correction is a
+    # distinct reason ("readmitted") so the banner never claims a private name was removed when it was a
+    # scaffold key. Both relabel generator="deterministic", so the honest "deterministic template" note
+    # fires either way.
+    return out, tps, ("recomposed" if priv_dropped else "readmitted")
 
 
 def privacy_states(day_data) -> dict:
-    """{party: "clean"|"recomposed"|"withheld"} for the day — shared by the banner and the panels so
-    a corrected composite can never render under an uncorrected banner."""
+    """{party: "clean"|"recomposed"|"withheld"|"readmitted"} for the day — shared by the banner and the
+    panels so a corrected composite can never render under an uncorrected banner. "recomposed"/"withheld"
+    are Art. XIII privacy; "readmitted" is a docs/19 §4b scaffold-key correction (deterministic re-compose)."""
     return {p: privacy_correct_line(p, day_data)[2] for p in ("D", "R")}
 
 
@@ -585,13 +619,20 @@ def banner_html(day_data, symmetry, depth: int = 1) -> str:
     pstates = privacy_states(day_data)
     corrected = [p for p, s in pstates.items() if s == "recomposed"]
     withheld = [p for p, s in pstates.items() if s == "withheld"]
-    if corrected or withheld:
+    readmitted = [p for p, s in pstates.items() if s == "readmitted"]   # docs/19 §4b scaffold correction
+    if corrected or withheld or readmitted:
         bits = []
         if corrected:
             bits.append(
                 f"{' and '.join(PARTY_NAME[p] for p in sorted(corrected))}' Daily Line was "
                 f"<strong>re-composed by the deterministic composer</strong> because the model&rsquo;s "
                 f"version named a private individual")
+        if readmitted:
+            # Its OWN honest reason — never the stale "voice not wired" tail, and never the privacy claim.
+            bits.append(
+                f"{' and '.join(PARTY_NAME[p] for p in sorted(readmitted))}' Daily Line was "
+                f"<strong>re-composed by the deterministic composer</strong> because a talking point was "
+                f"bound by connective or attribution phrasing rather than a shared message")
         if withheld:
             bits.append(
                 f"{' and '.join(PARTY_NAME[p] for p in sorted(withheld))}' Daily Line is "
@@ -656,6 +697,40 @@ def _wayback_url(url: str, date: str | None) -> str:
     return f"https://web.archive.org/web/{ts}/{url}"
 
 
+def _key_pattern(key: str) -> str:
+    """A whitespace/apostrophe/punctuation-tolerant, case-insensitive regex for a cluster key's token
+    sequence, so it matches the key however a source rendered it ('Trump administration's' vs the token
+    key, or 'National Security, Department' where the tokenizer dropped the comma). Punctuation-tolerant
+    between tokens so the highlight agrees with boilerplate.contains_gram (§4b P3)."""
+    parts = []
+    for t in (key or "").split():
+        t = re.sub(r"['’]", "\x00", t)                 # protect apostrophes from re.escape
+        parts.append(re.escape(t).replace("\x00", "['’]"))
+    return r"[\s,;:.–—-]+".join(parts)        # space OR a token separator the tokenizer dropped
+
+
+def _mark_key(quote: str, key: str) -> tuple[str, bool]:
+    """Escape a receipt quote and wrap the cluster key where it appears, so a reader sees exactly the
+    span that licensed the row (docs/19 §4b req 3). Returns (html, key_present). Matched on the RAW
+    quote (then escaped per fragment) so the highlight survives casing/whitespace differences; if the
+    key does not appear in this quote nothing is marked — an honest 'no false highlight'."""
+    q = quote or ""
+    if not key:
+        return esc(q), False
+    m = re.search(_key_pattern(key), q, flags=re.IGNORECASE)
+    if not m:
+        return esc(q), False
+    return (esc(q[:m.start()]) + f'<mark class="keyspan">{esc(m.group(0))}</mark>' + esc(q[m.end():]), True)
+
+
+def _testchip(label: str, state) -> str:
+    """One receipt-test chip (docs/19 §4b req 3). state True -> passing (✓), False -> failing (✗),
+    None -> a neutral count (no claim of pass/fail, e.g. how many shown quotes carry the phrase)."""
+    cls = {True: "ok", False: "no", None: "info"}[state]
+    mark = {True: "✓ ", False: "✗ ", None: ""}[state]
+    return f'<span class="tchip {cls}">{mark}{esc(label)}</span>'
+
+
 def receipts_strip(party: str, talking_points: list, caucus: int | None = None) -> str:
     """Build the receipts strip from a party's talking_points (the visual signature). `caucus` is the
     party's caucus size, so every count travels with its denominator ("10 of 263 · 3.8%")."""
@@ -685,8 +760,10 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
         # Citation-or-silence made VISIBLE (Art. XII), quote BOUND to source (§Session-7 C-ii): each
         # row is one member's OWN verbatim quote next to their name and their .gov link, so a reader
         # can click and confirm that exact quote — never a decoupled quote/citation pair.
+        key = tp.get("label", "")
         cites = [c for c in (tp.get("citations") or []) if isinstance(c, dict)]
         lis = []
+        span_present = urls_present = 0
         for c in cites[:3]:
             nm = esc(c.get("member"))
             pp, st = c.get("party"), c.get("state")
@@ -695,17 +772,38 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
             if url:
                 # source + an archival fallback (Wayback), so a rotted .gov link never dead-ends a
                 # receipt; the full text is also in our immutable data release. §Session-8.
+                urls_present += 1
                 src = (f'<a href="{esc(url)}" rel="nofollow noopener">source</a> · '
                        f'<a href="{esc(_wayback_url(url, c.get("date")))}" rel="nofollow noopener">archived</a>')
             else:
                 src = '<span class="faint">source</span>'
             q = c.get("quote")
-            qhtml = f'<div class="quote">{esc(q)}</div>' if q else ""
+            # docs/19 §4b req 3 — highlight the exact key span in the quote, so a reader sees precisely
+            # what licensed the row. A quote may be a DIFFERENT attributable fragment of the same
+            # statement, so absence of the span in this quote is honest, not a failure.
+            if q:
+                qh, present = _mark_key(q, key)
+                span_present += 1 if present else 0
+                qhtml = f'<div class="quote">{qh}</div>'
+            else:
+                qhtml = ""
             lis.append(
                 f'<li>{qhtml}<div class="citemeta">{nm}{suffix} '
                 f'<span class="faint">· {esc(c.get("date"))} ·</span> {src}</div></li>'
             )
         cites_html = ('<ul class="cites">' + "".join(lis) + "</ul>") if lis else ""
+        # docs/19 §4b req 3 — a per-test breakdown, not one opaque "verified" badge: the key is a
+        # message (admissible), >=SYNC_MIN distinct families carry it, each shown receipt links its
+        # source, and the highlighted phrase is shown where a quote carries it. A reader sees which
+        # test each row rests on rather than trusting an aggregate.
+        shown = len(lis)
+        chips = [_testchip("message key", not boilerplate.is_scaffold_key(key))]
+        if isinstance(count, int):
+            chips.append(_testchip(f"{count} families", count >= config.SYNC_MIN_MEMBERS))
+        if shown:
+            chips.append(_testchip(f"phrase shown {span_present}/{shown}", None))
+            chips.append(_testchip(f"sourced {urls_present}/{shown}", urls_present == shown))
+        tests_html = f'<div class="rtests">{"".join(chips)}</div>'
         more_html = ""
         if isinstance(count, int) and count > len(lis) and lis:
             more_html = f'<div class="rmore"><small>showing {len(lis)} of {esc(count)} members</small></div>'
@@ -716,7 +814,7 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
             cites_html = "".join(f'<div class="quote">{esc(f.get("text"))}</div>' for f in frags[:2])
         rows.append(
             f'<div class="receipt"><div class="rhead">{count_html}</div>'
-            f'{topics_html}{cites_html}{more_html}</div>'
+            f'{tests_html}{topics_html}{cites_html}{more_html}</div>'
         )
     return (
         '<div class="receipts"><div class="rlabel">Receipts</div>'
@@ -726,8 +824,9 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
 
 
 def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
-    # Art. XIII render-time correction, BEFORE anything is rendered — this also drops the suppressed
-    # talking point before receipts_strip can print its label and citation quotes.
+    # Render-time correction, BEFORE anything is rendered: privacy_correct_line drops both suppressed
+    # (Art. XIII) AND connective/attribution scaffold (docs/19 §4b) talking points, and re-derives the
+    # composite from the surviving set so the PROSE never narrates a phrase whose receipt was removed.
     line, tps, pstate = privacy_correct_line(party, day_data)
 
     who = f'<div class="who">{esc(PARTY_NAME.get(party, party))}</div>'
@@ -770,13 +869,19 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     # by a receipt-free card.
     body_tail = receipts_strip(party, tps, caucus=caucus)
     if not [t for t in (tps or []) if isinstance(t, dict)]:
-        # "Nothing cleared the threshold" is a measured ABSENCE claim. If the list was emptied by the
-        # privacy filter rather than by the corpus, that sentence is a fabricated silence finding
-        # authored by our own fix (Art. II) — say what actually happened instead.
-        body_tail = (f'<p class="nocite">Talking points for this day are withheld under the privacy '
-                     f'floor &mdash; nothing to cite here.</p>') if pstate != "clean" else (
-                     f'<p class="nocite">No talking point cleared the {config.SYNC_MIN_MEMBERS}-member '
-                     f'threshold today &mdash; nothing to cite.</p>')
+        # "Nothing cleared the threshold" is a measured ABSENCE claim, and stating it when the list was
+        # emptied by OUR OWN filter — privacy or the docs/19 §4b scaffold gate — is a fabricated silence
+        # finding authored by the fix (Art. II). Each reason gets its own honest message.
+        if pstate == "readmitted":
+            body_tail = ('<p class="nocite">This day&rsquo;s talking points were bound by connective or '
+                         'attribution phrasing rather than a shared message, and have been removed '
+                         '&mdash; nothing to cite here. See the corrections log.</p>')
+        elif pstate != "clean":     # privacy withheld / recomposed
+            body_tail = ('<p class="nocite">Talking points for this day are withheld under the privacy '
+                         'floor &mdash; nothing to cite here.</p>')
+        else:
+            body_tail = (f'<p class="nocite">No talking point cleared the {config.SYNC_MIN_MEMBERS}-member '
+                         f'threshold today &mdash; nothing to cite.</p>')
 
     return (
         f'<div class="line {esc(party)}">{who}'
@@ -797,11 +902,40 @@ def _series_last_present(series, k=14):
     return rows[-k:]
 
 
+def _nomenclature_chip(verdict) -> str:
+    """docs/19 §2b — the display-time nomenclature marker. Rendered ONLY when a row carries a verdict,
+    which happens ONLY when FEATURES["nomenclature_tags"] is on and nomenclature.tag() ran at render
+    time. The tag NEVER deletes a row (docs/16 §7): it labels an official name so a reader can see that
+    a bill title / committee name is not a coordinated message. Every tag cites the official record
+    that licensed it."""
+    if not isinstance(verdict, dict):
+        return ""
+    lane = verdict.get("lane")
+    cite = verdict.get("cite") or ""
+    if lane == "committee":
+        label, cite_txt = "committee name", cite.split(":", 1)[-1]
+    else:
+        label, cite_txt = "official name", cite.upper()
+    tip = (f"Official {'committee' if lane == 'committee' else 'bill'} name, not a coordinated "
+           f"message — cites {cite} (nomenclature ratio {verdict.get('ratio')}).")
+    body = esc(label) + (f" · {esc(cite_txt)}" if cite_txt else "")
+    return f' <span class="nomtag" title="{esc(tip)}">{body}</span>'
+
+
 def sync_table(day_data, slugs_with_pages, depth: int) -> str:
     ts = [r for r in (day_data.get("top_synchronized") or []) if isinstance(r, dict)]
     # Re-apply the CURRENT near-dup collapse at render time, so already-built (historical) day pages
     # reflect the latest merge rules without re-running the engine — the display-time refresh pattern.
     ts = build.collapse_and_rank(ts, k=20)
+    # docs/19 §2b — nomenclature display-time tag, DARK until FEATURES["nomenclature_tags"]. Render-time
+    # only + flag-gated: with the flag OFF this is a no-op and the page is byte-identical (docs/19 §3.4
+    # golden); with it ON, every historical page gains the tag with no ledger rebuild. Tag COPIES (never
+    # the caller's stored rows) so a dark render can never see a stale key from a live one, and gate the
+    # chip on the same flag — belt and suspenders on "flag off => zero bytes". tag() NEVER drops a row.
+    show_nom = config.feature_on("nomenclature_tags") and bool(day_data.get("day"))
+    if show_nom:
+        ts = [dict(r) for r in ts]
+        nomenclature.tag(ts, congress=util.congress_for_date(day_data["day"]))
     if not ts:
         return '<p class="muted">No synchronized phrases recorded for this day.</p>'
     root = "../" * depth
@@ -830,6 +964,8 @@ def sync_table(day_data, slugs_with_pages, depth: int) -> str:
             phrase_cell = f'<a href="{root}phrases/{esc(slug)}.html">{esc(ngram)}</a>'
         else:
             phrase_cell = esc(ngram)
+        if show_nom:
+            phrase_cell += _nomenclature_chip(r.get("nomenclature"))
 
         vel_txt = f"{vel:.1f}" if isinstance(vel, (int, float)) else esc(vel)
         body.append(
@@ -1093,6 +1229,13 @@ def phrase_page_body(pdata, depth=1):
     series = pdata.get("series") or []
 
     parts = [f'<h1>&ldquo;{esc(ngram)}&rdquo;</h1>']
+    # docs/19 §2b — nomenclature tag on the phrase/curve page (DARK until FEATURES["nomenclature_tags"]).
+    # Congress from the row if present, else the first-seen date; skip silently if neither resolves.
+    if config.feature_on("nomenclature_tags") and ngram:
+        _cong = pdata.get("congress") or (util.congress_for_date(fs_date) if fs_date else None)
+        _v = nomenclature.is_nomenclature(ngram, int(_cong)) if _cong else None
+        if _v:
+            parts.append(f'<p class="nomnote">{_nomenclature_chip(_v).strip()}</p>')
     parts.append('<p class="subhead">Adoption curve: how many independent members of each party used this exact phrase, by day.</p>')
 
     parts.append('<div class="chartbox scroll">')

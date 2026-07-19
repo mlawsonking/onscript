@@ -80,11 +80,29 @@ def _privacy_trips(party: str, day_json: dict) -> bool:
     return False
 
 
+# docs/19 §4c — the AI-composite marker must survive a CROPPED screenshot: it goes in EVERY post unit
+# of the thread, never only the thread head or the account bio (a screenshot of a single reply would
+# then omit it). The account also carries a profile-level {val:'bot'} self-label, but that is invisible
+# in a cropped post — this per-post line is the belt that is not.
+_POST_MARK = "🤖 automated composite — onscript.news"
+
+
+def _with_mark(post: str, limit: int = 300) -> str:
+    """Append the per-post AI-composite marker, guaranteeing the result never exceeds `limit` (a lone
+    over-length post would fail createRecord for that party alone, reading as bias). Callers size the
+    body to leave room; this truncation is the safety belt for a pathological case."""
+    mark = "\n" + _POST_MARK
+    if len(post) + len(mark) > limit:
+        post = post[:max(0, limit - len(mark) - 1)].rstrip() + "…"
+    return post + mark
+
+
 def build_thread(day: str, party: str, day_json: dict) -> list[str]:
     # Total-failure-proof: a malformed day entry (null composite, a top-phrase row missing keys) must
     # never raise here — a raise would crash the run. All accesses are guarded.
     dl = (day_json.get("daily_lines") or {}).get(party) or {}
-    posts = _split(dl.get("composite") or "")
+    room = 300 - len("\n" + _POST_MARK)               # size posts so the per-post marker always fits
+    posts = _split(dl.get("composite") or "", limit=room)
     top = next((r for r in (day_json.get("top_synchronized") or []) if r.get("party") == party), None)
     receipts = f"Receipts: {SITE}/day/{day}.html"
     if top and top.get("ngram"):
@@ -93,8 +111,9 @@ def build_thread(day: str, party: str, day_json: dict) -> list[str]:
                      f' (first recorded {fs.get("date")}).')
     posts.append(receipts)
     if dl.get("generator") == "dry_run":
-        posts.append(f"[Automated composite — methodology + symmetry audit: {SITE}/methodology.html]")
-    return posts
+        posts.append(f"Automated composite — methodology + symmetry audit: {SITE}/methodology.html")
+    # EVERY post carries the marker (docs/19 §4c), so no crop can hide that this is machine-composed.
+    return [_with_mark(p) for p in posts]
 
 
 def _print_thread(label: str, party: str, thread: list[str], reason: str) -> None:

@@ -11,9 +11,20 @@ from __future__ import annotations
 import json
 import re
 
-from . import config, llm, util, verify
+from . import config, llm, nomenclature, util, verify
 
 _QUOTE_MAX_WORDS = 10
+
+# docs/19 §2c — appended to the live-voice system prompt (runtime, flag-gated) when any talking point
+# carries a nomenclature annotation. Runtime-appended rather than baked into the committed P2/P3 files
+# so the prompts (and prompts_sha over them) are byte-stable while the tagger is dark; ops.prompts_sha
+# folds a marker of this clause when the flag is on, so the published fingerprint stays honest.
+NOMENCLATURE_VOICE_CLAUSE = (
+    "\n\nSome talking points include a \"nomenclature\" field. That phrase is the OFFICIAL NAME of a "
+    "bill or committee, cited to an external record — it is not a coordinated message. Do not present "
+    "it as evidence that members share a talking point; if you refer to it at all, name it plainly as "
+    "legislation. Members typing a bill's own name is not message coordination."
+)
 
 # Register guard (§Session-8): mechanical checks that a composite has not drifted out of the deadpan-
 # clinical voice — no fourth-wall/schema words, no enthusiasm/irony markers, no hashtags/emoji. Runs
@@ -46,6 +57,9 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
                 top_phrase: dict | None) -> dict:
     """Code-computed STATS block — the ONLY source of numbers the composite may use (§6.2 P2 rule 3)."""
     tps = []
+    # docs/19 §2c — congress for the pre-distill nomenclature annotation, resolved ONLY when the tagger
+    # is live so the flag-off STATS block is byte-identical (docs/19 §3.4). Annotation, not deletion.
+    cong = util.congress_for_date(day) if config.feature_on("nomenclature_tags") else None
     for tp in talking_points[:4]:
         # The quote MUST be verbatim member speech: the blocking verifier grounds it against real
         # fragment text, NEVER against the code-computed label (a punctuation-stripped n-gram that is
@@ -55,8 +69,18 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
         # the UNQUOTED talking-point name. §Session-5 (HIGH-1 fix).
         frags = [f["text"] for f in (tp.get("fragments") or []) if f.get("text")]
         quote = _quote(min(frags, key=lambda t: len(t.split()))) if frags else ""
-        tps.append({"label": tp["label"], "members": tp["member_count"], "quote": quote,
-                    "topics": tp.get("topics", [])})
+        entry = {"label": tp["label"], "members": tp["member_count"], "quote": quote,
+                 "topics": tp.get("topics", [])}
+        # docs/19 §2c — annotate a talking point whose KEY is an official name (bill title / committee
+        # name) so the live voice cannot launder it into message-coordination prose and have the
+        # verifier pass it (the members really did type the name). ANNOTATION ONLY: the quote, the
+        # citation path, and verify.is_verbatim are untouched; _compose_llm reads this field to instruct
+        # the model. DARK until FEATURES["nomenclature_tags"] (cong is None when off -> no field added).
+        if cong is not None:
+            v = nomenclature.is_nomenclature(tp["label"], cong)
+            if v:
+                entry["nomenclature"] = {"lane": v["lane"], "cite": v["cite"], "class": v["class"]}
+        tps.append(entry)
     return {"party": party, "day": day, "statements": party_statement_count,
             "talking_points": tps, "top_phrase": top_phrase,
             "sync_min": config.SYNC_MIN_MEMBERS}  # the coordination threshold (for the no-coordination line)
@@ -122,6 +146,11 @@ def _compose_llm(prompt: dict, stats: dict, party: str, day: str) -> tuple[str, 
     for k, v in fills.items():
         system = system.replace(k, v)
         user = user.replace(k, v)
+    # docs/19 §2c — when the tagger is live AND a talking point is an official name, append the
+    # handling clause so the voice cannot present a bill title as a coordinated message. Flag-gated,
+    # so dark => committed prompt unchanged => the live call is byte-identical to today's.
+    if config.feature_on("nomenclature_tags") and any(t.get("nomenclature") for t in stats.get("talking_points", [])):
+        system += NOMENCLATURE_VOICE_CLAUSE
     res = llm.direct_call(llm.VOICE_MODEL, system, user, max_tokens=400)
     text = (res.get("text") or "").strip()
     # If the API omits usage, ESTIMATE (never record a billed call as free) — over-count is the safe
