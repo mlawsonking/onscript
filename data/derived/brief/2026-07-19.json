@@ -38,12 +38,12 @@
       },
       "status": "red",
       "freshness": {
-        "age_hours": 3.37,
+        "age_hours": 12.77,
         "day": "2026-07-19",
         "status": "green"
       },
       "excluded_reports": 2,
-      "note": "2026-07-18: D 5/135=4% R 3/84=4% of own 14d median (green >= 60%); upstream 3.4h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+      "note": "2026-07-18: D 5/135=4% R 3/84=4% of own 14d median (green >= 60%); upstream 12.8h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
     },
     {
       "name": "verifier_drop",
@@ -78,6 +78,7 @@
       "authors_vessels",
       "awards",
       "bill_brand",
+      "concordance",
       "credit_claim",
       "duet",
       "eval_table",
@@ -87,10 +88,10 @@
       "nomenclature_tags",
       "off_script_alerts",
       "owners_brief",
+      "party_columns",
       "phrase_search",
       "public_api",
       "silence_board",
-      "the_script",
       "upstream_graph"
     ],
     "released": []
