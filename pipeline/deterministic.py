@@ -30,6 +30,23 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
 
     summary = build.build_derived(statements, ledger, engine.discipline_index(), config.DERIVED, focus_day=focus_day)
 
+    # 1.4 The Concordance (R4) — the per-member on-script index, written EVERY run (build dark /
+    # release by gate, like day_json["sync_by_party"]); rendering is gated on FEATURES["concordance"],
+    # so the flip is a pure release act. Wrapped: a dark feature must never crash the deterministic
+    # core (§0 streak invariant) — a failure here skips the artifact, it never breaks RUN A.
+    try:
+        build.build_concordance(statements, ledger, out_dir=config.DERIVED, roster_map=rmap)
+    except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
+        print(f"[concordance] skipped (skip-and-log): {e}")
+
+    # 1.5 The Unison + The Void (R2) — symmetric weekly awards, written EVERY run (build dark / release
+    # by gate); rendering is gated on FEATURES["awards"], so the flip is a pure release act. Same streak
+    # safety belt: a dark feature must never crash RUN A (§0 streak invariant).
+    try:
+        build.build_awards(statements, ledger, out_dir=config.DERIVED, focus_day=focus_day, roster_map=rmap)
+    except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
+        print(f"[awards] skipped (skip-and-log): {e}")
+
     per_party = {}
     for p in config.ALL_PARTIES:
         stmts = [s for s in statements if (s.get("member") or {}).get("party") == p]

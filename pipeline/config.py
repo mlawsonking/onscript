@@ -71,6 +71,50 @@ LEDGER_MIN_TOTAL_USES = 3
 # by one party on one day. Feeds adoption curves + discipline index.
 SYNC_MIN_MEMBERS = 3
 
+# The Concordance (1.4 / R4) — per-member on-script index. Disclosed knobs, movable without a rebuild.
+# A member is NAMED only with >= this many SOLO (non-joint) statements in the window — enough for a
+# stable share and to cite, so we never reproduce R2's "318 tied-at-zero vessels" swarm. Members below
+# the floor are disclosed in aggregate, never scored. (Confirm this default at the release-flip review.)
+CONCORDANCE_MIN_STATEMENTS = 10
+CONCORDANCE_RECEIPTS_MAX = 3   # >=3 dated citations per named member (member-naming gate, docs/11 §0.5)
+# A phrase counts as "the party script" for the on-script index ONLY if it genuinely coordinated at
+# scale — peak >= this many members in one day. Same #143 confound control as ORIGINATION_PEAK_FLOOR.
+# Without it the index saturates: over a real 45-day window the raw kept set is ~41k phrases, so ~91% of
+# members read >=0.99 on-script (every release shares SOME 3-member-co-used gram — names, agency titles,
+# generic language) — a misleading Art. IV artifact. MEASURED (BUILDLOG Session 23) — floor vs the named
+# members' index distribution: 0 -> mean .99 (91% saturated); 10 -> .63; 15 -> .32 (IQR .18-.43, best
+# spread); 20 -> .20 (14% zero); 30 -> .04 (64% zero, 10 phrases, starved). 15 discriminates without
+# starving and matches the origination floor. Movable knob; confirm at the release-flip review.
+CONCORDANCE_PEAK_FLOOR = 15
+
+# The Unison + The Void (1.5 / R2) — symmetric weekly awards. Disclosed knobs, movable without a rebuild.
+# R2 killed the Ventriloquism Award (most on-script MEMBER): 318/538 members tie at zero solo count and
+# naming a "vessel" is a chamber/tenure/nomenclature confound (#143) and an Article X member-shaming
+# construct. It is replaced, symmetric by construction, by two PHRASE-/TOPIC-level awards.
+#   THE UNISON — each party's largest single-day "office-share" phrase over a trailing window: of the
+#   party offices that published a SOLO release that day, the share that used one exact phrase. The
+#   numerator IS the coordination magnitude, so no separate peak floor is needed — a winning share
+#   already requires many offices (share 0.7 at 40 active offices means 28 said the same thing).
+UNISON_WINDOW_DAYS = 7          # the "week": trailing window (inclusive) ending at the focus day
+# A (party, day) is eligible only with >= this many active SOLO offices, so a thin weekend/holiday day
+# can't take the award on a 2-of-3 share. MEASURED on the real corpus (BUILDLOG Session 24, week
+# 2026-07-03..09): active SOLO offices/day is bimodal — normal weekdays 40-112 (D) / 24-77 (R), median
+# 47/36, versus a thin-day cluster <=17 (July 4th D=17/R=10, the 5th D=1/R=3, weekends). 20 sits in the
+# gap for BOTH parties (no day lands in 18-23), so it excludes holidays without touching normal days and
+# keeps the award symmetric (at floor 15 the D winner was July-4th commemoration on 17 offices while R's
+# 4-of-10 July-4th day fell below the bar — an asymmetric artifact). The office-share numerator IS the
+# coordination magnitude, so no phrase-peak floor is needed on top. On a high-salience day a substantive
+# phrase reaches ~50%+ (2026-06-30 "born in the united states": 53/102 D = 52%); a quiet week surfaces
+# generic/commemorative language, which is honest, not a defect. Movable; confirm at the release-flip review.
+UNISON_MIN_ACTIVE = 20
+UNISON_TOP_N = 5                # ranked office-share list per party; the #1 row IS "The Unison" award
+UNISON_MEMBERS_SAMPLE = 8       # offices named on a card before "+N more" (>= SYNC_MIN are always present)
+# THE VOID — the window's loudest silence, BOTH directions, rolled up from the 1.2 absence-map boards
+# (data/derived/silence/*.json, built only when FEATURES["silence_board"] is wired). Degrades to
+# "unavailable" when no scored board exists for the window: 1.2's law that a gap is never rendered as a
+# silence carries through unchanged, so The Void never fabricates an award from missing data.
+VOID_TOP_N = 3
+
 # Near-identical (delegation) collapse (§11 trap 2). Byte-identical text is caught exactly;
 # near-identical delegation letters must ALSO collapse to one unit or they masquerade as
 # independent coordination and the flagship chart is debunkable on day one.
@@ -138,14 +182,17 @@ def env(name: str, default: str = "") -> str:
 # ---------------------------------------------------------------------------
 FEATURES = {
     # Wave 1 (v2)
-    "archive": False, "silence_board": False, "authors_vessels": False, "the_script": False,
+    # `concordance` is the 1.4 slot (docs/11 §1.4 "The Script"), which R4 (docs/21 §3.2) redefined to
+    # THE CONCORDANCE — the per-member on-script index (denominators on every line, no predictive claim,
+    # SPAN-gated). The old `the_script` (reconstructed-memo) key was unused; renamed here to match R4.
+    "archive": False, "silence_board": False, "authors_vessels": False, "concordance": False,
     "awards": False, "floor": False, "duet": False, "phrase_search": False,
     "owners_brief": False, "credit_claim": False, "memo_cadence_flag": False,
     # Wave 2 (v3)
     "memory_hole": False, "off_script_alerts": False, "upstream_graph": False,
     "bill_brand": False, "public_api": False, "eval_table": False,
     # Cross-cutting instrument fix (docs/16, wired per docs/19) — prerequisite for
-    # authors_vessels/awards/the_script and for ANY coordination headline claim. Tags only; wiring
+    # authors_vessels/awards/concordance and for ANY coordination headline claim. Tags only; wiring
     # tag->suppress is forbidden (§7). Name is `nomenclature_tags` (plural) per the docs/19 wiring
     # brief §2/§7 and CLAUDE.md; gates SITE display-time + daily pre-distill annotation. The MEASURE
     # wiring (nomenclature_rate in the nightly audit) is unconditional and does NOT read this flag.

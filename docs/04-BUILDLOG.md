@@ -1903,3 +1903,153 @@ locked test), so nothing live changed and no re-render was needed. 5 tests (`tes
 is complete going forward and degrades honestly on old days. NEXT: 1.4 The Concordance (R4, per-MEMBER
 on-script index — a new data layer, the existing discipline index is per-party-per-day) and 1.5 The
 Unison + The Void, each a substantial feature.
+
+## Session 23 (2026-07-19, Opus) — build-order 6 cont.: 1.4 The Concordance (R4), the per-member on-script index, dark
+
+The third increment of the rulings-shaped 1.3/1.4/1.5. Built **The Concordance** — the per-MEMBER
+on-script index — DARK behind `FEATURES["concordance"]` (the 1.4 slot; the unused pre-ruling `the_script`
+key was renamed to match R4). The existing discipline index is per-party-per-day; this is its per-member
+extension: of a member's SOLO (non-joint) Lane-1 releases, the share that used a phrase their party
+genuinely converged on. `build.build_concordance(statements, ledger)` writes `derived/concordance.json`
+EVERY run (from `deterministic.run`, wrapped skip-and-log so a dark feature can never crash RUN A), like
+`day_json["sync_by_party"]` — so the flip is a pure release act. It reuses the engine's own tokenizer
+(`phrases._doc_ngrams`) so the intersection with the ledger is exact, and is a pure function of
+`(statements, ledger)` — rebuild reproduces it.
+
+**R4's shape, enforced structurally.** (a) **Denominators on every line** — every score carries its raw
+`(on_script / statements)` counts, in the data and on the page. (b) **SPAN-gated** —
+`nomenclature.is_nomenclature()` drops official-name occurrences per the statement's congress (a member
+typing a bill title is never "on-script"), degrading to a no-op where no verdicts table exists. (c) **No
+predictive claim** — the page states, before any number, that this is descriptive OVERLAP, not
+motive/direction/influence.
+
+**Inherited R2/#143 controls.** Joint/co-signed releases are EXCLUDED (coordination, not solo voice). A
+**naming floor** (`CONCORDANCE_MIN_STATEMENTS=10` solo statements) so there is no swarm of tied-at-zero
+"vessels" — below-floor members are disclosed in aggregate, never scored. The **Art. XIII privacy floor
++ the same display-time boilerplate/weak-label guards `top_synchronized()` uses** are applied to the
+phrase set, so a suppressed private-name phrase can never count toward on-script nor surface as a receipt
+(the raw ledger.json still holds it; suppression is a render-time act, #145). **≥3 dated receipts per
+named member.** Party set = the two composites (D/R), matching every other cross-party metric.
+
+**THE SATURATION FINDING + the coordination floor (`CONCORDANCE_PEAK_FLOOR`).** The first real-data run
+exposed the metric saturating at ~1.00 for EVERY member: over a wide window the raw kept set is tens of
+thousands of phrases, so nearly every release shares SOME 3-member-co-used 3-6gram (member names/titles
+like "durbin d-il ranking member", agency names, generic language like "make life more affordable") — a
+misleading Art. IV artifact (everyone reads as a total vessel), the same confound family #143 killed. Fix
+= the same control Session 22's origination used: a phrase counts as "the party script" only if it
+coordinated at scale (`peak_units >= floor`). **Measured** the named-member index distribution across
+floors on a real 45-day window (6,143 statements, 41,032 raw phrases): `0 -> mean .99, 91% saturated at
+>=.99` · `10 -> .63` · `15 -> .32, IQR .18-.43, 0.5% saturated / 5.5% zero` · `20 -> .20, 14% zero` ·
+`30 -> .04, 64% zero (only 10 phrases, starved)`. **15 discriminates without starving and matches
+`ORIGINATION_PEAK_FLOOR`** — default set there, disclosed/movable. At the default the distribution spreads
+both parties across the range (Thanedar D 14/14 → Hernández D 0/40; Thune R 16/29 → Van Drew R 0/12);
+names resolve via the roster (210/210); the span gate removes 52 on-script credits.
+
+**Render** (`site.concordance_body`, dark): both parties side by side, ranked within party (a reference
+INDEX, not the single-winner leaderboard / Ventriloquism Award that #143/R2 retired), every row its raw
+counts + expandable receipts, with the no-motive caveat + window + name-index-version + coordination floor
++ joint-exclusion all disclosed on the page. Written to the site ONLY when the flag flips (built dark =
+absent from output, the `phrases/search.html` rule); the Methodology gains a gated "How this is measured"
+section; the nav link is gated. Flag OFF ⇒ zero public bytes change — locked tests: nav link absent,
+`methodology_body()` byte-identical. **14 new tests (`tests/test_concordance.py`), 329 green.**
+
+**RESERVED for Michael at the flip review (NOT self-authorized).** The flag flip itself; the
+`CONCORDANCE_PEAK_FLOOR` (15) and `CONCORDANCE_MIN_STATEMENTS` (10) defaults; and the FRAMING — the dark
+render is a neutral within-party-sorted reference table with heavy no-motive caveats; whether to promote a
+"most on-script member" headline (the leaderboard framing R2 was cautious about) is a publication
+decision, not a build one. Two measurement definitions were matched to the existing discipline index
+rather than invented, and are flagged for review: "on-script" counts a phrase synchronized by EITHER party
+(own-party-only is a possible tightening), and it counts a phrase used any time it is in the kept set (not
+only on its synchronized day) — both are exactly the existing discipline-index semantics the user asked to
+extend. A further distinctiveness filter (df_weight) on the receipt phrases is a possible refinement (a
+few floor-clearing phrases are generic-but-viral, e.g. "signed into law").
+
+NOT built (future increment, its own session): **1.5 The Unison + The Void** (R2). Streak unchanged.
+
+## Session 24 (2026-07-19, Opus) — build-order 6 cont.: 1.5 The Unison + The Void (R2), the symmetric weekly awards, dark
+
+The fourth and final increment of the rulings-shaped 1.3/1.4/1.5. Built **The Unison + The Void** — the
+symmetric weekly awards that R2 substituted for the KILLED Ventriloquism Award (docs/04 R2 ruling:
+"most on-script MEMBER" is dead — 318/538 tie at zero solo count, and naming a "vessel" is a
+chamber/tenure/nomenclature confound and an Article X member-shaming construct). Both awards are
+PHRASE-/TOPIC-level, never member-level, and symmetric by construction. Behind `FEATURES["awards"]`
+(the 1.5 slot / A9; default off — the flip is Michael's one commit). `build.build_awards(statements,
+ledger)` writes `derived/awards.json` EVERY run (from `deterministic.run`, wrapped skip-and-log like
+concordance so a dark feature can never crash RUN A); only `site.awards_body` is gated, so the flip is a
+pure release act. Pure function of `(statements, ledger, [silence boards on disk])`; rebuild reproduces
+it bar `generated_at`.
+
+**THE UNISON — each party's largest single-day office-share phrase over a trailing 7-day window.**
+office-share = a party's offices that used one exact phrase in a SOLO release that day ÷ its offices that
+published ANY solo release that day (the denominator on its face). The numerator comes from the ledger's
+`members_{party}` list (joint markers already excluded by the engine's unit key), INTERSECTED with the
+day's active-solo-office set computed from `statements` with the exact same filter (`lane==1`, not
+syndicated, not joint) — so the numerator is a subset of the denominator by construction and the share is
+always in [0,1]. R2's controls are structural: **SPAN-gated** (`nomenclature.is_nomenclature` per the
+day's congress — a bill title reaching high office-share is "everyone named the bill," not a message
+unison, the #143 control; degrades to no-op with no verdicts table); **privacy + display-boilerplate /
+weak-label filtered** exactly as the public sync table; **joint/co-signed releases excluded** from the
+office population; **both parties scored by one rule**, Independents not in the composites. The numerator
+IS the coordination magnitude, so — unlike the Concordance — **no phrase-peak floor is needed** (a winning
+share already implies many offices). Ranked within party; the #1 row is the award, runners-up shown for
+context.
+
+**A real-data finding fixed before it shipped: near-duplicate fragment clutter.** The first real run
+showed the D column as "united states of" AND "the united states of" as two separate top rows — the same
+stopword-padding/sub-gram family the flagship table already collapses. The Unison now reuses the flagship
+`collapse_and_rank` machinery (each phrase reduced to its single best day first, then padding/sub-gram
+families folded, `day_peak = offices_using` driving the collapse magnitude) so it can't regress what the
+public table fixed. Re-measured clean.
+
+**THE `UNISON_MIN_ACTIVE` FLOOR — measured, not guessed.** A `(party, day)` is eligible only with ≥ this
+many active solo offices, so a thin holiday can't take the award on a 2-of-3 share. **Measured** on the
+real corpus (week 2026-07-03..09, 1,723 statements → windowed ledger 9,817 entries): active solo
+offices/day is **bimodal** — normal weekdays **40–112 (D) / 24–77 (R)**, median 47/36, versus a thin-day
+cluster **≤17** (July 4th D=17/R=10, the 5th D=1/R=3, weekends). **20 sits in the empty gap for BOTH
+parties** (no day lands in 18–23), so it excludes holidays without touching normal days and keeps the
+award symmetric — at floor 15 the D winner was July-4th commemoration ("more perfect union", "next 250
+years") on 17 offices while R's 4-of-10 July-4th day fell below the bar, an asymmetric artifact.
+**Default `UNISON_MIN_ACTIVE = 20`**; disclosed on the page, movable. Sensitivity table (D / R winner):
+`15 → "next 250 years" 7/17 (July 4) / "of the working families tax cuts" 3/17` · `20 → "in federal
+funding" 8/40 / "under the working families tax cuts" 4/24` · `25 → same D / "better utilizing
+investments" 5/36`. **The metric's real signal shows on a news day**: on 2026-06-30 (birthright-
+citizenship SCOTUS) a SUBSTANTIVE phrase, "born in the united states", hit **53/102 D = 52% office-share**.
+A quiet week surfaces generic/commemorative language, which is honest, not a defect (no blocklist — the
+docs/16 anti-pattern); the floor keeps the denominator real and the "descriptive overlap, not motive"
+banner carries the rest.
+
+**THE VOID — the window's loudest silence, both directions, rolled up from the 1.2 absence-map boards.**
+`_the_void` reads whatever scored `data/derived/silence/*.json` boards fall inside the window and surfaces
+the loudest `silent` topic (max news volume that neither party touched) and the loudest `void` topic (max
+party push the news ignored). It **degrades honestly to UNAVAILABLE** when no scored board exists for the
+window — 1.2's law that a gap is never rendered as a silence carries through unchanged, so The Void never
+fabricates an award from a missing baseline. This is the state on real data today (silence_board is dark,
+no GDELT baselines local): `available=false`, and the page says so plainly. It lights up when 1.2 is
+wired and its boards accrue — no code change.
+
+**Render + gating.** `site.awards_body` (dark): both parties' Unison side by side (award card + runners-
+up, every line carrying `offices_using / offices_active` AND the caucus size), then The Void section, with
+the no-motive/overlap-only banner, the office-share definition, the floor, the SPAN + joint exclusions,
+and the name-index version all disclosed. Written to the site ONLY when the flag flips (built dark =
+absent from output, the `concordance.html` rule); the nav gains a gated "Awards" link; the Methodology
+gains a gated section. **Flag OFF ⇒ zero public bytes change** — locked tests: nav link absent,
+`methodology_body()` byte-identical. Validated end-to-end on real data: `awards.json` writes + round-trips
+(no collapse scaffolding leaks into the persisted rows), `awards_body` renders (16 KB page, all R2
+guarantees present), dark gating holds on the live functions. **19 new tests (`tests/test_awards.py`),
+348 green.**
+
+**RESERVED for Michael at the flip review (NOT self-authorized).** The flag flip itself; the
+`UNISON_MIN_ACTIVE` (20), `UNISON_WINDOW_DAYS` (7), `UNISON_TOP_N` (5), and `VOID_TOP_N` (3) defaults; and
+the FRAMING — whether a thin-day holiday commemoration or a ~20% normal-day fragment is worth headlining
+as "The Unison", and whether The Void ships before the absence map is publicly live. Two definitions are
+matched to the existing metrics and flagged: the office-share numerator counts a phrase used by ≥ SYNC_MIN
+offices (the flagship bar), and the window is a fixed trailing 7 days rather than a calendar week. A
+content/distinctiveness floor on the winning phrase (so a generic fragment like "in federal funding" can't
+top a quiet week) is a possible refinement — deliberately NOT added here (a blocklist is the docs/16
+anti-pattern; the "descriptive overlap" framing + the min-active floor are the honest controls).
+
+**Build order 6 (rulings-shaped 1.3/1.4/1.5) is COMPLETE**: 1.3 origination (Session 22) + R3 party
+columns (Session 22) + 1.4 Concordance (Session 23) + 1.5 The Unison + The Void (this session), all dark,
+all SPAN-gated, all behind their flags. Streak unchanged (the 3/3 §1.4.1 pass stands; the daily pipeline
+does not import build_awards' render). Next dark-shelf items (docs/11): 1.6 floor render + coverage
+metric, 1.10 memo-cadence, 1.9 (gated on `DATA_GOV_API_KEY`).

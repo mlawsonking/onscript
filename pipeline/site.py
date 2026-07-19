@@ -268,6 +268,10 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
     dark_nav = ""
     if config.feature_on("archive"):
         dark_nav += f'<a href="{root}archive/index.html">Archive</a>'
+    if config.feature_on("concordance"):
+        dark_nav += f'<a href="{root}concordance.html">Concordance</a>'
+    if config.feature_on("awards"):
+        dark_nav += f'<a href="{root}awards.html">Awards</a>'
     if config.feature_on("phrase_search"):
         dark_nav += f'<a href="{root}phrases/search.html">Search</a>'
     # The signed post log links into the nav only once the accounts have actually posted (§Session-8);
@@ -1685,6 +1689,46 @@ def methodology_body():
         "dead source link never means lost evidence. A release that is <em>deleted after we cited it</em> is not a "
         "gap in our record; it is a finding, and surfacing those is a planned feature.</p>"
     )
+
+    # The Concordance (1.4 / R4) — described here only once released, so the Methodology never
+    # documents a page the reader can't see (dark until FEATURES["concordance"]).
+    if config.feature_on("concordance"):
+        parts.append("<h2>The Concordance (per-member on-script index)</h2>")
+        parts.append(
+            "<p>The <a href='concordance.html'>Concordance</a> reports, for each member with enough solo "
+            f"releases to be scored (at least {esc(config.CONCORDANCE_MIN_STATEMENTS)}), the share of those "
+            "releases that used a phrase <strong>their party genuinely converged on</strong> — one that at "
+            f"least {esc(config.CONCORDANCE_PEAK_FLOOR)} members reached for on a single day. That "
+            "coordination floor matters: without it, generic political language a handful of offices happen "
+            "to share would count, and nearly every member would read as 100&percnt; on-script — a "
+            "measurement artifact, not a finding. Three more rules keep it honest: <strong>official names "
+            "are excluded</strong> (a bill title or committee name is not a talking point, so typing one is "
+            "never scored as on-script); <strong>joint and co-signed releases are excluded</strong> (that is "
+            "coordination, not a member's own voice); and every score is shown with its raw counts and "
+            "receipts, so a small sample can't hide behind a percentage. It is a descriptive overlap, applied "
+            "identically to both parties — never a claim about motive, direction, or who influenced whom.</p>")
+
+    # The Unison & The Void (1.5 / R2) — described here only once released (dark until FEATURES["awards"]).
+    if config.feature_on("awards"):
+        parts.append("<h2>The Unison &amp; The Void (weekly awards)</h2>")
+        parts.append(
+            "<p>The <a href='awards.html'>Unison &amp; the Void</a> are two symmetric weekly awards, "
+            "picked by the data on identical rules for both parties — the replacements for a "
+            "member-level &ldquo;most on-script&rdquo; award, which we dropped because it shames "
+            "individuals for a measurement that is really about chamber, tenure, and bill-naming. "
+            "<strong>The Unison</strong> is a phrase award: each party&rsquo;s single largest "
+            f"<em>office-share</em> phrase over the week — of the offices that published a solo release on "
+            f"a given day, the share that used one exact phrase (only days with at least "
+            f"{esc(config.UNISON_MIN_ACTIVE)} active offices are eligible, so a quiet day can&rsquo;t win). "
+            "Official names are excluded (naming a bill is not a talking point), joint releases are "
+            "excluded (that is coordination, not one office&rsquo;s wording), and every card shows its raw "
+            "numerator and denominator. <strong>The Void</strong> is a topic award drawn from the absence "
+            "map: the week&rsquo;s loudest silence in both directions — what the news carried that neither "
+            "party would touch, and what a party pushed that the news ignored. When the absence map has no "
+            "scored board for the week, The Void is shown as unavailable rather than invented — a gap is "
+            "never reported as a silence. No award names an individual member; the unit is the phrase or "
+            "the topic, and each is a descriptive overlap, not a claim about motive.</p>")
+
     return "".join(parts)
 
 
@@ -1944,6 +1988,247 @@ def silence_board_body(board) -> str:
     return "".join(parts)
 
 
+# ---------------------------------------------------------------------------
+# 1.4 The Concordance (R4 / docs/21 §3.2) — the per-member on-script index. DARK until
+# FEATURES["concordance"]. A reference INDEX (denominators every line, no motive claim, SPAN-gated,
+# both parties together, receipts per named member) — NOT the single-winner author leaderboard /
+# Ventriloquism Award that #143/R2 retired. Data (derived/concordance.json) is built every run; only
+# this render is gated, so the flip is a pure release act.
+# ---------------------------------------------------------------------------
+def _member_label(m: dict) -> str:
+    """Self-contained member label from the concordance row (name/party/state/chamber persisted at
+    build time, so the render needs no roster re-resolution). '(P-ST) · Chamber'."""
+    name = m.get("name") or m.get("bioguide") or "—"
+    party, state, chamber = m.get("party"), m.get("state"), m.get("chamber")
+    if party and state:
+        suffix = f" ({esc(party)}-{esc(state)})"
+    elif state:
+        suffix = f" ({esc(state)})"
+    else:
+        suffix = ""
+    ch = {"house": "House", "senate": "Senate"}.get(chamber or "", "")
+    ch_html = f' <span class="faint">{ch}</span>' if ch else ""
+    return f"{esc(name)}{suffix}{ch_html}"
+
+
+def _concordance_column(party: str, rows: list, root: str) -> str:
+    """One party's column of the Concordance: each named member's on-script share, ranked within the
+    party, with the raw counts on every line and expandable receipts."""
+    lis = []
+    for m in rows:
+        if not isinstance(m, dict):
+            continue
+        st, on = _num(m.get("statements")), _num(m.get("on_script"))
+        pct = round(100 * float(m.get("index") or 0), 1)
+        receipts = [r for r in (m.get("receipts") or []) if isinstance(r, dict)]
+        rc = ""
+        if receipts:
+            items = []
+            for r in receipts:
+                url = _safe_http_url(r.get("url"))
+                link = f' <a href="{url}" rel="nofollow noopener">source</a>' if url else ""
+                items.append(f'<li>&ldquo;{esc(r.get("phrase"))}&rdquo; '
+                             f'<span class="faint">{esc(r.get("date"))}</span>{link}</li>')
+            rc = (f'<details class="receipts"><summary>{len(receipts)} receipt'
+                  f'{"" if len(receipts) == 1 else "s"}</summary><ul>{"".join(items)}</ul></details>')
+        lis.append(f'<li><span class="pcount">{esc(pct)}%</span> '
+                   f'<span class="faint">{esc(on)} of {esc(st)} statements</span> '
+                   f'{_member_label(m)}{rc}</li>')
+    body = "".join(lis) or '<li class="muted">No member reached the statement floor for this party.</li>'
+    return (f'<div class="pcol"><h3><span class="pill {esc(party)}">{esc(party)}</span> '
+            f'on-script share</h3><ol class="pcol-list">{body}</ol></div>')
+
+
+def concordance_body(cdata: dict, depth: int = 0) -> str:
+    """The Concordance page body (1.4 / R4). Every R4 guarantee is on the page: a denominator on every
+    line, an explicit no-motive/no-prediction caveat, the SPAN-gate + joint-exclusion disclosure, both
+    parties side by side, and the below-floor count named in aggregate (never a per-member zero)."""
+    root = "../" * depth
+    members = [m for m in (cdata.get("members") or []) if isinstance(m, dict)]
+    win = cdata.get("window") or {}
+    minst = cdata.get("min_statements")
+    floor = cdata.get("peak_floor")
+    parts = ["<h1>The Concordance</h1>"]
+    parts.append(
+        '<p class="subhead">For every member with at least '
+        f'{esc(minst)} solo press releases in our corpus, the share of those releases that used a phrase '
+        '<strong>their party genuinely converged on</strong> &mdash; one that at least '
+        f'{esc(floor)} members reached for on a single day somewhere in our record. Official names (bill '
+        'titles, committee names) are excluded, so naming a bill is never counted as being on-script.</p>')
+    # R4: no predictive claim. State it plainly, on the page, before any number.
+    parts.append(
+        '<div class="banner">This is a descriptive measurement of <em>overlap</em> &mdash; not a claim '
+        'about motive, direction, or influence. A high share means a member&rsquo;s own releases often '
+        'reached for the same phrasing their party converged on; it does <strong>not</strong> mean they '
+        'were told to, or that they led. Every score shows its raw counts so you can weigh the sample '
+        'yourself.</div>')
+    idxv = cdata.get("nomenclature_index_version")
+    name_note = (f'the committed nomenclature index ({esc(idxv)})' if idxv
+                 else 'the committed nomenclature index (none present in this build &mdash; no names excluded)')
+    parts.append(
+        f'<p class="muted"><small>Window: {esc(win.get("start"))} &rarr; {esc(win.get("end"))}. '
+        f'Official-name exclusion uses {name_note}. Joint / co-signed releases are excluded &mdash; a '
+        'signed-together letter is coordination, not a member&rsquo;s solo voice. Both parties are scored '
+        'by the identical rule and shown together.</small></p>')
+    cols = [_concordance_column(p, [m for m in members if m.get("party") == p], root)
+            for p in config.COMPOSITE_PARTIES]
+    parts.append(f'<div class="pcols">{"".join(cols)}</div>')
+    excl = _num((cdata.get("counts") or {}).get("excluded_below_floor"))
+    if excl:
+        parts.append(
+            f'<p class="muted"><small>{esc(excl)} member{"" if excl == 1 else "s"} had fewer than '
+            f'{esc(minst)} solo releases and {"is" if excl == 1 else "are"} not scored here &mdash; too '
+            'few statements for a stable share, and too few to cite. Omitted rather than shown at a noisy '
+            'or zero score.</small></p>')
+    parts.append(f'<p class="muted" style="margin-top:20px"><a href="{root}methodology.html">'
+                 'How this is measured &rarr;</a></p>')
+    return "".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# 1.5 The Unison + The Void (R2 / docs/21 §3.2) — the symmetric weekly awards that replaced the killed
+# Ventriloquism Award. DARK until FEATURES["awards"]. THE UNISON: each party's largest single-day
+# office-share phrase (denominator on its face, SPAN-gated, phrase-level so no member is shamed). THE
+# VOID: the window's loudest silence, both directions, from the 1.2 board (degrades honestly to
+# unavailable). Data (derived/awards.json) is built every run; only this render is gated, so the flip is
+# a pure release act.
+# ---------------------------------------------------------------------------
+def _unison_offices(row) -> str:
+    """The offices that said it — the receipts for a Unison card (>= SYNC_MIN by construction)."""
+    mem = [m for m in (row.get("members") or []) if isinstance(m, dict)]
+    if not mem:
+        return ""
+    chips = []
+    for m in mem:
+        nm = m.get("name") or m.get("bioguide") or "—"
+        st = f' <span class="faint">({esc(m.get("state"))})</span>' if m.get("state") else ""
+        chips.append(f"<li>{esc(nm)}{st}</li>")
+    more = _num(row.get("members_more"))
+    more_html = f'<li class="faint">+{esc(more)} more</li>' if more else ""
+    n = _num(row.get("offices_using"))
+    return (f'<details class="receipts"><summary>{esc(n)} office{"" if n == 1 else "s"} said it'
+            f'</summary><ul>{"".join(chips)}{more_html}</ul></details>')
+
+
+def _unison_phrase(row, root, slugs) -> str:
+    ngram, slug = row.get("ngram", ""), row.get("slug", "")
+    if slugs and slug in slugs:
+        return f'<a href="{root}phrases/{esc(slug)}.html">{esc(ngram)}</a>'
+    return esc(ngram)
+
+
+def _unison_denoms(row, caucus) -> tuple:
+    """(share_pct, denominator-on-its-face string) — offices-using / offices-active, plus the caucus."""
+    using, active, day = _num(row.get("offices_using")), _num(row.get("offices_active")), row.get("day")
+    share = round(100 * float(row.get("office_share") or 0), 1)
+    cd = f" &middot; of {esc(caucus)} in the caucus" if isinstance(caucus, int) and caucus else ""
+    return share, f"{esc(using)} of {esc(active)} offices that published on {esc(day)}{cd}"
+
+
+def _unison_column(party, rows, caucus, root, slugs) -> str:
+    """One party's Unison: the award (top office-share phrase) as a card, runners-up as a compact list."""
+    rows = [r for r in (rows or []) if isinstance(r, dict)]
+    head = f'<h3><span class="pill {esc(party)}">{esc(party)}</span> The Unison</h3>'
+    if not rows:
+        return (f'<div class="pcol">{head}<p class="muted">No phrase reached the office-share threshold '
+                'for this party this week — no single-day unison cleared the floor.</p></div>')
+    award = rows[0]
+    share, denom = _unison_denoms(award, caucus)
+    card = (f'<div class="banner"><span class="pcount">{esc(share)}%</span> office-share<br>'
+            f'&ldquo;{_unison_phrase(award, root, slugs)}&rdquo;<br>'
+            f'<span class="faint">{denom}</span>{_unison_offices(award)}</div>')
+    extra = ""
+    if len(rows) > 1:
+        lis = []
+        for r in rows[1:]:
+            s, dn = _unison_denoms(r, caucus)
+            lis.append(f'<li><span class="pcount">{esc(s)}%</span> '
+                       f'&ldquo;{_unison_phrase(r, root, slugs)}&rdquo; '
+                       f'<span class="faint">{dn}</span>{_unison_offices(r)}</li>')
+        extra = ('<p class="faint" style="margin-top:10px">Also in unison this week</p>'
+                 f'<ol class="pcol-list">{"".join(lis)}</ol>')
+    return f'<div class="pcol">{head}{card}{extra}</div>'
+
+
+def _void_table(rows, empty_msg) -> str:
+    rows = [r for r in (rows or []) if isinstance(r, dict)]
+    if not rows:
+        return f'<p class="muted">{empty_msg}</p>'
+    body = "".join(
+        f'<tr><td>{esc(r.get("label") or r.get("topic"))}</td>'
+        f'<td class="num">{esc(r.get("news_volume"))}</td>'
+        f'<td class="num">{esc(r.get("D"))}</td><td class="num">{esc(r.get("R"))}</td>'
+        f'<td class="faint">{esc(r.get("day"))}</td></tr>' for r in rows)
+    return ("<div class='scroll'><table><thead><tr><th>Topic</th><th class='num'>News volume</th>"
+            "<th class='num'>D statements</th><th class='num'>R statements</th><th>Day</th></tr></thead>"
+            f"<tbody>{body}</tbody></table></div>")
+
+
+def _void_section(void) -> str:
+    parts = ["<h2>The Void</h2>"]
+    if not void or not void.get("available"):
+        note = (void or {}).get("note") or "The absence map has not been built for this window."
+        return "".join(parts) + (f'<p class="muted"><strong>Unavailable this week.</strong> {esc(note)} '
+                                 'This award appears once the absence map (the silence detector) is '
+                                 'running for the window.</p>')
+    parts.append(f'<p class="subhead">{esc(void.get("note"))}</p>')
+    ls = void.get("loudest_silence")
+    if ls:
+        parts.append('<div class="banner">The week&rsquo;s loudest silence: <strong>'
+                     f'{esc(ls.get("label") or ls.get("topic"))}</strong> was {esc(ls.get("news_volume"))} '
+                     f'of the day&rsquo;s national news on {esc(ls.get("day"))}, and neither party would '
+                     f'touch it (D {esc(ls.get("D"))}, R {esc(ls.get("R"))} statements).</div>')
+    parts.append("<h3>Nobody would say it</h3>")
+    parts.append(_void_table(void.get("silence_top"), "No topic cleared the silence gate this week."))
+    parts.append("<h3>Shouting into the void</h3>")
+    parts.append(_void_table(void.get("void_top"), "No topic cleared the void gate this week."))
+    parts.append(f'<p class="muted"><small>Rolled up from {esc(_num(void.get("boards_scored")))} scored '
+                 'daily absence-map boards in this window. A gap is never a silence: a day whose news pull '
+                 'failed or whose corpus is too thin is excluded, never reported as avoidance.</small></p>')
+    return "".join(parts)
+
+
+def awards_body(adata, slugs_with_pages=None, depth: int = 0) -> str:
+    """The Unison & The Void page (1.5 / R2). Symmetric by construction: both parties scored by one rule,
+    every number carries its denominator, no individual member is named as a 'vessel' (the unit is the
+    PHRASE / the TOPIC), and the award is explicitly a descriptive overlap — never a claim about motive."""
+    root = "../" * depth
+    adata = adata or {}
+    win = adata.get("window") or {}
+    caucus = adata.get("caucus") or {}
+    unison = adata.get("unison") or {}
+    parts = ["<h1>The Unison &amp; The Void</h1>"]
+    parts.append('<p class="subhead">Two symmetric awards, picked by the data on identical rules for both '
+                 'parties. <strong>The Unison</strong>: each party&rsquo;s single most-synchronized phrase '
+                 'of the week — of the offices that published a release that day, the share that reached '
+                 'for one exact phrase. <strong>The Void</strong>: the week&rsquo;s loudest silence — what '
+                 'the news was full of that neither party would touch.</p>')
+    parts.append('<div class="banner">These are awards about <em>phrases and topics</em>, never about '
+                 'individual members. A high office-share means many of a party&rsquo;s offices used the '
+                 'same wording that day — a descriptive measurement of overlap, not a claim about motive '
+                 'or who told whom. Every number shows its denominator.</div>')
+    parts.append(f'<h2>The Unison <span class="faint">{esc(win.get("start"))} &rarr; '
+                 f'{esc(win.get("end"))}</span></h2>')
+    cols = [_unison_column(p, unison.get(p), caucus.get(p), root, slugs_with_pages)
+            for p in config.COMPOSITE_PARTIES]
+    parts.append(f'<div class="pcols">{"".join(cols)}</div>')
+    ma = adata.get("min_active")
+    idxv = adata.get("nomenclature_index_version")
+    name_note = (f"the committed nomenclature index ({esc(idxv)})" if idxv
+                 else "the committed nomenclature index")
+    parts.append('<p class="muted"><small>Office-share = a party&rsquo;s offices using the phrase that day '
+                 '&divide; its offices that published any solo release that day. Only days with at least '
+                 f'{esc(ma)} active offices are eligible, so a quiet weekend can&rsquo;t win on a '
+                 f'two-of-three share. Official names (bill titles, committee names) are excluded via '
+                 f'{name_note}, so naming a bill is never a unison. Joint / co-signed releases are excluded '
+                 '— that is coordination, not a single office&rsquo;s own wording. Both parties are scored '
+                 'by the identical rule.</small></p>')
+    parts.append(_void_section(adata.get("void")))
+    parts.append(f'<p class="muted" style="margin-top:20px"><a href="{root}methodology.html">'
+                 'How this is measured &rarr;</a></p>')
+    return "".join(parts)
+
+
 def build_site():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
@@ -2051,6 +2336,30 @@ def build_site():
                 encoding="utf-8",
             )
             written.append(f"phrases/{p.stem}.html")
+
+    # ---- concordance.html (1.4 The Concordance / R4) — dark until FEATURES["concordance"] ----
+    # Not written at all while dark: an unlinked page is still crawlable/shareable, so "built dark"
+    # means absent from the output, not merely absent from the nav (same rule as phrases/search.html).
+    if config.feature_on("concordance"):
+        cdata = _load_json(DERIVED / "concordance.json") or {}
+        (OUT / "concordance.html").write_text(
+            page("OnScript · The Concordance", concordance_body(cdata, depth=0), depth=0,
+                 description="The per-member on-script index: each member's share of party-synchronized language, with receipts."),
+            encoding="utf-8",
+        )
+        written.append("concordance.html")
+
+    # ---- awards.html (1.5 The Unison + The Void / R2) — dark until FEATURES["awards"] ----
+    # Not written at all while dark: an unlinked page is still crawlable/shareable, so "built dark"
+    # means absent from the output, not merely absent from the nav (same rule as concordance.html).
+    if config.feature_on("awards"):
+        adata = _load_json(DERIVED / "awards.json") or {}
+        (OUT / "awards.html").write_text(
+            page("OnScript · The Unison & The Void", awards_body(adata, SLUGS_WITH_PAGES, depth=0), depth=0,
+                 description="The week's symmetric awards: each party's most-synchronized phrase, and the loudest silence."),
+            encoding="utf-8",
+        )
+        written.append("awards.html")
 
     # ---- methodology.html ----
     (OUT / "methodology.html").write_text(
