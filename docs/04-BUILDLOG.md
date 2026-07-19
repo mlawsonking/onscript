@@ -1867,3 +1867,22 @@ re-filed.
 
 Streak read from the record: **2/3** (07-16, 07-17
 clean unattended), earliest §1.4.1 pass Sat 07-19 — consistent with docs/19 §0.
+
+## Session 22 (2026-07-19, Opus) — build-order 6 begins: 1.3 origination (R2), SPAN-gated + floored, dark
+
+First increment of the rulings-shaped 1.3/1.4/1.5 (docs/21 §3.2 — Opus implements to R2/R3/R4, the
+release flip stays Michael's). Built the **1.3 origination core**, DARK behind `FEATURES["authors_vessels"]`.
+The retired author leaderboard (#143) was three confounds at once — tenure, chamber, and nomenclature
+("Chip Roy authored the SAVE Act" = a member typing a bill's name first). The live phrase page still
+made the raw claim ("First said {date} by {member}") for every phrase, bill titles included. R2's
+redesign, now implemented as `site._origination_line`, makes a per-phrase origination claim ONLY under
+three controls: (a) **SPAN** — a nomenclature phrase (via the committed `is_nomenclature` tables, usable
+while the display tagger is dark) gets NO authorship claim, just "first recorded"; (b) the **#143
+coordination floor** (`ORIGINATION_PEAK_FLOOR=15`) — below it, first-use is a chamber artifact, not
+origination; (c) **born-coordinated** — multiple day-0 first-sayers means no single author. Flag OFF ⇒
+the phrase page is byte-identical (a locked test), so nothing on the live site changed and no re-render
+was needed. 6 new tests (`tests/test_origination.py`), **310 green**. NOT built yet (future increments):
+a dedicated origination surface / the phrases-index treatment, 1.4 The Concordance (R4), 1.5 The Unison
++ The Void (R2). The `authors_vessels` flag name is kept (the 1.3 slot) though the construct it once
+named is dead — noted in the code. Streak unchanged (2/3; the 07-19 cron had not landed a day-07-18
+manifest at session time).

@@ -1232,6 +1232,36 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
 # ---------------------------------------------------------------------------
 # Phrase pages
 # ---------------------------------------------------------------------------
+# 1.3 origination (R2 / docs/21 §3.2), DARK until FEATURES["authors_vessels"]. The author LEADERBOARD is
+# dropped (#143: it was tenure- + chamber-confounded and nomenclature-contaminated — "Chip Roy authored
+# the SAVE Act" is a member typing a bill's name first, not authoring a message). What survives is
+# per-phrase origination under three controls: (a) SPAN — a nomenclature phrase gets NO authorship claim;
+# (b) a coordination FLOOR — below it, first-use is a chamber artifact (at peak>=2 the "authors" are all
+# senators), not origination; (c) BORN-COORDINATED — multiple day-0 first-sayers means no single author.
+ORIGINATION_PEAK_FLOOR = 15   # #143 confound control (its only prior home was an incidental default)
+
+
+def _origination_line(pdata) -> str:
+    """The SPAN-gated, floor-gated, born-coordinated origination string for a phrase's 'First said' row
+    (1.3 / R2). Returns display HTML. Party-blind; reads only the phrase's own record + the committed
+    nomenclature tables (usable even while the display tagger is dark)."""
+    fs = pdata.get("first_seen") or {}
+    fs_date, fs_bio, tie = fs.get("date", ""), fs.get("bioguide"), fs.get("tie") or []
+    ngram, peak = pdata.get("ngram", ""), pdata.get("peak_units")
+    cong = pdata.get("congress") or (util.congress_for_date(fs_date) if fs_date else None)
+    if cong and ngram and nomenclature.is_nomenclature(ngram, int(cong)):
+        return (f'{esc(fs_date)} <span class="faint">(first recorded — an official name, '
+                f'not an authored phrase)</span>')
+    if not isinstance(peak, int) or peak < ORIGINATION_PEAK_FLOOR:
+        return (f'{esc(fs_date)} <span class="faint">(first recorded — below the '
+                f'{ORIGINATION_PEAK_FLOOR}-member coordination floor, so first use is not origination)</span>')
+    if tie:
+        names = ", ".join(member_name(b) for b in (([fs_bio] + list(tie)) if fs_bio else list(tie)))
+        return (f'{esc(fs_date)} — <strong>born coordinated</strong> '
+                f'<span class="faint">(no single author; first said together by {names})</span>')
+    return f"{esc(fs_date)} by {member_name(fs_bio)}"
+
+
 def phrase_page_body(pdata, depth=1):
     ngram = pdata.get("ngram", "")
     fs = pdata.get("first_seen") or {}
@@ -1265,7 +1295,13 @@ def phrase_page_body(pdata, depth=1):
         tie_html = ' <span class="faint">(tied with ' + ", ".join(member_name(b) for b in tie) + ")</span>"
 
     parts.append('<dl class="kv">')
-    parts.append(f"<dt>First said</dt><dd>{esc(fs_date)} by {member_name(fs_bio)}{tie_html}</dd>")
+    # 1.3 origination (R2), DARK until FEATURES["authors_vessels"]: SPAN-gated + coordination-floored +
+    # born-coordinated. Flag OFF => the current unchanged line (byte-identical), so the redesign ships
+    # dark and the release flip stays Michael's (docs/21 §3.2).
+    if config.feature_on("authors_vessels"):
+        parts.append(f"<dt>First said</dt><dd>{_origination_line(pdata)}</dd>")
+    else:
+        parts.append(f"<dt>First said</dt><dd>{esc(fs_date)} by {member_name(fs_bio)}{tie_html}</dd>")
     if peak is not None:
         parts.append(f"<dt>Peak</dt><dd>{esc(peak)} members in one day</dd>")
     if dfw is not None:
