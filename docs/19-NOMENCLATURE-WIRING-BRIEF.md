@@ -100,6 +100,11 @@ receipts jointly say — unchecked).
    missed valid finding costs a line; an admitted scaffold key anchors unrelated claims on the
    flagship surface.** Deterministic, party-blind, kill-fixture-tested both directions (the two
    clusters above MUST die; the birthright-citizenship 06-30 flagship MUST survive).
+   **Every rejection emits a stable reason code** (REJECT_ATTRIBUTION_FRAME ·
+   REJECT_INCOMPLETE_SYNTACTIC_SPAN · REJECT_GENERIC_CONNECTIVE · REJECT_ENTITY_ONLY ·
+   REJECT_TITLE_FRAGMENT · REJECT_LOW_INFORMATION_CONTENT · REJECT_FAMILY_QUORUM · …), and rejected
+   candidates are LOGGED with reason + would-have-been output (a dark-shelf view — the only honest
+   way to audit false negatives before tuning a conservative gate).
 2. **The family-quorum invariant, enforced after ALL collapsing and before anything is renderable**:
    `eligible_cluster_units = distinct collapsed document families passing span + admissibility;
    publish only when count(eligible_cluster_units) >= quorum.` Kelly+Rosen are one family and must
@@ -108,20 +113,38 @@ receipts jointly say — unchecked).
    today, fix and kill-test.
 3. **Receipt display**: highlight the exact matching span in every receipt, and replace the single
    "verifier passed" badge with the per-test breakdown (span present n/n · spans highlighted ·
-   distinct members · distinct document families · admissibility · attribution gate · URLs). No test
-   shown, no badge; the aggregate "verified" state exists only when every exposed test passes.
-4. **Audit ALL published days for inadmissible keys** (the defect is systemic to 4-gram keys, not a
-   07-17 event); re-render affected days; every change is a dated corrections-log entry.
+   distinct members · distinct document families · admissibility · attribution gate · URLs). The
+   aggregate "Publication verified" state is a derived CONJUNCTION: it exists only when every chip is
+   independently computed and passes; **a failed or unavailable check makes the aggregate
+   UNAVAILABLE, never a reduced confidence.**
+4. **Audit ALL published days for inadmissible keys** — this is a defect CLASS whose historical
+   extent is unknown until the audit runs, not a 07-17 event. **Categorize the failures by reason
+   code, don't merely count them**; add a regression fixture per discovered class; re-render
+   affected days; every change is a dated corrections-log entry.
+
+**Session-close evidence (Art. XVI — the P0 closes on evidence, not on edits):** the two named 07-17
+clusters die for the correct deterministic reason · a known-good substantive cluster survives ·
+family collapse runs before quorum on every publication path · spans highlighted on every receipt ·
+chips independently computed · the all-days audit has run over the complete archive with failures
+categorized · affected pages rebuilt or visibly corrected · a HUMAN sample audit covers both admitted
+AND rejected clusters (fold into the #129 dark-week receipts ritual) · the live page no longer shows
+the known-invalid interpretations.
 
 **This blocks the launch flip** (Constitution Art. I — citation-or-silence: a receipt that does not
 support its line's meaning is a silent integrity failure even when every string check passes).
 
 ## §4c Riders from the review's revision (non-blocking — do if cheap, else queue with the item named)
 
-- **The clause-ablation test** (the reviewer's best new idea): rendered prose must be mechanically
-  traceable to its clusters — *removing any supporting cluster must remove or materially alter the
-  corresponding rendered claim*. If the current render path can bind clauses to cluster ids cheaply,
-  add it as a golden test; if not, queue it in docs/11 as a named pre-v2-Concordance requirement.
+- **Support-graph validity** (the reviewer's best new idea, hardened on their second pass — the law
+  is *no rendered proposition may outlive its evidence*): every factual rendered clause carries
+  non-empty machine-readable `support_cluster_ids`; removing a cluster from the render input must
+  remove every clause exclusively supported by it or leave those clauses supported by another mapped
+  cluster; no factual clause may survive with zero valid supports. **The binding invariant is the
+  support GRAPH, not textual difference** — a "materially altered prose" comparison would fail on
+  harmless rewording and pass a renderer that preserved an unsupported claim in different words.
+  Literal ablation snapshots are retained only as regression fixtures. If the current render path
+  can bind clauses to cluster ids cheaply, land it now; if not, queue it in docs/11 as a named
+  pre-v2-Concordance requirement.
 - **Per-post composite label**: the AI-composite marker must survive a cropped screenshot — it goes
   in EVERY post unit of a thread, not the thread head or the bio. Posting is off; land it before the
   flip.
