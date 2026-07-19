@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-07-19",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 8,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "8 consecutive days published (through 2026-07-18)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0583,
+      "projected": 0.1582,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 6,
+      "note": "$0.0583 MTD, $0.16 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-07-18",
+      "parties": {
+        "D": {
+          "statements": 5,
+          "median": 135,
+          "share": 0.037,
+          "status": "red"
+        },
+        "R": {
+          "statements": 3,
+          "median": 84,
+          "share": 0.036,
+          "status": "red"
+        }
+      },
+      "status": "red",
+      "freshness": {
+        "age_hours": 3.37,
+        "day": "2026-07-19",
+        "status": "green"
+      },
+      "excluded_reports": 2,
+      "note": "2026-07-18: D 5/135=4% R 3/84=4% of own 14d median (green >= 60%); upstream 3.4h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.0769,
+      "dropped": 4,
+      "offered": 52,
+      "unmeasured_rows": 0,
+      "status": "green",
+      "note": "4/52 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "coverage"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "national security department",
+    "party": "D",
+    "day_peak": 32,
+    "day": "2026-07-15"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "owners_brief",
+      "phrase_search",
+      "public_api",
+      "silence_board",
+      "the_script",
+      "upstream_graph"
+    ],
+    "released": []
+  },
+  "headline": "RED: coverage"
+}
