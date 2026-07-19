@@ -275,6 +275,10 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     # above). schema_version stays 1.
     day_json["rejected_keys"] = {p: day_payload[p]["rejected_keys"] for p in config.COMPOSITE_PARTIES}
     day_json["top_synchronized"] = build.top_synchronized(ledger, day, k=20)
+    # R3 / #146 — each party's OWN top-k, so the per-party columns give both parties equal slots (the
+    # pooled top-20 is 88% D by caucus size, not coordination). Computed EVERY day (build-dark); the
+    # render is gated on FEATURES["party_columns"], so the flip is a pure release act. Additive.
+    day_json["sync_by_party"] = build.top_synchronized_by_party(ledger, day, k_per_party=10)
     # 1.7a The Duet — the same phrase, both parties, the same day. Computed EVERY day so the archive
     # keeps it and the flag flip is a pure release act (no backfill needed); RENDERING is gated on
     # FEATURES["duet"] (BUILD-PROGRAM §1, build dark / release by gate). Deterministic and $0 — it

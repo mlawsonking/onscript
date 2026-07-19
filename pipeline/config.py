@@ -150,6 +150,10 @@ FEATURES = {
     # brief §2/§7 and CLAUDE.md; gates SITE display-time + daily pre-distill annotation. The MEASURE
     # wiring (nomenclature_rate in the nightly audit) is unconditional and does NOT read this flag.
     "nomenclature_tags": False,
+    # R3 / #146 — per-party side-by-side columns for the day table (each party its own top-k with
+    # N-of-caucus), fixing the pooled rank-and-truncate that makes the flagship 88% D. Data
+    # (sync_by_party) is built every day; this gates only the RENDER, so the flip is a pure release act.
+    "party_columns": False,
 }
 
 

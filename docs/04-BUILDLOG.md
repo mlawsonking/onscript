@@ -1886,3 +1886,20 @@ a dedicated origination surface / the phrases-index treatment, 1.4 The Concordan
 + The Void (R2). The `authors_vessels` flag name is kept (the 1.3 slot) though the construct it once
 named is dead — noted in the code. Streak unchanged (2/3; the 07-19 cron had not landed a day-07-18
 manifest at session time).
+
+**R3 / #146 — per-party side-by-side columns (the second build-order-6 increment), DARK behind
+`FEATURES["party_columns"]`.** The pooled `collapse_and_rank(rows, k=20)` ranks by raw peak and
+truncates, so the larger caucus structurally fills the flagship table — measured **20 D / 0 R on
+2026-07-15** (100% D), a live Art. IV instrument asymmetry, not a finding. R3's fix goes in the VIEW,
+never the threshold (SYNC_MIN untouched): `build.top_synchronized_by_party` gives each party its OWN
+top-k ranked WITHIN the party, and `site.party_columns_table` renders two columns with an N-of-caucus
+denominator on every row. `run_assemble` writes `day_json["sync_by_party"]` every day (build-dark), so
+the flip is a pure release act; the render falls back to deriving per-party top-k from the stored pooled
+top-20 for historical days written before the field existed (**bounded pre-flip limitation**: a minority
+column can read empty if that party's phrases were truncated out of the pooled top-20 — new days carry
+the full per-party set). Flag OFF ⇒ the day view is the current pooled `sync_table`, byte-identical (a
+locked test), so nothing live changed and no re-render was needed. 5 tests (`tests/test_party_columns.py`),
+**315 green**. The full per-party columns need `sync_by_party`, which only new days accrue — so the fix
+is complete going forward and degrades honestly on old days. NEXT: 1.4 The Concordance (R4, per-MEMBER
+on-script index — a new data layer, the existing discipline index is per-party-per-day) and 1.5 The
+Unison + The Void, each a substantial feature.

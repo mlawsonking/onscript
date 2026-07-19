@@ -230,6 +230,12 @@ tr:hover td{background:#faf9f6}
         border:1px solid var(--line); border-radius:9px; color:var(--muted); background:var(--panel);
         white-space:nowrap; vertical-align:1px; cursor:help}
 .spark{display:block}
+.pcols{display:flex; gap:20px; flex-wrap:wrap}
+.pcol{flex:1 1 300px; min-width:0}
+.pcol h3{font-size:14px; margin:0 0 6px; font-weight:600}
+ol.pcol-list{list-style:none; margin:0; padding:0; font-size:14px}
+ol.pcol-list li{padding:6px 0; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:baseline; gap:6px}
+.pcount{display:inline-block; min-width:24px; font-weight:700; font-variant-numeric:tabular-nums}
 
 .nav-pn{display:flex; justify-content:space-between; gap:12px; margin:26px 0; font-size:15px}
 .chartbox{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:12px; margin:16px 0}
@@ -1138,6 +1144,49 @@ def duet_panel(day_data, depth: int = 0) -> str:
     return "".join(out)
 
 
+def _party_column(party, rows, slugs_with_pages, depth, caucus_size) -> str:
+    """One party's column for the per-party synchronized-phrase display (R3). Each row is that party's
+    OWN member count for the phrase, with the caucus denominator so a raw count never reads as a rate."""
+    root = "../" * depth
+    lis = []
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        ngram, slug = r.get("ngram", ""), r.get("slug", "")
+        cnt = (r.get("counts") or {}).get(party, 0)
+        denom = (f' <span class="faint">of {caucus_size} ({round(100 * cnt / caucus_size, 1)}%)</span>'
+                 if isinstance(caucus_size, int) and caucus_size else "")
+        cell = (f'<a href="{root}phrases/{esc(slug)}.html">{esc(ngram)}</a>'
+                if slug in slugs_with_pages else esc(ngram))
+        series = [int(v) for v in (r.get("series") or []) if v is not None]
+        spark = sparkline_svg(series, party=party) if len(series) >= 2 else ""
+        lis.append(f'<li><span class="pcount">{esc(cnt)}</span>{denom} {cell} {spark}</li>')
+    body = "".join(lis) or '<li class="muted">No phrase reached the threshold for this party today.</li>'
+    return (f'<div class="pcol"><h3><span class="pill {esc(party)}">{esc(party)}</span> '
+            f'most synchronized</h3><ol class="pcol-list">{body}</ol></div>')
+
+
+def party_columns_table(day_data, slugs_with_pages, depth, caucus) -> str:
+    """R3 / #146 — per-party side-by-side columns: each party's OWN top-k synchronized phrases, ranked by
+    that party's member count, each row with its N-of-caucus denominator. Removes the pooled
+    rank-and-truncate artifact (the larger caucus structurally filling a single table). SYNC_MIN
+    untouched. Uses the build-time `sync_by_party`; falls back to deriving per-party top-k from the
+    stored pooled top_synchronized for historical days written before it existed."""
+    by_party = day_data.get("sync_by_party")
+    cols = []
+    for p in config.COMPOSITE_PARTIES:
+        rows = (by_party or {}).get(p) if isinstance(by_party, dict) else None
+        if rows is None:
+            pooled = build.collapse_and_rank(
+                [r for r in (day_data.get("top_synchronized") or []) if isinstance(r, dict)], k=10_000)
+            rows = sorted((r for r in pooled if (r.get("counts") or {}).get(p, 0) >= config.SYNC_MIN_MEMBERS),
+                          key=lambda r: (r.get("counts") or {}).get(p, 0), reverse=True)[:10]
+        cols.append(_party_column(p, rows, slugs_with_pages, depth, (caucus or {}).get(p)))
+    return ('<p class="subhead">Each party&rsquo;s own most-synchronized phrases, ranked within the '
+            'party so the larger caucus can&rsquo;t fill the table — every count travels with its '
+            f'caucus denominator.</p><div class="pcols">{"".join(cols)}</div>')
+
+
 def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_day=None, is_today=False):
     symmetry = _load_json(DERIVED / "symmetry" / f"{day}.json")
     root = "../" * depth
@@ -1206,7 +1255,12 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         '<p class="subhead">Content phrases used by three or more independent members of one party '
         "on this day. The sparkline is the phrase's 14-day trajectory (higher of the two parties' daily counts).</p>"
     )
-    parts.append(sync_table(day_data, slugs_with_pages, depth))
+    # R3 / #146 — per-party columns, DARK until FEATURES["party_columns"]. Flag OFF => the current
+    # pooled sync_table (byte-identical), so the redesign ships dark and the flip stays Michael's.
+    if config.feature_on("party_columns"):
+        parts.append(party_columns_table(day_data, slugs_with_pages, depth, caucus))
+    else:
+        parts.append(sync_table(day_data, slugs_with_pages, depth))
 
     # 1.7a The Duet — dark until FEATURES["duet"]; returns "" both when the flag is off and on the
     # (common) days where no phrase clears the bar on both sides.

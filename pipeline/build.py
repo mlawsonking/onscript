@@ -180,6 +180,25 @@ def top_by_velocity(ledger: dict, day: str, k: int = 50) -> list[dict]:
     return rows[:k]
 
 
+def top_synchronized_by_party(ledger: dict, day: str, k_per_party: int = 10) -> dict:
+    """Each party's OWN top-k synchronized phrases for the day, ranked by THAT PARTY's member count
+    (#146 / R3). The pooled top_synchronized ranks by raw peak and truncates, so the larger caucus
+    structurally fills the table (measured 88% D). Ranking each party separately and giving each its own
+    slots removes that display artifact — the fix goes in the VIEW, never the threshold: SYNC_MIN is
+    untouched (a phrase is eligible for a party's column iff that party used it >= SYNC_MIN times, the
+    same bar), only the ranking + per-party truncation change. Returns {party: [rows]}; each row is a
+    top_synchronized row (carries counts{D,R}, so the render can show that party's count + denominator)."""
+    allrows = top_synchronized(ledger, day, k=10_000)
+    out: dict[str, list[dict]] = {}
+    for p in config.COMPOSITE_PARTIES:
+        prows = [r for r in allrows if (r.get("counts") or {}).get(p, 0) >= config.SYNC_MIN_MEMBERS]
+        prows.sort(key=lambda r: ((r.get("counts") or {}).get(p, 0),
+                                  boilerplate.content_word_count(r.get("ngram", "")),
+                                  r.get("df_weight", 0)), reverse=True)
+        out[p] = prows[:k_per_party]
+    return out
+
+
 def phrase_page(ngram: str, entry: dict) -> dict:
     """Full adoption curve + roster + first-sayer for one phrase page (§8)."""
     series = []
