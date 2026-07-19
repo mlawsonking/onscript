@@ -742,3 +742,75 @@ overlap) + `nomenclature.name_spans`/`classify_occ` (phrase drop). Re-runnable:
 `data/derived/search/revalidate_nomenclature_rider.json`. **This clears the docs/19 §4 gate on the
 Aug/Sep drip pieces (docs/20); the S1.1′/S1.3′ publication still needs the standing Fable + neutrality
 review for any REFUTED→CONFIRMED movement, with the density caveat disclosed.**
+
+## NEW MEASUREMENTS (2026-07-19, Opus Session 26) — S1.12 run within-lane; S3.7 registered + blocked
+
+Append-only. Two of the three false-blocks the substrate audit found (docs/13:504-513) are addressed:
+**S1.12 is no longer blocked — it is REFUTED**; **S3.7 is registered and half-acquired but the House
+data is guestbook-gated** (a block the earlier "keyless CC0" verification missed).
+
+### S1.12 · Leadership Ignites, Backbenches Amplify — REFUTED (both lanes)
+
+**The folk theory is false at the pre-registered gate.** Big talking points do NOT disproportionately
+originate in leadership offices: core-leadership offices (Speaker/Leaders/Whips × chamber, the 9
+titles) first-say major ignitions at **0.8–1.6× their share of press-release volume — never the ≥3×
+the theory requires, and not stable across halves.**
+
+| lane | half | ignitions (N≥20 peak) | leadership first-say | statement share | RATIO | powered (N≥50, μ₀≥3) |
+|---|---|---|---|---|---|---|
+| propublica (2013-20) | A 2013-16 | 2,460 | 2.76% | 3.37% | **0.82×** | ✓ (μ₀=83) |
+| propublica (2013-20) | B 2017-20 | 12,702 | 4.09% | 4.62% | **0.89×** | ✓ (μ₀=587) |
+| scraped (2021-26) | A 2021-23 | 1,510 | 6.42% | 3.99% | **1.61×** | ✓ (μ₀=60) |
+| scraped (2021-26) | B 2024-26 | 844 | 3.79% | 4.01% | **0.95×** | ✓ (μ₀=34) |
+
+**Verdict per lane: REFUTE** (well-powered in all four cells; ratio never ≥3.0, and the scraped lane's
+halves disagree 1.61×→0.95× so not even "stable" in the pro-theory direction). **Robust across every
+pre-registered variant:** 33-title leadership set (0.82/0.84/1.50/0.83), boilerplate-excluded
+(0.82/0.89/1.61/0.95 ≈ identical). **One variant points differently and is the honest nuance:**
+tie-inclusive first-sayer (leadership counted if it is ANY day-0 co-sayer, not only the designated
+first) runs **2.22 / 2.67 / 2.36 / 1.92×** — leadership offices ARE over-represented among the earliest
+co-signers, but **even this never reaches 3×.** So the defensible reading is *coordination looks like
+simultaneous day-0 emergence with leadership over-present as a co-signer, NOT top-down broadcast where
+leadership authors and backbenches parrot.* (The "leadership co-launches" angle is an OBSERVATION, not
+a pre-registered claim — it would need its own registration and a day-precision-tie caveat before it
+could be a card.) Publishable NULL, docs/20 graveyard/methods shelf; symmetric by construction (one
+rule, both parties, both lanes).
+
+**Substrate / false-block resolved:** `leadership_roles` from
+`X:/onscript-data/academic_archive/raw/roster/legislators-{current,historical}.json` — 156 dated rows,
+33 titles, 9 core filled every congress 113-119. S1 recorded the field null one day before this landed
+(docs/13:506). **Pre-registration frozen in the script header BEFORE measuring** (F1 peak≥20; F2 the
+9-core set; F3 power N≥50 ∧ μ₀≥3; F4 CONFIRM ratio≥3.0 both halves). The only post-first-run edit was a
+plumbing fix (`iter_statements` returns `year` as a string → cast to int) that made the baseline
+non-empty; **no floor was tuned after a ratio was visible** (the first run's baseline was 0/nan, so no
+ratio existed to tune toward). Re-runnable: `PYTHONHASHSEED=0 python scripts/search/s1_12_leadership.py`;
+results `scripts/search/evidence/s1_12_leadership.result.json`. **Supersedes the Wave-S1 "S1.12 blocked"
+status.**
+
+### S3.7 · The Safe-Seat Vessel Test — REGISTERED; BLOCKED on the House guestbook (Senate half local)
+
+**The "keyless CC0 pure build act" premise (You-are-here #157 / brief §2.2, verified 2026-07-18 via
+`fileAccessRequest:false`) is TRUE for the Senate file and FALSE for the House file.** The verification
+checked the license + access-request flag but not the **guestbook**: the House returns file
+(`doi:10.7910/DVN/IG0UN2`, `1976-2024-house.tab`) sits behind a **required Dataverse Guestbook
+(guestbookID 458)**. `?gbrecs=true` does not bypass a *required* guestbook; the only API path POSTs a
+guestbook response (name/email/institution = personal data), which a session must not fabricate. **This
+is the elections.json disease inverted a THIRD time (cf. #157): last time the assumed blocker was
+imaginary; this time an unnoticed blocker is real.** Errand **#177** filed (Michael downloads the House
+`.tab` via the Dataverse UI — the guestbook wants an identity, his call). The **Senate** file
+(`doi:10.7910/DVN/PEJ5QU`, `1976-2024-senate-state.tab`, CC0, ungated) is downloaded and local at
+`X:/onscript-data/elections/raw/`.
+
+**Pre-registration (frozen NOW, before any measurement — registration-before-data, docs/12 discipline):**
+unit = member (bioguide); MoV = (winner − runner-up)/total votes per member per cycle (MEDSL →
+bioguide via roster `terms` on state·district·year·party); **script participation** = the concordance
+on-script index (`build.build_concordance`, `PEAK_FLOOR=15`, `MIN_STATEMENTS=10`). Test = **member-level
+Spearman ρ(MoV, concordance) WITHIN chamber** (never pooled across chambers — the #143 chamber trap),
+within-lane halves (docs/17). **CONFIRM iff |ρ|≥0.20 ∧ p<0.05 ∧ same sign in both halves** (either
+direction: safety→more script = assimilation, safety→less = free voice); **REFUTE iff |ρ|<0.20 in a
+well-powered cell** (the publishable null — "safety neither frees nor assimilates the voice"). **Power
+floor: a chamber·lane·half cell reports a verdict only with ≥100 members carrying both a MoV and a
+concordance score.** This floor is exactly why the Senate half is NOT run alone: ~100 senators total,
+split by chamber·lane·half, cannot clear ≥100/cell — **the powered run genuinely needs the House**, so
+no partial/underpowered verdict is forced. Aggregate quintile-mean plot is the artifact; **no
+member-level "vessel" leaderboard** (the R2/#143 ruling). **Verdict: BLOCKED-ON-HOUSE-GUESTBOOK.**
