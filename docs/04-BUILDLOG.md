@@ -2067,8 +2067,8 @@ RESERVED/self-authoriz/flip across docs + BUILDLOG + the FEATURES registry + the
 sweep's completeness is the doc). Three tiers, per docs/21 §2 (Opus drafts, Michael rules — memo style
 imitates the #143/#146 adjudications):
 - **Tier 1 — LAUNCH ACTS (only these gate launch):** pre-flip gates (#129 dark-week receipts audit,
-  #110 attorney — status reports, not my calls; #160 data-history ruling + #166 GitHub server-side
-  purge — the literal-name history purge is DONE, the residual is Michael's ruling + the object purge)
+  #110 attorney — status reports, not my calls; #160 + #161 data-history ruling — the literal-name
+  history purge is DONE, the residual is Michael's ruling + the GitHub server-side object purge)
   → the mechanical sequence (#131 real passwords → `POSTING_ENABLED` → repo public → #132 announce).
   **Disposition of the five docs/16 §9 rulings: 4 of 5 gate a FEATURE flip (nomenclature ACA / skew /
   quiet-floor / scope), only the privacy one has a live instance and it is already handled by the live
@@ -2111,3 +2111,19 @@ to close).
 card, the S5.2 floor, the docs/16 §9 rulings. **Next Opus session:** the packet is Michael's to rule;
 build-side, the docs/11 dark shelf (1.6 floor render, 1.10 memo-cadence) and — when #177 lands — the
 whole S3.7 run.
+
+**Addendum — a task-bus TOOLING defect found while filing this packet (fixed).** `vtask list` and the
+`vtask add` fuzzy-dedupe both call `get_open_tasks` → `GET /projects/N/tasks?per_page=200`, but Vikunja
+CAPS `per_page` at 50 and vtask requested no explicit sort, so on any project with >50 total tasks
+(polispeak has 55) both saw only page 1 — the OLDEST 50 — and silently missed the newest tasks. Real
+consequences THIS session: the session-start `vtask list` showed **10 open when there are 13** — it hid
+**#161** (a launch-blocking Art. XIII git-history task) plus the two I filed (#176/#177); and the
+add-time dedupe could not see #176, so a re-file probe was NOT refused and created a true duplicate
+#178 (closed). The bus's whole anti-duplicate guarantee (household CLAUDE.md) was defeated by pagination.
+**Fixed** `~/.claude/vtask/vtask.py:get_open_tasks` to paginate every page (bounded 40); `vtask list` now
+returns all 13 and the dedupe sees the full set. The fix is in Michael's global tooling, not this repo.
+Canon correction: the pre-public privacy-history residual is tracked by bus tasks **#160 + #161**
+(near-duplicates; #161 is the flip-blocker); "#166" is a BUILDLOG residual LABEL for the GitHub
+server-side object purge, not a numbered bus task. **Discrepancy FILED** (Art. XVI): the docs/22 brief
+and earlier canon assumed the session-start `vtask list` was complete; it was not, for any project with
+>50 tasks — every prior session read a truncated bus.

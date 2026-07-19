@@ -47,8 +47,8 @@ sequence (§1.1) reaches "repo public."
 |---|---|---|---|
 | **#129** | Hand-audit 5 receipts/day during the dark week (ends **2026-07-20**) | In progress — dark week nearly over; the site has run the live Sonnet voice since 07-13, verifier-clean | Finish the audit; it's your go/no-go on the voice. **Status report, not my decision.** |
 | **#110 / #105** | Attorney review of the neutrality design + operator-protection bundle | Open on the bus; not yet reported done | Complete or explicitly waive before public. **Status report.** |
-| **#160** | Rule on `data/derived` git history before S3 (does the rewritten history + purge satisfy Art. XIII for a public repo?) | The literal-name purge is **DONE** (Session 17 `git filter-repo`, 0 occurrences remain, HEAD tree byte-identical). What remains is your *ruling* that this is sufficient, plus residual #166 below. | Rule. See §1.0-detail. |
-| **#166** | GitHub server-side purge of unreachable pre-rewrite objects | Open. Old SHAs cited in the public BUILDLOG would be fetchable pointers to name-bearing pre-rewrite blobs until GitHub GCs them. | Before public: either a GitHub-support purge request **or** delete-and-recreate the repo. |
+| **#160 + #161** | Rule on git history before S3 — the two private-citizen names were in tracked `data/derived/*.json` history. **#161 explicitly BLOCKS the public flip** (Art. XIII, unamendable). Near-duplicate tasks; same concern. | The literal-name purge is **DONE** (Session 17 `git filter-repo` over all 164 commits, 0 occurrences remain incl. the derived JSON these tasks name, HEAD tree byte-identical). What remains is your *ruling* that this is sufficient. | Verify + rule (and consolidate #160/#161). See §1.0-detail. |
+| GitHub server-side purge (BUILDLOG "#166" residual — **not a numbered bus task**) | Unreachable pre-rewrite objects stay fetchable by old SHA until GitHub GCs; old SHAs are cited in the public BUILDLOG. | Before public: either a GitHub-support purge request **or** delete-and-recreate the repo. |
 
 **#1.0-detail — the privacy-history situation, stated honestly (evidence: `pipeline/privacy.py`,
 BUILDLOG Sessions 12/17 lines 1584–1599, docs/16 §9 ruling 1):**
@@ -57,9 +57,17 @@ BUILDLOG Sessions 12/17 lines 1584–1599, docs/16 §9 ruling 1):**
   canary) runs on every build/assemble/post/chapter/duet path. The two apparent private-citizen names
   (#145) no longer render on the site. **This is done; the #145 bus task is stale-open** (see §5).
 - **The salt is set** (#159, Session 17, canary-verified). **#159 is done; stale-open** (see §5).
-- **Git history is rewritten** — the two literal name forms are gone from all 164 commits' blobs.
-- **What is genuinely still open and gates public:** (a) #166's server-side object purge; (b) #160's
-  formal ruling that the above is enough. These are real pre-public acts, not paperwork.
+- **Git history is rewritten** — the Session-17 `git filter-repo --replace-text` purged **both literal
+  name forms from ALL blob history** (the 52 name-bearing blobs incl. the `data/derived/days/*.json` +
+  16 `phrases/*.json` that **#160 and #161** name; 0 occurrences verified post-rewrite, HEAD tree
+  byte-identical). So the literal concern behind #160/#161 is **addressed**, and both are open pending
+  only your confirmation it is sufficient. **(#160 and #161 are near-duplicate tasks — same derived-history
+  concern; #161 is the one that explicitly BLOCKS the public flip. Consolidate at will.)**
+- **What is genuinely still open and gates public:** (a) the **GitHub server-side object purge** — old
+  SHAs cited in the public BUILDLOG stay fetchable pointers to pre-rewrite name-bearing blobs until
+  GitHub GCs (a support-purge request **or** delete-and-recreate the repo); this is the BUILDLOG "#166"
+  residual, **not a numbered bus task**. (b) your **formal ruling** (#160/#161) that the rewrite + purge
+  is enough. Real pre-public acts, not paperwork.
 - **The raw-mirror tension (attorney track):** the release-asset raw mirror contains 11 member
   statements that *mention* the names — the members' own published `.gov` speech. Article XIII
   (privacy floor) and Article VI (raw is immutable/rebuildable) pull opposite ways. Queued for the
@@ -198,17 +206,27 @@ privacy floor and closing is your call:
 
 - **#145** ("URGENT: private-citizen names render on the LIVE site") — **the display suppression is
   live** (`privacy.py`, deployed Session 12/17). The names no longer render. The *remaining* privacy
-  work is tracked by #160/#166 (Tier 1). #145 as titled is done.
+  work is tracked by #160/#161 (Tier 1). #145 as titled is done.
 - **#159** ("Set `PRIVACY_SALT` before the gate commit is pushed") — **the salt is set**, canary-verified
   (Session 17). Done.
 
-Leave #160, #166, #110, #105, #131, #132, #133, #158 open — those are real.
+Leave #160, #161, #110, #105, #131, #132, #133, #158 open — those are real.
+
+**⚠ A tooling discrepancy found while filing this packet (worth a fix):** `vtask list` and the
+`vtask add` fuzzy-dedupe both call `GET /projects/11/tasks?per_page=200`, but Vikunja caps `per_page`
+at **50** and vtask requests no explicit sort — so on a project with >50 total tasks (polispeak has 55),
+both see only page 1 (the *oldest* 50) and silently miss the newest tasks. Consequences this session:
+(a) the session-start `vtask list` showed **10 open tasks when there are 13** — it hid **#161** (a
+launch-blocking privacy task) and #176/#177; (b) the dedupe couldn't see #176 and so did **not** refuse
+a re-file, creating a true duplicate #178 (I closed it). The bus's whole anti-duplicate guarantee is
+defeated by this. Fix is small (paginate the read / add `sort_by=id&order_by=desc`) in
+`~/.claude/vtask/vtask.py:116`.
 
 ---
 
 ## §6 · THE RECOMMENDATION, IN ONE BREATH
 
-Close #129 and #110. Clear #160/#166. Set real passwords, flip `POSTING_ENABLED`, take the repo public,
+Close #129 and #110. Clear #160/#161 + the GitHub server-side purge. Set real passwords, flip `POSTING_ENABLED`, take the repo public,
 announce. Flip `party_columns` (it's a correctness fix) and `owners_brief` (it's private) in the same
 window if you like — but you don't have to. Everything else waits for the calendar. Resolve
 `nomenclature_tags`' three riders when you want that release; rule fold-vs-isolate before the September
