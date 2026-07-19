@@ -40,9 +40,10 @@ def audit() -> list[dict]:
                 if not isinstance(tp, dict):
                     continue
                 label = tp.get("label", "")
-                if boilerplate.is_scaffold_key(label):
-                    flagged.append({"day": day, "party": party, "label": label,
-                                    "member_count": tp.get("member_count"),
+                reason = boilerplate.scaffold_reason(label)
+                if reason:
+                    flagged.append({"day": day, "party": party, "label": label, "reason": reason,
+                                    "member_count": tp.get("member_count"),          # would-have-been reach
                                     "n_citations": len(tp.get("citations") or [])})
     return flagged
 
@@ -56,12 +57,26 @@ def main(argv=None) -> int:
 
     flagged = audit()
     days = sorted({f["day"] for f in flagged})
+    from collections import Counter
+    by_reason = Counter(f["reason"] for f in flagged)
+    by_party = Counter(f["party"] for f in flagged)
     print(f"[audit] scanned {len(list(DAYS.glob('*.json')))} published day JSON(s)")
-    print(f"[audit] flagged {len(flagged)} talking point(s) with inadmissible (scaffold) keys "
-          f"across {len(days)} day(s)")
+    print(f"[audit] flagged {len(flagged)} inadmissible (scaffold) talking-point key(s) across "
+          f"{len(days)} day(s)")
+    # docs/19 §4b (2nd pass) — CATEGORIZE by reason code, don't merely count. This is the honest
+    # false-negative view for a conservative gate: which class each rejection falls in, both parties.
+    print(f"[audit] by reason: {dict(by_reason)}")
+    print(f"[audit] by party (Art. IV — the gate is party-blind; the skew tracks the caucus): {dict(by_party)}")
     for f in flagged:
-        print(f"   {f['day']} [{f['party']}] key={f['label']!r} "
+        print(f"   {f['day']} [{f['party']}] {f['reason']} key={f['label']!r} "
               f"members={f['member_count']} citations={f['n_citations']}")
+    # The rejected-candidates log: reason + would-have-been output (member reach), a dark-shelf view.
+    log = config.DERIVED / "search" / "rejected_cluster_keys.json"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    log.write_text(json.dumps({"scanned_days": len(list(DAYS.glob('*.json'))),
+                               "by_reason": dict(by_reason), "by_party": dict(by_party),
+                               "rejected": flagged}, indent=1, ensure_ascii=False), encoding="utf-8")
+    print(f"[audit] rejected-candidates log -> {log}")
 
     if args.write_corrections:
         if not flagged:
@@ -80,7 +95,9 @@ def main(argv=None) -> int:
                 "shared span is grammar, not a shared message, so the receipts pointed at unrelated "
                 "topics. The citation verifier checks verbatim-ness, quorum and attribution — not whether "
                 f"the shared span is a message — so no receipts audit could have caught it. Flagged "
-                f"talking points: {len(flagged)} across {len(days)} day(s)."),
+                f"talking points: {len(flagged)} across {len(days)} day(s), categorized by reason "
+                f"({dict(by_reason)}), both parties ({dict(by_party)} — the gate is party-blind; the "
+                f"skew tracks the caucus)."),
             "resolution": (
                 "A deterministic, party-blind key-admission gate now rejects connective/attribution "
                 "scaffold keys at generation (run_assemble), and the quorum now counts only distinct "

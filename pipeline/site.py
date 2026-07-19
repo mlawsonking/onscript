@@ -797,12 +797,25 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
         # source, and the highlighted phrase is shown where a quote carries it. A reader sees which
         # test each row rests on rather than trusting an aggregate.
         shown = len(lis)
-        chips = [_testchip("message key", not boilerplate.is_scaffold_key(key))]
+        admissible = not boilerplate.is_scaffold_key(key)
+        families_ok = (count >= config.SYNC_MIN_MEMBERS) if isinstance(count, int) else None
+        sourced_ok = (urls_present == shown) if shown else None
+        # docs/19 §4b req 3 (2nd pass) — the aggregate is a DERIVED CONJUNCTION: it is "verified" only
+        # when every check is independently computed AND passes; ANY failed OR unavailable (None) check
+        # makes it UNAVAILABLE, never a reduced-confidence "mostly verified". Then the per-test chips
+        # below show exactly which test each row rests on — a reader never trusts an opaque badge.
+        checks = [admissible, families_ok, sourced_ok]
+        # Binary by design: "verified" iff every check passes; ANYTHING else (a failed OR an
+        # unavailable check) is UNAVAILABLE — there is deliberately NO reduced-confidence middle state,
+        # so the aggregate can never soft-pass. The per-test chips below show which check is at issue.
+        agg = (_testchip("publication verified", True) if all(c is True for c in checks)
+               else _testchip("verification unavailable", None))
+        chips = [agg, _testchip("message key", admissible)]
         if isinstance(count, int):
-            chips.append(_testchip(f"{count} families", count >= config.SYNC_MIN_MEMBERS))
+            chips.append(_testchip(f"{count} families", families_ok))
         if shown:
             chips.append(_testchip(f"phrase shown {span_present}/{shown}", None))
-            chips.append(_testchip(f"sourced {urls_present}/{shown}", urls_present == shown))
+            chips.append(_testchip(f"sourced {urls_present}/{shown}", sourced_ok))
         tests_html = f'<div class="rtests">{"".join(chips)}</div>'
         more_html = ""
         if isinstance(count, int) and count > len(lis) and lis:

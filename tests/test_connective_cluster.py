@@ -89,6 +89,41 @@ def test_scaffold_key_rejects_the_two_live_connective_keys_both_directions():
     assert not B.is_scaffold_key("no kings in america")
 
 
+def test_reason_codes_categorize_the_two_live_defects_for_the_correct_reason():
+    """docs/19 §4b (2nd pass) — rejections carry a STABLE reason code so a conservative gate's false
+    negatives are auditable by class, not just counted. Each live 07-17 defect dies for its own reason:
+    the possessive-trailing frame is an incomplete span; the 'colleagues' frame is an attribution one."""
+    assert B.scaffold_reason("into the trump administration's") == B.REJECT_INCOMPLETE_SYNTACTIC_SPAN
+    assert B.scaffold_reason("into the trump administration’s") == B.REJECT_INCOMPLETE_SYNTACTIC_SPAN
+    assert B.scaffold_reason("democratic colleagues in demanding the") == B.REJECT_ATTRIBUTION_FRAME
+    assert B.scaffold_reason("war powers resolution to") == B.REJECT_INCOMPLETE_SYNTACTIC_SPAN
+    assert B.scaffold_reason("born in the united states") is None       # admissible -> no reason
+    assert B.is_scaffold_key("into the trump administration's") is True  # the boolean wrapper still works
+    assert B.is_scaffold_key("born in the united states") is False
+
+
+def test_aggregate_publication_badge_is_a_derived_conjunction():
+    """docs/19 §4b req 3 (2nd pass) — 'publication verified' exists ONLY when every check passes; any
+    failed or unavailable check makes it UNAVAILABLE, never a reduced-confidence middle state."""
+    from pipeline import site
+    ok = {"label": "born in the united states", "member_count": 5, "citations": [
+        {"member": "A", "party": "D", "state": "CA", "date": "2026-06-30",
+         "url": "https://a.house.gov/x", "quote": "everyone born in the united states is a citizen"},
+        {"member": "B", "party": "D", "state": "NY", "date": "2026-06-30",
+         "url": "https://b.house.gov/y", "quote": "born in the united states means citizenship"},
+        {"member": "C", "party": "D", "state": "OH", "date": "2026-06-30",
+         "url": "https://c.house.gov/z", "quote": "if you are born in the united states you are a citizen"}]}
+    html_ok = site.receipts_strip("D", [ok], caucus=263)
+    assert "publication verified" in html_ok
+    assert "verification unavailable" not in html_ok
+    # a receipt with no source URL cannot be verified -> UNAVAILABLE (never "verified", never "reduced").
+    nosrc = {"label": "born in the united states", "member_count": 5,
+             "citations": [{"member": "A", "party": "D", "state": "CA", "date": "2026-06-30",
+                            "url": None, "quote": "born in the united states"}]}
+    html_nosrc = site.receipts_strip("D", [nosrc], caucus=263)
+    assert "publication verified" not in html_nosrc and "verification unavailable" in html_nosrc
+
+
 def test_scaffold_key_reads_only_the_phrase_never_party():
     import inspect
     assert "party" not in inspect.signature(B.is_scaffold_key).parameters

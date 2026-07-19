@@ -135,21 +135,43 @@ _ATTRIBUTION_TOKENS = frozenset(
     "colleagues cosponsors co-sponsors cosigners co-signers signatories".split())
 _POSSESSIVE_TAILS = ("'s", "s'", "’s", "s’")   # straight + curly apostrophe
 
+# docs/19 §4b (2nd pass) — STABLE rejection reason codes, so a conservative gate's false negatives are
+# auditable: the all-days audit categorizes rejections by reason (not merely counts them) and logs each
+# rejected candidate with its reason + would-have-been output — the only honest way to see what a
+# precision-favouring gate is dropping before anyone tunes it. `is_weak_label` carries
+# REJECT_LOW_INFORMATION_CONTENT; the family quorum (verify.py) carries REJECT_FAMILY_QUORUM.
+REJECT_INCOMPLETE_SYNTACTIC_SPAN = "REJECT_INCOMPLETE_SYNTACTIC_SPAN"  # ends in a function word / possessive
+REJECT_ATTRIBUTION_FRAME = "REJECT_ATTRIBUTION_FRAME"                  # names who joined/led, not the message
+REJECT_LOW_INFORMATION_CONTENT = "REJECT_LOW_INFORMATION_CONTENT"      # is_weak_label (low-content / conj-possessive)
+REJECT_FAMILY_QUORUM = "REJECT_FAMILY_QUORUM"                          # <quorum families carry the key (verify.py)
+
+
+def scaffold_reason(ngram: str) -> str | None:
+    """The stable reason code a cluster KEY is inadmissible as connective/attribution scaffolding
+    (docs/19 §4b req 1), or None if admissible. Reject when the key (a) terminates before its object — a
+    trailing function word ('...demanding the') or possessive ('...administration's') names a
+    connector/possessor rather than the object — or (b) is an attribution frame naming WHO joined/led
+    rather than WHAT was said. Party-blind (reads only the phrase's own grammar)."""
+    toks = (ngram or "").split()
+    if not toks:
+        return REJECT_INCOMPLETE_SYNTACTIC_SPAN
+    # Attribution is checked FIRST because it is the deeper, more informative reason: "democratic
+    # colleagues in demanding the" is scaffolding because it names WHO joined, and only incidentally
+    # also ends in a determiner. A pure fragment ("war powers resolution to") has no attribution token
+    # and falls through to the syntactic-span reason.
+    if any(t in _ATTRIBUTION_TOKENS for t in toks):             # (a) attribution frame — names who joined/led
+        return REJECT_ATTRIBUTION_FRAME
+    last = toks[-1]
+    if last in STOPWORDS or last.endswith(_POSSESSIVE_TAILS):   # (b) terminates before the object
+        return REJECT_INCOMPLETE_SYNTACTIC_SPAN
+    return None
+
 
 def is_scaffold_key(ngram: str) -> bool:
     """True if a cluster KEY is connective/attribution scaffolding, not a message (docs/19 §4b req 1).
-    Reject when the key (a) terminates before its object — a trailing function word ('...demanding the')
-    or possessive ('...administration's') names a connector/possessor rather than the object — or (b) is
-    an attribution frame naming WHO joined/led rather than WHAT was said. Party-blind."""
-    toks = (ngram or "").split()
-    if not toks:
-        return True
-    last = toks[-1]
-    if last in STOPWORDS or last.endswith(_POSSESSIVE_TAILS):   # (a) terminates before the object
-        return True
-    if any(t in _ATTRIBUTION_TOKENS for t in toks):             # (b) attribution frame
-        return True
-    return False
+    Thin wrapper over scaffold_reason so every existing call site stays boolean; the audit uses the
+    reason code."""
+    return scaffold_reason(ngram) is not None
 
 
 def contains_gram(text: str, gram: str) -> bool:

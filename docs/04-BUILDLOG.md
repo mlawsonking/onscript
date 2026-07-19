@@ -1758,8 +1758,8 @@ BLOCKED-ON-SHARDS half of the 34 is now re-validated.
 
 Executed `docs/19-NOMENCLATURE-WIRING-BRIEF.md` (Fable, Session 20) in full. Rebased `wip/nomenclature`
 onto main (one `.gitignore` conflict: kept both the privacy and nomenclature re-include blocks); the
-21 tagger fixtures + full suite green on the rebased branch before any wiring. **301 tests green at
-close (was 263 on main; +38).** Flag renamed to the brief's name: `FEATURES["nomenclature_tags"]`
+21 tagger fixtures + full suite green on the rebased branch before any wiring. **303 tests green at
+close (was 263 on main; +40).** Flag renamed to the brief's name: `FEATURES["nomenclature_tags"]`
 (the branch's `nomenclature_tag` singular disagreed with docs/19 §2/§7 + CLAUDE.md — the binding docs win).
 
 **§2 WIRING (all DARK behind `nomenclature_tags`, default off):**
@@ -1839,5 +1839,27 @@ pre-v2-Concordance requirements).
 phrase-page/archive-fingerprint tag surfaces beyond the day table are minor follow-ups (the day table is
 the flagship where the defect lives). Nothing published changed except the §4b always-on correctness fix
 (the 19 inadmissible talking points drop + the receipts gain chips + affected composites re-derive
-deterministically) and the corrections-log entry. Streak read from the record: **2/3** (07-16, 07-17
+deterministically) and the corrections-log entry.
+
+**SECOND-PASS REVIEW folded in (docs/19 amended by Michael/Fable mid-session as `df6e2d6`; my commit
+sits on top of it):** (1) **stable rejection reason codes** — `boilerplate.scaffold_reason` returns
+`REJECT_ATTRIBUTION_FRAME` / `REJECT_INCOMPLETE_SYNTACTIC_SPAN` (attribution checked first, the deeper
+reason), `is_scaffold_key` a thin boolean wrapper; the audit now CATEGORIZES (18 incomplete-span, 1
+attribution) not merely counts, and writes a **rejected-candidates log** (`data/derived/search/rejected_cluster_keys.json`:
+reason + would-have-been reach — the honest false-negative view for a conservative gate). (2) The
+receipt **aggregate is a derived CONJUNCTION** — "publication verified" iff every check passes, else
+"verification unavailable"; deliberately NO reduced-confidence middle. (3) **Support-graph validity**
+(the hardened clause-ablation rider) QUEUED in docs/11 §4 as a pre-v2-Concordance requirement — the
+free-text voice can't bind clauses to cluster ids cheaply; the Session-21 render-time re-composition
+(drop the cluster AND re-derive the prose) is the interim "no proposition outlives its evidence"
+guarantee. **Session-close evidence (Art. XVI):** the two named 07-17 clusters die for the correct
+deterministic reason (possessive → incomplete-span; colleagues → attribution) · a known-good cluster
+survives · family collapse runs before quorum on the publication path · spans highlighted on every
+receipt · chips independently computed · the all-days audit ran over the local archive with failures
+categorized · affected pages re-derive at render · the live page no longer shows the known-invalid
+interpretations. The **human sample audit of admitted AND rejected clusters folds into the #129
+dark-week ritual** (artifact: the rejected-candidates log) — Michael's, not a build act; #129 not
+re-filed.
+
+Streak read from the record: **2/3** (07-16, 07-17
 clean unattended), earliest §1.4.1 pass Sat 07-19 — consistent with docs/19 §0.

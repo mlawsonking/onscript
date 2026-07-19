@@ -81,3 +81,29 @@ ritual or whenever Michael chooses — never inside a build session.
 
 *Fable, 2026-07-14. The shelf fills while the streak runs; every launch after the first is one
 commit long.*
+
+## §4 Named follow-ups queued by the nomenclature wiring (docs/19, Session 21 Opus)
+
+- **Support-graph validity — a pre-v2-Concordance requirement (docs/19 §4c, 2nd pass).** The binding
+  law is *no rendered proposition may outlive its evidence*: every factual rendered clause carries a
+  non-empty machine-readable `support_cluster_ids`, and removing a cluster from the render input must
+  remove every clause it exclusively supports (or leave it supported by another mapped cluster); no
+  factual clause may survive with zero valid supports. The invariant is the support GRAPH, not textual
+  difference (a prose-diff would fail on harmless rewording and pass a renderer that kept an unsupported
+  claim in other words). **Not landed now: the current render path (deterministic/LLM voice) emits
+  free-text prose that does not bind clauses to cluster ids** — building that binding is the Concordance
+  (1.4) work, so this rides with it. Until then the Session-21 render-time re-composition is the
+  interim guarantee (drop the scaffold cluster AND re-derive the prose from the surviving stats, so a
+  dropped cluster cannot leave a claim behind — verified on 07-17 D).
+- **Scaffold-aware key SELECTION** — the P2 breadth mitigation. Today a real cluster whose most-common
+  4/5-gram happens to be a fragment (ends in a function word) is DROPPED whole by the admission gate
+  (`is_scaffold_key`); the refinement is to pick the cluster's best NON-scaffold gram as its key instead
+  of killing the cluster. Recovers legitimate coordination the conservative gate currently over-drops
+  (measured: e.g. a committee-markup cluster keyed "…markup of the"). Lands with 1.3/1.5 (SPAN-gated).
+- **Per-member ingest-health flags** in the nightly audit (docs/19 §2a) and the **phrase-page /
+  archive-fingerprint** nomenclature tag surfaces beyond the day table — minor completions of the §2
+  wiring (the day table, where the defect lives, is done).
+- **The §4c definitions:** the "observed publishing member" R3 denominator ("source successfully checked
+  AND ≥1 eligible document in the window", not merely a reachable site) and the
+  first/observed/earliest-in-lane **timestamp distinction** wherever "first" renders — both pre-v2
+  requirements, land with the origination pages (1.3) and the denominator work (R3).
