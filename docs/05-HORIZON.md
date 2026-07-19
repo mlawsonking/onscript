@@ -309,3 +309,60 @@ solo cadence); every external join stays behind its 🔬 gate.
 ---
 
 *Banked 2026-07-11 (Fable). The archive converts speculation into backtests; build accordingly.*
+
+## §3 The External Hypothesis Bank (2026-07-19, Fable — source: ChatGPT ideation, adjudicated before banking)
+
+An external ideation pass, filtered: kept only what is genuinely new against docs/12's 47 + the
+verdict ledger, tagged per this doc's conventions. **Nothing here jumps the queue** (P0 → streak →
+launch → the docs/20 calendar); this feeds the October registration wave and the 2027 waves. Standing
+laws apply to every row: substrate audited against disk BEFORE speccing (the S3/S4 lesson); floors as
+numerals before measurement (L4); placebo against the exact headline statistic (S4.2's law); lane
+isolation (L1); event-anchored phrase selection is K2-exposed by construction — the S4.4 template
+(pre-registered speech act + time window) is the safe form.
+
+**Rides current substrate (registration-wave candidates):**
+- **HX.1 GDELT-anchored script-formation rate** — "most big news days produce NO caucus-wide script."
+  The event anchor is the BUILT silence-detector GDELT baseline (third-party reproducible), which
+  dissolves the crisis-events.json disease instead of re-catching it. The null IS the story.
+- **HX.2 Per-topic script-proneness** — taxonomy_v1 topics × sync rate; descriptive; "immigration
+  travels differently than disaster aid."
+- **HX.3 Chamber velocity** — House vs Senate adoption speed. ⚠ #143's chamber artifact is the
+  standing trap: per-member cadence normalization mandatory, caucus-size denominators on every row.
+- **HX.4 Phrase half-life × majority status** — burst machinery × power-position; within-lane ONLY.
+- **HX.5 Opposition-vs-celebration reuse** — S4.1's valence lexicons exist; symmetric by
+  construction; placebo on the headline statistic.
+- **HX.6 Event-conditioned regional micro-scripts** — S1.11's overall null (co-use ≈ chance) makes
+  the conditional version publishable in EITHER direction.
+- **HX.7 Pre-floor-fight discipline** — S1.6 re-anchored on floor schedules. 🔬 substrate first: a
+  floor-calendar table must exist on disk (BILLSTATUS actions may partially serve) before speccing.
+- **HX.8 Prolific-office concentration + intensity-vs-reach** — cheap self-audit descriptives,
+  #146/R3-shaped (denominators in the view).
+
+**The upstream lane (banked for v3 upstream-graph pre-registration, AFTER ingestion):** committee >
+leadership as phrase source · caucus official-position stickiness · majority/minority committee
+ecosystems as competing message machines · member-lag-in-hours · cross-chamber jumps ·
+leadership-line propagation FAILURES (the counterfactual null). ⚠ the symmetric-instrument cost is
+real and unpriced by the source: committee/caucus scrapers inherit the per-office variance trap
+(docs/16's capitalization lesson) and the coverage audit must extend to organizational nodes before
+any cross-node claim publishes.
+
+**Historical (deep-archive lane, SD.8-gated as ever):** post-9/11, Iraq/Abu Ghraib, TARP, ACA, Trump
+impeachment, COVID, Jan 6, Dobbs are ALREADY inside the crawled 2001–2026 CREC span — analysis, not
+acquisition. Genuinely new acquisitions, both 🔬: **Clinton-era extension** (GovInfo daily CREC
+reaches back to 1994; plausibly the same package format — probe before promising) and **Watergate**
+(bound edition only — a NEW parser, OCR-era text, no MODS attribution; the external "High
+feasibility" grade is wrong, this is a medium-at-best capex probe). **Franked-mail constituent
+lane**: parked, 🔬, normalization cost unknown.
+
+**Adjudicated OUT (do not re-bank):** Friday-diffusion variants (S4.4 killed the Dump with a
+validated instrument; any successor claim starts from its own pre-registration, never a rescue) ·
+bridge-node/originator member constructs pre-SPAN (#143's corpse; only the rulings-shaped,
+SPAN-gated origination forms are legal) · anything framed as motive/central-scripting (propagation
+only — standing doctrine) · social-platform ingestion (deletion/edit instability; official sources
+first). Redundant-with-existing (already machinery or already queued): document-family stories (§4b
+just shipped the machinery AND the audit's 19 findings are the story's data) · leadership-not-first
+(S1.12, runnable now) · bipartisan-boilerplate explainer (= the nomenclature story, post-flip) ·
+nulls-as-product and the three-part test (= the graveyard doctrine and the verify gates).
+
+**One editorial rule adopted into the drip cadence:** alternate method-forward · substantive ·
+refuted — the docs/20 calendar already approximates it; treat it as the tie-breaker when ordering.
