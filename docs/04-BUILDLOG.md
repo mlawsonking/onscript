@@ -1758,8 +1758,8 @@ BLOCKED-ON-SHARDS half of the 34 is now re-validated.
 
 Executed `docs/19-NOMENCLATURE-WIRING-BRIEF.md` (Fable, Session 20) in full. Rebased `wip/nomenclature`
 onto main (one `.gitignore` conflict: kept both the privacy and nomenclature re-include blocks); the
-21 tagger fixtures + full suite green on the rebased branch before any wiring. **303 tests green at
-close (was 263 on main; +40).** Flag renamed to the brief's name: `FEATURES["nomenclature_tags"]`
+21 tagger fixtures + full suite green on the rebased branch before any wiring. **304 tests green at
+close (was 263 on main; +41).** Flag renamed to the brief's name: `FEATURES["nomenclature_tags"]`
 (the branch's `nomenclature_tag` singular disagreed with docs/19 §2/§7 + CLAUDE.md — the binding docs win).
 
 **§2 WIRING (all DARK behind `nomenclature_tags`, default off):**
@@ -1846,7 +1846,11 @@ sits on top of it):** (1) **stable rejection reason codes** — `boilerplate.sca
 `REJECT_ATTRIBUTION_FRAME` / `REJECT_INCOMPLETE_SYNTACTIC_SPAN` (attribution checked first, the deeper
 reason), `is_scaffold_key` a thin boolean wrapper; the audit now CATEGORIZES (18 incomplete-span, 1
 attribution) not merely counts, and writes a **rejected-candidates log** (`data/derived/search/rejected_cluster_keys.json`:
-reason + would-have-been reach — the honest false-negative view for a conservative gate). (2) The
+reason + would-have-been reach — the honest false-negative view for a conservative gate). Both
+directions are covered: the audit is the BACKWARD view over published days, and `run_assemble` now
+emits the FORWARD view — every generation-time drop is reason-coded (`_reject_reason`) and written to
+`day_json["rejected_keys"]` per party, with an Art. XIII guard that never logs a private-name label.
+(2) The
 receipt **aggregate is a derived CONJUNCTION** — "publication verified" iff every check passes, else
 "verification unavailable"; deliberately NO reduced-confidence middle. (3) **Support-graph validity**
 (the hardened clause-ablation rider) QUEUED in docs/11 §4 as a pre-v2-Concordance requirement — the

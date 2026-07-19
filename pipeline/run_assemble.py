@@ -116,6 +116,22 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     return cites
 
 
+def _reject_reason(label: str, ok_verify: bool, vreasons: list) -> str | None:
+    """docs/19 §4b — the stable reason code for dropping a talking point at the MESSAGE gates, or None
+    if it clears them all. Order mirrors assemble()'s gate order: quorum/verbatim (verify), then the
+    scaffold-key admission gate (a frame that terminates before its object, or an attribution frame),
+    then weak-label (low information). Privacy (Art. XIII) is a SEPARATE gate the caller applies and
+    never records with the label. Pure + party-blind, so it is unit-testable without a full assemble."""
+    if not ok_verify:
+        return (boilerplate.REJECT_FAMILY_QUORUM if any("key-quorum" in r for r in (vreasons or []))
+                else "REJECT_NON_VERBATIM")
+    if boilerplate.is_scaffold_key(label):
+        return boilerplate.scaffold_reason(label)          # ATTRIBUTION_FRAME / INCOMPLETE_SYNTACTIC_SPAN
+    if boilerplate.is_weak_label(label):
+        return boilerplate.REJECT_LOW_INFORMATION_CONTENT
+    return None
+
+
 def _is_final(day: str) -> bool:
     """Was this day already published? A final day is never re-assembled (and never skipped). The
     readiness gate uses this to walk the backlog oldest-first. §deploy-hardening.
@@ -164,21 +180,23 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
                                   "bioguide": (s.get("member") or {}).get("bioguide")})
         tps = cluster.cluster_day(party, day, annotated)
 
-        # verify talking points (>=3 distinct members + verbatim fragments); drop failures
-        published, dropped = [], 0
+        # verify talking points (>=3 distinct families + verbatim fragments); drop failures, and LOG
+        # each drop with its STABLE reason code + would-have-been reach (docs/19 §4b — the forward
+        # dark-shelf view of a conservative gate's false negatives; the backward view over published
+        # days is scripts/audit_connective_keys.py). Privacy drops are NOT logged here: the label can be
+        # a private name (Art. XIII), and privacy has its own corrections-log disclosure path.
+        published, dropped, rejected = [], 0, []
         from pipeline import verify
         for tp in tps:
-            ok, _ = verify.verify_talking_point(tp, stmt_by_id)
+            label = tp.get("label", "")
+            ok, vreasons = verify.verify_talking_point(tp, stmt_by_id)
             # C-i / docs/19 §4b: a coherent quorum (>=3 families, verbatim) is not enough — the BINDING
-            # PHRASE must be a real talking point, not connective/attribution scaffolding. is_weak_label
-            # caught the conjunction-led possessive ("and the trump administration's"); is_scaffold_key
-            # adds the two shapes that got through on 2026-07-17 — a frame that terminates before its
-            # object ("into the trump administration's") and an attribution frame ("democratic colleagues
-            # in demanding the"). Both mean the members share grammar, not a message, and their receipts
-            # point at unrelated topics. Suppress (never published, never narrated). String correctness
-            # without message admissibility is insufficient for publication.
-            if ok and (boilerplate.is_weak_label(tp.get("label", ""))
-                       or boilerplate.is_scaffold_key(tp.get("label", ""))):
+            # PHRASE must be a real talking point, not connective/attribution scaffolding (is_scaffold_key
+            # adds the two shapes that got through on 2026-07-17: a frame that terminates before its
+            # object, and an attribution frame). String correctness without message admissibility is
+            # insufficient for publication. _reject_reason returns the stable reason code for the drop.
+            reason = _reject_reason(label, ok, vreasons)
+            if reason:
                 ok = False
             # Art. XIII privacy floor — THE PRE-LLM CUT, and it must stay pre-LLM. 2026-07-14 is the
             # empirical proof: that composite is generator='sonnet_direct', verifier.passed=True,
@@ -187,14 +205,20 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
             # any opinion about privacy, by construction, so no receipts audit could ever have caught
             # it. Cut here and the TP, its _citations call, its STATS entry, and the voice's ability
             # to name a private individual all die together. (Same laundering argument as docs/16
-            # nomenclature, arriving early on a different payload.)
-            if ok and privacy.filter_talking_points([tp])[1]:
+            # nomenclature, arriving early on a different payload.) reason stays None -> not logged.
+            elif privacy.filter_talking_points([tp])[1]:
                 ok = False
             if ok:
                 tp["citations"] = _citations(tp, stmt_by_id, rmap)  # >=3 real (member,date,url)
                 published.append(tp)
             else:
                 dropped += 1
+                # Log the rejected candidate — but NEVER its label if that label is itself privacy-
+                # suppressed (a scaffold key can also contain a private name; Art. XIII wins over the
+                # dark-shelf audit). No reason (a bare privacy drop) is also never logged.
+                if reason and not privacy.is_suppressed(label):
+                    rejected.append({"label": label, "reason": reason,
+                                     "member_count": tp.get("member_count")})
 
         # top synchronized phrase for the party that day (with first-sayer name)
         top_rows = [r for r in build.top_synchronized(ledger, day, k=5) if r["party"] == party]
@@ -223,7 +247,8 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
             "tokens_in": int(usage.get("tokens_in", 0)), "tokens_out": int(usage.get("tokens_out", 0)),
             "claims_published": len(published), "claims_dropped": dropped,
         }
-        day_payload[party] = {"daily_line": distillation, "talking_points": published}
+        day_payload[party] = {"daily_line": distillation, "talking_points": published,
+                              "rejected_keys": rejected}   # docs/19 §4b forward dark-shelf (reason-coded)
 
     # STRICT budget accounting FIRST — persist the real spend to the month ledger BEFORE any risky
     # day-JSON write, so a write failure can never lose a billed call. Cost each run at its OWN day's
@@ -244,6 +269,11 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     day_json = util.read_json(day_file, {"day": day})
     day_json["daily_lines"] = {p: day_payload[p]["daily_line"] for p in config.COMPOSITE_PARTIES}
     day_json["talking_points"] = {p: day_payload[p]["talking_points"] for p in config.COMPOSITE_PARTIES}
+    # docs/19 §4b — the reason-coded rejected candidates for THIS day (the forward dark-shelf view of
+    # what the conservative admission gate + quorum dropped, so false negatives are auditable before
+    # anyone tunes the gate). Additive; never rendered; carries no private-name label (Art. XIII guard
+    # above). schema_version stays 1.
+    day_json["rejected_keys"] = {p: day_payload[p]["rejected_keys"] for p in config.COMPOSITE_PARTIES}
     day_json["top_synchronized"] = build.top_synchronized(ledger, day, k=20)
     # 1.7a The Duet — the same phrase, both parties, the same day. Computed EVERY day so the archive
     # keeps it and the flag flip is a pure release act (no backfill needed); RENDERING is gated on

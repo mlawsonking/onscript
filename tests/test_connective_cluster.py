@@ -102,6 +102,21 @@ def test_reason_codes_categorize_the_two_live_defects_for_the_correct_reason():
     assert B.is_scaffold_key("born in the united states") is False
 
 
+def test_generation_time_drops_emit_a_stable_reason_code():
+    """docs/19 §4b — the FORWARD dark-shelf: EVERY generation-time drop emits a stable reason code
+    (run_assemble._reject_reason), so a conservative gate's false negatives are auditable before anyone
+    tunes it. A clean talking point returns None (publishes); a bare privacy drop also returns None and
+    is never logged with its label (Art. XIII)."""
+    from pipeline import run_assemble as R
+    assert R._reject_reason("into the trump administration's", True, []) == B.REJECT_INCOMPLETE_SYNTACTIC_SPAN
+    assert R._reject_reason("democratic colleagues in demanding the", True, []) == B.REJECT_ATTRIBUTION_FRAME
+    assert R._reject_reason("the medicaid", True, []) == B.REJECT_LOW_INFORMATION_CONTENT   # 1 content word
+    assert R._reject_reason("x", False, ["key-quorum: 2 distinct families carry the key phrase (<3)"]) \
+        == B.REJECT_FAMILY_QUORUM
+    assert R._reject_reason("x", False, ["non-verbatim fragment: y"]) == "REJECT_NON_VERBATIM"
+    assert R._reject_reason("born in the united states", True, []) is None      # clears every gate -> publishes
+
+
 def test_aggregate_publication_badge_is_a_derived_conjunction():
     """docs/19 §4b req 3 (2nd pass) — 'publication verified' exists ONLY when every check passes; any
     failed or unavailable check makes it UNAVAILABLE, never a reduced-confidence middle state."""
