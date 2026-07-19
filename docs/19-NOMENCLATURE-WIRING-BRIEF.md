@@ -84,22 +84,51 @@ administration's") all manufacture phrase co-use that is not message coordinatio
 
 Required in this session (it is the same machinery as the wiring):
 
+The one-line law (adopt the reviewer's wording — it is exactly right): **string correctness without
+message admissibility is insufficient for publication.** Three properties, checked separately:
+string validity (span in every source — already verified) · cluster admissibility (the span is a
+message, not scaffolding — MISSING) · rendering validity (the prose characterizes what the admitted
+receipts jointly say — unchecked).
+
 1. **A deterministic cluster-key admission gate**: a talking-point cluster key must be substantive —
-   reject attribution-frame and connective-scaffold keys (extend the weak-label/boilerplate layers;
-   patterns like leading prepositions/conjunctions + pure-function-word content, "colleagues in
-   demanding", "joins/joined … in", etc.). Deterministic, lexicon+shape-based, party-blind,
-   kill-fixture-tested both directions (the two clusters above MUST die; a real substantive cluster
-   — e.g. the birthright-citizenship 06-30 flagship — MUST survive).
-2. **Verify joint-unit counting in the quorum**: Kelly+Rosen are one near-identical document family;
-   confirm the ≥3-support quorum counts collapsed units (not raw members) on the citation path, per
-   §11 trap 2. If it counts members, fix and kill-test.
+   reject attribution-frame and connective-scaffold keys (extend the weak-label/boilerplate layers).
+   Candidate criteria, implementer picks and kill-fixtures decide: minimum content-word count ·
+   max function-word share · rejects attribution templates ("colleagues in demanding", "joins/joined
+   … in") · rejects spans that terminate before the policy object (trailing possessive/preposition:
+   "into the trump administration's") · DF penalty for generic scaffolding · the hard one, applied
+   conservatively: the span must retain meaning displayed alone. **Conservative is correct here — a
+   missed valid finding costs a line; an admitted scaffold key anchors unrelated claims on the
+   flagship surface.** Deterministic, party-blind, kill-fixture-tested both directions (the two
+   clusters above MUST die; the birthright-citizenship 06-30 flagship MUST survive).
+2. **The family-quorum invariant, enforced after ALL collapsing and before anything is renderable**:
+   `eligible_cluster_units = distinct collapsed document families passing span + admissibility;
+   publish only when count(eligible_cluster_units) >= quorum.` Kelly+Rosen are one family and must
+   count once toward the threshold; member REACH is still reported separately (a family with 25
+   signatories is 25 endorsements, one publication unit). If the citation path counts raw members
+   today, fix and kill-test.
 3. **Receipt display**: highlight the exact matching span in every receipt, and replace the single
-   "verifier passed" badge with the per-test breakdown (phrase present n/n · spans highlighted ·
-   distinct members · distinct document families · attribution gate · URLs). No test shown, no badge.
-4. Re-render the affected historical days; log the corrections per the corrections process.
+   "verifier passed" badge with the per-test breakdown (span present n/n · spans highlighted ·
+   distinct members · distinct document families · admissibility · attribution gate · URLs). No test
+   shown, no badge; the aggregate "verified" state exists only when every exposed test passes.
+4. **Audit ALL published days for inadmissible keys** (the defect is systemic to 4-gram keys, not a
+   07-17 event); re-render affected days; every change is a dated corrections-log entry.
 
 **This blocks the launch flip** (Constitution Art. I — citation-or-silence: a receipt that does not
 support its line's meaning is a silent integrity failure even when every string check passes).
+
+## §4c Riders from the review's revision (non-blocking — do if cheap, else queue with the item named)
+
+- **The clause-ablation test** (the reviewer's best new idea): rendered prose must be mechanically
+  traceable to its clusters — *removing any supporting cluster must remove or materially alter the
+  corresponding rendered claim*. If the current render path can bind clauses to cluster ids cheaply,
+  add it as a golden test; if not, queue it in docs/11 as a named pre-v2-Concordance requirement.
+- **Per-post composite label**: the AI-composite marker must survive a cropped screenshot — it goes
+  in EVERY post unit of a thread, not the thread head or the bio. Posting is off; land it before the
+  flip.
+- **"Observed publishing member" definition** for the R3 denominator work: source successfully
+  checked AND ≥1 eligible document in the window — not merely a reachable site.
+- **Timestamp labeling**: keep source-claimed publication, first OnScript observation, and
+  earliest-in-lane distinct wherever "first" renders (backfill makes them diverge).
 
 ## §5 Adversarial review, then merge
 
