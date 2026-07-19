@@ -2053,3 +2053,61 @@ columns (Session 22) + 1.4 Concordance (Session 23) + 1.5 The Unison + The Void 
 all SPAN-gated, all behind their flags. Streak unchanged (the 3/3 §1.4.1 pass stands; the daily pipeline
 does not import build_awards' render). Next dark-shelf items (docs/11): 1.6 floor render + coverage
 metric, 1.10 memo-cadence, 1.9 (gated on `DATA_GOV_API_KEY`).
+
+## Session 26 (2026-07-19, Opus) — the flip packet (docs/23) + two runnable findings; no code, no flips
+
+The constraint moved from build to DECISIONS (§1.4.1 has PASSED — `ops.unattended_streak('2026-07-19')`
+= `passes:True`, 3/3, re-confirmed at session start AND close). Per docs/22 (the flip-packet brief) this
+session assembled the decision packet, then spent the remainder on the runnable finding work. **No
+production code changed; no flag flipped; nothing published.** Suite 348 green at open and close.
+
+**THE FLIP PACKET — `docs/23-FLIP-PACKET.md` (DRAFT — Michael to ratify; committed `d31f447`, vtask
+#176).** Every reserved decision from Sessions 12-24 in one document, swept exhaustively (grep
+RESERVED/self-authoriz/flip across docs + BUILDLOG + the FEATURES registry + the 10 open vtasks; the
+sweep's completeness is the doc). Three tiers, per docs/21 §2 (Opus drafts, Michael rules — memo style
+imitates the #143/#146 adjudications):
+- **Tier 1 — LAUNCH ACTS (only these gate launch):** pre-flip gates (#129 dark-week receipts audit,
+  #110 attorney — status reports, not my calls; #160 data-history ruling + #166 GitHub server-side
+  purge — the literal-name history purge is DONE, the residual is Michael's ruling + the object purge)
+  → the mechanical sequence (#131 real passwords → `POSTING_ENABLED` → repo public → #132 announce).
+  **Disposition of the five docs/16 §9 rulings: 4 of 5 gate a FEATURE flip (nomenclature ACA / skew /
+  quiet-floor / scope), only the privacy one has a live instance and it is already handled by the live
+  display-suppression + the Tier-1 history residual.** So most §9 rulings are NOT launch blockers.
+- **Tier 2 — FEATURE FLIPS (all built-dark, none launch-blocking):** `party_columns` (rec: flip at
+  launch — Art. IV correctness), `owners_brief` (rec: flip anytime — private ntfy, ~zero risk),
+  `nomenclature_tags` (carries the 3 §9 riders — flip only once resolved), and `authors_vessels` /
+  `concordance` / `awards` / `archive` / `silence_board` / `duet`+`phrase_search` (rec: schedule as
+  docs/20 content moments, with each one's reserved knobs listed — PEAK_FLOOR 15, MIN_ACTIVE 20, etc.).
+  Standing steer = launch MINIMAL.
+- **Tier 3 — PUBLICATION ACTS (calendar-paced):** S1.9 (P1), S2.9 (P2), the Intensification cards (P4,
+  #174 met) — plus the fold-vs-isolate `page_html` methodology ruling as a Tier-3 precondition on any
+  published lane number.
+The packet also carries **S5.2's floor pre-registration** (§4 — the docs/13 p-hacking hole; drafted
+with a binomial-power justification, min-cell 300, awaiting Michael's one-line confirm; NOT self-supplied
+and NOT measured) and flags **#145/#159 as stale-open** (display-suppression live, salt set — Michael's
+to close).
+
+**RUNNABLE FINDINGS (docs/13 rows appended; committed `ffd52ea`).**
+- **S1.12 Leadership Ignites — REFUTED, both lanes.** False block resolved (leadership_roles on disk:
+  `X:/onscript-data/academic_archive/raw/roster/legislators-*.json`, 156 rows, 9 core titles). Core
+  leadership offices first-say big ignitions (peak≥20) at **0.82/0.89× (propublica 2013-20) and
+  1.61/0.95× (scraped 2021-26)** their statement share — never the ≥3× the folk theory needs, all four
+  cells well-powered, robust to the 33-title and no-boilerplate variants. The honest nuance: the
+  tie-inclusive (day-0 co-sayer) variant runs 1.9-2.7× — leadership over-signs at ignition but doesn't
+  solo-originate; even so, below 3×. Publishable NULL (docs/20 graveyard/methods). Floors F1-F4 frozen
+  in the script header BEFORE measuring; the sole post-run edit was a `year` str→int plumbing fix that
+  made the (previously empty) baseline non-empty — no floor tuned against a visible ratio. Script:
+  `scripts/search/s1_12_leadership.py`.
+- **S3.7 Safe-Seat Vessels — REGISTERED + BLOCKED on a guestbook the "keyless CC0" check missed.** The
+  Senate MEDSL file is ungated CC0 and now local (`X:/onscript-data/elections/raw/`); the **House file
+  (doi:10.7910/DVN/IG0UN2) sits behind a REQUIRED Dataverse guestbook (id 458)** — `gbrecs=true` does
+  not bypass it, and the only API path submits personal data (not fabricated). Errand **#177** filed
+  (Michael does the UI download). S3.7's floors pre-registered NOW (member-level Spearman ρ within
+  chamber, within-lane halves; CONFIRM |ρ|≥0.20 ∧ p<0.05 ∧ stable-sign; ≥100-members/cell power floor —
+  which is exactly why Senate-alone is NOT run). This is the elections.json disease a third time,
+  inverted: an assumed-absent blocker turned out real.
+
+**Reserved (untouched, as required):** every flag, every flip, repo-public, posting, publication of any
+card, the S5.2 floor, the docs/16 §9 rulings. **Next Opus session:** the packet is Michael's to rule;
+build-side, the docs/11 dark shelf (1.6 floor render, 1.10 memo-cadence) and — when #177 lands — the
+whole S3.7 run.
