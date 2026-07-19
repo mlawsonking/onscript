@@ -1,6 +1,6 @@
 # 23 — THE FLIP PACKET
 
-## DRAFT — Michael to ratify
+## RATIFIED 2026-07-19 (Michael in-session; remaining decisions delegated to and made by Fable — see §7, which supersedes the recommendations above where they differ)
 
 **What this is.** Every reserved decision that has piled up across Sessions 12–24, in one place, so you
 can launch without spelunking canon. Opus drafted it; **you rule** (docs/21 §2 — the drafter changed,
@@ -239,3 +239,87 @@ between the instrument and November.**
 FEATURES (l.183–204) + `posting_enabled` (l.219); `pipeline/privacy.py`; docs/16 §9; docs/19; docs/20;
 docs/21 §2; BUILDLOG Sessions 12/16/17/21/22/23/24. This document decides nothing — it presents the
 reserved list for your ruling.*
+
+---
+
+## §7 · RATIFICATION + THE RELEASE SCHEDULE (2026-07-19; binding)
+
+### 7.1 Michael's gate rulings (in-session, recorded verbatim in effect)
+
+1. **#129 receipts hand-audit — DONE.** (Task closed.)
+2. **#110/#105 attorney review — EXPLICITLY WAIVED for launch.** Stays open on the bus as a
+   post-launch act at Michael's leisure; no longer gates anything.
+3. **#160/#161 privacy-history ruling — the rewrite IS SUFFICIENT.** (Both tasks closed.)
+4. **GitHub server-side purge — WAIVED pre-public.** Michael will contact GitHub support later;
+   the residual risk (a referenced name in a verbatim member quote, reachable only by pre-rewrite
+   SHA until GC) is accepted with eyes open. Not a launch gate.
+
+**All Tier-1 gates are therefore CLEAR. The only remaining human act before launch is #131.**
+
+### 7.2 Delegated decisions (Fable, under Michael's in-session delegation; revocable by Michael at any time)
+
+1. **`nomenclature_tags` riders — all three resolved; the flag is schedulable.**
+   §9-2 (ACA): **tag by the CUMULATIVE index.** A tag is annotation, never deletion — "the
+   affordable care act" IS an official short title and the chip cites the official record. The rule
+   is party-blind (span containment against BILLSTATUS); that D-vocabulary tags where R's
+   "obamacare" does not is an asymmetric *finding* from a symmetric *instrument*, which is exactly
+   the distinction the constitution protects. Recorded visibly in `verdicts-119.json` before the flip.
+   §9-4 (quiet days): **no new floor.** Daily-always is a §13 locked decision; a quiet day rendering
+   generic overlap under the existing descriptive banner is honest. Any future floor must be
+   measured in (the UNISON_MIN_ACTIVE pattern), never guessed in.
+   §9-5 (framing): the release copy claims exactly what was measured — "the top phrases stop being
+   bill titles on 4 of 7 days" — and nothing broader.
+2. **Concordance:** `PEAK_FLOOR=15` and `MIN_STATEMENTS=10` ratified (both measured, not guessed).
+   Both flagged metric definitions stay **as built, disclosed in Methodology** (either-party sync;
+   any-day counting); own-party-only is a possible future refinement that must be measured and
+   disclosed, never silently changed. **Permanent framing: a reference table.** Any "most on-script
+   member" headline is a Tier-3 publication act, forever.
+3. **Awards:** `UNISON_MIN_ACTIVE=20`, `WINDOW_DAYS=7`, `TOP_N=5`, `VOID_TOP_N=3` ratified as
+   measured. Thin/quiet-week handling as built (floor + banner, no content blocklist — the docs/16
+   anti-pattern stays dead). **The Void ships only after `silence_board` is live** (sequenced below).
+4. **Fold-vs-isolate (§3.1): FOLD ratified.** `page_html` is the same collection instrument, merely
+   date-parsed from the body. The docs/17 §1 rule stands: where folded-vs-strict moves a published
+   headline by >0.5pt of D-share, report both. **P4 (the Intensification) is now fully unblocked.**
+5. **S5.2: floor CONFIRMED at 300/cell with the comparative-claim gate as drafted (§4).** The three
+   companion registrations (concern lexicon · 180-day window · on-topic match rule) freeze as a
+   committed ledger registration BEFORE any measurement run; the lexicon is committed to the repo;
+   no post-hoc edits. S5.2 may then run in any worker session.
+6. **Stale bus:** #129/#145/#159/#160/#161 closed. The `vtask` pagination bug (§5 ⚠) is queued as a
+   worker fix (paginate + sort in `~/.claude/vtask/vtask.py`) — it defeats the dedupe guarantee and
+   hid a launch-blocking task; fix before relying on the bus again.
+
+### 7.3 THE RELEASE SCHEDULE (standing authorization — bounded, conditional, revocable)
+
+**The health gate (every scheduled flip is conditional on ALL of):** the Monday owners-brief digest
+green · no open P0 · the prior week's nightly symmetry audits clean · site current (yesterday's day
+published, `degraded=False`). **Any failure pauses the whole schedule and escalates to Michael via
+ntfy — a paused schedule is the system working.** Michael retains a standing veto ("pause the
+schedule" in any session stops everything). Flips execute Monday afternoons, AFTER the digest.
+
+| Date | Act | Owner |
+|---|---|---|
+| **Mon 07-20** | **LAUNCH.** Michael: set the two app passwords (#131) + one reply approving/editing the announce text (drafted to `X:\onscript-data\drafts\`). Worker then executes, in order: `POSTING_ENABLED` on → repo public → announce (#132). Same window: flip `party_columns` (correctness) + `owners_brief` (private). | Michael (2 acts) → worker |
+| Mon 07-27 | Flip `nomenclature_tags` (riders resolved §7.2.1; ACA visible in verdicts; release copy per §9-5 bar) | Worker |
+| Mon 08-03 | Flip `archive` (1.1) — the 25-year chapters, the biggest single content moment on the shelf | Worker |
+| ~Wed 08-05 | **P1: the Self-Audit essay** (S1.9) publishes | Michael (editorial) |
+| Mon 08-10 | Flip `silence_board` (1.2) — landing on the original v2 target date | Worker |
+| Mon 08-17 | Flip `duet` + `phrase_search` (1.7) | Worker |
+| ~Wed 08-19 | **P2: the Boogeyman** (S2.9) publishes | Michael (editorial) |
+| Mon 08-24 | Flip `awards` (1.5) — The Void now live-fed by the absence map | Worker |
+| Mon 08-31 | Flip `authors_vessels` (1.3). **All Sep–Oct pieces locked today** (docs/20 freeze discipline) | Worker + Michael (lock) |
+| Mon 09-07 | Flip `concordance` (1.4) — deliberately last: member-level, now with 7 weeks of public audit history behind it | Worker |
+| Sep–Oct | P3/P4/P5/P6 per docs/20 (P4 unblocked by §7.2.4) | Michael (editorial) |
+| **~Mon 10-12** | **FREEZE** — no flips, no new backward-looking claims until post-midterms (docs/20 §1) | — |
+| Dec | Resume: cycle retrospective, the Seam methods essay, graveyard annual | Michael (editorial) |
+
+**Worker-session immediate duties (before Mon):** draft the announce text + P1/P2 raw drafts to
+`X:\onscript-data\drafts\` (never in-repo) · fix the vtask pagination bug · prepare each scheduled
+flip as a ready one-commit change · verify the launch sequence end-to-end in dry-run one final time.
+
+### 7.4 Michael's complete remaining list
+
+1. **#131** — create the two real app passwords, set the Actions secrets.
+2. **One reply** — "go" (approving or editing the announce text).
+
+Then: the 2-minute Monday digest glance, editorial acts per docs/20 at your leisure, and the standing
+veto. Everything else is scheduled, gated, and executed by the worker under this authorization.
