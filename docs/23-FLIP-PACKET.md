@@ -402,3 +402,24 @@ story (docs/20's December flagship can cite it: the health gate's first catch wa
 **The announce text: the RECOMMENDED 4-post thread is AFFIRMED as drafted** (every count measured
 through the real builder; the 36 figure matches the page it links). Michael's entire remaining act
 is one reply: **"go"** — or edits, which re-enter at step 4.
+
+**AMENDMENT (Michael, in-session, 2026-07-20): LAUNCH DAY = TUESDAY 07-21.** An editorial timing
+choice, not a gate pause: the announce lands on the **Monday 07-20 reading** (a full weekday page,
+assembled Tue ~11:30Z) instead of Sunday's quiet one. Consequences:
+
+- **Monday (worker session 1) = the repair day.** §7.5 steps 1–3 only: the R-C guard + repairs
+  {07-12, 07-18} + suite + coherent site + the Art.-XVI record checks. **No launch acts.** The
+  guard landing Monday now matters doubly: without it, a post-assemble collect could null the very
+  Monday reading the launch is waiting for.
+- **Tuesday (worker session 2) = the launch morning.** After the ~11:30Z assemble lands day 07-20
+  and the homepage shows Monday's reading, verify it looks right — then, **on Michael's "go"**:
+  `POSTING_ENABLED` on → repo public → announce (verbatim, confirm=POST) → flip `party_columns` +
+  `owners_brief`. Failure handling unchanged: ntfy, slip day-by-day.
+- The rest of the schedule is unmoved (07-27 `nomenclature_tags` onward; the Monday-flip rhythm
+  resumes next week).
+- **The "go" stays pending until Tuesday** — the point of waiting is that Michael sees the Monday
+  page before the announce points the world at it. The RECOMMENDED text stands affirmed; edits
+  re-enter at the announce step.
+
+Monday worker prompt: **"read CLAUDE.md and docs/23 §7.5, run the Monday repair."**
+Tuesday worker prompt: **"read CLAUDE.md and docs/23 §7.5, run the launch morning."**
