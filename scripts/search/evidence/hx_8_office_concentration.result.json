@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-07-20T19:06:36Z",
+  "floors": {
+    "MIN_STMTS": 10,
+    "MIN_OFFICES": 30
+  },
+  "note": "Descriptive self-audit (HX.8). Chambers never pooled (#143), lanes never pooled (L1). reach = distinct peak>=15 phrases the office participated in; intensity = its statement count. rho is descriptive, no CONFIRM/REFUTE gate.",
+  "cells": {
+    "House.D.propublica": {
+      "chamber": "House",
+      "party": "D",
+      "lane": "propublica",
+      "offices": 312,
+      "statements": 258253,
+      "top_decile_share": 0.3592,
+      "gini": 0.5095,
+      "qualifying_offices": 311,
+      "rho_intensity_reach": 0.5468,
+      "p": 1.1897396543522398e-25,
+      "reported": true,
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 62,
+          "mean_intensity": 135.9,
+          "mean_reach": 1787.21
+        },
+        {
+          "quintile": 2,
+          "n": 62,
+          "mean_intensity": 296.5,
+          "mean_reach": 2553.5
+        },
+        {
+          "quintile": 3,
+          "n": 62,
+          "mean_intensity": 527.7,
+          "mean_reach": 3138.85
+        },
+        {
+          "quintile": 4,
+          "n": 62,
+          "mean_intensity": 877.3,
+          "mean_reach": 4243.34
+        },
+        {
+          "quintile": 5,
+          "n": 63,
+          "mean_intensity": 2291.0,
+          "mean_reach": 4632.22
+        }
+      ]
+    },
+    "House.R.propublica": {
+      "chamber": "House",
+      "party": "R",
+      "lane": "propublica",
+      "offices": 346,
+      "statements": 218773,
+      "top_decile_share": 0.355,
+      "gini": 0.4905,
+      "qualifying_offices": 341,
+      "rho_intensity_reach": 0.858,
+      "p": 4.1658842317485114e-100,
+      "reported": true,
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 68,
+          "mean_intensity": 108.4,
+          "mean_reach": 502.44
+        },
+        {
+          "quintile": 2,
+          "n": 68,
+          "mean_intensity": 270.1,
+          "mean_reach": 1186.24
+        },
+        {
+          "quintile": 3,
+          "n": 68,
+          "mean_intensity": 443.4,
+          "mean_reach": 1807.4
+        },
+        {
+          "quintile": 4,
+          "n": 68,
+          "mean_intensity": 700.2,
+          "mean_reach": 2380.5
+        },
+        {
+          "quintile": 5,
+          "n": 69,
+          "mean_intensity": 1670.2,
+          "mean_reach": 3148.91
+        }
+      ]
+    },
+    "Senate.R.propublica": {
+      "chamber": "Senate",
+      "party": "R",
+      "lane": "propublica",
+      "offices": 1,
+      "statements": 14,
+      "top_decile_share": 1.0,
+      "gini": 0.0,
+      "qualifying_offices": 1,
+      "rho_intensity_reach": null,
+      "p": null,
+      "reported": false,
+      "quintiles": []
+    },
+    "House.D.scraped": {
+      "chamber": "House",
+      "party": "D",
+      "lane": "scraped",
+      "offices": 218,
+      "statements": 70164,
+      "top_decile_share": 0.1777,
+      "gini": 0.3384,
+      "qualifying_offices": 217,
+      "rho_intensity_reach": 0.7897,
+      "p": 1.6110416497621417e-47,
+      "reported": true,
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 43,
+          "mean_intensity": 61.0,
+          "mean_reach": 188.35
+        },
+        {
+          "quintile": 2,
+          "n": 43,
+          "mean_intensity": 176.4,
+          "mean_reach": 506.93
+        },
+        {
+          "quintile": 3,
+          "n": 44,
+          "mean_intensity": 335.1,
+          "mean_reach": 981.98
+        },
+        {
+          "quintile": 4,
+          "n": 43,
+          "mean_intensity": 477.1,
+          "mean_reach": 1454.98
+        },
+        {
+          "quintile": 5,
+          "n": 44,
+          "mean_intensity": 561.0,
+          "mean_reach": 1273.68
+        }
+      ]
+    },
+    "House.R.scraped": {
+      "chamber": "House",
+      "party": "R",
+      "lane": "scraped",
+      "offices": 221,
+      "statements": 49462,
+      "top_decile_share": 0.2546,
+      "gini": 0.4369,
+      "qualifying_offices": 216,
+      "rho_intensity_reach": 0.8666,
+      "p": 1.5403488181881696e-66,
+      "reported": true,
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 43,
+          "mean_intensity": 32.9,
+          "mean_reach": 125.19
+        },
+        {
+          "quintile": 2,
+          "n": 43,
+          "mean_intensity": 98.7,
+          "mean_reach": 290.07
+        },
+        {
+          "quintile": 3,
+          "n": 43,
+          "mean_intensity": 192.8,
+          "mean_reach": 483.77
+        },
+        {
+          "quintile": 4,
+          "n": 43,
+          "mean_intensity": 307.5,
+          "mean_reach": 655.56
+        },
+        {
+          "quintile": 5,
+          "n": 44,
+          "mean_intensity": 505.8,
+          "mean_reach": 777.55
+        }
+      ]
+    },
+    "Senate.D.scraped": {
+      "chamber": "Senate",
+      "party": "D",
+      "lane": "scraped",
+      "offices": 45,
+      "statements": 27369,
+      "top_decile_share": 0.1702,
+      "gini": 0.3867,
+      "qualifying_offices": 45,
+      "rho_intensity_reach": 0.8901,
+      "p": 2.8594945529117245e-16,
+      "reported": true,
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 9,
+          "mean_intensity": 71.1,
+          "mean_reach": 184.67
+        },
+        {
+          "quintile": 2,
+          "n": 9,
+          "mean_intensity": 279.0,
+          "mean_reach": 475.89
+        },
+        {
+          "quintile": 3,
+          "n": 9,
+          "mean_intensity": 531.8,
+          "mean_reach": 656.44
+        },
+        {
+          "quintile": 4,
+          "n": 9,
+          "mean_intensity": 1039.0,
+          "mean_reach": 1107.78
+        },
+        {
+          "quintile": 5,
+          "n": 9,
+          "mean_intensity": 1120.1,
+          "mean_reach": 1011.78
+        }
+      ]
+    },
+    "Senate.R.scraped": {
+      "chamber": "Senate",
+      "party": "R",
+      "lane": "scraped",
+      "offices": 52,
+      "statements": 26388,
+      "top_decile_share": 0.217,
+      "gini": 0.4019,
+      "qualifying_offices": 52,
+      "rho_intensity_reach": 0.9114,
+      "p": 6.367340140103668e-21,
+      "reported": true,
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 10,
+          "mean_intensity": 48.7,
+          "mean_reach": 111.9
+        },
+        {
+          "quintile": 2,
+          "n": 10,
+          "mean_intensity": 240.9,
+          "mean_reach": 329.5
+        },
+        {
+          "quintile": 3,
+          "n": 11,
+          "mean_intensity": 489.5,
+          "mean_reach": 579.82
+        },
+        {
+          "quintile": 4,
+          "n": 10,
+          "mean_intensity": 630.8,
+          "mean_reach": 594.9
+        },
+        {
+          "quintile": 5,
+          "n": 11,
+          "mean_intensity": 1072.7,
+          "mean_reach": 905.36
+        }
+      ]
+    }
+  }
+}

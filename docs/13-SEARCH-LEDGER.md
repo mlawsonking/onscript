@@ -951,3 +951,47 @@ hole docs/12:457 named is closed by the freeze, not by the result.
 Re-runnable: `PYTHONHASHSEED=0 python scripts/search/s5_2_concern_conversion.py` (reads the frozen
 registration; BILLSTATUS parse cached to `X:/onscript-data/bills/derived/s5_2-sponsorships.jsonl`).
 Evidence: `scripts/search/evidence/s5_2_concern_conversion.result.json` + X: copy.
+
+## HX REGISTRATION WAVE (docs/05 §3) — substrate audit + HX.8 measured (launch-eve Search lane, 2026-07-20, Opus)
+
+**The mandated first step — "substrate audited against disk BEFORE speccing" (docs/05 §3; the S3/S4
+lesson that cost 9 of 15 hypotheses) — run for all 8 registration-wave candidates:**
+
+| HX | claim | substrate on disk | status |
+|----|-------|-------------------|--------|
+| HX.1 | GDELT-anchored script-formation ("most big news days → no caucus script") | `gdelt.py`/`silence.py` + `gdelt_theme_map.json` exist; **no persisted GDELT baseline** | **BLOCKED-ON-NETWORK** (needs a live DOC 2.0 query) |
+| HX.2 | per-topic script-proneness | `taxonomy_v1.json` ✓ (repo root) + ledger shards ✓ | **RUNNABLE** |
+| HX.3 | chamber velocity | ledger + chamber ✓ | RUNNABLE ⚠ #143 chamber trap (per-member cadence norm mandatory) |
+| HX.4 | phrase half-life × majority | ledger ✓ + `chambers-control.json` ✓ | **RUNNABLE** (within-lane only) |
+| HX.5 | opposition vs celebration reuse | S4.1 valence lexicons (in `wave_s4.py`) ✓ + corpus | **RUNNABLE** (placebo on the headline stat) |
+| HX.6 | event-conditioned regional micro-scripts | `bioguide_states` + ledger ✓ (event anchor = complex) | RUNNABLE (complex) |
+| HX.7 | pre-floor-fight discipline | **no floor-calendar table on disk** | **BLOCKED-ON-SOURCE** (as flagged 🔬) |
+| HX.8 | office concentration + intensity-vs-reach | `stmt_meta` ✓ + `member_index` ✓ | **RUNNABLE — MEASURED below** |
+
+**6 of 8 are runnable now with local data** (HX.1 needs live GDELT; HX.7 needs a floor-calendar). This
+is the runnable/blocked map for the October registration wave — no hypothesis is specced against an
+imagined table.
+
+### HX.8 · Prolific-office concentration + intensity-vs-reach — **MEASURED** (descriptive self-audit)
+
+Floors PRE-DECLARED before measuring (L4): `MIN_STMTS=10`, `MIN_OFFICES=30`. Chambers NEVER pooled
+(#143), lanes NEVER pooled (L1), denominators in the view (#146/R3). No CONFIRM/REFUTE gate — the
+distribution IS the finding. `scripts/search/hx_8_office_concentration.py`. Two findings, both symmetric
+across parties:
+
+1. **Volume concentration is moderate, roughly party-symmetric, and FELL after the 2021 lane change.**
+   propublica (2013–20) House: the top decile of offices produced **~36%** of statements (Gini ~**0.50**),
+   near-identical D (share 0.359 / Gini 0.510) vs R (0.355 / 0.491). scraped (2021–26): top-decile share
+   dropped to **0.17–0.25** (Gini 0.34–0.44) — volume spread more evenly across offices. (No Senate
+   propublica cell: the ProPublica lane carried **1** Senate office — the same coverage gap S3.7 found,
+   not a bug.)
+2. **Intensity strongly predicts reach in EVERY powered cell (Spearman ρ 0.55–0.91, all p ≪ 1e-16): a
+   prolific office is a coordination HUB, not a loud self-repeater.** The more an office publishes, the
+   more distinct synchronized (peak≥15) phrases it rides. Robust across chamber × party × lane
+   (House-R-propublica tightest at **0.858**, House-D-propublica loosest at **0.547**, still strong;
+   scraped 0.79–0.91). The intensity-quintile mean-reach artifact is monotone up in every cell.
+
+Both are methods/transparency-shelf descriptives (docs/20), symmetric by construction. Re-runnable:
+`PYTHONHASHSEED=0 python scripts/search/hx_8_office_concentration.py`; evidence
+`scripts/search/evidence/hx_8_office_concentration.result.json` + X:. **Next runnable HX (per the audit):
+HX.2 / HX.4 / HX.5 (all local); HX.1 gated on live GDELT, HX.7 on a floor-calendar.**
