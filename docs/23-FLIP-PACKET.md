@@ -421,5 +421,41 @@ assembled Tue ~11:30Z) instead of Sunday's quiet one. Consequences:
   page before the announce points the world at it. The RECOMMENDED text stands affirmed; edits
   re-enter at the announce step.
 
-Monday worker prompt: **"read CLAUDE.md and docs/23 §7.5, run the Monday repair."**
+**AMENDMENT 2 (Fable, 2026-07-20, on Michael's launch-eve scope question): three additions, chosen
+to fit "properly test and vet in one day" — and an explicit list of what stays dark.**
+
+1. **`phrase_search` joins the launch window** (Tuesday, with `party_columns`/`owners_brief`). It is
+   the direct answer to "not much navigability": 276 phrase pages exist and only the top-40 tables
+   reach them. Built + locked-tested since S13; it is a UTILITY, not a content moment, so pulling it
+   forward costs the drip almost nothing — **`duet` keeps 08-17 as that day's moment.** Monday duty:
+   flip locally, render, click through, full suite, stage the one-commit flip.
+2. **Link cards (og: meta) — the real "prep for Bluesky" item.** The site shell emits **zero**
+   Open Graph tags (verified: no `og:` anywhere in `site.py` or the rendered pages), so the
+   announce, every daily receipts link in every composite thread, and every share forever would
+   unfurl as a bare imageless card. Monday duty: add `og:title`/`og:description`/`og:url` + a
+   static `og:image` (the committed brand card, copied to `site/public/` so it actually serves;
+   verify the deploy path), locked test that every page carries them. Site chrome, not a feature —
+   ungated, same category as the day-nav fix.
+3. **First-post mechanics (Tuesday brief fix).** As sequenced, Michael's "go" happens AFTER the
+   ~11:30Z assemble — so with the flag flipping mid-morning, the composites' first threads would not
+   post until the **21:30Z run (5:30pm ET)**: the announce would point at two composite accounts
+   that stay silent all day. Fix, added to the Tuesday order: after go + flips, **re-dispatch
+   `assemble.yml` with `day=2026-07-20`** (the documented repair path; posting is idempotent by
+   manifest + deterministic rkey) so the first composite threads land in the same morning window as
+   the announce. The 11:30Z run's dry-run log **is** the final preview of exactly those threads —
+   the worker eyeballs it before the flip.
+
+**Stays dark, deliberately:** `archive` holds for 08-03 — it is the biggest single content moment
+on the shelf (the second attention spike, two weeks after launch-week decay) and the
+deepest-scrutiny surface (25 years of historical claims) should not debut on the loudest day before
+the daily instrument has public track record. `duet` 08-17 · `awards` 08-24 (silence-fed, R-B) ·
+`authors_vessels` 08-31 · `concordance` 09-07 (member-level, wants audit history) ·
+`nomenclature_tags` 07-27 (R-A) — all per schedule and riders. **No new code surfaces on launch
+eve beyond the three above**; specifically, NO Bluesky embed/quote-post wiring — if the house
+account should quote-post the composites' first threads, Michael does it **in the app** (a human
+act, zero new code). If "bluesky quotes" meant verbatim member quotes inside the post threads:
+post-launch enhancement — a new public surface needs its own verifier/privacy gating; the receipts
+link carries the quotes today.
+
+Monday worker prompt: **"read CLAUDE.md and docs/23 §7.5, run the Monday repair + launch-eve polish."**
 Tuesday worker prompt: **"read CLAUDE.md and docs/23 §7.5, run the launch morning."**
