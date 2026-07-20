@@ -1147,3 +1147,40 @@ majority-vs-minority persistence. The partition reproduces HX.4's cells **exactl
 - **Verdict:** HELD. Re-runnable: `PYTHONHASHSEED=0 python scripts/search/hx_4d_within_party.py`;
   registration `data/reference/search/hx_4d-registration.json`; evidence
   `scripts/search/evidence/hx_4d_within_party.result.json` + X:.
+
+### HX.5 · Opposition-vs-celebration reuse — **REGISTERED** (frozen 2026-07-20, before measurement)
+
+Design frozen before touching confirmatory data (docs/12 L4; freeze-before-measure); the verdict lands
+in a **separate later commit**. Full frozen spec: `data/reference/search/hx_5-registration.json`.
+
+- **Question:** within each party, does OPPOSITION (condemnation)-framed language get REUSED (echoed
+  across the party's own statements) more than CELEBRATION-framed language? Symmetric by construction
+  (both parties produce both valences; the lexicon is party-blind; the claim must hold within EACH party).
+- **⚠ Substrate audit killed two naive metrics before the freeze (marginals only, no effect measured):**
+  (1) coordinated peak≥15 phrases almost never CONTAIN a valence token (D opp/cel = 23/25 propublica,
+  41/7 scraped; **R opp = 0 in both lanes**) → a phrase-level valence split is dead. (2) "does a
+  statement carry a peak≥15 coordinated talking point" is **boilerplate-invalid**: the peak≥15 oracle is
+  procedural-dominated (the content filter drops 3 of 27,261; keeps "members of congress", "upon
+  executing the oath of"), and the **measured overall carry base rate is 90–94%** — a near-ceiling driven
+  by furniture, not talking points. *(This is itself a ledger-worthy caution: the peak≥15 set is not a
+  clean "talking points" list for occurrence-level metrics.)*
+- **Chosen metric — within-class distinctive reuse:** shared boilerplate recurs equally in the opposition
+  and celebration classes, so it **cancels in the opposition−celebration difference**. Per (lane, party):
+  `repeat_rate(class)` = the fraction of the class's content 4–6-gram phrase-mass echoed by ≥1 OTHER
+  statement of the same class (document-frequency ≥2), on classes **size-matched** to `n=min(n_opp,n_cel)`
+  (frozen seed 0) to remove the class-size confound. Valence via the exact `wave_s4._valence` + the frozen
+  S4.1 lexicon; content n-grams via `wave_s4._content_ngrams`. Within-lane; congresses 113–116 / 117–119
+  (matches HX.4, avoids the pre-2013 lane-edge traps).
+- **Headline statistic:** `gap = repeat_rate(opposition) − repeat_rate(celebration)`, per (lane, party).
+- **Placebo (docs/12 L3, S4.2's law — the EXACT statistic):** within-valence split (sort each lexicon,
+  split by index parity → conA/conB, celA/celB). The placebo contrasts conA-vs-conB and celA-vs-celB are
+  the SAME size-matched repeat-rate-gap statistic under a NULL (same-valence halves → should be ~0). Plus
+  a bootstrap 95% CI (B=500, frozen seed) on the real gap and each placebo gap. The **placebo is the
+  effect-size yardstick** — the real gap must clear significance AND exceed the within-valence placebo
+  gaps (the S4.4 discipline).
+- **Gate/verdict (frozen):** floor 300/class. CONFIRM iff all four (lane, party) gaps are positive (CI
+  excludes 0, opp>cel) AND placebo-clean, both parties + both lanes. ARTIFACT if a within-valence placebo
+  reproduces it. DESCRIPTIVE if direction-consistent but not all significant / placebo inconclusive.
+  REFUTED if direction inconsistent. UNDERPOWERED if a class < 300.
+- **Status:** REGISTERED — measurement next (this session), then a verdict row. Launch-eve safe: no
+  daily-pipeline surface.

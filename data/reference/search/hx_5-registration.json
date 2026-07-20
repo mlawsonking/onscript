@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "kind": "search-hx.5-registration",
+  "hypothesis": "HX.5 — Opposition-vs-celebration reuse (docs/05 §3). Within each party, does OPPOSITION (condemnation)-framed language get REUSED (echoed across the party's own statements) MORE than CELEBRATION-framed language? 'A party recycles its attack lines harder than its victory laps.' Symmetric by construction: both parties produce both valences, the lexicon is party-blind, and the claim must hold WITHIN each party (not because one party opposes more).",
+  "source": "Registration frozen and committed BEFORE any measurement run, in a separate earlier commit, so the freeze provably precedes the result in git history (docs/23 §7.2.5; docs/12 L4; the freeze-before-measure pattern S32 validated). Valence from the frozen S4.1 lexicon (data/reference/search/scotus-landmarks.json _framing_lexicon), applied with the exact wave_s4._valence function. Reuse measured over the congress-press corpus (Lane-1), within-lane only. No post-hoc edits.",
+  "fetch_date": "2026-07-20",
+  "rationale": "The docs/05 §3 note ('S4.1's valence lexicons exist; symmetric by construction; placebo on the headline statistic') and the docs/13 substrate audit ('valence lexicons + corpus') pin the substrate to STATEMENT-level valence over the corpus. Floors are numerals fixed before touching confirmatory data (docs/12 L4). The metric was chosen AFTER a substrate audit (see substrate_audit below) that killed the naive 'carry a coordinated phrase' metric; the audit measured only marginals and base rates, never the opposition-vs-celebration effect, so freeze-before-measure integrity for the chosen statistic holds.",
+
+  "substrate_audit": {
+    "why_not_phrase_level": "Coordinated peak>=15 phrases almost never CONTAIN a valence token (measured: propublica D opp=23/cel=25, R opp=0/cel=4; scraped D opp=41/cel=7, R opp=0). Valence is a statement-level property, not a coordinated-phrase property. A phrase-level valence split is dead-on-arrival.",
+    "why_not_carry_rate": "The natural 'does a statement carry a peak>=15 coordinated talking point' metric is INVALID: the member_index peak>=15 oracle is boilerplate-dominated (the wave_s4 content filter drops only 3 of 27,261 propublica phrases; it keeps 'members of congress', 'house of representatives passed', 'upon executing the oath of'). MEASURED overall carry base rate = 90.2%-93.6% across sampled months and both lanes — a near-ceiling that boilerplate, not talking points, drives. A carry-rate card would be an artifact. This finding is itself worth a ledger note.",
+    "chosen_metric": "Within-class DISTINCTIVE-REUSE (repeat rate): shared boilerplate recurs equally in the opposition and celebration classes, so it CANCELS in the opposition-minus-celebration difference; the size-matched difference isolates whether a party's opposition language echoes across its own statements more than its celebration language does."
+  },
+
+  "unit_and_metric": {
+    "corpus": "iter_statements(lane, congresses, with_text=True). LANE + congress ranges match HX.4 exactly to avoid the documented pre-2013 lane-edge traps (provenance.py): propublica lane -> congresses 113-116; scraped lane -> 117-119. Within-lane only (docs/12 L1).",
+    "qualifying_statement": "party in {D,R}, bioguide present, and >= 20 whitespace tokens in low = (title + ' . ' + text).lower() — the same qualification build_text_features uses. Raw mirror records (not syndication-deduped, matching build_text_features); syndication inflates n identically across valence classes so the size-matched DIFFERENCE is unaffected (disclosed).",
+    "valence": "wave_s4._valence(low, lex) with the frozen _framing_lexicon (celebration: 15 tokens; condemnation: 24 tokens). Substring match (the S4.1 convention). OPPOSITION = condemnation-hit AND NOT celebration-hit; CELEBRATION = celebration-hit AND NOT condemnation-hit; statements matching both or neither are excluded.",
+    "content_ngrams": "wave_s4._content_ngrams(low, lo=4, hi=6) — the boilerplate-suppressed content-n-gram extractor every phrase hypothesis uses, restricted to 4-6 grams (distinctive multi-word echoes; 2-3 grams are too generic and inflate the shared baseline). Per statement, the SET of its content 4-6 grams (deduped within the statement, so reuse is measured ACROSS statements, not within one).",
+    "repeat_rate": "For a class of statements, class document-frequency df(ng) = number of the class's statements whose ngram-set contains ng. repeat_rate(class) = (sum over statements, over ng in the statement's set, of [df(ng) >= 2]) / (sum over statements of |set|). I.e. the fraction of the class's phrase-mass that is echoed by >= 1 OTHER statement of the same class. Higher = more reuse.",
+    "size_matching": "repeat_rate is size-dependent (a larger class mechanically recurs more), and the opposition and celebration classes differ in size. So every comparison SUBSAMPLES both classes to n = min(class sizes) statements (frozen seed 0, random.Random(0)) before counting. The placebo splits are size-matched the same way."
+  },
+
+  "headline_statistic": "Per (lane, party): gap = repeat_rate(opposition) - repeat_rate(celebration), on classes size-matched to n = min(n_opp, n_cel). Direction of interest: gap > 0 (opposition language reused more). This is THE statistic the placebo targets (docs/12 L3, S4.2's law).",
+
+  "placebo": {
+    "law": "docs/12 L3 / S4.2: the placebo is computed on the EXACT statistic the headline states (S4.2 died placebo-ing the blame RATE while headlining the outward SHARE). Here the exact statistic is the size-matched repeat_rate GAP between two lexicon-defined classes.",
+    "within_valence_split": "The negative control (S4.4 model — a lexical split that SHOULD be null). Sort the condemnation tokens; split by sorted-index parity into conA / conB (12 + 12). Sort the celebration tokens; split into celA / celB (8 + 7). Placebo classes: conA-only = conA-hit AND NOT conB-hit AND NOT celebration-hit (and the mirror for conB, celA, celB). Two placebo gaps per (lane, party): conA-vs-conB and celA-vs-celB, each size-matched. Both are opposition-vs-opposition (resp. celebration-vs-celebration) contrasts and should be ~0. If a within-valence placebo gap is as large as the real opposition-vs-celebration gap, the effect is a lexical-split artifact, not a valence effect (an ARTIFACT verdict, the S1.10 pattern).",
+    "significance": "Bootstrap: resample statements (the independent unit) with replacement within each size-matched class, B = 500, frozen seed random.Random(0), recompute the gap -> 95% percentile CI. The real gap and both placebo gaps each get a CI."
+  },
+
+  "gate": {
+    "min_stmts_per_class": 300,
+    "min_stmts_note": "Frozen a priori (binomial-power, S5.2 precedent). Verified clearable: a single month yields hundreds of opposition/celebration statements per party, so full-lane classes are in the tens of thousands. A class below 300 is reported UNDERPOWERED.",
+    "significance_rule": "A (lane, party) real gap is 'positive' iff its 95% bootstrap CI excludes 0 AND gap > 0 (opposition reused more).",
+    "placebo_clean_rule": "A (lane, party) is 'placebo-clean' iff neither within-valence placebo gap's 95% CI excludes 0 in the same direction with magnitude >= the real gap (i.e. no within-valence split reproduces the effect). Placebo classes below 300 are reported as making the placebo inconclusive for that cell.",
+    "effect_reference": "There is NO absolute materiality floor (the repeat-rate scale is not known a priori); the PLACEBO is the yardstick — the real gap must both clear significance AND exceed the within-valence placebo gaps. This is the S4.4 discipline (the effect must appear where valence differs and vanish where it does not)."
+  },
+
+  "verdict_rule": {
+    "CONFIRM": "All four (lane, party) real gaps are 'positive' (CI excludes 0, opposition > celebration) AND 'placebo-clean' — i.e. the reuse asymmetry holds in BOTH parties and BOTH lanes and is not reproduced by a within-valence split. Symmetric by construction.",
+    "ARTIFACT": "Real gaps look positive but >= 1 within-valence placebo gap reproduces the effect (significant, same-direction, comparable magnitude) — a lexical-split artifact.",
+    "DESCRIPTIVE": "The direction is consistent (opposition > celebration in the powered cells) but not all four cells clear significance, or the placebo is inconclusive (underpowered) — a suggestive, methods/transparency-shelf pattern (docs/20), like HX.2 / HX.8.",
+    "REFUTED": "The direction is inconsistent across the powered (lane, party) cells (opposition <= celebration in a well-powered cell) — no symmetric reuse asymmetry.",
+    "UNDERPOWERED": "A required real class (opposition or celebration) is below 300 in a lane, so that lane cannot be tested."
+  },
+
+  "amend_policy": "This registration is FROZEN. No post-hoc edits to unit_and_metric, headline_statistic, placebo, gate, or verdict_rule. A genuine design change is a NEW registration with a new date, never an edit to this one. The measurement script scripts/search/hx_5_opposition_reuse.py must implement exactly these rules and is auditable against this file.",
+  "amendments": [
+    {"date": "2026-07-20", "by": "Opus, dedicated HX session (post-S32)",
+     "reason": "Initial freeze. Design fixed before any opposition-vs-celebration effect was computed. The substrate audit (marginals + carry base rate) that motivated the distinctive-reuse metric measured no effect statistic and is disclosed. Placebo = within-valence split (S4.4 model) + bootstrap CI, both on the exact size-matched repeat-rate gap (docs/12 L3). Floors (300/class) and n-gram range (4-6) frozen; the placebo is the effect-size yardstick. Measurement follows in a SEPARATE later commit, so the freeze precedes the result in git history."}
+  ]
+}
