@@ -1,0 +1,70 @@
+name: ANNOUNCE — one-off house-account post
+
+# The launch announce (docs/23 §7.3), posted from the house account @onscript.news.
+#
+# MANUAL ONLY — there is deliberately NO `schedule:` trigger here and there must never be one. The
+# first (and only) brand announce is Michael's act; an announce that can fire on a cron is the exact
+# "cron accident" the whole POSTING_ENABLED gate exists to prevent.
+#
+# The approved text is NOT stored in this repo. It is drafted to X:\onscript-data\drafts\, approved
+# by Michael, and pasted into the `text` input below — so the act of pasting IS the approval, and the
+# posted bytes are the approved bytes. `confirm` must be typed as POST: a dispatch with the text but
+# without the confirmation is a DRY RUN that prints the thread and touches no network.
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: "The APPROVED announce text, verbatim. Split into 300-char posts, never reworded."
+        required: true
+      confirm:
+        description: "Type POST to actually publish. Anything else = dry run (prints the thread, no network)."
+        required: true
+        default: "dry-run"
+
+concurrency:
+  group: onscript-announce
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      PRIVACY_SALT: ${{ secrets.PRIVACY_SALT }}   # the privacy floor applies to human copy too
+      BSKY_BRAND_HANDLE: ${{ secrets.BSKY_BRAND_HANDLE }}
+      BSKY_BRAND_PASSWORD: ${{ secrets.BSKY_BRAND_PASSWORD }}
+      # The same master S3 switch the daily posting path obeys. Off => this holds and posts nothing,
+      # even with `confirm: POST`. Per docs/23 §7.3 the flip happens BEFORE the announce.
+      POSTING_ENABLED: ${{ vars.POSTING_ENABLED }}
+      ANNOUNCE_TEXT: ${{ github.event.inputs.text }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Preflight — the privacy gate is fail-closed and needs its key
+        run: |
+          [ -n "$PRIVACY_SALT" ] || { echo "::error::PRIVACY_SALT is not set"; exit 1; }
+
+      # Always print the thread first, whatever the confirm value is: the operator sees exactly what
+      # will be posted, in the run log, before the posting step runs.
+      - name: Preview the announce thread (dry run, no network)
+        run: python pipeline/announce.py
+
+      - name: Post the announce
+        if: ${{ github.event.inputs.confirm == 'POST' }}
+        run: python pipeline/announce.py --confirm
+
+      - name: Dead-man — notify on ANY failure
+        if: failure()
+        run: |
+          curl -fsS -m 10 \
+            -H "Title: OnScript ANNOUNCE FAILED" \
+            -H "Priority: high" -H "Tags: rotating_light" \
+            -d "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            "https://ntfy.sh/${NTFY_TOPIC}" || echo "ntfy unreachable (topic unset or network)"

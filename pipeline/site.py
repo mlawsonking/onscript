@@ -238,6 +238,9 @@ ol.pcol-list li{padding:6px 0; border-bottom:1px solid var(--line); display:flex
 .pcount{display:inline-block; min-width:24px; font-weight:700; font-variant-numeric:tabular-nums}
 
 .nav-pn{display:flex; justify-content:space-between; gap:12px; margin:26px 0; font-size:15px}
+ul.daylist{list-style:none; margin:0 0 22px; padding:0; display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(190px, 1fr)); gap:2px 16px; font-size:14.5px}
+ul.daylist li{padding:5px 0; border-bottom:1px solid var(--line)}
 .chartbox{border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:12px; margin:16px 0}
 .legend{font-size:13px; color:var(--muted); margin:6px 0 0}
 .legend .sw{display:inline-block; width:22px; height:0; border-top:3px solid; vertical-align:middle; margin-right:5px}
@@ -280,6 +283,11 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
         dark_nav += f'<a href="{root}posts.html">Posts</a>'
     nav = (
         f'<a href="{root}index.html">Today</a>'
+        # The date archive is NAVIGATION to already-public pages, not a feature: the day pages have
+        # always been written and permanent, but nothing linked to them (index.html pointed at zero
+        # of them and the prev/next chain had no entry point). So it is ungated — a FEATURES flag
+        # here would be gating the table of contents of a book that is already on the shelf.
+        f'<a href="{root}day/index.html">Days</a>'
         f'<a href="{root}phrases/index.html">Phrases</a>'
         f'{dark_nav}'
         f'<a href="{root}methodology.html">Methodology</a>'
@@ -1280,10 +1288,79 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         )
         parts.append(f'<div class="nav-pn">{prev_html}{next_html}</div>')
     else:
+        # The homepage is the ENTRY POINT to the permanent day chain. Without these two links,
+        # index.html referenced zero day pages and the prev/next chain had no way in — every day we
+        # have ever published was reachable only by typing its URL. `prev_day` here is the previously
+        # published day (the day before this "today" reading), so the archive is one click deep.
+        prev_html = (
+            f'<a href="{root}day/{esc(prev_day)}.html">&larr; {esc(prev_day)}</a>' if prev_day else "<span></span>"
+        )
+        parts.append(
+            f'<div class="nav-pn">{prev_html}'
+            f'<a href="{root}day/index.html">Every published day &rarr;</a></div>'
+        )
         parts.append(
             f'<p class="muted" style="margin-top:26px"><a href="{root}phrases/index.html">Browse all tracked phrases &rarr;</a></p>'
         )
 
+    return "".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# The date archive (/day/index.html)
+# ---------------------------------------------------------------------------
+_MONTH_NAMES = ("January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December")
+
+
+def _month_label(day: str) -> str:
+    """'2026-07-18' -> 'July 2026'. Falls back to the raw day on anything unparseable — a malformed
+    day string must never crash the archive index."""
+    try:
+        y, m, _ = str(day).split("-")
+        return f"{_MONTH_NAMES[int(m) - 1]} {y}"
+    except Exception:
+        return str(day)
+
+
+def days_index_body(rendered) -> str:
+    """The date archive: every published day, newest first, grouped by month.
+
+    ``rendered`` is the same [(day, data)] list build_site() renders pages from (ascending), so the
+    index and the pages cannot drift — every entry here has a page, and every page is listed here.
+    That correspondence is the locked test in tests/test_day_nav.py.
+
+    Days carrying no Daily Lines (the composite voice did not run, or nothing cleared the citation
+    threshold) are marked as such rather than omitted: dropping them would silently rewrite the
+    record of which days we published, and the whole archive is the compounding asset."""
+    if not rendered:
+        return ("<h1>Every published day</h1>"
+                "<p class='muted'>No days have been published yet.</p>")
+
+    newest_first = list(reversed(rendered))
+    n = len(newest_first)
+    parts = ["<h1>Every published day</h1>"]
+    parts.append(
+        f'<p class="subhead">Every day OnScript has published, newest first — {n} '
+        f'day{"" if n == 1 else "s"}, from {esc(rendered[0][0])} to {esc(rendered[-1][0])}. '
+        f'Each day keeps its own page with that day&rsquo;s composites, receipts, and synchronized '
+        f'phrases.</p>'
+    )
+
+    current_month = None
+    open_list = False
+    for day, data in newest_first:
+        month = _month_label(day)
+        if month != current_month:
+            if open_list:
+                parts.append("</ul>")
+            parts.append(f"<h2>{esc(month)}</h2>")
+            parts.append('<ul class="daylist">')
+            current_month, open_list = month, True
+        note = "" if has_daily_lines(data) else ' <span class="faint">— phrases only</span>'
+        parts.append(f'<li><a href="{esc(day)}.html">{esc(day)}</a>{note}</li>')
+    if open_list:
+        parts.append("</ul>")
     return "".join(parts)
 
 
@@ -2247,6 +2324,12 @@ def build_site():
     day_index = {d: data for d, data in days}
     day_order = [d for d, _ in days]
 
+    # The set of days that ACTUALLY get a page. Computed BEFORE index.html so the homepage can link
+    # the previously published day — index.html is the only entry point into the day chain, and it
+    # linked to none of it until this was hoisted above the index block.
+    rendered = [(d, data) for d, data in days if has_daily_lines(data) or data.get("top_synchronized")]
+    rendered_order = [d for d, _ in rendered]
+
     # ---- index.html (Today = most recent day WITH daily_lines) ----
     today_day = None
     for d, data in reversed(days):
@@ -2258,7 +2341,15 @@ def build_site():
 
     if today_day is not None:
         data = day_index[today_day]
-        body = day_view_body(today_day, data, SLUGS_WITH_PAGES, depth=0, is_today=True)
+        # The day published before this one. today_day is normally the last rendered day, but the
+        # fallback above can pick a day with no page at all — hence the guarded lookup, not [-2].
+        try:
+            _i = rendered_order.index(today_day)
+            home_prev = rendered_order[_i - 1] if _i > 0 else None
+        except ValueError:
+            home_prev = rendered_order[-1] if rendered_order else None
+        body = day_view_body(today_day, data, SLUGS_WITH_PAGES, depth=0,
+                             prev_day=home_prev, is_today=True)
         (OUT / "index.html").write_text(
             page(f"OnScript — Today ({today_day})", body, depth=0,
                  description=f"What each U.S. party said on {today_day}, compressed to one voice, with receipts."),
@@ -2274,8 +2365,6 @@ def build_site():
     # ---- day/<day>.html for every day (with daily_lines OR at least top_synchronized) ----
     # prev/next must reference only days that ACTUALLY get a page (a stub day with neither daily_lines
     # nor top_synchronized is skipped) — else the newest page links a 404 "next day". §Session-7 (D).
-    rendered = [(d, data) for d, data in days if has_daily_lines(data) or data.get("top_synchronized")]
-    rendered_order = [d for d, _ in rendered]
     for i, (d, data) in enumerate(rendered):
         prev_day = rendered_order[i - 1] if i > 0 else None
         next_day = rendered_order[i + 1] if i < len(rendered_order) - 1 else None
@@ -2287,6 +2376,17 @@ def build_site():
             encoding="utf-8",
         )
         written.append(f"day/{d}.html")
+
+    # ---- day/index.html — the date archive ----
+    # Built from the SAME `rendered` list the pages above come from, so the index can never list a
+    # 404 or omit a live page (locked in tests/test_day_nav.py). Ungated: this is the table of
+    # contents for pages that are already public, not a new feature.
+    (OUT / "day" / "index.html").write_text(
+        page("OnScript · Every published day", days_index_body(rendered), depth=1,
+             description="Every day OnScript has published: composites, receipts, and synchronized phrases, by date."),
+        encoding="utf-8",
+    )
+    written.append("day/index.html")
 
     # ---- phrases/index.html ----
     top = _load_json(DERIVED / "phrases" / "top.json") or {}
