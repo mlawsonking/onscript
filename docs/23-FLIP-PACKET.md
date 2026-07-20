@@ -459,3 +459,60 @@ link carries the quotes today.
 
 Monday worker prompt: **"read CLAUDE.md and docs/23 §7.5, run the Monday repair + launch-eve polish."**
 Tuesday worker prompt: **"read CLAUDE.md and docs/23 §7.5, run the launch morning."**
+
+**AMENDMENT 3 (Fable, 2026-07-20 afternoon — Sessions 30/30b adjudicated; THE FINAL TUESDAY ORDER).**
+Both Monday worker sessions ran and their open points are ruled:
+
+- **R-D · S30's repair deviation is RATIFIED.** Restoring {07-12, 07-18} from the exact published
+  bytes instead of the §7.5-named `--day` re-assembly was correct three independent ways: the
+  literal mechanism would have broken the streak evidence through launch morning (07-18 is the
+  streak head), written "0 statements" fabrications from stale local state (Art. II), and
+  restamped false provenance (`dry_run` → `sonnet_direct`). A repair that would have failed the
+  launch gate it was sequenced in front of is not a repair. `repair_safe_manifest` is now the
+  **standing repair semantics** (trigger-provenance preserved; `degraded` recomputed; a field the
+  original never carried is dropped, never invented). **Never `--day` 07-12/07-18 — already
+  repaired; it would regenerate, not restore.** S30b's corrections-log clobber fix (the tar
+  extract was silently resetting the public error record 3→0 — on announce eve the site was
+  denying its own corrections), the `DELIBERATELY_RELEASED` test mechanism (a release is a named
+  reviewable act; an accidental flip still reddens), and the privacy-ruled og implementation are
+  all ratified as built.
+- **R-E · The 07-19 (Sunday) publishing policy.** S30b proved the natural cron cannot reach day
+  07-20 while 07-19 sits non-final (oldest-first, returns on first non-final). Ruling:
+  **daily-always is a §13 locked decision — a thin, honest Sunday page ("We released N statements
+  today") beats a Wednesday force-finalize marked degraded.** So: if the 11:30Z scheduled pass has
+  not already resolved 07-19, dispatch `assemble.yml -f day=2026-07-19` **iff its real count ≥ 1**
+  (at 0 there is nothing to publish and the costless skip is honest), and **always dispatch
+  `-f day=2026-07-20` LAST** so `assemble-latest` points the posting leg at the Monday reading.
+- **R-F · The `phrase_search_index` non-dict guard is Tuesday's step 0, pre-authorized.** A known
+  whole-build crash surface must not go live with its flag. Two lines mirroring the page loop's
+  existing isinstance guard, plus a test — done and committed BEFORE the flip commit.
+- **R-G · The posting path stays FROZEN through launch.** The S30b follow-ups
+  (collision-recovery returns before replies → a truncated 1-post thread; `SITE`/`config.SITE_URL`
+  dedup) are the **first post-launch fixes (Wed 07-22)**, not launch-eve edits to smoke-tested
+  code. If the rare truncation fires on launch day, the remedy is manual: reply with the receipts
+  link from the app.
+
+**THE FINAL TUESDAY ORDER (one worker session, new chat, model = Opus):**
+0. `gh run list` — never push while a cron is in flight (S30 standing rule). Then R-F (the
+   search-index guard + test, committed).
+1. Art. XVI record check: overnight commits clean · corrections count still 3 (the S30b fix held)
+   · the immutability guard held (no day nulled) · 07-19's real count from the morning collect ·
+   suite green.
+2. Day publishing per R-E: 07-19 iff count ≥1, then **07-20 LAST**. Verify from the record that
+   `assemble-latest` = 2026-07-20 and the homepage shows the Monday reading. Eyeball the dry-run
+   thread print in the log — it is the final preview of the first real posts.
+3. Health: digest green · no open P0 · site current.
+4. **→ Michael's "go" ←** (the §7.4.2 reply, given to the worker session; standing veto intact).
+5. Execute, in order: `POSTING_ENABLED` on → repo public → announce (`announce.yml` dispatch,
+   approved text verbatim, `confirm=POST`) → the flip commit (`party_columns` + `owners_brief` +
+   `phrase_search` = True, all three added to `DELIBERATELY_RELEASED` — per S30b this is exactly
+   two lines) → push (step-0 check again) → re-dispatch `assemble.yml -f day=2026-07-20` so the
+   composites' first threads post in the same morning window, linking a site with columns, search,
+   and og cards live.
+6. **Expected artifact, do not "fix":** the dispatch writes `unattended:False`, so
+   `ops.unattended_streak` reads `passes:False` afterward. §1.4.1 already PASSED on the historical
+   record (07-16/17/18, Art. XVI) — it gates on evidence already collected.
+7. Verify live: both composite threads up · og cards unfurl on the real posts · phrase search
+   works on the live site · corrections page still says 3. Michael's optional in-app acts: pin the
+   announce; quote-post the composites' first threads from the house account.
+8. Any failure at any step: ntfy, hold, slip to the next clean day.
