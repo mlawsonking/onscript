@@ -1,0 +1,781 @@
+{
+  "generated_at": "2026-07-20T19:39:14Z",
+  "method": "descriptive; index = 1000*C/V (coordinated peak>=15 phrase-types per 1k on-topic statements); seed-substring tagging (proxy, lower bound); interpreted comparatively across topics only; chambers mixed (topic-level), lanes isolated.",
+  "floors": {
+    "report_topic_if_V>=": 200
+  },
+  "per_lane": {
+    "propublica": {
+      "immigration.D": {
+        "topic": "immigration",
+        "party": "D",
+        "coordinated_phrases": 64,
+        "on_topic_statements": 25360,
+        "script_proneness_index": 2.524,
+        "median_peak": 19.0
+      },
+      "immigration.R": {
+        "topic": "immigration",
+        "party": "R",
+        "coordinated_phrases": 81,
+        "on_topic_statements": 18396,
+        "script_proneness_index": 4.403,
+        "median_peak": 19
+      },
+      "economy_inflation.D": {
+        "topic": "economy_inflation",
+        "party": "D",
+        "coordinated_phrases": 171,
+        "on_topic_statements": 46825,
+        "script_proneness_index": 3.652,
+        "median_peak": 23
+      },
+      "economy_inflation.R": {
+        "topic": "economy_inflation",
+        "party": "R",
+        "coordinated_phrases": 16,
+        "on_topic_statements": 35554,
+        "script_proneness_index": 0.45,
+        "median_peak": 25.0
+      },
+      "healthcare.D": {
+        "topic": "healthcare",
+        "party": "D",
+        "coordinated_phrases": 324,
+        "on_topic_statements": 36264,
+        "script_proneness_index": 8.934,
+        "median_peak": 23.0
+      },
+      "healthcare.R": {
+        "topic": "healthcare",
+        "party": "R",
+        "coordinated_phrases": 120,
+        "on_topic_statements": 26821,
+        "script_proneness_index": 4.474,
+        "median_peak": 28.0
+      },
+      "abortion.D": {
+        "topic": "abortion",
+        "party": "D",
+        "coordinated_phrases": 76,
+        "on_topic_statements": 12157,
+        "script_proneness_index": 6.252,
+        "median_peak": 21.0
+      },
+      "abortion.R": {
+        "topic": "abortion",
+        "party": "R",
+        "coordinated_phrases": 151,
+        "on_topic_statements": 11534,
+        "script_proneness_index": 13.092,
+        "median_peak": 23
+      },
+      "guns.D": {
+        "topic": "guns",
+        "party": "D",
+        "coordinated_phrases": 81,
+        "on_topic_statements": 12694,
+        "script_proneness_index": 6.381,
+        "median_peak": 18
+      },
+      "guns.R": {
+        "topic": "guns",
+        "party": "R",
+        "coordinated_phrases": 33,
+        "on_topic_statements": 8484,
+        "script_proneness_index": 3.89,
+        "median_peak": 21
+      },
+      "crime.D": {
+        "topic": "crime",
+        "party": "D",
+        "coordinated_phrases": 358,
+        "on_topic_statements": 29289,
+        "script_proneness_index": 12.223,
+        "median_peak": 19.0
+      },
+      "crime.R": {
+        "topic": "crime",
+        "party": "R",
+        "coordinated_phrases": 41,
+        "on_topic_statements": 22081,
+        "script_proneness_index": 1.857,
+        "median_peak": 15
+      },
+      "education.D": {
+        "topic": "education",
+        "party": "D",
+        "coordinated_phrases": 337,
+        "on_topic_statements": 64319,
+        "script_proneness_index": 5.24,
+        "median_peak": 19
+      },
+      "education.R": {
+        "topic": "education",
+        "party": "R",
+        "coordinated_phrases": 141,
+        "on_topic_statements": 39735,
+        "script_proneness_index": 3.549,
+        "median_peak": 17
+      },
+      "energy_climate.D": {
+        "topic": "energy_climate",
+        "party": "D",
+        "coordinated_phrases": 315,
+        "on_topic_statements": 34166,
+        "script_proneness_index": 9.22,
+        "median_peak": 23
+      },
+      "energy_climate.R": {
+        "topic": "energy_climate",
+        "party": "R",
+        "coordinated_phrases": 88,
+        "on_topic_statements": 29634,
+        "script_proneness_index": 2.97,
+        "median_peak": 20.0
+      },
+      "israel_gaza.D": {
+        "topic": "israel_gaza",
+        "party": "D",
+        "coordinated_phrases": 2,
+        "on_topic_statements": 3569,
+        "script_proneness_index": 0.56,
+        "median_peak": 16.0
+      },
+      "israel_gaza.R": {
+        "topic": "israel_gaza",
+        "party": "R",
+        "coordinated_phrases": 44,
+        "on_topic_statements": 5042,
+        "script_proneness_index": 8.727,
+        "median_peak": 17.5
+      },
+      "ukraine_russia.D": {
+        "topic": "ukraine_russia",
+        "party": "D",
+        "coordinated_phrases": 29,
+        "on_topic_statements": 10243,
+        "script_proneness_index": 2.831,
+        "median_peak": 20
+      },
+      "ukraine_russia.R": {
+        "topic": "ukraine_russia",
+        "party": "R",
+        "coordinated_phrases": 5,
+        "on_topic_statements": 8641,
+        "script_proneness_index": 0.579,
+        "median_peak": 27
+      },
+      "china.D": {
+        "topic": "china",
+        "party": "D",
+        "coordinated_phrases": 0,
+        "on_topic_statements": 6149,
+        "script_proneness_index": 0.0,
+        "median_peak": null
+      },
+      "china.R": {
+        "topic": "china",
+        "party": "R",
+        "coordinated_phrases": 7,
+        "on_topic_statements": 9101,
+        "script_proneness_index": 0.769,
+        "median_peak": 18
+      },
+      "tech_ai.D": {
+        "topic": "tech_ai",
+        "party": "D",
+        "coordinated_phrases": 1119,
+        "on_topic_statements": 237565,
+        "script_proneness_index": 4.71,
+        "median_peak": 20
+      },
+      "tech_ai.R": {
+        "topic": "tech_ai",
+        "party": "R",
+        "coordinated_phrases": 408,
+        "on_topic_statements": 195783,
+        "script_proneness_index": 2.084,
+        "median_peak": 21.0
+      },
+      "veterans.D": {
+        "topic": "veterans",
+        "party": "D",
+        "coordinated_phrases": 40,
+        "on_topic_statements": 33070,
+        "script_proneness_index": 1.21,
+        "median_peak": 17.0
+      },
+      "veterans.R": {
+        "topic": "veterans",
+        "party": "R",
+        "coordinated_phrases": 149,
+        "on_topic_statements": 25748,
+        "script_proneness_index": 5.787,
+        "median_peak": 24
+      },
+      "agriculture.D": {
+        "topic": "agriculture",
+        "party": "D",
+        "coordinated_phrases": 63,
+        "on_topic_statements": 30283,
+        "script_proneness_index": 2.08,
+        "median_peak": 17
+      },
+      "agriculture.R": {
+        "topic": "agriculture",
+        "party": "R",
+        "coordinated_phrases": 44,
+        "on_topic_statements": 30549,
+        "script_proneness_index": 1.44,
+        "median_peak": 24.0
+      },
+      "housing.D": {
+        "topic": "housing",
+        "party": "D",
+        "coordinated_phrases": 497,
+        "on_topic_statements": 92015,
+        "script_proneness_index": 5.401,
+        "median_peak": 21
+      },
+      "housing.R": {
+        "topic": "housing",
+        "party": "R",
+        "coordinated_phrases": 96,
+        "on_topic_statements": 70168,
+        "script_proneness_index": 1.368,
+        "median_peak": 18.0
+      },
+      "taxes_debt.D": {
+        "topic": "taxes_debt",
+        "party": "D",
+        "coordinated_phrases": 257,
+        "on_topic_statements": 65836,
+        "script_proneness_index": 3.904,
+        "median_peak": 22
+      },
+      "taxes_debt.R": {
+        "topic": "taxes_debt",
+        "party": "R",
+        "coordinated_phrases": 504,
+        "on_topic_statements": 59304,
+        "script_proneness_index": 8.499,
+        "median_peak": 22.0
+      },
+      "labor.D": {
+        "topic": "labor",
+        "party": "D",
+        "coordinated_phrases": 421,
+        "on_topic_statements": 62948,
+        "script_proneness_index": 6.688,
+        "median_peak": 22
+      },
+      "labor.R": {
+        "topic": "labor",
+        "party": "R",
+        "coordinated_phrases": 125,
+        "on_topic_statements": 41281,
+        "script_proneness_index": 3.028,
+        "median_peak": 28
+      },
+      "elections_democracy.D": {
+        "topic": "elections_democracy",
+        "party": "D",
+        "coordinated_phrases": 224,
+        "on_topic_statements": 30833,
+        "script_proneness_index": 7.265,
+        "median_peak": 24.0
+      },
+      "elections_democracy.R": {
+        "topic": "elections_democracy",
+        "party": "R",
+        "coordinated_phrases": 8,
+        "on_topic_statements": 22709,
+        "script_proneness_index": 0.352,
+        "median_peak": 18.5
+      },
+      "courts.D": {
+        "topic": "courts",
+        "party": "D",
+        "coordinated_phrases": 77,
+        "on_topic_statements": 20633,
+        "script_proneness_index": 3.732,
+        "median_peak": 21
+      },
+      "courts.R": {
+        "topic": "courts",
+        "party": "R",
+        "coordinated_phrases": 133,
+        "on_topic_statements": 18591,
+        "script_proneness_index": 7.154,
+        "median_peak": 24
+      },
+      "infrastructure.D": {
+        "topic": "infrastructure",
+        "party": "D",
+        "coordinated_phrases": 388,
+        "on_topic_statements": 43696,
+        "script_proneness_index": 8.88,
+        "median_peak": 23.0
+      },
+      "infrastructure.R": {
+        "topic": "infrastructure",
+        "party": "R",
+        "coordinated_phrases": 46,
+        "on_topic_statements": 27413,
+        "script_proneness_index": 1.678,
+        "median_peak": 25.0
+      },
+      "social_security_medicare.D": {
+        "topic": "social_security_medicare",
+        "party": "D",
+        "coordinated_phrases": 150,
+        "on_topic_statements": 23040,
+        "script_proneness_index": 6.51,
+        "median_peak": 21.0
+      },
+      "social_security_medicare.R": {
+        "topic": "social_security_medicare",
+        "party": "R",
+        "coordinated_phrases": 73,
+        "on_topic_statements": 15366,
+        "script_proneness_index": 4.751,
+        "median_peak": 20
+      },
+      "disasters.D": {
+        "topic": "disasters",
+        "party": "D",
+        "coordinated_phrases": 66,
+        "on_topic_statements": 25219,
+        "script_proneness_index": 2.617,
+        "median_peak": 24.0
+      },
+      "disasters.R": {
+        "topic": "disasters",
+        "party": "R",
+        "coordinated_phrases": 59,
+        "on_topic_statements": 16833,
+        "script_proneness_index": 3.505,
+        "median_peak": 18
+      },
+      "trade_tariffs.D": {
+        "topic": "trade_tariffs",
+        "party": "D",
+        "coordinated_phrases": 56,
+        "on_topic_statements": 87952,
+        "script_proneness_index": 0.637,
+        "median_peak": 18.0
+      },
+      "trade_tariffs.R": {
+        "topic": "trade_tariffs",
+        "party": "R",
+        "coordinated_phrases": 76,
+        "on_topic_statements": 74908,
+        "script_proneness_index": 1.015,
+        "median_peak": 16.0
+      },
+      "district_funding.D": {
+        "topic": "district_funding",
+        "party": "D",
+        "coordinated_phrases": 313,
+        "on_topic_statements": 79849,
+        "script_proneness_index": 3.92,
+        "median_peak": 24
+      },
+      "district_funding.R": {
+        "topic": "district_funding",
+        "party": "R",
+        "coordinated_phrases": 91,
+        "on_topic_statements": 46255,
+        "script_proneness_index": 1.967,
+        "median_peak": 20
+      }
+    },
+    "scraped": {
+      "immigration.D": {
+        "topic": "immigration",
+        "party": "D",
+        "coordinated_phrases": 9,
+        "on_topic_statements": 12707,
+        "script_proneness_index": 0.708,
+        "median_peak": 18
+      },
+      "immigration.R": {
+        "topic": "immigration",
+        "party": "R",
+        "coordinated_phrases": 57,
+        "on_topic_statements": 12013,
+        "script_proneness_index": 4.745,
+        "median_peak": 24
+      },
+      "economy_inflation.D": {
+        "topic": "economy_inflation",
+        "party": "D",
+        "coordinated_phrases": 40,
+        "on_topic_statements": 23266,
+        "script_proneness_index": 1.719,
+        "median_peak": 17.5
+      },
+      "economy_inflation.R": {
+        "topic": "economy_inflation",
+        "party": "R",
+        "coordinated_phrases": 5,
+        "on_topic_statements": 16369,
+        "script_proneness_index": 0.305,
+        "median_peak": 15
+      },
+      "healthcare.D": {
+        "topic": "healthcare",
+        "party": "D",
+        "coordinated_phrases": 40,
+        "on_topic_statements": 16018,
+        "script_proneness_index": 2.497,
+        "median_peak": 20.5
+      },
+      "healthcare.R": {
+        "topic": "healthcare",
+        "party": "R",
+        "coordinated_phrases": 0,
+        "on_topic_statements": 8234,
+        "script_proneness_index": 0.0,
+        "median_peak": null
+      },
+      "abortion.D": {
+        "topic": "abortion",
+        "party": "D",
+        "coordinated_phrases": 33,
+        "on_topic_statements": 6617,
+        "script_proneness_index": 4.987,
+        "median_peak": 18
+      },
+      "abortion.R": {
+        "topic": "abortion",
+        "party": "R",
+        "coordinated_phrases": 9,
+        "on_topic_statements": 4837,
+        "script_proneness_index": 1.861,
+        "median_peak": 15
+      },
+      "guns.D": {
+        "topic": "guns",
+        "party": "D",
+        "coordinated_phrases": 44,
+        "on_topic_statements": 5845,
+        "script_proneness_index": 7.528,
+        "median_peak": 18.5
+      },
+      "guns.R": {
+        "topic": "guns",
+        "party": "R",
+        "coordinated_phrases": 2,
+        "on_topic_statements": 3274,
+        "script_proneness_index": 0.611,
+        "median_peak": 21.5
+      },
+      "crime.D": {
+        "topic": "crime",
+        "party": "D",
+        "coordinated_phrases": 24,
+        "on_topic_statements": 14937,
+        "script_proneness_index": 1.607,
+        "median_peak": 17.0
+      },
+      "crime.R": {
+        "topic": "crime",
+        "party": "R",
+        "coordinated_phrases": 10,
+        "on_topic_statements": 12397,
+        "script_proneness_index": 0.807,
+        "median_peak": 26.0
+      },
+      "education.D": {
+        "topic": "education",
+        "party": "D",
+        "coordinated_phrases": 21,
+        "on_topic_statements": 28311,
+        "script_proneness_index": 0.742,
+        "median_peak": 16
+      },
+      "education.R": {
+        "topic": "education",
+        "party": "R",
+        "coordinated_phrases": 7,
+        "on_topic_statements": 16426,
+        "script_proneness_index": 0.426,
+        "median_peak": 17
+      },
+      "energy_climate.D": {
+        "topic": "energy_climate",
+        "party": "D",
+        "coordinated_phrases": 45,
+        "on_topic_statements": 19032,
+        "script_proneness_index": 2.364,
+        "median_peak": 19
+      },
+      "energy_climate.R": {
+        "topic": "energy_climate",
+        "party": "R",
+        "coordinated_phrases": 35,
+        "on_topic_statements": 13590,
+        "script_proneness_index": 2.575,
+        "median_peak": 27
+      },
+      "israel_gaza.D": {
+        "topic": "israel_gaza",
+        "party": "D",
+        "coordinated_phrases": 19,
+        "on_topic_statements": 4127,
+        "script_proneness_index": 4.604,
+        "median_peak": 18
+      },
+      "israel_gaza.R": {
+        "topic": "israel_gaza",
+        "party": "R",
+        "coordinated_phrases": 9,
+        "on_topic_statements": 3928,
+        "script_proneness_index": 2.291,
+        "median_peak": 25
+      },
+      "ukraine_russia.D": {
+        "topic": "ukraine_russia",
+        "party": "D",
+        "coordinated_phrases": 21,
+        "on_topic_statements": 5023,
+        "script_proneness_index": 4.181,
+        "median_peak": 18
+      },
+      "ukraine_russia.R": {
+        "topic": "ukraine_russia",
+        "party": "R",
+        "coordinated_phrases": 9,
+        "on_topic_statements": 5082,
+        "script_proneness_index": 1.771,
+        "median_peak": 20
+      },
+      "china.D": {
+        "topic": "china",
+        "party": "D",
+        "coordinated_phrases": 2,
+        "on_topic_statements": 4159,
+        "script_proneness_index": 0.481,
+        "median_peak": 20.0
+      },
+      "china.R": {
+        "topic": "china",
+        "party": "R",
+        "coordinated_phrases": 1,
+        "on_topic_statements": 7869,
+        "script_proneness_index": 0.127,
+        "median_peak": 15
+      },
+      "tech_ai.D": {
+        "topic": "tech_ai",
+        "party": "D",
+        "coordinated_phrases": 215,
+        "on_topic_statements": 103964,
+        "script_proneness_index": 2.068,
+        "median_peak": 18
+      },
+      "tech_ai.R": {
+        "topic": "tech_ai",
+        "party": "R",
+        "coordinated_phrases": 78,
+        "on_topic_statements": 83543,
+        "script_proneness_index": 0.934,
+        "median_peak": 22.5
+      },
+      "veterans.D": {
+        "topic": "veterans",
+        "party": "D",
+        "coordinated_phrases": 31,
+        "on_topic_statements": 15874,
+        "script_proneness_index": 1.953,
+        "median_peak": 18
+      },
+      "veterans.R": {
+        "topic": "veterans",
+        "party": "R",
+        "coordinated_phrases": 43,
+        "on_topic_statements": 10364,
+        "script_proneness_index": 4.149,
+        "median_peak": 24
+      },
+      "agriculture.D": {
+        "topic": "agriculture",
+        "party": "D",
+        "coordinated_phrases": 21,
+        "on_topic_statements": 14743,
+        "script_proneness_index": 1.424,
+        "median_peak": 19
+      },
+      "agriculture.R": {
+        "topic": "agriculture",
+        "party": "R",
+        "coordinated_phrases": 37,
+        "on_topic_statements": 15138,
+        "script_proneness_index": 2.444,
+        "median_peak": 22
+      },
+      "housing.D": {
+        "topic": "housing",
+        "party": "D",
+        "coordinated_phrases": 46,
+        "on_topic_statements": 41555,
+        "script_proneness_index": 1.107,
+        "median_peak": 20.0
+      },
+      "housing.R": {
+        "topic": "housing",
+        "party": "R",
+        "coordinated_phrases": 27,
+        "on_topic_statements": 27888,
+        "script_proneness_index": 0.968,
+        "median_peak": 19
+      },
+      "taxes_debt.D": {
+        "topic": "taxes_debt",
+        "party": "D",
+        "coordinated_phrases": 167,
+        "on_topic_statements": 28639,
+        "script_proneness_index": 5.831,
+        "median_peak": 19
+      },
+      "taxes_debt.R": {
+        "topic": "taxes_debt",
+        "party": "R",
+        "coordinated_phrases": 56,
+        "on_topic_statements": 24800,
+        "script_proneness_index": 2.258,
+        "median_peak": 21.0
+      },
+      "labor.D": {
+        "topic": "labor",
+        "party": "D",
+        "coordinated_phrases": 69,
+        "on_topic_statements": 30358,
+        "script_proneness_index": 2.273,
+        "median_peak": 20
+      },
+      "labor.R": {
+        "topic": "labor",
+        "party": "R",
+        "coordinated_phrases": 24,
+        "on_topic_statements": 17453,
+        "script_proneness_index": 1.375,
+        "median_peak": 22.0
+      },
+      "elections_democracy.D": {
+        "topic": "elections_democracy",
+        "party": "D",
+        "coordinated_phrases": 45,
+        "on_topic_statements": 14982,
+        "script_proneness_index": 3.004,
+        "median_peak": 23
+      },
+      "elections_democracy.R": {
+        "topic": "elections_democracy",
+        "party": "R",
+        "coordinated_phrases": 31,
+        "on_topic_statements": 9417,
+        "script_proneness_index": 3.292,
+        "median_peak": 25
+      },
+      "courts.D": {
+        "topic": "courts",
+        "party": "D",
+        "coordinated_phrases": 26,
+        "on_topic_statements": 9547,
+        "script_proneness_index": 2.723,
+        "median_peak": 18.0
+      },
+      "courts.R": {
+        "topic": "courts",
+        "party": "R",
+        "coordinated_phrases": 3,
+        "on_topic_statements": 6706,
+        "script_proneness_index": 0.447,
+        "median_peak": 21
+      },
+      "infrastructure.D": {
+        "topic": "infrastructure",
+        "party": "D",
+        "coordinated_phrases": 32,
+        "on_topic_statements": 23908,
+        "script_proneness_index": 1.338,
+        "median_peak": 18.5
+      },
+      "infrastructure.R": {
+        "topic": "infrastructure",
+        "party": "R",
+        "coordinated_phrases": 1,
+        "on_topic_statements": 13501,
+        "script_proneness_index": 0.074,
+        "median_peak": 19
+      },
+      "social_security_medicare.D": {
+        "topic": "social_security_medicare",
+        "party": "D",
+        "coordinated_phrases": 39,
+        "on_topic_statements": 11174,
+        "script_proneness_index": 3.49,
+        "median_peak": 19
+      },
+      "social_security_medicare.R": {
+        "topic": "social_security_medicare",
+        "party": "R",
+        "coordinated_phrases": 5,
+        "on_topic_statements": 6319,
+        "script_proneness_index": 0.791,
+        "median_peak": 17
+      },
+      "disasters.D": {
+        "topic": "disasters",
+        "party": "D",
+        "coordinated_phrases": 13,
+        "on_topic_statements": 11776,
+        "script_proneness_index": 1.104,
+        "median_peak": 15
+      },
+      "disasters.R": {
+        "topic": "disasters",
+        "party": "R",
+        "coordinated_phrases": 0,
+        "on_topic_statements": 8856,
+        "script_proneness_index": 0.0,
+        "median_peak": null
+      },
+      "trade_tariffs.D": {
+        "topic": "trade_tariffs",
+        "party": "D",
+        "coordinated_phrases": 12,
+        "on_topic_statements": 36926,
+        "script_proneness_index": 0.325,
+        "median_peak": 19.5
+      },
+      "trade_tariffs.R": {
+        "topic": "trade_tariffs",
+        "party": "R",
+        "coordinated_phrases": 0,
+        "on_topic_statements": 28987,
+        "script_proneness_index": 0.0,
+        "median_peak": null
+      },
+      "district_funding.D": {
+        "topic": "district_funding",
+        "party": "D",
+        "coordinated_phrases": 40,
+        "on_topic_statements": 40156,
+        "script_proneness_index": 0.996,
+        "median_peak": 19.0
+      },
+      "district_funding.R": {
+        "topic": "district_funding",
+        "party": "R",
+        "coordinated_phrases": 1,
+        "on_topic_statements": 21652,
+        "script_proneness_index": 0.046,
+        "median_peak": 15
+      }
+    }
+  }
+}

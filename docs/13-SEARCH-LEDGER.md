@@ -1050,3 +1050,30 @@ SHORTER) → **CONFIRM.**
   5 → 6 pending that review. Re-runnable: `PYTHONHASHSEED=0 python
   scripts/search/hx_4_halflife_majority.py`; evidence
   `scripts/search/evidence/hx_4_halflife_majority.result.json` + X:.
+
+### HX.2 · Per-topic script-proneness — **MEASURED** (descriptive; the clean signal is cross-party-within-topic)
+
+Do some topics throw off more COORDINATION per unit of discussion than others? Index = coordinated
+peak≥15 phrase-types (`member_index`, credited to `peak_party`) per 1,000 on-topic statements (seed-
+substring tagged, `iter_statements` scan), per party, per lane. `scripts/search/hx_2_topic_scriptproneness.py`.
+
+**Each party's coordination portfolio differs and SHIFTS across the 2021 lane change** (top topics by
+index): propublica **D = crime (12.2) / energy_climate / healthcare**; **R = abortion (13.1) /
+israel_gaza / taxes_debt**. scraped **D = guns (7.5) / taxes_debt / abortion**; **R = immigration (4.8) /
+veterans / elections_democracy**. Symmetric instrument (identical seeds + method, both parties),
+asymmetric portfolios (Art. IV protected).
+
+- **⚠ The cross-TOPIC ranking is seed-breadth confounded** — a topic with narrow seeds mechanically
+  scores a higher C/V index — so it is NOT a clean "topic X coordinates more than topic Y" claim. **The
+  CLEAN signal is cross-PARTY within a topic** (the seed list cancels): e.g. propublica **healthcare D
+  8.9 vs R 4.5**, **social-security/medicare D 6.5 vs R 4.8** — Democrats coordinated ~2×/1.4× more per
+  unit of healthcare/entitlement discussion in that era; scraped **immigration R 4.8** leads its column.
+- **The index is broadly higher in propublica than scraped** — consistent with HX.8 (coordination
+  concentration fell after 2021).
+- **Seed-proxy caveat:** seed-substring tagging misses topical text without the literal seed ("born in
+  the united states" carries no seed), so C and V are lower bounds; the index is interpreted
+  comparatively only, never as an absolute rate. Chambers mixed (a topic-level, not office-level,
+  descriptive); lanes isolated (L1).
+- **Verdict:** a methods/transparency-shelf descriptive (docs/20) — a map of what each party coordinates
+  on, NOT a card. Re-runnable: `PYTHONHASHSEED=0 python scripts/search/hx_2_topic_scriptproneness.py`;
+  evidence `scripts/search/evidence/hx_2_topic_scriptproneness.result.json` + X:.
