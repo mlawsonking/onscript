@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-19T20:52:53Z",
+  "generated_at": "2026-07-20T21:33:20Z",
   "window": {
-    "start": "2026-07-12",
-    "end": "2026-07-18"
+    "start": "2026-07-14",
+    "end": "2026-07-20"
   },
   "min_active": 20,
   "span_gated": true,
@@ -277,38 +277,43 @@
     ],
     "R": [
       {
-        "ngram": "president trump and",
-        "slug": "7e38fb59b8b11306",
-        "day": "2026-07-13",
+        "ngram": "with the white house",
+        "slug": "c6bda5637b882191",
+        "day": "2026-07-17",
         "party": "R",
-        "offices_using": 5,
-        "offices_active": 38,
-        "office_share": 0.1316,
+        "offices_using": 6,
+        "offices_active": 45,
+        "office_share": 0.1333,
         "members": [
           {
-            "bioguide": "C001056",
-            "name": "John Cornyn",
-            "state": "TX"
+            "bioguide": "C001114",
+            "name": "John R. Curtis",
+            "state": "UT"
           },
           {
-            "bioguide": "K000376",
-            "name": "Mike Kelly",
-            "state": "PA"
+            "bioguide": "F000472",
+            "name": "Scott Franklin",
+            "state": "FL"
           },
           {
-            "bioguide": "M001136",
-            "name": "Lisa C. McClain",
-            "state": "MI"
+            "bioguide": "L000575",
+            "name": "James Lankford",
+            "state": "OK"
           },
           {
-            "bioguide": "M001157",
-            "name": "Michael T. McCaul",
-            "state": "TX"
+            "bioguide": "L000597",
+            "name": "Laurel M. Lee",
+            "state": "FL"
           },
           {
-            "bioguide": "T000278",
-            "name": "Tommy Tuberville",
-            "state": "AL"
+            "bioguide": "M001244",
+            "name": "Ashley Moody",
+            "state": "FL"
+          },
+          {
+            "bioguide": "T000476",
+            "name": "Thom Tillis",
+            "state": "NC"
           }
         ],
         "members_more": 0
@@ -418,50 +423,13 @@
         "members_more": 2
       },
       {
-        "ngram": "with the white house",
-        "slug": "c6bda5637b882191",
-        "day": "2026-07-17",
-        "party": "R",
-        "offices_using": 5,
-        "offices_active": 44,
-        "office_share": 0.1136,
-        "members": [
-          {
-            "bioguide": "C001114",
-            "name": "John R. Curtis",
-            "state": "UT"
-          },
-          {
-            "bioguide": "F000472",
-            "name": "Scott Franklin",
-            "state": "FL"
-          },
-          {
-            "bioguide": "L000575",
-            "name": "James Lankford",
-            "state": "OK"
-          },
-          {
-            "bioguide": "L000597",
-            "name": "Laurel M. Lee",
-            "state": "FL"
-          },
-          {
-            "bioguide": "M001244",
-            "name": "Ashley Moody",
-            "state": "FL"
-          }
-        ],
-        "members_more": 0
-      },
-      {
         "ngram": "support they need",
         "slug": "c471f43eebc5efae",
         "day": "2026-07-17",
         "party": "R",
         "offices_using": 5,
-        "offices_active": 44,
-        "office_share": 0.1136,
+        "offices_active": 45,
+        "office_share": 0.1111,
         "members": [
           {
             "bioguide": "F000472",
@@ -487,6 +455,48 @@
             "bioguide": "R000614",
             "name": "Chip Roy",
             "state": "TX"
+          }
+        ],
+        "members_more": 0
+      },
+      {
+        "ngram": "health and human services hhs",
+        "slug": "c2a9c6f73f3b0906",
+        "day": "2026-07-16",
+        "party": "R",
+        "offices_using": 6,
+        "offices_active": 63,
+        "office_share": 0.0952,
+        "members": [
+          {
+            "bioguide": "C001096",
+            "name": "Kevin Cramer",
+            "state": "ND"
+          },
+          {
+            "bioguide": "G000568",
+            "name": "H. Morgan Griffith",
+            "state": "VA"
+          },
+          {
+            "bioguide": "L000599",
+            "name": "Michael Lawler",
+            "state": "NY"
+          },
+          {
+            "bioguide": "M001244",
+            "name": "Ashley Moody",
+            "state": "FL"
+          },
+          {
+            "bioguide": "O000177",
+            "name": "Robert F. Onder, Jr.",
+            "state": "MO"
+          },
+          {
+            "bioguide": "T000278",
+            "name": "Tommy Tuberville",
+            "state": "AL"
           }
         ],
         "members_more": 0
