@@ -137,3 +137,36 @@ def read_json(path: Path, default: Any = None) -> Any:
         return default
     with open(path, "r", encoding="utf-8") as fh:
         return json.load(fh)
+
+
+def day_is_final(day: str, derived_dir: Path | None = None) -> bool:
+    """Was this day already PUBLISHED? A published day is IMMUTABLE to RUN A (docs/23 §7.5 R-C).
+
+    THE DEFECT THIS EXISTS TO CLOSE. `build.build_derived` writes days/{day}.json as a full-object
+    overwrite carrying `daily_lines: None`. RUN A re-focuses whatever day is newest in the corpus, so
+    a collect that landed on an ALREADY-PUBLISHED day silently DELETED that day's composites — and
+    its talking_points, duets and rejected_keys with them. It happened twice in production:
+    `collect 2026-07-14` nulled day 2026-07-12, and `collect 2026-07-19` (0a66cea) nulled day
+    2026-07-18. The published record is permanent; RUN A does not get to rewrite it. The only
+    sanctioned write path to a published day is the documented `run_assemble --day <day>` repair.
+
+    BACK-COMPAT IS LOAD-BEARING, not politeness. Only 4 of the 9 published assemble manifests carry a
+    `final` field at all — the rest pre-date the readiness gate. Their mere EXISTENCE means the day
+    was published, so the default is True. Writing this as `m.get("final") is True` would leave 5 of
+    10 published days clobberable, including 2026-07-12 — the very day that proves the bug.
+
+    `derived_dir` follows the tree being written (build_derived's `out_dir`) rather than an
+    unconditional `config.DERIVED`: otherwise a test operating on a tmp tree would consult the real
+    repo's manifests and silently skip the write it meant to assert on.
+    """
+    root = config.DERIVED if derived_dir is None else Path(derived_dir)
+    try:
+        m = read_json(root / "manifest" / f"assemble-{day}.json", {})
+    except Exception:
+        # `read_json` returns the default only when the file is MISSING; a truncated or hand-edited
+        # manifest raises. This guard is consulted from RUN A, which never read the manifest dir
+        # before — so an unreadable manifest must not become a new way to crash the daily run (the
+        # streak is the thing the guard exists to protect). Ambiguity resolves toward NOT clobbering:
+        # if we cannot tell whether a day was published, treat it as published.
+        return True
+    return bool(m) and bool(m.get("final", True))

@@ -565,11 +565,15 @@ def build_awards(statements, ledger, *, out_dir=None, focus_day: str | None = No
 
 
 def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_phrases: int = 50,
-                  coverage: dict | None = None) -> dict:
+                  coverage: dict | None = None, allow_final_overwrite: bool = False) -> dict:
     """Write all deterministic derived JSON. Returns a summary for the manifest. Takes the
     precomputed discipline dict (not the engine) so derived can be regenerated for any focus
     day from saved state without re-running the ~30-min engine. `coverage` may be passed
-    precomputed (Alexandria merge) to avoid needing all statements in memory."""
+    precomputed (Alexandria merge) to avoid needing all statements in memory.
+
+    `allow_final_overwrite` is the deliberate escape hatch for an operator who has decided to
+    rebuild a PUBLISHED day's deterministic half in place (see `scripts/regen_derived.py --force`).
+    RUN A never sets it — see the immutability note at the day-JSON write below."""
     from . import util as _u
     phrases_dir = out_dir / "phrases"
     days_dir = out_dir / "days"
@@ -589,18 +593,44 @@ def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_
         _u.write_json(phrases_dir / f"{phrase_slug(ngram)}.json", phrase_page(ngram, ledger[ngram]))
 
     # Per-day summary for the focus day (Daily Lines merged later by assemble).
-    day_top = top_synchronized(ledger, focus_day, k=20)
-    _u.write_json(days_dir / f"{focus_day}.json", {
-        "day": focus_day,
-        "top_synchronized": day_top,
-        "discipline": {p: discipline.get(p, {}).get(focus_day) for p in config.COMPOSITE_PARTIES},
-        "daily_lines": None,  # filled by the LLM assemble stage
-    })
+    #
+    # IMMUTABILITY OF A PUBLISHED DAY (docs/23 §7.5 R-C). This write is a full-object OVERWRITE that
+    # carries `daily_lines: None`, so running it over an already-published day deletes that day's
+    # composites, talking_points, duets and rejected_keys. That is not hypothetical — it destroyed
+    # two published days in production (2026-07-12 and 2026-07-18). A published day is the permanent
+    # public record; RUN A may not rewrite it. The only sanctioned write path to a published day is
+    # `run_assemble --day <day>` (the repair), which does its own read-modify-write and never routes
+    # through here.
+    #
+    # SKIP-AND-LOG, NEVER RAISE. RUN A runs twice a day and routinely re-focuses a day that is
+    # already published, so hitting this guard is the NORMAL case, not an error condition. Raising
+    # would break the streak the guard exists to protect.
+    #
+    # SCOPE IS DELIBERATELY NARROW — only days/{day}.json. discipline.json, coverage.json,
+    # phrases/top.json and the per-phrase pages are the CURRENT STATE OF THE INSTRUMENT, not the
+    # record of a date: the per-phrase pages in particular are living adoption curves, and freezing
+    # them would strand every phrase at whatever day first surfaced it. They keep refreshing.
+    if _u.day_is_final(focus_day, out_dir) and not allow_final_overwrite:
+        print(f"[immutable] {focus_day} is published — day JSON left untouched "
+              f"(repair path: python -m pipeline.run_assemble --day {focus_day})")
+        day_top, focus_day_write = None, "skipped-final"
+    else:
+        day_top = top_synchronized(ledger, focus_day, k=20)
+        _u.write_json(days_dir / f"{focus_day}.json", {
+            "day": focus_day,
+            "top_synchronized": day_top,
+            "discipline": {p: discipline.get(p, {}).get(focus_day) for p in config.COMPOSITE_PARTIES},
+            "daily_lines": None,  # filled by the LLM assemble stage
+        })
+        focus_day_write = "written"
 
     return {
         "ledger_entries": len(ledger),
         "phrase_pages": len(surfaced),
         "focus_day": focus_day,
-        "focus_day_top_phrases": len(day_top),
+        # Honest about work NOT done: a skipped day reports None, never the count it would have
+        # written. The manifest must never claim a day summary it did not author.
+        "focus_day_write": focus_day_write,
+        "focus_day_top_phrases": (None if day_top is None else len(day_top)),
         "coverage_years": sorted(coverage.keys()),
     }

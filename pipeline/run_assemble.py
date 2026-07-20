@@ -136,11 +136,55 @@ def _is_final(day: str) -> bool:
     """Was this day already published? A final day is never re-assembled (and never skipped). The
     readiness gate uses this to walk the backlog oldest-first. §deploy-hardening.
 
-    BACK-COMPAT: manifests written before the readiness gate existed have no `final` field. Their mere
-    existence means the day WAS published, so default to True — otherwise the gate would treat all of
-    history as pending and re-assemble old days on its first run."""
-    m = util.read_json(config.DERIVED / "manifest" / f"assemble-{day}.json", {})
-    return bool(m) and bool(m.get("final", True))
+    ONE DEFINITION OF "PUBLISHED". This delegates to `util.day_is_final`, which is also what makes a
+    published day immutable to RUN A (docs/23 §7.5 R-C). The readiness gate and the write guard must
+    never be able to disagree about which days are published — that disagreement is precisely how a
+    day gets clobbered."""
+    return util.day_is_final(day)
+
+
+# TRIGGER-PROVENANCE: facts about how the ORIGINAL run was launched and what the readiness gate saw.
+# A repair restores CONTENT; it does not restage history, so these carry over from the published
+# manifest untouched. `forced_finalize` belongs here and not with content: it records that the gate
+# waited out MAX_WAIT_DAYS and published anyway — and since the `--day` repair path hard-codes
+# forced=False, recomputing it would LAUNDER a force-finalized day into a streak-eligible one
+# (`ops.unattended_streak` breaks on `forced_finalize`) and silently drop its alert.
+REPAIR_PRESERVED_KEYS = ("event", "unattended", "run_id", "forced_finalize", "readiness")
+
+
+def repair_safe_manifest(manifest: dict, prior: dict, *, now: str, repair_run_id: str,
+                         repair_event: str) -> tuple[dict, bool]:
+    """Merge trigger-provenance from a prior PUBLISHED manifest into this run's manifest.
+
+    WHY THIS EXISTS (docs/23 §7.5 R-C amendment). `run_assemble --day` is the sanctioned repair path
+    for a published day, but the manifest write is unconditional and `event`/`unattended` are
+    recomputed from GITHUB_EVENT_NAME every run. A repair is NEVER a `schedule` event, and
+    `ops.unattended_streak` breaks on the first falsy `unattended` — so repairing the NEWEST published
+    day flips the head of the §1.4.1 streak and fails the launch gate. Measured on the real manifests:
+    repairing 2026-07-18 takes the gate from `passes: True` to `passes: False`.
+
+    What is NOT preserved: `degraded`. That describes what is published NOW, not how the run was
+    triggered — if a repair degrades a day, the streak SHOULD notice.
+
+    A field the prior manifest never carried is DROPPED rather than invented: the 2026-07-14 and
+    2026-07-15 manifests pre-date the instrumentation, and an uninstrumented run must stay
+    uninstrumented so `unattended_streak` correctly refuses to count it.
+
+    Pure so it is testable without a full assemble — the regression this guards against is invisible
+    to a source-inspection test."""
+    is_repair = bool(prior) and bool(prior.get("final", True))
+    if not is_repair:
+        return manifest, False
+    out = dict(manifest)
+    for k in REPAIR_PRESERVED_KEYS:
+        if k in prior:
+            out[k] = prior[k]
+        else:
+            out.pop(k, None)
+    out["repaired_at"] = now
+    out["repair_run_id"] = repair_run_id
+    out["repair_event"] = repair_event
+    return out, True
 
 
 def _counts_by_day(statements) -> dict:
@@ -330,11 +374,26 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         "symmetry": {"prompts_sha": report["prompts_sha"], "thresholds_sha": report["thresholds_sha"]},
         "alerts": (["degraded"] if degraded else []) + (["forced-finalize: upstream never filled"] if forced else []),
     }
-    util.write_json(config.DERIVED / "manifest" / f"assemble-{day}.json", manifest)
+    # REPAIR-SAFE PROVENANCE (docs/23 §7.5 R-C, amendment) — see `repair_safe_manifest` for why the
+    # obvious unconditional write would have failed the §1.4.1 launch gate.
+    man_path = config.DERIVED / "manifest" / f"assemble-{day}.json"
+    manifest, is_repair = repair_safe_manifest(
+        manifest, util.read_json(man_path, {}) or {},
+        now=util.now_utc_iso(), repair_run_id=f"assemble-{date.today().isoformat()}",
+        repair_event=os.environ.get("GITHUB_EVENT_NAME") or "local")
+    util.write_json(man_path, manifest)
     # Pointer to the day THIS run built — post_bluesky reads it (not collect's focus_day), which
     # fixes the Session-4 day-selection no-op. Posting targets exactly what assemble published.
-    util.write_json(config.DERIVED / "manifest" / "assemble-latest.json",
-                    {"day": day, "generated_at": util.now_utc_iso(), "run_id": manifest["run_id"]})
+    #
+    # A REPAIR MUST NOT REPOINT IT. Repairing an old day would otherwise aim the next post at that
+    # day: repairing 2026-07-12 on launch eve would make the first live Daily Line thread a
+    # nine-day-stale day. A repair fixes the record; it never changes what posts next.
+    if not is_repair:
+        util.write_json(config.DERIVED / "manifest" / "assemble-latest.json",
+                        {"day": day, "generated_at": util.now_utc_iso(), "run_id": manifest["run_id"]})
+    else:
+        print(f"[repair] {day}: provenance preserved (event={manifest.get('event')!r} "
+              f"unattended={manifest.get('unattended')!r}); assemble-latest NOT repointed")
     if degraded or governor != "nominal" or voice_state in ("warn", "halt"):
         ops.ntfy("OnScript assemble",
                  f"day={day} governor={governor} voice={voice_state} "

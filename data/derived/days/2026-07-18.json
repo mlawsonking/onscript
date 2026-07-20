@@ -13,5 +13,89 @@
       "index": 0.6667
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 1,
+      "day": "2026-07-18",
+      "party": "D",
+      "composite": "We released 5 statements today.",
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.1",
+      "prompt_sha": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "stats": {
+        "party": "D",
+        "day": "2026-07-18",
+        "statements": 5,
+        "talking_points": [],
+        "top_phrase": null,
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 408,
+        "tokens_out": 11,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "day": "2026-07-18",
+      "party": "R",
+      "composite": "We released 3 statements today.",
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.1",
+      "prompt_sha": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "stats": {
+        "party": "R",
+        "day": "2026-07-18",
+        "statements": 3,
+        "talking_points": [],
+        "top_phrase": null,
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 406,
+        "tokens_out": 11,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [],
+    "R": []
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "duets": []
 }

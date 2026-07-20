@@ -36,6 +36,11 @@ data/reference/*
 !data/reference/nomenclature/
 !data/reference/nomenclature/*.json
 
+# Session scratch. Canon has assumed since Session 18 that this was already ignored ("scratchpad is
+# gitignored -> gone on re-clone") — it was NOT, and `git add -A` would have staged 21 files including
+# Article XIII name-extraction tooling. The repo goes public, so this is a privacy floor, not hygiene.
+scratchpad/
+
 # Site build output (Vercel builds it; not committed)
 site/dist/
 site/.astro/
