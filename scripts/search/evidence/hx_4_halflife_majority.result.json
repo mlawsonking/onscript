@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-07-20T19:19:37Z",
+  "registration_commit": "bc4d0d1",
+  "gate": {
+    "r_gate": 0.1,
+    "p_gate": 0.05,
+    "min_units": 200
+  },
+  "per_lane": {
+    "propublica": {
+      "units": 27261,
+      "powered": true,
+      "active_days": {
+        "n_maj": 23392,
+        "n_min": 3869,
+        "U": 33589546.0,
+        "rank_biserial_r": -0.2577,
+        "z": -25.733,
+        "p": 4.955586473323116e-146,
+        "median_maj": 14.0,
+        "median_min": 41,
+        "mean_maj": 47.48,
+        "mean_min": 86.68
+      },
+      "calendar_span_robustness": {
+        "n_maj": 23392,
+        "n_min": 3869,
+        "U": 29552929.5,
+        "rank_biserial_r": -0.3469,
+        "z": -34.623,
+        "p": 1.1403529643402981e-262,
+        "median_maj": 270.0,
+        "median_min": 609,
+        "mean_maj": 324.16,
+        "mean_min": 502.7
+      }
+    },
+    "scraped": {
+      "units": 5589,
+      "powered": true,
+      "active_days": {
+        "n_maj": 3903,
+        "n_min": 1686,
+        "U": 2039714.0,
+        "rank_biserial_r": -0.3801,
+        "z": -22.6,
+        "p": 4.3002930797071925e-113,
+        "median_maj": 15,
+        "median_min": 51.5,
+        "mean_maj": 45.32,
+        "mean_min": 90.69
+      },
+      "calendar_span_robustness": {
+        "n_maj": 3903,
+        "n_min": 1686,
+        "U": 2602561.0,
+        "rank_biserial_r": -0.209,
+        "z": -12.422,
+        "p": 1.978009650756032e-35,
+        "median_maj": 434,
+        "median_min": 537.0,
+        "mean_maj": 390.8,
+        "mean_min": 491.73
+      }
+    }
+  },
+  "verdict": "CONFIRM — majority-party phrases persist SHORTER in BOTH lanes (r=-0.258/-0.380, both p<0.05)"
+}

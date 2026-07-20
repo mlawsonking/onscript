@@ -1019,3 +1019,34 @@ separate later commit so the freeze precedes the result in git history).
   |r| < 0.10 in a well-powered lane.** Floor: each cell (majority, minority) reports only with **≥ 200
   units.** (r > 0 ⇒ majority phrases persist longer.)
 - **Status:** REGISTERED — measurement next (this session), then a verdict row.
+
+### HX.4 · Phrase half-life × majority status — **CONFIRM: minority-party talking points persist ~3× longer than the majority's** (both lanes). *Supersedes the REGISTERED status; measured against the frozen registration `bc4d0d1`, no post-hoc edits.*
+
+**A party's coordinated talking points persist for FEWER active days when that party holds the House
+majority than when it sits in the minority — robust in both provenance lanes and both duration metrics.**
+Symmetric by construction (House control flips between parties across congresses).
+
+| lane | units (maj / min) | median active-days maj / min | rank-biserial r | p | span-robustness r |
+|---|---|---|---|---|---|
+| propublica | 23,392 / 3,869 | **14 / 41** | **−0.258** | 5e-146 | −0.347 |
+| scraped | 3,903 / 1,686 | **15 / 51.5** | **−0.380** | 4e-113 | −0.209 |
+
+Frozen gate: |r|≥0.10 ∧ p<0.05 ∧ same direction both lanes — all met, direction negative (majority
+SHORTER) → **CONFIRM.**
+
+- **The institutional reading:** the minority, lacking the floor and the agenda, leans on messaging — its
+  coordinated phrases are sustained grievances that stay in circulation for weeks; the majority
+  legislates and moves on, its coordinated phrases bill/moment-bound and short-lived. "The minority
+  messages; the majority legislates."
+- **⚠ Disclosed confound — propublica's majority is party-collinear.** House control was R for 3 of that
+  lane's 4 congresses (113–115 R, 116 D), so there "majority" ≈ "R-ness" and the two cannot be fully
+  separated. **The scraped lane is the load-bearing evidence:** its House control is genuinely mixed
+  (117 D, 118–119 R), so majority spans BOTH parties, and it STILL shows the effect (r=−0.380) — the
+  shorter-majority persistence is not merely a party effect. **A within-party decomposition** (does each
+  party's own persistence drop in its majority congresses?) is the natural robustness follow-up and a
+  precondition for publication — flagged, deliberately NOT run post-hoc on this same data in-session.
+- **Verdict:** CONFIRM per the frozen gate → a candidate card, **pending Fable/neutrality review (which
+  should include the within-party decomposition) + Michael's editorial publication**. Program cards
+  5 → 6 pending that review. Re-runnable: `PYTHONHASHSEED=0 python
+  scripts/search/hx_4_halflife_majority.py`; evidence
+  `scripts/search/evidence/hx_4_halflife_majority.result.json` + X:.
