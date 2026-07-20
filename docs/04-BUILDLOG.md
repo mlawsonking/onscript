@@ -2285,3 +2285,194 @@ the next worker's first item, ahead of the docs/11 shelf.
 archive lists the 9 days that are genuinely published, no listed link 404s), and nothing about the
 posting path is touched. But **the announce points at a site with one stale public day page and two
 older days missing their composites**, and Michael should know that before he says go.
+
+---
+
+## Session 30 (2026-07-20, Opus) — THE MONDAY REPAIR (docs/23 §7.5 steps 1–3): the P0 closed, {07-12, 07-18} restored, 386 green
+
+Ran the Monday repair. **No launch acts** — `POSTING_ENABLED` untouched, repo still private, all 19
+FEATURES flags dark, nothing posted, no flip. Commit `1543c0e`, pushed (the guard had to reach
+production before the 19:30Z collect; §7.5's amendment note — "without it, a post-assemble collect
+could null the very Monday reading the launch is waiting for" — is the whole reason this was a
+same-day push and not a tomorrow-morning one).
+
+### 1. THE GUARD — a published day is immutable to RUN A
+
+`build.build_derived` wrote `days/{day}.json` as a **full-object overwrite carrying
+`daily_lines: None`**. RUN A focuses whatever day is newest in the corpus, so a collect that landed
+on an already-published day deleted its composites, `talking_points`, `duets` and `rejected_keys`.
+`util.day_is_final(day, derived_dir)` + one check at that write closes it; `run_assemble._is_final`
+now delegates to the same function, so **the readiness gate and the write guard cannot disagree about
+which days are published** — that disagreement is precisely how a day got clobbered.
+
+Three design points that are not incidental:
+
+* **Scope is `days/` only.** `discipline.json`, `coverage.json`, `phrases/top.json` and the
+  per-phrase pages are *the current state of the instrument*, not *the record of a date* — and the
+  per-phrase files are living adoption curves, so freezing them would strand every phrase at whatever
+  day first surfaced it. They keep refreshing while the day is skipped (locked by test).
+* **Back-compat is load-bearing, not politeness.** Only 4 of the 9 published assemble manifests carry
+  a `final` field; the rest pre-date the readiness gate. `bool(m) and bool(m.get("final", True))` is
+  therefore correct and `m.get("final") is True` is a **bug that would leave 5 of 10 published days
+  clobberable — including 07-12, the day that proves the defect.** Mutation-verified: that one-token
+  change is caught only by the new test, by nothing in the prior 370.
+* **Skip-and-log, never raise, and fail CLOSED on ambiguity.** RUN A hits this guard twice a day by
+  design, so firing is the normal case. An adversarial pass found the guard had introduced a *new*
+  crash surface — `read_json` raises on a truncated manifest, and RUN A had never read the manifest
+  dir before — which contradicted the guard's own reason for existing. Wrapped: an unreadable
+  manifest returns `True` (if we cannot tell whether a day was published, do not clobber it).
+
+`scripts/regen_derived.py --force` is the deliberate operator escape hatch; `deterministic.run` and
+`alexandria.merge` never pass it, locked by a source test. **`alexandria.merge` was a second, unfired
+instance of the same defect** — it writes derived for the last day of a 25-year merge, routinely a
+published day — and the guard closes it for free.
+
+### 2. THE REPAIR — restored from the published bytes, **deliberately not `run_assemble --day`**
+
+§7.5 R-C names `run_assemble --day` as the repair path. **Executed literally it would have failed the
+launch gate it is sequenced in front of.** Three measured reasons, all reproduced before deviating:
+
+1. **It destroys the streak evidence.** `assemble()` rewrites `manifest/assemble-{day}.json`
+   unconditionally, recomputing `event`/`unattended` from `GITHUB_EVENT_NAME`. A repair is never a
+   `schedule` event. `ops.unattended_streak` breaks on the first falsy `unattended` — and **07-18 is
+   the head of the 3/3 streak.** Simulated: `passes: True` → **`passes: False`**, unrecoverable until
+   a third clean cron on Wed 07-22, i.e. *through launch morning*.
+2. **It fabricates locally.** `data/state/statements.jsonl.gz` ends at **2026-07-09** (75,989
+   statements). A local re-assemble of 07-12/07-18 sees zero statements for those days and writes
+   *"We released 0 statements today."* over days that really released 11/12 and 5/3 — Art. II.
+3. **It re-authors under false provenance.** 07-12's published composite carries
+   `generator: dry_run`, `model: P3:dry_run`, prompt 1.0. The cloud has the key and
+   `LLM_VOICE_ENABLED`, so a re-assemble would restamp it `sonnet_direct` / `claude-sonnet-5` / 1.1 —
+   a Sonnet provenance claim over text that was published as a deterministic template.
+
+So the composites were **restored from the exact published bytes** (`af36b2a` → 07-12,
+`fb9e447` → 07-18) by surgical key merge. Whole-document canonical equality with the published blobs
+verified for both days; the deterministic halves (`day`, `top_synchronized`, `discipline`) were
+asserted byte-identical rather than rewritten, which is what makes the restore *verifiable* instead of
+merely plausible. **The strongest evidence it is a restore and not a regeneration: 07-12's published
+version carried no `duets` and no `rejected_keys`, and the restore does not synthesize them, while
+07-18 gets both back — a regeneration would have produced schema-current keys on both.** Independent
+confirmation: `site/public/day/2026-07-18.html` re-renders **byte-identical** to what was already
+live. The "stale orphan" page had been showing the pre-null content all along; the data now matches
+the page again, and the page was never unlinked.
+
+**07-09 was NOT repaired, and that is the finding, not an omission.** No committed version of its file
+ever carried `daily_lines` (verified across its full history); the composer never ran for it. It is an
+honest phrases-only backfill day and manufacturing a composite for it would **invent a record rather
+than repair one** (Art. II). It remains listed and marked "phrases only" — the archive now carries
+that marker on exactly one day, where before the bug's scar tissue made it look like a category.
+
+### 3. AMENDMENT TO THE REPAIR PATH ITSELF — `repair_safe_manifest`
+
+So the §7.5-named path is safe the next time anyone uses it. Trigger-provenance
+(`event`, `unattended`, `run_id`, `forced_finalize`, `readiness`) is preserved from the published
+manifest and the repair recorded **additively** (`repaired_at` / `repair_run_id` / `repair_event`).
+Three lines that are judgement calls, all documented in code:
+
+* **`degraded` is NOT preserved** — it describes what is published *now*, so a repair that degrades a
+  day *should* break the streak.
+* **`forced_finalize` IS preserved.** It looks like content and is not: it records that the readiness
+  gate waited out `MAX_WAIT_DAYS`. The `--day` path hard-codes `forced=False`, so recomputing it would
+  **launder a force-finalized day into a streak-eligible one** and silently drop its alert. Latent
+  today (no manifest carries it), locked by test.
+* **A field the original never carried is DROPPED, never invented** — 07-14/07-15 pre-date the
+  instrumentation, and inventing `unattended` would *manufacture streak evidence*.
+
+A repair also no longer repoints `assemble-latest.json`: that pointer chooses the day that POSTS, so
+repairing 07-12 on launch eve would have aimed the first live Daily Line thread at a nine-day-stale
+day.
+
+The logic is a **pure function** specifically so it is testable. An adversarial pass proved the first
+draft's tests were worthless here — deleting the preservation loop left the suite green, because they
+asserted on `inspect.getsource` substrings. Now mutation-verified: emptying `REPAIR_PRESERVED_KEYS`
+fails three tests, and the docstring's "THE ONE THAT NEARLY SHIPPED" is behavioral.
+
+### 4. Art. XVI RECORD CHECK (§7.5 step 2)
+
+Read from the record, never from run status. Days 07-16/07-17/07-18 each `event=schedule ·
+unattended=True · degraded=False · final=True · forced_finalize=False`, symmetry `degraded=false`
+(which lives in `derived/symmetry/{day}.json`, **not** in the assemble manifest), governor nominal,
+`voice_used=true`, zero alerts; verifier `passed=True` / `fallback=False` both parties every day.
+`ops.unattended_streak('2026-07-20')` → **`passes: True, value: 3, days [07-16, 07-17, 07-18]`**,
+re-confirmed after the repair — the restore touched no manifest (`git diff data/derived/manifest/`
+empty).
+
+**THE S28 OPEN CHECK IS RESOLVED, FAVOURABLY.** `concordance.json` (500,234 B) and `awards.json`
+(12,864 B) were both added by **cloud bot commit `0a66cea`** — `git log --diff-filter=A` shows no
+other commit, local or bot, has ever touched either path. **Production emits both every run** (from
+`deterministic.run`, after `build_derived`, in their own skip-and-log belts), so confidence for the
+`awards` (08-24) and `concordance` (09-07) flips now rests on production evidence rather than
+inference. Verified the guard does not suppress them: neither builder references `day_is_final`, and
+the guard's branch wraps only the `days_dir` write. *(The irony is worth recording: the same commit
+that proved production emits them is the commit that nulled 07-18.)*
+
+### 5. A FINDING NOBODY WAS LOOKING FOR — `scratchpad/` was never gitignored
+
+Canon has asserted since Session 18 that "scratchpad is gitignored → gone on re-clone". **It was
+not.** `git add -A --dry-run` staged 21 files, including the Article XIII name-extraction tooling and
+the `adv_partymix` evidence scripts. On a repo that goes **public tomorrow**, one reflex `git add -A`
+publishes exactly the material Art. XIII spent a history-rewrite removing. Now ignored. The existing
+parallel-session rule ("stage only your own files") was the only thing standing between that and a
+public leak, and it was holding by convention, not by mechanism.
+
+### 6. Known-open, not in scope (with one canon correction)
+
+* **`2026-07-09` is the one published day the invariant does not cover** — it has a live public page
+  but no assemble manifest, so `day_is_final` is False and `regen_derived.py 2026-07-09` would rewrite
+  its 19 `top_synchronized` rows with **no `--force` needed**. Nothing would be lost today (it has no
+  composites) and RUN A never walks backward to it, so it is a follow-up, not a blocker. If the
+  invariant is meant to read "a day with a public page is immutable", the predicate is one manifest
+  short.
+* **`sync_by_party` is absent from all 10 day JSONs**, so the `party_columns` flip falls back to the
+  stored top-20 on every published day — and 07-18, now the homepage, has an *empty* synchronized set,
+  so both columns would render empty. Bounded pre-flip limitation already in canon; flagged because
+  the homepage moved.
+* **CANON CORRECTION.** An adversarial pass reported `coverage.json` (2 year-keys) and
+  `discipline.json` (561 D days) as clobber damage "live on methodology.html". **They are not damaged.**
+  `config.STAGE1_EPOCH = "2025-01-03"`, so the daily lane's corpus *is* 2025–2026 and 561 days is
+  exactly right; the 25-year tables belong to the separate Alexandria ledger. Recorded so a future
+  session does not "fix" correct data.
+
+### 7. ⚠ FOUND BY CAUSING IT — the workflows' push-recovery path could never have worked
+
+Pushing the guard at 12:26Z landed mid-run: today's collect had started at **12:00:26Z**, delayed
+~2.5h by the Actions scheduler (cron is 09:30Z; prior landings were 11:20–11:48Z). Its push was
+rejected as non-fast-forward and the fallback ran — and **failed**:
+
+```
+! [rejected]  main -> main (fetch first)
+error: cannot pull with rebase: You have unstaged changes.
+##[error]Process completed with exit code 128
+```
+
+Both workflows carried `git push origin main || { git pull --rebase origin main && git push origin
+main; }`. The run stages only `data/derived` (collect) / `data/derived site/public` (assemble) and
+leaves other files modified, **so the tree is always dirty at that point and `git pull --rebase`
+always refuses.** The recovery path was unreachable by construction and had never once been
+exercised, because nothing had ever pushed during a cron. Fixed in both workflows with
+`--rebase --autostash`.
+
+**This is not a cosmetic fix and the timing matters: tomorrow's launch morning commits
+`party_columns` + `owners_brief`, and the 21:30Z assemble pass is live.** A launch-morning flip that
+races a run would have hit exactly this, lost that run's output, and fired the dead-man in the middle
+of the announce.
+
+**Blast radius of today's failure: none permanent, and it self-heals.** The `RUN A collect` step
+itself SUCCEEDED and `Persist state + raw mirror to the data Release` succeeded — the moat (raw
+mirror + `statements.jsonl.gz` + `ledger.json`) is intact. Only the derived commit was lost; the
+19:30Z pass restores state, re-pulls and rebuilds it. **The guard was not implicated:** the run's
+focus day was `2026-07-20` (it created `days/2026-07-20.json`, a fresh unpublished day), so nothing
+was nulled, and the run predated the guard anyway.
+
+**Two operational notes for the record.** (a) The dead-man fired correctly — the workflow-level
+`if: failure()` notify ran, so Michael received an ntfy alert at ~12:42Z that was **caused by this
+session's push, not by a pipeline fault**. (b) **The 11:30Z assemble did not run at all today** —
+GitHub's scheduler is dropping/delaying heavily (the collect was 2.5h late); the 21:30Z pass is the
+backstop, and RUN B's readiness gate no-ops at $0 if no day is ready. **Tuesday's launch morning
+depends on the ~11:30Z assemble landing day 07-20; on today's evidence that timing is not
+guaranteed, and the launch-morning order should verify the homepage from the record rather than
+assume the assemble has landed.**
+
+**Standing rule this earns: do not push to `main` while a cron run is in flight.** Check
+`gh run list --json status` first. The `concurrency: onscript-pipeline` group serializes the two
+workflows against each other, but nothing serializes a human against them.

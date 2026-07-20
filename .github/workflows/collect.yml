@@ -83,7 +83,14 @@ jobs:
           # rejected non-fast-forward was swallowed by '|| echo' and a GREEN run published nothing.
           # Rebase-retry handles the benign race; a failure after that is real and must FAIL the
           # step so the dead-man fires. (Two pipeline runs cannot race each other: concurrency group.)
-          git push origin main || { git pull --rebase origin main && git push origin main; }
+          # --autostash is load-bearing, not tidiness. This recovery path could NEVER work without it:
+          # the run leaves modified files OUTSIDE `data/derived` (they are never staged), so the tree
+          # is always dirty here, and `git pull --rebase` refuses with "cannot pull with rebase: You
+          # have unstaged changes" — exit 128, the day's derived output lost, dead-man fired. It stayed
+          # invisible until 2026-07-20, when a human push landed mid-run and the retry fired for the
+          # first time. A recovery path that has never been exercised is a recovery path you do not
+          # have; this one is on the critical path for every launch-morning commit that races a cron.
+          git push origin main || { git pull --rebase --autostash origin main && git push origin main; }
 
       # Art. XVI: failure visibility belongs to the OUTERMOST layer. The in-process dead-man
       # (pipeline/ops.ntfy) cannot see a crash that happens before main() — an import-time death is

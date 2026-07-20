@@ -110,7 +110,10 @@ jobs:
           git commit -m "data: assemble $(date -u +%F)" || { echo "no changes"; exit 0; }
           # Art. XVI: rebase-retry the benign mid-run race; hard-fail after that so the dead-man
           # fires (see collect.yml — a swallowed push rejection is a green run that published nothing).
-          git push origin main || { git pull --rebase origin main && git push origin main; }
+          # --autostash is load-bearing — see the matching note in collect.yml. Without it this
+          # recovery path can never succeed: the tree is always dirty at this point, so `git pull
+          # --rebase` aborts and the run dies with exit 128 after doing all its work.
+          git push origin main || { git pull --rebase --autostash origin main && git push origin main; }
 
       # Art. XVI: failure visibility belongs to the OUTERMOST layer (see collect.yml — an import-time
       # death is invisible to the in-process dead-man by construction).
