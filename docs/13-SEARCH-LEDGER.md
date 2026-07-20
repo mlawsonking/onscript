@@ -995,3 +995,27 @@ Both are methods/transparency-shelf descriptives (docs/20), symmetric by constru
 `PYTHONHASHSEED=0 python scripts/search/hx_8_office_concentration.py`; evidence
 `scripts/search/evidence/hx_8_office_concentration.result.json` + X:. **Next runnable HX (per the audit):
 HX.2 / HX.4 / HX.5 (all local); HX.1 gated on live GDELT, HX.7 on a floor-calendar.**
+
+### HX.4 · Phrase half-life × majority status — **REGISTERED** (frozen 2026-07-20, before measurement)
+
+Design frozen before touching confirmatory data (docs/12 L4); no post-hoc edits (the verdict lands in a
+separate later commit so the freeze precedes the result in git history).
+
+- **Question:** does a party sustain its coordinated talking points LONGER when it holds institutional
+  power (House majority) than when it does not? **Symmetric by construction** — House control flips
+  between parties across congresses (chambers-control: 113–115 R, 116 D, 117 D, 118–119 R), so the
+  comparison is majority-vs-minority POSITION pooled across whichever party held it — an institutional
+  effect, not a partisan one. **Within-lane only** (docs/12 L1).
+- **Unit:** a (phrase, congress) with `peak_units ≥ 15` (from `member_index[lane]`) — a synchronized
+  phrase-in-a-congress. **Party** = `peak_party` (the party that coordinated on it that congress).
+- **Persistence ("half-life"):** the count of distinct ACTIVE DAYS the phrase was used within that
+  congress's date range (`daily_series[lane]` filtered to `[congress_start, congress_end)`). Primary
+  metric. Robustness: calendar span (last − first active day).
+- **Majority proxy:** the phrase's party held the **House** majority that congress. House chosen as the
+  message-active, press-corpus-heavy chamber (disclosed; Senate-majority and unified-control reported as
+  robustness variants, never as the primary).
+- **Gate (frozen numerals):** per lane, Mann–Whitney U on persistence, majority-units vs minority-units.
+  **CONFIRM iff |rank-biserial r| ≥ 0.10 ∧ p < 0.05 ∧ SAME direction in BOTH lanes.** **REFUTE iff
+  |r| < 0.10 in a well-powered lane.** Floor: each cell (majority, minority) reports only with **≥ 200
+  units.** (r > 0 ⇒ majority phrases persist longer.)
+- **Status:** REGISTERED — measurement next (this session), then a verdict row.
