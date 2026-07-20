@@ -335,3 +335,70 @@ fine, neither is a cron).
 
 Then: the 2-minute Monday digest glance, editorial acts per docs/20 at your leisure, and the standing
 veto. Everything else is scheduled, gated, and executed by the worker under this authorization.
+
+### 7.5 · The Session-28 findings adjudicated (Fable, 2026-07-20, under the §7.2 delegation as re-affirmed in-session; revocable)
+
+Three rulings on the pre-launch audit's findings (BUILDLOG Session 28). The delegation covers these
+rulings; it does **NOT** consume §7.4.2 — the announce "go" stays Michael's one reply, because the
+first public words get a human eye **by design, not by oversight**.
+
+**R-A · The ACA rider (#179): the operative rule STANDS, on corrected facts; the 07-27 flip is
+re-authorized.** §7.2.1's factual prediction was inverted by measurement: at the committed
+cumulative index and the disclosed 0.8 threshold, **neither party's ordinary framing tags**
+(`affordable care act` 0.0049 over 1,820 docs · `the affordable care act` 0.0008 · `obamacare` no
+row), and the only ACA-family phrase that tags is **`the unaffordable care act`** (ratio 1.0, cite
+hr6300 — an actual introduced bill bearing that title). RULED: **this is the instrument working,
+not a defect.** docs/16's law is that nomenclature is a property of the OCCURRENCE; the corpus
+says members use "the affordable care act" as *message* 99.5% of the time, so it must not tag —
+and every measured use of "the unaffordable care act" references an official title, so it must.
+The output asymmetry traces to an asymmetry in the parties' own conduct: one caucus wrote its
+counter-brand into a bill title; the other's counter-brand ("the big ugly bill", 0.000) never
+became one. One rule, both parties → an asymmetric **finding** from a symmetric **instrument** —
+the exact category Art. IV protects, and honestly a nicer demonstration of the principle than the
+imaginary asymmetry the original rationale accepted. Riders: (1) **chip copy is
+descriptive-citational only** — bill, congress, record link; never an evaluative label; (2) the
+gated Methodology section explains **occurrence-not-phrase with the ACA family as the worked
+example** — it is the best pedagogy on the shelf and the pre-answer to the first accusation
+("why does the pun tag and 'obamacare' doesn't?"); (3) the §9-5 bar extends here: release copy
+claims what was measured, never "D vocabulary tags." **#179 CLOSED by this ruling.**
+
+**R-B · `silence_board` / the awards cascade: dates HOLD, behind a wiring deadline.** The board is
+built and kill-tested but has no production caller; `derived/silence/` has never accumulated. A
+build session wires it (skip-and-log; boards accumulate **DARK**) with a landing deadline of
+**Mon 08-03** — one week of boards before the 08-10 flip, three before The Void. **Auto-slip
+rule:** if boards are not accumulating in production by the 08-03 digest, the 08-10 flip slips
+week-by-week until they are, and `awards` (08-24) **ships whole or slips with it** — The Void must
+be live-fed at flip; honest-UNAVAILABLE is a *degradation* state, not a *launch* state (consistent
+with §7.2.3). Opus work; no human errand.
+
+**R-C · The `daily_lines` nulling is a P0 — the §7.3 health gate's first catch is us, before the
+first flip. Launch proceeds Mon 07-20 BEHIND the repair, same day if it lands.** RUN A rewrote a
+`final: True` day's JSON to `daily_lines: null` (0a66cea → day 07-18, −85 lines; likewise
+`collect 07-14` → day 07-12, proven from file history: af36b2a carried 2 composites, 6459640
+carries 0). **Evidence correction to the S28 table:** 07-09 was **never damaged** — no committed
+version of its file ever carried `daily_lines` (verified across its entire history); it is an
+honest phrases-only backfill day and gets **no repair** (Art. II: never fabricate a composite for
+a day the voice never ran). INVARIANT to implement, with a locked test: **a day whose assemble
+manifest is `final: True` is immutable to RUN A** — collect never rewrites a published day JSON;
+the only write path to a final day is the documented `run_assemble --day` repair. Repairs =
+exactly **{07-12, 07-18}**, via that path. **Never unlink a public day page** — the pages are the
+permanent record; the guard prevents new orphans and the 07-18 repair restores that page's
+coherence. Streak evidence unaffected (manifests untouched; `passes: True` re-verified at S28
+close). A paused-then-cleared launch morning is the gate **working** — it goes in the methods
+story (docs/20's December flagship can cite it: the health gate's first catch was ourselves).
+
+**The corrected launch-morning order (one worker session, Mon 07-20):**
+1. R-C guard + the two repairs; full suite green; site regenerated; `day/2026-07-18.html`
+   coherent; homepage on the newest lined day.
+2. Verify from the record (Art. XVI): the morning cloud commits are clean, and whether
+   `concordance.json`/`awards.json` landed in production output (the S28 open check gating
+   08-24/09-07 confidence).
+3. Monday digest green (the first 15-min ritual).
+4. On Michael's "go": `POSTING_ENABLED` on → repo public → announce (dispatch workflow, the
+   RECOMMENDED 4-post text **verbatim**, confirm=POST) → flip `party_columns` + `owners_brief`.
+5. Any failure at any step: ntfy, and launch slips to the next clean day. The gate working, not a
+   crisis.
+
+**The announce text: the RECOMMENDED 4-post thread is AFFIRMED as drafted** (every count measured
+through the real builder; the 36 figure matches the page it links). Michael's entire remaining act
+is one reply: **"go"** — or edits, which re-enter at step 4.
