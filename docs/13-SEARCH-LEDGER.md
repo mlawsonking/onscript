@@ -1077,3 +1077,35 @@ asymmetric portfolios (Art. IV protected).
 - **Verdict:** a methods/transparency-shelf descriptive (docs/20) — a map of what each party coordinates
   on, NOT a card. Re-runnable: `PYTHONHASHSEED=0 python scripts/search/hx_2_topic_scriptproneness.py`;
   evidence `scripts/search/evidence/hx_2_topic_scriptproneness.result.json` + X:.
+
+### HX.4-D · Within-party decomposition (HX.4's registered publication-precondition) — **REGISTERED** (frozen 2026-07-20, before measurement)
+
+Design frozen before touching confirmatory data (docs/12 L4; the freeze-before-measure pattern S32
+validated); the verdict lands in a **separate later commit** so the freeze precedes the result in git
+history. Full frozen spec: `data/reference/search/hx_4d-registration.json`.
+
+- **Question (S32 R-J):** HX.4 found majority-party coordinated phrases persist SHORTER than the
+  minority's — but propublica's majority is party-collinear (House R in 113–115, D only in 116), so there
+  "majority" ≈ "R-ness". This decomposition disaggregates: **does EACH party's OWN persistence drop in
+  the congresses where THAT party held the House, vs the congresses where it did not?** If both parties
+  drop, the effect is **institutional**; if only one does, it is a party artifact of the collinear lane.
+- **Substrate / unit / metric:** IDENTICAL to HX.4 — the SAME built caches (`member_index[lane]` peak≥15
+  (phrase, congress) units; `daily_series[lane]` active-days within the congress window; calendar-span
+  robustness). The Mann–Whitney statistics are **imported from `hx_4_halflife_majority.py`** (byte-identical,
+  not re-implemented). Within-lane only (L1). No new ingestion.
+- **Four (lane, party) tests:** (propublica,D) maj={116}/min={113–115}; (propublica,R) maj={113–115}/min={116};
+  (scraped,D) maj={117}/min={118–119}; (scraped,R) maj={118–119}/min={117}. Within each lane the two
+  parties' majority eras run **opposite in time**, so a pure monotone era trend would push D and R r in
+  opposite directions — the both-party requirement therefore also controls for era (a property of the
+  schedule, not a tuned control).
+- **Gate (frozen, inherited from HX.4 — nothing tuned):** floor **200 units/cell** (both cells ≥200 ⇒
+  POWERED); a **DROP** = rank-biserial `r ≤ −0.10 ∧ p < 0.05` on active-days AND same sign on calendar
+  span. A powered test that is not a DROP is a **contradiction**.
+- **PROCEED-criterion (the frozen precondition):** HX.4's card may PROCEED to Fable/neutrality review +
+  Michael's editorial publication iff **(1)** no powered contradiction (every powered test drops), **(2)**
+  ≥1 powered DROP for **D** and ≥1 for **R**, **(3)** ≥1 powered DROP in **propublica** and ≥1 in
+  **scraped**. Otherwise the card stays **HELD** (the parent number still stands as measured; HELD ≠
+  refutation). Single-congress majority cells (propublica-D=116, scraped-D=117) may be UNDERPOWERED and
+  are reported as such, never as contradictions.
+- **Status:** REGISTERED — measurement next (this session), then a verdict row. Launch-eve safe: no
+  daily-pipeline surface.

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "kind": "search-hx.4d-registration",
+  "hypothesis": "HX.4-D — the within-party decomposition of HX.4 (docs/05 §3; docs/13 HX.4). HX.4 found that a party's coordinated talking points persist for FEWER active days when that party holds the House majority than when it sits in the minority (propublica r=-0.258, scraped r=-0.380, both p<<0.05 — 'the minority messages; the majority legislates'). But propublica's majority is party-collinear (House R in 113-115, D only in 116), so the cross-party split there cannot separate 'majority' from 'R-ness'. This decomposition asks the disaggregated question that separates institution from party: does EACH party's OWN persistence drop in the congresses where THAT party held the House majority, relative to the congresses where it did not?",
+  "source": "Registration frozen and committed BEFORE any measurement run, in a separate earlier commit, so the freeze provably precedes the result in git history (docs/23 §7.2.5; docs/12 L4; the freeze-before-measure pattern Session 32 validated for S5.2 and HX.4). This is HX.4's REGISTERED publication-precondition (Session 32 ruling R-J): 'the CARD stays HELD pending the within-party decomposition ... the card proceeds only if each party's OWN persistence drops in its majority congresses (both lanes where the >=200/cell floor holds).' Substrate is the SAME built caches HX.4 read (member_index + daily_series per lane) plus chambers-control.json — no new ingestion. No post-hoc edits.",
+  "fetch_date": "2026-07-20",
+  "rationale": "The parent finding (HX.4) is measured and ledgered; this registration does NOT re-open it. It fixes, a priori, the decomposition design and the PROCEED-criterion by which the parent card is either cleared for review or held. The 200/cell floor and the |r|>=0.10 & p<0.05 gate are INHERITED from HX.4's frozen registration (bc4d0d1) unchanged — nothing here is tuned. The measurement script reads this file's rules and adds no knob. Deliberately run in a later, dedicated session (not post-hoc on launch eve inside HX.4's own session) so the same data is not decomposed under result-pressure.",
+
+  "parent": {
+    "hypothesis": "HX.4",
+    "registration_commit": "bc4d0d1",
+    "result_commit": "423702d",
+    "parent_verdict": "CONFIRM — majority-party phrases persist SHORTER in BOTH lanes (r=-0.258/-0.380)"
+  },
+
+  "unit_and_metric": {
+    "unit": "A (phrase, congress) with peak_units >= 15 from member_index[lane] — a synchronized phrase-in-a-congress. IDENTICAL to HX.4. Party = peak_party (the party that coordinated hardest on it that congress).",
+    "persistence_primary": "Distinct ACTIVE DAYS the phrase was used within that congress's date range: daily_series[lane] filtered to [congress_start, congress_end) via alexandria.congress_range(congress). IDENTICAL to HX.4.",
+    "persistence_robustness": "Calendar span = (last active day - first active day) + 1 within the congress window. Reported alongside active-days; a powered test must hold on BOTH metrics to count as a clean DROP (see gate).",
+    "statistic": "Mann-Whitney U on persistence, rank-biserial r (r > 0 => the first group persists LONGER), two-sided tie-corrected normal-approximation p. The mann_whitney / _rankdata functions are IMPORTED from scripts/search/hx_4_halflife_majority.py so the statistics are byte-identical to the parent, not re-implemented.",
+    "lanes": {"propublica": [113, 114, 115, 116], "scraped": [117, 118, 119]},
+    "lane_note": "Within-lane only (docs/12 L1). The propublica lane ends at the 2021-01-03 provenance seam; no comparison crosses it.",
+    "majority_proxy": "The phrase's party (peak_party) held the HOUSE majority that congress (chambers-control.json). House per congress: 113 R, 114 R, 115 R, 116 D, 117 D, 118 R, 119 R. Units whose congress has no D/R House control are skipped (none in 113-119)."
+  },
+
+  "decomposition": {
+    "cells": "For each lane L in {propublica, scraped} and each party P in {D, R}, the P units in lane L are split into: P-MAJORITY = units whose congress had House == P; P-MINORITY = units whose congress had House != P (House in {D,R}). Four (lane, party) tests: (propublica,D), (propublica,R), (scraped,D), (scraped,R).",
+    "structure": {
+      "propublica_D": {"majority_congresses": [116], "minority_congresses": [113, 114, 115]},
+      "propublica_R": {"majority_congresses": [113, 114, 115], "minority_congresses": [116]},
+      "scraped_D": {"majority_congresses": [117], "minority_congresses": [118, 119]},
+      "scraped_R": {"majority_congresses": [118, 119], "minority_congresses": [117]}
+    },
+    "era_confound_property": "Within EACH lane the two parties' majority eras run OPPOSITE in calendar time (propublica: R-majority = early 113-115, D-majority = late 116; scraped: D-majority = early 117, R-majority = late 118-119). Therefore a pure monotone era/coverage trend (e.g. 'later congresses have shorter persistence for corpus reasons') would push the two parties' r in OPPOSITE directions. Requiring BOTH parties to show majority-SHORTER (proceed-criterion condition 2) rules out that pure era artifact. This property is a consequence of the schedule, not a tuned control.",
+    "single_congress_cells": "The MAJORITY cell for D in each lane is a single congress (propublica 116; scraped 117), as are some MINORITY cells (propublica R-minority = 116; scraped R-minority = 117). These may fall below the 200/cell floor. An underpowered (lane, party) test is reported UNDERPOWERED and is NOT counted as a contradiction; but it also cannot supply the both-party / both-lane evidence the proceed-criterion requires."
+  },
+
+  "gate": {
+    "min_units_per_cell": 200,
+    "min_units_note": "INHERITED from HX.4 (bc4d0d1), unchanged. A (lane, party) test is POWERED iff BOTH its cells (P-MAJORITY and P-MINORITY) have >= 200 units.",
+    "r_gate": 0.10,
+    "p_gate": 0.05,
+    "drop_criterion": "For a POWERED (lane, party) test, a DROP (majority persists shorter — the institutional signal) requires, on the PRIMARY active-days metric: rank-biserial r <= -0.10 AND p < 0.05, AND the same direction (r < 0) on the calendar-span robustness metric. A powered test that is not a DROP (|r| < 0.10, or p >= 0.05, or r > 0, or the two metrics disagree in sign) is a CONTRADICTION of the institutional reading.",
+    "gate_note": "The r>=0.10 effect-size floor is inherited from HX.4 and guards against a large-n trivial drop (the S3.7 lesson: a significant but tiny |r| is not an effect). Direction is required to be majority-shorter to match the parent claim."
+  },
+
+  "proceed_criterion": {
+    "statement": "The decomposition SUPPORTS the institutional interpretation — and HX.4's card may PROCEED to Fable/neutrality review + Michael's editorial publication — iff ALL THREE hold; otherwise the card stays HELD. Ledger the outcome either way.",
+    "condition_1_no_powered_contradiction": "Every POWERED (lane, party) test is a DROP. A single powered contradiction (a powered party whose own persistence does NOT drop in its majority congresses) holds the card.",
+    "condition_2_both_party": "At least one POWERED DROP for P=D AND at least one POWERED DROP for P=R. This is the crux: it rules out the party-collinearity artifact (the effect cannot be carried by a single party) and, via the era_confound_property, a monotone era trend.",
+    "condition_3_both_lane": "At least one POWERED DROP in propublica AND at least one in scraped. The effect must appear in the scraped lane (the mixed-majority, load-bearing lane), not only in the party-collinear propublica lane.",
+    "outcome_labels": ["SUPPORTS-CARD-PROCEEDS", "HELD"],
+    "held_note": "HELD is not a refutation of HX.4's measured effect — the parent number stands as measured. HELD means the decomposition did not establish the effect as institutional (a powered contradiction, or insufficient both-party/both-lane powered evidence), so the CARD does not advance to publication review. Report which condition failed."
+  },
+
+  "amend_policy": "This registration is FROZEN. No post-hoc edits to unit_and_metric, decomposition, gate, or proceed_criterion. A genuine design change is a NEW registration with a new date, never an edit to this one. The measurement script scripts/search/hx_4d_within_party.py must implement exactly these rules and is auditable against this file.",
+  "amendments": [
+    {"date": "2026-07-20", "by": "Opus, dedicated HX session (post-S32 R-J)",
+     "reason": "Initial freeze of HX.4's registered publication-precondition (Session 32 R-J). Design fixed before any within-party measurement run; the 200/cell floor and |r|>=0.10 & p<0.05 gate are inherited from HX.4 (bc4d0d1) unchanged; the proceed-criterion (no powered contradiction + both-party + both-lane powered drop) is fixed here. Measurement follows in a SEPARATE later commit, so the freeze precedes the result in git history."}
+  ]
+}
