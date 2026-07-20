@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-07-20T20:43:33Z",
+  "registration": "data/reference/search/hx_4d-registration.json",
+  "registration_freeze_commit": "1783987",
+  "parent": {
+    "hypothesis": "HX.4",
+    "verdict": "CONFIRM (majority persists shorter, both lanes)"
+  },
+  "gate": {
+    "r_gate": 0.1,
+    "p_gate": 0.05,
+    "min_units": 200
+  },
+  "per_lane": {
+    "propublica": {
+      "units": 27261,
+      "by_party": {
+        "D": {
+          "n_maj": 15820,
+          "n_min": 2907,
+          "powered": true,
+          "active_days": {
+            "n_maj": 15820,
+            "n_min": 2907,
+            "U": 14602847.0,
+            "rank_biserial_r": -0.3649,
+            "z": -31.354,
+            "p": 8.520094255922695e-216,
+            "median_maj": 10.0,
+            "median_min": 44,
+            "mean_maj": 36.86,
+            "mean_min": 86.74
+          },
+          "calendar_span": {
+            "n_maj": 15820,
+            "n_min": 2907,
+            "U": 11047580.0,
+            "rank_biserial_r": -0.5196,
+            "z": -44.597,
+            "p": 0.0,
+            "median_maj": 136.0,
+            "median_min": 613,
+            "mean_maj": 263.1,
+            "mean_min": 532.62
+          },
+          "classification": "DROP",
+          "is_drop": true
+        },
+        "R": {
+          "n_maj": 7572,
+          "n_min": 962,
+          "powered": true,
+          "active_days": {
+            "n_maj": 7572,
+            "n_min": 962,
+            "U": 3628659.0,
+            "rank_biserial_r": -0.0037,
+            "z": -0.187,
+            "p": 0.8514980003805204,
+            "median_maj": 26.0,
+            "median_min": 31.0,
+            "mean_maj": 69.67,
+            "mean_min": 86.48
+          },
+          "calendar_span": {
+            "n_maj": 7572,
+            "n_min": 962,
+            "U": 3740559.0,
+            "rank_biserial_r": 0.027,
+            "z": 1.367,
+            "p": 0.17147385305870297,
+            "median_maj": 521.0,
+            "median_min": 515.5,
+            "mean_maj": 451.74,
+            "mean_min": 412.3
+          },
+          "classification": "CONTRADICTION",
+          "is_drop": false
+        }
+      }
+    },
+    "scraped": {
+      "units": 5589,
+      "by_party": {
+        "D": {
+          "n_maj": 2648,
+          "n_min": 1550,
+          "powered": true,
+          "active_days": {
+            "n_maj": 2648,
+            "n_min": 1550,
+            "U": 896318.0,
+            "rank_biserial_r": -0.5632,
+            "z": -30.533,
+            "p": 9.409276158143095e-205,
+            "median_maj": 9.0,
+            "median_min": 55.0,
+            "mean_maj": 29.54,
+            "mean_min": 94.38
+          },
+          "calendar_span": {
+            "n_maj": 2648,
+            "n_min": 1550,
+            "U": 1507055.5,
+            "rank_biserial_r": -0.2656,
+            "z": -14.39,
+            "p": 6.003806818310727e-47,
+            "median_maj": 207.0,
+            "median_min": 536.0,
+            "mean_maj": 350.43,
+            "mean_min": 491.18
+          },
+          "classification": "DROP",
+          "is_drop": true
+        },
+        "R": {
+          "n_maj": 1255,
+          "n_min": 136,
+          "powered": false,
+          "classification": "UNDERPOWERED",
+          "is_drop": false
+        }
+      }
+    }
+  },
+  "proceed_criterion": {
+    "condition_1_no_powered_contradiction": false,
+    "condition_2_both_party_drop": false,
+    "condition_3_both_lane_drop": true,
+    "powered_tests": [
+      [
+        "propublica",
+        "D"
+      ],
+      [
+        "propublica",
+        "R"
+      ],
+      [
+        "scraped",
+        "D"
+      ]
+    ],
+    "drops": [
+      [
+        "propublica",
+        "D"
+      ],
+      [
+        "scraped",
+        "D"
+      ]
+    ],
+    "contradictions": [
+      [
+        "propublica",
+        "R"
+      ]
+    ],
+    "conditions_failed": [
+      "condition_1 (powered contradiction: [('propublica', 'R')])",
+      "condition_2 (need a powered DROP for BOTH D and R)"
+    ]
+  },
+  "outcome": "HELD",
+  "verdict": "HELD — condition_1 (powered contradiction: [('propublica', 'R')]); condition_2 (need a powered DROP for BOTH D and R). HX.4's measured effect stands; the CARD does not advance."
+}

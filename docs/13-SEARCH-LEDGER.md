@@ -1109,3 +1109,41 @@ history. Full frozen spec: `data/reference/search/hx_4d-registration.json`.
   are reported as such, never as contradictions.
 - **Status:** REGISTERED — measurement next (this session), then a verdict row. Launch-eve safe: no
   daily-pipeline surface.
+
+### HX.4-D · Within-party decomposition — **HELD: the majority-persistence effect is carried by the Democrats, not both parties → HX.4's card does NOT advance.** *Measured against the frozen registration `1783987`, no post-hoc edits.*
+
+The disaggregation splits HX.4's cross-party "majority persists shorter" cleanly into each party's own
+majority-vs-minority persistence. The partition reproduces HX.4's cells **exactly** (propublica maj
+23,392 = D-maj 15,820 + R-maj 7,572; min 3,869 = 2,907 + 962; scraped identical) — no leakage.
+
+| lane · party | maj n / min n | median active-days maj / min | r (active) | p | span r | class |
+|---|---|---|---|---|---|---|
+| propublica · D | 15,820 / 2,907 | **10 / 44** | **−0.365** | 9e-216 | −0.520 | **DROP** |
+| propublica · R | 7,572 / 962 | **26 / 31** | **−0.004** | 0.85 | +0.027 | **CONTRADICTION** |
+| scraped · D | 2,648 / 1,550 | **9 / 55** | **−0.563** | 9e-205 | −0.266 | **DROP** |
+| scraped · R | 1,255 / 136 | — | — | — | — | UNDERPOWERED |
+
+- **The Democrats drop hard, in BOTH lanes.** D coordinated phrases persist ~4–6× shorter when D holds
+  the House (median 10 vs 44 active days in propublica; 9 vs 55 in scraped). Critically, D's majority era
+  runs **late** in propublica (116 = 2019–20) but **early** in scraped (117 = 2021–22) — opposite
+  calendar directions — so the D drop is **not** a monotone era/coverage artifact; it tracks D's majority
+  status specifically.
+- **The Republicans do NOT.** In the one lane where R is powered (propublica: maj 7,572 / min 962), R's
+  persistence is **flat** — r=−0.004, p=0.85, median 26 vs 31, whether R holds the House or not. The
+  scraped-R test is UNDERPOWERED (R-minority = 136 units, the single congress 117, below the 200 floor),
+  so it cannot rescue the criterion — and it need not: a powered contradiction already exists.
+- **Proceed-criterion:** condition 1 FAILS (propublica·R is a powered contradiction) and condition 2
+  FAILS (no powered R drop anywhere). Condition 3 (both lanes) holds only for D. → **HELD.**
+- **What this means for HX.4:** the parent number **stands as measured** (HELD ≠ refutation), but its
+  implied SYMMETRIC institutional law — "the minority messages; the majority legislates," for *both*
+  parties — is **not supported**. The cross-party effect is a **Democratic** behavior: D message-discipline
+  half-life collapses in the majority and stretches in the minority; R's does not move. HX.4's card is
+  **HELD** — it does not advance to publication (program CONFIRMED-tier cards stay at 5, not 6).
+- **⚠ Not a card from this session:** the asymmetric structure the decomposition exposes (D persistence
+  is majority-sensitive, R persistence is majority-invariant) is an Art. IV-permissible *observation*, but
+  headlining it now would be a NEW hypothesis measured post-hoc on the same data — the exact move the
+  freeze-before-measure discipline forbids. If pursued, it needs its OWN pre-registration (and the
+  scraped-R power gap closed). Flagged, deliberately **not** run in-session.
+- **Verdict:** HELD. Re-runnable: `PYTHONHASHSEED=0 python scripts/search/hx_4d_within_party.py`;
+  registration `data/reference/search/hx_4d-registration.json`; evidence
+  `scripts/search/evidence/hx_4d_within_party.result.json` + X:.
