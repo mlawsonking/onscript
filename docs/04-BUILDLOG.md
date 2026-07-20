@@ -2476,3 +2476,143 @@ assume the assemble has landed.**
 **Standing rule this earns: do not push to `main` while a cron run is in flight.** Check
 `gh run list --json status` first. The `concurrency: onscript-pipeline` group serializes the two
 workflows against each other, but nothing serializes a human against them.
+
+---
+
+## Session 30b (2026-07-20, Opus) — LAUNCH-EVE POLISH (docs/23 §7.5 amendment 2): og cards, two production defects, and a launch-blocking sequencing finding
+
+Second half of the Monday session, after the repair. Commit `eca9153`. **No launch acts** —
+`POSTING_ENABLED` off, repo private, all 19 FEATURES dark, nothing posted, nothing flipped.
+**396 tests green** (386 + 10 og), verified green in BOTH the dark state and with all three launch-window
+flags flipped.
+
+### 1. ⛔ BLOCKER — the natural Tuesday cron CANNOT publish day 2026-07-20. Amendment 2's premise is false as written.
+
+Today's 13:26Z assemble NO-OPed:
+
+```
+RUN B assemble — NO-OP (no cluster, no distill, no API spend)
+2026-07-19 not ready (only 1 vs same-weekday median 5.5 (18% < 55%)
+  — upstream likely still landing) and only 0d old — HOLD, retry later
+```
+
+`readiness.select_target_day` walks the lookback window **oldest-first and returns on the first
+non-final day**. `util.product_day()` is `2026-07-20` at **both** Tuesday passes (11:30Z and 21:30Z;
+`config.TIMEZONE = America/New_York`), so 07-19 is age **1** all day Tuesday — under `MAX_WAIT_DAYS = 2`.
+Simulated through the real function across the whole count range:
+
+| 07-19 final count | Tue 11:30Z result |
+|---|---|
+| 0, 1, 2, 3 | **NO-OP** (hold) |
+| 4, 6, 10, 50 | target **2026-07-19** |
+
+**2026-07-20 is unreachable in every branch** — it is structurally impossible while an older non-final
+day sits in the window. §7.5 amendment 2 says "after the ~11:30Z assemble lands day 07-20 and the
+homepage shows Monday's reading"; **that will not happen on its own.** Worse, the count≥4 branch is the
+*bad* one: it publishes a 4-statement Sunday and, since `today_day` is the newest day *with*
+`daily_lines`, the launch-morning homepage becomes that quiet Sunday — thinner than today's.
+
+**The remedy is already sanctioned and needs no new code**: `run_assemble.py --day` bypasses the gate
+(`--day` skips the readiness call entirely) and `assemble.yml` wires the `day` dispatch input to it —
+the same documented repair path amendment 2(c) already uses for first-post timing. Verified
+consequences of dispatching 07-20: no prior manifest ⇒ `is_repair=False` ⇒ **`assemble-latest.json`
+DOES repoint to 07-20**, which is exactly what 2(c) needs for the composite threads to target the
+Monday reading. No hole is created: 07-19 stays non-final and the gate keeps re-examining it
+(force-finalized degraded on Wed if count ≥ 1; costlessly skipped at 0). Archive order is safe —
+`all_day_files()` sorts by filename, so publication order is irrelevant.
+
+**One thing that will look alarming and is not:** a dispatch writes `unattended: False`, and
+`ops.unattended_streak` breaks on the first falsy `unattended` walking back from the newest manifest —
+so **the streak reads `passes: False` immediately after the dispatch.** That is expected. §1.4.1 already
+PASSED on the historical record (07-16/17/18) per Art. XVI; it is a gate on evidence already collected,
+not a live health check. Do not let it read as a launch-gate failure mid-morning.
+
+### 2. ⛔ THE PUBLIC CORRECTIONS LOG WAS SILENTLY RESET 3 → 0 BY PRODUCTION, TODAY
+
+`data/reference/corrections.json` held **3** entries at HEAD (including this morning's data-loss
+correction). The committed `site/public/methodology.html` said **"Corrections to date: 0. No published
+line has yet required a correction."** Production assemble `14af2f0` rendered it.
+
+Root cause, verified in **both** workflows: `tar -xzf data/_restore/state.tar.gz -C .` extracts the
+tarball's `data/reference/` **over the git checkout**. 21 files there are **tracked** — corrections.json,
+the **Article XIII privacy form list and allowlist**, the nomenclature index — and git is their
+authority. A stale tarball rolls them back; the commit step stages only `data/derived` + `site/public`,
+so **the rollback never appears in a diff** — it renders wrong and then re-uploads itself, one
+self-perpetuating loop.
+
+On the eve of the announce this had the site **denying its own error record**, which is a direct hit on
+the project's own rule that a correction is a dated public entry and never a silent edit. The
+privacy-form case is the more serious latent one: a stale allowlist silently weakens Art. XIII
+suppression with no visible symptom.
+
+Fixed with `git checkout -- data/reference || true` after the extract in both workflows — it restores
+tracked paths only, so the gitignored `roster.json` cache still comes from the tarball (the only reason
+`data/reference` is in it at all). Re-rendered: **"Corrections to date: 3"**.
+
+### 3. ⛔ THE SUITE WAS RED, AND WOULD HAVE GONE RED AGAIN ON TUESDAY'S FLIP
+
+Two independent problems, both of which would have shown as a failing health gate on launch morning:
+
+* **A calendrical time bomb.** `test_tests_never_write_into_the_real_derived_tree` asserted that a brief
+  for the hardcoded day **"2026-07-20"** never reaches the real derived tree. Production published that
+  day *today*, so the canary went permanently red for a reason having nothing to do with what it
+  guards. Re-pointed at **1999-01-04** — a day the corpus cannot produce (`STAGE1_EPOCH` is 2025-01-03).
+  A canary whose whole job is "this file must not exist" must name a date reality cannot supply.
+* **Six tests asserted the SHIPPED VALUE of feature flags, not the gating behaviour** (`all(v is False
+  ...)`, `FEATURES["x"] is False`, "ships dark"). Every one fails the instant a flag is deliberately
+  flipped — so **the launch commit itself would have reddened the suite**, and the fastest route back to
+  green would have been deleting the very gate tests. Rewritten to force the flag and assert behaviour,
+  plus an explicit **`DELIBERATELY_RELEASED` allowlist** in `test_wave0.py`: a release now adds its name
+  in the same commit that flips it, which turns a one-character diff into a named, reviewable act and
+  still catches an *accidental* flip. **Verified green in both states** — all dark, and with
+  `party_columns` + `owners_brief` + `phrase_search` all live.
+
+### 4. LINK CARDS — duty (b), shipped
+
+The site emitted **zero** og: tags across all 291 pages, so the announce, the receipts link carried in
+every composite thread, and every share forever would unfurl as a bare imageless URL. Added
+`og:type/site_name/title/description/url/image` + `og:image:width|height|alt`, `twitter:card`, and
+`rel=canonical`, in `site.page()` — the single shell every page already passes through.
+
+**The privacy rule is the design.** og values are built inside `page()` from its own `title`/
+`description` arguments and from nothing else. They must never be sourced from composite prose:
+composites pass `privacy_correct_line()`, which can **withhold** or **recompose** them under Art. XIII,
+and a meta tag is a surface no audit scans and no reader sees — sourcing one from raw prose would
+republish exactly the text the page body withheld. Locked by an **AST** test (not a substring grep,
+which would fire on the comment explaining the rule) and mutation-verified.
+
+Absolute URLs throughout, because the crawler that fetches them has no page context. `path=` is passed
+by hand at 16 call sites, so the load-bearing test checks **og:url against each file's actual location
+on disk, for every rendered page** — the one assertion a typo cannot survive. All 291 pages carry the
+full set.
+
+`og.png` is 1200×630, generated from the existing house seismograph identity. `brand.py` no longer
+writes to a **dead scratchpad path at import time** (it did, from a long-gone session), is now
+`__main__`-guarded and repo-relative, and regeneration is byte-stable — verified: re-running did not
+churn the avatar/banner assets that are **live on the three Bluesky profiles**.
+
+### 5. `phrase_search` — duty (a), verified, flip NOT taken
+
+Verified end-to-end: **275 index rows / 275 rendered pages, 0 broken links in both directions**, search
+payload ~24 KB, no raw `<` in the JSON, `privacy.is_suppressed` applied in the index (and
+`tests/test_privacy.py` already forces the flag ON and asserts the payload is name-free). No new derived
+artifact, no network, no build step — the phrase JSONs are already tracked. **No reason not to flip.**
+
+**The Tuesday flip is exactly two lines** (per amendment 2 the flip is Tuesday's act, not Monday's):
+
+```
+pipeline/config.py        "phrase_search": False  ->  True   (with party_columns, owners_brief)
+tests/test_wave0.py       DELIBERATELY_RELEASED = {"party_columns", "owners_brief", "phrase_search"}
+```
+
+### 6. Follow-ups recorded, not done
+
+* **`site.phrase_search_index()` crashes the whole build on a non-dict phrase JSON** (`site.py:1034`
+  does `_load_json(p) or {}` then `.get()`); the page loop guards with `isinstance(pdata, dict)` but the
+  index does not. One-word fix, matters more once the flag is live.
+* **Thread-truncation on retry:** on deterministic-rkey collision `post_bluesky` returns
+  `recovered=True` **before posting replies**, leaving a permanently 1-post thread with no receipts
+  post. Reachable only if a real post lands and the manifest push then fails — and a push *did* fail
+  today (the pre-`--autostash` collect). Operational mitigation for now.
+* **`post_bluesky.SITE` duplicates the new `config.SITE_URL`.** Deliberately not refactored: the
+  posting path is frozen for launch. Consolidate post-launch.
