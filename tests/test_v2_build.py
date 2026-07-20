@@ -19,11 +19,28 @@ REAL_DERIVED = Path(__file__).resolve().parent.parent / "data" / "derived"
 @contextlib.contextmanager
 def _released(flag: str):
     """Temporarily flip a dark feature ON, to test the behaviour BEHIND the release gate."""
+    prev = config.FEATURES[flag]
     config.FEATURES[flag] = True
     try:
         yield
     finally:
-        config.FEATURES[flag] = False
+        config.FEATURES[flag] = prev
+
+
+@contextlib.contextmanager
+def _dark(flag: str):
+    """Temporarily force a feature OFF, to test the GATE itself.
+
+    Gate tests must assert BEHAVIOUR ("off ⇒ nothing fires"), never the shipped value
+    (`FEATURES[x] is False`). A test written the second way silently doubles as a veto on ever
+    releasing the feature: the day of the deliberate flip it turns red for a reason unrelated to what
+    it was protecting, mid-launch, and the fastest way to green becomes deleting the gate test."""
+    prev = config.FEATURES[flag]
+    config.FEATURES[flag] = False
+    try:
+        yield
+    finally:
+        config.FEATURES[flag] = prev
 
 
 @contextlib.contextmanager
@@ -203,19 +220,22 @@ def _healthy(day="2026-07-20"):
     return f
 
 
-def test_brief_ships_dark_and_never_fires_while_the_flag_is_off():
-    with _derived_fixture(**_healthy()) as sent:
-        r = brief.send_brief("2026-07-20")                        # a Monday, everything green
-        assert r["sent"] is False and r["reason"] == "feature dark" and sent == []
-    assert config.feature_on("owners_brief") is False
+def test_the_brief_never_fires_while_its_flag_is_off():
+    """The GATE, asserted as behaviour: flag off ⇒ a green Monday still sends nothing."""
+    with _dark("owners_brief"):
+        with _derived_fixture(**_healthy()) as sent:
+            r = brief.send_brief("2026-07-20")                    # a Monday, everything green
+            assert r["sent"] is False and r["reason"] == "feature dark" and sent == []
+        assert config.feature_on("owners_brief") is False
 
 
 def test_force_cadence_can_skip_monday_but_never_the_dark_gate():
     """The FEATURES flip is THE release act — dated, public, diffable. No kwarg may become a second,
     undated release path, so force_cadence bypasses the cadence gate only."""
     with _derived_fixture(**_healthy()) as sent:
-        assert brief.send_brief("2026-07-22", force_cadence=True)["reason"] == "feature dark"
-        assert sent == []                                          # dark + forced sends nothing
+        with _dark("owners_brief"):
+            assert brief.send_brief("2026-07-22", force_cadence=True)["reason"] == "feature dark"
+            assert sent == []                                      # dark + forced sends nothing
         with _released("owners_brief"):
             assert brief.send_brief("2026-07-22")["reason"] == "not Monday"       # a Wednesday
             assert brief.send_brief("2026-07-22", force_cadence=True)["sent"] is True
@@ -398,14 +418,22 @@ def test_render_carries_every_measurement_not_just_the_method():
     assert "Dark shelf" in body and "Monday ritual" in body
 
 
+# A day PRODUCTION CAN NEVER PUBLISH: the corpus starts at config.STAGE1_EPOCH (2025-01-03) and the
+# Alexandria epoch is 2001-01-01, so no run can ever emit a 1999 brief. The sentinel used to be
+# "2026-07-20" — a real future date, which production duly reached on 2026-07-20, turning this guard
+# permanently red for a purely calendrical reason on the morning before launch. A canary whose whole
+# job is "this file must not exist" must name a date reality cannot supply.
+_IMPOSSIBLE_DAY = "1999-01-04"
+
+
 def test_tests_never_write_into_the_real_derived_tree():
     """Guards the guard: if the fixture ever stops redirecting, this fails LOUDLY instead of
     silently committing fabricated receipts into the public repo."""
     with _derived_fixture(**_healthy()):
-        brief.send_brief("2026-07-20")
+        brief.send_brief(_IMPOSSIBLE_DAY)
         assert config.DERIVED != REAL_DERIVED
-        assert (config.DERIVED / "brief" / "2026-07-20.json").exists()
-    assert not (REAL_DERIVED / "brief" / "2026-07-20.json").exists()
+        assert (config.DERIVED / "brief" / f"{_IMPOSSIBLE_DAY}.json").exists()
+    assert not (REAL_DERIVED / "brief" / f"{_IMPOSSIBLE_DAY}.json").exists()
 
 
 def test_owners_brief_is_wired_into_run_b_on_both_paths():

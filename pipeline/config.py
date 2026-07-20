@@ -43,6 +43,15 @@ LEGISLATORS_HISTORICAL = (
 
 USER_AGENT = "onscript-pipeline (+https://onscript.news)"
 
+# The public origin, used to build ABSOLUTE urls — og:/canonical meta in the rendered site, and the
+# receipts links in posted threads. Absolute is not a style choice: a link card unfurled by Bluesky
+# is fetched by THEIR crawler, so every og: value has to resolve without a page context.
+# (post_bluesky.py keeps its own identical SITE constant; the posting path is frozen for launch and
+# is not worth a refactor tonight. Consolidate post-launch.)
+SITE_URL = "https://onscript.news"
+OG_IMAGE = "og.png"          # committed at site/public/og.png — 1200x630, the link-card image
+OG_IMAGE_W, OG_IMAGE_H = 1200, 630
+
 # ---------------------------------------------------------------------------
 # Backfill epoch (gameplan §1.3). Stage 1 gates the weekend; 119th Congress seated.
 # ---------------------------------------------------------------------------

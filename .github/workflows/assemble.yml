@@ -76,6 +76,12 @@ jobs:
           if [ -d data/_restore ]; then
             tar -xzf data/_restore/state.tar.gz -C . || true
             tar -xzf data/_restore/raw.tar.gz -C . || true
+            # See the matching note in collect.yml: the tarball's data/reference extracts over the
+            # checkout and silently rolls back 21 TRACKED files (corrections.json, the Art. XIII privacy
+            # form list + allowlist, the nomenclature index). This is the run that did it — 14af2f0
+            # rendered "Corrections to date: 0" over a log holding 3 entries. Git is the authority for
+            # tracked reference data; the tarball exists for the gitignored roster cache.
+            git checkout -- data/reference || true
           fi
 
       - name: RUN B assemble (cluster -> distill -> VERIFY -> symmetry)

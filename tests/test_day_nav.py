@@ -112,7 +112,20 @@ def test_a_single_day_site_still_renders_a_coherent_archive_and_homepage():
 # --- it is navigation, not a feature ------------------------------------------------------
 def test_the_date_archive_is_not_behind_a_features_flag():
     """Locked: the archive links pages that are ALREADY public. Gating it would be gating the table
-    of contents of a book already on the shelf — and would re-orphan every day page."""
-    assert 'day/index.html">Days</a>' in site.page("t", "<p>b</p>")
-    for flag, on in config.FEATURES.items():
-        assert on is False, f"FEATURES[{flag!r}] is not dark — this test asserts the archive needs no flag"
+    of contents of a book already on the shelf — and would re-orphan every day page.
+
+    Asserted as INDEPENDENCE from the registry, not as "the registry happens to be all-dark today".
+    The old form looped every flag asserting False, which tested the shelf's release state rather than
+    this page's gating — so the first deliberate flip (party_columns/owners_brief at launch) would have
+    failed a test about day navigation, for reasons having nothing to do with day navigation."""
+    saved = dict(config.FEATURES)
+    try:
+        for state in (False, True):
+            for k in config.FEATURES:
+                config.FEATURES[k] = state
+            assert 'day/index.html">Days</a>' in site.page("t", "<p>b</p>"), (
+                f"the Days link disappeared with every FEATURES flag set to {state} — "
+                f"navigation to already-public pages must not depend on any feature flag")
+    finally:
+        config.FEATURES.clear()
+        config.FEATURES.update(saved)

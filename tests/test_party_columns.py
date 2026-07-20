@@ -71,6 +71,16 @@ def test_top_synchronized_by_party_ranks_within_each_party():
     assert [r["ngram"] for r in by_party["R"]] == ["secure the southern border now"]  # R present despite lower count
 
 
-# --- the release gate: DARK by default ----------------------------------------------------------
-def test_feature_ships_dark():
-    assert config.FEATURES["party_columns"] is False
+# --- the release gate ---------------------------------------------------------------------------
+def test_the_columns_are_absent_while_the_flag_is_off():
+    """The GATE, asserted as behaviour rather than as the shipped value. `FEATURES[x] is False` would
+    read the same today and would turn red the moment the feature is deliberately released — a test
+    that vetoes its own feature's launch, for a reason unrelated to what it protects. Whether the flag
+    ships on is a release decision recorded in test_wave0.DELIBERATELY_RELEASED, not here."""
+    prev = config.FEATURES["party_columns"]
+    try:
+        config.FEATURES["party_columns"] = False
+        assert config.feature_on("party_columns") is False
+        assert "party_columns" not in site.page("t", "<p>b</p>", depth=0)
+    finally:
+        config.FEATURES["party_columns"] = prev

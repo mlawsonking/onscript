@@ -53,7 +53,10 @@ def test_index_only_contains_phrases_that_have_pages():
 def test_search_page_is_dark_until_its_flag_flips():
     """Build dark / release by gate. The page must be ABSENT from the output while dark, not merely
     unlinked — an unlinked page is still crawlable and shareable."""
-    assert config.FEATURES["phrase_search"] is False, "phrase search must ship OFF"
+    # Asserted as behaviour in both directions below. A bare `FEATURES["phrase_search"] is False`
+    # here would veto the feature's own release — it turns red on the deliberate flip, for a reason
+    # that has nothing to do with the gating this test exists to lock. The shipped value is a release
+    # decision, recorded in test_wave0.DELIBERATELY_RELEASED.
     before = config.FEATURES.get("phrase_search")
     try:
         config.FEATURES["phrase_search"] = False

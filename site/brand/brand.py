@@ -5,6 +5,8 @@ the two party composites: a NEUTRAL slate field, the two parties' colors as SYMM
 fanning up, red fanning down) converging into one white voice. Deterministic (pure math, no RNG).
 """
 import math
+import pathlib
+
 from PIL import Image, ImageDraw, ImageFilter
 
 FIELD = (46, 49, 56)        # #2E3138 neutral slate — clearly neither party
@@ -58,7 +60,28 @@ def make(W, H, path, amp_frac=0.30):
     return path
 
 
-OUT = r"C:\Users\bobdo\AppData\Local\Temp\claude\C--Users-bobdo-projects-polispeak\6a185169-5ff7-4f0d-bf33-f87708b4b3e5\scratchpad"
-make(1000, 1000, OUT + r"\avatar-brand.png", amp_frac=0.30)
-make(1500, 500, OUT + r"\banner-brand.png", amp_frac=0.62)
-print("done")
+# Generation runs only as a script. It used to run AT IMPORT, into a hard-coded scratchpad path from a
+# long-dead session — so importing this module for its palette silently wrote files nobody would find,
+# and the paths could never be reproduced on another machine. Repo-relative + __main__-guarded.
+#
+# Regeneration is byte-stable (pure math, no RNG), so re-running never churns the committed assets —
+# which matters, because the avatars and banners are LIVE on the three Bluesky profiles.
+HERE = pathlib.Path(__file__).resolve().parent
+PUBLIC = HERE.parent / "public"
+
+TARGETS = [
+    # (width, height, path, amp_frac)
+    (1000, 1000, HERE / "avatar-brand.png", 0.30),
+    (1500, 500, HERE / "banner-brand.png", 0.62),
+    # The link-card image: 1200x630 is the Open Graph standard Bluesky, Slack and iMessage all crop to.
+    # Geometry only — the crawler renders og:title/og:description as text beside it, so words baked
+    # into the image would just collide with them. Lives in site/public so Vercel serves it at
+    # https://onscript.news/og.png (see config.OG_IMAGE).
+    (1200, 630, PUBLIC / "og.png", 0.42),
+]
+
+if __name__ == "__main__":
+    for w, h, path, amp in TARGETS:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        make(w, h, path, amp_frac=amp)
+        print(f"wrote {path} ({w}x{h})")

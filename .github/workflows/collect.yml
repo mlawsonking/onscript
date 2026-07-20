@@ -59,6 +59,16 @@ jobs:
           if [ -d data/_restore ]; then
             tar -xzf data/_restore/state.tar.gz -C . || true
             tar -xzf data/_restore/raw.tar.gz -C . || true
+            # THE TARBALL CARRIES data/reference AND EXTRACTS IT OVER THE CHECKOUT. 21 files there are
+            # TRACKED and git is their authority — corrections.json, the Art. XIII privacy form list and
+            # allowlist, the nomenclature index. A stale tarball silently ROLLS THEM BACK, and because
+            # the commit step stages only data/derived + site/public the rollback never appears in a
+            # diff — it just renders wrong and re-uploads itself, self-perpetuating. It already bit:
+            # assemble 14af2f0 rendered "Corrections to date: 0" over a corrections.json holding 3,
+            # i.e. the site denied its own error record on the eve of launch. Restoring tracked paths
+            # touches nothing untracked, so the gitignored roster.json cache still comes from the
+            # tarball (which is why data/reference is in it at all).
+            git checkout -- data/reference || true
           fi
 
       - name: RUN A collect

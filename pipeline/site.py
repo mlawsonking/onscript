@@ -262,9 +262,11 @@ footer.site a{color:var(--muted)}
 """.strip()
 
 
-def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
+def page(title: str, body: str, depth: int = 0, description: str = "", path: str = "") -> str:
     """Wrap page ``body`` in the shared shell. ``depth`` = subdir levels below
-    the site root (0 for /index.html, 1 for /day/*.html and /phrases/*.html)."""
+    the site root (0 for /index.html, 1 for /day/*.html and /phrases/*.html).
+    ``path`` = this page's path relative to the site root (e.g. "day/2026-07-18.html"), used to build
+    the absolute og:url / canonical. It matches the value the caller appends to ``written``."""
     root = "../" * depth
     # Dark features (docs/11-BUILD-PROGRAM.md) link into the nav only once their FEATURES flag
     # flips True in a commit (the release act). Built-but-unreleased => no public link.
@@ -294,6 +296,21 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
         f'<a href="{root}about.html">About</a>'
     )
     desc = esc(description) if description else "OnScript — what each party said today, compressed to one voice, with receipts."
+    # LINK CARDS (docs/23 §7.5 amendment 2). Every share of this site — the launch announce, the
+    # receipts link in every composite thread, every reader's repost — is unfurled by a crawler that
+    # sees only these tags. Without them the card is a bare imageless URL.
+    #
+    # THE RULE, and it is a privacy rule, not a style one: og values are built HERE, from this
+    # function's own `title`/`description` arguments, and from nothing else. They must never be
+    # assembled at a call site and never sourced from composite prose
+    # (`day_json["daily_lines"][p]["composite"]`). Composites pass through `privacy_correct_line()`
+    # at render time, which can return `withheld` or `recomposed` under Article XIII — meta tags are
+    # a surface no audit scans and no reader sees, so sourcing them from raw prose would republish
+    # exactly the text the page body deliberately withheld. Both values below are already escaped
+    # (`esc(..., quote=True)`), which also closes attribute injection: real composites contain
+    # literal double quotes.
+    canonical = f"{config.SITE_URL}/" if path in ("", "index.html") else f"{config.SITE_URL}/{path}"
+    og_image = f"{config.SITE_URL}/{config.OG_IMAGE}"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -301,6 +318,17 @@ def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{desc}">
 <title>{esc(title)}</title>
+<link rel="canonical" href="{esc(canonical)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OnScript">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{esc(canonical)}">
+<meta property="og:image" content="{esc(og_image)}">
+<meta property="og:image:width" content="{config.OG_IMAGE_W}">
+<meta property="og:image:height" content="{config.OG_IMAGE_H}">
+<meta property="og:image:alt" content="OnScript — what each party said today, compressed to one voice, with receipts.">
+<meta name="twitter:card" content="summary_large_image">
 <style>{CSS}</style>
 </head>
 <body>
@@ -2352,12 +2380,14 @@ def build_site():
                              prev_day=home_prev, is_today=True)
         (OUT / "index.html").write_text(
             page(f"OnScript — Today ({today_day})", body, depth=0,
-                 description=f"What each U.S. party said on {today_day}, compressed to one voice, with receipts."),
+                 description=f"What each U.S. party said on {today_day}, compressed to one voice, with receipts.",
+                 path="index.html"),
             encoding="utf-8",
         )
     else:
         (OUT / "index.html").write_text(
-            page("OnScript", "<h1>OnScript</h1><p class='muted'>No day data is available yet.</p>", depth=0),
+            page("OnScript", "<h1>OnScript</h1><p class='muted'>No day data is available yet.</p>", depth=0,
+                 path="index.html"),
             encoding="utf-8",
         )
     written.append("index.html")
@@ -2372,7 +2402,7 @@ def build_site():
                              prev_day=prev_day, next_day=next_day, is_today=False)
         (OUT / "day" / f"{d}.html").write_text(
             page(f"OnScript · {d}", body, depth=1,
-                 description=f"What each U.S. party said on {d}."),
+                 description=f"What each U.S. party said on {d}.", path=f"day/{d}.html"),
             encoding="utf-8",
         )
         written.append(f"day/{d}.html")
@@ -2383,7 +2413,8 @@ def build_site():
     # contents for pages that are already public, not a new feature.
     (OUT / "day" / "index.html").write_text(
         page("OnScript · Every published day", days_index_body(rendered), depth=1,
-             description="Every day OnScript has published: composites, receipts, and synchronized phrases, by date."),
+             description="Every day OnScript has published: composites, receipts, and synchronized phrases, by date.",
+             path="day/index.html"),
         encoding="utf-8",
     )
     written.append("day/index.html")
@@ -2400,7 +2431,8 @@ def build_site():
                 break
     (OUT / "phrases" / "index.html").write_text(
         page("OnScript · Tracked phrases", phrases_index_body(top), depth=1,
-             description="First-appearance tracking and adoption curves for coordinated political phrases."),
+             description="First-appearance tracking and adoption curves for coordinated political phrases.",
+             path="phrases/index.html"),
         encoding="utf-8",
     )
     written.append("phrases/index.html")
@@ -2412,7 +2444,8 @@ def build_site():
         idx = phrase_search_index()
         (OUT / "phrases" / "search.html").write_text(
             page("OnScript · Phrase search", phrase_search_body(idx), depth=1,
-                 description="Search every tracked political phrase: adoption curve, first sayer, receipts."),
+                 description="Search every tracked political phrase: adoption curve, first sayer, receipts.",
+                 path="phrases/search.html"),
             encoding="utf-8",
         )
         written.append("phrases/search.html")
@@ -2432,7 +2465,8 @@ def build_site():
             body = phrase_page_body(pdata, depth=1)
             (OUT / "phrases" / f"{p.stem}.html").write_text(
                 page(f"OnScript · “{pdata.get('ngram')}”", body, depth=1,
-                     description=f"Adoption curve for the phrase “{pdata.get('ngram')}”."),
+                     description=f"Adoption curve for the phrase “{pdata.get('ngram')}”.",
+                     path=f"phrases/{p.stem}.html"),
                 encoding="utf-8",
             )
             written.append(f"phrases/{p.stem}.html")
@@ -2444,7 +2478,8 @@ def build_site():
         cdata = _load_json(DERIVED / "concordance.json") or {}
         (OUT / "concordance.html").write_text(
             page("OnScript · The Concordance", concordance_body(cdata, depth=0), depth=0,
-                 description="The per-member on-script index: each member's share of party-synchronized language, with receipts."),
+                 description="The per-member on-script index: each member's share of party-synchronized language, with receipts.",
+                 path="concordance.html"),
             encoding="utf-8",
         )
         written.append("concordance.html")
@@ -2456,7 +2491,8 @@ def build_site():
         adata = _load_json(DERIVED / "awards.json") or {}
         (OUT / "awards.html").write_text(
             page("OnScript · The Unison & The Void", awards_body(adata, SLUGS_WITH_PAGES, depth=0), depth=0,
-                 description="The week's symmetric awards: each party's most-synchronized phrase, and the loudest silence."),
+                 description="The week's symmetric awards: each party's most-synchronized phrase, and the loudest silence.",
+                 path="awards.html"),
             encoding="utf-8",
         )
         written.append("awards.html")
@@ -2464,7 +2500,8 @@ def build_site():
     # ---- methodology.html ----
     (OUT / "methodology.html").write_text(
         page("OnScript · Methodology", methodology_body(), depth=0,
-             description="The two-lane model, the nightly symmetry audit, and the live prompt text."),
+             description="The two-lane model, the nightly symmetry audit, and the live prompt text.",
+             path="methodology.html"),
         encoding="utf-8",
     )
     written.append("methodology.html")
@@ -2472,7 +2509,7 @@ def build_site():
     # ---- about.html ----
     (OUT / "about.html").write_text(
         page("OnScript · About", about_body(), depth=0,
-             description="Compression, not parody. A symmetric, citation-backed instrument."),
+             description="Compression, not parody. A symmetric, citation-backed instrument.", path="about.html"),
         encoding="utf-8",
     )
     written.append("about.html")
@@ -2481,7 +2518,8 @@ def build_site():
     # only once HAS_POSTS. §Session-8.
     (OUT / "posts.html").write_text(
         page("OnScript · Posted threads", posts_log_body(_POSTED_THREADS), depth=0,
-             description="The on-domain signed archive of every thread the composite accounts have posted."),
+             description="The on-domain signed archive of every thread the composite accounts have posted.",
+             path="posts.html"),
         encoding="utf-8",
     )
     written.append("posts.html")
@@ -2493,12 +2531,15 @@ def build_site():
         chapters = _load_chapters()
         (OUT / "archive" / "index.html").write_text(
             page("OnScript · The Archive", archive_index_body(chapters), depth=1,
-                 description="Twenty-five years of each party's language, distilled per era, with receipts."),
+                 description="Twenty-five years of each party's language, distilled per era, with receipts.",
+                 path="archive/index.html"),
             encoding="utf-8")
         written.append("archive/index.html")
         for ch in chapters:
             (OUT / "archive" / f"{ch['id']}.html").write_text(
-                page(f"OnScript · {ch.get('label')} ({ch.get('party')})", chapter_page_body(ch), depth=1),
+                page(f"OnScript · {ch.get('label')} ({ch.get('party')})", chapter_page_body(ch), depth=1,
+                     description=f"{ch.get('label')} — the {ch.get('party')} composite voice for this era, with receipts.",
+                     path=f"archive/{ch['id']}.html"),
                 encoding="utf-8")
             written.append(f"archive/{ch['id']}.html")
 
@@ -2513,14 +2554,17 @@ def build_site():
             if not b:
                 continue
             (OUT / "silence" / f"{b.get('day')}.html").write_text(
-                page(f"OnScript · The absence map ({b.get('day')})", silence_board_body(b), depth=1),
+                page(f"OnScript · The absence map ({b.get('day')})", silence_board_body(b), depth=1,
+                     description=f"What the news was full of on {b.get('day')} that neither party would touch.",
+                     path=f"silence/{b.get('day')}.html"),
                 encoding="utf-8")
             written.append(f"silence/{b.get('day')}.html")
             latest = b
         (OUT / "silence" / "index.html").write_text(
             page("OnScript · The absence map",
                  silence_board_body(latest or {"scored": False, "gates": {"note": "No board has been built yet."}}),
-                 depth=1, description="What the news is full of that neither party will touch — and the inverse."),
+                 depth=1, description="What the news is full of that neither party will touch — and the inverse.",
+                 path="silence/index.html"),
             encoding="utf-8")
         written.append("silence/index.html")
 

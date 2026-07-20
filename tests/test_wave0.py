@@ -180,8 +180,27 @@ def test_every_post_carries_the_composite_marker_and_stays_in_limit():
 
 
 # --- FEATURES registry --------------------------------------------------------------------
+# Flags that have been DELIBERATELY RELEASED, newest last. A release adds its name here in the SAME
+# commit that flips the flag — which is the point: the flip stops being a one-character diff nobody can
+# review and becomes an explicit, named act with a test asserting it was intended.
+#
+# This replaced a blanket `all(v is False ...)`. That assertion encoded the right INTENT (no feature
+# reaches the public by accident) with a predicate that made every deliberate release a test failure —
+# so the first real flip would have reddened the suite on launch morning, and the reflex fix would have
+# been to delete the guard entirely. An allowlist keeps the guard and prices the release honestly.
+DELIBERATELY_RELEASED: set[str] = set()
+
+
 def test_features_dark_by_default_and_gated():
-    assert all(v is False for v in config.FEATURES.values()), "all backlog features must ship dark"
+    unreleased = {k: v for k, v in config.FEATURES.items() if k not in DELIBERATELY_RELEASED}
+    assert all(v is False for v in unreleased.values()), (
+        f"a feature is live without being declared a deliberate release: "
+        f"{[k for k, v in unreleased.items() if v]} — add it to DELIBERATELY_RELEASED in the flip commit")
+    assert DELIBERATELY_RELEASED <= set(config.FEATURES), (
+        f"DELIBERATELY_RELEASED names a flag that does not exist: "
+        f"{DELIBERATELY_RELEASED - set(config.FEATURES)}")
+    assert all(config.FEATURES[k] is True for k in DELIBERATELY_RELEASED), (
+        "a flag declared released is actually dark — the list and the registry disagree")
     assert config.feature_on("archive") is False
     assert config.feature_on("does_not_exist") is False
     config.FEATURES["archive"] = True
