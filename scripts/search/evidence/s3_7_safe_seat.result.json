@@ -1,0 +1,377 @@
+{
+  "generated_at": "2026-07-20T17:30:22Z",
+  "registration": {
+    "peak_floor": 15,
+    "min_statements": 10,
+    "rho_gate": 0.2,
+    "p_gate": 0.05,
+    "power_floor": 100
+  },
+  "mov_join_coverage_pct": 99.9,
+  "cells": {
+    "house.propublica.A": {
+      "chamber": "house",
+      "lane": "propublica",
+      "half": "A",
+      "window_years": [
+        2013,
+        2017
+      ],
+      "congresses": [
+        113,
+        114
+      ],
+      "n": 399,
+      "rho": 0.0041,
+      "p": 0.9350890289767205,
+      "powered": true,
+      "cell_verdict": "null",
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 79,
+          "mov_lo": 0.0007,
+          "mov_hi": 0.1572,
+          "mean_mov": 0.0919,
+          "mean_concordance": 0.8434
+        },
+        {
+          "quintile": 2,
+          "n": 80,
+          "mov_lo": 0.1578,
+          "mov_hi": 0.2398,
+          "mean_mov": 0.201,
+          "mean_concordance": 0.8156
+        },
+        {
+          "quintile": 3,
+          "n": 80,
+          "mov_lo": 0.2398,
+          "mov_hi": 0.3424,
+          "mean_mov": 0.2883,
+          "mean_concordance": 0.8398
+        },
+        {
+          "quintile": 4,
+          "n": 80,
+          "mov_lo": 0.3447,
+          "mov_hi": 0.5064,
+          "mean_mov": 0.4179,
+          "mean_concordance": 0.8281
+        },
+        {
+          "quintile": 5,
+          "n": 80,
+          "mov_lo": 0.5069,
+          "mov_hi": 1.0,
+          "mean_mov": 0.6619,
+          "mean_concordance": 0.8341
+        }
+      ]
+    },
+    "house.propublica.B": {
+      "chamber": "house",
+      "lane": "propublica",
+      "half": "B",
+      "window_years": [
+        2017,
+        2021
+      ],
+      "congresses": [
+        115,
+        116
+      ],
+      "n": 510,
+      "rho": -0.0405,
+      "p": 0.3611070117108943,
+      "powered": true,
+      "cell_verdict": "null",
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 102,
+          "mov_lo": 0.0026,
+          "mov_hi": 0.1229,
+          "mean_mov": 0.0665,
+          "mean_concordance": 0.9381
+        },
+        {
+          "quintile": 2,
+          "n": 102,
+          "mov_lo": 0.1235,
+          "mov_hi": 0.2089,
+          "mean_mov": 0.1646,
+          "mean_concordance": 0.9156
+        },
+        {
+          "quintile": 3,
+          "n": 102,
+          "mov_lo": 0.2096,
+          "mov_hi": 0.3213,
+          "mean_mov": 0.2598,
+          "mean_concordance": 0.9044
+        },
+        {
+          "quintile": 4,
+          "n": 102,
+          "mov_lo": 0.3215,
+          "mov_hi": 0.4986,
+          "mean_mov": 0.3991,
+          "mean_concordance": 0.9249
+        },
+        {
+          "quintile": 5,
+          "n": 102,
+          "mov_lo": 0.5005,
+          "mov_hi": 1.0,
+          "mean_mov": 0.6631,
+          "mean_concordance": 0.9329
+        }
+      ]
+    },
+    "house.scraped.A": {
+      "chamber": "house",
+      "lane": "scraped",
+      "half": "A",
+      "window_years": [
+        2021,
+        2023
+      ],
+      "congresses": [
+        117
+      ],
+      "n": 226,
+      "rho": -0.1068,
+      "p": 0.10934512177299982,
+      "powered": true,
+      "cell_verdict": "null",
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 45,
+          "mov_lo": 0.0,
+          "mov_hi": 0.1282,
+          "mean_mov": 0.0614,
+          "mean_concordance": 0.6908
+        },
+        {
+          "quintile": 2,
+          "n": 45,
+          "mov_lo": 0.1307,
+          "mov_hi": 0.222,
+          "mean_mov": 0.1775,
+          "mean_concordance": 0.7194
+        },
+        {
+          "quintile": 3,
+          "n": 45,
+          "mov_lo": 0.2233,
+          "mov_hi": 0.3344,
+          "mean_mov": 0.2813,
+          "mean_concordance": 0.7094
+        },
+        {
+          "quintile": 4,
+          "n": 45,
+          "mov_lo": 0.3368,
+          "mov_hi": 0.4632,
+          "mean_mov": 0.3968,
+          "mean_concordance": 0.6868
+        },
+        {
+          "quintile": 5,
+          "n": 46,
+          "mov_lo": 0.4669,
+          "mov_hi": 1.0,
+          "mean_mov": 0.6077,
+          "mean_concordance": 0.6617
+        }
+      ]
+    },
+    "senate.scraped.A": {
+      "chamber": "senate",
+      "lane": "scraped",
+      "half": "A",
+      "window_years": [
+        2021,
+        2023
+      ],
+      "congresses": [
+        117
+      ],
+      "n": 27,
+      "rho": -0.1099,
+      "p": 0.585310945833049,
+      "powered": false,
+      "cell_verdict": "underpowered",
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 5,
+          "mov_lo": 0.0014,
+          "mov_hi": 0.0336,
+          "mean_mov": 0.019,
+          "mean_concordance": 0.7102
+        },
+        {
+          "quintile": 2,
+          "n": 5,
+          "mov_lo": 0.0862,
+          "mov_hi": 0.121,
+          "mean_mov": 0.1031,
+          "mean_concordance": 0.6863
+        },
+        {
+          "quintile": 3,
+          "n": 6,
+          "mov_lo": 0.1272,
+          "mov_hi": 0.2018,
+          "mean_mov": 0.1642,
+          "mean_concordance": 0.7246
+        },
+        {
+          "quintile": 4,
+          "n": 5,
+          "mov_lo": 0.2366,
+          "mov_hi": 0.3692,
+          "mean_mov": 0.3101,
+          "mean_concordance": 0.5436
+        },
+        {
+          "quintile": 5,
+          "n": 6,
+          "mov_lo": 0.3841,
+          "mov_hi": 0.6158,
+          "mean_mov": 0.46,
+          "mean_concordance": 0.7373
+        }
+      ]
+    },
+    "senate.scraped.B": {
+      "chamber": "senate",
+      "lane": "scraped",
+      "half": "B",
+      "window_years": [
+        2023,
+        2027
+      ],
+      "congresses": [
+        118,
+        119
+      ],
+      "n": 93,
+      "rho": -0.0581,
+      "p": 0.5802716724382416,
+      "powered": false,
+      "cell_verdict": "underpowered",
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 18,
+          "mov_lo": 0.0022,
+          "mov_hi": 0.0645,
+          "mean_mov": 0.0309,
+          "mean_concordance": 0.8648
+        },
+        {
+          "quintile": 2,
+          "n": 19,
+          "mov_lo": 0.0648,
+          "mov_hi": 0.1272,
+          "mean_mov": 0.0997,
+          "mean_concordance": 0.8452
+        },
+        {
+          "quintile": 3,
+          "n": 18,
+          "mov_lo": 0.1288,
+          "mov_hi": 0.1987,
+          "mean_mov": 0.1632,
+          "mean_concordance": 0.8909
+        },
+        {
+          "quintile": 4,
+          "n": 19,
+          "mov_lo": 0.199,
+          "mov_hi": 0.3143,
+          "mean_mov": 0.2391,
+          "mean_concordance": 0.8626
+        },
+        {
+          "quintile": 5,
+          "n": 19,
+          "mov_lo": 0.3147,
+          "mov_hi": 0.4518,
+          "mean_mov": 0.3787,
+          "mean_concordance": 0.8484
+        }
+      ]
+    },
+    "house.scraped.B": {
+      "chamber": "house",
+      "lane": "scraped",
+      "half": "B",
+      "window_years": [
+        2023,
+        2027
+      ],
+      "congresses": [
+        118,
+        119
+      ],
+      "n": 422,
+      "rho": -0.1217,
+      "p": 0.01233690207084877,
+      "powered": true,
+      "cell_verdict": "null",
+      "quintiles": [
+        {
+          "quintile": 1,
+          "n": 84,
+          "mov_lo": 0.0009,
+          "mov_hi": 0.1186,
+          "mean_mov": 0.0603,
+          "mean_concordance": 0.8578
+        },
+        {
+          "quintile": 2,
+          "n": 84,
+          "mov_lo": 0.1192,
+          "mov_hi": 0.2216,
+          "mean_mov": 0.1713,
+          "mean_concordance": 0.8314
+        },
+        {
+          "quintile": 3,
+          "n": 85,
+          "mov_lo": 0.2249,
+          "mov_hi": 0.3277,
+          "mean_mov": 0.2744,
+          "mean_concordance": 0.8324
+        },
+        {
+          "quintile": 4,
+          "n": 84,
+          "mov_lo": 0.3283,
+          "mov_hi": 0.4428,
+          "mean_mov": 0.3822,
+          "mean_concordance": 0.8227
+        },
+        {
+          "quintile": 5,
+          "n": 85,
+          "mov_lo": 0.4429,
+          "mov_hi": 1.0,
+          "mean_mov": 0.5928,
+          "mean_concordance": 0.8313
+        }
+      ]
+    }
+  },
+  "adjudication": {
+    "house.propublica": "REFUTE (a well-powered half has |rho|<0.20: +0.004/-0.041)",
+    "house.scraped": "REFUTE (a well-powered half has |rho|<0.20: -0.107/-0.122)",
+    "senate.scraped": "UNDERPOWERED (a cell below the 100-member floor)"
+  },
+  "overall": "REFUTE"
+}

@@ -814,3 +814,71 @@ concordance score.** This floor is exactly why the Senate half is NOT run alone:
 split by chamber·lane·half, cannot clear ≥100/cell — **the powered run genuinely needs the House**, so
 no partial/underpowered verdict is forced. Aggregate quintile-mean plot is the artifact; **no
 member-level "vessel" leaderboard** (the R2/#143 ruling). **Verdict: BLOCKED-ON-HOUSE-GUESTBOOK.**
+
+### S3.7 · The Safe-Seat Vessel Test — **REFUTED** (both runnable lanes / House; Senate underpowered as pre-registered). *Supersedes the BLOCKED-ON-HOUSE-GUESTBOOK row above.*
+
+**#177 closed → the House `.tab` is local; S3.7 ran EXACTLY as registered — no knob, floor, or rescope
+added.** The publishable null: **a member's seat safety neither frees nor assimilates their party
+voice.** Across all four well-powered House cells the on-script index is flat over the margin-of-
+victory distribution (|ρ| ≤ 0.12, every one below the pre-registered 0.20 effect-size gate).
+
+**Step 1 — the reference table** (`data/reference/search/mov-by-member.json`, committed; builder
+`scripts/search/build_mov_table.py`). MEDSL House (comma-delimited) + Senate (tab-delimited, float vote
+counts — a bare `int()` silently zeroed every Senate contest until caught) 1976–2024 → one winner/margin
+per decided general contest: votes aggregated by candidate across party lines + modes (fusion-safe),
+MoV = (winner − runner-up)/Σcandidatevotes, regular + deciding runoff, **specials split from regulars in
+the contest key** (else OK-2014 Inhofe/Lankford merge into one fabricated margin). Joined to bioguide via
+`congress-legislators terms` (type·state·district·party, term start = cycle+1; special also cycle),
+**disambiguated by winner surname** (the incumbent-vs-successor tie the raw seat·year key can't resolve —
+LA-5 Alexander→McAllister, MA-Sen Warren vs interim Cowan/Markey). **Join AUDITED before use: 3288/3290 =
+99.9%** (House **100.0% every cycle 2012–2024**; Senate 90.9–100%; matched via 3244 unique / 39 surname /
+5 surname+date / **0 party-relaxed** — independents King & Sanders matched exactly). The **2 unmatched are
+the GA 2020/21 dual-runoff** (Perdue lost his runoff → no term; Ossoff's runoff is coded to an odd year) —
+an honest ~1-senator gap, not a defect. MoV ∈ [0,1], median 0.272, 65 uncontested (=1.0). Full unmatched
+detail: `X:/onscript-data/elections/derived/mov-audit-detail.json`.
+
+**Step 2 — the test** (`scripts/search/s3_7_safe_seat.py`; evidence
+`scripts/search/evidence/s3_7_safe_seat.result.json` + X: copy). Per lane-half the on-script index was
+built with `build.build_concordance(PEAK_FLOOR=15, MIN_STATEMENTS=10)` over lazily-normalized per-congress
+solo Lane-1 statements — **read-only, no production write** (`out_dir=None`; kept set = the committed
+per-lane `phrase_index` peak≥15, `peak`≡`peak_units` verified in `pipeline/phrases.py`). MoV reduced per
+member per window = **mean over the member's cycles whose seated term overlaps the window** (House 2-yr /
+Senate 6-yr; rank-inert, disclosed — not a registered knob). Member-level Spearman ρ(MoV, index) WITHIN
+chamber.
+
+| chamber·lane·half | window | n | ρ | p | powered (≥100) | cell |
+|---|---|---|---|---|---|---|
+| House·propublica·A | 113–114 (2013–16) | 399 | **+0.004** | 0.94 | ✓ | null |
+| House·propublica·B | 115–116 (2017–20) | 510 | **−0.041** | 0.36 | ✓ | null |
+| House·scraped·A | 117 (2021–22) | 226 | **−0.107** | 0.11 | ✓ | null |
+| House·scraped·B | 118–119 (2023–26) | 422 | **−0.122** | 0.012 | ✓ | null |
+| Senate·scraped·A | 117 | 27 | −0.110 | 0.59 | ✗ | underpowered |
+| Senate·scraped·B | 118–119 | 93 | −0.058 | 0.58 | ✗ | underpowered |
+| Senate·propublica·A/B | — | 0 | — | — | ✗ | no cell (corpus carried **2** senators in the 2013–16 legacy lane) |
+
+Floors (numerals, frozen): PEAK_FLOOR **15**, MIN_STATEMENTS **10**, effect gate |ρ|≥**0.20**, p<**0.05**,
+power **100** members/cell. Halves: propublica 113–114/115–116, scraped 117/118–119 (docs/17 §2).
+**Adjudication:** house.propublica REFUTE (+0.004/−0.041), house.scraped REFUTE (−0.107/−0.122),
+senate.scraped UNDERPOWERED → **overall REFUTE.**
+
+- **The registered quintile artifact is FLAT** in every powered cell (Q1 competitive → Q5 safest mean
+  concordance, e.g. scraped·A 0.691/0.719/0.709/0.687/0.662; propublica·A 0.843/0.816/0.840/0.828/0.834).
+  Concordance levels vary 0.66–0.94 across cells, so the metric **discriminates** — the null is real, not
+  a saturation artifact. No member-level "vessel" leaderboard emitted (R2/#143).
+- **The 0.20 effect-size gate earned its keep:** scraped·B is *statistically* significant (p=0.012 at
+  n=422) but ρ=−0.12 is substantively trivial and below the pre-registered floor — a large sample finding
+  a meaningless correlation is exactly what a p-only rule would have mis-sold as CONFIRM. Honest nuance,
+  **not a card**: a weak, sub-threshold *negative* tendency in the scraped era (safer seat → marginally
+  *less* on-script, the "free voice" direction), never reaching 0.20.
+- **Senate is underpowered by CORPUS COVERAGE, not just seat count** (the registration's "the powered run
+  needs the House" was righter than it knew): the ProPublica/legacy lane carried **2** Senate members in
+  2013–16 (vs 494 House), rising to 245 (2017–20); scraped 28/99. No Senate cell reaches ≥100.
+- **The within-chamber reduction actively protected the House correlation:** 83 senators whose 2013–16
+  releases the corpus mislabeled `House` were caught by the MoV-row chamber filter (their margins are
+  Senate) and dropped to None, never polluting the House ρ. The 88/113/8/15 "concordance-but-no-MoV"
+  members per cell are these mislabels + delegates (Norton) + one special-seated member (LaHood) — 98.8%
+  bioguide-format match confirms no join defect.
+
+Re-runnable: `PYTHONHASHSEED=0 python scripts/search/build_mov_table.py` then
+`… scripts/search/s3_7_safe_seat.py`. Supersedes L565 S3.7 (BLOCKED-ON-SOURCE) and the registration's
+BLOCKED-ON-HOUSE-GUESTBOOK verdict.
