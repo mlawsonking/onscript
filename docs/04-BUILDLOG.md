@@ -2127,3 +2127,111 @@ Canon correction: the pre-public privacy-history residual is tracked by bus task
 server-side object purge, not a numbered bus task. **Discrepancy FILED** (Art. XVI): the docs/22 brief
 and earlier canon assumed the session-start `vtask list` was complete; it was not, for any project with
 >50 tasks — every prior session read a truncated bus.
+
+---
+
+## Session 28 (2026-07-19, Opus) — the pre-launch duties (docs/23 §7.3); day nav + the announce path; 370 green
+
+Ran the worker-session duties the ratified flip packet lists as due before Monday's launch.
+**Nothing flipped, nothing posted, no feature released; all FEATURES dark, `POSTING_ENABLED` off,
+`unattended_streak('2026-07-19').passes=True` re-confirmed from the record at close.** Commit
+`fc8f80f`. **370 tests green** (348 inherited + 7 day-nav + 15 announce).
+
+### 1. THE DAY-NAVIGATION FIX (§7.3, added 07-19) — the day pages were permanent and UNREACHABLE
+
+`index.html` linked to **zero** day pages: `day_view_body`'s `is_today` branch swapped the prev/next
+nav for a lone "browse phrases" link, so the prev/next chain between day pages had **no entry point**
+and a published day was reachable only by typing its URL. Ten days of published record, invisible.
+
+* nav gains **Days**; new **`/day/index.html`** date archive — newest first, grouped by month,
+  marking phrases-only days rather than dropping them (dropping would silently rewrite the record of
+  what we published, and the archive is the compounding asset).
+* the homepage now links **the previously published day** + the archive. `rendered` is hoisted above
+  the index block so the homepage knows what preceded it; the lookup is guarded (the `today_day`
+  fallback can select a day with no page, so it is `.index()`-with-fallback, never `[-2]`).
+* built from the **same `rendered` list the pages come from**, so the index cannot list a 404 or omit
+  a live page. `tests/test_day_nav.py` locks the correspondence **both directions**, plus the
+  single-day case (no phantom "previous day" arrow) and **"no FEATURES flag"** — this is navigation
+  to already-public pages; gating it would re-orphan every day page.
+* the rebuild also flushed a **stale `.pcols` CSS block** the committed site predated (Session-22
+  dark-feature CSS; no live class emits it).
+
+### 2. THE ANNOUNCE PATH (§7.3, added 07-19) — `pipeline/announce.py` + `workflow_dispatch`-only workflow
+
+Reuses the **Session-8d live-smoke-tested** AT-Proto primitives (`_authenticate`, `_post_thread`
+with its deterministic-rkey collision recovery, `_split`, `_root_rkey`) rather than a second
+implementation that can be wrong on launch night.
+
+* **Gates, each kill-tested ALONE:** no `--confirm` => dry run; `POSTING_ENABLED` off **holds even
+  with `--confirm` and real creds**; missing creds hold; an **absent repo variable reads OFF**.
+* **The approved text never lives in this repo.** It arrives as the dispatch input, so pasting it IS
+  the approval. **`---` lines are author-chosen post boundaries**; an over-length authored post is
+  **REFUSED, never silently re-split** (silent re-packing would hand the boundaries back to the
+  machine exactly where the author was most explicit). `verbatim_ok()` locks that the thread
+  reconstructs the approved text word for word.
+* **No automated-composite marker.** `_POST_MARK` labels the machine-distilled party voice; stamping
+  human-approved editorial copy with it would be a **false label, not a cautious one**.
+* Idempotent belt (manifest) and braces (deterministic root rkey — same clock id as R, but rkeys are
+  **repo-scoped** and this posts to the house DID, so no collision). ntfy on failure. A locked test
+  asserts **no schedule/cron trigger** ever appears in the workflow.
+
+### 3. FLIP-READINESS AUDIT — two schedule findings
+
+Verified each §7.3 flip is genuinely a one-commit change. **Two are not:**
+
+* **⚠ `nomenclature_tags` (Mon 07-27) — §7.2.1's ACA rationale is FACTUALLY INVERTED.** The ruling
+  reasons "'the affordable care act' IS an official short title… that D-vocabulary tags where R's
+  'obamacare' does not is an asymmetric *finding* from a symmetric *instrument*." Measured against
+  the committed cumulative index at the real threshold (`NOMENCLATURE_RATIO_MIN=0.8`), via
+  `nomenclature.tag()`: **`affordable care act` 0.0049 -> NOT tagged · `the affordable care act`
+  0.0008 -> NOT tagged · `obamacare` -> NOT tagged · but `unaffordable care act` AND `the unaffordable
+  care act` ratio 1.0 -> TAGGED (bill hr6300, a real introduced bill).** The asymmetry runs the
+  **opposite** way from the one the ruling considered and accepted: neither party's ordinary framing
+  tags, and the only ACA-family phrase that tags is a **Republican counter-brand**, which at display
+  time gets a chip citing an official bill record while the Democratic framing renders unmarked.
+  SPAN is arguably working exactly as designed (members using it often ARE referencing hr6300), so
+  this may need **no code change at all** — but the ratified rationale is backwards and it is the
+  thing authorizing the flip. **Not self-authorizable** (docs/16 §9 ruling + Art. IV). Filed **#179**.
+  **Does NOT block launch**; blocks only the 07-27 flip.
+* **⚠ `silence_board` (Mon 08-10) is NOT a one-commit flip — the board is NEVER BUILT.**
+  `pipeline/silence.py::silence_board()` has **no caller anywhere in the pipeline**; `config.py:113`
+  says so in passing ("built only when FEATURES['silence_board'] is wired") and
+  `data/derived/silence/` does not exist. Flipping the flag alone renders nothing. **This cascades:**
+  The Void half of `awards` (Mon 08-24) rolls up from those boards and degrades to UNAVAILABLE
+  without them — so 08-24 would ship half-dark. **Both need a build session before their dates**
+  (a future Opus session's work, not a human errand — deliberately NOT filed to the bus).
+
+Ready as pure one-line flips: **`party_columns`** (fallback verified on real days — 07-17 D10/R4,
+06-30 D10/R7; `sync_by_party` is absent from all 10 historical days because `run_assemble.py:281`
+landed in Session 22, so historical days use the documented fallback and days from the next cron
+carry it natively), **`owners_brief`** (wired in `run_assemble` both paths; private, zero public
+bytes), **`archive`** (chapters present), **`duet`/`phrase_search`/`authors_vessels`** (render-time).
+
+`concordance.json`/`awards.json` are **absent from `data/derived`** because the local state
+(`statements` 07-10, `ledger` 07-12) **predates the Session-23/24 code** (07-19); production builds
+them in-process every run via `deterministic.run`. A direct re-verification was attempted and
+**abandoned, not completed**: it re-parses the **3.08 GB** `ledger.json` from disk and did not finish.
+Their own suites (14 + 19 tests) are green and Sessions 23/24 validated them end-to-end on real data.
+**Definitive confirmation is the next cloud run producing the two files — check it before 08-24/09-07.**
+
+### 4. A LAUNCH-TIMING OBSERVATION (Michael's call, not changed)
+
+The newest published day, **2026-07-18 (Sat), ingested 5 D / 3 R statements** — vs 82/55 on 07-17 and
+159/84 on 07-16 — so it has **zero synchronized phrases** and both composites are the honest quiet
+line ("We released 5 statements today"). **This is the system working**: the `QUIET_DAY_MAX_STATEMENTS`
+guard fired, the run is correctly `degraded=False`, and both the pooled table and the post-flip
+columns say so plainly. But it means **a Monday 07-20 announce lands on a homepage showing Sunday's
+quiet weekend day**, since a day's releases are only complete the next morning. The flagship
+demonstration (offices converging on one phrase) is a **weekday** phenomenon. The day-nav fix above
+materially softens this — a reader can now reach a rich day in one click, which they could not do
+before. **Launch timing is Michael's reserved act; nothing was changed.**
+
+### 5. Bus hygiene
+
+`vtask` pagination fix from Session 26 **verified present** (`get_open_tasks` paginates, bounded at
+40 pages). **#176 closed** (the packet was ratified in Session 27). **#179 filed** (the ACA rider).
+The announce draft landed at `X:\onscript-data\drafts\ANNOUNCE-launch.md` — **never in-repo** — with
+a 4-post recommended thread, two alternatives, and every char count **measured through the real
+thread builder**. It flags that **canon's "53 D on 'born in the united states'" is a different
+estimator** (the Unison office-share numerator); the page a reader lands on says **36**, so the copy
+says 36. Announce copy must match the page it links to.
