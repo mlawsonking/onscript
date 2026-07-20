@@ -2235,3 +2235,53 @@ a 4-post recommended thread, two alternatives, and every char count **measured t
 thread builder**. It flags that **canon's "53 D on 'born in the united states'" is a different
 estimator** (the Unison office-share numerator); the page a reader lands on says **36**, so the copy
 says 36. Announce copy must match the page it links to.
+
+### 6. ⚠ FOUND AT CLOSE (2026-07-20 ~00:45Z) — RUN A NULLS `daily_lines` ON ALREADY-PUBLISHED DAYS
+
+While pushing, the rebase pulled in the evening's crons (`collect 2026-07-19` 20:53Z, `assemble
+2026-07-19` 22:27Z) and the regenerated site came back with **one fewer day than it had an hour
+earlier**. Not a regression in the day-nav code — the archive was correctly reporting a change in the
+data:
+
+**`collect 2026-07-19` (commit `0a66cea`) rewrote `data/derived/days/2026-07-18.json` and set
+`"daily_lines": null`** (−85 lines), deleting the composites of a day whose assemble manifest is
+`final: True` — i.e. **PUBLISHED**. The subsequent assemble targeted 07-19 and did not restore them.
+
+**It is systemic, not a one-off.** Three of ten published days now carry `daily_lines: null` while
+still holding real phrase data:
+
+| day | daily_lines | top_synchronized | nulled by |
+|---|---|---|---|
+| 2026-07-09 | **null** | 19 rows | an earlier collect |
+| 2026-07-12 | **null** | 14 rows | `data: collect 2026-07-14` |
+| 2026-07-18 | **null** | 0 rows | `data: collect 2026-07-19` (tonight) |
+
+So a day's composites survive only until some later RUN A rebuilds that day and no RUN B re-assembles
+it. The "phrases only" days the new archive marks are not a natural category — **they are the scar
+tissue of this behavior.**
+
+**Two consequences, both live right now:**
+
+1. **A stale orphan page is public.** `site/public/day/2026-07-18.html` still renders "We released 5
+   statements today" for both parties — text whose backing data no longer exists. `build_site` only
+   ever WRITES; nothing unlinks, which the privacy code already says out loud
+   (`purge_derived`: "a render-time SKIP is not enough… a skipped page stays live at its public
+   URL"). This is the Session-21 principle *no proposition outlives its evidence* failing on the
+   day-page surface.
+2. **The homepage moved to 2026-07-17 (Fri)** — because "today" is the most recent day WITH
+   daily_lines, and 07-18's were deleted. **This incidentally cancels the §4 launch-timing concern
+   above**: the landing page is now a full weekday with 20 synchronized phrases, not a quiet
+   Saturday. A defect improved the launch optics, which is not a reason to leave it.
+
+**NOT fixed in this session, deliberately.** The tempting fix — have `build_site` unlink day pages
+that fall out of `rendered` — treats the symptom and would *delete public pages the project treats as
+permanent*, destroying the record instead of restoring it. The real fix is upstream: RUN A must not
+null `daily_lines` on a day whose manifest says `final: True`, and the three affected days should be
+repaired by re-assembling them (`run_assemble.py --day <day>` bypasses the readiness gate, which is
+exactly the documented REPAIR path). **That is a build session's work, not a bus errand.** Queued as
+the next worker's first item, ahead of the docs/11 shelf.
+
+**Launch impact: none mechanical, one editorial.** The site is internally coherent (homepage 07-17,
+archive lists the 9 days that are genuinely published, no listed link 404s), and nothing about the
+posting path is touched. But **the announce points at a site with one stale public day page and two
+older days missing their composites**, and Michael should know that before he says go.
