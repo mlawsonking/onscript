@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "kind": "search-s5.2-registration",
+  "hypothesis": "S5.2 The Concern Conversion Rate (docs/12:310) — the share of expressed-concern statements followed by the same member sponsoring an on-topic bill within 180 days. Headline: 'X% of congressional concern is never followed by a bill.'",
+  "source": "Registration frozen and committed BEFORE any measurement run (docs/23 §4 + §7.2 item 5; the p-hacking hole docs/12:457 names). Concern statements from the congress-press corpus (Lane-1); sponsorship from govinfo BILLSTATUS bulkdata 113-119, local at X:/onscript-data/bills/raw (keyless, sha256-manifested). Companions confirmed with Michael 2026-07-20: floor 300/cell + comparative gate (his §4 confirm), on-topic primary = >=2 tokens (his 2026-07-20 confirm). No post-hoc edits.",
+  "fetch_date": "2026-07-20",
+  "rationale": "Floors are numerals fixed before touching confirmatory data (docs/12 L4). The three companion registrations that were the real p-hacking surface — the concern-detector lexicon, the 180-day window, and the on-topic match rule — are frozen here as a committed artifact; the measurement script reads them and adds no knob.",
+
+  "concern_lexicon": [
+    "concerned about", "concerned by", "concerned that", "concerned over", "concerned with",
+    "deeply concerned", "gravely concerned", "seriously concerned", "very concerned",
+    "extremely concerned", "increasingly concerned", "gravely concerned about",
+    "alarmed by", "alarmed at", "alarmed that",
+    "troubled by", "troubled that",
+    "disturbed by", "disturbed that",
+    "worried about", "worried that", "worried by",
+    "outraged by", "outraged at", "outraged that",
+    "dismayed by", "dismayed at", "dismayed that",
+    "appalled by", "appalled at", "appalled that"
+  ],
+  "concern_lexicon_note": "Party-blind, anchored on the pipeline's existing build._CONCERN set and expanded to the DIRECTED forms only (concern + preposition/complementizer), because a directed concern names a TOPIC the sponsorship can be matched against; a bare 'concerned' often has no extractable object. Matched case-insensitively anywhere in a Lane-1 release. A concern STATEMENT = a solo (non-joint), non-syndicated Lane-1 press release by a D or R member (bioguide present) containing >=1 lexicon phrase.",
+
+  "parameters": {
+    "window_days": 180,
+    "window_note": "Kept from the hypothesis. Conversion requires introducedDate in (concern_date, concern_date + 180 days]. Same-day and prior sponsorships do NOT count (the concern must PRECEDE the bill).",
+
+    "topic_of_concern": "The content-token SET of every sentence in the statement that contains a concern-lexicon phrase (pipeline boilerplate.sentences() tokenizer; union across a statement's concern sentences). Using the concern sentence(s) — not the whole release — keeps the topic to what the member is concerned ABOUT and avoids coincidental whole-release matches. A CONTENT token = a token that survives boilerplate.STOPWORDS AND is not one of the concern-lexicon tokens AND is not in generic_stoplist below.",
+
+    "bill_topic": "The content-token SET of (official short title + CRS policyArea name + all legislativeSubjects names) of a sponsored bill, same tokenizer + same content filter. Titles are year-stripped like the nomenclature index. CRS policyArea/legislativeSubjects are authoritative party-blind topic tags assigned by the Congressional Research Service.",
+
+    "on_topic_primary": ">=2 distinct content tokens shared between topic_of_concern and bill_topic",
+    "on_topic_bounds_reported": [1, 3],
+    "on_topic_note": "Primary threshold K=2 confirmed with Michael 2026-07-20. K=1 (loose, upper-bound conversion) and K=3 (strict, lower-bound conversion) are reported alongside every cell as disclosed bounds; the VERDICT uses K=2. A stricter CRS-tags-only variant (share must be a policyArea/subject token, excluding title tokens) is also reported as a robustness column.",
+
+    "conversion": "A concern statement CONVERTS iff its member (same bioguide) sponsors >=1 bill that is on-topic for the statement (>=2 shared tokens with topic_of_concern) with introducedDate in the 180-day window. Conversion rate (per cell) = converted / eligible concern statements. Headline non-conversion rate = 1 - conversion rate.",
+
+    "generic_stoplist": ["act", "bill", "bills", "legislation", "law", "laws", "congress", "congressional",
+      "federal", "government", "national", "america", "american", "americans", "people", "families",
+      "community", "communities", "nation", "country", "united", "states", "house", "senate",
+      "representative", "senator", "member", "members", "committee", "today", "statement", "press",
+      "release", "washington", "year", "years", "new", "amend", "reauthorize", "establish", "provide"],
+    "generic_stoplist_note": "Frozen a priori. Excluded from BOTH sides of the on-topic match (beyond STOPWORDS) because these tokens are common to concern language AND bill titles/subjects and would manufacture coincidental topical links, inflating the conversion rate. Declared here so the choice is auditable, not silent.",
+
+    "right_censoring_guard": "A concern statement is ELIGIBLE only if concern_date + 180 days <= the latest introducedDate present in the local BILLSTATUS corpus. Statements whose window extends past available sponsorship data are EXCLUDED (not counted as non-conversions), because their conversion is unobservable. The excluded count is reported.",
+
+    "sponsorship_source": "govinfo BILLSTATUS 113-119, all 8 bill types (hr, s, hjres, sjres, hconres, sconres, hres, sres). Fields used per bill: sponsors/item/bioguideId, introducedDate, title, policyArea/name, subjects/.../legislativeSubjects/item/name. Cosponsorship is NOT counted — the hypothesis is about the member SPONSORING (authoring) a follow-up, the strongest form of legislative follow-through."
+  },
+
+  "floor_and_cells": {
+    "floor_per_cell": 300,
+    "floor_note": "Michael-confirmed (docs/23 §4). Minimum 300 eligible concern statements per reported cell. Power: the headline is a binomial proportion; at p=0.5, n=300 gives a 95% CI half-width of +-5.7pp. Cells below 300 are pooled or reported 'insufficient', never a headline.",
+    "comparative_gate": "A party-difference claim requires BOTH party cells >=300 AND the D-R gap to exceed the summed 95% CI half-widths (~8pp at p=0.5). Otherwise only the pooled rate publishes.",
+    "cells": ["pooled", "D", "R",
+      "D:propublica-A", "R:propublica-A", "D:propublica-B", "R:propublica-B",
+      "D:scraped-A", "R:scraped-A", "D:scraped-B", "R:scraped-B"],
+    "era_halves": {"propublica-A": [113, 114], "propublica-B": [115, 116], "scraped-A": [117], "scraped-B": [118, 119]},
+    "era_half_note": "Era-halves are the docs/17 provenance-lane halves, applied to the concern statement's congress. Sponsorship matching is lane-agnostic (a bill has no press-provenance lane) — the era-half only buckets the concern statements. The 300 floor was verified clearable in every cell before this freeze (lower-bound counts from the existing text_features concern field: pooled D=22,000 / R=12,721; smallest era-half cell 689)."
+  },
+
+  "verdict_criteria": "This is a rate-report, not a binary CONFIRM/REFUTE hypothesis — the number IS the finding (docs/12: 'CONFIRM: the rate itself is the headline'). A card ships iff the pooled cell clears 300 (it does) and the rate is stark/publishable per docs/20; a party-difference sub-claim ships only through the comparative gate. Reported honestly whatever it is.",
+
+  "amend_policy": "This registration is FROZEN. No post-hoc edits to concern_lexicon or parameters (docs/23 §7.2 item 5). A genuine design change is a NEW registration with a new date, never an edit to this one. The measurement script scripts/search/s5_2_concern_conversion.py must implement exactly these rules and is auditable against this file.",
+  "amendments": [
+    {"date": "2026-07-20", "by": "Opus, launch-eve Search lane (S31 §7.2.5 protocol)",
+     "reason": "Initial freeze. Companions (lexicon, 180-day window, on-topic rule) frozen and committed BEFORE any measurement run, per docs/23 §7.2 item 5. Floor 300 + comparative gate are Michael's §4 confirm; on-topic primary K=2 is Michael's 2026-07-20 confirm. Substrate verified present (BILLSTATUS 113-119 local with sponsor/date/policyArea/subjects; concern-statement denominators clear 300 in every cell). Measurement follows in the same session but as a SEPARATE later commit, so the freeze precedes the result in git history."}
+  ]
+}

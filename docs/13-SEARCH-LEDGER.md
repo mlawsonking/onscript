@@ -882,3 +882,39 @@ senate.scraped UNDERPOWERED → **overall REFUTE.**
 Re-runnable: `PYTHONHASHSEED=0 python scripts/search/build_mov_table.py` then
 `… scripts/search/s3_7_safe_seat.py`. Supersedes L565 S3.7 (BLOCKED-ON-SOURCE) and the registration's
 BLOCKED-ON-HOUSE-GUESTBOOK verdict.
+
+### S5.2 · The Concern Conversion Rate — **REGISTERED** (frozen 2026-07-20, BEFORE any measurement). Companions committed: `data/reference/search/s5_2-registration.json`.
+
+**The p-hacking hole docs/12:457 named — "`≥Floor per cell` is not a registration" — is closed by
+freezing the four companions BEFORE touching confirmatory data** (docs/23 §4 + §7.2 item 5). Floor
+300/cell + the comparative-claim gate are Michael's §4 confirm; the on-topic primary K=2 is his
+2026-07-20 confirm. The committed JSON carries the exact lexicon + parameters; this row is the ledger
+record of the freeze, and the **verdict follows in a SEPARATE later commit so the freeze precedes the
+result in git history.** No post-hoc edits (a real design change is a new registration, never an edit).
+
+- **Hypothesis:** what share of expressed concern is *never* followed by the same member sponsoring an
+  on-topic bill within 180 days — the rate itself is the headline (docs/12 S5.2).
+- **Concern statement:** a solo, non-syndicated Lane-1 release by a D/R member (bioguide present)
+  containing ≥1 of **31 frozen DIRECTED concern phrases** (`concerned about/by/that/over/with`,
+  `deeply/gravely/seriously/very/extremely/increasingly concerned`, `alarmed/troubled/disturbed/
+  worried/outraged/dismayed/appalled by/at/that…`) — anchored on the pipeline's `build._CONCERN`,
+  directed forms only so the topic-of-concern is extractable.
+- **Topic of concern:** the content-token set of the **sentence(s) containing the concern phrase** (not
+  the whole release — avoids coincidental matches); content = pipeline tokenizer − `STOPWORDS` − the
+  concern tokens − a frozen ~40-word generic stoplist (`act/bill/federal/american/people/…`, declared
+  in the artifact so the choice is auditable).
+- **Sponsorship:** BILLSTATUS 113–119 local (keyless) — sponsor `bioguideId` + `introducedDate` +
+  (short title + CRS `policyArea` + `legislativeSubjects`). **Cosponsorship excluded** (sponsoring =
+  authoring = the strongest follow-through).
+- **On-topic (K=2 PRIMARY):** ≥2 shared content tokens between the concern topic and the bill topic.
+  K=1 (loose) and K=3 (strict) + a CRS-tags-only variant reported alongside every cell as disclosed
+  bounds; the verdict uses K=2.
+- **Conversion:** same bioguide sponsors an on-topic bill with `introducedDate` in (concern_date, +180d].
+- **Right-censoring guard:** a concern statement is eligible only if `concern_date + 180d ≤` the latest
+  `introducedDate` in the corpus; later statements are EXCLUDED (unobservable), count reported.
+- **Cells + floor:** pooled / D / R + D/R × 4 era-halves (docs/17 lanes: propublica 113–114/115–116,
+  scraped 117/118–119). ≥**300** eligible concern statements/cell or "insufficient"; comparative gate =
+  both party cells ≥300 **and** the D−R gap > the summed 95% CI half-widths (~8pp at p=0.5). Denominators
+  pre-verified clearing 300 in every cell (lower-bound: pooled D 22,000 / R 12,721; smallest 689).
+- **Status:** REGISTERED — measurement next (this session), then a verdict row. Closes docs/12:520's
+  named p-hacking hole for S5.2.
