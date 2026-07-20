@@ -918,3 +918,36 @@ result in git history.** No post-hoc edits (a real design change is a new regist
   pre-verified clearing 300 in every cell (lower-bound: pooled D 22,000 / R 12,721; smallest 689).
 - **Status:** REGISTERED — measurement next (this session), then a verdict row. Closes docs/12:520's
   named p-hacking hole for S5.2.
+
+### S5.2 · The Concern Conversion Rate — **FINDING: ~92% of congressional concern is never followed by a bill** (the rate is the headline). *Supersedes the REGISTERED status above; measured against the frozen registration, no post-hoc edits.*
+
+**At the pre-registered K=2 topical match, 92.0% of expressed concern is NOT followed by the same member
+sponsoring an on-topic bill within 180 days** (pooled, n=**28,106** eligible concern statements, 95% CI
+±0.3pp). The registration (commit `5cd27da`) precedes this measurement in git history — the p-hacking
+hole docs/12:457 named is closed by the freeze, not by the result.
+
+- **The rate is match-strictness sensitive, so the RANGE is the honest finding:** non-conversion is
+  **63.2%** at K=1 (any one shared topic token), **92.0%** at K=2 (primary), **98.3%** at K=3, **99.3%**
+  CRS-tags-only. Every published card must carry the range; the headline uses the frozen K=2.
+- **Denominator:** 29,111 concern statements detected (31-phrase directed lexicon over solo, non-
+  syndicated, D/R Lane-1 releases); 11 excluded (no extractable topic), 994 right-censored (180-day
+  window past the latest BILLSTATUS `introducedDate` 2026-07-15) → **28,106 eligible**. Sponsorship index:
+  **107,481 authored bills / 1,048 members** (BILLSTATUS 113–119, keyless, local).
+- **All 11 cells powered** (n≥300, smallest 643): K=2 conversion 5.6–11.4% across party × era-half.
+- **Party comparative gate (registered = gap > summed 95% CI half-widths):** overall **D 8.6% vs R 6.8%**
+  conversion (gap +1.8pp > summed ±0.9pp) → **PASSES**; robust in propublica-B (+1.9pp) and scraped-B
+  (+4.0pp); propublica-A no difference (−0.9pp); scraped-A directional (+2.5pp) but underpowered for the
+  gap. A real-but-small asymmetry — **Democrats convert concern to authored on-topic legislation modestly
+  more often than Republicans, both parties still ~92% non-converting** — an asymmetric FINDING from a
+  SYMMETRIC instrument (identical lexicon/match/threshold, party-blind by construction; Art. IV protected).
+- **Conservatism, all frozen + disclosed (each pushes non-conversion UP; K=1's 63% is the floor):**
+  authored SPONSORSHIP only (cosponsorship excluded — the strongest follow-through); exact-token match
+  (no stemming, so plural/tense near-misses undercount conversions); 180-day window.
+- **Verdict:** a stark, well-powered rate-report **card** (docs/12 S5.2 "T1 if the number is stark").
+  Enters the docs/20 shelf **pending Fable/neutrality review + Michael's editorial publication** (like
+  S1.9/S2.9/Intensification — publication is his act, never a session's). **This is the program's first
+  Wave-S5 card** and the CONFIRMED-tier count moves 4 → 5, pending that review.
+
+Re-runnable: `PYTHONHASHSEED=0 python scripts/search/s5_2_concern_conversion.py` (reads the frozen
+registration; BILLSTATUS parse cached to `X:/onscript-data/bills/derived/s5_2-sponsorships.jsonl`).
+Evidence: `scripts/search/evidence/s5_2_concern_conversion.result.json` + X: copy.

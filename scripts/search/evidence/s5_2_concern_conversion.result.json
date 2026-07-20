@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-07-20T18:52:39Z",
+  "registration": {
+    "file": "data/reference/search/s5_2-registration.json",
+    "commit": "5cd27da",
+    "window_days": 180,
+    "K_primary": 2,
+    "floor": 300
+  },
+  "exclusions": {
+    "no_topic": 11,
+    "censored": 994,
+    "concern_stmts": 29111
+  },
+  "sponsorship_latest_date": "2026-07-15",
+  "cells": {
+    "pooled": {
+      "eligible": 28106,
+      "powered": true,
+      "conversion_K2": 0.0797,
+      "nonconversion_K2": 0.9203,
+      "ci95_halfwidth_K2": 0.0032,
+      "conversion_K1": 0.3683,
+      "conversion_K3": 0.0167,
+      "conversion_tags_only": 0.0074
+    },
+    "R": {
+      "eligible": 10477,
+      "powered": true,
+      "conversion_K2": 0.0682,
+      "nonconversion_K2": 0.9318,
+      "ci95_halfwidth_K2": 0.0048,
+      "conversion_K1": 0.3285,
+      "conversion_K3": 0.0159,
+      "conversion_tags_only": 0.0059
+    },
+    "R:propublica-A": {
+      "eligible": 4406,
+      "powered": true,
+      "conversion_K2": 0.0656,
+      "nonconversion_K2": 0.9344,
+      "ci95_halfwidth_K2": 0.0073,
+      "conversion_K1": 0.3137,
+      "conversion_K3": 0.0184,
+      "conversion_tags_only": 0.007
+    },
+    "D": {
+      "eligible": 17629,
+      "powered": true,
+      "conversion_K2": 0.0864,
+      "nonconversion_K2": 0.9136,
+      "ci95_halfwidth_K2": 0.0041,
+      "conversion_K1": 0.3919,
+      "conversion_K3": 0.0171,
+      "conversion_tags_only": 0.0083
+    },
+    "D:propublica-A": {
+      "eligible": 4163,
+      "powered": true,
+      "conversion_K2": 0.0562,
+      "nonconversion_K2": 0.9438,
+      "ci95_halfwidth_K2": 0.007,
+      "conversion_K1": 0.32,
+      "conversion_K3": 0.0084,
+      "conversion_tags_only": 0.0053
+    },
+    "D:propublica-B": {
+      "eligible": 9510,
+      "powered": true,
+      "conversion_K2": 0.0903,
+      "nonconversion_K2": 0.9097,
+      "ci95_halfwidth_K2": 0.0058,
+      "conversion_K1": 0.4064,
+      "conversion_K3": 0.0188,
+      "conversion_tags_only": 0.0095
+    },
+    "R:propublica-B": {
+      "eligible": 3890,
+      "powered": true,
+      "conversion_K2": 0.0715,
+      "nonconversion_K2": 0.9285,
+      "ci95_halfwidth_K2": 0.0081,
+      "conversion_K1": 0.3347,
+      "conversion_K3": 0.0141,
+      "conversion_tags_only": 0.0059
+    },
+    "R:scraped-A": {
+      "eligible": 774,
+      "powered": true,
+      "conversion_K2": 0.0556,
+      "nonconversion_K2": 0.9444,
+      "ci95_halfwidth_K2": 0.0161,
+      "conversion_K1": 0.3127,
+      "conversion_K3": 0.0142,
+      "conversion_tags_only": 0.0039
+    },
+    "D:scraped-A": {
+      "eligible": 643,
+      "powered": true,
+      "conversion_K2": 0.0809,
+      "nonconversion_K2": 0.9191,
+      "ci95_halfwidth_K2": 0.0211,
+      "conversion_K1": 0.3266,
+      "conversion_K3": 0.0187,
+      "conversion_tags_only": 0.0047
+    },
+    "R:scraped-B": {
+      "eligible": 1407,
+      "powered": true,
+      "conversion_K2": 0.0746,
+      "nonconversion_K2": 0.9254,
+      "ci95_halfwidth_K2": 0.0137,
+      "conversion_K1": 0.3667,
+      "conversion_K3": 0.0142,
+      "conversion_tags_only": 0.0036
+    },
+    "D:scraped-B": {
+      "eligible": 3313,
+      "powered": true,
+      "conversion_K2": 0.1144,
+      "nonconversion_K2": 0.8856,
+      "ci95_halfwidth_K2": 0.0108,
+      "conversion_K1": 0.4534,
+      "conversion_K3": 0.0226,
+      "conversion_tags_only": 0.0094
+    }
+  },
+  "comparative": {
+    "overall": {
+      "D_rate": 0.0864,
+      "R_rate": 0.0682,
+      "gap": 0.0182,
+      "summed_ci_halfwidth": 0.0089,
+      "passes_gate": true
+    },
+    "propublica-A": {
+      "D_rate": 0.0562,
+      "R_rate": 0.0656,
+      "gap": -0.0094,
+      "summed_ci_halfwidth": 0.0143,
+      "passes_gate": false
+    },
+    "propublica-B": {
+      "D_rate": 0.0903,
+      "R_rate": 0.0715,
+      "gap": 0.0188,
+      "summed_ci_halfwidth": 0.0139,
+      "passes_gate": true
+    },
+    "scraped-A": {
+      "D_rate": 0.0809,
+      "R_rate": 0.0556,
+      "gap": 0.0253,
+      "summed_ci_halfwidth": 0.0372,
+      "passes_gate": false
+    },
+    "scraped-B": {
+      "D_rate": 0.1144,
+      "R_rate": 0.0746,
+      "gap": 0.0398,
+      "summed_ci_halfwidth": 0.0245,
+      "passes_gate": true
+    }
+  }
+}
