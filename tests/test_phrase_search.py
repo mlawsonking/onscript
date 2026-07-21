@@ -71,6 +71,32 @@ def _nav_html() -> str:
     return site.page("t", "<p>body</p>", depth=0)
 
 
+def test_one_malformed_phrase_json_cannot_crash_the_whole_build():
+    """R-F (docs/23 §7.5 amendment 3). The phrase-PAGE loop skips a non-dict JSON; the index called
+    .get() on whatever deserialized, so a single list/scalar file raised AttributeError out of
+    build_site and took down every page — the entire site, not one row. The guards must agree."""
+    import tempfile
+    from pipeline import privacy  # noqa: F401  (index consults it; import must stay live)
+
+    before = site.DERIVED
+    with tempfile.TemporaryDirectory() as td:
+        pdir = Path(td) / "phrases"
+        pdir.mkdir()
+        (pdir / "aaa_list.json").write_text("[1, 2, 3]", encoding="utf-8")   # a list
+        (pdir / "bbb_str.json").write_text('"just a string"', encoding="utf-8")
+        (pdir / "ccc_num.json").write_text("42", encoding="utf-8")
+        (pdir / "ddd_ok.json").write_text(
+            json.dumps({"ngram": "rule of law", "slug": "ddd_ok", "peak_units": 7,
+                        "first_seen": {"date": "2026-01-03"}}), encoding="utf-8")
+        try:
+            site.DERIVED = Path(td)
+            rows = site.phrase_search_index()          # must not raise
+        finally:
+            site.DERIVED = before
+    # the malformed files are skipped one-for-one; the good phrase still indexes
+    assert [r["q"] for r in rows] == ["rule of law"], rows
+
+
 def test_disclosure_states_what_the_index_does_not_cover():
     """The index is phrases-with-pages, not the 2.8M-ngram ledger. A reader searching a phrase and
     finding nothing must learn that it never cleared the tracking bar — not conclude nobody said it."""

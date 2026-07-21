@@ -1059,7 +1059,12 @@ def phrase_search_index() -> list[dict]:
     for p in sorted(pdir.glob("*.json")):
         if p.stem == "top":
             continue
-        d = _load_json(p) or {}
+        d = _load_json(p)
+        # Mirrors the phrase-page loop's guard below. A malformed phrase JSON (a list, a bare
+        # string) must skip ONE row, never crash build_site: the page loop already fails soft, so
+        # without this the index is the only place a single bad file takes the whole site down.
+        if not isinstance(d, dict):
+            continue
         ngram = d.get("ngram")
         if not ngram:
             continue
