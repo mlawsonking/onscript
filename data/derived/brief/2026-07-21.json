@@ -12,12 +12,12 @@
     },
     {
       "name": "spend",
-      "value": 0.0666,
-      "projected": 0.1406,
+      "value": 0.0736,
+      "projected": 0.1554,
       "status": "green",
       "governor": "nominal",
       "ledger_days": 8,
-      "note": "$0.0666 MTD, $0.14 projected month-end (green <= $8); governor nominal"
+      "note": "$0.0736 MTD, $0.16 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
@@ -47,12 +47,12 @@
     },
     {
       "name": "verifier_drop",
-      "value": 0.0926,
-      "dropped": 5,
+      "value": 0.0741,
+      "dropped": 4,
       "offered": 54,
       "unmeasured_rows": 0,
       "status": "green",
-      "note": "5/54 claims dropped over 7d (green < 25%)"
+      "note": "4/54 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",

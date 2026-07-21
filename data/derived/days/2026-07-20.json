@@ -187,38 +187,6 @@
       ]
     },
     {
-      "ngram": "of <private-individual-A>",
-      "slug": "e5fbfffcfa2760bb",
-      "n": 3,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 1
-      },
-      "velocity": 1.76,
-      "first_seen": {
-        "date": "2026-07-08",
-        "bioguide": "G000553",
-        "statement": "sha256:69c8cadbf72b2e559d3e08e330d660692f8e3671f5bc873e95eb25128ce2e220",
-        "tie": [
-          "M001245"
-        ],
-        "precision": "day"
-      },
-      "df_weight": 0.997,
-      "series": [
-        2,
-        3,
-        1,
-        4,
-        4,
-        3,
-        5
-      ]
-    },
-    {
       "ngram": "generations to come",
       "slug": "e5b2d728d6e0ccb4",
       "n": 3,
@@ -730,6 +698,43 @@
         3,
         4
       ]
+    },
+    {
+      "ngram": "centers for disease control",
+      "slug": "2a19737a20a7cff8",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "velocity": 2.15,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "S000522",
+        "statement": "sha256:c2b5659a4605907a173992cfa018f9b859e203736e729dd514c20e6ed8e7d662",
+        "tie": [],
+        "precision": "day"
+      },
+      "df_weight": 0.981,
+      "series": [
+        3,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        3,
+        4
+      ]
     }
   ],
   "discipline": {
@@ -745,7 +750,7 @@
       "schema_version": 1,
       "day": "2026-07-20",
       "party": "D",
-      "composite": "Across 99 statements today, our dominant message centers on the house of representatives, echoed in the phrase \"tide act in the house of representatives\" among 4 of us. The most synchronized phrase across our statements is homeland security dhs, recorded 7 times, first recorded from Ted Cruz (R-TX). Beyond this, no other message reaches the same shared threshold today.",
+      "composite": "We speak today mainly of the house of representatives, citing the \"tide act in the house of representatives,\" a message shared among 4 of us. The most synchronized phrase across our statements today is homeland security dhs, recorded 7 times, first recorded from Ted Cruz (R-TX). Across 99 statements, this remains the dominant thread we can confirm, with no other message rising to the same level of shared repetition today.",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
@@ -803,7 +808,7 @@
       },
       "usage": {
         "tokens_in": 1083,
-        "tokens_out": 122,
+        "tokens_out": 133,
         "model": "claude-sonnet-5"
       }
     },
@@ -811,19 +816,14 @@
       "schema_version": 1,
       "day": "2026-07-20",
       "party": "R",
-      "composite": "Across 70 statements, our dominant message centers on \"his community in the united states house of representatives,\" a phrase shared by 3 of us today. The day's most synchronized phrase is house floor in, recorded 5 times, first recorded from Emilia Strong Sykes (D-OH).",
+      "composite": "Across 70 statements today, we center on the house floor, with 4 of us calling for \"consideration for a vote on the house floor.\" A smaller group of 3 speaks of \"his community in the united states house of representatives.\" The day's most synchronized phrase is house floor in, recorded among 5 of us, first recorded from Emilia Strong Sykes (D-OH).",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
         {
           "sentence_idx": 0,
           "talking_points": [
-            "2026-07-20-R-01"
-          ]
-        },
-        {
-          "sentence_idx": 1,
-          "talking_points": [
+            "2026-07-20-R-00",
             "2026-07-20-R-01"
           ]
         }
@@ -837,6 +837,14 @@
         "day": "2026-07-20",
         "statements": 70,
         "talking_points": [
+          {
+            "label": "on the house floor",
+            "members": 4,
+            "quote": "consideration for a vote on the house floor",
+            "topics": [
+              "other"
+            ]
+          },
           {
             "label": "in the united states",
             "members": 3,
@@ -859,11 +867,11 @@
         "checked": true,
         "passed": true,
         "reasons": [],
-        "talking_points_published": 1
+        "talking_points_published": 2
       },
       "usage": {
-        "tokens_in": 1080,
-        "tokens_out": 92,
+        "tokens_in": 1172,
+        "tokens_out": 117,
         "model": "claude-sonnet-5"
       }
     }
@@ -934,6 +942,67 @@
     ],
     "R": [
       {
+        "id": "2026-07-20-R-00",
+        "party": "R",
+        "day": "2026-07-20",
+        "label": "on the house floor",
+        "member_count": 4,
+        "statements": [
+          "sha256:00de341ad93780b53383472a5f483a783d11c9fd6ac497ca4899f92afb79da05",
+          "sha256:05c2d41bb80c1b2fba216624ed6df0f73ceb034a6a8679f74cd26fbba715534d",
+          "sha256:44c1bf8a925fd2a636b01695057abaa33a71feb24f5bf442366c9b78604464c4",
+          "sha256:97257d01f4d72c82a70671019005b0ac6d83767bc5d0c357f1c414831c896e9a"
+        ],
+        "fragments": [
+          {
+            "text": "today spoke on the house floor in support of his bill",
+            "statement": "sha256:97257d01f4d72c82a70671019005b0ac6d83767bc5d0c357f1c414831c896e9a"
+          },
+          {
+            "text": "i managed the house floor in the committee of",
+            "statement": "sha256:44c1bf8a925fd2a636b01695057abaa33a71feb24f5bf442366c9b78604464c4"
+          },
+          {
+            "text": "spoke on the house floor in favor of the",
+            "statement": "sha256:05c2d41bb80c1b2fba216624ed6df0f73ceb034a6a8679f74cd26fbba715534d"
+          },
+          {
+            "text": "consideration for a vote on the house floor",
+            "statement": "sha256:00de341ad93780b53383472a5f483a783d11c9fd6ac497ca4899f92afb79da05"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "citations": [
+          {
+            "member": "Robert F. Onder, Jr.",
+            "party": "R",
+            "state": "MO",
+            "date": "2026-07-20",
+            "url": "https://onder.house.gov/media/press-releases/congressman-onders-chloe-cole-act-advances-out-house-judiciary-committee",
+            "quote": "consideration for a vote on the house floor"
+          },
+          {
+            "member": "Darin LaHood",
+            "party": "R",
+            "state": "IL",
+            "date": "2026-07-20",
+            "url": "https://lahood.house.gov/2026/7/lahood-supports-aadapt-act-to-better-support-alzheimer-s-and-dementia-patients",
+            "quote": "spoke on the house floor in favor of the"
+          },
+          {
+            "member": "Earl L. \"Buddy\" Carter",
+            "party": "R",
+            "state": "GA",
+            "date": "2026-07-20",
+            "url": "https://buddycarter.house.gov/news/documentsingle.aspx?DocumentID=16584",
+            "quote": "today spoke on the house floor in support of his bill"
+          }
+        ]
+      },
+      {
         "id": "2026-07-20-R-01",
         "party": "R",
         "day": "2026-07-20",
@@ -994,11 +1063,6 @@
   "rejected_keys": {
     "D": [],
     "R": [
-      {
-        "label": "the house floor in",
-        "reason": "REJECT_INCOMPLETE_SYNTACTIC_SPAN",
-        "member_count": 4
-      },
       {
         "label": "the next generation of",
         "reason": "REJECT_INCOMPLETE_SYNTACTIC_SPAN",
@@ -1153,38 +1217,6 @@
           4,
           10,
           10,
-          5
-        ]
-      },
-      {
-        "ngram": "of <private-individual-A>",
-        "slug": "e5fbfffcfa2760bb",
-        "n": 3,
-        "day_peak": 5,
-        "party": "D",
-        "counts": {
-          "D": 5,
-          "R": 0,
-          "I": 1
-        },
-        "velocity": 1.76,
-        "first_seen": {
-          "date": "2026-07-08",
-          "bioguide": "G000553",
-          "statement": "sha256:69c8cadbf72b2e559d3e08e330d660692f8e3671f5bc873e95eb25128ce2e220",
-          "tie": [
-            "M001245"
-          ],
-          "precision": "day"
-        },
-        "df_weight": 0.997,
-        "series": [
-          2,
-          3,
-          1,
-          4,
-          4,
-          3,
           5
         ]
       },
@@ -1381,6 +1413,43 @@
           1,
           4,
           1,
+          4
+        ]
+      },
+      {
+        "ngram": "federal emergency management agency fema",
+        "slug": "6fefa46caf94e962",
+        "n": 5,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 2,
+          "I": 0
+        },
+        "velocity": 2.24,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "W000779",
+          "statement": "sha256:a856a52c3c400fccea0dc24919a58b18ab99d3fe707b4fbc9df678a48cfa1b3d",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          4,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          4,
+          1,
+          1,
+          3,
           4
         ]
       }

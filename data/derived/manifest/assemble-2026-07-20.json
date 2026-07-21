@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "assemble-2026-07-21",
   "kind": "assemble",
-  "generated_at": "2026-07-21T12:14:11Z",
+  "generated_at": "2026-07-21T12:23:49Z",
   "day": "2026-07-20",
   "dry_run": false,
   "extract_cost": {
@@ -17,22 +17,22 @@
   "per_party_llm": {
     "D": {
       "tokens_in": 1083,
-      "tokens_out": 122,
+      "tokens_out": 133,
       "claims_published": 1,
       "claims_dropped": 0
     },
     "R": {
-      "tokens_in": 1080,
-      "tokens_out": 92,
-      "claims_published": 1,
-      "claims_dropped": 2
+      "tokens_in": 1172,
+      "tokens_out": 117,
+      "claims_published": 2,
+      "claims_dropped": 1
     }
   },
-  "daily_voice_cost_usd": 0.006466,
+  "daily_voice_cost_usd": 0.00701,
   "llm_voice_enabled": true,
   "voice_used": true,
   "voice_budget_state": "nominal",
-  "month_to_date_usd": 0.066598,
+  "month_to_date_usd": 0.073608,
   "governor_state": "nominal",
   "degraded": false,
   "event": "workflow_dispatch",
@@ -48,5 +48,8 @@
     },
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   },
-  "alerts": []
+  "alerts": [],
+  "repaired_at": "2026-07-21T12:23:49Z",
+  "repair_run_id": "assemble-2026-07-21",
+  "repair_event": "workflow_dispatch"
 }
