@@ -188,7 +188,7 @@ def test_every_post_carries_the_composite_marker_and_stays_in_limit():
 # reaches the public by accident) with a predicate that made every deliberate release a test failure —
 # so the first real flip would have reddened the suite on launch morning, and the reflex fix would have
 # been to delete the guard entirely. An allowlist keeps the guard and prices the release honestly.
-DELIBERATELY_RELEASED: set[str] = set()
+DELIBERATELY_RELEASED: set[str] = {"party_columns", "owners_brief", "phrase_search"}
 
 
 def test_features_dark_by_default_and_gated():

@@ -195,8 +195,8 @@ FEATURES = {
     # THE CONCORDANCE — the per-member on-script index (denominators on every line, no predictive claim,
     # SPAN-gated). The old `the_script` (reconstructed-memo) key was unused; renamed here to match R4.
     "archive": False, "silence_board": False, "authors_vessels": False, "concordance": False,
-    "awards": False, "floor": False, "duet": False, "phrase_search": False,
-    "owners_brief": False, "credit_claim": False, "memo_cadence_flag": False,
+    "awards": False, "floor": False, "duet": False, "phrase_search": True,
+    "owners_brief": True, "credit_claim": False, "memo_cadence_flag": False,
     # Wave 2 (v3)
     "memory_hole": False, "off_script_alerts": False, "upstream_graph": False,
     "bill_brand": False, "public_api": False, "eval_table": False,
@@ -209,7 +209,7 @@ FEATURES = {
     # R3 / #146 — per-party side-by-side columns for the day table (each party its own top-k with
     # N-of-caucus), fixing the pooled rank-and-truncate that makes the flagship 88% D. Data
     # (sync_by_party) is built every day; this gates only the RENDER, so the flip is a pure release act.
-    "party_columns": False,
+    "party_columns": True,
 }
 
 
