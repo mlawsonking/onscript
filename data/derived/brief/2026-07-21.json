@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-07-21",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-07-20",
+      "note": "no publish for 2026-07-20 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.0601,
+      "projected": 0.1269,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 7,
+      "note": "$0.0601 MTD, $0.13 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-07-19",
+      "parties": {
+        "D": {
+          "statements": 0,
+          "median": 108.5,
+          "share": 0.0,
+          "status": "red"
+        },
+        "R": {
+          "statements": 2,
+          "median": 69.5,
+          "share": 0.029,
+          "status": "red"
+        }
+      },
+      "status": "red",
+      "freshness": {
+        "age_hours": 3.79,
+        "day": "2026-07-21",
+        "status": "green"
+      },
+      "excluded_reports": 2,
+      "note": "2026-07-19: D 0/108=0% R 2/70=3% of own 14d median (green >= 60%); upstream 3.8h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.06,
+      "dropped": 3,
+      "offered": 50,
+      "unmeasured_rows": 0,
+      "status": "green",
+      "note": "3/50 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "coverage"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "national security department",
+    "party": "D",
+    "day_peak": 32,
+    "day": "2026-07-15"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "owners_brief",
+      "party_columns",
+      "phrase_search",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": []
+  },
+  "headline": "RED: streak, coverage"
+}

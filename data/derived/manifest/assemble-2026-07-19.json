@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "run_id": "assemble-2026-07-21",
+  "kind": "assemble",
+  "generated_at": "2026-07-21T12:12:35Z",
+  "day": "2026-07-19",
+  "dry_run": false,
+  "extract_cost": {
+    "stage": "extract",
+    "model": "claude-haiku-4-5",
+    "generator": "deterministic",
+    "new_statements": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "est_cost_usd": 0.0
+  },
+  "per_party_llm": {
+    "D": {
+      "tokens_in": 408,
+      "tokens_out": 11,
+      "claims_published": 0,
+      "claims_dropped": 0
+    },
+    "R": {
+      "tokens_in": 406,
+      "tokens_out": 11,
+      "claims_published": 0,
+      "claims_dropped": 0
+    }
+  },
+  "daily_voice_cost_usd": 0.001848,
+  "llm_voice_enabled": true,
+  "voice_used": true,
+  "voice_budget_state": "nominal",
+  "month_to_date_usd": 0.060132,
+  "governor_state": "nominal",
+  "degraded": false,
+  "event": "workflow_dispatch",
+  "unattended": false,
+  "final": true,
+  "forced_finalize": false,
+  "readiness": null,
+  "symmetry": {
+    "prompts_sha": {
+      "P1": "0cddc44ce3b70062f8bce6e98e50132553ff16b3e383a51a29fd867b3b134e9f",
+      "P2": "90fede65130b9a6040b574c8a3b88395919b1f9dbdd9f62197114d6315d9ab23",
+      "P3": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+    },
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  },
+  "alerts": []
+}
