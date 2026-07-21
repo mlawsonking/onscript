@@ -5,54 +5,54 @@
   "numbers": [
     {
       "name": "streak",
-      "value": 0,
-      "status": "red",
-      "last_missed": "2026-07-20",
-      "note": "no publish for 2026-07-20 — Playbook P1"
+      "value": 10,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "10 consecutive days published (through 2026-07-20)"
     },
     {
       "name": "spend",
-      "value": 0.0601,
-      "projected": 0.1269,
+      "value": 0.0666,
+      "projected": 0.1406,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 7,
-      "note": "$0.0601 MTD, $0.13 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 8,
+      "note": "$0.0666 MTD, $0.14 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "day": "2026-07-19",
+      "day": "2026-07-20",
       "parties": {
         "D": {
-          "statements": 0,
-          "median": 108.5,
-          "share": 0.0,
-          "status": "red"
+          "statements": 99,
+          "median": 82,
+          "share": 1.207,
+          "status": "green"
         },
         "R": {
-          "statements": 2,
-          "median": 69.5,
-          "share": 0.029,
-          "status": "red"
+          "statements": 70,
+          "median": 55,
+          "share": 1.273,
+          "status": "green"
         }
       },
-      "status": "red",
+      "status": "green",
       "freshness": {
         "age_hours": 3.79,
         "day": "2026-07-21",
         "status": "green"
       },
       "excluded_reports": 2,
-      "note": "2026-07-19: D 0/108=0% R 2/70=3% of own 14d median (green >= 60%); upstream 3.8h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+      "note": "2026-07-20: D 99/82=121% R 70/55=127% of own 14d median (green >= 60%); upstream 3.8h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.06,
-      "dropped": 3,
-      "offered": 50,
+      "value": 0.0926,
+      "dropped": 5,
+      "offered": 54,
       "unmeasured_rows": 0,
       "status": "green",
-      "note": "3/50 claims dropped over 7d (green < 25%)"
+      "note": "5/54 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -61,10 +61,7 @@
       "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
     }
   ],
-  "reds": [
-    "streak",
-    "coverage"
-  ],
+  "reds": [],
   "unknowns": [],
   "degraded_days": [],
   "top_phrase": {
@@ -97,5 +94,5 @@
     ],
     "released": []
   },
-  "headline": "RED: streak, coverage"
+  "headline": "ALL GREEN"
 }
