@@ -1,0 +1,72 @@
+{
+ "lane": "crec",
+ "windows": {
+  "2015": {
+   "members": {
+    "D": 189,
+    "R": 221
+   },
+   "statements": {
+    "D": 3295,
+    "R": 2970
+   },
+   "symmetry_ratio": 0.8552,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  },
+  "2016": {
+   "members": {
+    "D": 183,
+    "R": 221
+   },
+   "statements": {
+    "D": 3029,
+    "R": 3161
+   },
+   "symmetry_ratio": 0.8281,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  }
+ },
+ "windows_passing": [
+  "2015",
+  "2016"
+ ],
+ "congress": 114,
+ "crawl_completeness": [
+  {
+   "year": 2015,
+   "days_done": 187,
+   "upstream_gaps": [],
+   "sitemap_days": 187,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  },
+  {
+   "year": 2016,
+   "days_done": 185,
+   "upstream_gaps": [],
+   "sitemap_days": 185,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  }
+ ]
+}

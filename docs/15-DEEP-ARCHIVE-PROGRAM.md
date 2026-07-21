@@ -245,6 +245,70 @@ via SD.8 — a defensibility tier no one else in this lane can print.
 
 ## §9 Amendments
 
+**D1-C (2026-07-21, Opus) — congresses 113–116 built + audited; 111/112 are BLOCKED ON A CRAWL THAT
+NEVER RAN THEM; and the masked-HTML-error trap turns out to live on the METADATA path too.**
+
+*Session found:* the 2009–2026 crawl was **dead, not running** — a stale lock (`pid 17728`, dead) from
+2026-07-17T04:11Z, killed ~25 minutes in. Its year order was `[2013…2026, 2009…2012]`, so it reached
+2022 and stopped: **2009–2012 was never crawled at all**, which is precisely the data congresses 111 and
+112 are made of. The named deliverable was blocked before it began. Restarted with the order inverted
+(`2009,2010,2011,2012` first, then `2022…2026`) so 111/112 unblock soonest; running detached, resumable,
+keyless, $0.
+
+- **⛔ THE FINDING — GovInfo serves "Page Not Found" as HTTP 200 with an HTML body on
+  `/metadata/pkg/{pkg}/mods.xml`.** This is the `/bulkdata` masked-error behavior §D1.a warns about,
+  on a path we trusted. `urlopen` raises nothing; the status is 200; **the payload is the only signal.**
+  Ten sitemap-listed days across 2013–2022 return an identical 44,165-byte error page (the Jan-3
+  convening days of 2013/14/17/18/19/20/21/22, plus 2022-05-11 and 2022-05-19). The consequences were
+  both real and self-perpetuating: the error page was **written into the append-only raw mirror and
+  hash-manifested as archival evidence**, and — worse — it was **cached**, so `man.seen(mods_key) and
+  mods_file.exists()` read it back off disk on every resume. The same ten days failed to parse on every
+  run for six days and **could never heal.** Fixed in `crec.looks_like_mods()` + `crawl_extensions`:
+  a non-MODS payload never enters the mirror, a poisoned cache entry is **quarantined to
+  `raw/mods/_rejected/` rather than deleted** (what upstream actually served is part of the record), and
+  the day is recorded `day-nomods:` — *settled-unavailable*, not pending. That distinction is what makes
+  the word "complete" mean anything: counting permanently-unfetchable days as pending puts 100% out of
+  reach by construction. Kill-fixture + heal test + happy-path regression in `tests/test_deep_crec.py`,
+  mutation-verified 3/3.
+- **Congresses 113–116 BUILT + AUDITED** (`ledger|discipline|coverage-{113..116}.json` on X:, audit JSONs
+  committed to `data/derived/crec/audit/`). Ledger schema verified **identical** to the 107–110 shards,
+  so the Search's streaming reader queries them unchanged. **Every window PASSES symmetric two-party:**
+  113 (2013 D=200/R=214 · 2014 D=196/R=212), 114 (2015 D=189/R=221 · 2016 D=183/R=221), 115 (2017
+  D=189/R=220 · 2018 D=187/R=214), 116 (2019 D=231/R=192 · 2020 D=220/R=179) — member-symmetry ratios
+  **0.81–0.93**, ~180–230 members per party per year. 45,366 Extensions statements. *(Ratios are on
+  distinct MEMBERS, per `audit.gate_result`; the spine's published D:R figures are statement-shares —
+  different estimators, docs/12 L4. Comparing the two instruments is SD.8's job, not an aside.)*
+- **Congress 117 REFUSED, deliberately.** 2021 is complete; **2022 is truncated at 87 of 200 days** (the
+  year the old crawl died in). A half-crawled year is indistinguishable from a quiet one once it is
+  inside a shard — it just looks like less speech. `build_crec_shards.py` verifies each year's
+  days-settled against the **published GovInfo sitemap** and refuses; `--allow-partial` exists and
+  stamps `"partial": true` into the audit JSON so the artifact would carry its own caveat.
+- **Drivers are TRACKED now** (`scripts/deep/crawl_crec.py`, `build_crec_shards.py`, `crec_state.py`).
+  Prior sessions ran these from `scratchpad/`, which is gitignored, so each session re-hand-rolled them —
+  the Session-18 untracked-evidence lesson, applied. The crawl driver also neutralizes the **known
+  `crec.py:217` trap** (it overwrites `crawl-stats.json` with only the current run) by snapshotting
+  before and merging after; that trap had already destroyed the 2001–2002 record and the whole 2013–2021
+  campaign's stats.
+- **Smoke query (the §3 acceptance criterion) passes and re-confirms both D4-pre residuals, plus one
+  new one.** Top boilerplate-suppressed phrases are citable and sane, but are dominated by (a) **full
+  bill titles** ("military construction and veterans affairs and related agencies appropriations act",
+  "middle class health benefits tax repeal act of") — residual (a), the nomenclature-segregation item —
+  and (b) **sub-gram windows of one phrase filling five rows** — residual (b), the collapse layer.
+  **NEW residual (c): missed-vote explanations** ("i would have voted yea", "on roll call no") are a
+  high-volume Extensions genre formula the seed list does not cover, and they surface as top-ranked
+  "R coordination" in congress 115. All three must be closed before any crec phrase-COORDINATION card;
+  none of them affects the speaker-attribution bets (SD.2/SD.3/SD.6), which stay the ripe ones.
+- **SD.8 is NOT started — its precondition is not met.** The calibration study needs the CREC half of
+  the full **2013–2026** overlap; 113–116 (2013–2020) is now on the shelf, 117 needs 2022, and 118/119
+  need 2023–2026 — all in the running crawl. Starting a concordance on a partial overlap would be the
+  "fake-complete" failure §8 names as the one thing this program exists to avoid.
+
+**Next Deep Archive session:** confirm the crawl finished (`scripts/deep/crec_state.py`), build 111/112
+and 117–119 the same way, then — and only then — freeze and run SD.8. Note the crawl now running
+started under the *pre-fix* code, so it will re-poison any Jan-3 days it meets; the next crawl
+invocation auto-quarantines them, and `build_crec_shards.py` reads the on-disk evidence directly, so no
+build is ever misled in the meantime.
+
 **D1-B (2026-07-16, Opus) — the 2001–2008 CREC instrument is COMPLETE (the unique-fill window).** The
 Extensions crawl finished 2003–2008 (after a hang fix — day-done markers make resumes O(new-days), see
 BUILDLOG), and congresses 108/109/110 are built + audited alongside 107. **Every congress, every year,

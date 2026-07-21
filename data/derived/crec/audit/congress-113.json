@@ -1,0 +1,76 @@
+{
+ "lane": "crec",
+ "windows": {
+  "2013": {
+   "members": {
+    "D": 200,
+    "R": 214
+   },
+   "statements": {
+    "D": 3500,
+    "R": 2455
+   },
+   "symmetry_ratio": 0.9346,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  },
+  "2014": {
+   "members": {
+    "D": 196,
+    "R": 212
+   },
+   "statements": {
+    "D": 3449,
+    "R": 2331
+   },
+   "symmetry_ratio": 0.9245,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  }
+ },
+ "windows_passing": [
+  "2013",
+  "2014"
+ ],
+ "congress": 113,
+ "crawl_completeness": [
+  {
+   "year": 2013,
+   "days_done": 186,
+   "upstream_gaps": [
+    "CREC-2013-01-03"
+   ],
+   "sitemap_days": 187,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  },
+  {
+   "year": 2014,
+   "days_done": 154,
+   "upstream_gaps": [
+    "CREC-2014-01-03"
+   ],
+   "sitemap_days": 155,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  }
+ ]
+}

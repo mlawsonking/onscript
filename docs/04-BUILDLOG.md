@@ -2616,3 +2616,108 @@ tests/test_wave0.py       DELIBERATELY_RELEASED = {"party_columns", "owners_brie
   today (the pre-`--autostash` collect). Operational mitigation for now.
 * **`post_bluesky.SITE` duplicates the new `config.SITE_URL`.** Deliberately not refactored: the
   posting path is frozen for launch. Consolidate post-launch.
+
+---
+
+## Session 37 (2026-07-21, Opus) — Deep Archive: CREC congresses 113–116, and the metadata-path masked error
+
+Launch-day parallel lane. Zero daily-pipeline surfaces, zero Actions, X:-only bulk storage; the only
+in-repo writes are `pipeline/deep/crec.py`, `tests/test_deep_crec.py`, `scripts/deep/*`, four audit
+JSONs, and docs. **401 tests green.**
+
+### 1. The crawl was dead, and the named deliverable was blocked before it started
+
+`CRAWL-RUNNING.lock` named pid 17728 — **not running**. Started 2026-07-17T04:11Z, dead by ~04:36Z.
+Its year order was `[2013…2026, 2009…2012]` and it got as far as 2022, so **2009–2012 was never
+crawled**. Congresses 111 and 112 are exactly 2009–2010 and 2011–2012: there was no data to build them
+from, and no amount of session time would have changed that.
+
+Restarted detached with the order inverted — `2009,2010,2011,2012` first, then `2022…2026` — so the
+blocked deliverable unblocks soonest and the SD.8 overlap fills behind it.
+
+### 2. GovInfo serves "Page Not Found" as HTTP 200, on the metadata path
+
+Ten days across 2013–2022 had been logging `MODS parse … FAILED: mismatched tag: line 70, column 4` on
+every single run. The payload is not malformed XML — it is a 44,165-byte **HTML error page**, served
+with status 200 by `/metadata/pkg/{pkg}/mods.xml` for packages GovInfo's own sitemap lists. Re-fetched
+live to confirm it is upstream and permanent, not transient.
+
+`urlopen` raises nothing, so the payload is the only signal, and two things followed:
+
+* the error page was **written into the append-only raw mirror and hash-manifested as evidence**;
+* it was **cached**, and `man.seen(mods_key) and mods_file.exists()` reads the cache first — so every
+  resume re-read the error page from disk. **Those days could never heal.** Six days of runs, ten days
+  of coverage, permanently stuck, logging the same line every time.
+
+Fix (`crec.looks_like_mods` + `crawl_extensions`): validate before mirroring; quarantine a poisoned
+cache entry to `raw/mods/_rejected/` rather than delete it (what upstream served is part of the record)
+and re-attempt once; record the day `day-nomods:` — **settled-unavailable, not pending**.
+
+That last distinction is the load-bearing one. A permanently unfetchable day counted as "pending" puts
+100% out of reach by construction, which makes "complete" unfalsifiable — and an unfalsifiable
+completeness claim is worth less than an honest gap. Settled-unavailable days are counted, named, and
+carried into the audit JSON as `upstream_gaps`.
+
+Four tests, mutation-verified 3/3 against the pre-fix behaviour (`looks_like_mods → True`).
+
+### 3. Congresses 113–116, built and audited
+
+| congress | years | statements | ledger | member symmetry | audit |
+|---|---|---|---|---|---|
+| 113 | 2013–14 | 11,735 | 3,185 | .935 / .925 | PASS both years |
+| 114 | 2015–16 | 12,455 | 3,431 | .855 / .828 | PASS both years |
+| 115 | 2017–18 | 11,999 | 1,371 | .859 / .874 | PASS both years |
+| 116 | 2019–20 | 9,177 | 2,549 | .831 / .814 | PASS both years |
+
+~180–230 attributed members **per party per year**. Ledger schema verified identical to the 107–110
+shards, so the Search's streaming reader queries them unchanged.
+
+Ratios are on **distinct members** (`audit.gate_result`), while the spine's published D:R numbers are
+statement-shares. Those are different estimators (docs/12 L4) and the tempting one-line comparison —
+"the deep lane is more symmetric than the spine in the same years" — is not licensed by these numbers.
+Comparing the two instruments is SD.8's job.
+
+**Congress 117 was refused.** 2021 is complete; 2022 stops at 87 of 200 sitemap days, because that is
+where the old crawl died. A truncated year inside a shard is indistinguishable from a quiet one — it
+just looks like less speech. The builder verifies each year's settled days against the published
+sitemap and refuses; `--allow-partial` exists and stamps `"partial": true` into the audit so the
+artifact would carry its own caveat.
+
+### 4. The shard stays raw — suppression is a view, not a build step
+
+`crec_boilerplate.suppress()` is applied in the acceptance smoke query, **not** at build time.
+Congresses 107–110 were built raw by design (docs/15 §9 D4-pre: the ledger keeps every n-gram; the
+suppressor filters what a coordination view may surface). Applying it here would have forked the
+instrument mid-lane and quietly invalidated every within-lane cross-era comparison — the exact "genre
+confound in a trend costume" failure, wearing the costume of a fix.
+
+`lanes.lane_of()` is called explicitly on the loaded set before each build, so a stray press row in the
+crec state dir raises instead of entering a deep shard.
+
+### 5. What the smoke query says about the coordination layer
+
+Rows are citable and sane, and they re-confirm both documented residuals on fresh data: **full bill
+titles** dominate ("military construction and veterans affairs and related agencies appropriations
+act"), and **sub-gram windows of one phrase fill five rows**. One residual is new: **missed-vote
+explanations** ("i would have voted yea", "on roll call no") are a high-volume Extensions formula the
+seed list does not cover, and they rank as top "R coordination" in congress 115.
+
+All three must close before a crec phrase-coordination card. None of them touches the
+speaker-attribution bets (SD.2/SD.3/SD.6), which remain the ripe ones.
+
+### 6. SD.8 not started — precondition unmet
+
+Calibration needs the CREC half of the full 2013–2026 overlap. 2013–2020 is now on the shelf; 117 needs
+2022 and 118/119 need 2023–2026, all in the running crawl. Running a concordance on a partial overlap
+is the "fake-complete" failure §8 names as the one thing this program exists to avoid, so it waits.
+
+### 7. Drivers are tracked now
+
+`scripts/deep/{crawl_crec,build_crec_shards,crec_state}.py`. Prior sessions ran these from
+`scratchpad/` — gitignored, so they vanished on every re-clone and each session re-hand-rolled them
+(the Session-18 untracked-evidence lesson). The crawl driver also neutralizes the known `crec.py:217`
+trap (it overwrites `crawl-stats.json` with only the current run) by snapshotting before and merging
+after; that trap had already destroyed the 2001–2002 record and the entire 2013–2021 campaign's stats.
+
+`crec_state.py` recounts coverage from the statement files rather than trusting run bookkeeping, and is
+the first thing the next Deep Archive session should run.

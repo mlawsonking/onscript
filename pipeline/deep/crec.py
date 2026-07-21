@@ -44,6 +44,23 @@ def _get(url: str, timeout: int = 90) -> bytes:
         return r.read()
 
 
+def looks_like_mods(data: bytes) -> bool:
+    """True iff the payload is actually a MODS document.
+
+    GovInfo serves **"Page Not Found" as HTTP 200 with an HTML body** on `/metadata/pkg/{pkg}/mods.xml`
+    for packages its own sitemap lists (measured 2026-07-21: 10 days across 2013-2022, every one an
+    identical 44,165-byte error page). This is the masked-HTML-error behavior docs/15 §D1.a flags for
+    `/bulkdata`, on the metadata path — so `urlopen` raises nothing and the status is 200; the payload
+    is the only signal.
+
+    Validating here matters twice over: an unvalidated error page gets hash-manifested into the raw
+    mirror as if it were archival evidence, AND it gets cached — so every later resume reads the error
+    page off disk instead of retrying, and the day can never heal. That is exactly what happened: the
+    same 10 days failed to parse on every run for six days running."""
+    head = data.lstrip()[:512].lower()
+    return head.startswith(b"<?xml") or head.startswith(b"<mods")
+
+
 # --- enumerate days from the year sitemap ---------------------------------------------------------
 def enumerate_days(year: int) -> list[str]:
     """The CREC-YYYY-MM-DD package ids for a year, sorted, from the published sitemap."""
@@ -146,7 +163,7 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
     state = lanes.lane_state("crec")
     (state / "E").mkdir(parents=True, exist_ok=True)
     man = lanes.CrawlManifest(state / "crawl-manifest.jsonl")
-    stats = {"days": 0, "granules": 0, "attributed": 0, "unattributed": 0, "by_year": {}}
+    stats = {"days": 0, "granules": 0, "attributed": 0, "unattributed": 0, "no_mods": 0, "by_year": {}}
     for year in years:
         try:
             days = enumerate_days(year)
@@ -156,25 +173,49 @@ def crawl_extensions(years, *, limit_days=None, progress=True) -> dict:
         if limit_days:
             days = days[:limit_days]
         out_path = state / "E" / f"statements-{year}.jsonl"
-        yr = {"days": 0, "granules": 0, "attributed": 0, "unattributed": 0}
+        yr = {"days": 0, "granules": 0, "attributed": 0, "unattributed": 0, "no_mods": 0}
         with open(out_path, "a", encoding="utf-8") as w:
             for pkg in days:
                 if man.seen(f"day-done:{pkg}"):
                     continue        # fully processed on a prior run -> skip WITHOUT re-reading its MODS
+                if man.seen(f"day-nomods:{pkg}"):
+                    continue        # upstream has no MODS for this sitemap-listed day -> settled, not pending
                 mods_key = f"mods:{pkg}"
                 mods_file = raw_root / "mods" / str(year) / f"{pkg}.mods.xml"
+                mods = None
                 if man.seen(mods_key) and mods_file.exists():
-                    mods = mods_file.read_bytes()
-                else:
+                    cached = mods_file.read_bytes()
+                    if looks_like_mods(cached):
+                        mods = cached
+                    else:
+                        # A poisoned cache entry written before this validation existed. Quarantine it
+                        # (never delete — the mirror is append-only evidence, and what upstream actually
+                        # served is part of the record) and fall through to one fresh attempt.
+                        rej = raw_root / "mods" / "_rejected" / str(year) / mods_file.name
+                        rej.parent.mkdir(parents=True, exist_ok=True)
+                        mods_file.replace(rej)
+                        print(f"[crec] MODS {pkg} cached payload was NOT MODS -> quarantined, refetching",
+                              flush=True)
+                if mods is None:
                     try:
                         mods = _get(mods_url(pkg))
                     except Exception as e:
                         print(f"[crec] MODS {pkg} FAILED: {e}", flush=True)
                         continue
+                    time.sleep(lanes.POLITE["min_interval_s"])
+                    if not looks_like_mods(mods):
+                        # HTTP 200 + an HTML error body. Record the day as SETTLED-unavailable so resumes
+                        # stop re-fetching it and the coverage ledger can tell "upstream has none" apart
+                        # from "not crawled yet". Nothing enters the mirror.
+                        print(f"[crec] MODS {pkg} UNAVAILABLE upstream (non-MODS payload, {len(mods)}B)",
+                              flush=True)
+                        man.record(f"day-nomods:{pkg}", "no-mods", len(mods))
+                        yr["no_mods"] += 1
+                        stats["no_mods"] += 1
+                        continue
                     mods_file.parent.mkdir(parents=True, exist_ok=True)
                     mods_file.write_bytes(mods)
                     man.record(mods_key, lanes.sha256(mods), len(mods))
-                    time.sleep(lanes.POLITE["min_interval_s"])
                 try:
                     granules = parse_granules(mods, allow=("EXTENSIONS",))
                 except Exception as e:
