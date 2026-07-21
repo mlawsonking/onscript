@@ -750,7 +750,7 @@
       "schema_version": 1,
       "day": "2026-07-20",
       "party": "D",
-      "composite": "We speak today mainly of the house of representatives, citing the \"tide act in the house of representatives,\" a message shared among 4 of us. The most synchronized phrase across our statements today is homeland security dhs, recorded 7 times, first recorded from Ted Cruz (R-TX). Across 99 statements, this remains the dominant thread we can confirm, with no other message rising to the same level of shared repetition today.",
+      "composite": "We speak today mainly on the tide act in the house of representatives, echoed by 4 of us. The most synchronized phrase across our statements is homeland security dhs, recorded 7 times, first recorded from Ted Cruz (R-TX). Beyond that, our 99 statements today do not converge on additional shared messages.",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
@@ -808,7 +808,7 @@
       },
       "usage": {
         "tokens_in": 1083,
-        "tokens_out": 133,
+        "tokens_out": 105,
         "model": "claude-sonnet-5"
       }
     },
@@ -816,12 +816,26 @@
       "schema_version": 1,
       "day": "2026-07-20",
       "party": "R",
-      "composite": "Across 70 statements today, we center on the house floor, with 4 of us calling for \"consideration for a vote on the house floor.\" A smaller group of 3 speaks of \"his community in the united states house of representatives.\" The day's most synchronized phrase is house floor in, recorded among 5 of us, first recorded from Emilia Strong Sykes (D-OH).",
+      "composite": "Across 70 statements, we speak today of consideration for a vote on the house floor, with 4 of us aligned on that message. A smaller number of us, 3, speak of his community in the united states house of representatives. The day's most synchronized phrase is house floor in, recorded among 5 of us, first recorded from Emilia Strong Sykes (D-OH).",
       "quiet": false,
       "fallback": false,
       "sentence_receipts": [
         {
           "sentence_idx": 0,
+          "talking_points": [
+            "2026-07-20-R-00",
+            "2026-07-20-R-01"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-07-20-R-00",
+            "2026-07-20-R-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
           "talking_points": [
             "2026-07-20-R-00",
             "2026-07-20-R-01"
@@ -871,7 +885,7 @@
       },
       "usage": {
         "tokens_in": 1172,
-        "tokens_out": 117,
+        "tokens_out": 116,
         "model": "claude-sonnet-5"
       }
     }

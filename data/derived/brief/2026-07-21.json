@@ -12,12 +12,12 @@
     },
     {
       "name": "spend",
-      "value": 0.0736,
-      "projected": 0.1554,
+      "value": 0.0803,
+      "projected": 0.1696,
       "status": "green",
       "governor": "nominal",
       "ledger_days": 8,
-      "note": "$0.0736 MTD, $0.16 projected month-end (green <= $8); governor nominal"
+      "note": "$0.0803 MTD, $0.17 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
@@ -85,14 +85,15 @@
       "memory_hole",
       "nomenclature_tags",
       "off_script_alerts",
-      "owners_brief",
-      "party_columns",
-      "phrase_search",
       "public_api",
       "silence_board",
       "upstream_graph"
     ],
-    "released": []
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
   },
   "headline": "ALL GREEN"
 }
