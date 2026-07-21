@@ -1,0 +1,195 @@
+{
+  "generated_at": "2026-07-21T00:15:58Z",
+  "registration": "data/reference/search/hx_5-registration.json",
+  "registration_freeze_commit": "16db1d8",
+  "params": {
+    "ng_lo": 4,
+    "ng_hi": 6,
+    "min_stmts": 300,
+    "bootstrap_B": 500,
+    "seed": 0
+  },
+  "bootstrap_rng_deviation": "DISCLOSED DEVIATION: the frozen registration (16db1d8) specified random.Random(0) for the bootstrap; pure-Python resampling at n~50k is infeasibly slow (~2-3h), so this measurement uses numpy default_rng(0) resample-with-replacement instead. Deterministic seed-0; preserves the frozen metric, size-matching (n=min), placebo, B=500, and verdict rule exactly. Only the CI endpoints move by RNG-library Monte-Carlo noise (~3rd decimal), which cannot alter the frozen gate. Registration JSON left pristine; deviation disclosed here + in docs/13.",
+  "per_lane": {
+    "propublica": {
+      "n_scanned": 468325,
+      "by_party": {
+        "D": {
+          "n_opp": 42920,
+          "n_cel": 52813,
+          "powered": true,
+          "n_conA": 13260,
+          "n_conB": 22762,
+          "n_celA": 25547,
+          "n_celB": 19113,
+          "real_gap": {
+            "gap": 0.04931,
+            "ci_lo": 0.04313,
+            "ci_hi": 0.05639,
+            "n_matched": 42920,
+            "excludes_0": true
+          },
+          "placebo_con": {
+            "gap": 0.14059,
+            "ci_lo": 0.12678,
+            "ci_hi": 0.15557,
+            "n_matched": 13260,
+            "excludes_0": true
+          },
+          "placebo_cel": {
+            "gap": -0.05865,
+            "ci_lo": -0.06876,
+            "ci_hi": -0.04851,
+            "n_matched": 19113,
+            "excludes_0": true
+          }
+        },
+        "R": {
+          "n_opp": 26576,
+          "n_cel": 46160,
+          "powered": true,
+          "n_conA": 8879,
+          "n_conB": 14868,
+          "n_celA": 23298,
+          "n_celB": 15961,
+          "real_gap": {
+            "gap": 0.13464,
+            "ci_lo": 0.12456,
+            "ci_hi": 0.14465,
+            "n_matched": 26576,
+            "excludes_0": true
+          },
+          "placebo_con": {
+            "gap": 0.14903,
+            "ci_lo": 0.13145,
+            "ci_hi": 0.16692,
+            "n_matched": 8879,
+            "excludes_0": true
+          },
+          "placebo_cel": {
+            "gap": -0.09926,
+            "ci_lo": -0.11002,
+            "ci_hi": -0.08775,
+            "n_matched": 15961,
+            "excludes_0": true
+          }
+        }
+      }
+    },
+    "scraped": {
+      "n_scanned": 173112,
+      "by_party": {
+        "D": {
+          "n_opp": 22090,
+          "n_cel": 21985,
+          "powered": true,
+          "n_conA": 6463,
+          "n_conB": 10610,
+          "n_celA": 7917,
+          "n_celB": 9873,
+          "real_gap": {
+            "gap": 0.00545,
+            "ci_lo": -0.00387,
+            "ci_hi": 0.01441,
+            "n_matched": 21985,
+            "excludes_0": false
+          },
+          "placebo_con": {
+            "gap": 0.13643,
+            "ci_lo": 0.11726,
+            "ci_hi": 0.15597,
+            "n_matched": 6463,
+            "excludes_0": true
+          },
+          "placebo_cel": {
+            "gap": 0.06696,
+            "ci_lo": 0.05086,
+            "ci_hi": 0.08389,
+            "n_matched": 7917,
+            "excludes_0": true
+          }
+        },
+        "R": {
+          "n_opp": 13287,
+          "n_cel": 15609,
+          "powered": true,
+          "n_conA": 3642,
+          "n_conB": 7612,
+          "n_celA": 6095,
+          "n_celB": 6830,
+          "real_gap": {
+            "gap": 0.05058,
+            "ci_lo": 0.03789,
+            "ci_hi": 0.06459,
+            "n_matched": 13287,
+            "excludes_0": true
+          },
+          "placebo_con": {
+            "gap": 0.21791,
+            "ci_lo": 0.18402,
+            "ci_hi": 0.25187,
+            "n_matched": 3642,
+            "excludes_0": true
+          },
+          "placebo_cel": {
+            "gap": 0.0375,
+            "ci_lo": 0.01606,
+            "ci_hi": 0.05513,
+            "n_matched": 6095,
+            "excludes_0": true
+          }
+        }
+      }
+    }
+  },
+  "summary": {
+    "powered": [
+      [
+        "propublica",
+        "D"
+      ],
+      [
+        "propublica",
+        "R"
+      ],
+      [
+        "scraped",
+        "D"
+      ],
+      [
+        "scraped",
+        "R"
+      ]
+    ],
+    "positives": [
+      [
+        "propublica",
+        "D"
+      ],
+      [
+        "propublica",
+        "R"
+      ],
+      [
+        "scraped",
+        "R"
+      ]
+    ],
+    "negatives": [],
+    "artifacts": [
+      [
+        "propublica",
+        "D"
+      ],
+      [
+        "propublica",
+        "R"
+      ],
+      [
+        "scraped",
+        "R"
+      ]
+    ]
+  },
+  "verdict": "ARTIFACT — a within-valence placebo reproduces the effect in [('propublica', 'D'), ('propublica', 'R'), ('scraped', 'R')] (lexical-split artifact)"
+}

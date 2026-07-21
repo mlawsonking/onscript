@@ -1184,3 +1184,42 @@ in a **separate later commit**. Full frozen spec: `data/reference/search/hx_5-re
   REFUTED if direction inconsistent. UNDERPOWERED if a class < 300.
 - **Status:** REGISTERED — measurement next (this session), then a verdict row. Launch-eve safe: no
   daily-pipeline surface.
+
+### HX.5 · Opposition-vs-celebration reuse — **ARTIFACT: the "opposition is reused more" signal is killed by its own within-valence placebo.** *Measured against the frozen registration `16db1d8`, no post-hoc edits to the design.*
+
+Three of four (lane, party) cells show opposition-framed statements reusing coordinated language MORE
+than celebration-framed ones (significant) — **but the within-valence placebo reproduces and EXCEEDS the
+effect in every one**, so it is a lexical-split artifact, not a valence effect. The placebo did exactly
+its job (docs/12 L3, S4.2's law; the S1.10 pattern).
+
+| lane · party | opp n / cel n | real gap (opp−cel) | 95% CI | placebo gaps (conA−conB / celA−celB) |
+|---|---|---|---|---|
+| propublica · D | 42,920 / 52,813 | **+0.049** | [+0.043, +0.056] | **+0.141** / −0.059 |
+| propublica · R | 26,576 / 46,160 | **+0.135** | [+0.125, +0.145] | **+0.149** / −0.099 |
+| scraped · D | 22,090 / 21,985 | +0.005 | [−0.004, +0.014] *(null)* | +0.136 / +0.067 |
+| scraped · R | 13,287 / 15,609 | **+0.051** | [+0.038, +0.065] | **+0.218** / +0.038 |
+
+- **Why it's an artifact:** the `repeat_rate` (share of a class's 4–6-gram phrase-mass echoed by ≥1 other
+  statement of the class) is driven by the class's lexical/topical HOMOGENEITY, not by valence. Splitting
+  the condemnation lexicon into two arbitrary halves (conA vs conB) yields a repeat-rate gap of **+0.14 to
+  +0.22 — larger than the opposition-vs-celebration gap itself** — because a narrower lexical class is more
+  homogeneous and therefore more self-echoing. The real opp>cel gap is a byproduct of the con/cel lexicons
+  having different lexical breadth, not a "parties recycle attack lines harder" law. scraped·D is a clean
+  null; the other three are placebo-reproduced. → **ARTIFACT.**
+- **⚠ Disclosed implementation deviation (benign):** the frozen registration specified `random.Random(0)`
+  for the bootstrap; pure-Python resampling at n≈50k is infeasibly slow (~2–3h), so the measurement used
+  numpy `default_rng(0)` resample-with-replacement — a deterministic seed-0 bootstrap that preserves the
+  frozen metric, size-matching (n=min), placebo, B=500, and verdict rule **exactly**; only the CI endpoints
+  move by RNG-library Monte-Carlo noise (~3rd decimal, verified: 0.138 vs 0.13825 on a fixture), which
+  cannot alter the frozen gate. The registration JSON is left pristine; the deviation is recorded in the
+  script + `result.bootstrap_rng_deviation`. (Two earlier implementation fixes, also result-preserving: an
+  OOM avoided by hashing n-grams instead of interning strings; `repeat_rate` computed via the algebraic
+  identity `Σ(df≥2 incidences)=Σ_c df(c)·[df(c)≥2]` with numpy bincount.)
+- **Verdict:** ARTIFACT — a graveyard/methods-transparency result (docs/20), NOT a card. Pairs with S1.10
+  as a demonstration that the placebo discipline earns its keep: a 3-of-4-significant "finding" that
+  dissolves under a same-statistic negative control. Program CONFIRMED-tier cards **unchanged (5)**. Also
+  banked from the freeze: the peak≥15 phrase set is **not** a clean "talking points" list for
+  occurrence-level metrics (measured ~92% carry base rate — boilerplate-dominated). Re-runnable:
+  `PYTHONHASHSEED=0 python scripts/search/hx_5_opposition_reuse.py`; registration
+  `data/reference/search/hx_5-registration.json`; evidence
+  `scripts/search/evidence/hx_5_opposition_reuse.result.json` + X:.
