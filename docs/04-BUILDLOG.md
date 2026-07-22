@@ -2808,27 +2808,44 @@ file the pass changes is immediately re-scanned and must come back clean.
 
 ### 6. ⛔ Two findings about the R-L blocker itself
 
-**(a) `statements.jsonl.gz` is a carrier nobody had measured.** 96.6 MB of gzip inside `state.tar.gz`.
-A scanner that reads files as text sees gzip as noise and reports it clean — which is why S38's
-whole-worktree scan lists seven carriers and not this one. The redactor decompresses, scans and
-recompresses it.
+Full census of the real `data-latest` assets, production gate, 48 files, 890 MB:
 
-**(b) The assets carry ~5× what the R-L spec was written against, and the numbers reconcile exactly.**
-S39's gate spec says "the name 44×/42×". Measured on the real `data-latest` assets with the production
-gate, `data/raw/congress-press/2026-07.jsonl` alone holds **205 occurrences across 52 of its 2,414
-records** — and the per-form breakdown explains the gap precisely: **form `447bf804…` accounts for 42
-of them, which is S38's number to the unit.** S38 measured the ONE form it was scrubbing from git
-history; **all four admitted forms — both suppressed people — are present**, adding 163 more. Also
-measured: `ledger.json` 156, `extractions.jsonl` 127.
+| file | ships in | occurrences |
+|---|---|---|
+| `data/raw/congress-press/2026-07.jsonl` | raw.tar.gz | 205 |
+| `data/state/statements.jsonl.gz` | state.tar.gz | 205 |
+| `data/state/ledger.json` | state.tar.gz | 156 |
+| `data/state/extractions.jsonl` | state.tar.gz | 127 |
+| **total** | | **693, in 4 of 48 files** |
+
+`data/reference` measures **0 across 26 files**, so the redactor never modifies a tracked file and
+cannot fight the `git checkout -- data/reference` restore. **Only the July 2026 raw shard is
+contaminated — all 20 earlier monthly shards are clean**, which matches the rider's "1 monthly shard"
+and confirms the incident is localized in time.
+
+**(a) `statements.jsonl.gz` is a carrier nobody had measured, and it ties for the largest.** 96.6 MB of
+gzip inside `state.tar.gz`. A scanner that reads files as text sees gzip as noise and reports it clean
+— which is why S38's whole-worktree scan lists seven carriers and not this one. It holds 205, the same
+count as the raw month it is normalized from. The redactor decompresses, scans and recompresses.
+
+**(b) The assets carry ~8× what the R-L spec was written against, and the numbers reconcile exactly.**
+S39's rider says "the name 44×/42×" — 86. The measured total is **693**. The per-form breakdown
+explains the gap to the unit: in `2026-07.jsonl` (205 occurrences across 52 of its 2,414 records),
+**form `447bf804…` accounts for 42, which is S38's number exactly.** S38 measured the ONE form it was
+scrubbing from git history; **all four admitted forms — both suppressed people — are present.**
 
 This is not a defect in S38, whose job was the git scrub. It does mean the #132 gate spec's figures
 describe one form, not the payload.
 
 ### 7. Cost, measured on the real assets
 
-The uncompressed payload is ~890 MB (state 593 + raw 300). A whole-string memo — the ledger carries
-every n-gram twice and `daily` is millions of bioguides from a vocabulary of a few thousand — took
-`ledger.json` from **204 s to 52 s** at an identical 156 occurrences. Steady state per run is the files
+The uncompressed payload is ~890 MB (state 593 + raw 300); a full bootstrap pass measured **861 s**
+under contention from other probes. A whole-string memo — the ledger carries every n-gram twice and
+`daily` is millions of bioguides from a vocabulary of a few thousand — took
+`ledger.json` from **204 s to 52 s** at an identical 156 occurrences. Peak memory in the production
+shape is **4.21 GB** against the runner's 16 GB, and `redact_obj` returns clean containers **as
+themselves** rather than rebuilding them — without that, the ledger is held twice (measured ~7 GB).
+Steady state per run is the files
 that change every run (ledger, extractions, statements, the current month's raw); the file-level skip
 cache, keyed on the **form list's fingerprint** as well as the file's, carries the rest. Admitting a
 new name invalidates the whole cache, which is the one moment a stale "already clean" answer would be
