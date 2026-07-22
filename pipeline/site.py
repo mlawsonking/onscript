@@ -29,6 +29,7 @@ from pathlib import Path
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipeline import boilerplate, build, config, distill, nomenclature, privacy, util, verify  # noqa: E402
+from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
 try:
@@ -102,6 +103,7 @@ def _pct(value) -> str:
 ROSTER = _load_json(ROSTER_FILE) or {}
 TAXONOMY = _load_json(TAXONOMY_FILE) or {}
 CORRECTIONS = _load_json(CORRECTIONS_FILE) or []
+PHRASE_EVIDENCE = _load_json(DERIVED / "phrase-evidence.json") or {"phrases": {}}
 TOPIC_LABEL = {t.get("id"): t.get("label", t.get("id")) for t in TAXONOMY.get("topics", [])}
 
 
@@ -1046,37 +1048,6 @@ def sync_table(day_data, slugs_with_pages, depth: int) -> str:
 # ---------------------------------------------------------------------------
 # The Today / per-day view (shared)
 # ---------------------------------------------------------------------------
-def public_phrase_window(pdata: dict) -> dict:
-    """Pure render-time Stage-1 view of a phrase's retained full-history series.
-
-    The stored phrase record is deliberately untouched: Archive work needs the full history. Public
-    phrase statistics, however, must all use the same explicit window while that feature is dark.
-    """
-    rows = [dict(r) for r in (pdata.get("series") or [])
-            if isinstance(r, dict) and isinstance(r.get("day"), str)
-            and r.get("day") >= config.STAGE1_EPOCH]
-    rows.sort(key=lambda r: r.get("day") or "")
-
-    peak_units = None
-    peak_day = ""
-    for row in rows:
-        counts = []
-        for party in config.ALL_PARTIES:
-            try:
-                counts.append(max(0, int(row.get(party) or 0)))
-            except (TypeError, ValueError):
-                counts.append(0)
-        row_peak = max(counts or [0])
-        if peak_units is None or row_peak > peak_units:
-            peak_units, peak_day = row_peak, row.get("day") or ""
-    return {
-        "series": rows,
-        "first_day": (rows[0].get("day") or "") if rows else "",
-        "peak_units": peak_units,
-        "peak_day": peak_day,
-    }
-
-
 def phrase_search_index() -> list[dict]:
     """The client-side search index: one compact row per phrase that HAS a page.
 
@@ -1126,7 +1097,8 @@ def phrase_search_body(rows: list[dict]) -> str:
     payload = json.dumps(rows, separators=(",", ":"), ensure_ascii=False).replace("<", "\\u003c")
     return f"""<h1>Phrase search</h1>
 <p class="subhead">Search every phrase with a tracked page &mdash; {len(rows)} of them. Each result opens
-that phrase&rsquo;s adoption curve, first sayer, and the members who carried it.</p>
+that phrase&rsquo;s public-window adoption curve and first record; where at least three distinct offices
+can be grounded, the page also carries peak-day source receipts.</p>
 <p class="muted"><small>This searches phrases we have built pages for, not the full n-gram ledger:
 a phrase becomes trackable once at least three members of one party used it on a day. So a phrase
 being absent here means it never cleared that bar &mdash; not that nobody ever said it.</small></p>
@@ -1464,7 +1436,71 @@ def _origination_line(pdata) -> str:
     return f"{esc(fs_date)} by {member_name(fs_bio)}"
 
 
-def phrase_page_body(pdata, depth=1):
+def phrase_evidence_body(pdata: dict, evidence: dict | None = None) -> str:
+    """Render a bounded, metadata-only peak-day receipt set, or nothing below quorum."""
+    ngram, slug = pdata.get("ngram") or "", pdata.get("slug") or ""
+    # Art. XIII is intentionally repeated at render even though the builder checks before write.
+    if not ngram or privacy.is_suppressed(ngram):
+        return ""
+    source = PHRASE_EVIDENCE if evidence is None else evidence
+    records = source.get("phrases", {}) if isinstance(source, dict) else {}
+    record = records.get(slug) if isinstance(records, dict) else None
+    if not isinstance(record, dict) or int(record.get("grounded_units") or 0) < 3:
+        return ""
+
+    safe = []
+    for receipt in record.get("receipts") or []:
+        if not isinstance(receipt, dict):
+            continue
+        url = _safe_http_url(receipt.get("url"))
+        values = [receipt.get(k) for k in ("member", "party", "state", "date", "url")]
+        if not url or privacy.is_suppressed(" ".join(str(v or "") for v in values)):
+            continue
+        safe.append({**receipt, "url": url})
+    if len(safe) < 3:
+        return ""
+
+    # At most three per side: bounded and symmetric even when one party supplied most of the units.
+    visible = []
+    for party in config.COMPOSITE_PARTIES:
+        visible.extend([r for r in safe if r.get("party") == party][:3])
+    if len(visible) < 3:
+        visible = safe[:6]
+    total = int(record.get("grounded_units") or 0)
+    day = record.get("peak_day") or ""
+
+    symmetry = _load_json(DERIVED / "symmetry" / f"{day}.json") if day else None
+    parties = symmetry.get("parties", {}) if isinstance(symmetry, dict) else {}
+    count_bits = []
+    for party in config.COMPOSITE_PARTIES:
+        count = int((record.get("counts") or {}).get(party) or 0)
+        if not count:
+            continue
+        denom = (parties.get(party) or {}).get("caucus_size") if isinstance(parties, dict) else None
+        count_bits.append(f"{esc(party)}: {esc(count)} of {esc(denom)}" if denom else f"{esc(party)}: {esc(count)}")
+    denominator_line = f' <span class="faint">({"; ".join(count_bits)})</span>' if count_bits else ""
+
+    rows = []
+    for receipt in visible:
+        party, state = receipt.get("party"), receipt.get("state")
+        archived = _wayback_url(receipt["url"], receipt.get("date"))
+        rows.append(
+            '<div class="receipt"><div class="rhead">'
+            f'{esc(receipt.get("member"))} ({esc(party)}-{esc(state)}) &middot; {esc(receipt.get("date"))} '
+            f'&middot; <a href="{esc(receipt["url"])}" rel="nofollow noopener">source</a> '
+            f'&middot; <a href="{esc(archived)}" rel="nofollow noopener">archived</a>'
+            '</div></div>'
+        )
+    return (
+        '<h2>Peak-day evidence</h2>'
+        f'<p class="subhead">On {esc(day)}, this exact phrase is grounded in {esc(total)} distinct '
+        f'source unit{"" if total == 1 else "s"} (an office or joint-release family). Showing '
+        f'{esc(len(visible))} of {esc(total)} source receipts.{denominator_line}</p>'
+        + "".join(rows)
+    )
+
+
+def phrase_page_body(pdata, depth=1, evidence=None):
     ngram = pdata.get("ngram", "")
     fs = pdata.get("first_seen") or {}
     source_fs_date = fs.get("date", "")
@@ -1483,7 +1519,8 @@ def phrase_page_body(pdata, depth=1):
         _v = nomenclature.is_nomenclature(ngram, int(_cong)) if _cong else None
         if _v:
             parts.append(f'<p class="nomnote">{_nomenclature_chip(_v).strip()}</p>')
-    parts.append('<p class="subhead">Adoption curve: how many independent members of each party used this exact phrase, by day.</p>')
+    parts.append('<p class="subhead">Adoption curve: how many independent members of each party used this exact phrase, by day. '
+                 'Where at least three distinct offices can be grounded, peak-day source receipts appear below.</p>')
 
     parts.append('<div class="chartbox scroll">')
     parts.append(curve_svg(series))
@@ -1525,6 +1562,8 @@ def phrase_page_body(pdata, depth=1):
                      'until the Archive release; it is not part of these public-window statistics.</span></dd>')
     parts.append(f"<dt>Data points</dt><dd>{len([r for r in series if isinstance(r, dict)])} active days</dd>")
     parts.append("</dl>")
+
+    parts.append(phrase_evidence_body(pdata, evidence=evidence))
 
     parts.append(
         f'<p class="muted"><small>Public Stage-1 phrase statistics begin {esc(config.STAGE1_EPOCH)}. '
@@ -2548,7 +2587,7 @@ def build_site():
         idx = phrase_search_index()
         (OUT / "phrases" / "search.html").write_text(
             page("OnScript · Phrase search", phrase_search_body(idx), depth=1,
-                 description="Search every tracked political phrase: adoption curve, first sayer, receipts.",
+                 description="Search tracked political phrases: public-window curves and conditional peak-day source receipts.",
                  path="phrases/search.html"),
             encoding="utf-8",
         )

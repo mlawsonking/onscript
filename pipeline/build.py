@@ -592,6 +592,13 @@ def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_
     for ngram in surfaced:
         _u.write_json(phrases_dir / f"{phrase_slug(ngram)}.json", phrase_page(ngram, ledger[ngram]))
 
+    # Peak-day source evidence for every public phrase page. Alexandria's ledger-only rebuild passes
+    # no statements and deliberately leaves this Stage-1 slice alone; normal RUN A always supplies the
+    # normalized Lane-1 corpus. The builder owns its incremental state cache and writes no source text.
+    if statements:
+        from . import phrase_evidence
+        phrase_evidence.build_phrase_evidence(statements, out_dir)
+
     # Per-day summary for the focus day (Daily Lines merged later by assemble).
     #
     # IMMUTABILITY OF A PUBLISHED DAY (docs/23 §7.5 R-C). This write is a full-object OVERWRITE that
