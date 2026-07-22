@@ -100,6 +100,12 @@ jobs:
       - name: Post the Daily Line threads to Bluesky (both accounts)
         run: python pipeline/post_bluesky.py || echo "posting skipped/failed (skip-and-log)"
 
+      # R-L — see the matching note in collect.yml. This job uploads state only, so it redacts only
+      # what it uploads; data/raw is restored here but published by RUN A, which redacts it there.
+      # The skip cache is shared through the tarball and carries raw's entries across untouched.
+      - name: Redact the release payload (Art. XIII, R-L)
+        run: python -m pipeline.redact data/state data/reference
+
       - name: Persist updated extraction cache
         run: |
           tar -czf state.tar.gz data/state data/reference

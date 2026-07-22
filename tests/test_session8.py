@@ -74,28 +74,150 @@ def test_post_thread_reraises_a_genuine_failure_not_masked_as_recovery():
         post_bluesky._call, post_bluesky._http = saved
 
 
-def test_post_thread_recovers_root_on_rkey_collision_without_duplicating():
-    """§Session-8: if the root create's response is lost, a re-run's root create collides on the
-    deterministic rkey; we RECOVER the root via getRecord — never a duplicate head post, never
-    re-posted replies (posts_written=0)."""
+# --- sentence-aware thread packing (S35 Wednesday order, item 3) -----------------------------
+def test_thread_packing_breaks_at_sentences_not_mid_clause():
+    """The live launch thread read '...our 99 statements today do' / 'not converge on additional
+    shared messages.' A word-packer fills to the last word that fits; the first post is the one that
+    gets screenshotted, so it should end on a whole thought."""
+    text = ("We speak today mainly on the tide act in the house of representatives, echoed by 4 of "
+            "us. The most synchronized phrase across our statements is homeland security dhs, "
+            "recorded 7 times, first recorded in our corpus from Ted Cruz. Beyond that, our 99 "
+            "statements today do not converge on additional shared messages.")
+    room = 300 - len("\n" + post_bluesky._POST_MARK)      # the width production actually packs to
+    posts = post_bluesky._split(text, limit=room)
+    assert len(posts) > 1
+    for p in posts[:-1]:
+        assert p.rstrip().endswith((".", "!", "?")), f"post cut mid-sentence: {p!r}"
+    assert all(len(p) <= room for p in posts)
+
+
+def test_packing_never_loses_or_reorders_a_word():
+    """The load-bearing invariant. An ugly break is cosmetic; a dropped word is a fabricated quote."""
+    cases = [
+        "One sentence only.",
+        "Short. " * 60,
+        "We released 5 statements today. It was a Saturday.",
+        "No trailing punctuation on this one",
+        "   ragged\n\nwhitespace   everywhere\t ",
+    ]
+    for text in cases:
+        posts = post_bluesky._split(text, limit=300)
+        assert " ".join(posts).split() == text.split(), text[:40]
+        assert all(p for p in posts) and all(len(p) <= 300 for p in posts)
+
+    # A token longer than a whole post has to be cut INSIDE the word, so the word list necessarily
+    # changes; what must still hold is that not one character is dropped, added or reordered.
+    oversize = "A " + "verylongword" * 40 + " tail."
+    posts = post_bluesky._split(oversize, limit=300)
+    squash = lambda s: "".join(s.split())                                  # noqa: E731
+    assert squash("".join(posts)) == squash(oversize)
+    assert all(p for p in posts) and all(len(p) <= 300 for p in posts)
+
+
+def test_packing_does_not_split_after_an_abbreviation():
+    text = ("Rep. Smith and Sen. Jones of the U.S. House spoke today about No. 5 in the queue, and "
+            "we carried that message across a very large number of separate statements this "
+            "afternoon, which pushes this line onto a second post so the boundary actually matters.")
+    posts = post_bluesky._split(text, limit=300)
+    for p in posts:
+        assert not p.rstrip().endswith(("Rep.", "Sen.", "U.S.", "No.")), f"split after abbrev: {p!r}"
+
+
+def test_an_oversize_sentence_still_gets_packed_rather_than_dropped():
+    long_sentence = "we say " + "the same words over and over " * 30 + "today."
+    posts = post_bluesky._split(long_sentence, limit=300)
+    assert len(posts) > 1 and " ".join(posts).split() == long_sentence.split()
+
+
+def test_build_thread_says_first_recorded_IN_OUR_CORPUS():
+    """First-appearance is measured against our record, which starts at STAGE1_EPOCH. Unqualified
+    'first recorded' reads as a claim about the phrase's origin in American politics. §S34 (3)."""
+    day_json = {"daily_lines": {"D": {"composite": "We spoke today."}},
+                "top_synchronized": [{"party": "D", "ngram": "homeland security dhs", "day_peak": 7,
+                                      "first_seen": {"date": "2025-01-03"}}]}
+    thread = post_bluesky.build_thread("2026-07-20", "D", day_json)
+    receipts = [p for p in thread if "Receipts:" in p][0]
+    assert "first recorded in our corpus 2025-01-03" in receipts
+
+
+def test_receipts_link_follows_the_configured_site_url():
+    """One source of truth: a second hardcoded literal is a receipts link that 404s the day the
+    domain moves, on the only post that carries the citations."""
+    from pipeline import config as _config
+    assert post_bluesky.SITE == _config.SITE_URL
+    day_json = {"daily_lines": {"D": {"composite": "We spoke today."}}, "top_synchronized": []}
+    thread = post_bluesky.build_thread("2026-07-20", "D", day_json)
+    assert f"{_config.SITE_URL}/day/2026-07-20.html" in " ".join(thread)
+
+
+_ROOT_RKEY = "3mqng2mws2223"
+_ROOT_URI = f"at://did/app.bsky.feed.post/{_ROOT_RKEY}"
+
+
+def _collision_fakes(live):
+    """Fakes for an rkey COLLISION: the root create fails, getRecord finds the root, and listRecords
+    reports `live` (rkey, text) replies already hanging off it. Returns (call, http, posted)."""
+    posted = []
+
     def fake_call(url, body, token=None):
-        raise RuntimeError("could not process request (record already exists)")
+        if body.get("rkey"):                      # the deterministic ROOT create -> collides
+            raise RuntimeError("could not process request (record already exists)")
+        posted.append(body["record"]["text"])
+        return {"uri": f"at://did/app.bsky.feed.post/new{len(posted)}", "cid": f"c{len(posted)}"}
 
     def fake_http(url, jwt=None):
-        return {"uri": "at://did/app.bsky.feed.post/onscript-2026-07-14-d", "cid": "cid1"}
+        if "getRecord" in url:
+            return {"uri": _ROOT_URI, "cid": "cid-root"}
+        recs = [{"uri": f"at://did/app.bsky.feed.post/{k}", "cid": f"c-{k}",
+                 "value": {"text": t, "reply": {"root": {"uri": _ROOT_URI}}}} for k, t in live]
+        return {"records": list(reversed(recs))}  # listRecords reads newest-first
 
+    return fake_call, fake_http, posted
+
+
+def _run_collision(live, thread=("head", "reply1", "reply2")):
     rooted = []
+    fake_call, fake_http, posted = _collision_fakes(live)
     saved = (post_bluesky._call, post_bluesky._http)
     post_bluesky._call, post_bluesky._http = fake_call, fake_http
     try:
-        out = post_bluesky._post_thread({"base": "b", "jwt": "j", "did": "did"},
-                                        ["head", "reply1", "reply2"],
-                                        on_root=lambda u: rooted.append(u), root_rkey="onscript-2026-07-14-d")
-        assert out["root_uri"].endswith("onscript-2026-07-14-d")
-        assert out["posts_written"] == 0 and out.get("recovered") is True  # replies NOT re-posted
-        assert rooted == [out["root_uri"]]                                 # root_uri persisted for idempotency
+        out = post_bluesky._post_thread({"base": "b", "jwt": "j", "did": "did"}, list(thread),
+                                        on_root=lambda u: rooted.append(u), root_rkey=_ROOT_RKEY)
+        return out, posted, rooted
     finally:
         post_bluesky._call, post_bluesky._http = saved
+
+
+def test_post_thread_recovers_root_on_rkey_collision_and_finishes_the_thread():
+    """§Session-8 recovers the root without duplicating it; §S30b follow-up finishes the job.
+
+    The first cut returned at recovery with posts_written=0. That left exactly the state it was
+    supposed to prevent: a bare head post, no receipts reply — the only post carrying the citation
+    link — and no future run would add it, because the manifest now recorded the party as posted.
+    The head is never re-posted; the MISSING replies are."""
+    out, posted, rooted = _run_collision(live=[])
+    assert out["root_uri"] == _ROOT_URI and out.get("recovered") is True
+    assert rooted == [_ROOT_URI]                       # root_uri persisted before any reply
+    assert posted == ["reply1", "reply2"]              # the truncated tail is completed
+    assert out["posts_written"] == 2 and out["resumed_from"] == 1
+
+
+def test_a_resumed_thread_never_re_posts_replies_that_are_already_live():
+    out, posted, _ = _run_collision(live=[("3mqng2mws2224", "reply1")])
+    assert posted == ["reply2"]                        # only the missing one
+    assert out["posts_written"] == 1 and out["resumed_from"] == 2
+
+
+def test_a_resume_refuses_to_splice_a_thread_that_was_re_authored():
+    """If the live replies are not a prefix of the thread in hand, the day was re-authored between
+    runs. Appending would staple two different threads together, so it stops and leaves a partial
+    for the dead-man + the reconcile backstop."""
+    raised = ""
+    try:
+        _run_collision(live=[("3mqng2mws2224", "a reply from some other version of this day")])
+    except RuntimeError as e:
+        raised = str(e)
+    assert "refusing to append" in raised
 
 
 # --- signed post archive -------------------------------------------------------------------

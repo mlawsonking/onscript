@@ -14,6 +14,7 @@ Covers the launch-critical gate and the honesty/receipts fixes, plus the Session
   * posting main() — idempotent re-runs never double-post (MEDIUM-2); a thrown post still fires the
     dead-man because the error result carries creds_present (HIGH-3).
 """
+import json
 import os
 import sys
 from pathlib import Path
@@ -607,6 +608,39 @@ def test_main_reconciles_a_prior_silent_post_before_todays_work():
         assert m["asymmetric"] is False   # today itself is clean/symmetric
     finally:
         restore()
+
+
+def test_reconcile_runs_against_a_REAL_directory_not_a_stubbed_one():
+    """The test that was missing, and the reason a launch shipped with this backstop dead.
+
+    _list_manifests returned glob STRINGS while util.read_json calls path.exists(); every manifest
+    raised AttributeError into the skip-and-log, so _reconcile_prior alerted on nothing, ever. Every
+    test above stubs BOTH seams with strings on both sides, so the two halves were never run against
+    each other and the suite stayed green while the feature did nothing. This one stubs only the
+    output (ntfy) and the location (config.DERIVED) — the filesystem, the path types, read_json and
+    write_json are all real."""
+    import tempfile
+    from pathlib import Path as _Path
+    tmp = _Path(tempfile.mkdtemp(prefix="onscript-reconcile-"))
+    (tmp / "manifest").mkdir()
+    (tmp / "manifest" / "post-2026-07-15.json").write_text(json.dumps({
+        "day": "2026-07-15", "asymmetric": True,
+        "results": [{"party": "D", "posted": True, "root_uri": "at://d/x"},
+                    {"party": "R", "posted": False}]}), encoding="utf-8")
+
+    alerts = []
+    saved_ntfy, saved_derived = post_bluesky.ops.ntfy, post_bluesky.config.DERIVED
+    post_bluesky.ops.ntfy = lambda *a, **k: alerts.append(a)
+    post_bluesky.config.DERIVED = tmp
+    try:
+        assert post_bluesky._reconcile_prior("2026-07-16", posting_enabled=True) == ["2026-07-15"]
+        assert len(alerts) == 1 and "UNRECONCILED" in alerts[0][1]
+        # ... and the reconciled marker really landed on disk, so it cannot re-alert tomorrow.
+        again = json.loads((tmp / "manifest" / "post-2026-07-15.json").read_text(encoding="utf-8"))
+        assert again["reconciled"] is True
+        assert post_bluesky._reconcile_prior("2026-07-16", posting_enabled=True) == []
+    finally:
+        post_bluesky.ops.ntfy, post_bluesky.config.DERIVED = saved_ntfy, saved_derived
 
 
 def test_reconcile_scans_all_and_survives_a_corrupt_manifest():

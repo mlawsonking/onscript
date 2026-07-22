@@ -458,7 +458,10 @@ def test_no_suppressed_name_is_written_anywhere_in_the_repo():
         if not p.exists():
             continue
         try:
-            if privacy.is_suppressed(p.read_text(encoding="utf-8", errors="ignore")):
+            # contains_admitted_form, NOT is_suppressed: the question here is "is a name written in
+            # this file", and is_suppressed also fires on a redaction LABEL — which is the proof a
+            # name is absent. Using it would flag the code that writes the label. §R-L.
+            if privacy.contains_admitted_form(p.read_text(encoding="utf-8", errors="ignore")):
                 bad.append(str(p.relative_to(ROOT)))
         except OSError:
             continue

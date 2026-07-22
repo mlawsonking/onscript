@@ -78,7 +78,11 @@ _PROMPT_FILES = {
     # verifier grounds quotes only against verbatim member speech (never against code-computed strings,
     # by design — HIGH-1), so it was rejected and the Daily Line fell back every time. The deterministic
     # voice already renders it unquoted; the prompt now says so.
-    "P2": "P2_daily_line.v1.2.txt",
+    # v1.3 (S35 Wednesday order, item 5): the first-sayer must be qualified "in our corpus". The
+    # launch threads were correct and symmetric — the D voice credited a Republican, the R voice a
+    # Democrat, because first-appearance is measured corpus-wide — but unqualified "first recorded
+    # from X" reads as a claim that X coined the phrase, and our record starts at STAGE1_EPOCH.
+    "P2": "P2_daily_line.v1.3.txt",
     "P3": "P3_quiet_day.v1.1.txt",    # v1.1: same fourth-wall + number-style rules
     "P4": "P4_era_chapter.v1.1.txt",  # Alexandria era chapters (subscription-generated, §1.3);
     #                                   v1.1 hardened rules 2/3 (no quoted names, no invented digits)

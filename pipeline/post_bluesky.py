@@ -19,6 +19,7 @@ touches the Anthropic API. Skip-and-log: a failure never crashes the run.
 from __future__ import annotations
 
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -30,14 +31,14 @@ except Exception:
 
 from pipeline import config, ops, privacy, util  # noqa: E402
 
-SITE = "https://onscript.news"
+SITE = config.SITE_URL      # one source of truth: a receipts link that disagrees with the site is a 404
 _ACCOUNTS = {
     "D": {"handle_env": "BSKY_BLUE_HANDLE", "pw_env": "BSKY_BLUE_PASSWORD", "label": "blue"},
     "R": {"handle_env": "BSKY_RED_HANDLE", "pw_env": "BSKY_RED_PASSWORD", "label": "red"},
 }
 
 
-def _split(text: str, limit: int = 300) -> list[str]:
+def _pack_words(text: str, limit: int = 300) -> list[str]:
     """Pack words into <=limit-char posts. Invariant: never emit an EMPTY post and never emit an
     OVER-length one — a lone token longer than the limit (a URL, a pathological run) is hard-sliced.
     An empty leading post or an uncut oversize word would fail createRecord for that party alone,
@@ -55,6 +56,66 @@ def _split(text: str, limit: int = 300) -> list[str]:
         cur += " " + w
     if cur.strip():
         out.append(cur.strip())
+    return out or [""]
+
+
+# A sentence ends at .!? followed by whitespace and something that can start a sentence. The
+# abbreviation guard is the whole reason this is a function and not a one-line regex: the composite
+# voice writes "Rep." / "U.S." / "No. 5" constantly, and splitting there would cut a post after
+# "the U.S." — a worse break than the mid-sentence one this is fixing.
+_SENT_BOUNDARY = re.compile(r'(?<=[.!?])\s+(?=[A-Z0-9"“‘\'(])')
+_ABBREV = {
+    "u.s.", "u.s.a.", "d.c.", "mr.", "mrs.", "ms.", "dr.", "sen.", "rep.", "gov.", "st.", "jr.",
+    "sr.", "no.", "vs.", "etc.", "inc.", "e.g.", "i.e.", "fig.", "art.", "sec.", "dept.",
+}
+
+
+def _sentences(text: str) -> list[str]:
+    """Split into sentences, re-joining a false break after a known abbreviation or a lone initial."""
+    parts = _SENT_BOUNDARY.split(text)
+    out: list[str] = []
+    for part in parts:
+        if out:
+            tail = out[-1].rsplit(" ", 1)[-1].lower()
+            if tail in _ABBREV or re.fullmatch(r"[a-z]\.", tail):
+                out[-1] = out[-1] + " " + part
+                continue
+        out.append(part)
+    return [s for s in out if s.strip()]
+
+
+def _split(text: str, limit: int = 300) -> list[str]:
+    """Pack text into <=limit-char posts, breaking at SENTENCE boundaries wherever they fit.
+
+    The live launch threads read "...our 99 statements today do" / "not converge on additional shared
+    messages." — a word-packer fills each post to the last word that fits, so a thread that spans two
+    posts almost always snaps mid-clause. Sentences are the natural unit of a composite line, and a
+    reader who sees only the first post (the one that gets screenshotted) should get a whole thought.
+
+    A sentence longer than one post still gets word-packed: the break has to happen somewhere, and a
+    dropped or reordered word would be far worse than an ugly one. That is the load-bearing invariant
+    here — the concatenation of the returned posts is always exactly the input's words, in order."""
+    text = " ".join((text or "").split())           # normalize whitespace (was implicit in .split())
+    if not text:
+        return [""]
+    out: list[str] = []
+    cur = ""
+    for sent in _sentences(text):
+        joined = f"{cur} {sent}" if cur else sent
+        if len(joined) <= limit:
+            cur = joined
+            continue
+        if cur:
+            out.append(cur)
+            cur = ""
+        if len(sent) <= limit:
+            cur = sent
+        else:
+            chunks = _pack_words(sent, limit)       # unavoidable mid-sentence break
+            out.extend(chunks[:-1])
+            cur = chunks[-1]
+    if cur:
+        out.append(cur)
     return out or [""]
 
 
@@ -106,9 +167,13 @@ def build_thread(day: str, party: str, day_json: dict) -> list[str]:
     top = next((r for r in (day_json.get("top_synchronized") or []) if r.get("party") == party), None)
     receipts = f"Receipts: {SITE}/day/{day}.html"
     if top and top.get("ngram"):
+        # "in our corpus", always. First-appearance is measured against OUR record, which begins at
+        # STAGE1_EPOCH — a phrase already in use before then dates to our first day, not to its own
+        # first day. Unqualified "first recorded" reads as a claim about the phrase's origin in
+        # American politics, which is not a claim this instrument can make. §S34 follow-up (3).
         fs = top.get("first_seen") or {}
         receipts += (f'\nMost synchronized: "{top.get("ngram")}" — {top.get("day_peak")} of us'
-                     f' (first recorded {fs.get("date")}).')
+                     f' (first recorded in our corpus {fs.get("date")}).')
     posts.append(receipts)
     if dl.get("generator") == "dry_run":
         posts.append(f"Automated composite — methodology + symmetry audit: {SITE}/methodology.html")
@@ -216,41 +281,97 @@ def _root_rkey(day: str, party: str) -> str:
     return "".join(_S32[(n >> (5 * (12 - i))) & 0x1F] for i in range(13))
 
 
+def _existing_replies(session: dict, root_uri: str, root_rkey: str) -> list[dict]:  # pragma: no cover
+    """The replies to `root_uri` already in this account's repo, oldest first.
+
+    Bounded by construction: a reply is created after its root, so its TID-rkey sorts ABOVE the
+    root's. Walking the collection newest-first and stopping at the root's own rkey therefore reads
+    only records from this thread's lifetime, not the account's whole history."""
+    base, jwt, did = session["base"], session["jwt"], session["did"]
+    found, cursor = [], None
+    for _ in range(10):                                   # hard page cap; a thread is a handful of posts
+        url = (f"{base}/com.atproto.repo.listRecords?repo={did}"
+               f"&collection=app.bsky.feed.post&limit=100")
+        if cursor:
+            url += f"&cursor={cursor}"
+        page = _http(url, jwt) or {}
+        records = page.get("records") or []
+        for r in records:
+            rkey = str(r.get("uri", "")).rsplit("/", 1)[-1]
+            if rkey <= root_rkey:                         # older than the root: cannot be its reply
+                return sorted(found, key=lambda x: x["rkey"])
+            reply = ((r.get("value") or {}).get("reply") or {})
+            if ((reply.get("root") or {}).get("uri")) == root_uri:
+                found.append({"rkey": rkey, "uri": r.get("uri"), "cid": r.get("cid"),
+                              "text": (r.get("value") or {}).get("text") or ""})
+        cursor = page.get("cursor")
+        if not cursor or not records:
+            break
+    return sorted(found, key=lambda x: x["rkey"])
+
+
 def _post_thread(session: dict, thread: list[str], on_root=None, root_rkey=None) -> dict:
     """Post a thread. The root uses a DETERMINISTIC rkey (idempotent server-side); on collision — the
-    root already exists from a prior run whose response was lost — it is RECOVERED via getRecord and we
-    STOP (never a duplicate head post, never re-posted replies). on_root(uri) fires the instant the root
-    URI is known so the caller can persist it before any reply. Returns {root_uri, posts_written}."""
+    root already exists from a prior run whose response was lost — it is RECOVERED via getRecord and
+    the thread RESUMES after whatever replies are already live. on_root(uri) fires the instant the
+    root URI is known so the caller can persist it before any reply.
+    Returns {root_uri, posts_written, recovered, resumed_from}.
+
+    RESUMING, not stopping, is the fix for a truncation the first cut shipped: recovery returned
+    immediately with posts_written=0, so the run that lost its response left a bare head post with no
+    receipts reply — the one post in the thread that carries the citation link — and no later run
+    would ever add it, because the manifest then recorded the party as posted. §S30b follow-up."""
     base, jwt, did = session["base"], session["jwt"], session["did"]
     root = parent = None
     written = 0
-    for text in thread:
+    recovered = False
+    start = 0
+
+    if root_rkey and thread:
+        rec = {"$type": "app.bsky.feed.post", "text": thread[0],
+               "createdAt": util.now_utc_iso(), "langs": ["en"]}
+        body = {"repo": did, "collection": "app.bsky.feed.post", "record": rec, "rkey": root_rkey}
+        try:
+            res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt, body=body)
+            root = parent = {"uri": res["uri"], "cid": res["cid"]}
+            written, start = 1, 1
+            if on_root:
+                on_root(root["uri"])          # durable checkpoint BEFORE any reply
+        except Exception as create_err:
+            # The create failed. Distinguish a rkey COLLISION (root already live from a prior run
+            # whose response was lost) from a GENUINE failure (bad content, rate limit, network) by
+            # PROBING existence — a collision surfaces as 400 OR 500 depending on the PDS (verified
+            # live #108), so we can't match on the code/message. If it does NOT exist, the create
+            # genuinely failed — re-raise so the caller skip-and-logs + the dead-man fires.
+            try:
+                got = _http(f"{base}/com.atproto.repo.getRecord?repo={did}"
+                            f"&collection=app.bsky.feed.post&rkey={root_rkey}", jwt)
+            except Exception:
+                raise create_err
+            recovered = True
+            root = parent = {"uri": got["uri"], "cid": got["cid"]}
+            if on_root:
+                on_root(root["uri"])
+            live = _existing_replies(session, root["uri"], root_rkey)
+            expected = thread[1:1 + len(live)]
+            if [r["text"] for r in live] != expected:
+                # The live thread is not a prefix of the one we are holding — the day was re-authored
+                # between runs. Appending would splice two different threads together, so stop and
+                # leave it to a human. on_root already recorded root_uri + partial=True, so the
+                # dead-man fires and the reconcile backstop keeps flagging it until it is dealt with.
+                raise RuntimeError(
+                    f"recovered root {root['uri']} has {len(live)} live repl(ies) that do not match "
+                    f"this thread — refusing to append (re-authored day?)")
+            if live:
+                parent = {"uri": live[-1]["uri"], "cid": live[-1]["cid"]}
+            start = 1 + len(live)
+
+    for text in thread[start:]:
         rec = {"$type": "app.bsky.feed.post", "text": text, "createdAt": util.now_utc_iso(), "langs": ["en"]}
         if root:
             rec["reply"] = {"root": root, "parent": parent}
         body = {"repo": did, "collection": "app.bsky.feed.post", "record": rec}
-        if root is None and root_rkey:
-            body["rkey"] = root_rkey
-            try:
-                res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt, body=body)
-            except Exception as create_err:
-                # The create failed. Distinguish a rkey COLLISION (root already live from a prior run
-                # whose response was lost) from a GENUINE failure (bad content, rate limit, network) by
-                # PROBING existence — a collision surfaces as 400 OR 500 depending on the PDS (verified
-                # live #108), so we can't match on the code/message. If the record now exists, recover
-                # it and STOP (never a duplicate head, never re-posted replies). If it does NOT exist,
-                # the create genuinely failed — re-raise so the caller skip-and-logs + the dead-man
-                # fires (posted=False, no root_uri). §Session-8c.
-                try:
-                    got = _http(f"{base}/com.atproto.repo.getRecord?repo={did}"
-                                f"&collection=app.bsky.feed.post&rkey={root_rkey}", jwt)
-                except Exception:
-                    raise create_err
-                if on_root:
-                    on_root(got["uri"])
-                return {"root_uri": got["uri"], "posts_written": 0, "recovered": True}
-        else:
-            res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt, body=body)
+        res = _call(f"{base}/com.atproto.repo.createRecord", token=jwt, body=body)
         ref = {"uri": res["uri"], "cid": res["cid"]}
         if root is None:
             root = ref
@@ -258,7 +379,8 @@ def _post_thread(session: dict, thread: list[str], on_root=None, root_rkey=None)
                 on_root(ref["uri"])   # durable checkpoint BEFORE any reply
         parent = ref
         written += 1
-    return {"root_uri": (root or {}).get("uri"), "posts_written": written}
+    return {"root_uri": (root or {}).get("uri"), "posts_written": written,
+            "recovered": recovered, "resumed_from": start}
 
 
 def resolve_day(arg: str | None) -> str:
@@ -287,8 +409,14 @@ def _deadman(posting_enabled: bool, results: list[dict], atomic_hold: bool) -> N
 
 
 def _list_manifests() -> list:  # pragma: no cover - real FS listing (seam stubbed in tests)
-    import glob
-    return sorted(glob.glob(str(config.DERIVED / "manifest" / "post-*.json")))
+    """Post manifests, as PATHS.
+
+    The type is the whole point. This returned glob STRINGS, and util.read_json calls path.exists(),
+    so every manifest raised AttributeError into the skip-and-log below and _reconcile_prior was a
+    silent no-op for its entire life — through the launch, with posting live. The unit tests passed
+    because they stubbed this seam AND read_json together, with strings on both sides; nothing ever
+    ran the two against each other. tests/test_wave0.py now also exercises this on a real directory."""
+    return sorted((config.DERIVED / "manifest").glob("post-*.json"))
 
 
 def _reconcile_prior(current_day: str, posting_enabled: bool) -> list:
@@ -469,8 +597,16 @@ def main() -> int:
                 _flush()  # durable BEFORE replies -> a re-run skips this party (no duplicate)
 
             out = _post_thread(sessions[p], thread, on_root=_on_root, root_rkey=_root_rkey(day, p))
-            result_by_party[p] = {"party": p, "thread": thread, "posts": out["posts_written"],
-                                  "posted": True, "root_uri": out["root_uri"], "creds_present": True}
+            # `posts` is the thread's LIVE length, not this run's write count: after a resume the run
+            # writes only the missing tail, but the thread standing on the account is the whole one,
+            # and that is what /posts.html mirrors. posts_written keeps the audit trail.
+            result_by_party[p] = {"party": p, "thread": thread, "posts": len(thread),
+                                  "posted": True, "root_uri": out["root_uri"], "creds_present": True,
+                                  "posts_written": out["posts_written"]}
+            if out.get("recovered"):
+                result_by_party[p]["recovered"] = True
+                print(f"[post:{p}] root already existed (rkey collision) — resumed at post "
+                      f"{out.get('resumed_from', 0) + 1} of {len(thread)}")
         except Exception as e:  # skip-and-log — a posting failure never crashes the run
             print(f"[post-failed:{p}] {e}")
             if not (result_by_party.get(p) or {}).get("root_uri"):

@@ -54,6 +54,19 @@ THE SALT LIVES OUTSIDE data/reference/ ON PURPOSE. `.github/workflows/assemble.y
 `tar -czf state.tar.gz data/state data/reference` and uploads it as a RELEASE ASSET — public on a
 public repo. A salt placed under data/reference/ would be gitignored (looking safe) and published
 anyway, inside a tarball nobody audits. Do not move it there.
+
+REDACTION (R-L, 2026-07-21). Those same release assets carry the name in their PAYLOAD — the raw
+mirror and the ledger are built from statements that name the person, and `git` cannot reach a
+release asset. The ruling: published release assets get the same privacy floor as every other
+published surface, applied on persist, while the pristine append-only archive on X: stays untouched.
+`redact()` is the span-replacing sibling of `is_suppressed()` that makes that possible, and it lives
+HERE, next to the predicate, for the same reason `_tokens` reuses verify.fold_typography: a detector
+and a redactor that disagree about what a match is would be worse than either alone.
+
+A REDACTION LABEL IS ITSELF SUPPRESSED. `is_suppressed()` returns True for a label, so a redacted
+row is dropped, held and purged exactly like the name it replaces. That is what keeps R-L a
+release-asset change and nothing more: labels flow back into the cloud's restored state, but no
+published site byte moves, because every display path already routes through this predicate.
 """
 from __future__ import annotations
 
@@ -235,6 +248,20 @@ def _assert_roster() -> None:
             )
 
 
+# A redaction label written by redact(). The suffix is the first 8 hex of the form's own HMAC — it
+# exists ONLY to keep distinct forms distinct, so that redacting two different names inside two
+# different JSON keys can never collapse them into one key (silent data loss on the next parse).
+# It discloses nothing: it is a prefix of a value already published in privacy-forms.json.
+# The pattern also matches the `<private-individual-A>` labels the 2026-07-21 history rewrite wrote,
+# so history and live data are read by one rule.
+_LABEL_RE = re.compile(r"<private-individual(?:-[0-9A-Za-z]+)?>")
+
+
+def label_for(form_hash: str) -> str:
+    """The stable, name-free stand-in for one suppressed form."""
+    return f"<private-individual-{str(form_hash)[:8]}>"
+
+
 def is_suppressed(text) -> bool:
     """THE predicate. Accepts any text: an n-gram, a talking-point label, a quote, a member
     sentence, or a paragraph of composite prose.
@@ -244,6 +271,22 @@ def is_suppressed(text) -> bool:
     possessive "<surname>’s" folds to tokens ["<surname>", "s"] so the 1-token window still matches.
     Never run this over the raw corpus —
     it is bounded by display rows (~hundreds/day x ~20 windows)."""
+    # A redaction label stands in for a name and inherits the name's treatment (see module docstring).
+    if isinstance(text, str) and text and _LABEL_RE.search(text):
+        if _SALT is None:
+            raise PrivacyGateError("privacy gate not loaded")
+        return True
+    return contains_admitted_form(text)
+
+
+def contains_admitted_form(text) -> bool:
+    """Is an admitted NAME form actually written here?
+
+    The narrower half of is_suppressed(), and the difference matters in exactly one place: the guard
+    that scans this repo's own source for plaintext names. A redaction label must be WITHHELD from
+    publication (so is_suppressed says yes) while being the very evidence that no name is present
+    (so this says no). Conflating them makes the repo-scan guard fire on the code that writes the
+    label — a false positive that would train someone to weaken the guard."""
     if not isinstance(text, str) or not text:
         return False
     if _SALT is None:
@@ -254,6 +297,153 @@ def is_suppressed(text) -> bool:
             if _mac(" ".join(t[i:i + n])) in _HASHES:
                 return True
     return False
+
+
+# --- redaction (R-L) ---------------------------------------------------------------------------
+# `is_suppressed` answers "is a name in here"; `redact` answers "where, exactly". The second question
+# is only asked on the persist path, over hundreds of megabytes, so it needs machinery the predicate
+# does not: offsets that survive typography folding, and a BOUNDED memo. _MAC_MEMO is deliberately
+# unbounded (it serves a few hundred display rows a day); pointing it at the corpus would grow one
+# entry per distinct window until the runner died. These two never share a cache.
+_SCAN_MEMO: dict[str, str | None] = {}
+_SCAN_MEMO_MAX = 400_000
+_SCAN_GEN: int = -1
+
+# Whole-string results, for the short repeated strings that dominate the ledger walk: every entry
+# carries its n-gram twice (key and "ngram"), and `daily` is millions of bioguides and dates drawn
+# from a vocabulary of a few thousand. Hitting here skips tokenization entirely, which is the
+# expensive half. Long strings (press-release bodies) are excluded — they are nearly all distinct,
+# so caching them would only cost memory.
+_TEXT_MEMO: dict[str, tuple] = {}
+_TEXT_MEMO_MAX = 300_000
+_TEXT_MEMO_MAXLEN = 200
+
+_TOKEN_ANYCASE = re.compile(r"[A-Za-z0-9]+")
+
+# ALIASED, never copied. _tokens() already folds through verify so the gate and the citation
+# verifier can never disagree about what a character is; the offset-tracking fold below has to walk
+# the same table by hand, and a second copy of it is a second thing to drift.
+_TYPOGRAPHY = verify._TYPOGRAPHY
+_TYPO_RE = verify._TYPO_RE
+
+
+def _scan_window(window: str) -> str | None:
+    """The form hash this exact token window matches, or None. Memoized within one gate generation."""
+    global _SCAN_GEN
+    if _SCAN_GEN != _GEN:                      # the gate reloaded -> the old salt's answers are void
+        _SCAN_MEMO.clear()
+        _TEXT_MEMO.clear()
+        _SCAN_GEN = _GEN
+    if window in _SCAN_MEMO:
+        return _SCAN_MEMO[window]
+    h = _mac_with(_SALT, window)               # type: ignore[arg-type]
+    hit = h if h in _HASHES else None
+    if len(_SCAN_MEMO) >= _SCAN_MEMO_MAX:      # bounded: drop the whole memo rather than grow forever
+        _SCAN_MEMO.clear()
+    _SCAN_MEMO[window] = hit
+    return hit
+
+
+def _fold_offsets(text: str):
+    """Fold typography, tracking where every folded character CAME FROM.
+
+    Required because folding is not length-preserving ("…" -> "...", soft hyphen -> ""), so a span
+    found in folded coordinates cannot be cut out of the original without this map. Returns
+    (folded, starts, ends); starts/ends are None when the fold is the identity — the overwhelmingly
+    common case, and the one worth not allocating two per-character lists for."""
+    if not _TYPO_RE.search(text):
+        return text, None, None
+    out: list[str] = []
+    starts: list[int] = []
+    ends: list[int] = []
+    pos = 0
+    for m in _TYPO_RE.finditer(text):
+        s, e = m.span()
+        for i in range(pos, s):
+            out.append(text[i]); starts.append(i); ends.append(i + 1)
+        for c in _TYPOGRAPHY[m.group(0)]:      # every char of the replacement maps to the whole span
+            out.append(c); starts.append(s); ends.append(e)
+        pos = e
+    for i in range(pos, len(text)):
+        out.append(text[i]); starts.append(i); ends.append(i + 1)
+    return "".join(out), starts, ends
+
+
+def _suppressed_spans(text: str) -> list[tuple[int, int, str]]:
+    """Leftmost-longest suppressed spans as [start, end) offsets into the ORIGINAL text."""
+    folded, starts, ends = _fold_offsets(text)
+    low = folded.lower()
+    if len(low) == len(folded):
+        toks = [(m.start(), m.end(), m.group(0)) for m in _TOKEN.finditer(low)]
+    else:
+        # Locale-expanding lowercase (U+0130 -> two chars) would desynchronize the offsets. Rare
+        # enough to have a slow path, real enough that it must not corrupt one: tokenize the folded
+        # text in its own coordinates and lowercase per token.
+        toks = [(m.start(), m.end(), m.group(0).lower()) for m in _TOKEN_ANYCASE.finditer(folded)]
+    spans: list[tuple[int, int, str]] = []
+    sizes = sorted(_FORM_SIZES, reverse=True)   # longest first: a 3-token form beats its 2-token tail
+    i, ntok = 0, len(toks)
+    while i < ntok:
+        for n in sizes:
+            if i + n > ntok:
+                continue
+            hit = _scan_window(" ".join(t[2] for t in toks[i:i + n]))
+            if hit:
+                a, b = toks[i][0], toks[i + n - 1][1]
+                if starts is not None:
+                    a, b = starts[a], ends[b - 1]
+                spans.append((a, b, hit))
+                i += n
+                break
+        else:
+            i += 1
+    return spans
+
+
+def redact(text):
+    """Replace every suppressed span with its label. Returns (text, replacements).
+
+    Non-strings and clean strings are returned UNCHANGED and untouched — callers rely on that to
+    leave the bytes of an uncontaminated record exactly as the archive wrote them. Idempotent: a
+    label contains no name tokens, so redacting twice is redacting once."""
+    if not isinstance(text, str) or not text:
+        return text, 0
+    if _SALT is None:
+        raise PrivacyGateError("privacy gate not loaded")
+    cacheable = len(text) <= _TEXT_MEMO_MAXLEN
+    if cacheable:
+        if _SCAN_GEN != _GEN:                  # same generation guard as the window memo
+            _scan_window("")
+        hit = _TEXT_MEMO.get(text)
+        if hit is not None:
+            return hit
+    spans = _suppressed_spans(text)
+    if not spans:
+        if cacheable:
+            if len(_TEXT_MEMO) >= _TEXT_MEMO_MAX:
+                _TEXT_MEMO.clear()
+            _TEXT_MEMO[text] = (text, 0)
+        return text, 0
+    out, prev = [], 0
+    for a, b, h in spans:
+        out.append(text[prev:a])
+        out.append(label_for(h))
+        prev = b
+    out.append(text[prev:])
+    res = ("".join(out), len(spans))
+    if cacheable:
+        if len(_TEXT_MEMO) >= _TEXT_MEMO_MAX:
+            _TEXT_MEMO.clear()
+        _TEXT_MEMO[text] = res
+    return res
+
+
+def forms_fingerprint() -> str:
+    """Identity of the loaded form list. A redaction cache keyed on this cannot survive the day a
+    new name is admitted — which is exactly the day every previously-clean file must be rescanned."""
+    return hashlib.sha256(
+        ("|".join(sorted(_HASHES)) + f"|{_MAX_FORM_TOKENS}").encode("utf-8")
+    ).hexdigest()
 
 
 def meta() -> dict:

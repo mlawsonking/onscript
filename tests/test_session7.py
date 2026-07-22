@@ -93,7 +93,9 @@ def test_p2_forbids_QUOTING_the_code_computed_synchronized_phrase():
     ledger n-gram. The verifier grounds quotes only against verbatim member speech (never against
     code-computed strings — HIGH-1), so it was rejected and the Daily Line fell back every time."""
     p2 = llm.load_prompt("P2")
-    assert p2["version"] == "1.2"
+    assert p2["version"] == "1.3"      # v1.3 = v1.2 + the "in our corpus" first-sayer qualifier
     sysl = p2["system"].lower()
     assert "without quotation marks" in sysl
     assert "quotation marks are only for the exact member quotes" in sysl
+    # The v1.3 rule itself: an unqualified first-sayer reads as a claim the member coined the phrase.
+    assert "in our corpus" in sysl

@@ -74,6 +74,15 @@ jobs:
       - name: RUN A collect
         run: python pipeline/run_collect.py
 
+      # R-L (docs/23, ruled 2026-07-21): the release assets are a PUBLISHED surface, so they carry
+      # the Article XIII floor like every other one. Runs in place on the runner, whose state was
+      # itself restored from the previous asset, so the cloud store converges on the redacted view;
+      # the pristine append-only archive lives on X: and no workflow writes there.
+      # NO `|| true`: a failure here must stop the job BEFORE the upload. A missed upload costs one
+      # cycle and the next run rebuilds it; a leaked one is permanent.
+      - name: Redact the release payload (Art. XIII, R-L)
+        run: python -m pipeline.redact data/state data/reference data/raw
+
       - name: Persist state + raw mirror to the data Release
         run: |
           tar -czf state.tar.gz data/state data/reference

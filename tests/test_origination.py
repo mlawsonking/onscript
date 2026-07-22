@@ -59,7 +59,7 @@ def test_the_first_said_row_is_byte_identical_with_the_flag_off():
         off = site.phrase_page_body(pd)
     # Flag OFF: the current unchanged line, NO origination redesign leaks onto the live page.
     assert "official name, not an authored phrase" not in off
-    assert "First said" in off and " by " in off
+    assert "First recorded in our corpus" in off and " by " in off
     with _flag(True):
         on = site.phrase_page_body(pd)
     assert "official name, not an authored phrase" in on                 # ON: the SPAN gate renders

@@ -1410,7 +1410,7 @@ ORIGINATION_PEAK_FLOOR = 15   # #143 confound control (its only prior home was a
 
 
 def _origination_line(pdata) -> str:
-    """The SPAN-gated, floor-gated, born-coordinated origination string for a phrase's 'First said' row
+    """The SPAN-gated, floor-gated, born-coordinated origination string for a phrase's 'First recorded' row
     (1.3 / R2). Returns display HTML. Party-blind; reads only the phrase's own record + the committed
     nomenclature tables (usable even while the display tagger is dark)."""
     fs = pdata.get("first_seen") or {}
@@ -1467,9 +1467,9 @@ def phrase_page_body(pdata, depth=1):
     # born-coordinated. Flag OFF => the current unchanged line (byte-identical), so the redesign ships
     # dark and the release flip stays Michael's (docs/21 §3.2).
     if config.feature_on("authors_vessels"):
-        parts.append(f"<dt>First said</dt><dd>{_origination_line(pdata)}</dd>")
+        parts.append(f"<dt>First recorded in our corpus</dt><dd>{_origination_line(pdata)}</dd>")
     else:
-        parts.append(f"<dt>First said</dt><dd>{esc(fs_date)} by {member_name(fs_bio)}{tie_html}</dd>")
+        parts.append(f"<dt>First recorded in our corpus</dt><dd>{esc(fs_date)} by {member_name(fs_bio)}{tie_html}</dd>")
     if peak is not None:
         parts.append(f"<dt>Peak</dt><dd>{esc(peak)} members in one day</dd>")
     if dfw is not None:
@@ -1744,6 +1744,13 @@ def methodology_body():
         "pages, the receipts, the composites, and the accounts.</p>"
     )
     parts.append(
+        "<p>That includes the published data releases. The raw mirror and the phrase ledger are built from "
+        "statements that sometimes name a private individual, so the same rule runs over the release assets "
+        "every time they are rebuilt: each occurrence is <strong>replaced in place with a label</strong>, not "
+        "deleted, so the record still shows that a name was there and how the phrase behaved. Nothing else in "
+        "the payload is altered &mdash; an untouched record keeps its original bytes.</p>"
+    )
+    parts.append(
         f"<p>The suppression list holds <strong>{esc(n_persons)} people / {esc(n_forms)} name forms</strong>"
         f"{f' (added {esc(added)})' if added else ''}. It is applied identically to both parties, it changes no "
         "threshold and produces no finding, and it is checked on load against the full member roster and against a "
@@ -1795,7 +1802,8 @@ def methodology_body():
     parts.append(
         "<p><strong>Source links and the archive.</strong> Each receipt links to the member's own .gov release "
         "and, alongside it, to a Wayback Machine capture. Member sites migrate and delete, so a live link can rot "
-        "over time — but the exact text we quoted is preserved verbatim in the immutable data release above, so a "
+        "over time — but the exact text we quoted is preserved verbatim in the immutable data release above — "
+        "verbatim except for privacy-floor redactions, each labeled in place — so a "
         "dead source link never means lost evidence. A release that is <em>deleted after we cited it</em> is not a "
         "gap in our record; it is a finding, and surfacing those is a planned feature.</p>"
     )

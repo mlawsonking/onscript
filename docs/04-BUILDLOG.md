@@ -2721,3 +2721,118 @@ after; that trap had already destroyed the 2001–2002 record and the entire 201
 
 `crec_state.py` recounts coverage from the statement files rather than trusting run bookkeeping, and is
 the first thing the next Deep Archive session should run.
+
+---
+
+## Session 40 (2026-07-22, Opus) — posting hygiene (S35 Wednesday order) + R-L redacted-view releases
+
+Prep session, ~01:10–04:00 local, deliberately ahead of the morning cron. **Nothing was posted, no
+workflow was dispatched, `POSTING_ENABLED` untouched, no FEATURES flag moved, the repo is still
+private.** 433 tests green.
+
+### 1. `_reconcile_prior` — reproduced first, then fixed
+
+The S8e asymmetric-post backstop has been a silent no-op since it was written. Reproduced against a
+real directory before touching it: `_list_manifests` returns glob **strings**, `util.read_json` calls
+`path.exists()`, so every manifest raised `AttributeError` into the skip-and-log and the scan alerted
+on nothing — `alerted=[]`, `ntfy calls=0`.
+
+`_list_manifests` now returns `Path`s. The more important change is the test: **every existing
+reconcile test stubs `_list_manifests` AND `read_json` together, with strings on both sides**, so the
+two halves were never run against each other and the suite stayed green while the feature did nothing.
+`test_reconcile_runs_against_a_REAL_directory_not_a_stubbed_one` stubs only the output (ntfy) and the
+location (`config.DERIVED`); the filesystem, the path types and both JSON helpers are real. It fails on
+the old code.
+
+This one matters more than its size: posting went live on 07-21, and this is the guard that catches a
+hard-kill between the two parties' posts — a durable one-sided thread, which is the worst neutrality
+failure the system can have.
+
+### 2. Collision recovery finished the job instead of truncating
+
+`_post_thread` recovered a colliding root and returned `posts_written=0`, leaving a bare head post with
+no receipts reply — the only post in the thread carrying the citation link — and no later run would add
+it, because the manifest then recorded the party as posted. It now **resumes**: `_existing_replies`
+lists the replies already hanging off the recovered root (bounded by construction — a reply's TID-rkey
+always sorts above its root's, so the walk stops at the root) and the run posts only the missing tail.
+
+If the live replies are **not a prefix** of the thread in hand, the day was re-authored between runs;
+appending would staple two threads together, so it raises. `on_root` has already fired by then, so the
+manifest holds `root_uri` + `partial=True` — the dead-man fires and §1 keeps flagging it.
+
+### 3. Sentence-aware packing, and the invariant that constrains it
+
+The live launch thread read "…our 99 statements today do" / "not converge on additional shared
+messages." `_split` now packs whole sentences where they fit and falls back to the old word-packer
+(kept, renamed `_pack_words`) only for a sentence longer than one post. An abbreviation guard keeps it
+from cutting after "Rep." / "U.S." / "No.".
+
+The load-bearing test is not the pretty one: **the concatenation of the posts is always exactly the
+input's words, in order.** An ugly break is cosmetic; a dropped or reordered word is a fabricated
+quote. (For a token longer than a whole post the word list must change, so that case asserts character
+preservation instead.)
+
+### 4. First-sayer wording — three surfaces, one claim
+
+"first recorded" now says **"in our corpus"** in the composite (prompt **P2 v1.3**), in the receipts
+post, and on the phrase page (`First said` → `First recorded in our corpus`). The launch threads were
+factually correct and symmetric — the D voice credited a Republican, the R voice a Democrat, because
+first-appearance is corpus-wide — but unqualified, it reads as a claim that the member coined the
+phrase, and our record starts at `STAGE1_EPOCH`. The live receipts line said "first recorded
+2025-01-03", which is the first day of the corpus: left-censoring rendered as discovery.
+
+Also `post_bluesky.SITE` is now `config.SITE_URL` (it was a second hardcoded literal on the one post
+that carries the citations).
+
+### 5. R-L — the redacted-view release assets
+
+`pipeline/redact.py` + `privacy.redact()`, wired into the state-persist step of **both** workflows,
+before the tar, with no `|| true`: a failure stops the job **before** the upload. Redaction runs in
+place on the runner, whose state was restored from the previous asset, so the cloud store converges on
+the redacted view; the pristine archive on X: is untouched because no workflow writes there.
+
+**The design decision that keeps R-L inside its scope: a redaction label is itself suppressed.**
+`is_suppressed()` returns True for `<private-individual-…>`, so labeled rows are dropped, held and
+purged by the display paths exactly as named ones were. Labels flow back into the cloud's state and
+**no published site byte moves**. The narrower question — "is a name actually written here" — is now
+`contains_admitted_form()`, which is what the repo-scan guard uses; conflating the two made that guard
+fire on the code that writes the label.
+
+Per-record parsing, not text scanning, and the reason is measurable: with `ensure_ascii=True` a
+possessive is stored as the six characters `’`, whose tokens are nothing like the value's, so a
+grep-shaped scan misses exactly the possessive forms the gate exists to catch. Only contaminated
+records are rewritten — an untouched record keeps its original bytes, which is what keeps a 300 MB
+append-only mirror from churning every run. Distinct forms get distinct labels so two n-gram **keys**
+can never collapse into one (a silent last-write-wins merge), and a collision is a hard stop. Every
+file the pass changes is immediately re-scanned and must come back clean.
+
+### 6. ⛔ Two findings about the R-L blocker itself
+
+**(a) `statements.jsonl.gz` is a carrier nobody had measured.** 96.6 MB of gzip inside `state.tar.gz`.
+A scanner that reads files as text sees gzip as noise and reports it clean — which is why S38's
+whole-worktree scan lists seven carriers and not this one. The redactor decompresses, scans and
+recompresses it.
+
+**(b) The assets carry ~5× what the R-L spec was written against, and the numbers reconcile exactly.**
+S39's gate spec says "the name 44×/42×". Measured on the real `data-latest` assets with the production
+gate, `data/raw/congress-press/2026-07.jsonl` alone holds **205 occurrences across 52 of its 2,414
+records** — and the per-form breakdown explains the gap precisely: **form `447bf804…` accounts for 42
+of them, which is S38's number to the unit.** S38 measured the ONE form it was scrubbing from git
+history; **all four admitted forms — both suppressed people — are present**, adding 163 more. Also
+measured: `ledger.json` 156, `extractions.jsonl` 127.
+
+This is not a defect in S38, whose job was the git scrub. It does mean the #132 gate spec's figures
+describe one form, not the payload.
+
+### 7. Cost, measured on the real assets
+
+The uncompressed payload is ~890 MB (state 593 + raw 300). A whole-string memo — the ledger carries
+every n-gram twice and `daily` is millions of bioguides from a vocabulary of a few thousand — took
+`ledger.json` from **204 s to 52 s** at an identical 156 occurrences. Steady state per run is the files
+that change every run (ledger, extractions, statements, the current month's raw); the file-level skip
+cache, keyed on the **form list's fingerprint** as well as the file's, carries the rest. Admitting a
+new name invalidates the whole cache, which is the one moment a stale "already clean" answer would be
+wrong about the entire corpus.
+
+A record-level clean-cache would cut the recurring cost further and is the named follow-up if the added
+minutes prove annoying; it was deliberately not built tonight.
