@@ -97,14 +97,20 @@ jobs:
       - name: Render the static site
         run: python pipeline/site.py
 
-      - name: Post the Daily Line threads to Bluesky (both accounts)
-        run: python pipeline/post_bluesky.py || echo "posting skipped/failed (skip-and-log)"
-
       # R-L — see the matching note in collect.yml. This job uploads state only, so it redacts only
       # what it uploads; data/raw is restored here but published by RUN A, which redacts it there.
       # The skip cache is shared through the tarball and carries raw's entries across untouched.
+      #
+      # BEFORE the post, not after, and that ordering is the point: this step fails CLOSED, and
+      # posting is the one irreversible act in the job. Redacting afterwards would mean a failure
+      # here aborts the run with the threads already live and the commit step skipped — a published
+      # post whose receipts link points at a day page that was never deployed. Nothing the posting
+      # path reads lives under data/state, so moving it earlier cannot change what gets posted.
       - name: Redact the release payload (Art. XIII, R-L)
         run: python -m pipeline.redact data/state data/reference
+
+      - name: Post the Daily Line threads to Bluesky (both accounts)
+        run: python pipeline/post_bluesky.py || echo "posting skipped/failed (skip-and-log)"
 
       - name: Persist updated extraction cache
         run: |
