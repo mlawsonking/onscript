@@ -324,6 +324,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 <meta name="description" content="{desc}">
 <title>{esc(title)}</title>
 <link rel="canonical" href="{esc(canonical)}">
+<link rel="alternate" type="application/atom+xml" title="OnScript daily feed" href="{esc(config.SITE_URL)}/feed.xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnScript">
 <meta property="og:title" content="{esc(title)}">
@@ -515,6 +516,58 @@ def phrase_page_slugs():
 def has_daily_lines(day_data) -> bool:
     dl = day_data.get("daily_lines")
     return isinstance(dl, dict) and any(isinstance(dl.get(p), dict) for p in ("D", "R"))
+
+
+def _atom_timestamp(day_data: dict) -> str:
+    """A stable Atom timestamp sourced only from the day artifact's code-computed date."""
+    day = str((day_data or {}).get("day") or "")
+    try:
+        datetime.strptime(day, "%Y-%m-%d")
+    except ValueError:
+        return "1970-01-01T00:00:00Z"
+    return f"{day}T00:00:00Z"
+
+
+def atom_feed(rendered: list[tuple[str, dict]], limit: int = 30) -> str:
+    """Deterministic Atom feed: dates and aggregate phrase counts only, never authored prose."""
+    entries = []
+    selected = list(reversed(rendered[-limit:]))
+    for day, data in selected:
+        rows, _ = privacy.filter_rows(data.get("top_synchronized") or [])
+        counts = {p: sum(1 for row in rows if (row or {}).get("party") == p)
+                  for p in config.COMPOSITE_PARTIES}
+        url = f"{config.SITE_URL}/day/{day}.html"
+        summary = (f"Democrats: {counts.get('D', 0)} synchronized phrases; "
+                   f"Republicans: {counts.get('R', 0)} synchronized phrases.")
+        entries.append(
+            "<entry>"
+            f"<title>OnScript — {esc(day)}</title><id>{esc(url)}</id>"
+            f'<link href="{esc(url)}"/><updated>{_atom_timestamp(data)}</updated>'
+            f"<summary>{esc(summary)}</summary></entry>"
+        )
+    updated = _atom_timestamp(selected[0][1]) if selected else "1970-01-01T00:00:00Z"
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<feed xmlns="http://www.w3.org/2005/Atom">'
+        '<title>OnScript daily readings</title>'
+        f"<id>{esc(config.SITE_URL)}/feed.xml</id>"
+        f'<link href="{esc(config.SITE_URL)}/feed.xml" rel="self"/>'
+        f'<link href="{esc(config.SITE_URL)}/"/>'
+        f"<updated>{updated}</updated>{''.join(entries)}</feed>\n"
+    )
+
+
+def sitemap(page_paths: list[str]) -> str:
+    """Every and only the HTML paths emitted by this build, in deterministic order."""
+    urls = []
+    for path in sorted(set(page_paths)):
+        url = f"{config.SITE_URL}/" if path == "index.html" else f"{config.SITE_URL}/{path}"
+        urls.append(f"<url><loc>{esc(url)}</loc></url>")
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+        f"{''.join(urls)}</urlset>\n"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -1684,6 +1737,7 @@ def methodology_body():
         "same thresholds run for both parties. Asymmetric findings are allowed — a symmetric instrument producing "
         "asymmetric readings is a fact about the world, not about the instrument. This page is that guarantee, in public.</p>"
     )
+    parts.append('<p class="subhead">Daily readings are also available in the <a href="feed.xml">Atom feed</a>.</p>')
 
     # (a) two-lane model
     parts.append("<h2>The two-lane model</h2>")
@@ -1956,6 +2010,7 @@ def about_body():
     parts.append(
         '<p class="subhead">This is what each party said today, compressed to one voice, with receipts.</p>'
     )
+    parts.append('<p class="subhead">Daily readings are also available in the <a href="feed.xml">Atom feed</a>.</p>')
     parts.append(
         "<p><strong>Compression, not parody.</strong> OnScript ingests what elected U.S. officials publicly say "
         "and distills each party's real talking points into one composite voice. The comedy, where there is any, "
@@ -2714,6 +2769,14 @@ def build_site():
                  path="silence/index.html"),
             encoding="utf-8")
         written.append("silence/index.html")
+
+    # ---- machine-readable discovery surfaces (W2-B) ----
+    # Feed entries are driven by the SAME `rendered` set as day pages and contain only deterministic
+    # dates + aggregate counts. The sitemap is driven by `written`, so it cannot invent or omit a page.
+    (OUT / "feed.xml").write_text(atom_feed(rendered), encoding="utf-8")
+    (OUT / "sitemap.xml").write_text(sitemap(written), encoding="utf-8")
+    (OUT / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {config.SITE_URL}/sitemap.xml\n", encoding="utf-8")
 
     return written
 
