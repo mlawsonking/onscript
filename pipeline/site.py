@@ -22,6 +22,7 @@ from __future__ import annotations
 import html
 import json
 import re
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -43,6 +44,7 @@ except Exception:
 # ---------------------------------------------------------------------------
 DERIVED = config.DERIVED
 OUT = config.REPO_ROOT / "site" / "public"
+FAVICON_SOURCE = config.REPO_ROOT / "site" / "brand" / "avatar-brand.png"
 PROMPTS_DIR = config.REPO_ROOT / "pipeline" / "prompts"
 ROSTER_FILE = config.REFERENCE / "roster.json"
 TAXONOMY_FILE = config.TAXONOMY_FILE
@@ -146,6 +148,9 @@ CSS = """
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+.skip-link{position:absolute; left:12px; top:8px; z-index:10; padding:8px 12px; background:var(--panel);
+  color:var(--ink); border:2px solid var(--ink); transform:translateY(-150%)}
+.skip-link:focus{transform:translateY(0)}
 body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -253,6 +258,7 @@ ul.daylist li{padding:5px 0; border-bottom:1px solid var(--line)}
 .kv{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:14.5px; margin:10px 0}
 .kv dt{color:var(--faint)}
 .kv dd{margin:0}
+@media(max-width:520px){.kv{grid-template-columns:1fr; gap:0}.kv dd{margin-bottom:8px}}
 
 pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
   border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -325,6 +331,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 <title>{esc(title)}</title>
 <link rel="canonical" href="{esc(canonical)}">
 <link rel="alternate" type="application/atom+xml" title="OnScript daily feed" href="{esc(config.SITE_URL)}/feed.xml">
+<link rel="icon" type="image/png" href="{root}favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnScript">
 <meta property="og:title" content="{esc(title)}">
@@ -339,12 +346,15 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 </head>
 <body>
 <div class="wrap">
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site">
   <div class="brand"><a href="{root}index.html">OnScript</a></div>
   <div class="tag">This is what each party said today, compressed to one voice, with receipts.</div>
 </header>
-<nav class="top">{nav}</nav>
+<nav class="top" aria-label="Primary">{nav}</nav>
+<main id="main-content">
 {body}
+</main>
 <footer class="site">
   <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
   parties, audited nightly in public. See the <a href="{root}methodology.html">Methodology</a>.
@@ -371,7 +381,7 @@ def sparkline_svg(values, width: int = 120, height: int = 28, party: str | None 
         # Not enough points: draw a flat baseline so the cell isn't empty.
         return (
             f'<svg class="spark" width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
-            f'role="img" aria-label="no series">'
+            f'role="img"><title>Phrase trend</title><desc>No trend series is available.</desc>'
             f'<line x1="1" y1="{height-3}" x2="{width-1}" y2="{height-3}" stroke="#ccc" stroke-width="1"/></svg>'
         )
     vmax = max(vals) or 1
@@ -388,7 +398,7 @@ def sparkline_svg(values, width: int = 120, height: int = 28, party: str | None 
     lastx, lasty = pts[-1].split(",")
     return (
         f'<svg class="spark" width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
-        f'role="img" aria-label="{n}-day trend, peak {vmax}">'
+        f'role="img"><title>Phrase trend</title><desc>{n} observations; peak {vmax} members.</desc>'
         f'<polyline fill="none" stroke="{color}" stroke-width="1.5" '
         f'stroke-linejoin="round" stroke-linecap="round" points="{poly}"/>'
         f'<circle cx="{lastx}" cy="{lasty}" r="1.8" fill="{color}"/></svg>'
@@ -425,8 +435,13 @@ def curve_svg(series, width: int = 900, height: int = 260) -> str:
 
     parts = [
         f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
-        f'role="img" aria-label="adoption curve" preserveAspectRatio="xMinYMin meet" '
-        f'style="min-width:{width}px">'
+        f'role="img" preserveAspectRatio="xMinYMin meet" style="min-width:{width}px">'
+        '<title>Phrase adoption curve</title>'
+        f'<desc>Democrats peak at {max(d_vals or [0])} member'
+        f'{"" if max(d_vals or [0]) == 1 else "s"}; Republicans peak at '
+        f'{max(r_vals or [0])} member{"" if max(r_vals or [0]) == 1 else "s"}, from '
+        f'{esc(rows[0].get("day"))} through '
+        f'{esc(rows[-1].get("day"))}.</desc>'
     ]
     # y gridlines + labels (0, mid, max)
     for frac in (0.0, 0.5, 1.0):
@@ -1566,6 +1581,7 @@ def phrase_page_body(pdata, depth=1, evidence=None):
     window = public_phrase_window(pdata)
     fs_date = window["first_day"]
     peak = window["peak_units"]
+    peak_day = window["peak_day"]
     dfw = pdata.get("df_weight")
     series = window["series"]
 
@@ -1614,7 +1630,13 @@ def phrase_page_body(pdata, depth=1, evidence=None):
     else:
         parts.append(f"<dt>First recorded in our corpus</dt><dd>{esc(fs_date)} by {member_name(fs_bio)}{tie_html}</dd>")
     if peak is not None:
-        parts.append(f"<dt>Peak</dt><dd>{esc(peak)} members in one day</dd>")
+        peak_data = _load_json(DERIVED / "days" / f"{peak_day}.json") if peak_day else None
+        peak_has_page = isinstance(peak_data, dict) and (
+            has_daily_lines(peak_data) or bool(peak_data.get("top_synchronized")))
+        peak_date = (f'<a href="{"../" * depth}day/{esc(peak_day)}.html">{esc(peak_day)}</a>'
+                     if peak_has_page else esc(peak_day))
+        parts.append(f'<dt>Peak</dt><dd>{esc(peak)} members in one day'
+                     f'<span class="faint"> &middot; {peak_date}</span></dd>')
     if dfw is not None:
         parts.append('<dt>Distinctiveness</dt><dd><span class="faint">The full-history weight is withheld '
                      'until the Archive release; it is not part of these public-window statistics.</span></dd>')
@@ -2540,6 +2562,7 @@ def build_site():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
     (OUT / "phrases").mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(FAVICON_SOURCE, OUT / "favicon.png")
 
     # Art. XIII: delete contaminated phrase pages AND their rendered twins before anything renders.
     # A render-time SKIP is not enough — build_site only ever WRITES (nothing here unlinks) and
@@ -2769,6 +2792,15 @@ def build_site():
                  path="silence/index.html"),
             encoding="utf-8")
         written.append("silence/index.html")
+
+    # ---- static-host fallback ----
+    (OUT / "404.html").write_text(
+        page("OnScript · Page not found",
+             '<h1>Page not found</h1><p>The requested page is not in this public record.</p>'
+             '<p><a href="index.html">Return to OnScript</a></p>',
+             depth=0, description="The requested OnScript page was not found.", path="404.html"),
+        encoding="utf-8")
+    written.append("404.html")
 
     # ---- machine-readable discovery surfaces (W2-B) ----
     # Feed entries are driven by the SAME `rendered` set as day pages and contain only deterministic
