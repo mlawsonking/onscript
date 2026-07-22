@@ -87,7 +87,9 @@ def test_one_malformed_phrase_json_cannot_crash_the_whole_build():
         (pdir / "ccc_num.json").write_text("42", encoding="utf-8")
         (pdir / "ddd_ok.json").write_text(
             json.dumps({"ngram": "rule of law", "slug": "ddd_ok", "peak_units": 7,
-                        "first_seen": {"date": "2026-01-03"}}), encoding="utf-8")
+                        "first_seen": {"date": "2026-01-03"},
+                        "series": [{"day": "2026-01-03", "D": 7, "R": 0, "I": 0}]}),
+            encoding="utf-8")
         try:
             site.DERIVED = Path(td)
             rows = site.phrase_search_index()          # must not raise

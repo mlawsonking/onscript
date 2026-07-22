@@ -106,7 +106,7 @@ TOPIC_LABEL = {t.get("id"): t.get("label", t.get("id")) for t in TAXONOMY.get("t
 
 
 def member_name(bioguide) -> str:
-    """Resolve a bioguide id to a display name, else return the id itself."""
+    """Resolve a bioguide id to a display name without ever presenting an id as a name."""
     if not bioguide:
         return "—"
     entry = ROSTER.get(bioguide) if isinstance(ROSTER, dict) else None
@@ -121,7 +121,7 @@ def member_name(bioguide) -> str:
             elif state:
                 suffix = f" ({esc(state)})"
             return f"{esc(name)}{suffix}"
-    return esc(bioguide)
+    return "member name unavailable"
 
 
 def topic_label(topic_id) -> str:
@@ -1046,6 +1046,37 @@ def sync_table(day_data, slugs_with_pages, depth: int) -> str:
 # ---------------------------------------------------------------------------
 # The Today / per-day view (shared)
 # ---------------------------------------------------------------------------
+def public_phrase_window(pdata: dict) -> dict:
+    """Pure render-time Stage-1 view of a phrase's retained full-history series.
+
+    The stored phrase record is deliberately untouched: Archive work needs the full history. Public
+    phrase statistics, however, must all use the same explicit window while that feature is dark.
+    """
+    rows = [dict(r) for r in (pdata.get("series") or [])
+            if isinstance(r, dict) and isinstance(r.get("day"), str)
+            and r.get("day") >= config.STAGE1_EPOCH]
+    rows.sort(key=lambda r: r.get("day") or "")
+
+    peak_units = None
+    peak_day = ""
+    for row in rows:
+        counts = []
+        for party in config.ALL_PARTIES:
+            try:
+                counts.append(max(0, int(row.get(party) or 0)))
+            except (TypeError, ValueError):
+                counts.append(0)
+        row_peak = max(counts or [0])
+        if peak_units is None or row_peak > peak_units:
+            peak_units, peak_day = row_peak, row.get("day") or ""
+    return {
+        "series": rows,
+        "first_day": (rows[0].get("day") or "") if rows else "",
+        "peak_units": peak_units,
+        "peak_day": peak_day,
+    }
+
+
 def phrase_search_index() -> list[dict]:
     """The client-side search index: one compact row per phrase that HAS a page.
 
@@ -1072,8 +1103,11 @@ def phrase_search_index() -> list[dict]:
         # ship a client-side name-lookup payload the instant the flag flips.
         if privacy.is_suppressed(ngram):
             continue
+        window = public_phrase_window(d)
+        if not window["series"]:
+            continue
         rows.append({"q": ngram, "s": d.get("slug") or p.stem,
-                     "p": _num(d.get("peak_units")), "f": (d.get("first_seen") or {}).get("date") or ""})
+                     "p": _num(window["peak_units"]), "f": window["first_day"]})
     rows.sort(key=lambda r: (-r["p"], r["q"]))
     return rows
 
@@ -1433,11 +1467,13 @@ def _origination_line(pdata) -> str:
 def phrase_page_body(pdata, depth=1):
     ngram = pdata.get("ngram", "")
     fs = pdata.get("first_seen") or {}
-    fs_date = fs.get("date", "")
+    source_fs_date = fs.get("date", "")
     fs_bio = fs.get("bioguide")
-    peak = pdata.get("peak_units")
+    window = public_phrase_window(pdata)
+    fs_date = window["first_day"]
+    peak = window["peak_units"]
     dfw = pdata.get("df_weight")
-    series = pdata.get("series") or []
+    series = window["series"]
 
     parts = [f'<h1>&ldquo;{esc(ngram)}&rdquo;</h1>']
     # docs/19 §2b — nomenclature tag on the phrase/curve page (DARK until FEATURES["nomenclature_tags"]).
@@ -1457,7 +1493,8 @@ def phrase_page_body(pdata, depth=1):
     )
     parts.append("</div>")
 
-    tie = fs.get("tie") or []
+    source_first_is_public = bool(source_fs_date and source_fs_date >= config.STAGE1_EPOCH)
+    tie = (fs.get("tie") or []) if source_first_is_public else []
     tie_html = ""
     if tie:
         tie_html = ' <span class="faint">(tied with ' + ", ".join(member_name(b) for b in tie) + ")</span>"
@@ -1466,19 +1503,32 @@ def phrase_page_body(pdata, depth=1):
     # 1.3 origination (R2), DARK until FEATURES["authors_vessels"]: SPAN-gated + coordination-floored +
     # born-coordinated. Flag OFF => the current unchanged line (byte-identical), so the redesign ships
     # dark and the release flip stays Michael's (docs/21 §3.2).
-    if config.feature_on("authors_vessels"):
+    if not series:
+        parts.append(
+            f'<dt>Public-window record</dt><dd>No observations in the public window beginning '
+            f'{esc(config.STAGE1_EPOCH)}.</dd>'
+        )
+    elif not source_first_is_public:
+        parts.append(
+            f'<dt>First recorded in the public window</dt><dd>{esc(fs_date)} '
+            '<span class="faint">(first active day in the public window; this derived record does not '
+            'identify that day&rsquo;s first carrier)</span></dd>'
+        )
+    elif config.feature_on("authors_vessels"):
         parts.append(f"<dt>First recorded in our corpus</dt><dd>{_origination_line(pdata)}</dd>")
     else:
         parts.append(f"<dt>First recorded in our corpus</dt><dd>{esc(fs_date)} by {member_name(fs_bio)}{tie_html}</dd>")
     if peak is not None:
         parts.append(f"<dt>Peak</dt><dd>{esc(peak)} members in one day</dd>")
     if dfw is not None:
-        parts.append(f"<dt>Distinctiveness (df_weight)</dt><dd>{esc(dfw)}</dd>")
+        parts.append('<dt>Distinctiveness</dt><dd><span class="faint">The full-history weight is withheld '
+                     'until the Archive release; it is not part of these public-window statistics.</span></dd>')
     parts.append(f"<dt>Data points</dt><dd>{len([r for r in series if isinstance(r, dict)])} active days</dd>")
     parts.append("</dl>")
 
     parts.append(
-        '<p class="muted"><small>Our corpus begins 2025-01. Historical coverage by year is shown on the '
+        f'<p class="muted"><small>Public Stage-1 phrase statistics begin {esc(config.STAGE1_EPOCH)}. '
+        'Coverage for the same window is shown on the '
         f'<a href="../methodology.html">Methodology</a> page. (The full-history &ldquo;Alexandria&rdquo; '
         "backfill to 2001 is staged for a later phase.)</small></p>"
     )
@@ -1603,6 +1653,11 @@ def methodology_body():
         "<em>machine-blocked from every comparative metric</em>. Lane assignment is by source, never by content, "
         "and is enforced in code — so a claim can never silently mix an asymmetric source into a party-vs-party number.</p>"
     )
+    parts.append(
+        f"<p><strong>Public phrase window.</strong> Stage-1 phrase statistics and coverage begin "
+        f"<strong>{esc(config.STAGE1_EPOCH)}</strong>. Earlier retained observations remain out of the public "
+        "phrase views until the Archive and its lane disclosures are released.</p>"
+    )
 
     # (a2) what we measure — three standing positions, inscribed before the findings arrive
     parts.append("<h2>What OnScript measures — and what it does not</h2>")
@@ -1677,9 +1732,10 @@ def methodology_body():
     if coverage:
         parts.append("<h3>Corpus coverage by year</h3>")
         parts.append(
-            '<p class="subhead">Per-year Lane-1 statement counts by party. Cross-era claims are gated on coverage.</p>'
+            f'<p class="subhead">Per-year Lane-1 statement counts in the public phrase window beginning '
+            f'{esc(config.STAGE1_EPOCH)}. Cross-era claims remain gated on coverage.</p>'
         )
-        years = sorted(coverage.keys())
+        years = sorted(y for y in coverage.keys() if str(y) >= config.STAGE1_EPOCH[:4])
         head = "<tr><th>Year</th><th class='num'>Democrats</th><th class='num'>Republicans</th><th class='num'>Independents</th></tr>"
         body = []
         for y in years:
