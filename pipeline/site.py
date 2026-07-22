@@ -1794,10 +1794,11 @@ def methodology_body():
     # (f) data downloads pointer
     parts.append("<h2>Data</h2>")
     parts.append(
-        "<p>The derived JSON that powers this site is committed to the project's source repository; raw ingested "
-        "statements and the full phrase ledger are published as immutable, date-stamped release assets (repository "
-        "and assets are public at launch) so the entire time-series is rebuildable from source. The pipeline is "
-        "deterministic: same inputs, same outputs.</p>"
+        f"<p>The derived JSON that powers this site is committed to the project's "
+        f"<a href='{esc(config.REPO_URL)}'>public source repository</a>; raw ingested statements and the full phrase "
+        f"ledger are published as immutable, date-stamped "
+        f"<a href='{esc(config.REPO_URL)}/releases/tag/data-latest'>release assets</a> so the entire time-series is "
+        "rebuildable from source. The pipeline is deterministic: same inputs, same outputs.</p>"
     )
     parts.append(
         "<p><strong>Source links and the archive.</strong> Each receipt links to the member's own .gov release "
@@ -1889,26 +1890,29 @@ def about_body():
     )
     parts.append(
         "<p><strong>Contact &amp; corrections</strong> run through the corrections process on the "
-        "<a href='methodology.html'>Methodology</a> page (and the project's source repository, which is public "
-        "at launch) — every correction is a dated public entry, "
+        f"<a href='methodology.html'>Methodology</a> page and the project's "
+        f"<a href='{esc(config.REPO_URL)}'>public source repository</a> — every correction is a dated public entry, "
         "never a silent edit. OnScript has no comment section and solicits no engagement; it broadcasts a "
         "measurement and links its receipts.</p>"
     )
     parts.append("<h2>The accounts</h2>")
     parts.append(
         "<p>Two automated composite accounts on Bluesky — one per party, the identical instrument, only the field "
-        "color differs:</p>"
+        "color differs — plus the house account for project announcements:</p>"
     )
     parts.append(
         "<ul class='tight'>"
-        "<li><strong>blue.onscript.news</strong> — the composite voice of Democratic members of Congress</li>"
-        "<li><strong>red.onscript.news</strong> — the composite voice of Republican members of Congress</li>"
+        "<li><strong><a href='https://bsky.app/profile/blue.onscript.news'>blue.onscript.news</a></strong> — "
+        "the composite voice of Democratic members of Congress</li>"
+        "<li><strong><a href='https://bsky.app/profile/red.onscript.news'>red.onscript.news</a></strong> — "
+        "the composite voice of Republican members of Congress</li>"
+        "<li><strong><a href='https://bsky.app/profile/onscript.news'>onscript.news</a></strong> — "
+        "the house account for releases and instrument notices</li>"
         "</ul>"
     )
     parts.append(
-        "<p>At public launch, each will post one citation-backed thread per day, labeled automated, following only "
-        "the other, and never replying, liking, or reposting. The accounts are live but have not begun posting; "
-        "their bios point here for disclosure.</p>"
+        "<p>The composite accounts post daily citation-backed threads, labeled automated. They follow only the "
+        "other OnScript accounts and never like or repost; their bios point here for disclosure.</p>"
     )
     parts.append("<h2>How it's built</h2>")
     parts.append(
@@ -1919,9 +1923,14 @@ def about_body():
         "quotes or counts don't check out against the source.</p>"
     )
     parts.append(
+        f"<p>The <a href='{esc(config.REPO_URL)}'>source repository</a> and the rolling "
+        f"<a href='{esc(config.REPO_URL)}/releases/tag/data-latest'>data release</a> are public so the "
+        "instrument can be inspected and rebuilt independently.</p>"
+    )
+    parts.append(
         '<div class="banner">Honest disclosure: the composite voice is live, but on rare degraded days a line may '
-        "fall back to a <strong>dry-run</strong> deterministic stub. Whenever that happens the day's page labels it "
-        "plainly; the numbers, quotes, and receipts under every line are always real and verified.</div>"
+        "use a <strong>deterministic fallback</strong>. Whenever that happens the day's page is plainly labeled; "
+        "the numbers, quotes, and receipts under every line are always real and verified.</div>"
     )
     return "".join(parts)
 
@@ -1965,7 +1974,7 @@ def posts_log_body(threads) -> str:
         "ours.</strong> The accounts never reply, like, or repost &mdash; there is nothing else to authenticate.</p>"
     )
     if not threads:
-        parts.append('<p class="muted">No posts yet. The accounts are live but have not begun posting.</p>')
+        parts.append('<p class="muted">No posts recorded in this build.</p>')
         return "".join(parts)
     for t in threads:
         party = t.get("party")

@@ -1,5 +1,10 @@
 # 20 — THE DRIP CALENDAR, Jul 2026 → Jul 2027 (Fable, 2026-07-18 — operating plan, revisable)
 
+> **Current-date notice (2026-07-22):** the launch timing below is the original editorial plan and
+> is superseded by `docs/23-FLIP-PACKET.md` §7.3 plus Session 42: OnScript launched 2026-07-21 and
+> the repository became public 2026-07-22. The remaining editorial inventory and freeze discipline
+> stay revisable guidance; the health-gated release schedule in docs/23 governs current dates.
+
 **Not a phase gate and not binding like a brief** — this is the editorial plan Michael executes and
 may reorder at will. It exists to answer one worry: *"we don't seem to have much."* We do. The
 CONFIRMED shelf is thin **by design** (2 of 34 → now 4 pending review at 5.9%→11.8%); the

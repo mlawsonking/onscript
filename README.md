@@ -1,72 +1,73 @@
 # OnScript
 
-*Repo codename: `polispeak`. Product name: **OnScript** (`onscript.news`).*
+OnScript is a live, daily measurement of the exact language U.S. members of Congress publish.
+Every complete day is compressed into one composite voice per party, mechanically verified against
+member statements, published with receipts, and posted by two automated Bluesky accounts. The same
+pipeline, prompts, and thresholds run for both parties.
 
-Every morning, unattended: ingest what U.S. members of Congress publicly said, distill each
-party into one cited composite "Daily Line," verify every receipt mechanically, publish to
-the dashboard, post to both Bluesky accounts, audit our own symmetry in public — and never
-miss. The compounding time-series is the moat; the receipts discipline is the armor.
+- Live instrument: [onscript.news](https://onscript.news)
+- Methodology and nightly audit: [onscript.news/methodology.html](https://onscript.news/methodology.html)
+- Rolling raw/state release: [data-latest](https://github.com/mlawsonking/onscript/releases/tag/data-latest)
+- Governing invariants: [`docs/06-CONSTITUTION.md`](docs/06-CONSTITUTION.md)
+- Build and operating record: [`docs/04-BUILDLOG.md`](docs/04-BUILDLOG.md) and
+  [`docs/07-OPERATIONS.md`](docs/07-OPERATIONS.md)
 
-- **What / why / product thesis:** [`CLAUDE.md`](CLAUDE.md)
-- **Phase docs:** [`docs/01-VISION.md`](docs/01-VISION.md) · [`docs/02-RESEARCH.md`](docs/02-RESEARCH.md) · [`docs/03-GAMEPLAN.md`](docs/03-GAMEPLAN.md) (the build spec)
-- **Build log (Phase 4, multi-session):** [`docs/04-BUILDLOG.md`](docs/04-BUILDLOG.md)
-- Predecessor (2022): [PoliticianTweeting](https://github.com/mlawsonking/PoliticianTweeting)
+## Production rhythm
 
-## Architecture (gameplan §2)
+GitHub Actions is the runtime. Two scheduled passes let a late upstream day recover without skipping:
 
-```
-GitHub Actions (public repo, free tier)
-  RUN A collect  (05:30 ET): pull+mirror congress-press · Bluesky (Lane 2) · normalize
-                              · phrase engine (local) · submit Anthropic extraction batch
-  RUN B assemble (07:30 ET): retrieve batch · cluster · 2 Daily-Line calls · VERIFY (blocking)
-                              · render JSON/SVG/og-card · commit · post Bluesky · symmetry audit
-raw (immutable)  -> GitHub Release assets      ledger/state -> Release asset
-derived (small)  -> committed in data/derived/ -> the site reads it
-```
+- **RUN A — collect**, at 09:30Z and 19:30Z: mirror the press-release corpus, normalize Lane 1,
+  update the deterministic phrase ledger, submit/cache extraction work, redact the published view,
+  and refresh `data-latest`.
+- **RUN B — assemble**, at 11:30Z and 21:30Z: select the oldest ready day, cluster and distill,
+  run the blocking verifier and symmetry audit, render the static site, post both party threads
+  atomically when enabled, persist state, and commit the derived/site output for Vercel.
 
-Two-lane data model (§5): **Lane 1 = press releases only**, the sole input to any cross-party
-number; **Lane 2 = Bluesky/floor**, enrichment + citations, machine-blocked from comparative
-metrics. Identical instrument for both parties, audited nightly in public.
+The exact scheduler may start late. Health is read from manifests and advancing data, never from a
+green workflow badge alone. See `docs/07-OPERATIONS.md` for health thresholds and incident playbooks.
 
-## The deterministic core (built, verified — Phase 4 session 1)
+## State and reproducibility
 
-Stdlib-only Python (runs identically on the Ubuntu runner and a dev box), `$0` LLM:
+- `data/raw/` — immutable source mirror; published in `raw.tar.gz` on `data-latest`
+- `data/state/` — normalized statements, extraction cache, and phrase ledger; published in
+  `state.tar.gz` on `data-latest`
+- `data/derived/` — small committed manifests and public JSON
+- `site/public/` — committed static site generated from the derived record
 
-| module | stage | does |
-|---|---|---|
-| `pipeline/fetch.py` | A1 | pull `dwillis/congress-press`, mirror raw immutably, dead-man freshness |
-| `pipeline/normalize.py` | A3 | statement schema · dedupe · syndication filter · exact + **near-identical** joint-collapse (§11 trap 2) |
-| `pipeline/boilerplate.py` | A4 | structural strip + n-gram template/date suppression |
-| `pipeline/phrases.py` | A4 | content n-grams · per-(congress,party) DF suppression · first-appearance ledger · discipline index |
-| `pipeline/build.py` | — | top synchronized phrases · adoption curves · coverage tables (derived JSON) |
-| `pipeline/verify.py` | B4 | **deterministic citation verifier** (substring · ≥3 members · digit-whitelist) — the product |
-| `pipeline/deterministic.py` | — | the pure run: normalize → engine → ledger → derived |
-
-## Run it locally
-
-Requires only Python 3.11+ (stdlib). No third-party deps for the deterministic core.
+Use Python 3.11+. On the Windows operator machine the configured interpreter is
+`C:\ProgramData\miniconda3\python.exe`.
 
 ```powershell
-# Stage-1 backfill: pull the 119th-Congress epoch (2025-01-03 -> today), build the ledger, prove it
-python scripts/backfill_stage1.py                 # full epoch
-python scripts/backfill_stage1.py --start 2026-06-01   # fast slice for a smoke test
-python scripts/backfill_stage1.py --offline        # rebuild from the existing raw mirror, no network
+# Restore raw/state by downloading and extracting both data-latest assets first, then:
+& 'C:\ProgramData\miniconda3\python.exe' pipeline/rebuild.py
 
-# Reproducibility check (§1.4.8): rebuild twice from raw, assert byte-identical derived JSON
-python pipeline/rebuild.py
+# A faster single rebuild without the second determinism pass:
+& 'C:\ProgramData\miniconda3\python.exe' pipeline/rebuild.py --once
 
-# Tests (no pytest needed)
-python tests/run_tests.py
+# Verify that release files contain no admitted private-name form:
+& 'C:\ProgramData\miniconda3\python.exe' -m pipeline.redact --check data/raw data/state data/reference
+
+# Full stdlib test suite:
+& 'C:\ProgramData\miniconda3\python.exe' tests/run_tests.py
 ```
 
-## Secrets (GitHub Actions — never in the repo)
+`pipeline/rebuild.py` runs from the raw mirror and proves deterministic output. Published release
+assets are a privacy-redacted view; the pristine append-only operator archive is not rewritten.
 
-`ANTHROPIC_API_KEY` · `NTFY_TOPIC` · `BSKY_BLUE_HANDLE`/`BSKY_BLUE_PASSWORD` ·
-`BSKY_RED_HANDLE`/`BSKY_RED_PASSWORD` · `DATA_GOV_API_KEY` (v2 floor leg).
+## Operational controls
 
-## Launch blockers (human-only, gameplan §7.3, §9)
+- `POSTING_ENABLED` is the outbound Bluesky kill switch. Off means no authentication or posting.
+- `LLM_VOICE_ENABLED` is the metered composite-voice switch. Off selects the deterministic fallback.
+- The code-side monthly voice ceiling is below the separate Console hard cap.
+- A verifier failure drops the claim or selects a deterministic fallback; it is never hand-patched.
+- Source outages skip and log; asymmetric or partial posting triggers the dead-man path.
 
-- Michael registers `onscript.news` + `theonscript.com` (~$30), creates `blue.onscript.news` /
-  `red.onscript.news` Bluesky accounts (spec-labeled), sets Actions secrets.
-- Create the public GitHub repo + push (Actions is the true runtime; no remote exists yet).
-- One-hour media-attorney review of composite framing + methodology page (R9 prudence).
+Do not run `pipeline/post_bluesky.py` to preview a thread: even a gated local run writes post
+manifests. Import and call the pure `build_thread()` helper instead.
+
+## Configuration and secrets
+
+Runtime secrets live only in GitHub Actions. Their names are documented in the workflow files;
+values, the ntfy topic, credentials, and app passwords never belong in this repository. The public
+repository and downloadable data are sufficient to reproduce the measurement without those secrets;
+posting and the optional model voice are separate outbound capabilities.

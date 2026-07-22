@@ -49,6 +49,9 @@ USER_AGENT = "onscript-pipeline (+https://onscript.news)"
 # (post_bluesky.py keeps its own identical SITE constant; the posting path is frozen for launch and
 # is not worth a refactor tonight. Consolidate post-launch.)
 SITE_URL = "https://onscript.news"
+# Derived from this checkout's `origin` remote (2026-07-22). Public call sites build repository and
+# rolling-release links from one authority so a future repository move cannot leave split pointers.
+REPO_URL = "https://github.com/mlawsonking/onscript"
 OG_IMAGE = "og.png"          # committed at site/public/og.png — 1200x630, the link-card image
 OG_IMAGE_W, OG_IMAGE_H = 1200, 630
 

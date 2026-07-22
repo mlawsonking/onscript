@@ -256,7 +256,7 @@ def test_posts_archive_renders_and_maps_at_uri_to_web():
     assert "We speak today of housing." in html
     assert "not ours" in html                                        # the forgery-defense line
     assert "bsky.app/profile/did:plc:abc/post/xyz" in html           # at:// -> web url
-    assert "No posts yet" in site.posts_log_body([])                 # empty state
+    assert "No posts recorded in this build" in site.posts_log_body([])  # environment-neutral empty state
 
 
 # --- denominators + archival fallback in the receipts --------------------------------------
