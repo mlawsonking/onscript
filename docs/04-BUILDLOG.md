@@ -2901,3 +2901,35 @@ to the unit.
 **One ops lesson worth carrying.** A manually dispatched collect was cancelled once the scheduled run
 was seen mid-redact. With `cancel-in-progress: false`, a newly queued run displaces an **already-pending**
 one — so dispatching anything while an assemble sits queued can cancel the day's post.
+
+### 10. The morning ran, and the live thread found the defect the tests did not
+
+RUN B fired at 13:00:36Z (scheduler ~90 min late, in line with the collect's ~113) and finished green
+in 1m3s. Readiness picked **`target=2026-07-21 forced=False :: ready`** — exactly what the gate was
+predicted to choose from the real cloud state — both parties `verifier_passed=True fallback=False`,
+`atomic_hold=False`, `asymmetric=False`, both threads live.
+
+**The redact step cost 0.4 s** — "redacted 0 file(s), skipped 29 unchanged". Against the 1039.9 s
+bootstrap in the collect, that is the file-level cache doing exactly its job, and it settles the
+performance question: the recurring cost is nil, and the record-level cache named in §7 is not needed.
+
+**P2 v1.3 is visibly live**: the R composite reads "first recorded **in our corpus** from Nick LaLota
+(R-NY)", and both receipts posts carry the qualifier.
+
+**And the D thread still cut mid-clause** — "...as a common" / "thread today." — which is the defect
+sentence packing exists to remove. Cause, from the real composite: `_sentences` returned 3 sentences,
+the middle one 272 chars against a 262-char post. It was 272 because **two sentences had merged**. The
+boundary sits after `implemented."`, where the terminal period is INSIDE the closing quote, so the
+lookbehind `(?<=[.!?])` inspected the quote and found no boundary. Prompt rule 2 *requires* verbatim
+member quotes, so `..."` at a sentence end is this voice's normal register, not an edge case.
+
+Fixed by allowing an optional closing quote/bracket in the lookbehind. On the real 07-21 composite the
+thread goes from 3 body posts with a mid-clause cut to **2, each ending on a complete sentence, still
+word-exact**. Mutation-verified against the version shipped this morning. 435 tests green.
+
+The honest lesson: the packing tests used prose I wrote, and I wrote it without quotations. The live
+voice's actual register — quote-terminated sentences, because the prompt mandates them — was the one
+shape the fixture never contained.
+
+Receipts verified live: `/day/2026-07-21.html` 200, homepage on 07-21, and the methodology page
+carrying both new R-L disclosures.
