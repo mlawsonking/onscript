@@ -220,7 +220,93 @@ feature after the 08-03 window, possibly with the Archive flip.
    list, not the clock). **Never dispatch a run to "test" the change** — a dispatched run can
    displace a pending scheduled one (S40).
 3. The next scheduled assemble is the live exercise of P0-B. Read its log (Art. XVI): green,
-   two renders, and the committed `posts.html` carrying that same run's thread.
+   two renders, and the committed `posts.html` carrying that same run's thread. The next
+   scheduled collect is the live exercise of P2's evidence bootstrap — read its step timing.
 4. Post-push, read-only live verification is authorized: fetch the live pages, re-run the
    stale-phrase scan against production HTML, confirm search-index rows are all post-epoch.
    Nothing else (no dispatch, no posting, no flips).
+
+---
+
+## 8. S43 validation verdict + REQUIRED REMEDIATION (gates the push)
+
+The four delivered commits (`a9d3af6`/`eea390c`/`f32ccc1`/`3ef985b`) were independently
+validated: scope audit PASS (15 files, zero forbidden paths, config diff = one additive
+`REPO_URL`, docs additive, packets independently revertable); suite independently reproduced
+**459 passed / 0 failed** via the house runner `tests/run_tests.py` (the authoritative local
+invocation — there is no pytest on this box); adversarial substance review passed on P0-A,
+P0-B, and P1 in full. One BLOCKER and three riders:
+
+**R1 (BLOCKER — fix before anything pushes).** `build.build_derived` calls
+`phrase_evidence.build_phrase_evidence(...)` (`build.py:598-600`) with **no skip-and-log
+wrap**, and the call sits **before** the `days/{focus_day}.json` write. Any throw in the
+evidence build fails the unattended RUN A/RUN B and loses the day's core artifact — the exact
+failure the §0 streak invariant forbids, and the reason the sibling calls
+(`deterministic.py:37-48`, `build_concordance`/`build_awards`) are wrapped. Fix both belts:
+(a) wrap the call mirroring the siblings (skip-and-log, loud print); (b) relocate it **after**
+the day-summary write inside `build_derived` so even a pathological failure cannot cost the
+day JSON. Kill test: a raising evidence builder must neither prevent the day JSON write nor
+fail the run; mutation-verify (unwrap → test reds).
+
+**R2 (rider, same commit).** Two dark-surface renderers bypass the hardened `member_name()`
+with their own `m.get("name") or m.get("bioguide")` fallback: `_member_label()`
+(`site.py:2249`, Concordance) and `_unison_offices()` (`site.py:2351`, Unison/Void). Not a
+live leak (both flags dark), but both flip on the docs/23 schedule (08-24 / 09-07). Route
+them through the hardened path now; test locks that no renderer can emit a raw bioguide
+styled as a name.
+
+**R3 (rider, same commit).** On the phrase page, "Peak: N members in one day" (per-party max)
+renders adjacent to "grounded in M distinct source units" (cross-party total); M > N is
+legitimate but reads as a contradiction to a skeptic. Add one reconciling clause tying each
+number to its stated denominator. Copy only, both parties identical.
+
+**R4 (accepted risk, watch item).** The P2 cost-gate numbers (45.7 s bootstrap / 0.53 s warm)
+could not be independently reproduced locally (local state is stale). The skip-and-log wrap
+(R1) bounds the downside; the first cloud collect after the push is the real measurement —
+read its step timing per §7.3.
+
+Remediation ships as **one commit on top of `3ef985b`**, evidence per §6. The push covers
+docs + four packets + remediation together.
+
+## 9. Wave 2 (authorized, after the remediation commit exists)
+
+Same constraints as §6 throughout; each packet its own commit + evidence row. **Wave-2 commits
+push only after the first green live exercise of P0-B/P2** (the remediated packet pushes
+first and alone). Out of scope for the external worker, reserved for internal sessions:
+silence_board wiring (R-B, deadline Mon 08-03), the 07-27 `nomenclature_tags` flip and its
+R-A riders, `sync_by_party` historical backfill (repair semantics), and anything that
+measures or publishes findings.
+
+**W2-A — local-execution write safety for the posting module (the S40 finding-9 follow-up).**
+When `GITHUB_ACTIONS` is absent from the environment, executing `pipeline/post_bluesky.py`
+must perform **zero filesystem writes** (no `_flush`, no manifest create/update/restamp) and
+zero network — print a preview instead; an explicit `--allow-local-manifest-write` flag is
+the deliberate override. CI behavior byte-identical (GitHub always sets the variable — no
+workflow change). Kill tests BOTH directions, the inverse being the vital one: with the env
+var set, the flush path is unchanged (a silently-lost posting day is the failure to fear);
+plus a tmp-tree test encoding the S40 footgun (gated local run writes nothing). Minimal diff;
+no posting-logic or manifest-schema changes. This is the one wave-2 packet allowed to touch
+`pipeline/post_bluesky.py`, and its PUSH additionally waits for a green live posting day
+under the new assemble.yml.
+
+**W2-B — distribution surfaces: Atom feed + sitemap + robots.**
+`feed.xml` (stdlib string-built like the rest of the site): one entry per published day page,
+last ~30 days, deterministic timestamps from day data. **Entry content = code-computed
+deterministic fields only — the og: privacy rule extended: never composite prose, never
+statement text, both parties in every entry with equal weight** (lock with the same
+style of test that locks the og tags). `sitemap.xml` covering every rendered page and nothing
+else; `robots.txt` pointing at it; `<link rel="alternate">` in page heads; About/Methodology
+mention the feed in one line. Tests: well-formed XML, entry set = existing day pages,
+symmetry, no-prose rule, sitemap↔rendered-page agreement.
+
+**W2-C — accessibility + navigation polish.**
+Semantic landmarks (header/nav/main/footer) + skip link + `lang` attribute on every page;
+curve/inline SVGs get `role="img"` + `<title>`/`<desc>` **derived from code-computed fields
+only** (same og rule); `404.html` (Vercel serves it automatically); favicon wired from an
+existing committed brand asset (no Pillow, no generation); phrase-page peak date links to
+`day/<date>.html` when that page exists. Contrast: REPORT any WCAG-AA failures with values —
+do not redesign; palette changes are Michael's call. Tests where mechanical (one `main` per
+page, SVG titles present, 404 exists, no dead internal links).
+
+**W2 evidence:** the §6 regimen, a fresh evidence table, suite floor 459+ new, zero failures,
+tree clean but for `AGENTS.md`.
