@@ -2870,3 +2870,34 @@ Caught by `git status` before staging, reverted, nothing pushed. The preview was
 flushes (or a `--preview` flag), and it is a named follow-up rather than a change made at 3 a.m. on
 the posting path the morning cron is about to use. Until then: preview via `build_thread()`, never by
 running the module.
+
+### 9. ✅ R-L in production, and the #132 gate condition met
+
+Later the same session. The 09:30Z collect ran scheduler-delayed at 11:23Z — after the push, so it
+picked up the new code unprompted — and redacted **732 occurrences in 4 of 48 files in 1039.9 s**:
+`raw/congress-press/2026-07.jsonl` 223, `statements.jsonl.gz` 223, `ledger.json` 158,
+`extractions.jsonl` 128. Persist and commit both green, no dead-man; job 1h3m against a ~43m baseline.
+
+**The deltas are the finding.** Against the previous day's assets, raw is **+18** and statements is
+**+18** — identical, because statements are normalized from raw, which is a free consistency check on
+the derivation. Those eighteen occurrences arrived in *this morning's ingest*: the person is still
+being named in new press releases. A one-time edit of the eleven records the rider named would already
+have re-leaked, on day one. That is the whole argument for a filter on the way out rather than a patch.
+
+**Verification, as the ruling specifies it.** Downloaded both freshly-built assets from `data-latest`
+(byte-sizes matching the live release exactly — raw 93,026,744, state 141,799,381, uploaded 12:27:20Z),
+ran `python -m pipeline.redact --check` over all 48 files: **0 occurrences.**
+
+A check that finds nothing and a check that is broken look the same, so the **positive control** was run
+as well: the published assets carry **732 redaction labels, matching the run's own report file for file
+(223 / 223 / 158 / 128)**. The same machinery found 732 things to replace, and all 732 are present — a
+no-op scan is ruled out.
+
+**Stated limit:** `--check` shares its matching engine with the redactor, so this is not an independent
+audit; a shared blind spot would pass silently. What partially offsets it is that S38 measured 42 for
+form `447bf804…` independently, in another session with another tool, and that number reproduced here
+to the unit.
+
+**One ops lesson worth carrying.** A manually dispatched collect was cancelled once the scheduled run
+was seen mid-redact. With `cancel-in-progress: false`, a newly queued run displaces an **already-pending**
+one — so dispatching anything while an assemble sits queued can cancel the day's post.
