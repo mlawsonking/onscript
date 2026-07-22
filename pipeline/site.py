@@ -1939,7 +1939,7 @@ def about_body():
 # Signed post archive (§Session-8): the on-domain mirror of every posted thread — forgery defense.
 # ---------------------------------------------------------------------------
 def posted_threads() -> list:
-    """Every thread the composite accounts have actually posted, from the post manifests."""
+    """Post-manifest records classified by what the manifest can actually authenticate."""
     out = []
     mdir = DERIVED / "manifest"
     if not mdir.exists():
@@ -1949,9 +1949,23 @@ def posted_threads() -> list:
         if not isinstance(m, dict):
             continue
         for r in (m.get("results") or []):
-            if r.get("posted") and r.get("thread"):
-                out.append({"day": m.get("day"), "generated_at": m.get("generated_at"),
-                            "party": r.get("party"), "thread": r.get("thread"), "root_uri": r.get("root_uri")})
+            if not isinstance(r, dict):
+                continue
+            posted = r.get("posted") is True
+            partial = r.get("partial") is True
+            root_uri = r.get("root_uri") if isinstance(r.get("root_uri"), str) else ""
+            root_uri = root_uri.strip()
+            if not (posted or partial):
+                continue
+            if partial and root_uri:
+                status = "partial"
+            elif posted and root_uri:
+                status = "authenticated"
+            else:
+                status = "unverifiable"
+            out.append({"day": m.get("day"), "generated_at": m.get("generated_at"),
+                        "party": r.get("party"), "thread": r.get("thread") or [],
+                        "root_uri": root_uri, "status": status})
     out.sort(key=lambda r: (str(r.get("day")), str(r.get("party"))), reverse=True)
     return out
 
@@ -1969,21 +1983,33 @@ def _bsky_web_url(uri):
 def posts_log_body(threads) -> str:
     parts = ["<h1>Posted threads &mdash; signed archive</h1>"]
     parts.append(
-        '<p class="subhead">Every thread the composite accounts have posted, mirrored here on the domain '
-        "and timestamped. <strong>Any post attributed to these accounts that does not appear here is not "
-        "ours.</strong> The accounts never reply, like, or repost &mdash; there is nothing else to authenticate.</p>"
+        '<p class="subhead">This archive reflects the posting manifests available when this page was built. '
+        "A complete entry with a Bluesky root link is the authenticated record. A same-run refresh failure "
+        "can delay a new entry until the next build; partial and unverifiable records are labeled and never "
+        "presented as complete. The accounts never reply, like, or repost outside their published threads.</p>"
     )
     if not threads:
         parts.append('<p class="muted">No posts recorded in this build.</p>')
         return "".join(parts)
     for t in threads:
         party = t.get("party")
+        status = t.get("status") or ("authenticated" if t.get("root_uri") else "unverifiable")
         head = (f'<span class="pill {esc(party)}">{esc(party)}</span> <strong>{esc(t.get("day"))}</strong> '
                 f'<span class="faint">&middot; {esc(t.get("generated_at"))}</span>')
         web = _bsky_web_url(t.get("root_uri"))
         link = f' &middot; <a href="{esc(web)}" rel="nofollow noopener">on Bluesky</a>' if web else ""
-        posts = "".join(f'<div class="quote">{esc(p)}</div>' for p in (t.get("thread") or []))
-        parts.append(f'<div class="receipt"><div class="rhead">{head}{link}</div>{posts}</div>')
+        if status == "authenticated":
+            badge = ' &middot; <strong>authenticated</strong>'
+            body = "".join(f'<div class="quote">{esc(p)}</div>' for p in (t.get("thread") or []))
+        elif status == "partial":
+            badge = ' &middot; <strong>partial</strong>'
+            body = ('<p class="muted"><small>The root is live, but this manifest does not prove that the '
+                    'intended replies were all posted. Only the root link is shown.</small></p>')
+        else:
+            badge = ' &middot; <strong>unverifiable</strong>'
+            body = ('<p class="muted"><small>The manifest reports a post but records no root URI, so no '
+                    'thread text is presented as authenticated.</small></p>')
+        parts.append(f'<div class="receipt"><div class="rhead">{head}{badge}{link}</div>{body}</div>')
     return "".join(parts)
 
 

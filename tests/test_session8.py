@@ -254,7 +254,7 @@ def test_posts_archive_renders_and_maps_at_uri_to_web():
                 "root_uri": "at://did:plc:abc/app.bsky.feed.post/xyz"}]
     html = site.posts_log_body(threads)
     assert "We speak today of housing." in html
-    assert "not ours" in html                                        # the forgery-defense line
+    assert "authenticated record" in html                            # time-bounded forgery defense
     assert "bsky.app/profile/did:plc:abc/post/xyz" in html           # at:// -> web url
     assert "No posts recorded in this build" in site.posts_log_body([])  # environment-neutral empty state
 

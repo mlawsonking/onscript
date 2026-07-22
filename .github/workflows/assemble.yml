@@ -112,6 +112,24 @@ jobs:
       - name: Post the Daily Line threads to Bluesky (both accounts)
         run: python pipeline/post_bluesky.py || echo "posting skipped/failed (skip-and-log)"
 
+      # Re-run in a fresh process so site.py re-globs the post manifests written by the step above.
+      # The pre-post build remains the last known-good public tree: if this refresh fails, restore it
+      # atomically and continue so a display lag never costs the day's data commit.
+      - name: Refresh the signed post archive from same-run manifests
+        shell: bash
+        run: |
+          snapshot="$(mktemp -d)"
+          cp -a site/public/. "$snapshot/"
+          if python pipeline/site.py; then
+            echo "post archive refreshed from same-run manifests"
+          else
+            echo "::warning::POST_ARCHIVE_REFRESH_FAILED — restoring the pre-post public tree"
+            rm -rf site/public
+            mkdir -p site/public
+            cp -a "$snapshot/." site/public/
+          fi
+          rm -rf "$snapshot"
+
       - name: Persist updated extraction cache
         run: |
           tar -czf state.tar.gz data/state data/reference
