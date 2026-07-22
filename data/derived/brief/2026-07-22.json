@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-07-22",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 11,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "11 consecutive days published (through 2026-07-21)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0876,
+      "projected": 0.1664,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 9,
+      "note": "$0.0876 MTD, $0.17 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-07-21",
+      "parties": {
+        "D": {
+          "statements": 130,
+          "median": 90.5,
+          "share": 1.436,
+          "status": "green"
+        },
+        "R": {
+          "statements": 102,
+          "median": 62.5,
+          "share": 1.632,
+          "status": "green"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 3.19,
+        "day": "2026-07-22",
+        "status": "green"
+      },
+      "excluded_reports": 2,
+      "note": "2026-07-21: D 130/90=144% R 102/62=163% of own 14d median (green >= 60%); upstream 3.2h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.16,
+      "dropped": 8,
+      "offered": 50,
+      "unmeasured_rows": 0,
+      "status": "green",
+      "note": "8/50 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "national security department",
+    "party": "D",
+    "day_peak": 32,
+    "day": "2026-07-15"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "ALL GREEN"
+}
