@@ -2853,3 +2853,20 @@ wrong about the entire corpus.
 
 A record-level clean-cache would cut the recurring cost further and is the named follow-up if the added
 minutes prove annoying; it was deliberately not built tonight.
+
+### 8. ⚠ Footgun found by walking into it: a local dry-run REWRITES tracked post manifests
+
+Previewing the new packing by running `pipeline/post_bluesky.py` locally — fully gated, no creds,
+`POSTING_ENABLED` unset, zero network — still called `_flush()`, which rewrote
+`data/derived/manifest/post-2026-07-20.json` with `generated_at` restamped and **`posting_enabled`
+flipped `true` → `false`**, and created a spurious `post-2026-07-21.json`. That file is the launch
+day's record and the source `/posts.html` renders as the signed archive; committing it would have
+falsified the evidence that the launch posts went out under a live gate.
+
+Caught by `git status` before staging, reverted, nothing pushed. The preview was re-done by calling
+`build_thread()` directly, which is pure.
+
+**A dry run should not be able to write a tracked artifact.** The fix is a preview path that never
+flushes (or a `--preview` flag), and it is a named follow-up rather than a change made at 3 a.m. on
+the posting path the morning cron is about to use. Until then: preview via `build_thread()`, never by
+running the module.
