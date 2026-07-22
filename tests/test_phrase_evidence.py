@@ -7,7 +7,7 @@ import tempfile
 from contextlib import redirect_stdout
 from pathlib import Path
 
-from pipeline import phrase_evidence, privacy, site
+from pipeline import build, phrase_evidence, privacy, site
 
 
 DAY = "2026-02-09"
@@ -182,3 +182,39 @@ def test_copy_and_behavior_agree_below_and_at_quorum():
     assert "Peak-day evidence" in at_quorum
     assert "Showing 3 of 3" in at_quorum
     assert "web.archive.org/web/20260209/" in at_quorum
+
+
+def test_evidence_failure_cannot_cost_the_day_summary_or_the_run():
+    """The optional evidence slice is downstream of, and fail-soft beside, the core day artifact."""
+    holder = tempfile.TemporaryDirectory()
+    root = Path(holder.name)
+    (root / "phrases").mkdir()
+    (root / "days").mkdir()
+    ledger = {NGRAM: {
+        "ngram": NGRAM, "n": 4, "df_weight": 1.0,
+        "first_seen": {"date": DAY, "party": "D", "member": "B000001"},
+        "daily": {DAY: {"D": 3, "R": 0, "members_D": ["B000001", "B000002", "B000003"],
+                        "members_R": []}},
+    }}
+    original = phrase_evidence.build_phrase_evidence
+    phrase_evidence.build_phrase_evidence = lambda *_a, **_k: (_ for _ in ()).throw(RuntimeError("boom"))
+    try:
+        result = build.build_derived(
+            [_statement(1)], ledger, {"D": {DAY: 1.0}, "R": {DAY: 0.0}}, root,
+            focus_day=DAY, coverage={"2026": {}},
+        )
+        assert result["focus_day_write"] == "written"
+        assert (root / "days" / f"{DAY}.json").exists()
+    finally:
+        phrase_evidence.build_phrase_evidence = original
+        holder.cleanup()
+
+
+def test_peak_and_evidence_copy_reconciles_its_two_denominators():
+    record = {"peak_day": DAY, "grounded_units": 5, "counts": {"D": 3, "R": 2},
+              "receipts": [{"member": f"Member {i}", "party": "D" if i < 4 else "R",
+                            "state": "CA", "date": DAY, "url": f"https://m{i}.house.gov/r"}
+                           for i in range(1, 6)]}
+    html = site.phrase_page_body(_phrase(), evidence={"phrases": {SLUG: record}})
+    assert "largest count for either party" in html
+    assert "across both parties on that same day" in html

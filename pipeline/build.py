@@ -592,13 +592,6 @@ def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_
     for ngram in surfaced:
         _u.write_json(phrases_dir / f"{phrase_slug(ngram)}.json", phrase_page(ngram, ledger[ngram]))
 
-    # Peak-day source evidence for every public phrase page. Alexandria's ledger-only rebuild passes
-    # no statements and deliberately leaves this Stage-1 slice alone; normal RUN A always supplies the
-    # normalized Lane-1 corpus. The builder owns its incremental state cache and writes no source text.
-    if statements:
-        from . import phrase_evidence
-        phrase_evidence.build_phrase_evidence(statements, out_dir)
-
     # Per-day summary for the focus day (Daily Lines merged later by assemble).
     #
     # IMMUTABILITY OF A PUBLISHED DAY (docs/23 §7.5 R-C). This write is a full-object OVERWRITE that
@@ -630,6 +623,16 @@ def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_
             "daily_lines": None,  # filled by the LLM assemble stage
         })
         focus_day_write = "written"
+
+    # Peak-day source evidence for every public phrase page. It is deliberately downstream of the
+    # core day write and fail-soft: an optional public receipt slice must never cost the streak its
+    # day artifact. Alexandria's ledger-only rebuild passes no statements and leaves this slice alone.
+    if statements:
+        try:
+            from . import phrase_evidence
+            phrase_evidence.build_phrase_evidence(statements, out_dir)
+        except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
+            print(f"[phrase-evidence] skipped (skip-and-log): {e}")
 
     return {
         "ledger_entries": len(ledger),

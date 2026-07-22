@@ -89,6 +89,22 @@ def test_member_name_never_falls_back_to_a_raw_bioguide_id():
     assert "unavailable" in rendered
 
 
+def test_dark_surface_renderers_never_style_a_bare_bioguide_as_a_name():
+    missing = "S001168"
+    row = {"bioguide": missing, "name": missing, "party": "D", "state": "CA",
+           "chamber": "house", "statements": 12, "on_script": 5, "index": 5 / 12}
+    old = site.ROSTER
+    site.ROSTER = {}
+    try:
+        concordance = site._member_label(row)
+        unison = site._unison_offices({"members": [row], "offices_using": 1})
+    finally:
+        site.ROSTER = old
+    assert missing not in concordance
+    assert missing not in unison
+    assert "unavailable" in concordance and "unavailable" in unison
+
+
 def test_methodology_coverage_and_phrase_disclosure_name_the_same_window():
     with tempfile.TemporaryDirectory() as td:
         root = Path(td)

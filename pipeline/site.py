@@ -107,22 +107,25 @@ PHRASE_EVIDENCE = _load_json(DERIVED / "phrase-evidence.json") or {"phrases": {}
 TOPIC_LABEL = {t.get("id"): t.get("label", t.get("id")) for t in TAXONOMY.get("topics", [])}
 
 
-def member_name(bioguide) -> str:
+def member_name(bioguide, fallback_name=None, *, include_suffix: bool = True) -> str:
     """Resolve a bioguide id to a display name without ever presenting an id as a name."""
-    if not bioguide:
-        return "—"
     entry = ROSTER.get(bioguide) if isinstance(ROSTER, dict) else None
+    name = None
+    state = party = None
     if isinstance(entry, dict):
         name = entry.get("name")
-        if name:
-            state = entry.get("state")
-            party = entry.get("party")
-            suffix = ""
-            if party and state:
-                suffix = f" ({esc(party)}-{esc(state)})"
-            elif state:
-                suffix = f" ({esc(state)})"
-            return f"{esc(name)}{suffix}"
+        state, party = entry.get("state"), entry.get("party")
+    if not name and fallback_name and not re.fullmatch(r"[A-Z]\d{6}", str(fallback_name)):
+        name = fallback_name
+    if name:
+        suffix = ""
+        if include_suffix and party and state:
+            suffix = f" ({esc(party)}-{esc(state)})"
+        elif include_suffix and state:
+            suffix = f" ({esc(state)})"
+        return f"{esc(name)}{suffix}"
+    if not bioguide:
+        return "—"
     return "member name unavailable"
 
 
@@ -1494,7 +1497,9 @@ def phrase_evidence_body(pdata: dict, evidence: dict | None = None) -> str:
     return (
         '<h2>Peak-day evidence</h2>'
         f'<p class="subhead">On {esc(day)}, this exact phrase is grounded in {esc(total)} distinct '
-        f'source unit{"" if total == 1 else "s"} (an office or joint-release family). Showing '
+        f'source unit{"" if total == 1 else "s"} (an office or joint-release family). The Peak figure '
+        'above is the largest count for either party; this evidence total counts grounded units across '
+        'both parties on that same day. Showing '
         f'{esc(len(visible))} of {esc(total)} source receipts.{denominator_line}</p>'
         + "".join(rows)
     )
@@ -2244,9 +2249,8 @@ def silence_board_body(board) -> str:
 # this render is gated, so the flip is a pure release act.
 # ---------------------------------------------------------------------------
 def _member_label(m: dict) -> str:
-    """Self-contained member label from the concordance row (name/party/state/chamber persisted at
-    build time, so the render needs no roster re-resolution). '(P-ST) · Chamber'."""
-    name = m.get("name") or m.get("bioguide") or "—"
+    """Hardened member label from the concordance row. '(P-ST) · Chamber'."""
+    name = member_name(m.get("bioguide"), m.get("name"), include_suffix=False)
     party, state, chamber = m.get("party"), m.get("state"), m.get("chamber")
     if party and state:
         suffix = f" ({esc(party)}-{esc(state)})"
@@ -2256,7 +2260,7 @@ def _member_label(m: dict) -> str:
         suffix = ""
     ch = {"house": "House", "senate": "Senate"}.get(chamber or "", "")
     ch_html = f' <span class="faint">{ch}</span>' if ch else ""
-    return f"{esc(name)}{suffix}{ch_html}"
+    return f"{name}{suffix}{ch_html}"
 
 
 def _concordance_column(party: str, rows: list, root: str) -> str:
@@ -2348,9 +2352,9 @@ def _unison_offices(row) -> str:
         return ""
     chips = []
     for m in mem:
-        nm = m.get("name") or m.get("bioguide") or "—"
+        nm = member_name(m.get("bioguide"), m.get("name"), include_suffix=False)
         st = f' <span class="faint">({esc(m.get("state"))})</span>' if m.get("state") else ""
-        chips.append(f"<li>{esc(nm)}{st}</li>")
+        chips.append(f"<li>{nm}{st}</li>")
     more = _num(row.get("members_more"))
     more_html = f'<li class="faint">+{esc(more)} more</li>' if more else ""
     n = _num(row.get("offices_using"))
