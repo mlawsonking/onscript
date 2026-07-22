@@ -472,9 +472,24 @@ def main() -> int:
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--day", default=None)
-    day = resolve_day(ap.parse_args().day)
+    ap.add_argument("--allow-local-manifest-write", action="store_true",
+                    help="deliberately enable the normal manifest-writing path outside GitHub Actions")
+    args = ap.parse_args()
+    day = resolve_day(args.day)
     day_json = util.read_json(config.DERIVED / "days" / f"{day}.json", None)
     manifest_path = config.DERIVED / "manifest" / f"post-{day}.json"
+
+    # Local invocation is preview-only by default. S40 proved that even a fully gated dry run reached
+    # _flush(), restamped the tracked launch manifest, flipped posting_enabled, and created a spurious
+    # next-day manifest. GitHub Actions always sets GITHUB_ACTIONS, preserving the production path
+    # byte-for-byte; an operator who genuinely needs local manifest writes must name that intent.
+    if "GITHUB_ACTIONS" not in os.environ and not args.allow_local_manifest_write:
+        if not (day_json and day_json.get("daily_lines")):
+            print(f"no Daily Lines for {day} — nothing to preview")
+            return 0
+        for party in config.COMPOSITE_PARTIES:
+            _dry_result(day, party, day_json, "local preview (manifest writes disabled)")
+        return 0
 
     prior = util.read_json(manifest_path, {})
     prior_results = prior.get("results") or []

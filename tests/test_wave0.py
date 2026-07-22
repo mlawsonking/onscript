@@ -17,6 +17,7 @@ Covers the launch-critical gate and the honesty/receipts fixes, plus the Session
 import json
 import os
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -367,7 +368,8 @@ def test_post_day_comes_from_assemble_manifest_not_collect():
 
 # --- main() integration: idempotency (MEDIUM-2) + dead-man on error (HIGH-3) ---------------
 def _run_main_with(day, day_json, prior, *, authenticate=None, post_thread=None, ntfy_sink=None,
-                   list_manifests=None, extra_reads=None):
+                   list_manifests=None, extra_reads=None, github_actions=True,
+                   allow_local_manifest_write=False):
     """Drive post_bluesky.main() with all I/O + AT-Proto network stubbed. Returns (rc, manifest).
     `list_manifests` defaults to [] so the hard-kill reconciliation scan is a no-op here — a test that
     exercises reconciliation injects prior manifest paths + their content via `extra_reads` (keyed by
@@ -407,14 +409,89 @@ def _run_main_with(day, day_json, prior, *, authenticate=None, post_thread=None,
     post_bluesky._ensure_bot_label = lambda s: None
     post_bluesky.ops.ntfy = lambda *a, **k: (ntfy_sink if ntfy_sink is not None else []).append((a, k))
     post_bluesky._list_manifests = list_manifests or (lambda: [])
+    restore_ci = _env(GITHUB_ACTIONS="true" if github_actions else None)
     sys.argv = ["post", "--day", day]
+    if allow_local_manifest_write:
+        sys.argv.append("--allow-local-manifest-write")
     try:
         rc = post_bluesky.main()
     finally:
+        restore_ci()
         (post_bluesky.util.read_json, post_bluesky.util.write_json, post_bluesky._authenticate,
          post_bluesky._post_thread, post_bluesky._ensure_bot_label, post_bluesky.ops.ntfy,
          post_bluesky._list_manifests, sys.argv) = saved
     return rc, writes.get(f"post-{day}.json", {})
+
+
+def test_local_preview_path_touches_neither_network_nor_manifest_writer():
+    """No Actions marker means preview-only even when every live posting gate is otherwise open."""
+    restore = _env(POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b", BSKY_BLUE_PASSWORD="x",
+                   BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
+
+    def boom(*_a, **_k):
+        raise AssertionError("local preview touched the network")
+
+    try:
+        rc, manifest = _run_main_with("2026-06-30", _DAY_JSON, {}, authenticate=boom,
+                                      post_thread=boom, ntfy_sink=[], github_actions=False)
+        assert rc == 0 and manifest == {}
+    finally:
+        restore()
+
+
+def test_actions_marker_keeps_the_existing_flush_path():
+    """The inverse is load-bearing: CI must still persist the post manifest exactly as before."""
+    restore = _env(POSTING_ENABLED=None)
+    try:
+        rc, manifest = _run_main_with("2026-06-30", _DAY_JSON, {}, github_actions=True)
+        assert rc == 0
+        assert manifest["kind"] == "post" and manifest["day"] == "2026-06-30"
+        assert {r["party"] for r in manifest["results"]} == {"D", "R"}
+    finally:
+        restore()
+
+
+def test_explicit_local_manifest_override_restores_the_flush_path():
+    restore = _env(POSTING_ENABLED=None)
+    try:
+        rc, manifest = _run_main_with("2026-06-30", _DAY_JSON, {}, github_actions=False,
+                                      allow_local_manifest_write=True)
+        assert rc == 0 and manifest["kind"] == "post"
+    finally:
+        restore()
+
+
+def test_local_preview_leaves_a_real_derived_tree_byte_identical():
+    """S40 footgun: even a fully gated local main() used to restamp tracked launch manifests."""
+    with tempfile.TemporaryDirectory(prefix="onscript-post-preview-") as td:
+        root = Path(td)
+        (root / "days").mkdir()
+        (root / "manifest").mkdir()
+        day = "2026-06-30"
+        util.write_json(root / "days" / f"{day}.json", _DAY_JSON)
+        util.write_json(root / "manifest" / f"post-{day}.json",
+                        {"kind": "post", "day": day, "posting_enabled": True, "results": []})
+        before = {p.relative_to(root): p.read_bytes() for p in root.rglob("*") if p.is_file()}
+
+        saved = (post_bluesky.config.DERIVED, post_bluesky._authenticate,
+                 post_bluesky._post_thread, post_bluesky.ops.ntfy, sys.argv)
+        restore = _env(GITHUB_ACTIONS=None, POSTING_ENABLED="1", BSKY_BLUE_HANDLE="b",
+                       BSKY_BLUE_PASSWORD="x", BSKY_RED_HANDLE="r", BSKY_RED_PASSWORD="y")
+
+        def boom(*_a, **_k):
+            raise AssertionError("local preview touched network or notification machinery")
+
+        post_bluesky.config.DERIVED = root
+        post_bluesky._authenticate = post_bluesky._post_thread = post_bluesky.ops.ntfy = boom
+        sys.argv = ["post", "--day", day]
+        try:
+            assert post_bluesky.main() == 0
+        finally:
+            restore()
+            (post_bluesky.config.DERIVED, post_bluesky._authenticate,
+             post_bluesky._post_thread, post_bluesky.ops.ntfy, sys.argv) = saved
+        after = {p.relative_to(root): p.read_bytes() for p in root.rglob("*") if p.is_file()}
+        assert after == before
 
 
 def test_idempotency_skips_party_already_posted_with_root_uri():
