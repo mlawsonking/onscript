@@ -327,13 +327,20 @@ _TYPOGRAPHY = verify._TYPOGRAPHY
 _TYPO_RE = verify._TYPO_RE
 
 
-def _scan_window(window: str) -> str | None:
-    """The form hash this exact token window matches, or None. Memoized within one gate generation."""
+def _ensure_generation() -> None:
+    """Drop both memos if the gate has been reloaded. Answers computed under a different salt or a
+    different form list are not stale-but-close, they are WRONG, and a wrong 'clean' here is a
+    published name."""
     global _SCAN_GEN
-    if _SCAN_GEN != _GEN:                      # the gate reloaded -> the old salt's answers are void
+    if _SCAN_GEN != _GEN:
         _SCAN_MEMO.clear()
         _TEXT_MEMO.clear()
         _SCAN_GEN = _GEN
+
+
+def _scan_window(window: str) -> str | None:
+    """The form hash this exact token window matches, or None. Memoized within one gate generation."""
+    _ensure_generation()
     if window in _SCAN_MEMO:
         return _SCAN_MEMO[window]
     h = _mac_with(_SALT, window)               # type: ignore[arg-type]
@@ -410,10 +417,9 @@ def redact(text):
         return text, 0
     if _SALT is None:
         raise PrivacyGateError("privacy gate not loaded")
+    _ensure_generation()
     cacheable = len(text) <= _TEXT_MEMO_MAXLEN
     if cacheable:
-        if _SCAN_GEN != _GEN:                  # same generation guard as the window memo
-            _scan_window("")
         hit = _TEXT_MEMO.get(text)
         if hit is not None:
             return hit

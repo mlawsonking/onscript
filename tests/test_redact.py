@@ -95,6 +95,16 @@ def test_longest_form_wins_so_a_shorter_tail_does_not_strand_a_token():
         assert out.endswith(" tessilar")     # leftmost-longest: the first form claims its two tokens
 
 
+def test_no_memoized_answer_survives_a_gate_reload():
+    """A cached 'clean' computed under a different form list is not stale-but-close, it is wrong —
+    and a wrong 'clean' here is a published name. Both memos key on the gate generation."""
+    phrase = "the killing of quincewood marrowbane"
+    with gate(forms=["vorbeck tessilar"]):        # a list that does NOT cover the phrase
+        assert privacy.redact(phrase)[1] == 0     # ... so it caches a clean answer for it
+    with gate(forms=["quincewood marrowbane"]):   # now it IS covered
+        assert privacy.redact(phrase)[1] == 1     # the cached answer must not be reused
+
+
 def test_the_scan_memo_is_bounded():
     """is_suppressed's memo is unbounded by design (a few hundred display rows a day). Pointing the
     same cache at 300 MB of corpus would grow one entry per distinct window until the runner died."""
