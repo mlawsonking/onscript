@@ -59,11 +59,18 @@ def _pack_words(text: str, limit: int = 300) -> list[str]:
     return out or [""]
 
 
-# A sentence ends at .!? followed by whitespace and something that can start a sentence. The
-# abbreviation guard is the whole reason this is a function and not a one-line regex: the composite
-# voice writes "Rep." / "U.S." / "No. 5" constantly, and splitting there would cut a post after
-# "the U.S." — a worse break than the mid-sentence one this is fixing.
-_SENT_BOUNDARY = re.compile(r'(?<=[.!?])\s+(?=[A-Z0-9"“‘\'(])')
+# A sentence ends at .!? — optionally followed by a CLOSING QUOTE — then whitespace and something
+# that can start a sentence. The abbreviation guard is the whole reason this is a function and not a
+# one-line regex: the composite voice writes "Rep." / "U.S." / "No. 5" constantly, and splitting there
+# would cut a post after "the U.S." — a worse break than the mid-sentence one this is fixing.
+#
+# THE CLOSING-QUOTE ALTERNATIVE IS NOT DEFENSIVE, it is the common case, and the first live thread
+# proved it: prompt rule 2 REQUIRES verbatim member quotes, so this voice ends sentences with
+# `...implemented."` routinely. With only the bare lookbehind, the character before the space is the
+# quote rather than the period, the boundary is missed, two sentences merge into one 272-char run
+# that no longer fits a post, and the word-packer cuts it mid-clause — reintroducing exactly the
+# defect this function exists to remove (live D thread, 2026-07-21: "...as a common" / "thread today.").
+_SENT_BOUNDARY = re.compile(r'(?:(?<=[.!?])|(?<=[.!?]["\'”’»)\]]))\s+(?=[A-Z0-9"“‘\'(])')
 _ABBREV = {
     "u.s.", "u.s.a.", "d.c.", "mr.", "mrs.", "ms.", "dr.", "sen.", "rep.", "gov.", "st.", "jr.",
     "sr.", "no.", "vs.", "etc.", "inc.", "e.g.", "i.e.", "fig.", "art.", "sec.", "dept.",

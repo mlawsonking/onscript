@@ -114,6 +114,33 @@ def test_packing_never_loses_or_reorders_a_word():
     assert all(p for p in posts) and all(len(p) <= 300 for p in posts)
 
 
+def test_a_sentence_ending_in_a_QUOTE_is_still_a_sentence_boundary():
+    """Regression from the first live thread under the new packer (2026-07-21 D).
+
+    Prompt rule 2 requires verbatim member quotes, so this voice ends sentences with `..."`
+    routinely. The bare lookbehind sees the quote rather than the period, misses the boundary, merges
+    two sentences into one run too long for a post, and the word-packer then cuts it mid-clause --
+    the exact defect sentence packing exists to remove. The live thread read "...as a common" /
+    "thread today."."""
+    text = ('Among our statements, 5 of us echoed the phrase look forward to working, including one '
+            'who put it as "and i look forward to seeing these improvements implemented." Across our '
+            '130 statements, this was the only line shared widely enough to register as a common '
+            'thread today. We note it plainly, without further elaboration.')
+    sents = post_bluesky._sentences(text)
+    assert len(sents) == 3, [len(s) for s in sents]
+    assert all(len(s) <= 262 for s in sents), [len(s) for s in sents]   # each now fits one post
+
+    room = 300 - len("\n" + post_bluesky._POST_MARK)
+    posts = post_bluesky._split(text, limit=room)
+    for p in posts[:-1]:
+        assert p.rstrip().endswith((".", "!", "?", '."', '.”')), f"cut mid-sentence: {p!r}"
+    assert " ".join(posts).split() == text.split()      # and still word-exact
+
+    # Curly quotes and a quote-plus-paren close the same way.
+    assert len(post_bluesky._sentences('He said “we will act.” Then we acted.')) == 2
+    assert len(post_bluesky._sentences('It passed (barely.) We moved on.')) == 2
+
+
 def test_packing_does_not_split_after_an_abbreviation():
     text = ("Rep. Smith and Sen. Jones of the U.S. House spoke today about No. 5 in the queue, and "
             "we carried that message across a very large number of separate statements this "
