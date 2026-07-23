@@ -1,95 +1,94 @@
-# 06-CONSTITUTION — the invariants (v1.1, 2026-07-17)
+# 06: Constitution and project invariants (v1.1, 2026-07-17)
 
-> **What this is.** The rules that outlive every phase, session, model, and mood. Everything
-> here already exists scattered across the vision, research, gameplan, and horizon docs — this
-> consolidates it into one canonical, numbered document that every future decision (Claude's or
-> Michael's) is checked against. When a proposed action conflicts with an article, the action
-> loses. Amendment rules are Article XV; four articles are effectively unamendable.
+This document consolidates the rules that apply across every phase, session, model, and operator.
+Every future decision is checked against these numbered articles. A proposed action that conflicts
+with an article is rejected. Article XV defines amendments. Four articles are effectively
+unamendable.
 
----
+## Articles
 
-**I. Compression, not parody.** OnScript publishes what was actually said, compressed, with
-receipts. The comedy is emergent from real source material; it is never authored. The system
-never jokes — the data is the joke.
+**I. Compression, not parody.** OnScript publishes what officials said, compressed and supported by
+receipts. Any humor comes from the source material. The system does not add jokes.
 
-**II. Citation or silence.** Nothing publishes unverified: every quoted fragment a verbatim
-substring, every claim ≥3 distinct members, every digit code-computed. A claim that fails the
-verifier is dropped and logged — never patched, never hand-edited. Errors that ship are
-corrected by **public correction posts and a public corrections log — never silent edits.**
+**II. Citation or silence.** OnScript publishes only verified material. Every quoted fragment must
+be
+a verbatim substring. Every claim needs ≥3 distinct members, and every digit must be computed by
+code. A claim that fails verification is dropped and logged. It is never patched or hand-edited.
+Published errors receive a public correction post and an entry in the public corrections log.
+Silent edits are prohibited.
 
-**III. The two lanes.** Lane 1 (the symmetric press-release corpus) is the *only* input to any
-cross-party number. Lane 2 (Bluesky, floor, and any future asymmetric source) enriches and
-cites but is machine-blocked from comparative metrics — enforced in code and covered by tests,
-not by intention.
+**III. The two lanes.** Lane 1, the symmetric press-release corpus, is the only input to cross-party
+numbers. Lane 2 includes Bluesky, floor speech, and any future asymmetric source. It may enrich and
+support citations, but code blocks it from comparative metrics. Tests enforce this boundary.
 
-**IV. Symmetric instrument, asymmetric findings.** Identical pipeline, prompts, thresholds,
-and award rules for both parties, hash-audited nightly in public. Findings fall where they
-fall. Instrument skew is an incident; finding skew is journalism. Forced balance is itself a
-bias and is prohibited.
+**IV. Symmetric instrument, asymmetric findings.** Both parties use identical pipelines, prompts,
+thresholds, and award rules. A public nightly hash audit verifies that symmetry. Findings are
+allowed
+to differ. Instrument skew is an incident. Finding skew is journalism. Forced balance is prohibited
+because it introduces bias.
 
-**V. The streak is sacred.** The system degrades before it skips: budget governor, fallback
-calls, quiet-day lines, degraded-mode banners — but it publishes every day. A missed day is an
-incident with a public postmortem in the build log, not a shrug.
+**V. The streak is sacred.** The system publishes every day. This is the defined meaning of “the
+streak.” Budget controls, fallback calls, quiet-day lines, and degraded-mode banners allow the
+system
+to degrade before it skips. A missed day is an incident and receives a public build-log postmortem.
 
 **VI. Raw-first, append-only, rebuildable.** Every source statement is stored immutably before
-processing. Every derived artifact is a pure function of the raw archive, reproducible by
-anyone (`rebuild.py` is a public promise, not a dev tool). Schemas are versioned; breaking
-changes require a migration script; the ledger epoch is always disclosed.
+processing. Every derived artifact is reproducible from the raw archive. `rebuild.py` is a public
+reproducibility promise. Schemas are versioned, breaking changes require migration scripts, and the
+ledger epoch is always disclosed.
 
-**VII. Numbers come from code.** Models copy numbers; they never compute them. The
-digit-whitelist check stands forever, through every model swap and every feature.
+**VII. Numbers come from code.** Models may copy approved numbers. They never compute them. The
+digit-whitelist check remains in force through model swaps and feature changes.
 
-**VIII. Prompts are public.** The live prompt text and its full git history render on the
-methodology page. Every prompt change is a dated public diff with a rationale line. **Freeze
-window:** no prompt or threshold changes from Oct 15 through Nov 10 of an election year except
-verified-defect fixes, which get a public notice.
+**VIII. Prompts are public.** The methodology page displays the live prompts and their complete git
+history. Every prompt change receives a dated public diff and rationale. **Freeze window:** from Oct
+15 through Nov 10 of an election year, prompts and thresholds cannot change. The only exception is a
+verified defect fix, which requires a public notice.
 
-**IX. Backtest before predict.** No forward-looking claim ships without its backtest against
-the historical corpus, published alongside it with error rates. Speculation is what everyone
-else sells (see `05-HORIZON.md` §0).
+**IX. Backtest before predict.** A forward-looking claim requires a backtest against the historical
+corpus. The backtest and its error rates publish with the claim. See `05-HORIZON.md` §0.
 
-**X. The operator is not the instrument.** The brand accounts never dunk, never editorialize,
-never argue, never reply in anger, never @-mention members. The voice's only register is the
-seismograph. Michael's personal opinions live on Michael's personal accounts, visibly separate.
-The moment the instrument picks a fight, it becomes the thing it measures.
+**X. The operator is not the instrument.** Brand accounts do not dunk, editorialize, argue, reply in
+anger, or @-mention members. Their voice is limited to reporting measurements. Michael's opinions
+remain on his personal accounts, clearly separated from the project. If a brand account starts a
+fight, it becomes part of the political speech it measures.
 
-**XI. Funding neutrality.** No party-aligned or campaign-adjacent money, ever, at any price.
-Any grant, sponsorship, or revenue source is disclosed on the methodology page. Acceptable
-revenue is neutrality-compatible (data licensing, API tiers, institutional subscriptions) —
-never engagement-farming ads. Until revenue exists, costs stay hobby-scale by design.
+**XI. Funding neutrality.** The project accepts no party-aligned or campaign-adjacent money. Grants,
+sponsorships, and revenue sources are disclosed on the methodology page. Acceptable revenue includes
+data licensing, API tiers, and institutional subscriptions. Engagement-farming ads are prohibited.
+Costs remain at hobby scale until revenue exists.
 
-**XII. Verifiability is the brand's anti-spoof armor.** The site lists the real accounts.
-Every artifact carries its day-URL and is reproducible from the public archive. The standing
-answer to any screenshot dispute: *"If it can't be reproduced from the archive, it isn't
-ours."*
+**XII. Verifiability is the brand's anti-spoof armor.** “Anti-spoof armor” means that every public
+artifact can be checked against the archive. The site lists the official accounts. Every artifact
+includes its day URL and can be reproduced from public data. The standard response to a disputed
+screenshot remains: *“If it can't be reproduced from the archive, it isn't ours.”*
 
-**XIII. The privacy floor.** Elected officials' public official statements only. Never private
-citizens, never staffers, never personal data, never non-public communications — regardless of
-how interesting. Members are covered *as officials*; the instrument's jurisdiction ends at the
-office.
+**XIII. The privacy floor.** OnScript covers elected officials through their public official
+statements. It never covers private citizens, staffers, personal data, or non-public communications.
+The project covers members in their official capacity. Its jurisdiction ends at the office.
 
-**XIV. Continuity — the asset must outlive the operator.** Repo public, data downloadable,
-runbook current, license open. Quarterly snapshot of the raw archive to the Internet Archive.
-Anyone competent could fork OnScript alive from a cold start; that is a feature, not a risk.
+**XIV. Continuity — the asset must outlive the operator.** The repository is public, the data is
+downloadable, the runbook is current, and the license is open. The raw archive receives a quarterly
+Internet Archive snapshot. A competent operator must be able to fork and restart OnScript from a
+cold start. That continuity is a feature.
 
-**XV. Amendment.** Amending this document requires: a dated public commit, a build-log entry
-with rationale, and a version bump in this header. **Articles II, III, IV, and XIII are
-load-bearing: amending them makes this a different project and should be treated as founding a
-new one.** When any other doc conflicts with this one, this one wins.
+**XV. Amendment.** An amendment requires a dated public commit, a build-log entry explaining the
+reason, and a version bump in this header. Articles II, III, IV, and XIII are load-bearing. Here,
+“load-bearing” means that changing any of them creates a different project and should be treated as
+founding one. When another document conflicts with this one, this document controls.
 
-**XVI. The instrument is verified, not trusted.** Health is a measured state, never a status
-code: a run is green only by its own record (`verifier_passed`, `fallback`, `degraded`) — exit
-codes and CI statuses are inadmissible as evidence. A fail-closed gate and the key it requires
-ship as one act, proven by a live run in the target environment before the session that merged
-it ends; a gate without its key is an outage authored, not safety. Failure visibility belongs
-to the outermost layer: every scheduled workflow notifies on any failure, where a death before
-`main()` is still visible. A liveness probe observes progress — data advancing — never its own
-reflection in a process list. A number enters canon only with its estimator (units, window,
-denominator) and a re-runnable reproduction script; an unreproducible number is prose, not
-evidence. And every work session ends by checking expectation against observation — site
-freshness, streak state, flags, tests — filing discrepancies rather than assuming them.
+**XVI. The instrument is verified, not trusted.** Health is measured from the system's records. A
+green exit code or CI status is insufficient. A run is green only when its own record confirms
+`verifier_passed`, `fallback`, and `degraded` state. A fail-closed gate and its required key ship
+together. A live run in the target environment must prove them before the implementing session ends.
+A gate without its key is an operator-created outage.
 
----
+Failure notifications belong at the outermost layer so a scheduled workflow reports failures that
+occur before `main()`. A liveness probe observes advancing data rather than its own process. A number
+enters the project record only with its estimator, units, window, denominator, and a rerunnable
+reproduction script. An unreproducible number is prose rather than evidence. Every work session ends
+by comparing expectation with observation across site freshness, streak state, flags, and tests.
+Discrepancies are filed instead of assumed away.
 
-*Ratified 2026-07-11. Amended 2026-07-17 (XVI — validation, after the salt outage and the seam
-numbers). Check decisions against it; don't re-derive it.*
+*Ratified 2026-07-11. Amended 2026-07-17 to add Article XVI after the salt outage and provenance-seam
+findings. Check decisions against this document instead of deriving the rules again.*
