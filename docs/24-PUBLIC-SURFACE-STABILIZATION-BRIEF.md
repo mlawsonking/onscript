@@ -310,3 +310,41 @@ page, SVG titles present, 404 exists, no dead internal links).
 
 **W2 evidence:** the §6 regimen, a fresh evidence table, suite floor 459+ new, zero failures,
 tree clean but for `AGENTS.md`.
+
+---
+
+## 10. Wave-2 validation verdict (S43c) + the closing micro-commit
+
+The remediation + wave-2 delivery (`4c16703` / `2c81649` / `0e3a3bd` / `246299e`, packet
+rebased to `2a8e596`/`b39db56`/`224d130`/`03da03d` over the evening cloud commits) validated
+clean: suite independently reproduced **477/0** via the house runner; adversarial review found
+**no blockers**. The load-bearing W2-A inverse direction is sound: "local" is a **presence**
+check on `GITHUB_ACTIONS` (the safest form — even a hypothetical `=false` still takes the
+production path), the CI flush path is byte-identical and test-locked, and the local-preview
+proof is a real-tree byte-identity test, not a double-stub. Feed entries are counts-only with
+both a content test and an AST source guard; R1 relocated+wrapped with the sole production
+caller confirmed; R2/R3 in place; workflows untouched by all four commits; rebase undamaged.
+
+**One closing micro-commit (gates only the wave-2 push, not tonight's):**
+1. Wrap the favicon `shutil.copyfile` at the top of `build_site()` (`site.py:2565`) in
+   skip-and-log — unwrapped, a missing brand asset would crash render₁ before posting and
+   fire a false dead-man; same class as R1. Kill test: missing source asset → site still
+   renders, loud log line.
+2. Drop `404.html` from `sitemap.xml` (adjust the distribution test's oracle accordingly).
+3. Add a code-computed `<author>` ("OnScript") to the Atom feed.
+4. Contrast compliance (ruled S43c, Michael's veto at push as always): darken the `faint`
+   text token so measured contrast is ≥ 4.5:1 against BOTH the page background and white
+   panels (currently `#8a8a8a` at 3.33:1 / 3.45:1); keep it visually lighter than `muted`;
+   report the chosen value and both measured ratios. Decorative dividers/chart axes stay as
+   they are (non-essential boundaries, WCAG 1.4.11 exempt).
+
+## 11. Program state after §10
+
+The public-surface stabilization program is **complete** once §10 lands and the pushes clear:
+truth (P0-A), same-run authenticity (P0-B), temporal honesty (P1), receipts (P2), posting
+footgun (W2-A), discovery (W2-B), accessibility (W2-C). P3 share cards remain DEFERRED.
+Remaining known site-surface items are deliberately reserved for internal sessions:
+silence_board wiring (R-B, deadline Mon 08-03), the 07-27 nomenclature flip + R-A riders,
+`sync_by_party` historical backfill, the 07-09 phrases-only day. No further external-worker
+surface work is authorized beyond §10 without a new ruling — the next improvements should be
+driven by live-audience feedback, not speculation.
