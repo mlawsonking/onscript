@@ -22,20 +22,20 @@ def test_is_weak_label_catches_connective_glue_keeps_real_phrases():
 
 # --- C-ii: each citation carries its own member's verbatim quote --------------------------
 def test_citations_bind_each_quote_to_its_member():
-    tp = {"statements": ["s1", "s2", "s3"],
+    tp = {"label": "border security", "statements": ["s1", "s2", "s3"],
           "fragments": [{"statement": "s1", "text": "we support border security now"},
-                        {"statement": "s2", "text": "secure the border today"},
-                        {"statement": "s3", "text": "protect our borders"}]}
+                        {"statement": "s2", "text": "border security protects families"},
+                        {"statement": "s3", "text": "border security matters"}]}
     stmt_by_id = {
-        "s1": {"member": {"bioguide": "B1", "party": "D", "state": "CA"}, "published_at": "2026-07-13", "url": "https://b1.house.gov/x"},
-        "s2": {"member": {"bioguide": "B2", "party": "D", "state": "NY"}, "published_at": "2026-07-13", "url": "https://b2.house.gov/y"},
-        "s3": {"member": {"bioguide": "B3", "party": "D", "state": "TX"}, "published_at": "2026-07-13", "url": "https://b3.house.gov/z"},
+        "s1": {"member": {"bioguide": "B1", "party": "D", "state": "CA"}, "published_at": "2026-07-13", "url": "https://b1.house.gov/x", "text": "we support border security now"},
+        "s2": {"member": {"bioguide": "B2", "party": "D", "state": "NY"}, "published_at": "2026-07-13", "url": "https://b2.house.gov/y", "text": "border security protects families"},
+        "s3": {"member": {"bioguide": "B3", "party": "D", "state": "TX"}, "published_at": "2026-07-13", "url": "https://b3.house.gov/z", "text": "border security matters"},
     }
     cites = run_assemble._citations(tp, stmt_by_id, {}, k=3)
     assert len(cites) == 3 and all(c.get("quote") for c in cites)
     by_url = {c["url"]: c["quote"] for c in cites}
     assert by_url["https://b1.house.gov/x"] == "we support border security now"   # each member's OWN quote
-    assert by_url["https://b2.house.gov/y"] == "secure the border today"
+    assert by_url["https://b2.house.gov/y"] == "border security protects families"
 
 
 def test_receipts_fall_back_to_fragments_when_no_citations():

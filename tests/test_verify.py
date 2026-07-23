@@ -29,17 +29,18 @@ def test_numbers_whitelist_blocks_invented_numbers():
 def test_talking_point_requires_three_distinct_members():
     statements = {
         "sha256:a": {"member": {"bioguide": "A"}, "text": "we demand a full account of what happened"},
-        "sha256:b": {"member": {"bioguide": "B"}, "text": "give us a full account of the facts"},
+        "sha256:b": {"member": {"bioguide": "B"}, "text": "give us a full account of what happened"},
         "sha256:c": {"member": {"bioguide": "C"}, "text": "the public deserves a full account of what happened"},
     }
     tp_ok = {
         "id": "x", "statements": ["sha256:a", "sha256:b", "sha256:c"],
+        "label": "a full account of what happened", "member_count": 3,
         "fragments": [{"text": "a full account of what happened", "statement": "sha256:a"}],
     }
     ok, reasons = verify.verify_talking_point(tp_ok, statements)
     assert ok, reasons
 
-    tp_two = dict(tp_ok, statements=["sha256:a", "sha256:b"])
+    tp_two = dict(tp_ok, statements=["sha256:a", "sha256:b"], member_count=2)
     ok, reasons = verify.verify_talking_point(tp_two, statements)
     assert not ok and any("quorum" in r for r in reasons)
 
@@ -49,10 +50,12 @@ def test_quorum_counts_joint_release_as_one_unit():
     body = "we demand a full account of what happened"
     joint = {f"sha256:{c}": {"member": {"bioguide": c}, "text": body, "joint_group": "joint:x"} for c in "ABC"}
     tp = {"id": "t", "statements": ["sha256:A", "sha256:B", "sha256:C"],
+          "label": "a full account of what happened", "member_count": 1,
           "fragments": [{"text": "a full account of what happened", "statement": "sha256:A"}]}
     ok, reasons = verify.verify_talking_point(tp, joint)
     assert not ok and any("quorum" in r for r in reasons)
     indep = {f"sha256:{c}": {"member": {"bioguide": c}, "text": body} for c in "ABC"}  # no joint_group
+    tp["member_count"] = 3
     ok2, _ = verify.verify_talking_point(tp, indep)
     assert ok2
 
@@ -62,6 +65,7 @@ def test_talking_point_rejects_non_verbatim_fragment():
                   "sha256:b": {"member": {"bioguide": "B"}, "text": "we will protect the border"},
                   "sha256:c": {"member": {"bioguide": "C"}, "text": "we will protect the border"}}
     tp = {"id": "x", "statements": ["sha256:a", "sha256:b", "sha256:c"],
+          "label": "protect the border", "member_count": 3,
           "fragments": [{"text": "seal the border completely", "statement": "sha256:a"}]}
     ok, reasons = verify.verify_talking_point(tp, statements)
     assert not ok and any("non-verbatim" in r for r in reasons)
@@ -71,8 +75,10 @@ def test_verify_day_drops_bad_claims_and_flags_bad_numbers():
     statements = {f"sha256:{c}": {"member": {"bioguide": c}, "text": "we will protect the border today"}
                   for c in "ABC"}
     good = {"id": "g", "statements": ["sha256:A", "sha256:B", "sha256:C"],
+            "label": "protect the border", "member_count": 3,
             "fragments": [{"text": "protect the border", "statement": "sha256:A"}]}
     bad = {"id": "b", "statements": ["sha256:A"],  # <3 members
+           "label": "protect the border", "member_count": 1,
            "fragments": [{"text": "protect the border", "statement": "sha256:A"}]}
     report = verify.verify_day({"composite": "3 of us spoke."}, [good, bad], statements,
                                stats_blob='{"members": 3}')

@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import re
 
-from . import config, llm, nomenclature, util, verify
+from . import boilerplate, config, llm, nomenclature, util, verify
 
 _QUOTE_MAX_WORDS = 10
 
@@ -67,7 +67,8 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
         # Pick the SHORTEST fragment in the cluster: on-topic (all fragments share the label phrase),
         # complete, and clean — not a mid-truncated long one that dangles. The label rides along as
         # the UNQUOTED talking-point name. §Session-5 (HIGH-1 fix).
-        frags = [f["text"] for f in (tp.get("fragments") or []) if f.get("text")]
+        frags = [f["text"] for f in (tp.get("fragments") or [])
+                 if f.get("text") and boilerplate.contains_gram(f["text"], tp.get("label", ""))]
         quote = _quote(min(frags, key=lambda t: len(t.split()))) if frags else ""
         entry = {"label": tp["label"], "members": tp["member_count"], "quote": quote,
                  "topics": tp.get("topics", [])}
@@ -122,7 +123,7 @@ def _compose_dry(stats: dict, allow_absence_claim: bool = True) -> str:
 def _quiet_dry(stats: dict) -> str:
     # Thin/quiet days still carry the one code-computed fact worth stating: the day's top
     # synchronized phrase + how many converged on it (§Session-4(g)). No LLM claim needed — the
-    # phrase is a real ledger fact and is verifier-grounded in daily_line's groundable set.
+    # phrase is a real ledger fact and renders unquoted, outside the talking-point quote binding.
     parts = [f"We released {stats['statements']} statements today."]
     tp = stats.get("top_phrase")
     if tp and tp.get("text"):
@@ -172,14 +173,6 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     quiet = n < config.QUIET_DAY_MAX_STATEMENTS
     prompt = llm.load_prompt("P3" if quiet else "P2")
 
-    # The blocking verifier grounds every quoted span ONLY against real, verbatim member speech
-    # (fragment texts). Code-computed strings (cluster labels, the top synchronized phrase) are NEVER
-    # added here — grounding a quote against a code-computed string would let it match itself and make
-    # the check vacuous. Those facts are rendered WITHOUT quotation marks (as measured phrases), so the
-    # verbatim-quote guarantee holds by construction. §Session-5 (HIGH-1 fix).
-    all_fragment_texts = [f["text"] for tp in talking_points for f in tp["fragments"]]
-    groundable = list(all_fragment_texts)
-
     stats = build_stats(party, day, n, talking_points, top_phrase)
     stats_blob = json.dumps(stats, ensure_ascii=False)
 
@@ -210,8 +203,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     # B4 verifier (blocking): every UNQUOTED number must be a code-computed count (the strict `stats`
     # whitelist — a digit inside a member quote can never become a fabricated aggregate), and every
     # quoted span must be verbatim, in-context member text. Failure -> honest fallback, never silence.
-    ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, fragments=groundable,
-                                           stats=stats)
+    ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, stats=stats)
     fallback = False
     if not ok and generator == "sonnet_direct":
         # HARDENING (deploy-breakdown 2026-07-16): the Sonnet drifted a quote — LLM verbatim-grounding is
@@ -223,8 +215,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
         composite = _quiet_dry(stats) if quiet else _compose_dry(stats)
         generator = "deterministic"
         model = prompt["id"] + ":deterministic"
-        ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, fragments=groundable,
-                                               stats=stats)
+        ok, reasons = verify.verify_daily_line({"composite": composite}, stats_blob, stats=stats)
     if not ok:
         # Last resort: even the deterministic composite failed to verify (should be impossible — it uses
         # only code numbers + verbatim fragments). The honest stub, never silence. §7.2.

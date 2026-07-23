@@ -52,6 +52,7 @@ CORRECTIONS_FILE = config.REFERENCE / "corrections.json"  # operator-appended; c
 
 PARTY_NAME = {"D": "Democrats", "R": "Republicans", "I": "Independents"}
 SITE_AUTHOR = "OnScript"
+CLAIM_BINDING_FIX_DATE = "2026-07-23"
 PARTY_LONG = {
     "D": "Democratic members of Congress",
     "R": "Republican members of Congress",
@@ -218,6 +219,8 @@ small{font-size:13px}
 .receipt ul.cites li:first-child{margin-top:4px}
 .receipt .citemeta{font-size:12px; color:var(--muted); margin-top:2px}
 .receipt .rmore{font-size:11.5px; color:var(--faint); margin-top:6px}
+.receipt .claim-correction{margin:7px 0; padding:7px 9px; border:1px solid var(--warn-line);
+  background:var(--warn-bg); color:var(--warn-ink); font-size:12px}
 .receipt ul.cites a{color:var(--blue)}
 .receipt .quote mark.keyspan{background:#fff2ab; color:inherit; padding:0 1px; border-radius:2px}
 .receipt .rtests{margin:5px 0 2px; display:flex; flex-wrap:wrap; gap:5px}
@@ -670,10 +673,9 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
 
     # The STORED verifier block describes the SONNET text; rendering "verifier: passed" over a
     # swapped composite would attest text that is no longer published. Re-verify what we publish.
-    groundable = [f.get("text") for t in tps for f in (t.get("fragments") or [])
-                  if isinstance(f, dict) and f.get("text")]
-    ok, _reasons = verify.verify_daily_line({"composite": text}, json.dumps(stats, ensure_ascii=False),
-                                            groundable, stats=stats)
+    ok, _reasons = verify.verify_daily_line(
+        {"composite": text}, json.dumps(stats, ensure_ascii=False), stats=stats
+    )
     if not ok:
         return None, tps, "withheld"
     out = dict(line)
@@ -854,14 +856,35 @@ def _testchip(label: str, state) -> str:
     return f'<span class="tchip {cls}">{mark}{esc(label)}</span>'
 
 
-def receipts_strip(party: str, talking_points: list, caucus: int | None = None) -> str:
+def _stored_claim_binding_fails(tp: dict, stat_tp: dict | None, day: str | None) -> bool:
+    """Conservatively identify a provable pre-fix quote, support phrase, and receipt mismatch."""
+    if not day or day > CLAIM_BINDING_FIX_DATE or not isinstance(stat_tp, dict):
+        return False
+    label = tp.get("label") or stat_tp.get("label") or ""
+    quote = stat_tp.get("quote") or ""
+    fragments = [f.get("text") for f in (tp.get("fragments") or [])
+                 if isinstance(f, dict) and f.get("text")]
+    citations = [c for c in (tp.get("citations") or []) if isinstance(c, dict)][:3]
+    if not label or not quote or not fragments or len(citations) < 3:
+        return False
+    quote_bound = (boilerplate.contains_gram(quote, label)
+                   and any(boilerplate.contains_gram(fragment, label)
+                           and verify.is_verbatim(quote, fragment) for fragment in fragments))
+    receipts_bound = all(boilerplate.contains_gram(c.get("quote") or "", label) for c in citations)
+    return not (quote_bound and receipts_bound)
+
+
+def receipts_strip(party: str, talking_points: list, caucus: int | None = None, *,
+                   stats_talking_points: list | None = None, day: str | None = None,
+                   corrections_href: str = "methodology.html#corrections") -> str:
     """Build the receipts strip from a party's talking_points (the visual signature). `caucus` is the
     party's caucus size, so every count travels with its denominator ("10 of 263 · 3.8%")."""
     tps = [tp for tp in (talking_points or []) if isinstance(tp, dict)]
     if not tps:
         return ""
     rows = []
-    for tp in tps[:4]:
+    stat_tps = [tp for tp in (stats_talking_points or []) if isinstance(tp, dict)]
+    for tp_index, tp in enumerate(tps[:4]):
         count = tp.get("member_count")
         topics = tp.get("topics") or []
         topics_html = ""
@@ -940,6 +963,15 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
             chips.append(_testchip(f"phrase shown {span_present}/{shown}", None))
             chips.append(_testchip(f"sourced {urls_present}/{shown}", sourced_ok))
         tests_html = f'<div class="rtests">{"".join(chips)}</div>'
+        correction_html = ""
+        stat_tp = stat_tps[tp_index] if tp_index < len(stat_tps) else None
+        if _stored_claim_binding_fails(tp, stat_tp, day):
+            correction_html = (
+                '<p class="claim-correction"><strong>Correction:</strong> This stored count '
+                'overstates support for the quoted phrase because an earlier clustering defect joined '
+                f'unrelated statements. The defect was corrected on {esc(CLAIM_BINDING_FIX_DATE)}. '
+                f'<a href="{esc(corrections_href)}">See the corrections log.</a></p>'
+            )
         more_html = ""
         if isinstance(count, int) and count > len(lis) and lis:
             more_html = f'<div class="rmore"><small>showing {len(lis)} of {esc(count)} members</small></div>'
@@ -950,7 +982,7 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None) 
             cites_html = "".join(f'<div class="quote">{esc(f.get("text"))}</div>' for f in frags[:2])
         rows.append(
             f'<div class="receipt"><div class="rhead">{count_html}</div>'
-            f'{tests_html}{topics_html}{cites_html}{more_html}</div>'
+            f'{tests_html}{correction_html}{topics_html}{cites_html}{more_html}</div>'
         )
     return (
         '<div class="receipts"><div class="rlabel">Receipts</div>'
@@ -1003,7 +1035,11 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     # Zero-cluster honesty (A2): a party with statements but no published talking points has nothing
     # to cite — say so, so the "every talking point is citation-backed" promise is never contradicted
     # by a receipt-free card.
-    body_tail = receipts_strip(party, tps, caucus=caucus)
+    stats_tps = ((line.get("stats") or {}).get("talking_points") or [])
+    body_tail = receipts_strip(
+        party, tps, caucus=caucus, stats_talking_points=stats_tps,
+        day=day_data.get("day"), corrections_href="../methodology.html#corrections",
+    )
     if not [t for t in (tps or []) if isinstance(t, dict)]:
         # "Nothing cleared the threshold" is a measured ABSENCE claim, and stating it when the list was
         # emptied by OUR OWN filter — privacy or the docs/19 §4b scaffold gate — is a fabricated silence
@@ -1942,7 +1978,7 @@ def methodology_body():
     )
 
     # (e) corrections policy + public log (neutrality armor: corrections are dated posts, never silent edits)
-    parts.append("<h2>Corrections</h2>")
+    parts.append("<h2 id='corrections'>Corrections</h2>")
     parts.append(
         "<p>Every distilled talking point is anchored to at least three real source statements (member, date, source). "
         "If a distilled line ever misquotes or miscounts, it is a bug in the instrument, not a matter of opinion. Corrections are "

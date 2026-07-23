@@ -83,8 +83,9 @@ def key_carrying_units(tp: dict, statements_by_id: dict[str, dict]) -> set:
         s = statements_by_id.get(sid)
         if not s:
             continue
-        # An empty label (should not happen) degrades to the old "count every unit" behaviour.
-        if label and not boilerplate.contains_gram(s.get("text", ""), label):
+        # Every published talking point has one support phrase. An empty label carries no support;
+        # it never degrades to counting the transitive component.
+        if not label or not boilerplate.contains_gram(s.get("text", ""), label):
             continue
         unit = s.get("joint_group") or (s.get("member") or {}).get("bioguide")
         if unit:
@@ -96,17 +97,17 @@ def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[b
     """Return (ok, reasons). A talking point is publishable iff >=3 distinct document FAMILIES carry
     the cluster key AND every fragment is verbatim in its cited statement.
 
-    docs/19 §4b — "distinct collapsed document families passing span". The quorum was counting every
-    unit the transitive union-find chained in, including members dragged into a connective cluster by
-    a DIFFERENT shared gram (Booker on a flood bill under "into the trump administration's";
-    Krishnamoorthi on Blanche under "democratic colleagues in demanding the"). Requiring each counted
-    family to actually carry the key drops those interlopers below quorum, while the birthright-06-30
-    flagship — 53 families that each really typed "born in the united states" — is untouched. A joint
-    release is still ONE family (§11 trap 2); member REACH stays reported on tp["member_count"]."""
+    docs/28 overrules the old component-reach display. ``member_count`` is now exactly the number of
+    joint-aware units that carry the support phrase; a mismatch is a blocking verification failure.
+    A joint release remains one family (§11 trap 2)."""
     reasons: list[str] = []
     units = key_carrying_units(tp, statements_by_id)
     if len(units) < 3:
         reasons.append(f"key-quorum: {len(units)} distinct families carry the key phrase (<3)")
+    if tp.get("member_count") != len(units):
+        reasons.append(
+            f"support-count: stored {tp.get('member_count')!r} != {len(units)} distinct families carrying the key"
+        )
     for frag in tp.get("fragments", []):
         sid = frag.get("statement")
         src = statements_by_id.get(sid, {})
@@ -159,6 +160,46 @@ def quotes_grounded(composite_text: str, fragments: list[str]) -> tuple[bool, li
     return (len(offending) == 0, offending)
 
 
+def quotes_bound_to_talking_points(composite_text: str, stats: dict) -> tuple[bool, list[str]]:
+    """Bind every composite quote to one STATS talking point and that point's support phrase.
+
+    A quote merely appearing somewhere in the day's combined fragment pool is not evidence for the
+    count beside it. The quote must be a grounded span of that talking point's own supplied quote and
+    must visibly carry its support phrase. When the sentence uses the deterministic ``N of us`` form,
+    the nearest preceding N must equal the bound talking point's support-unit count.
+    """
+    offending: list[str] = []
+    tps = [tp for tp in (stats.get("talking_points") or []) if isinstance(tp, dict)]
+    text = composite_text or ""
+    for match in _QUOTE.finditer(text):
+        raw = match.group(1) or match.group(2) or ""
+        q = _norm(raw).strip(_QUOTE_TRIM)
+        if not q:
+            continue
+        bound: list[dict] = []
+        for tp in tps:
+            label = tp.get("label") or ""
+            supplied = tp.get("quote") or ""
+            if not label or not boilerplate.contains_gram(q, label):
+                continue
+            grounded, _ = quotes_grounded(f'"{raw}"', [supplied])
+            if grounded:
+                bound.append(tp)
+        if not bound:
+            offending.append(raw)
+            continue
+
+        sentence_start = max(text.rfind(".", 0, match.start()), text.rfind("?", 0, match.start()),
+                             text.rfind("!", 0, match.start())) + 1
+        prefix = text[sentence_start:match.start()]
+        count_matches = list(re.finditer(r"(\d[\d,]*)\s+of\s+us\b", prefix, re.I))
+        if count_matches:
+            claimed = int(count_matches[-1].group(1).replace(",", ""))
+            if all(tp.get("members") != claimed for tp in bound):
+                offending.append(f"{raw} [count {claimed} is not its support count]")
+    return (len(offending) == 0, offending)
+
+
 def _numbers_outside_quotes(text: str) -> set[str]:
     """Numbers in the composite that are NOT inside a quoted span. Numbers inside a quote are exempt
     from the whitelist because the quote itself is separately grounded to verbatim member text; only
@@ -202,7 +243,13 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
         _, offending = numbers_whitelisted(composite, stats_blob)
     if offending:
         reasons.append(f"un-whitelisted numbers in composite: {sorted(offending)}")
-    if fragments is not None:
+    if stats is not None:
+        ok_q, off_q = quotes_bound_to_talking_points(composite, stats)
+        if not ok_q:
+            reasons.append(f"unbound talking-point quotes: {off_q}")
+    elif fragments is not None:
+        # Legacy verifier entry points without structured STATS retain ordinary verbatim grounding.
+        # The production Daily Line always supplies STATS and therefore cannot use a combined pool.
         ok_q, off_q = quotes_grounded(composite, fragments)
         if not ok_q:
             reasons.append(f"un-grounded quotes in composite: {off_q}")

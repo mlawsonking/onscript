@@ -76,12 +76,8 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     # verify that exact quote, instead of a decoupled quote/citation pair that points at unrelated
     # topics. §Session-7.
     #
-    # The quote is DEMOTED, never the citation (§Session-14): an unattributable fragment costs this
-    # row its pull-quote, and the member/date/URL still publish. That is why this gate cannot thin
-    # the receipts or move a published number — `verify.verify_talking_point` has already fixed the
-    # quorum before we are called, and nothing here feeds back into it.
-    # It also means an over-eager flag is survivable (worst case: a row shows no quote) while a missed
-    # one is not (a colleague's words under this member's name), so the gate is tuned to over-flag.
+    # An unattributable fragment cannot serve as evidence for P. It therefore costs the unit its
+    # receipt, and the assembly gate suppresses the talking point unless three bound receipts remain.
     #
     # docs/19 §4b — a receipt must support its LINE's meaning: only cite families whose source actually
     # carries the cluster key. A member chained into the cluster by a DIFFERENT shared gram (Booker's
@@ -106,8 +102,14 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
         if not unit or unit in seen:
             continue
         seen.add(unit)
-        # PREFER a fragment this member actually said; fall back to no quote, never to a colleague's.
-        quote = next((q for q in frag_by_stmt.get(sid, []) if _attributable(q, s, rmap)), None)
+        # Each displayed receipt must visibly carry the same support phrase as its header. A
+        # P-carrying, self-attributable fragment is evidence; an unrelated fragment from the same
+        # transitive component is not. Units without such a fragment remain in the support count but
+        # are skipped for the three displayed receipts.
+        quote = next((q for q in frag_by_stmt.get(sid, [])
+                      if boilerplate.contains_gram(q, label) and _attributable(q, s, rmap)), None)
+        if not quote:
+            continue
         cites.append({"member": _name(m.get("bioguide"), rmap), "party": m.get("party"),
                       "state": m.get("state"), "date": s.get("published_at"), "url": s.get("url"),
                       "quote": quote})
@@ -130,6 +132,43 @@ def _reject_reason(label: str, ok_verify: bool, vreasons: list) -> str | None:
     if boilerplate.is_weak_label(label):
         return boilerplate.REJECT_LOW_INFORMATION_CONTENT
     return None
+
+
+REJECT_RECEIPT_BINDING = "REJECT_RECEIPT_BINDING"
+
+
+def _screen_talking_points(tps: list[dict], stmt_by_id: dict, rmap: dict) \
+        -> tuple[list[dict], int, list[dict]]:
+    """Apply every publication gate to already P-bound talking points.
+
+    This helper keeps the production path and the P0 fixtures on the same code. A rejected claim is
+    logged with its corrected support count. Privacy remains the one label-free omission.
+    """
+    published: list[dict] = []
+    dropped = 0
+    rejected: list[dict] = []
+    for tp in tps:
+        label = tp.get("label", "")
+        ok, vreasons = verify.verify_talking_point(tp, stmt_by_id)
+        reason = _reject_reason(label, ok, vreasons)
+        if reason:
+            ok = False
+        elif privacy.filter_talking_points([tp])[1]:
+            ok = False
+        if ok:
+            citations = _citations(tp, stmt_by_id, rmap)
+            if len(citations) < config.SYNC_MIN_MEMBERS:
+                ok = False
+                reason = REJECT_RECEIPT_BINDING
+            else:
+                tp["citations"] = citations
+                published.append(tp)
+        if not ok:
+            dropped += 1
+            if reason and not privacy.is_suppressed(label):
+                rejected.append({"label": label, "reason": reason,
+                                 "member_count": tp.get("member_count")})
+    return published, dropped, rejected
 
 
 def _is_final(day: str) -> bool:
@@ -221,48 +260,13 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         for s in party_stmts:
             for f in extractions.get(s["id"], {}).get("fragments", []):
                 annotated.append({**f, "statement": s["id"], "joint_group": s.get("joint_group"),
-                                  "bioguide": (s.get("member") or {}).get("bioguide")})
-        tps = cluster.cluster_day(party, day, annotated)
+                                  "bioguide": (s.get("member") or {}).get("bioguide"),
+                                  "source_text": s.get("text", "")})
+        tps = cluster.cluster_day(party, day, annotated, statements_by_id=stmt_by_id)
 
-        # verify talking points (>=3 distinct families + verbatim fragments); drop failures, and LOG
-        # each drop with its STABLE reason code + would-have-been reach (docs/19 §4b — the forward
-        # dark-shelf view of a conservative gate's false negatives; the backward view over published
-        # days is scripts/audit_connective_keys.py). Privacy drops are NOT logged here: the label can be
-        # a private name (Art. XIII), and privacy has its own corrections-log disclosure path.
-        published, dropped, rejected = [], 0, []
-        from pipeline import verify
-        for tp in tps:
-            label = tp.get("label", "")
-            ok, vreasons = verify.verify_talking_point(tp, stmt_by_id)
-            # C-i / docs/19 §4b: a coherent quorum (>=3 families, verbatim) is not enough — the BINDING
-            # PHRASE must be a real talking point, not connective/attribution scaffolding (is_scaffold_key
-            # adds the two shapes that got through on 2026-07-17: a frame that terminates before its
-            # object, and an attribution frame). String correctness without message admissibility is
-            # insufficient for publication. _reject_reason returns the stable reason code for the drop.
-            reason = _reject_reason(label, ok, vreasons)
-            if reason:
-                ok = False
-            # Art. XIII privacy floor — THE PRE-LLM CUT, and it must stay pre-LLM. 2026-07-14 is the
-            # empirical proof: that composite is generator='sonnet_direct', verifier.passed=True,
-            # fallback=False — and it named two murder victims. The verifier passed because the
-            # members really did type those words; no citation-integrity mechanism in this system has
-            # any opinion about privacy, by construction, so no receipts audit could ever have caught
-            # it. Cut here and the TP, its _citations call, its STATS entry, and the voice's ability
-            # to name a private individual all die together. (Same laundering argument as docs/16
-            # nomenclature, arriving early on a different payload.) reason stays None -> not logged.
-            elif privacy.filter_talking_points([tp])[1]:
-                ok = False
-            if ok:
-                tp["citations"] = _citations(tp, stmt_by_id, rmap)  # >=3 real (member,date,url)
-                published.append(tp)
-            else:
-                dropped += 1
-                # Log the rejected candidate — but NEVER its label if that label is itself privacy-
-                # suppressed (a scaffold key can also contain a private name; Art. XIII wins over the
-                # dark-shelf audit). No reason (a bare privacy drop) is also never logged.
-                if reason and not privacy.is_suppressed(label):
-                    rejected.append({"label": label, "reason": reason,
-                                     "member_count": tp.get("member_count")})
+        # Verify and cite the corrected support set. Privacy drops remain label-free; every other
+        # omission is logged with a stable reason and the support-unit count.
+        published, dropped, rejected = _screen_talking_points(tps, stmt_by_id, rmap)
 
         # top synchronized phrase for the party that day (with first-sayer name)
         top_rows = [r for r in build.top_synchronized(ledger, day, k=5) if r["party"] == party]

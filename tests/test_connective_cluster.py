@@ -205,7 +205,7 @@ def test_key_quorum_admits_the_birthright_flagship():
     assert ok, reasons
 
 
-def test_a_joint_letter_is_one_family_but_member_reach_is_reported():
+def test_a_joint_letter_is_one_family_and_only_support_count_is_reported():
     # three signatories of ONE letter (shared joint_group) + two independent members. The joint letter
     # is ONE publication unit toward the quorum (§11 trap 2), so this cluster has 3 families, not 5.
     key = "protect our public lands"
@@ -220,6 +220,7 @@ def test_a_joint_letter_is_one_family_but_member_reach_is_reported():
     tp = {"label": key, "member_count": 3, "statements": list(by_id), "fragments": []}
     units = V.key_carrying_units(tp, by_id)
     assert units == {"joint:letter1", "D", "E"}          # 3 families, not 5 raw signatories
+    assert tp["member_count"] == len(units)                # public count is support, never component reach
     assert V.verify_talking_point(tp, by_id)[0]          # 3 families >= quorum
 
 

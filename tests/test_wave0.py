@@ -276,13 +276,16 @@ def test_voice_flags_suppress_false_model_on_stub_generators():
 def test_citations_resolve_three_members_with_urls():
     stmt_by_id = {
         "s1": {"member": {"bioguide": "A1", "party": "D", "state": "CA"}, "published_at": "2026-06-30",
-               "url": "https://a1.house.gov/x"},
+               "url": "https://a1.house.gov/x", "text": "we support border security now"},
         "s2": {"member": {"bioguide": "B2", "party": "D", "state": "NY"}, "published_at": "2026-06-29",
-               "url": "https://b2.house.gov/y"},
+               "url": "https://b2.house.gov/y", "text": "border security protects families"},
         "s3": {"member": {"bioguide": "C3", "party": "D", "state": "TX"}, "published_at": "2026-06-28",
-               "url": "https://c3.senate.gov/z"},
+               "url": "https://c3.senate.gov/z", "text": "border security matters"},
     }
-    tp = {"statements": ["s1", "s2", "s3"], "fragments": []}
+    tp = {"label": "border security", "statements": ["s1", "s2", "s3"],
+          "fragments": [{"statement": "s1", "text": "we support border security now"},
+                        {"statement": "s2", "text": "border security protects families"},
+                        {"statement": "s3", "text": "border security matters"}]}
     cites = run_assemble._citations(tp, stmt_by_id, {}, k=3)
     assert len(cites) == 3
     assert all(c["url"] and c["date"] and c["member"] for c in cites)
