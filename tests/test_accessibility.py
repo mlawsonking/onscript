@@ -2,10 +2,12 @@
 from __future__ import annotations
 
 import ast
+import io
 import json
 import re
 import tempfile
 import textwrap
+from contextlib import redirect_stdout
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -16,7 +18,7 @@ DAY = "2026-03-04"
 SLUG = "accessible-phrase"
 
 
-def _build() -> Path:
+def _build(*, favicon_source: Path | None = None) -> Path:
     tmp = Path(tempfile.mkdtemp(prefix="onscript-a11y-"))
     derived, out = tmp / "derived", tmp / "public"
     (derived / "days").mkdir(parents=True)
@@ -41,12 +43,14 @@ def _build() -> Path:
     (derived / "phrases" / "top.json").write_text(
         json.dumps({"day": DAY, "by_peak": day["top_synchronized"], "by_velocity": []}),
         encoding="utf-8")
-    saved = (site.DERIVED, site.OUT, config.DERIVED)
+    saved = (site.DERIVED, site.OUT, config.DERIVED, site.FAVICON_SOURCE)
     try:
         site.DERIVED, site.OUT, config.DERIVED = derived, out, derived
+        if favicon_source is not None:
+            site.FAVICON_SOURCE = favicon_source
         site.build_site()
     finally:
-        site.DERIVED, site.OUT, config.DERIVED = saved
+        site.DERIVED, site.OUT, config.DERIVED, site.FAVICON_SOURCE = saved
     return out
 
 
@@ -94,6 +98,43 @@ def test_404_and_favicon_are_built_from_the_committed_brand_asset():
     for page in out.rglob("*.html"):
         rel = "../" * len(page.relative_to(out).parent.parts)
         assert f'<link rel="icon" type="image/png" href="{rel}favicon.png">' in page.read_text(encoding="utf-8")
+
+
+def test_missing_favicon_source_is_loud_but_cannot_stop_the_site_render():
+    log = io.StringIO()
+    with tempfile.TemporaryDirectory(prefix="onscript-missing-favicon-") as td:
+        missing = Path(td) / "missing-brand.png"
+        with redirect_stdout(log):
+            out = _build(favicon_source=missing)
+    assert (out / "index.html").exists()
+    assert "[favicon] skipped (skip-and-log):" in log.getvalue()
+
+
+def test_faint_token_meets_aa_on_both_surfaces_and_no_other_palette_token_moves():
+    tokens = dict(re.findall(r"--([a-z-]+):(#[0-9a-fA-F]{3,6})", site.CSS))
+    expected_unchanged = {
+        "ink": "#1a1a1a", "muted": "#5a5a5a", "line": "#e2e2e2",
+        "bg": "#fbfbf9", "panel": "#ffffff", "accent": "#333",
+        "blue": "#2b4c7e", "blue-bg": "#eef2f8", "blue-line": "#c7d6ea",
+        "red": "#8a2f2f", "red-bg": "#f8eeee", "red-line": "#e6cccc",
+        "warn-bg": "#fff6e0", "warn-line": "#e8cf8a", "warn-ink": "#6b4e00",
+    }
+    assert {k: tokens[k] for k in expected_unchanged} == expected_unchanged
+
+    def luminance(color: str) -> float:
+        channels = [int(color[i:i + 2], 16) / 255 for i in (1, 3, 5)]
+        channels = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4
+                    for v in channels]
+        return .2126 * channels[0] + .7152 * channels[1] + .0722 * channels[2]
+
+    def contrast(a: str, b: str) -> float:
+        hi, lo = sorted((luminance(a), luminance(b)), reverse=True)
+        return (hi + .05) / (lo + .05)
+
+    faint = tokens["faint"]
+    assert contrast(faint, tokens["bg"]) >= 4.5
+    assert contrast(faint, tokens["panel"]) >= 4.5
+    assert luminance(faint) > luminance(tokens["muted"]), "faint must remain visually lighter than muted"
 
 
 def test_phrase_peak_date_links_to_its_existing_day_page():

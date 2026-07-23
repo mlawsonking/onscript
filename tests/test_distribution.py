@@ -57,6 +57,7 @@ def test_atom_feed_matches_the_last_thirty_published_day_pages():
     expected = [f"{config.SITE_URL}/day/{d}.html" for d in reversed(days[-30:])]
     assert ids == expected
     assert root.findtext(f"{ATOM}updated") == f"{days[-1]}T00:00:00Z"
+    assert root.findtext(f"{ATOM}author/{ATOM}name") == "OnScript"
 
 
 def test_feed_entries_are_symmetric_code_computed_summaries_without_prose():
@@ -95,8 +96,10 @@ def test_sitemap_is_exactly_the_rendered_html_page_set():
         f"{config.SITE_URL}/" if p.relative_to(out).as_posix() == "index.html"
         else f"{config.SITE_URL}/{p.relative_to(out).as_posix()}"
         for p in out.rglob("*.html")
+        if p.relative_to(out).as_posix() != "404.html"
     }
     assert got == expected
+    assert f"{config.SITE_URL}/404.html" not in got
 
 
 def test_robots_alternate_links_and_public_copy_point_to_the_feed():

@@ -51,6 +51,7 @@ TAXONOMY_FILE = config.TAXONOMY_FILE
 CORRECTIONS_FILE = config.REFERENCE / "corrections.json"  # operator-appended; corrections are public posts
 
 PARTY_NAME = {"D": "Democrats", "R": "Republicans", "I": "Independents"}
+SITE_AUTHOR = "OnScript"
 PARTY_LONG = {
     "D": "Democratic members of Congress",
     "R": "Republican members of Congress",
@@ -140,7 +141,7 @@ def topic_label(topic_id) -> str:
 # ---------------------------------------------------------------------------
 CSS = """
 :root{
-  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#8a8a8a; --line:#e2e2e2;
+  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#707070; --line:#e2e2e2;
   --bg:#fbfbf9; --panel:#ffffff; --accent:#333;
   --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
   --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
@@ -565,6 +566,7 @@ def atom_feed(rendered: list[tuple[str, dict]], limit: int = 30) -> str:
         '<?xml version="1.0" encoding="utf-8"?>\n'
         '<feed xmlns="http://www.w3.org/2005/Atom">'
         '<title>OnScript daily readings</title>'
+        f'<author><name>{esc(SITE_AUTHOR)}</name></author>'
         f"<id>{esc(config.SITE_URL)}/feed.xml</id>"
         f'<link href="{esc(config.SITE_URL)}/feed.xml" rel="self"/>'
         f'<link href="{esc(config.SITE_URL)}/"/>'
@@ -576,6 +578,8 @@ def sitemap(page_paths: list[str]) -> str:
     """Every and only the HTML paths emitted by this build, in deterministic order."""
     urls = []
     for path in sorted(set(page_paths)):
+        if path == "404.html":
+            continue
         url = f"{config.SITE_URL}/" if path == "index.html" else f"{config.SITE_URL}/{path}"
         urls.append(f"<url><loc>{esc(url)}</loc></url>")
     return (
@@ -2562,7 +2566,10 @@ def build_site():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
     (OUT / "phrases").mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(FAVICON_SOURCE, OUT / "favicon.png")
+    try:
+        shutil.copyfile(FAVICON_SOURCE, OUT / "favicon.png")
+    except Exception as e:  # skip-and-log: optional chrome cannot cost render 1 or the posting streak
+        print(f"[favicon] skipped (skip-and-log): {e}")
 
     # Art. XIII: delete contaminated phrase pages AND their rendered twins before anything renders.
     # A render-time SKIP is not enough — build_site only ever WRITES (nothing here unlinks) and
