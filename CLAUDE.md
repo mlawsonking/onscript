@@ -221,5 +221,8 @@ the
 first editorial publication around 08-05 P1, Deep Archive work for Congresses 111/112 and 117–119,
 SD.8, and the October registration wave.
 
-The active documentation task is governed by `docs/25-DOCUMENTATION-VOICE-BRIEF.md`. Dated work is
+The active documentation task is governed by `docs/25-DOCUMENTATION-VOICE-BRIEF.md`. Release and
+rollout through the election freeze are governed by `docs/27-RELEASE-AND-ROLLOUT-ORDER.md`: the
+local stack pushes in the R0-R8 sequence, one flip per Monday under the docs/23 health gate, last
+flip Monday Oct 5, quiet from Oct 12, constitutional freeze Oct 15 through Nov 10. Dated work is
 recorded in `docs/26-SESSION-HISTORY.md`. Future sessions append there and keep this section short.

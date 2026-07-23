@@ -2122,3 +2122,30 @@ announce.
 The Build Program (`docs/11-BUILD-PROGRAM.md`), build-dark/release-by-gate: Opus builds the full
 v2+v3 backlog to `built/verified/UNRELEASED` behind the FEATURES registry while the streak runs;
 each release is one commit, Michael's act. v2 target Aug 10, v3 Oct 5.
+
+## 2026-07-23: Session 45 (Fable). Release and rollout order
+
+Outcome: docs/27-RELEASE-AND-ROLLOUT-ORDER.md (binding) now governs the path from the
+local 17-commit stack to a verified deployed release and the calendar through the freeze.
+
+Evidence: baseline re-verified by direct inspection before ruling. Suite 479 of 479 at
+local HEAD. Live remote moved past the local cache (f8b77e4 to 6871440), so a rebase
+precedes any push. Live site confirmed still pre-stabilization: About denies posting
+while posts.html lists two days of posts; a phrase page still shows a 2013 date and a
+bare bioguide identifier. Voice rewrite verified compliant except one plain-prose U+2014
+in the docs/06 Article XIV title line and the missing exception list required by
+docs/25 section 5 gate 2.
+
+Decisions: release sequence R0 to R8 (R0 voice fix and exception list, R1 rebase, R2
+stabilization push, R3 production exercise with live-surface checks, R4 wave 2 push,
+R5 voice push after #197, R6 two green days, R7 nomenclature flip, R8 rollout).
+Freeze ruling: the constitution governs, Oct 15 through Nov 10; the docs/23 Oct 12 row
+survives as a quiet-period buffer; last flip Monday is Oct 5. Slip rule: a missed flip
+moves one week and never stacks; the Aug 31 lock and freeze dates do not move.
+Feature classifications and per-piece editorial gates are in docs/27 sections 5 and 6.
+The HX.4 card stays unpublished while HX.4-D is HELD. Task #198 filed for the
+silence-board wiring session (deadline Aug 3). The implementation agent's scope is R0
+and R1 only; every push, flip, and publication stays with Michael.
+
+Next action: implementation agent runs R0 and R1; Michael pushes the stabilization
+prefix in a clean window (#195), then follows docs/27.
