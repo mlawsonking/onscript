@@ -185,3 +185,22 @@ has reviewed the stages.
 Michael reviews stage by stage and holds release authority. Pushes follow the docs/24 §7
 window rules. Nothing in this brief changes any runtime behavior, schedule, flag, or
 public data path.
+
+## Appendix A: U+2014 exceptions
+
+The tracked Markdown corpus contains eleven U+2014 characters. Each one is protected by
+section 3.1 because it appears in a code fence or inline code.
+
+| File | Line | Occurrence | Reason |
+|---|---:|---:|---|
+| docs/03-GAMEPLAN.md | 211 | 1 | Code-fenced JSON schema comment. |
+| docs/03-GAMEPLAN.md | 242 | 1 | Code-fenced manifest schema comment. |
+| docs/04-BUILDLOG.md | 2498 | 1 | Code-fenced captured pipeline output. |
+| docs/04-BUILDLOG.md | 2500 | 1 | First U+2014 in code-fenced captured pipeline output. |
+| docs/04-BUILDLOG.md | 2500 | 2 | Second U+2014 in code-fenced captured pipeline output. |
+| docs/16-NOMENCLATURE-SPEC.md | 124 | 1 | Code-fenced Python source comment. |
+| docs/16-NOMENCLATURE-SPEC.md | 142 | 1 | Code-fenced Python docstring. |
+| docs/16-NOMENCLATURE-SPEC.md | 152 | 1 | Code-fenced Python docstring. |
+| docs/16-NOMENCLATURE-SPEC.md | 196 | 1 | Code-fenced Python source comment. |
+| docs/16-NOMENCLATURE-SPEC.md | 292 | 1 | Code-fenced test assertion comment. |
+| docs/26-SESSION-HISTORY.md | 942 | 1 | Inline code preserving captured pipeline output. |

@@ -67,7 +67,7 @@ screenshot remains: *“If it can't be reproduced from the archive, it isn't our
 statements. It never covers private citizens, staffers, personal data, or non-public communications.
 The project covers members in their official capacity. Its jurisdiction ends at the office.
 
-**XIV. Continuity — the asset must outlive the operator.** The repository is public, the data is
+**XIV. Continuity: the asset must outlive the operator.** The repository is public, the data is
 downloadable, the runbook is current, and the license is open. The raw archive receives a quarterly
 Internet Archive snapshot. A competent operator must be able to fork and restart OnScript from a
 cold start. That continuity is a feature.
