@@ -14,25 +14,27 @@ pipeline, prompts, and thresholds run for both parties.
 
 ## Production rhythm
 
-GitHub Actions is the runtime. Two scheduled passes let a late upstream day recover without skipping:
+GitHub Actions is the runtime. Two scheduled passes let a late upstream day recover without
+skipping:
 
-- **RUN A — collect**, at 09:30Z and 19:30Z: mirror the press-release corpus, normalize Lane 1,
+- **RUN A, collect**, at 09:30Z and 19:30Z: mirror the press-release corpus, normalize Lane 1,
   update the deterministic phrase ledger, submit/cache extraction work, redact the published view,
   and refresh `data-latest`.
-- **RUN B — assemble**, at 11:30Z and 21:30Z: select the oldest ready day, cluster and distill,
+- **RUN B, assemble**, at 11:30Z and 21:30Z: select the oldest ready day, cluster and distill,
   run the blocking verifier and symmetry audit, render the static site, post both party threads
   atomically when enabled, persist state, and commit the derived/site output for Vercel.
 
 The exact scheduler may start late. Health is read from manifests and advancing data, never from a
-green workflow badge alone. See `docs/07-OPERATIONS.md` for health thresholds and incident playbooks.
+green workflow badge alone. See `docs/07-OPERATIONS.md` for health thresholds and incident
+playbooks.
 
 ## State and reproducibility
 
-- `data/raw/` — immutable source mirror; published in `raw.tar.gz` on `data-latest`
-- `data/state/` — normalized statements, extraction cache, and phrase ledger; published in
+- `data/raw/`, immutable source mirror; published in `raw.tar.gz` on `data-latest`
+- `data/state/`, normalized statements, extraction cache, and phrase ledger; published in
   `state.tar.gz` on `data-latest`
-- `data/derived/` — small committed manifests and public JSON
-- `site/public/` — committed static site generated from the derived record
+- `data/derived/`, small committed manifests and public JSON
+- `site/public/`, committed static site generated from the derived record
 
 Use Python 3.11+. On the Windows operator machine the configured interpreter is
 `C:\ProgramData\miniconda3\python.exe`.

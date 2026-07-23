@@ -1,39 +1,39 @@
-# 24 — Public-Surface Stabilization Brief (BINDING)
+# 24. Public-Surface Stabilization Brief (binding)
 
 **Authority:** Fable, Session 43, 2026-07-22. Adjudicates the external ("Codex") request
 "authorize the OnScript public-surface stabilization packet." Every packet premise was
-independently re-verified against the repo before ruling (Art. XVI); the defect register below
+independently re-verified against the repo before ruling (Art. xvi); the defect register below
 is the evidence, with anchors. Michael holds the standing veto; **release (push/deploy) is his
 act, never the implementer's.** The implementer executes this brief exactly and does not
 re-litigate rulings (Constitution; docs/21 §2 posture applies to any non-Fable worker,
 including external ones).
 
 **Decisions: P0-A APPROVE (modified) · P0-B APPROVE (modified) · P1 APPROVE (modified) ·
-P2 APPROVE, STAGED · P3 DEFER.**
+P2 APPROVE, staged · P3 DEFER.**
 
 ---
 
 ## 0. Verified defect register (do not re-derive; reproduce each as a failing test first)
 
-- **D1 — stale public posture.** About says "The accounts are live but have not begun posting"
+- **D1, stale public posture.** About says "The accounts are live but have not begun posting"
   (`pipeline/site.py:1910`, rendered in `site/public/about.html`) and "At public launch, each
   will post…"; the posts-empty branch repeats it (`site.py:1968`). Accounts are plain text, not
   links (`site.py:1904-1906`); the house account is absent from About entirely. Zero links to
   the public GitHub repo or `data-latest` anywhere in `site.py`. `README.md:71` says "no remote
   exists yet" under a live "Launch blockers" section. `docs/07-OPERATIONS.md:20` marks S2
   "(← current, 2026-07-14)".
-- **D2 — the signed post archive lags its own posting run and has no partial handling.**
+- **D2, the signed post archive lags its own posting run and has no partial handling.**
   `assemble.yml` order: render (step 5, `:97-98`) → redact (`:109-110`) → post (`:112-113`) →
   persist (`:115-118`) → one commit of `data/derived` + `site/public` (`:120-134`). `site.py`
   snapshots manifests at import (`_POSTED_THREADS`, `site.py:1985`), so the committed
-  `posts.html` structurally excludes the thread posted in the same run — proven on HEAD
+  `posts.html` structurally excludes the thread posted in the same run, proven on HEAD
   `265e576`: `post-2026-07-21.json` (`posted:true`, real `root_uri`) landed in the same commit
-  as a `posts.html` whose newest entry is 07-20 — under the copy "Any post attributed to these
+  as a `posts.html` whose newest entry is 07-20, under the copy "Any post attributed to these
   accounts that does not appear here is not ours" (`site.py:1962-1965`). Separately,
   `posted_threads()` filters only on `posted`+`thread` (`site.py:1942-1945`): a
   `partial:True` manifest (whose `thread` is the full *intended* text) would render as a
   complete authenticated thread, replies included, that never went live.
-- **D3 — pre-epoch observations on public Stage-1 surfaces.** `STAGE1_EPOCH = "2025-01-03"`
+- **D3, pre-epoch observations on public Stage-1 surfaces.** `STAGE1_EPOCH = "2025-01-03"`
   (`config.py:58`). 51 of 277 public phrase pages carry 2013–2024 observations (first-seen
   lines, curve axes, peaks); the embedded search index (`phrase_search_index()`,
   `site.py:1049-1078`) ships rows like `{"q":"the supreme court","p":79,"f":"2013-01-04"}`.
@@ -43,20 +43,20 @@ P2 APPROVE, STAGED · P3 DEFER.**
   begins 2025-01" (`site.py:1480-1483`) directly beneath 2013 receipts. This is also a live
   R6/seam exposure: pre-2021 legacy-lane observations mixed into public curves with no lane
   disclosure, while `FEATURES["archive"]` is dark.
-- **D4 — bare Bioguide IDs rendered as names.** 20 phrase pages render e.g. "2013-04-17 by
-  S001168" — `member_name()` falls through to `esc(bioguide)` (`site.py:108-124`);
+- **D4, bare Bioguide IDs rendered as names.** 20 phrase pages render e.g. "2013-04-17 by
+  S001168". `member_name()` falls through to `esc(bioguide)` (`site.py:108-124`);
   `data/reference/roster.json` is tracked but current-Congress-only (538 entries; none of the
   leaked historical IDs resolve). Every leak has a pre-epoch first-sayer; P1's window gate
   removes the entire live class.
-- **D5 — the receipts promise gap.** Search copy promises "the members who carried it"
+- **D5, the receipts promise gap.** Search copy promises "the members who carried it"
   (`site.py:1094-1095`); `phrase_page_body()` (`site.py:1433-1486`) renders curve + first-sayer
-  (+ tie) + bare peak count — no roster, no citations, no sources. Data reality: per-phrase
+  (+ tie) + bare peak count, no roster, no citations, no sources. Data reality: per-phrase
   JSONs carry **no per-day member identities beyond day 1** (series are counts only); day
-  JSONs carry citations only for the LLM-selected talking points, joined by fuzzy label. A
+  JSONs carry citations only for the llm-selected talking points, joined by fuzzy label. A
   receipts feature therefore requires a new deterministically built evidence slice.
-  `_wayback_url()` (`site.py:737-743`) is already a pure function of url+date — no stored
+  `_wayback_url()` (`site.py:737-743`) is already a pure function of url+date, no stored
   archive data or network needed. Unit/joint machinery exists: `_unit_key`
-  (`pipeline/phrases.py:44-46`) counts a joint family once by construction.
+  (`pipeline/phrases.py:44-46`) counts a joint family once because of the design.
 - **P3 facts.** `site/brand/brand.py` requires Pillow; **no workflow installs any pip package**
   (stdlib-only CI); `site/public` is 296 files / ~5.5 MB committed. Per-page PNGs mean a new
   dependency on the live daily path plus committed-binary churn → DEFER per the requester's own
@@ -64,7 +64,7 @@ P2 APPROVE, STAGED · P3 DEFER.**
 
 ---
 
-## 1. P0-A — public truth (APPROVE, modified)
+## 1. P0-A, public truth (APPROVE, modified)
 
 Scope: `pipeline/site.py` copy, `README.md`, `docs/07-OPERATIONS.md` status marker,
 `docs/20-DRIP-CALENDAR.md` supersession notice, focused tests.
@@ -74,52 +74,52 @@ Scope: `pipeline/site.py` copy, `README.md`, `docs/07-OPERATIONS.md` status mark
    "have not begun posting" / "At public launch" framing; fix the `site.py:1968` empty-branch
    copy to something that is true in any environment (e.g. "No posts recorded in this build").
 2. About + Methodology: link the public GitHub repository and the `data-latest` release assets.
-   Derive the repo URL once — add a single constant (e.g. `config.REPO_URL`) rather than
+   Derive the repo URL once, add a single constant (e.g. `config.REPO_URL`) rather than
    hardcoding it at call sites; take the value from the actual `origin` remote.
-3. Degraded-voice copy: describe it as a **deterministic fallback, plainly labeled** — but do
-   **NOT** rename generator/provenance values (`dry_run`, `P3:dry_run`) in manifests or
+3. Degraded-voice copy: describe it as a **deterministic fallback, plainly labeled**, but do
+   **not** rename generator/provenance values (`dry_run`, `P3:dry_run`) in manifests or
    historical data; those are frozen provenance labels. Copy only.
 4. `README.md`: rewrite as the post-launch operator/reproduction runbook (what runs when, where
    state lives, how to reproduce a day, `pipeline.redact --check` verification, kill switches).
    Remove the completed "Launch blockers" section. Never name the ntfy topic or any secret value.
-5. `docs/07-OPERATIONS.md`: move the "current" marker to S3 with date 2026-07-22 — additive;
+5. `docs/07-OPERATIONS.md`: move the "current" marker to S3 with date 2026-07-22, additive;
    do not rewrite ladder history. `docs/20`: short supersession notice at top (docs/23 §7.3 +
    Session 42 govern current dates); do not rewrite historical decisions.
 6. **Forbidden:** edits to `docs/03-GAMEPLAN.md` / `docs/04-BUILDLOG.md` (the "public at
    launch" hits there are historical record, not stale copy).
 7. Validation: scan all regenerated `site/public` HTML for the retired phrases; zero hits.
 
-## 2. P0-B — signed archive truthful in the same run (APPROVE, modified)
+## 2. P0-B, signed archive truthful in the same run (APPROVE, modified)
 
 Scope: `.github/workflows/assemble.yml`, `pipeline/site.py`, one focused workflow-order test +
-site tests. **Never execute `pipeline/post_bluesky.py`** — not even "safely"; a gated local run
+site tests. **Never execute `pipeline/post_bluesky.py`**, not even "safely"; a gated local run
 rewrites tracked manifests (S40 finding 9). It may be read and imported by tests with stubs.
 
-1. Keep the pre-post render exactly where it is — it is the preflight that stops a run from
+1. Keep the pre-post render exactly where it is, it is the preflight that stops a run from
    posting a thread whose receipts page cannot build. Add a **second render step after the post
    step and before the commit step.** A fresh `python pipeline/site.py` process re-globs the
-   manifests (the import-time snapshot makes an in-process re-render insufficient — this is why
+   manifests (the import-time snapshot makes an in-process re-render insufficient, this is why
    it must be a new invocation).
-2. Ordering invariants (assert in a test that parses the workflow YAML): exactly two site-render
+2. Ordering invariants (assert in a test that parses the workflow yaml): exactly two site-render
    invocations; render₁ before post; render₂ after post and before commit; the redact step stays
    before the state-persist/upload step; commit still stages `data/derived` + `site/public`
    together. No new network use in render₂.
-3. Failure semantics for render₂ — all-or-nothing and non-blocking: snapshot `site/public`
+3. Failure semantics for render₂, all-or-nothing and non-blocking: snapshot `site/public`
    before render₂; on nonzero exit, restore the snapshot, emit a loud log marker, and let the
-   job continue to commit (a failed render₂ degrades to today's status quo — one-run lag that
-   self-heals — which must never cost the day's data commit). Render₁'s failure semantics are
+   job continue to commit (a failed render₂ degrades to today's status quo, one-run lag that
+   self-heals, which must never cost the day's data commit). Render₁'s failure semantics are
    untouched (job dies before posting; dead-man fires).
 4. `posts.html` truth rules in `site.py`:
    - Only `posted=True` with a non-empty `root_uri` renders as an authenticated thread.
-   - `partial=True`: render the entry explicitly marked partial with the root link only —
+   - `partial=True`: render the entry explicitly marked partial with the root link only,
      **never print reply text the manifest cannot prove went live.**
    - A `posted=True` entry missing `root_uri` renders as unverifiable, not as authenticated.
    - Reword the absolute claim so it is literally true under (i) normal same-run inclusion,
-     (ii) a failed render₂ (one-run lag), (iii) partials — e.g. scope it with a time bound.
+     (ii) a failed render₂ (one-run lag), (iii) partials, e.g. scope it with a time bound.
      Symmetric wording, both parties.
 5. Do not touch: posting logic, manifest schema, redact, dead-man, `POSTING_ENABLED` handling.
 
-## 3. P1 — temporal honesty while Archive is dark (APPROVE, modified)
+## 3. P1, temporal honesty while Archive is dark (APPROVE, modified)
 
 Ruled implementation: **render-time public-window gate only.** Do not modify
 `alexandria.py`, the state ledger, `build_derived`'s ledger handling, or any committed
@@ -133,11 +133,11 @@ never rewritten by daily runs, so a build-time-only fix would strand the 51 stal
 2. **The epoch has exactly one source: `config.STAGE1_EPOCH`.** No new hardcoded "2025"
    prose; the existing footnote renders its date from config.
 3. First-sayer rules: if the true `first_seen.date >= epoch`, render as today (roster name).
-   If pre-epoch, the derived file cannot name the in-window first carrier — render an honest
+   If pre-epoch, the derived file cannot name the in-window first carrier, render an honest
    line: first in-window active day, **no member attribution, no bioguide**, plus the existing
    pointer that pre-window history awaits the Archive release. Additionally harden
    `member_name()` so no caller can ever emit a raw ID styled as a name ("member name
-   unavailable" instead). Do **not** add a historical roster in this packet — that is
+   unavailable" instead). Do **not** add a historical roster in this packet, that is
    Archive-flip work.
 4. A phrase with zero in-window observations: its page remains (public pages are permanent)
    with an honest empty-window state; it is dropped from the search index (the index promises
@@ -149,10 +149,10 @@ never rewritten by daily runs, so a build-time-only fix would strand the 51 stal
    the pre-epoch record remains intact in the fixture/derived input. Plus: index rows agree
    with page stats; zero-in-window phrases are unlisted but their pages render.
 
-## 4. P2 — receipts promise (APPROVE, STAGED — Stage A mandatory, Stage B gated)
+## 4. P2, receipts promise (APPROVE, staged. Stage A mandatory, Stage B gated)
 
 **Stage A (mandatory): copy–delivery alignment.** Reword the search subhead and any phrase-page
-promise so they promise exactly what renders after this packet — no more. If Stage B ships,
+promise so they promise exactly what renders after this packet, no more. If Stage B ships,
 the copy may promise receipts in the "where at least three distinct offices can be cited"
 form; the test "search copy and phrase-page behavior agree" locks it either way.
 
@@ -161,10 +161,10 @@ form; the test "search copy and phrase-page behavior agree" locks it either way.
 2. A new small derived evidence slice, built deterministically during the derived build (never
    at render): for each phrase in the public index, on its peak day, from normalized **Lane-1**
    statements: member name, party-state, date, source URL. **No statement or quote text in the
-   slice** — receipts are identity+source only, which keeps the speaker-attribution and
+   slice**, receipts are identity+source only, which keeps the speaker-attribution and
    copyright surface at zero. Wayback links synthesized at render via the existing
-   `_wayback_url()` — no stored archive URLs, no network at build or render.
-3. Counting: units via the existing `_unit_key` machinery — a joint family is one unit;
+   `_wayback_url()`, no stored archive URLs, no network at build or render.
+3. Counting: units via the existing `_unit_key` machinery, a joint family is one unit;
    grounding via the same verbatim containment the verifier uses (the receipt's statement must
    contain the exact phrase). Numerator and caucus denominator use the same denominator source
    the party-columns view uses; identical rules both parties.
@@ -177,12 +177,12 @@ form; the test "search copy and phrase-page behavior agree" locks it either way.
    (slug, peak-day, source fingerprint). Steady-state added time per cron ≤ 60 s; one-time
    bootstrap ≤ ~15 min on the long RUN A path. Measure and report both. **If any Stage B gate
    (cost, grounding, complexity) cannot be met, ship Stage A alone and return DEFER for
-   Stage B with the measurements** — do not improvise.
+   Stage B with the measurements**, do not improvise.
 7. Tests: the six enumerated in the request (quorum + exact grounding; joint=one unit; valid
    HTTP(S) URLs; suppressed phrase → no page/slice; removed source → removed receipt;
    copy/behavior agreement).
 
-## 5. P3 — page-specific share cards: DEFER
+## 5. P3, page-specific share cards: DEFER
 
 Grounds, from evidence: Pillow is absent from the stdlib-only CI (a new dependency on the live
 daily path), and per-page PNGs multiply the committed `site/public` (~5.5 MB today) with
@@ -199,10 +199,10 @@ feature after the 08-03 window, possibly with the Archive flip.
 - Start: `git fetch origin && git rebase origin/main` (this tree is post-rewrite; safe).
   **Never touch, rebase, or push branch `wip/nomenclature`** (contaminated pre-rewrite local
   history). Never `git add -A`.
-- **Commit code, tests, and the docs in scope ONLY.** After local validation builds, revert
+- **Commit code, tests, and the docs in scope only.** After local validation builds, revert
   generated trees: `git checkout -- site/public data/derived` (wherever dirtied). The cloud
   cron is the sole author of generated public surfaces; a locally rebuilt site commits stale
-  state under false provenance. Local `data/state` ends ~2026-07-09 — expect stale local data;
+  state under false provenance. Local `data/state` ends ~2026-07-09, expect stale local data;
   tests use fixtures.
 - Four separate commits, in order: P0-A, P0-B, P1, P2. Evidence table maps each defect →
   failing-then-passing test → files → observed result. Working tree at end: only the commits
@@ -214,33 +214,33 @@ feature after the 08-03 window, possibly with the Archive flip.
 
 ## 7. Release protocol (Michael)
 
-1. Review the evidence table; spot-check the P0-B and P1 kill tests.
+1. Review the evidence table; spot-check the P0-B and P1 failure tests.
 2. Push only in a clean cron window: `gh run list` shows nothing queued or in flight, and not
    within ~30 min before 09:30/11:30/19:30/21:30Z (scheduler drift runs late, so check the
-   list, not the clock). **Never dispatch a run to "test" the change** — a dispatched run can
+   list, not the clock). **Never dispatch a run to "test" the change**, a dispatched run can
    displace a pending scheduled one (S40).
-3. The next scheduled assemble is the live exercise of P0-B. Read its log (Art. XVI): green,
+3. The next scheduled assemble is the live exercise of P0-B. Read its log (Art. xvi): green,
    two renders, and the committed `posts.html` carrying that same run's thread. The next
-   scheduled collect is the live exercise of P2's evidence bootstrap — read its step timing.
+   scheduled collect is the live exercise of P2's evidence bootstrap, read its step timing.
 4. Post-push, read-only live verification is authorized: fetch the live pages, re-run the
    stale-phrase scan against production HTML, confirm search-index rows are all post-epoch.
    Nothing else (no dispatch, no posting, no flips).
 
 ---
 
-## 8. S43 validation verdict + REQUIRED REMEDIATION (gates the push)
+## 8. S43 validation verdict + required remediation (gates the push)
 
 The four delivered commits (`a9d3af6`/`eea390c`/`f32ccc1`/`3ef985b`) were independently
 validated: scope audit PASS (15 files, zero forbidden paths, config diff = one additive
 `REPO_URL`, docs additive, packets independently revertable); suite independently reproduced
 **459 passed / 0 failed** via the house runner `tests/run_tests.py` (the authoritative local
-invocation — there is no pytest on this box); adversarial substance review passed on P0-A,
-P0-B, and P1 in full. One BLOCKER and three riders:
+invocation, there is no pytest on this box); adversarial substance review passed on P0-A,
+P0-B, and P1 in full. One blocker and three riders:
 
-**R1 (BLOCKER — fix before anything pushes).** `build.build_derived` calls
+**R1 (blocker, fix before anything pushes).** `build.build_derived` calls
 `phrase_evidence.build_phrase_evidence(...)` (`build.py:598-600`) with **no skip-and-log
 wrap**, and the call sits **before** the `days/{focus_day}.json` write. Any throw in the
-evidence build fails the unattended RUN A/RUN B and loses the day's core artifact — the exact
+evidence build fails the unattended RUN A/RUN B and loses the day's core artifact, the exact
 failure the §0 streak invariant forbids, and the reason the sibling calls
 (`deterministic.py:37-48`, `build_concordance`/`build_awards`) are wrapped. Fix both belts:
 (a) wrap the call mirroring the siblings (skip-and-log, loud print); (b) relocate it **after**
@@ -262,7 +262,7 @@ number to its stated denominator. Copy only, both parties identical.
 
 **R4 (accepted risk, watch item).** The P2 cost-gate numbers (45.7 s bootstrap / 0.53 s warm)
 could not be independently reproduced locally (local state is stale). The skip-and-log wrap
-(R1) bounds the downside; the first cloud collect after the push is the real measurement —
+(R1) bounds the downside; the first cloud collect after the push is the real measurement,
 read its step timing per §7.3.
 
 Remediation ships as **one commit on top of `3ef985b`**, evidence per §6. The push covers
@@ -273,38 +273,38 @@ docs + four packets + remediation together.
 Same constraints as §6 throughout; each packet its own commit + evidence row. **Wave-2 commits
 push only after the first green live exercise of P0-B/P2** (the remediated packet pushes
 first and alone). Out of scope for the external worker, reserved for internal sessions:
-silence_board wiring (R-B, deadline Mon 08-03), the 07-27 `nomenclature_tags` flip and its
-R-A riders, `sync_by_party` historical backfill (repair semantics), and anything that
+silence_board wiring (r-b, deadline Mon 08-03), the 07-27 `nomenclature_tags` flip and its
+r-a riders, `sync_by_party` historical backfill (repair semantics), and anything that
 measures or publishes findings.
 
-**W2-A — local-execution write safety for the posting module (the S40 finding-9 follow-up).**
+**W2-A, local-execution write safety for the posting module (the S40 finding-9 follow-up).**
 When `GITHUB_ACTIONS` is absent from the environment, executing `pipeline/post_bluesky.py`
 must perform **zero filesystem writes** (no `_flush`, no manifest create/update/restamp) and
-zero network — print a preview instead; an explicit `--allow-local-manifest-write` flag is
-the deliberate override. CI behavior byte-identical (GitHub always sets the variable — no
-workflow change). Kill tests BOTH directions, the inverse being the vital one: with the env
+zero network, print a preview instead; an explicit `--allow-local-manifest-write` flag is
+the deliberate override. CI behavior byte-identical (GitHub always sets the variable, no
+workflow change). Kill tests both directions, the inverse being the vital one: with the env
 var set, the flush path is unchanged (a silently-lost posting day is the failure to fear);
 plus a tmp-tree test encoding the S40 footgun (gated local run writes nothing). Minimal diff;
 no posting-logic or manifest-schema changes. This is the one wave-2 packet allowed to touch
 `pipeline/post_bluesky.py`, and its PUSH additionally waits for a green live posting day
 under the new assemble.yml.
 
-**W2-B — distribution surfaces: Atom feed + sitemap + robots.**
+**W2-B, distribution surfaces: Atom feed + sitemap + robots.**
 `feed.xml` (stdlib string-built like the rest of the site): one entry per published day page,
 last ~30 days, deterministic timestamps from day data. **Entry content = code-computed
-deterministic fields only — the og: privacy rule extended: never composite prose, never
+deterministic fields only, the og: privacy rule extended: never composite prose, never
 statement text, both parties in every entry with equal weight** (lock with the same
 style of test that locks the og tags). `sitemap.xml` covering every rendered page and nothing
 else; `robots.txt` pointing at it; `<link rel="alternate">` in page heads; About/Methodology
 mention the feed in one line. Tests: well-formed XML, entry set = existing day pages,
 symmetry, no-prose rule, sitemap↔rendered-page agreement.
 
-**W2-C — accessibility + navigation polish.**
+**W2-C, accessibility + navigation polish.**
 Semantic landmarks (header/nav/main/footer) + skip link + `lang` attribute on every page;
 curve/inline SVGs get `role="img"` + `<title>`/`<desc>` **derived from code-computed fields
 only** (same og rule); `404.html` (Vercel serves it automatically); favicon wired from an
 existing committed brand asset (no Pillow, no generation); phrase-page peak date links to
-`day/<date>.html` when that page exists. Contrast: REPORT any WCAG-AA failures with values —
+`day/<date>.html` when that page exists. Contrast: report any wcag-aa failures with values,
 do not redesign; palette changes are Michael's call. Tests where mechanical (one `main` per
 page, SVG titles present, 404 exists, no dead internal links).
 
@@ -318,8 +318,8 @@ tree clean but for `AGENTS.md`.
 The remediation + wave-2 delivery (`4c16703` / `2c81649` / `0e3a3bd` / `246299e`, packet
 rebased to `2a8e596`/`b39db56`/`224d130`/`03da03d` over the evening cloud commits) validated
 clean: suite independently reproduced **477/0** via the house runner; adversarial review found
-**no blockers**. The load-bearing W2-A inverse direction is sound: "local" is a **presence**
-check on `GITHUB_ACTIONS` (the safest form — even a hypothetical `=false` still takes the
+**no blockers**. The critical W2-A inverse direction is sound: "local" is a **presence**
+check on `GITHUB_ACTIONS` (the safest form, even a hypothetical `=false` still takes the
 production path), the CI flush path is byte-identical and test-locked, and the local-preview
 proof is a real-tree byte-identity test, not a double-stub. Feed entries are counts-only with
 both a content test and an AST source guard; R1 relocated+wrapped with the sole production
@@ -327,24 +327,24 @@ caller confirmed; R2/R3 in place; workflows untouched by all four commits; rebas
 
 **One closing micro-commit (gates only the wave-2 push, not tonight's):**
 1. Wrap the favicon `shutil.copyfile` at the top of `build_site()` (`site.py:2565`) in
-   skip-and-log — unwrapped, a missing brand asset would crash render₁ before posting and
+   skip-and-log, unwrapped, a missing brand asset would crash render₁ before posting and
    fire a false dead-man; same class as R1. Kill test: missing source asset → site still
    renders, loud log line.
 2. Drop `404.html` from `sitemap.xml` (adjust the distribution test's oracle accordingly).
 3. Add a code-computed `<author>` ("OnScript") to the Atom feed.
 4. Contrast compliance (ruled S43c, Michael's veto at push as always): darken the `faint`
-   text token so measured contrast is ≥ 4.5:1 against BOTH the page background and white
+   text token so measured contrast is ≥ 4.5:1 against both the page background and white
    panels (currently `#8a8a8a` at 3.33:1 / 3.45:1); keep it visually lighter than `muted`;
    report the chosen value and both measured ratios. Decorative dividers/chart axes stay as
-   they are (non-essential boundaries, WCAG 1.4.11 exempt).
+   they are (non-essential boundaries, wcag 1.4.11 exempt).
 
 ## 11. Program state after §10
 
 The public-surface stabilization program is **complete** once §10 lands and the pushes clear:
 truth (P0-A), same-run authenticity (P0-B), temporal honesty (P1), receipts (P2), posting
-footgun (W2-A), discovery (W2-B), accessibility (W2-C). P3 share cards remain DEFERRED.
+footgun (W2-A), discovery (W2-B), accessibility (W2-C). P3 share cards remain deferred.
 Remaining known site-surface items are deliberately reserved for internal sessions:
-silence_board wiring (R-B, deadline Mon 08-03), the 07-27 nomenclature flip + R-A riders,
+silence_board wiring (r-b, deadline Mon 08-03), the 07-27 nomenclature flip + r-a riders,
 `sync_by_party` historical backfill, the 07-09 phrases-only day. No further external-worker
-surface work is authorized beyond §10 without a new ruling — the next improvements should be
+surface work is authorized beyond §10 without a new ruling, the next improvements should be
 driven by live-audience feedback, not speculation.
