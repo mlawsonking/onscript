@@ -84,49 +84,53 @@ def cluster_day(party: str, day: str, annotated_fragments: list[dict],
         if len(component_units) < config.SYNC_MIN_MEMBERS:
             continue
 
-        by_statement: dict[str, dict] = {}
+        fragment_idxs_by_sid: dict[str, list[int]] = defaultdict(list)
         for i in idxs:
             sid = frs[i].get("statement")
-            if not sid or sid in by_statement:
-                continue
+            if sid:
+                fragment_idxs_by_sid[sid].append(i)
+
+        sid_to_fragment = {sid: frs[fragment_idxs[0]]
+                           for sid, fragment_idxs in fragment_idxs_by_sid.items()}
+        sid_to_unit: dict[str, object] = {}
+        statement_grams: dict[str, set[str]] = {}
+        for sid, first_fragment in sid_to_fragment.items():
             source = (statements_by_id or {}).get(sid)
             if source is None:
                 source = {
                     "id": sid,
-                    "text": frs[i].get("source_text") or frs[i].get("text", ""),
-                    "joint_group": frs[i].get("joint_group"),
-                    "member": {"bioguide": frs[i].get("bioguide")},
+                    "text": first_fragment.get("source_text") or first_fragment.get("text", ""),
+                    "joint_group": first_fragment.get("joint_group"),
+                    "member": {"bioguide": first_fragment.get("bioguide")},
                 }
-            by_statement[sid] = source
+            unit = _unit(first_fragment, source)
+            if unit:
+                sid_to_unit[sid] = unit
+            statement_grams[sid] = _cluster_grams(source.get("text", ""))
 
         candidates = sorted({g for i in idxs for g in grams[i]})
         ranked: list[tuple[int, int, int, str, set, set]] = []
         raw_ranked: list[tuple[int, int, int, str, set, set]] = []
         for gram in candidates:
-            support_statements = {
-                sid for sid, statement in by_statement.items()
-                if boilerplate.contains_gram(statement.get("text", ""), gram)
-            }
-            support_units = {
-                _unit(next((frs[i] for i in idxs if frs[i].get("statement") == sid), {}),
-                      by_statement.get(sid))
-                for sid in support_statements
-            }
-            support_units.discard(None)
+            support_statements = {sid for sid, statement_set in statement_grams.items()
+                                  if gram in statement_set}
+            support_units = {sid_to_unit[sid] for sid in support_statements if sid in sid_to_unit}
             row = (len(support_units), len(support_statements), len(gram.split()), gram,
                    support_units, support_statements)
             raw_ranked.append(row)
             if _admissible_support_phrase(gram):
                 ranked.append(row)
 
-        # Prefer the admissible phrase carried by the most distinct units, then the longer phrase,
-        # then lexicographic order. If every candidate fails admission, retain the best raw phrase so
-        # the existing assembly gate can reject and log its specific reason. Nothing from that
-        # fallback reaches a public surface.
+        # Prefer the admissible phrase carried by the most distinct units, then the number of source
+        # statements carrying it, the longer phrase, and lexicographic order. Each statement was
+        # tokenized once above; candidate ranking is now set membership rather than repeated scans of
+        # full statement bodies. If every candidate fails admission, retain the best raw phrase so the
+        # existing assembly gate can reject and log its specific reason. Nothing from that fallback
+        # reaches a public surface.
         pool = ranked or raw_ranked
         if not pool:
             continue
-        carrier_count, _carriers, _words, label, support_units, support_statements = sorted(
+        carrier_count, _carriers, _words, label, _support_units, support_statements = sorted(
             pool, key=lambda row: (-row[0], -row[1], -row[2], row[3])
         )[0]
 
@@ -137,16 +141,16 @@ def cluster_day(party: str, day: str, annotated_fragments: list[dict],
         # its unit; length and text make the remaining choice deterministic. A support statement can
         # carry P outside the extracted fragment, so the fallback remains for verbatim audit only.
         unit_fragments: dict[object, list[int]] = defaultdict(list)
-        for i in support_idxs:
-            sid = frs[i].get("statement")
-            unit = _unit(frs[i], by_statement.get(sid))
-            if unit:
-                unit_fragments[unit].append(i)
+        for sid in support_statements:
+            unit = sid_to_unit.get(sid)
+            if not unit:
+                continue
+            unit_fragments[unit].extend(fragment_idxs_by_sid[sid])
         frags: list[dict] = []
         for unit in sorted(unit_fragments, key=str):
             i = sorted(
                 unit_fragments[unit],
-                key=lambda n: (not boilerplate.contains_gram(frs[n].get("text", ""), label),
+                key=lambda n: (label not in grams[n],
                                len((frs[n].get("text") or "").split()),
                                frs[n].get("text") or "", frs[n].get("statement") or ""),
             )[0]

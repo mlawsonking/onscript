@@ -49,8 +49,21 @@ def register_violations(text: str) -> list[str]:
     return out
 
 
-def _quote(fragment_text: str) -> str:
-    return " ".join((fragment_text or "").split()[:_QUOTE_MAX_WORDS])
+def _quote(fragment_text: str, label: str = "") -> str:
+    """Return a verbatim quote window of at most ten words that still contains P.
+
+    A label-blind prefix can cut off a late support phrase and make the deterministic composite fail
+    its own binding verifier. For a long fragment, slide the ten-word window until it contains the
+    label. The first valid window keeps the most preceding context and is deterministic.
+    """
+    words = (fragment_text or "").split()
+    if len(words) <= _QUOTE_MAX_WORDS or not label:
+        return " ".join(words[:_QUOTE_MAX_WORDS])
+    for start in range(len(words) - _QUOTE_MAX_WORDS + 1):
+        window = " ".join(words[start:start + _QUOTE_MAX_WORDS])
+        if boilerplate.contains_gram(window, label):
+            return window
+    return " ".join(words[:_QUOTE_MAX_WORDS])
 
 
 def build_stats(party: str, day: str, party_statement_count: int, talking_points: list[dict],
@@ -67,9 +80,16 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
         # Pick the SHORTEST fragment in the cluster: on-topic (all fragments share the label phrase),
         # complete, and clean — not a mid-truncated long one that dangles. The label rides along as
         # the UNQUOTED talking-point name. §Session-5 (HIGH-1 fix).
-        frags = [f["text"] for f in (tp.get("fragments") or [])
-                 if f.get("text") and boilerplate.contains_gram(f["text"], tp.get("label", ""))]
-        quote = _quote(min(frags, key=lambda t: len(t.split()))) if frags else ""
+        label = tp.get("label", "")
+        quote_candidates = []
+        for fragment in (tp.get("fragments") or []):
+            text = fragment.get("text") or ""
+            if not text or not boilerplate.contains_gram(text, label):
+                continue
+            quote = _quote(text, label)
+            if boilerplate.contains_gram(quote, label):
+                quote_candidates.append((len(text.split()), text, quote))
+        quote = min(quote_candidates, key=lambda row: (row[0], row[1]))[2] if quote_candidates else ""
         entry = {"label": tp["label"], "members": tp["member_count"], "quote": quote,
                  "topics": tp.get("topics", [])}
         # docs/19 §2c — annotate a talking point whose KEY is an official name (bill title / committee

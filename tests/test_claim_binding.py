@@ -64,6 +64,63 @@ def test_bridged_ndaa_and_insider_topics_publish_only_the_support_set():
     assert "stop insider trading" not in json.dumps(tp)
 
 
+def test_late_support_phrase_quote_verifies_without_streak_breaking_fallback():
+    tp, statements, _roster = _bound_bridge()
+    # The only P-carrying fragments are 11 words and P ends at word 11. A label-blind ten-word
+    # prefix drops the final label token and forces daily_line into its degraded last-resort stub.
+    party_statements = list(statements.values()) + [{}] * 6  # 15 keeps this on the normal P2 path
+    line = distill.daily_line(
+        "R", "2026-07-23", party_statements, [tp], None, statements,
+        allow_llm_voice=False,
+    )
+    quote = line["stats"]["talking_points"][0]["quote"]
+    assert boilerplate.contains_gram(quote, tp["label"])
+    assert line["verifier"]["passed"] is True
+    assert line["fallback"] is False
+    assert "could not be verified" not in line["composite"]
+
+
+def test_precomputed_membership_matches_the_naive_statement_scan():
+    annotated, statements, _roster = _bridged_fixture()
+    candidates = sorted({g for fragment in annotated for g in cluster._cluster_grams(fragment["text"])})
+    ranked = []
+    for gram in candidates:
+        support_sids = {
+            sid for sid, statement in statements.items()
+            if boilerplate.contains_gram(statement["text"], gram)
+        }
+        support_units = {
+            statement.get("joint_group") or statement["member"]["bioguide"]
+            for sid, statement in statements.items() if sid in support_sids
+        }
+        if cluster._admissible_support_phrase(gram):
+            ranked.append((len(support_units), len(support_sids), len(gram.split()), gram,
+                           support_sids))
+    expected = sorted(ranked, key=lambda row: (-row[0], -row[1], -row[2], row[3]))[0]
+    expected_sids = sorted(expected[4])
+    annotated_by_sid = {fragment["statement"]: fragment for fragment in annotated}
+    expected_output = [{
+        "id": "2026-07-23-R-00", "party": "R", "day": "2026-07-23",
+        "label": expected[3], "member_count": expected[0], "statements": expected_sids,
+        "fragments": [
+            {"text": annotated_by_sid[sid]["text"], "statement": sid}
+            for sid in expected_sids
+        ],
+        "topics": ["other"], "leadership_first": False,
+    }]
+    original_contains = boilerplate.contains_gram
+    def fail_rescan(*_args, **_kwargs):
+        raise AssertionError("optimized clustering rescanned a statement body")
+    boilerplate.contains_gram = fail_rescan
+    try:
+        actual_output = cluster.cluster_day(
+            "R", "2026-07-23", annotated, statements_by_id=statements
+        )
+    finally:
+        boilerplate.contains_gram = original_contains
+    assert actual_output == expected_output
+
+
 def test_component_count_cannot_return_as_the_public_numerator():
     tp, statements, _roster = _bound_bridge()
     mutated = {**tp, "member_count": 9}
