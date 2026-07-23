@@ -1,21 +1,20 @@
-# 07-operations, the state ladder, health numbers, rituals, and playbooks (v1, 2026-07-11)
+# 07: Operations, state ladder, health numbers, rituals, and playbooks (v1, 2026-07-11)
 
-> **What this is.** The navigation system, written to Michael. At any moment over the next
-> year, this doc answers three questions in under a minute: **Where am I? Is it healthy? What
-> do I do about the thing that just happened?** Every work session (any model) ends by updating
+> Michael uses this document as the project's navigation system. It answers three questions in under a minute: Where is the
+> project, is it healthy, and what should happen next? Every work session (any model) ends by updating
 > the **"You are here"** line in `CLAUDE.md` to the current state on the ladder below. The
 > constitution (`06-CONSTITUTION.md`) governs *what's allowed*; this governs *what's next.*
 
 ---
 
-## §1 The state ladder. "where am I?"
+## §1 The state ladder
 
 One state at a time; advance only through the exit gate. If you're ever lost: find your state,
 do your job, ignore everything else.
 
 | State | Name | You are here if… | Your job this state | Exit gate |
 |---|---|---|---|---|
-| **S0 | Built, dark | Machine verified in dry-run; no remote/keys | The 90-min errand batch: public repo + push, domains, Bluesky accounts, secrets, Console $10 cap | First cloud dry-run** RUN A+B green *(passed 07-12)* |
+| **S0** | Built, dark | Machine verified in dry-run; no remote/keys | The 90-min errand batch: public repo + push, domains, Bluesky accounts, secrets, Console $10 cap | **First cloud dry-run** RUN A+B green *(passed 07-12)* |
 | **S1** | Cloud-proven | Workflows green in the cloud, still $0 | Watch 3 consecutive dry-run days; fix yaml friction (Opus session if needed) | 3 green days + Release assets populating *(passed 07-14)* |
 | **S2** | Live voice, dark | `ANTHROPIC_API_KEY` set; real Daily Lines; accounts unannounced *(first live run passed 2026-07-14; exited after the unattended streak and launch gates cleared)* | The dark week: hand-audit 5 receipts/day, tune P2 taste (free now, public diffs later), attorney hour | §1.4.1 gate (3 consecutive unattended real runs) + audits clean |
 | **S3** | Launched | Accounts public, launch artifact out **(← current, 2026-07-22: site + posting + announce live; repo public)** | The §9 circuit; then *let the streak work*, your only daily job is the 15-min ritual (§3) | 30 unbroken days and (first external citation/embed OR 1k combined followers) |
@@ -23,12 +22,12 @@ do your job, ignore everything else.
 | **S5** | v3, the coordination release | Building alerts, Memory Hole, upstream graph, bill-brands, API | Opus sessions against §10 v3 | v3 acceptance, by Oct 5 |
 | **S6** | Election mode | Oct 15 – Nov 10, 2026 | **Freeze** (Constitution viii); daily receipt spot-checks; capacity watch; prep the retrospective | Retrospective artifact ships ≤7 days post-election |
 | **S7** | Season 2 | Jan 2027: new Congress | Assimilation curves live; State of the Script #1; Mirror Test | Annual report shipped |
-| **S∞** | Steward | Ongoing | Quarterly horizon pick (05 §3 rules); the machine compounds |. (this is the destination) |
+| **S∞** | Steward | Ongoing | Quarterly horizon pick (05 §3 rules); the machine compounds | Stewardship is the destination. |
 
 Skipping states is prohibited. Regressing (e.g., streak broken in S3) means: run the relevant
 playbook (§4), file the postmortem, resume the same state, the ladder position doesn't reset.
 
-## §2 The five health numbers. "is it healthy?"
+## §2 The five health numbers
 
 Read weekly (or from the Owner's Brief, §3). Green/red thresholds are deliberately crude,
 they exist so you never have to *interpret* on a tired Monday.
@@ -63,7 +62,7 @@ at" costs zero clicks.
   streak count, top phrase of the week, any degraded days, any pending decision flagged by the
   governor. The system reports to its owner; the owner never has to remember to ask.
 
-## §4 Playbooks. "the thing just happened"
+## §4 Playbooks
 
 - **P1. Missed day.** Read manifests → identify stage → fix or file Opus session → **public
   postmortem post from the brand account** (clinical, 2 sentences) + buildlog entry. The
@@ -79,13 +78,13 @@ at" costs zero clicks.
 - **P4. Wrong receipt shipped.** Within 24h: correction post (format in gameplan §7.2),
   corrections-log entry, buildlog root-cause line, regression test added. Never delete the
   original; strike-through + link forward.
-- **P5. Viral moment.** Do nothing differently. The instrument does not celebrate, thank, or
+- **P5. Viral moment.** Do nothing differently. The system does not celebrate, thank, or
   capitalize; it publishes tomorrow's line on schedule (that discipline *is* the story
   journalists write). Your only actions: capacity glance (Vercel/Actions fine at any read
   scale) and screenshot-spoof watch (Constitution xii reply if needed).
 - **P6. A member responds/complains.** It is a citable event; the system will measure it
   tomorrow like any other statement. Brand account: at most one reply, receipts link only.
-  You personally: do not gloat (Constitution X). This is the win condition, treat it boring.
+  You personally: do not gloat (Constitution X). That response is the win condition. Treat it as routine.
 - **P7. Platform death/ban (Bluesky policy shift, Vercel change, etc.).** Pre-decided:
   dashboard is home, accounts are antennae (gameplan §12). Re-point distribution; the archive
   and site never had a platform dependency.
@@ -106,7 +105,7 @@ at" costs zero clicks.
   numbers have been red a full quarter with no session scheduled. Sequence, one sitting: (1) all
   three accounts post the same two-sentence clinical close ("This instrument stopped measuring on
   {date}. The archive, data, and methodology remain public and reproducible at onscript.news."),
-  pinned; (2) both workflow crons disabled in the same commit, the site freezes honestly instead
+  pinned; (2) both workflow crons disabled in the same commit, the site freezes accurately instead
   of rotting; (3) the site gets a dated banner: archive, not instrument; (4) raw + derived data +
   the final ledger released as a versioned archive (Constitution xiv); (5) accounts stay up,
   silent, self-labeled, never deleted (deletion reads as retraction). The corrections log stays

@@ -42,7 +42,7 @@ is done when **§1.4 passes in full**, not when code exists.
 - **No Node / no npm** locally → the Astro site can't be previewed here; Vercel builds it in
   the cloud (charter: no local Node dependency for deploys). Site work is written, not locally run.
 - **No git remote yet** → Actions can't be exercised until Michael creates the public repo and
-  pushes. Workflow YAML will be written and cloud-verified after that (recorded honestly, not
+  pushes. Workflow YAML will be written and cloud-verified after that (recorded accurately, not
   claimed as passing before it runs).
 - Network egress works from Python (used for the actual-data backfill below).
 
@@ -177,7 +177,7 @@ Built the rest of the v1 streak machine, all verified end-to-end on real data in
 - **Site.** `pipeline/site.py` renders a plain, fast, self-contained static site (Today / day
   archive / phrases + per-phrase adoption curves / methodology / about) from the derived JSON ,
   inline SVG charts, zero JS/CDN/tracking, the receipts strip as the visual signature, the
-  symmetry audit + live prompt text on Methodology, and an honesty banner while composites are
+  symmetry audit + live prompt text on Methodology, and an accuratey banner while composites are
   dry-run. Static output (no Node), a §13 open-knob choice ("Astro vs plain static") forced by
   the no-Node dev box and *better* for local verifiability; the derived JSON contract is
   unchanged, so an Astro front-end could swap in later.
@@ -223,7 +223,7 @@ on the **Claude subscription** (`claude -p`), never the metered API key (§1.3 g
 **Corpus + ledger (the deterministic layer).** Full `dwillis/congress-press` history downloaded
 (688,839 releases) and run through the per-Congress **sharded** engine (memory-safe, §1.3), then
 merged into one ledger on `X:\onscript-data`: **2,770,235 synchronized phrases**, epoch
-**2011-01-25 → 2026-07-09**. Coverage is honestly **bimodal**, 2001–2012 is threadbare (dozens–
+**2011-01-25 → 2026-07-09**. Coverage is accurately **bimodal**, 2001–2012 is threadbare (dozens–
 hundreds of releases/yr; R near-zero pre-2009), dense only from **2013 (113th Congress)** onward
 (17k–48k per party per year). **674,956 dated releases** (D 366,802 / R 308,008) in the per-year×
 party coverage table. The sync epoch and the coverage gate agree: our real record starts at the
@@ -354,7 +354,7 @@ generators are promoted to import-safe, tested pipeline code (Art. VI, `tests/te
    `estimate_cost` **projections, not charges.** My own Wave-0 site change had made this *worse* by
    adding `sonnet_batch` to `PRODUCTION_GENERATORS` and suppressing the disclosure banner. **Fix:**
    real-mode voice/extract now label their output **`deterministic`** (accurate); `PRODUCTION_GENERATORS`
-   = `{llm, production, sonnet_direct}` only; the honesty banner discloses any stub voice as **"not a
+   = `{llm, production, sonnet_direct}` only; the accuratey banner discloses any stub voice as **"not a
    language model … deterministic template."** *This corrects the Session-2/Session-4 canon: there
    has been no live LLM voice.* **Governance note:** Session-4 follow-up 2(d) instructed removing the
    placeholder banner **"because the voice is live"**, that premise was false, so per the Phase-4
@@ -395,7 +395,7 @@ promoted `scripts/analysis/*` + `tests/test_wave0.py` + `tests/test_analysis.py`
 `assemble.yml` `POSTING_ENABLED` env. **Never touched:** posting stayed off; no release flag flipped;
 the Anthropic key was never set locally (dry-run $0 throughout).
 
-**Session 5b (same day), live-site correctness audit + honesty render deployed.** A four-lens audit
+**Session 5b (same day), live-site correctness audit + accuratey render deployed.** A four-lens audit
 of the LIVE onscript.news found its shape right (coordination signal first; neutrality/symmetry
 disclosures accurate) but three live defects, all the pre-Session-5 render: the per-line flag stamped
 `model: claude-sonnet-5 · generator: sonnet_batch` beside a banner admitting the text is
@@ -409,7 +409,7 @@ a language model)" and the stale model id is suppressed, corrects EVERY page wit
 test; 56 green). Then **regenerated `site/public` locally with `site.py` only** ($0, no API, no
 ledger, it renders committed derived JSONs) and **pushed** (commits 09acd99 + 041ffd7, clean
 fast-forward). Verified on the live page: `claude-sonnet-5` is eradicated site-wide, About discloses
-the operator + both accounts, the honesty banner is sharp, and the signal/symmetry are intact.
+the operator + both accounts, the accuratey banner is sharp, and the signal/symmetry are intact.
 Freshness confirmed correct: `util.product_day` = yesterday, so showing 07-13 on 07-14 is by design
 (07-14 is an empty stub). Deviation from the build-session convention "cloud owns site/public": the
 owner explicitly asked to make the public site correct now, and with no `gh` to dispatch a run, a
@@ -485,7 +485,7 @@ message today… 51 statements… synchronization minimum 3…"). Receipts rende
 date·.gov links. **Flagship-claim audit:** the D line's "first said by Tim Scott" was verified from
 the raw corpus, S001184 IS Tim Scott (R-SC), who coined "21st century road to housing act" on
 2026-03-03 as its Republican champion; Democrats adopted it at passage. A **real cross-party
-origination**, not a lookup bug, the tool's core signal working, correctly reported and honestly
+origination**, not a lookup bug, the tool's core signal working, correctly reported and accurately
 hedged by the voice.
 
 **CI/deploy bug fixed:** the collect/assemble commit messages carried `[skip ci]`, and Vercel skips
@@ -844,7 +844,7 @@ S4.7 Jan-6 ⚠⚠ measured-not-published), $0/local ($NO key ever local; S5 runs
 lives). Ambition math: expected ~22–28 CONFIRMED → 1–2 drip pieces/month for 12–24 months; the
 graveyard tally and the grouped null result are also pre-committed publishable pieces. Lead T1 bets:
 Industrialization of the Memo (S1.1), Freshman Assimilation Speedrun (S3.1, 13 cohorts already in
-hand), Lame-Duck Honesty (S3.2), the Voldemort Index (S2.1), What Losing Sounds Like (S2.3), the
+hand), Lame-Duck Accuratey (S3.2), the Voldemort Index (S2.1), What Losing Sounds Like (S2.3), the
 SOTU Gravity Well (S1.8), the 2022 Self-Audit (S1.9, either outcome publishes), One Court Two
 Languages (S4.1, birthright 06-30 is the live pilot card). **`docs/13-SEARCH-LEDGER.md`**
 initialized (append-only verdicts + tally). Out of scope by design: embeddings/topic-layer/external
@@ -1018,7 +1018,7 @@ the build side is blocked on Michael; no public surface changed (every flag is s
   report ABOUT the machine must never take the machine down.
 
 **The Session-12 adversarial review earned its keep, it caught a brief that lied.** The first cut
-held the honesty rule at FILE level and lost it at FIELD level: `row.get("claims_dropped") or 0`
+held the accuratey rule at FILE level and lost it at FIELD level: `row.get("claims_dropped") or 0`
 turns "the verifier never reported" into "the verifier dropped nothing", and zero is green. The
 review REPRODUCED a confident **ALL GREEN** brief with four things simultaneously broken (newest
 manifest zero-byte, ledger carrying no days, symmetry audit 12 days dead, claims_dropped never
@@ -1437,7 +1437,7 @@ Recorded here verbatim; docs/12 carries A3+L1-L4; implementing sessions execute,
    **and carries the operator-disclosure line (Art. X):** who operates it + a contact + "the
    operator's personal views appear nowhere on this instrument", Michael has no personal Bluesky,
    so both account bios point `Operator: onscript.news/about` and About is the disclosure of record.
-   **Polish punch list (from the 2026-07-14 live-page editorial review):** (d) the index honesty
+   **Polish punch list (from the 2026-07-14 live-page editorial review):** (d) the index accuratey
    banner still renders the "not yet the production model / placeholder" copy while generators are
    `sonnet_batch`, condition that copy on dry-run generators only (the voice is live; the site
    under-claims); (e) **receipts are not visible on the public pages**, index and day page render
@@ -1638,7 +1638,7 @@ deliverable is corrected verdicts + a lane-clean measurement path.
 **Full S2 wave re-run within lanes:** 7 of 8 verdicts identical across both lanes. The one move, **S2.7
 Pronoun Economics CONFIRMS inside propublica only** (both parties I/(I+we) declining 2013-16 and 2017-20)
 but REFUTES in scraped, is a single-lane result that does not replicate, so it is a reversal candidate
-needing re-pre-registration, NOT a finding card. The lane split of `text_features` sums EXACTLY to the
+needing re-pre-registration, NOT a finding card. The lane split of `text_features` sums precisely to the
 pre-seam totals (concern ladder 39,249/5,808/650/2,084), the migration's correctness proof.
 
 **S1.4 (verbatim) REFUTED both lanes; the "D copy-paste rose in both halves" sub-claim does NOT survive
@@ -1705,7 +1705,7 @@ brief's pre-registered within-lane halves, the SAME hypotheses and the SAME gate
 stay ARTIFACT in BOTH lanes (proving the odd/even congress-boundary sawtooth is a per-shard artifact
 INDEPENDENT of the seam); S1.2/S1.5/S1.7/S1.8/S1.11 REFUTED-stand in both (S1.2 also surfacing the 2017
 sync-ceiling peak within-lane; S1.6 REFUTED-powered in propublica confirming pre-election tightening is
-a RECENT-cycle effect); S1.6-scraped and S1.4-proper (both lanes) honestly UNDERPOWERED, the
+a RECENT-cycle effect); S1.6-scraped and S1.4-proper (both lanes) accurately UNDERPOWERED, the
 congress-split gate needs >=3 congresses/half, which no single lane has (cf. S3.6, an unmeetable T1 gate).
 
 **Shipped.**
@@ -1728,7 +1728,7 @@ congress-split gate needs >=3 congresses/half, which no single lane has (cf. S3.
   lane-merging). Evidence re-homed to `scripts/search/evidence/` + `scripts/ops/history-rewrite/` (all
   10 verified name-free against the live privacy gate; the rewrite tools print only hashes).
 
-**Acceptance (docs/18 §3), all PASS.** All 7 congresses reconcile EXACTLY: records(propublica) +
+**Acceptance (docs/18 §3), all PASS.** All 7 congresses reconcile precisely: records(propublica) +
 records(scraped) == records(combined), **0 statement delta, 0 cross-lane id-dups** (c113 92,895+1,681;
 c116 145,026+15,863; c117 144+36,773; c118/c119 0+all, propublica is EMPTY post-seam, the seam on
 record). `run_shard(n, lane=None)` is content-deterministic and leaves the live combined shards
@@ -1783,7 +1783,7 @@ close (was 263 on main; +41).** Flag renamed to the brief's name: `FEATURES["nom
   byte-stable dark; `prompts_sha` discloses the clause hash when live.
 
 **§3 ACCEPTANCE:** 21/21 fixtures + full suite green (§3.1); the verdicts re-derivation reproduced the
-spec anchors EXACTLY on the current corpus (sync 461,501, covered 14,175, histogram identical, the
+spec anchors precisely on the current corpus (sync 461,501, covered 14,175, histogram identical, the
 local corpus is frozen at 75,757 so it is a determinism proof) (§3.2); KILL/PROTECT re-verified both
 directions by the fixtures (§3.3); `test_nomenclature_wiring.py` locks flag-off = zero public bytes and
 flag-on = tags appear + nothing deleted (§3.4).
@@ -1904,7 +1904,7 @@ column can read empty if that party's phrases were truncated out of the pooled t
 the full per-party set). Flag OFF ⇒ the day view is the current pooled `sync_table`, byte-identical (a
 locked test), so nothing live changed and no re-render was needed. 5 tests (`tests/test_party_columns.py`),
 **315 green**. The full per-party columns need `sync_by_party`, which only new days accrue, so the fix
-is complete going forward and degrades honestly on old days. NEXT: 1.4 The Concordance (R4, per-MEMBER
+is complete going forward and degrades accurately on old days. NEXT: 1.4 The Concordance (R4, per-MEMBER
 on-script index, a new data layer, the existing discipline index is per-party-per-day) and 1.5 The
 Unison + The Void, each a substantial feature.
 
@@ -2025,7 +2025,7 @@ banner carries the rest.
 **THE VOID, the window's loudest silence, both directions, rolled up from the 1.2 absence-map boards.**
 `_the_void` reads whatever scored `data/derived/silence/*.json` boards fall inside the window and surfaces
 the loudest `silent` topic (max news volume that neither party touched) and the loudest `void` topic (max
-party push the news ignored). It **degrades honestly to UNAVAILABLE** when no scored board exists for the
+party push the news ignored). It **degrades accurately to UNAVAILABLE** when no scored board exists for the
 window, 1.2's law that a gap is never rendered as a silence carries through unchanged, so The Void never
 fabricates an award from a missing baseline. It is the state on real data today (silence_board is dark,
 no GDELT baselines local): `available=false`, and the page says so plainly. It lights up when 1.2 is

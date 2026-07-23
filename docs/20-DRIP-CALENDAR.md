@@ -5,7 +5,7 @@
 > the repository became public 2026-07-22. The remaining editorial inventory and freeze discipline
 > stay revisable guidance; the health-gated release schedule in docs/23 governs current dates.
 
-**Not a phase gate and not binding like a brief**, this is the editorial plan Michael executes and
+**Not a phase gate and not binding like a brief**, it is the editorial plan Michael executes and
 may reorder at will. It exists to answer one worry: *"we don't seem to have much."* We do. The
 CONFIRMED shelf is thin **by design** (2 of 34 → now 4 pending review at 5.9%→11.8%); the
 **publishable shelf** is three shelves deep, and the drip unit is the card/piece, not the CONFIRMED
@@ -54,10 +54,10 @@ are
 |---|---|---|
 | **Jul 18–31** | No publications. Streak pass (Sat 07-19) → dark-week close (#129, #110) → flip decision (#131/#132). Build: nomenclature wiring + rider (docs/19). | rider = the gate on Aug/Sep findings |
 | **Aug (launch)** | S3 flip + **announce post** (origin-story teaser). **P1: the Self-Audit (S1.9 as the launch essay. "the 2022 finding that started this replicates, twice over"). P2: the Boogeyman (S2.9. Voldemort reversed; timeless, symmetric, safe). +1–2 feature releases (Archive, Silence Detector) as content moments. Lock all Sep–Oct pieces by Aug 31.** | S1.9 post-rider; flips are Michael's |
-| **Sep** | **P3: the Friday Night Dump is dead** (press-friendly myth-bust that showcases the instrument). **P4: the Great Intensification** (S1.1′/S1.3′, two-panel per-lane framing per the ruling). Leaderboard/origination pages (1.3/1.5, R2/R3-shaped) release if nomenclature merged. | rider + Michael's confirm |
+| **Sep** | **P3: the Friday Night Dump is dead** (press-friendly myth-bust that showcases the system). **P4: the Great Intensification** (S1.1′/S1.3′, two-panel per-lane framing per the ruling). Leaderboard/origination pages (1.3/1.5, R2/R3-shaped) release if nomenclature merged. | rider + Michael's confirm |
 | **Oct** | **P5: bipartisanship flees autumn, not elections** (S1.10 with the placebo shown, the corrective to a whole genre of fall punditry). **P6: the 90-day snap is new (S1.6, descriptive: 2018/2020/2022/2024 tightened; 2014/2016 didn't). Fable: register the reversal wave (S1.2, S2.7, Sunday, …) for CREC out-of-sample testing. Freeze from ~Oct 15.** | locked by Aug 31 |
 | **Nov (midterms)** | The **product** is the story: live silence-detector + leaderboards through the cycle; pre-locked explainer ("how to watch the script tonight"). No new claims. | freeze |
-| **Dec** | **P7: the 2026 cycle retrospective** (the first full election the instrument watched live). **P8: the Provenance Seam** (the year-end trust flagship). **P9: the graveyard annual** (34 folk theories, what survived). | |
+| **Dec** | **P7: the 2026 cycle retrospective** (the first full election the system watched live). **P8: the Provenance Seam** (the year-end trust flagship). **P9: the graveyard annual** (34 folk theories, what survived). | |
 | **Q1 2027** | **Euphemism-pair mini-series launches (12 pairs, biweekly → carries into spring). scotus per-case retro cards (post-nomenclature). SD.8 calibration → SD.2: the Boogeyman on CREC** (the thrice-confirmed tier) if it passes. New-findings wave: S1.12 (roster on disk), S5.2 (billstatus local), S3.7 (after #157 MoV). | CREC calibration |
 | **Q2 2027** | **June: scotus decision season live** with the S4.1 per-case format, the built instrument meets the news cycle (the best recurring slot we have). Reversal-wave results from CREC (registered Oct, tested cold). Season-2 build (assimilation curves) begins per roadmap. | |
 

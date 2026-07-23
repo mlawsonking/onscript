@@ -12,7 +12,7 @@ reject. Its value is three sharpenings, below.
 |---|-----------|---------|----------------|
 | 1 | Credit-claim audit (touts vs roll-call vote) | **adopt-later (v2)** | Genuinely absent, no roll-call join in `pipeline/`. Already on the menu as Whip-Count Proxy ([08](08-ANALYSIS-MENU.md)). Rides on a congress.gov vote corpus + the URL back-join. |
 | 2 | Cited-statistic audit (numbers vs BLS/CBO) | **conflicts → reject** | The build deliberately does NOT adjudicate truth, `verify.py:37-41` whitelists numbers as verbatim copies of code-computed STATS, never checks if they're *right*. Fact-checking = the PolitiFact attack surface the review itself kills in #9. |
-| 3 | Language provenance (origination vs echo) | **already-covered** | This IS the core source: first-appearance ledger (`phrases.py:129`), adoption curves (`build.py:18`), the in-flight Authors-vs-Vessels. |
+| 3 | Language provenance (origination vs echo) | **already-covered** | It is the core source: first-appearance ledger (`phrases.py:129`), adoption curves (`build.py:18`), the in-flight Authors-vs-Vessels. |
 | 4 | Falsifiability ratio by claim type | **reject** | Needs a per-statement claim-type classifier the build has no basis for; subjective taxonomy + high extraction error violates precision-over-recall; per-member → #8 hazard. |
 | 5 | Silence map (rule-generated event list) | **adopt-later (v2)** | Already S3 Silence Detector (v2, pending GDELT). The reviewer's *ex-ante rule-generated event list* is a real sharpening, more defensible than news-volume-diff alone. |
 | 6 | Consistency/contradiction scoring (public) | **already-covered** | Already killed as a public score; preserved only as human-reviewed, ship-late H7 Position-Drift (reports change, never motive). |
@@ -37,7 +37,7 @@ reject. Its value is three sharpenings, below.
 
 | add | tier | rides on |
 |-----|------|----------|
-| **Published precision/recall eval table** on a frozen hand-labeled holdout | **now** | extraction/cluster is a classifier with an error rate the symmetry audit doesn't measure; renders on the methodology page. Pure protection, closes the "deterministic verification of AI-extracted claims" honesty gap. |
+| **Published precision/recall eval table** on a frozen hand-labeled holdout | **now** | extraction/cluster is a classifier with an error rate the symmetry audit doesn't measure; renders on the methodology page. Pure protection, closes the "deterministic verification of AI-extracted claims" accuratey gap. |
 | **Live corrections/dispute ledger surface** | **now** | Constitution mandates corrections-as-posts; methodology page *promises* it "ships with v2" (future tense). Pull forward, corrections-rate-as-statistic is free neutrality protection from a `corrections.json`. |
 | **Rule-generated ex-ante event list** for the Silence Detector | v2 | S3/GDELT + floor-voted bills + in-district FEMA declarations + member indictments. Makes "said nothing about X" a fact about X's rule-set membership, not an editor's pick. |
 | **Memo-cadence evasion flag** (4th burst archetype: STAGGERED/SMOOTHED) | v2 | adoption-curve daily counts + the Memo Detector taxonomy ([08](08-ANALYSIS-MENU.md) #1). Turns the velocity blind spot into signal. |

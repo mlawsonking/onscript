@@ -2,20 +2,20 @@
 
 ## Ratified 2026-07-19 (Michael in-session; remaining decisions delegated to and made by Fable, see §7, which supersedes the recommendations above where they differ)
 
-**What this is.** Every reserved decision that has piled up across Sessions 12–24, in one place, so
+**What it is.** Every reserved decision that has piled up across Sessions 12–24, in one place, so
 you
 can launch without spelunking canon. Opus drafted it; **you rule** (docs/21 §2, the drafter changed,
 the seat didn't). Each item gives: what it is · current state · where the evidence lives · the
 options
 with their costs · a recommendation. The recommendation is a draft, not a decision, nothing here is
-self-authorized. Grouped into exactly three tiers so you can act on Tier 1 alone and ignore the rest
+self-authorized. Grouped into precisely three tiers so you can act on Tier 1 alone and ignore the rest
 until you feel like it.
 
 **The main change:** **§1.4.1 has passed.** `ops.unattended_streak('2026-07-19')`
 returns `passes=True`. 3 consecutive clean **unattended** real runs (2026-07-16 / 07-17 / 07-18),
 including a weekend day, each `degraded=False final=True`, read from the record per Art. xvi (never
 run
-status). This is the S2→S3 readiness gate the entire daily pipeline existed to clear. The instrument
+status). It is the S2→S3 readiness gate the entire daily pipeline existed to clear. The system
 is
 proven. The remaining work is this decision list.
 
@@ -26,7 +26,7 @@ proven. The remaining work is this decision list.
 - **Launching needs only Tier 1.** Tier 1 is: close your two dark-week gates (#129 receipts audit,
   #110 attorney), clear the pre-public privacy-history residuals (#160 / #166), then the four
   mechanical acts. **real Bluesky passwords → flip `POSTING_ENABLED` → repo public → announce.**
-- **What Tier 1 alone ships:** the site exactly as it looks today at
+- **What Tier 1 alone ships:** the site precisely as it looks today at
   [onscript.news](https://onscript.news) (live, auto-deploying, real Sonnet voice at ~$0.006/day),
   plus the two composite accounts beginning to post. Nothing about the site's *content* changes at
   launch. That is deliberate.
@@ -52,16 +52,16 @@ sequence (§1.1) reaches "repo public."
 |---|---|---|---|
 | **#129** | Hand-audit 5 receipts/day during the dark week (ends **2026-07-20) | In progress, dark week nearly over; the site has run the live Sonnet voice since 07-13, verifier-clean | Finish the audit; it's your go/no-go on the voice. Status report, not my decision.** |
 | **#110 / #105 | Attorney review of the neutrality design + operator-protection bundle | Open on the bus; not yet reported done | Complete or explicitly waive before public. Status report.** |
-| **#160 + #161** | Rule on git history before S3, the two private-citizen names were in tracked `data/derived/*.json` history. **#161 explicitly blocks the public flip (Art. xiii, unamendable). Near-duplicate tasks; same concern. | The literal-name purge is done** (Session 17 `git filter-repo` over all 164 commits, 0 occurrences remain incl. the derived JSON these tasks name, HEAD tree byte-identical). What remains is your *ruling* that this is sufficient. | Verify + rule (and consolidate #160/#161). See §1.0-detail. |
+| **#160 + #161** | Rule on git history before S3, the two private-citizen names were in tracked `data/derived/*.json` history. **#161 explicitly blocks the public flip (Art. xiii, unamendable). Near-duplicate tasks; same concern. | The literal-name purge is done** (Session 17 `git filter-repo` over all 164 commits, 0 occurrences remain incl. the derived JSON these tasks name, HEAD tree byte-identical). What remains is your *ruling* that it is sufficient. | Verify + rule (and consolidate #160/#161). See §1.0-detail. |
 | GitHub server-side purge (buildlog "#166" residual. **not a numbered bus task) | Unreachable pre-rewrite objects stay fetchable by old SHA until GitHub GCs; old SHAs are cited in the public buildlog. | Before public: either a GitHub-support purge request or** delete-and-recreate the repo. |
 
-**#1.0-detail, the privacy-history situation, stated honestly (evidence: `pipeline/privacy.py`,
+**#1.0-detail, the privacy-history situation, stated accurately (evidence: `pipeline/privacy.py`,
 buildlog Sessions 12/17 lines 1584–1599, docs/16 §9 ruling 1):**
 
 - **Display suppression is live.** The Article xiii gate (`privacy.py`, hmac-salted, fail-closed
   canary) runs on every build/assemble/post/chapter/duet path. The two apparent private-citizen
 names
-  (#145) no longer render on the site. **This is done; the #145 bus task is stale-open** (see §5).
+  (#145) no longer render on the site. **It is done; the #145 bus task is stale-open** (see §5).
 - **The salt is set** (#159, Session 17, canary-verified). **#159 is done; stale-open** (see §5).
 - **Git history is rewritten**, the Session-17 `git filter-repo --replace-text` purged **both
   literal
@@ -76,7 +76,7 @@ derived-history
 - **What is genuinely still open and gates public:** (a) the **GitHub server-side object purge**,
   old
   SHAs cited in the public buildlog stay fetchable pointers to pre-rewrite name-bearing blobs until
-  GitHub GCs (a support-purge request **or** delete-and-recreate the repo); this is the buildlog
+  GitHub GCs (a support-purge request **or** delete-and-recreate the repo); it is the buildlog
 "#166"
   residual, **not a numbered bus task**. (b) your **formal ruling** (#160/#161) that the rewrite +
 purge
@@ -91,7 +91,7 @@ purge
 Ordered; do them in this order.
 
 1. **#131. Replace the placeholder at-Proto app passwords with real ones.** State: the
-   `BSKY_*_PASSWORD` secrets are single-space placeholders (a truthy "belt"; the real gate is
+   `BSKY_*_PASSWORD` secrets are single-space placeholders (a truthy "belt"; the actual gate is
    `POSTING_ENABLED`). The live-primitive smoke test already ran green (Session 8d, 13/13). Your act:
    set real app passwords for `blue.onscript.news` and `red.onscript.news` in Actions secrets.
 2. **Flip `POSTING_ENABLED`** (Actions repo *variable*, not a secret, you flip it in the UI). This
@@ -104,7 +104,7 @@ daily
 3. **Make the repo public**, only after §1.0's #160/#166 clear. Unlocks free unlimited Actions +
    the transparency posture (public prompts, public code, symmetric instrument on display).
 4. **#132. Announce.** The origin-story teaser post from the `@onscript.news` house account (docs/20
-   Aug row). This is the launch.
+   Aug row). It is the launch.
 
 ### 1.2 The five docs/16 §9 rulings, disposition (which gate launch vs a feature flip)
 
@@ -117,7 +117,7 @@ the first has a live instance, and that instance is already handled by §1.0.
 | **2** | The aca decision. `the affordable care act` scores tag under the cumulative index, 0.000 under 119-only | `nomenclature_tags` flip | **Tier 2.** Only bites when tagging is live. Must be resolved *visibly in `verdicts-119.json`* before that flip. |
 | **3** | The rank-and-truncate skew (#146), pooled table is 87–100% D | `party_columns` flip | **Tier 2.** The fix IS the `party_columns` feature, built dark. Flipping it is the ruling. |
 | **4** | The quiet-day floor, after tagging, quiet days lead with generic fragments | `nomenclature_tags` flip (editorial) | **Tier 2.** An editorial rider on the nomenclature flip; interacts with the daily-always cadence (§13). |
-| **5** | Scope honesty, the defensible claim is "the top stops being bill titles on 4/7 days," not "the table is good" | `nomenclature_tags` flip (framing) | **Tier 2.** Sets the framing bar for the nomenclature release, not the launch. |
+| **5** | Scope accuratey, the defensible claim is "the top stops being bill titles on 4/7 days," not "the table is good" | `nomenclature_tags` flip (framing) | **Tier 2.** Sets the framing bar for the nomenclature release, not the launch. |
 
 ### 1.3 Not decisions, status reports you owe yourself
 
@@ -169,7 +169,7 @@ drip calendar and locked before the mid-October freeze.
 |---|---|---|---|
 | **P1. The Self-Audit** | S1.9 (twice-validated) | Aug (launch essay) | CONFIRMED; rider passed (survives tag-stripping). The origin-story replication. |
 | **P2. The Boogeyman** | S2.9 (twice-confirmed) | Aug | CONFIRMED; symmetric, timeless, safe. |
-| **P4. The Great Intensification** | S1.1′ / S1.3′ | Sep | **#174 conditions all met** (two-panel per-lane framing; density caveat; docs/19 rider passed and *sharpened*; correlation labels). **Precondition: the fold-vs-isolate lane ruling (§3.1).** This is a REFUTED→CONFIRMED movement, your editorial/neutrality act, using the Intensification template. |
+| **P4. The Great Intensification** | S1.1′ / S1.3′ | Sep | **#174 conditions all met** (two-panel per-lane framing; density caveat; docs/19 rider passed and *sharpened*; correlation labels). **Precondition: the fold-vs-isolate lane ruling (§3.1).** It is a REFUTED→CONFIRMED movement, your editorial/neutrality act, using the Intensification template. |
 | **P3, P5, P6 …** | S4.4, S1.10, S1.6 nulls/artifacts | Sep–Oct | Publish as-is; adjudicated nulls need no re-registration. |
 
 Drafts of P1 (S1.9) and P2 (S2.9) are being prepared **to `X:\onscript-data\drafts\`, never
@@ -194,7 +194,7 @@ post-2021 comparison for a 2,839-record lane).
 
 ## §4 · A measurement pre-registration awaiting your one-line CONFIRM. S5.2's floor
 
-This is the only measurement blocked on you. S5.2 (The Concern Conversion Rate. "X% of congressional
+It is the only measurement blocked on you. S5.2 (The Concern Conversion Rate. "X% of congressional
 concern is never followed by a bill within 180 days") has billstatus sponsorship data local and keyless,
 but **its floor was never pre-registered** (docs/13's acknowledged p-hacking hole; docs/12:457. "`≥Floor
 per cell` is not a registration"). Per docs/12's discipline, floors are fixed as numerals **before**
@@ -209,7 +209,7 @@ touching confirmatory data. I did not measure and will not until you confirm.
 2. **Comparative-claim gate:** a party-difference claim requires **both** party cells ≥300 **and** the
    gap to exceed the summed CI half-widths (≈8pp at p=0.5). Otherwise only the pooled rate publishes.
 3. **Companion registrations that must also freeze before measuring** (flagging, not deciding, these
-   are the real p-hacking surface, not just the cell size): the concern-detector lexicon; the
+   are the actual p-hacking surface, not just the cell size): the concern-detector lexicon; the
    180-day window (already in the hypothesis, keep); the on-topic match rule (token/topic overlap
    between the concern statement and the sponsored bill). I will draft these as a numeral/lexicon
    registration in the ledger for your confirm in the same pass. S5.2 does not run until all four are
@@ -256,7 +256,7 @@ announce. Flip `party_columns` (it's a correctness fix) and `owners_brief` (it's
 window if you like, but you don't have to. Everything else waits for the calendar. Resolve
 `nomenclature_tags`' three riders when you want that release; rule fold-vs-isolate before the September
 Intensification card; confirm S5.2's floor whenever. **Nothing on this page except Tier 1 stands
-between the instrument and November.**
+between the system and November.**
 
 ---
 
@@ -289,13 +289,13 @@ reserved list for your ruling.*
    §9-2 (aca): **tag by the cumulative index.** A tag is annotation, never deletion. "the
    affordable care act" IS an official short title and the chip cites the official record. The rule
    is party-blind (span containment against billstatus); that D-vocabulary tags where R's
-   "obamacare" does not is an asymmetric *finding* from a symmetric *instrument*, which is exactly
+   "obamacare" does not is an asymmetric *finding* from a symmetric *instrument*, which is precisely
    the distinction the constitution protects. Recorded visibly in `verdicts-119.json` before the
 flip.
    §9-4 (quiet days): **no new floor.** Daily-always is a §13 locked decision; a quiet day rendering
-   generic overlap under the existing descriptive banner is honest. Any future floor must be
+   generic overlap under the existing descriptive banner is accurate. Any future floor must be
    measured in (the UNISON_MIN_ACTIVE pattern), never guessed in.
-   §9-5 (framing): the release copy claims exactly what was measured. "the top phrases stop being
+   §9-5 (framing): the release copy claims precisely what was measured. "the top phrases stop being
    bill titles on 4 of 7 days", and nothing broader.
 2. **Concordance:** `PEAK_FLOOR=15` and `MIN_STATEMENTS=10` ratified (both measured, not guessed).
    Both flagged metric definitions stay **as built, disclosed in Methodology** (either-party sync;
@@ -360,7 +360,7 @@ fine, neither is a cron).
    for the house account, announce wiring added to the worker duties above). `POSTING_ENABLED`
    remains off, which is the designed pre-go state: real creds, failure tested gate holding.
 2. **One reply**. "go" (approving or editing the announce text once it lands in
-   `X:\onscript-data\drafts\`). This is now the only remaining human act before launch.
+   `X:\onscript-data\drafts\`). It is now the only remaining human act before launch.
 
 Then: the 2-minute Monday digest glance, editorial acts per docs/20 at your leisure, and the
 standing
@@ -377,14 +377,14 @@ re-authorized.** §7.2.1's factual prediction was inverted by measurement: at th
 cumulative index and the disclosed 0.8 threshold, **neither party's ordinary framing tags**
 (`affordable care act` 0.0049 over 1,820 docs · `the affordable care act` 0.0008 · `obamacare` no
 row), and the only aca-family phrase that tags is **`the unaffordable care act`** (ratio 1.0, cite
-hr6300, an actual introduced bill bearing that title). ruled: **this is the instrument working,
+hr6300, an actual introduced bill bearing that title). ruled: **it is the system working,
 not a defect.** docs/16's law is that nomenclature is a property of the occurrence; the corpus
 says members use "the affordable care act" as *message* 99.5% of the time, so it must not tag,
 and every measured use of "the unaffordable care act" references an official title, so it must.
 The output asymmetry traces to an asymmetry in the parties' own conduct: one caucus wrote its
 counter-brand into a bill title; the other's counter-brand ("the big ugly bill", 0.000) never
 became one. One rule, both parties → an asymmetric **finding** from a symmetric **instrument**,
-the exact category Art. IV protects, and honestly a nicer demonstration of the principle than the
+the exact category Art. IV protects, and accurately a nicer demonstration of the principle than the
 imaginary asymmetry the original rationale accepted. Riders: (1) **chip copy is
 descriptive-citational only**, bill, congress, record link; never an evaluative label; (2) the
 gated Methodology section explains **occurrence-not-phrase with the aca family as the worked
@@ -398,7 +398,7 @@ build session wires it (skip-and-log; boards accumulate **dark**) with a landing
 **Mon 08-03**, one week of boards before the 08-10 flip, three before The Void. **Auto-slip
 rule:** if boards are not accumulating in production by the 08-03 digest, the 08-10 flip slips
 week-by-week until they are, and `awards` (08-24) **ships whole or slips with it**. The Void must
-be live-fed at flip; honest-UNAVAILABLE is a *degradation* state, not a *launch* state (consistent
+be live-fed at flip; accurate-UNAVAILABLE is a *degradation* state, not a *launch* state (consistent
 with §7.2.3). Opus work; no human errand.
 
 **r-c · The `daily_lines` nulling is a P0, the §7.3 health gate's first catch is us, before the
@@ -407,11 +407,11 @@ first flip. Launch proceeds Mon 07-20 behind the repair, same day if it lands.**
 `collect 07-14` → day 07-12, proven from file history: af36b2a carried 2 composites, 6459640
 carries 0). **Evidence correction to the S28 table:** 07-09 was **never damaged**, no committed
 version of its file ever carried `daily_lines` (verified across its entire history); it is an
-honest phrases-only backfill day and gets **no repair** (Art. II: never fabricate a composite for
+accurate phrases-only backfill day and gets **no repair** (Art. II: never fabricate a composite for
 a day the voice never ran). invariant to implement, with a locked test: **a day whose assemble
 manifest is `final: True` is immutable to RUN A**, collect never rewrites a published day JSON;
 the only write path to a final day is the documented `run_assemble --day` repair. Repairs =
-exactly **{07-12, 07-18}**, via that path. **Never unlink a public day page**, the pages are the
+precisely **{07-12, 07-18}**, via that path. **Never unlink a public day page**, the pages are the
 permanent record; the guard prevents new orphans and the 07-18 repair restores that page's
 coherence. Streak evidence unaffected (manifests untouched; `passes: True` re-verified at S28
 close). A paused-then-cleared launch morning is the gate **working**, it goes in the methods
@@ -430,7 +430,7 @@ story (docs/20's December flagship can cite it: the health gate's first catch wa
    crisis.
 
 **The announce text: the recommended 4-post thread is affirmed as drafted** (every count measured
-through the real builder; the 36 figure matches the page it links). Michael's entire remaining act
+through the actual builder; the 36 figure matches the page it links). Michael's entire remaining act
 is one reply: **"go"**, or edits, which re-enter at step 4.
 
 **amendment (Michael, in-session, 2026-07-20): launch day = tuesday 07-21.** An editorial timing
@@ -459,7 +459,7 @@ to fit "properly test and vet in one day", and an explicit list of what stays da
    reach them. Built + locked-tested since S13; it is a utility, not a content moment, so pulling it
    forward costs the drip almost nothing. **`duet` keeps 08-17 as that day's moment.** Monday duty:
    flip locally, render, click through, full suite, stage the one-commit flip.
-2. **Link cards (og: meta), the real "prep for Bluesky" item.** The site shell emits **zero**
+2. **Link cards (og: meta), the actual "prep for Bluesky" item.** The site shell emits **zero**
    Open Graph tags (verified: no `og:` anywhere in `site.py` or the rendered pages), so the
    announce, every daily receipts link in every composite thread, and every share forever would
    unfurl as a bare imageless card. Monday duty: add `og:title`/`og:description`/`og:url` + a
@@ -472,7 +472,7 @@ to fit "properly test and vet in one day", and an explicit list of what stays da
    that stay silent all day. Fix, added to the Tuesday order: after go + flips, **re-dispatch
    `assemble.yml` with `day=2026-07-20`** (the documented repair path; posting is idempotent by
    manifest + deterministic rkey) so the first composite threads land in the same morning window as
-   the announce. The 11:30Z run's dry-run log **is** the final preview of exactly those threads,
+   the announce. The 11:30Z run's dry-run log **is** the final preview of precisely those threads,
    the worker eyeballs it before the flip.
 
 **Stays dark, deliberately:** `archive` holds for 08-03, it is the biggest single content moment
@@ -509,10 +509,10 @@ Both Monday worker sessions ran and their open points are ruled:
   all ratified as built.
 - **r-e · The 07-19 (Sunday) publishing policy.** S30b proved the natural cron cannot reach day
   07-20 while 07-19 sits non-final (oldest-first, returns on first non-final). Ruling:
-  **daily-always is a §13 locked decision, a thin, honest Sunday page ("We released N statements
+  **daily-always is a §13 locked decision, a thin, accurate Sunday page ("We released N statements
   today") beats a Wednesday force-finalize marked degraded.** So: if the 11:30Z scheduled pass has
   not already resolved 07-19, dispatch `assemble.yml -f day=2026-07-19` **iff its real count ≥ 1**
-  (at 0 there is nothing to publish and the costless skip is honest), and **always dispatch
+  (at 0 there is nothing to publish and the costless skip is accurate), and **always dispatch
   `-f day=2026-07-20` last** so `assemble-latest` points the posting leg at the Monday reading.
 - **r-f · The `phrase_search_index` non-dict guard is Tuesday's step 0, pre-authorized.** A known
   whole-build crash surface must not go live with its flag. Two lines mirroring the page loop's
@@ -536,14 +536,14 @@ Both Monday worker sessions ran and their open points are ruled:
 4. **→ Michael's "go" ←** (the §7.4.2 reply, given to the worker session; standing veto intact).
 5. Execute, in order: `POSTING_ENABLED` on → repo public → announce (`announce.yml` dispatch,
    approved text verbatim, `confirm=POST`) → the flip commit (`party_columns` + `owners_brief` +
-   `phrase_search` = True, all three added to `DELIBERATELY_RELEASED`, per S30b this is exactly
+   `phrase_search` = True, all three added to `DELIBERATELY_RELEASED`, per S30b it is precisely
    two lines) → push (step-0 check again) → re-dispatch `assemble.yml -f day=2026-07-20` so the
    composites' first threads post in the same morning window, linking a site with columns, search,
    and og cards live.
 6. **Expected artifact, do not "fix":** the dispatch writes `unattended:False`, so
    `ops.unattended_streak` reads `passes:False` afterward. §1.4.1 already passed on the historical
    record (07-16/17/18, Art. xvi), it gates on evidence already collected.
-7. Verify live: both composite threads up · og cards unfurl on the real posts · phrase search
+7. Verify live: both composite threads up · og cards unfurl on the actual posts · phrase search
    works on the live site · corrections page still says 3. Michael's optional in-app acts: pin the
    announce; quote-post the composites' first threads from the house account.
 8. Any failure at any step: ntfy, hold, slip to the next clean day.

@@ -4,7 +4,7 @@
 "authorize the OnScript public-surface stabilization packet." Every packet premise was
 independently re-verified against the repo before ruling (Art. xvi); the defect register below
 is the evidence, with anchors. Michael holds the standing veto; **release (push/deploy) is his
-act, never the implementer's.** The implementer executes this brief exactly and does not
+act, never the implementer's.** The implementer executes this brief precisely and does not
 re-litigate rulings (Constitution; docs/21 §2 posture applies to any non-Fable worker,
 including external ones).
 
@@ -40,7 +40,7 @@ P2 APPROVE, staged · P3 DEFER.**
   Mechanism: `alexandria.merge()` writes the merged 25-year ledger into the state ledger and
   passes it to `build_derived` (`alexandria.py:191,195`), and neither `build.phrase_page`
   (`build.py:202-214`) nor the site applies any epoch filter. The same pages print "Our corpus
-  begins 2025-01" (`site.py:1480-1483`) directly beneath 2013 receipts. This is also a live
+  begins 2025-01" (`site.py:1480-1483`) directly beneath 2013 receipts. It is also a live
   R6/seam exposure: pre-2021 legacy-lane observations mixed into public curves with no lane
   disclosure, while `FEATURES["archive"]` is dark.
 - **D4, bare Bioguide IDs rendered as names.** 20 phrase pages render e.g. "2013-04-17 by
@@ -95,12 +95,12 @@ Scope: `.github/workflows/assemble.yml`, `pipeline/site.py`, one focused workflo
 site tests. **Never execute `pipeline/post_bluesky.py`**, not even "safely"; a gated local run
 rewrites tracked manifests (S40 finding 9). It may be read and imported by tests with stubs.
 
-1. Keep the pre-post render exactly where it is, it is the preflight that stops a run from
+1. Keep the pre-post render precisely where it is, it is the preflight that stops a run from
    posting a thread whose receipts page cannot build. Add a **second render step after the post
    step and before the commit step.** A fresh `python pipeline/site.py` process re-globs the
-   manifests (the import-time snapshot makes an in-process re-render insufficient, this is why
+   manifests (the import-time snapshot makes an in-process re-render insufficient, it is why
    it must be a new invocation).
-2. Ordering invariants (assert in a test that parses the workflow yaml): exactly two site-render
+2. Ordering invariants (assert in a test that parses the workflow yaml): precisely two site-render
    invocations; render₁ before post; render₂ after post and before commit; the redact step stays
    before the state-persist/upload step; commit still stages `data/derived` + `site/public`
    together. No new network use in render₂.
@@ -119,7 +119,7 @@ rewrites tracked manifests (S40 finding 9). It may be read and imported by tests
      Symmetric wording, both parties.
 5. Do not touch: posting logic, manifest schema, redact, dead-man, `POSTING_ENABLED` handling.
 
-## 3. P1, temporal honesty while Archive is dark (APPROVE, modified)
+## 3. P1, temporal accuratey while Archive is dark (APPROVE, modified)
 
 Ruled implementation: **render-time public-window gate only.** Do not modify
 `alexandria.py`, the state ledger, `build_derived`'s ledger handling, or any committed
@@ -130,21 +130,21 @@ never rewritten by daily runs, so a build-time-only fix would strand the 51 stal
    `>= config.STAGE1_EPOCH`. Apply to: phrase-page curve, "First recorded" line, peak,
    distinctiveness display context, data-points/active-day counts, and every
    `phrase_search_index()` row (`p`/`f` recomputed from the gated series).
-2. **The epoch has exactly one source: `config.STAGE1_EPOCH`.** No new hardcoded "2025"
+2. **The epoch has precisely one source: `config.STAGE1_EPOCH`.** No new hardcoded "2025"
    prose; the existing footnote renders its date from config.
 3. First-sayer rules: if the true `first_seen.date >= epoch`, render as today (roster name).
-   If pre-epoch, the derived file cannot name the in-window first carrier, render an honest
+   If pre-epoch, the derived file cannot name the in-window first carrier, render an accurate
    line: first in-window active day, **no member attribution, no bioguide**, plus the existing
    pointer that pre-window history awaits the Archive release. Additionally harden
    `member_name()` so no caller can ever emit a raw ID styled as a name ("member name
    unavailable" instead). Do **not** add a historical roster in this packet, that is
    Archive-flip work.
 4. A phrase with zero in-window observations: its page remains (public pages are permanent)
-   with an honest empty-window state; it is dropped from the search index (the index promises
+   with an accurate empty-window state; it is dropped from the search index (the index promises
    a curve and carriers; an empty page is not a result).
 5. Methodology's coverage description and the phrase-page disclosure must describe the same
    window as the statistics.
-6. **Kill test (required, as requested):** fixture whose largest peak and earliest sayer are
+6. **Failure test (required, as requested):** fixture whose largest peak and earliest sayer are
    pre-epoch → Archive-off output uses the post-epoch peak and post-epoch first-seen handling;
    the pre-epoch record remains intact in the fixture/derived input. Plus: index rows agree
    with page stats; zero-in-window phrases are unlisted but their pages render.
@@ -152,7 +152,7 @@ never rewritten by daily runs, so a build-time-only fix would strand the 51 stal
 ## 4. P2, receipts promise (APPROVE, staged. Stage A mandatory, Stage B gated)
 
 **Stage A (mandatory): copy–delivery alignment.** Reword the search subhead and any phrase-page
-promise so they promise exactly what renders after this packet, no more. If Stage B ships,
+promise so they promise precisely what renders after this packet, no more. If Stage B ships,
 the copy may promise receipts in the "where at least three distinct offices can be cited"
 form; the test "search copy and phrase-page behavior agree" locks it either way.
 
@@ -170,7 +170,7 @@ form; the test "search copy and phrase-page behavior agree" locks it either way.
    the party-columns view uses; identical rules both parties.
 4. Quorum-or-silence: fewer than 3 groundable distinct units → **no evidentiary section for
    that phrase, log the omission**; never borrow from another day/phrase, never infer.
-   Bounded visible sample with an honest "showing N of M".
+   Bounded visible sample with an accurate "showing N of M".
 5. Privacy: `privacy.is_suppressed` runs before the slice is written and before render;
    a suppressed phrase gets no slice entry and no page (existing behavior preserved).
 6. **Cost gate (measured, not guessed):** incremental on-disk cache keyed by
@@ -245,7 +245,7 @@ failure the §0 streak invariant forbids, and the reason the sibling calls
 (`deterministic.py:37-48`, `build_concordance`/`build_awards`) are wrapped. Fix both belts:
 (a) wrap the call mirroring the siblings (skip-and-log, loud print); (b) relocate it **after**
 the day-summary write inside `build_derived` so even a pathological failure cannot cost the
-day JSON. Kill test: a raising evidence builder must neither prevent the day JSON write nor
+day JSON. Failure test: a raising evidence builder must neither prevent the day JSON write nor
 fail the run; mutation-verify (unwrap → test reds).
 
 **R2 (rider, same commit).** Two dark-surface renderers bypass the hardened `member_name()`
@@ -262,7 +262,7 @@ number to its stated denominator. Copy only, both parties identical.
 
 **R4 (accepted risk, watch item).** The P2 cost-gate numbers (45.7 s bootstrap / 0.53 s warm)
 could not be independently reproduced locally (local state is stale). The skip-and-log wrap
-(R1) bounds the downside; the first cloud collect after the push is the real measurement,
+(R1) bounds the downside; the first cloud collect after the push is the actual measurement,
 read its step timing per §7.3.
 
 Remediation ships as **one commit on top of `3ef985b`**, evidence per §6. The push covers
@@ -282,10 +282,10 @@ When `GITHUB_ACTIONS` is absent from the environment, executing `pipeline/post_b
 must perform **zero filesystem writes** (no `_flush`, no manifest create/update/restamp) and
 zero network, print a preview instead; an explicit `--allow-local-manifest-write` flag is
 the deliberate override. CI behavior byte-identical (GitHub always sets the variable, no
-workflow change). Kill tests both directions, the inverse being the vital one: with the env
+workflow change). Failure tests both directions, the inverse being the vital one: with the env
 var set, the flush path is unchanged (a silently-lost posting day is the failure to fear);
 plus a tmp-tree test encoding the S40 footgun (gated local run writes nothing). Minimal diff;
-no posting-logic or manifest-schema changes. This is the one wave-2 packet allowed to touch
+no posting-logic or manifest-schema changes. It is the one wave-2 packet allowed to touch
 `pipeline/post_bluesky.py`, and its PUSH additionally waits for a green live posting day
 under the new assemble.yml.
 
@@ -328,7 +328,7 @@ caller confirmed; R2/R3 in place; workflows untouched by all four commits; rebas
 **One closing micro-commit (gates only the wave-2 push, not tonight's):**
 1. Wrap the favicon `shutil.copyfile` at the top of `build_site()` (`site.py:2565`) in
    skip-and-log, unwrapped, a missing brand asset would crash render₁ before posting and
-   fire a false dead-man; same class as R1. Kill test: missing source asset → site still
+   fire a false dead-man; same class as R1. Failure test: missing source asset → site still
    renders, loud log line.
 2. Drop `404.html` from `sitemap.xml` (adjust the distribution test's oracle accordingly).
 3. Add a code-computed `<author>` ("OnScript") to the Atom feed.
@@ -341,7 +341,7 @@ caller confirmed; R2/R3 in place; workflows untouched by all four commits; rebas
 ## 11. Program state after §10
 
 The public-surface stabilization program is **complete** once §10 lands and the pushes clear:
-truth (P0-A), same-run authenticity (P0-B), temporal honesty (P1), receipts (P2), posting
+truth (P0-A), same-run authenticity (P0-B), temporal accuratey (P1), receipts (P2), posting
 footgun (W2-A), discovery (W2-B), accessibility (W2-C). P3 share cards remain deferred.
 Remaining known site-surface items are deliberately reserved for internal sessions:
 silence_board wiring (r-b, deadline Mon 08-03), the 07-27 nomenclature flip + r-a riders,

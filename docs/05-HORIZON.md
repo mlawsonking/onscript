@@ -193,14 +193,12 @@ gating research. **The feature most likely to be quoted in a media-studies sylla
 
 ---
 
-## §2.5 The Appendix, the verified-oddity shelf (Freakonomics-class correlations)
+## §2.5 The Appendix: verified oddities
 
-> **The case for weird.** Verified oddities are the most shareable genre in data publishing,
-> and OnScript holds the two things the genre always lacks: a 25-year corpus to validate
-> against, and a voice that never over-claims. The discipline *is* the comedy: "correlation,
-> cause unknown, receipts included" is funnier deadpan than any editorialized version. The
-> governing insight: **the juiciest findings here are power-position effects, not party
-> effects**, they attach to whoever is in/out of power, majority/minority, safe/swing, which
+> Verified oddities work here because OnScript has a 25-year validation corpus and a voice that does
+> not overstate the result. The label is direct: "correlation, cause unknown, receipts included."
+> The strongest findings are power-position effects rather than party effects. They track who is
+> in/out of power, majority/minority, and safe/swing, which
 > makes them symmetric because of the design (Constitution IV) *and* more interesting: It is what
 > losing sounds like, whoever is losing.
 
@@ -308,7 +306,7 @@ governed as leaderboards (disclosed metric, receipts expandable), not as §2.5 a
   against the bill, then announces its money at home), done today by journalists by hand, one
   case at a time. We do it systematically: roll-call votes × credit-claiming releases matched
   on program language, every member, every flagship bill, receipts automatic.  context
-  honesty per Constitution II: report the vote + the announcement, note that members vote
+  accuratey per Constitution II: report the vote + the announcement, note that members vote
   against packages for many reasons, let the pairing speak. [corpus + congress.gov roll calls
   -easy, join already planned for the whip-count proxy]
 - **The Credit-Claiming Multiplier.** Match identical dollar figures + program tokens across

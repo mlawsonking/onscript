@@ -740,7 +740,7 @@ A graveyard/methods-transparency result (docs/20), not a card.
 Disclosed benign implementation deviation (registration JSON left pristine): the bootstrap used
 numpy `default_rng(0)` instead of the frozen `random.Random(0)` because pure-Python resampling at
 n≈50k is infeasibly slow (~2–3h); deterministic seed-0, preserves the frozen
-metric/size-match(n=min)/placebo/B=500/verdict exactly, CI shifts only by ~3rd-decimal Monte-Carlo
+metric/size-match(n=min)/placebo/B=500/verdict precisely, CI shifts only by ~3rd-decimal Monte-Carlo
 noise (verified 0.138 vs 0.13825 on a fixture), recorded in the script +
 `result.bootstrap_rng_deviation` + docs/13 (also two result-preserving fixes: an oom avoided by
 hashing n-grams, and `repeat_rate` via the `Σ(df≥2)=Σ_c df(c)·[df(c)≥2]` numpy-bincount identity).
@@ -801,7 +801,7 @@ rare-case remedy is a manual in-app reply with the receipts link.
 The go stays Michael's, given IN the Tuesday worker session at step 4.
 Also noted: today's 12:00Z collect shows failure in `gh run list`, that is the S30-documented push
 collision (fixed `93660f2`, `--autostash`); the ~12:42Z dead-man alert was that event, not a
-pipeline fault; moat intact, evening pass rebuilds.
+pipeline fault; archive intact, evening pass rebuilds.
 Tuesday prompt (new chat, model = Opus): "read claude.md and docs/23 §7.5, run the launch morning."
 the launch-eve parallel lane (ruled, same session): tonight's grinding session runs the search, not
 the build.
@@ -1081,7 +1081,7 @@ because of the design and had never once been exercised.
 Fixed both with `--autostash`.
 This matters for tomorrow: the launch morning commits `party_columns`+`owners_brief` while the
 21:30Z pass is live.
-Blast radius today: none permanent, the collect step and the state-persist step both succeeded (moat
+Blast radius today: none permanent, the collect step and the state-persist step both succeeded (archive
 intact), only the derived commit was lost and the 19:30Z pass rebuilds it; the guard was not
 implicated (focus day was the fresh 07-20).
 The dead-man fired correctly at ~12:42Z, that ntfy alert was this session's push, not a pipeline
@@ -1213,7 +1213,7 @@ Measured at the live threshold (0.8) via `nomenclature.tag()`: `affordable care 
 tagged · `the affordable care act` 0.0008 → not tagged · `obamacare` → not tagged · but
 `unaffordable care act`/`the unaffordable care act` = 1.0 → tagged (hr6300).
 The asymmetry runs opposite to the one the ruling accepted: neither party's ordinary framing tags,
-and the only aca-family phrase that does is a Republican counter-brand. span may be working exactly
+and the only aca-family phrase that does is a Republican counter-brand. span may be working precisely
 as designed, so this may need no code change, but the ratified rationale is backwards and it
 authorizes the flip. #179 filed; blocks 07-27 only, not launch.  `silence_board` (08-10) is not a
 one-commit flip. `silence.silence_board()` has NO caller anywhere and `data/derived/silence/` has
@@ -1905,7 +1905,7 @@ candidate, not a card).
 The blocked-on-shards half (S1.1/1.1′/1.2/1.3/1.3′/1.5/1.6/1.7/1.8/1.11/1.4-proper) is not re-run,
 it needs step (4).
 4. shard-lanes brief (docs/18). done (Session 19): the eleven blocked-on-shards items re-validated
-   within lane; per-lane shards built (all 7 congresses reconcile exactly, 0 statement delta, 0
+   within lane; per-lane shards built (all 7 congresses reconcile precisely, 0 statement delta, 0
    cross-lane dups). two new CONFIRMED.
 S1.1′/S1.3′ (the "Great Intensification": ignition width 34d→3d/11.3×, lifespan −37%) CONFIRM within
 the propublica lane (2013-2020, density-survives) and are ARTIFACT/absent in scraped.
@@ -2073,7 +2073,7 @@ adversarial review, then merge.
 satisfied by the Search's S0 shard harness); (g) the search (`docs/12-SEARCH-PROGRAM.md`, Fable
 Session 9), the standing Opus content program: 47 pre-registered hypotheses over the 25-year
 archive, 5 waves, verdicts to `docs/13-SEARCH-LEDGER.md`; next session starts Wave S0 (inventory +
-harness + kill-fixture metrics + reference tables).
+harness + failure-test metrics + reference tables).
 Goal: ~22–28 CONFIRMED finding cards = 1–2 drip pieces/month for 1–2 years; (h) the deep archive
 (`docs/15-DEEP-ARCHIVE-PROGRAM.md`, Fable Session 10), the historical expansion `docs/14` proved
 feasible, as a parallel-safe program: the symmetric `source=crec` Congressional Record track
@@ -2088,7 +2088,7 @@ accurate sizing (15 §8): second-biggest lever for what OnScript *becomes* (true
 twice-confirmed tier, H6/academic ambitions), near-irrelevant to this quarter's launch, sequenced
 accordingly.
 Wave D0 (the rails) is complete (Session 11, Opus): `pipeline/deep/` lane plumbing + the 7-gate
-coverage audit (kill-fixture-tested; adversarial review caught + fixed 1 blocker. `audit_cross_era`
+coverage audit (tested with failure fixtures; adversarial review caught + fixed 1 blocker. `audit_cross_era`
 now enforces same-lane genre isolation. + 3 should-fixes) + CREC reference tables + the
 hash-manifested mirror (Grimmer mirrored to X:); 126 tests green.
 Acceptance refined the value prop: the accurate single-party gap is 2001–2008 (2009+ already
@@ -2104,7 +2104,7 @@ ratio 0.99; 2002 D=209/R=211 ratio 0.99), two-party where the press lane is 100%
 The D1.d audit caught + fixed a real date bug (`published_at` was the package id).
 Weak-carrier confirmed (docs/15 §9 amendment D1-A): crec top phrases are procedural/bill-title
 formulas, so CREC needs a heavy genre-boilerplate layer before phrase-coordination findings, the
-procedural half is now built (`pipeline/deep/crec_boilerplate.py` + kill-fixture, 138 tests;
+procedural half is now built (`pipeline/deep/crec_boilerplate.py` + failure fixture, 138 tests;
 validated on 107, all Committee-of-the-Whole furniture removed, sotu protected); the residuals
 before a coordination card are inserted-bill-text/full-bill-title (= the separate
 nomenclature-segregation item, needs the congress.gov corpus) + sub-gram collapse (existing layer).

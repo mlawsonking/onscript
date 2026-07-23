@@ -1,4 +1,4 @@
-# 25 — Documentation voice brief (binding)
+# 25: Documentation voice brief (binding)
 
 Authority: Fable, Session 44, 2026-07-23. Requested by Michael after a read-only prose audit
 of the tracked Markdown corpus. The audit's headline numbers were independently reproduced
