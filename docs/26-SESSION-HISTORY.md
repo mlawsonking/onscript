@@ -2149,3 +2149,28 @@ and R1 only; every push, flip, and publication stays with Michael.
 
 Next action: implementation agent runs R0 and R1; Michael pushes the stabilization
 prefix in a clean window (#195), then follows docs/27.
+
+## 2026-07-24: Session 45 continued (Fable). The stack is deployed
+
+Outcome: the entire local stack is pushed and the first production day exercised green.
+
+Evidence: R2 (stabilization prefix, 3d9cadd) pushed 2026-07-23 ~17:40Z after independent
+validation (479/0). The 20:34Z collect ran green in 61.5 minutes with the phrase-evidence
+bootstrap inside budget and below-quorum omissions logged. The 22:3xZ assemble ran the
+ruled step order including the same-run post-archive refresh. Live surface verified:
+stale posting copy gone, account and repository links live, no pre-epoch dates or bare
+bioguide identifiers, peak-day evidence rendering, search index clean of pre-epoch rows.
+The claim-binding P0 (docs/28) was implemented (372a06e), adversarially reviewed, and
+corrected for a label-unaware quote truncation that could break the streak (4cb2f1a);
+suites 490/0 then 492/0 reproduced independently. After a clean rebase over the night's
+two data commits, wave 2, the voice rewrite, both release orders, and the claim-binding
+fix pushed as 10de6ad..377b638 at 01:30Z.
+
+Decisions: pushing the P0 fix required pushing the validated wave-2 and voice segments
+beneath it; ruled acceptable because each segment carried its own completed validation
+and the alternative left uneditable wrong claims posting daily. Michael delegated the
+push acts for this arc; flips and publications remain his.
+
+Next action: the ~11:30Z posting assemble proves the same-run archive and composes the
+first bound claims. On green: acceptance table complete, #195 closes, the Monday
+nomenclature gate is live again.
