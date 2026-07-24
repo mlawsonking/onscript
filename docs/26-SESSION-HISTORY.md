@@ -2174,3 +2174,15 @@ push acts for this arc; flips and publications remain his.
 Next action: the ~11:30Z posting assemble proves the same-run archive and composes the
 first bound claims. On green: acceptance table complete, #195 closes, the Monday
 nomenclature gate is live again.
+
+## 2026-07-24: Session 45 close (Fable). Acceptance complete
+
+The 12:5xZ posting assemble proved the release. Commit 31d719c contains the day's post
+manifest (both parties posted, real root URIs, no partials) and the posts.html listing
+that same thread: the signed archive is now truthful in the same run. The new day page
+publishes five verified claims with zero sub-full phrase chips: every quote appears in
+every one of its receipts. The 2026-07-22 page renders its historical correction note.
+feed.xml and sitemap.xml are live. Collect steady state is under the pre-release
+baseline. The docs/27 section 3 acceptance table is complete; #195 and #197 are closed.
+Remaining operator acts: the Monday nomenclature gate decision, #198 before Aug 3, and
+the standing #105/#110.
