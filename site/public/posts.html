@@ -6,6 +6,8 @@
 <meta name="description" content="The on-domain signed archive of every thread the composite accounts have posted.">
 <title>OnScript · Posted threads</title>
 <link rel="canonical" href="https://onscript.news/posts.html">
+<link rel="alternate" type="application/atom+xml" title="OnScript daily feed" href="https://onscript.news/feed.xml">
+<link rel="icon" type="image/png" href="favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnScript">
 <meta property="og:title" content="OnScript · Posted threads">
@@ -17,7 +19,7 @@
 <meta property="og:image:alt" content="OnScript — what each party said today, compressed to one voice, with receipts.">
 <meta name="twitter:card" content="summary_large_image">
 <style>:root{
-  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#8a8a8a; --line:#e2e2e2;
+  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#707070; --line:#e2e2e2;
   --bg:#fbfbf9; --panel:#ffffff; --accent:#333;
   --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
   --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
@@ -25,6 +27,9 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+.skip-link{position:absolute; left:12px; top:8px; z-index:10; padding:8px 12px; background:var(--panel);
+  color:var(--ink); border:2px solid var(--ink); transform:translateY(-150%)}
+.skip-link:focus{transform:translateY(0)}
 body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -91,6 +96,8 @@ small{font-size:13px}
 .receipt ul.cites li:first-child{margin-top:4px}
 .receipt .citemeta{font-size:12px; color:var(--muted); margin-top:2px}
 .receipt .rmore{font-size:11.5px; color:var(--faint); margin-top:6px}
+.receipt .claim-correction{margin:7px 0; padding:7px 9px; border:1px solid var(--warn-line);
+  background:var(--warn-bg); color:var(--warn-ink); font-size:12px}
 .receipt ul.cites a{color:var(--blue)}
 .receipt .quote mark.keyspan{background:#fff2ab; color:inherit; padding:0 1px; border-radius:2px}
 .receipt .rtests{margin:5px 0 2px; display:flex; flex-wrap:wrap; gap:5px}
@@ -132,6 +139,7 @@ ul.daylist li{padding:5px 0; border-bottom:1px solid var(--line)}
 .kv{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:14.5px; margin:10px 0}
 .kv dt{color:var(--faint)}
 .kv dd{margin:0}
+@media(max-width:520px){.kv{grid-template-columns:1fr; gap:0}.kv dd{margin-bottom:8px}}
 
 pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
   border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -146,12 +154,23 @@ footer.site a{color:var(--muted)}</style>
 </head>
 <body>
 <div class="wrap">
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site">
   <div class="brand"><a href="index.html">OnScript</a></div>
   <div class="tag">This is what each party said today, compressed to one voice, with receipts.</div>
 </header>
-<nav class="top"><a href="index.html">Today</a><a href="day/index.html">Days</a><a href="phrases/index.html">Phrases</a><a href="phrases/search.html">Search</a><a href="posts.html">Posts</a><a href="methodology.html">Methodology</a><a href="about.html">About</a></nav>
-<h1>Posted threads &mdash; signed archive</h1><p class="subhead">This archive reflects the posting manifests available when this page was built. A complete entry with a Bluesky root link is the authenticated record. A same-run refresh failure can delay a new entry until the next build; partial and unverifiable records are labeled and never presented as complete. The accounts never reply, like, or repost outside their published threads.</p><div class="receipt"><div class="rhead"><span class="pill R">R</span> <strong>2026-07-22</strong> <span class="faint">&middot; 2026-07-23T22:32:04Z</span> &middot; <strong>authenticated</strong> &middot; <a href="https://bsky.app/profile/did:plc:pusxqtfjqpiqkw5fhe6b5mii/post/3mr6zd3622223" rel="nofollow noopener">on Bluesky</a></div><div class="quote">Today 193 of us released statements. 47 of us carried &quot;the stop insider trading act&quot;. 15 of us carried &quot;well as their spouses and dependent children&quot;. 8 of us carried &quot;by a vote of 216-212&quot;.
+<nav class="top" aria-label="Primary"><a href="index.html">Today</a><a href="day/index.html">Days</a><a href="phrases/index.html">Phrases</a><a href="phrases/search.html">Search</a><a href="posts.html">Posts</a><a href="methodology.html">Methodology</a><a href="about.html">About</a></nav>
+<main id="main-content">
+<h1>Posted threads &mdash; signed archive</h1><p class="subhead">This archive reflects the posting manifests available when this page was built. A complete entry with a Bluesky root link is the authenticated record. A same-run refresh failure can delay a new entry until the next build; partial and unverifiable records are labeled and never presented as complete. The accounts never reply, like, or repost outside their published threads.</p><div class="receipt"><div class="rhead"><span class="pill R">R</span> <strong>2026-07-23</strong> <span class="faint">&middot; 2026-07-24T13:01:56Z</span> &middot; <strong>authenticated</strong> &middot; <a href="https://bsky.app/profile/did:plc:pusxqtfjqpiqkw5fhe6b5mii/post/3mrbjryms2223" rel="nofollow noopener">on Bluesky</a></div><div class="quote">Across our 97 statements today, our clearest coordination centers on &quot;the stop insider trading act,&quot; raised by 4 of us. A smaller group of 3 references remarks delivered on the senate floor.
+🤖 automated composite — onscript.news</div><div class="quote">Clinically, the most synchronized phrase in the record today is the national defense authorization act, appearing across 8 of our statements — first recorded in our corpus from Sydney Kamlager-Dove (D-CA).
+🤖 automated composite — onscript.news</div><div class="quote">Receipts: https://onscript.news/day/2026-07-23.html
+Most synchronized: &quot;the national defense authorization act&quot; — 8 of us (first recorded in our corpus 2025-01-01).
+🤖 automated composite — onscript.news</div></div><div class="receipt"><div class="rhead"><span class="pill D">D</span> <strong>2026-07-23</strong> <span class="faint">&middot; 2026-07-24T13:01:56Z</span> &middot; <strong>authenticated</strong> &middot; <a href="https://bsky.app/profile/did:plc:7mzshf53gvt7wcm37fy3k6ir/post/3mrbjryms2222" rel="nofollow noopener">on Bluesky</a></div><div class="quote">Across 141 statements today, our most synchronized phrase is war in iran, shared by 10 of us, first recorded in our corpus from Elizabeth Warren (D-MA).
+🤖 automated composite — onscript.news</div><div class="quote">Beyond that, our messages cluster around three threads: 5 of us cite &quot;passage of the national defense authorization act,&quot; 4 of us reference being a &quot;member of the house education and workforce committee,&quot; and 4 of us call &quot;for another war powers resolution to
+🤖 automated composite — onscript.news</div><div class="quote">end trump&#x27;s&quot; involvement. We register these as our dominant coordinated points today, with the rest of our statements more dispersed.
+🤖 automated composite — onscript.news</div><div class="quote">Receipts: https://onscript.news/day/2026-07-23.html
+Most synchronized: &quot;war in iran&quot; — 10 of us (first recorded in our corpus 2025-06-24).
+🤖 automated composite — onscript.news</div></div><div class="receipt"><div class="rhead"><span class="pill R">R</span> <strong>2026-07-22</strong> <span class="faint">&middot; 2026-07-23T22:32:04Z</span> &middot; <strong>authenticated</strong> &middot; <a href="https://bsky.app/profile/did:plc:pusxqtfjqpiqkw5fhe6b5mii/post/3mr6zd3622223" rel="nofollow noopener">on Bluesky</a></div><div class="quote">Today 193 of us released statements. 47 of us carried &quot;the stop insider trading act&quot;. 15 of us carried &quot;well as their spouses and dependent children&quot;. 8 of us carried &quot;by a vote of 216-212&quot;.
 🤖 automated composite — onscript.news</div><div class="quote">Our most synchronized phrase, used by 34 of us: defense industrial base.
 🤖 automated composite — onscript.news</div><div class="quote">Receipts: https://onscript.news/day/2026-07-22.html
 Most synchronized: &quot;defense industrial base&quot; — 34 of us (first recorded in our corpus 2025-01-02).
@@ -179,6 +198,7 @@ Most synchronized: &quot;house floor in&quot; — 5 of us (first recorded 2025-0
 🤖 automated composite — onscript.news</div><div class="quote">Receipts: https://onscript.news/day/2026-07-20.html
 Most synchronized: &quot;homeland security dhs&quot; — 7 of us (first recorded 2025-01-03).
 🤖 automated composite — onscript.news</div></div>
+</main>
 <footer class="site">
   <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
   parties, audited nightly in public. See the <a href="methodology.html">Methodology</a>.

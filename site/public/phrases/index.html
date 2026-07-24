@@ -6,6 +6,8 @@
 <meta name="description" content="First-appearance tracking and adoption curves for coordinated political phrases.">
 <title>OnScript · Tracked phrases</title>
 <link rel="canonical" href="https://onscript.news/phrases/index.html">
+<link rel="alternate" type="application/atom+xml" title="OnScript daily feed" href="https://onscript.news/feed.xml">
+<link rel="icon" type="image/png" href="../favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnScript">
 <meta property="og:title" content="OnScript · Tracked phrases">
@@ -17,7 +19,7 @@
 <meta property="og:image:alt" content="OnScript — what each party said today, compressed to one voice, with receipts.">
 <meta name="twitter:card" content="summary_large_image">
 <style>:root{
-  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#8a8a8a; --line:#e2e2e2;
+  --ink:#1a1a1a; --muted:#5a5a5a; --faint:#707070; --line:#e2e2e2;
   --bg:#fbfbf9; --panel:#ffffff; --accent:#333;
   --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
   --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
@@ -25,6 +27,9 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+.skip-link{position:absolute; left:12px; top:8px; z-index:10; padding:8px 12px; background:var(--panel);
+  color:var(--ink); border:2px solid var(--ink); transform:translateY(-150%)}
+.skip-link:focus{transform:translateY(0)}
 body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -91,6 +96,8 @@ small{font-size:13px}
 .receipt ul.cites li:first-child{margin-top:4px}
 .receipt .citemeta{font-size:12px; color:var(--muted); margin-top:2px}
 .receipt .rmore{font-size:11.5px; color:var(--faint); margin-top:6px}
+.receipt .claim-correction{margin:7px 0; padding:7px 9px; border:1px solid var(--warn-line);
+  background:var(--warn-bg); color:var(--warn-ink); font-size:12px}
 .receipt ul.cites a{color:var(--blue)}
 .receipt .quote mark.keyspan{background:#fff2ab; color:inherit; padding:0 1px; border-radius:2px}
 .receipt .rtests{margin:5px 0 2px; display:flex; flex-wrap:wrap; gap:5px}
@@ -132,6 +139,7 @@ ul.daylist li{padding:5px 0; border-bottom:1px solid var(--line)}
 .kv{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; font-size:14.5px; margin:10px 0}
 .kv dt{color:var(--faint)}
 .kv dd{margin:0}
+@media(max-width:520px){.kv{grid-template-columns:1fr; gap:0}.kv dd{margin-bottom:8px}}
 
 pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
   border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -146,12 +154,15 @@ footer.site a{color:var(--muted)}</style>
 </head>
 <body>
 <div class="wrap">
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site">
   <div class="brand"><a href="../index.html">OnScript</a></div>
   <div class="tag">This is what each party said today, compressed to one voice, with receipts.</div>
 </header>
-<nav class="top"><a href="../index.html">Today</a><a href="../day/index.html">Days</a><a href="../phrases/index.html">Phrases</a><a href="../phrases/search.html">Search</a><a href="../posts.html">Posts</a><a href="../methodology.html">Methodology</a><a href="../about.html">About</a></nav>
-<h1>Tracked phrases</h1><p class="subhead">First-appearance tracking and adoption curves across members. When a phrase jumps from a handful of members to dozens in a day, the convergence is the measurement — we record who said what, and when, and let you draw your own conclusions about why.</p><h2>Most synchronized</h2><p class="subhead">Ranked by peak single-day member count.</p><div class="scroll"><table><thead><tr><th>Phrase</th><th>Party</th><th class='num'>Peak</th><th class='num'>Velocity</th><th>First seen</th></tr></thead><tbody><tr><td>defense industrial base</td><td><span class="pill R">R</span></td><td class="num">34</td><td class="num">19.8</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>the national defense authorization act</td><td><span class="pill R">R</span></td><td class="num">29</td><td class="num">14.5</td><td class="muted"><small>2025-01-01</small></td></tr><tr><td>the fy27 ndaa</td><td><span class="pill R">R</span></td><td class="num">28</td><td class="num">14.5</td><td class="muted"><small>2025-12-10</small></td></tr><tr><td>the fiscal year</td><td><span class="pill R">R</span></td><td class="num">28</td><td class="num">8.3</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>for fiscal year</td><td><span class="pill R">R</span></td><td class="num">24</td><td class="num">11.2</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>peace through strength</td><td><span class="pill R">R</span></td><td class="num">23</td><td class="num">15.3</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>stop insider trading act</td><td><span class="pill R">R</span></td><td class="num">22</td><td class="num">11.8</td><td class="muted"><small>2026-01-12</small></td></tr><tr><td>the stop insider</td><td><span class="pill R">R</span></td><td class="num">22</td><td class="num">11.8</td><td class="muted"><small>2026-01-12</small></td></tr><tr><td>of h r</td><td><span class="pill R">R</span></td><td class="num">21</td><td class="num">10.9</td><td class="muted"><small>2025-01-06</small></td></tr><tr><td>the defense industrial</td><td><span class="pill R">R</span></td><td class="num">20</td><td class="num">12.7</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td><a href="4abd5ede26e39eb9.html">war in iran</a></td><td><span class="pill D">D</span></td><td class="num">18</td><td class="num">4.3</td><td class="muted"><small>2025-06-24</small></td></tr><tr><td>passed the house</td><td><span class="pill R">R</span></td><td class="num">18</td><td class="num">6.2</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>5 to 7</td><td><span class="pill R">R</span></td><td class="num">17</td><td class="num">17.0</td><td class="muted"><small>2025-01-31</small></td></tr><tr><td>proud to support</td><td><span class="pill R">R</span></td><td class="num">17</td><td class="num">4.8</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>1 15 trillion</td><td><span class="pill D">D</span></td><td class="num">16</td><td class="num">11.1</td><td class="muted"><small>2026-04-03</small></td></tr><tr><td>housing education and</td><td><span class="pill R">R</span></td><td class="num">16</td><td class="num">16.0</td><td class="muted"><small>2025-04-04</small></td></tr><tr><td>pay raise for</td><td><span class="pill R">R</span></td><td class="num">16</td><td class="num">8.6</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>8800 the national defense authorization act</td><td><span class="pill R">R</span></td><td class="num">15</td><td class="num">10.0</td><td class="muted"><small>2026-06-05</small></td></tr><tr><td><a href="ce3a461017c64eea.html">the men and women</a></td><td><span class="pill R">R</span></td><td class="num">15</td><td class="num">6.8</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>national defense authorization act for fiscal</td><td><span class="pill R">R</span></td><td class="num">14</td><td class="num">11.5</td><td class="muted"><small>2025-01-17</small></td></tr></tbody></table></div>
+<nav class="top" aria-label="Primary"><a href="../index.html">Today</a><a href="../day/index.html">Days</a><a href="../phrases/index.html">Phrases</a><a href="../phrases/search.html">Search</a><a href="../posts.html">Posts</a><a href="../methodology.html">Methodology</a><a href="../about.html">About</a></nav>
+<main id="main-content">
+<h1>Tracked phrases</h1><p class="subhead">First-appearance tracking and adoption curves across members. When a phrase jumps from a handful of members to dozens in a day, the convergence is the measurement — we record who said what, and when, and let you draw your own conclusions about why.</p><h2>Most synchronized</h2><p class="subhead">Ranked by peak single-day member count.</p><div class="scroll"><table><thead><tr><th>Phrase</th><th>Party</th><th class='num'>Peak</th><th class='num'>Velocity</th><th>First seen</th></tr></thead><tbody><tr><td><a href="4abd5ede26e39eb9.html">war in iran</a></td><td><span class="pill D">D</span></td><td class="num">10</td><td class="num">1.8</td><td class="muted"><small>2025-06-24</small></td></tr><tr><td>war powers resolution</td><td><span class="pill D">D</span></td><td class="num">9</td><td class="num">4.2</td><td class="muted"><small>2025-03-06</small></td></tr><tr><td>text of the bill</td><td><span class="pill D">D</span></td><td class="num">9</td><td class="num">2.4</td><td class="muted"><small>2025-01-05</small></td></tr><tr><td>proud to support</td><td><span class="pill D">D</span></td><td class="num">9</td><td class="num">1.9</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>the national defense authorization act</td><td><span class="pill R">R</span></td><td class="num">8</td><td class="num">1.9</td><td class="muted"><small>2025-01-01</small></td></tr><tr><td>full bill text</td><td><span class="pill D">D</span></td><td class="num">8</td><td class="num">2.9</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>defense industrial base</td><td><span class="pill R">R</span></td><td class="num">8</td><td class="num">1.9</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>act to ensure</td><td><span class="pill D">D</span></td><td class="num">8</td><td class="num">3.7</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>peace through strength</td><td><span class="pill R">R</span></td><td class="num">8</td><td class="num">2.7</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>proud to join</td><td><span class="pill D">D</span></td><td class="num">8</td><td class="num">2.4</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td><a href="7938897d4cb106dd.html">across the aisle</a></td><td><span class="pill D">D</span></td><td class="num">8</td><td class="num">3.9</td><td class="muted"><small>2025-01-01</small></td></tr><tr><td>working with my colleagues</td><td><span class="pill D">D</span></td><td class="num">8</td><td class="num">3.7</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>this bipartisan legislation</td><td><span class="pill D">D</span></td><td class="num">8</td><td class="num">2.4</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>voted against the</td><td><span class="pill D">D</span></td><td class="num">7</td><td class="num">3.5</td><td class="muted"><small>2025-01-09</small></td></tr><tr><td>president and ceo</td><td><span class="pill D">D</span></td><td class="num">7</td><td class="num">2.3</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>an important step</td><td><span class="pill R">R</span></td><td class="num">7</td><td class="num">2.0</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>make sure that</td><td><span class="pill D">D</span></td><td class="num">7</td><td class="num">3.6</td><td class="muted"><small>2025-01-02</small></td></tr><tr><td>billions of dollars</td><td><span class="pill D">D</span></td><td class="num">7</td><td class="num">1.5</td><td class="muted"><small>2025-01-03</small></td></tr><tr><td>donald trump and</td><td><span class="pill D">D</span></td><td class="num">7</td><td class="num">3.5</td><td class="muted"><small>2025-01-01</small></td></tr><tr><td>trump administration has</td><td><span class="pill D">D</span></td><td class="num">7</td><td class="num">2.0</td><td class="muted"><small>2025-01-10</small></td></tr></tbody></table></div>
+</main>
 <footer class="site">
   <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
   parties, audited nightly in public. See the <a href="../methodology.html">Methodology</a>.
