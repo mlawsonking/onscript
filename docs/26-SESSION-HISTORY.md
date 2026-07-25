@@ -2218,3 +2218,30 @@ Next action: the 21:30Z pass should recover 2026-07-24 on its own through the re
 which takes the oldest not-yet-final day, so the series keeps no hole. If it does not, P12 in
 docs/07 covers the manual dispatch. The watchdog is committed locally and unpushed; it
 releases under Michael's order like everything else.
+
+## 2026-07-25: Session 47 (Fable). External review adjudicated; docs/29 is the binding work order
+
+Michael supplied a 60-item external strategic review and asked for adjudication and a
+Codex work order covering the actionable phases. The review's premises were verified
+first: its four central failure claims match recorded incidents (docs/28 claim binding,
+the restore rollback, the two privacy escapes, the pre-guard day mutations), which earned
+it a full ruling rather than a dismissal.
+
+Dispositions: the integrity core is accepted (occurrence and claim contract, publication
+immutability, span privacy, adversarial fixtures, classification layer, document
+families, surge statistics, status and static exports, gold-set harness, hardening),
+organized as work packages W1 through W11. Rejected for this cycle: demoting the
+composite voice and restructuring the party accounts (product identity, post-election
+agenda). Deferred: public redaction records (dossier risk, attorney), family pages,
+provenance graph, homepage redesign, dynamic API. Amended: concordance and discipline
+flips now additionally gate on published W10 metrics; no other docs/27 date moves. The
+unverified trademark claim joins the #105 attorney agenda and precedes the October
+registration wave.
+
+Reading of scope: review Phase 1 in full plus the machine-buildable part of Phase 2.
+Annotation itself is human work; Codex delivers instrumentation. Phases 3 and 4 wait for
+validated measurement and the other side of the freeze.
+
+Next action: Michael reviews docs/29, then hands the Codex prompt to the worker. Release
+of every package stays under docs/27 discipline. Operator acts are listed in docs/29
+section 6.
