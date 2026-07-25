@@ -2937,3 +2937,101 @@ shape.
 
 Receipts verified live: `/day/2026-07-21.html` 200, homepage on 07-21, and the methodology page
 carrying both new R-L disclosures.
+
+## Session 46 (2026-07-25, Opus), the first `startup_failure`: the outermost dead-man that was missing
+
+Michael asked whether a post was due today. It was. Day 2026-07-24 never published, and nothing
+told him.
+
+**Observation.** RUN B's 11:30Z pass was dispatched at 12:31:15Z, 61 minutes late, and concluded
+`startup_failure` at 12:33:55Z. Run 30158114594. GitHub created zero jobs for it. The jobs endpoint
+returns an empty list, and the check suite for the head commit records the same conclusion.
+
+**Evidence that the day was genuinely due, not a correct no-op.** RUN A had already succeeded that
+morning, run 30155186265, committing 285301c at 11:53:49Z. Its manifest reports `focus_day`
+2026-07-24, `focus_day_write: written`, `volume.today` 158 against `trailing_median` 174.5,
+`anomalously_low: false`, `degraded: false`, `source_freshness.age_hours` 2.93, and an extract stage
+that spent $0.174841 on 185 new statements. `assemble-latest.json` still read day 2026-07-23, so
+2026-07-24 was the oldest not-yet-final day and was comfortably above the readiness gate's 55% share
+of its same-weekday median. `POSTING_ENABLED` and `LLM_VOICE_ENABLED` were both `true`. No
+`post-2026-07-24.json` exists. The 07-24 site render and symmetry audit are absent for the same
+reason.
+
+**Root cause of the silence, which is the finding that matters.** The dead-man in both pipeline
+workflows is a job step guarded by `if: failure()`. A `startup_failure` means no job was created, so
+the step never existed and could not run. The same structure sits in `collect.yml`. This was the
+first `startup_failure` in the repository's entire run history, so the failure mode had never been
+exercised. Article XVI already required the fix in two sentences: failure notifications belong at
+the outermost layer so a scheduled workflow reports failures that occur before `main()`, and a
+liveness probe observes advancing data rather than its own process. The in-job dead-man satisfied
+neither for a run that never started. The gap was in the implementation, not in the rule.
+
+The workflow file was not at fault. `assemble.yml` is unchanged since b297c06, parses under
+`yaml.safe_load`, and ran green twice on 07-24 at 13:02Z and 22:35Z. The head commit 285301c touched
+only `data/derived/**`. A valid file that ran hours earlier and then failed to start is a platform
+dispatch fault.
+
+**The fix.** `pipeline/watchdog.py` plus `.github/workflows/watchdog.yml`, scheduled at 13:00Z and
+23:00Z, 90 minutes after each RUN B pass. It runs in its own concurrency group, `onscript-watchdog`,
+because sharing `onscript-pipeline` would queue the probe behind the 60-minute job it exists to
+watch. It is read-only: no commit, no push, no Anthropic call, $0.
+
+Two signal classes, because either one alone is blind here:
+
+- Run level, from the Actions API, keyed by workflow file path rather than display name because the
+  display names are prose and can be rewritten. Alarms when the newest completed run concluded
+  anything other than success, and when that run is older than 26h.
+- Data level, from the committed manifests. Alarms when `collect-latest.json` is older than 26h,
+  when the last finalized day trails product day by more than 3 days, and when a finalized day has
+  no post manifest.
+
+Thresholds and their derivations. `RUN_MAX_AGE_HOURS` is 26. The widest healthy gap between passes
+is RUN A's 19:30Z to 09:30Z, 14 hours; add the 61-minute delay observed today and a job running to
+its 60-minute timeout for 16 hours worst healthy case, leaving a 10-hour margin.
+`FINAL_DAY_MAX_LAG_DAYS` is 3, taken from `readiness.MAX_WAIT_DAYS` of 2 plus one day for finalizing
+D-1 during D, so the gate's own patience can never page.
+
+**Why both classes ship.** Replaying today's committed record against the data-level checks alone
+produces zero alarms. `assemble-latest.json` read 2026-07-23 against product day 2026-07-24, a lag
+of 1, which is normal before the morning pass lands, and the collect manifest was 1.34h old. A probe
+built only on advancing data would have stayed quiet through this outage. The run-level check is
+what sees it. Test `test_data_checks_alone_would_not_have_caught_2026_07_25` pins that.
+
+**Validation.** Suite 492/0 before, 511/0 after, 19 new tests, no existing test touched. The probe
+was then replayed against real recorded state rather than fixtures. Reproduction:
+
+```
+for wf in collect assemble; do
+  gh api "repos/mlawsonking/onscript/actions/workflows/${wf}.yml/runs?branch=main&per_page=20" \
+    --jq '[.workflow_runs[] | {status, conclusion, created_at, updated_at, html_url, event}]' > ${wf}-runs.json
+done
+python -m pipeline.watchdog --derived <origin manifests> \
+  --collect-runs collect-runs.json --assemble-runs assemble-runs.json \
+  --now 2026-07-25T13:00:00+00:00 --product-day 2026-07-24 --no-notify
+```
+
+At the 13:00Z tick, against origin's manifests and the live run history, the probe returns one
+alarm, `assemble_conclusion`, and holds `collect_runs`, `collect_freshness`, `publication_advance`,
+and `post_manifest` at OK. Replaying the healthy 2026-07-24 23:00Z tick, with manifests read at
+fe5147a and the run list filtered to runs created before that instant, returns zero alarms. It fires
+on the incident and stays silent on the day before it.
+
+**One page per failure mode.** The module pages and exits 0 when it finds an alarm, because the
+probe did its job. A non-zero exit would trip the watchdog's own `if: failure()` dead-man and page
+twice for one incident. The job goes red only when the watchdog itself breaks, which is what that
+step is for, and it pages under a distinct title.
+
+**Residual risk, stated rather than assumed away.** A probe inside GitHub Actions cannot detect
+GitHub failing to schedule the probe. Closing that needs an external heartbeat that pages when
+OnScript stops checking in. It requires an external account and a new secret, so it is Michael's
+act, filed as a task. The watchdog runs twice daily and today's fault was the first of its kind in
+the repository's history, so the compound probability is low, but it is not zero and it is not
+covered.
+
+**Detection latency, before and after.** Before: unbounded, ended by Michael happening to ask, about
+7 hours after the failure. After: at most about 13 hours, and for a failure at the 11:30Z pass, 29
+minutes.
+
+**Not done, by standing rule.** Nothing was pushed, dispatched, deployed, or flipped. Local commit
+only. The 21:30Z pass was left to recover 2026-07-24 on its own, which is what the readiness gate is
+built to do, rather than racing it with a manual dispatch against a pending queued run.

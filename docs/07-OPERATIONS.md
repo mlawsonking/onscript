@@ -47,6 +47,10 @@ Numbers 1–4 are machine-readable today (manifests + symmetry reports). **The O
 (small v2 item, spec below) turns them into a push notification so "understanding where I'm
 at" costs zero clicks.
 
+Number 1 no longer waits for a Monday read. Since 2026-07-25 the watchdog workflow checks the
+streak twice a day from outside both pipelines and pushes when a run fails to start or the
+committed record stops advancing. See P12 and docs/04-BUILDLOG.md, Session 46.
+
 ## §3 Rituals, the entire human cost of stewardship
 
 - **Weekly (Monday, 15 min):** read the five numbers · skim both Daily Lines with your editor
@@ -111,6 +115,19 @@ at" costs zero clicks.
   silent, self-labeled, never deleted (deletion reads as retraction). The corrections log stays
   open one year post-sunset. Nothing else. The ending is a dated public act, like every release
   before it.
+- **P12. A scheduled run never started (added 2026-07-25 after the first `startup_failure`).**
+  Symptom: an ntfy page titled "OnScript watchdog", or a run in the Actions tab whose conclusion is
+  `startup_failure`, `cancelled`, or `timed_out`. In that state GitHub created no job, so the
+  in-job dead-man in `collect.yml` and `assemble.yml` could not fire. The page comes from
+  `.github/workflows/watchdog.yml`, which watches both pipelines from outside. Sequence: (1) read
+  the run page to separate a platform fault from a repo fault. A valid workflow file that ran green
+  hours earlier and then failed to start is a GitHub dispatch fault, not a code defect. (2) Do
+  nothing if the next scheduled pass is close. The readiness gate takes the oldest not-yet-final
+  day, so a missed pass is recovered rather than skipped and the series keeps no hole. (3) If the
+  next pass is far off or also failed, dispatch the workflow manually. Check for a pending queued
+  run first: with `cancel-in-progress: false` a new run can displace one already waiting. (4) A
+  missed publication day is still P1. Log it either way, because a silent recovery still spent a
+  day of the streak.
 
 ## §5 Doc map, who's who (so nothing gets lost)
 

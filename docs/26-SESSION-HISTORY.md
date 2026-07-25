@@ -2186,3 +2186,35 @@ feed.xml and sitemap.xml are live. Collect steady state is under the pre-release
 baseline. The docs/27 section 3 acceptance table is complete; #195 and #197 are closed.
 Remaining operator acts: the Monday nomenclature gate decision, #198 before Aug 3, and
 the standing #105/#110.
+
+## 2026-07-25: Session 46 (Opus). The first startup_failure, and the dead-man that could not fire
+
+Outcome: day 2026-07-24 did not publish and no alert was sent. RUN B's 11:30Z pass was
+dispatched 61 minutes late and concluded `startup_failure` at 12:33:55Z with zero jobs
+created, so the `if: failure()` dead-man step inside the job never existed. First
+startup_failure in the repository's run history. Michael found it by asking.
+
+Evidence: run 30158114594 has an empty jobs list. RUN A had succeeded that morning,
+committing 285301c at 11:53:49Z with `focus_day` 2026-07-24, `volume.today` 158 against a
+trailing median of 174.5, and `degraded: false`. `assemble-latest.json` still read
+2026-07-23, `POSTING_ENABLED` was true, and no `post-2026-07-24.json` exists. `assemble.yml`
+is unchanged since b297c06 and had run green twice the day before, so the workflow file was
+not at fault.
+
+Decision: build the outermost liveness probe Article XVI already requires, as a separate
+workflow rather than a step inside the pipelines. A probe sharing a process with the thing it
+watches cannot report that process failing to start. `pipeline/watchdog.py` and
+`.github/workflows/watchdog.yml` check run history and the committed manifests twice a day at
+13:00Z and 23:00Z, in their own concurrency group, read-only and $0. Suite 492/0 before,
+511/0 after, 19 new tests, no existing test changed. Replayed against real recorded state it
+pages on the incident tick and stays silent on the healthy tick before it. Detection latency
+goes from unbounded to at most about 13 hours.
+
+Residual risk, not covered: a probe inside Actions cannot see Actions failing to schedule the
+probe. An external heartbeat closes it, needs an external account and a new secret, and is
+filed for Michael.
+
+Next action: the 21:30Z pass should recover 2026-07-24 on its own through the readiness gate,
+which takes the oldest not-yet-final day, so the series keeps no hole. If it does not, P12 in
+docs/07 covers the manual dispatch. The watchdog is committed locally and unpushed; it
+releases under Michael's order like everything else.

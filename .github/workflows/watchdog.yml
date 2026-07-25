@@ -1,0 +1,85 @@
+name: WATCHDOG — liveness probe
+
+# The OUTERMOST failure layer (Art. XVI). RUN A and RUN B each end with an `if: failure()` dead-man
+# step, but that step lives INSIDE the job. On 2026-07-25 the 11:30 UTC RUN B concluded
+# `startup_failure` with zero jobs created, so the step never existed and the missed day was
+# SILENT. This workflow watches the other two from outside, so a run that dies before its job is
+# born still pages. It is read-only: no commit, no push, no Anthropic call, $0.
+#
+# Deliberately NOT a step inside collect.yml/assemble.yml: a probe that shares a process with the
+# thing it watches cannot report that process failing to start. That is the whole bug.
+
+on:
+  schedule:
+    # 90 min after each RUN B pass (11:30/21:30 UTC), which is itself ~2h after each RUN A pass.
+    # One tick therefore judges a complete collect+assemble cycle. The margin absorbs the observed
+    # 61-min schedule delay plus a job running to its 60-min timeout; the checks are age-based with
+    # a 26h window, so a late-but-healthy run never pages. Detection latency for a dead pass is at
+    # most ~13h, against the previous latency of "until Michael happens to look".
+    - cron: "0 13,23 * * *"
+  workflow_dispatch: {}
+
+# NOT the `onscript-pipeline` group. Sharing it would queue the probe behind the 60-minute job it
+# is supposed to be watching, which is the one moment it must be able to speak.
+concurrency:
+  group: onscript-watchdog
+  cancel-in-progress: false
+
+permissions:
+  contents: read   # read the committed manifests
+  actions: read    # read run history; this workflow never writes anything
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      # Same reasoning as collect.yml/assemble.yml: a fail-closed gate without its key is an
+      # operator-created outage. A watchdog with no topic is a watchdog that cannot page, which is
+      # indistinguishable from no watchdog at all — so it refuses to run rather than pretend.
+      - name: Preflight — the probe must be able to page
+        run: |
+          if [ -z "$NTFY_TOPIC" ]; then
+            echo "::error::NTFY_TOPIC is unset — the watchdog cannot page and would report false health. Set it in repo Settings > Secrets."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Keyed by workflow FILE PATH, not display name: the display names carry an em dash and are
+      # prose, so a rename under the docs/25 voice work would silently blind a name-keyed probe.
+      # Paths are the stable identifier. `branch=main` because every scheduled run is on main.
+      - name: Pull run history for both pipelines
+        run: |
+          for wf in collect assemble; do
+            gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${wf}.yml/runs?branch=main&per_page=20" \
+              --jq '[.workflow_runs[] | {status, conclusion, created_at, updated_at, html_url, event}]' \
+              > "${RUNNER_TEMP}/${wf}-runs.json"
+            echo "${wf}: $(python -c "import json,sys;print(len(json.load(open(sys.argv[1]))))" "${RUNNER_TEMP}/${wf}-runs.json") run(s)"
+          done
+
+      # Sends the page itself and exits 0 when it finds an alarm: the probe worked. Letting it exit
+      # non-zero would trip the dead-man below and page twice for one incident. The job goes red
+      # only when the watchdog itself breaks.
+      - name: Probe — run history and advancing data
+        run: |
+          python -m pipeline.watchdog \
+            --collect-runs "${RUNNER_TEMP}/collect-runs.json" \
+            --assemble-runs "${RUNNER_TEMP}/assemble-runs.json"
+
+      # Art. XVI, applied to this workflow too: covers an import-time death, a gh api outage, or a
+      # bad checkout. Distinct title from the probe's own page so the two are never confused.
+      - name: Dead-man — the watchdog itself failed
+        if: failure()
+        run: |
+          curl -fsS -m 10 \
+            -H "Title: OnScript WATCHDOG ITSELF FAILED" \
+            -H "Priority: high" -H "Tags: rotating_light" \
+            -d "The liveness probe could not complete, so the pipeline is currently UNWATCHED. ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            "https://ntfy.sh/${NTFY_TOPIC}" || echo "ntfy unreachable (topic unset or network)"
