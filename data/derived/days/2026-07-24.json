@@ -784,5 +784,1157 @@
       "index": 0.8358
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 1,
+      "day": "2026-07-24",
+      "party": "D",
+      "composite": "Across our 91 statements today, we register two shared threads rather than one dominant message. Three of us reference \"companion legislation in the house of representatives,\" touching taxes and debt matters alongside other business. Separately, three of us cite \"member of the house natural resources committee jared,\" a marker of committee-specific coordination. Clinically, the most synchronized phrase in the record today is letter is available, appearing among 8 of us, first recorded in our corpus from Thom Tillis (R-NC). Beyond these threads, our statements today do not converge further.",
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-07-24-D-00",
+            "2026-07-24-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-07-24-D-00",
+            "2026-07-24-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-07-24-D-00",
+            "2026-07-24-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [
+            "2026-07-24-D-00",
+            "2026-07-24-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 4,
+          "talking_points": [
+            "2026-07-24-D-00",
+            "2026-07-24-D-01"
+          ]
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "party": "D",
+        "day": "2026-07-24",
+        "statements": 91,
+        "talking_points": [
+          {
+            "label": "the house of representatives",
+            "members": 3,
+            "quote": "companion legislation in the house of representatives",
+            "topics": [
+              "other",
+              "taxes_debt"
+            ]
+          },
+          {
+            "label": "member of the house",
+            "members": 3,
+            "quote": "member of the house natural resources committee jared",
+            "topics": [
+              "other"
+            ]
+          }
+        ],
+        "top_phrase": {
+          "text": "letter is available",
+          "members": 8,
+          "first_sayer": "Thom Tillis",
+          "first_sayer_party": "R",
+          "first_sayer_state": "NC"
+        },
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 1250,
+        "tokens_out": 175,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "day": "2026-07-24",
+      "party": "R",
+      "composite": "Across 67 statements today, our dominant message centers on working families tax cuts, the day's most synchronized phrase, shared by 9 of us. That phrase was first recorded in our corpus from Adam Smith (D-WA). Alongside it, a smaller group of 3 speaks of a \"coalition of colleagues in sending a letter to environmental\" partners. Beyond these two threads, we do not report additional shared messages for today.",
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-07-24-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-07-24-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-07-24-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [
+            "2026-07-24-R-00"
+          ]
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "party": "R",
+        "day": "2026-07-24",
+        "statements": 67,
+        "talking_points": [
+          {
+            "label": "in sending a letter",
+            "members": 3,
+            "quote": "coalition of colleagues in sending a letter to environmental",
+            "topics": [
+              "other"
+            ]
+          }
+        ],
+        "top_phrase": {
+          "text": "working families tax cuts",
+          "members": 9,
+          "first_sayer": "Adam Smith",
+          "first_sayer_party": "D",
+          "first_sayer_state": "WA"
+        },
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 1156,
+        "tokens_out": 140,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-07-24-D-00",
+        "party": "D",
+        "day": "2026-07-24",
+        "label": "the house of representatives",
+        "member_count": 3,
+        "statements": [
+          "sha256:2160bcd25442f623386a5f31fc02cf9cea07724cb8402017998a537df44e39e2",
+          "sha256:c8983c137686de4b00cddfc153b507111833d006cb8508a4cef997f35e075560",
+          "sha256:cba4752da109e8af6dd57c3c616ce4c97c97f8019cb677b7d26fd5b4ff630352"
+        ],
+        "fragments": [
+          {
+            "text": "companion legislation in the house of representatives",
+            "statement": "sha256:2160bcd25442f623386a5f31fc02cf9cea07724cb8402017998a537df44e39e2"
+          },
+          {
+            "text": "the house of representatives passed the stop secret",
+            "statement": "sha256:c8983c137686de4b00cddfc153b507111833d006cb8508a4cef997f35e075560"
+          },
+          {
+            "text": "companion legislation was introduced in the house of representatives",
+            "statement": "sha256:cba4752da109e8af6dd57c3c616ce4c97c97f8019cb677b7d26fd5b4ff630352"
+          }
+        ],
+        "topics": [
+          "other",
+          "taxes_debt"
+        ],
+        "leadership_first": false,
+        "citations": [
+          {
+            "member": "Cory A. Booker",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-07-24",
+            "url": "https://www.booker.senate.gov/news/press/booker-kim-introduce-legislation-to-rename-sussex-county-va-clinic-after-new-jersey-veteran-tony-gallopo",
+            "quote": "companion legislation in the house of representatives"
+          },
+          {
+            "member": "Maggie Goodlander",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-07-24",
+            "url": "https://goodlander.house.gov/media/press-releases/goodlander-backed-bipartisan-bill-to-crack-down-on-corruption-and-expose-billions-in-secret-federal-spending-passes-the-house/",
+            "quote": "the house of representatives passed the stop secret"
+          },
+          {
+            "member": "Mark R. Warner",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-07-24",
+            "url": "https://www.warner.senate.gov/newsroom/press-releases/warner-blackburn-introduce-legislation-to-strengthen-cybersecurity-in-k-12-schools/",
+            "quote": "companion legislation was introduced in the house of representatives"
+          }
+        ]
+      },
+      {
+        "id": "2026-07-24-D-01",
+        "party": "D",
+        "day": "2026-07-24",
+        "label": "member of the house",
+        "member_count": 3,
+        "statements": [
+          "sha256:3a2eeeba3ec2cae6b404722b58e8325d1e9449bffc51a5c726147b02d1e0b221",
+          "sha256:7f59bc1dd4dcd4055ac75b838ce135ffe2a159805548d7147c6804520dc7a991",
+          "sha256:d2fc542389d99835a8f30ebe269667902d5a2bf740249f7a5e4cb3c41ddc57df"
+        ],
+        "fragments": [
+          {
+            "text": "member of the house oversight committee and former",
+            "statement": "sha256:7f59bc1dd4dcd4055ac75b838ce135ffe2a159805548d7147c6804520dc7a991"
+          },
+          {
+            "text": "member of the house natural resources committee jared",
+            "statement": "sha256:d2fc542389d99835a8f30ebe269667902d5a2bf740249f7a5e4cb3c41ddc57df"
+          },
+          {
+            "text": "a member of the house ways and means committee",
+            "statement": "sha256:3a2eeeba3ec2cae6b404722b58e8325d1e9449bffc51a5c726147b02d1e0b221"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "citations": [
+          {
+            "member": "Bradley Scott Schneider",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-07-24",
+            "url": "https://schneider.house.gov/media/press-releases/schneider-sewell-ocasio-cortez-lead-52-democrats-urging-secretary-kennedy-and",
+            "quote": "a member of the house ways and means committee"
+          },
+          {
+            "member": "Dave Min",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-07-24",
+            "url": "https://min.house.gov/media/press-releases/icymi-rep-min-cnn-trumps-epstein-elite-get-one-standard-justice-while-everyone",
+            "quote": "member of the house oversight committee and former"
+          },
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-07-24",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padilla-demands-investigation-into-trumps-abuse-of-emergency-powers-to-support-fossil-fuel-energy/",
+            "quote": "member of the house natural resources committee jared"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-07-24-R-00",
+        "party": "R",
+        "day": "2026-07-24",
+        "label": "in sending a letter",
+        "member_count": 3,
+        "statements": [
+          "sha256:2c8ff819fca0f2fee03974719a309e88517ee65c6718c753190508eda32f2a5f",
+          "sha256:8feda405f88fd0425caf8803b49532783ade410e6c7a30d0c60f0108d0367fcc",
+          "sha256:c0444ad24397f6fa34fcee58840ba8884c1a76e050d67d626f943a16a9ce798c"
+        ],
+        "fragments": [
+          {
+            "text": "and colleagues in sending a letter to secretary of state marco",
+            "statement": "sha256:8feda405f88fd0425caf8803b49532783ade410e6c7a30d0c60f0108d0367fcc"
+          },
+          {
+            "text": "coalition of colleagues in sending a letter to environmental",
+            "statement": "sha256:2c8ff819fca0f2fee03974719a309e88517ee65c6718c753190508eda32f2a5f"
+          },
+          {
+            "text": "house republican colleagues in sending a letter to governor mikie",
+            "statement": "sha256:c0444ad24397f6fa34fcee58840ba8884c1a76e050d67d626f943a16a9ce798c"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "citations": [
+          {
+            "member": "Michelle Fischbach",
+            "party": "R",
+            "state": "MN",
+            "date": "2026-07-24",
+            "url": "https://fischbach.house.gov/2026/7/rep-fischbach-leads-letter-urging-epa-to-preserve-access-to-critical-crop-protection-tool",
+            "quote": "coalition of colleagues in sending a letter to environmental"
+          },
+          {
+            "member": "Jim Banks",
+            "party": "R",
+            "state": "IN",
+            "date": "2026-07-24",
+            "url": "https://www.banks.senate.gov/news/press-releases/sens-banks-blackburn-lead-colleagues-urging-review-of-ccp-linked-educational-partnerships/",
+            "quote": "and colleagues in sending a letter to secretary of state marco"
+          },
+          {
+            "member": "Jefferson Van Drew",
+            "party": "R",
+            "state": "NJ",
+            "date": "2026-07-24",
+            "url": "https://vandrew.house.gov/news/documentsingle.aspx?DocumentID=2076",
+            "quote": "house republican colleagues in sending a letter to governor mikie"
+          }
+        ]
+      }
+    ]
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "families and the american people",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      },
+      {
+        "label": "calling for stronger accountability measures",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": [
+      {
+        "label": "the working families tax cuts",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "letter is available",
+        "slug": "87de773e9f6c7eb0",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 1,
+          "I": 0
+        },
+        "velocity": 2.15,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "T000476",
+          "statement": "sha256:9bc394ba6e110d27a1d28799ac22e4861a66c259b37384bbd3c7efed91102c84",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.957,
+        "series": [
+          4,
+          2,
+          2,
+          4,
+          3,
+          10,
+          2,
+          6,
+          2,
+          4,
+          6,
+          3,
+          2,
+          8
+        ]
+      },
+      {
+        "ngram": "text of the bill",
+        "slug": "8bd7df08e3dcea59",
+        "n": 4,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 2,
+          "I": 0
+        },
+        "velocity": 1.69,
+        "first_seen": {
+          "date": "2025-01-05",
+          "bioguide": "C001069",
+          "statement": "sha256:d3b13fbafade11b18cd684ddba8d10d51e5f3cbc75e801e4b487649638daad92",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.97,
+        "series": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          5,
+          5,
+          7,
+          4,
+          2,
+          4,
+          14,
+          9,
+          7
+        ]
+      },
+      {
+        "ngram": "secretary robert f",
+        "slug": "2e94dd248209d376",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "velocity": 3.36,
+        "first_seen": {
+          "date": "2025-02-12",
+          "bioguide": "S001194",
+          "statement": "sha256:abefbda6ea9c350618b4a2159a9c580a816630587a44c9a2e6240c96b0c472d7",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.987,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3,
+          4,
+          3,
+          2,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "text of the letter is available",
+        "slug": "f8a37997a6fd8531",
+        "n": 6,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "K000400",
+          "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+          "tie": [
+            "L000397",
+            "L000582",
+            "R000620",
+            "T000476"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.97,
+        "series": [
+          4,
+          4,
+          2,
+          3,
+          2,
+          3,
+          1,
+          6,
+          1,
+          2,
+          2,
+          4,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "colleagues in introducing",
+        "slug": "f364f2306baa63dd",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "H001067",
+          "statement": "sha256:3c9d61598723221c9c104b9613b88045a917ea01188c0e5a159c07d0fee350bf",
+          "tie": [
+            "S001190",
+            "T000478"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.987,
+        "series": [
+          4,
+          2,
+          2,
+          1,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          1,
+          5,
+          6
+        ]
+      },
+      {
+        "ngram": "a member of the house",
+        "slug": "dd2a10c76cb00e90",
+        "n": 5,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "velocity": 1.79,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001298",
+          "statement": "sha256:e694eca2259e6a7e0c50193685437a0f6d1d10d785a19bbedd516ba66facfd82",
+          "tie": [
+            "B001318",
+            "C001061",
+            "G000592",
+            "M001194",
+            "M001196",
+            "N000189",
+            "S001159",
+            "V000136",
+            "W000798",
+            "W000830"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.979,
+        "series": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          8,
+          6,
+          3,
+          2,
+          1,
+          3,
+          8,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "expand access to",
+        "slug": "0c3cd1524acb667f",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "velocity": 1.95,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [
+            "D000622"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.962,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          3,
+          2,
+          5,
+          3,
+          4,
+          2,
+          4,
+          7,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "communities across the country",
+        "slug": "743e783403b630d9",
+        "n": 4,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "velocity": 1.52,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000621",
+          "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+          "tie": [
+            "G000386"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.979,
+        "series": [
+          2,
+          3,
+          5,
+          2,
+          1,
+          2,
+          4,
+          2,
+          4,
+          5,
+          6,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "richard blumenthal d-conn",
+        "slug": "5c8d18f6cc88bbb9",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "velocity": 1.89,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "W000817",
+          "statement": "sha256:b9a986f94d6d9078eeab8818ca9635c8e70bc55c3529963c1a7a549ceadcfbe0",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.976,
+        "series": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          3,
+          4,
+          3,
+          3,
+          3,
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "velocity": 1.59,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.973,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          3,
+          5,
+          3,
+          1,
+          3,
+          12,
+          6,
+          5
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "working families tax cuts",
+        "slug": "e7e542f73cc44d69",
+        "n": 4,
+        "day_peak": 9,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 9,
+          "I": 0
+        },
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-02-25",
+          "bioguide": "S000510",
+          "statement": "sha256:1924d9cd4798fa382f79fd050f710f8df19f5b6f0668633d0e8d0442b019be65",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.979,
+        "series": [
+          4,
+          5,
+          4,
+          1,
+          1,
+          2,
+          2,
+          1,
+          3,
+          3,
+          3,
+          3,
+          2,
+          9
+        ]
+      },
+      {
+        "ngram": "the working families",
+        "slug": "7d3a2a07d45e0be2",
+        "n": 3,
+        "day_peak": 9,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 9,
+          "I": 0
+        },
+        "velocity": 3.82,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001136",
+          "statement": "sha256:24188353343d7f7b13581187eae846eb39d210cc2020ab3f6a5c32d08b4ab6e0",
+          "tie": [
+            "M001143",
+            "M001237"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.976,
+        "series": [
+          4,
+          5,
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          3,
+          3,
+          3,
+          2,
+          2,
+          9
+        ]
+      },
+      {
+        "ngram": "billions of dollars",
+        "slug": "ef73ccf05a80670c",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 6,
+          "I": 0
+        },
+        "velocity": 1.25,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.965,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          11,
+          10,
+          5,
+          3,
+          1,
+          4,
+          9,
+          11,
+          7,
+          6
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 5,
+          "I": 0
+        },
+        "velocity": 1.3,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.97,
+        "series": [
+          1,
+          2,
+          2,
+          3,
+          1,
+          7,
+          3,
+          2,
+          2,
+          5,
+          7,
+          11,
+          6,
+          5
+        ]
+      },
+      {
+        "ngram": "working families tax cuts act",
+        "slug": "4db2232cee0d5c50",
+        "n": 5,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-10-07",
+          "bioguide": "E000294",
+          "statement": "sha256:237e3dfaa2232254641262e0b7a3f4f7fb04cdba7f12f8c88ff749ecca3d9757",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.994,
+        "series": [
+          3,
+          3,
+          1,
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "i’m grateful to",
+        "slug": "d207953af3ede662",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "velocity": 1.7,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001325",
+            "M001143"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.986,
+        "series": [
+          2,
+          2,
+          1,
+          1,
+          2,
+          2,
+          4,
+          4,
+          4,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "in recent years",
+        "slug": "5d740866c5ff98f3",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "V000081",
+          "statement": "sha256:338bfc0f247fbc048c3ed21a149918fad124983ee03ab0881ebf997305318ab4",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.981,
+        "series": [
+          2,
+          2,
+          1,
+          2,
+          2,
+          3,
+          2,
+          1,
+          1,
+          3,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "the chinese communist",
+        "slug": "591d7826c5b0c16b",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "velocity": 1.51,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "C001098",
+            "H001099",
+            "K000391",
+            "M001194",
+            "M001196",
+            "N000189",
+            "W000795"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.975,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          8,
+          2,
+          2,
+          2,
+          1,
+          9,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "proud to join",
+        "slug": "0eb1e7285c7e5088",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 4,
+          "I": 0
+        },
+        "velocity": 1.06,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+          "tie": [
+            "L000593",
+            "R000610"
+          ],
+          "precision": "day"
+        },
+        "df_weight": 0.969,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          3,
+          3,
+          3,
+          5,
+          7,
+          3,
+          6,
+          8,
+          8,
+          4
+        ]
+      },
+      {
+        "ngram": "and small businesses",
+        "slug": "6d1c17b0422a77da",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "velocity": 1.7,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "W000779",
+          "statement": "sha256:a856a52c3c400fccea0dc24919a58b18ab99d3fe707b4fbc9df678a48cfa1b3d",
+          "tie": [],
+          "precision": "day"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          4,
+          3,
+          2,
+          1,
+          1,
+          1,
+          6,
+          4,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "duets": []
 }
