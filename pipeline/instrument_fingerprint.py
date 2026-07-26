@@ -43,6 +43,7 @@ SCHEMA_VERSIONS = {
 METHOD_VERSIONS = {
     "document_families": "document-families-v1",
     "gold_set": "gold-set-harness-v1",
+    "participation": "participation-measures-v1",
     "phrase_statistics": "phrase-statistics-v2",
     "status_exports": "status-exports-v1",
 }

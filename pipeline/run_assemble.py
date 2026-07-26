@@ -21,7 +21,7 @@ except Exception:
 
 from pipeline import (boilerplate, brief, build, cluster, config, contracts, corrections, distill,
                       duet, eligibility, extract, instrument_fingerprint, llm, nomenclature, ops,
-                      privacy, readiness, roster, util, verify)  # noqa: E402
+                      participation, privacy, readiness, roster, util, verify)  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -348,6 +348,10 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     day_json["schema_version"] = contracts.SCHEMA_VERSION
     day_json["daily_lines"] = {p: day_payload[p]["daily_line"] for p in config.COMPOSITE_PARTIES}
     day_json["talking_points"] = {p: day_payload[p]["talking_points"] for p in config.COMPOSITE_PARTIES}
+    day_json["participation"] = {
+        p: participation.build(p, day, focus, day_payload[p]["talking_points"])
+        for p in config.COMPOSITE_PARTIES
+    }
     # docs/19 §4b — the reason-coded rejected candidates for THIS day (the forward dark-shelf view of
     # what the conservative admission gate + quorum dropped, so false negatives are auditable before
     # anyone tunes the gate). Additive; never rendered; carries no private-name label (Art. XIII guard

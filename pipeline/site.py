@@ -1478,6 +1478,41 @@ def party_columns_table(day_data, slugs_with_pages, depth, caucus) -> str:
             f'caucus denominator.</p><div class="pcols">{"".join(cols)}</div>')
 
 
+def participation_panel(day_data: dict) -> str:
+    """Render the three unit-safe participation measures when a day carries them."""
+    source = day_data.get("participation") or {}
+    columns = []
+    for party in config.COMPOSITE_PARTIES:
+        party_row = source.get(party) or {}
+        measures = party_row.get("measures") or {}
+        rows = []
+        for key in ("office_participation", "publication_participation", "family_participation"):
+            measure = measures.get(key) or {}
+            required = ("label", "numerator", "numerator_unit", "denominator",
+                        "denominator_unit", "window", "method_version")
+            if not all(field in measure for field in required):
+                continue
+            rows.append(
+                f'<li><strong>{esc(measure["label"])}</strong>: '
+                f'{esc(measure["numerator"])} {esc(measure["numerator_unit"])} of '
+                f'{esc(measure["denominator"])} {esc(measure["denominator_unit"])}. '
+                f'<span class="faint">Window: {esc(measure["window"])}. '
+                f'Method: {esc(measure["method_version"])}.</span></li>'
+            )
+        if rows:
+            columns.append(
+                f'<div class="pcol"><h3><span class="pill {party}">{party}</span></h3>'
+                f'<ul class="pcol-list">{"".join(rows)}</ul></div>'
+            )
+    if not columns:
+        return ""
+    return (
+        '<section class="participation"><h2>Participation in eligible message claims</h2>'
+        '<p class="subhead">Each measure keeps one count unit from numerator through denominator.</p>'
+        f'<div class="pcols">{"".join(columns)}</div></section>'
+    )
+
+
 def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_day=None, is_today=False):
     symmetry = _load_json(DERIVED / "symmetry" / f"{day}.json")
     root = "../" * depth
@@ -1518,20 +1553,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
             f'threshold changed and no finding was produced.</small></p>'
         )
 
-    # discipline (on-script index) if present
-    disc = day_data.get("discipline")
-    if isinstance(disc, dict):
-        cells = []
-        for p in ("D", "R"):
-            d = disc.get(p)
-            if isinstance(d, dict) and d.get("index") is not None:
-                cells.append(
-                    f'<span class="pill {p}">{p}</span> on-script index '
-                    f'<strong>{esc(d.get("index"))}</strong> '
-                    f'<span class="faint">({esc(d.get("on_message_units"))}/{esc(d.get("statements"))} statements)</span>'
-                )
-        if cells:
-            parts.append('<p class="muted" style="margin-top:14px">' + " &nbsp;·&nbsp; ".join(cells) + "</p>")
+    parts.append(participation_panel(day_data))
 
     # links to audit + methodology
     audit_link = (
