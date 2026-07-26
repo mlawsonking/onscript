@@ -45,6 +45,7 @@ METHOD_VERSIONS = {
     "gold_set": "gold-set-harness-v1",
     "participation": "participation-measures-v1",
     "phrase_statistics": "phrase-statistics-v2",
+    "surface_eligibility": "surface-eligibility-v2",
     "status_exports": "status-exports-v1",
 }
 

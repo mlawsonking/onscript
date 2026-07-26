@@ -88,6 +88,7 @@ class PhraseEngine:
     def __init__(self) -> None:
         self.sync_ngrams: set[str] = set()
         self.occ: dict[str, dict[str, dict[str, set]]] = {}
+        self.family_occ: dict[str, dict[str, dict[str, set]]] = {}
         self.ngram_n: dict[str, int] = {}
         self.df: dict[tuple[int, str], dict[str, int]] = defaultdict(lambda: defaultdict(int))
         self.docs_in_stratum: dict[tuple[int, str], int] = defaultdict(int)
@@ -167,6 +168,12 @@ class PhraseEngine:
                 self.ngram_n[ngram] = n
                 self.df[stratum][ngram] += 1  # once per doc (_doc_ngrams is a set)
                 self.occ.setdefault(ngram, {}).setdefault(day, {}).setdefault(party, set()).add(unit)
+                family = ((s.get("document_family") or {}).get("family_id")
+                          or s.get("joint_group") or s.get("id"))
+                if family:
+                    self.family_occ.setdefault(ngram, {}).setdefault(day, {}).setdefault(
+                        party, set()
+                    ).add(family)
                 prev = self.first.get(ngram)
                 cand = (day, bio, s["id"], s.get("precision", "day"))
                 if prev is None or day < prev[0]:
@@ -204,6 +211,9 @@ class PhraseEngine:
                 for party, units in by_party.items():
                     entry[party] = len(units)
                     entry[f"members_{party}"] = sorted(u for u in units if not str(u).startswith(("joint:", "njoint:")))
+                    families = self.family_occ.get(ngram, {}).get(day, {}).get(party, set())
+                    entry[f"families_{party}"] = len(families)
+                    entry[f"family_ids_{party}"] = sorted(families)
                     peak = max(peak, len(units))
                     total += len(units)
                     units_seen |= units

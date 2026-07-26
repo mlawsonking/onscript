@@ -6,9 +6,11 @@ import re
 from . import boilerplate, nomenclature, privacy, util
 
 
-CLASSIFIER = "surface-eligibility-v1"
-SURFACE_CLASSES = ("message", "nomenclature", "procedural", "biographical", "private")
-MESSAGE_SURFACES = frozenset({"daily_line", "social", "alert"})
+CLASSIFIER = "surface-eligibility-v2"
+SURFACE_CLASSES = (
+    "message", "unknown", "nomenclature", "procedural", "biographical", "private",
+)
+MESSAGE_SURFACES = frozenset({"daily_line", "ranking", "social", "alert", "award"})
 _PROCEDURAL = re.compile(
     r"\b(?:committee of the whole|yield back|recognized for|roll call vote|"
     r"introduced legislation|cosponsored legislation|joined a letter|letter to secretary|"
@@ -20,10 +22,32 @@ _BIOGRAPHICAL = re.compile(
     r"married to|his children|her children|biography)\b",
     re.IGNORECASE,
 )
+_TITLE_REFERENCE = re.compile(
+    r"^(?:a |the )?(?:house of representatives|member of the house)$|"
+    r"\b(?:in )?(?:sending|sent|send|writing|wrote|signed|signing) (?:a |the )?letter\b|"
+    r"\b(?:text of the )?letter is available\b",
+    re.IGNORECASE,
+)
+
+
+def _family_count(claim: dict) -> int | None:
+    """Return distinct-family evidence, preserving legacy fixtures that predate the field."""
+    counts = claim.get("counts") or {}
+    if isinstance(counts.get("families"), int):
+        return counts["families"]
+    if isinstance(claim.get("family_count"), int):
+        return claim["family_count"]
+    if isinstance(claim.get("family_ids"), list):
+        return len(set(claim["family_ids"]))
+    statements = claim.get("statements")
+    if isinstance(statements, list):
+        return len(set(statements))
+    return None
 
 
 def classify_phrase(phrase: str, *, day: str | None = None, congress: int | None = None,
-                    surfaces: list[str] | None = None) -> dict:
+                    surfaces: list[str] | None = None,
+                    family_count: int | None = None) -> dict:
     """Return one ruled surface class with deterministic provenance."""
     value = phrase or ""
     if privacy.is_suppressed(value) or any(privacy.is_suppressed(surface) for surface in (surfaces or [])):
@@ -33,12 +57,18 @@ def classify_phrase(phrase: str, *, day: str | None = None, congress: int | None
         verdict = nomenclature.is_nomenclature(value, era) if era else None
         if verdict:
             cls, rule = "nomenclature", f'{verdict.get("lane")}:{verdict.get("cite")}'
+        elif _TITLE_REFERENCE.search(value):
+            cls, rule = "unknown", "title-reference-only"
         elif boilerplate.is_scaffold_key(value) or _PROCEDURAL.search(value):
             cls, rule = "procedural", "procedural-formula"
         elif _BIOGRAPHICAL.search(value):
             cls, rule = "biographical", "biographical-formula"
+        elif boilerplate.content_word_count(value) < boilerplate.MIN_CONTENT_WORDS:
+            cls, rule = "unknown", "no-substantive-content"
+        elif family_count is not None and family_count < 3:
+            cls, rule = "unknown", "family-quorum-unmet"
         else:
-            cls, rule = "message", "message-default"
+            cls, rule = "message", "affirmative-deterministic-floor"
     return {
         "surface_class": cls,
         "surface_eligible": cls == "message",
@@ -58,7 +88,8 @@ def classify_claim(claim: dict, *, day: str | None = None) -> dict:
         out.get("display_quote") or "",
     ]
     classification = classify_phrase(
-        out.get("label") or "", day=day or out.get("day"), surfaces=surfaces
+        out.get("label") or "", day=day or out.get("day"), surfaces=surfaces,
+        family_count=_family_count(out),
     )
     out.update(classification)
     topic_source = out.get("topic_classifier") or {

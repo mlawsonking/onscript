@@ -29,7 +29,7 @@ from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import (boilerplate, build, config, corrections, distill, nomenclature, privacy,
+from pipeline import (boilerplate, build, config, corrections, distill, eligibility, nomenclature, privacy,
                       public_strings, status_exports, surges, util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
@@ -725,6 +725,12 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     tps_all = (day_data.get("talking_points") or {}).get(party, []) \
         if isinstance(day_data.get("talking_points"), dict) else []
     tps, tps_dropped = privacy.filter_talking_points(tps_all)
+    class_count = len(tps)
+    tps = [
+        row for row in tps
+        if eligibility.classify_claim(row, day=day_data.get("day"))["surface_class"] != "unknown"
+    ]
+    class_dropped = len(tps) < class_count
     # docs/19 §4b — the render-time ADMISSION floor rides HERE (alongside privacy) so the composite is
     # re-derived from the SAME surviving set: drop connective/attribution scaffold talking points, so an
     # already-published day's PROSE never narrates a phrase whose receipt was removed (the 07-17 D line
@@ -745,8 +751,32 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
         if len(_s_kept) < len(_s_all):
             stats = {**stats, "talking_points": _s_kept}
             adm_dropped = True
+        stats = dict(stats)
+        for key in ("talking_points", "selected_claims"):
+            if key not in stats:
+                continue
+            source = [row for row in (stats.get(key) or []) if isinstance(row, dict)]
+            kept = [
+                row for row in source
+                if eligibility.classify_claim(row, day=day_data.get("day"))["surface_class"] != "unknown"
+            ]
+            if len(kept) < len(source):
+                class_dropped = True
+                stats[key] = kept
+        top = stats.get("top_phrase")
+        if isinstance(top, dict) and top.get("text"):
+            classified_top = eligibility.classify_phrase(
+                top["text"], day=day_data.get("day"), family_count=top.get("family_count"),
+            )
+            if classified_top["surface_class"] == "unknown":
+                stats["top_phrase"] = None
+                class_dropped = True
+        if class_dropped:
+            stats["eligibility_withheld_count"] = max(
+                1, int(stats.get("eligibility_withheld_count") or 0)
+            )
     priv_dropped = tps_dropped or stats_dropped or privacy.is_suppressed(composite)
-    if not (priv_dropped or adm_dropped):
+    if not (priv_dropped or adm_dropped or class_dropped):
         return line, tps, "clean"
 
     # Something in this line must not publish — it names a private individual (privacy) and/or a
@@ -758,7 +788,8 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
                       else stats.get("talking_points") or [])
     has_quote = any((t or {}).get("quote") for t in selected_stats)
     top = stats.get("top_phrase")
-    if not has_quote and not (isinstance(top, dict) and top.get("text")):
+    if (not has_quote and not (isinstance(top, dict) and top.get("text"))
+            and (priv_dropped or adm_dropped)):
         # Everything measurable was suppressed. Withholding is RIGHT here: _compose_dry would emit
         # "No phrase was shared by 3 or more of us today" — a fabricated silence FINDING manufactured
         # by our own privacy fix (Art. II). allow_absence_claim=False stops that line; withholding
@@ -766,7 +797,9 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
         return None, tps, "withheld"
 
     text = distill._quiet_dry(stats) if line.get("quiet") \
-        else distill._compose_dry(stats, allow_absence_claim=False)
+        else distill._compose_dry(
+            stats, allow_absence_claim=class_dropped and not (priv_dropped or adm_dropped)
+        )
 
     # The STORED verifier block describes the SONNET text; rendering "verifier: passed" over a
     # swapped composite would attest text that is no longer published. Re-verify what we publish.
@@ -782,17 +815,22 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     out["verifier"] = {"checked": True, "passed": True, "reasons": []}
     out["_privacy_corrected"] = priv_dropped
     out["_admission_corrected"] = adm_dropped
+    out["_eligibility_corrected"] = class_dropped
     # A privacy drop is the stronger disclosure and owns the banner; an ADMISSION-only correction is a
     # distinct reason ("readmitted") so the banner never claims a private name was removed when it was a
     # scaffold key. Both relabel generator="deterministic", so the honest "deterministic template" note
     # fires either way.
-    return out, tps, ("recomposed" if priv_dropped else "readmitted")
+    return out, tps, (
+        "recomposed" if priv_dropped else "readmitted" if adm_dropped else "reclassified"
+    )
 
 
 def privacy_states(day_data) -> dict:
-    """{party: "clean"|"recomposed"|"withheld"|"readmitted"} for the day — shared by the banner and the
-    panels so a corrected composite can never render under an uncorrected banner. "recomposed"/"withheld"
-    are Art. XIII privacy; "readmitted" is a docs/19 §4b scaffold-key correction (deterministic re-compose)."""
+    """Return each party's clean, recomposed, withheld, readmitted, or reclassified state.
+
+    The value is shared by the banner and panels. A corrected composite cannot render under an
+    uncorrected banner. "recomposed" and "withheld" are Article XIII privacy states. "readmitted"
+    is a scaffold-key correction. "reclassified" applies the current fail-closed classifier."""
     return {p: privacy_correct_line(p, day_data)[2] for p in ("D", "R")}
 
 
@@ -842,7 +880,8 @@ def banner_html(day_data, symmetry, depth: int = 1) -> str:
     corrected = [p for p, s in pstates.items() if s == "recomposed"]
     withheld = [p for p, s in pstates.items() if s == "withheld"]
     readmitted = [p for p, s in pstates.items() if s == "readmitted"]   # docs/19 §4b scaffold correction
-    if corrected or withheld or readmitted:
+    reclassified = [p for p, s in pstates.items() if s == "reclassified"]
+    if corrected or withheld or readmitted or reclassified:
         bits = []
         if corrected:
             bits.append(
@@ -855,6 +894,11 @@ def banner_html(day_data, symmetry, depth: int = 1) -> str:
                 f"{' and '.join(PARTY_NAME[p] for p in sorted(readmitted))}' Daily Line was "
                 f"<strong>re-composed by the deterministic composer</strong> because a talking point was "
                 f"bound by connective or attribution phrasing rather than a shared message")
+        if reclassified:
+            bits.append(
+                f"{' and '.join(PARTY_NAME[p] for p in sorted(reclassified))}' Daily Line was "
+                f"<strong>re-composed by the deterministic composer</strong> because its measured "
+                f"phrases did not meet the current message-eligibility standard")
         if withheld:
             bits.append(
                 f"{' and '.join(PARTY_NAME[p] for p in sorted(withheld))}' Daily Line is "
@@ -1169,6 +1213,9 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
             body_tail = ('<p class="nocite">This day&rsquo;s talking points were bound by connective or '
                          'attribution phrasing rather than a shared message, and have been removed '
                          '&mdash; nothing to cite here. See the corrections log.</p>')
+        elif pstate == "reclassified":
+            body_tail = ('<p class="nocite">No measured phrase met the current message-eligibility '
+                         'standard today &mdash; nothing to cite.</p>')
         elif pstate != "clean":     # privacy withheld / recomposed
             body_tail = ('<p class="nocite">Talking points for this day are withheld under the privacy '
                          'floor &mdash; nothing to cite here.</p>')
@@ -1228,6 +1275,13 @@ def sync_table(day_data, slugs_with_pages, depth: int) -> str:
     # Re-apply the CURRENT near-dup collapse at render time, so already-built (historical) day pages
     # reflect the latest merge rules without re-running the engine — the display-time refresh pattern.
     ts = build.collapse_and_rank(ts, k=20)
+    ts = [
+        row for row in ts
+        if eligibility.classify_phrase(
+            row.get("ngram") or "", day=day_data.get("day"),
+            family_count=row.get("family_count"),
+        )["surface_class"] != "unknown"
+    ]
     # docs/19 §2b — nomenclature display-time tag, DARK until FEATURES["nomenclature_tags"]. Render-time
     # only + flag-gated: with the flag OFF this is a no-op and the page is byte-identical (docs/19 §3.4
     # golden); with it ON, every historical page gains the tag with no ledger rebuild. Tag COPIES (never
@@ -1442,6 +1496,11 @@ def _party_column(party, rows, slugs_with_pages, depth, caucus_size) -> str:
     lis = []
     for r in rows:
         if not isinstance(r, dict):
+            continue
+        classified = eligibility.classify_phrase(
+            r.get("ngram") or "", family_count=(r.get("family_counts") or {}).get(party),
+        )
+        if classified["surface_class"] == "unknown":
             continue
         ngram, slug = r.get("ngram", ""), r.get("slug", "")
         cnt = (r.get("counts") or {}).get(party, 0)

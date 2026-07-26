@@ -172,16 +172,20 @@ def build_thread(day: str, party: str, day_json: dict) -> list[str]:
     dl = (day_json.get("daily_lines") or {}).get(party) or {}
     room = 300 - len("\n" + _POST_MARK)               # size posts so the per-post marker always fits
     posts = _split(dl.get("composite") or "", limit=room)
-    top = next((r for r in (day_json.get("top_synchronized") or []) if r.get("party") == party), None)
+    party_rows = [
+        row for row in (day_json.get("top_synchronized") or [])
+        if isinstance(row, dict) and row.get("party") == party
+    ]
+    top = next((
+        row for row in party_rows
+        if eligibility.eligible_for_surface(
+            eligibility.classify_phrase(
+                row.get("ngram") or "", day=day, family_count=row.get("family_count"),
+            ),
+            "social",
+        )
+    ), None)
     receipts = f"Receipts: {SITE}/day/{day}.html"
-    if top and top.get("ngram"):
-        classification = eligibility.classify_phrase(top["ngram"], day=day)
-        if classification["surface_class"] == "nomenclature":
-            receipts += (f'\nShared nomenclature: "{top.get("ngram")}" '
-                         '(official name, not a message finding).')
-            top = None
-        elif classification["surface_class"] != "message":
-            top = None
     if top and top.get("ngram"):
         # "in our corpus", always. First-appearance is measured against OUR record, which begins at
         # STAGE1_EPOCH — a phrase already in use before then dates to our first day, not to its own

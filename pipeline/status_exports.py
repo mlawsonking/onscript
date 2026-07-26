@@ -262,7 +262,9 @@ def watchlist_atom(days: list[tuple[str, dict]], terms: list[str], site_url: str
             phrase = row.get("ngram") or ""
             if not any(term in phrase.casefold() for term in wanted):
                 continue
-            classified = eligibility.classify_phrase(phrase, day=day)
+            classified = eligibility.classify_phrase(
+                phrase, day=day, family_count=row.get("family_count")
+            )
             if not eligibility.eligible_for_surface(classified, "alert"):
                 continue
             party = row.get("party")

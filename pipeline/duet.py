@@ -37,7 +37,7 @@ from __future__ import annotations
 
 import re
 
-from . import boilerplate, build, config, privacy, verify
+from . import boilerplate, build, config, eligibility, privacy, verify
 
 # The duet bar: BOTH parties must independently clear the SAME synchronization threshold that a
 # single-party phrase must clear to be called synchronized at all. Not a new knob (§13) — the
@@ -383,6 +383,13 @@ def candidate_rows(ledger: dict, day: str, k: int = 50) -> list[dict]:
         counts = {p: d.get(p, 0) for p in config.ALL_PARTIES}
         both = min(counts["D"], counts["R"])
         if both < DUET_MIN_MEMBERS:      # ONE bar, applied to BOTH parties
+            continue
+        if any(not eligibility.eligible_for_surface(
+            eligibility.classify_phrase(
+                ngram, day=day, family_count=d.get(f"families_{party}"),
+            ),
+            "ranking",
+        ) for party in config.COMPOSITE_PARTIES):
             continue
         rows.append({
             "ngram": ngram, "slug": build.phrase_slug(ngram), "n": e.get("n"),

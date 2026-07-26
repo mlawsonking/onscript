@@ -299,13 +299,24 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         published, dropped, rejected = _screen_talking_points(tps, stmt_by_id, rmap)
 
         # top synchronized phrase for the party that day (with first-sayer name)
-        top_rows = [r for r in build.top_synchronized(ledger, day, k=5) if r["party"] == party]
+        top_rows = [
+            r for r in build.top_synchronized(ledger, day, k=20)
+            if r["party"] == party and eligibility.eligible_for_surface(
+                eligibility.classify_phrase(
+                    r.get("ngram") or "", day=day, family_count=r.get("family_count"),
+                ),
+                "daily_line",
+            )
+        ]
         top_phrase = None
         if top_rows:
             r = top_rows[0]
             fsb = (r.get("first_seen") or {}).get("bioguide")
             fsm = rmap.get(fsb) or {}
-            top_phrase = {"text": r["ngram"], "members": r["day_peak"]}
+            top_phrase = {
+                "text": r["ngram"], "members": r["day_peak"],
+                "family_count": r.get("family_count"),
+            }
             # Expose a first-sayer ONLY when the roster fully resolves it (name + party + state).
             # first_seen is corpus-wide, so the bioguide is often a former member absent from the
             # current roster — in that case omit it entirely, so the voice has nothing to fabricate

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from . import boilerplate, config, privacy, util
+from . import boilerplate, config, eligibility, privacy, util
 
 
 def phrase_slug(ngram: str) -> str:
@@ -164,6 +164,8 @@ def top_synchronized(ledger: dict, day: str, k: int = 50) -> list[dict]:
             "ngram": ngram, "slug": phrase_slug(ngram), "n": e["n"],
             "day_peak": peak, "party": party,
             "counts": {p: d.get(p, 0) for p in config.ALL_PARTIES},
+            "family_counts": {p: d.get(f"families_{p}") for p in config.ALL_PARTIES},
+            "family_count": d.get(f"families_{party}"),
             "velocity": _velocity(e["daily"], day),
             "first_seen": e["first_seen"], "df_weight": e["df_weight"], "series": series,
             "_members": _members_on(e, day, party),
@@ -191,7 +193,14 @@ def top_synchronized_by_party(ledger: dict, day: str, k_per_party: int = 10) -> 
     allrows = top_synchronized(ledger, day, k=10_000)
     out: dict[str, list[dict]] = {}
     for p in config.COMPOSITE_PARTIES:
-        prows = [r for r in allrows if (r.get("counts") or {}).get(p, 0) >= config.SYNC_MIN_MEMBERS]
+        prows = [
+            r for r in allrows
+            if (r.get("counts") or {}).get(p, 0) >= config.SYNC_MIN_MEMBERS
+            and eligibility.classify_phrase(
+                r.get("ngram") or "", day=day,
+                family_count=(r.get("family_counts") or {}).get(p),
+            )["surface_class"] != "unknown"
+        ]
         prows.sort(key=lambda r: ((r.get("counts") or {}).get(p, 0),
                                   boilerplate.content_word_count(r.get("ngram", "")),
                                   r.get("df_weight", 0)), reverse=True)
@@ -426,6 +435,11 @@ def _the_unison(statements, ledger, *, window_days, min_active, top_n, members_s
                 a = len(active.get((day, p), ()))
                 n = len(offices)
                 if n < config.SYNC_MIN_MEMBERS or a < min_active:
+                    continue
+                classified = eligibility.classify_phrase(
+                    ngram, day=day, family_count=d.get(f"families_{p}"),
+                )
+                if not eligibility.eligible_for_surface(classified, "award"):
                     continue
                 sample = [{"bioguide": b, **info.get(b, {})} for b in sorted(offices)[:members_sample]]
                 by_party[p].append({

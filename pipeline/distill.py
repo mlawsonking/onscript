@@ -79,7 +79,9 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
     rendered_top = top_phrase
     top_classification = None
     if isinstance(top_phrase, dict) and top_phrase.get("text"):
-        top_classification = eligibility.classify_phrase(top_phrase["text"], day=day)
+        top_classification = eligibility.classify_phrase(
+            top_phrase["text"], day=day, family_count=top_phrase.get("family_count")
+        )
         if top_classification["surface_class"] == "nomenclature":
             shared_nomenclature.append({
                 "label": top_phrase["text"],
@@ -155,6 +157,7 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
                 for row in {row.get("label"): row for row in shared_nomenclature}.values()
             ],
             "surface_class_counts": surface_counts,
+            "eligibility_withheld_count": surface_counts.get("unknown", 0),
             "top_phrase_classification": top_classification,
             "claim_ids": [row["claim_id"] for row in selected_entries if row.get("claim_id")],
             "sync_min": config.SYNC_MIN_MEMBERS}  # the coordination threshold (for the no-coordination line)
@@ -193,8 +196,11 @@ def _compose_dry(stats: dict, allow_absence_claim: bool = True) -> str:
         # Honest measured ABSENCE: statements went out, but no phrase cleared the coordination bar.
         # This turns an empty column into a finding (the silence story), not a missing feature.
         # Gated: an absence produced by privacy suppression is not a measurement (see docstring).
-        parts.append(f"No phrase was shared by {stats.get('sync_min', config.SYNC_MIN_MEMBERS)} "
-                     f"or more of us today.")
+        if stats.get("eligibility_withheld_count"):
+            parts.append("No measured phrase met the message-eligibility standard today.")
+        else:
+            parts.append(f"No phrase was shared by {stats.get('sync_min', config.SYNC_MIN_MEMBERS)} "
+                         f"or more of us today.")
     if tp and tp.get("text"):
         # No quotation marks: the top synchronized phrase is a code-computed ledger n-gram, not a
         # verbatim member quote — render it as the measured phrase it is (§Session-5 HIGH-1 fix).
@@ -215,6 +221,8 @@ def _quiet_dry(stats: dict) -> str:
     if tp and tp.get("text"):
         # No quotation marks — a code-computed ledger phrase, not a verbatim quote (§Session-5 HIGH-1).
         parts.append(f'Even so, {tp["members"]} of us converged on the same phrase: {tp["text"]}.')
+    elif stats.get("eligibility_withheld_count"):
+        parts.append("No measured phrase met the message-eligibility standard today.")
     return " ".join(parts)
 
 
