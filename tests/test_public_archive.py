@@ -73,19 +73,18 @@ def test_complete_manifest_with_root_renders_as_authenticated():
     assert "PROVEN ROOT" in html and "PROVEN REPLY" in html
 
 
-def test_assemble_workflow_has_two_ordered_fresh_process_renders():
+def test_assemble_and_post_workflows_have_ordered_fresh_process_renders():
     workflow = WORKFLOW.read_text(encoding="utf-8")
+    posting = (WORKFLOW.parent / "post.yml").read_text(encoding="utf-8")
     render = "python pipeline/site.py"
     post = "python pipeline/post_bluesky.py"
-    commit = "git add data/derived site/public"
+    assemble_commit = "git add data/derived site/public"
+    post_commit = "git add -- data/derived/manifest/post-*.json site/public"
     persist = "gh release upload data-latest state.tar.gz"
     redact = "python -m pipeline.redact data/state data/reference"
 
-    assert workflow.count(render) == 2
-    first, second = [i for i in range(len(workflow)) if workflow.startswith(render, i)]
-    assert first < workflow.index(post) < second < workflow.index(commit)
+    assert workflow.count(render) == 1 and post not in workflow
+    assert workflow.index(render) < workflow.index(assemble_commit)
     assert workflow.index(redact) < workflow.index(persist)
-    assert "mktemp -d" in workflow
-    assert "POST_ARCHIVE_REFRESH_FAILED" in workflow
-    assert "cp -a site/public/." in workflow
-    assert "cp -a \"$snapshot/.\" site/public/" in workflow
+    assert posting.count(render) == 1
+    assert posting.index(post) < posting.index(render) < posting.index(post_commit)

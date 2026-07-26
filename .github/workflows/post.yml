@@ -1,0 +1,70 @@
+name: RUN C post
+
+# Release-gated delivery. This workflow activates only after Michael lands the W11 workflow set on
+# the default branch. It follows a successful RUN B and keeps posting credentials out of assembly.
+on:
+  workflow_run:
+    workflows: ["RUN B assemble"]
+    types: [completed]
+
+concurrency:
+  group: onscript-posting
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      PRIVACY_SALT: ${{ secrets.PRIVACY_SALT }}
+      BSKY_BLUE_HANDLE: ${{ secrets.BSKY_BLUE_HANDLE }}
+      BSKY_BLUE_PASSWORD: ${{ secrets.BSKY_BLUE_PASSWORD }}
+      BSKY_RED_HANDLE: ${{ secrets.BSKY_RED_HANDLE }}
+      BSKY_RED_PASSWORD: ${{ secrets.BSKY_RED_PASSWORD }}
+      POSTING_ENABLED: ${{ vars.POSTING_ENABLED }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12.10"
+
+      - name: Preflight required gates
+        run: |
+          missing=""
+          [ -n "$PRIVACY_SALT" ] || missing="$missing PRIVACY_SALT"
+          [ -n "$NTFY_TOPIC" ] || missing="$missing NTFY_TOPIC"
+          if [ -n "$missing" ]; then
+            echo "::error::missing required secret(s):$missing"
+            exit 1
+          fi
+
+      - name: Post both Daily Line threads
+        run: python pipeline/post_bluesky.py || echo "posting skipped or failed; manifest records the result"
+
+      - name: Refresh the signed post archive
+        run: python pipeline/site.py
+
+      - name: Commit post manifests and rendered archive
+        run: |
+          git config user.name "onscript-bot"
+          git config user.email "bot@onscript.news"
+          git add -- data/derived/manifest/post-*.json site/public
+          git commit -m "data: post $(date -u +%F)" || { echo "no post changes"; exit 0; }
+          git push origin main || { git pull --rebase --autostash origin main && git push origin main; }
+
+      - name: Dead-man notification
+        if: failure()
+        run: |
+          curl -fsS -m 10 \
+            -H "Title: OnScript RUN C post FAILED" \
+            -H "Priority: high" -H "Tags: rotating_light" \
+            -d "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            "https://ntfy.sh/${NTFY_TOPIC}" || echo "ntfy unreachable"

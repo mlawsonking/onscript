@@ -21,8 +21,10 @@ skipping:
   update the deterministic phrase ledger, submit/cache extraction work, redact the published view,
   and refresh `data-latest`.
 - **RUN B, assemble**, at 11:30Z and 21:30Z: select the oldest ready day, cluster and distill,
-  run the blocking verifier and symmetry audit, render the static site, post both party threads
-  atomically when enabled, persist state, and commit the derived/site output for Vercel.
+  run the blocking verifier and symmetry audit, render the static site, persist state, and commit
+  the derived/site output for Vercel.
+- **RUN C, post**, after a successful RUN B: post both party threads atomically when enabled,
+  refresh the signed post archive, and commit the posting manifests and rendered archive.
 
 The exact scheduler may start late. Health is read from manifests and advancing data, never from a
 green workflow badge alone. See `docs/07-OPERATIONS.md` for health thresholds and incident
@@ -36,7 +38,7 @@ playbooks.
 - `data/derived/`, small committed manifests and public JSON
 - `site/public/`, committed static site generated from the derived record
 
-Use Python 3.11+. On the Windows operator machine the configured interpreter is
+Production is pinned to Python 3.12.10. On the Windows operator machine the configured interpreter is
 `C:\ProgramData\miniconda3\python.exe`.
 
 ```powershell
@@ -55,6 +57,8 @@ Use Python 3.11+. On the Windows operator machine the configured interpreter is
 
 `pipeline/rebuild.py` runs from the raw mirror and proves deterministic output. Published release
 assets are a privacy-redacted view; the pristine append-only operator archive is not rewritten.
+Checksum verification, clean-clone restore, and environment details are in
+[`docs/32-RELEASE-PROVENANCE.md`](docs/32-RELEASE-PROVENANCE.md).
 
 ## Operational controls
 
