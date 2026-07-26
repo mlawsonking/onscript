@@ -16,11 +16,48 @@ loses all claims, the honest fallback line publishes (§7.2) — never silence.
 from __future__ import annotations
 
 import re
+from contextlib import contextmanager
 
 from . import boilerplate, contracts
 
 _WS = re.compile(r"\s+")
 _NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
+
+VERIFIER_CHECKS = (
+    "key_quorum",
+    "support_count",
+    "fragment_verbatim",
+    "claim_identity",
+    "claim_support_phrase",
+    "claim_occurrence_offsets",
+    "claim_support_set",
+    "claim_unit_counts",
+    "claim_render_binding",
+    "number_whitelist",
+    "quote_binding",
+    "quote_grounding",
+    "typed_claim_ids",
+    "sentence_claim_mapping",
+    "counted_phrase_quote",
+)
+_DISABLED_CHECKS: set[str] = set()
+
+
+def _check_enabled(name: str) -> bool:
+    if name not in VERIFIER_CHECKS:
+        raise KeyError(f"unknown verifier check: {name}")
+    return name not in _DISABLED_CHECKS
+
+
+@contextmanager
+def mutation_disabled(name: str):
+    """Test harness hook. Production code never disables a verifier check."""
+    _check_enabled(name)
+    _DISABLED_CHECKS.add(name)
+    try:
+        yield
+    finally:
+        _DISABLED_CHECKS.discard(name)
 
 # TYPOGRAPHIC FOLDING (§deploy-hardening 2026-07-16). Press releases are written with smart quotes;
 # any LLM or renderer routinely emits the ASCII form. `today’s` and `today's` are the SAME WORD, so
@@ -101,13 +138,15 @@ def claim_invariant_failures(tp: dict, statements_by_id: dict[str, dict], *,
     if (tp.get("schema_version") != contracts.SCHEMA_VERSION
             or tp.get("object_type") != contracts.CLAIM_TYPE
             or not claim_id or claim_id != tp.get("id")):
-        failures.append("identity")
+        if _check_enabled("claim_identity"):
+            failures.append("identity")
 
     support = tp.get("support_phrase") or {}
     phrase = tp.get("label") or ""
     if (not phrase or support.get("normalized") != phrase or not support.get("text")
             or not support.get("occurrence_id")):
-        failures.append("support_phrase")
+        if _check_enabled("claim_support_phrase"):
+            failures.append("support_phrase")
 
     occurrences = [row for row in (tp.get("occurrences") or []) if isinstance(row, dict)]
     occurrences_by_id = {row.get("occurrence_id"): row for row in occurrences
@@ -124,11 +163,13 @@ def claim_invariant_failures(tp: dict, statements_by_id: dict[str, dict], *,
             offsets_ok = False
             break
     if not offsets_ok:
-        failures.append("occurrence_offsets")
+        if _check_enabled("claim_occurrence_offsets"):
+            failures.append("occurrence_offsets")
 
     occurrence_statements = {row.get("statement_id") for row in occurrences if row.get("statement_id")}
     if occurrence_statements != set(tp.get("statements") or []):
-        failures.append("support_set")
+        if _check_enabled("claim_support_set"):
+            failures.append("support_set")
 
     expected_counts = {
         "offices": len({row.get("office_id") for row in occurrences if row.get("office_id")}),
@@ -149,7 +190,8 @@ def claim_invariant_failures(tp: dict, statements_by_id: dict[str, dict], *,
         == {row.get("support_unit_id") for row in occurrences if row.get("support_unit_id")}
     )
     if counts != expected_counts or tp.get("member_count") != expected_counts["support_units"] or not ids_ok:
-        failures.append("unit_counts")
+        if _check_enabled("claim_unit_counts"):
+            failures.append("unit_counts")
 
     quote_occurrence = occurrences_by_id.get(support.get("occurrence_id"))
     render_ok = bool(
@@ -170,7 +212,8 @@ def claim_invariant_failures(tp: dict, statements_by_id: dict[str, dict], *,
                 render_ok = False
                 break
     if not render_ok:
-        failures.append("render_binding")
+        if _check_enabled("claim_render_binding"):
+            failures.append("render_binding")
     return failures
 
 
@@ -185,16 +228,17 @@ def verify_talking_point(tp: dict, statements_by_id: dict[str, dict], *,
     A joint release remains one family (§11 trap 2)."""
     reasons: list[str] = []
     units = key_carrying_units(tp, statements_by_id)
-    if len(units) < 3:
+    if len(units) < 3 and _check_enabled("key_quorum"):
         reasons.append(f"key-quorum: {len(units)} distinct families carry the key phrase (<3)")
-    if tp.get("member_count") != len(units):
+    if tp.get("member_count") != len(units) and _check_enabled("support_count"):
         reasons.append(
             f"support-count: stored {tp.get('member_count')!r} != {len(units)} distinct families carrying the key"
         )
     for frag in tp.get("fragments", []):
         sid = frag.get("statement")
         src = statements_by_id.get(sid, {})
-        if not is_verbatim(frag.get("text", ""), src.get("text", "")):
+        if (not is_verbatim(frag.get("text", ""), src.get("text", ""))
+                and _check_enabled("fragment_verbatim")):
             reasons.append(f"non-verbatim fragment: {frag.get('text','')!r}")
     if require_contract:
         reasons.extend(
@@ -330,11 +374,11 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
         offending = _numbers_outside_quotes(composite) - code_allowed_numbers(stats)
     else:
         _, offending = numbers_whitelisted(composite, stats_blob)
-    if offending:
+    if offending and _check_enabled("number_whitelist"):
         reasons.append(f"un-whitelisted numbers in composite: {sorted(offending)}")
     if stats is not None:
         ok_q, off_q = quotes_bound_to_talking_points(composite, stats)
-        if not ok_q:
+        if not ok_q and _check_enabled("quote_binding"):
             reasons.append(f"unbound talking-point quotes: {off_q}")
         if stats.get("schema_version") == contracts.SCHEMA_VERSION:
             known_ids = set(stats.get("claim_ids") or [])
@@ -342,27 +386,38 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
             if (any(tp.get("claim_type") != contracts.CLAIM_TYPE
                     or tp.get("claim_id") not in known_ids for tp in typed)
                     or known_ids != {tp.get("claim_id") for tp in typed}):
-                reasons.append("typed claim IDs are missing or inconsistent")
-            mapping = contracts.sentence_claims(composite, stats)
+                if _check_enabled("typed_claim_ids"):
+                    reasons.append("typed claim IDs are missing or inconsistent")
+            sentences = contracts.sentence_parts(composite)
+            mapping = []
+            for index, sentence in enumerate(sentences):
+                ids = set()
+                for match in _QUOTE.finditer(sentence):
+                    raw = match.group(1) or match.group(2) or ""
+                    for tp in typed:
+                        if tp.get("claim_id") and boilerplate.contains_gram(raw, tp.get("label") or ""):
+                            ids.add(tp["claim_id"])
+                mapping.append({"sentence_idx": index, "claim_ids": sorted(ids)})
             quoted_sentences = {
-                index for index, sentence in enumerate(contracts.sentence_parts(composite))
+                index for index, sentence in enumerate(sentences)
                 if _QUOTE.search(sentence)
             }
             mapped = {row["sentence_idx"] for row in mapping if len(row["claim_ids"]) == 1}
-            if quoted_sentences != mapped or any(len(row["claim_ids"]) > 1 for row in mapping):
+            if ((quoted_sentences != mapped or any(len(row["claim_ids"]) > 1 for row in mapping))
+                    and _check_enabled("sentence_claim_mapping")):
                 reasons.append("each quoted sentence must map to exactly one typed claim")
             allowed_quotes = {_norm(tp.get("quote") or "") for tp in typed if tp.get("quote")}
             rendered_quotes = {
                 _norm(match.group(1) or match.group(2) or "")
                 for match in _QUOTE.finditer(composite)
             }
-            if rendered_quotes - allowed_quotes:
+            if rendered_quotes - allowed_quotes and _check_enabled("counted_phrase_quote"):
                 reasons.append("the counted phrase must be the only quoted phrase")
     elif fragments is not None:
         # Legacy verifier entry points without structured STATS retain ordinary verbatim grounding.
         # The production Daily Line always supplies STATS and therefore cannot use a combined pool.
         ok_q, off_q = quotes_grounded(composite, fragments)
-        if not ok_q:
+        if not ok_q and _check_enabled("quote_grounding"):
             reasons.append(f"un-grounded quotes in composite: {off_q}")
     return (len(reasons) == 0, reasons)
 
