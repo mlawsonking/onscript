@@ -19,6 +19,7 @@ LIVE_THRESHOLD_NAMES = (
     "DOCUMENT_FAMILY_JACCARD", "DOCUMENT_FAMILY_MIN_TOKENS",
     "DOCUMENT_FAMILY_SHINGLE_K", "DOCUMENT_FAMILY_MINHASHES",
     "DOCUMENT_FAMILY_MINHASH_BANDS", "NOMENCLATURE_RATIO_MIN",
+    "SURGE_MIN_ABSOLUTE_CHANGE", "SURGE_MIN_RATIO", "SURGE_MAX_Q_VALUE",
     "NOMENCLATURE_INDEX_CONGRESS_MIN", "NOMENCLATURE_MIN_NAME_CONTENT_TOKENS",
     "COMMITTEE_UNQUALIFIED_MIN_TOKENS", "QUIET_DAY_MAX_STATEMENTS",
     "CONCORDANCE_MIN_STATEMENTS", "CONCORDANCE_RECEIPTS_MAX",
@@ -42,7 +43,7 @@ SCHEMA_VERSIONS = {
 METHOD_VERSIONS = {
     "document_families": "document-families-v1",
     "gold_set": "gold-set-harness-v1",
-    "phrase_statistics": "phrase-statistics-v1",
+    "phrase_statistics": "phrase-statistics-v2",
     "status_exports": "status-exports-v1",
 }
 

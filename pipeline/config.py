@@ -144,6 +144,12 @@ DOCUMENT_FAMILY_SHINGLE_K = 5
 DOCUMENT_FAMILY_MINHASHES = 64
 DOCUMENT_FAMILY_MINHASH_BANDS = 32
 
+# Phrase-screening significance gates. These are provisional and frozen until the
+# gold-set review validates them. They are descriptive filters, not causal tests.
+SURGE_MIN_ABSOLUTE_CHANGE = 0.03
+SURGE_MIN_RATIO = 2.0
+SURGE_MAX_Q_VALUE = 0.05
+
 # ---------------------------------------------------------------------------
 # Nomenclature segregation (docs/16). Official names (bill titles, committee names) are not
 # messages; the tagger cites an external party-blind record for every tag. A DISCLOSED KNOB, not

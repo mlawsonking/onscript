@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 import math
+from datetime import date as date_type
 
 from . import config
 
 
-METHOD_VERSION = "phrase-statistics-v1"
+METHOD_VERSION = "phrase-statistics-v2"
 TRAILING_DAYS = 28
 SMOOTHING_ALPHA = 0.5
 SMOOTHING_BETA = 0.5
@@ -71,16 +72,34 @@ def _denominator(denominators: dict, party: str, day: str | None) -> int:
     return int((denominators.get(party) or {}).get(day) or 0)
 
 
+def baseline_days(denominators: dict, party: str, day: str, *, trailing_days: int,
+                  mode: str = "calendar") -> list[str]:
+    """Return the denominator-defined risk set, including phrase-zero days."""
+    eligible = sorted(value for value, trials in (denominators.get(party) or {}).items()
+                      if value < day and int(trials or 0) > 0)
+    if mode == "calendar":
+        return eligible[-trailing_days:]
+    if mode == "weekday":
+        weekday = date_type.fromisoformat(day).weekday()
+        matching = [value for value in eligible
+                    if date_type.fromisoformat(value).weekday() == weekday]
+        return matching[-trailing_days:]
+    raise ValueError("baseline mode must be calendar or weekday")
+
+
 def phrase_metrics(ledger: dict, denominators: dict, day: str,
-                   trailing_days: int = TRAILING_DAYS) -> list[dict]:
+                   trailing_days: int = TRAILING_DAYS,
+                   baseline_mode: str = "calendar") -> list[dict]:
     """Compute office, publication, family, surge, skew, and spread metrics for one day."""
     rows = []
     for phrase, entry in sorted(ledger.items()):
         daily = entry.get("daily") or {}
         current = daily.get(day) or {}
-        prior_days = sorted(value for value in daily if value < day)[-trailing_days:]
         shares = {}
         for party in config.COMPOSITE_PARTIES:
+            prior_days = baseline_days(
+                denominators, party, day, trailing_days=trailing_days, mode=baseline_mode
+            )
             trials = _denominator(denominators, party, day)
             successes = int(current.get(party) or 0)
             shares[party] = successes / trials if trials else 0.0
@@ -112,8 +131,19 @@ def phrase_metrics(ledger: dict, denominators: dict, day: str,
                 "publication_count": publications,
                 "family_count": families,
                 "family_spread": round(families / publications, 8) if publications else 0.0,
+                "baseline_mode": baseline_mode,
+                "baseline_calendar_days": len(prior_days),
+                "baseline_observed_days": sum(
+                    1 for value in prior_days if _denominator(denominators, party, value) > 0
+                ),
+                "baseline_phrase_occurrence_days": sum(
+                    1 for value in prior_days if int((daily.get(value) or {}).get(party) or 0) > 0
+                ),
+                "baseline_successes": baseline_successes,
+                "baseline_trials": baseline_trials,
                 "baseline_share": round(baseline_share, 8),
                 "surge_ratio": round((successes / trials) / baseline_share, 8),
+                "absolute_change": round(successes / trials - baseline_share, 8),
                 "p_value": binomial_tail(successes, trials, baseline_share),
                 "party_skew": round(skew, 8),
                 "spread_change": round(successes / trials - previous_share, 8),
@@ -122,7 +152,70 @@ def phrase_metrics(ledger: dict, denominators: dict, day: str,
     adjusted = benjamini_hochberg([row["p_value"] for row in rows])
     for row, q_value in zip(rows, adjusted):
         row["q_value"] = q_value
+        row["bh_family_definition"] = f"all party-phrase hypotheses offered for {day}"
+        row["bh_family_size"] = len(rows)
+        row["screening_statistic"] = "binomial tail screening statistic"
+        row["practical_gates"] = {
+            "minimum_absolute_change": config.SURGE_MIN_ABSOLUTE_CHANGE,
+            "minimum_ratio": config.SURGE_MIN_RATIO,
+            "maximum_q_value": config.SURGE_MAX_Q_VALUE,
+            "status": "provisional_frozen",
+        }
+        row["passes_practical_gate"] = (
+            row["absolute_change"] >= config.SURGE_MIN_ABSOLUTE_CHANGE
+            and row["surge_ratio"] >= config.SURGE_MIN_RATIO
+            and q_value <= config.SURGE_MAX_Q_VALUE
+        )
     return rows
+
+
+def legacy_occurrence_baseline(entry: dict, denominators: dict, party: str, day: str,
+                               trailing_days: int = TRAILING_DAYS) -> dict:
+    """Reproduce the superseded occurrence-only risk set for migration evidence."""
+    daily = entry.get("daily") or {}
+    days = sorted(value for value in daily if value < day)[-trailing_days:]
+    successes = sum(int((daily.get(value) or {}).get(party) or 0) for value in days)
+    trials = sum(_denominator(denominators, party, value) for value in days)
+    return {"days": days, "successes": successes, "trials": trials}
+
+
+def calibrate_overdispersion(payload: dict, *, baseline_mode: str = "calendar") -> dict:
+    """Estimate Pearson dispersion over bounded phrase-party baseline panels."""
+    day = payload["day"]
+    denominators = payload.get("denominators") or {}
+    estimates = []
+    for phrase, entry in sorted((payload.get("ledger") or {}).items()):
+        daily = entry.get("daily") or {}
+        for party in config.COMPOSITE_PARTIES:
+            days = baseline_days(denominators, party, day, trailing_days=TRAILING_DAYS,
+                                 mode=baseline_mode)
+            observations = [(int((daily.get(value) or {}).get(party) or 0),
+                             _denominator(denominators, party, value)) for value in days]
+            observations = [(successes, trials) for successes, trials in observations if trials > 0]
+            total_trials = sum(trials for _, trials in observations)
+            if len(observations) < 3 or not total_trials:
+                continue
+            probability = sum(successes for successes, _ in observations) / total_trials
+            if probability <= 0.0 or probability >= 1.0:
+                continue
+            pearson = sum(
+                (successes - trials * probability) ** 2
+                / (trials * probability * (1.0 - probability))
+                for successes, trials in observations
+            )
+            estimates.append({
+                "phrase": phrase, "party": party,
+                "dispersion_ratio": round(pearson / (len(observations) - 1), 8),
+                "days": len(observations),
+            })
+    return {
+        "schema_version": 1,
+        "method_version": "surge-overdispersion-calibration-v1",
+        "screening_method_version": METHOD_VERSION,
+        "baseline_mode": baseline_mode,
+        "target": "evaluate binomial screening variance before any model swap",
+        "estimates": estimates,
+    }
 
 
 def rank_metrics(rows: list[dict], limit: int = 50) -> dict:
@@ -151,11 +244,14 @@ def rank_metrics(rows: list[dict], limit: int = 50) -> dict:
 def build_rankings(payload: dict) -> dict:
     """Build a stable export from a ledger fixture or production-shaped payload."""
     day = payload["day"]
-    rows = phrase_metrics(payload.get("ledger") or {}, payload.get("denominators") or {}, day)
+    baseline_mode = payload.get("baseline_mode") or "calendar"
+    rows = phrase_metrics(payload.get("ledger") or {}, payload.get("denominators") or {}, day,
+                          baseline_mode=baseline_mode)
     return {
         "schema_version": 1,
         "method_version": METHOD_VERSION,
         "day": day,
         "trailing_days": TRAILING_DAYS,
+        "baseline_mode": baseline_mode,
         "rankings": rank_metrics(rows),
     }
