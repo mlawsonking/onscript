@@ -74,14 +74,9 @@ jobs:
           mkdir -p data/state data/raw data/reference
           gh release download data-latest --dir data/_restore --clobber || echo "no state — assemble will no-op"
           if [ -d data/_restore ]; then
-            tar -xzf data/_restore/state.tar.gz -C . || true
-            tar -xzf data/_restore/raw.tar.gz -C . || true
-            # See the matching note in collect.yml: the tarball's data/reference extracts over the
-            # checkout and silently rolls back 21 TRACKED files (corrections.json, the Art. XIII privacy
-            # form list + allowlist, the nomenclature index). This is the run that did it — 14af2f0
-            # rendered "Corrections to date: 0" over a log holding 3 entries. Git is the authority for
-            # tracked reference data; the tarball exists for the gitignored roster cache.
-            git checkout -- data/reference || true
+            # Validate away from the checkout, then merge only runtime-owned files. A stale tracked
+            # reference file is a blocking archive conflict, never an input to the render.
+            python -m pipeline.archive_restore data/_restore --checkout .
           fi
 
       - name: RUN B assemble (cluster -> distill -> VERIFY -> symmetry)

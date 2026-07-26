@@ -29,8 +29,8 @@ from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import (boilerplate, build, config, distill, nomenclature, privacy, public_strings,
-                      util, verify)  # noqa: E402
+from pipeline import (boilerplate, build, config, corrections, distill, nomenclature, privacy,
+                      public_strings, util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
@@ -107,7 +107,7 @@ def _pct(value) -> str:
 # ---------------------------------------------------------------------------
 ROSTER = _load_json(ROSTER_FILE) or {}
 TAXONOMY = _load_json(TAXONOMY_FILE) or {}
-CORRECTIONS = _load_json(CORRECTIONS_FILE) or []
+CORRECTIONS = corrections.load(CORRECTIONS_FILE)
 PHRASE_EVIDENCE = _load_json(DERIVED / "phrase-evidence.json") or {"phrases": {}}
 TOPIC_LABEL = {t.get("id"): t.get("label", t.get("id")) for t in TAXONOMY.get("topics", [])}
 
@@ -307,6 +307,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
         # here would be gating the table of contents of a book that is already on the shelf.
         f'<a href="{root}day/index.html">Days</a>'
         f'<a href="{root}phrases/index.html">Phrases</a>'
+        f'<a href="{root}corrections/index.html">Corrections</a>'
         f'{dark_nav}'
         f'<a href="{root}methodology.html">Methodology</a>'
         f'<a href="{root}about.html">About</a>'
@@ -336,6 +337,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 <title>{esc(title)}</title>
 <link rel="canonical" href="{esc(canonical)}">
 <link rel="alternate" type="application/atom+xml" title="OnScript daily feed" href="{esc(config.SITE_URL)}/feed.xml">
+<link rel="alternate" type="application/atom+xml" title="OnScript corrections feed" href="{esc(config.SITE_URL)}/corrections/feed.xml">
 <link rel="icon" type="image/png" href="{root}favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnScript">
@@ -575,6 +577,96 @@ def atom_feed(rendered: list[tuple[str, dict]], limit: int = 30) -> str:
         f'<link href="{esc(config.SITE_URL)}/feed.xml" rel="self"/>'
         f'<link href="{esc(config.SITE_URL)}/"/>'
         f"<updated>{updated}</updated>{''.join(entries)}</feed>\n"
+    )
+
+
+def corrections_feed(rows: list[dict]) -> str:
+    """Deterministic Atom feed for the structured correction ledger."""
+    entries = []
+    ordered = sorted(rows, key=lambda row: (row.get("logged", ""), row.get("correction_id", "")),
+                     reverse=True)
+    for row in ordered:
+        cid = row["correction_id"]
+        url = f"{config.SITE_URL}/corrections/{cid}.html"
+        updated = f'{row["logged"]}T00:00:00Z'
+        entries.append(
+            "<entry>"
+            f"<title>Correction: {esc(row.get('day'))}</title><id>{esc(url)}</id>"
+            f'<link href="{esc(url)}"/><updated>{updated}</updated>'
+            f"<summary>{esc(row.get('description'))}</summary></entry>"
+        )
+    updated = (f'{ordered[0]["logged"]}T00:00:00Z' if ordered
+               else "1970-01-01T00:00:00Z")
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<feed xmlns="http://www.w3.org/2005/Atom">'
+        '<title>OnScript corrections</title>'
+        f'<author><name>{esc(SITE_AUTHOR)}</name></author>'
+        f'<id>{esc(config.SITE_URL)}/corrections/feed.xml</id>'
+        f'<link href="{esc(config.SITE_URL)}/corrections/feed.xml" rel="self"/>'
+        f'<link href="{esc(config.SITE_URL)}/corrections/index.html"/>'
+        f'<updated>{updated}</updated>{"".join(entries)}</feed>\n'
+    )
+
+
+def correction_permalink_body(row: dict, available_days: set[str] | None = None) -> str:
+    available = available_days or set()
+    affected = " ".join(
+        (f'<a href="../day/{esc(day)}.html">{esc(day)}</a>' if day in available else esc(day))
+        for day in row.get("affected_days", [])
+    ) or "No day page"
+    return (
+        f'<h1>Correction</h1><p class="subhead mono">{esc(row.get("correction_id"))}</p>'
+        f'<p><strong>Logged:</strong> {esc(row.get("logged"))}<br>'
+        f'<strong>Severity:</strong> {esc(row.get("severity"))}<br>'
+        f'<strong>Status:</strong> {esc(row.get("status"))}</p>'
+        f'<p><strong>Affected record:</strong> {esc(row.get("day"))}</p>'
+        f'<p><strong>Affected day pages:</strong> {affected}</p>'
+        f'<h2>What happened</h2><p>{esc(row.get("description"))}</p>'
+        f'<h2>Resolution</h2><p>{esc(row.get("resolution"))}</p>'
+        '<p><a href="index.html">All corrections</a></p>'
+    )
+
+
+def corrections_index_body(rows: list[dict]) -> str:
+    items = []
+    for row in sorted(rows, key=lambda item: (item.get("logged", ""), item.get("correction_id", "")),
+                      reverse=True):
+        items.append(
+            f'<li><a href="{esc(row["correction_id"])}.html">{esc(row.get("logged"))}: '
+            f'{esc(row.get("day"))}</a> <span class="pill">{esc(row.get("severity"))}</span></li>'
+        )
+    listing = "".join(items) or '<li class="muted">No corrections have been logged.</li>'
+    template = (
+        "Page URL:\nExact sentence or figure:\nWhat appears wrong:\n"
+        "Supporting source:\nPreferred contact for follow-up (optional):"
+    )
+    return (
+        '<h1>Corrections</h1><p class="subhead">Corrections are dated records. They are never '
+        'silent edits.</p>'
+        f'<p>Corrections to date: <strong>{len(rows)}</strong>. '
+        '<a href="feed.xml">Subscribe to the corrections feed.</a></p>'
+        f'<ol>{listing}</ol>'
+        '<h2>Report a possible error</h2>'
+        '<p>Use the public source repository while the separate corrections mailbox is being '
+        'established. Do not include private personal information. Copy this template:</p>'
+        f'<pre>{esc(template)}</pre>'
+        f'<p><a href="{esc(config.REPO_URL)}/issues/new">Open a correction report</a>.</p>'
+    )
+
+
+def day_corrections(day: str, depth: int) -> str:
+    rows = corrections.for_day(day, CORRECTIONS)
+    if not rows:
+        return ""
+    root = "../" * depth
+    links = ", ".join(
+        f'<a href="{root}corrections/{esc(row["correction_id"])}.html">'
+        f'{esc(row["correction_id"])}</a>' for row in rows
+    )
+    return (
+        f'<div class="banner"><strong>Correction record:</strong> This day is covered by '
+        f'{links}.</div>'
     )
 
 
@@ -1379,6 +1471,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         )
 
     parts.append(banner_html(day_data, symmetry, depth=depth))
+    parts.append(day_corrections(day, depth))
 
     # Two Daily Lines side by side (caucus sizes from the day's symmetry audit → denominators in view)
     caucus = {p: ((symmetry or {}).get("parties", {}).get(p, {}) or {}).get("caucus_size")
@@ -2023,8 +2116,9 @@ def methodology_body():
                 "<tr><td class='mono'>{logged}</td><td class='mono'>{day}</td><td>{what}</td>"
                 "<td>{status}</td></tr>".format(
                     logged=esc(c.get("logged", "")), day=esc(c.get("day", "—")),
-                    what=esc(c.get("description", "")),
-                    status=esc(c.get("resolution") or c.get("status", "open")),
+                    what=(f'<a href="corrections/{esc(c.get("correction_id"))}.html">'
+                          f'{esc(c.get("description", ""))}</a>'),
+                    status=esc(c.get("status", "open")),
                 )
             )
         parts.append("</tbody></table></div>")
@@ -2811,6 +2905,29 @@ def build_site():
         encoding="utf-8",
     )
     written.append("posts.html")
+
+    # ---- structured corrections record ----
+    (OUT / "corrections").mkdir(parents=True, exist_ok=True)
+    (OUT / "corrections" / "index.html").write_text(
+        page("OnScript · Corrections", corrections_index_body(CORRECTIONS), depth=1,
+             description="Dated correction records, affected pages, resolutions, and reporting steps.",
+             path="corrections/index.html"),
+        encoding="utf-8",
+    )
+    written.append("corrections/index.html")
+    for correction in CORRECTIONS:
+        cid = correction["correction_id"]
+        (OUT / "corrections" / f"{cid}.html").write_text(
+            page(f"OnScript · Correction {cid}",
+                 correction_permalink_body(correction, set(rendered_order)), depth=1,
+                 description=f"Correction logged {correction.get('logged')} for {correction.get('day')}.",
+                 path=f"corrections/{cid}.html"),
+            encoding="utf-8",
+        )
+        written.append(f"corrections/{cid}.html")
+    (OUT / "corrections" / "feed.xml").write_text(
+        corrections_feed(CORRECTIONS), encoding="utf-8"
+    )
 
     # ---- The Archive (dark feature 1.1, docs/11) — renders ONLY when FEATURES["archive"] is on
     # (build-dark, §0.2: a dark feature does not render publicly until its flag flips). §BUILD-PROGRAM 1.1.

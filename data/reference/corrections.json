@@ -1,29 +1,54 @@
 [
  {
+  "schema_version": 2,
+  "correction_id": "corr-2026-07-16-private-person-phrases",
+  "severity": "major",
+  "status": "resolved",
+  "affected_days": ["2026-07-09", "2026-07-14"],
   "logged": "2026-07-16",
   "day": "2026-07-14",
   "description": "Phrases containing the names of private individuals appeared in the synchronized-phrase table, in per-phrase adoption-curve pages, in the receipts of one talking point, and in the Democratic composite for this day (and in table rows on 2026-07-09). OnScript measures elected officials' public statements and does not rank, page, quote or narrate private citizens. Every citation involved was valid and every number was correct — the citation verifier has no opinion about privacy, by construction, so no receipts audit could have caught this.",
   "resolution": "Those phrase families are withheld from every published surface and their pages have been removed. The affected composite was re-composed from the same day's measured statistics by the deterministic composer, with every other number unchanged, and is now labelled 'deterministic template (not a language model)' on the page. The underlying record of what members said is retained unaltered (Art. VI); only this instrument's ranking of it is withheld. Suppression is content-neutral protection applied identically to both parties — it is not a finding, and no threshold was changed."
  },
  {
+  "schema_version": 2,
+  "correction_id": "corr-2026-07-18-connective-clusters",
+  "severity": "major",
+  "status": "resolved",
+  "affected_days": ["2026-06-30", "2026-07-11", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17"],
   "logged": "2026-07-18",
   "day": "7 days (2026-06-30…2026-07-17)",
   "description": "Some daily talking points were bound by a connective or attribution phrase rather than a message — e.g. “into the trump administration’s” or “democratic colleagues in demanding the”. Each such key is string-valid (every cited statement contains it verbatim, which is why they clustered) and cleared the >=3 quorum, but the shared span is grammar, not a shared message, so the receipts pointed at unrelated topics. The citation verifier checks verbatim-ness, quorum and attribution — not whether the shared span is a message — so no receipts audit could have caught it. Flagged talking points: 19 across 7 day(s), categorized by reason (18 incomplete syntactic span, 1 attribution frame), both parties (15 D / 4 R — the gate is party-blind; the skew tracks the caucus).",
   "resolution": "A deterministic, party-blind key-admission gate now rejects connective/attribution scaffold keys at generation (run_assemble), and the quorum now counts only distinct document families whose source actually carries the key, so transitively-chained interlopers no longer count toward it. Already-published days are corrected at render time (the same display-time refresh the privacy guard uses): the affected talking points are dropped from every page, and where a day's composite had narrated one, the composite is re-derived from that day's surviving measured statistics by the deterministic composer and labelled 'deterministic template (not a language model)' — the same trusted degradation path used for privacy corrections. No number was changed and no record altered; the underlying statements are retained unaltered (Art. VI). The gate is applied identically to both parties (Art. IV)."
  },
  {
+  "schema_version": 2,
+  "correction_id": "corr-2026-07-20-missing-published-days",
+  "severity": "major",
+  "status": "resolved",
+  "affected_days": ["2026-07-12", "2026-07-18"],
   "logged": "2026-07-20",
   "day": "2 days (2026-07-12, 2026-07-18)",
   "description": "The composite Daily Lines and talking points for two already-published days went MISSING from this site. The daily collection run rewrites the day record it is working on, and when it landed on a day that had already been published it overwrote that day's composite half with nothing — deleting the two party composites, their talking points, and the day's cross-party phrase pairings. Nothing published was WRONG: no number changed, no citation broke, and the underlying record of what members actually said was never touched. Content that had been published simply stopped being there, and one day's page went on displaying composites whose backing data had been removed. Because every surviving number stayed correct, no receipts audit or citation check could have surfaced this — it is an absence, and the verifier has no opinion about absence. It was found by the pre-launch health review, before this site had an audience.",
   "resolution": "Both days were restored from the exact content originally published, read back out of this project's version history — not regenerated. That distinction is the point: re-running the composer today would have written new prose, under a newer model and a newer prompt, and presented it as what we said on those dates. The restored text is byte-for-byte what was published, including one day whose composite was always a deterministic template rather than a language model, which is labelled as such. A third day (2026-07-09) was deliberately NOT 'restored': it never carried composites, because the composer never ran for it, and manufacturing one now would invent a record rather than repair it — it remains listed as a phrases-only day. The cause is closed in code: a day that has been published is now immutable to the collection run, which skips it and says so, and the only path that may write to a published day is the explicit repair path. Both parties, one rule, no threshold changed."
  },
  {
+  "schema_version": 2,
+  "correction_id": "corr-2026-07-21-private-person-window",
+  "severity": "major",
+  "status": "resolved",
+  "affected_days": ["2026-07-20"],
   "logged": "2026-07-21",
   "day": "2026-07-20",
   "description": "A phrase containing the name of a private individual — a person named in members' statements about a fatal law-enforcement incident — appeared in the synchronized-phrase table on that day's page, on the phrases index, and on the home page. OnScript measures elected officials' public statements and does not rank or page private citizens, regardless of how newsworthy the underlying event is. A different name-window form of the same name was already withheld, but the suppression list did not carry every window an n-gram can slide across, so this form was not matched. Every citation involved was valid and every number was correct — the citation verifier has no opinion about privacy, by construction, so no receipts audit could have caught this.",
   "resolution": "The remaining name-window forms are now withheld from every published surface and the affected rows no longer render. The underlying record of what members said is retained unaltered (Art. VI); only this instrument's ranking of it is withheld. Suppression is content-neutral protection applied identically to both parties — it is not a finding, and no threshold was changed."
  },
  {
+  "schema_version": 2,
+  "correction_id": "corr-2026-07-23-composite-claim-binding",
+  "severity": "major",
+  "status": "resolved",
+  "affected_days": ["2026-07-15", "2026-07-16", "2026-07-17", "2026-07-18", "2026-07-19", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23"],
   "logged": "2026-07-23",
   "day": "2026-07-15 through 2026-07-23",
   "description": "Some daily composite claims attached the size of a transitively connected topic cluster to a verbatim phrase carried by only part of that cluster, while the three displayed receipts could support a different phrase from the same cluster. The composite quote appeared in all three receipts in 2 of 38 stored blocks and in none of them in 14 of 38. The rendered label was absent from at least one receipt in 28 of 63 blocks. The two complete misses were the Democratic block on 2026-07-15 and the Republican block on 2026-07-22. The same code and the same correction apply to both parties.",

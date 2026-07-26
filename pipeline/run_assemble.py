@@ -19,8 +19,9 @@ try:
 except Exception:
     pass
 
-from pipeline import (boilerplate, brief, build, cluster, config, contracts, distill, duet, extract,
-                      llm, nomenclature, ops, privacy, readiness, roster, util, verify)  # noqa: E402
+from pipeline import (boilerplate, brief, build, cluster, config, contracts, corrections, distill,
+                      duet, extract, llm, nomenclature, ops, privacy, readiness, roster, util,
+                      verify)  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -412,8 +413,12 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     # REPAIR-SAFE PROVENANCE (docs/23 §7.5 R-C, amendment) — see `repair_safe_manifest` for why the
     # obvious unconditional write would have failed the §1.4.1 launch gate.
     man_path = config.DERIVED / "manifest" / f"assemble-{day}.json"
+    prior_manifest = util.read_json(man_path, {}) or {}
+    manifest.update(corrections.publication_fields(
+        day_json, prior_manifest, corrections.for_day(day)
+    ))
     manifest, is_repair = repair_safe_manifest(
-        manifest, util.read_json(man_path, {}) or {},
+        manifest, prior_manifest,
         now=util.now_utc_iso(), repair_run_id=f"assemble-{date.today().isoformat()}",
         repair_event=os.environ.get("GITHUB_EVENT_NAME") or "local")
     util.write_json(man_path, manifest)
