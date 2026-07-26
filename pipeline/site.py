@@ -30,7 +30,7 @@ from pathlib import Path
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipeline import (boilerplate, build, config, corrections, distill, nomenclature, privacy,
-                      public_strings, surges, util, verify)  # noqa: E402
+                      public_strings, status_exports, surges, util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
@@ -308,6 +308,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
         f'<a href="{root}day/index.html">Days</a>'
         f'<a href="{root}phrases/index.html">Phrases</a>'
         f'<a href="{root}corrections/index.html">Corrections</a>'
+        f'<a href="{root}status/index.html">Status</a>'
         f'{dark_nav}'
         f'<a href="{root}methodology.html">Methodology</a>'
         f'<a href="{root}about.html">About</a>'
@@ -338,6 +339,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 <link rel="canonical" href="{esc(canonical)}">
 <link rel="alternate" type="application/atom+xml" title="OnScript daily feed" href="{esc(config.SITE_URL)}/feed.xml">
 <link rel="alternate" type="application/atom+xml" title="OnScript corrections feed" href="{esc(config.SITE_URL)}/corrections/feed.xml">
+<link rel="alternate" type="application/atom+xml" title="OnScript watchlist alerts" href="{esc(config.SITE_URL)}/alerts/feed.xml">
 <link rel="icon" type="image/png" href="{root}favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnScript">
@@ -2747,6 +2749,41 @@ def awards_body(adata, slugs_with_pages=None, depth: int = 0) -> str:
     return "".join(parts)
 
 
+def status_body(model: dict) -> str:
+    """Render a precomputed manifest-backed status model without calculating status values."""
+    parts = ["<h1>Instrument status</h1>"]
+    parts.append(
+        '<p class="subhead">Each operational value below names the manifest fields that supply it. '
+        'An unavailable value is unknown, never green.</p>'
+    )
+    parts.append('<div class="receipts">')
+    for check in model.get("checks") or []:
+        value = "unavailable" if check.get("value") is None else str(check.get("value"))
+        unit = f' {check.get("unit")}' if check.get("value") is not None else ""
+        sources = ", ".join(
+            f'{source.get("manifest")}:{source.get("field")}' for source in (check.get("sources") or [])
+        ) or "source unavailable"
+        parts.append(
+            f'<div class="receipt"><div class="rhead">{esc(check.get("label"))}</div>'
+            f'<div>{esc(value)}{esc(unit)} <span class="chip">{esc(check.get("status"))}</span></div>'
+            f'<div class="faint">Source: {esc(sources)}</div></div>'
+        )
+    parts.append("</div>")
+    parts.append("<h2>Provisional service targets</h2>")
+    parts.append('<table><thead><tr><th>Check</th><th>Target</th><th>Unit</th><th>Status</th></tr></thead><tbody>')
+    for row in model.get("slos") or []:
+        parts.append(
+            f'<tr><td>{esc(row.get("check"))}</td><td>{esc(row.get("target"))}</td>'
+            f'<td>{esc(row.get("unit"))}</td><td>{esc(row.get("status"))}</td></tr>'
+        )
+    parts.append("</tbody></table>")
+    parts.append(
+        '<p class="muted"><small>These targets are provisional pending owner ratification. '
+        'They do not change publication thresholds.</small></p>'
+    )
+    return "".join(parts)
+
+
 def build_site():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
@@ -3007,6 +3044,32 @@ def build_site():
                  path="silence/index.html"),
             encoding="utf-8")
         written.append("silence/index.html")
+
+    # ---- manifest-backed status and versioned machine exports ----
+    manifest_inputs, assemble_history = status_exports.load_manifest_inputs(DERIVED / "manifest")
+    status_model = status_exports.build_status(manifest_inputs, assemble_history)
+    (OUT / "status").mkdir(parents=True, exist_ok=True)
+    (OUT / "status" / "index.html").write_text(
+        page("OnScript · Instrument status", status_body(status_model), depth=1,
+             description="Manifest-backed operating status for the OnScript instrument.",
+             path="status/index.html"),
+        encoding="utf-8",
+    )
+    written.append("status/index.html")
+
+    safe_top = dict(top)
+    for key in ("by_peak", "by_velocity"):
+        safe_top[key] = privacy.filter_rows(top.get(key) or [])[0]
+    for relative, content in status_exports.static_exports(status_model, days, safe_top).items():
+        target = OUT / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(content)
+
+    watchlists = _load_json(config.REPO_ROOT / "pipeline" / "watchlists.json") or {}
+    (OUT / "alerts").mkdir(parents=True, exist_ok=True)
+    (OUT / "alerts" / "feed.xml").write_text(
+        status_exports.watchlist_atom(days, watchlists.get("phrases") or []), encoding="utf-8"
+    )
 
     # ---- static-host fallback ----
     (OUT / "404.html").write_text(

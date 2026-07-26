@@ -385,6 +385,7 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     report = ops.symmetry_report(day, statements, per_party_llm, freshness=freshness, degraded=degraded,
                                  nomen_measure=nomen_measure)
 
+    correction_rows = corrections.load()
     manifest = {
         "schema_version": contracts.SCHEMA_VERSION,
         "run_id": f"assemble-{date.today().isoformat()}", "kind": "assemble",
@@ -395,6 +396,7 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         "voice_used": bool(allow_llm_voice and not llm.dry_run()),
         "voice_budget_state": voice_state, "month_to_date_usd": month_to_date,
         "governor_state": governor, "degraded": degraded,
+        "corrections_count": len(correction_rows),
         # WHO TRIGGERED THIS RUN. §1.4.1 acceptance is "three consecutive UNATTENDED real runs", and
         # until now nothing recorded whether a run was a cron or a human dispatch — so the gate could
         # only be tracked by hand in prose, and on 2026-07-16 it was tracked WRONG ("2/3, the 07-16
@@ -415,7 +417,7 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     man_path = config.DERIVED / "manifest" / f"assemble-{day}.json"
     prior_manifest = util.read_json(man_path, {}) or {}
     manifest.update(corrections.publication_fields(
-        day_json, prior_manifest, corrections.for_day(day)
+        day_json, prior_manifest, corrections.for_day(day, correction_rows)
     ))
     manifest, is_repair = repair_safe_manifest(
         manifest, prior_manifest,
