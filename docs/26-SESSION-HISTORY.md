@@ -2245,3 +2245,38 @@ validated measurement and the other side of the freeze.
 Next action: Michael reviews docs/29, then hands the Codex prompt to the worker. Release
 of every package stays under docs/27 discipline. Operator acts are listed in docs/29
 section 6.
+
+## 2026-07-25: Session 48 (Fable). Codex W1-W11 delivery validated clean
+
+The codex/w-packages branch delivers all eleven docs/29 packages: eleven ordered
+commits plus the delivery packet, rooted at f99a507, main untouched, branch never
+pushed. Validation was independent per Article XVI: evidence was rerun, not read.
+
+Reproduced directly: the suite at 572/0 from 511/0 baseline; the W5 mutation harness
+reporting 15 of 15 verifier checks load-bearing; W8 ranking determinism byte-identical;
+the W11 clean-clone subset byte-identical across two runs; live prompts_sha equal to
+the published symmetry audit, proving the W6 prompt candidates (P2 v1.4, P3 v1.2) are
+dark. Checked structurally: no site/public or data/derived changes anywhere in the
+branch; corrections.json gained schema fields and lost zero lines; config gained only
+the provisional document-family knobs; zero added lines carry U+2014.
+
+Four pre-existing tests were modified. All four were examined and all four follow
+behavior the work order changed: three encoded the superseded assumption that
+nomenclature stays message-eligible (W6 replaces it; the wave0 fixture phrase was
+itself a bill title), and test_public_archive.py now asserts the stricter RUN B to
+RUN C ordering. The docs/28 tests are unmodified. The packet disclosed each edit.
+
+Production-behavior notes for the release act: merging and pushing activates the RUN C
+posting split immediately (workflow_run fires on default-branch workflows only).
+post.yml uses the existing repo secrets; no environment migration is required first.
+Full credential isolation would need a GitHub environment, an optional operator
+follow-up, since repo secrets remain technically visible to all workflows. The
+assemble workflow was renamed to "RUN B assemble" for the workflow_run reference; the
+watchdog is unaffected because it keys workflows by file path. The posting step keeps
+the pre-existing skip-and-log posture, byte-compared against the old assemble. The
+status page reports corrections_count as unknown until the first post-merge RUN B
+writes the additive field, as the packet disclosed.
+
+Verdict: the delivery is accepted. Merge to main and the push are Michael's acts. The
+first post-merge day should be watched through one full cron cycle: RUN A, RUN B, the
+workflow_run handoff to RUN C, and the 13:00Z watchdog tick.
