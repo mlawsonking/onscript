@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import re
 
-from . import boilerplate
+from . import boilerplate, contracts
 
 _WS = re.compile(r"\s+")
 _NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
@@ -93,7 +93,90 @@ def key_carrying_units(tp: dict, statements_by_id: dict[str, dict]) -> set:
     return units
 
 
-def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[bool, list[str]]:
+def claim_invariant_failures(tp: dict, statements_by_id: dict[str, dict], *,
+                             require_citations: bool = False) -> list[str]:
+    """Return failures for the six schema-2 claim invariants."""
+    failures: list[str] = []
+    claim_id = tp.get("claim_id")
+    if (tp.get("schema_version") != contracts.SCHEMA_VERSION
+            or tp.get("object_type") != contracts.CLAIM_TYPE
+            or not claim_id or claim_id != tp.get("id")):
+        failures.append("identity")
+
+    support = tp.get("support_phrase") or {}
+    phrase = tp.get("label") or ""
+    if (not phrase or support.get("normalized") != phrase or not support.get("text")
+            or not support.get("occurrence_id")):
+        failures.append("support_phrase")
+
+    occurrences = [row for row in (tp.get("occurrences") or []) if isinstance(row, dict)]
+    occurrences_by_id = {row.get("occurrence_id"): row for row in occurrences
+                         if row.get("occurrence_id")}
+    offsets_ok = bool(occurrences)
+    for row in occurrences:
+        statement = statements_by_id.get(row.get("statement_id")) or {}
+        source = statement.get("text") or ""
+        start, end = row.get("start_char"), row.get("end_char")
+        if (not isinstance(start, int) or not isinstance(end, int) or start < 0 or end <= start
+                or end > len(source) or source[start:end] != row.get("surface_text")
+                or row.get("normalized_phrase") != phrase
+                or not boilerplate.contains_gram(row.get("surface_text") or "", phrase)):
+            offsets_ok = False
+            break
+    if not offsets_ok:
+        failures.append("occurrence_offsets")
+
+    occurrence_statements = {row.get("statement_id") for row in occurrences if row.get("statement_id")}
+    if occurrence_statements != set(tp.get("statements") or []):
+        failures.append("support_set")
+
+    expected_counts = {
+        "offices": len({row.get("office_id") for row in occurrences if row.get("office_id")}),
+        "publications": len({row.get("publication_id") for row in occurrences if row.get("publication_id")}),
+        "families": len({row.get("family_id") for row in occurrences if row.get("family_id")}),
+        "support_units": len({row.get("support_unit_id") for row in occurrences
+                              if row.get("support_unit_id")}),
+    }
+    counts = tp.get("counts") or {}
+    ids_ok = (
+        set(tp.get("office_ids") or [])
+        == {row.get("office_id") for row in occurrences if row.get("office_id")}
+        and set(tp.get("publication_ids") or [])
+        == {row.get("publication_id") for row in occurrences if row.get("publication_id")}
+        and set(tp.get("family_ids") or [])
+        == {row.get("family_id") for row in occurrences if row.get("family_id")}
+        and set(tp.get("support_unit_ids") or [])
+        == {row.get("support_unit_id") for row in occurrences if row.get("support_unit_id")}
+    )
+    if counts != expected_counts or tp.get("member_count") != expected_counts["support_units"] or not ids_ok:
+        failures.append("unit_counts")
+
+    quote_occurrence = occurrences_by_id.get(support.get("occurrence_id"))
+    render_ok = bool(
+        quote_occurrence
+        and support.get("text") == quote_occurrence.get("surface_text")
+        and tp.get("display_quote") == support.get("text")
+    )
+    if require_citations:
+        citations = [row for row in (tp.get("citations") or []) if isinstance(row, dict)]
+        citation_ids = tp.get("citation_occurrence_ids") or []
+        render_ok = render_ok and len(citations) >= 3 and citation_ids == [
+            row.get("occurrence_id") for row in citations
+        ]
+        for citation in citations:
+            occurrence = occurrences_by_id.get(citation.get("occurrence_id"))
+            if (not occurrence or citation.get("publication_id") != occurrence.get("publication_id")
+                    or not boilerplate.contains_gram(citation.get("quote") or "", phrase)):
+                render_ok = False
+                break
+    if not render_ok:
+        failures.append("render_binding")
+    return failures
+
+
+def verify_talking_point(tp: dict, statements_by_id: dict[str, dict], *,
+                         require_contract: bool = False,
+                         require_citations: bool = False) -> tuple[bool, list[str]]:
     """Return (ok, reasons). A talking point is publishable iff >=3 distinct document FAMILIES carry
     the cluster key AND every fragment is verbatim in its cited statement.
 
@@ -113,6 +196,12 @@ def verify_talking_point(tp: dict, statements_by_id: dict[str, dict]) -> tuple[b
         src = statements_by_id.get(sid, {})
         if not is_verbatim(frag.get("text", ""), src.get("text", "")):
             reasons.append(f"non-verbatim fragment: {frag.get('text','')!r}")
+    if require_contract:
+        reasons.extend(
+            f"claim-invariant:{name}"
+            for name in claim_invariant_failures(tp, statements_by_id,
+                                                 require_citations=require_citations)
+        )
     return (len(reasons) == 0, reasons)
 
 
@@ -247,6 +336,28 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
         ok_q, off_q = quotes_bound_to_talking_points(composite, stats)
         if not ok_q:
             reasons.append(f"unbound talking-point quotes: {off_q}")
+        if stats.get("schema_version") == contracts.SCHEMA_VERSION:
+            known_ids = set(stats.get("claim_ids") or [])
+            typed = [tp for tp in (stats.get("talking_points") or []) if isinstance(tp, dict)]
+            if (any(tp.get("claim_type") != contracts.CLAIM_TYPE
+                    or tp.get("claim_id") not in known_ids for tp in typed)
+                    or known_ids != {tp.get("claim_id") for tp in typed}):
+                reasons.append("typed claim IDs are missing or inconsistent")
+            mapping = contracts.sentence_claims(composite, stats)
+            quoted_sentences = {
+                index for index, sentence in enumerate(contracts.sentence_parts(composite))
+                if _QUOTE.search(sentence)
+            }
+            mapped = {row["sentence_idx"] for row in mapping if len(row["claim_ids"]) == 1}
+            if quoted_sentences != mapped or any(len(row["claim_ids"]) > 1 for row in mapping):
+                reasons.append("each quoted sentence must map to exactly one typed claim")
+            allowed_quotes = {_norm(tp.get("quote") or "") for tp in typed if tp.get("quote")}
+            rendered_quotes = {
+                _norm(match.group(1) or match.group(2) or "")
+                for match in _QUOTE.finditer(composite)
+            }
+            if rendered_quotes - allowed_quotes:
+                reasons.append("the counted phrase must be the only quoted phrase")
     elif fragments is not None:
         # Legacy verifier entry points without structured STATS retain ordinary verbatim grounding.
         # The production Daily Line always supplies STATS and therefore cannot use a combined pool.

@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import re
 
-from . import boilerplate, config, llm, nomenclature, util, verify
+from . import boilerplate, config, contracts, llm, nomenclature, util, verify
 
 _QUOTE_MAX_WORDS = 10
 
@@ -73,7 +73,7 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
     # docs/19 §2c — congress for the pre-distill nomenclature annotation, resolved ONLY when the tagger
     # is live so the flag-off STATS block is byte-identical (docs/19 §3.4). Annotation, not deletion.
     cong = util.congress_for_date(day) if config.feature_on("nomenclature_tags") else None
-    for tp in talking_points[:4]:
+    for claim_index, tp in enumerate(talking_points[:4]):
         # The quote MUST be verbatim member speech: the blocking verifier grounds it against real
         # fragment text, NEVER against the code-computed label (a punctuation-stripped n-gram that is
         # often not a raw substring of any statement — quoting it would violate citation integrity).
@@ -90,8 +90,20 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
             if boilerplate.contains_gram(quote, label):
                 quote_candidates.append((len(text.split()), text, quote))
         quote = min(quote_candidates, key=lambda row: (row[0], row[1]))[2] if quote_candidates else ""
+        if tp.get("schema_version") == contracts.SCHEMA_VERSION:
+            quote = tp.get("display_quote") or ""
+        claim_id = tp.get("claim_id") or tp.get("id") or f"{day}-{party}-legacy-{claim_index:02d}"
         entry = {"label": tp["label"], "members": tp["member_count"], "quote": quote,
-                 "topics": tp.get("topics", [])}
+                 "topics": tp.get("topics", []),
+                 "claim_id": claim_id,
+                 "claim_type": contracts.CLAIM_TYPE,
+                 "object_type": tp.get("object_type"),
+                 "counts": tp.get("counts") or {
+                     "offices": tp.get("member_count"),
+                     "publications": len(tp.get("statements") or []),
+                     "families": tp.get("member_count"),
+                     "support_units": tp.get("member_count"),
+                 }}
         # docs/19 §2c — annotate a talking point whose KEY is an official name (bill title / committee
         # name) so the live voice cannot launder it into message-coordination prose and have the
         # verifier pass it (the members really did type the name). ANNOTATION ONLY: the quote, the
@@ -102,8 +114,10 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
             if v:
                 entry["nomenclature"] = {"lane": v["lane"], "cite": v["cite"], "class": v["class"]}
         tps.append(entry)
-    return {"party": party, "day": day, "statements": party_statement_count,
+    return {"schema_version": contracts.SCHEMA_VERSION,
+            "party": party, "day": day, "statements": party_statement_count,
             "talking_points": tps, "top_phrase": top_phrase,
+            "claim_ids": [row["claim_id"] for row in tps if row.get("claim_id")],
             "sync_min": config.SYNC_MIN_MEMBERS}  # the coordination threshold (for the no-coordination line)
 
 
@@ -120,7 +134,15 @@ def _compose_dry(stats: dict, allow_absence_claim: bool = True) -> str:
         if tp["quote"]:
             # "carried", not "said": the phrase appeared in these members' statements — which may quote
             # third parties. "N of us" (member count), not "N statements" — members is the unit. §S8.
-            parts.append(f'{tp["members"]} of us carried "{tp["quote"]}".')
+            counts = tp.get("counts") or {}
+            if tp.get("object_type") == contracts.CLAIM_TYPE:
+                parts.append(
+                    f'{counts.get("offices", 0)} offices across '
+                    f'{counts.get("publications", 0)} publications and '
+                    f'{counts.get("families", 0)} families carried "{tp["quote"]}".'
+                )
+            else:
+                parts.append(f'{tp["members"]} of us carried "{tp["quote"]}".')
             quoted += 1
     tp = stats.get("top_phrase")
     if quoted == 0 and not (tp and tp.get("text")) and allow_absence_claim:
@@ -247,13 +269,16 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
         model = prompt["id"] + ":fallback"
 
     # sentence -> talking-point receipts mapping (which clusters back each sentence)
-    receipts = [{"sentence_idx": i, "talking_points": [tp["id"] for tp in talking_points[:3]]}
-                for i, _ in enumerate(composite.split(". "))]
+    sentence_claims = contracts.sentence_claims(composite, stats)
+    receipts = [{"sentence_idx": row["sentence_idx"], "talking_points": row["claim_ids"],
+                 "claim_ids": row["claim_ids"]} for row in sentence_claims]
 
     return {
-        "schema_version": 1, "day": day, "party": party, "composite": composite,
+        "schema_version": contracts.SCHEMA_VERSION, "day": day, "party": party,
+        "composite": composite,
         "quiet": quiet, "fallback": fallback,
         "sentence_receipts": receipts,
+        "sentence_claims": sentence_claims,
         "model": model, "generator": generator,
         "prompt_version": prompt["version"], "prompt_sha": prompt["sha"],
         "stats": stats,

@@ -19,7 +19,8 @@ try:
 except Exception:
     pass
 
-from pipeline import boilerplate, brief, build, cluster, config, distill, duet, extract, llm, nomenclature, ops, privacy, readiness, roster, util, verify  # noqa: E402
+from pipeline import (boilerplate, brief, build, cluster, config, contracts, distill, duet, extract,
+                      llm, nomenclature, ops, privacy, readiness, roster, util, verify)  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -90,6 +91,11 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
     for f in tp.get("fragments", []):
         if f.get("statement") and f.get("text"):
             frag_by_stmt.setdefault(f["statement"], []).append(f["text"])
+    occurrence_by_statement: dict[str, dict] = {}
+    for occurrence in tp.get("occurrences") or []:
+        sid = occurrence.get("statement_id")
+        if sid and sid not in occurrence_by_statement:
+            occurrence_by_statement[sid] = occurrence
     cites, seen = [], set()
     for sid in tp.get("statements", []):
         s = stmt_by_id.get(sid)
@@ -110,9 +116,14 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
                       if boilerplate.contains_gram(q, label) and _attributable(q, s, rmap)), None)
         if not quote:
             continue
+        occurrence = occurrence_by_statement.get(sid) or {}
         cites.append({"member": _name(m.get("bioguide"), rmap), "party": m.get("party"),
                       "state": m.get("state"), "date": s.get("published_at"), "url": s.get("url"),
-                      "quote": quote})
+                      "quote": quote,
+                      "occurrence_id": occurrence.get("occurrence_id"),
+                      "office_id": occurrence.get("office_id") or m.get("bioguide"),
+                      "publication_id": occurrence.get("publication_id") or sid,
+                      "family_id": occurrence.get("family_id") or s.get("joint_group") or sid})
         if len(cites) >= k:
             break
     return cites
@@ -135,6 +146,7 @@ def _reject_reason(label: str, ok_verify: bool, vreasons: list) -> str | None:
 
 
 REJECT_RECEIPT_BINDING = "REJECT_RECEIPT_BINDING"
+REJECT_CLAIM_CONTRACT = "REJECT_CLAIM_CONTRACT"
 
 
 def _screen_talking_points(tps: list[dict], stmt_by_id: dict, rmap: dict) \
@@ -147,10 +159,19 @@ def _screen_talking_points(tps: list[dict], stmt_by_id: dict, rmap: dict) \
     published: list[dict] = []
     dropped = 0
     rejected: list[dict] = []
-    for tp in tps:
+    for original_tp in tps:
+        try:
+            tp = contracts.canonical_claim(original_tp, stmt_by_id)
+        except (TypeError, ValueError):
+            tp = original_tp
+            ok, vreasons = False, ["claim-invariant:canonicalization"]
+            reason = REJECT_CLAIM_CONTRACT
+        else:
+            ok, vreasons = verify.verify_talking_point(tp, stmt_by_id, require_contract=True)
+            reason = _reject_reason(tp.get("label", ""), ok, vreasons)
+            if any(str(row).startswith("claim-invariant:") for row in vreasons):
+                reason = REJECT_CLAIM_CONTRACT
         label = tp.get("label", "")
-        ok, vreasons = verify.verify_talking_point(tp, stmt_by_id)
-        reason = _reject_reason(label, ok, vreasons)
         if reason:
             ok = False
         elif privacy.filter_talking_points([tp])[1]:
@@ -162,7 +183,15 @@ def _screen_talking_points(tps: list[dict], stmt_by_id: dict, rmap: dict) \
                 reason = REJECT_RECEIPT_BINDING
             else:
                 tp["citations"] = citations
-                published.append(tp)
+                tp["citation_occurrence_ids"] = [row.get("occurrence_id") for row in citations]
+                final_ok, _final_reasons = verify.verify_talking_point(
+                    tp, stmt_by_id, require_contract=True, require_citations=True
+                )
+                if final_ok:
+                    published.append(tp)
+                else:
+                    ok = False
+                    reason = REJECT_CLAIM_CONTRACT
         if not ok:
             dropped += 1
             if reason and not privacy.is_suppressed(label):
@@ -315,6 +344,7 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     # merge Daily Lines into the day's derived JSON (deterministic top phrases already there)
     day_file = config.DERIVED / "days" / f"{day}.json"
     day_json = util.read_json(day_file, {"day": day})
+    day_json["schema_version"] = contracts.SCHEMA_VERSION
     day_json["daily_lines"] = {p: day_payload[p]["daily_line"] for p in config.COMPOSITE_PARTIES}
     day_json["talking_points"] = {p: day_payload[p]["talking_points"] for p in config.COMPOSITE_PARTIES}
     # docs/19 §4b — the reason-coded rejected candidates for THIS day (the forward dark-shelf view of
@@ -355,7 +385,8 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
                                  nomen_measure=nomen_measure)
 
     manifest = {
-        "schema_version": 1, "run_id": f"assemble-{date.today().isoformat()}", "kind": "assemble",
+        "schema_version": contracts.SCHEMA_VERSION,
+        "run_id": f"assemble-{date.today().isoformat()}", "kind": "assemble",
         "generated_at": util.now_utc_iso(), "day": day,
         "dry_run": llm.dry_run(), "extract_cost": extract_cost,
         "per_party_llm": per_party_llm, "daily_voice_cost_usd": day_cost,

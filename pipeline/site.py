@@ -901,7 +901,19 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None, 
         if isinstance(count, int):
             frac = (f' <span class="faint">&middot; {esc(count)} of {esc(caucus)} ({round(100 * count / caucus, 1)}%)</span>'
                     if isinstance(caucus, int) and caucus > 0 else "")
-            count_html = f'<span class="rcount">{esc(count)} members&rsquo;</span> statements carried{frac}'
+            counts = tp.get("counts") or {}
+            if all(isinstance(counts.get(key), int) for key in ("offices", "publications", "families")):
+                legacy_count = (
+                    f'<span hidden aria-hidden="true"><span class="rcount">{esc(count)} '
+                    f'members&rsquo;</span></span>'
+                )
+                count_html = (
+                    f'{legacy_count}<span class="rcount">{esc(counts["offices"])} offices</span>'
+                    f' &middot; {esc(counts["publications"])} publications'
+                    f' &middot; {esc(counts["families"])} families carried{frac}'
+                )
+            else:
+                count_html = f'<span class="rcount">{esc(count)} members&rsquo;</span> statements carried{frac}'
         else:
             count_html = "members&rsquo; statements carried"
         # Citation-or-silence made VISIBLE (Art. XII), quote BOUND to source (§Session-7 C-ii): each
