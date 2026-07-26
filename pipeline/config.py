@@ -259,4 +259,5 @@ def llm_voice_enabled() -> bool:
 
 
 LLM_MONTHLY_CEILING_USD = 9.0   # pre-flight HARD stop (< the $10 Console cap); halts the LLM voice
+SHADOW_FALLBACK_RATE_CEILING = 0.05  # frozen prompt-activation ceiling, fallback party-days / offered party-days
 LLM_MONTHLY_WARN_USD = 8.0      # ntfy warn threshold (month-to-date)

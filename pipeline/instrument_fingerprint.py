@@ -25,6 +25,7 @@ LIVE_THRESHOLD_NAMES = (
     "CONCORDANCE_MIN_STATEMENTS", "CONCORDANCE_RECEIPTS_MAX",
     "CONCORDANCE_PEAK_FLOOR", "UNISON_WINDOW_DAYS", "UNISON_MIN_ACTIVE",
     "UNISON_TOP_N", "UNISON_MEMBERS_SAMPLE", "VOID_TOP_N",
+    "SHADOW_FALLBACK_RATE_CEILING",
 )
 
 # Retained only to reproduce the prior public symmetry component. The new overall
@@ -47,6 +48,7 @@ METHOD_VERSIONS = {
     "phrase_statistics": "phrase-statistics-v2",
     "surface_eligibility": "surface-eligibility-v2",
     "structured_composite": "structured-composite-v1",
+    "shadow_replay": "shadow-replay-v1",
     "status_exports": "status-exports-v1",
 }
 
