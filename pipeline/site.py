@@ -30,7 +30,7 @@ from pathlib import Path
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipeline import (boilerplate, build, config, corrections, distill, nomenclature, privacy,
-                      public_strings, util, verify)  # noqa: E402
+                      public_strings, surges, util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
@@ -1797,8 +1797,22 @@ def phrase_page_body(pdata, depth=1, evidence=None):
         )
     elif config.feature_on("authors_vessels"):
         parts.append(f"<dt>First recorded in our corpus</dt><dd>{_origination_line(pdata)}</dd>")
-    else:
+    elif "lane" not in fs and "corpus_start" not in fs:
         parts.append(f"<dt>First recorded in our corpus</dt><dd>{esc(fs_date)} by {member_name(fs_bio)}{tie_html}</dd>")
+    else:
+        observed = surges.first_observed(pdata, default_corpus_start=config.STAGE1_EPOCH)
+        observed_ties = observed.get("ties") or []
+        if observed.get("originator_bioguide"):
+            who = f"; first observed office: {member_name(observed['originator_bioguide'])}"
+        elif observed_ties:
+            who = "; tied observations: " + ", ".join(member_name(value) for value in observed_ties)
+        else:
+            who = ""
+        parts.append(
+            f'<dt>First observed in our corpus</dt><dd>{esc(fs_date)}; Lane {esc(observed["lane"])}; '
+            f'corpus begins {esc(observed["corpus_start"])}; precision: {esc(observed["precision"])}'
+            f'{who}</dd>'
+        )
     if peak is not None:
         peak_data = _load_json(DERIVED / "days" / f"{peak_day}.json") if peak_day else None
         peak_has_page = isinstance(peak_data, dict) and (

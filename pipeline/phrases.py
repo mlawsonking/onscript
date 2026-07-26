@@ -97,6 +97,7 @@ class PhraseEngine:
         self._doc_sync_hits: list[tuple[str, str]] = []  # (party, day) for docs with >=1 sync phrase
         self.last_finalize_stats: dict = {}
         self._ledger_ngrams: set[str] = set()
+        self.corpus_start: str | None = None
 
     def _eligible(self, stmt: dict):
         # Two-lane enforcement (§5.1): only Lane 1 (press releases) feeds any cross-party
@@ -150,6 +151,8 @@ class PhraseEngine:
             if not party:
                 continue
             day = s["published_at"]
+            if self.corpus_start is None or day < self.corpus_start:
+                self.corpus_start = day
             congress = s.get("congress") or util.congress_for_date(day)
             bio = (s.get("member") or {}).get("bioguide")
             unit = _unit_key(s)
@@ -217,6 +220,8 @@ class PhraseEngine:
                     "statement": first[2] if first else None,
                     "tie": sorted(set(self.first_ties.get(ngram, []))),
                     "precision": first[3] if first else "day",
+                    "lane": 1,
+                    "corpus_start": self.corpus_start,
                 },
                 "daily": daily,
                 "df_weight": round(1.0 - min(1.0, share), 3),

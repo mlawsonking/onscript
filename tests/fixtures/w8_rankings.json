@@ -1,0 +1,30 @@
+{
+  "day": "2026-07-24",
+  "denominators": {
+    "D": {"2026-07-20": 100, "2026-07-21": 100, "2026-07-22": 100, "2026-07-23": 100, "2026-07-24": 100},
+    "R": {"2026-07-20": 100, "2026-07-21": 100, "2026-07-22": 100, "2026-07-23": 100, "2026-07-24": 100}
+  },
+  "ledger": {
+    "stable high frequency phrase": {
+      "first_seen": {"date": "2026-07-20", "bioguide": "D1", "precision": "day", "lane": 1, "corpus_start": "2025-01-03", "tie": []},
+      "daily": {
+        "2026-07-20": {"D": 40}, "2026-07-21": {"D": 40}, "2026-07-22": {"D": 40}, "2026-07-23": {"D": 40},
+        "2026-07-24": {"D": 42, "publications_D": 45, "families_D": 38}
+      }
+    },
+    "true surge phrase": {
+      "first_seen": {"date": "2026-07-20", "bioguide": "D2", "precision": "day", "lane": 1, "corpus_start": "2025-01-03", "tie": ["D3"]},
+      "daily": {
+        "2026-07-20": {"D": 2}, "2026-07-21": {"D": 2}, "2026-07-22": {"D": 2}, "2026-07-23": {"D": 2},
+        "2026-07-24": {"D": 25, "publications_D": 29, "families_D": 24}
+      }
+    },
+    "party skew phrase": {
+      "first_seen": {"date": "2026-07-22", "bioguide": "R1", "precision": "day", "lane": 1, "corpus_start": "2025-01-03", "tie": []},
+      "daily": {
+        "2026-07-22": {"D": 30, "R": 1}, "2026-07-23": {"D": 30, "R": 1},
+        "2026-07-24": {"D": 32, "R": 1, "publications_D": 36, "families_D": 31, "publications_R": 1, "families_R": 1}
+      }
+    }
+  }
+}
