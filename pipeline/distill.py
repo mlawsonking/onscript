@@ -15,6 +15,14 @@ from . import boilerplate, config, contracts, eligibility, llm, nomenclature, ut
 
 _QUOTE_MAX_WORDS = 10
 
+COMPOSITE_STATES = (
+    "generated_verified",
+    "deterministic_fallback",
+    "withheld_no_eligible_claim",
+    "withheld_verifier_failure",
+    "corrected",
+)
+
 # docs/19 §2c — appended to the live-voice system prompt (runtime, flag-gated) when any talking point
 # carries a nomenclature annotation. Runtime-appended rather than baked into the committed P2/P3 files
 # so the prompts (and prompts_sha over them) are byte-stable while the tagger is dark; ops.prompts_sha
@@ -229,6 +237,42 @@ def _quiet_dry(stats: dict) -> str:
 _PARTY_FULL = {"D": "Democratic", "R": "Republican"}
 
 
+def measurement_lead(party: str, day: str, publications: int | None) -> str:
+    """Return the neutral code-owned sentence that precedes composite prose."""
+    label = _PARTY_FULL.get(party, party)
+    if isinstance(publications, int):
+        return f"Measurement: {publications} publications were observed for the {label} party on {day}."
+    return f"Measurement: the publication count is unavailable for the {label} party on {day}."
+
+
+def state_for_line(line: dict | None, *, corrected: bool = False) -> str:
+    """Resolve an explicit state for new and legacy Daily Line records."""
+    if corrected:
+        return "corrected"
+    if not isinstance(line, dict):
+        return "withheld_no_eligible_claim"
+    stored = line.get("composite_state")
+    if stored in COMPOSITE_STATES:
+        return stored
+    verifier = line.get("verifier") or {}
+    if verifier.get("checked") and verifier.get("passed") is False:
+        return "withheld_verifier_failure"
+    stats = line.get("stats") or {}
+    selected = (stats.get("selected_claims") if "selected_claims" in stats
+                else stats.get("talking_points") or [])
+    top = stats.get("top_phrase")
+    if stats and not selected and not (isinstance(top, dict) and top.get("text")):
+        return "withheld_no_eligible_claim"
+    if line.get("generator") == "sonnet_direct":
+        return "generated_verified"
+    return "deterministic_fallback"
+
+
+def _record_hash(value: dict) -> str:
+    raw = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return util.sha256_hex(raw)
+
+
 def _compose_llm(prompt: dict, stats: dict, party: str, day: str) -> tuple[str, int, int]:
     """Call the real Sonnet voice (synchronous direct call — 2/day, pennies). Returns
     (composite_text, tokens_in, tokens_out) from the API's own usage. Raises on transport error;
@@ -272,11 +316,22 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
 
     stats = build_stats(party, day, n, talking_points, top_phrase)
     stats_blob = json.dumps(stats, ensure_ascii=False)
+    generation_request = {
+        "method": "structured-composite-v1",
+        "party": party,
+        "day": day,
+        "prompt": {"id": prompt["id"], "version": prompt["version"], "sha256": prompt["sha"]},
+        "stats_sha256": util.sha256_hex(stats_blob),
+        "claim_ids": list(stats.get("claim_ids") or []),
+    }
+    request_sha256 = _record_hash(generation_request)
+    model_response_sha256 = None
 
     tokens_in = tokens_out = 0
     if allow_llm_voice and not llm.dry_run():
         try:  # pragma: no cover - requires ANTHROPIC_API_KEY + LLM_VOICE_ENABLED
             composite, tokens_in, tokens_out = _compose_llm(prompt, stats, party, day)
+            model_response_sha256 = util.sha256_hex(composite)
             if not composite.strip():
                 raise ValueError("empty composite from voice")   # never publish a blank line (HIGH-2)
             generator = "sonnet_direct"     # a real production voice (site.PRODUCTION_GENERATORS)
@@ -316,7 +371,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     if not ok:
         # Last resort: even the deterministic composite failed to verify (should be impossible — it uses
         # only code numbers + verbatim fragments). The honest stub, never silence. §7.2.
-        composite = f"Some of our output could not be verified today. Measured from what did: we released {n} statements."
+        composite = "Composite withheld because its claims could not be verified."
         fallback = True
         # The published text is the deterministic fallback — attribute it honestly, never as the
         # model (the honesty banner + _voice_flags must not claim Sonnet wrote this). §LOW-6.
@@ -327,10 +382,32 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     sentence_claims = contracts.sentence_claims(composite, stats)
     receipts = [{"sentence_idx": row["sentence_idx"], "talking_points": row["claim_ids"],
                  "claim_ids": row["claim_ids"]} for row in sentence_claims]
+    structured_output = {"composite": composite, "sentence_claims": sentence_claims}
+    response_sha256 = _record_hash(structured_output)
+    if not ok:
+        composite_state = "withheld_verifier_failure"
+    elif not stats.get("selected_claims") and not (
+        isinstance(stats.get("top_phrase"), dict) and stats["top_phrase"].get("text")
+    ):
+        composite_state = "withheld_no_eligible_claim"
+    elif generator == "sonnet_direct":
+        composite_state = "generated_verified"
+    else:
+        composite_state = "deterministic_fallback"
 
     return {
         "schema_version": contracts.SCHEMA_VERSION, "day": day, "party": party,
         "composite": composite,
+        "measurement_lead": measurement_lead(party, day, n),
+        "composite_state": composite_state,
+        "structured_request": generation_request,
+        "structured_output": structured_output,
+        "generation_hashes": {
+            "method": "structured-composite-v1",
+            "request_sha256": request_sha256,
+            "response_sha256": response_sha256,
+            "model_response_sha256": model_response_sha256,
+        },
         "quiet": quiet, "fallback": fallback,
         "sentence_receipts": receipts,
         "sentence_claims": sentence_claims,

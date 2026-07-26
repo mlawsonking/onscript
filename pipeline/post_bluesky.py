@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-from pipeline import (config, eligibility, instrument_fingerprint, ops, privacy, public_strings,
+from pipeline import (config, distill, eligibility, instrument_fingerprint, ops, privacy, public_strings,
                       util)  # noqa: E402
 
 SITE = config.SITE_URL      # one source of truth: a receipts link that disagrees with the site is a 404
@@ -171,7 +171,14 @@ def build_thread(day: str, party: str, day_json: dict) -> list[str]:
     # never raise here — a raise would crash the run. All accesses are guarded.
     dl = (day_json.get("daily_lines") or {}).get(party) or {}
     room = 300 - len("\n" + _POST_MARK)               # size posts so the per-post marker always fits
-    posts = _split(dl.get("composite") or "", limit=room)
+    structured = dl.get("structured_output") or {}
+    composite = structured.get("composite") or dl.get("composite") or ""
+    stats = dl.get("stats") or {}
+    lead = dl.get("measurement_lead") or distill.measurement_lead(
+        party, day, stats.get("statements")
+    )
+    state = distill.state_for_line(dl)
+    posts = _split(f"{lead} Composite state: {state}. {composite}", limit=room)
     party_rows = [
         row for row in (day_json.get("top_synchronized") or [])
         if isinstance(row, dict) and row.get("party") == party

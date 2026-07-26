@@ -23,6 +23,14 @@ from . import boilerplate, contracts
 _WS = re.compile(r"\s+")
 _NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
 
+STYLE_LEAKAGE_BANS = (
+    "clinically,",
+    "we register",
+    "dominant message centers on",
+    "shared threads rather than",
+    "beyond these threads",
+)
+
 VERIFIER_CHECKS = (
     "key_quorum",
     "support_count",
@@ -379,6 +387,9 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
     otherwise it falls back to the whole-blob check (legacy verify_day path). §voice-wiring HIGH-1."""
     reasons: list[str] = []
     composite = distillation.get("composite", "")
+    style_hits = [token for token in STYLE_LEAKAGE_BANS if token in composite.casefold()]
+    if style_hits:
+        reasons.append(f"banned style leakage: {style_hits}")
     if stats is not None:
         offending = _numbers_outside_quotes(composite) - code_allowed_numbers(stats)
     else:

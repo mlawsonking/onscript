@@ -46,6 +46,7 @@ METHOD_VERSIONS = {
     "participation": "participation-measures-v1",
     "phrase_statistics": "phrase-statistics-v2",
     "surface_eligibility": "surface-eligibility-v2",
+    "structured_composite": "structured-composite-v1",
     "status_exports": "status-exports-v1",
 }
 

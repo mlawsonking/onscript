@@ -29,7 +29,8 @@ from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import (boilerplate, build, config, corrections, distill, eligibility, nomenclature, privacy,
+from pipeline import (boilerplate, build, config, contracts, corrections, distill, eligibility,
+                      nomenclature, privacy,
                       public_strings, status_exports, surges, util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
@@ -742,7 +743,7 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     if not isinstance(line, dict):
         return line, tps, "clean"
 
-    composite = line.get("composite") or ""
+    composite = (line.get("structured_output") or {}).get("composite") or line.get("composite") or ""
     stats_raw = line.get("stats")
     stats, stats_dropped = privacy.filter_stats(stats_raw)
     if isinstance(stats, dict):
@@ -810,6 +811,17 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
         return None, tps, "withheld"
     out = dict(line)
     out["composite"] = text
+    sentence_claims = contracts.sentence_claims(text, stats)
+    structured_output = {"composite": text, "sentence_claims": sentence_claims}
+    out["structured_output"] = structured_output
+    out["composite_state"] = "corrected"
+    out["measurement_lead"] = out.get("measurement_lead") or distill.measurement_lead(
+        party, day_data.get("day"), stats.get("statements")
+    )
+    generation = dict(out.get("generation_hashes") or {})
+    generation["method"] = "structured-composite-v1"
+    generation["response_sha256"] = distill._record_hash(structured_output)
+    out["generation_hashes"] = generation
     out["generator"] = "deterministic"      # literally true: distill's own composer produced this
     out.pop("model", None)                  # a stale 'claude-sonnet-5' would falsely claim authorship
     out["verifier"] = {"checked": True, "passed": True, "reasons": []}
@@ -1158,9 +1170,18 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     line, tps, pstate = privacy_correct_line(party, day_data)
 
     who = f'<div class="who">{esc(PARTY_NAME.get(party, party))}</div>'
+    raw_line = line if isinstance(line, dict) else None
+    stats = (raw_line or {}).get("stats") or {}
+    lead = (raw_line or {}).get("measurement_lead") or distill.measurement_lead(
+        party, day_data.get("day") or "unknown day", stats.get("statements")
+    )
+    state = distill.state_for_line(raw_line, corrected=pstate != "clean")
+    lead_html = f'<p class="measurement-lead">{esc(lead)}</p>'
+    state_html = f'<div class="composite-state">Composite state: <code>{esc(state)}</code></div>'
     if pstate == "withheld":
         return (
             f'<div class="line {esc(party)}">{who}'
+            f'{lead_html}{state_html}'
             f'<p class="composite muted">This Daily Line is <strong>withheld under the privacy '
             f'floor</strong>: the phrases it would have been composed from name a private '
             f'individual. OnScript measures elected officials&rsquo; public statements and never '
@@ -1171,10 +1192,11 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     if not isinstance(line, dict):
         return (
             f'<div class="line {esc(party)}">{who}'
+            f'{lead_html}{state_html}'
             f'<p class="composite muted">No Daily Line was generated for this day. '
             f'The deterministic phrase engine still ran — see the synchronized phrases below.</p></div>'
         )
-    composite = line.get("composite") or ""
+    composite = (line.get("structured_output") or {}).get("composite") or line.get("composite") or ""
     flags = []
     flags += _voice_flags(line)
     if line.get("quiet"):
@@ -1233,6 +1255,7 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
 
     return (
         f'<div class="line {esc(party)}">{who}'
+        f'{lead_html}{state_html}'
         f'<p class="composite">{esc(composite)}</p>'
         f'{cnote}'
         f'{flags_html}'
