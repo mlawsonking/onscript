@@ -12,31 +12,14 @@ Everything here is deterministic; malformed records are quarantined, not fatal (
 from __future__ import annotations
 
 import re
-import zlib
 from collections import defaultdict
 
-from . import config, util
+from . import config, document_families, util
 
 _WS = re.compile(r"\s+")
 _WORD = re.compile(r"[a-z0-9']+")
 
 
-def _shingles(text: str, k: int) -> frozenset:
-    # crc32 (not builtin hash()) so shingle sets are identical across runs/machines ->
-    # near-dup clustering is deterministic, which rebuild.py (§1.4.8) depends on.
-    toks = _WORD.findall(_norm_ws(text).lower())
-    if len(toks) < k:
-        return frozenset()
-    return frozenset(
-        zlib.crc32((" ".join(toks[i : i + k])).encode("utf-8")) for i in range(len(toks) - k + 1)
-    )
-
-
-def _jaccard(a: frozenset, b: frozenset) -> float:
-    if not a or not b:
-        return 0.0
-    inter = len(a & b)
-    return inter / (len(a) + len(b) - inter)
 _SYNDICATION = re.compile(
     r"^\W{0,40}(originally (published|appeared)|first appeared|as (published|seen) in|"
     r"this (op-?ed|column|piece) (originally|first))",
@@ -154,6 +137,7 @@ def normalize_records(records, *, run_id: str, roster: dict | None = None):
     # not-yet-grouped statements whose shingle Jaccard >= threshold; a multi-member cluster
     # is one coordinated document, not independent adoption.
     near_joint_groups = _near_dup_collapse(statements)
+    document_families.annotate_all_families(statements)
 
     normalize_records.last_stats = {  # type: ignore[attr-defined]
         "in": len(statements) + rejects,
@@ -167,45 +151,5 @@ def normalize_records(records, *, run_id: str, roster: dict | None = None):
 
 
 def _near_dup_collapse(statements: list[dict]) -> int:
-    """Assign a shared joint_group to same-day near-identical multi-member statements.
-    Length-sorted windowed comparison bounds cost to ~O(n*window). Returns #groups formed."""
-    by_day: dict[str, list[dict]] = defaultdict(list)
-    for s in statements:
-        if s["joint_group"] is None and (s.get("member") or {}).get("bioguide"):
-            by_day[s["published_at"]].append(s)
-
-    formed = 0
-    for day, group in by_day.items():
-        cand = []
-        for s in group:
-            sh = _shingles(s.get("text", ""), config.NEAR_JOINT_SHINGLE_K)
-            if len(sh) >= config.NEAR_JOINT_MIN_TOKENS - config.NEAR_JOINT_SHINGLE_K + 1:
-                cand.append((s, sh))
-        if len(cand) < 2:
-            continue
-        cand.sort(key=lambda x: len(x[1]))
-        parent = list(range(len(cand)))
-
-        def find(i):
-            while parent[i] != i:
-                parent[i] = parent[parent[i]]
-                i = parent[i]
-            return i
-
-        w = config.NEAR_JOINT_WINDOW
-        for i in range(len(cand)):
-            for j in range(i + 1, min(i + 1 + w, len(cand))):
-                if _jaccard(cand[i][1], cand[j][1]) >= config.NEAR_JOINT_JACCARD:
-                    parent[find(i)] = find(j)
-
-        clusters: dict[int, list[dict]] = defaultdict(list)
-        for idx, (s, _sh) in enumerate(cand):
-            clusters[find(idx)].append(s)
-        for root, members in clusters.items():
-            bios = {(m.get("member") or {}).get("bioguide") for m in members}
-            if len(members) > 1 and len(bios) > 1:
-                gid = "njoint:" + util.sha256_hex(day + members[0]["id"])[:20]
-                formed += 1
-                for m in members:
-                    m["joint_group"] = gid
-    return formed
+    """Compatibility wrapper for the W7 document-family implementation."""
+    return document_families.apply_families(statements)

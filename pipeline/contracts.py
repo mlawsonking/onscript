@@ -31,6 +31,7 @@ def phrase_occurrences(statement: dict, phrase: str, claim_id: str) -> list[dict
     member = statement.get("member") or {}
     office_id = member.get("bioguide")
     joint = statement.get("joint_group")
+    family_id = (statement.get("document_family") or {}).get("family_id") or joint or sid
     out: list[dict] = []
     for index in range(len(spans) - len(wanted) + 1):
         window = spans[index:index + len(wanted)]
@@ -46,7 +47,7 @@ def phrase_occurrences(statement: dict, phrase: str, claim_id: str) -> list[dict
             "statement_id": sid,
             "publication_id": sid,
             "office_id": office_id,
-            "family_id": joint or sid,
+            "family_id": family_id,
             "support_unit_id": joint or office_id,
             "party": member.get("party"),
             "start_char": start,

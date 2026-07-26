@@ -135,6 +135,15 @@ NEAR_JOINT_MIN_TOKENS = 40        # skip short statements (unstable shingles)
 NEAR_JOINT_SHINGLE_K = 8          # word-shingle size
 NEAR_JOINT_WINDOW = 80            # length-sorted comparison window (bounds cost to ~O(n*w))
 
+# Document-family retrieval and medoid anchoring. These thresholds are PROVISIONAL pending the W10
+# gold set. One set applies to both parties. Exact Jaccard makes the final decision after MinHash
+# retrieves candidates.
+DOCUMENT_FAMILY_JACCARD = 0.72
+DOCUMENT_FAMILY_MIN_TOKENS = 24
+DOCUMENT_FAMILY_SHINGLE_K = 5
+DOCUMENT_FAMILY_MINHASHES = 64
+DOCUMENT_FAMILY_MINHASH_BANDS = 32
+
 # ---------------------------------------------------------------------------
 # Nomenclature segregation (docs/16). Official names (bill titles, committee names) are not
 # messages; the tagger cites an external party-blind record for every tag. A DISCLOSED KNOB, not
