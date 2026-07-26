@@ -404,7 +404,7 @@ def _sync_domain(by_day: dict, *, progress: bool = True) -> set[str]:
         for s in group:
             unit = phrases._unit_key(s)
             party = s["member"]["party"]
-            for ng, _n in phrases._doc_ngrams(s.get("text", "")):
+            for ng, _n in phrases._doc_ngrams(s.get("text", ""), s):
                 counts.setdefault(ng, {}).setdefault(party, set()).add(unit)
         for ng, parties in counts.items():
             if ng not in sync and any(len(u) >= config.SYNC_MIN_MEMBERS for u in parties.values()):

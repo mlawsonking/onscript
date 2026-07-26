@@ -24,17 +24,55 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from . import boilerplate, config, util
+from . import boilerplate, config, privacy, util
 
 
-def _doc_ngrams(text: str):
+def _sentence_token_spans(text: str) -> list[list[tuple[str, int, int]]]:
+    """Tokenized sentences with offsets into the unmodified source string."""
+    chars = list(text or "")
+    for pattern in boilerplate._STRIP_PATTERNS:
+        current = "".join(chars)
+        for match in pattern.finditer(current):
+            chars[match.start():match.end()] = [" "] * (match.end() - match.start())
+    cleaned = "".join(chars)
+    boundaries = []
+    start = 0
+    for match in boilerplate._SENTENCE_SPLIT.finditer(cleaned):
+        boundaries.append((start, match.start()))
+        start = match.end()
+    boundaries.append((start, len(cleaned)))
+
+    sentences = []
+    for start, end in boundaries:
+        segment = cleaned[start:end]
+        dateline = boilerplate._DATELINE.match(segment)
+        token_start = start + (dateline.end() if dateline else 0)
+        tokens = [
+            (match.group(0).lower(), token_start + match.start(), token_start + match.end())
+            for match in boilerplate._TOKEN.finditer(cleaned[token_start:end].lower())
+        ]
+        if tokens:
+            sentences.append(tokens)
+    return sentences
+
+
+def _doc_ngrams(text: str, statement: dict | None = None, roster_map: dict | None = None):
     """Set of (ngram, n) for a document, deduped within the doc, n in [MIN, MAX],
-    with boilerplate-regex n-grams already excluded."""
+    with boilerplate-regex n-grams and person-span intersections already excluded."""
     grams: set[tuple[str, int]] = set()
-    for toks in boilerplate.sentences(text):
+    person_rows = privacy.person_spans(text, statement=statement, roster_map=roster_map)
+    held = [
+        (row["start_char"], row["end_char"])
+        for row in person_rows if row["classification"] in {"private", "quarantine"}
+    ]
+    for token_rows in _sentence_token_spans(text):
+        toks = [row[0] for row in token_rows]
         L = len(toks)
         for n in range(config.NGRAM_MIN, config.NGRAM_MAX + 1):
             for i in range(0, L - n + 1):
+                occurrence = (token_rows[i][1], token_rows[i + n - 1][2])
+                if any(privacy.intervals_overlap(occurrence, span) for span in held):
+                    continue
                 ng = " ".join(toks[i : i + n])
                 if not boilerplate.is_boilerplate_ngram(ng) and not boilerplate.is_low_content(ng):
                     grams.add((ng, n))
@@ -90,7 +128,7 @@ class PhraseEngine:
             for s in group:
                 party = s["member"]["party"]
                 unit = _unit_key(s)
-                for ngram, _n in _doc_ngrams(s.get("text", "")):
+                for ngram, _n in _doc_ngrams(s.get("text", ""), s):
                     d = day_counts.get(ngram)
                     if d is None:
                         d = day_counts[ngram] = {}
@@ -119,7 +157,7 @@ class PhraseEngine:
             self.docs_in_stratum[stratum] += 1
             self.party_day_docs[(party, day)] += 1
             had_sync = False
-            for ngram, n in _doc_ngrams(s.get("text", "")):
+            for ngram, n in _doc_ngrams(s.get("text", ""), s):
                 if ngram not in self.sync_ngrams:
                     continue
                 had_sync = True

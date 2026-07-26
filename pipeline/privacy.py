@@ -105,6 +105,8 @@ _HASHES: frozenset[str] = frozenset()
 _MAX_FORM_TOKENS: int = 3
 _FORM_SIZES: list[int] = [1, 2, 3]
 _META: dict = {}
+_ALLOWLIST: tuple[str, ...] = ()
+_DEFAULT_ROSTER_NAMES: dict[tuple[str, ...], str] | None = None
 _GEN: int = 0            # bumped on every (re)load so the mac memo cannot serve a stale salt
 _MAC_MEMO: dict = {}
 
@@ -156,7 +158,7 @@ def _read_salt() -> bytes:
 
 def load(*, forms_path: Path | None = None, allowlist_path: Path | None = None) -> None:
     """Establish the gate. Raises PrivacyGateError on ANY failure — never fails open."""
-    global _SALT, _HASHES, _MAX_FORM_TOKENS, _META, _GEN
+    global _SALT, _HASHES, _MAX_FORM_TOKENS, _META, _ALLOWLIST, _DEFAULT_ROSTER_NAMES, _GEN
 
     salt = _read_salt()
     fp = Path(forms_path or FORMS_PATH)
@@ -205,11 +207,12 @@ def load(*, forms_path: Path | None = None, allowlist_path: Path | None = None) 
     # it belongs: a MISSING or CORRUPT file, a bad canary (wrong/absent salt), or an allowlist/roster
     # violation still raise, and is_suppressed() still raises when the gate never loaded at all.
     # An empty list suppresses nothing, which is exactly what it should do.
-    _assert_allowlist(allowlist_path)
+    _ALLOWLIST = _assert_allowlist(allowlist_path)
+    _DEFAULT_ROSTER_NAMES = None
     _assert_roster()
 
 
-def _assert_allowlist(allowlist_path: Path | None = None) -> None:
+def _assert_allowlist(allowlist_path: Path | None = None) -> tuple[str, ...]:
     """Art. IV kill-fixture: real corpus strings that MUST survive. Admitting `sebastian` as a form
     makes this fail — correctly, since a `sebastian` rule would delete R-side county-delegation
     phrases in order to protect a D-side victim: an asymmetric INSTRUMENT."""
@@ -218,12 +221,14 @@ def _assert_allowlist(allowlist_path: Path | None = None) -> None:
         doc = json.loads(ap.read_text(encoding="utf-8"))
     except Exception as e:  # noqa: BLE001
         raise PrivacyGateError(f"privacy allowlist unreadable at {ap}: {e}") from e
-    for s in doc.get("allow") or []:
+    allowed = tuple(str(value) for value in (doc.get("allow") or []))
+    for s in allowed:
         if is_suppressed(s):
             raise PrivacyGateError(
                 f"privacy form list matches an allowlisted legitimate phrase ({s!r}). A form is "
                 "over-broad; narrow it rather than muting real speech."
             )
+    return allowed
 
 
 def _assert_roster() -> None:
@@ -405,6 +410,137 @@ def _suppressed_spans(text: str) -> list[tuple[int, int, str]]:
         else:
             i += 1
     return spans
+
+
+_PERSON_TOKEN = re.compile(r"[A-Za-z][A-Za-z'’-]*")
+_OFFICE_TITLE = re.compile(
+    r"(?:rep\.?|representative|senator|congressman|congresswoman)\s*$", re.IGNORECASE
+)
+_TITLE_TOKENS = frozenset({"rep", "representative", "senator", "congressman", "congresswoman"})
+
+
+def _normalized_words(value: str) -> tuple[str, ...]:
+    return tuple(match.group(0).lower().strip(".'’-" ) for match in _PERSON_TOKEN.finditer(value or ""))
+
+
+def _contains_run(container: tuple[str, ...], wanted: tuple[str, ...]) -> bool:
+    return bool(wanted) and any(
+        container[index:index + len(wanted)] == wanted
+        for index in range(len(container) - len(wanted) + 1)
+    )
+
+
+def _roster_names(roster_map: dict | None = None) -> dict[tuple[str, ...], str]:
+    global _DEFAULT_ROSTER_NAMES
+    provided = roster_map is not None
+    if roster_map is None:
+        if _DEFAULT_ROSTER_NAMES is not None:
+            return _DEFAULT_ROSTER_NAMES
+        try:
+            from pipeline import roster
+            roster_map = roster.load()
+        except Exception:
+            roster_map = {}
+    out: dict[tuple[str, ...], str] = {}
+    for bioguide, row in (roster_map or {}).items():
+        name = row.get("name") if isinstance(row, dict) else None
+        words = _normalized_words(name or "")
+        if len(words) >= 2:
+            out[words] = str(bioguide)
+    if not provided and _DEFAULT_ROSTER_NAMES is None:
+        _DEFAULT_ROSTER_NAMES = out
+    return out
+
+
+def person_spans(text: str, statement: dict | None = None,
+                 roster_map: dict | None = None) -> list[dict]:
+    """Classify deterministic person spans before any n-gram is generated.
+
+    Admitted HMAC forms are private. Roster names pass only for the statement's author or when an
+    elected-office title supplies official context. Capitalized sequences that cannot be resolved
+    through the roster or public allowlist are quarantined.
+    """
+    if not isinstance(text, str) or not text:
+        return []
+    rows: list[dict] = [
+        {"start_char": start, "end_char": end, "classification": "private", "source": "hmac"}
+        for start, end, _form_hash in _suppressed_spans(text)
+    ]
+    private_intervals = [(row["start_char"], row["end_char"]) for row in rows]
+    roster_names = _roster_names(roster_map)
+    author = ((statement or {}).get("member") or {}).get("bioguide")
+    allow_runs = [_normalized_words(value) for value in _ALLOWLIST]
+
+    tokens = list(_PERSON_TOKEN.finditer(text))
+    index = 0
+    while index < len(tokens):
+        token = tokens[index].group(0).strip(".'’-" )
+        if not token or not token[0].isupper() or token.isupper():
+            index += 1
+            continue
+        end_index = index + 1
+        while end_index < len(tokens) and end_index - index < 5:
+            gap = text[tokens[end_index - 1].end():tokens[end_index].start()]
+            next_token = tokens[end_index].group(0).strip(".'’-" )
+            if (not gap.isspace() or not next_token or not next_token[0].isupper()
+                    or next_token.isupper()):
+                break
+            end_index += 1
+        if end_index - index < 2:
+            index += 1
+            continue
+
+        candidate = tokens[index:end_index]
+        start_char, end_char = candidate[0].start(), candidate[-1].end()
+        if any(start_char < private_end and private_start < end_char
+               for private_start, private_end in private_intervals):
+            index = end_index
+            continue
+        words = tuple(match.group(0).lower().strip(".'’-" ) for match in candidate)
+        bare_words = words[1:] if words and words[0] in _TITLE_TOKENS else words
+        bioguide = roster_names.get(bare_words)
+        prefix = text[max(0, start_char - 32):start_char]
+        official = bool(bioguide and (bioguide == author or words[0] in _TITLE_TOKENS
+                                      or _OFFICE_TITLE.search(prefix)))
+        allowlisted = any(_contains_run(allowed, bare_words) or _contains_run(bare_words, allowed)
+                          for allowed in allow_runs)
+        if official or allowlisted:
+            classification = "public_official" if official else "allowlisted"
+            source = "roster" if official else "allowlist"
+        else:
+            classification = "quarantine"
+            source = "capitalized_sequence"
+        rows.append({
+            "start_char": start_char,
+            "end_char": end_char,
+            "classification": classification,
+            "source": source,
+        })
+        index = end_index
+    return sorted(rows, key=lambda row: (row["start_char"], row["end_char"], row["classification"]))
+
+
+def intervals_overlap(left: tuple[int, int], right: tuple[int, int]) -> bool:
+    """Return whether two half-open character intervals intersect."""
+    return left[0] < right[1] and right[0] < left[1]
+
+
+def suppress_person_spans(text: str, statement: dict | None = None,
+                          roster_map: dict | None = None) -> tuple[str, list[dict]]:
+    """Mask private and unresolved person spans with sentence boundaries.
+
+    The mask preserves string length. Every candidate occurrence that intersects a held span is
+    removed, and tokens on opposite sides cannot become a new adjacent phrase.
+    """
+    spans = person_spans(text, statement=statement, roster_map=roster_map)
+    held = [row for row in spans if row["classification"] in {"private", "quarantine"}]
+    if not held:
+        return text, spans
+    chars = list(text)
+    for row in held:
+        start, end = row["start_char"], row["end_char"]
+        chars[start:end] = ["."] + [" "] * max(0, end - start - 1)
+    return "".join(chars), spans
 
 
 def redact(text):

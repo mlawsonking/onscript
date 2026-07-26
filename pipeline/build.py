@@ -308,7 +308,7 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
                          "state": m.get("state") or r.get("state"),
                          "chamber": m.get("chamber") or r.get("chamber")}
         congress = int(s.get("congress") or util.congress_for_date(day) or 0)
-        matches = [ng for ng, _n in _doc_ngrams(s.get("text", ""))
+        matches = [ng for ng, _n in _doc_ngrams(s.get("text", ""), s, roster_map)
                    if ng in kept and not _is_name(ng, congress)]
         if matches:
             numer[bio] += 1
