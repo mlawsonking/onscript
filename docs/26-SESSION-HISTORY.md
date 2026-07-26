@@ -2280,3 +2280,34 @@ writes the additive field, as the packet disclosed.
 Verdict: the delivery is accepted. Merge to main and the push are Michael's acts. The
 first post-merge day should be watched through one full cron cycle: RUN A, RUN B, the
 workflow_run handoff to RUN C, and the 13:00Z watchdog tick.
+
+## 2026-07-26: Session 49 (Fable). Hotfix aftermath recorded; second review adjudicated; docs/33 is the X work order
+
+Morning outage, recorded: the first post-W3 production cycle failed at restore. Both
+runs died on "archive conflicts with repository authority: data/reference/
+corrections.json" because every pre-W3 data-latest archive carries the tracked
+reference tree and W3's conflict check raised on the schema-upgraded corrections file.
+Self-deadlocking: the archive is only rebuilt by a run that gets past restore. RUN C
+correctly declined to fire behind the failed assemble. Hotfix 9d3b73f (14:52 CT):
+repository-authority files in archives are ignored loudly, never fatally; protection
+was always the merge allowlist, which never wrote them; new archives carry only
+runtime paths (roster.json is the sole runtime file under data/reference). Suite
+572/0; proven against the legacy archive shape before push. Validation lesson filed:
+the W3 check was validated against fixtures, never against the actual production
+archive; the transition case was foreseeable. The 15:27 CT collect is the first
+post-fix production exercise.
+
+Second external review adjudicated into docs/33 (binding). All five headline claims
+verified in code before ruling: the surge baseline omits zero-occurrence days
+(surges.py line 81); the classifier defaults unmatched phrases to message
+(eligibility.py line 41); the on-script index is live on the homepage with mixed
+units (0.7692 D, 0.8358 R on the committed snapshot), a v1 surface the R-29.2 dark
+statement missed; thresholds_sha omits the live family knobs while hashing a knob
+nothing references; the v1.4 prompts are dark by design and gain a shadow-replay
+flip gate. Work packages X1 through X15 defined. Release gates A through D adopted
+as the public-posture ladder. Composite stays the signature per R-29.1; the index
+leaves the public surface until validated (R-33.1 amends R-29.2).
+
+Next action: Michael runs the Codex session against docs/33; the recovery chain
+(collect, assemble picking up 2026-07-25, first RUN C firing) proves tonight; Monday
+nomenclature decision unchanged.
