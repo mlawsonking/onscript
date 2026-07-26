@@ -98,7 +98,8 @@ jobs:
 
       - name: Persist updated extraction cache
         run: |
-          tar -czf state.tar.gz data/state data/reference
+          # Runtime-owned paths only; see the matching note in collect.yml (W3 authority split).
+          tar -czf state.tar.gz data/state data/reference/roster.json
           python -m pipeline.release_provenance write state.tar.gz
           gh release upload data-latest state.tar.gz state.tar.gz.sha256 --clobber || true
 

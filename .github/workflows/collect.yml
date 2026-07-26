@@ -77,7 +77,10 @@ jobs:
 
       - name: Persist state + raw mirror to the data Release
         run: |
-          tar -czf state.tar.gz data/state data/reference
+          # Only runtime-owned paths belong in the archive (W3 authority split). Everything else
+          # under data/reference is TRACKED; shipping it re-creates the 2026-07-26 restore
+          # conflict on every future schema change to a tracked reference file.
+          tar -czf state.tar.gz data/state data/reference/roster.json
           tar -czf raw.tar.gz data/raw
           python -m pipeline.release_provenance write state.tar.gz raw.tar.gz
           gh release create data-latest --title "OnScript data (rolling)" --notes "raw mirror + ledger + extraction cache" 2>/dev/null || true

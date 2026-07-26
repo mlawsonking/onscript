@@ -48,8 +48,14 @@ def restore_archive(archive: Path, checkout: Path) -> list[str]:
             paths = [_member_path(member, allowed_prefixes) for member in members]
             bundle.extractall(temporary, members=members, filter="data")
 
-        # Validate every repository-owned file before copying any runtime state. A conflict leaves the
-        # checkout byte-identical, including paths that appeared earlier in the archive.
+        # Repository-owned files in an archive are NEVER restored (the merge loop below skips
+        # them), so a stale copy cannot roll the checkout back no matter what this loop does.
+        # A differing copy is therefore reported loudly and SKIPPED, not raised: every archive
+        # built before the W3 authority split legitimately carries data/reference, and raising
+        # here deadlocks the pipeline (2026-07-26, first post-W3 cycle: both runs died on the
+        # pre-W3 data-latest archive, and the archive is only rebuilt by a run that gets past
+        # this line). Skip-and-log is the Constitution's reliability posture; protection lives
+        # in the merge allowlist, not in this report.
         for relative in paths:
             source = temporary.joinpath(*relative.parts)
             key = relative.as_posix()
@@ -57,7 +63,8 @@ def restore_archive(archive: Path, checkout: Path) -> list[str]:
                     and key not in RUNTIME_REFERENCE_FILES):
                 destination = checkout.joinpath(*relative.parts)
                 if not destination.is_file() or source.read_bytes() != destination.read_bytes():
-                    raise ValueError(f"archive conflicts with repository authority: {key}")
+                    print(f"[restore] repository-authority file in archive differs and is "
+                          f"IGNORED (repository wins): {key}")
 
         for relative in paths:
             source = temporary.joinpath(*relative.parts)

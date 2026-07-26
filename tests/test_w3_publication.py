@@ -26,7 +26,11 @@ def _archive(path: Path, rows: dict[str, bytes]) -> None:
             bundle.addfile(info, io.BytesIO(payload))
 
 
-def test_stale_archive_conflict_fails_before_any_checkout_write():
+def test_stale_repository_file_in_archive_is_ignored_and_the_day_survives():
+    """The 2026-07-26 outage, pinned. Every pre-W3 archive carries data/reference; the repository
+    copy must WIN silently for the checkout and loudly for the log, and the runtime merge must
+    still complete. Raising here deadlocks the pipeline: the archive is only rebuilt by a run
+    that gets past restore. Protection lives in the merge allowlist (next test), not in a raise."""
     with tempfile.TemporaryDirectory(prefix="onscript-w3-") as name:
         root = Path(name)
         checkout = root / "checkout"
@@ -36,18 +40,18 @@ def test_stale_archive_conflict_fails_before_any_checkout_write():
         _write(runtime, b"current runtime state")
         archive = root / "state.tar.gz"
         _archive(archive, {
-            "data/state/ledger.json": b"stale runtime state",
+            "data/state/ledger.json": b"newer runtime state",
             "data/reference/corrections.json": b"stale corrections",
         })
 
-        try:
-            archive_restore.restore_archive(archive, checkout)
-        except ValueError as error:
-            assert "repository authority" in str(error)
-        else:
-            raise AssertionError("stale tracked reference data was accepted")
-        assert authority.read_bytes() == b"new repository corrections"
-        assert runtime.read_bytes() == b"current runtime state"
+        merged = archive_restore.restore_archive(archive, checkout)
+
+        assert authority.read_bytes() == b"new repository corrections", \
+            "the archive must never roll back a repository-authority file"
+        assert runtime.read_bytes() == b"newer runtime state", \
+            "runtime state must still merge; the stale reference file cannot cost the day"
+        assert merged == ["data/state/ledger.json"], \
+            "only the runtime allowlist merges; the reference file is not in the merge set"
 
 
 def test_valid_archive_merges_only_runtime_allowlist():

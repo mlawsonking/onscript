@@ -18,7 +18,7 @@ ADVERSARIAL_FIXTURES = {
     "invented_number": ("tests.test_voice", "test_fabricated_aggregate_from_a_quote_number_is_rejected"),
     "combined_quote_pool": ("tests.test_claim_binding", "test_combined_pool_grounding_cannot_bind_the_wrong_count_to_a_quote"),
     "private_person_span": ("tests.test_w4_span_privacy", "test_both_historical_escape_shapes_require_span_suppression"),
-    "stale_archive": ("tests.test_w3_publication", "test_stale_archive_conflict_fails_before_any_checkout_write"),
+    "stale_archive": ("tests.test_w3_publication", "test_stale_repository_file_in_archive_is_ignored_and_the_day_survives"),
     "archive_traversal": ("tests.test_w3_publication", "test_archive_member_outside_allowlist_is_rejected"),
     "published_day_rollback": ("tests.test_final_immutable", "test_published_day_is_byte_identical_after_a_run_a_pass"),
 }
