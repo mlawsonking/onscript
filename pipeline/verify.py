@@ -293,6 +293,15 @@ def quotes_grounded(composite_text: str, fragments: list[str]) -> tuple[bool, li
     return (len(offending) == 0, offending)
 
 
+def _selected_talking_points(stats: dict) -> list[dict]:
+    """Resolve the persisted review selection from its IDs and compatibility rows."""
+    rows = [row for row in (stats.get("talking_points") or []) if isinstance(row, dict)]
+    if "selected_claims" not in stats:
+        return rows
+    selected_ids = set(stats.get("claim_ids") or [])
+    return [row for row in rows if row.get("claim_id") in selected_ids]
+
+
 def quotes_bound_to_talking_points(composite_text: str, stats: dict) -> tuple[bool, list[str]]:
     """Bind every composite quote to one STATS talking point and that point's support phrase.
 
@@ -302,7 +311,7 @@ def quotes_bound_to_talking_points(composite_text: str, stats: dict) -> tuple[bo
     the nearest preceding N must equal the bound talking point's support-unit count.
     """
     offending: list[str] = []
-    tps = [tp for tp in (stats.get("talking_points") or []) if isinstance(tp, dict)]
+    tps = _selected_talking_points(stats)
     text = composite_text or ""
     for match in _QUOTE.finditer(text):
         raw = match.group(1) or match.group(2) or ""
@@ -348,7 +357,7 @@ def code_allowed_numbers(stats: dict) -> set[str]:
     allowed: set[str] = set()
     if stats.get("statements") is not None:
         allowed.add(str(stats["statements"]))
-    for tp in stats.get("talking_points") or []:
+    for tp in _selected_talking_points(stats):
         if tp.get("members") is not None:
             allowed.add(str(tp["members"]))
         allowed |= _numbers(tp.get("label", ""))   # a number that is part of the phrase NAME (e.g. "21st")
@@ -382,7 +391,9 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
             reasons.append(f"unbound talking-point quotes: {off_q}")
         if stats.get("schema_version") == contracts.SCHEMA_VERSION:
             known_ids = set(stats.get("claim_ids") or [])
-            typed = [tp for tp in (stats.get("talking_points") or []) if isinstance(tp, dict)]
+            # claim_ids is the persisted review selection. Filter the complete compatibility list
+            # by that selection so excluded nomenclature cannot enter a rendered sentence.
+            typed = _selected_talking_points(stats)
             if (any(tp.get("claim_type") != contracts.CLAIM_TYPE
                     or tp.get("claim_id") not in known_ids for tp in typed)
                     or known_ids != {tp.get("claim_id") for tp in typed}):

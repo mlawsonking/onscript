@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import re
 
-from . import boilerplate, config, contracts, llm, nomenclature, util, verify
+from . import boilerplate, config, contracts, eligibility, llm, nomenclature, util, verify
 
 _QUOTE_MAX_WORDS = 10
 
@@ -70,10 +70,30 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
                 top_phrase: dict | None) -> dict:
     """Code-computed STATS block — the ONLY source of numbers the composite may use (§6.2 P2 rule 3)."""
     tps = []
+    selected, shared_nomenclature = eligibility.select_claims(talking_points, day=day, limit=2)
+    surface_counts = {name: 0 for name in eligibility.SURFACE_CLASSES}
+    for candidate in talking_points:
+        classified = eligibility.classify_claim(candidate, day=day)
+        surface_counts[classified["surface_class"]] += 1
+
+    rendered_top = top_phrase
+    top_classification = None
+    if isinstance(top_phrase, dict) and top_phrase.get("text"):
+        top_classification = eligibility.classify_phrase(top_phrase["text"], day=day)
+        if top_classification["surface_class"] == "nomenclature":
+            shared_nomenclature.append({
+                "label": top_phrase["text"],
+                "member_count": top_phrase.get("members"),
+                "counts": top_phrase.get("counts") or {},
+                **top_classification,
+            })
+        if top_classification["surface_class"] != "message":
+            rendered_top = None
     # docs/19 §2c — congress for the pre-distill nomenclature annotation, resolved ONLY when the tagger
     # is live so the flag-off STATS block is byte-identical (docs/19 §3.4). Annotation, not deletion.
     cong = util.congress_for_date(day) if config.feature_on("nomenclature_tags") else None
-    for claim_index, tp in enumerate(talking_points[:4]):
+    selected_entries = []
+    for claim_index, tp in enumerate(selected):
         # The quote MUST be verbatim member speech: the blocking verifier grounds it against real
         # fragment text, NEVER against the code-computed label (a punctuation-stripped n-gram that is
         # often not a raw substring of any statement — quoting it would violate citation integrity).
@@ -98,6 +118,10 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
                  "claim_id": claim_id,
                  "claim_type": contracts.CLAIM_TYPE,
                  "object_type": tp.get("object_type"),
+                 "surface_class": tp.get("surface_class"),
+                 "surface_eligible": tp.get("surface_eligible"),
+                 "surface_classifier": tp.get("classifier"),
+                 "topic_provenance": tp.get("topic_provenance") or [],
                  "counts": tp.get("counts") or {
                      "offices": tp.get("member_count"),
                      "publications": len(tp.get("statements") or []),
@@ -114,10 +138,25 @@ def build_stats(party: str, day: str, party_statement_count: int, talking_points
             if v:
                 entry["nomenclature"] = {"lane": v["lane"], "cite": v["cite"], "class": v["class"]}
         tps.append(entry)
+        if tp.get("surface_class") == "message":
+            selected_entries.append(entry)
     return {"schema_version": contracts.SCHEMA_VERSION,
             "party": party, "day": day, "statements": party_statement_count,
-            "talking_points": tps, "top_phrase": top_phrase,
-            "claim_ids": [row["claim_id"] for row in tps if row.get("claim_id")],
+            "talking_points": tps, "top_phrase": rendered_top,
+            "selected_claims": selected_entries,
+            "shared_nomenclature": [
+                {
+                    "claim_id": row.get("claim_id") or row.get("id"),
+                    "label": row.get("label"),
+                    "counts": row.get("counts") or {"support_units": row.get("member_count")},
+                    "surface_class": "nomenclature",
+                    "classifier": row.get("classifier"),
+                }
+                for row in {row.get("label"): row for row in shared_nomenclature}.values()
+            ],
+            "surface_class_counts": surface_counts,
+            "top_phrase_classification": top_classification,
+            "claim_ids": [row["claim_id"] for row in selected_entries if row.get("claim_id")],
             "sync_min": config.SYNC_MIN_MEMBERS}  # the coordination threshold (for the no-coordination line)
 
 
@@ -130,7 +169,12 @@ def _compose_dry(stats: dict, allow_absence_claim: bool = True) -> str:
     a claim would be a second integrity failure on top of the one it is fixing (Art. II)."""
     parts = [f"Today {stats['statements']} of us released statements."]
     quoted = 0
-    for tp in stats["talking_points"][:3]:
+    rendered_claims = (stats.get("selected_claims") if "selected_claims" in stats
+                       else stats.get("talking_points") or [])
+    # Classified STATS carry the review selection explicitly and are capped upstream. Legacy
+    # fixtures have no selection field, so retain their frozen rendering contract.
+    claims_to_render = rendered_claims[:2] if "selected_claims" in stats else rendered_claims
+    for tp in claims_to_render:
         if tp["quote"]:
             # "carried", not "said": the phrase appeared in these members' statements — which may quote
             # third parties. "N of us" (member count), not "N statements" — members is the unit. §S8.
@@ -184,7 +228,10 @@ def _compose_llm(prompt: dict, stats: dict, party: str, day: str) -> tuple[str, 
     text is ultimately used, so an ungrounded LLM claim can never publish. §voice-wiring."""
     fills = {"{day}": day, "{party}": _PARTY_FULL.get(party, party),
              "{code_computed_stats_json}": json.dumps(stats, ensure_ascii=False),
-             "{talking_points_json}": json.dumps(stats.get("talking_points", []), ensure_ascii=False)}
+             "{talking_points_json}": json.dumps(
+                 stats.get("selected_claims") if "selected_claims" in stats
+                 else stats.get("talking_points", []), ensure_ascii=False
+             )}
     system, user = prompt["system"], prompt["user_template"]
     for k, v in fills.items():
         system = system.replace(k, v)
@@ -192,7 +239,7 @@ def _compose_llm(prompt: dict, stats: dict, party: str, day: str) -> tuple[str, 
     # docs/19 §2c — when the tagger is live AND a talking point is an official name, append the
     # handling clause so the voice cannot present a bill title as a coordinated message. Flag-gated,
     # so dark => committed prompt unchanged => the live call is byte-identical to today's.
-    if config.feature_on("nomenclature_tags") and any(t.get("nomenclature") for t in stats.get("talking_points", [])):
+    if config.feature_on("nomenclature_tags") and stats.get("shared_nomenclature"):
         system += NOMENCLATURE_VOICE_CLAUSE
     res = llm.direct_call(llm.VOICE_MODEL, system, user, max_tokens=400)
     text = (res.get("text") or "").strip()

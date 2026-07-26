@@ -109,7 +109,9 @@ def canonical_claim(tp: dict, statements_by_id: dict[str, dict]) -> dict:
 
 def sentence_claims(composite: str, stats: dict) -> list[dict]:
     """Map each rendered sentence to the typed claims whose counted phrase it quotes."""
-    claims = [row for row in (stats.get("talking_points") or []) if isinstance(row, dict)]
+    source = (stats.get("selected_claims") if "selected_claims" in stats
+              else stats.get("talking_points") or [])
+    claims = [row for row in source if isinstance(row, dict)]
     sentences = sentence_parts(composite)
     out = []
     for index, sentence in enumerate(sentences):

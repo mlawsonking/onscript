@@ -160,7 +160,7 @@ def test_build_thread_says_first_recorded_IN_OUR_CORPUS():
     """First-appearance is measured against our record, which starts at STAGE1_EPOCH. Unqualified
     'first recorded' reads as a claim about the phrase's origin in American politics. §S34 (3)."""
     day_json = {"daily_lines": {"D": {"composite": "We spoke today."}},
-                "top_synchronized": [{"party": "D", "ngram": "homeland security dhs", "day_peak": 7,
+                "top_synchronized": [{"party": "D", "ngram": "protect voting rights now", "day_peak": 7,
                                       "first_seen": {"date": "2025-01-03"}}]}
     thread = post_bluesky.build_thread("2026-07-20", "D", day_json)
     receipts = [p for p in thread if "Receipts:" in p][0]

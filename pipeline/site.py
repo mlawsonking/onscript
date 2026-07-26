@@ -752,7 +752,9 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     # the composite from the FILTERED stats so the prose matches the surviving receipts.
     if not isinstance(stats, dict):
         return None, tps, "withheld"           # no stats to recompose from -> withhold, never guess
-    has_quote = any((t or {}).get("quote") for t in (stats.get("talking_points") or []))
+    selected_stats = (stats.get("selected_claims") if "selected_claims" in stats
+                      else stats.get("talking_points") or [])
+    has_quote = any((t or {}).get("quote") for t in selected_stats)
     top = stats.get("top_phrase")
     if not has_quote and not (isinstance(top, dict) and top.get("text")):
         # Everything measurable was suppressed. Withholding is RIGHT here: _compose_dry would emit
@@ -982,9 +984,16 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None, 
         topics = tp.get("topics") or []
         topics_html = ""
         if topics:
+            provenance = {
+                row.get("topic_id"): row for row in (tp.get("topic_provenance") or [])
+                if isinstance(row, dict)
+            }
             topics_html = (
                 '<div class="rtopics">'
-                + " · ".join(topic_label(t) for t in topics[:3])
+                + " · ".join(
+                    f'<span title="{esc((provenance.get(t) or {}).get("epistemic_label") or "classifier output")}">'
+                    f'{topic_label(t)}</span>' for t in topics[:3]
+                )
                 + "</div>"
             )
         # "carried", not "said": a release can quote third parties (award presenters, bill text), so
@@ -1140,7 +1149,12 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     # Zero-cluster honesty (A2): a party with statements but no published talking points has nothing
     # to cite — say so, so the "every talking point is citation-backed" promise is never contradicted
     # by a receipt-free card.
-    stats_tps = ((line.get("stats") or {}).get("talking_points") or [])
+    stats = line.get("stats") or {}
+    stats_tps = (stats.get("selected_claims") if "selected_claims" in stats
+                 else stats.get("talking_points") or [])
+    selected_ids = {row.get("claim_id") for row in stats_tps if isinstance(row, dict)}
+    if selected_ids:
+        tps = [row for row in (tps or []) if row.get("claim_id") in selected_ids]
     body_tail = receipts_strip(
         party, tps, caucus=caucus, stats_talking_points=stats_tps,
         day=day_data.get("day"), corrections_href="../methodology.html#corrections",
@@ -1159,6 +1173,14 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
         else:
             body_tail = (f'<p class="nocite">No talking point cleared the {config.SYNC_MIN_MEMBERS}-member '
                          f'threshold today &mdash; nothing to cite.</p>')
+
+    shared_names = stats.get("shared_nomenclature") or []
+    if shared_names:
+        items = "".join(
+            f'<li>{esc(row.get("label"))} <span class="faint">shared nomenclature, not a '
+            f'message finding</span></li>' for row in shared_names
+        )
+        body_tail += f'<div class="receipts"><div class="rlabel">Shared nomenclature</div><ul>{items}</ul></div>'
 
     return (
         f'<div class="line {esc(party)}">{who}'
@@ -1519,7 +1541,6 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         f'<p class="muted"><small>Nightly symmetry audit: {audit_link}. '
         f'{esc(public_strings.DAY_CITATION_NOTE)}</small></p>'
     )
-
     # Top synchronized phrases
     parts.append("<h2>Top synchronized phrases</h2>")
     parts.append(

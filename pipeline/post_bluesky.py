@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-from pipeline import config, ops, privacy, public_strings, util  # noqa: E402
+from pipeline import config, eligibility, ops, privacy, public_strings, util  # noqa: E402
 
 SITE = config.SITE_URL      # one source of truth: a receipts link that disagrees with the site is a 404
 _ACCOUNTS = {
@@ -173,6 +173,14 @@ def build_thread(day: str, party: str, day_json: dict) -> list[str]:
     posts = _split(dl.get("composite") or "", limit=room)
     top = next((r for r in (day_json.get("top_synchronized") or []) if r.get("party") == party), None)
     receipts = f"Receipts: {SITE}/day/{day}.html"
+    if top and top.get("ngram"):
+        classification = eligibility.classify_phrase(top["ngram"], day=day)
+        if classification["surface_class"] == "nomenclature":
+            receipts += (f'\nShared nomenclature: "{top.get("ngram")}" '
+                         '(official name, not a message finding).')
+            top = None
+        elif classification["surface_class"] != "message":
+            top = None
     if top and top.get("ngram"):
         # "in our corpus", always. First-appearance is measured against OUR record, which begins at
         # STAGE1_EPOCH — a phrase already in use before then dates to our first day, not to its own

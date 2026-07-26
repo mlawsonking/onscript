@@ -102,15 +102,17 @@ def test_thresholds_sha_is_stable_dark_and_moves_when_live():
 
 
 # --- §2c the pre-distill annotation -------------------------------------------------------------
-def test_build_stats_annotates_a_nomenclature_key_only_when_live():
+def test_build_stats_always_segregates_nomenclature_from_message_claims():
     tp = {"label": NOM, "member_count": 5,
           "fragments": [{"text": "reintroduced the 21st century road to housing act today"}], "topics": []}
     with _flag(False):
         off = distill.build_stats("D", "2026-07-13", 12, [tp], None)
-    assert "nomenclature" not in off["talking_points"][0]      # dark: STATS byte-identical
+    assert off["talking_points"] == []
+    assert off["shared_nomenclature"][0]["label"] == NOM
     with _flag(True):
         on = distill.build_stats("D", "2026-07-13", 12, [tp], None)
-    assert on["talking_points"][0]["nomenclature"]["lane"] == "bill"
+    assert on["talking_points"] == []
+    assert on["shared_nomenclature"][0]["label"] == NOM
 
 
 def test_prompts_sha_is_stable_dark_and_discloses_the_clause_live():

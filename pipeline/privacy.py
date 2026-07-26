@@ -640,6 +640,9 @@ def filter_stats(stats) -> tuple[dict, int]:
     out = dict(stats)
     tps, dropped = filter_talking_points(stats.get("talking_points") or [])
     out["talking_points"] = tps
+    selected, selected_dropped = filter_talking_points(stats.get("selected_claims") or [])
+    out["selected_claims"] = selected
+    dropped = max(dropped, selected_dropped)
     tp = stats.get("top_phrase")
     if isinstance(tp, dict) and is_suppressed(tp.get("text") or ""):
         out["top_phrase"] = None

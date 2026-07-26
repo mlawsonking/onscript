@@ -20,7 +20,7 @@ except Exception:
     pass
 
 from pipeline import (boilerplate, brief, build, cluster, config, contracts, corrections, distill,
-                      duet, extract, llm, nomenclature, ops, privacy, readiness, roster, util,
+                      duet, eligibility, extract, llm, nomenclature, ops, privacy, readiness, roster, util,
                       verify)  # noqa: E402
 
 
@@ -189,7 +189,7 @@ def _screen_talking_points(tps: list[dict], stmt_by_id: dict, rmap: dict) \
                     tp, stmt_by_id, require_contract=True, require_citations=True
                 )
                 if final_ok:
-                    published.append(tp)
+                    published.append(eligibility.classify_claim(tp, day=tp.get("day")))
                 else:
                     ok = False
                     reason = REJECT_CLAIM_CONTRACT

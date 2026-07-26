@@ -23,3 +23,6 @@ also needs a dated rationale. The public history shows whether a prompt was tune
 The verifier (§6.3, `pipeline/verify.py`) is deterministic and does not depend on the generator. It
 checks the output from any model, including subscription-scripted `claude -p` for one-time backfill
 chapters (§1.3). Publication depends on verification, not on which generator produced the text.
+
+Dark review candidates: `P2_daily_line.v1.4.txt` and `P3_quiet_day.v1.2.txt`. They are not referenced
+by `pipeline/llm.py`. Activation requires Michael's prompt review and a separate release commit.

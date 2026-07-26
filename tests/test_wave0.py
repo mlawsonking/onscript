@@ -333,14 +333,14 @@ def test_quiet_line_cites_top_phrase_and_verifies():
 def test_build_stats_quote_is_a_clean_verbatim_fragment_not_the_label():
     """The quote is verbatim member speech (the shortest, clean fragment), never the punctuation-
     stripped cluster label — so the blocking verifier can ground it against real text."""
-    tp = {"label": "21st century road to housing", "member_count": 4,
+    tp = {"label": "protect rural hospitals now", "member_count": 4,
           "fragments": [
-              {"text": "who supports the 21st century road to housing act's historic passage today"},
-              {"text": "the 21st century road to housing act"},  # shortest, clean, verbatim
+              {"text": "who supports the plan to protect rural hospitals now across america"},
+              {"text": "we must protect rural hospitals now"},  # shortest, clean, verbatim
           ], "topics": []}
     stats = distill.build_stats("D", "2026-06-30", 40, [tp], None)
     q = stats["talking_points"][0]["quote"]
-    assert q == "the 21st century road to housing act"
+    assert q == "we must protect rural hospitals now"
     assert any(q in f["text"] for f in tp["fragments"])  # verbatim substring of real speech
 
 
