@@ -3035,3 +3035,54 @@ minutes.
 **Not done, by standing rule.** Nothing was pushed, dispatched, deployed, or flipped. Local commit
 only. The 21:30Z pass was left to recover 2026-07-24 on its own, which is what the readiness gate is
 built to do, rather than racing it with a manual dispatch against a pending queued run.
+
+## Session 50 (2026-07-26, Fable, emergency implementation): the restore deadlock, its hotfix, and the production proof
+
+The first post-W3 cycle failed on both legs. RUN A died at 10:57Z and RUN B at 12:39Z,
+identically: `ValueError: archive conflicts with repository authority:
+data/reference/corrections.json` from `pipeline/archive_restore.py`. RUN C correctly
+declined to fire behind the failed assemble. The 14:25Z watchdog tick raised 2 alarms
+(`collect_conclusion`, `assemble_conclusion`) and paged. That is the probe built on
+07-25 catching a real dual failure on 07-26, its first full day in production.
+
+Mechanism. Every `data-latest` archive built before W3 carries `data/reference`, and W3
+upgraded the tracked `corrections.json` in the repository, so the new conflict check saw
+archive differing from checkout and raised. The raise deadlocks: the archive is only
+rebuilt by a run that gets past restore, so no future run could clear the condition. The
+merge allowlist below the check already refuses to write repository-authority paths, so
+the raise added downtime without adding protection.
+
+Fix, commit 9d3b73f, pushed 19:52Z, about 35 minutes before the evening dispatch. A
+differing repository-authority file in an archive is logged loudly and skipped;
+rollback stays impossible because the merge loop is unchanged. New archives stop
+carrying tracked reference files: `data/reference/roster.json` is the only runtime-owned
+path under reference and is now the only reference path in `state.tar.gz`. The renamed
+regression test pins the outage shape:
+`test_stale_repository_file_in_archive_is_ignored_and_the_day_survives`. Suite 572/0
+before push, with an end-to-end proof against the legacy archive shape in the run log.
+
+Production proof, same day. The 20:27Z RUN A restore step printed `[restore]
+repository-authority file in archive differs and is IGNORED (repository wins):
+data/reference/corrections.json` and `restored 25 runtime file(s) through the
+allowlist`, then the run went green end to end. The 22:30Z RUN B went green and the
+readiness gate HELD product day 2026-07-25 at 5 statements against a same-weekday
+median of 11 (45% below the 55% floor, day 0d old): a Sunday hold, correct behavior,
+not a failure. The 22:32Z RUN C was the first production firing of the posting split:
+with no newly finalized day it posted nothing, authenticated the 2026-07-24 post
+manifest in a fresh process, refreshed the phrase pages, and committed. Day 2026-07-25
+publishes when the gate clears, at the 09:30Z pass or on force-finalize per
+`readiness.MAX_WAIT_DAYS`.
+
+Validation gap, owned. The W3 conflict check was validated against fixtures only. The
+transition case that broke production, every existing archive necessarily predating W3,
+was foreseeable from the packet's own file list and was not exercised against the real
+`data-latest` asset during acceptance. Article XVI's live-run requirement existed for
+exactly this; the S48 validation treated the first scheduled cycle as the live proof and
+the cycle found the defect. Future workflow-touching packages get a restore rehearsal
+against the production release assets before merge, recorded with the acceptance
+evidence.
+
+Numbers with their estimators: outage window 10:57Z to 20:27Z (first failed dispatch to
+first green dispatch, Actions run history); detection latency 1h46m (12:39Z RUN B
+failure to 14:25Z watchdog page, versus 7h silence on 07-25); fix latency 7h13m
+(12:39Z to the 19:52Z push, including diagnosis from a cold start at 19:37Z).

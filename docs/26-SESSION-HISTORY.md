@@ -2311,3 +2311,30 @@ leaves the public surface until validated (R-33.1 amends R-29.2).
 Next action: Michael runs the Codex session against docs/33; the recovery chain
 (collect, assemble picking up 2026-07-25, first RUN C firing) proves tonight; Monday
 nomenclature decision unchanged.
+
+## 2026-07-26: Session 50 (Fable). Restore deadlock fixed and proven; the watchdog's first catch
+
+Outcome: the first post-W3 cycle failed on both legs at restore (the pre-W3 data-latest
+archive conflicts with the W3-upgraded corrections.json; the raise self-deadlocks
+because only a successful run rebuilds the archive). Hotfix 9d3b73f: repository files
+in archives are ignored loudly, never restored, never fatal; new archives carry only
+runtime paths. Pushed 35 minutes before the evening dispatch. The evening cycle then
+proved it in production: RUN A green with the IGNORED log line and 25 runtime files
+merged, RUN B green with a correct Sunday HOLD of 2026-07-25 (5 statements vs
+same-weekday median 11), RUN C's first firing green (no new day, archive
+authenticated, phrase pages refreshed). Full evidence in docs/04, Session 50.
+
+The 14:25Z watchdog tick raised 2 alarms and paged on the morning failures: first real
+catch, detection latency 1h46m against the prior day's 7h of silence.
+
+Process notes: the S49 numbering belongs to Michael's second-review ruling (docs/33),
+committed from a parallel session while this one ran. The X-package branch
+(codex/x-packages) was active in the operator checkout during this session; a routine
+`pull --rebase` here landed on that branch between two of its commits and rebased it
+onto current main. It applied 5/5 clean and the worker continued, but it was an
+uninvited touch of an active worker's branch; this record is the disclosure. The
+session's docs commits were made from an isolated worktree to avoid a second touch.
+
+Next action: 2026-07-25 publishes at the 09:30Z pass when the gate clears or
+force-finalizes per MAX_WAIT_DAYS. The X1-X15 delivery validates under docs/33 gates
+A-D when the worker finishes.
