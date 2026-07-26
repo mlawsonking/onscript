@@ -29,7 +29,8 @@ try:
 except Exception:
     pass
 
-from pipeline import config, eligibility, ops, privacy, public_strings, util  # noqa: E402
+from pipeline import (config, eligibility, instrument_fingerprint, ops, privacy, public_strings,
+                      util)  # noqa: E402
 
 SITE = config.SITE_URL      # one source of truth: a receipts link that disagrees with the site is a 404
 _ACCOUNTS = {
@@ -523,6 +524,7 @@ def main() -> int:
             live = [r["party"] for r in _ordered() if r.get("posted")]
             util.write_json(manifest_path, {
                 "schema_version": 1, "kind": "post", "day": day, "generated_at": util.now_utc_iso(),
+                "instrument_fingerprint": instrument_fingerprint.build(),
                 "posting_enabled": posting_enabled, "atomic_hold": atomic_hold,
                 "asymmetric": len(live) == 1, "results": _ordered(),
             })

@@ -20,8 +20,8 @@ except Exception:
     pass
 
 from pipeline import (boilerplate, brief, build, cluster, config, contracts, corrections, distill,
-                      duet, eligibility, extract, llm, nomenclature, ops, privacy, readiness, roster, util,
-                      verify)  # noqa: E402
+                      duet, eligibility, extract, instrument_fingerprint, llm, nomenclature, ops,
+                      privacy, readiness, roster, util, verify)  # noqa: E402
 
 
 def _load_taxonomy() -> list[dict]:
@@ -363,6 +363,8 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     # FEATURES["duet"] (BUILD-PROGRAM §1, build dark / release by gate). Deterministic and $0 — it
     # reads the ledger and the day's statements, and calls no model.
     day_json["duets"] = duet.find_duets(day, ledger, focus, rmap, k=duet.DUET_MAX_PER_DAY)
+    fingerprint = instrument_fingerprint.build()
+    day_json["instrument_fingerprint"] = fingerprint
     util.write_json(day_file, day_json)
 
     freshness = {"note": "assemble stage; freshness measured in RUN A"}
@@ -397,6 +399,7 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         "voice_budget_state": voice_state, "month_to_date_usd": month_to_date,
         "governor_state": governor, "degraded": degraded,
         "corrections_count": len(correction_rows),
+        "instrument_fingerprint": fingerprint,
         # WHO TRIGGERED THIS RUN. §1.4.1 acceptance is "three consecutive UNATTENDED real runs", and
         # until now nothing recorded whether a run was a cron or a human dispatch — so the gate could
         # only be tracked by hand in prose, and on 2026-07-16 it was tracked WRONG ("2/3, the 07-16
@@ -417,7 +420,8 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     man_path = config.DERIVED / "manifest" / f"assemble-{day}.json"
     prior_manifest = util.read_json(man_path, {}) or {}
     manifest.update(corrections.publication_fields(
-        day_json, prior_manifest, corrections.for_day(day, correction_rows)
+        day_json, prior_manifest, corrections.for_day(day, correction_rows),
+        fingerprint=fingerprint,
     ))
     manifest, is_repair = repair_safe_manifest(
         manifest, prior_manifest,
@@ -432,7 +436,8 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     # nine-day-stale day. A repair fixes the record; it never changes what posts next.
     if not is_repair:
         util.write_json(config.DERIVED / "manifest" / "assemble-latest.json",
-                        {"day": day, "generated_at": util.now_utc_iso(), "run_id": manifest["run_id"]})
+                        {"day": day, "generated_at": util.now_utc_iso(), "run_id": manifest["run_id"],
+                         "instrument_fingerprint": fingerprint})
     else:
         print(f"[repair] {day}: provenance preserved (event={manifest.get('event')!r} "
               f"unattended={manifest.get('unattended')!r}); assemble-latest NOT repointed")

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from collections import Counter
 
-from . import build, config, normalize, roster, util
+from . import build, config, instrument_fingerprint, normalize, roster, util
 from .phrases import PhraseEngine
 
 
@@ -70,6 +70,7 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
         "spend_estimate_usd": 0.0,
         "governor_state": "nominal",
         "alerts": [],
+        "instrument_fingerprint": instrument_fingerprint.build(),
     }
     util.write_json(config.DERIVED / "manifest" / f"{run_id}.json", manifest)
     util.write_json(config.DERIVED / "manifest" / "latest.json", manifest)

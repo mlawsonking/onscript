@@ -41,7 +41,7 @@ try:
 except Exception:
     pass
 
-from pipeline import config, ops, post_bluesky, privacy, util  # noqa: E402
+from pipeline import config, instrument_fingerprint, ops, post_bluesky, privacy, util  # noqa: E402
 
 HANDLE_ENV = "BSKY_BRAND_HANDLE"
 PW_ENV = "BSKY_BRAND_PASSWORD"
@@ -179,6 +179,7 @@ def main() -> int:
         try:
             util.write_json(MANIFEST, {
                 "schema_version": 1, "kind": "announce", "day": day,
+                "instrument_fingerprint": instrument_fingerprint.build(),
                 "announced_at": util.now_utc_iso(), "handle": handle, "posted": True,
                 "root_uri": uri, "posts": posts, "recovered": recovered, "thread": thread,
             })

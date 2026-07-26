@@ -6,32 +6,14 @@ asymmetric finding is reality's, not the instrument's.
 """
 from __future__ import annotations
 
-import json
 import os
 
-from . import config, llm, nomenclature, public_strings, roster, util
+from . import config, instrument_fingerprint, llm, public_strings, roster, util
 
 
 def thresholds_sha() -> str:
     """Hash of every comparative threshold, so the site can prove both parties used the same ones."""
-    knobs = {
-        "SYNC_MIN_MEMBERS": config.SYNC_MIN_MEMBERS,
-        "NGRAM_MIN": config.NGRAM_MIN, "NGRAM_MAX": config.NGRAM_MAX,
-        "BOILERPLATE_DF_SHARE_MAX": config.BOILERPLATE_DF_SHARE_MAX,
-        "NEAR_JOINT_JACCARD": config.NEAR_JOINT_JACCARD,
-        "LEDGER_MIN_TOTAL_USES": config.LEDGER_MIN_TOTAL_USES,
-        "QUIET_DAY_MAX_STATEMENTS": config.QUIET_DAY_MAX_STATEMENTS,
-    }
-    # docs/19 §2a — when the nomenclature tagger is LIVE, its ratio threshold + the name-index version
-    # shape published output, so they belong in the fingerprint proving both parties ran one instrument.
-    # DARK (flag off) it changes nothing, so it stays OUT of the hash and every historical day's
-    # thresholds_sha is byte-unchanged (docs/19 §3.4). Version is folded only when it exists.
-    if config.feature_on("nomenclature_tags"):
-        knobs["NOMENCLATURE_RATIO_MIN"] = config.NOMENCLATURE_RATIO_MIN
-        ver = nomenclature.index_version()
-        if ver:
-            knobs["nomenclature_index_version"] = ver
-    return util.sha256_hex(json.dumps(knobs, sort_keys=True))
+    return instrument_fingerprint.legacy_thresholds_sha()
 
 
 def prompts_sha() -> dict:
@@ -195,6 +177,7 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
         "statement": public_strings.SYMMETRY_PROMISE,
         "prompts_sha": prompts_sha(),
         "thresholds_sha": thresholds_sha(),
+        "instrument_fingerprint": instrument_fingerprint.build(),
         "lane1_only": True,
         "degraded": degraded,
         "source_freshness": freshness,

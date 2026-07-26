@@ -82,7 +82,7 @@ def correction_reply(logged: str, claimed: str, supported: str, permalink: str) 
 
 
 def publication_fields(day_payload: dict, prior_manifest: dict | None,
-                       correction_rows: list[dict]) -> dict:
+                       correction_rows: list[dict], *, fingerprint: dict | None = None) -> dict:
     """Build deterministic content identity and a monotonic revision chain for one day."""
     address = content_address(day_payload)
     prior = prior_manifest if isinstance(prior_manifest, dict) else {}
@@ -95,7 +95,10 @@ def publication_fields(day_payload: dict, prior_manifest: dict | None,
             "revision": len(chain) + 1,
             "content_address": address,
             "supersedes": chain[-1].get("content_address") if chain else None,
+            "instrument_fingerprint": fingerprint,
         })
+    elif fingerprint and not chain[-1].get("instrument_fingerprint"):
+        chain[-1]["instrument_fingerprint"] = fingerprint
     correction_ids = sorted(row["correction_id"] for row in correction_rows)
     return {
         "publication_state": "corrected" if correction_ids else "published",

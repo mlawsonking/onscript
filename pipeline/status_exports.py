@@ -8,7 +8,7 @@ import io
 import json
 from pathlib import Path
 
-from . import config, eligibility, util
+from . import config, eligibility, instrument_fingerprint, util
 
 
 METHOD_VERSION = "status-exports-v1"
@@ -198,6 +198,7 @@ def envelope(payload, generated_at: str | None) -> dict:
         "method_version": METHOD_VERSION,
         "generated_at": generated_at,
         "checksums": {"payload_sha256": hashlib.sha256(raw).hexdigest()},
+        "instrument_fingerprint": instrument_fingerprint.build(),
         "payload": payload,
     }
 
