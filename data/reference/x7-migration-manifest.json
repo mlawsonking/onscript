@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "assemble": {
+      "degraded": false,
+      "final": true,
+      "forced_finalize": false,
+      "ready": true
+    },
+    "collect": {
+      "alerts": [],
+      "anomalously_low": false,
+      "degraded": false
+    },
+    "post": {
+      "asymmetric": false,
+      "atomic_hold": false,
+      "party_posted": {
+        "D": true,
+        "R": true
+      },
+      "party_posts_written": {
+        "D": 4,
+        "R": 3
+      },
+      "posting_enabled": true
+    }
+  },
+  "evidence": {
+    "assemble": {
+      "generated_at": "2026-07-25T22:28:37Z",
+      "path": "data/derived/manifest/assemble-2026-07-24.json",
+      "sha256": "9313acd0d89d767e3572f9d35ab9e5acabd9b2a76872898ea69c4e15f8d7d100"
+    },
+    "collect": {
+      "generated_at": "2026-07-25T21:14:46Z",
+      "path": "data/derived/manifest/collect-2026-07-25.json",
+      "sha256": "04830f4bfce11f2f9e2b7380cf384eb6ba011d551d6b5e304f87d8e3727e964e"
+    },
+    "post": {
+      "generated_at": "2026-07-25T22:28:43Z",
+      "path": "data/derived/manifest/post-2026-07-24.json",
+      "sha256": "b6d3e67451802156d82235bb9c0bf7f3929b45d043691b9e7ef8327495154766"
+    }
+  },
+  "manifest_kind": "migration_evidence",
+  "migration_id": "w-stack-production-cycle",
+  "migration_state": "completed",
+  "production_day": "2026-07-24",
+  "schema_version": 1
+}

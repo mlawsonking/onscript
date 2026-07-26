@@ -235,7 +235,7 @@ def coverage_tables(statements: list[dict]) -> dict:
 
 def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
                       min_statements: int | None = None, receipts_max: int | None = None,
-                      peak_floor: int | None = None) -> dict:
+                      peak_floor: int | None = None, generated_at: str | None = None) -> dict:
     """1.4 The Concordance (R4 / docs/21 §3.2) — the per-MEMBER on-script index.
 
     The discipline index is per-party-per-day; this is the per-member version. For each member, of
@@ -347,7 +347,7 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
 
     result = {
         "schema_version": 1,
-        "generated_at": util.now_utc_iso(),
+        "generated_at": generated_at or util.now_utc_iso(),
         "window": {"start": min(days) if days else None, "end": max(days) if days else None},
         "min_statements": min_statements,
         "peak_floor": peak_floor,
@@ -523,7 +523,8 @@ def _the_void(*, window, silence_dir, top_n) -> dict:
 
 def build_awards(statements, ledger, *, out_dir=None, focus_day: str | None = None, roster_map=None,
                  window_days: int | None = None, min_active: int | None = None,
-                 top_n: int | None = None, silence_dir=None) -> dict:
+                 top_n: int | None = None, silence_dir=None,
+                 generated_at: str | None = None) -> dict:
     """1.5 The Unison + The Void (R2 / docs/21 §3.2) — the symmetric weekly awards that replaced the
     killed Ventriloquism Award (docs/04 R2 ruling). Two award families, both symmetric by construction:
 
@@ -564,7 +565,7 @@ def build_awards(statements, ledger, *, out_dir=None, focus_day: str | None = No
 
     result = {
         "schema_version": 1,
-        "generated_at": util.now_utc_iso(),
+        "generated_at": generated_at or util.now_utc_iso(),
         "window": unison["window"],
         "min_active": unison["min_active"],
         "span_gated": True,

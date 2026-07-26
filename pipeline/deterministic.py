@@ -12,7 +12,9 @@ from . import build, config, instrument_fingerprint, normalize, roster, util
 from .phrases import PhraseEngine
 
 
-def run(records, *, run_id: str, focus_day: str | None = None, source_freshness: dict | None = None) -> dict:
+def run(records, *, run_id: str, focus_day: str | None = None,
+        source_freshness: dict | None = None, generated_at: str | None = None) -> dict:
+    generated_at = generated_at or util.now_utc_iso()
     rmap = roster.load()
     statements = normalize.normalize_records(records, run_id=run_id, roster=rmap)
     norm_stats = getattr(normalize.normalize_records, "last_stats", {})
@@ -35,7 +37,10 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
     # so the flip is a pure release act. Wrapped: a dark feature must never crash the deterministic
     # core (§0 streak invariant) — a failure here skips the artifact, it never breaks RUN A.
     try:
-        build.build_concordance(statements, ledger, out_dir=config.DERIVED, roster_map=rmap)
+        build.build_concordance(
+            statements, ledger, out_dir=config.DERIVED, roster_map=rmap,
+            generated_at=generated_at,
+        )
     except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
         print(f"[concordance] skipped (skip-and-log): {e}")
 
@@ -43,7 +48,10 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
     # by gate); rendering is gated on FEATURES["awards"], so the flip is a pure release act. Same streak
     # safety belt: a dark feature must never crash RUN A (§0 streak invariant).
     try:
-        build.build_awards(statements, ledger, out_dir=config.DERIVED, focus_day=focus_day, roster_map=rmap)
+        build.build_awards(
+            statements, ledger, out_dir=config.DERIVED, focus_day=focus_day, roster_map=rmap,
+            generated_at=generated_at,
+        )
     except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
         print(f"[awards] skipped (skip-and-log): {e}")
 
@@ -59,7 +67,7 @@ def run(records, *, run_id: str, focus_day: str | None = None, source_freshness:
         "schema_version": 1,
         "run_id": run_id,
         "kind": "deterministic",
-        "generated_at": util.now_utc_iso(),
+        "generated_at": generated_at,
         "focus_day": focus_day,
         "days_present": [days_present[0], days_present[-1]] if days_present else None,
         "source_freshness": source_freshness or {},

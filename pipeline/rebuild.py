@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-from pipeline import config, deterministic, fetch  # noqa: E402
+from pipeline import config, deterministic, fetch, util  # noqa: E402
 
 
 def _derived_tree_hash() -> str:
@@ -44,14 +44,17 @@ def main() -> int:
         print("no raw mirror found — run scripts/backfill_stage1.py first")
         return 2
     print(f"[rebuild] {len(records)} mirrored records")
+    # One rebuild invocation is one measured run. Freeze its real start time across both passes so
+    # generated_at keeps its meaning while time sampling cannot make otherwise identical JSON differ.
+    generated_at = util.now_utc_iso()
 
-    deterministic.run(records, run_id="rebuild-A")
+    deterministic.run(records, run_id="rebuild-A", generated_at=generated_at)
     h1 = _derived_tree_hash()
     print(f"[rebuild] derived tree hash A: {h1}")
     if args.once:
         return 0
 
-    deterministic.run(records, run_id="rebuild-B")
+    deterministic.run(records, run_id="rebuild-B", generated_at=generated_at)
     h2 = _derived_tree_hash()
     print(f"[rebuild] derived tree hash B: {h2}")
     if h1 == h2:
