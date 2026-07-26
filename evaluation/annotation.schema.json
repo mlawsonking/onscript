@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://onscript.news/schema/gold-annotation-v1.json",
+  "title": "OnScript gold annotation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "annotator_id", "gold_class", "gold_family_id"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "annotator_id": {"type": "string", "minLength": 1},
+    "gold_class": {"enum": ["message", "nomenclature", "procedural", "biographical", "private"]},
+    "gold_family_id": {"type": "string", "minLength": 1},
+    "notes": {"type": "string"}
+  }
+}

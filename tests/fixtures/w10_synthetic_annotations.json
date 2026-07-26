@@ -1,0 +1,31 @@
+{
+  "synthetic": true,
+  "split_boundaries": {"train_end": "2026-03-31", "validation_end": "2026-06-30"},
+  "candidates": [
+    {"candidate_id": "c1", "day": "2026-03-01", "party": "D", "lane": 1, "predicted_class": "message", "predicted_family_id": "pf1"},
+    {"candidate_id": "c2", "day": "2026-03-01", "party": "D", "lane": 1, "predicted_class": "message", "predicted_family_id": "pf1"},
+    {"candidate_id": "c3", "day": "2026-03-01", "party": "D", "lane": 1, "predicted_class": "message", "predicted_family_id": "pf1"},
+    {"candidate_id": "c4", "day": "2026-05-01", "party": "R", "lane": 1, "predicted_class": "procedural", "predicted_family_id": "pf2"},
+    {"candidate_id": "c5", "day": "2026-05-01", "party": "R", "lane": 1, "predicted_class": "message", "predicted_family_id": "pf3"},
+    {"candidate_id": "c6", "day": "2026-07-01", "party": "R", "lane": 1, "predicted_class": "nomenclature", "predicted_family_id": "pf4"}
+  ],
+  "annotations_a": [
+    {"candidate_id": "c1", "annotator_id": "ann-a", "gold_class": "message", "gold_family_id": "gf1"},
+    {"candidate_id": "c2", "annotator_id": "ann-a", "gold_class": "message", "gold_family_id": "gf1"},
+    {"candidate_id": "c3", "annotator_id": "ann-a", "gold_class": "message", "gold_family_id": "gf2"},
+    {"candidate_id": "c4", "annotator_id": "ann-a", "gold_class": "procedural", "gold_family_id": "gf3"},
+    {"candidate_id": "c5", "annotator_id": "ann-a", "gold_class": "procedural", "gold_family_id": "gf3"},
+    {"candidate_id": "c6", "annotator_id": "ann-a", "gold_class": "nomenclature", "gold_family_id": "gf4"}
+  ],
+  "annotations_b": [
+    {"candidate_id": "c1", "annotator_id": "ann-b", "gold_class": "message", "gold_family_id": "gf1"},
+    {"candidate_id": "c2", "annotator_id": "ann-b", "gold_class": "message", "gold_family_id": "gf1"},
+    {"candidate_id": "c3", "annotator_id": "ann-b", "gold_class": "message", "gold_family_id": "gf2"},
+    {"candidate_id": "c4", "annotator_id": "ann-b", "gold_class": "procedural", "gold_family_id": "gf3"},
+    {"candidate_id": "c5", "annotator_id": "ann-b", "gold_class": "message", "gold_family_id": "gf4"},
+    {"candidate_id": "c6", "annotator_id": "ann-b", "gold_class": "nomenclature", "gold_family_id": "gf4"}
+  ],
+  "decisions": [
+    {"candidate_id": "c5", "adjudicator_id": "adj-1", "gold_class": "procedural", "gold_family_id": "gf3"}
+  ]
+}
