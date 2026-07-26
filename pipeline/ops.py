@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import os
 
-from . import config, llm, nomenclature, roster, util
+from . import config, llm, nomenclature, public_strings, roster, util
 
 
 def thresholds_sha() -> str:
@@ -149,6 +149,9 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
     marketed phrase surfaces the release flag gates."""
     caucus = caucus_sizes(statements)  # full corpus caucus proxy (all members with official sites)
     nomen = nomen_measure or {}
+    source_health = "not_attested"
+    if isinstance(freshness, dict) and freshness.get("status") in {"healthy", "degraded", "unknown"}:
+        source_health = freshness["status"]
     parties: dict[str, dict] = {}
     for p in config.COMPOSITE_PARTIES:
         # DAY-SCOPED: every per-party row is THIS DAY's Lane-1 ingestion, consistent with the per-day
@@ -165,6 +168,12 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
             "members_covered": len(members),
             "caucus_size": caucus.get(p),
             "coverage_pct": round(100 * len(members) / caucus[p], 1) if caucus.get(p) else None,
+            # W1 adds explicit units without changing the legacy fields above. The observed count is
+            # evidence from this day. The eligible count is the corpus caucus proxy. Source health is
+            # separate because the mirror cannot attest to every office endpoint.
+            "observed_publishing_offices": len(members),
+            "eligible_caucus_offices": caucus.get(p),
+            "source_collection_health": source_health,
             "tokens_in": llm_p.get("tokens_in", 0),
             "tokens_out": llm_p.get("tokens_out", 0),
             "claims_published": llm_p.get("claims_published", 0),
@@ -183,13 +192,16 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
         # medianing across that boundary reads a healthy day as a 99.6% collapse. Reports now say
         # which semantics they carry instead of leaving readers to infer it from a date.
         "schema_version": 1, "day": day, "day_scoped": True,
-        "statement": "Identical instrument, both parties, audited nightly in public. "
-                     "Asymmetric findings are reality's problem, not the instrument's.",
+        "statement": public_strings.SYMMETRY_PROMISE,
         "prompts_sha": prompts_sha(),
         "thresholds_sha": thresholds_sha(),
         "lane1_only": True,
         "degraded": degraded,
         "source_freshness": freshness,
+        "source_collection_health_detail": public_strings.SOURCE_HEALTH_LIMIT,
+        "deprecated_fields": {
+            "parties.*.coverage_pct": public_strings.COVERAGE_DEPRECATION_NOTE,
+        },
         "parties": parties,
     }
     util.write_json(config.DERIVED / "symmetry" / f"{day}.json", report)

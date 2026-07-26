@@ -29,7 +29,8 @@ from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import boilerplate, build, config, distill, nomenclature, privacy, util, verify  # noqa: E402
+from pipeline import (boilerplate, build, config, distill, nomenclature, privacy, public_strings,
+                      util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
@@ -310,7 +311,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
         f'<a href="{root}methodology.html">Methodology</a>'
         f'<a href="{root}about.html">About</a>'
     )
-    desc = esc(description) if description else "OnScript — what each party said today, compressed to one voice, with receipts."
+    desc = esc(description) if description else esc(public_strings.DEFAULT_DESCRIPTION)
     # LINK CARDS (docs/23 §7.5 amendment 2). Every share of this site — the launch announce, the
     # receipts link in every composite thread, every reader's repost — is unfurled by a crawler that
     # sees only these tags. Without them the card is a bare imageless URL.
@@ -344,7 +345,7 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 <meta property="og:image" content="{esc(og_image)}">
 <meta property="og:image:width" content="{config.OG_IMAGE_W}">
 <meta property="og:image:height" content="{config.OG_IMAGE_H}">
-<meta property="og:image:alt" content="OnScript — what each party said today, compressed to one voice, with receipts.">
+<meta property="og:image:alt" content="{esc(public_strings.OG_IMAGE_ALT)}">
 <meta name="twitter:card" content="summary_large_image">
 <style>{CSS}</style>
 </head>
@@ -353,16 +354,16 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site">
   <div class="brand"><a href="{root}index.html">OnScript</a></div>
-  <div class="tag">This is what each party said today, compressed to one voice, with receipts.</div>
+  <div class="tag">{esc(public_strings.TAGLINE)}</div>
 </header>
 <nav class="top" aria-label="Primary">{nav}</nav>
 <main id="main-content">
+<p class="promptmeta">{esc(public_strings.AUTOMATED_MEASUREMENT_LABEL)}</p>
 {body}
 </main>
 <footer class="site">
-  <p>OnScript is a symmetric measurement instrument: identical pipeline, prompts, and thresholds for both
-  parties, audited nightly in public. See the <a href="{root}methodology.html">Methodology</a>.
-  Every distilled talking point links to at least three real source statements. No tracking, no external requests.</p>
+  <p>{esc(public_strings.SYMMETRY_PROMISE)} See the <a href="{root}methodology.html">Methodology</a>.
+  {esc(public_strings.CITATION_PROMISE)} No tracking and no external requests.</p>
 </footer>
 </div>
 </body>
@@ -1355,7 +1356,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
 
     title_line = "Today on OnScript" if is_today else f"OnScript · {esc(day)}"
     parts = [f"<h1>{title_line}</h1>"]
-    parts.append(f'<p class="subhead">What each party said on {esc(day)}, compressed to one voice, with receipts.</p>')
+    parts.append(f'<p class="subhead">{esc(public_strings.day_tagline(day))}</p>')
 
     # Cadence note (A5): the header says "Today" but a day's press releases are only complete the next
     # morning, so the freshest complete reading is yesterday. Say so, so the page never looks stale.
@@ -1409,7 +1410,10 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         if not symmetry
         else f'<a href="{root}methodology.html">nightly symmetry audit</a>'
     )
-    parts.append(f'<p class="muted"><small>Neutrality armor: {audit_link}. Every distilled talking point above is citation-backed.</small></p>')
+    parts.append(
+        f'<p class="muted"><small>Nightly symmetry audit: {audit_link}. '
+        f'{esc(public_strings.DAY_CITATION_NOTE)}</small></p>'
+    )
 
     # Top synchronized phrases
     parts.append("<h2>Top synchronized phrases</h2>")
@@ -1775,18 +1779,23 @@ def symmetry_table(sym):
     # caucus that spoke that day. §Session-5.
     rows = [
         row("Statements ingested (this day)", "statements_ingested"),
-        row("Members covered (this day)", "members_covered"),
-        row("Caucus size (corpus)", "caucus_size"),
-        row("Coverage (this day)", "coverage_pct", "pct"),
+        row("Observed publishing offices (this day)", "observed_publishing_offices"),
+        row("Eligible caucus offices (corpus proxy)", "eligible_caucus_offices"),
+        row("Source collection health", "source_collection_health"),
+        row("Legacy coverage estimate (deprecated)", "coverage_pct", "pct"),
         row("Tokens in (this day)", "tokens_in"),
         row("Tokens out (this day)", "tokens_out"),
         row("Claims published (this day)", "claims_published"),
         row("Claims dropped (this day)", "claims_dropped"),
     ]
-    return (
+    table = (
         '<div class="scroll"><table>'
         f"<thead>{head}</thead><tbody>{''.join(rows)}</tbody></table></div>"
     )
+    detail = sym.get("source_collection_health_detail") or public_strings.SOURCE_HEALTH_LIMIT
+    deprecated = ((sym.get("deprecated_fields") or {}).get("parties.*.coverage_pct")
+                  or public_strings.COVERAGE_DEPRECATION_NOTE)
+    return table + f'<p class="muted"><small>{esc(detail)} {esc(deprecated)}</small></p>'
 
 
 def methodology_body():
@@ -1794,11 +1803,7 @@ def methodology_body():
     coverage = _load_json(DERIVED / "coverage.json") or {}
 
     parts = ["<h1>Methodology</h1>"]
-    parts.append(
-        '<p class="subhead">OnScript is a symmetric instrument. The same pipeline, the same prompts, and the '
-        "same thresholds run for both parties. Asymmetric findings are allowed — a symmetric instrument producing "
-        "asymmetric readings is a fact about the world, not about the instrument. This page is that guarantee, in public.</p>"
-    )
+    parts.append(f'<p class="subhead">{esc(public_strings.SYMMETRY_PROMISE)}</p>')
     parts.append('<p class="subhead">Daily readings are also available in the <a href="feed.xml">Atom feed</a>.</p>')
 
     # (a) two-lane model
@@ -1820,7 +1825,12 @@ def methodology_body():
     )
 
     # (a2) what we measure — three standing positions, inscribed before the findings arrive
-    parts.append("<h2>What OnScript measures — and what it does not</h2>")
+    parts.append("<h2>What OnScript measures</h2>")
+    parts.append(f'<p>{esc(public_strings.PRODUCT_PROMISE)} {esc(public_strings.OBSERVATION_SCOPE)}</p>')
+    parts.append("<h3>Term ladder</h3><dl class='kv'>")
+    for label, meaning in public_strings.TERM_LADDER:
+        parts.append(f"<dt>{esc(label)}</dt><dd>{esc(meaning)}</dd>")
+    parts.append("</dl>")
     parts.append(
         "<p><strong>Verbatim coordination, not paraphrase.</strong> OnScript measures exact shared wording — the "
         "same phrase appearing in multiple members' published statements. This is what makes every count checkable: "
@@ -1980,8 +1990,8 @@ def methodology_body():
     # (e) corrections policy + public log (neutrality armor: corrections are dated posts, never silent edits)
     parts.append("<h2 id='corrections'>Corrections</h2>")
     parts.append(
-        "<p>Every distilled talking point is anchored to at least three real source statements (member, date, source). "
-        "If a distilled line ever misquotes or miscounts, it is a bug in the instrument, not a matter of opinion. Corrections are "
+        f"<p>{esc(public_strings.CITATION_PROMISE)} "
+        "If a distilled line ever misquotes or miscounts, it is an instrument defect. Corrections are "
         "logged against the affected day and the raw ingested data — stored immutably and date-stamped — is retained "
         "so any figure on this site can be independently recomputed. Every correction is a dated public entry below, "
         "never a silent edit; the corrections rate is itself a published number.</p>"
@@ -2069,9 +2079,8 @@ def methodology_body():
 
 def about_body():
     parts = ["<h1>About OnScript</h1>"]
-    parts.append(
-        '<p class="subhead">This is what each party said today, compressed to one voice, with receipts.</p>'
-    )
+    parts.append(f'<p class="subhead">{esc(public_strings.PRODUCT_PROMISE)}</p>')
+    parts.append(f'<p>{esc(public_strings.OBSERVATION_SCOPE)}</p>')
     parts.append('<p class="subhead">Daily readings are also available in the <a href="feed.xml">Atom feed</a>.</p>')
     parts.append(
         "<p><strong>Compression, not parody.</strong> OnScript ingests what elected U.S. officials publicly say "
@@ -2080,19 +2089,17 @@ def about_body():
         "substitute for it.</p>"
     )
     parts.append(
-        "<p><strong>The data is the story.</strong> When dozens of members converge on the same phrase within a day, "
-        "that convergence is the measurement — independent members reaching for identical language. We record it; we "
+        "<p><strong>The data is the story.</strong> When offices converge on the same phrase within a day, "
+        "that convergence is the measurement. We record it; we "
         "do not assert its cause. We track first appearances, plot adoption curves, and score how on-script each "
         "party's language runs, day over day.</p>"
     )
     parts.append(
-        "<p><strong>Citation-backed.</strong> Every distilled talking point links to at least three real source "
-        "statements — member, date, source. If a claim can't be cited, it doesn't ship.</p>"
+        f"<p><strong>Citation-backed.</strong> {esc(public_strings.CITATION_PROMISE)}</p>"
     )
     parts.append(
-        "<p><strong>A symmetric instrument.</strong> The identical pipeline, prompts, and thresholds run for both "
-        "parties, audited nightly in public on the <a href='methodology.html'>Methodology</a> page. Asymmetric "
-        "findings are allowed; an asymmetric instrument is not.</p>"
+        f"<p><strong>A symmetric instrument.</strong> {esc(public_strings.SYMMETRY_PROMISE)} "
+        "See the <a href='methodology.html'>Methodology</a> page.</p>"
     )
     parts.append("<h2>Who operates OnScript</h2>")
     parts.append(
@@ -2114,8 +2121,8 @@ def about_body():
     )
     parts.append("<h2>The accounts</h2>")
     parts.append(
-        "<p>Two automated composite accounts on Bluesky — one per party, the identical instrument, only the field "
-        "color differs — plus the house account for project announcements:</p>"
+        "<p>Two accounts publish automated measurements and composites on Bluesky, one per party. "
+        "The house account publishes project announcements:</p>"
     )
     parts.append(
         "<ul class='tight'>"
@@ -2128,8 +2135,9 @@ def about_body():
         "</ul>"
     )
     parts.append(
-        "<p>The composite accounts post daily citation-backed threads, labeled automated. They follow only the "
-        "other OnScript accounts and never like or repost; their bios point here for disclosure.</p>"
+        f"<p>The composite accounts post daily threads labeled {esc(public_strings.POST_MEASUREMENT_LABEL)}. "
+        "They follow only the other OnScript accounts and never like or repost; their bios point here for "
+        "disclosure.</p>"
     )
     parts.append("<h2>How it's built</h2>")
     parts.append(
@@ -2648,7 +2656,7 @@ def build_site():
                              prev_day=home_prev, is_today=True)
         (OUT / "index.html").write_text(
             page(f"OnScript — Today ({today_day})", body, depth=0,
-                 description=f"What each U.S. party said on {today_day}, compressed to one voice, with receipts.",
+                 description=public_strings.day_tagline(today_day),
                  path="index.html"),
             encoding="utf-8",
         )
@@ -2670,7 +2678,7 @@ def build_site():
                              prev_day=prev_day, next_day=next_day, is_today=False)
         (OUT / "day" / f"{d}.html").write_text(
             page(f"OnScript · {d}", body, depth=1,
-                 description=f"What each U.S. party said on {d}.", path=f"day/{d}.html"),
+                 description=public_strings.day_tagline(d), path=f"day/{d}.html"),
             encoding="utf-8",
         )
         written.append(f"day/{d}.html")
@@ -2777,7 +2785,7 @@ def build_site():
     # ---- about.html ----
     (OUT / "about.html").write_text(
         page("OnScript · About", about_body(), depth=0,
-             description="Compression, not parody. A symmetric, citation-backed instrument.", path="about.html"),
+             description=public_strings.ABOUT_DESCRIPTION, path="about.html"),
         encoding="utf-8",
     )
     written.append("about.html")

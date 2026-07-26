@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-from pipeline import config, ops, privacy, util  # noqa: E402
+from pipeline import config, ops, privacy, public_strings, util  # noqa: E402
 
 SITE = config.SITE_URL      # one source of truth: a receipts link that disagrees with the site is a 404
 _ACCOUNTS = {
@@ -152,7 +152,7 @@ def _privacy_trips(party: str, day_json: dict) -> bool:
 # of the thread, never only the thread head or the account bio (a screenshot of a single reply would
 # then omit it). The account also carries a profile-level {val:'bot'} self-label, but that is invisible
 # in a cropped post — this per-post line is the belt that is not.
-_POST_MARK = "🤖 automated composite — onscript.news"
+_POST_MARK = f"🤖 {public_strings.POST_MEASUREMENT_LABEL} | onscript.news"
 
 
 def _with_mark(post: str, limit: int = 300) -> str:
