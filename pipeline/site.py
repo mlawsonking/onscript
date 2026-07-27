@@ -1605,6 +1605,60 @@ def participation_panel(day_data: dict) -> str:
     )
 
 
+def instrument_status_header(depth: int = 0, *, beta_enabled: bool | None = None) -> str:
+    """Central status header. The beta label has its own dark deployment gate."""
+    root = "../" * depth
+    enabled = public_strings.beta_label_enabled() if beta_enabled is None else beta_enabled
+    beta = (f'<span class="pill">{esc(public_strings.BETA_LABEL)}</span> ' if enabled else "")
+    return (
+        '<div class="banner instrument-status">'
+        f'{beta}<strong>Instrument status.</strong> '
+        f'<a href="{root}status/index.html">Operating checks</a> &middot; '
+        f'<a href="{root}corrections/index.html">Corrections</a> &middot; '
+        f'<a href="{root}methodology.html">Method</a></div>'
+    )
+
+
+def class_lanes_panel(day_data: dict, depth: int = 0) -> str:
+    """Render four public lanes from the ruled classification layer."""
+    root = "../" * depth
+    rows, _withheld = privacy.filter_rows(day_data.get("top_synchronized") or [])
+    lanes = {"message": [], "nomenclature": [], "procedure": [], "raw": []}
+    for row in rows:
+        phrase = row.get("ngram") or row.get("label") or ""
+        classification = eligibility.classify_phrase(
+            phrase, day=day_data.get("day"), family_count=row.get("family_count")
+        )
+        surface_class = classification["surface_class"]
+        lane = ("message" if surface_class == "message" else
+                "nomenclature" if surface_class == "nomenclature" else
+                "procedure" if surface_class in {"procedural", "biographical"} else "raw")
+        lanes[lane].append((phrase, surface_class))
+    labels = (
+        ("message", "Messages"),
+        ("nomenclature", "Shared names"),
+        ("procedure", "Procedure"),
+        ("raw", "Raw observations"),
+    )
+    columns = []
+    for lane, label in labels:
+        items = "".join(
+            f'<li data-surface-class="{esc(surface_class)}">{esc(phrase)}</li>'
+            for phrase, surface_class in lanes[lane][:5]
+        ) or '<li class="muted">No observations in this lane.</li>'
+        columns.append(
+            f'<div class="pcol" data-class-lane="{lane}"><h3>{label}</h3><ul>{items}</ul></div>'
+        )
+    return (
+        '<section class="class-lanes"><h2>Classification lanes</h2>'
+        '<p class="subhead">The deterministic classifier separates messages, shared names, '
+        'procedure, and retained raw observations.</p>'
+        f'<div class="pcols">{"".join(columns)}</div>'
+        f'<p class="muted"><small>Raw observations remain available in the '
+        f'<a href="{root}api/index.html">experimental exports</a>.</small></p></section>'
+    )
+
+
 def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_day=None, is_today=False):
     symmetry = _load_json(DERIVED / "symmetry" / f"{day}.json")
     root = "../" * depth
@@ -1612,6 +1666,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
     title_line = "Today on OnScript" if is_today else f"OnScript · {esc(day)}"
     parts = [f"<h1>{title_line}</h1>"]
     parts.append(f'<p class="subhead">{esc(public_strings.day_tagline(day))}</p>')
+    parts.append(instrument_status_header(depth))
 
     # Cadence note (A5): the header says "Today" but a day's press releases are only complete the next
     # morning, so the freshest complete reading is yesterday. Say so, so the page never looks stale.
@@ -1646,6 +1701,9 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         )
 
     parts.append(participation_panel(day_data))
+
+    if is_today:
+        parts.append(class_lanes_panel(day_data, depth))
 
     # links to audit + methodology
     audit_link = (

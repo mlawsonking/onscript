@@ -5,6 +5,8 @@ add page-specific facts, but they do not restate or expand these promises.
 """
 from __future__ import annotations
 
+import os
+
 
 PRODUCT_PROMISE = (
     "OnScript measures repeated language in the congressional press releases it observes. "
@@ -38,6 +40,15 @@ CITATION_PROMISE = (
 DAY_CITATION_NOTE = "Every distilled claim above is citation-backed."
 
 ABOUT_DESCRIPTION = "A symmetric, citation-backed measurement of observed congressional language."
+
+BETA_LABEL = "Public beta measurement instrument"
+BETA_LABEL_ENV = "ONSCRIPT_BETA_LABEL_ENABLED"
+
+
+def beta_label_enabled(environ: dict[str, str] | None = None) -> bool:
+    """Deployment gate for the centralized beta label. Dark by default."""
+    source = os.environ if environ is None else environ
+    return source.get(BETA_LABEL_ENV, "").strip().lower() in {"1", "true", "yes", "on"}
 
 OBSERVATION_SCOPE = (
     "Observed means present in the mirrored source corpus. It does not mean every eligible office "
