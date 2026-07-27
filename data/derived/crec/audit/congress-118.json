@@ -1,0 +1,79 @@
+{
+ "lane": "crec",
+ "windows": {
+  "2023": {
+   "members": {
+    "D": 202,
+    "R": 187
+   },
+   "statements": {
+    "D": 2397,
+    "R": 1728
+   },
+   "symmetry_ratio": 0.9257,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  },
+  "2024": {
+   "members": {
+    "D": 202,
+    "R": 195
+   },
+   "statements": {
+    "D": 2517,
+    "R": 1988
+   },
+   "symmetry_ratio": 0.9653,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  }
+ },
+ "windows_passing": [
+  "2023",
+  "2024"
+ ],
+ "congress": 118,
+ "crawl_completeness": [
+  {
+   "year": 2023,
+   "days_done": 206,
+   "upstream_gaps": [
+    "CREC-2023-01-03",
+    "CREC-2023-01-06",
+    "CREC-2023-05-31"
+   ],
+   "sitemap_days": 209,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  },
+  {
+   "year": 2024,
+   "days_done": 194,
+   "upstream_gaps": [
+    "CREC-2024-01-03",
+    "CREC-2024-04-15"
+   ],
+   "sitemap_days": 196,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  }
+ ]
+}

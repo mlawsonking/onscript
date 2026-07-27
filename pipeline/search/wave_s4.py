@@ -55,12 +55,17 @@ def _collect(ref: dict):
     matched[case_id][party] = list of {off, low, nw, ds, inst} for each responding statement, where
     `low` is the lowercased title+text and `off` is days after the decision.
 
-    LANE (docs/12 L1, docs/17 §3). This reads the raw mirror directly (not `iter_statements`), so it
-    used to drop `date_source` — the field that says whether an event's window sits in one instrument
-    or two. Each matched statement now carries `ds` (raw date_source) and `inst` (propublica|scraped).
-    An event that straddles 2021-01-03 (e.g. a Jan-6-2021 study) can then isolate to one lane rather
-    than compare the ProPublica import's tail against the scraper's start — the S4.7 sign inversion
-    (-69.9% raw vs +75.5% lane-isolated) is what happens when it does not."""
+    LANE (docs/12 L1, docs/17 §3; R-S50.1). This reads the raw mirror directly (not `iter_statements`,
+    which yields no title for the case-anchor match), so it used to drop `date_source` - the field
+    that says whether an event's window sits in one instrument or two. Each matched statement now
+    carries its ISOLATED lane. Per R-S50.1 the primary isolation key is `lane` = the 3-valued raw
+    `date_source` (`legacy` | `scraper` | `page_html`), with `page_html` ITS OWN lane, never folded:
+    it is the most party-skewed lane in the corpus, and folding it into `scraper` for a per-case tone
+    split would reintroduce the very confound the lane program removes. `inst` (the folded
+    propublica|scraped instrument) is retained ONLY as a labelled robustness field and is never the
+    isolation key for a primary number. An event that straddles 2021-01-03 (e.g. a Jan-6-2021 study)
+    isolates to one `lane` rather than compare the ProPublica import's tail against the scraper's start
+    the S4.7 sign inversion (-69.9% raw vs +75.5% lane-isolated) is what happens when it does not."""
     from . import provenance
     cases = ref["cases"]
     window = ref["_window_days"]
@@ -90,8 +95,8 @@ def _collect(ref: dict):
                 dobj = date.fromisoformat(d)
             except Exception:
                 continue
-            src = provenance.date_source_of(r)
-            inst = provenance.INSTRUMENTS.get(src) if src is not None else None
+            src = provenance.date_source_of(r)          # R-S50.1 isolation key (page_html isolated)
+            inst = provenance.INSTRUMENTS.get(src) if src is not None else None   # folded, robustness only
             low = None
             nw = None
             for c in cand:
@@ -102,7 +107,8 @@ def _collect(ref: dict):
                     low = ((r.get("title") or "") + " . " + (r.get("text") or "")).lower()
                     nw = len(word_re.findall(low))
                 if any(a in low for a in c["anchors"]):
-                    matched[c["id"]][p].append({"off": off, "low": low, "nw": nw, "ds": src, "inst": inst})
+                    matched[c["id"]][p].append({"off": off, "low": low, "nw": nw,
+                                                "lane": src, "ds": src, "inst": inst})
     return matched
 
 

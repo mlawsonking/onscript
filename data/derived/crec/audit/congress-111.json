@@ -1,0 +1,77 @@
+{
+ "lane": "crec",
+ "windows": {
+  "2009": {
+   "members": {
+    "D": 259,
+    "R": 175
+   },
+   "statements": {
+    "D": 4678,
+    "R": 3846
+   },
+   "symmetry_ratio": 0.6757,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  },
+  "2010": {
+   "members": {
+    "D": 257,
+    "R": 178
+   },
+   "statements": {
+    "D": 4697,
+    "R": 2526
+   },
+   "symmetry_ratio": 0.6926,
+   "attribution_rate": 1.0,
+   "integrity_rate": null,
+   "gates": {
+    "both_party_floor": true,
+    "symmetry_ratio": true,
+    "attribution_completeness": true,
+    "provenance_complete": true
+   },
+   "PASS": true
+  }
+ },
+ "windows_passing": [
+  "2009",
+  "2010"
+ ],
+ "congress": 111,
+ "crawl_completeness": [
+  {
+   "year": 2009,
+   "days_done": 199,
+   "upstream_gaps": [
+    "CREC-2009-12-18",
+    "CREC-2009-12-23"
+   ],
+   "sitemap_days": 201,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  },
+  {
+   "year": 2010,
+   "days_done": 172,
+   "upstream_gaps": [
+    "CREC-2010-03-23"
+   ],
+   "sitemap_days": 173,
+   "missing": 0,
+   "missing_sample": [],
+   "complete": true,
+   "checked": "sitemap"
+  }
+ ]
+}

@@ -245,6 +245,30 @@ It is a meaningful second-order expansion under two conditions.
 
 ## §9 Amendments
 
+**D4-SD.8 REGISTERED + congresses 111/112/117-119 BUILT + the R-S50.1 isolated substrate rebuilt
+(2026-07-27, Opus, Session 51). The overlap is whole; SD.8 is frozen.**
+
+- *Crawl confirmed* (`scripts/deep/crec_state.py`): 111, 112, 117, 118, 119 all buildable. The 2026
+  current-year tail was finished first (4 sitemap days uncrawled -> `crawl_crec.py --years 2026`, +87
+  Extensions statements) so 119 builds COMPLETE, not `--allow-partial`. Built the five per-Congress CREC
+  shards EXACTLY as 113-116 (the §D1-C discipline verbatim: online per-year sitemap completeness,
+  settled-unavailable `day-nomods` days counted as SETTLED not pending, no `--allow-partial`, per-shard
+  audit committed to `data/derived/crec/audit/congress-{111,112,117,118,119}.json`). Every window PASSES
+  symmetric two-party. The CREC lane now spans 107-119 (2001-2026); the SD.8 A=107-112 / B=113-119
+  overlap is complete.
+- *R-S50.1 substrate* (docs/13 R-S50.1 row): the alexandria per-lane shards are being rebuilt on the
+  ISOLATED three-valued `date_source` domain (`legacy` / `scraper` / `page_html`; page_html its OWN lane,
+  never folded). `alexandria.load_congress_records` / `lane_shard_path` / `wave_s4._collect` are 3-lane
+  (code complete, suite green); `page_html` is built and isolated for all 113-119; `scraper` (page_html
+  excluded) is rebuilding in the background (resumable); `legacy` == the existing `propublica` shards by
+  identity. The folded `propublica`/`scraped` view survives only as a labelled robustness check. Daily
+  pipeline unaffected (does not import alexandria).
+- *SD.8 frozen, then run* (docs/13 SD.8 registration row): the president-naming instrument-concordance
+  study is pre-registered with numeral thresholds BEFORE measurement; the CREC-vs-press-core direction is
+  computed on the 2013-2026 overlap and its verdict GATES pre-2013 naming publication (no publication
+  act performed this session). Verdict recorded in the docs/13 SD.8 verdict row and the Session 51
+  BUILDLOG entry.
+
 **D1-C (2026-07-21, Opus), congresses 113–116 built + audited; 111/112 are BLOCKED ON A CRAWL THAT
 never RAN THEM; and the masked-HTML-error trap turns out to live on the METADATA path too.**
 
