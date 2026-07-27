@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import os
 
-from . import config, instrument_fingerprint, llm, public_strings, roster, util
+from . import config, denominators, instrument_fingerprint, llm, public_strings, roster, util
 
 
 def thresholds_sha() -> str:
@@ -121,7 +121,8 @@ def ntfy(title: str, message: str, *, priority: str = "default") -> dict:
 
 
 def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, freshness: dict,
-                    degraded: bool, nomen_measure: dict | None = None) -> dict:
+                    degraded: bool, nomen_measure: dict | None = None,
+                    roster_table: dict | None = None, source_registry: dict | None = None) -> dict:
     """The §5.2 audit, per party, published on the Methodology page every day.
 
     `nomen_measure` (docs/19 §2a) is the per-party {tagged,total,rate} share of this day's synchronized
@@ -145,6 +146,9 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
         members = {(s.get("member") or {}).get("bioguide") for s in stmts if (s.get("member") or {}).get("bioguide")}
         llm_p = per_party_llm.get(p, {})
         nm = nomen.get(p) or {}
+        dated = denominators.daily_measures(
+            day, p, statements, roster_table=roster_table, source_registry=source_registry
+        )
         parties[p] = {
             "statements_ingested": len(stmts),
             "members_covered": len(members),
@@ -154,7 +158,17 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
             # evidence from this day. The eligible count is the corpus caucus proxy. Source health is
             # separate because the mirror cannot attest to every office endpoint.
             "observed_publishing_offices": len(members),
+            # Transition compatibility: this flat key keeps its W1 corpus-proxy meaning for one
+            # schema cycle. Public surfaces use the date-effective field below.
             "eligible_caucus_offices": caucus.get(p),
+            "date_effective_eligible_caucus_offices": dated["eligible_caucus_offices"],
+            "source_supported_offices": dated["source_supported_offices"],
+            "publications": dated["publications"],
+            "document_families": dated["document_families"],
+            "office_source_states": dated["office_source_states"],
+            "denominator_method_version": dated["method_version"],
+            "denominator_window": dated["window"],
+            "date_effective_denominators": dated,
             "source_collection_health": source_health,
             "tokens_in": llm_p.get("tokens_in", 0),
             "tokens_out": llm_p.get("tokens_out", 0),

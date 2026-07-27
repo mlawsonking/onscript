@@ -574,6 +574,12 @@ def build_awards(statements, ledger, *, out_dir=None, focus_day: str | None = No
         "unison": unison["by_party"],
         "void": void,
     }
+    if focus_day:
+        from . import denominators
+        result["date_effective_caucus"] = {
+            p: len(denominators.eligible_offices(focus_day, p))
+            for p in config.COMPOSITE_PARTIES
+        }
     if out_dir is not None:
         util.write_json(out_dir / "awards.json", result)
     return result

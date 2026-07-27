@@ -1615,7 +1615,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
     parts.append(day_corrections(day, depth))
 
     # Two Daily Lines side by side (caucus sizes from the day's symmetry audit → denominators in view)
-    caucus = {p: ((symmetry or {}).get("parties", {}).get(p, {}) or {}).get("caucus_size")
+    caucus = {p: ((symmetry or {}).get("parties", {}).get(p, {}) or {}).get("date_effective_eligible_caucus_offices")
               for p in ("D", "R")} if isinstance(symmetry, dict) else {}
     parts.append('<div class="lines">')
     parts.append(daily_line_panel("D", day_data, caucus=caucus.get("D")))
@@ -1823,7 +1823,8 @@ def phrase_evidence_body(pdata: dict, evidence: dict | None = None) -> str:
         count = int((record.get("counts") or {}).get(party) or 0)
         if not count:
             continue
-        denom = (parties.get(party) or {}).get("caucus_size") if isinstance(parties, dict) else None
+        denom = ((parties.get(party) or {}).get("date_effective_eligible_caucus_offices")
+                 if isinstance(parties, dict) else None)
         count_bits.append(f"{esc(party)}: {esc(count)} of {esc(denom)}" if denom else f"{esc(party)}: {esc(count)}")
     denominator_line = f' <span class="faint">({"; ".join(count_bits)})</span>' if count_bits else ""
 
@@ -2026,7 +2027,10 @@ def symmetry_table(sym):
     rows = [
         row("Statements ingested (this day)", "statements_ingested"),
         row("Observed publishing offices (this day)", "observed_publishing_offices"),
-        row("Eligible caucus offices (corpus proxy)", "eligible_caucus_offices"),
+        row("Eligible caucus offices (date-effective)", "date_effective_eligible_caucus_offices"),
+        row("Source-supported offices (explicitly attested)", "source_supported_offices"),
+        row("Publications (this day)", "publications"),
+        row("Document families (this day)", "document_families"),
         row("Source collection health", "source_collection_health"),
         row("Legacy coverage estimate (deprecated)", "coverage_pct", "pct"),
         row("Tokens in (this day)", "tokens_in"),
@@ -2819,7 +2823,7 @@ def awards_body(adata, slugs_with_pages=None, depth: int = 0) -> str:
     root = "../" * depth
     adata = adata or {}
     win = adata.get("window") or {}
-    caucus = adata.get("caucus") or {}
+    caucus = adata.get("date_effective_caucus") or adata.get("caucus") or {}
     unison = adata.get("unison") or {}
     parts = ["<h1>The Unison &amp; The Void</h1>"]
     parts.append('<p class="subhead">Two symmetric awards, picked by the data on identical rules for both '
