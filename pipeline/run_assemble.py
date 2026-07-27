@@ -124,7 +124,8 @@ def _citations(tp: dict, stmt_by_id: dict, rmap: dict, k: int = 3) -> list[dict]
                       "occurrence_id": occurrence.get("occurrence_id"),
                       "office_id": occurrence.get("office_id") or m.get("bioguide"),
                       "publication_id": occurrence.get("publication_id") or sid,
-                      "family_id": occurrence.get("family_id") or s.get("joint_group") or sid})
+                      "family_id": occurrence.get("family_id") or s.get("joint_group") or sid,
+                      "family_revision": (s.get("document_family") or {}).get("family_revision")})
         if len(cites) >= k:
             break
     return cites

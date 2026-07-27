@@ -143,6 +143,8 @@ DOCUMENT_FAMILY_MIN_TOKENS = 24
 DOCUMENT_FAMILY_SHINGLE_K = 5
 DOCUMENT_FAMILY_MINHASHES = 64
 DOCUMENT_FAMILY_MINHASH_BANDS = 32
+DOCUMENT_FAMILY_WINDOW_HOURS = 36
+DOCUMENT_FAMILY_RECALL_TARGET = 0.995
 
 # Phrase-screening significance gates. These are provisional and frozen until the
 # gold-set review validates them. They are descriptive filters, not causal tests.

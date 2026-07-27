@@ -31,7 +31,8 @@ def phrase_occurrences(statement: dict, phrase: str, claim_id: str) -> list[dict
     member = statement.get("member") or {}
     office_id = member.get("bioguide")
     joint = statement.get("joint_group")
-    family_id = (statement.get("document_family") or {}).get("family_id") or joint or sid
+    family = statement.get("document_family") or {}
+    family_id = family.get("family_id") or joint or sid
     out: list[dict] = []
     for index in range(len(spans) - len(wanted) + 1):
         window = spans[index:index + len(wanted)]
@@ -48,6 +49,7 @@ def phrase_occurrences(statement: dict, phrase: str, claim_id: str) -> list[dict
             "publication_id": sid,
             "office_id": office_id,
             "family_id": family_id,
+            "family_revision": family.get("family_revision"),
             "support_unit_id": joint or office_id,
             "party": member.get("party"),
             "start_char": start,
@@ -76,6 +78,10 @@ def canonical_claim(tp: dict, statements_by_id: dict[str, dict]) -> dict:
     offices = sorted({row["office_id"] for row in occurrences if row.get("office_id")})
     publications = sorted({row["publication_id"] for row in occurrences if row.get("publication_id")})
     families = sorted({row["family_id"] for row in occurrences if row.get("family_id")})
+    family_revisions = sorted({
+        (row["family_id"], row["family_revision"])
+        for row in occurrences if row.get("family_id") and row.get("family_revision")
+    })
     support_units = sorted({row["support_unit_id"] for row in occurrences if row.get("support_unit_id")})
     quote_occurrence = min(
         occurrences,
@@ -103,6 +109,10 @@ def canonical_claim(tp: dict, statements_by_id: dict[str, dict]) -> dict:
         "office_ids": offices,
         "publication_ids": publications,
         "family_ids": families,
+        "family_revisions": [
+            {"family_id": family_id, "family_revision": revision}
+            for family_id, revision in family_revisions
+        ],
         "support_unit_ids": support_units,
         "citation_occurrence_ids": [],
     }

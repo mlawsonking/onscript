@@ -2091,6 +2091,11 @@ def methodology_body():
         "never be folded silently into these numbers.</p>"
     )
     parts.append(
+        "<p><strong>Document-family unit.</strong> One family is one support unit. Near-identical "
+        "publications inside the 36-hour candidate window do not become independent support merely "
+        "because several offices published the shared document.</p>"
+    )
+    parts.append(
         "<p><strong>No number on this site is produced by a language model.</strong> Every count, first-appearance "
         "date, adoption curve, and coverage figure is computed by deterministic code directly from the raw text. The "
         "language model does exactly one thing: render the day's already-measured phrases into readable prose. It "
