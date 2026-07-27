@@ -2338,3 +2338,28 @@ session's docs commits were made from an isolated worktree to avoid a second tou
 Next action: 2026-07-25 publishes at the 09:30Z pass when the gate clears or
 force-finalizes per MAX_WAIT_DAYS. The X1-X15 delivery validates under docs/33 gates
 A-D when the worker finishes.
+
+## 2026-07-27: Session 51 (Opus). Deep Archive completion: CREC 111/112/117-119, R-S50.1 3-lane substrate, SD.8 HELD
+
+Ran in an isolated worktree `opus/deep-archive` off `origin/main` while the Codex X-worker held the
+operator checkout on `codex/x-packages`; every edited file collision-checked clean against the worker's
+branch. $0, deterministic, no publication act. Suite 572 -> 578 green.
+
+Built the five remaining per-Congress CREC shards (111, 112, 117, 118, 119) exactly as 113-116; every
+window passes symmetric two-party. 119's ongoing 2026 was 4 sitemap-days short, so the tail was crawled
+first (+87 statements) and 119 built COMPLETE, not partial. The CREC E-lane now spans 107-119 (2001-2026).
+
+Executed R-S50.1 (Fable ruling): the alexandria substrate lane domain is now THREE-valued on `date_source`
+(legacy/scraper/page_html), page_html ISOLATED and never folded into scraper in a primary number; the
+folded propublica/scraped view is a labelled robustness check only. Code done and suite-green
+(`load_congress_records`/`lane_shard_path`/`wave_s4._collect` 3-lane; daily pipeline unaffected); page_html
+isolated for all 113-119; the scraper-lane rebuild continues in the background (resumable, the long pole).
+Premise correction: the reads were already 2-lane-aware at base (Session 19), so R-S50.1 was the 2->3-lane
+isolation, not a from-scratch fix.
+
+Froze SD.8 (instrument concordance) before measuring, then ran it: the press-core president-naming
+direction (S2.9, out-party names the president more) reproduces on the CREC Extensions instrument in only
+8/14 years, era-split (2013-2020 6/8 but 2021-2026 2/6) -> **HELD**. The CREC lane is not calibrated for the
+naming family, so pre-2013 naming claims do NOT advance to publication (the calibration law working; the
+verdict is press-only, stated, and a publishable methods card). Delivered on the branch; the SD.8 verdict
+is the decision Michael carries back.

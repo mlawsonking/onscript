@@ -263,11 +263,14 @@ It is a meaningful second-order expansion under two conditions.
   excluded) is rebuilding in the background (resumable); `legacy` == the existing `propublica` shards by
   identity. The folded `propublica`/`scraped` view survives only as a labelled robustness check. Daily
   pipeline unaffected (does not import alexandria).
-- *SD.8 frozen, then run* (docs/13 SD.8 registration row): the president-naming instrument-concordance
-  study is pre-registered with numeral thresholds BEFORE measurement; the CREC-vs-press-core direction is
-  computed on the 2013-2026 overlap and its verdict GATES pre-2013 naming publication (no publication
-  act performed this session). Verdict recorded in the docs/13 SD.8 verdict row and the Session 51
-  BUILDLOG entry.
+- *SD.8 frozen, then run* (docs/13 SD.8 registration + verdict rows): the president-naming
+  instrument-concordance study was pre-registered with numeral thresholds BEFORE measurement (frozen
+  commit `412308b`), then run on the 2013-2026 overlap. **Verdict: HELD.** The press-core S2.9 direction
+  (out-party names the sitting president more) reproduces on the CREC Extensions instrument in only 8/14
+  years and is era-split (2013-2020 6/8, but 2021-2026 2/6), below the 0.75 both-eras bar and not a
+  systematic contradiction. The CREC lane is therefore NOT calibrated for the naming family, so pre-2013
+  (107-112) CREC naming claims do NOT advance to publication (the calibration law working as designed).
+  No publication act performed this session. Full evidence in docs/13 and the Session 51 BUILDLOG.
 
 **D1-C (2026-07-21, Opus), congresses 113–116 built + audited; 111/112 are BLOCKED ON A CRAWL THAT
 never RAN THEM; and the masked-HTML-error trap turns out to live on the METADATA path too.**
