@@ -12,6 +12,15 @@ from . import config, corrections, eligibility, instrument_fingerprint, util
 
 
 METHOD_VERSION = "status-exports-v1"
+API_VERSION = "v1"
+API_STATUS = "experimental"
+DEPRECATION_POLICY = {
+    "stability": "experimental",
+    "supported_commitment": False,
+    "field_removal_notice_days": 30,
+    "additive_fields_may_appear": True,
+    "breaking_changes_require_new_version": True,
+}
 FRESHNESS_SLO_HOURS = 36.0
 VERIFIER_DROP_SLO = 0.25
 EXPECTED_POSTING_PARTIES = len(config.COMPOSITE_PARTIES)
@@ -269,12 +278,17 @@ def _canonical(payload) -> bytes:
     return json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
 
-def envelope(payload, generated_at: str | None) -> dict:
+def envelope(payload, generated_at: str | None, *, resource: str = "legacy") -> dict:
     raw = _canonical(payload)
     return {
         "schema_version": 1,
         "method_version": METHOD_VERSION,
+        "api_version": API_VERSION,
+        "api_status": API_STATUS,
+        "resource": resource,
         "generated_at": generated_at,
+        "payload_fields": sorted(payload) if isinstance(payload, dict) else [],
+        "deprecation_policy": DEPRECATION_POLICY,
         "checksums": {"payload_sha256": hashlib.sha256(raw).hexdigest()},
         "instrument_fingerprint": instrument_fingerprint.build(),
         "payload": payload,
@@ -296,6 +310,121 @@ def days_csv(days: list[tuple[str, dict]]) -> bytes:
                          sum(1 for party in config.COMPOSITE_PARTIES if isinstance(lines.get(party), dict)),
                          len(payload.get("top_synchronized") or [])])
     return stream.getvalue().encode("utf-8")
+
+
+def phrases_csv(days: list[tuple[str, dict]]) -> bytes:
+    """One observed phrase per row with no nested cells."""
+    stream = io.StringIO(newline="")
+    writer = csv.writer(stream, lineterminator="\n")
+    writer.writerow(["day", "party", "phrase", "observed_offices", "surface_class"])
+    for day, payload in days:
+        for row in sorted(payload.get("top_synchronized") or [],
+                          key=lambda value: (value.get("party") or "", value.get("ngram") or "")):
+            writer.writerow([day, row.get("party"), row.get("ngram"), row.get("day_peak"),
+                             row.get("surface_class")])
+    return stream.getvalue().encode("utf-8")
+
+
+def corrections_csv(rows: list[dict]) -> bytes:
+    """One correction per row with affected days normalized into separate rows."""
+    stream = io.StringIO(newline="")
+    writer = csv.writer(stream, lineterminator="\n")
+    writer.writerow(["correction_id", "affected_day", "severity", "status", "logged"])
+    for row in sorted(rows, key=lambda value: value.get("correction_id") or ""):
+        days = row.get("affected_days") or [""]
+        for day in days:
+            writer.writerow([row.get("correction_id"), day, row.get("severity"),
+                             row.get("status"), row.get("logged")])
+    return stream.getvalue().encode("utf-8")
+
+
+RESOURCE_FIELDS = {
+    "status": ("status",),
+    "days": ("days",),
+    "phrases": ("phrases",),
+    "corrections": ("corrections",),
+    "instrument": ("instrument_fingerprint",),
+    "schema": ("api_status", "api_version", "deprecation_policy", "resources"),
+}
+
+
+RESOURCE_ENDPOINTS = {
+    "status": "api/v1/resources/status.json",
+    "days": "api/v1/resources/days.json",
+    "phrases": "api/v1/resources/phrases.json",
+    "corrections": "api/v1/resources/corrections.json",
+    "instrument": "api/v1/resources/instrument.json",
+    "schema": "api/v1/schema.json",
+}
+
+
+def _resource_envelope(resource: str, payload: dict, generated_at: str | None) -> dict:
+    expected = list(RESOURCE_FIELDS[resource])
+    if sorted(payload) != sorted(expected):
+        raise ValueError(f"{resource} fields differ from the public API contract")
+    value = envelope(payload, generated_at, resource=resource)
+    value["payload_fields"] = expected
+    return value
+
+
+def experimental_exports(status: dict, days: list[tuple[str, dict]], phrases: dict,
+                         correction_rows: list[dict]) -> dict[str, bytes]:
+    """Emit experimental resource endpoints and normalized CSV exports."""
+    generated_at = status.get("generated_at")
+    day_rows = [{
+        "day": day,
+        "degraded": payload.get("degraded"),
+        "composite_states": {
+            party: ((payload.get("daily_lines") or {}).get(party) or {}).get("composite_state")
+            for party in config.COMPOSITE_PARTIES
+        },
+    } for day, payload in days]
+    phrase_rows = [dict(row) for row in (phrases.get("by_peak") or [])]
+    resources = {
+        "status": {"status": status},
+        "days": {"days": day_rows},
+        "phrases": {"phrases": phrase_rows},
+        "corrections": {"corrections": correction_rows},
+        "instrument": {"instrument_fingerprint": instrument_fingerprint.build()},
+        "schema": {
+            "api_status": API_STATUS,
+            "api_version": API_VERSION,
+            "deprecation_policy": DEPRECATION_POLICY,
+            "resources": [
+                {"name": name, "endpoint": RESOURCE_ENDPOINTS[name],
+                 "payload_fields": list(RESOURCE_FIELDS[name])}
+                for name in RESOURCE_ENDPOINTS if name != "schema"
+            ],
+        },
+    }
+    out = {
+        RESOURCE_ENDPOINTS[name]: _canonical(_resource_envelope(name, payload, generated_at)) + b"\n"
+        for name, payload in resources.items()
+    }
+    out["api/v1/exports/days.csv"] = days_csv(days)
+    out["api/v1/exports/phrases.csv"] = phrases_csv(days)
+    out["api/v1/exports/corrections.csv"] = corrections_csv(correction_rows)
+    return out
+
+
+def api_documentation() -> str:
+    """Render field documentation from the emitter's contract constants."""
+    rows = []
+    for name, endpoint in RESOURCE_ENDPOINTS.items():
+        fields = ", ".join(RESOURCE_FIELDS[name])
+        rows.append(f"<tr><td><code>/{endpoint}</code></td><td>{name}</td><td>{fields}</td></tr>")
+    return (
+        "<h1>Experimental API</h1>"
+        "<p class='subhead'>These static resources are experimental. They are not a supported API "
+        "commitment before Gate B.</p>"
+        "<p>Additive fields may appear. A field removal receives 30 days of notice. A breaking "
+        "contract uses a new versioned path.</p>"
+        "<table><thead><tr><th>Endpoint</th><th>Resource</th><th>Payload fields</th></tr></thead>"
+        f"<tbody>{''.join(rows)}</tbody></table>"
+        "<p>Normalized CSV exports: <code>/api/v1/exports/days.csv</code>, "
+        "<code>/api/v1/exports/phrases.csv</code>, and "
+        "<code>/api/v1/exports/corrections.csv</code>.</p>"
+    )
 
 
 def static_exports(status: dict, days: list[tuple[str, dict]], phrases: dict) -> dict[str, bytes]:

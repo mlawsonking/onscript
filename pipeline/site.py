@@ -3195,6 +3195,19 @@ def build_site():
         target = OUT / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(content)
+    (OUT / "api").mkdir(parents=True, exist_ok=True)
+    (OUT / "api" / "index.html").write_text(
+        page("OnScript · Experimental API", status_exports.api_documentation(), depth=1,
+             description="Experimental static API resources and normalized exports.",
+             path="api/index.html"),
+        encoding="utf-8",
+    )
+    written.append("api/index.html")
+    for relative, content in status_exports.experimental_exports(
+            status_model, days, safe_top, CORRECTIONS).items():
+        target = OUT / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(content)
 
     watchlists = _load_json(config.REPO_ROOT / "pipeline" / "watchlists.json") or {}
     (OUT / "alerts").mkdir(parents=True, exist_ok=True)
