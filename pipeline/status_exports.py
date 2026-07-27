@@ -8,13 +8,15 @@ import io
 import json
 from pathlib import Path
 
-from . import config, eligibility, instrument_fingerprint, util
+from . import config, corrections, eligibility, instrument_fingerprint, util
 
 
 METHOD_VERSION = "status-exports-v1"
 FRESHNESS_SLO_HOURS = 36.0
 VERIFIER_DROP_SLO = 0.25
 EXPECTED_POSTING_PARTIES = len(config.COMPOSITE_PARTIES)
+VERIFIER_DROP_WINDOW_DAYS = 30
+POSTING_STATES = frozenset({"disabled", "not_due", "ready", "held", "partial", "posted", "failed"})
 
 
 def _source(manifest: str, field: str, value) -> dict:
@@ -34,7 +36,7 @@ def _check(identifier: str, label: str, value, unit: str, status: str,
     }
 
 
-def _streak(assemble_history: list[tuple[str, dict]]) -> tuple[int | None, list[dict]]:
+def _streak(assemble_history: list[tuple[str, dict]], *, clean: bool) -> tuple[int | None, list[dict]]:
     if not assemble_history:
         return None, []
     value = 0
@@ -46,14 +48,62 @@ def _streak(assemble_history: list[tuple[str, dict]]) -> tuple[int | None, list[
             _source(name, "forced_finalize", manifest.get("forced_finalize")),
         ]
         sources.extend(fields)
-        if (manifest.get("unattended") is not True or manifest.get("degraded") is not False
-                or manifest.get("forced_finalize") is not False):
+        published = (manifest.get("publication_state") in {"published", "corrected"}
+                     or (manifest.get("readiness") or {}).get("ready") is True)
+        if not published:
+            break
+        if clean and (manifest.get("unattended") is not True or manifest.get("degraded") is not False
+                      or manifest.get("forced_finalize") is not False):
             break
         value += 1
     return value, sources
 
 
-def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, dict]] | None = None) -> dict:
+def _posting_state(post: dict) -> str:
+    if post.get("posting_enabled") is False:
+        return "disabled"
+    if post.get("due") is False:
+        return "not_due"
+    if post.get("atomic_hold") is True:
+        return "held"
+    results = post.get("results") if isinstance(post.get("results"), list) else []
+    posted = sum(row.get("posted") is True for row in results)
+    if posted == EXPECTED_POSTING_PARTIES:
+        return "posted"
+    if posted:
+        return "partial"
+    if post.get("ready") is True and not results:
+        return "ready"
+    return "failed"
+
+
+def _windowed_drop(history: list[tuple[str, dict]]) -> dict:
+    rows = sorted(history)[-VERIFIER_DROP_WINDOW_DAYS:]
+    offered = dropped = 0
+    sources = []
+    for name, manifest in rows:
+        for party in config.COMPOSITE_PARTIES:
+            party_row = (manifest.get("per_party_llm") or {}).get(party) or {}
+            published = party_row.get("claims_published")
+            rejected = party_row.get("claims_dropped")
+            sources.extend([
+                _source(name, f"per_party_llm.{party}.claims_published", published),
+                _source(name, f"per_party_llm.{party}.claims_dropped", rejected),
+            ])
+            if isinstance(published, int) and isinstance(rejected, int):
+                offered += published + rejected
+                dropped += rejected
+    return {
+        "days": len(rows), "window_days": VERIFIER_DROP_WINDOW_DAYS,
+        "dropped": dropped, "offered": offered,
+        "rate": round(dropped / offered, 6) if offered else None,
+        "sources": sources,
+        "unit": "claims dropped over claims offered",
+    }
+
+
+def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, dict]] | None = None,
+                 correction_rows: list[dict] | None = None) -> dict:
     """Build a status model. Templates receive this model and perform no measurements."""
     collect_name, collect = "collect-latest.json", manifests.get("collect") or {}
     assemble_name, assemble = "assemble-latest-day.json", manifests.get("assemble") or {}
@@ -85,10 +135,12 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
         [_source(collect_name, "source_freshness.age_hours", age)],
     ))
 
-    streak, streak_sources = _streak(assemble_history or [])
+    history = assemble_history or []
+    clean_streak, streak_sources = _streak(history, clean=True)
+    publication_streak, publication_sources = _streak(history, clean=False)
     checks.append(_check(
-        "streak", "Clean unattended streak", streak, "days",
-        "green" if streak is not None and streak > 0 else "red", streak_sources,
+        "streak", "Clean-run streak", clean_streak, "days",
+        "green" if clean_streak is not None and clean_streak > 0 else "red", streak_sources,
         "count consecutive manifests whose unattended is true and whose degraded and forced_finalize are false",
     ))
 
@@ -109,11 +161,15 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
         else:
             offered += published + party_dropped
             dropped += party_dropped
-    drop_rate = dropped / offered if verifier_measured and offered else None
+    drop_window = _windowed_drop(history)
+    drop_rate = drop_window["rate"] if drop_window["offered"] else (
+        dropped / offered if verifier_measured and offered else None
+    )
+    drop_sources = drop_window["sources"] if drop_window["offered"] else verifier_sources
     checks.append(_check(
         "verifier_drop", "Verifier drop rate", round(drop_rate, 6) if drop_rate is not None else None,
         "share", "green" if drop_rate is not None and drop_rate < VERIFIER_DROP_SLO else "red",
-        verifier_sources, "sum claims_dropped divided by claims_published plus claims_dropped for both parties",
+        drop_sources, "claims dropped divided by claims offered over the declared trailing window",
     ))
 
     degraded = assemble.get("degraded")
@@ -128,16 +184,24 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
         _source(post_name, f"results.{index}.posted", row.get("posted"))
         for index, row in enumerate(results or [])
     ]
+    posting_state = _posting_state(post)
+    posting_status = ("neutral" if posting_state in {"disabled", "not_due"}
+                      else "green" if posting_state == "posted" else "red")
     checks.append(_check(
         "posting", "Parties posted", posted, "parties",
-        "green" if posted == EXPECTED_POSTING_PARTIES else "red", posting_sources,
+        posting_status, posting_sources,
         "count manifest result rows whose posted field is true",
     ))
 
     correction_count = assemble.get("corrections_count")
+    supplied_corrections = correction_rows if correction_rows is not None else []
+    open_rows = [row for row in supplied_corrections if row.get("status") == "open"]
+    correction_status = ("amber" if any(row.get("severity") in {"critical", "major"} for row in open_rows)
+                         else "green" if correction_rows is not None or isinstance(correction_count, int)
+                         else "red")
     checks.append(_check(
-        "corrections", "Corrections logged", correction_count, "corrections",
-        "green" if isinstance(correction_count, int) else "red",
+        "corrections", "Open corrections", len(open_rows) if correction_rows is not None else correction_count,
+        "corrections", correction_status,
         [_source(assemble_name, "corrections_count", correction_count)],
     ))
 
@@ -157,10 +221,21 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
     ))
 
     generated_at = assemble.get("generated_at") or collect.get("generated_at") or post.get("generated_at")
+    overall_status = "amber" if correction_status == "amber" else (
+        "red" if any(row["status"] == "red" for row in checks) else "green"
+    )
     return {
         "schema_version": 1,
         "method_version": METHOD_VERSION,
         "generated_at": generated_at,
+        "overall_status": overall_status,
+        "streaks": {
+            "publication": {"value": publication_streak, "unit": "days", "sources": publication_sources},
+            "clean_run": {"value": clean_streak, "unit": "days", "sources": streak_sources},
+        },
+        "verifier_drop_window": drop_window,
+        "posting_state": posting_state,
+        "posting_states": sorted(POSTING_STATES),
         "checks": checks,
         "slos": [
             {"check": "freshness", "target": FRESHNESS_SLO_HOURS, "unit": "hours maximum",
@@ -169,6 +244,9 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
              "status": "provisional"},
             {"check": "posting", "target": EXPECTED_POSTING_PARTIES, "unit": "parties",
              "status": "provisional"},
+            *[{"check": f"correction_{severity}", "target": policy["correct_hours"],
+               "unit": "hours to correction", "status": "provisional"}
+              for severity, policy in corrections.SEVERITY_POLICY.items()],
         ],
     }
 

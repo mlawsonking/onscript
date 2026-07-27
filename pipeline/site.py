@@ -618,6 +618,11 @@ def correction_permalink_body(row: dict, available_days: set[str] | None = None)
         (f'<a href="../day/{esc(day)}.html">{esc(day)}</a>' if day in available else esc(day))
         for day in row.get("affected_days", [])
     ) or "No day page"
+    lifecycle = corrections.lifecycle(row)
+    original = (f'<a href="{esc(lifecycle["original_url"])}">Original rendering</a>'
+                if lifecycle.get("original_url") else "Original rendering unavailable")
+    corrected = (f'<a href="{esc(lifecycle["corrected_url"])}">Corrected rendering</a>'
+                 if lifecycle.get("corrected_url") else "Corrected rendering unavailable")
     return (
         f'<h1>Correction</h1><p class="subhead mono">{esc(row.get("correction_id"))}</p>'
         f'<p><strong>Logged:</strong> {esc(row.get("logged"))}<br>'
@@ -625,6 +630,10 @@ def correction_permalink_body(row: dict, available_days: set[str] | None = None)
         f'<strong>Status:</strong> {esc(row.get("status"))}</p>'
         f'<p><strong>Affected record:</strong> {esc(row.get("day"))}</p>'
         f'<p><strong>Affected day pages:</strong> {affected}</p>'
+        f'<p><strong>Timeline:</strong> detected {esc(lifecycle.get("detected_at"))}; '
+        f'acknowledged {esc(lifecycle.get("acknowledged_at"))}; corrected '
+        f'{esc(lifecycle.get("corrected_at") or "open")}.</p>'
+        f'<p>{original} &middot; {corrected}</p>'
         f'<h2>What happened</h2><p>{esc(row.get("description"))}</p>'
         f'<h2>Resolution</h2><p>{esc(row.get("resolution"))}</p>'
         '<p><a href="index.html">All corrections</a></p>'
@@ -2865,6 +2874,13 @@ def awards_body(adata, slugs_with_pages=None, depth: int = 0) -> str:
 def status_body(model: dict) -> str:
     """Render a precomputed manifest-backed status model without calculating status values."""
     parts = ["<h1>Instrument status</h1>"]
+    parts.append(f'<p><strong>Overall status:</strong> {esc(model.get("overall_status") or "unknown")}</p>')
+    streaks = model.get("streaks") or {}
+    parts.append(
+        f'<p><strong>Publication streak:</strong> {esc((streaks.get("publication") or {}).get("value"))} days. '
+        f'<strong>Clean-run streak:</strong> {esc((streaks.get("clean_run") or {}).get("value"))} days. '
+        f'<strong>Posting state:</strong> {esc(model.get("posting_state") or "unknown")}.</p>'
+    )
     parts.append(
         '<p class="subhead">Each operational value below names the manifest fields that supply it. '
         'An unavailable value is unknown, never green.</p>'
@@ -3160,7 +3176,7 @@ def build_site():
 
     # ---- manifest-backed status and versioned machine exports ----
     manifest_inputs, assemble_history = status_exports.load_manifest_inputs(DERIVED / "manifest")
-    status_model = status_exports.build_status(manifest_inputs, assemble_history)
+    status_model = status_exports.build_status(manifest_inputs, assemble_history, CORRECTIONS)
     (OUT / "status").mkdir(parents=True, exist_ok=True)
     (OUT / "status" / "index.html").write_text(
         page("OnScript · Instrument status", status_body(status_model), depth=1,

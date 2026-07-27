@@ -9,9 +9,19 @@ from pathlib import Path
 from . import config, util
 
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
+LEGACY_SCHEMA_VERSION = 2
 SEVERITY_CLASSES = frozenset({"critical", "major", "minor"})
 STATUS_CLASSES = frozenset({"open", "resolved"})
+LIFECYCLE_FIELDS = (
+    "detected_at", "acknowledged_at", "contained_at", "corrected_at", "closed_at",
+    "original_url", "corrected_url", "detection_method", "root_cause",
+)
+SEVERITY_POLICY = {
+    "critical": {"acknowledge_hours": 1, "correct_hours": 24},
+    "major": {"acknowledge_hours": 24, "correct_hours": 72},
+    "minor": {"acknowledge_hours": 72, "correct_hours": 336},
+}
 _ID = re.compile(r"corr-[a-z0-9][a-z0-9-]+$")
 COUNT_FILE = config.REFERENCE / "corrections-count.json"
 
@@ -25,7 +35,8 @@ def validate(rows: list[dict], expected_count: int | None = None) -> list[dict]:
         if not isinstance(row, dict):
             raise ValueError(f"correction {index} is not an object")
         cid = row.get("correction_id")
-        if (row.get("schema_version") != SCHEMA_VERSION or not isinstance(cid, str)
+        schema = row.get("schema_version")
+        if (schema not in {LEGACY_SCHEMA_VERSION, SCHEMA_VERSION} or not isinstance(cid, str)
                 or not _ID.fullmatch(cid) or cid in ids):
             raise ValueError(f"correction {index} has an invalid or duplicate identity")
         ids.add(cid)
@@ -41,6 +52,10 @@ def validate(rows: list[dict], expected_count: int | None = None) -> list[dict]:
         for required in ("logged", "day", "description", "resolution"):
             if not row.get(required):
                 raise ValueError(f"correction {cid} is missing {required}")
+        if schema == SCHEMA_VERSION:
+            missing = [field for field in LIFECYCLE_FIELDS if field not in row]
+            if missing:
+                raise ValueError(f"correction {cid} is missing lifecycle fields: {missing}")
     if expected_count is not None and len(rows) != expected_count:
         raise ValueError(
             f"corrections count changed without its monotonic checkpoint: "
@@ -68,6 +83,27 @@ def for_day(day: str, rows: list[dict] | None = None) -> list[dict]:
 def content_address(payload: dict) -> str:
     raw = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return "sha256:" + hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def lifecycle(row: dict) -> dict:
+    """Return lifecycle fields for current and legacy correction records."""
+    return {
+        "detected_at": row.get("detected_at") or row.get("logged"),
+        "acknowledged_at": row.get("acknowledged_at") or row.get("logged"),
+        "contained_at": row.get("contained_at"),
+        "corrected_at": row.get("corrected_at") or (row.get("logged") if row.get("status") == "resolved" else None),
+        "closed_at": row.get("closed_at") or (row.get("logged") if row.get("status") == "resolved" else None),
+        "original_url": row.get("original_url"),
+        "corrected_url": row.get("corrected_url"),
+        "detection_method": row.get("detection_method") or "legacy record",
+        "root_cause": row.get("root_cause") or "see description",
+    }
+
+
+def response_target(severity: str) -> dict:
+    if severity not in SEVERITY_POLICY:
+        raise ValueError(f"unknown correction severity: {severity}")
+    return {**SEVERITY_POLICY[severity], "status": "provisional"}
 
 
 def correction_reply(logged: str, claimed: str, supported: str, permalink: str) -> str:
