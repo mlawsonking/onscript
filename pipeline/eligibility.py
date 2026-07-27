@@ -6,7 +6,7 @@ import re
 from . import boilerplate, nomenclature, privacy, util
 
 
-CLASSIFIER = "surface-eligibility-v2"
+CLASSIFIER = "surface-eligibility-v3"
 SURFACE_CLASSES = (
     "message", "unknown", "nomenclature", "procedural", "biographical", "private",
 )
@@ -91,6 +91,25 @@ def classify_claim(claim: dict, *, day: str | None = None) -> dict:
         out.get("label") or "", day=day or out.get("day"), surfaces=surfaces,
         family_count=_family_count(out),
     )
+    occurrences = [row for row in (out.get("occurrences") or []) if isinstance(row, dict)]
+    stances = {row.get("stance") for row in occurrences if row.get("stance")}
+    if "negated" in stances and "affirmative" in stances:
+        classification = {
+            "surface_class": "unknown", "surface_eligible": False,
+            "classifier": {"name": CLASSIFIER, "method": "deterministic", "rule": "mixed-stance"},
+        }
+    elif stances == {"negated"}:
+        classification = {
+            "surface_class": "unknown", "surface_eligible": False,
+            "classifier": {"name": CLASSIFIER, "method": "deterministic", "rule": "negated-claim"},
+        }
+    elif occurrences and all(row.get("is_quoted") and row.get("quoted_speaker_detected")
+                             for row in occurrences):
+        classification = {
+            "surface_class": "unknown", "surface_eligible": False,
+            "classifier": {"name": CLASSIFIER, "method": "deterministic",
+                           "rule": "quoted-attribution-only"},
+        }
     out.update(classification)
     topic_source = out.get("topic_classifier") or {
         "name": "taxonomy-seed-match-v1",
