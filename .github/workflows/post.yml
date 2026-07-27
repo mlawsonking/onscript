@@ -46,6 +46,9 @@ jobs:
             exit 1
           fi
 
+      - name: Privacy canary before posting
+        run: python -m pipeline.privacy_canary
+
       - name: Post both Daily Line threads
         run: python pipeline/post_bluesky.py || echo "posting skipped or failed; manifest records the result"
 

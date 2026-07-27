@@ -83,6 +83,9 @@ jobs:
             python pipeline/run_assemble.py
           fi
 
+      - name: Privacy canary before publication
+        run: python -m pipeline.privacy_canary --telemetry data/derived/privacy-canary.json
+
       - name: Render the static site
         run: python pipeline/site.py
 

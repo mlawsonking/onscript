@@ -412,11 +412,19 @@ def _suppressed_spans(text: str) -> list[tuple[int, int, str]]:
     return spans
 
 
-_PERSON_TOKEN = re.compile(r"[A-Za-z][A-Za-z'’-]*")
+_PERSON_TOKEN = re.compile(r"[^\W\d_](?:[^\W\d_]|['’-])*", re.UNICODE)
 _OFFICE_TITLE = re.compile(
     r"(?:rep\.?|representative|senator|congressman|congresswoman)\s*$", re.IGNORECASE
 )
 _TITLE_TOKENS = frozenset({"rep", "representative", "senator", "congressman", "congresswoman"})
+_NAME_PARTICLES = frozenset({"da", "de", "del", "dos", "la", "le", "van", "von"})
+ENTITY_TYPES = {
+    "private": "person.private.admitted",
+    "public_official": "person.public.elected",
+    "allowlisted": "person.public.allowlisted",
+    "quarantine": "person.unresolved.quarantine",
+}
+ENTITY_HIERARCHY_VERSION = "person-entities-v1"
 
 
 def _normalized_words(value: str) -> tuple[str, ...]:
@@ -463,7 +471,9 @@ def person_spans(text: str, statement: dict | None = None,
     if not isinstance(text, str) or not text:
         return []
     rows: list[dict] = [
-        {"start_char": start, "end_char": end, "classification": "private", "source": "hmac"}
+        {"start_char": start, "end_char": end, "classification": "private",
+         "entity_type": ENTITY_TYPES["private"], "entity_version": ENTITY_HIERARCHY_VERSION,
+         "source": "hmac"}
         for start, end, _form_hash in _suppressed_spans(text)
     ]
     private_intervals = [(row["start_char"], row["end_char"]) for row in rows]
@@ -475,15 +485,16 @@ def person_spans(text: str, statement: dict | None = None,
     index = 0
     while index < len(tokens):
         token = tokens[index].group(0).strip(".'’-" )
-        if not token or not token[0].isupper() or token.isupper():
+        if not token or not token[0].isupper():
             index += 1
             continue
         end_index = index + 1
         while end_index < len(tokens) and end_index - index < 5:
             gap = text[tokens[end_index - 1].end():tokens[end_index].start()]
             next_token = tokens[end_index].group(0).strip(".'’-" )
-            if (not gap.isspace() or not next_token or not next_token[0].isupper()
-                    or next_token.isupper()):
+            is_particle = next_token.casefold() in _NAME_PARTICLES
+            if (not re.fullmatch(r"[\s.]*", gap) or not next_token
+                    or (not next_token[0].isupper() and not is_particle)):
                 break
             end_index += 1
         if end_index - index < 2:
@@ -514,6 +525,8 @@ def person_spans(text: str, statement: dict | None = None,
             "start_char": start_char,
             "end_char": end_char,
             "classification": classification,
+            "entity_type": ENTITY_TYPES[classification],
+            "entity_version": ENTITY_HIERARCHY_VERSION,
             "source": source,
         })
         index = end_index
