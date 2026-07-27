@@ -1230,3 +1230,60 @@ its job (docs/12 L3, S4.2's law; the S1.10 pattern).
   `PYTHONHASHSEED=0 python scripts/search/hx_5_opposition_reuse.py`; registration
   `data/reference/search/hx_5-registration.json`; evidence
   `scripts/search/evidence/hx_5_opposition_reuse.result.json` + X:.
+
+## R-S50.1 - Lane substrate ruling: page_html is ISOLATED, not folded (2026-07-27, Opus Session 51)
+
+**Ruling (Fable, R-S50.1, binding for the Deep Archive substrate work).** The alexandria per-Congress
+substrate lane domain is THREE-valued on the raw `date_source`: `legacy`, `scraper`, `page_html`.
+`page_html` is ISOLATED as its OWN lane and is NEVER folded into `scraper` or `legacy` in any primary
+number. It is the most party-skewed lane in the corpus (D:R 12.465 in half A, Session 18 record), so
+folding it into `scraper` recreates the exact confound the lane program exists to remove. Folded
+variants may appear ONLY as explicitly labelled robustness checks. This supersedes docs/18 §2's default
+fold and the `provenance.py` note that made folding the default `by="instrument"` partition.
+
+**Executed (Session 51, `pipeline/alexandria.py` + `pipeline/search/wave_s4.py`).**
+`load_congress_records`/`lane_shard_path` now accept the three isolated source lanes (filtered by
+`date_source`, matching `harness.iter_statements`) alongside the folded instrument names, which stay as
+a labelled robustness view; `reconcile_source_lanes` asserts the exact partition `legacy + scraper +
+page_html == combined`. `wave_s4._collect` carries the isolated `date_source` as the primary lane key
+(`inst` folded, robustness only). The isolated substrate rebuild for 113-119: `page_html` built fresh
+and ISOLATED for all seven congresses (complete); `scraper` (page_html excluded) rebuilding in the
+background (resumable, ~148 MB ledgers/congress); `legacy` == the existing `propublica` shards by
+identity (`instrument propublica = {legacy}`, copied, no recompute). The daily pipeline is unaffected
+(it does not import alexandria; verified). Failure fixtures in `tests/test_search_provenance.py`; rebuild driver
+`scripts/search/build_source_lane_shards.py`. NOTE (premise correction): the Session-21-recorded
+"lane-blind read" was already 2-lane-aware at this branch base (Session 19); R-S50.1 is the 2-lane to
+3-lane isolation upgrade, not a from-scratch lane fix.
+
+### SD.8 · lane=crec · Instrument concordance (president-naming family), **REGISTERED** (frozen 2026-07-27, before measurement)
+
+The calibration study docs/15 §6 demands FIRST (the calibration law, docs/15 §0 law 2). Frozen before
+touching the CREC confirmatory data (docs/12 §1; freeze-before-measure); the verdict lands in a separate
+later commit. Full frozen spec + thresholds are module constants in `scripts/deep/sd8_concordance.py`;
+§1.12 kill fixtures in `tests/test_deep_sd8.py`.
+
+- **Question:** does the CREC Extensions instrument REPRODUCE the press-core direction of S2.9 (the
+  Boogeyman) over the 2013-2026 overlap? Press-core reference (already verdicted, twice-confirmed): the
+  OUT-party (not holding the White House) names the sitting president MORE per 1k words than the
+  in-party, every year (docs/13 L124/L581, out>in 14/14).
+- **Family selection (stated, not silent):** the president-NAMING family is the one unambiguous CREC
+  analogue. The S1 phrase-coordination family has NO admissible CREC analogue yet (docs/15 §D1-A: CREC
+  is a weak coordination carrier until the crec coordination-boilerplate layer is built, docs/15 §9, 3
+  residuals open); the S4 event family is BLOCKED; the S2 lexical-style family is register-confounded
+  (Extensions is a written-insertion genre) with several directionless nulls. Naming is
+  boilerplate-robust, direction-crisp, well-powered, and docs/13 names S2.9 as the SD.2 extension.
+- **CREC metric (IDENTICAL to S2.9, re-instrumented on CREC):** per year Y in 2013-2026, sitting-president
+  `name_token` (presidents.json term covering Y-07-01) mentions per 1000 words, out-party vs in-party;
+  out-party = not-`potus` (chambers-control, modal congress of Y); CREC direction = out_rate > in_rate.
+  Rate, never count (docs/12 §1.3).
+- **Power floor (numeral, before measuring):** a year is SCORED only if BOTH parties have >= 200 CREC
+  Extensions statements that year (docs/12 §1.6). Unscored years disclosed, never silently dropped.
+- **Gate/verdict (frozen numerals):** `agreement_share` = scored years out>in / scored years;
+  `contradiction_share` = scored years out<in / scored years. CONFIRM iff >= 8 scored years AND
+  agreement_share >= 0.75 AND out>in is the majority in BOTH sub-eras 2013-2020 / 2021-2026. REFUTE iff
+  contradiction_share >= 0.75 (a null/equal is NOT a refutation). HELD otherwise (the parent S2.9 stands;
+  CREC not calibrated for the family; pre-2013 naming claims do not advance). ARTIFACT if a named
+  confound inverts raw vs controlled.
+- **What it gates:** the verdict GATES pre-2013 (congresses 107-112) CREC president-naming publication.
+  This session performs NO publication act either way.
+- **Status:** REGISTERED; measurement next (this session), then a verdict row. No daily-pipeline surface.

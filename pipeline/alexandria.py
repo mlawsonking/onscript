@@ -29,7 +29,19 @@ LAST_CONGRESS = 119                           # through 2026
 # pre-2013 tails are 99.9% single-party (legacy) / ~100% R (scraper), so a per-lane shard there would
 # be an invitation to a poisoned statistic (docs/18 §2). A per-lane loader for them RAISES.
 PER_LANE_CONGRESSES = range(113, 120)
-LANES = ("propublica", "scraped")
+# --- R-S50.1 (Fable ruling, Session 51, binding): the substrate lane domain is THREE-valued ---------
+# The PRIMARY, isolated lanes are the raw `date_source` values. `page_html` is its OWN lane and is
+# NEVER folded into `scraper` or `legacy` in a primary number: it is the most party-skewed lane in the
+# corpus (D:R 12.465 in half A, Session 18 record), so folding it recreates the exact confound the
+# shard program exists to remove. `legacy` and `scraper` are then clean single-instrument lanes.
+SOURCE_LANES = ("legacy", "scraper", "page_html")   # primary - isolated, filtered by date_source
+# The instrument-folded pair is RETAINED but only as an explicitly labelled robustness view: `scraped`
+# folds `scraper`+`page_html` (docs/18 §2's original default, which R-S50.1 demotes from primary);
+# `propublica` is the instrument name for the `legacy` set (identical records). Kept so existing
+# readers (wave_s1's propublica@113-116 / scraped@117-119) keep resolving until re-run on the isolated
+# substrate (docs/18 §4: migrate each site as it is re-run, never ahead of need).
+LANES = ("propublica", "scraped")                    # folded robustness only, filtered by instrument
+ALL_LANES = SOURCE_LANES + LANES
 
 
 def congress_range(n: int) -> tuple[str, str]:
@@ -44,8 +56,8 @@ def lane_shard_path(kind: str, n: int, lane: str | None):
     — the guard that stops a poisoned pre-2013 per-lane statistic from ever being built or read."""
     if lane is None:
         return ALEX / f"{kind}-{n}.json"
-    if lane not in LANES:
-        raise ValueError(f"unknown lane {lane!r} — expected one of {LANES}")
+    if lane not in ALL_LANES:
+        raise ValueError(f"unknown lane {lane!r} - expected one of {ALL_LANES}")
     if n not in PER_LANE_CONGRESSES:
         raise provenance.LaneIsolationError(
             f"congress {n} has no per-lane shard: per-lane shards exist only for {PER_LANE_CONGRESSES.start}"
@@ -57,12 +69,17 @@ def lane_shard_path(kind: str, n: int, lane: str | None):
 def load_congress_records(n: int, lane: str | None = None) -> list[dict]:
     """Load ONLY the Nth Congress's records from the mirror (memory-light — one era at a time).
 
-    `lane` in {'propublica','scraped'} filters records by `provenance.instrument_of` (docs/18 §2) —
-    the lane is a property of the RECORD, applied BEFORE normalize, so normalize and PhraseEngine stay
-    untouched. `load_congress_records` is the third and last place `date_source` used to die (the
-    Session-16 finding); with `lane` it becomes lane-aware at the source. A record whose instrument is
-    unknown (untagged) matches no lane and is excluded — but the 19 real untagged records have null
-    dates and never pass the date window anyway."""
+    `lane` filters records at the SOURCE, before normalize, so normalize and PhraseEngine stay
+    untouched. Per R-S50.1 the primary lanes are the raw 3-valued `date_source` - `legacy` |
+    `scraper` | `page_html`, each ISOLATED (page_html is never folded). The instrument-folded names
+    `propublica` (== legacy) | `scraped` (== scraper+page_html) are still accepted as a labelled
+    robustness view. Matching is exactly `harness.iter_statements`': a record joins lane `L` iff `L`
+    is its `date_source` OR its derived instrument. `date_source` rides on every mirror record, so
+    each returned row already carries its provenance lane (docs/18 §4); a record whose lane is unknown
+    (untagged) matches no lane and is excluded - the 19 real untagged records have null dates and
+    never pass the date window anyway."""
+    if lane is not None and lane not in ALL_LANES:
+        raise ValueError(f"unknown lane {lane!r} - expected one of {ALL_LANES}")
     if lane is not None and n not in PER_LANE_CONGRESSES:
         raise provenance.LaneIsolationError(
             f"congress {n} is combined-only (docs/18 §2) — no per-lane record load for {n}")
@@ -76,8 +93,11 @@ def load_congress_records(n: int, lane: str | None = None) -> list[dict]:
             d = (r.get("date") or "")[:10]
             if not (start <= d < end):
                 continue
-            if lane is not None and provenance.instrument_of(r) != lane:
-                continue
+            if lane is not None:
+                src = provenance.date_source_of(r)
+                inst = provenance.INSTRUMENTS.get(src) if src is not None else None
+                if lane not in (src, inst):          # R-S50.1: source-isolated OR folded-instrument
+                    continue
             recs.append(r)
     return recs
 
@@ -158,6 +178,23 @@ def reconcile_lane_shards(n: int) -> dict:
             summ["reconciliation"] = recon
             util.write_json(lane_shard_path("shard", n, lane), summ)
     return recon
+
+
+def reconcile_source_lanes(n: int) -> dict:
+    """R-S50.1 acceptance: the three ISOLATED source lanes partition the combined set EXACTLY.
+    `records(legacy) + records(scraper) + records(page_html) == records(combined)`. `date_source` is a
+    perfect partition of every dated record (the 19 untagged rows have null dates and never enter a
+    congress load), so unlike the post-normalize statement delta this is exact - any mismatch is a bug.
+    Reads the shard summaries (records counts) each lane's `run_shard` wrote; a lane with no shard yet
+    contributes 0 and the partition simply won't close until it is built."""
+    combined = util.read_json(lane_shard_path("shard", n, None), {}) or {}
+    rec_c = combined.get("records", 0)
+    per = {L: (util.read_json(lane_shard_path("shard", n, L), {}) or {}).get("records", 0)
+           for L in SOURCE_LANES}
+    total = sum(per.values())
+    return {"congress": n,
+            "records": {**per, "combined": rec_c, "sum_lanes": total,
+                        "delta": total - rec_c, "exact_partition": total == rec_c}}
 
 
 def merge(focus_day: str | None = None) -> dict:

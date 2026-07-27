@@ -305,6 +305,51 @@ def test_per_lane_shard_unknown_lane_raises():
         raise AssertionError("an unknown lane was accepted")
 
 
+# --- R-S50.1: the isolated THREE-valued source-lane substrate (page_html its own lane) ------------
+def test_load_congress_records_isolates_page_html_as_its_own_lane():
+    """R-S50.1 (binding): the substrate lane domain is THREE-valued and `page_html` is ISOLATED -
+    never folded into `scraper` in a primary number. `load_congress_records` must match
+    harness.iter_statements: a source lane returns exactly that `date_source`, and the folded
+    instrument names survive only as a labelled robustness view. Congress 116 (2019-2020), all three
+    lanes co-present (page_html's window opens 2014-12; legacy runs to the 2021-01-03 seam)."""
+    from pipeline import alexandria as A
+    rows = [_row("2020-01-10", "legacy"),
+            _row("2020-01-11", "scraper", scraper="s", source="u"),
+            _row("2020-01-12", "page_html", scraper="s", source="u")]
+
+    def ds(lane):
+        return sorted(r["date_source"] for r in
+                      _with_mirror(rows, lambda: A.load_congress_records(116, lane=lane)))
+
+    assert ds("page_html") == ["page_html"]                  # isolated - its own lane
+    assert ds("scraper") == ["scraper"]                      # scraper EXCLUDES page_html (isolated)
+    assert ds("legacy") == ["legacy"]
+    assert ds("scraped") == ["page_html", "scraper"]         # folded instrument: robustness view only
+    assert ds("propublica") == ["legacy"]                    # folded instrument name (== legacy set)
+    assert ds(None) == ["legacy", "page_html", "scraper"]    # combined carries every lane
+
+
+def test_lane_shard_path_accepts_the_isolated_source_lanes():
+    """Each of the three primary source lanes gets its own file under lanes/; the combined-only guard
+    still fires for a source lane on a pre-2013 congress (107-112 stay combined-only, docs/18 §2)."""
+    from pipeline import alexandria as A
+    for lane in ("legacy", "scraper", "page_html"):
+        assert A.lane_shard_path("ledger", 117, lane) == A.LANES_DIR / f"ledger-117.{lane}.json"
+    for combined_only in (107, 110, 112):
+        try:
+            A.lane_shard_path("ledger", combined_only, "page_html")
+        except P.LaneIsolationError:
+            pass
+        else:
+            raise AssertionError(f"a per-lane source shard for combined-only congress {combined_only} was allowed")
+        try:
+            A.load_congress_records(combined_only, lane="page_html")
+        except P.LaneIsolationError:
+            pass
+        else:
+            raise AssertionError(f"a per-lane source load for combined-only congress {combined_only} was allowed")
+
+
 def test_harness_cache_path_lane_suffixes_before_the_extension():
     assert H.cache_path("phrase_index.jsonl", None) == H.SEARCH_CACHE / "phrase_index.jsonl"
     assert H.cache_path("phrase_index.jsonl", "propublica") == H.SEARCH_CACHE / "phrase_index.propublica.jsonl"
