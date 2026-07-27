@@ -47,6 +47,7 @@ except Exception:
 DERIVED = config.DERIVED
 OUT = config.REPO_ROOT / "site" / "public"
 FAVICON_SOURCE = config.REPO_ROOT / "site" / "brand" / "avatar-brand.png"
+SBOM_SOURCE = config.REPO_ROOT / "sbom.spdx.json"
 PROMPTS_DIR = config.REPO_ROOT / "pipeline" / "prompts"
 ROSTER_FILE = config.REFERENCE / "roster.json"
 TAXONOMY_FILE = config.TAXONOMY_FILE
@@ -2921,6 +2922,7 @@ def build_site():
         shutil.copyfile(FAVICON_SOURCE, OUT / "favicon.png")
     except Exception as e:  # skip-and-log: optional chrome cannot cost render 1 or the posting streak
         print(f"[favicon] skipped (skip-and-log): {e}")
+    shutil.copyfile(SBOM_SOURCE, OUT / "sbom.spdx.json")
 
     # Art. XIII: delete contaminated phrase pages AND their rendered twins before anything renders.
     # A render-time SKIP is not enough — build_site only ever WRITES (nothing here unlinks) and

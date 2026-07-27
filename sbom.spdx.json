@@ -1,0 +1,49 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "creationInfo": {
+    "created": "2026-07-27T00:00:00Z",
+    "creators": ["Tool: OnScript deterministic SBOM generator"]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://onscript.news/sbom/2026-07-27/x11",
+  "name": "OnScript runtime SBOM",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-OnScript",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "OnScript deterministic pipeline",
+      "primaryPackagePurpose": "APPLICATION",
+      "supplier": "Organization: OnScript",
+      "versionInfo": "git"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-CPython",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "https://www.python.org/downloads/release/python-31210/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "PSF-2.0",
+      "licenseDeclared": "PSF-2.0",
+      "name": "CPython",
+      "primaryPackagePurpose": "RUNTIME",
+      "supplier": "Organization: Python Software Foundation",
+      "versionInfo": "3.12.10"
+    }
+  ],
+  "relationships": [
+    {
+      "relatedSpdxElement": "SPDXRef-Package-OnScript",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-CPython",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-OnScript"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}

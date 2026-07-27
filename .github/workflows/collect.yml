@@ -20,6 +20,8 @@ concurrency:
 
 permissions:
   contents: write   # commit derived JSON + manage the data Release
+  id-token: write
+  attestations: write
 
 jobs:
   collect:
@@ -85,6 +87,13 @@ jobs:
           python -m pipeline.release_provenance write state.tar.gz raw.tar.gz
           gh release create data-latest --title "OnScript data (rolling)" --notes "raw mirror + ledger + extraction cache" 2>/dev/null || true
           gh release upload data-latest state.tar.gz state.tar.gz.sha256 raw.tar.gz raw.tar.gz.sha256 --clobber
+
+      - name: Attest rolling release assets
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: |
+            state.tar.gz
+            raw.tar.gz
 
       - name: Commit deterministic derived JSON (Vercel auto-deploys)
         run: |

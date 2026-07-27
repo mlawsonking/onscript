@@ -25,6 +25,8 @@ concurrency:
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   assemble:
@@ -102,6 +104,11 @@ jobs:
           tar -czf state.tar.gz data/state data/reference/roster.json
           python -m pipeline.release_provenance write state.tar.gz
           gh release upload data-latest state.tar.gz state.tar.gz.sha256 --clobber || true
+
+      - name: Attest rolling state asset
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
+        with:
+          subject-path: state.tar.gz
 
       - name: Commit derived + rendered site (Vercel auto-deploys)
         run: |

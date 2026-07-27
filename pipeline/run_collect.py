@@ -19,7 +19,8 @@ try:
 except Exception:
     pass
 
-from pipeline import config, deterministic, extract, fetch, llm, ops, roster, util  # noqa: E402
+from pipeline import (config, deterministic, extract, fetch, llm, ops, roster,
+                      runtime_environment, util)  # noqa: E402
 
 STALE_HOURS = 36.0
 
@@ -47,6 +48,7 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
 
     if offline:
         records = fetch.load_mirror()
+        pull = fetch.mirror_provenance()
     else:
         records, pull = fetch.pull_range(start, end)
         # merge with prior mirror months so the ledger stays a full-corpus function of raw
@@ -73,7 +75,9 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
 
     manifest = dict(res["manifest"])
     manifest.update({"kind": "collect", "degraded": degraded, "volume": vol,
-                     "extract": extract_cost, "alerts": alerts})
+                     "extract": extract_cost, "alerts": alerts,
+                     "upstream_provenance": pull,
+                     "runtime_environment": runtime_environment.disclosure()})
     util.write_json(config.DERIVED / "manifest" / f"{run_id}.json", manifest)
     util.write_json(config.DERIVED / "manifest" / "collect-latest.json", manifest)
     return {"manifest": manifest, "focus_day": focus_day, "res": res, "volume": vol, "degraded": degraded}

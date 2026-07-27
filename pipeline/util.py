@@ -35,7 +35,9 @@ def now_utc_iso() -> str:
 def product_day(reference: datetime | None = None) -> str:
     """Product day = the prior America/New_York calendar day (§2)."""
     if ZoneInfo is not None:
-        ny = datetime.now(ZoneInfo(config.TIMEZONE)) if reference is None else reference.astimezone(ZoneInfo(config.TIMEZONE))
+        from . import runtime_environment
+        zone = runtime_environment.zone()
+        ny = datetime.now(zone) if reference is None else reference.astimezone(zone)
     else:  # pragma: no cover
         ny = (reference or datetime.now(timezone.utc))
     return (ny - timedelta(days=1)).strftime("%Y-%m-%d")
@@ -87,6 +89,25 @@ def http_get(url: str, *, timeout: int = 60, retries: int = 3, headers: dict | N
                 return resp.read()
         except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
             last_err = e
+            if attempt < retries - 1:
+                time.sleep(2 ** attempt)
+    raise RuntimeError(f"GET failed after {retries} tries: {url}: {last_err}")
+
+
+def http_get_metadata(url: str, *, timeout: int = 60, retries: int = 3,
+                      headers: dict | None = None) -> tuple[bytes, dict[str, str]]:
+    """GET bytes plus response headers with the same retry policy as ``http_get``."""
+    hdrs = {"User-Agent": config.USER_AGENT}
+    if headers:
+        hdrs.update(headers)
+    last_err: Exception | None = None
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers=hdrs)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read(), {key.casefold(): value for key, value in resp.headers.items()}
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as error:
+            last_err = error
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
     raise RuntimeError(f"GET failed after {retries} tries: {url}: {last_err}")
