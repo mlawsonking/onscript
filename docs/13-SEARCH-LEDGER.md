@@ -1287,3 +1287,33 @@ later commit. Full frozen spec + thresholds are module constants in `scripts/dee
 - **What it gates:** the verdict GATES pre-2013 (congresses 107-112) CREC president-naming publication.
   This session performs NO publication act either way.
 - **Status:** REGISTERED; measurement next (this session), then a verdict row. No daily-pipeline surface.
+
+### SD.8 · lane=crec · Instrument concordance (president-naming family), **HELD: the CREC Extensions instrument reproduces the press-core naming direction pre-2020 but NOT post-2020; the CREC lane is NOT calibrated for the naming family.** *Measured against the frozen registration `412308b`, no post-hoc edits.*
+
+The S2.9 press-core direction (the out-party names the sitting president MORE per 1k words; press 14/14
+years) is REPRODUCED on the CREC Extensions instrument in only **8 of 14 years** over 2013-2026
+(agreement_share **0.571**), and the reproduction is **era-split**: **2013-2020 = 6/8** (out>in dominant,
+Obama then Trump) but **2021-2026 = 2/6** (the Biden / second-Trump era fails; in 2021, 2023, 2024, 2026
+the in-party names the president as much or more in Extensions). contradiction_share **0.429**. The
+frozen gate (CONFIRM iff agreement>=0.75 AND both sub-eras majority out>in; REFUTE iff contradiction>=0.75)
+returns **HELD**.
+
+- **What HELD means here (docs/13 HX.4-D precedent):** the parent S2.9 STANDS as measured on the press
+  instrument; the CREC Extensions lane is NOT calibrated for the president-naming family, so **pre-2013
+  (congresses 107-112) CREC naming claims do NOT advance to publication** (the calibration law, docs/15
+  §0 law 2, working as designed). HELD != REFUTED: the CREC lane does not systematically CONTRADICT the
+  press direction (it agrees in a bare majority and across the entire first era); it fails the
+  strong-concordance bar, it does not invert.
+- **Estimator:** sitting-president `name_token` mentions per 1000 words, out-party (not-`potus`) vs
+  in-party, per year 2013-2026; rate not count (docs/12 §1.3); floor 200 statements/party/year (all 14
+  years scored). n = 68,527 CREC Extensions statements (congresses 113-119).
+- **The instrument difference IS the finding** (publishable methods card, docs/15 §6): press releases
+  are an attack genre (the out-party names the president to criticize), while Extensions of Remarks carry
+  more in-party tribute and defense reference, so the naming asymmetry that is stable on press does not
+  transfer cleanly to the floor-insertion genre, especially post-2020. This is precisely the
+  "press-only, stated" outcome the calibration law contemplates for a metric family.
+- **Gate consequence:** the president-naming family is CREC-uncalibrated. SD.2 (the CREC Voldemort/
+  name-avoidance extension) may NOT borrow press credibility for pre-2013; a pre-2013 naming claim is
+  press-only until a WITHIN-CREC design (not a cross-instrument concordance) powers it on its own lane.
+- **Verdict:** HELD. Re-runnable: `python scripts/deep/sd8_concordance.py`; result
+  `data/derived/crec/sd8_concordance.json`; frozen registration + thresholds in commit `412308b`.

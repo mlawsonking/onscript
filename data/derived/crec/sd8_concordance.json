@@ -1,0 +1,219 @@
+{
+ "id": "SD.8",
+ "name": "Instrument concordance (president-naming family)",
+ "reference": "S2.9 press-core direction out>in, 14/14 years (docs/13 L124/L581)",
+ "window": "2013-2026 overlap (CREC congresses 113-119)",
+ "estimator": "sitting-president name_token mentions per 1000 words, out-party vs in-party, per year",
+ "floor": 200,
+ "thresholds": {
+  "confirm_share": 0.75,
+  "refute_contradiction_share": 0.75,
+  "min_scored_years": 8
+ },
+ "scored_years": [
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "years_out_higher": [
+  2013,
+  2014,
+  2015,
+  2017,
+  2018,
+  2019,
+  2022,
+  2025
+ ],
+ "years_out_lower": [
+  2016,
+  2020,
+  2021,
+  2023,
+  2024,
+  2026
+ ],
+ "agreement_share": 0.5714,
+ "contradiction_share": 0.4286,
+ "sub_eras": {
+  "2013-2020": {
+   "scored": 8,
+   "out_higher": 6,
+   "majority": true
+  },
+  "2021-2026": {
+   "scored": 6,
+   "out_higher": 2,
+   "majority": false
+  }
+ },
+ "both_eras_majority": false,
+ "verdict": "HELD",
+ "per_year": {
+  "2013": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.2581,
+   "in_rate": 0.1011,
+   "n_out": 2455,
+   "n_in": 3500,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2014": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.186,
+   "in_rate": 0.111,
+   "n_out": 2331,
+   "n_in": 3449,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2015": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.2216,
+   "in_rate": 0.1256,
+   "n_out": 2970,
+   "n_in": 3295,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2016": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.1515,
+   "in_rate": 0.1968,
+   "n_out": 3161,
+   "n_in": 3029,
+   "scored": true,
+   "out_higher": false,
+   "out_lower": true
+  },
+  "2017": {
+   "potus_party": "R",
+   "out_party": "D",
+   "out_rate": 0.324,
+   "in_rate": 0.1053,
+   "n_out": 3085,
+   "n_in": 2851,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2018": {
+   "potus_party": "R",
+   "out_party": "D",
+   "out_rate": 0.175,
+   "in_rate": 0.0673,
+   "n_out": 2911,
+   "n_in": 3152,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2019": {
+   "potus_party": "R",
+   "out_party": "D",
+   "out_rate": 0.1964,
+   "in_rate": 0.0774,
+   "n_out": 3278,
+   "n_in": 2178,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2020": {
+   "potus_party": "R",
+   "out_party": "D",
+   "out_rate": 0.1346,
+   "in_rate": 0.2245,
+   "n_out": 2103,
+   "n_in": 1615,
+   "scored": true,
+   "out_higher": false,
+   "out_lower": true
+  },
+  "2021": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.132,
+   "in_rate": 0.1516,
+   "n_out": 1797,
+   "n_in": 2342,
+   "scored": true,
+   "out_higher": false,
+   "out_lower": true
+  },
+  "2022": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.1572,
+   "in_rate": 0.0766,
+   "n_out": 1678,
+   "n_in": 2552,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2023": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.0885,
+   "in_rate": 0.1264,
+   "n_out": 1728,
+   "n_in": 2397,
+   "scored": true,
+   "out_higher": false,
+   "out_lower": true
+  },
+  "2024": {
+   "potus_party": "D",
+   "out_party": "R",
+   "out_rate": 0.0649,
+   "in_rate": 0.1266,
+   "n_out": 1988,
+   "n_in": 2517,
+   "scored": true,
+   "out_higher": false,
+   "out_lower": true
+  },
+  "2025": {
+   "potus_party": "R",
+   "out_party": "D",
+   "out_rate": 0.2384,
+   "in_rate": 0.1206,
+   "n_out": 2245,
+   "n_in": 1722,
+   "scored": true,
+   "out_higher": true,
+   "out_lower": false
+  },
+  "2026": {
+   "potus_party": "R",
+   "out_party": "D",
+   "out_rate": 0.1603,
+   "in_rate": 0.1618,
+   "n_out": 1236,
+   "n_in": 959,
+   "scored": true,
+   "out_higher": false,
+   "out_lower": true
+  }
+ }
+}

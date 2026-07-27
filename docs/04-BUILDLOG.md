@@ -3086,3 +3086,75 @@ Numbers with their estimators: outage window 10:57Z to 20:27Z (first failed disp
 first green dispatch, Actions run history); detection latency 1h46m (12:39Z RUN B
 failure to 14:25Z watchdog page, versus 7h silence on 07-25); fix latency 7h13m
 (12:39Z to the 19:52Z push, including diagnosis from a cold start at 19:37Z).
+
+## Session 51 (2026-07-27, Opus), Deep Archive completion: CREC 111/112/117-119, the R-S50.1 3-lane substrate, and SD.8 (HELD)
+
+Deep Archive work order under docs/29-era governance, carrying Fable ruling R-S50.1. Ran in an ISOLATED
+worktree `opus/deep-archive` off `origin/main` (14e483e); the operator checkout was owned by an ACTIVE
+Codex worker on `codex/x-packages`, so every edited file was collision-checked
+(`git log origin/main..codex/x-packages -- <file>`) and all D3/D5 targets came back clean (the worker's 7
+x-commits touch a disjoint file set). $0, deterministic, zero Anthropic calls; no publication, flip,
+dispatch, or push of main. Suite **572 green at base -> 578 green at close** (+2 R-S50.1 fixtures, +4 SD.8
+kill fixtures).
+
+**D1 crawl state confirmed** (`scripts/deep/crec_state.py`): 111, 112, 117, 118, 119 all buildable. The
+strong per-year sitemap-completeness check (`build_crec_shards.py --dry-run`) found 119's 2026 truncated
+(114 crawled / 118 in sitemap), so the 4 missing days were crawled first (`crawl_crec.py --years 2026`,
++87 Extensions statements, keyless $0) so 119 builds COMPLETE, not `--allow-partial`.
+
+**D2 five CREC shards built** exactly as 113-116 (docs/15 §D1-C discipline verbatim: online per-year
+sitemap completeness, settled-unavailable `day-nomods` days counted as SETTLED not pending, no
+`--allow-partial`, per-shard audit committed). Every window PASSES symmetric two-party:
+- 111 (2009 D=259/R=175 r=0.676 · 2010 259/178 r=0.693) 12,392 ledger entries
+- 112 (2011 198/226 r=0.876 · 2012 197/222 r=0.887) 4,656
+- 117 (2021 208/192 r=0.923 · 2022 207/189 r=0.913) 560
+- 118 (2023 202/187 r=0.926 · 2024 202/195 r=0.965) 459
+- 119 (2025 192/188 r=0.979 · 2026 170/142 r=0.835) 555
+
+Audits at `data/derived/crec/audit/congress-{111,112,117,118,119}.json`. The CREC E-lane now spans
+107-119 (2001-2026); the SD.8 A=107-112 / B=113-119 overlap is complete.
+
+**D3 R-S50.1 3-lane substrate.** Premise correction: the Session-21-cited "lane-blind read" was already
+2-lane-aware at this base (Session 19 gave `load_congress_records`/harness/`wave_s4` the propublica/scraped
+instrument fold); R-S50.1 is the 2->3-lane ISOLATION upgrade, page_html its OWN lane, never folded (docs/13
+R-S50.1 row is the ruling record). Executed:
+- `alexandria.load_congress_records` / `lane_shard_path` accept the three isolated source lanes
+  (legacy/scraper/page_html, filtered by `date_source`, matching `harness.iter_statements`) alongside the
+  folded instrument names, retained as a labelled robustness view; `reconcile_source_lanes` asserts the
+  exact partition legacy+scraper+page_html==combined.
+- `wave_s4._collect` carries the isolated `date_source` as the primary lane key; `inst` folded, robustness.
+- +2 fixtures in `test_search_provenance.py` (page_html isolated at the loader; source-lane paths; the
+  107-112 combined-only guard fires for a source lane too).
+- Daily pipeline verified NOT to import alexandria (run_collect/run_assemble/distill/build/ops/verify/
+  post_bluesky all clean); nothing here reaches a public surface.
+- Substrate rebuild (`scripts/search/build_source_lane_shards.py`, PYTHONHASHSEED=0): page_html built fresh
+  and ISOLATED for all 113-119 (complete); `scraper` (page_html excluded) rebuilding in the background
+  (resumable, ~148 MB ledgers/congress, the long pole); `legacy` == the propublica shards by identity
+  (copied). The rebuild writes to X: only (outside the repo) and does NOT gate SD.8, which reads the CREC
+  statement files directly.
+
+**D4 SD.8 frozen then run, verdict HELD.** The instrument-concordance calibration study (docs/15 §6) was
+pre-registered with numeral thresholds in commit `412308b` BEFORE measurement (freeze-before-measure), then
+measured in a separate commit. Family = president-NAMING (the S2.9 Boogeyman family), the one unambiguous
+CREC analogue (S1 coordination is CREC-blocked until the boilerplate layer, S4 is BLOCKED, the S2
+lexical-style family is register-confounded; naming is boilerplate-robust and docs/13 names S2.9 as the
+SD.2 extension). CREC metric IDENTICAL to S2.9 (sitting-president `name_token` per 1k words, out-party vs
+in-party, per year), on 68,527 CREC Extensions statements 2013-2026, floor 200/party/year (all 14 scored).
+RESULT: out>in in **8/14 years** (agreement 0.571), era-split **2013-2020 6/8 but 2021-2026 2/6**,
+contradiction 0.429. Frozen gate -> **HELD**: the parent S2.9 stands on press, the CREC Extensions lane is
+NOT calibrated for the naming family, so pre-2013 (107-112) CREC naming claims do NOT advance (calibration
+law working; HELD != REFUTED, no systematic contradiction). The instrument difference IS the finding, press
+releases are attack-genre, Extensions carry more in-party tribute reference. Publishable methods card either
+way; no publication act this session. Result `data/derived/crec/sd8_concordance.json`; re-runnable
+`python scripts/deep/sd8_concordance.py`.
+
+**Expectation vs observation (Art. XVI).** Expected all 5 congresses buildable -> observed same, plus the
+119-2026 truncation, resolved by crawling. Expected R-S50.1 to be a from-scratch lane fix (work-order
+premise) -> observed the reads were already 2-lane; the real work was the 3-lane isolation (premise
+correction, filed). Expected SD.8 a clean concordance -> observed HELD with a real era-split, which the
+frozen gate correctly did not launder into CONFIRM. No discrepancy left unfiled.
+
+**Deferred / carried:** the scraper-lane substrate rebuild finishes in the background (resumable, ~hours);
+re-running the eleven S1 hypotheses on the isolated substrate is a future session (docs/18 §4: migrate each
+reader as it is re-run, never ahead of need). silence_board wiring (#198) and the X1-X15 order remain out of
+scope and untouched. Delivery packet: `delivery/DEEP-packet.md`.
