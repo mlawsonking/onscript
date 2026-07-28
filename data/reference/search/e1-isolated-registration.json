@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "kind": "search-e1-isolated-substrate-registration",
+  "hypothesis": "E1: re-run the eleven BLOCKED-ON-SHARDS S1 hypotheses (S1.1, S1.1', S1.2, S1.3, S1.3', S1.5, S1.6, S1.7, S1.8, S1.11, S1.4-proper) on the R-S50.1 ISOLATED three-lane substrate (legacy/scraper/page_html), and report whether isolation moves any verdict recorded in the Session-19 INSTRUMENT-FOLDED run (docs/13, propublica + scraped).",
+  "source": "Registration frozen and committed BEFORE any isolated measurement run (docs/17 §5, docs/18 §4, Constitution Art. XVI). The isolated 3-lane substrate is R-S50.1 (Fable Session 51), built by scripts/search/build_source_lane_shards.py, exact-partition verified (legacy + scraper + page_html == combined, delta 0, all seven congresses 113-119). The gates below are the hypotheses' own pre-registered floors (Session 19, docs/18 §5), unchanged; only the substrate is now source-isolated. No post-hoc edits.",
+  "registration_date": "2026-07-27",
+  "rationale": "Freeze-before-measure. The single genuinely new registration is the mapping of the isolated source lanes to their analysis window, halves, and cutoffs (below), plus the pre-measurement predicted verdicts. A verdict that differs from its folded Session-19 counterpart is the reportable finding; it is recorded with old verdict, new verdict, and the lane that drove the change (docs/13 append-only, supersedes the Session-19 shard-lanes rows).",
+
+  "lane_definitions": {
+    "legacy": "The ProPublica import set EXACTLY (provenance.INSTRUMENTS: instrument propublica = {legacy}). The per-lane legacy shards are a byte-for-byte copy of the propublica shards (build_source_lane_shards.copy_legacy_from_propublica), so its caches and every verdict are identical to the Session-19 propublica column by construction. Running it end to end is the identity check (Art. XVI: verified, not asserted).",
+    "scraper": "The office scraper with page_html EXCLUDED (scraped minus page_html). This is the real isolation test: page_html is the most party-skewed lane in the corpus (D:R 12.465 in half A, docs/13 Session-18 record), and E1 asks whether removing it moves any Session-19 scraped verdict.",
+    "page_html": "The removed sliver, run standalone. Records per congress 117/118/119 = 454/794/1012; far too few to reach the peak>=15 coordination floor, so its member index is empty and every coordination hypothesis is UNDERPOWERED. This is the accurate cost of full isolation and the empirical reason R-S50.1 isolates page_html rather than analysing it as a comparative lane."
+  },
+
+  "halves_and_window": {
+    "legacy":    {"congresses": [113, 114, 115, 116], "year_halves": {"A": [2013, 2014, 2015, 2016], "B": [2017, 2018, 2019, 2020]}, "congress_halves": {"A": [113, 114], "B": [115, 116]}, "cutoff": "2021-01-03", "note": "== propublica; 117's 144 seam-day records excluded (one day, per docs/17 §2)"},
+    "scraper":   {"congresses": [117, 118, 119], "year_halves": {"A": [2021, 2022, 2023], "B": [2024, 2025, 2026]}, "congress_halves": {"A": [117], "B": [118, 119]}, "cutoff": "2026-07-09", "note": "== scraped congresses; directly comparable to the Session-19 scraped column"},
+    "page_html": {"congresses": [117, 118, 119], "year_halves": {"A": [2021, 2022, 2023], "B": [2024, 2025, 2026]}, "congress_halves": {"A": [117], "B": [118, 119]}, "cutoff": "2026-07-09", "note": "standalone; primary window is post-seam 117-119, the pre-2021 page_html tail is the docs/18 §2 supplementary tail, never pooled"}
+  },
+
+  "floors": {
+    "S1.1":  "peak_min 15; cap 60; min_cell 8 phrases/year; >=2 powered years/half; artifact guard >5x odd/even median",
+    "S1.3":  "peak_min 10; min_cell 8; >=2 powered years/half; >=30% median drop for CONFIRM",
+    "S1.1'": "peak_min 15; gap 14; min_cell 8; >=2 powered years/half; ratio>=1.5 + density-survives for CONFIRM",
+    "S1.3'": "peak_min 15; gap 14; min_cell 8; censor_days 30 at the lane cutoff; >=30% drop + density-survives for CONFIRM",
+    "S1.2":  ">=2 years/half; rising both halves + late>=1.5x early for CONFIRM",
+    "S1.5":  ">=30 ignitions/half; weekend excess < 1 both halves for CONFIRM",
+    "S1.6":  ">=2 election cycles/half/party; snap majority in both halves both parties for CONFIRM",
+    "S1.7":  ">=200 August statements/half; recess rate >=70% of session rate both halves for CONFIRM",
+    "S1.8":  ">=2 years/half; half-life declining both halves + >=40% drop for CONFIRM",
+    "S1.11": ">=30 phrases/half; same-state co-use ratio >=1.5 BOTH halves for CONFIRM",
+    "S1.4":  "congress-split gate needs >=3 congresses/half (unmeetable in any single lane; the year-keyed s1_4_verbatim floor >=200 stmts/party/yr is the runnable within-lane form)"
+  },
+
+  "predicted_verdicts": {
+    "note": "Pre-measurement predictions. Isolation is expected to be verdict-invariant: legacy reproduces propublica byte-identically; scraper reproduces scraped because page_html is ~1-2% of the post-seam scraped lane and every scraped verdict clears its gate with margin; page_html standalone is UNDERPOWERED. Any deviation is the finding.",
+    "legacy":    {"S1.1": "ARTIFACT", "S1.3": "ARTIFACT", "S1.1'": "CONFIRMED", "S1.3'": "CONFIRMED", "S1.2": "REFUTED", "S1.5": "REFUTED", "S1.6": "REFUTED", "S1.7": "REFUTED", "S1.8": "REFUTED", "S1.11": "REFUTED", "S1.4": "UNDERPOWERED"},
+    "scraper":   {"S1.1": "ARTIFACT", "S1.3": "ARTIFACT", "S1.1'": "ARTIFACT", "S1.3'": "ARTIFACT", "S1.2": "REFUTED", "S1.5": "REFUTED", "S1.6": "UNDERPOWERED", "S1.7": "REFUTED", "S1.8": "REFUTED", "S1.11": "REFUTED", "S1.4": "UNDERPOWERED"},
+    "page_html": {"S1.1": "UNDERPOWERED", "S1.3": "UNDERPOWERED", "S1.1'": "UNDERPOWERED", "S1.3'": "UNDERPOWERED", "S1.2": "UNDERPOWERED", "S1.5": "UNDERPOWERED", "S1.6": "UNDERPOWERED", "S1.7": "UNDERPOWERED", "S1.8": "UNDERPOWERED", "S1.11": "UNDERPOWERED", "S1.4": "UNDERPOWERED"}
+  },
+
+  "folded_baseline_session19": {
+    "propublica": {"S1.1": "ARTIFACT", "S1.3": "ARTIFACT", "S1.1'": "CONFIRMED", "S1.3'": "CONFIRMED", "S1.2": "REFUTED", "S1.5": "REFUTED", "S1.6": "REFUTED", "S1.7": "REFUTED", "S1.8": "REFUTED", "S1.11": "REFUTED", "S1.4": "UNDERPOWERED"},
+    "scraped":    {"S1.1": "ARTIFACT", "S1.3": "ARTIFACT", "S1.1'": "ARTIFACT", "S1.3'": "ARTIFACT", "S1.2": "REFUTED", "S1.5": "REFUTED", "S1.6": "UNDERPOWERED", "S1.7": "REFUTED", "S1.8": "REFUTED", "S1.11": "REFUTED", "S1.4": "UNDERPOWERED"}
+  },
+
+  "change_detection_rule": "For each hypothesis, compare the isolated verdict to its folded counterpart (legacy vs propublica, scraper vs scraped, page_html standalone vs scraped as a measurability reference). A difference is recorded in docs/13 as an append-only row with supersedes = the Session-19 shard-lanes row, stating old verdict, new verdict, and the driving lane (page_html removal for scraper; substrate copy identity for legacy).",
+
+  "scripts": {
+    "measurement": "scripts/search/revalidate_s1_isolated.py",
+    "reader_reused": "scripts/search/revalidate_s1_shards.py (run_lane, the shared estimator)",
+    "substrate_builder": "scripts/search/build_source_lane_shards.py"
+  },
+  "evidence_out": "data/derived/search/revalidate_s1_isolated.json"
+}

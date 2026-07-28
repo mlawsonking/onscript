@@ -22,15 +22,33 @@ ALL_YEARS = sorted(HALF_A_YEARS | HALF_B_YEARS)
 
 # Within-lane halves (docs/17 §2, docs/18 §5). YEAR-keyed for the phrase/series/meta hypotheses;
 # CONGRESS-keyed for the ones that split on congress (S1.11). Never mix the two forms in one hypothesis.
+#
+# R-S50.1 (Fable, Session 51, binding) demotes the instrument-folded pair (propublica/scraped) to a
+# labelled robustness view and makes the primary substrate the three ISOLATED source lanes
+# (legacy/scraper/page_html; pipeline.alexandria.SOURCE_LANES). The isolated lanes get the SAME halves
+# as the folded lane they refine, so an isolated verdict is directly comparable to its Session-19
+# folded verdict (docs/13 shard-lanes revalidation):
+#   legacy    == propublica EXACTLY (instrument propublica = {legacy}); halves 113-114 vs 115-116.
+#   scraper   == scraped minus page_html (the isolation); halves 117 vs 118-119.
+#   page_html == the removed sliver, run standalone. Its PRIMARY window is post-seam 117-119 (halves
+#               117 vs 118-119); its pre-2021 records are the docs/18 §2 supplementary scraped tail,
+#               never pooled, so they are out of the standalone analysis window.
 LANE_YEAR_HALVES = {
     "propublica": {"A": set(range(2013, 2017)), "B": set(range(2017, 2021))},   # 113-114 vs 115-116
     "scraped":    {"A": set(range(2021, 2024)), "B": set(range(2024, 2027))},   # 117 vs 118-119
+    "legacy":     {"A": set(range(2013, 2017)), "B": set(range(2017, 2021))},   # == propublica
+    "scraper":    {"A": set(range(2021, 2024)), "B": set(range(2024, 2027))},   # scraped minus page_html
+    "page_html":  {"A": set(range(2021, 2024)), "B": set(range(2024, 2027))},   # standalone, post-seam window
 }
 LANE_CONGRESS_HALVES = {
     "propublica": {"A": {113, 114}, "B": {115, 116}},
     "scraped":    {"A": {117}, "B": {118, 119}},
+    "legacy":     {"A": {113, 114}, "B": {115, 116}},
+    "scraper":    {"A": {117}, "B": {118, 119}},
+    "page_html":  {"A": {117}, "B": {118, 119}},
 }
-LANE_CONGRESSES = {"propublica": range(113, 117), "scraped": range(117, 120)}
+LANE_CONGRESSES = {"propublica": range(113, 117), "scraped": range(117, 120),
+                   "legacy": range(113, 117), "scraper": range(117, 120), "page_html": range(117, 120)}
 
 
 def year_halves_for(lane):

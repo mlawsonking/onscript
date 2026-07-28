@@ -1318,3 +1318,38 @@ returns **HELD**.
   press-only until a WITHIN-CREC design (not a cross-instrument concordance) powers it on its own lane.
 - **Verdict:** HELD. Re-runnable: `python scripts/deep/sd8_concordance.py`; result
   `data/derived/crec/sd8_concordance.json`; frozen registration + thresholds in commit `412308b`.
+
+---
+
+## E1: the eleven S1 re-validations on the R-S50.1 ISOLATED substrate (2026-07-27, Opus; docs/18 §4). Append-only; supersedes the Session-19 shard-lanes rows.
+
+The Session-19 run above measured the eleven within the two INSTRUMENT-FOLDED lanes, `propublica` (==
+legacy) and `scraped` (== scraper + page_html folded). R-S50.1 (Fable, Session 51) demoted that fold
+to a robustness view and rebuilt the primary substrate as three ISOLATED source lanes,
+`legacy`/`scraper`/`page_html`, exact-partition verified (legacy + scraper + page_html == combined,
+delta 0, all seven congresses). This section re-runs the eleven on that isolated substrate and records
+whether isolation moves any verdict. Migration was per-reader, never ahead of need (docs/18 §4): the
+alexandria loader and harness were already isolated-lane capable (Session 51, tested); the only new
+code is the additive `wave_s1` lane maps for `legacy`/`scraper`/`page_html` and the reader's
+`LANE_CUTOFF` entries.
+
+### REGISTERED (frozen, pre-measurement)
+
+Frozen before any isolated measurement (Art. XVI, docs/17 §5). Lane definitions, halves, cutoffs,
+floors, and the pre-measurement predicted verdicts are committed in
+`data/reference/search/e1-isolated-registration.json`; the reader is
+`scripts/search/revalidate_s1_isolated.py` (reusing `revalidate_s1_shards.run_lane`, the same
+estimator). Floors are the hypotheses' own Session-19 gates, unchanged; only the substrate is now
+source-isolated. Predictions:
+
+- `legacy` reproduces the Session-19 `propublica` column EXACTLY (the legacy shards are a byte-for-byte
+  copy of the propublica shards; the run is the identity check).
+- `scraper` reproduces the Session-19 `scraped` column (page_html is ~1-2% of the post-seam scraped
+  lane and every scraped verdict clears its gate with margin).
+- `page_html` standalone is UNDERPOWERED for all eleven (454/794/1012 records for 117/118/119; no phrase
+  reaches the peak>=15 coordination floor, so its member index is empty).
+
+Change-detection rule: a verdict that differs from its folded counterpart is the reportable finding,
+recorded below with old verdict, new verdict, and the driving lane.
+
+_Verdict table appended post-measurement in the measurement commit._

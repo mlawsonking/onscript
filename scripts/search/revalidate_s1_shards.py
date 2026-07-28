@@ -28,7 +28,10 @@ from pipeline import config
 from pipeline.search import harness as H
 from pipeline.search import wave_s1 as S1
 
-LANE_CUTOFF = {"propublica": "2021-01-03", "scraped": "2026-07-09"}   # docs/18 §5 lane edge
+LANE_CUTOFF = {"propublica": "2021-01-03", "scraped": "2026-07-09",   # docs/18 §5 lane edge
+               # R-S50.1 isolated source lanes: legacy ends at the seam like propublica; scraper and
+               # page_html run to the corpus cutoff. Used by s1_3_prime_lifespan's right-censor guard.
+               "legacy": "2021-01-03", "scraper": "2026-07-09", "page_html": "2026-07-09"}
 CACHE = config.DERIVED / "search"
 
 
