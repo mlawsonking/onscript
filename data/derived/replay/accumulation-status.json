@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "method_version": "shadow-replay-v2",
+  "mode": "dry_run",
+  "evidence": {
+    "path": "C:\\Users\\bobdo\\projects\\polispeak\\data\\derived\\replay\\evidence.jsonl",
+    "appended": 0,
+    "already_present": 0,
+    "total_rows": 0
+  },
+  "replay_prompt_sha256": "19304d43ffc77b14d351c5570c1f58ec316ff74b3bbcbe09aefb54a1d14dfec6",
+  "pending_party_days": [
+    {
+      "day": "2026-07-25",
+      "party": "D"
+    },
+    {
+      "day": "2026-07-25",
+      "party": "R"
+    }
+  ],
+  "pending_count": 2,
+  "evidence_party_days": 0,
+  "evidence_days": 0,
+  "ladder": {
+    "committed_day_files": 18,
+    "days_with_both_composites": 16,
+    "party_days_with_composites": 32,
+    "gate_eligible_days": 1,
+    "gate_eligible_party_days": 2,
+    "exclusion_reasons": {
+      "not_model_generated": 10,
+      "prompt_lineage_mismatch": 18,
+      "stats_schema_mismatch": 30
+    }
+  },
+  "gate_progress": {
+    "requirement": "R-33.6",
+    "complete_days": {
+      "observed": 0,
+      "required": 60,
+      "fraction": 0.0,
+      "remaining": 60
+    },
+    "party_days": {
+      "observed": 0,
+      "required": 200,
+      "fraction": 0.0,
+      "remaining": 200
+    },
+    "estimator": "committed party-days whose production record was written by the live prompt of its pair, over the R-33.6 minimums",
+    "unit": "party-day (one party lane on one measured day)",
+    "denominator": "60 complete days and 200 party-days, both required",
+    "passed": false
+  },
+  "eligible_gate_progress": {
+    "requirement": "R-33.6",
+    "complete_days": {
+      "observed": 1,
+      "required": 60,
+      "fraction": 0.016667,
+      "remaining": 59
+    },
+    "party_days": {
+      "observed": 2,
+      "required": 200,
+      "fraction": 0.01,
+      "remaining": 198
+    },
+    "estimator": "committed party-days whose production record was written by the live prompt of its pair, over the R-33.6 minimums",
+    "unit": "party-day (one party lane on one measured day)",
+    "denominator": "60 complete days and 200 party-days, both required",
+    "passed": false
+  },
+  "run": null
+}
