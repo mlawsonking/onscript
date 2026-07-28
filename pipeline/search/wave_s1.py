@@ -529,6 +529,24 @@ def s1_4_proper(congresses=range(113, 120), seed="s1.4", *, lane=None, chalves=N
     from .. import normalize
     from ..alexandria import load_congress_records
     chalves = chalves or (LANE_CONGRESS_HALVES[lane] if lane else {"A": set(range(113, 117)), "B": set(range(117, 120))})
+    # POWER GATE FIRST (docs/18 §5). The both-halves gate is a split_direction over CONGRESS-share
+    # points, which needs >=3 congresses per half. No single lane has it (propublica/legacy A/B are
+    # 2+2; scraped/scraper/page_html are 1+2), so within any isolated lane the gate is UNMEETABLE and
+    # the verdict is UNDERPOWERED regardless of the shares (Session 19 recorded exactly this, docs/13).
+    # Checking it BEFORE the full-corpus normalize is a pure, verdict-preserving optimization: that
+    # normalize now runs the W7/X9 document-family minhash clustering (added after Session 19), which
+    # OOMs at congress scale (~90k+ legacy records) and would only compute shares an UNDERPOWERED
+    # verdict discards. lane=None (the combined 4+3 congress split) stays powered and runs the full
+    # measurement below unchanged.
+    powered = all(len([c for c in congresses if c in chalves[h]]) >= 3 for h in ("A", "B"))
+    if not powered:
+        return {"id": "S1.4", "name": "The Copy-Paste Caucus", "lane": lane,
+                "lane_congress_split_powered": False, "verdict": "UNDERPOWERED",
+                "note": "congress-split both-halves gate needs >=3 congresses/half; no single lane has "
+                        "it, so the verdict is UNDERPOWERED independent of the shares. The year-keyed "
+                        "s1_4_verbatim floor (Session 18) is the runnable within-lane form. Full-corpus "
+                        "density normalize skipped: it OOMs at congress scale after the W7/X9 document-"
+                        "family clustering and its output does not change this verdict."}
     full, recs_by_c = {}, {}
     for c in congresses:
         recs = load_congress_records(c, lane=lane)
