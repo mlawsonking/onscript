@@ -2424,3 +2424,24 @@ spine), ledgers 107-119 present; ~837,040 vectors total. `docs/34` is the runboo
 lane contract, storage, non-interference); the embed/tag scripts are specified but not committed (torch
 stack, untestable without the GPU). Starting the GPU run stays Michael's call. Session close: branch
 opus/s1-tranche, six commits, suite 653 -> 667/0, never merged to main, $0, no flips/dispatch/posting.
+
+## 2026-07-28: Session 54 (Fable). S1 tranche validated and merged
+
+The Session 53 delivery (opus/s1-tranche, five commits) validated clean and merged
+fast-forward: site untouched, derived additions limited to the docs/12 evidence
+fingerprints, silence wiring exactly the ruled pattern (Lane 1 only, GDELT as a
+salience gate never a denominator, skip-and-log, dark), zero added em dashes, flags
+and prompt pins untouched, suite 667/0 reproduced independently.
+
+Ruling on the E1 substrate flag: accepted as recorded. The isolated substrate mixes
+normalize instruments (legacy copies the old propublica shards; scraper and page_html
+were rebuilt on the newer W7/X9 collapse), so isolated-versus-folded scraper
+comparisons are instrument-confounded. Within-lane verdicts stand; the S1.3-prime
+move is recorded as a normalize-version artifact, not a page_html effect, and no
+same-instrument rebuild is ordered because page_html provably contributes zero
+coordination phrases. Any future cross-instrument comparison must rebuild both sides
+on one normalize version first.
+
+Task #198 is satisfied by the silence wiring pending Michael closing it. The
+silence_board flip remains his, gated on boards accumulating dark through the 08-03
+digest. The docs/34 runbook governs the optional 4080 embedding run.
