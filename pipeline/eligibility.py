@@ -30,8 +30,13 @@ _TITLE_REFERENCE = re.compile(
 )
 
 
-def _family_count(claim: dict) -> int | None:
-    """Return distinct-family evidence, preserving legacy fixtures that predate the field."""
+def _family_count(claim: dict, *, legacy: bool = True) -> int | None:
+    """Return distinct-family evidence, preserving legacy fixtures that predate the field.
+
+    R-36.7: the distinct-statement count is family evidence only inside legacy fixtures. On a
+    public surface (legacy=False) absent family evidence stays absent (None), never a statement
+    count standing in for a family count.
+    """
     counts = claim.get("counts") or {}
     if isinstance(counts.get("families"), int):
         return counts["families"]
@@ -39,16 +44,23 @@ def _family_count(claim: dict) -> int | None:
         return claim["family_count"]
     if isinstance(claim.get("family_ids"), list):
         return len(set(claim["family_ids"]))
-    statements = claim.get("statements")
-    if isinstance(statements, list):
-        return len(set(statements))
+    if legacy:
+        statements = claim.get("statements")
+        if isinstance(statements, list):
+            return len(set(statements))
     return None
 
 
 def classify_phrase(phrase: str, *, day: str | None = None, congress: int | None = None,
                     surfaces: list[str] | None = None,
-                    family_count: int | None = None) -> dict:
-    """Return one ruled surface class with deterministic provenance."""
+                    family_count: int | None = None,
+                    require_family_evidence: bool = False) -> dict:
+    """Return one ruled surface class with deterministic provenance.
+
+    When require_family_evidence is set (a public surface), a phrase with no family evidence
+    classifies unknown rather than falling through to the message floor (R-36.7). Default off,
+    so the deterministic floor is unchanged until the gold set validates the stricter rule.
+    """
     value = phrase or ""
     if privacy.is_suppressed(value) or any(privacy.is_suppressed(surface) for surface in (surfaces or [])):
         cls, rule = "private", "article-xiii"
@@ -65,7 +77,12 @@ def classify_phrase(phrase: str, *, day: str | None = None, congress: int | None
             cls, rule = "biographical", "biographical-formula"
         elif boilerplate.content_word_count(value) < boilerplate.MIN_CONTENT_WORDS:
             cls, rule = "unknown", "no-substantive-content"
-        elif family_count is not None and family_count < 3:
+        elif family_count is None:
+            if require_family_evidence:
+                cls, rule = "unknown", "family-evidence-absent"
+            else:
+                cls, rule = "message", "affirmative-deterministic-floor"
+        elif family_count < 3:
             cls, rule = "unknown", "family-quorum-unmet"
         else:
             cls, rule = "message", "affirmative-deterministic-floor"
@@ -80,7 +97,8 @@ def classify_phrase(phrase: str, *, day: str | None = None, congress: int | None
     }
 
 
-def classify_claim(claim: dict, *, day: str | None = None) -> dict:
+def classify_claim(claim: dict, *, day: str | None = None,
+                   require_family_evidence: bool = False) -> dict:
     """Copy one claim and attach its surface class and topic provenance."""
     out = dict(claim)
     surfaces = [
@@ -89,7 +107,8 @@ def classify_claim(claim: dict, *, day: str | None = None) -> dict:
     ]
     classification = classify_phrase(
         out.get("label") or "", day=day or out.get("day"), surfaces=surfaces,
-        family_count=_family_count(out),
+        family_count=_family_count(out, legacy=not require_family_evidence),
+        require_family_evidence=require_family_evidence,
     )
     occurrences = [row for row in (out.get("occurrences") or []) if isinstance(row, dict)]
     stances = {row.get("stance") for row in occurrences if row.get("stance")}

@@ -19,6 +19,21 @@ from . import config, contracts, document_families, eligibility, goldset, privac
 
 SAMPLE_METHOD_VERSION = "gold-set-sample-v1"
 PARTIES = ("D", "R")
+GENERIC_SURVIVORS_PATH = config.REPO_ROOT / "evaluation" / "goldset" / "generic_survivors.json"
+
+
+def survivor_phrases(path=None) -> set[str]:
+    """Generic message-floor survivors registered for public-surface oversampling (R-36.7).
+
+    These phrases pass the deterministic message floor without family evidence. Adding them to
+    the public-surface set draws them into the pilot on the next seal, so the gold set can
+    adjudicate whether they should be message.
+    """
+    source = path or GENERIC_SURVIVORS_PATH
+    if not source.is_file():
+        return set()
+    data = json.loads(source.read_text(encoding="utf-8"))
+    return {row["ngram"] for row in (data.get("survivors") or []) if row.get("ngram")}
 # Impact weights order the ranking inside each stratum so public-impact and rare-class
 # cases are drawn before ordinary filler. Higher weight sorts earlier.
 IMPACT_WEIGHTS = {

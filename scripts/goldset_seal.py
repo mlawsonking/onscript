@@ -67,7 +67,9 @@ def build() -> int:
         json.loads(path.read_text(encoding="utf-8"))
         for path in sorted(days_dir.glob("*.json"))
     ]
-    public_phrases = goldset_sample._day_surface_phrases(day_artifacts)
+    # R-36.7: the generic message-floor survivors join the public-surface set so they are drawn
+    # into the pilot for the gold set to adjudicate.
+    public_phrases = goldset_sample._day_surface_phrases(day_artifacts) | goldset_sample.survivor_phrases()
     goldset_sample.tag_impact(universe, public_phrases=public_phrases)
     print(f"public-surface phrases: {len(public_phrases)}", flush=True)
 

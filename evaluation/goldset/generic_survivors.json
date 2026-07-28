@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "method_version": "generic-survivors-v1",
+  "classifier_baseline": "surface-eligibility-v3",
+  "purpose": "Generic phrases that pass the deterministic message floor without family evidence. This documents the classifier's current behavior for the gold set to adjudicate whether these should be message. It is not a hand-tuned blocklist; the gold set decides, and the stricter family-evidence rule stays dark until it does.",
+  "survivors": [
+    {
+      "ngram": "billions of dollars",
+      "documented_class": "message",
+      "documented_rule": "affirmative-deterministic-floor",
+      "strict_class": "unknown",
+      "strict_rule": "family-evidence-absent"
+    },
+    {
+      "ngram": "communities across the country",
+      "documented_class": "message",
+      "documented_rule": "affirmative-deterministic-floor",
+      "strict_class": "unknown",
+      "strict_rule": "family-evidence-absent"
+    },
+    {
+      "ngram": "families across the country",
+      "documented_class": "message",
+      "documented_rule": "affirmative-deterministic-floor",
+      "strict_class": "unknown",
+      "strict_rule": "family-evidence-absent"
+    },
+    {
+      "ngram": "working families everywhere",
+      "documented_class": "message",
+      "documented_rule": "affirmative-deterministic-floor",
+      "strict_class": "unknown",
+      "strict_rule": "family-evidence-absent"
+    },
+    {
+      "ngram": "across the country",
+      "documented_class": "message",
+      "documented_rule": "affirmative-deterministic-floor",
+      "strict_class": "unknown",
+      "strict_rule": "family-evidence-absent"
+    }
+  ]
+}
