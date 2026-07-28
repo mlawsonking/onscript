@@ -9,7 +9,7 @@ longer load-bearing.
 from __future__ import annotations
 
 from pipeline import instrument_fingerprint as fp
-from pipeline import privacy, privacy_canary, status_exports
+from pipeline import goldset_rater, privacy, privacy_canary, status_exports, util
 
 
 def _bump(value):
@@ -36,6 +36,32 @@ def _build_invariants() -> list[dict]:
             "owner_module": fp._owning_module(module),
             "owner_attr": attr,
         })
+    # The offline gold-set rating instrument. Its registration is what a published model
+    # answer sheet is checked against, so a hand-copied hash there would be the same defect
+    # as a stale method version here. ``expect`` covers the derived values: bump the owning
+    # text and the registered content address must follow it, not merely change.
+    invariants += [
+        {"name": "goldset_rater:prompt_version",
+         "read": lambda: goldset_rater.registration()["prompt_version"],
+         "owner_module": goldset_rater, "owner_attr": "PROMPT_VERSION"},
+        {"name": "goldset_rater:model",
+         "read": lambda: goldset_rater.registration()["model"],
+         "owner_module": goldset_rater, "owner_attr": "MODEL"},
+        {"name": "goldset_rater:wrapper_sha256",
+         "read": lambda: goldset_rater.registration()["wrapper_sha256"],
+         "owner_module": goldset_rater, "owner_attr": "_WRAPPER_TEXT",
+         "expect": util.sha256_hex},
+        {"name": "goldset_rater:guide_sha256",
+         "read": lambda: goldset_rater.registration()["guide_sha256"],
+         "owner_module": goldset_rater, "owner_attr": "_GUIDE_TEXT",
+         "expect": util.sha256_hex},
+        {"name": "goldset_rater:rating_prompt_sha256",
+         "read": lambda: goldset_rater.registration()["rating_prompt_sha256"],
+         "owner_module": goldset_rater, "owner_attr": "_GUIDE_TEXT",
+         "expect": lambda guide: util.sha256_hex(
+             f"{goldset_rater.PROMPT_ID}\n{goldset_rater.PROMPT_VERSION}\n"
+             f"{goldset_rater.wrapper_text()}\n{guide}")},
+    ]
     invariants += [
         {"name": "api_version",
          "read": lambda: status_exports.envelope({"a": 1}, None, fingerprint={})["api_version"],
@@ -58,16 +84,17 @@ def run_registry_mutations() -> list[dict]:
     report = []
     for invariant in REGISTRY_INVARIANTS:
         module, attr = invariant["owner_module"], invariant["owner_attr"]
+        expect = invariant.get("expect") or (lambda value: value)
         original = getattr(module, attr)
         baseline = invariant["read"]()
-        if baseline != original:
+        if baseline != expect(original):
             raise AssertionError(
                 f"{invariant['name']} does not match its owner at baseline: {baseline!r} != {original!r}")
         bumped = _bump(original)
         try:
             setattr(module, attr, bumped)
             tracked = invariant["read"]()
-            if tracked != bumped:
+            if tracked != expect(bumped):
                 raise AssertionError(
                     f"{invariant['name']} did not track its owner; the registry is a stale copy: "
                     f"{tracked!r} != {bumped!r}")
