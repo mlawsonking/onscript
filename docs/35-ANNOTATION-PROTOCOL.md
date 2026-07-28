@@ -60,8 +60,12 @@ frame changed and the sample must be resealed and re-examined, not silently acce
 
 The pilot exists to prove the guide is usable before the expensive full pass. The flow is:
 
-1. **Render pilot packets.** `scripts/goldset_bundle.py pilot` writes one HTML packet and one
-   CSV answer sheet per annotator under `evaluation/goldset/bundles/pilot/`.
+1. **Render pilot packets.** `scripts/goldset_bundle.py pilot` writes, per annotator under
+   `evaluation/goldset/bundles/pilot/`, an interactive annotation app (`<annotator>.app.html`)
+   and a read-only packet plus a blank CSV answer sheet. The app is a single offline HTML file:
+   the annotator clicks the class, assigns a family, sets the optional tasks, and exports the
+   CSV, which autosaves and resumes in the browser. `--format app` or `--format packet` selects
+   one output.
 2. **Annotate the pilot.** Both annotators fill their answer sheets independently.
 3. **Intake the pilot.** The intake command validates the sheets, computes per-task agreement,
    and reports the pilot gates.
