@@ -1,4 +1,25 @@
-"""Dry-first shadow replay for prompt activation decisions."""
+"""Shadow replay for the P2/P3 prompt activation gate (R-33.6).
+
+The comparison this harness runs has an asymmetry that is the whole point of it: the live side
+is not generated, it is READ. P2 v1.3 and P3 v1.1 already ran in production on real days and
+their outputs are committed in ``data/derived/days``. Regenerating them would compare the
+candidate against a fresh sample of the live prompt rather than against what the project
+actually published, and it would pay for a side we already own. So the live side of every
+party-day is the committed production record, and only the v1.4/v1.2 side is generated.
+
+That choice makes the population honest, and much smaller than a file count suggests. A
+committed day only carries evidence about the live prompt when the record was produced BY the
+live prompt: same prompt sha, a real model generator, and a stats block of the schema the
+candidate prompt consumes. ``classify_record`` states that ladder per party-day with a reason
+for every exclusion, and only the surviving rows count toward the R-33.6 minimums. Days written
+under P2 v1.0/v1.1/v1.2, under the dry-run or deterministic voice, or before the docs/28 claim
+binding carry a different instrument, and putting them in one comparison without stating the
+seam is exactly what docs/37 rule 13 forbids.
+
+Every artifact this module emits carries gate progress against the R-33.6 minimums (60 complete
+days, 200 party-days) as an explicit fraction. The flip stays blocked until the gate fills. This
+harness makes the distance measurable; it never shortens it.
+"""
 from __future__ import annotations
 
 import json
@@ -6,27 +27,49 @@ import re
 from datetime import date
 from pathlib import Path
 
-from . import config, contracts, distill, eligibility, llm, ops, util, verify
+from . import config, contracts, distill, llm, ops, site, util, verify
 
 
-METHOD_VERSION = "shadow-replay-v1"
+METHOD_VERSION = "shadow-replay-v2"
 MIN_COMPLETE_DAYS = 60
 MIN_PARTY_DAYS = 200
 PROMPT_PAIRS = {
     "P2": ("P2_daily_line.v1.3.txt", "P2_daily_line.v1.4.txt"),
     "P3": ("P3_quiet_day.v1.1.txt", "P3_quiet_day.v1.2.txt"),
 }
+GUARD_NAMES = ("unit_mixing", "quote_extension", "topic_label_assertion",
+               "multi_claim_sentence", "sentence_mapping_mismatch")
 _VERSION = re.compile(r"\.v(\d+\.\d+)\.txt$")
 _QUOTE = re.compile(r'"([^"]+)"|“([^”]+)”')
 
+# The prompt texts are module state, not a per-call disk read, so the Y9 registry mutation
+# harness can bump one and watch the registration follow it (docs/37 rules 1, 6 and 7). A
+# registration that reads its own copy is the defect that harness exists to catch.
+_P2_LIVE_TEXT = (llm.PROMPTS_DIR / PROMPT_PAIRS["P2"][0]).read_text(encoding="utf-8").strip()
+_P2_CANDIDATE_TEXT = (llm.PROMPTS_DIR / PROMPT_PAIRS["P2"][1]).read_text(encoding="utf-8").strip()
+_P3_LIVE_TEXT = (llm.PROMPTS_DIR / PROMPT_PAIRS["P3"][0]).read_text(encoding="utf-8").strip()
+_P3_CANDIDATE_TEXT = (llm.PROMPTS_DIR / PROMPT_PAIRS["P3"][1]).read_text(encoding="utf-8").strip()
 
-def _prompt(filename: str, prompt_id: str) -> dict:
-    raw = (llm.PROMPTS_DIR / filename).read_text(encoding="utf-8").strip()
+
+def prompt_text(prompt_id: str, side: str) -> str:
+    """The live text of one prompt in the pair, read from its owning module attribute."""
+    return {
+        ("P2", "live"): lambda: _P2_LIVE_TEXT,
+        ("P2", "candidate"): lambda: _P2_CANDIDATE_TEXT,
+        ("P3", "live"): lambda: _P3_LIVE_TEXT,
+        ("P3", "candidate"): lambda: _P3_CANDIDATE_TEXT,
+    }[(prompt_id, side)]()
+
+
+def _prompt(prompt_id: str, side: str) -> dict:
+    raw = prompt_text(prompt_id, side)
+    filename = PROMPT_PAIRS[prompt_id][0 if side == "live" else 1]
     system, marker, user = raw.partition("\n---USER---\n")
     if not marker:
         raise ValueError(f"prompt has no user separator: {filename}")
     return {
         "id": prompt_id,
+        "side": side,
         "file": filename,
         "version": (_VERSION.search(filename) or [None, "0.0"])[1],
         "sha256": util.sha256_hex(raw),
@@ -38,40 +81,80 @@ def _prompt(filename: str, prompt_id: str) -> dict:
 def prompt_inventory() -> dict:
     return {
         prompt_id: {
-            "live": {key: value for key, value in _prompt(pair[0], prompt_id).items()
-                     if key in {"file", "version", "sha256"}},
-            "candidate": {key: value for key, value in _prompt(pair[1], prompt_id).items()
-                          if key in {"file", "version", "sha256"}},
+            side: {key: value for key, value in _prompt(prompt_id, side).items()
+                   if key in {"file", "version", "sha256"}}
+            for side in ("live", "candidate")
         }
-        for prompt_id, pair in PROMPT_PAIRS.items()
+        for prompt_id in PROMPT_PAIRS
     }
 
 
-def _top_phrase(payload: dict, party: str, day: str) -> dict | None:
-    for row in payload.get("top_synchronized") or []:
-        if not isinstance(row, dict) or row.get("party") != party:
-            continue
-        classified = eligibility.classify_phrase(
-            row.get("ngram") or "", day=day, family_count=row.get("family_count"),
-        )
-        if eligibility.eligible_for_surface(classified, "daily_line"):
-            return {
-                "text": row.get("ngram"), "members": row.get("day_peak"),
-                "family_count": row.get("family_count"),
-            }
-    return None
+# --- the frozen replay instrument ---------------------------------------------------
+
+REGISTRATION_PATH = config.REPO_ROOT / "data" / "reference" / "replay-registration.json"
 
 
-def _stats(payload: dict, party: str, day: str) -> tuple[dict, bool]:
-    line = ((payload.get("daily_lines") or {}).get(party) or {})
-    source_stats = line.get("stats") or {}
-    count = source_stats.get("statements")
-    if not isinstance(count, int):
-        count = 0
-    claims = ((payload.get("talking_points") or {}).get(party) or [])
-    stats = distill.build_stats(party, day, count, claims, _top_phrase(payload, party, day))
-    return stats, bool(line.get("quiet"))
+class RegistrationError(RuntimeError):
+    """The live replay instrument does not match the frozen registration."""
 
+
+def replay_prompt_sha256() -> str:
+    """Content address of the whole replay instrument: all four prompts in the two pairs."""
+    parts = [METHOD_VERSION]
+    for prompt_id in sorted(PROMPT_PAIRS):
+        for side in ("live", "candidate"):
+            parts.append(f"{prompt_id}:{side}:{prompt_text(prompt_id, side)}")
+    return util.sha256_hex("\n".join(parts))
+
+
+def registration() -> dict:
+    """The live identity of the replay instrument, read from its owners, never copied."""
+    return {
+        "schema_version": 1,
+        "method_version": METHOD_VERSION,
+        "prompt_inventory": prompt_inventory(),
+        "replay_prompt_sha256": replay_prompt_sha256(),
+        "model": llm.VOICE_MODEL,
+        "fallback_rate_ceiling": config.SHADOW_FALLBACK_RATE_CEILING,
+        "minimums": {"complete_days": MIN_COMPLETE_DAYS, "party_days": MIN_PARTY_DAYS},
+    }
+
+
+def load_registration() -> dict:
+    if not REGISTRATION_PATH.is_file():
+        raise RegistrationError(
+            f"no frozen registration at {REGISTRATION_PATH}; freeze the replay prompts before "
+            "spending (scripts/shadow_replay.py --freeze)")
+    return json.loads(REGISTRATION_PATH.read_text(encoding="utf-8"))
+
+
+def registration_drift(frozen: dict | None = None) -> list[str]:
+    """Fields where the live replay instrument differs from the frozen registration."""
+    frozen = frozen if frozen is not None else load_registration()
+    live = registration()
+    drift = [key for key in ("method_version", "replay_prompt_sha256", "model",
+                             "fallback_rate_ceiling", "minimums")
+             if frozen.get(key) != live.get(key)]
+    for prompt_id in sorted(PROMPT_PAIRS):
+        for side in ("live", "candidate"):
+            frozen_side = ((frozen.get("prompt_inventory") or {}).get(prompt_id) or {}).get(side)
+            if frozen_side != live["prompt_inventory"][prompt_id][side]:
+                drift.append(f"prompt_inventory.{prompt_id}.{side}")
+    return sorted(drift)
+
+
+def assert_registered(frozen: dict | None = None) -> dict:
+    """Fail closed before any spend: the live prompts must be the registered prompts."""
+    frozen = frozen if frozen is not None else load_registration()
+    drift = registration_drift(frozen)
+    if drift:
+        raise RegistrationError(
+            "the replay prompts are not the frozen ones; re-freeze the registration before a live "
+            f"run. Drifted: {', '.join(drift)}")
+    return frozen
+
+
+# --- prompt rendering ---------------------------------------------------------------
 
 def _render_prompt(prompt: dict, stats: dict, party: str, day: str) -> tuple[str, str]:
     selected = stats.get("selected_claims") or []
@@ -86,7 +169,8 @@ def _render_prompt(prompt: dict, stats: dict, party: str, day: str) -> tuple[str
         "{code_computed_stats_json}": json.dumps(stats, ensure_ascii=False),
         "{talking_points_json}": json.dumps(selected, ensure_ascii=False),
         "{selected_claims_json}": json.dumps(selected, ensure_ascii=False),
-        "{shared_nomenclature_json}": json.dumps(stats.get("shared_nomenclature") or [], ensure_ascii=False),
+        "{shared_nomenclature_json}": json.dumps(stats.get("shared_nomenclature") or [],
+                                                 ensure_ascii=False),
         "{allowed_counts_json}": json.dumps(allowed_counts, ensure_ascii=False),
         "{publication_count_json}": json.dumps(stats.get("statements"), ensure_ascii=False),
     }
@@ -95,6 +179,11 @@ def _render_prompt(prompt: dict, stats: dict, party: str, day: str) -> tuple[str
         system = system.replace(key, value)
         user = user.replace(key, value)
     return system, user
+
+
+def request_sha256(system: str, user: str) -> str:
+    """Content address of one rendered request, so a stored response can be audited to its input."""
+    return util.sha256_hex(f"{system}\n---USER---\n{user}")
 
 
 def _structured(text: str, stats: dict, *, expects_json: bool) -> tuple[dict, bool]:
@@ -174,41 +263,157 @@ def _guard_results(output: dict, stats: dict) -> dict:
     }
 
 
-def _one(prompt: dict, stats: dict, party: str, day: str, quiet: bool, *,
-         live: bool, candidate: bool) -> dict:
-    if live:
-        system, user = _render_prompt(prompt, stats, party, day)
-        response = llm.direct_call(llm.VOICE_MODEL, system, user, max_tokens=400)
-        raw = (response.get("text") or "").strip()
-        output, fallback = _structured(raw, stats, expects_json=candidate)
-        tokens_in = int(response.get("tokens_in") or llm.approx_tokens(system + user))
-        tokens_out = int(response.get("tokens_out") or llm.approx_tokens(raw))
-    else:
-        raw = distill._quiet_dry(stats) if quiet else distill._compose_dry(stats)
-        output, fallback = _structured(raw, stats, expects_json=False)
-        tokens_in = tokens_out = 0
+def _scored(output: dict, stats: dict, *, fallback: bool) -> dict:
+    """The full verifier plus the four R-33.6 zero-tolerance checks over one composite."""
     ok, reasons = verify.verify_daily_line(
         {"composite": output["composite"]}, json.dumps(stats, ensure_ascii=False), stats=stats,
     )
     guards = _guard_results(output, stats)
-    if not ok or any(bool(value) for value in guards.values()):
-        fallback = True
     return {
-        "prompt": {key: prompt[key] for key in ("file", "version", "sha256")},
         "output_sha256": distill._record_hash(output),
         "verifier_passed": ok,
         "verifier_reasons": reasons,
         "guards": guards,
-        "fallback": fallback,
-        "tokens_in": tokens_in,
-        "tokens_out": tokens_out,
+        "fallback": bool(fallback or not ok or any(bool(value) for value in guards.values())),
         "composite": output["composite"],
     }
 
 
+# --- the record side: read, never generated -----------------------------------------
+
+def _live_sha(prompt_id: str) -> str:
+    return _prompt(prompt_id, "live")["sha256"]
+
+
+def prompt_id_for(line: dict) -> str:
+    return "P3" if line.get("quiet") else "P2"
+
+
+def classify_record(line: dict) -> dict:
+    """State whether one committed party-day is evidence about the live prompt, and why not.
+
+    A day file is not automatically a sample of P2 v1.3 or P3 v1.1. The ladder here is the
+    docs/37 rule 13 seam made explicit: same prompt lineage, a real model generator, and the
+    stats schema the candidate prompt consumes.
+    """
+    prompt_id = prompt_id_for(line)
+    stats = line.get("stats") or {}
+    request = line.get("structured_request") or {}
+    reasons = []
+
+    if not line.get("composite"):
+        reasons.append("no_composite")
+    recorded_sha = ((request.get("prompt") or {}).get("sha256")) or line.get("prompt_sha")
+    if recorded_sha != _live_sha(prompt_id):
+        reasons.append("prompt_lineage_mismatch")
+    generator = line.get("generator")
+    if generator not in site.PRODUCTION_GENERATORS:
+        reasons.append("not_model_generated")
+    if stats.get("schema_version") != contracts.SCHEMA_VERSION:
+        reasons.append("stats_schema_mismatch")
+    recorded_digest = request.get("stats_sha256")
+    if recorded_digest and recorded_digest != util.sha256_hex(
+            json.dumps(stats, ensure_ascii=False)):
+        reasons.append("stats_digest_mismatch")
+
+    return {
+        "prompt_id": prompt_id,
+        "eligible": not reasons,
+        "exclusion_reasons": reasons,
+        "record_prompt_version": line.get("prompt_version"),
+        "record_prompt_sha256": recorded_sha,
+        "record_generator": generator,
+        "record_stats_schema_version": stats.get("schema_version"),
+    }
+
+
+def record_side(line: dict) -> dict:
+    """Score the committed production composite. Nothing here calls a model or spends."""
+    stats = line.get("stats") or {}
+    output = {
+        "composite": line.get("composite") or "",
+        "sentence_claims": line.get("sentence_claims")
+        if isinstance(line.get("sentence_claims"), list)
+        else contracts.sentence_claims(line.get("composite") or "", stats),
+    }
+    scored = _scored(output, stats, fallback=bool(line.get("fallback")))
+    recorded = line.get("verifier") or {}
+    return {
+        **scored,
+        "source": "committed_production_record",
+        "generator": line.get("generator"),
+        "composite_state": line.get("composite_state"),
+        "prompt": {
+            "file": PROMPT_PAIRS[prompt_id_for(line)][0],
+            "version": line.get("prompt_version"),
+            "sha256": line.get("prompt_sha"),
+        },
+        "recorded_verifier_passed": recorded.get("passed"),
+        "recorded_fallback": bool(line.get("fallback")),
+        # Re-running today's verifier over a committed composite can disagree with the verdict
+        # stored on the day. That is a verifier-version finding, reported rather than smoothed.
+        "verifier_verdict_moved": (recorded.get("passed") is not None
+                                   and bool(recorded.get("passed")) != scored["verifier_passed"]),
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "cost_usd": 0.0,
+    }
+
+
+# --- the candidate side: the only thing that is generated ---------------------------
+
+def candidate_request(line: dict, day: str, party: str) -> dict:
+    """Render the candidate prompt against the stats production actually used."""
+    prompt = _prompt(prompt_id_for(line), "candidate")
+    stats = line.get("stats") or {}
+    system, user = _render_prompt(prompt, stats, party, day)
+    return {
+        "day": day,
+        "party": party,
+        "prompt_id": prompt["id"],
+        "prompt": {key: prompt[key] for key in ("file", "version", "sha256")},
+        "system": system,
+        "user": user,
+        "request_sha256": request_sha256(system, user),
+        "max_tokens": 400,
+    }
+
+
+def candidate_side(request: dict, line: dict, *, live: bool, call=None) -> dict:
+    """Score the candidate output. Dry mode uses the deterministic voice and spends nothing."""
+    stats = line.get("stats") or {}
+    if live:
+        caller = call or llm.direct_call
+        response = caller(llm.VOICE_MODEL, request["system"], request["user"],
+                          max_tokens=request["max_tokens"])
+        raw = (response.get("text") or "").strip()
+        tokens_in = int(response.get("tokens_in") or 0)
+        tokens_out = int(response.get("tokens_out") or 0)
+        output, fallback = _structured(raw, stats, expects_json=True)
+    else:
+        raw = distill._quiet_dry(stats) if line.get("quiet") else distill._compose_dry(stats)
+        tokens_in = tokens_out = 0
+        output, fallback = _structured(raw, stats, expects_json=False)
+    return {
+        **_scored(output, stats, fallback=fallback),
+        "source": "generated_live" if live else "generated_dry",
+        "prompt": request["prompt"],
+        "request_sha256": request["request_sha256"],
+        "response_sha256": util.sha256_hex(raw),
+        "response_text": raw,
+        "tokens_in": tokens_in,
+        "tokens_out": tokens_out,
+        "cost_usd": llm.estimate_cost(llm.VOICE_MODEL, tokens_in, tokens_out,
+                                      batched=False) if live else 0.0,
+    }
+
+
+# --- the run plan -------------------------------------------------------------------
+
 def _complete_days(days_dir: Path) -> list[tuple[str, dict]]:
+    """Every committed day carrying a composite for both composite parties."""
     rows = []
-    for path in sorted(days_dir.glob("*.json")):
+    for path in sorted(Path(days_dir).glob("*.json")):
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
@@ -221,14 +426,100 @@ def _complete_days(days_dir: Path) -> list[tuple[str, dict]]:
     return rows
 
 
+def gate_progress(complete_days: int, party_days: int) -> dict:
+    """R-33.6 progress as a fraction, carried by every artifact this module writes."""
+    return {
+        "requirement": "R-33.6",
+        "complete_days": {
+            "observed": complete_days,
+            "required": MIN_COMPLETE_DAYS,
+            "fraction": round(complete_days / MIN_COMPLETE_DAYS, 6),
+            "remaining": max(0, MIN_COMPLETE_DAYS - complete_days),
+        },
+        "party_days": {
+            "observed": party_days,
+            "required": MIN_PARTY_DAYS,
+            "fraction": round(party_days / MIN_PARTY_DAYS, 6),
+            "remaining": max(0, MIN_PARTY_DAYS - party_days),
+        },
+        "estimator": "committed party-days whose production record was written by the live prompt "
+                     "of its pair, over the R-33.6 minimums",
+        "unit": "party-day (one party lane on one measured day)",
+        "denominator": "60 complete days and 200 party-days, both required",
+        "passed": complete_days >= MIN_COMPLETE_DAYS and party_days >= MIN_PARTY_DAYS,
+    }
+
+
+def plan(days_dir: Path) -> dict:
+    """The free, deterministic run plan: what exists, what is eligible, and what it would cost."""
+    days = _complete_days(days_dir)
+    rows, exclusions = [], {}
+    eligible_days = 0
+    for day, payload in days:
+        lines = payload.get("daily_lines") or {}
+        day_rows = []
+        for party in config.COMPOSITE_PARTIES:
+            line = lines.get(party) or {}
+            verdict = classify_record(line)
+            request = candidate_request(line, day, party)
+            day_rows.append({
+                "day": day,
+                "party": party,
+                **verdict,
+                "candidate_prompt": request["prompt"],
+                "request_sha256": request["request_sha256"],
+                "approx_tokens_in": llm.approx_tokens(request["system"] + request["user"]),
+                "max_tokens_out": request["max_tokens"],
+            })
+            for reason in verdict["exclusion_reasons"]:
+                exclusions[reason] = exclusions.get(reason, 0) + 1
+        rows.extend(day_rows)
+        if all(row["eligible"] for row in day_rows):
+            eligible_days += 1
+
+    eligible_rows = [row for row in rows if row["eligible"]]
+    tokens_in = sum(row["approx_tokens_in"] for row in eligible_rows)
+    tokens_out = sum(row["max_tokens_out"] for row in eligible_rows)
+    return {
+        "schema_version": 1,
+        "method_version": METHOD_VERSION,
+        "source": str(days_dir),
+        "ladder": {
+            "committed_day_files": len(list(Path(days_dir).glob("*.json"))),
+            "days_with_both_composites": len(days),
+            "party_days_with_composites": len(rows),
+            "gate_eligible_days": eligible_days,
+            "gate_eligible_party_days": len(eligible_rows),
+            "exclusion_reasons": dict(sorted(exclusions.items())),
+        },
+        "window": {
+            "start": days[0][0] if days else None,
+            "end": days[-1][0] if days else None,
+        },
+        "gate_progress": gate_progress(eligible_days, len(eligible_rows)),
+        "prompt_inventory": prompt_inventory(),
+        "replay_prompt_sha256": replay_prompt_sha256(),
+        "cost_projection": {
+            "model": llm.VOICE_MODEL,
+            "calls": len(eligible_rows),
+            "calls_basis": "one call per gate-eligible party-day; the live side is read from the "
+                           "committed record and costs nothing",
+            "approx_tokens_in": tokens_in,
+            "max_tokens_out": tokens_out,
+            "estimated_cost_usd": llm.estimate_cost(llm.VOICE_MODEL, tokens_in, tokens_out,
+                                                    batched=False),
+            "estimate_basis": "approx 4 characters per token; output priced at the ceiling, so the "
+                              "estimate is an upper bound",
+        },
+        "party_day_plan": rows,
+    }
+
+
+# --- the comparison -----------------------------------------------------------------
+
 def _summary(rows: list[dict], side: str) -> dict:
     offered = len(rows)
     fallback_count = sum(1 for row in rows if row[side]["fallback"])
-    guard_counts = {
-        guard: sum(1 for row in rows if row[side]["guards"][guard])
-        for guard in ("unit_mixing", "quote_extension", "topic_label_assertion",
-                      "multi_claim_sentence", "sentence_mapping_mismatch")
-    }
     return {
         "offered_party_days": offered,
         "verifier_passed": sum(1 for row in rows if row[side]["verifier_passed"]),
@@ -238,90 +529,109 @@ def _summary(rows: list[dict], side: str) -> dict:
         "fallback_rate_estimator": "fallback party-days / offered party-days",
         "fallback_rate_unit": "party-day share",
         "fallback_rate_denominator": offered,
-        "guard_violation_party_days": guard_counts,
+        "guard_violation_party_days": {
+            guard: sum(1 for row in rows if row[side]["guards"][guard]) for guard in GUARD_NAMES
+        },
+        "tokens_in": sum(row[side].get("tokens_in") or 0 for row in rows),
+        "tokens_out": sum(row[side].get("tokens_out") or 0 for row in rows),
+        "cost_usd": round(sum(row[side].get("cost_usd") or 0.0 for row in rows), 6),
     }
 
 
 def run(days_dir: Path, *, live: bool = False, allow_api_spend: bool = False,
-        limit: int | None = None) -> dict:
-    """Compare live and candidate prompt lineages. Dry-run is the default and spends nothing."""
+        limit: int | None = None, call=None, only: set | None = None) -> dict:
+    """Compare the committed live record against a generated candidate. Dry is free and default.
+
+    ``only`` restricts the run to a set of (day, party) pairs, which is how the incremental
+    accumulator replays days not yet in the evidence file.
+    """
     if live and not allow_api_spend:
         raise PermissionError("live shadow replay requires allow_api_spend=True")
-    days = _complete_days(days_dir)
-    if limit is not None:
-        days = days[:max(0, limit)]
-    projected = 0.0
+    run_plan = plan(days_dir)
     if live:
-        projected = llm.estimate_cost(
-            llm.VOICE_MODEL, len(days) * 4 * 3000, len(days) * 4 * 400,
-            batched=False, on_date=date.today().isoformat(),
-        )
+        assert_registered()
+        projected = run_plan["cost_projection"]["estimated_cost_usd"]
         if ops.voice_budget_state(date.today().isoformat(), projected) == "halt":
             raise RuntimeError("budget governor halted live shadow replay")
 
-    prompts = {
-        prompt_id: {
-            "live": _prompt(pair[0], prompt_id),
-            "candidate": _prompt(pair[1], prompt_id),
-        }
-        for prompt_id, pair in PROMPT_PAIRS.items()
-    }
-    rows = []
-    for day, payload in days:
-        for party in config.COMPOSITE_PARTIES:
-            stats, quiet = _stats(payload, party, day)
-            prompt_id = "P3" if quiet else "P2"
-            live_row = _one(
-                prompts[prompt_id]["live"], stats, party, day, quiet,
-                live=live, candidate=False,
-            )
-            candidate_row = _one(
-                prompts[prompt_id]["candidate"], stats, party, day, quiet,
-                live=live, candidate=True,
-            )
-            rows.append({
-                "day": day, "party": party, "prompt_id": prompt_id,
-                "live": live_row, "candidate": candidate_row,
-                "changed": live_row["output_sha256"] != candidate_row["output_sha256"],
-            })
+    days = _complete_days(days_dir)
+    if limit is not None:
+        days = days[:max(0, limit)]
 
+    rows, skipped = [], []
+    eligible_days = 0
+    for day, payload in days:
+        lines = payload.get("daily_lines") or {}
+        day_eligible = True
+        for party in config.COMPOSITE_PARTIES:
+            line = lines.get(party) or {}
+            verdict = classify_record(line)
+            if not verdict["eligible"]:
+                day_eligible = False
+                skipped.append({"day": day, "party": party,
+                                "exclusion_reasons": verdict["exclusion_reasons"]})
+                continue
+            if only is not None and (day, party) not in only:
+                continue
+            request = candidate_request(line, day, party)
+            record = record_side(line)
+            candidate = candidate_side(request, line, live=live, call=call)
+            rows.append({
+                "day": day, "party": party, "prompt_id": verdict["prompt_id"],
+                "classification": verdict,
+                "live": record, "candidate": candidate,
+                "changed": record["output_sha256"] != candidate["output_sha256"],
+            })
+        if day_eligible:
+            eligible_days += 1
+
+    scored_days = len({row["day"] for row in rows})
     live_summary = _summary(rows, "live")
     candidate_summary = _summary(rows, "candidate")
-    complete_days = len(days)
-    party_days = len(rows)
-    enough = complete_days >= MIN_COMPLETE_DAYS and party_days >= MIN_PARTY_DAYS
     zero_tolerance = (
-        candidate_summary["verifier_failed"] == 0
+        bool(rows)
+        and candidate_summary["verifier_failed"] == 0
         and all(value == 0 for value in candidate_summary["guard_violation_party_days"].values())
     )
     rate = candidate_summary["fallback_rate"]
     fallback_pass = rate is not None and rate <= config.SHADOW_FALLBACK_RATE_CEILING
+    progress = gate_progress(eligible_days, len(rows))
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "method_version": METHOD_VERSION,
         "mode": "live" if live else "dry_run",
         "source": str(days_dir),
+        "comparison_design": "the live side is the committed production record; only the "
+                             "candidate side is generated",
         "window": {
-            "start": days[0][0] if days else None,
-            "end": days[-1][0] if days else None,
-            "complete_days": complete_days,
-            "party_days": party_days,
+            "start": rows[0]["day"] if rows else None,
+            "end": rows[-1]["day"] if rows else None,
+            "scored_days": scored_days,
+            "scored_party_days": len(rows),
+            "gate_eligible_days": eligible_days,
         },
+        "ladder": run_plan["ladder"],
         "minimums": {"complete_days": MIN_COMPLETE_DAYS, "party_days": MIN_PARTY_DAYS},
+        "gate_progress": progress,
         "prompt_inventory": prompt_inventory(),
+        "replay_prompt_sha256": replay_prompt_sha256(),
         "fallback_rate_ceiling": config.SHADOW_FALLBACK_RATE_CEILING,
-        "projected_live_cost_usd": projected,
+        "projected_live_cost_usd": run_plan["cost_projection"]["estimated_cost_usd"],
+        "actual_cost_usd": candidate_summary["cost_usd"],
         "live": live_summary,
         "candidate": candidate_summary,
+        "excluded_party_days": skipped,
         "comparison": {
             "changed_party_days": sum(1 for row in rows if row["changed"]),
             "unchanged_party_days": sum(1 for row in rows if not row["changed"]),
+            "record_verifier_verdict_moved": sum(
+                1 for row in rows if row["live"]["verifier_verdict_moved"]),
         },
         "activation_gate": {
-            "minimum_sample_passed": enough,
+            "minimum_sample_passed": progress["passed"],
             "zero_tolerance_checks_passed": zero_tolerance,
             "fallback_rate_passed": fallback_pass,
-            "ready": live and enough and zero_tolerance and fallback_pass,
+            "ready": bool(live and progress["passed"] and zero_tolerance and fallback_pass),
             "dry_run_cannot_activate": not live,
         },
         "party_day_results": rows,

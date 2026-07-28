@@ -1,0 +1,774 @@
+{
+  "schema_version": 1,
+  "method_version": "shadow-replay-v2",
+  "source": "C:\\Users\\bobdo\\projects\\polispeak\\data\\derived\\days",
+  "ladder": {
+    "committed_day_files": 18,
+    "days_with_both_composites": 16,
+    "party_days_with_composites": 32,
+    "gate_eligible_days": 1,
+    "gate_eligible_party_days": 2,
+    "exclusion_reasons": {
+      "not_model_generated": 10,
+      "prompt_lineage_mismatch": 18,
+      "stats_schema_mismatch": 30
+    }
+  },
+  "window": {
+    "start": "2026-06-30",
+    "end": "2026-07-25"
+  },
+  "gate_progress": {
+    "requirement": "R-33.6",
+    "complete_days": {
+      "observed": 1,
+      "required": 60,
+      "fraction": 0.016667,
+      "remaining": 59
+    },
+    "party_days": {
+      "observed": 2,
+      "required": 200,
+      "fraction": 0.01,
+      "remaining": 198
+    },
+    "estimator": "committed party-days whose production record was written by the live prompt of its pair, over the R-33.6 minimums",
+    "unit": "party-day (one party lane on one measured day)",
+    "denominator": "60 complete days and 200 party-days, both required",
+    "passed": false
+  },
+  "prompt_inventory": {
+    "P2": {
+      "live": {
+        "file": "P2_daily_line.v1.3.txt",
+        "version": "1.3",
+        "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+      },
+      "candidate": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      }
+    },
+    "P3": {
+      "live": {
+        "file": "P3_quiet_day.v1.1.txt",
+        "version": "1.1",
+        "sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+      },
+      "candidate": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      }
+    }
+  },
+  "replay_prompt_sha256": "19304d43ffc77b14d351c5570c1f58ec316ff74b3bbcbe09aefb54a1d14dfec6",
+  "cost_projection": {
+    "model": "claude-sonnet-5",
+    "calls": 2,
+    "calls_basis": "one call per gate-eligible party-day; the live side is read from the committed record and costs nothing",
+    "approx_tokens_in": 454,
+    "max_tokens_out": 800,
+    "estimated_cost_usd": 0.008908,
+    "estimate_basis": "approx 4 characters per token; output priced at the ceiling, so the estimate is an upper bound"
+  },
+  "party_day_plan": [
+    {
+      "day": "2026-06-30",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.0",
+      "record_prompt_sha256": "2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764",
+      "record_generator": "dry_run",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "83087790dda4c9b9d76495583029f86b1e85b6b67bd59e383f70367bcaa707c0",
+      "approx_tokens_in": 352,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-06-30",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.0",
+      "record_prompt_sha256": "2d28fb8f49e9deed2f8a1ddd9fd70a98a91f34584cf8b4d4d2fb4c09253a9764",
+      "record_generator": "dry_run",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "50cd9e7f72b8d42b7a17c865762439c43400c2877aae231dca72f12410e35796",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-11",
+      "party": "D",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.0",
+      "record_prompt_sha256": "08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42",
+      "record_generator": "dry_run",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "778c7dd8a8be4d432134d116e91e3a85831537e9d7c8fb2ff091f1f75fd1f51d",
+      "approx_tokens_in": 228,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-11",
+      "party": "R",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.0",
+      "record_prompt_sha256": "08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42",
+      "record_generator": "dry_run",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "18dca0d9b42426aa5a11b84a3fd49e9d7c527cd8938d8bf717ba23edec90be1d",
+      "approx_tokens_in": 228,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-12",
+      "party": "D",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.0",
+      "record_prompt_sha256": "08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42",
+      "record_generator": "dry_run",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "cb35bdeea88d573d18633d485eef1f2baa3a656ae9031ddedb9e91df157cdf81",
+      "approx_tokens_in": 228,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-12",
+      "party": "R",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.0",
+      "record_prompt_sha256": "08f6910ab55f2114b5d3c086a1217cf32664cf0adf5fdb7e892601460598cf42",
+      "record_generator": "dry_run",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "34eb9dfe40abb7bfc689522c8f2fd567b483abe51623d6e4072dfb6cb42c7210",
+      "approx_tokens_in": 228,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-13",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "bafd0a55abd97e4cd39e5fb8288582623bd4129923d130a8b95de18b3b2a00ce",
+      "approx_tokens_in": 360,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-13",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "06260e3697a75454df21b34a679cec89eb4e8a8435ce670ff37f2c59bd1ece6f",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-14",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
+      "record_generator": "deterministic",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "4a59f62d18f91b7f8832ab7286012392acaab70abcfa0c4f5f4ccedb5a048fa0",
+      "approx_tokens_in": 362,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-14",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "86f8463122769f33c7cb145edd7dd7b21dd0910a521f9c0435313a1f1d6e4646",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-15",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
+      "record_generator": "deterministic",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "fda12843d2d182b68c571f7bedb07fd2c0c8a774ee6dd271c5f67d461fa8ba15",
+      "approx_tokens_in": 361,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-15",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "743dcc03e1cd10840ffb89991d4801d337730d5d49935dbc4f25805be1a1c3a5",
+      "record_generator": "deterministic",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "8b9d8cf8b4a51131c2e5f2280b6603f9db8a21cbf6b58572372401acac3d876f",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-16",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.2",
+      "record_prompt_sha256": "90fede65130b9a6040b574c8a3b88395919b1f9dbdd9f62197114d6315d9ab23",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "77bc8d0867de6cca4aadfa0385c03a34e975d50c46925418d8cc29c0ab3d78c1",
+      "approx_tokens_in": 359,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-16",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.2",
+      "record_prompt_sha256": "90fede65130b9a6040b574c8a3b88395919b1f9dbdd9f62197114d6315d9ab23",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "b71500b2deba55648d23511f570c33a0dadadc7d4969759b92e741f29741d94f",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-17",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.2",
+      "record_prompt_sha256": "90fede65130b9a6040b574c8a3b88395919b1f9dbdd9f62197114d6315d9ab23",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "41e5f765e985d6c4036efbdab3d537eb86bb84773d430b444622d60b8d4d433f",
+      "approx_tokens_in": 363,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-17",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.2",
+      "record_prompt_sha256": "90fede65130b9a6040b574c8a3b88395919b1f9dbdd9f62197114d6315d9ab23",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "448342e36741ca27f63b55265b616e206b20e0e4eebdb468bfb73a94c2211547",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-18",
+      "party": "D",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "f690a407074261f0a98dadd697298462400810895deabad7b1bbb880cb1a23ff",
+      "approx_tokens_in": 227,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-18",
+      "party": "R",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "1f3e5688a9988c8e9624967de869334a8c755ff8fd39bea4eeee666616840fe4",
+      "approx_tokens_in": 227,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-19",
+      "party": "D",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "1c0994f7c19c931e8f4cfd3afa1427a6dd44424170895fbc849873627e4bc5c7",
+      "approx_tokens_in": 227,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-19",
+      "party": "R",
+      "prompt_id": "P3",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "d4da4a9773baade40da1c2523748f6fde4c8e2d195df8fce24a483e605dc4c4b",
+      "approx_tokens_in": 227,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-20",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.2",
+      "record_prompt_sha256": "90fede65130b9a6040b574c8a3b88395919b1f9dbdd9f62197114d6315d9ab23",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "971cb38fe07e1af946e05aa3ec282cb702b9dd6ccf8636b70a7c60be2747ec27",
+      "approx_tokens_in": 358,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-20",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "prompt_lineage_mismatch",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.2",
+      "record_prompt_sha256": "90fede65130b9a6040b574c8a3b88395919b1f9dbdd9f62197114d6315d9ab23",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "bfda669e859a407d3f37857508b62fca040cbf8dd4556c139e73fa0fcc6eb0ea",
+      "approx_tokens_in": 359,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-21",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "146706417dba10139462d608ba3cb4d0f37eb1db8ce84dd60e10ec61987af108",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-21",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "062d6177fbb1c186f81518eca39d9fbe3879c15650c2614627e9af957b5b0425",
+      "approx_tokens_in": 361,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-22",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "189550cf344c870e63eefd498d3a6f4c01fbd38aa1c68d78d5969a4cf9f012f5",
+      "approx_tokens_in": 327,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-22",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "not_model_generated",
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "deterministic",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "a48fa32b0764da55ebe31a2bcfad6ab4347e4d2469495da95ecd198cb572d8e4",
+      "approx_tokens_in": 360,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-23",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "456fae942b9a3c174e0ca6153f44b5bf7ed1cee77be87e4b044af07f9a1b97f7",
+      "approx_tokens_in": 358,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-23",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "4de5cd24eaff3f7840986ea0077dbdbcc24261807d333bffb02ac756ba9c4a2d",
+      "approx_tokens_in": 365,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-24",
+      "party": "D",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "5e47c38c91f8dea71d82874beaaf135bbbdc831623b43092ead26ce1a5d192f4",
+      "approx_tokens_in": 358,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-24",
+      "party": "R",
+      "prompt_id": "P2",
+      "eligible": false,
+      "exclusion_reasons": [
+        "stats_schema_mismatch"
+      ],
+      "record_prompt_version": "1.3",
+      "record_prompt_sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": null,
+      "candidate_prompt": {
+        "file": "P2_daily_line.v1.4.txt",
+        "version": "1.4",
+        "sha256": "c5f9321a7a32d038d1637d957bc14703561a370649efa4a4c5bdbe85893bac81"
+      },
+      "request_sha256": "3de2fa233e906c3adea65989607736b40fc500a7169c2536f26c6c70badeeea9",
+      "approx_tokens_in": 359,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-25",
+      "party": "D",
+      "prompt_id": "P3",
+      "eligible": true,
+      "exclusion_reasons": [],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": 2,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "c05bd06656e0bc59ec59ed359fb7b4a714432538fcb899d6b146d9f11ac7c463",
+      "approx_tokens_in": 227,
+      "max_tokens_out": 400
+    },
+    {
+      "day": "2026-07-25",
+      "party": "R",
+      "prompt_id": "P3",
+      "eligible": true,
+      "exclusion_reasons": [],
+      "record_prompt_version": "1.1",
+      "record_prompt_sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "record_generator": "sonnet_direct",
+      "record_stats_schema_version": 2,
+      "candidate_prompt": {
+        "file": "P3_quiet_day.v1.2.txt",
+        "version": "1.2",
+        "sha256": "7408b653a21726903e520203557d3ee23d7579cfc8dce2462101fc1f4e86d277"
+      },
+      "request_sha256": "d3c9d233320ea8e552ddbf184176c04050d60b566f94906bc65057c495bce3d4",
+      "approx_tokens_in": 227,
+      "max_tokens_out": 400
+    }
+  ]
+}
