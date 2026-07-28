@@ -259,10 +259,11 @@ It is a meaningful second-order expansion under two conditions.
 - *R-S50.1 substrate* (docs/13 R-S50.1 row): the alexandria per-lane shards are being rebuilt on the
   ISOLATED three-valued `date_source` domain (`legacy` / `scraper` / `page_html`; page_html its OWN lane,
   never folded). `alexandria.load_congress_records` / `lane_shard_path` / `wave_s4._collect` are 3-lane
-  (code complete, suite green); `page_html` is built and isolated for all 113-119; `scraper` (page_html
-  excluded) is rebuilding in the background (resumable); `legacy` == the existing `propublica` shards by
-  identity. The folded `propublica`/`scraped` view survives only as a labelled robustness check. Daily
-  pipeline unaffected (does not import alexandria).
+  (code complete, suite green). The rebuild COMPLETED for all 113-119: `page_html` and `scraper`
+  (page_html excluded) built fresh; `legacy` == the `propublica` shards by identity; `reconcile_source_lanes`
+  confirms the EXACT partition legacy + scraper + page_html == combined for every congress (delta 0). The
+  folded `propublica`/`scraped` view survives only as a labelled robustness check. Daily pipeline unaffected
+  (does not import alexandria).
 - *SD.8 frozen, then run* (docs/13 SD.8 registration + verdict rows): the president-naming
   instrument-concordance study was pre-registered with numeral thresholds BEFORE measurement (frozen
   commit `412308b`), then run on the 2013-2026 overlap. **Verdict: HELD.** The press-core S2.9 direction

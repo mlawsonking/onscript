@@ -1246,11 +1246,12 @@ fold and the `provenance.py` note that made folding the default `by="instrument"
 `date_source`, matching `harness.iter_statements`) alongside the folded instrument names, which stay as
 a labelled robustness view; `reconcile_source_lanes` asserts the exact partition `legacy + scraper +
 page_html == combined`. `wave_s4._collect` carries the isolated `date_source` as the primary lane key
-(`inst` folded, robustness only). The isolated substrate rebuild for 113-119: `page_html` built fresh
-and ISOLATED for all seven congresses (complete); `scraper` (page_html excluded) rebuilding in the
-background (resumable, ~148 MB ledgers/congress); `legacy` == the existing `propublica` shards by
-identity (`instrument propublica = {legacy}`, copied, no recompute). The daily pipeline is unaffected
-(it does not import alexandria; verified). Failure fixtures in `tests/test_search_provenance.py`; rebuild driver
+(`inst` folded, robustness only). The isolated substrate was rebuilt for all 113-119 and its R-S50.1
+acceptance PASSES: `page_html` and `scraper` (page_html excluded) built fresh, `legacy` copied from the
+identical `propublica` shards; `reconcile_source_lanes` confirms the EXACT partition legacy + scraper +
+page_html == combined for every congress (delta 0, e.g. c117 144+36319+454=36917; c118/c119 legacy=0, the
+import's death on the 2021-01-03 seam, on record). The daily pipeline is unaffected (it does not import
+alexandria; verified). Failure fixtures in `tests/test_search_provenance.py`; rebuild driver
 `scripts/search/build_source_lane_shards.py`. NOTE (premise correction): the Session-21-recorded
 "lane-blind read" was already 2-lane-aware at this branch base (Session 19); R-S50.1 is the 2-lane to
 3-lane isolation upgrade, not a from-scratch lane fix.
