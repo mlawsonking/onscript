@@ -1,0 +1,195 @@
+{
+  "full_size": 1400,
+  "ledger_source": {
+    "bytes": 3084929086,
+    "path": "data/state/ledger.json",
+    "sha256": "32c25c951d7a796b09cf286143baaf9889210fc6849ffe3bf7567d7f30bf7593"
+  },
+  "method_version": "gold-set-sample-v1",
+  "pilot_size": 200,
+  "schema_version": 1,
+  "seal_hash": "2c349e56b37e326950596b9acb3780b57c4cc6b37985a7709f219b3a25880ec1",
+  "seed": "onscript-goldset-v1",
+  "split_boundaries": {
+    "train_end": "2025-12-31",
+    "validation_end": "2026-03-31"
+  },
+  "statements_source": {
+    "bytes": 94067097,
+    "path": "data/state/statements.jsonl.gz",
+    "sha256": "506ddb0a4f82b4743fe2328b7e30756ae8b2262824917f09e064265c3dae0833"
+  },
+  "strata": [
+    {
+      "available": 22,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "biographical",
+      "selected": 22,
+      "year": "2025"
+    },
+    {
+      "available": 33,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "biographical",
+      "selected": 33,
+      "year": "2026"
+    },
+    {
+      "available": 161338,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "message",
+      "selected": 411,
+      "year": "2025"
+    },
+    {
+      "available": 86626,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "message",
+      "selected": 221,
+      "year": "2026"
+    },
+    {
+      "available": 5055,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "nomenclature",
+      "selected": 14,
+      "year": "2025"
+    },
+    {
+      "available": 2896,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "nomenclature",
+      "selected": 8,
+      "year": "2026"
+    },
+    {
+      "available": 7,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "private",
+      "selected": 7,
+      "year": "2026"
+    },
+    {
+      "available": 85137,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "procedural",
+      "selected": 217,
+      "year": "2025"
+    },
+    {
+      "available": 42921,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "procedural",
+      "selected": 110,
+      "year": "2026"
+    },
+    {
+      "available": 18799,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "unknown",
+      "selected": 49,
+      "year": "2025"
+    },
+    {
+      "available": 4928,
+      "lane": "1",
+      "party": "D",
+      "predicted_class": "unknown",
+      "selected": 13,
+      "year": "2026"
+    },
+    {
+      "available": 14,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "biographical",
+      "selected": 14,
+      "year": "2025"
+    },
+    {
+      "available": 7,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "biographical",
+      "selected": 7,
+      "year": "2026"
+    },
+    {
+      "available": 50969,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "message",
+      "selected": 130,
+      "year": "2025"
+    },
+    {
+      "available": 16787,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "message",
+      "selected": 44,
+      "year": "2026"
+    },
+    {
+      "available": 4016,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "nomenclature",
+      "selected": 11,
+      "year": "2025"
+    },
+    {
+      "available": 1844,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "nomenclature",
+      "selected": 6,
+      "year": "2026"
+    },
+    {
+      "available": 43609,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "procedural",
+      "selected": 112,
+      "year": "2025"
+    },
+    {
+      "available": 11998,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "procedural",
+      "selected": 31,
+      "year": "2026"
+    },
+    {
+      "available": 43344,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "unknown",
+      "selected": 111,
+      "year": "2025"
+    },
+    {
+      "available": 11062,
+      "lane": "1",
+      "party": "R",
+      "predicted_class": "unknown",
+      "selected": 29,
+      "year": "2026"
+    }
+  ],
+  "universe_fingerprint": "51d7ac25c4d70cbc09db8134eee159ffdb64d9330b2b72bbfc597f76af4e112e",
+  "universe_size": 591412,
+  "unresolved_anchors": 0
+}
