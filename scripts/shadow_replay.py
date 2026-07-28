@@ -12,6 +12,7 @@ production record, so only the candidate side can ever cost money, and only behi
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import json
 from pathlib import Path
 import sys
@@ -48,9 +49,31 @@ def main() -> int:
     if args.plan:
         report = shadow_replay.plan(args.days_dir)
     else:
-        report = shadow_replay.run(
-            args.days_dir, live=args.live, allow_api_spend=args.allow_api_spend, limit=args.limit,
-        )
+        try:
+            report = shadow_replay.run(
+                args.days_dir, live=args.live, allow_api_spend=args.allow_api_spend,
+                limit=args.limit,
+            )
+        except shadow_replay.BudgetPreflightError as error:
+            # An expected, well-understood refusal deserves a readable report, not a traceback:
+            # the operator needs to see WHICH condition blocked and what the ledger said.
+            plan = shadow_replay.plan(args.days_dir)
+            refusal = {
+                "mode": "refused",
+                "method_version": shadow_replay.METHOD_VERSION,
+                "reason": str(error),
+                "budget_preflight": shadow_replay.budget_preflight(
+                    plan["cost_projection"]["estimated_cost_usd"],
+                    bound_usd=shadow_replay.SPEND_BOUND_USD,
+                    day=datetime.now(timezone.utc).date().isoformat(),
+                ),
+                "gate_progress": plan["gate_progress"],
+                "spend_usd": 0.0,
+            }
+            if args.out:
+                util.write_json(args.out, refusal)
+            print(json.dumps(refusal, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
+            return 2
     if args.out:
         util.write_json(args.out, report)
     print(json.dumps(report, ensure_ascii=False, sort_keys=True, separators=(",", ":")))

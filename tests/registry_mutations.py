@@ -9,7 +9,8 @@ longer load-bearing.
 from __future__ import annotations
 
 from pipeline import instrument_fingerprint as fp
-from pipeline import goldset_rater, privacy, privacy_canary, status_exports, util
+from pipeline import (config, goldset_rater, llm, privacy, privacy_canary, shadow_replay,
+                      status_exports, util)
 
 
 def _bump(value):
@@ -62,6 +63,53 @@ def _build_invariants() -> list[dict]:
              f"{goldset_rater.PROMPT_ID}\n{goldset_rater.PROMPT_VERSION}\n"
              f"{goldset_rater.wrapper_text()}\n{guide}")},
     ]
+    # The shadow-replay instrument. A live replay is refused unless the four prompt texts hash
+    # to the frozen registration, so the registration must be a live read of those texts. If it
+    # ever became a hand-copied hash, an edited candidate prompt could spend money under the
+    # identity of the prompt that was frozen (docs/33 R-33.6, docs/37 rules 6 and 7).
+    invariants += [
+        {"name": "shadow_replay:method_version",
+         "read": lambda: shadow_replay.registration()["method_version"],
+         "owner_module": shadow_replay, "owner_attr": "METHOD_VERSION"},
+        {"name": "shadow_replay:model",
+         "read": lambda: shadow_replay.registration()["model"],
+         "owner_module": llm, "owner_attr": "VOICE_MODEL"},
+        {"name": "shadow_replay:fallback_rate_ceiling",
+         "read": lambda: shadow_replay.registration()["fallback_rate_ceiling"],
+         "owner_module": config, "owner_attr": "SHADOW_FALLBACK_RATE_CEILING"},
+        {"name": "shadow_replay:min_complete_days",
+         "read": lambda: shadow_replay.registration()["minimums"]["complete_days"],
+         "owner_module": shadow_replay, "owner_attr": "MIN_COMPLETE_DAYS"},
+        {"name": "shadow_replay:min_party_days",
+         "read": lambda: shadow_replay.registration()["minimums"]["party_days"],
+         "owner_module": shadow_replay, "owner_attr": "MIN_PARTY_DAYS"},
+    ]
+    for prompt_id, side, attr in (
+        ("P2", "live", "_P2_LIVE_TEXT"), ("P2", "candidate", "_P2_CANDIDATE_TEXT"),
+        ("P3", "live", "_P3_LIVE_TEXT"), ("P3", "candidate", "_P3_CANDIDATE_TEXT"),
+    ):
+        invariants.append({
+            "name": f"shadow_replay:prompt_sha256:{prompt_id}:{side}",
+            "read": (lambda p=prompt_id, s=side:
+                     shadow_replay.registration()["prompt_inventory"][p][s]["sha256"]),
+            "owner_module": shadow_replay, "owner_attr": attr,
+            "expect": util.sha256_hex,
+        })
+    # The combined address, checked against an INDEPENDENT reimplementation of the composition.
+    # The per-prompt invariants above prove each hash reads its live text; this one proves the
+    # whole-instrument address still composes those texts in the documented order.
+    invariants.append({
+        "name": "shadow_replay:replay_prompt_sha256",
+        "read": lambda: shadow_replay.registration()["replay_prompt_sha256"],
+        "owner_module": shadow_replay, "owner_attr": "_P2_CANDIDATE_TEXT",
+        "expect": lambda text: util.sha256_hex("\n".join([
+            shadow_replay.METHOD_VERSION,
+            f"P2:live:{shadow_replay._P2_LIVE_TEXT}",
+            f"P2:candidate:{text}",
+            f"P3:live:{shadow_replay._P3_LIVE_TEXT}",
+            f"P3:candidate:{shadow_replay._P3_CANDIDATE_TEXT}",
+        ])),
+    })
     invariants += [
         {"name": "api_version",
          "read": lambda: status_exports.envelope({"a": 1}, None, fingerprint={})["api_version"],

@@ -1,0 +1,41 @@
+{
+  "mode": "refused",
+  "method_version": "shadow-replay-v2",
+  "reason": "live shadow replay refused by the budget preflight: no_api_key. month-to-date 0.11552 USD, headroom 8.88448 USD, bound 3.0 USD.",
+  "budget_preflight": {
+    "day": "2026-07-28",
+    "api_key_available": false,
+    "month_to_date_usd": 0.11552,
+    "monthly_code_ceiling_usd": 9.0,
+    "warn_threshold_usd": 8.0,
+    "headroom_usd": 8.88448,
+    "authorized_bound_usd": 3.0,
+    "required_headroom_usd": 6.0,
+    "projected_usd": 0.008908,
+    "governor_state": "nominal",
+    "blocking_reasons": [
+      "no_api_key"
+    ],
+    "cleared": false
+  },
+  "gate_progress": {
+    "requirement": "R-33.6",
+    "complete_days": {
+      "observed": 1,
+      "required": 60,
+      "fraction": 0.016667,
+      "remaining": 59
+    },
+    "party_days": {
+      "observed": 2,
+      "required": 200,
+      "fraction": 0.01,
+      "remaining": 198
+    },
+    "estimator": "committed party-days whose production record was written by the live prompt of its pair, over the R-33.6 minimums",
+    "unit": "party-day (one party lane on one measured day)",
+    "denominator": "60 complete days and 200 party-days, both required",
+    "passed": false
+  },
+  "spend_usd": 0.0
+}

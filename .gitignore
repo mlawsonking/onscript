@@ -40,6 +40,10 @@ data/reference/*
 # uncommitted config means the pass cannot start at all and its manifests could not be checked against
 # the instrument that was frozen before them (docs/34 §4).
 !data/reference/alexandria-topic-tag.json
+# ...and the frozen shadow-replay instrument. A live replay is refused unless the four P2/P3 prompt
+# texts hash to this file, so an edited candidate prompt cannot spend money under the identity of the
+# prompt that was frozen (docs/33 R-33.6).
+!data/reference/replay-registration.json
 
 # Session scratch. Canon has assumed since Session 18 that this was already ignored ("scratchpad is
 # gitignored -> gone on re-clone") — it was NOT, and `git add -A` would have staged 21 files including

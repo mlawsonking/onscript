@@ -515,6 +515,152 @@ def plan(days_dir: Path) -> dict:
     }
 
 
+# --- the spend gate -----------------------------------------------------------------
+
+def budget_preflight(projected_usd: float, *, bound_usd: float, day: str) -> dict:
+    """Read the month-to-date ledger and the code ceiling before any live replay call.
+
+    Two independent conditions, both of which must hold. The run must fit under the authorized
+    hard bound, and the remaining headroom under the monthly code ceiling must be at least twice
+    that bound, so a replay can never be the spend that leaves the daily voice with no room. The
+    daily pipeline is the thing that must not starve; this harness is optional.
+    """
+    mtd = ops.month_to_date_usd(day, include_day=True)
+    headroom = round(config.LLM_MONTHLY_CEILING_USD - mtd, 6)
+    reasons = []
+    if projected_usd > bound_usd:
+        reasons.append("projection_exceeds_authorized_bound")
+    if headroom < 2 * bound_usd:
+        reasons.append("headroom_below_twice_the_bound")
+    if ops.voice_budget_state(day, projected_usd) == "halt":
+        reasons.append("budget_governor_halt")
+    if llm.dry_run():
+        # The charter keeps ANTHROPIC_API_KEY in Actions secrets only, so an operator box has no
+        # key by design. Say that here rather than letting _headers raise a KeyError mid-run,
+        # after the registration has been asserted and the operator believes a run started.
+        reasons.append("no_api_key")
+    return {
+        "day": day,
+        "api_key_available": not llm.dry_run(),
+        "month_to_date_usd": mtd,
+        "monthly_code_ceiling_usd": config.LLM_MONTHLY_CEILING_USD,
+        "warn_threshold_usd": config.LLM_MONTHLY_WARN_USD,
+        "headroom_usd": headroom,
+        "authorized_bound_usd": bound_usd,
+        "required_headroom_usd": round(2 * bound_usd, 6),
+        "projected_usd": projected_usd,
+        "governor_state": ops.voice_budget_state(day, projected_usd),
+        "blocking_reasons": reasons,
+        "cleared": not reasons,
+    }
+
+
+class BudgetPreflightError(RuntimeError):
+    """The live replay was refused before any call, by the budget preflight."""
+
+
+# --- the append-only evidence file --------------------------------------------------
+
+EVIDENCE_NAME = "evidence.jsonl"
+
+
+def evidence_path(root: Path | None = None) -> Path:
+    return (Path(root) if root else config.DERIVED / "replay") / EVIDENCE_NAME
+
+
+def load_evidence(root: Path | None = None) -> list[dict]:
+    path = evidence_path(root)
+    if not path.is_file():
+        return []
+    rows = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line:
+            rows.append(json.loads(line))
+    return rows
+
+
+def evidence_key(row: dict) -> tuple:
+    """One party-day under one candidate prompt. A new candidate prompt replays the day again."""
+    return (row["day"], row["party"], row["candidate_prompt"]["sha256"])
+
+
+def replayed_keys(root: Path | None = None) -> set:
+    return {evidence_key(row) for row in load_evidence(root)}
+
+
+def pending(days_dir: Path, root: Path | None = None) -> list[tuple]:
+    """Gate-eligible party-days with no evidence yet under the current candidate prompt."""
+    done = replayed_keys(root)
+    out = []
+    for row in plan(days_dir)["party_day_plan"]:
+        if not row["eligible"]:
+            continue
+        if (row["day"], row["party"], row["candidate_prompt"]["sha256"]) not in done:
+            out.append((row["day"], row["party"]))
+    return out
+
+
+def evidence_rows(report: dict) -> list[dict]:
+    """Turn one run's scored party-days into evidence rows. Deterministic given the responses."""
+    rows = []
+    for row in report["party_day_results"]:
+        candidate = row["candidate"]
+        rows.append({
+            "schema_version": 1,
+            "method_version": report["method_version"],
+            "mode": report["mode"],
+            "day": row["day"],
+            "party": row["party"],
+            "prompt_id": row["prompt_id"],
+            "replay_prompt_sha256": report["replay_prompt_sha256"],
+            "candidate_prompt": candidate["prompt"],
+            "request_sha256": candidate["request_sha256"],
+            "response_sha256": candidate["response_sha256"],
+            "response_text": candidate["response_text"],
+            "tokens_in": candidate["tokens_in"],
+            "tokens_out": candidate["tokens_out"],
+            "cost_usd": candidate["cost_usd"],
+            "record": {key: row["live"][key] for key in
+                       ("composite", "output_sha256", "verifier_passed", "verifier_reasons",
+                        "guards", "fallback", "generator", "composite_state", "prompt",
+                        "recorded_verifier_passed", "verifier_verdict_moved")},
+            "candidate": {key: candidate[key] for key in
+                          ("composite", "output_sha256", "verifier_passed", "verifier_reasons",
+                           "guards", "fallback")},
+            "changed": row["changed"],
+        })
+    return rows
+
+
+def append_evidence(rows: list[dict], root: Path | None = None) -> dict:
+    """Append rows never seen before. Existing lines are never rewritten or reordered.
+
+    Only live rows are admitted. A dry row is a deterministic-voice composite, not an answer
+    from the candidate prompt, and a gate that counted them would be counting the harness's own
+    template as evidence about a model.
+    """
+    dry = [row for row in rows if row.get("mode") != "live"]
+    if dry:
+        raise ValueError(
+            f"{len(dry)} non-live rows offered to the replay evidence file; only real model "
+            "responses are evidence for the R-33.6 gate")
+    path = evidence_path(root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    known = replayed_keys(root)
+    fresh = [row for row in rows if evidence_key(row) not in known]
+    if fresh:
+        with path.open("a", encoding="utf-8", newline="\n") as handle:
+            for row in sorted(fresh, key=evidence_key):
+                handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+    return {
+        "path": str(path),
+        "appended": len(fresh),
+        "already_present": len(rows) - len(fresh),
+        "total_rows": len(known) + len(fresh),
+    }
+
+
 # --- the comparison -----------------------------------------------------------------
 
 def _summary(rows: list[dict], side: str) -> dict:
@@ -538,8 +684,12 @@ def _summary(rows: list[dict], side: str) -> dict:
     }
 
 
+SPEND_BOUND_USD = 3.0  # the hard bound Michael authorized for the R-33.6 live replay
+
+
 def run(days_dir: Path, *, live: bool = False, allow_api_spend: bool = False,
-        limit: int | None = None, call=None, only: set | None = None) -> dict:
+        limit: int | None = None, call=None, only: set | None = None,
+        bound_usd: float = SPEND_BOUND_USD, day: str | None = None) -> dict:
     """Compare the committed live record against a generated candidate. Dry is free and default.
 
     ``only`` restricts the run to a set of (day, party) pairs, which is how the incremental
@@ -548,11 +698,21 @@ def run(days_dir: Path, *, live: bool = False, allow_api_spend: bool = False,
     if live and not allow_api_spend:
         raise PermissionError("live shadow replay requires allow_api_spend=True")
     run_plan = plan(days_dir)
+    preflight = None
     if live:
+        # Freeze the instrument before the money, in this order: an edited prompt must not be
+        # able to quietly become the thing a published sheet was produced by (docs/35 §10.2).
         assert_registered()
-        projected = run_plan["cost_projection"]["estimated_cost_usd"]
-        if ops.voice_budget_state(date.today().isoformat(), projected) == "halt":
-            raise RuntimeError("budget governor halted live shadow replay")
+        preflight = budget_preflight(
+            run_plan["cost_projection"]["estimated_cost_usd"],
+            bound_usd=bound_usd, day=day or date.today().isoformat(),
+        )
+        if not preflight["cleared"]:
+            raise BudgetPreflightError(
+                "live shadow replay refused by the budget preflight: "
+                f"{', '.join(preflight['blocking_reasons'])}. "
+                f"month-to-date {preflight['month_to_date_usd']} USD, headroom "
+                f"{preflight['headroom_usd']} USD, bound {bound_usd} USD.")
 
     days = _complete_days(days_dir)
     if limit is not None:
@@ -618,6 +778,7 @@ def run(days_dir: Path, *, live: bool = False, allow_api_spend: bool = False,
         "fallback_rate_ceiling": config.SHADOW_FALLBACK_RATE_CEILING,
         "projected_live_cost_usd": run_plan["cost_projection"]["estimated_cost_usd"],
         "actual_cost_usd": candidate_summary["cost_usd"],
+        "budget_preflight": preflight,
         "live": live_summary,
         "candidate": candidate_summary,
         "excluded_party_days": skipped,
