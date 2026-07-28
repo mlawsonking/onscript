@@ -50,6 +50,7 @@ def main() -> int:
 
     out_dir = GOLDSET_DIR / "bundles" / args.sample
     out_dir.mkdir(parents=True, exist_ok=True)
+    written_paths = []
     for annotator in args.annotators:
         ordered = goldset_bundle.annotator_order(candidates, seed, annotator)
         items = [items_by_id[row["candidate_id"]] for row in ordered]
@@ -57,18 +58,35 @@ def main() -> int:
         if args.format in ("app", "both"):
             app_page = goldset_bundle.render_app(
                 items, annotator_id=annotator, sample=args.sample, seed=seed)
-            (out_dir / f"{annotator}.app.html").write_text(app_page, encoding="utf-8")
+            path = out_dir / f"{annotator}.app.html"
+            path.write_text(app_page, encoding="utf-8")
+            written_paths.append(path)
             written.append("app.html")
         if args.format in ("packet", "both"):
             html_page = goldset_bundle.render_html(
                 items, annotator_id=annotator, sample=args.sample, seed=seed)
             csv_sheet = goldset_bundle.render_csv(items)
-            (out_dir / f"{annotator}.packet.html").write_text(html_page, encoding="utf-8")
-            (out_dir / f"{annotator}.answersheet.csv").write_text(csv_sheet, encoding="utf-8")
+            packet_path = out_dir / f"{annotator}.packet.html"
+            sheet_path = out_dir / f"{annotator}.answersheet.csv"
+            packet_path.write_text(html_page, encoding="utf-8")
+            sheet_path.write_text(csv_sheet, encoding="utf-8")
+            written_paths.extend([packet_path, sheet_path])
             written.append("packet.html + answersheet.csv")
         with_support = sum(1 for item in items if item["support"])
         print(f"  {annotator}: {len(items)} items, {with_support} with support set "
               f"-> {', '.join(written)}", flush=True)
+
+    # docs/35 section 10.6 publishes the bundle, so it clears the publication privacy floor
+    # here rather than at the moment someone uploads it.
+    certificate = goldset_bundle.certify_publishable(written_paths)
+    certificate["sample"] = args.sample
+    certificate["seal_hash"] = sample["seal_hash"]
+    (out_dir / "PUBLISH-CHECK.json").write_text(
+        json.dumps(certificate, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8")
+    print(f"publish check: {certificate['files_scanned']} files scanned, "
+          f"{certificate['admitted_forms_found']} admitted forms found, canary "
+          f"{certificate['canary_version']}", flush=True)
     print(f"wrote {out_dir}", flush=True)
     return 0
 

@@ -50,6 +50,36 @@ def test_publishing_calls_still_fail_closed_without_the_salt():
     assert "PRIVACY_SALT" in result.stdout, "the remedy message must survive the lazy path"
 
 
+def test_redaction_fails_closed_without_the_salt_instead_of_a_bare_raise():
+    """redact() was the one gate-touching call the lazy-gate fix missed: it raised on the
+    un-established gate rather than establishing it, so any tool whose first privacy touch is
+    a redaction died with a message naming no remedy. It now takes the same first-use path and
+    refuses with the same full message when the salt is genuinely absent."""
+    result = _run(
+        "import pipeline.privacy as p\n"
+        "try:\n"
+        "    p.redact('some rendered packet text')\n"
+        "except p.PrivacyGateError as e:\n"
+        "    print('GATE REFUSED'); print(str(e)[:80])\n"
+    )
+    assert result.returncode == 0, result.stderr[-500:]
+    assert "GATE REFUSED" in result.stdout
+    assert "PRIVACY_SALT" in result.stdout, "the remedy message must survive the lazy path"
+
+
+def test_redaction_establishes_the_gate_on_first_use_when_a_salt_is_present():
+    """With a salt available, a process whose very first privacy call is redact() works. This
+    is the bundle renderer's exact shape: it redacts before it touches anything else."""
+    result = subprocess.run(
+        [PY, "-c",
+         "import pipeline.privacy as p\n"
+         "text, count = p.redact('public budget policy')\n"
+         "print('REDACT OK', text, count)\n"],
+        cwd=ROOT, env=os.environ.copy(), capture_output=True, text=True, timeout=120)
+    assert result.returncode == 0, result.stderr[-500:]
+    assert "REDACT OK public budget policy 0" in result.stdout
+
+
 def test_a_wrong_salt_still_hits_the_canary_through_the_lazy_path():
     """A salt that does not match the committed form list must refuse at first use with the
     canary-mismatch message. The lazy path preserves every fail-closed branch, including the

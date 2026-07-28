@@ -23,8 +23,9 @@ import gzip
 import html
 import io
 import json
+from pathlib import Path
 
-from . import contracts, post_bluesky, privacy, util
+from . import contracts, post_bluesky, privacy, privacy_canary, util
 
 
 BUNDLE_METHOD_VERSION = "gold-set-bundle-v1"
@@ -311,6 +312,47 @@ def render_app(items: list[dict], *, annotator_id: str, sample: str, seed: str) 
         "<datalist id=\"families\"></datalist>"
         f"<script>{_APP_JS}</script></body></html>"
     )
+
+
+def certify_publishable(paths, *, seed_failure: bool = False) -> dict:
+    """Prove a rendered bundle carries nothing the privacy gate would suppress.
+
+    docs/35 section 10.6 publishes the bundle openly, so it must clear the same floor every
+    public artifact clears. The production canary runs first, through the existing rehearsal
+    entry point, so a broken gate refuses before any file is read as clean. Then every file is
+    scanned with ``contains_admitted_form``, the narrower question: a redaction label is
+    expected in the bundle and is the evidence that a name is absent, so ``is_suppressed``
+    would be the wrong test here.
+    """
+    def _scan() -> list[dict]:
+        report = []
+        for path in paths:
+            raw = Path(path).read_bytes()
+            text = raw.decode("utf-8", errors="replace")
+            report.append({
+                "path": Path(path).name,
+                "bytes": len(raw),
+                "sha256": util.sha256_hex(text),
+                "admitted_form_present": privacy.contains_admitted_form(text),
+            })
+        return report
+
+    canary = privacy_canary.run(seed_failure=seed_failure)
+    files = privacy_canary.publication_rehearsal(_scan)
+    offenders = [row["path"] for row in files if row["admitted_form_present"]]
+    if offenders:
+        raise privacy.PrivacyGateError(
+            f"bundle is not publishable; an admitted name form is present in: {offenders}")
+    return {
+        "schema_version": 1,
+        "method_version": BUNDLE_METHOD_VERSION,
+        "canary_version": canary["canary_version"],
+        "form_list_fingerprint": canary["form_list_fingerprint"],
+        "files": files,
+        "files_scanned": len(files),
+        "admitted_forms_found": 0,
+        "publishable": True,
+    }
 
 
 _CSS = """

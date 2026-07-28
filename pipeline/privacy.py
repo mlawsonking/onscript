@@ -570,8 +570,11 @@ def redact(text):
     label contains no name tokens, so redacting twice is redacting once."""
     if not isinstance(text, str) or not text:
         return text, 0
-    if _SALT is None:
-        raise PrivacyGateError("privacy gate not loaded")
+    # Establish on first use like every other consuming call. load() still raises the full
+    # remedy message when the salt is genuinely absent, so this stays fail-closed; the bare
+    # raise it replaces was the one gate-touching path the 2026-07-28 lazy-gate fix missed,
+    # and it killed any tool whose first privacy touch is a redaction (docs/37 rule 4).
+    _require_gate()
     _ensure_generation()
     cacheable = len(text) <= _TEXT_MEMO_MAXLEN
     if cacheable:
