@@ -66,6 +66,8 @@ NON_INSTRUMENT_METHOD_MODULES = {
     "goldset_bundle": "offline gold-set bundle builder, not a daily published surface",
     "goldset_metrics": "offline gold-set evaluation metrics, not a daily published surface",
     "goldset_sample": "offline gold-set sampling, not a daily published surface",
+    "goldset_single": "offline single-human-rater intake, not a daily published surface",
+    "goldset_rater": "offline gold-set model rater, not a daily published surface",
 }
 
 # Schema-version entries import from their owning modules. Every entry has an owner.
