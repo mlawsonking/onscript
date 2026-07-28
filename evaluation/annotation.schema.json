@@ -9,8 +9,12 @@
     "schema_version": {"const": 1},
     "candidate_id": {"type": "string", "minLength": 1},
     "annotator_id": {"type": "string", "minLength": 1},
-    "gold_class": {"enum": ["message", "nomenclature", "procedural", "biographical", "private"]},
+    "gold_class": {"enum": ["message", "unknown", "nomenclature", "procedural", "biographical", "private"]},
     "gold_family_id": {"type": "string", "minLength": 1},
+    "phrase_complete": {"type": "boolean"},
+    "proposition_consistent": {"type": "boolean"},
+    "stance": {"enum": ["affirmative", "negated", "mixed"]},
+    "claim_supported": {"type": "boolean"},
     "notes": {"type": "string"}
   }
 }
