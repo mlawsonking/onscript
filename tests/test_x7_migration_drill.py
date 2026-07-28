@@ -16,8 +16,12 @@ COMMITTED_EVIDENCE = ROOT / "data" / "reference" / "x7-migration-manifest.json"
 
 
 def test_real_committed_cycle_generates_complete_migration_evidence():
+    # Against the LIVE manifests tree, so the day advances as production publishes. The invariant
+    # is that a complete cycle always exists and builds well-formed evidence, never which day it
+    # is: pinning the day here broke the suite the first time production moved past the recording
+    # (rebase onto the 2026-07-27 data commits, found at X-validation).
     evidence = migration_evidence.build_manifest(MANIFESTS, repository_root=ROOT)
-    assert evidence["production_day"] == "2026-07-24"
+    assert evidence["production_day"] >= "2026-07-24"
     assert evidence["migration_state"] == "completed"
     assert evidence["checks"]["collect"] == {
         "degraded": False, "alerts": [], "anomalously_low": False,
@@ -31,11 +35,22 @@ def test_real_committed_cycle_generates_complete_migration_evidence():
         assert row["sha256"] == hashlib.sha256(source.read_bytes()).hexdigest()
 
 
-def test_committed_migration_evidence_matches_recorded_cycle():
-    expected = migration_evidence.canonical_bytes(
-        migration_evidence.build_manifest(MANIFESTS, repository_root=ROOT)
-    )
-    assert COMMITTED_EVIDENCE.read_bytes() == expected
+def test_committed_migration_evidence_is_a_valid_pinned_record():
+    """The committed evidence is a HISTORICAL record of the W1-W11 migration cycle. It is pinned
+    to 2026-07-24 forever and is never compared against the live tree: manifests it names evolve
+    legitimately (RUN C re-authenticates the post archive), and the latest complete cycle moves
+    daily. Rebuilding it from the live tree and asserting byte equality made every future
+    production commit a suite failure, which is how this replaced the original at X-validation."""
+    data = json.loads(COMMITTED_EVIDENCE.read_text(encoding="utf-8"))
+    assert data["production_day"] == "2026-07-24"
+    assert data["migration_state"] == "completed"
+    assert migration_evidence.canonical_bytes(data) == COMMITTED_EVIDENCE.read_bytes(), \
+        "the pinned record must stay in canonical form"
+    for stage in ("collect", "assemble", "post"):
+        row = data["evidence"][stage]
+        assert set(row) >= {"path", "sha256"}
+        assert len(row["sha256"]) == 64 and int(row["sha256"], 16) >= 0
+    assert data["checks"]["post"]["party_posted"] == {"D": True, "R": True}
 
 
 def test_incomplete_cycle_is_not_migration_evidence():
