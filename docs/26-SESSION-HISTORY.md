@@ -2363,3 +2363,30 @@ direction (S2.9, out-party names the president more) reproduces on the CREC Exte
 naming family, so pre-2013 naming claims do NOT advance to publication (the calibration law working; the
 verdict is press-only, stated, and a publishable methods card). Delivered on the branch; the SD.8 verdict
 is the decision Michael carries back.
+
+## 2026-07-27: Session 52 (Fable). X delivery validated and merged; Deep Archive branch integrated
+
+The Codex X delivery (X1-X15, branch codex/x-packages) validated clean: fifteen ordered
+commits from exact base 085184e, suite 647/0 reproduced independently, zero forbidden-path
+changes, zero pre-existing tests modified, prompt pins untouched, zero added em dashes,
+seven deviations all disclosed and sound. The X7 restore drill caught real nondeterminism
+(generated_at sampled per pass in awards.json and concordance.json) and repaired it with
+production stamping unchanged; the repaired drill proved byte identity at production scale.
+One validator fix at merge: the X7 migration-evidence tests coupled the committed record to
+the live manifests tree, which broke on rebase over the 2026-07-27 data commits and would
+have broken again at every future cycle. The committed evidence now validates as a pinned
+canonical record of the 2026-07-24 migration cycle, and the live-tree test asserts a
+complete cycle exists without pinning the day.
+
+The Opus Deep Archive delivery (opus/deep-archive, Session 51) integrated cleanly on top:
+CREC shards 111/112/117-119 built and audited, the R-S50.1 three-lane substrate complete
+with exact-partition acceptance, SD.8 frozen then measured to HELD (CREC Extensions not
+calibrated for the naming family; pre-2013 naming publication stays gated). Its footprint
+was verified: site untouched, data/derived limited to the CREC audits and SD.8 result that
+docs/15 requires committed. Combined suite 653/0. Merged fast-forward and pushed in one
+stack.
+
+Next: the first production cycle on the X code deploys the index removal, participation
+measures, fail-closed classification, corrected surges, and status surfaces. The 07-25
+force-finalize lands at the Tuesday morning pass. Remaining operator items ride docs/33
+section 4 and tasks #105/#110/#198/#203/#204.
