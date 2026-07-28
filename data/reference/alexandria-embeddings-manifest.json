@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "method_version": "alexandria-embed-manifest-v1",
+  "embed_method_version": "alexandria-embed-v1",
+  "store_root": "X:\\onscript-data\\alexandria\\embeddings",
+  "model": {
+    "id": [
+      "sentence-transformers/all-MiniLM-L6-v2"
+    ],
+    "revision": [
+      "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    ],
+    "dimension": [
+      384
+    ],
+    "storage_dtype": [
+      "float16"
+    ],
+    "compute_dtype": "float32",
+    "normalized": true
+  },
+  "lanes": {
+    "press": {
+      "shards_complete": 6,
+      "shards_expected": 13,
+      "congresses_missing": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      "rows": 2371,
+      "gate_units": 684853,
+      "out_of_scope_units": {},
+      "expected_units": 684853,
+      "delta": -682482,
+      "complete": false,
+      "shards": [
+        {
+          "congress": 107,
+          "rows": 94,
+          "id_list_sha256": "37908d515dcb79399fbf81fca346b439ddcc170f9a9fb2a22e1261c58b44ebb6",
+          "dimension": 384,
+          "wall_seconds": 20.525,
+          "vectors_bytes": 72320,
+          "ids_bytes": 21234
+        },
+        {
+          "congress": 108,
+          "rows": 288,
+          "id_list_sha256": "8449f3a537100ecf6c3965b033e633199ec3546afd211c8ea87e13c8bc7a04f4",
+          "dimension": 384,
+          "wall_seconds": 22.218,
+          "vectors_bytes": 221312,
+          "ids_bytes": 65266
+        },
+        {
+          "congress": 109,
+          "rows": 273,
+          "id_list_sha256": "2bd175b762f29b022638070e84db88f98dbee9d283b617ef02625c8d817fe558",
+          "dimension": 384,
+          "wall_seconds": 22.931,
+          "vectors_bytes": 209792,
+          "ids_bytes": 61861
+        },
+        {
+          "congress": 110,
+          "rows": 264,
+          "id_list_sha256": "f7fdec303d0a1accdb17938ccb3ea0eb557d838e54a54e09091e16bc5f257f79",
+          "dimension": 384,
+          "wall_seconds": 22.004,
+          "vectors_bytes": 202880,
+          "ids_bytes": 59818
+        },
+        {
+          "congress": 111,
+          "rows": 608,
+          "id_list_sha256": "d69b0fb83c57d00ad629033769ce109b7a645e8793d32e4e483ed526a1aeeb61",
+          "dimension": 384,
+          "wall_seconds": 24.245,
+          "vectors_bytes": 467072,
+          "ids_bytes": 138168
+        },
+        {
+          "congress": 112,
+          "rows": 844,
+          "id_list_sha256": "f2316d3ab2d326c26135e22e191b9956eb14fe81d0f0a362e52787a0f035357e",
+          "dimension": 384,
+          "wall_seconds": 27.493,
+          "vectors_bytes": 648320,
+          "ids_bytes": 191950
+        }
+      ]
+    },
+    "crec": {
+      "shards_complete": 13,
+      "shards_expected": 13,
+      "congresses_missing": [],
+      "rows": 152172,
+      "gate_units": 152187,
+      "out_of_scope_units": {
+        "congress_106_boundary_sliver": 15
+      },
+      "expected_units": 152172,
+      "delta": 0,
+      "complete": true,
+      "shards": [
+        {
+          "congress": 107,
+          "rows": 11854,
+          "id_list_sha256": "902ea3195a715c5ad37510090496139cc6eee0ad18e9597fbc4646012accf0ed",
+          "dimension": 384,
+          "wall_seconds": 17.676,
+          "vectors_bytes": 9104000,
+          "ids_bytes": 2346312
+        },
+        {
+          "congress": 108,
+          "rows": 13560,
+          "id_list_sha256": "00dcfcab685e96178a13075460488dda97521679b4c6295536d3c5abdb802870",
+          "dimension": 384,
+          "wall_seconds": 19.559,
+          "vectors_bytes": 10414208,
+          "ids_bytes": 2686442
+        },
+        {
+          "congress": 109,
+          "rows": 13855,
+          "id_list_sha256": "ce71d164c61f8e66756fce7a6ed00889e72e3bb3070474d6ada2c605e74b6c27",
+          "dimension": 384,
+          "wall_seconds": 20.081,
+          "vectors_bytes": 10640768,
+          "ids_bytes": 2745192
+        },
+        {
+          "congress": 110,
+          "rows": 15301,
+          "id_list_sha256": "28844224a5304499324ad17440762c9daeb68047f7336eecfa9dcabccca7c5b7",
+          "dimension": 384,
+          "wall_seconds": 21.367,
+          "vectors_bytes": 11751296,
+          "ids_bytes": 3033535
+        },
+        {
+          "congress": 111,
+          "rows": 15747,
+          "id_list_sha256": "2137b3bd16dadc1ddfebed6def293f6e3f1d1768bc04abdb578750c817c422c8",
+          "dimension": 384,
+          "wall_seconds": 23.47,
+          "vectors_bytes": 12093824,
+          "ids_bytes": 3123450
+        },
+        {
+          "congress": 112,
+          "rows": 13354,
+          "id_list_sha256": "9a45e2829a07d3b4e502dc4863550012e851e24f0dd56a1850593eee4c1f361e",
+          "dimension": 384,
+          "wall_seconds": 19.815,
+          "vectors_bytes": 10256000,
+          "ids_bytes": 2646065
+        },
+        {
+          "congress": 113,
+          "rows": 11711,
+          "id_list_sha256": "9f6730888f38f4e0b9c9dda56dfdf88ea92696563af5ea3f071c777de415ddab",
+          "dimension": 384,
+          "wall_seconds": 17.061,
+          "vectors_bytes": 8994176,
+          "ids_bytes": 2318310
+        },
+        {
+          "congress": 114,
+          "rows": 12453,
+          "id_list_sha256": "14c4c6875850189a83d9961048255428a606d49a99aa80c72829e3848cfa2553",
+          "dimension": 384,
+          "wall_seconds": 16.969,
+          "vectors_bytes": 9564032,
+          "ids_bytes": 2466115
+        },
+        {
+          "congress": 115,
+          "rows": 12005,
+          "id_list_sha256": "edd6d4f112e77a53817dfb65db014221c984cf051c087dbb193cbab7c8176950",
+          "dimension": 384,
+          "wall_seconds": 16.848,
+          "vectors_bytes": 9219968,
+          "ids_bytes": 2377119
+        },
+        {
+          "congress": 116,
+          "rows": 9171,
+          "id_list_sha256": "b5072ccb39c5aabe549f9b68ac9d323e325cf76ad21f8520b7a5d31a9d8bbf2d",
+          "dimension": 384,
+          "wall_seconds": 9.978,
+          "vectors_bytes": 7043456,
+          "ids_bytes": 1812795
+        },
+        {
+          "congress": 117,
+          "rows": 8369,
+          "id_list_sha256": "3aa47a8a13204572b90f21e462b672bbeddaa8fd3e7ee61f0304b6fff07414c4",
+          "dimension": 384,
+          "wall_seconds": 9.302,
+          "vectors_bytes": 6427520,
+          "ids_bytes": 1653826
+        },
+        {
+          "congress": 118,
+          "rows": 8630,
+          "id_list_sha256": "73d78f53d9176f7471c309bc465ddae9a7b54e877e1571a8dbf83ab27bc69a87",
+          "dimension": 384,
+          "wall_seconds": 9.599,
+          "vectors_bytes": 6627968,
+          "ids_bytes": 1705162
+        },
+        {
+          "congress": 119,
+          "rows": 6162,
+          "id_list_sha256": "f25d605ff513a5e560881ecac65fc5d1f6ffea69d12f8bd36d9aaee156f35b5a",
+          "dimension": 384,
+          "wall_seconds": 6.747,
+          "vectors_bytes": 4732544,
+          "ids_bytes": 1216385
+        }
+      ]
+    }
+  },
+  "rows_total": 154543,
+  "gate_total": 837040,
+  "expected_total": 837025,
+  "delta_total": -682482,
+  "out_of_scope_total": {
+    "crec": {
+      "congress_106_boundary_sliver": 15
+    }
+  },
+  "wall_seconds_total": 347.888,
+  "determinism_spot_checks": [
+    {
+      "lane": "press",
+      "congress": 107,
+      "rows_reencoded": 94,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "press",
+      "congress": 108,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.1362135410308838e-07
+    },
+    {
+      "lane": "press",
+      "congress": 109,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.3969838619232178e-07
+    },
+    {
+      "lane": "press",
+      "congress": 110,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.1920928955078125e-07
+    },
+    {
+      "lane": "press",
+      "congress": 111,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "press",
+      "congress": 112,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 107,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 108,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 109,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 110,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 111,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.4156103134155273e-07
+    },
+    {
+      "lane": "crec",
+      "congress": 112,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 113,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.2665987014770508e-07
+    },
+    {
+      "lane": "crec",
+      "congress": 114,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.434236764907837e-07
+    },
+    {
+      "lane": "crec",
+      "congress": 115,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.3131648302078247e-07
+    },
+    {
+      "lane": "crec",
+      "congress": 116,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 117,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    },
+    {
+      "lane": "crec",
+      "congress": 118,
+      "rows_reencoded": 256,
+      "max_abs_delta": 1.3224780559539795e-07
+    },
+    {
+      "lane": "crec",
+      "congress": 119,
+      "rows_reencoded": 256,
+      "max_abs_delta": 0.0
+    }
+  ],
+  "determinism_worst_max_abs_delta": 1.434236764907837e-07,
+  "complete": false,
+  "resume_command": "C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe scripts/deep/alexandria_embed.py",
+  "reconciliation_command": "python scripts/deep/alexandria_stage2_verify.py",
+  "reconciliation_basis": "docs/34 section 1 gates 684,853 press statements and 152,187 CREC E-statements. The pass covers congresses 107 through 119, so the 15 CREC rows dated to congress 106 are out of scope and named in out_of_scope_units. A non-zero delta against expected_units means the vector store and the ledger describe different corpora."
+}

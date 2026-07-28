@@ -192,12 +192,25 @@ def press_units(congress: int):
         }
 
 
+def crec_files_for(congress: int, e_dir: Path) -> list[Path]:
+    """The CREC year files a Congress can touch. Same reasoning as mirror_files_for.
+
+    The E lane is one file per calendar year, 2001 through 2026, and a Congress spans three of
+    them at most. Reading all 26 for each of 13 Congresses is the same wasted-scan shape the
+    press reader had.
+    """
+    start_year = 2001 + 2 * (congress - 107)
+    wanted = {f"statements-{year}.jsonl"
+              for year in (start_year - 1, start_year, start_year + 1, start_year + 2)}
+    return [path for path in sorted(e_dir.glob("statements-*.jsonl")) if path.name in wanted]
+
+
 def crec_units(congress: int):
     """CREC Extensions E-statements for one Congress, from the deep lane state on X:."""
     e_dir = lanes.lane_state("crec") / "E"
     if not e_dir.exists():
         return
-    for path in sorted(e_dir.glob("statements-*.jsonl")):
+    for path in crec_files_for(congress, e_dir):
         for row in util.iter_jsonl(path):
             found = row.get("congress") or _congress_of(
                 (row.get("unit_date") or row.get("published_at") or "")[:10])

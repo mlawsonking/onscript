@@ -122,6 +122,24 @@ def test_the_windowed_reader_selects_the_same_records_as_a_full_scan():
         f"the file window changed which statements are embedded: {len(windowed)} vs {len(full)}")
 
 
+def test_the_crec_window_covers_a_congress_and_is_not_the_whole_lane():
+    """The CREC E lane is one file per calendar year; a Congress spans at most three of 26."""
+    from pipeline.deep import lanes
+
+    e_dir = lanes.lane_state("crec") / "E"
+    if not e_dir.is_dir() or not any(e_dir.glob("statements-*.jsonl")):
+        return
+    total = len(list(e_dir.glob("statements-*.jsonl")))
+    for congress in (108, 113, 119):
+        names = {path.name for path in embed.crec_files_for(congress, e_dir)}
+        start = 2001 + 2 * (congress - 107)
+        assert len(names) < total, "the window is the whole lane, so it saves nothing"
+        for year in (start, start + 1):
+            required = f"statements-{year}.jsonl"
+            if (e_dir / required).is_file():
+                assert required in names, f"congress {congress} window drops {required}"
+
+
 def test_the_id_list_address_is_row_ordered_and_order_sensitive():
     rows = [{"stable_id": "a"}, {"stable_id": "b"}]
     assert embed.id_list_sha256(rows) == embed.id_list_sha256([{"stable_id": "a"},

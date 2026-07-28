@@ -44,6 +44,10 @@ data/reference/*
 # texts hash to this file, so an edited candidate prompt cannot spend money under the identity of the
 # prompt that was frozen (docs/33 R-33.6).
 !data/reference/replay-registration.json
+# ...and the Alexandria embedding verification manifest. The 837,040 vectors live on X: and never
+# enter the repository, so this manifest is the only checkable claim about them: row counts,
+# id-list content addresses, model identity, and the resume command (docs/34 §3.4).
+!data/reference/alexandria-embeddings-manifest.json
 
 # Session scratch. Canon has assumed since Session 18 that this was already ignored ("scratchpad is
 # gitignored -> gone on re-clone") — it was NOT, and `git add -A` would have staged 21 files including
