@@ -68,6 +68,8 @@ NON_INSTRUMENT_METHOD_MODULES = {
     "goldset_sample": "offline gold-set sampling, not a daily published surface",
     "goldset_single": "offline single-human-rater intake, not a daily published surface",
     "goldset_rater": "offline gold-set model rater, not a daily published surface",
+    "replay_report": "offline R-33.6 comparison report renderer, not a daily published surface; "
+                     "the replay method it reports on is registered as shadow_replay",
 }
 
 # Schema-version entries import from their owning modules. Every entry has an owner.
