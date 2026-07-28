@@ -140,6 +140,26 @@ def _congress_of(day: str):
     return util.congress_for_date(day) if len(day or "") == 10 else None
 
 
+def mirror_files_for(congress: int) -> list[Path]:
+    """The mirror shards that can hold a Congress, by filename, not by reading them.
+
+    The mirror is 2.38 GB of month-named JSONL on X:, and a Congress spans about 25 of its 303
+    files. Scanning all 303 once per Congress meant reading roughly 31 GB across the corpus,
+    which is what actually dominated the first run: the GPU sat mostly idle behind disk. The
+    file name carries the month, so the range is decidable without opening anything. The
+    per-record congress filter below is unchanged, so the boundary months are still admitted or
+    rejected one record at a time and the selected set is identical.
+    """
+    # A Congress seats on Jan 3 of start_year and ends Jan 2 two years later, so the year before
+    # and the year after are both in play at the boundaries. The window is deliberately generous:
+    # a month too many costs one file read, a month too few loses statements.
+    start_year = 2001 + 2 * (congress - 107)
+    wanted = {f"{year}-{month:02d}.jsonl"
+              for year in (start_year - 1, start_year, start_year + 1, start_year + 2)
+              for month in range(1, 13)}
+    return [path for path in sorted(fetch.MIRROR.glob("*.jsonl")) if path.name in wanted]
+
+
 def press_units(congress: int):
     """Normalized press statements for one Congress, each carrying its date_source lane.
 
@@ -149,7 +169,7 @@ def press_units(congress: int):
     """
     raw = []
     source_by_id = {}
-    for path in sorted(fetch.MIRROR.glob("*.jsonl")):
+    for path in mirror_files_for(congress):
         for record in util.iter_jsonl(path):
             day = (record.get("date") or "")[:10]
             if _congress_of(day) != congress:

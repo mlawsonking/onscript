@@ -77,6 +77,51 @@ def test_resume_treats_a_shard_as_done_only_when_its_manifest_says_complete():
         assert embed.shard_complete("press", 113, root) is True
 
 
+def test_the_mirror_window_covers_a_congress_with_room_at_both_boundaries():
+    """The reader opens ~48 of 303 mirror files per Congress instead of all of them.
+
+    Scanning the whole 2.38 GB mirror once per Congress meant about 31 GB of reads across the
+    corpus, and that disk time, not the GPU, dominated the first run. The window is decided from
+    file names alone. It must still contain every month a Congress can touch: a Congress seats
+    Jan 3 of its start year and ends Jan 2 two years later, so December before and January after
+    are both in play.
+    """
+    for congress in (107, 113, 119):
+        names = {path.name for path in embed.mirror_files_for(congress)}
+        start = 2001 + 2 * (congress - 107)
+        for required in (f"{start - 1}-12.jsonl", f"{start}-01.jsonl", f"{start}-12.jsonl",
+                         f"{start + 1}-01.jsonl", f"{start + 1}-12.jsonl",
+                         f"{start + 2}-01.jsonl"):
+            if (embed.fetch.MIRROR / required).is_file():
+                assert required in names, f"congress {congress} window drops {required}"
+        assert f"{start - 2}-06.jsonl" not in names, "the window is wider than it needs to be"
+
+
+def test_the_windowed_reader_selects_the_same_records_as_a_full_scan():
+    """Proven against a real Congress rather than a fixture, on the smallest one.
+
+    Skipped when the raw mirror is absent, because it is a Release asset and not every checkout
+    carries it. Where it exists this is the check that matters: the optimisation must not change
+    which statements get embedded.
+    """
+    if not embed.fetch.MIRROR.is_dir() or not any(embed.fetch.MIRROR.glob("*.jsonl")):
+        return
+    congress = 107
+    windowed = {unit["stable_id"] for unit in embed.press_units(congress)
+                if (unit.get("text") or "").strip()}
+    full = set()
+    for path in sorted(embed.fetch.MIRROR.glob("*.jsonl")):
+        for record in embed.util.iter_jsonl(path):
+            day = (record.get("date") or "")[:10]
+            if len(day) != 10 or embed.util.congress_for_date(day) != congress:
+                continue
+            url, text = (record.get("url") or "").strip(), record.get("text") or ""
+            if url and text.strip():
+                full.add(embed.util.statement_id(url, text))
+    assert windowed == full, (
+        f"the file window changed which statements are embedded: {len(windowed)} vs {len(full)}")
+
+
 def test_the_id_list_address_is_row_ordered_and_order_sensitive():
     rows = [{"stable_id": "a"}, {"stable_id": "b"}]
     assert embed.id_list_sha256(rows) == embed.id_list_sha256([{"stable_id": "a"},
