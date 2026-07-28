@@ -745,7 +745,15 @@ def run(days_dir: Path, *, live: bool = False, allow_api_spend: bool = False,
         if day_eligible:
             eligible_days += 1
 
-    scored_days = len({row["day"] for row in rows})
+    # A day counts toward the complete-days minimum only when BOTH party lanes were actually
+    # scored in this run. Counting eligible days against scored party-days would let a run
+    # restricted with `only` to a single lane report a whole day of gate progress.
+    scored_by_day: dict[str, set] = {}
+    for row in rows:
+        scored_by_day.setdefault(row["day"], set()).add(row["party"])
+    scored_days = len(scored_by_day)
+    complete_scored_days = sum(1 for parties in scored_by_day.values()
+                               if parties >= set(config.COMPOSITE_PARTIES))
     live_summary = _summary(rows, "live")
     candidate_summary = _summary(rows, "candidate")
     zero_tolerance = (
@@ -755,7 +763,7 @@ def run(days_dir: Path, *, live: bool = False, allow_api_spend: bool = False,
     )
     rate = candidate_summary["fallback_rate"]
     fallback_pass = rate is not None and rate <= config.SHADOW_FALLBACK_RATE_CEILING
-    progress = gate_progress(eligible_days, len(rows))
+    progress = gate_progress(complete_scored_days, len(rows))
     return {
         "schema_version": 2,
         "method_version": METHOD_VERSION,

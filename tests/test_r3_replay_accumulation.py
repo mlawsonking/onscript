@@ -128,6 +128,24 @@ def test_gate_progress_is_measured_on_evidence_not_on_eligibility():
         assert status["gate_progress"]["passed"] is False
 
 
+def test_replaying_one_party_lane_never_counts_a_whole_day_of_gate_progress():
+    """The accumulator can be restricted to a single lane, so the day count must not follow.
+
+    Days come back one lane at a time when a partial run is resumed. If the complete-days
+    minimum counted eligible days rather than days where BOTH lanes were actually scored, a
+    one-lane run would report a full day of progress against the 60-day minimum.
+    """
+    day, party = shadow_replay.pending(DAYS, None)[0] if shadow_replay.pending(DAYS, None) else (
+        None, None)
+    assert day, "no eligible party-day to restrict"
+    one = shadow_replay.run(DAYS, only={(day, party)})
+    assert one["gate_progress"]["party_days"]["observed"] == 1
+    assert one["gate_progress"]["complete_days"]["observed"] == 0
+    both = shadow_replay.run(DAYS)
+    assert both["gate_progress"]["complete_days"]["observed"] == 1
+    assert both["gate_progress"]["party_days"]["observed"] == 2
+
+
 def test_the_dry_accumulator_writes_no_evidence_and_spends_nothing():
     with tempfile.TemporaryDirectory() as raw:
         root = Path(raw)
