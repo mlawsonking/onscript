@@ -129,6 +129,42 @@ implements:
 The tags are a computation, not prose. They never touch the chapter voice and never bypass the
 verifier for anything published.
 
+## 4a. The topic-tag run command (prepared, not run)
+
+The script and its frozen instrument are committed. The pass has not been started and starting it is
+a separate operator act. Two prerequisites, neither of which this session performed:
+
+1. A local 8-14B instruct model must be served on an OpenAI-compatible endpoint. The frozen config
+   names `qwen2.5-14b-instruct` at `http://localhost:1234/v1/chat/completions`, which is LM Studio's
+   default server. LM Studio is installed at `X:\LLAMA\LM Studio`; as of 2026-07-28 no model is
+   present in its library, so the model must be pulled before the endpoint answers.
+2. If the model id or the endpoint changes, re-freeze the config. The script fails closed against
+   `data/reference/alexandria-topic-tag.json` and refuses to generate on drift, so an edited prompt
+   or a swapped model cannot silently produce tags that a manifest then attributes to the frozen
+   instrument.
+
+Inspect the frozen instrument without generating anything (this is what the script does by default):
+
+```bash
+python scripts/deep/alexandria_topic_tag.py
+```
+
+Run the pass, once both prerequisites hold:
+
+```bash
+python scripts/deep/alexandria_topic_tag.py --allow-local-generation --report topic-tag-report.json
+```
+
+`--allow-local-generation` is required and has no default. Resume is per (lane, congress) exactly as
+the embedding pass: a shard whose manifest reports complete is skipped, so an interrupted run is
+restarted with the same command.
+
+Why it stops here rather than running with the embeddings: the constitutional line in docs/03
+section 1.4 is that a local model may compute but never write voice, and the distance between a
+classification and a generation is a matter of how the output is used. Vectors cannot be mistaken
+for prose. A 14B model's free text can. Leaving the tagger prepared and unrun keeps that boundary an
+operator decision with a named owner rather than a side effect of an embedding session.
+
 ## 5. Non-interference and safety
 
 - Read-only on `data/raw/congress-press` and the CREC state; writes go only to X:
