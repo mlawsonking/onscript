@@ -36,6 +36,10 @@ data/reference/*
 # the tagger is silently dead in Actions (docs/16 §4).
 !data/reference/nomenclature/
 !data/reference/nomenclature/*.json
+# ...and the frozen Alexandria topic-tag instrument. The tagging script fails closed against it, so an
+# uncommitted config means the pass cannot start at all and its manifests could not be checked against
+# the instrument that was frozen before them (docs/34 §4).
+!data/reference/alexandria-topic-tag.json
 
 # Session scratch. Canon has assumed since Session 18 that this was already ignored ("scratchpad is
 # gitignored -> gone on re-clone") — it was NOT, and `git add -A` would have staged 21 files including

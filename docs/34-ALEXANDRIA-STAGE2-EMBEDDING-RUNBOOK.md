@@ -74,9 +74,25 @@ because the comparison an exhibit later runs is only valid within one lane:
 Model: `sentence-transformers/all-MiniLM-L6-v2`, 384-dimensional, the model named in docs/02 R10. It
 runs in minutes on the 4080 for the whole corpus.
 
-Reference procedure (build this as `scripts/deep/alexandria_embed.py` when the run is scheduled; it is
-specified here, not committed, because it pulls the torch/sentence-transformers stack and cannot be
-tested on this box without the GPU):
+Committed as `scripts/deep/alexandria_embed.py` (Opus, Session 59, 2026-07-28). The torch and
+sentence-transformers stack it needs lives in a dedicated virtual environment OUTSIDE this repository,
+so `requirements.lock` stays empty of third-party runtime dependencies and the daily pipeline never
+inherits a GPU dependency. The script imports that stack lazily and prints where it lives if it is
+missing, which is why the repository suite imports the module on a box with no GPU stack at all.
+
+Create the environment once:
+
+```bash
+C:\ProgramData\miniconda3\python.exe -m venv --system-site-packages C:/Users/bobdo/venvs/onscript-embed
+C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe -m pip install sentence-transformers==3.4.1
+```
+
+`--system-site-packages` is deliberate: the box's conda base already carries a working
+`torch 2.6.0+cu124` against the installed driver, so the environment adds only the encoder layer
+instead of downloading a second multi-gigabyte CUDA build. Nothing in it is ever imported by
+`pipeline/`.
+
+The procedure the script implements:
 
 1. Stream the statement text and its (stable_id, congress, lane) for each lane. Press text is the
    normalized statement text (the same unit the ledger counts); CREC text is the E-statement `text`.
@@ -98,7 +114,10 @@ Model: a local 8-14B instruct model (docs/03 section 1.4), temperature 0, one to
 the committed `taxonomy_v1.json` label set (the same 25 topics the silence board and the daily pipeline
 use, so the historical layer and the live layer share one vocabulary). $0, local.
 
-Reference procedure (build as `scripts/deep/alexandria_topic_tag.py` when scheduled):
+Committed as `scripts/deep/alexandria_topic_tag.py` with its frozen instrument at
+`data/reference/alexandria-topic-tag.json` (Opus, Session 59, 2026-07-28). The script is PREPARED and
+NOT RUN; section 6a states the run command and what an operator must do first. The procedure it
+implements:
 
 1. For each statement, prompt the model with the text and the fixed taxonomy label list; require a
    single label from that list (or `other`), parsed deterministically.
