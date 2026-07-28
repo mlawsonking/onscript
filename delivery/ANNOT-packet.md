@@ -147,22 +147,33 @@ Files:
 - `scripts/goldset_bundle.py`
 - `tests/test_goldset_bundle.py`
 
-Command:
+Commands:
 
 ```text
 C:\ProgramData\miniconda3\python.exe scripts\goldset_bundle.py pilot
+C:\ProgramData\miniconda3\python.exe scripts\goldset_bundle.py pilot --format app
 ```
 
-Acceptance: the generator renders each annotator a self-contained HTML packet (inline CSS, no
-external asset reference, works offline) and a CSV answer sheet keyed by candidate ID. Each
-item shows the candidate phrase, the full sentence, one sentence before and after, the release
-title, the office, the date, and, for items with a support set, the offices carrying the same
-phrase. It hides the predicted class, rankings, surge scores, publication decisions, and
-correction history. Item order is randomized per annotator with a recorded seed. Verified on
-the sealed pilot: two annotators, 200 items each, 196 with support sets, valid UTF-8, no
-external URL, no admitted private-person form, and none of the machine-signal fields present.
+Acceptance: the generator renders each annotator two shared-context outputs. The read-only
+packet is a self-contained HTML page (inline CSS, no external asset reference, works offline)
+paired with a CSV answer sheet keyed by candidate ID. The interactive app (`--format app`) is a
+single offline HTML file where the annotator clicks the surface class, assigns a document
+family, and sets the four optional tasks, with autosave and resume in the browser and one-click
+export to the same CSV the intake tool ingests. Both show the candidate phrase, the full
+sentence, one sentence before and after, the release title, the office, the date, and, for
+items with a support set, the offices carrying the same phrase. Both hide the predicted class,
+rankings, surge scores, publication decisions, and correction history. Item order is randomized
+per annotator with a recorded seed.
+
+Verified on the sealed pilot: two annotators, 200 items each, 196 with support sets, valid
+UTF-8, no external URL, no admitted private-person form, none of the machine-signal fields
+present. The interactive app was exercised in a browser: 200 cards render from the embedded
+data, class selection and the toggle-off behavior work, the family input and stance and boolean
+tasks persist to localStorage and resume on reload, the progress counter reflects fully labeled
+items, and the export produces the exact answer-sheet header and rows.
 `tests/test_goldset_bundle.py` proves neighbor extraction, context masking, family-deduplicated
-support sets, the redacted-phrase skip, per-annotator order determinism, self-containment, the
+support sets, the redacted-phrase skip, per-annotator order determinism, self-containment of
+both the packet and the app, the app's embedded-data round trip and closing-tag escape, the
 answer-sheet columns, and HTML escaping.
 
 ### A4. Intake and metrics tooling

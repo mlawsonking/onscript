@@ -32,6 +32,8 @@ def main() -> int:
     parser.add_argument("--annotators", nargs="+", default=["ann-a", "ann-b"])
     parser.add_argument("--seed", default=None,
                         help="Order seed; defaults to the sealed sample seed plus '-order'.")
+    parser.add_argument("--format", choices=["app", "packet", "both"], default="both",
+                        help="app: interactive click app; packet: read-only HTML + CSV; both.")
     args = parser.parse_args()
 
     sample = json.loads((GOLDSET_DIR / f"{args.sample}.sample.json").read_text(encoding="utf-8"))
@@ -51,13 +53,22 @@ def main() -> int:
     for annotator in args.annotators:
         ordered = goldset_bundle.annotator_order(candidates, seed, annotator)
         items = [items_by_id[row["candidate_id"]] for row in ordered]
-        html_page = goldset_bundle.render_html(
-            items, annotator_id=annotator, sample=args.sample, seed=seed)
-        csv_sheet = goldset_bundle.render_csv(items)
-        (out_dir / f"{annotator}.packet.html").write_text(html_page, encoding="utf-8")
-        (out_dir / f"{annotator}.answersheet.csv").write_text(csv_sheet, encoding="utf-8")
+        written = []
+        if args.format in ("app", "both"):
+            app_page = goldset_bundle.render_app(
+                items, annotator_id=annotator, sample=args.sample, seed=seed)
+            (out_dir / f"{annotator}.app.html").write_text(app_page, encoding="utf-8")
+            written.append("app.html")
+        if args.format in ("packet", "both"):
+            html_page = goldset_bundle.render_html(
+                items, annotator_id=annotator, sample=args.sample, seed=seed)
+            csv_sheet = goldset_bundle.render_csv(items)
+            (out_dir / f"{annotator}.packet.html").write_text(html_page, encoding="utf-8")
+            (out_dir / f"{annotator}.answersheet.csv").write_text(csv_sheet, encoding="utf-8")
+            written.append("packet.html + answersheet.csv")
         with_support = sum(1 for item in items if item["support"])
-        print(f"  {annotator}: {len(items)} items, {with_support} with support set", flush=True)
+        print(f"  {annotator}: {len(items)} items, {with_support} with support set "
+              f"-> {', '.join(written)}", flush=True)
     print(f"wrote {out_dir}", flush=True)
     return 0
 

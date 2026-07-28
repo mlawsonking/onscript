@@ -107,3 +107,43 @@ def test_highlight_escapes_html_and_marks_phrase():
     out = gb._highlight("We back <b>the plan</b> and the plan works", "the plan")
     assert "&lt;b&gt;" in out           # escaped, not raw tag
     assert "<mark>the plan</mark>" in out
+
+
+def test_render_app_is_self_contained_and_hides_machine_signals():
+    app = gb.render_app([_sample_item()], annotator_id="ann-a", sample="pilot", seed="s")
+    assert app.startswith("<!doctype html>")
+    # No external asset references.
+    assert "http://" not in app and "https://" not in app
+    assert "<link" not in app and " src=" not in app
+    # Embeds data and the interactive machinery.
+    assert 'id="goldset-data"' in app
+    assert "localStorage" in app and "answersheet.csv" in app
+    # No leaked machine signals.
+    for banned in ("predicted_class", "impact_tags", "priority", "surge", "seal_hash"):
+        assert banned not in app
+
+
+def test_render_app_embeds_items_and_all_task_controls():
+    import json
+    app = gb.render_app([_sample_item()], annotator_id="ann-a", sample="pilot", seed="s")
+    assert "cand:1" in app
+    # The embedded JSON carries the class and stance vocabularies for the controls.
+    assert "biographical" in app and "nomenclature" in app and "affirmative" in app
+    # The closing-tag escape keeps embedded data from breaking out of the script element.
+    start = app.index('id="goldset-data"')
+    block = app[start:app.index("</script>", start)]
+    assert "</" not in block  # escaped as <\/
+
+
+def test_render_app_data_roundtrips_as_json():
+    import json
+    item = _sample_item()
+    app = gb.render_app([item], annotator_id="ann-a", sample="pilot", seed="s")
+    marker = 'type="application/json">'
+    start = app.index(marker) + len(marker)
+    end = app.index("</script>", start)
+    raw = app[start:end].replace("<\\/", "</")
+    data = json.loads(raw)
+    assert data["annotator"] == "ann-a"
+    assert data["columns"] == gb.ANSWER_COLUMNS
+    assert data["items"][0]["candidate_id"] == "cand:1"

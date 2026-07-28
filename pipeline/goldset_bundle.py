@@ -9,6 +9,11 @@ The packet shows exactly the ruled context: the candidate phrase, its full sente
 sentence before and after, the release title, the office (party, state, chamber), the date,
 and, for items with a support set, the other offices carrying the same phrase. It never
 shows the predicted class, rankings, surge scores, publication decisions, or corrections.
+
+Two renderings share that context. ``render_html`` produces a read-only packet paired with a
+blank CSV answer sheet. ``render_app`` produces an interactive offline app: the annotator
+clicks the class, assigns a family, and sets the optional tasks, with autosave and resume in
+the browser and one-click export to the same CSV the intake tool ingests.
 """
 from __future__ import annotations
 
@@ -29,6 +34,9 @@ ANSWER_COLUMNS = [
     "proposition_consistent", "stance", "claim_supported", "notes",
 ]
 CLASS_CHOICES = "message | unknown | nomenclature | procedural | biographical | private"
+GOLD_CLASSES = ["message", "unknown", "nomenclature", "procedural",
+                "biographical", "private"]
+STANCE_CHOICES = ["affirmative", "negated", "mixed"]
 
 
 def load_statements(path) -> tuple[dict, dict]:
@@ -251,6 +259,60 @@ def render_csv(items: list[dict]) -> str:
     return buffer.getvalue()
 
 
+def render_app(items: list[dict], *, annotator_id: str, sample: str, seed: str) -> str:
+    """Render the interactive offline annotation app as one self-contained HTML file.
+
+    All state lives in the browser. The annotator clicks the class, assigns a family, and
+    sets the four optional tasks; every change autosaves to localStorage and resumes on
+    reload. The export button downloads the exact CSV the intake tool ingests. No network,
+    no external asset, no predicted class or other machine signal is present.
+    """
+    payload = {
+        "annotator": annotator_id,
+        "sample": sample,
+        "seed": seed,
+        "columns": ANSWER_COLUMNS,
+        "classes": GOLD_CLASSES,
+        "stances": STANCE_CHOICES,
+        "items": [
+            {
+                "candidate_id": item["candidate_id"],
+                "phrase": item["phrase"],
+                "before": item["before"],
+                "sentence": item["sentence"],
+                "after": item["after"],
+                "title": item["title"],
+                "office": item["office"],
+                "date": item["date"],
+                "support": [
+                    {"office": row["office"], "date": row["date"], "sentence": row["sentence"]}
+                    for row in item["support"]
+                ],
+            }
+            for item in items
+        ],
+    }
+    # Escape the closing tag so the embedded JSON cannot break out of the script element.
+    data = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
+    return (
+        "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        f"<title>OnScript gold-set annotator: {html.escape(annotator_id)}</title>"
+        f"<style>{_CSS}{_APP_CSS}</style></head><body>"
+        f"<script id=\"goldset-data\" type=\"application/json\">{data}</script>"
+        "<header class=\"appbar\"><div class=\"barrow\">"
+        f"<b>OnScript gold set</b> &middot; annotator <b>{html.escape(annotator_id)}</b> "
+        f"&middot; sample <b>{html.escape(sample)}</b>"
+        "<span class=\"progress\" id=\"progress\">0 / 0 labeled</span>"
+        "<button id=\"export\" class=\"btn\">Export answer CSV</button></div>"
+        "<div class=\"barnote\">Autosaves in this browser. Reopen this file to resume. "
+        "Class and family are required; the other tasks are optional per the guide.</div>"
+        "</header><main id=\"items\"></main>"
+        "<datalist id=\"families\"></datalist>"
+        f"<script>{_APP_JS}</script></body></html>"
+    )
+
+
 _CSS = """
 :root { color-scheme: light dark; }
 * { box-sizing: border-box; }
@@ -290,4 +352,148 @@ mark { background: #ffe58a; padding: 0 .1em; }
   mark { background: #6b5d1a; color: #fff; }
   .src { color: #aaa; } .support summary { color: #9db6df; } .ssent { color: #cfcfcf; }
 }
+"""
+
+
+_APP_CSS = """
+.appbar { position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 2px solid #ccc;
+  margin: -1.5rem -1.5rem 1rem; padding: .7rem 1.5rem; }
+.barrow { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; }
+.progress { margin-left: auto; font-weight: bold; }
+.btn { font: inherit; padding: .35rem .8rem; border: 1px solid #33527a; border-radius: 6px;
+  background: #33527a; color: #fff; cursor: pointer; }
+.btn:hover { background: #26406a; }
+.barnote { font-size: .82rem; color: #555; margin-top: .35rem; }
+.controls { border-top: 1px solid #eee; margin-top: .7rem; padding-top: .6rem;
+  display: grid; gap: .45rem; }
+.task { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.tlabel { min-width: 11rem; font-size: .85rem; color: #444; }
+.opts { display: flex; gap: .3rem; flex-wrap: wrap; }
+.opt { font: inherit; font-size: .85rem; padding: .2rem .6rem; border: 1px solid #bbb;
+  border-radius: 999px; background: #f4f4f2; color: #222; cursor: pointer; }
+.opt:hover { border-color: #33527a; }
+.opt.sel { background: #33527a; border-color: #33527a; color: #fff; }
+.fam, .notesin { font: inherit; font-size: .88rem; padding: .25rem .5rem; border: 1px solid #bbb;
+  border-radius: 5px; min-width: 18rem; background: #fff; color: #111; }
+@media (prefers-color-scheme: dark) {
+  .appbar { background: #161616; border-color: #3a3a3a; }
+  .barnote { color: #aaa; } .tlabel { color: #bbb; }
+  .opt { background: #242424; border-color: #444; color: #ddd; }
+  .opt.sel { background: #33527a; border-color: #33527a; color: #fff; }
+  .fam, .notesin { background: #1d1d1d; border-color: #444; color: #eee; }
+}
+"""
+
+
+_APP_JS = r"""
+(function(){
+  const DATA = JSON.parse(document.getElementById('goldset-data').textContent);
+  const KEY = 'onscript-goldset-' + DATA.sample + '-' + DATA.annotator;
+  let answers = {};
+  try { answers = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { answers = {}; }
+  const itemsEl = document.getElementById('items');
+  const progressEl = document.getElementById('progress');
+  const familiesEl = document.getElementById('families');
+
+  function esc(s){ const d = document.createElement('div'); d.textContent = (s==null?'':String(s)); return d.innerHTML; }
+  function get(cid){ return answers[cid] || (answers[cid] = {}); }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) {} updateProgress(); updateFamilies(); }
+
+  function updateProgress(){
+    const done = DATA.items.filter(it => { const a = answers[it.candidate_id]||{}; return a.gold_class && a.gold_family_id; }).length;
+    progressEl.textContent = done + ' / ' + DATA.items.length + ' labeled';
+  }
+  function updateFamilies(){
+    const set = new Set();
+    Object.values(answers).forEach(a => { if (a.gold_family_id) set.add(a.gold_family_id); });
+    familiesEl.innerHTML = Array.from(set).sort().map(f => '<option value="' + esc(f) + '">').join('');
+  }
+  function highlight(sentence, phrase){
+    const s = esc(sentence); if (!phrase) return s;
+    const p = esc(phrase); const i = s.toLowerCase().indexOf(p.toLowerCase());
+    if (i < 0) return s; return s.slice(0,i) + '<mark>' + s.slice(i, i+p.length) + '</mark>' + s.slice(i+p.length);
+  }
+  function group(field, label, values, current, required){
+    const btns = values.map(v => '<button class="opt' + (current===v?' sel':'') + '" data-field="' + field + '" data-value="' + esc(v) + '">' + esc(v) + '</button>').join('');
+    return '<div class="task"><span class="tlabel">' + label + (required?' *':'') + '</span><div class="opts">' + btns + '</div></div>';
+  }
+  function boolGroup(field, label, current){
+    const opts = [['true','yes'],['false','no']];
+    const btns = opts.map(o => '<button class="opt' + (String(current)===o[0]?' sel':'') + '" data-field="' + field + '" data-value="' + o[0] + '">' + o[1] + '</button>').join('');
+    return '<div class="task"><span class="tlabel">' + label + '</span><div class="opts">' + btns + '</div></div>';
+  }
+  function controls(cid, a){
+    return '<div class="controls" data-cid="' + cid + '">' +
+      group('gold_class','A. surface class', DATA.classes, a.gold_class, true) +
+      '<div class="task"><span class="tlabel">E. document family *</span><input class="fam" list="families" data-field="gold_family_id" value="' + esc(a.gold_family_id||'') + '" placeholder="family id, reuse to group items"></div>' +
+      boolGroup('phrase_complete','B. phrase complete', a.phrase_complete) +
+      boolGroup('proposition_consistent','C. proposition consistent', a.proposition_consistent) +
+      group('stance','D. stance', DATA.stances, a.stance, false) +
+      boolGroup('claim_supported','F. claim supported', a.claim_supported) +
+      '<div class="task"><span class="tlabel">notes</span><input class="notesin" data-field="notes" value="' + esc(a.notes||'') + '"></div>' +
+      '</div>';
+  }
+
+  DATA.items.forEach((it, idx) => {
+    const a = get(it.candidate_id);
+    const card = document.createElement('article');
+    card.className = 'item'; card.dataset.cid = it.candidate_id;
+    let support = '';
+    if (it.support && it.support.length){
+      support = '<details class="support"><summary>Support set (' + it.support.length + ' offices carrying this phrase)</summary><ul>' +
+        it.support.map(s => '<li><span class="soffice">' + esc(s.office) + '</span> <span class="sdate">' + esc(s.date) + '</span><div class="ssent">' + esc(s.sentence) + '</div></li>').join('') + '</ul></details>';
+    }
+    card.innerHTML =
+      '<div class="idline"><span class="num">' + (idx+1) + '</span><code class="cid">' + esc(it.candidate_id) + '</code></div>' +
+      '<div class="phrase">Candidate phrase: <b>' + esc(it.phrase) + '</b></div>' +
+      '<div class="context">' +
+        (it.before ? '<p class="ctx before">' + esc(it.before) + '</p>' : '') +
+        '<p class="ctx sentence">' + highlight(it.sentence, it.phrase) + '</p>' +
+        (it.after ? '<p class="ctx after">' + esc(it.after) + '</p>' : '') +
+      '</div>' +
+      '<div class="src">' + esc(it.office) + ' &middot; ' + esc(it.date) + ' &middot; <span class="title">' + esc(it.title) + '</span></div>' +
+      support + controls(it.candidate_id, a);
+    itemsEl.appendChild(card);
+  });
+
+  itemsEl.addEventListener('click', function(e){
+    const btn = e.target.closest('button.opt'); if (!btn) return;
+    const panel = btn.closest('.controls'); const cid = panel.dataset.cid;
+    const field = btn.dataset.field; let value = btn.dataset.value;
+    if (value === 'true') value = true; else if (value === 'false') value = false;
+    const a = get(cid);
+    if (a[field] === value) { delete a[field]; } else { a[field] = value; }
+    panel.querySelectorAll('button.opt[data-field="' + field + '"]').forEach(b => {
+      let bv = b.dataset.value; if (bv === 'true') bv = true; else if (bv === 'false') bv = false;
+      b.classList.toggle('sel', a[field] === bv);
+    });
+    save();
+  });
+  itemsEl.addEventListener('input', function(e){
+    const inp = e.target.closest('input[data-field]'); if (!inp) return;
+    const panel = inp.closest('.controls'); const cid = panel.dataset.cid;
+    const field = inp.dataset.field; const val = inp.value.trim();
+    const a = get(cid);
+    if (val) a[field] = val; else delete a[field];
+    save();
+  });
+
+  function csvCell(v){ if (v === true) v = 'true'; else if (v === false) v = 'false'; v = (v==null?'':String(v)); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v; }
+  function exportCSV(){
+    const cols = DATA.columns; const lines = [cols.join(',')];
+    DATA.items.forEach(it => {
+      const a = answers[it.candidate_id] || {};
+      lines.push(cols.map(c => c === 'candidate_id' ? it.candidate_id : csvCell(a[c])).join(','));
+    });
+    const blob = new Blob([lines.join('\n') + '\n'], {type: 'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url; link.download = DATA.annotator + '.answersheet.csv';
+    document.body.appendChild(link); link.click(); link.remove();
+    URL.revokeObjectURL(url);
+  }
+  document.getElementById('export').addEventListener('click', exportCSV);
+
+  updateProgress(); updateFamilies();
+})();
 """
