@@ -1546,7 +1546,7 @@ def _party_column(party, rows, slugs_with_pages, depth, caucus_size) -> str:
         lis.append(f'<li><span class="pcount">{esc(cnt)}</span>{denom} {cell} {spark}</li>')
     body = "".join(lis) or '<li class="muted">No phrase reached the threshold for this party today.</li>'
     return (f'<div class="pcol"><h3><span class="pill {esc(party)}">{esc(party)}</span> '
-            f'most synchronized</h3><ol class="pcol-list">{body}</ol></div>')
+            f'repeated phrases</h3><ol class="pcol-list">{body}</ol></div>')
 
 
 def party_columns_table(day_data, slugs_with_pages, depth, caucus) -> str:
@@ -1785,11 +1785,13 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
         f'<p class="muted"><small>Nightly symmetry audit: {audit_link}. '
         f'{esc(public_strings.DAY_CITATION_NOTE)}</small></p>'
     )
-    # Top synchronized phrases
-    parts.append("<h2>Top synchronized phrases</h2>")
+    # R-36.8: this table lists repeated phrase observations unfiltered by class, so it can include
+    # names, procedures, and biography. The heading names that unfiltered nature and the disclaimer
+    # states it, rather than implying every row is a coordinated message.
+    parts.append("<h2>Repeated phrase observations</h2>")
     parts.append(
-        '<p class="subhead">Content phrases used by three or more independent members of one party '
-        "on this day. The sparkline is the phrase's 14-day trajectory (higher of the two parties' daily counts).</p>"
+        f'<p class="subhead">{esc(public_strings.LEXICAL_TABLE_DISCLAIMER)} '
+        "The sparkline is the phrase's 14-day trajectory.</p>"
     )
     # R3 / #146 — per-party columns, DARK until FEATURES["party_columns"]. Flag OFF => the current
     # pooled sync_table (byte-identical), so the redesign ships dark and the flip stays Michael's.
@@ -2132,8 +2134,10 @@ def phrases_index_body(top):
     # table below does), so it needs its own filter.
     parts.append(render_table(privacy.filter_rows(top.get("by_velocity") or [])[0], "Fastest-spreading", "Ranked by adoption velocity — phrases going viral within a caucus."))
     # collapse near-dups on the peak table (render-time refresh); the velocity table keeps its own order.
-    parts.append(render_table(build.collapse_and_rank(top.get("by_peak") or [], k=40),
-                              "Most synchronized", "Ranked by peak single-day member count."))
+    parts.append(render_table(
+        build.collapse_and_rank(top.get("by_peak") or [], k=40),
+        "Repeated phrase observations",
+        public_strings.LEXICAL_TABLE_DISCLAIMER + " Ranked by peak single-day member count."))
     return "".join(parts)
 
 

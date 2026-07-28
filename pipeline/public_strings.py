@@ -78,6 +78,13 @@ TERM_LADDER = (
 )
 
 
+LEXICAL_TABLE_DISCLAIMER = (
+    "This table lists repeated phrase observations, ranked by how many members used the same "
+    "exact phrase. It is not filtered to coordinated messages, so it can include official names, "
+    "procedural formulas, and biographical phrasing, not only messages."
+)
+
+
 def day_tagline(day: str) -> str:
     """Public day-page scope with the measured date supplied by code."""
     return f"Observed congressional language on {day}, rendered as two cited automated composites."
