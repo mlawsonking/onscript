@@ -2477,3 +2477,37 @@ carries the headline traps and the pointer; the constitution is amended to v1.2 
 Article XVII (self-description integrity) under the Article XV process. Work orders
 cite docs/37 from now on; validation checks deliveries against it. Detail in docs/04
 Session 56.
+
+## 2026-07-28: Session 57 (Fable). Y delivery validated and merged; watchdog privacy-gate outage fixed; annotation ruled
+
+The Y delivery (opus/y-packages, eleven commits) validated clean: suite 774/0
+reproduced independently after the added fix, both mutation harnesses 15 of 15,
+site untouched, prompt pins untouched, corrections append proven pure-addition by
+diff (zero removed lines, checkpoint monotonic at 6). One added em dash was ruled
+allowed: a verbatim assertion that the legacy em-dash homepage title is absent,
+protected as verbatim under docs/25 section 3.1. The Y10 dark-by-design decision
+and the deferred pilot re-seal are accepted as disclosed. The push-scope
+contradiction the session flagged was our defect; docs/37 rule 14 now requires a
+work order to state push scope exactly once.
+
+Production incident found and fixed during validation: the 15:14Z watchdog run
+died at import because the instrument fingerprint made privacy a transitive
+import of ops, and privacy established the Article XIII gate at import time. The
+watchdog holds no salt by design; the pipeline ran unwatched and the watchdog's
+own dead-man paged, which is how the outage surfaced. Fix on the merged stack:
+the gate establishes on first use through _require_gate, every fail-closed branch
+preserved including the canary mismatch, proven by salt-less subprocess tests
+reproducing the CI runner exactly. This is docs/37 rule 4 in a new costume: a
+fail-closed gate whose blast radius widened past its premise. The 11:32Z
+cancelled collect is noted; the readiness gate recovers the day at the evening
+pass.
+
+Annotation ruling, amending docs/35 practice (implementation lands with the ops
+session): Michael annotates the pilot as the single human rater, blind to
+predicted class through the sealed bundles; a frozen-prompt model acts as second
+rater for disagreement triage, labeled model-assisted and never counted as human
+agreement; every resulting metric is labeled author-annotated, single human
+rater, provisional; the bundles and labels publish openly with a standing
+re-annotation invitation; Gate B remains unclaimed until independent replication,
+which the published bundles enable at zero recruiting cost. Transparency is the
+mechanism that replaces personnel independence, and the disclosure is total.

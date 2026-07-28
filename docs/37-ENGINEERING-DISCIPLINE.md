@@ -143,6 +143,9 @@ a normalize-version artifact, not a finding (S53, ruled S54).
   prose and get rewritten.
 - New scheduled or event-triggered workflow behavior activates on push to the
   default branch: say so in a comment, and treat the push as the release act it is.
+- A work order states its push scope exactly once, in one place. The Y session
+  received "push only your own branch" in one section and "never push" in another
+  and correctly stopped to ask; the ambiguity was the defect, not the question.
 
 ## 15. Maintenance of this document
 
