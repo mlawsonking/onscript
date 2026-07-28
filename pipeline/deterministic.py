@@ -44,6 +44,23 @@ def run(records, *, run_id: str, focus_day: str | None = None,
     except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
         print(f"[concordance] skipped (skip-and-log): {e}")
 
+    # 1.2 The absence map (silence board + its mirror The Void), written EVERY run (build dark / release
+    # by gate, like concordance.json and awards.json); rendering is gated on FEATURES["silence_board"],
+    # so the flip is a pure release act. Built BEFORE build_awards so The Void, which reads the boards on
+    # disk (config.DERIVED/silence), can include today's. LANE 1 ONLY: the board's per-party counts are a
+    # cross-party comparison (Article III), so only press-release (Lane-1) statements feed corpus_topics;
+    # a Lane-2 record (Bluesky/floor) must never enter a party count. The GDELT news baseline is itself
+    # Lane 2 and only GATES topic salience inside build_day_board (never a party denominator). Same streak
+    # safety belt: a dark feature must never crash RUN A (§0 streak invariant), and a missing GDELT
+    # baseline writes an UNSCORED board rather than failing (a gap is never a silence).
+    try:
+        from . import silence
+        lane1_day = [s for s in statements
+                     if s.get("published_at") == focus_day and s.get("lane") == config.LANE_BY_SOURCE["press_release"]]
+        silence.build_day_board(focus_day, lane1_day)
+    except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
+        print(f"[silence] skipped (skip-and-log): {e}")
+
     # 1.5 The Unison + The Void (R2) — symmetric weekly awards, written EVERY run (build dark / release
     # by gate); rendering is gated on FEATURES["awards"], so the flip is a pure release act. Same streak
     # safety belt: a dark feature must never crash RUN A (§0 streak invariant).

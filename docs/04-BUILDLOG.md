@@ -3204,3 +3204,33 @@ scraped (confirmed 10/11; the S1.3' deviation diagnosed to the substrate rebuild
 an anomaly), page_html UNDERPOWERED x11 (confirmed). Suite 653 -> 662 green across the freeze, the fix, and
 the measurement. origin/main collision-checked clean before every edit; the daily crons commit to main, my
 branch does not.
+
+### E2: silence_board wiring into the daily deterministic leg (task #198, docs/27, due Aug 3)
+
+The silence module (`pipeline/silence.py`), its render (`site.silence_board_body`, gated at
+`site.py:3214`), and its guards were already implemented and tested (test_v2_build.py). The gap docs/27
+names ("module exists; no caller; data/derived/silence/ has never been built") was the DATA-BUILD wiring.
+`deterministic.run` now calls `silence.build_day_board(focus_day, lane1_day)` right before `build_awards`,
+unconditionally (build dark / release by gate, like concordance and awards) and wrapped in the same
+skip-and-log streak belt, so the boards accumulate under `data/derived/silence/` while the site surface
+stays dark behind `FEATURES["silence_board"]`. Placed before `build_awards` so The Void (which reads the
+boards on disk) can be live-fed. Two lane boundaries are enforced and tested (Article III): the per-party
+corpus counts are filtered to LANE 1 (`s.get("lane") == config.LANE_BY_SOURCE["press_release"]`) so a
+Lane-2 record never enters a party denominator, and the GDELT news baseline stays LANE 2, gating topic
+salience only (never a party count; a missing baseline writes an UNSCORED board, since a gap is never a
+silence). "You wire; Michael flips": no flag flipped, POSTING_ENABLED untouched.
+
+Tests (+5, `tests/test_silence_wiring.py`, all on a synthetic state/derived tree so nothing touches the
+real data/derived): the deterministic leg builds the board; it accumulates while dark; a forced
+build_day_board failure is skip-and-logged and never breaks the run; the corpus counts are Lane-1 only; the
+GDELT volume gates salience but is never a party count. Byte-identical public output follows structurally:
+the wiring writes only to data/derived/silence (never site/public), and the render is inline-gated exactly
+like the archive surface.
+
+**Archive surface: confirmed already wired dark, no change needed.** Its render is gated at `site.py:3195`
+(`config.feature_on("archive")`), it ships OFF, chapters come from `data/derived/chapters` (the deep-archive
+program, not the daily leg), and `test_archive_ships_dark` plus the render/verifier-gate tests cover it.
+docs/27 lists it as "Built dark, validated, awaiting flips"; #198 is specifically the silence-board wiring.
+
+Suite 662 -> 667 green, 0 failed. $0, deterministic, no Anthropic call, no flip/dispatch/main push, no
+site/public or data/derived regeneration.

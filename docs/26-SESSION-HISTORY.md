@@ -2409,3 +2409,9 @@ session: the R-S50.1 substrate mixes normalize instruments (legacy = old byte co
 fresh new normalize), so isolated-vs-folded scraper comparisons are instrument-confounded, though the
 page_html-isolation outcome is determined regardless. Full evidence: docs/04 Session 53, docs/13 "E1"
 section, `data/derived/search/revalidate_s1_isolated.json`, `delivery/S1-packet.md`. Suite 662/0.
+
+E2 (task #198): wired `silence.build_day_board` into the deterministic leg (build dark, skip-and-log,
+before build_awards so The Void is live-fed), Lane-1 only for the party counts and GDELT held to a Lane-2
+salience gate (Article III). The silence module/render/guards already existed; the gap was the missing
+caller. The archive surface was already wired dark (render gated, ships off) and needed no change. +5
+tests, suite 667/0. You wire; Michael flips.
