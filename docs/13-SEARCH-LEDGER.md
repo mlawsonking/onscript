@@ -1352,4 +1352,68 @@ source-isolated. Predictions:
 Change-detection rule: a verdict that differs from its folded counterpart is the reportable finding,
 recorded below with old verdict, new verdict, and the driving lane.
 
-_Verdict table appended post-measurement in the measurement commit._
+### MEASURED (2026-07-27)
+
+Re-runnable: `PYTHONHASHSEED=0 python scripts/search/revalidate_s1_isolated.py`; result
+`data/derived/search/revalidate_s1_isolated.json`.
+
+| ID | legacy (isolated) | vs propublica | scraper (isolated) | vs scraped | page_html (isolated) |
+|----|-------------------|---------------|--------------------|------------|----------------------|
+| S1.1  | ARTIFACT | same | ARTIFACT | same | UNDERPOWERED |
+| S1.3  | ARTIFACT | same | ARTIFACT | same | UNDERPOWERED |
+| S1.1' | **CONFIRMED** | same | ARTIFACT | same | UNDERPOWERED |
+| S1.3' | **CONFIRMED** | same | **REFUTED** | **ARTIFACT -> REFUTED** | UNDERPOWERED |
+| S1.2  | REFUTED | same | REFUTED | same | UNDERPOWERED |
+| S1.5  | REFUTED | same | REFUTED | same | UNDERPOWERED |
+| S1.6  | REFUTED | same | UNDERPOWERED | same | UNDERPOWERED |
+| S1.7  | REFUTED | same | REFUTED | same | UNDERPOWERED |
+| S1.8  | REFUTED | same | REFUTED | same | UNDERPOWERED |
+| S1.11 | REFUTED | same | REFUTED | same | UNDERPOWERED |
+| S1.4  | UNDERPOWERED | same | UNDERPOWERED | same | UNDERPOWERED |
+
+**Headline: isolation changes NO verdict. The one apparent change (scraper S1.3') is a
+substrate-rebuild artifact, not an isolation effect, and it is provably not page_html.**
+
+1. **legacy == propublica, EXACT.** All eleven legacy verdicts equal the Session-19 propublica column,
+   byte-for-byte: S1.1' ratio 11.33 and series `34,13,8,12/6,12,3,3` identical; S1.3' drop 0.373 and
+   series `55.5,32,29,31/24.5,35,10,15` identical. The legacy shards are a byte-for-byte copy of the
+   propublica shards (SHA256 equal across 113-116, all of ledger/discipline/coverage), so this is an
+   identity, not a re-measurement. **The pre-seam isolation is a verified no-op; the two propublica-era
+   CONFIRMEDs (S1.1'/S1.3', the Great Intensification) are preserved unchanged.**
+
+2. **scraper: ten of eleven match Session-19 scraped; S1.3' moves ARTIFACT -> REFUTED. That move is the
+   normalize-version rebuild, NOT page_html isolation.** The scraper shards were built fresh in Session
+   51 (2026-07-27) on a newer normalize (the W7/X9 `document_families` near-dup collapse, commits
+   3366b66/1cbeb9b), while the Session-19 `scraped` shards (2026-07-17) predate it. The collapse shrinks
+   the ledger ~26% (c117 164,179 -> 121,417; c118 239,812 -> 173,360; c119 461,198 -> 344,155), which
+   reshapes the S1.3' burst series enough to tip its half-A direction (scraped A dir -1 -> scraper A dir
+   +1) across the ARTIFACT/REFUTED boundary. This is NOT page_html: `page_html`'s standalone shard ledger
+   is 1 ngram per congress and its peak>=15 member index is EMPTY (0 rows for 117-119), so it contributes
+   ZERO coordination phrases and is mathematically incapable of reshaping the burst series. Both verdicts
+   are non-findings anyway (density_survives=False and the drop is negative in BOTH: the lifespan rose,
+   not collapsed), so the move is null-to-null and creates or destroys no CONFIRMED. Proof the two
+   substrates are different instruments: the OLD-instrument combined shard (2026-07-12) and the Session-19
+   scraped shard have IDENTICAL ledgers (c118 239,812 = 239,812; c119 461,198 = 461,198), while the
+   Session-51 scraper shard does not.
+
+3. **page_html standalone: UNDERPOWERED for all eleven.** Substrate 117-119 = 3 phrase-index rows,
+   0 member-index rows (no phrase reaches the peak>=15 coordination floor). page_html cannot be an
+   independent comparative lane, which is the empirical justification for R-S50.1 isolating it rather
+   than analysing it (docs/18 §2). This is the accurate cost of full isolation, not a verdict flip of an
+   existing measurement.
+
+**Verdicts flipped by isolation toward a false positive: 0.** Program CONFIRMED tally unchanged (the
+S1.1'/S1.3' propublica CONFIRMEDs stand, now also shown identical under the `legacy` source-lane name).
+
+**Substrate finding for the orchestrating session / Fable (flagged, not self-authorized).** The R-S50.1
+isolated substrate mixes normalize instruments: `legacy` is a byte copy of the OLD-instrument (2026-07-17)
+propublica shards, while `scraper`/`page_html` were built fresh (2026-07-27) on the NEW normalize
+(post-W7/X9). Every WITHIN-lane E1 verdict is valid on its own consistent instrument, but a direct
+isolated-vs-folded comparison for the scraper lane is confounded by the normalize version (as the S1.3'
+row shows). A fully same-instrument page_html decomposition would rebuild the folded `scraped` shards on
+the current instrument (`run_shard(n, lane="scraped")` for 117-119, ~the Session-51 scraper build cost)
+and compare scraper vs that. It was NOT run this session because page_html provably contributes 0
+coordination phrases (member index empty), so the same-instrument page_html-isolation outcome is already
+determined: no change. Separately flagged: whether the propublica-lane S1.1'/S1.3' CONFIRMEDs survive the
+newer normalize is a normalize-robustness question (not an isolation question) and would need a legacy
+rebuild on the current instrument; out of E1 scope.

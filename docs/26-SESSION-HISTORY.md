@@ -2390,3 +2390,22 @@ Next: the first production cycle on the X code deploys the index removal, partic
 measures, fail-closed classification, corrected surges, and status surfaces. The 07-25
 force-finalize lands at the Tuesday morning pass. Remaining operator items ride docs/33
 section 4 and tasks #105/#110/#198/#203/#204.
+
+## 2026-07-27: Session 53 (Opus). The long-session build tranche: E1 (isolated-substrate S1 re-run), then E2/E3
+
+Branch `opus/s1-tranche` from `6c9b0bd`, baseline 653/0. E1 completes the Session-51 carry-forward:
+the eleven S1 hypotheses re-run on the R-S50.1 isolated three-lane substrate (legacy/scraper/page_html).
+Freeze-before-measure (`f0c96e9`), then measured. Headline: **isolation changes no verdict.** `legacy`
+reproduces the Session-19 propublica column byte-for-byte (shards SHA256-identical), so the pre-seam
+isolation is a verified no-op and the two propublica-era CONFIRMEDs (S1.1'/S1.3') stand. `scraper` matches
+scraped on ten of eleven; the one move (S1.3' ARTIFACT to REFUTED) is a normalize-version rebuild artifact,
+not page_html: the Session-51 scraper shards use the newer W7/X9 document-family collapse the Session-19
+scraped shards predate, and page_html contributes zero coordination phrases (ledger 1/congress, empty
+peak>=15 member index). `page_html` standalone is UNDERPOWERED for all eleven. Zero false positives.
+
+A power-gate fix (`faebf7f`) stops `s1_4_proper` OOMing at congress scale (the post-Session-19
+document-family clustering on the full-corpus normalize); verdict-preserving. Flagged to the orchestrating
+session: the R-S50.1 substrate mixes normalize instruments (legacy = old byte copy; scraper/page_html =
+fresh new normalize), so isolated-vs-folded scraper comparisons are instrument-confounded, though the
+page_html-isolation outcome is determined regardless. Full evidence: docs/04 Session 53, docs/13 "E1"
+section, `data/derived/search/revalidate_s1_isolated.json`, `delivery/S1-packet.md`. Suite 662/0.

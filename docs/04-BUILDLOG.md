@@ -3160,3 +3160,47 @@ frozen gate correctly did not launder into CONFIRM. No discrepancy left unfiled.
 **Deferred / carried:** re-running the eleven S1 hypotheses on the now-isolated substrate is a future
 session (docs/18 §4: migrate each reader as it is re-run, never ahead of need). silence_board wiring (#198)
 and the X1-X15 order remain out of scope and untouched. Delivery packet: `delivery/DEEP-packet.md`.
+
+## Session 53 (2026-07-27, Opus), the long-session build tranche: E1 (isolated-substrate S1 re-run), then E2/E3
+
+Branch `opus/s1-tranche` from `6c9b0bd`. Baseline suite 653 passed, 0 failed. $0, deterministic, no
+Anthropic call, no main push, no flip/dispatch/site-or-data-pipeline regeneration.
+
+### E1: the eleven S1 hypotheses re-run on the R-S50.1 isolated three-lane substrate (docs/18 §4)
+
+The Session-51 carry-forward. Freeze-before-measure: registration + machinery committed (`f0c96e9`)
+before any measurement, predictions in `data/reference/search/e1-isolated-registration.json`. Migration
+was additive and localized (the alexandria loader/harness were already isolated-lane capable and tested at
+Session 51): `wave_s1` gained `legacy`/`scraper`/`page_html` in its lane maps, the reader gained their
+cutoffs, and a new reader `scripts/search/revalidate_s1_isolated.py` runs them (reusing
+`revalidate_s1_shards.run_lane`, the same estimator). +9 CI-safe fixtures.
+
+Result (full table + evidence in docs/13, "E1" section; `data/derived/search/revalidate_s1_isolated.json`):
+**isolation changes NO verdict.** `legacy` reproduces the Session-19 propublica column byte-for-byte
+(shards SHA256-identical; S1.1' ratio 11.33, S1.3' drop 0.373, series identical) so the pre-seam isolation
+is a verified no-op and the two propublica-era CONFIRMEDs are preserved. `scraper` matches Session-19
+scraped on ten of eleven; the one move (S1.3' ARTIFACT -> REFUTED) is a **normalize-version rebuild
+artifact, not page_html isolation**: the Session-51 scraper shards use the newer W7/X9 `document_families`
+collapse (c117 ledger 164,179 -> 121,417) that the Session-19 scraped shards predate, and `page_html`
+contributes ZERO coordination phrases (its ledger is 1 ngram/congress; its peak>=15 member index is empty),
+so it is mathematically incapable of reshaping the burst series. Both S1.3' verdicts are non-findings
+(density fails, drop negative) so the move is null-to-null. `page_html` standalone is UNDERPOWERED for all
+eleven (empty member index), confirming it cannot be an independent comparative lane. Verdicts flipped
+toward a false positive: 0.
+
+Found and fixed in passing (`faebf7f`): `s1_4_proper` OOMed at congress scale because the post-Session-19
+`document_families` clustering runs on the full-corpus normalize; since its congress-split gate is
+structurally unmeetable in any single lane (verdict UNDERPOWERED regardless), the power check now runs
+before the normalize. Verdict-preserving; lane=None unaffected.
+
+**Substrate finding flagged to the orchestrating session / Fable (not self-authorized):** the R-S50.1
+isolated substrate mixes normalize instruments (legacy is a byte copy of the OLD 2026-07-17 propublica
+shards; scraper/page_html were built fresh 2026-07-27 on the NEW normalize). Within-lane verdicts are each
+valid; a clean same-instrument page_html decomposition would rebuild `scraped` via `run_shard(lane=
+"scraped")` but is unnecessary here because page_html provably contributes 0 coordination phrases.
+
+**Art. XVI expectation vs observation:** predicted legacy == propublica (confirmed exact), scraper ==
+scraped (confirmed 10/11; the S1.3' deviation diagnosed to the substrate rebuild, filed above, not left as
+an anomaly), page_html UNDERPOWERED x11 (confirmed). Suite 653 -> 662 green across the freeze, the fix, and
+the measurement. origin/main collision-checked clean before every edit; the daily crons commit to main, my
+branch does not.
