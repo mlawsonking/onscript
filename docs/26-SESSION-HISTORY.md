@@ -2445,3 +2445,26 @@ on one normalize version first.
 Task #198 is satisfied by the silence wiring pending Michael closing it. The
 silence_board flip remains his, gated on boards accumulating dark through the 08-03
 digest. The docs/34 runbook governs the optional 4080 embedding run.
+
+## 2026-07-28: Session 55 (Fable). Annotation kit merged; third review adjudicated; docs/36 is the Y work order
+
+The annotation-kit delivery (opus/annotation-kit, seven commits) validated clean and
+merged: site and derived untouched beyond sealed sample manifests, zero added em
+dashes, suite 702/0. The gold-set study can start the moment annotators are hired.
+
+Third external review adjudicated into docs/36 after direct verification: the
+instrument fingerprint registry is stale against its owning modules (v1/v2 recorded,
+v2/v3 live) and is not inherited across artifacts; the withdrawn discipline metric
+still sits in canonical day records at index 1.0 beside participation 0 of N; the
+homepage said Today about a force-finalized three-day-old reading; two model calls
+were paid to produce nulls; amber short-circuits red in overall status; the phrase
+CSV surface_class column is blank; the legacy synchronized tables filter only
+unknown. Ruled: work packages Y1 through Y10, a public correction for the
+fingerprint defect, the registry-versus-authority invariant class (R-36.1, the
+recurring failure shape across three rounds), state-aware temporal labels,
+deterministic nulls with state-aware posting, and status precedence critical over
+red over amber. R-29.1 stands: the composite remains the front door on days with
+something to say; empty days stop pretending.
+
+Next: the Y session runs on the merged base; validation under the standing loop;
+the annotation pilot adjudicates the classifier questions Y10 documents.
