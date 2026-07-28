@@ -3234,3 +3234,39 @@ docs/27 lists it as "Built dark, validated, awaiting flips"; #198 is specificall
 
 Suite 662 -> 667 green, 0 failed. $0, deterministic, no Anthropic call, no flip/dispatch/main push, no
 site/public or data/derived regeneration.
+
+### E3: Alexandria Stage 2 embedding-layer dry prep (docs/34 runbook + verified inputs)
+
+E1 and E2 completed cleanly, so E3 ran. Stage 2's deterministic pass is already complete (Session 3); the
+remaining piece is the optional 4080 layer (local all-MiniLM-L6-v2 embeddings + a local topic-tagger for
+Archive exhibits, dark until released, one-time, $0). No embedding code exists yet, so E3 is genuinely a
+preparation: verify the inputs and write the runbook, no GPU job.
+
+`scripts/deep/alexandria_stage2_verify.py` (new, CPU-only, read-only, $0, rerunnable) checks the embedding
+inputs against the shard inventory the deterministic pass built. Result READY: the press mirror (Lane-1)
+holds 688,820 records across congresses 107-119 with delta 0 against every alexandria shard's `records`
+count, 684,853 normalized embeddable units, lane split legacy 485,948 / scraper 200,033 / page_html 2,839;
+the CREC Extensions lane holds 152,187 E-statements (2001-2026) with all 13 ledger shards present, and it
+is the pre-2013 spine (107-112 carry ~83,671 CREC E-statements vs ~2,389 in the press mirror). Total
+embeddable vectors about 837,040.
+
+`docs/34-ALEXANDRIA-STAGE2-EMBEDDING-RUNBOOK.md` (new) operationalizes docs/03 section 1.4: the precondition
+gate, the input lane contract (press = Lane-1 cross-party; CREC = a separate enriching instrument, never a
+cross-party denominator; temporal-honesty coverage gates unchanged), the embedding pass (model, batching,
+per-(lane, congress) fp16 shards on X: with a model-sha manifest, ~1.29 GB fp32 / 0.64 GB fp16), the
+topic-tag pass (local 8-14B, temperature 0, the committed taxonomy_v1 labels), non-interference (writes
+only to X:, no flags, no site, no daily pipeline), and the run-day order. The embed/tag scripts are
+specified but deliberately not committed: they pull the torch stack and cannot be tested on this box without
+the GPU, and "should work" is not done. Starting the GPU job stays Michael's call.
+
+Suite 667/0 (unchanged; the verify script is a diagnostic that reads X: and is exercised by running it, like
+scripts/deep/crec_state.py). $0, deterministic, no Anthropic call, no GPU started, no flip/dispatch/main push.
+
+### Session 53 close (Art. XVI)
+
+Branch `opus/s1-tranche` from `6c9b0bd`, six commits (E1 freeze f0c96e9, s1_4 fix faebf7f, E1 measurement
+a4a6612, E2 silence 782bac5, E3 this commit). Suite 653 -> 667 across the session, 0 failed throughout.
+origin/main collision-checked clean before every edit and stayed at 6c9b0bd for the session; the branch was
+never merged to main and integration is the orchestrating session's call. $0, deterministic, zero Anthropic
+calls, no posting, no dispatch, no flips, no POSTING_ENABLED or FEATURES change, no site/public regeneration.
+AGENTS.md and tests/_tmp_watchdog/ stayed untracked. Delivery packet: `delivery/S1-packet.md`.

@@ -2415,3 +2415,12 @@ before build_awards so The Void is live-fed), Lane-1 only for the party counts a
 salience gate (Article III). The silence module/render/guards already existed; the gap was the missing
 caller. The archive surface was already wired dark (render gated, ships off) and needed no change. +5
 tests, suite 667/0. You wire; Michael flips.
+
+E3 (dry prep, no GPU): Alexandria Stage 2's deterministic pass is done; the remaining piece is the optional
+4080 embedding + local topic-tag layer for Archive exhibits. No embedding code exists, so E3 verified the
+inputs and wrote the runbook. `scripts/deep/alexandria_stage2_verify.py` reports READY: press mirror 688,820
+records (delta 0 vs every shard), 684,853 embeddable units; CREC E-lane 152,187 statements (the pre-2013
+spine), ledgers 107-119 present; ~837,040 vectors total. `docs/34` is the runbook (model all-MiniLM-L6-v2,
+lane contract, storage, non-interference); the embed/tag scripts are specified but not committed (torch
+stack, untestable without the GPU). Starting the GPU run stays Michael's call. Session close: branch
+opus/s1-tranche, six commits, suite 653 -> 667/0, never merged to main, $0, no flips/dispatch/posting.
