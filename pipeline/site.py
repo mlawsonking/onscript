@@ -3027,6 +3027,20 @@ def status_body(model: dict) -> str:
             f'<div class="faint">Source: {esc(sources)}</div></div>'
         )
     parts.append("</div>")
+    windows = model.get("verifier_drop_windows") or {}
+    if windows:
+        parts.append("<h2>Verifier drop, by window</h2>")
+        parts.append('<table><thead><tr><th>Window</th><th>Dropped</th><th>Offered</th>'
+                     '<th>Rate</th><th>Unmeasured days</th></tr></thead><tbody>')
+        for key in ("latest", "seven_day", "thirty_day"):
+            window = windows.get(key) or {}
+            rate = "unavailable" if window.get("rate") is None else str(window.get("rate"))
+            parts.append(
+                f'<tr><td>{esc(key.replace("_", " "))} ({esc(str(window.get("window_days")))} day)</td>'
+                f'<td>{esc(str(window.get("dropped")))}</td><td>{esc(str(window.get("offered")))}</td>'
+                f'<td>{esc(rate)}</td><td>{esc(str(window.get("unmeasured_days")))}</td></tr>'
+            )
+        parts.append("</tbody></table>")
     parts.append("<h2>Provisional service targets</h2>")
     parts.append('<table><thead><tr><th>Check</th><th>Target</th><th>Unit</th><th>Status</th></tr></thead><tbody>')
     for row in model.get("slos") or []:

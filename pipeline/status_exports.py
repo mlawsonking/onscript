@@ -6,6 +6,8 @@ import hashlib
 import html
 import io
 import json
+import re
+from datetime import date, timedelta
 from pathlib import Path
 
 from . import config, corrections, eligibility, instrument_fingerprint, util
@@ -25,7 +27,47 @@ FRESHNESS_SLO_HOURS = 36.0
 VERIFIER_DROP_SLO = 0.25
 EXPECTED_POSTING_PARTIES = len(config.COMPOSITE_PARTIES)
 VERIFIER_DROP_WINDOW_DAYS = 30
+# Three calendar windows publish together so a recent breach cannot hide behind a healthy
+# long window (R-36.6). Each is (span in calendar days, model key).
+VERIFIER_DROP_WINDOWS = ((1, "latest"), (7, "seven_day"), (30, "thirty_day"))
+# The recent (seven-day) rate at this multiple of the long (thirty-day) rate is a red spike.
+# Estimator: seven-day dropped/offered over thirty-day dropped/offered; unit: ratio.
+VERIFIER_DROP_RECENT_MULTIPLE = 2.0
+# A measured day trailing the expected latest complete day by more than this is a lag incident.
+PUBLICATION_LAG_MAX_DAYS = 1
 POSTING_STATES = frozenset({"disabled", "not_due", "ready", "held", "partial", "posted", "failed"})
+# Absolute severity precedence: no lower severity ever overrides a higher one (R-36.6).
+SEVERITY_ORDER = ("critical", "red", "amber", "green", "neutral", "unknown")
+
+
+def _worst(statuses) -> str:
+    """Return the highest-precedence status present, defaulting to unknown when empty."""
+    present = {status for status in statuses if status}
+    for level in SEVERITY_ORDER:
+        if level in present:
+            return level
+    return "unknown"
+
+
+def _manifest_day(name: str, manifest: dict) -> str | None:
+    """Parse the calendar day of an assemble manifest from its content or filename."""
+    day = manifest.get("day")
+    if isinstance(day, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", day):
+        return day
+    stem = name[len("assemble-"):-len(".json")] if name.startswith("assemble-") and name.endswith(".json") else ""
+    return stem if re.fullmatch(r"\d{4}-\d{2}-\d{2}", stem) else None
+
+
+def _publication_lag_days(measured_day: str | None, now: str | None = None) -> int | None:
+    """Calendar days the measured day trails the expected latest complete day (prior day)."""
+    if not measured_day:
+        return None
+    try:
+        measured = date.fromisoformat(measured_day)
+        reference = date.fromisoformat(now[:10]) if now else date.today()
+    except (TypeError, ValueError):
+        return None
+    return max(0, ((reference - timedelta(days=1)) - measured).days)
 
 
 def _source(manifest: str, field: str, value) -> dict:
@@ -86,11 +128,27 @@ def _posting_state(post: dict) -> str:
     return "failed"
 
 
-def _windowed_drop(history: list[tuple[str, dict]]) -> dict:
-    rows = sorted(history)[-VERIFIER_DROP_WINDOW_DAYS:]
-    offered = dropped = 0
+def _windowed_drop(history: list[tuple[str, dict]], anchor_day: str | None,
+                   span_days: int) -> dict:
+    """Verifier drop over a CALENDAR window ending at anchor_day, not a manifest count.
+
+    Returns dropped over offered plus an unmeasured-day count (days present with no offered
+    claims), so a recent window cannot be diluted by counting old files as recent days.
+    """
+    low = None
+    if anchor_day:
+        try:
+            low = (date.fromisoformat(anchor_day) - timedelta(days=span_days - 1)).isoformat()
+        except (TypeError, ValueError):
+            low = None
+    offered = dropped = measured_days = unmeasured_days = 0
     sources = []
-    for name, manifest in rows:
+    for name, manifest in sorted(history):
+        day = _manifest_day(name, manifest)
+        if not day or (low is not None and not (low <= day <= anchor_day)):
+            continue
+        measured_days += 1
+        row_offered = 0
         for party in config.COMPOSITE_PARTIES:
             party_row = (manifest.get("per_party_llm") or {}).get(party) or {}
             published = party_row.get("claims_published")
@@ -100,20 +158,27 @@ def _windowed_drop(history: list[tuple[str, dict]]) -> dict:
                 _source(name, f"per_party_llm.{party}.claims_dropped", rejected),
             ])
             if isinstance(published, int) and isinstance(rejected, int):
+                row_offered += published + rejected
                 offered += published + rejected
                 dropped += rejected
+        if row_offered == 0:
+            unmeasured_days += 1
     return {
-        "days": len(rows), "window_days": VERIFIER_DROP_WINDOW_DAYS,
+        "days": measured_days, "window_days": span_days,
         "dropped": dropped, "offered": offered,
         "rate": round(dropped / offered, 6) if offered else None,
+        "unmeasured_days": unmeasured_days,
         "sources": sources,
         "unit": "claims dropped over claims offered",
     }
 
 
 def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, dict]] | None = None,
-                 correction_rows: list[dict] | None = None) -> dict:
-    """Build a status model. Templates receive this model and perform no measurements."""
+                 correction_rows: list[dict] | None = None, now: str | None = None) -> dict:
+    """Build a status model. Templates receive this model and perform no measurements.
+
+    `now` is injectable so publication-lag and window anchoring are deterministic in tests.
+    """
     collect_name, collect = "collect-latest.json", manifests.get("collect") or {}
     assemble_name, assemble = "assemble-latest-day.json", manifests.get("assemble") or {}
     post_name, post = "post-latest-day.json", manifests.get("post") or {}
@@ -137,11 +202,52 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
          _source(assemble_name, "readiness.ready", ready)],
     ))
 
+    # R-36.6: freshness splits into five separately labeled checks so transport freshness
+    # never reads as product freshness. Each is unknown when its input is absent.
     age = (collect.get("source_freshness") or {}).get("age_hours")
     checks.append(_check(
-        "freshness", "Source freshness", age, "hours",
+        "source_fetch", "Last successful source fetch", age, "hours",
         "green" if age is not None and age <= FRESHNESS_SLO_HOURS else "red",
         [_source(collect_name, "source_freshness.age_hours", age)],
+        "hours since the upstream mirror last pushed (transport only)",
+    ))
+
+    days_present = collect.get("days_present")
+    watermark = max(days_present) if isinstance(days_present, list) and days_present else None
+    focus = collect.get("focus_day") or assemble.get("day")
+    checks.append(_check(
+        "content_watermark", "Content watermark", watermark, "day",
+        "green" if watermark is not None and focus is not None and watermark >= focus
+        else ("red" if watermark is not None else "unknown"),
+        [_source(collect_name, "days_present", days_present),
+         _source(assemble_name, "day", assemble.get("day"))],
+        "newest ingested source day compared with the focus day",
+    ))
+
+    anomalous_volume = (collect.get("volume") or {}).get("anomalously_low")
+    checks.append(_check(
+        "expected_day", "Expected-day completeness", ready, "boolean",
+        "green" if ready is True and anomalous_volume is not True else "red",
+        [_source(assemble_name, "readiness.ready", ready),
+         _source(collect_name, "volume.anomalously_low", anomalous_volume)],
+        "the expected latest complete day assembled without a low-volume anomaly",
+    ))
+
+    lag = _publication_lag_days(assemble.get("day"), now)
+    checks.append(_check(
+        "publication_lag", "Publication lag", lag, "days",
+        "green" if lag is not None and lag <= PUBLICATION_LAG_MAX_DAYS
+        else ("red" if lag is not None else "unknown"),
+        [_source(assemble_name, "day", assemble.get("day"))],
+        "calendar days the measured day trails the expected latest complete day",
+    ))
+
+    endpoint_ok = (collect.get("source_freshness") or {}).get("ok")
+    checks.append(_check(
+        "endpoint_health", "Endpoint health", endpoint_ok, "boolean",
+        "green" if endpoint_ok is True else ("red" if endpoint_ok is False else "unknown"),
+        [_source(collect_name, "source_freshness.ok", endpoint_ok)],
+        "whether the upstream fetch reported ok; endpoint completeness is not claimed",
     ))
 
     history = assemble_history or []
@@ -153,33 +259,25 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
         "count consecutive manifests whose unattended is true and whose degraded and forced_finalize are false",
     ))
 
-    party_rows = assemble.get("per_party_llm") or {}
-    offered = dropped = 0
-    verifier_sources = []
-    verifier_measured = bool(party_rows)
-    for party in config.COMPOSITE_PARTIES:
-        row = party_rows.get(party) or {}
-        published = row.get("claims_published")
-        party_dropped = row.get("claims_dropped")
-        verifier_sources.extend([
-            _source(assemble_name, f"per_party_llm.{party}.claims_published", published),
-            _source(assemble_name, f"per_party_llm.{party}.claims_dropped", party_dropped),
-        ])
-        if not isinstance(published, int) or not isinstance(party_dropped, int):
-            verifier_measured = False
-        else:
-            offered += published + party_dropped
-            dropped += party_dropped
-    drop_window = _windowed_drop(history)
-    drop_rate = drop_window["rate"] if drop_window["offered"] else (
-        dropped / offered if verifier_measured and offered else None
+    # R-36.6: three calendar windows publish together. The red gate fires when the seven-day
+    # rate breaches the SLO or the seven-day rate materially exceeds the thirty-day rate, so a
+    # recent breach is never hidden by a healthy long window.
+    anchor = max((_manifest_day(name, manifest) for name, manifest in history
+                  if _manifest_day(name, manifest)), default=None) or assemble.get("day")
+    drop_windows = {key: _windowed_drop(history, anchor, span) for span, key in VERIFIER_DROP_WINDOWS}
+    seven, thirty = drop_windows["seven_day"], drop_windows["thirty_day"]
+    seven_rate, thirty_rate = seven["rate"], thirty["rate"]
+    verifier_red = (
+        (seven_rate is not None and seven_rate >= VERIFIER_DROP_SLO)
+        or (seven_rate is not None and thirty_rate not in (None, 0)
+            and seven_rate >= thirty_rate * VERIFIER_DROP_RECENT_MULTIPLE)
     )
-    drop_sources = drop_window["sources"] if drop_window["offered"] else verifier_sources
     checks.append(_check(
-        "verifier_drop", "Verifier drop rate", round(drop_rate, 6) if drop_rate is not None else None,
-        "share", "green" if drop_rate is not None and drop_rate < VERIFIER_DROP_SLO else "red",
-        drop_sources, "claims dropped divided by claims offered over the declared trailing window",
+        "verifier_drop", "Verifier drop rate (seven day)", seven_rate, "share",
+        "red" if verifier_red else "green", seven["sources"],
+        "seven-day claims dropped over offered; red on an SLO breach or a spike over the long window",
     ))
+    drop_window = thirty  # existing key keeps its thirty-day meaning (additive)
 
     degraded = assemble.get("degraded")
     checks.append(_check(
@@ -205,9 +303,15 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
     correction_count = assemble.get("corrections_count")
     supplied_corrections = correction_rows if correction_rows is not None else []
     open_rows = [row for row in supplied_corrections if row.get("status") == "open"]
-    correction_status = ("amber" if any(row.get("severity") in {"critical", "major"} for row in open_rows)
-                         else "green" if correction_rows is not None or isinstance(correction_count, int)
-                         else "red")
+    # An open critical correction surfaces at the top of the ladder; an open major is amber.
+    if any(row.get("severity") == "critical" for row in open_rows):
+        correction_status = "critical"
+    elif any(row.get("severity") == "major" for row in open_rows):
+        correction_status = "amber"
+    elif correction_rows is not None or isinstance(correction_count, int):
+        correction_status = "green"
+    else:
+        correction_status = "red"
     checks.append(_check(
         "corrections", "Open corrections", len(open_rows) if correction_rows is not None else correction_count,
         "corrections", correction_status,
@@ -230,9 +334,9 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
     ))
 
     generated_at = assemble.get("generated_at") or collect.get("generated_at") or post.get("generated_at")
-    overall_status = "amber" if correction_status == "amber" else (
-        "red" if any(row["status"] == "red" for row in checks) else "green"
-    )
+    # Absolute severity precedence: the overall status is the worst any check reports, so a lower
+    # severity never overrides a higher one (R-36.6). No check is special-cased.
+    overall_status = _worst(row["status"] for row in checks)
     return {
         "schema_version": 1,
         "method_version": METHOD_VERSION,
@@ -243,11 +347,12 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
             "clean_run": {"value": clean_streak, "unit": "days", "sources": streak_sources},
         },
         "verifier_drop_window": drop_window,
+        "verifier_drop_windows": drop_windows,
         "posting_state": posting_state,
         "posting_states": sorted(POSTING_STATES),
         "checks": checks,
         "slos": [
-            {"check": "freshness", "target": FRESHNESS_SLO_HOURS, "unit": "hours maximum",
+            {"check": "source_fetch", "target": FRESHNESS_SLO_HOURS, "unit": "hours maximum",
              "status": "provisional"},
             {"check": "verifier_drop", "target": VERIFIER_DROP_SLO, "unit": "share maximum",
              "status": "provisional"},

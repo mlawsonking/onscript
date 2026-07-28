@@ -58,13 +58,16 @@ def _open_major() -> dict:
     }
 
 
-def test_open_major_correction_turns_status_amber():
+def test_open_major_correction_plus_a_red_check_yields_red():
+    # R-36.6: severity precedence is absolute. An open major (amber) plus a degraded (red)
+    # check yields red overall; amber never short-circuits red (this is the third-review defect).
     history = [_assemble("2026-07-24", degraded=False), _assemble("2026-07-25", degraded=True)]
     model = status_exports.build_status(_manifests(), history, [_open_major()])
-    assert model["overall_status"] == "amber"
+    assert model["overall_status"] == "red"
     check = next(row for row in model["checks"] if row["id"] == "corrections")
     assert check["status"] == "amber" and check["value"] == 1
-    assert "Overall status:</strong> amber" in site.status_body(model)
+    assert next(row for row in model["checks"] if row["id"] == "degraded")["status"] == "red"
+    assert "Overall status:</strong> red" in site.status_body(model)
 
 
 def test_degraded_day_breaks_clean_run_but_not_publication_streak():

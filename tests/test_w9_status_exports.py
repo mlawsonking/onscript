@@ -97,6 +97,8 @@ def test_status_covers_the_ruled_operational_checks():
     manifests, history = _manifests()
     identifiers = {row["id"] for row in status_exports.build_status(manifests, history)["checks"]}
     assert identifiers == {
-        "collection", "assembly", "freshness", "streak", "verifier_drop",
-        "degraded", "posting", "corrections", "incident",
+        "collection", "assembly", "streak", "verifier_drop", "degraded", "posting",
+        "corrections", "incident",
+        # R-36.6: freshness split into five separately labeled checks
+        "source_fetch", "content_watermark", "expected_day", "publication_lag", "endpoint_health",
     }
