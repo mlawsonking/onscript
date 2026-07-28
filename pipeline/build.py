@@ -585,6 +585,40 @@ def build_awards(statements, ledger, *, out_dir=None, focus_day: str | None = No
     return result
 
 
+# R-36.3 (extends R-33.1): the per-party discipline (on-script) index divided mixed
+# units and was never validated. It is withdrawn from newly generated day records and
+# carried in a labeled legacy slot so no surface renders it as a live metric. The
+# unit-safe participation measures (participation-measures-v1) replace it.
+DISCIPLINE_WITHDRAWN_REASON = (
+    "The per-party discipline index divided mixed units and was never validated. "
+    "It is superseded by the unit-safe participation measures (participation-measures-v1). "
+    "Withdrawn under R-36.3, which extends R-33.1."
+)
+
+
+def _day_discipline_metrics(day_data: dict | None) -> dict:
+    """Return the raw per-party discipline values from either record shape."""
+    carrier = (day_data or {}).get("legacy_unvalidated_metrics") or {}
+    from_carrier = (carrier.get("metrics") or {}).get("discipline")
+    if isinstance(from_carrier, dict):
+        return from_carrier
+    top_level = (day_data or {}).get("discipline")
+    return top_level if isinstance(top_level, dict) else {}
+
+
+def withdrawn_discipline_view(day_data: dict | None) -> dict:
+    """Return the discipline metric as a withdrawn carrier for any reader.
+
+    New records store it under legacy_unvalidated_metrics; historical records store
+    it top level. Both read as withdrawn so no surface resurrects it as live.
+    """
+    return {
+        "status": "withdrawn",
+        "reason": DISCIPLINE_WITHDRAWN_REASON,
+        "metrics": {"discipline": _day_discipline_metrics(day_data)},
+    }
+
+
 def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_phrases: int = 50,
                   coverage: dict | None = None, allow_final_overwrite: bool = False) -> dict:
     """Write all deterministic derived JSON. Returns a summary for the manifest. Takes the
@@ -637,10 +671,18 @@ def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_
         day_top, focus_day_write = None, "skipped-final"
     else:
         day_top = top_synchronized(ledger, focus_day, k=20)
+        day_discipline = {p: discipline.get(p, {}).get(focus_day) for p in config.COMPOSITE_PARTIES}
         _u.write_json(days_dir / f"{focus_day}.json", {
             "day": focus_day,
             "top_synchronized": day_top,
-            "discipline": {p: discipline.get(p, {}).get(focus_day) for p in config.COMPOSITE_PARTIES},
+            # R-36.3: the discipline index is withdrawn from newly generated day records
+            # and carried here labeled withdrawn. Historical records keep it top level and
+            # are not rewritten; readers use withdrawn_discipline_view for both shapes.
+            "legacy_unvalidated_metrics": {
+                "status": "withdrawn",
+                "reason": DISCIPLINE_WITHDRAWN_REASON,
+                "metrics": {"discipline": day_discipline},
+            },
             "daily_lines": None,  # filled by the LLM assemble stage
         })
         focus_day_write = "written"
