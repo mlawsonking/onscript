@@ -66,7 +66,9 @@ def test_csv_exports_are_normalized_rows_with_exact_headers():
     exports = status_exports.experimental_exports(*_inputs())
     expected = {
         "api/v1/exports/days.csv": ["day", "degraded", "daily_line_parties", "top_phrase_rows"],
-        "api/v1/exports/phrases.csv": ["day", "party", "phrase", "observed_offices", "surface_class"],
+        "api/v1/exports/phrases.csv": ["day", "party", "phrase", "observed_offices", "surface_class",
+                                       "surface_eligible", "classification_rule", "classifier_version",
+                                       "family_count"],
         "api/v1/exports/corrections.csv": ["correction_id", "affected_day", "severity", "status", "logged"],
     }
     for name, header in expected.items():

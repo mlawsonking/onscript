@@ -420,16 +420,42 @@ def days_csv(days: list[tuple[str, dict]]) -> bytes:
     return stream.getvalue().encode("utf-8")
 
 
+def _classified_phrase_row(row: dict, day: str | None) -> dict:
+    """Return the five ruled export fields for one phrase row, classified at emit time.
+
+    Historical committed records predate these fields, so they are re-derived from the
+    deterministic classifier rather than read from the row (R-36.7). Fail-closed: a
+    nonprivate row must carry a class and a classifier version.
+    """
+    classification = eligibility.classify_phrase(
+        row.get("ngram") or "", day=day, family_count=row.get("family_count"))
+    classifier = classification.get("classifier") or {}
+    fields = {
+        "surface_class": classification.get("surface_class"),
+        "surface_eligible": classification.get("surface_eligible"),
+        "classification_rule": classifier.get("rule"),
+        "classifier_version": classifier.get("name"),
+        "family_count": row.get("family_count"),
+    }
+    if fields["surface_class"] != "private" and not (fields["surface_class"] and fields["classifier_version"]):
+        raise ValueError("phrase export row is missing its surface class or classifier version")
+    return fields
+
+
 def phrases_csv(days: list[tuple[str, dict]]) -> bytes:
-    """One observed phrase per row with no nested cells."""
+    """One observed phrase per row with no nested cells, each self-describing its class."""
     stream = io.StringIO(newline="")
     writer = csv.writer(stream, lineterminator="\n")
-    writer.writerow(["day", "party", "phrase", "observed_offices", "surface_class"])
+    writer.writerow(["day", "party", "phrase", "observed_offices", "surface_class",
+                     "surface_eligible", "classification_rule", "classifier_version", "family_count"])
     for day, payload in days:
         for row in sorted(payload.get("top_synchronized") or [],
                           key=lambda value: (value.get("party") or "", value.get("ngram") or "")):
+            fields = _classified_phrase_row(row, day)
             writer.writerow([day, row.get("party"), row.get("ngram"), row.get("day_peak"),
-                             row.get("surface_class")])
+                             fields["surface_class"], fields["surface_eligible"],
+                             fields["classification_rule"], fields["classifier_version"],
+                             fields["family_count"]])
     return stream.getvalue().encode("utf-8")
 
 
@@ -490,7 +516,8 @@ def experimental_exports(status: dict, days: list[tuple[str, dict]], phrases: di
             for party in config.COMPOSITE_PARTIES
         },
     } for day, payload in days]
-    phrase_rows = [dict(row) for row in (phrases.get("by_peak") or [])]
+    phrase_rows = [{**dict(row), **_classified_phrase_row(row, phrases.get("day"))}
+                   for row in (phrases.get("by_peak") or [])]
     resources = {
         "status": {"status": status},
         "days": {"days": day_rows},
@@ -558,11 +585,19 @@ def static_exports(status: dict, days: list[tuple[str, dict]], phrases: dict,
                 for party in config.COMPOSITE_PARTIES
             },
         })
+    # Each phrase row self-describes its class and classifier version (R-36.7).
+    day_hint = phrases.get("day")
+    enriched_phrases = dict(phrases)
+    for key in ("by_peak", "by_velocity"):
+        rows = phrases.get(key)
+        if isinstance(rows, list):
+            enriched_phrases[key] = [{**dict(row), **_classified_phrase_row(row, day_hint)}
+                                     for row in rows]
     payloads = {
         "api/v1/status.json": status,
         "api/v1/days.json": day_payload,
-        "api/v1/phrases.json": phrases,
-        "api/v1/bulk.json": {"status": status, "days": day_payload, "phrases": phrases},
+        "api/v1/phrases.json": enriched_phrases,
+        "api/v1/bulk.json": {"status": status, "days": day_payload, "phrases": enriched_phrases},
     }
     out = {
         name: _canonical(envelope(payload, generated_at, fingerprint=cycle_fingerprint)) + b"\n"
