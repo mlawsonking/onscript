@@ -81,3 +81,28 @@ TERM_LADDER = (
 def day_tagline(day: str) -> str:
     """Public day-page scope with the measured date supplied by code."""
     return f"Observed congressional language on {day}, rendered as two cited automated composites."
+
+
+# R-36.4 temporal state ladder. A published reading names its state so a stale or
+# degraded reading is never labeled current. site.py renders the homepage heading
+# from this authority (owning surface for the state strings).
+TEMPORAL_HEADINGS = {
+    "today": "Today on OnScript",
+    "latest_complete": "Latest complete day",
+    "latest_available": "Latest available reading",
+    "publication_delayed": "Publication delayed",
+    "no_current_reading": "No current reading",
+}
+TEMPORAL_STATES = tuple(TEMPORAL_HEADINGS)
+
+
+def temporal_heading(state: str) -> str:
+    """Return the ruled homepage heading for a temporal state."""
+    return TEMPORAL_HEADINGS.get(state, TEMPORAL_HEADINGS["latest_available"])
+
+
+def publication_lag_note(measured_day: str, lag_days: int) -> str:
+    """Homepage note when the shown reading trails the expected latest complete day."""
+    unit = "day" if lag_days == 1 else "days"
+    return (f"This reading is for {measured_day}. The latest expected complete day has not "
+            f"published, so publication is {lag_days} {unit} behind.")

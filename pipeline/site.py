@@ -1659,18 +1659,88 @@ def class_lanes_panel(day_data: dict, depth: int = 0) -> str:
     )
 
 
-def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_day=None, is_today=False):
+def _calendar_lag_days(measured_day, product_day):
+    """Return how many calendar days measured_day trails product_day (never negative)."""
+    try:
+        measured = datetime.strptime(measured_day, "%Y-%m-%d").date()
+        product = datetime.strptime(product_day, "%Y-%m-%d").date()
+    except (TypeError, ValueError):
+        return 0
+    return max(0, (product - measured).days)
+
+
+def _reading_age_hours(generated_at, now=None):
+    """Return the reading age in hours from an assemble manifest timestamp, or None."""
+    if not generated_at:
+        return None
+    try:
+        stamped = datetime.strptime(generated_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        return None
+    reference = now or datetime.now(timezone.utc)
+    return (reference - stamped).total_seconds() / 3600.0
+
+
+def temporal_state(measured_day, product_day, *, age_hours=None, degraded=False,
+                   forced_finalize=False, source_ok=True):
+    """Resolve one of the five R-36.4 temporal states for a measured reading.
+
+    measured_day is the day the homepage shows. product_day is the expected latest
+    complete day (the prior calendar day). A reading is current only when it is the
+    expected day, not degraded or force-finalized, and within 36 hours.
+    """
+    if not source_ok or not measured_day:
+        return "no_current_reading"
+    lag = _calendar_lag_days(measured_day, product_day) if product_day else 0
+    if lag > 1:
+        return "publication_delayed"
+    if degraded or forced_finalize:
+        return "latest_available"
+    if lag == 1:
+        return "latest_complete"
+    if age_hours is not None and age_hours > 60:
+        return "latest_available"
+    if age_hours is not None and age_hours > 36:
+        return "latest_complete"
+    return "today"
+
+
+def temporal_state_banner(state, day, lag_days=0):
+    """Render the honest state line for the homepage under the R-36.4 ladder."""
+    if state == "today":
+        return (f'<div class="banner">Press releases for a given day are complete the next morning, '
+                f'so this reading covers the most recent complete day: <strong>{esc(day)}</strong>.</div>')
+    if state == "latest_complete":
+        return f'<div class="banner">This is the latest complete day: <strong>{esc(day)}</strong>.</div>'
+    if state == "publication_delayed":
+        return f'<div class="banner">{esc(public_strings.publication_lag_note(day, max(2, lag_days)))}</div>'
+    if state == "no_current_reading":
+        return ('<div class="banner">No current reading is available. Source completeness is '
+                'insufficient for a published day.</div>')
+    return (f'<div class="banner">This is the latest available reading: <strong>{esc(day)}</strong>. '
+            f'It is degraded or older than the current window.</div>')
+
+
+def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_day=None,
+                  is_today=False, temporal_state=None, lag_days=0):
     symmetry = _load_json(DERIVED / "symmetry" / f"{day}.json")
     root = "../" * depth
 
-    title_line = "Today on OnScript" if is_today else f"OnScript · {esc(day)}"
-    parts = [f"<h1>{title_line}</h1>"]
+    if temporal_state is not None:
+        heading = public_strings.temporal_heading(temporal_state)
+        title_line = heading if temporal_state == "today" else f"{heading}: {day}"
+    else:
+        title_line = "Today on OnScript" if is_today else f"OnScript · {day}"
+    parts = [f"<h1>{esc(title_line)}</h1>"]
     parts.append(f'<p class="subhead">{esc(public_strings.day_tagline(day))}</p>')
     parts.append(instrument_status_header(depth))
 
-    # Cadence note (A5): the header says "Today" but a day's press releases are only complete the next
-    # morning, so the freshest complete reading is yesterday. Say so, so the page never looks stale.
-    if is_today:
+    # Time is stated, never implied (R-36.4). The homepage names its measured state so a stale
+    # or degraded reading is never labeled current; press releases for a day complete the next
+    # morning, so the freshest complete reading is the prior day.
+    if temporal_state is not None:
+        parts.append(temporal_state_banner(temporal_state, day, lag_days))
+    elif is_today:
         parts.append(
             f'<div class="banner">Press releases for a given day are complete the next morning, so this '
             f'&ldquo;today&rdquo; reading covers the most recent complete day: <strong>{esc(day)}</strong>.</div>'
@@ -3019,10 +3089,25 @@ def build_site():
             home_prev = rendered_order[_i - 1] if _i > 0 else None
         except ValueError:
             home_prev = rendered_order[-1] if rendered_order else None
+        # R-36.4: compare the shown day to the expected latest complete day and the assemble
+        # manifest's finalization state, so the homepage never labels a stale or degraded
+        # reading as current.
+        prod_day = util.product_day()
+        manifest = _load_json(DERIVED / "manifest" / f"assemble-{today_day}.json") or {}
+        state = temporal_state(
+            today_day, prod_day,
+            age_hours=_reading_age_hours(manifest.get("generated_at")),
+            degraded=bool(manifest.get("degraded")),
+            forced_finalize=bool(manifest.get("forced_finalize")),
+            source_ok=has_daily_lines(data),
+        )
+        lag_days = _calendar_lag_days(today_day, prod_day)
         body = day_view_body(today_day, data, SLUGS_WITH_PAGES, depth=0,
-                             prev_day=home_prev, is_today=True)
+                             prev_day=home_prev, is_today=True,
+                             temporal_state=state, lag_days=lag_days)
+        heading = "Today" if state == "today" else public_strings.temporal_heading(state)
         (OUT / "index.html").write_text(
-            page(f"OnScript — Today ({today_day})", body, depth=0,
+            page(f"OnScript: {heading} ({today_day})", body, depth=0,
                  description=public_strings.day_tagline(today_day),
                  path="index.html"),
             encoding="utf-8",

@@ -21,6 +21,7 @@ from __future__ import annotations
 import os
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -166,7 +167,15 @@ def _with_mark(post: str, limit: int = 300) -> str:
     return post + mark
 
 
-def build_thread(day: str, party: str, day_json: dict) -> list[str]:
+_TODAY_WORD = re.compile(r"\btoday\b", re.IGNORECASE)
+
+
+def _state_absolute_date(text: str, day: str) -> str:
+    """Replace the word today with the absolute measured date for a delayed post."""
+    return _TODAY_WORD.sub(lambda m: (f"On {day}" if m.group(0)[0].isupper() else f"on {day}"), text)
+
+
+def build_thread(day: str, party: str, day_json: dict, post_date: str | None = None) -> list[str]:
     # Total-failure-proof: a malformed day entry (null composite, a top-phrase row missing keys) must
     # never raise here — a raise would crash the run. All accesses are guarded.
     dl = (day_json.get("daily_lines") or {}).get(party) or {}
@@ -178,7 +187,13 @@ def build_thread(day: str, party: str, day_json: dict) -> list[str]:
         party, day, stats.get("statements")
     )
     state = distill.state_for_line(dl)
-    posts = _split(f"{lead} Composite state: {state}. {composite}", limit=room)
+    body = f"{lead} Composite state: {state}. {composite}"
+    # R-36.4: a reading posted after its measured date never says today. The absolute measured
+    # date is already in the lead and receipts; neutralize any residual today in the composite.
+    # Applied identically to both parties; the stored day record is never rewritten.
+    if post_date and post_date != day:
+        body = _state_absolute_date(body, day)
+    posts = _split(body, limit=room)
     party_rows = [
         row for row in (day_json.get("top_synchronized") or [])
         if isinstance(row, dict) and row.get("party") == party
@@ -223,7 +238,7 @@ def can_post(party: str) -> bool:
 
 def _dry_result(day: str, party: str, day_json: dict, reason: str, creds_present=None) -> dict:
     """A non-posting result (dry-run / gated / atomic-hold). Prints the would-be thread; NO network."""
-    thread = build_thread(day, party, day_json)
+    thread = build_thread(day, party, day_json, post_date=date.today().isoformat())
     _print_thread(_ACCOUNTS[party]["label"], party, thread, reason=reason)
     return {"party": party, "thread": thread, "posts": len(thread), "posted": False,
             "reason": reason, "creds_present": can_post(party) if creds_present is None else creds_present}
@@ -633,7 +648,7 @@ def main() -> int:
 
     # POST each authed party, checkpointing the root URI the instant it is live.
     for p in to_post:
-        thread = build_thread(day, p, day_json)
+        thread = build_thread(day, p, day_json, post_date=date.today().isoformat())
         try:
             try:
                 _ensure_bot_label(sessions[p])
