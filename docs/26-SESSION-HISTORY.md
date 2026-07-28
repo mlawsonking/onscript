@@ -2511,3 +2511,23 @@ rater, provisional; the bundles and labels publish openly with a standing
 re-annotation invitation; Gate B remains unclaimed until independent replication,
 which the published bundles enable at zero recruiting cost. Transparency is the
 mechanism that replaces personnel independence, and the disclosure is total.
+
+## 2026-07-28: Session 58 (Fable). Annotation ops merged; survivor sampling ruled
+
+The annotation-ops delivery (opus/annotation-ops, six commits) validated clean and
+merged: suite 814/0 reproduced independently, site and derived untouched, prompt pins
+and flags untouched. All 66 added em dashes sit in the pilot bundle's rendered corpus
+text, protected verbatim. The out-of-scope privacy.redact fix (the one gate-touching
+call S57's lazy-gate work missed) is accepted; it is the same _require_gate path with
+salt-less subprocess proof. The verify-versus-build seal asymmetry fix is accepted as
+essential: a kit nobody can verify is not sealed.
+
+Ruling on the survivor sampling question the session correctly left open: the pilot
+proceeds unmodified. Forcing named phrases into the pilot would hand-pick the sample
+for exactly the phrases under adjudication; the three in-frame survivors are sealed in
+the full sample and adjudicate there; the two ledger-absent survivors are answered by
+their absence (they are not live candidates and need no adjudication). No annex is
+created unless pilot calibration shows the message-generic boundary needs earlier
+data.
+
+Michael's pilot pass is task #216. Gate B remains unclaimed per docs/35 section 10.
