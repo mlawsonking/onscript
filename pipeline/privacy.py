@@ -124,13 +124,21 @@ def _mac_with(salt: bytes, s: str) -> str:
     return hmac.new(salt, s.encode("utf-8"), hashlib.sha256).hexdigest()
 
 
+def _require_gate() -> None:
+    """Establish the gate on FIRST USE, not at import. load() raises with the full remedy
+    message when the salt is genuinely absent, so every consuming call stays fail-closed;
+    importing a module is not publishing, and a read-only tool (the watchdog) must be able
+    to import this package without holding the salt (2026-07-28 watchdog outage)."""
+    if _SALT is None:
+        load()
+
+
 def _mac(s: str) -> str:
     key = (_GEN, s)
     v = _MAC_MEMO.get(key)
     if v is None:
-        if _SALT is None:
-            raise PrivacyGateError("privacy gate not loaded")
-        v = _MAC_MEMO[key] = _mac_with(_SALT, s)
+        _require_gate()
+        v = _MAC_MEMO[key] = _mac_with(_SALT, s)  # type: ignore[arg-type]
     return v
 
 
@@ -278,8 +286,7 @@ def is_suppressed(text) -> bool:
     it is bounded by display rows (~hundreds/day x ~20 windows)."""
     # A redaction label stands in for a name and inherits the name's treatment (see module docstring).
     if isinstance(text, str) and text and _LABEL_RE.search(text):
-        if _SALT is None:
-            raise PrivacyGateError("privacy gate not loaded")
+        _require_gate()
         return True
     return contains_admitted_form(text)
 
@@ -294,8 +301,7 @@ def contains_admitted_form(text) -> bool:
     label — a false positive that would train someone to weaken the guard."""
     if not isinstance(text, str) or not text:
         return False
-    if _SALT is None:
-        raise PrivacyGateError("privacy gate not loaded")
+    _require_gate()
     t = _tokens(text)
     for n in _FORM_SIZES:
         for i in range(len(t) - n + 1):
@@ -691,6 +697,9 @@ def purge_derived(dry_run: bool = False) -> list[str]:
     return removed
 
 
-# Establish the gate at import. No fail-open path: a module that imports privacy and keeps running
-# has a working gate, or the process is already dead.
-load()
+# The gate establishes on FIRST USE (_require_gate), not at import. The old import-time load()
+# assumed only publishing processes import this module; the instrument fingerprint made privacy a
+# transitive import of ops, and the salt-less read-only watchdog died at import on 2026-07-28,
+# leaving the pipeline unwatched. Fail-closed is unchanged where it matters: every call that
+# touches gate state goes through _require_gate, and load() still refuses on any failure. A
+# publishing process without its salt dies at its first privacy call with the same remedy message.
