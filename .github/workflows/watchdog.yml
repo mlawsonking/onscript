@@ -77,9 +77,9 @@ jobs:
       # Vikunja #203. The blind spot this closes: every layer above lives inside GitHub Actions,
       # so nothing here can report GitHub Actions itself being down, or this schedule silently
       # ceasing to fire. Both are outages in which the probe never runs, never fails, and never
-      # pages — the pipeline is unwatched and everything looks green. An external heartbeat
-      # monitor inverts that: it expects a ping on a schedule and alarms on the ping's ABSENCE,
-      # from outside GitHub entirely.
+      # pages, so the pipeline sits unwatched while every surface still looks green. An external
+      # heartbeat monitor inverts that: it expects a ping on a schedule and alarms on the ping's
+      # ABSENCE, from outside GitHub entirely.
       #
       # `if: always()` and not `success()`, deliberately, to keep one alert per failure mode:
       #   the watchdog never ran   -> ping missing  -> the external monitor pages, and only it
@@ -92,11 +92,11 @@ jobs:
       # file reaching the default branch (a scheduled workflow only ever runs from there, so the
       # push is the release act), and the HEALTHCHECK_PING_URL secret being created. Until both
       # have happened the external layer does not exist.
-      - name: External heartbeat — prove to a monitor outside GitHub that this probe ran
+      - name: External heartbeat, proving to a monitor outside GitHub that this probe ran
         if: always()
         run: |
           if [ -z "$HEALTHCHECK_PING_URL" ]; then
-            echo "HEALTHCHECK_PING_URL unset — external heartbeat inactive (see Vikunja #203)."
+            echo "HEALTHCHECK_PING_URL unset, external heartbeat inactive (see Vikunja #203)."
             exit 0
           fi
           curl -fsS -m 10 --retry 3 "$HEALTHCHECK_PING_URL" \
