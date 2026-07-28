@@ -1,10 +1,18 @@
-"""Complete, deterministic identity for the published measurement instrument."""
+"""Complete, deterministic identity for the published measurement instrument.
+
+Code identity is a content hash over the measurement tree (pipeline code,
+prompts, taxonomy, schemas), not repository HEAD. Data commits move HEAD without
+changing the instrument, so HEAD is not a truthful code identity (docs/37 rule 7).
+Method and schema versions are read from their owning modules, never copied as
+strings, so the registry cannot silently misdescribe the live instrument
+(docs/36 R-36.1, Constitution Article XVII).
+"""
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
-import os
-import subprocess
+from pathlib import Path
 
 from . import config, llm, nomenclature, privacy
 
@@ -36,22 +44,54 @@ LEGACY_THRESHOLD_NAMES = (
     "NEAR_JOINT_JACCARD", "LEDGER_MIN_TOTAL_USES", "QUIET_DAY_MAX_STATEMENTS",
 )
 
-SCHEMA_VERSIONS = {
-    "claim_contract": 2,
-    "corrections": 2,
-    "published_artifact": 1,
+# Each method-version entry is (registry key, owning pipeline module, authority
+# symbol). The registry reads the live symbol; it never copies the version string.
+# A provider-discovery test scans the pipeline for method-version symbols and fails
+# when a production module is neither registered here nor allowlisted below.
+METHOD_VERSION_PROVIDERS = (
+    ("document_families", "document_families", "METHOD_VERSION"),
+    ("surface_eligibility", "eligibility", "CLASSIFIER"),
+    ("phrase_statistics", "surges", "METHOD_VERSION"),
+    ("participation", "participation", "METHOD_VERSION"),
+    ("denominators", "denominators", "METHOD_VERSION"),
+    ("gold_set", "goldset", "METHOD_VERSION"),
+    ("structured_composite", "distill", "STRUCTURED_COMPOSITE_VERSION"),
+    ("shadow_replay", "shadow_replay", "METHOD_VERSION"),
+    ("status_exports", "status_exports", "METHOD_VERSION"),
+)
+
+# Modules that declare a method-version symbol but are not part of the daily
+# published instrument. Provider discovery allows these and records the reason.
+NON_INSTRUMENT_METHOD_MODULES = {
+    "goldset_bundle": "offline gold-set bundle builder, not a daily published surface",
+    "goldset_metrics": "offline gold-set evaluation metrics, not a daily published surface",
+    "goldset_sample": "offline gold-set sampling, not a daily published surface",
 }
 
-METHOD_VERSIONS = {
-    "document_families": "document-families-v1",
-    "gold_set": "gold-set-harness-v1",
-    "participation": "participation-measures-v1",
-    "phrase_statistics": "phrase-statistics-v2",
-    "surface_eligibility": "surface-eligibility-v2",
-    "structured_composite": "structured-composite-v1",
-    "shadow_replay": "shadow-replay-v1",
-    "status_exports": "status-exports-v1",
-}
+# Schema-version entries import from their owning modules where one exists.
+# published_artifact has no separate owner and stays a registry-local constant.
+SCHEMA_VERSION_PROVIDERS = (
+    ("claim_contract", "contracts", "SCHEMA_VERSION"),
+    ("corrections", "corrections", "SCHEMA_VERSION"),
+)
+LOCAL_SCHEMA_VERSIONS = {"published_artifact": 1}
+
+
+def _owning_module(name: str):
+    return importlib.import_module(f"{__package__}.{name}")
+
+
+def method_versions() -> dict:
+    """Return the live method versions read from their owning modules."""
+    return {key: getattr(_owning_module(mod), attr)
+            for key, mod, attr in METHOD_VERSION_PROVIDERS}
+
+
+def schema_versions() -> dict:
+    """Return the live schema versions, importing every owned entry."""
+    live = {key: getattr(_owning_module(mod), attr)
+            for key, mod, attr in SCHEMA_VERSION_PROVIDERS}
+    return {**LOCAL_SCHEMA_VERSIONS, **live}
 
 
 def _canonical(value) -> bytes:
@@ -63,18 +103,56 @@ def _hash(value) -> str:
     return hashlib.sha256(_canonical(value)).hexdigest()
 
 
-def code_commit() -> str:
-    """Return the checked-out commit without making the fingerprint network-dependent."""
-    supplied = os.environ.get("GITHUB_SHA", "").strip()
-    if supplied:
-        return supplied
-    try:
-        return subprocess.run(
-            ["git", "rev-parse", "HEAD"], cwd=config.REPO_ROOT,
-            check=True, capture_output=True, text=True,
-        ).stdout.strip()
-    except (OSError, subprocess.CalledProcessError):
-        return "unknown"
+# The measurement tree: pipeline code and prompts, plus the taxonomy and schema
+# files. Never data output or the rendered site, so a data-only commit does not
+# move the code identity (docs/36 Y1, docs/37 rule 7).
+MEASUREMENT_TREE_EXTRA = ("taxonomy_v1.json", "evaluation/annotation.schema.json")
+_MEASUREMENT_TREE_SUFFIXES = frozenset({".py", ".txt"})
+
+
+def measurement_tree_files() -> list[Path]:
+    """Return the source files whose content defines the instrument identity."""
+    root = config.REPO_ROOT
+    files: list[Path] = []
+    for path in (root / "pipeline").rglob("*"):
+        if not path.is_file() or "__pycache__" in path.parts:
+            continue
+        if path.suffix in _MEASUREMENT_TREE_SUFFIXES:
+            files.append(path)
+    for relative in MEASUREMENT_TREE_EXTRA:
+        extra = root / relative
+        if extra.is_file():
+            files.append(extra)
+    return sorted(files, key=lambda p: p.relative_to(root).as_posix())
+
+
+def code_tree_hash() -> str:
+    """Content hash over the measurement tree with normalized line endings.
+
+    Line endings are normalized to LF so a CRLF checkout and an LF checkout of the
+    same source produce the same identity.
+    """
+    root = config.REPO_ROOT
+    digest = hashlib.sha256()
+    for path in measurement_tree_files():
+        digest.update(path.relative_to(root).as_posix().encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).digest())
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def inherit(source: dict | None) -> dict:
+    """Return the instrument identity a prior stage stamped, never a fresh build.
+
+    Downstream artifacts of one cycle (post manifest, exports) carry the exact
+    fingerprint assembly stamped, so day, post, and API artifacts agree byte for
+    byte (docs/37 rule 6).
+    """
+    fingerprint = (source or {}).get("instrument_fingerprint")
+    if not isinstance(fingerprint, dict):
+        raise ValueError("no stamped instrument fingerprint to inherit")
+    return fingerprint
 
 
 def live_thresholds(overrides: dict | None = None) -> dict:
@@ -105,9 +183,9 @@ def build(*, threshold_overrides: dict | None = None,
     Overrides exist for deterministic mutation tests. Production callers pass none.
     """
     raw_components = {
-        "code_commit": code_commit(),
-        "schema_versions": SCHEMA_VERSIONS,
-        "method_versions": METHOD_VERSIONS,
+        "code_tree": code_tree_hash(),
+        "schema_versions": schema_versions(),
+        "method_versions": method_versions(),
         "live_thresholds": live_thresholds(threshold_overrides),
         "prompts": prompt_components(),
         "privacy_forms": privacy.forms_fingerprint(),

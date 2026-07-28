@@ -533,9 +533,15 @@ def main() -> int:
         # root rkey means the manifest is a fast-path record, not the sole idempotency guard.
         try:
             live = [r["party"] for r in _ordered() if r.get("posted")]
+            # Inherit the fingerprint assembly stamped on the day being posted, never a
+            # fresh build, so the post manifest and the day record agree byte for byte
+            # (docs/36 Y1, docs/37 rule 6). Older days without a stamp fall back to build.
+            fingerprint = (instrument_fingerprint.inherit(day_json)
+                           if isinstance(day_json, dict) and day_json.get("instrument_fingerprint")
+                           else instrument_fingerprint.build())
             util.write_json(manifest_path, {
                 "schema_version": 1, "kind": "post", "day": day, "generated_at": util.now_utc_iso(),
-                "instrument_fingerprint": instrument_fingerprint.build(),
+                "instrument_fingerprint": fingerprint,
                 "posting_enabled": posting_enabled, "atomic_hold": atomic_hold,
                 "asymmetric": len(live) == 1, "results": _ordered(),
             })

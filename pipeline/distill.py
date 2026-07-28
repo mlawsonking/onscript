@@ -13,6 +13,10 @@ import re
 
 from . import boilerplate, config, contracts, eligibility, llm, nomenclature, util, verify
 
+# Owning constant for the structured-composite method. The instrument fingerprint
+# imports this so its attestation cannot drift from the running method (docs/36 Y1).
+STRUCTURED_COMPOSITE_VERSION = "structured-composite-v1"
+
 _QUOTE_MAX_WORDS = 10
 
 COMPOSITE_STATES = (
@@ -317,7 +321,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     stats = build_stats(party, day, n, talking_points, top_phrase)
     stats_blob = json.dumps(stats, ensure_ascii=False)
     generation_request = {
-        "method": "structured-composite-v1",
+        "method": STRUCTURED_COMPOSITE_VERSION,
         "party": party,
         "day": day,
         "prompt": {"id": prompt["id"], "version": prompt["version"], "sha256": prompt["sha"]},
@@ -403,7 +407,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
         "structured_request": generation_request,
         "structured_output": structured_output,
         "generation_hashes": {
-            "method": "structured-composite-v1",
+            "method": STRUCTURED_COMPOSITE_VERSION,
             "request_sha256": request_sha256,
             "response_sha256": response_sha256,
             "model_response_sha256": model_response_sha256,

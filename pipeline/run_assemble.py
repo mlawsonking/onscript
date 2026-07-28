@@ -401,7 +401,7 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         nomen_measure[p] = {"tagged": tagged, "total": len(prows),
                             "rate": round(tagged / len(prows), 4) if prows else None}
     report = ops.symmetry_report(day, statements, per_party_llm, freshness=freshness, degraded=degraded,
-                                 nomen_measure=nomen_measure)
+                                 nomen_measure=nomen_measure, fingerprint=fingerprint)
 
     correction_rows = corrections.load()
     manifest = {

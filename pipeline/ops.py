@@ -122,7 +122,8 @@ def ntfy(title: str, message: str, *, priority: str = "default") -> dict:
 
 def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, freshness: dict,
                     degraded: bool, nomen_measure: dict | None = None,
-                    roster_table: dict | None = None, source_registry: dict | None = None) -> dict:
+                    roster_table: dict | None = None, source_registry: dict | None = None,
+                    fingerprint: dict | None = None) -> dict:
     """The §5.2 audit, per party, published on the Methodology page every day.
 
     `nomen_measure` (docs/19 §2a) is the per-party {tagged,total,rate} share of this day's synchronized
@@ -191,7 +192,7 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
         "statement": public_strings.SYMMETRY_PROMISE,
         "prompts_sha": prompts_sha(),
         "thresholds_sha": thresholds_sha(),
-        "instrument_fingerprint": instrument_fingerprint.build(),
+        "instrument_fingerprint": fingerprint or instrument_fingerprint.build(),
         "lane1_only": True,
         "degraded": degraded,
         "source_freshness": freshness,

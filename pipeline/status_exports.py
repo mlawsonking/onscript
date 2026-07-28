@@ -278,7 +278,8 @@ def _canonical(payload) -> bytes:
     return json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
 
-def envelope(payload, generated_at: str | None, *, resource: str = "legacy") -> dict:
+def envelope(payload, generated_at: str | None, *, resource: str = "legacy",
+             fingerprint: dict | None = None) -> dict:
     raw = _canonical(payload)
     return {
         "schema_version": 1,
@@ -290,7 +291,9 @@ def envelope(payload, generated_at: str | None, *, resource: str = "legacy") -> 
         "payload_fields": sorted(payload) if isinstance(payload, dict) else [],
         "deprecation_policy": DEPRECATION_POLICY,
         "checksums": {"payload_sha256": hashlib.sha256(raw).hexdigest()},
-        "instrument_fingerprint": instrument_fingerprint.build(),
+        # Inherit the cycle fingerprint when the caller stamped one, so an export
+        # carries the same identity as the day it describes (docs/36 Y1).
+        "instrument_fingerprint": fingerprint or instrument_fingerprint.build(),
         "payload": payload,
     }
 
@@ -358,19 +361,22 @@ RESOURCE_ENDPOINTS = {
 }
 
 
-def _resource_envelope(resource: str, payload: dict, generated_at: str | None) -> dict:
+def _resource_envelope(resource: str, payload: dict, generated_at: str | None,
+                       fingerprint: dict | None = None) -> dict:
     expected = list(RESOURCE_FIELDS[resource])
     if sorted(payload) != sorted(expected):
         raise ValueError(f"{resource} fields differ from the public API contract")
-    value = envelope(payload, generated_at, resource=resource)
+    value = envelope(payload, generated_at, resource=resource, fingerprint=fingerprint)
     value["payload_fields"] = expected
     return value
 
 
 def experimental_exports(status: dict, days: list[tuple[str, dict]], phrases: dict,
-                         correction_rows: list[dict]) -> dict[str, bytes]:
+                         correction_rows: list[dict],
+                         fingerprint: dict | None = None) -> dict[str, bytes]:
     """Emit experimental resource endpoints and normalized CSV exports."""
     generated_at = status.get("generated_at")
+    cycle_fingerprint = fingerprint or instrument_fingerprint.build()
     day_rows = [{
         "day": day,
         "degraded": payload.get("degraded"),
@@ -385,7 +391,7 @@ def experimental_exports(status: dict, days: list[tuple[str, dict]], phrases: di
         "days": {"days": day_rows},
         "phrases": {"phrases": phrase_rows},
         "corrections": {"corrections": correction_rows},
-        "instrument": {"instrument_fingerprint": instrument_fingerprint.build()},
+        "instrument": {"instrument_fingerprint": cycle_fingerprint},
         "schema": {
             "api_status": API_STATUS,
             "api_version": API_VERSION,
@@ -398,7 +404,8 @@ def experimental_exports(status: dict, days: list[tuple[str, dict]], phrases: di
         },
     }
     out = {
-        RESOURCE_ENDPOINTS[name]: _canonical(_resource_envelope(name, payload, generated_at)) + b"\n"
+        RESOURCE_ENDPOINTS[name]: _canonical(
+            _resource_envelope(name, payload, generated_at, cycle_fingerprint)) + b"\n"
         for name, payload in resources.items()
     }
     out["api/v1/exports/days.csv"] = days_csv(days)
@@ -427,8 +434,10 @@ def api_documentation() -> str:
     )
 
 
-def static_exports(status: dict, days: list[tuple[str, dict]], phrases: dict) -> dict[str, bytes]:
+def static_exports(status: dict, days: list[tuple[str, dict]], phrases: dict,
+                   fingerprint: dict | None = None) -> dict[str, bytes]:
     generated_at = status.get("generated_at")
+    cycle_fingerprint = fingerprint or instrument_fingerprint.build()
     day_payload = []
     for day, payload in days:
         lines = payload.get("daily_lines") or {}
@@ -451,7 +460,7 @@ def static_exports(status: dict, days: list[tuple[str, dict]], phrases: dict) ->
         "api/v1/bulk.json": {"status": status, "days": day_payload, "phrases": phrases},
     }
     out = {
-        name: _canonical(envelope(payload, generated_at)) + b"\n"
+        name: _canonical(envelope(payload, generated_at, fingerprint=cycle_fingerprint)) + b"\n"
         for name, payload in payloads.items()
     }
     out["api/v1/days.csv"] = days_csv(days)

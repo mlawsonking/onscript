@@ -44,7 +44,7 @@ def test_real_committed_day_and_api_envelope_accept_the_same_fingerprint():
 
 def test_fingerprint_carries_required_inspectable_components_and_compatibility_hash():
     value = instrument_fingerprint.build()
-    expected = {"code_commit", "schema_versions", "method_versions", "live_thresholds",
+    expected = {"code_tree", "schema_versions", "method_versions", "live_thresholds",
                 "prompts", "privacy_forms", "nomenclature_index"}
     assert set(value["component_hashes"]) == expected
     assert len(value["sha256"]) == 64

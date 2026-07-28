@@ -110,7 +110,7 @@ def test_correction_count_checkpoint_rejects_a_removed_entry():
     checkpoint = json.loads(
         (config.REFERENCE / "corrections-count.json").read_text(encoding="utf-8")
     )
-    assert checkpoint["count"] == len(rows) == 5
+    assert checkpoint["count"] == len(rows) == 6
     try:
         corrections.validate(rows[:-1], expected_count=checkpoint["count"])
     except ValueError as error:
@@ -125,7 +125,7 @@ def test_correction_pages_feed_and_affected_day_link_use_stable_ids():
     body = site.correction_permalink_body(row)
     index = site.corrections_index_body(rows)
     feed = site.corrections_feed(rows)
-    day = site.day_corrections("2026-07-22", 1)
+    day = site.day_corrections(row["affected_days"][0], 1)
     for rendered in (body, index, feed, day):
         assert row["correction_id"] in rendered
     assert "Severity:" in body and "Status:" in body

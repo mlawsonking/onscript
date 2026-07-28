@@ -829,7 +829,7 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
         party, day_data.get("day"), stats.get("statements")
     )
     generation = dict(out.get("generation_hashes") or {})
-    generation["method"] = "structured-composite-v1"
+    generation["method"] = distill.STRUCTURED_COMPOSITE_VERSION
     generation["response_sha256"] = distill._record_hash(structured_output)
     out["generation_hashes"] = generation
     out["generator"] = "deterministic"      # literally true: distill's own composer produced this
@@ -3249,7 +3249,11 @@ def build_site():
     safe_top = dict(top)
     for key in ("by_peak", "by_velocity"):
         safe_top[key] = privacy.filter_rows(top.get(key) or [])[0]
-    for relative, content in status_exports.static_exports(status_model, days, safe_top).items():
+    # The cycle fingerprint is the one assembly stamped on the latest published day,
+    # so every export inherits the same identity as that day record (docs/36 Y1).
+    cycle_fingerprint = days[-1][1].get("instrument_fingerprint") if days else None
+    for relative, content in status_exports.static_exports(
+            status_model, days, safe_top, cycle_fingerprint).items():
         target = OUT / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(content)
@@ -3262,7 +3266,7 @@ def build_site():
     )
     written.append("api/index.html")
     for relative, content in status_exports.experimental_exports(
-            status_model, days, safe_top, CORRECTIONS).items():
+            status_model, days, safe_top, CORRECTIONS, cycle_fingerprint).items():
         target = OUT / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(content)
