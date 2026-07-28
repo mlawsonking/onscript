@@ -8,7 +8,7 @@
   "method_version": "gold-set-sample-v1",
   "pilot_size": 200,
   "schema_version": 1,
-  "seal_hash": "2c349e56b37e326950596b9acb3780b57c4cc6b37985a7709f219b3a25880ec1",
+  "seal_hash": "7facc4d2323596a71153997fda33a924324634f1a096c5dee2df221ec86a00d3",
   "seed": "onscript-goldset-v1",
   "split_boundaries": {
     "train_end": "2025-12-31",
@@ -189,6 +189,11 @@
       "year": "2026"
     }
   ],
+  "supersedes": {
+    "method_version": "gold-set-sample-v1",
+    "seal_hash": "2c349e56b37e326950596b9acb3780b57c4cc6b37985a7709f219b3a25880ec1",
+    "universe_fingerprint": "51d7ac25c4d70cbc09db8134eee159ffdb64d9330b2b72bbfc597f76af4e112e"
+  },
   "universe_fingerprint": "51d7ac25c4d70cbc09db8134eee159ffdb64d9330b2b72bbfc597f76af4e112e",
   "universe_size": 591412,
   "unresolved_anchors": 0

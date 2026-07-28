@@ -53,7 +53,39 @@ def _write(path: Path, obj: dict) -> None:
     )
 
 
+def _day_artifacts() -> list[dict]:
+    days_dir = config.DERIVED / "days"
+    return [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted(days_dir.glob("*.json"))
+    ]
+
+
+def public_phrase_set(day_artifacts: list[dict]) -> set[str]:
+    """The public-impact oversampling set: committed day surfaces plus the R-36.7 survivors.
+
+    Build and verify both call this. A seal whose impact tags came from a different set than
+    the verifier reconstructs cannot be confirmed from the committed corpus, so the two paths
+    read one function rather than two copies of the union (docs/37 rule 1).
+    """
+    return goldset_sample._day_surface_phrases(day_artifacts) | goldset_sample.survivor_phrases()
+
+
+def _prior_seal() -> dict:
+    """Return the identity of the manifest this build supersedes, if it differs."""
+    path = OUT_DIR / "MANIFEST.json"
+    if not path.is_file():
+        return {}
+    prior = json.loads(path.read_text(encoding="utf-8"))
+    return {
+        "seal_hash": prior.get("seal_hash"),
+        "universe_fingerprint": prior.get("universe_fingerprint"),
+        "method_version": prior.get("method_version"),
+    }
+
+
 def build() -> int:
+    prior = _prior_seal()
     ledger_source = _file_digest(LEDGER_PATH)
     print(f"loading ledger {ledger_source['bytes']} bytes ...", flush=True)
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
@@ -62,14 +94,10 @@ def build() -> int:
     universe = goldset_sample.build_universe(ledger, epoch=config.STAGE1_EPOCH)
     print(f"universe candidates: {len(universe)}", flush=True)
 
-    days_dir = config.DERIVED / "days"
-    day_artifacts = [
-        json.loads(path.read_text(encoding="utf-8"))
-        for path in sorted(days_dir.glob("*.json"))
-    ]
+    day_artifacts = _day_artifacts()
     # R-36.7: the generic message-floor survivors join the public-surface set so they are drawn
     # into the pilot for the gold set to adjudicate.
-    public_phrases = goldset_sample._day_surface_phrases(day_artifacts) | goldset_sample.survivor_phrases()
+    public_phrases = public_phrase_set(day_artifacts)
     goldset_sample.tag_impact(universe, public_phrases=public_phrases)
     print(f"public-surface phrases: {len(public_phrases)}", flush=True)
 
@@ -126,6 +154,11 @@ def build() -> int:
         "unresolved_anchors": unresolved,
         "strata": manifest["strata"],
     }
+    # A re-seal supersedes the kit it replaces. Recording the prior identity keeps the
+    # succession auditable and stays idempotent: rebuilding an unchanged kit records nothing.
+    if prior.get("seal_hash") and prior["seal_hash"] != manifest["seal_hash"]:
+        seal_manifest["supersedes"] = prior
+        print(f"supersedes seal {prior['seal_hash'][:16]}", flush=True)
     _write(OUT_DIR / "MANIFEST.json", seal_manifest)
     print(f"wrote {OUT_DIR}", flush=True)
     return 0
@@ -136,12 +169,7 @@ def verify() -> int:
     manifest = json.loads((OUT_DIR / "MANIFEST.json").read_text(encoding="utf-8"))
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     universe = goldset_sample.build_universe(ledger, epoch=config.STAGE1_EPOCH)
-    days_dir = config.DERIVED / "days"
-    day_artifacts = [
-        json.loads(path.read_text(encoding="utf-8"))
-        for path in sorted(days_dir.glob("*.json"))
-    ]
-    goldset_sample.tag_impact(universe, public_phrases=goldset_sample._day_surface_phrases(day_artifacts))
+    goldset_sample.tag_impact(universe, public_phrases=public_phrase_set(_day_artifacts()))
     rebuilt = goldset_sample.seal(
         universe, seed=manifest["seed"], pilot_size=PILOT_SIZE, full_size=FULL_SIZE,
         split_boundaries=manifest["split_boundaries"],
