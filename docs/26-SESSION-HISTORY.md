@@ -2352,10 +2352,10 @@ first (+87 statements) and 119 built COMPLETE, not partial. The CREC E-lane now 
 Executed R-S50.1 (Fable ruling): the alexandria substrate lane domain is now THREE-valued on `date_source`
 (legacy/scraper/page_html), page_html ISOLATED and never folded into scraper in a primary number; the
 folded propublica/scraped view is a labelled robustness check only. Code done and suite-green
-(`load_congress_records`/`lane_shard_path`/`wave_s4._collect` 3-lane; daily pipeline unaffected); page_html
-isolated for all 113-119; the scraper-lane rebuild continues in the background (resumable, the long pole).
-Premise correction: the reads were already 2-lane-aware at base (Session 19), so R-S50.1 was the 2->3-lane
-isolation, not a from-scratch fix.
+(`load_congress_records`/`lane_shard_path`/`wave_s4._collect` 3-lane; daily pipeline unaffected). The full
+3-lane substrate was rebuilt for all 113-119 (~2.8h) and the R-S50.1 acceptance passes, the exact partition
+legacy + scraper + page_html == combined for every congress (delta 0). Premise correction: the reads were
+already 2-lane-aware at base (Session 19), so R-S50.1 was the 2->3-lane isolation, not a from-scratch fix.
 
 Froze SD.8 (instrument concordance) before measuring, then ran it: the press-core president-naming
 direction (S2.9, out-party names the president more) reproduces on the CREC Extensions instrument in only

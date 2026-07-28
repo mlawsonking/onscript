@@ -6,8 +6,9 @@
   statements) so it built COMPLETE, not partial.
 - **D2 CREC shards:** all five built + audited (111, 112, 117, 118, 119). Every window passes symmetric
   two-party. The CREC E-lane now spans 107-119 (2001-2026).
-- **D3 R-S50.1 3-lane substrate:** code complete and suite-green; page_html ISOLATED for all 113-119;
-  scraper-lane rebuild finishing in the background (resumable). Daily pipeline unaffected.
+- **D3 R-S50.1 3-lane substrate:** complete and verified. All three isolated lanes
+  (legacy/scraper/page_html) built for 113-119; the exact partition legacy + scraper + page_html ==
+  combined passes for every congress (delta 0). Daily pipeline unaffected.
 - **D4 SD.8 instrument concordance: VERDICT = HELD.** The press-core president-naming direction (S2.9)
   reproduces on the CREC Extensions instrument in only 8/14 years, era-split (2013-2020 6/8, 2021-2026
   2/6). The CREC lane is NOT calibrated for the naming family, so **pre-2013 (107-112) CREC naming
@@ -127,12 +128,14 @@ Substrate rebuild (`scripts/search/build_source_lane_shards.py`, `PYTHONHASHSEED
 PYTHONHASHSEED=0 C:\ProgramData\miniconda3\python.exe scripts/search/build_source_lane_shards.py
 ```
 
-- `page_html` built fresh and ISOLATED for all 113-119 (COMPLETE): records 6 / 108 / 62 / 403 / 454 /
-  794 / 1012 for 113..119.
-- `scraper` (page_html excluded) rebuilding in the BACKGROUND at delivery time (resumable; ~148 MB
-  ledgers/congress; the long pole). Not a blocker: writes to X: only, and SD.8 does not depend on it.
-- `legacy` == the existing `propublica` shards by identity (`instrument propublica = {legacy}`; copied,
-  no recompute).
+The rebuild COMPLETED for all 113-119 in ~2.8h (writes to X: only, outside the repo; does not gate SD.8):
+- `page_html` built fresh and ISOLATED (records 6 / 108 / 62 / 403 / 454 / 794 / 1012 for 113..119).
+- `scraper` (page_html excluded) built fresh (records 1675 / 3124 / 6673 / 15460 / 36319 / 61123 / 74925).
+- `legacy` == the `propublica` shards by identity (`instrument propublica = {legacy}`; copied, no recompute;
+  118/119 legacy = 0, the import's death on the 2021-01-03 seam, on record).
+- `reconcile_source_lanes` PASSES the R-S50.1 acceptance, the EXACT raw partition legacy + scraper +
+  page_html == combined for every congress, delta 0: c113 94576 · c114 106985 · c115 149210 · c116 160889 ·
+  c117 36917 · c118 61917 · c119 75937.
 
 ## D4. SD.8, frozen then run
 
@@ -185,9 +188,9 @@ Modified: `pipeline/alexandria.py`, `pipeline/search/wave_s4.py`, `tests/test_se
   2-lane (Session 19). R-S50.1 was implemented as the 2->3-lane isolation. Justified and filed above.
 - **Deviation (initiative):** finished the 2026 crawl tail (4 days, +87 statements) so 119 built COMPLETE
   rather than being deferred or `--allow-partial`. Keyless, $0, within the Deep Archive mandate.
-- **Not a blocker (long-running):** the scraper-lane substrate rebuild continues in the background at
-  delivery time (resumable; ~hours). page_html isolation, the core of R-S50.1, is complete for all
-  113-119. The rebuild writes to X: only and does not gate SD.8.
+- **Long-running (completed):** the isolated substrate rebuild took ~2.8h and completed for all 113-119
+  with the exact-partition acceptance passing (delta 0 every congress). It writes to X: only and never
+  gated SD.8. The driver is resumable if a future rebuild is needed.
 - **Carried (future session):** re-running the eleven S1 hypotheses on the isolated substrate (docs/18 §4:
   migrate each reader as it is re-run, never ahead of need). Out of scope for this session.
 - **Out of scope (untouched):** silence_board wiring (#198); the X1-X15 order; any prompt/threshold/

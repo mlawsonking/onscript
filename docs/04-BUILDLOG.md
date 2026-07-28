@@ -3127,11 +3127,14 @@ R-S50.1 row is the ruling record). Executed:
   107-112 combined-only guard fires for a source lane too).
 - Daily pipeline verified NOT to import alexandria (run_collect/run_assemble/distill/build/ops/verify/
   post_bluesky all clean); nothing here reaches a public surface.
-- Substrate rebuild (`scripts/search/build_source_lane_shards.py`, PYTHONHASHSEED=0): page_html built fresh
-  and ISOLATED for all 113-119 (complete); `scraper` (page_html excluded) rebuilding in the background
-  (resumable, ~148 MB ledgers/congress, the long pole); `legacy` == the propublica shards by identity
-  (copied). The rebuild writes to X: only (outside the repo) and does NOT gate SD.8, which reads the CREC
-  statement files directly.
+- Substrate rebuild (`scripts/search/build_source_lane_shards.py`, PYTHONHASHSEED=0) COMPLETED for all
+  113-119 in ~2.8h (X: only, outside the repo; does not gate SD.8, which reads the CREC statement files):
+  `page_html` and `scraper` (page_html excluded) built fresh; `legacy` == the propublica shards by identity
+  (copied). `reconcile_source_lanes` PASSES the R-S50.1 acceptance, the EXACT partition legacy + scraper +
+  page_html == combined for every congress (delta 0): c113 92895+1675+6=94576 · c114 103753+3124+108=106985
+  · c115 142475+6673+62=149210 · c116 145026+15460+403=160889 · c117 144+36319+454=36917 · c118
+  0+61123+794=61917 · c119 0+74925+1012=75937 (legacy=0 post-seam is the import's death on 2021-01-03, on
+  record).
 
 **D4 SD.8 frozen then run, verdict HELD.** The instrument-concordance calibration study (docs/15 §6) was
 pre-registered with numeral thresholds in commit `412308b` BEFORE measurement (freeze-before-measure), then
@@ -3154,7 +3157,6 @@ premise) -> observed the reads were already 2-lane; the real work was the 3-lane
 correction, filed). Expected SD.8 a clean concordance -> observed HELD with a real era-split, which the
 frozen gate correctly did not launder into CONFIRM. No discrepancy left unfiled.
 
-**Deferred / carried:** the scraper-lane substrate rebuild finishes in the background (resumable, ~hours);
-re-running the eleven S1 hypotheses on the isolated substrate is a future session (docs/18 §4: migrate each
-reader as it is re-run, never ahead of need). silence_board wiring (#198) and the X1-X15 order remain out of
-scope and untouched. Delivery packet: `delivery/DEEP-packet.md`.
+**Deferred / carried:** re-running the eleven S1 hypotheses on the now-isolated substrate is a future
+session (docs/18 §4: migrate each reader as it is re-run, never ahead of need). silence_board wiring (#198)
+and the X1-X15 order remain out of scope and untouched. Delivery packet: `delivery/DEEP-packet.md`.
