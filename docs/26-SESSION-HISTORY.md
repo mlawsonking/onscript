@@ -2468,3 +2468,12 @@ something to say; empty days stop pretending.
 
 Next: the Y session runs on the merged base; validation under the standing loop;
 the annotation pilot adjudicates the classifier questions Y10 documents.
+
+## 2026-07-28: Session 56 (Fable). Governance hardening: docs/37 and Article XVII
+
+The recurring failure patterns are now institutional, not episodic. docs/37 codifies
+fifteen incident-named rule groups binding every implementation session; CLAUDE.md
+carries the headline traps and the pointer; the constitution is amended to v1.2 adding
+Article XVII (self-description integrity) under the Article XV process. Work orders
+cite docs/37 from now on; validation checks deliveries against it. Detail in docs/04
+Session 56.

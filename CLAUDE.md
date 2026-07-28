@@ -211,6 +211,23 @@ results.
 release
   order in `docs/24-PUBLIC-SURFACE-STABILIZATION-BRIEF.md`.
 
+### Engineering discipline (every implementation session)
+
+`docs/37-ENGINEERING-DISCIPLINE.md` is binding and codifies the recurring failure patterns from
+the W/X/Deep/S1/Y rounds, each rule with its incident. Constitution Article XVII (v1.2) makes
+self-description integrity constitutional. The headline traps:
+
+- Registries are tested against their live owning modules, never against their own copy.
+- Production paths get at least one test built from real committed artifacts, not fixtures alone.
+- Committed evidence files are pinned history; never assert them equal to a fresh live-tree build.
+- A fail-closed gate ships with its transition path for existing production state, or it is an
+  authored outage.
+- Identity facts (fingerprints, versions) are stamped once at the owning stage and inherited;
+  code identity hashes the measurement tree, never repository HEAD.
+- Runs over 10 minutes go through the harness detached mechanism; never a manual nohup, never a
+  polling loop.
+- Session numbers are claimed from the docs/26 tail at session start; parallel sessions collide.
+
 ## Current status
 
 OnScript reached public S3 on 2026-07-22. The site, party posting, announcement, repository, public

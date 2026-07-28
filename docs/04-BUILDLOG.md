@@ -3270,3 +3270,28 @@ origin/main collision-checked clean before every edit and stayed at 6c9b0bd for 
 never merged to main and integration is the orchestrating session's call. $0, deterministic, zero Anthropic
 calls, no posting, no dispatch, no flips, no POSTING_ENABLED or FEATURES change, no site/public regeneration.
 AGENTS.md and tests/_tmp_watchdog/ stayed untracked. Delivery packet: `delivery/S1-packet.md`.
+
+## Session 56 (2026-07-28, Fable), governance hardening: docs/37 and Article XVII
+
+Michael asked whether the recurring failure patterns had been institutionalized into
+what every session reads, or only recorded where they happened. The honest audit said
+only recorded: the lessons lived in session records, delivery packets, and hand-carried
+work-order prompt sections, while CLAUDE.md's standing traps and the constitution had
+not moved since before the W round. That is the registry-versus-authority defect
+applied to governance itself.
+
+Fixed in one delivery. docs/37-ENGINEERING-DISCIPLINE.md codifies fifteen rule groups,
+each naming the incident that created it: registry-versus-authority testing, production-
+shaped tests, pinned-record evidence, fail-closed transition paths, timestamp
+determinism, stamp-once-inherit, measurement-tree identity, temporal truth,
+deterministic nulls, detached long runs, severity precedence, loop-local state,
+one-instrument comparisons, the mechanical checklist, and the maintenance rule that a
+new incident class earns its rule in the same delivery that fixes it. CLAUDE.md gains
+the headline traps and the pointer. The constitution is amended to v1.2 under Article
+XV: Article XVII makes self-description integrity constitutional (attestations derive
+from live authorities, stamp once, inherit; registries verified against owners;
+withdrawn metrics leave canonical surfaces; state labels reflect measured state).
+
+Amendment process per Article XV: this dated commit, this build-log entry, and the
+header version bump. Work orders now cite docs/37 instead of restating lessons; the
+validation pass checks deliveries against it.

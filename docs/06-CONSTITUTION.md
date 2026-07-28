@@ -1,4 +1,4 @@
-# 06: Constitution and project invariants (v1.1, 2026-07-17)
+# 06: Constitution and project invariants (v1.2, 2026-07-28)
 
 This document consolidates the rules that apply across every phase, session, model, and operator.
 Every future decision is checked against these numbered articles. A proposed action that conflicts
@@ -90,5 +90,17 @@ reproduction script. An unreproducible number is prose rather than evidence. Eve
 by comparing expectation with observation across site freshness, streak state, flags, and tests.
 Discrepancies are filed instead of assumed away.
 
+**XVII. The instrument describes itself truthfully.** Every published attestation about the
+instrument (its fingerprint, method versions, temporal labels, and operating status) derives from
+the live authority it describes, is computed once by the stage that owns it, and is inherited
+unchanged by every downstream artifact of that cycle. A registry of such facts is verified against
+its owners by test, never against its own copy. A withdrawn metric leaves every canonical surface,
+machine-readable as well as rendered. A state label (today, current, degraded, delayed) reflects
+the measured state under the published ladder. When the instrument cannot say something true about
+itself, it says nothing there. Engineering rules implementing this article live in
+docs/37-ENGINEERING-DISCIPLINE.md, which binds every implementation session.
+
 *Ratified 2026-07-11. Amended 2026-07-17 to add Article XVI after the salt outage and provenance-seam
-findings. Check decisions against this document instead of deriving the rules again.*
+findings. Amended 2026-07-28 to add Article XVII after three external review rounds each found the
+published self-description trailing the live instrument. Check decisions against this document
+instead of deriving the rules again.*
