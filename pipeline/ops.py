@@ -7,8 +7,25 @@ asymmetric finding is reality's, not the instrument's.
 from __future__ import annotations
 
 import os
+import statistics
+from collections import Counter
 
 from . import config, denominators, instrument_fingerprint, llm, public_strings, roster, util
+
+
+def volume_anomaly(statements, focus_day) -> dict:
+    """Lane-1 daily volume against the trailing-14-day median for one focus day.
+
+    Single definition shared by collect (the run's newest day) and assemble (the target
+    day), so the two callers cannot compute the anomaly two different ways (docs/37 rule 12).
+    """
+    by_day = Counter(s["published_at"] for s in statements if s.get("lane") == 1)
+    days = sorted(by_day)
+    prior = [by_day[d] for d in days if d < focus_day][-14:]
+    today = by_day.get(focus_day, 0)
+    med = statistics.median(prior) if prior else 0
+    low = bool(med) and today < config.NULL_SERVICE_VOLUME_RATIO * med
+    return {"today": today, "trailing_median": med, "anomalously_low": low}
 
 
 def thresholds_sha() -> str:

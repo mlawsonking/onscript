@@ -30,8 +30,8 @@ try:
 except Exception:
     pass
 
-from pipeline import (config, distill, eligibility, instrument_fingerprint, ops, privacy, public_strings,
-                      util)  # noqa: E402
+from pipeline import (config, corrections, distill, eligibility, instrument_fingerprint, ops, privacy,
+                      public_strings, status_exports, util)  # noqa: E402
 
 SITE = config.SITE_URL      # one source of truth: a receipts link that disagrees with the site is a 404
 _ACCOUNTS = {
@@ -165,6 +165,63 @@ def _with_mark(post: str, limit: int = 300) -> str:
     if len(post) + len(mark) > limit:
         post = post[:max(0, limit - len(mark) - 1)].rstrip() + "…"
     return post + mark
+
+
+def _instrument_is_red() -> bool:
+    """True when the current instrument status is red or worse, from the live manifests.
+
+    Fail-soft: if the status or corrections ledger cannot be read, return False so the run
+    posts normally rather than crashing. A null-service hold is the exception, never the default.
+    """
+    try:
+        manifests, history = status_exports.load_manifest_inputs(config.DERIVED / "manifest")
+        status = status_exports.build_status(manifests, history, corrections.load())
+    except Exception as e:  # noqa: BLE001 - posting must never crash on a status read
+        print(f"[post] status unavailable for the null-service check ({e}); not holding")
+        return False
+    return (status.get("overall_status") in {"red", "critical"}
+            or any((check or {}).get("status") == "red" for check in status.get("checks") or []))
+
+
+def null_service_conditions(day_json: dict, red_status: bool | None = None) -> dict:
+    """Evaluate the four R-36.5 conditions from the persisted day record and the live status.
+
+    The three assemble-observable conditions are stamped on the day record at assembly. The
+    red-instrument-status condition is evaluated only when the three already hold, so a normal
+    day never triggers a status query.
+    """
+    persisted = ((day_json.get("service_status") or {}).get("conditions") or {})
+    force = bool(persisted.get("force_finalized"))
+    low = bool(persisted.get("anomalously_low_volume"))
+    zero_both = bool(persisted.get("zero_eligible_claims_both_parties"))
+    if red_status is not None:
+        red = bool(red_status)
+    else:
+        red = _instrument_is_red() if (force and low and zero_both) else False
+    return {
+        "force_finalized": force,
+        "anomalously_low_volume": low,
+        "zero_eligible_claims_both_parties": zero_both,
+        "red_instrument_status": red,
+    }
+
+
+def null_service_hold(conditions: dict) -> bool:
+    """True when all four named R-36.5 conditions hold, so the party threads are held."""
+    return all(bool(conditions.get(name)) for name in config.NULL_SERVICE_CONDITIONS)
+
+
+def null_service_result(day: str, to_post: list[str], *, note_enabled: bool) -> tuple[dict, str | None]:
+    """Held per-party results and an optional single neutral note for a null-service day.
+
+    Both parties are held symmetrically (never one). The note is party-blind and dark by
+    default; there is no dedicated account, so the decision is what publishes, not the note.
+    """
+    note = public_strings.service_status_note(day, SITE) if note_enabled else None
+    results = {p: {"party": p, "posted": False, "creds_present": can_post(p),
+                   "reason": "null-service (R-36.5): party threads held", "null_service": True}
+               for p in to_post}
+    return results, note
 
 
 _TODAY_WORD = re.compile(r"\btoday\b", re.IGNORECASE)
@@ -433,11 +490,15 @@ def resolve_day(arg: str | None) -> str:
     return latest.get("day") or util.product_day()
 
 
-def _deadman(posting_enabled: bool, results: list[dict], atomic_hold: bool) -> None:
+def _deadman(posting_enabled: bool, results: list[dict], atomic_hold: bool,
+             null_service: bool = False) -> None:
     """Alert when posting is ON and something needs a human: an expected-but-absent post, an atomic
     hold (bad/missing creds — post neither), a partial thread (root up, replies failed), or an
-    ASYMMETRIC outcome (exactly one account up — the bias-looking failure). §Session-8."""
-    if not posting_enabled:
+    ASYMMETRIC outcome (exactly one account up, the bias-looking failure). §Session-8.
+
+    A null-service day (R-36.5) is an intended, symmetric non-post that publishes its own status
+    incident, so it never pages: both parties are held by design, not by failure."""
+    if not posting_enabled or null_service:
         return
     posted = [r["party"] for r in results if r.get("posted") and not r.get("idempotent_skip")]
     missing = [r["party"] for r in results if r.get("creds_present") and not r.get("posted")]
@@ -543,7 +604,7 @@ def main() -> int:
     def _ordered():
         return [result_by_party[p] for p in config.COMPOSITE_PARTIES if p in result_by_party]
 
-    def _flush():
+    def _flush(null_service=False, service_note=None):
         # A manifest write failure must never crash the run (module contract) — and the deterministic
         # root rkey means the manifest is a fast-path record, not the sole idempotency guard.
         try:
@@ -554,12 +615,16 @@ def main() -> int:
             fingerprint = (instrument_fingerprint.inherit(day_json)
                            if isinstance(day_json, dict) and day_json.get("instrument_fingerprint")
                            else instrument_fingerprint.build())
-            util.write_json(manifest_path, {
+            manifest = {
                 "schema_version": 1, "kind": "post", "day": day, "generated_at": util.now_utc_iso(),
                 "instrument_fingerprint": fingerprint,
                 "posting_enabled": posting_enabled, "atomic_hold": atomic_hold,
                 "asymmetric": len(live) == 1, "results": _ordered(),
-            })
+            }
+            if null_service:
+                manifest["null_service"] = True
+                manifest["service_note_posted"] = bool(service_note)
+            util.write_json(manifest_path, manifest)
         except Exception as e:
             print(f"[post] manifest write failed (non-fatal): {e}")
 
@@ -586,6 +651,20 @@ def main() -> int:
                 day, p, day_json, "posting disabled" if not posting_enabled else "no creds (dry-run)")
         _flush()
         _deadman(posting_enabled, _ordered(), atomic_hold)
+        return 0
+
+    # R-36.5: a force-finalized, anomalously-low, zero-eligible-claims, red-status day does not
+    # post the near-empty party composites. The day page and the status incident still publish;
+    # one neutral service-status note may post instead (build-dark). Both parties are held
+    # symmetrically, so this is never an asymmetric or bias-shaped outcome.
+    if null_service_hold(null_service_conditions(day_json)):
+        held, service_note = null_service_result(
+            day, to_post, note_enabled=config.null_service_note_enabled())
+        result_by_party.update(held)
+        print(f"[post] null-service (R-36.5) for {day}: party threads held; "
+              f"service note {'prepared' if service_note else 'dark'}")
+        _flush(null_service=True, service_note=service_note)
+        _deadman(posting_enabled, _ordered(), atomic_hold, null_service=True)
         return 0
 
     # A due party missing creds -> hold ALL atomically (post neither).

@@ -306,6 +306,18 @@ def _compose_llm(prompt: dict, stats: dict, party: str, day: str) -> tuple[str, 
     return text, tin, tout
 
 
+def _has_voiceable_content(stats: dict) -> bool:
+    """True when a code-selected claim or a top phrase exists to voice.
+
+    A day with neither renders a deterministic null (R-36.5): the model is not called,
+    because a template already produces the null text. This is the single predicate the
+    model-call gate and the withheld_no_eligible_claim state both read, so they cannot
+    diverge.
+    """
+    top = stats.get("top_phrase")
+    return bool(stats.get("selected_claims")) or bool(isinstance(top, dict) and top.get("text"))
+
+
 def daily_line(party: str, day: str, party_statements: list[dict], talking_points: list[dict],
                top_phrase: dict | None, statements_by_id: dict, allow_llm_voice: bool = False) -> dict:
     """Produce + verify one party-day Daily Line. Returns the daily_distillation record (§3).
@@ -332,7 +344,9 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     model_response_sha256 = None
 
     tokens_in = tokens_out = 0
-    if allow_llm_voice and not llm.dry_run():
+    # R-36.5: a day with zero code-selected claims and no top phrase renders a deterministic
+    # null. The model is never called to produce what a template already says.
+    if allow_llm_voice and not llm.dry_run() and _has_voiceable_content(stats):
         try:  # pragma: no cover - requires ANTHROPIC_API_KEY + LLM_VOICE_ENABLED
             composite, tokens_in, tokens_out = _compose_llm(prompt, stats, party, day)
             model_response_sha256 = util.sha256_hex(composite)
@@ -390,9 +404,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     response_sha256 = _record_hash(structured_output)
     if not ok:
         composite_state = "withheld_verifier_failure"
-    elif not stats.get("selected_claims") and not (
-        isinstance(stats.get("top_phrase"), dict) and stats["top_phrase"].get("text")
-    ):
+    elif not _has_voiceable_content(stats):
         composite_state = "withheld_no_eligible_claim"
     elif generator == "sonnet_direct":
         composite_state = "generated_verified"

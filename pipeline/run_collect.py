@@ -26,13 +26,8 @@ STALE_HOURS = 36.0
 
 
 def _volume_anomaly(statements, focus_day) -> dict:
-    by_day = Counter(s["published_at"] for s in statements if s.get("lane") == 1)
-    days = sorted(by_day)
-    prior = [by_day[d] for d in days if d < focus_day][-14:]
-    today = by_day.get(focus_day, 0)
-    med = statistics.median(prior) if prior else 0
-    low = bool(med) and today < 0.4 * med
-    return {"today": today, "trailing_median": med, "anomalously_low": low}
+    # Single definition in ops so collect and assemble compute the anomaly identically.
+    return ops.volume_anomaly(statements, focus_day)
 
 
 def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_extract: bool) -> dict:

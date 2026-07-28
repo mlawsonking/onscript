@@ -379,6 +379,21 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     # FEATURES["duet"] (BUILD-PROGRAM §1, build dark / release by gate). Deterministic and $0 — it
     # reads the ledger and the day's statements, and calls no model.
     day_json["duets"] = duet.find_duets(day, ledger, focus, rmap, k=duet.DUET_MAX_PER_DAY)
+    # R-36.5: persist the three assemble-observable null-service conditions for the TARGET day.
+    # The volume anomaly is computed for this day (not the collect run's newest day). The fourth
+    # condition, red instrument status, is evaluated at post time when all manifests exist.
+    zero_both = all(
+        day_payload[p]["daily_line"].get("composite_state") == "withheld_no_eligible_claim"
+        for p in config.COMPOSITE_PARTIES
+    )
+    day_json["service_status"] = {
+        "rule": config.NULL_SERVICE_RULE,
+        "conditions": {
+            "force_finalized": bool(forced),
+            "anomalously_low_volume": bool(ops.volume_anomaly(statements, day)["anomalously_low"]),
+            "zero_eligible_claims_both_parties": bool(zero_both),
+        },
+    }
     fingerprint = instrument_fingerprint.build()
     day_json["instrument_fingerprint"] = fingerprint
     util.write_json(day_file, day_json)

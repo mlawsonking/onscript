@@ -260,6 +260,35 @@ def llm_voice_enabled() -> bool:
     return env("LLM_VOICE_ENABLED", "").strip().lower() in ("1", "true", "yes", "on")
 
 
+# ---------------------------------------------------------------------------
+# NULL_SERVICE (R-36.5). The four-condition no-post rule. When a day is force-finalized
+# AND its volume is anomalously low AND both parties have zero eligible claims AND the
+# instrument status is red, the party accounts do not post the near-empty composites; the
+# day page and the status incident still publish, and one neutral service-status note may
+# post instead. The four conditions are named here so the rule is frozen, not inferred.
+# These are rule names, not tunable measurement thresholds, so they are not part of the
+# instrument fingerprint (instrument_fingerprint.LIVE_THRESHOLD_NAMES).
+# ---------------------------------------------------------------------------
+NULL_SERVICE_RULE = "R-36.5"
+NULL_SERVICE_CONDITIONS = (
+    "force_finalized",
+    "anomalously_low_volume",
+    "zero_eligible_claims_both_parties",
+    "red_instrument_status",
+)
+# Lane-1 daily volume below this share of the trailing-14-day median is anomalously low.
+NULL_SERVICE_VOLUME_RATIO = 0.4
+
+
+def null_service_note_enabled() -> bool:
+    """Deployment gate for the one neutral service-status note. Dark by default.
+
+    The note has no dedicated account yet, so the decision (no party posts) is validated
+    while the note itself stays dark, mirroring POSTING_ENABLED.
+    """
+    return env("NULL_SERVICE_NOTE_ENABLED", "").strip().lower() in ("1", "true", "yes", "on")
+
+
 LLM_MONTHLY_CEILING_USD = 9.0   # pre-flight HARD stop (< the $10 Console cap); halts the LLM voice
 SHADOW_FALLBACK_RATE_CEILING = 0.05  # frozen prompt-activation ceiling, fallback party-days / offered party-days
 LLM_MONTHLY_WARN_USD = 8.0      # ntfy warn threshold (month-to-date)

@@ -101,6 +101,13 @@ def temporal_heading(state: str) -> str:
     return TEMPORAL_HEADINGS.get(state, TEMPORAL_HEADINGS["latest_available"])
 
 
+def service_status_note(day: str, site: str) -> str:
+    """Party-blind neutral note for an R-36.5 null-service day. Carries no composite prose."""
+    return (f"Service status for {day}: this reading was force-finalized on low source volume "
+            f"with no eligible claims, so the party composites are held. "
+            f"Methodology and status: {site}/status/.")
+
+
 def publication_lag_note(measured_day: str, lag_days: int) -> str:
     """Homepage note when the shown reading trails the expected latest complete day."""
     unit = "day" if lag_days == 1 else "days"
