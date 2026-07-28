@@ -16,6 +16,9 @@ from . import config, corrections, eligibility, instrument_fingerprint, util
 METHOD_VERSION = "status-exports-v1"
 API_VERSION = "v1"
 API_STATUS = "experimental"
+# Owning authority for the published-artifact envelope schema (the fingerprint registry
+# reads this rather than copying a bare literal, R-36.1).
+ENVELOPE_SCHEMA_VERSION = 1
 DEPRECATION_POLICY = {
     "stability": "experimental",
     "supported_commitment": False,
@@ -387,7 +390,7 @@ def envelope(payload, generated_at: str | None, *, resource: str = "legacy",
              fingerprint: dict | None = None) -> dict:
     raw = _canonical(payload)
     return {
-        "schema_version": 1,
+        "schema_version": ENVELOPE_SCHEMA_VERSION,
         "method_version": METHOD_VERSION,
         "api_version": API_VERSION,
         "api_status": API_STATUS,

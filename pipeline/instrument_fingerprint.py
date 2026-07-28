@@ -68,13 +68,12 @@ NON_INSTRUMENT_METHOD_MODULES = {
     "goldset_sample": "offline gold-set sampling, not a daily published surface",
 }
 
-# Schema-version entries import from their owning modules where one exists.
-# published_artifact has no separate owner and stays a registry-local constant.
+# Schema-version entries import from their owning modules. Every entry has an owner.
 SCHEMA_VERSION_PROVIDERS = (
     ("claim_contract", "contracts", "SCHEMA_VERSION"),
     ("corrections", "corrections", "SCHEMA_VERSION"),
+    ("published_artifact", "status_exports", "ENVELOPE_SCHEMA_VERSION"),
 )
-LOCAL_SCHEMA_VERSIONS = {"published_artifact": 1}
 
 
 def _owning_module(name: str):
@@ -88,10 +87,9 @@ def method_versions() -> dict:
 
 
 def schema_versions() -> dict:
-    """Return the live schema versions, importing every owned entry."""
-    live = {key: getattr(_owning_module(mod), attr)
+    """Return the live schema versions read from their owning modules."""
+    return {key: getattr(_owning_module(mod), attr)
             for key, mod, attr in SCHEMA_VERSION_PROVIDERS}
-    return {**LOCAL_SCHEMA_VERSIONS, **live}
 
 
 def _canonical(value) -> bytes:
