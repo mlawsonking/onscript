@@ -10,8 +10,11 @@ What it does, per docs/34:
   statement unit (the same unit the alexandria ledger counts, 684,853 units). `crec` is the
   CREC Extensions deep instrument (152,187 E-statements), a SEPARATE lane that enriches and
   never enters a cross-party denominator with press.
-- Encodes with sentence-transformers/all-MiniLM-L6-v2, 384 dimensions, normalized vectors,
-  fp16 on the GPU.
+- Encodes with sentence-transformers/all-MiniLM-L6-v2, 384 dimensions, normalized vectors.
+  Storage is fp16, the `emb-{congress}.f16.npy` the runbook sizes. Compute stays fp32: the whole
+  corpus encodes in minutes either way, and half-precision matmul would buy speed nobody needs at
+  the cost of a numerical difference in the one artifact every later exhibit reads. The manifest
+  records both dtypes rather than letting "fp16" stand for two different things.
 - Writes one shard per (lane, congress) to the append-only store on X:, never into the
   repository working tree and never into site/public or data/derived.
 - Records a manifest per shard (model id, model revision sha, dimension, dtype, row count,
@@ -51,7 +54,8 @@ from pipeline.search import provenance  # noqa: E402
 
 MODEL_ID = "sentence-transformers/all-MiniLM-L6-v2"
 DIMENSION = 384
-DTYPE = "float16"
+DTYPE = "float16"          # what the shard stores, the f16.npy the runbook sizes at 0.64 GB
+COMPUTE_DTYPE = "float32"  # what the GPU computes in; see the manifest note below
 CONGRESSES = range(107, 120)
 LANES = ("press", "crec")
 MANIFEST_SCHEMA = 1
@@ -209,14 +213,22 @@ def encode_shard(lane: str, congress: int, *, out_root: Path | None, batch_size:
     paths = shard_paths(lane, congress, out_root)
     paths["vectors"].parent.mkdir(parents=True, exist_ok=True)
 
+    def encode(texts):
+        return encoder.encode(texts, batch_size=batch_size, normalize_embeddings=True,
+                              convert_to_numpy=True, show_progress_bar=False)
+
+    determinism = None
     if units:
-        vectors = encoder.encode(
-            [unit["text"] for unit in units],
-            batch_size=batch_size,
-            normalize_embeddings=True,
-            convert_to_numpy=True,
-            show_progress_bar=False,
-        ).astype(numpy.float16)
+        raw = encode([unit["text"] for unit in units])
+        vectors = raw.astype(numpy.float16)
+        # docs/34 section 6.2: re-encode one batch and compare within fp tolerance, so the shard
+        # carries its own evidence that the pinned model reproduces its vectors.
+        sample = min(batch_size, len(units))
+        again = encode([unit["text"] for unit in units[:sample]])
+        determinism = {
+            "rows_reencoded": sample,
+            "max_abs_delta": float(numpy.abs(again - raw[:sample]).max()),
+        }
     else:
         vectors = numpy.zeros((0, DIMENSION), dtype=numpy.float16)
 
@@ -237,7 +249,9 @@ def encode_shard(lane: str, congress: int, *, out_root: Path | None, batch_size:
         "max_seq_length": getattr(encoder, "max_seq_length", None),
         "dimension": int(vectors.shape[1]) if vectors.size else DIMENSION,
         "dtype": DTYPE,
+        "compute_dtype": COMPUTE_DTYPE,
         "normalized": True,
+        "determinism_spot_check": determinism,
         "device": device,
         "batch_size": batch_size,
         "rows": len(rows),
