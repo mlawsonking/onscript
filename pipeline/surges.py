@@ -7,7 +7,10 @@ from datetime import date as date_type
 from . import config
 
 
-METHOD_VERSION = "phrase-statistics-v2"
+# v3: the baseline is computed per party with no shared state, and the rankings split into
+# qualified_surges and largest_statistical_deviations (R-36.7). Both the numbers on
+# divergent-history days and the output shape change, so the method version moves.
+METHOD_VERSION = "phrase-statistics-v3"
 TRAILING_DAYS = 28
 SMOOTHING_ALPHA = 0.5
 SMOOTHING_BETA = 0.5
@@ -97,9 +100,6 @@ def phrase_metrics(ledger: dict, denominators: dict, day: str,
         current = daily.get(day) or {}
         shares = {}
         for party in config.COMPOSITE_PARTIES:
-            prior_days = baseline_days(
-                denominators, party, day, trailing_days=trailing_days, mode=baseline_mode
-            )
             trials = _denominator(denominators, party, day)
             successes = int(current.get(party) or 0)
             shares[party] = successes / trials if trials else 0.0
@@ -109,6 +109,12 @@ def phrase_metrics(ledger: dict, denominators: dict, day: str,
             successes = int(current.get(party) or 0)
             if not trials or not successes:
                 continue
+            # R-36.7: compute each party's baseline from its OWN denominator history, bound to this
+            # party. A single prior_days left over from an earlier loop would give one party the
+            # other's calendar on divergent histories (docs/37 rule 12).
+            prior_days = baseline_days(
+                denominators, party, day, trailing_days=trailing_days, mode=baseline_mode
+            )
             baseline_successes = sum(int((daily.get(value) or {}).get(party) or 0) for value in prior_days)
             baseline_trials = sum(_denominator(denominators, party, value) for value in prior_days)
             baseline_share = (
@@ -219,16 +225,23 @@ def calibrate_overdispersion(payload: dict, *, baseline_mode: str = "calendar") 
 
 
 def rank_metrics(rows: list[dict], limit: int = 50) -> dict:
-    """Return five independent rankings. No composite score is computed."""
+    """Return independent rankings. No composite score is computed.
+
+    R-36.7: the statistical screening ranking is never called a surge. qualified_surges are
+    the rows that passed the practical gate; largest_statistical_deviations is screening only.
+    qualified_surges is a strict subset, so a gate-failing screening row never appears as a surge.
+    """
     common = lambda row: (row["phrase"], row["party"])
+    deviations = sorted(
+        rows, key=lambda row: (row["q_value"], -row["surge_ratio"], -row["office_count"], common(row))
+    )
     return {
         "method_version": METHOD_VERSION,
         "most_repeated": sorted(
             rows, key=lambda row: (-row["office_count"], -row["office_share"], common(row))
         )[:limit],
-        "largest_surge": sorted(
-            rows, key=lambda row: (row["q_value"], -row["surge_ratio"], -row["office_count"], common(row))
-        )[:limit],
+        "largest_statistical_deviations": deviations[:limit],
+        "qualified_surges": [row for row in deviations if row["passes_practical_gate"]][:limit],
         "most_skewed": sorted(
             rows, key=lambda row: (-row["party_skew"], -row["office_count"], common(row))
         )[:limit],
@@ -248,7 +261,7 @@ def build_rankings(payload: dict) -> dict:
     rows = phrase_metrics(payload.get("ledger") or {}, payload.get("denominators") or {}, day,
                           baseline_mode=baseline_mode)
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "method_version": METHOD_VERSION,
         "day": day,
         "trailing_days": TRAILING_DAYS,

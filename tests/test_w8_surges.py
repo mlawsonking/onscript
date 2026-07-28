@@ -19,7 +19,7 @@ def _payload() -> dict:
 
 def test_true_surge_ranks_above_stable_high_frequency_phrase():
     result = surges.build_rankings(_payload())
-    surge = result["rankings"]["largest_surge"]
+    surge = result["rankings"]["largest_statistical_deviations"]
     names = [row["phrase"] for row in surge]
     assert names.index("true surge phrase") < names.index("stable high frequency phrase")
     assert result["rankings"]["most_repeated"][0]["phrase"] == "stable high frequency phrase"
@@ -28,8 +28,8 @@ def test_true_surge_ranks_above_stable_high_frequency_phrase():
 def test_rankings_are_separate_and_have_no_composite_score():
     result = surges.build_rankings(_payload())
     expected = {
-        "method_version", "most_repeated", "largest_surge", "most_skewed",
-        "fastest_spread", "widest_family_spread",
+        "method_version", "most_repeated", "largest_statistical_deviations", "qualified_surges",
+        "most_skewed", "fastest_spread", "widest_family_spread",
     }
     assert set(result["rankings"]) == expected
     assert all("score" not in row for key in expected - {"method_version"}
@@ -64,10 +64,10 @@ def test_documented_command_is_byte_reproducible():
     second = subprocess.run(command, check=True, capture_output=True).stdout
     assert first == second
     parsed = json.loads(first)
-    assert parsed["rankings"]["largest_surge"][0]["phrase"] == "true surge phrase"
+    assert parsed["rankings"]["largest_statistical_deviations"][0]["phrase"] == "true surge phrase"
 
 
 def test_binomial_tail_and_q_values_are_bounded():
     result = surges.build_rankings(_payload())
-    rows = result["rankings"]["largest_surge"]
+    rows = result["rankings"]["largest_statistical_deviations"]
     assert all(0.0 <= row["p_value"] <= row["q_value"] <= 1.0 for row in rows)
