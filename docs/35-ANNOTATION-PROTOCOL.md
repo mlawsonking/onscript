@@ -6,6 +6,14 @@ gold-set metrics publish) and R-33.2 (fail-closed classification with the unknow
 is the operating manual for the annotation kit built under the ANNOT work order. Human
 annotation execution, recruiting, and all release acts are Michael's, per docs/33 section 4.
 
+**Amendment, Session 57, 2026-07-28.** The pilot no longer waits on hiring. Under the ruling
+recorded in docs/26 Session 57, Michael annotates the pilot himself as the single human rater,
+a frozen-prompt model acts as a second reader for disagreement triage only, and every number
+that comes out carries the label in section 10.3. Sections 1 through 9 describe the
+two-annotator study, which remains the design and the path to Gate B; section 10 states
+exactly what the ruled pilot mode changes and what it may not claim. Where the two conflict
+for the pilot, section 10 governs. The full sample still runs the two-annotator flow.
+
 The kit is deterministic and free to run. Building a sample, rendering packets, intake, and
 metrics make no network call and spend no API budget. The house runner is
 `C:\ProgramData\miniconda3\python.exe`.
@@ -20,6 +28,10 @@ public surface (R-33.1) and the classifier ships only its deterministic floor (R
 metrics this protocol produces are the evidence that gates those surfaces.
 
 ## 2. Roles and blinding
+
+Section 10 replaces the annotator and adjudicator roles for the ruled pilot mode. The blinding
+rules below hold in both modes, because blinding is a property of the kit rather than of who
+holds the pen.
 
 - **Annotator.** Two annotators label every item independently. Neither sees the other's
   answers, the machine's predicted class, rankings, surge scores, publication decisions, or
@@ -87,6 +99,10 @@ adjudicator.
 
 ## 5. Pilot pass gates
 
+These three gates measure two independent humans. The ruled pilot mode has one human, so under
+section 10 they are not evaluated and cannot be reported as passed; section 10.4 states what is
+reported in their place.
+
 The pilot passes only when all three hold on the dual-annotated pilot items. The intake
 command prints each with PASS or FAIL.
 
@@ -141,6 +157,9 @@ dates before a result can be reported.
 
 ## 8. Operator checklist, from hired to published
 
+This is the two-annotator checklist, which the full sample follows. The ruled pilot runs the
+shorter checklist in section 10.6.
+
 Steps marked (Michael) are the operator's own acts. The rest are commands the operator runs.
 
 1. (Michael) Recruit and pay two annotators and one adjudicator.
@@ -170,3 +189,134 @@ These belong to Michael and are not part of any command:
 - Deciding when the test result is run, and publishing it.
 - Every release act that follows: activating the validated surfaces and the composite index
   name under R-33.1, subject to the election freeze in Constitution Article VIII.
+
+## 10. The ruled pilot mode: single human rater with model triage
+
+Authority: docs/26 Session 57. The pilot was blocked on hiring two annotators and an
+adjudicator, which is a cost and a calendar the project does not have before the midterms. The
+ruling unblocks it by changing who annotates, not by relaxing what the numbers may claim. The
+mechanism that replaces personnel independence is total disclosure: the sealed bundles, the
+answer sheets, and the labels publish openly so anyone can redo the work.
+
+### 10.1 Who rates
+
+- **Human rater (Michael).** He annotates every pilot item himself, working from the same
+  sealed bundle and the same guide any hired annotator would receive. He is the author of the
+  system, so he is not an independent rater. That is the limitation the label in 10.3 names,
+  and it is why 10.5 refuses Gate B.
+- **Model rater.** A frozen-prompt model reads the same annotation guide and the same blinded
+  item context and produces its own answer sheet. It exists to find the items worth a second
+  look. It is a second reading, not a second person.
+- **No adjudicator.** With one human there is nothing to adjudicate between two humans. The
+  human rater resolves his own flagged items in triage (10.4) and his post-triage label is the
+  gold label.
+
+Blinding is unchanged and still enforced by the kit. The bundle carries the phrase, its
+sentence and neighbors, the office, the date, the title, and the support set. It carries no
+predicted class, ranking, surge score, publication decision, or correction. The model rater
+receives exactly the same fields, so neither reader sees the machine's own answer.
+
+### 10.2 What the model rater may and may not do
+
+- It may disagree with the human, and that disagreement is the queue the human works through.
+- It may never write a gold label. Every label in the measured record is the human's.
+- Its agreement with the human is reported as **human-versus-model agreement** and never as
+  inter-annotator agreement, inter-rater reliability, kappa between annotators, or any phrasing
+  that implies two independent human readings. The intake tool names the field accordingly and
+  refuses to emit an inter-annotator field in this mode.
+- Its prompt is frozen and content-addressed before any live call. The registration records the
+  prompt text and its sha256, so the exact instrument that produced the model sheet is
+  reproducible and any later edit to the guide or the wrapper invalidates the freeze.
+- The model rater is not independent evidence. It reads the same guide and can inherit the same
+  blind spots. It raises the chance that a careless human label gets a second look. It does not
+  raise the reliability of the study.
+
+### 10.3 The mandatory label
+
+Every metric produced under this mode carries this label, verbatim, in the artifact and on any
+surface that cites it:
+
+> author-annotated, single human rater, provisional
+
+The label is owned by the code (`pipeline/goldset_single.PROVENANCE_LABEL`) and stamped into
+every output the single-rater intake and metrics commands write. A number from this mode that
+appears anywhere without the label is a defect, not a shortcut. "Provisional" means the number
+stands until independent replication either confirms or moves it.
+
+### 10.4 The flow
+
+1. Seal and render Michael's bundle (10.6 step 1 and 2).
+2. Michael annotates every pilot item, blind, and exports his answer sheet.
+3. The model rater runs against the same sealed bundle and writes its answer sheet.
+4. Intake computes human-versus-model agreement, labeled as such, and emits the triage queue:
+   every item where the two readings differ on class or family.
+5. Michael works the triage queue. For each item he either keeps his label or revises it,
+   recording which, and his post-triage label becomes the gold label. He may keep a label the
+   model disagreed with; the model has no vote.
+6. Metrics run on the post-triage labels and stamp the 10.3 label on every output.
+
+The pilot gates in section 5 are not evaluated. The intake tool reports them as not applicable
+in this mode rather than printing a pass, because a pass would assert a reliability measurement
+that a single human rater cannot produce. What is reported instead is the agreement in step 4,
+the triage volume, and how many labels the human revised after seeing the disagreement.
+
+### 10.5 What this mode may not claim
+
+- **Gate B stays unclaimed.** The docs/33 R-33.11 ladder places Gate B, the validated
+  instrument, after the gold-set metrics. A single-rater author-annotated pilot does not
+  release it and nothing may describe the instrument as validated on this evidence. Gate B
+  waits for independent replication, which means labels produced by people who are not the
+  author, on the published bundles, reported next to these numbers.
+- **No inter-annotator reliability figure.** No kappa, alpha, or agreement number from this
+  mode may be presented as inter-rater reliability.
+- **No pilot-gate pass.** Section 5's gates measure two humans and are not evaluated here.
+- The split discipline in section 7 is unchanged and still binding. The test split is measured
+  once, with the threshold frozen, in either mode.
+
+### 10.6 Publication and the standing re-annotation invitation
+
+The point of publishing is that anyone can check the work and, if they disagree, replace it.
+Published openly, alongside the metrics:
+
+- The sealed sample manifests and the seal hash, already committed.
+- Michael's blinded bundle, byte for byte the packet he annotated.
+- His answer sheet, the model rater's answer sheet, and the triage record.
+- The frozen rating prompt and its sha256.
+- The metrics, each carrying the 10.3 label.
+
+With those, a replication costs a reader nothing but their own time: open the same bundle,
+label it, run the same two commands, and compare. The invitation is standing and is stated on
+the surface that publishes the numbers. Replication labels sent back are published beside the
+author's, whether they agree or not.
+
+Nothing here weakens the privacy floor. The bundle is publication-grade only because it passes
+the same gate every public artifact passes: no admitted private-person form reaches it, proven
+by the production canary and a scan of the rendered bundle before it is published.
+
+### 10.7 Operator checklist for this mode
+
+Steps marked (Michael) are his own acts. The rest are commands he runs.
+
+1. Confirm the seal: `scripts\goldset_seal.py verify` reports a matching `seal_hash`.
+2. Render his bundle: `scripts\goldset_bundle.py pilot --annotators michael`.
+3. (Michael) Open `michael.app.html`, annotate every item, export the answer sheet.
+4. Preview the model rater at zero cost: `scripts\goldset_rate.py pilot`.
+5. (Michael) Run the model rater live: `scripts\goldset_rate.py pilot --allow-api-spend`. This
+   is the only step that spends money and it is his act alone.
+6. Intake: `scripts\goldset_intake.py pilot --human <sheet> --model <sheet>`.
+7. (Michael) Work the triage queue into the triage decisions CSV.
+8. Metrics: `scripts\goldset_metrics.py pilot --human <sheet> --triage <decisions>`.
+9. (Michael) Publish the bundle, both sheets, the triage record, and the metrics, with the
+   10.3 label and the 10.6 invitation. Publication is his act, subject to the election freeze
+   in Constitution Article VIII.
+
+### 10.8 Michael's acts under this mode
+
+Reserved to him, unchanged in kind from section 9 and shortened in list:
+
+- Annotating the pilot, and every triage decision.
+- Authorizing the one paid step, the live model-rater run.
+- Choosing and freezing the classifier threshold on train and validation.
+- Deciding when the test result is run.
+- Publishing the bundle, the labels, and the metrics, and issuing the re-annotation invitation.
+- Declaring any gate transition, including the Gate B that this mode does not release.
