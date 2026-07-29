@@ -2593,3 +2593,54 @@ an aggregate prior pointing the same way as the distribution.
 The labels are triage input and never gold labels (docs/35 section 10.2). The sheet
 is sealed for P4 and Michael should not open it before his own answer sheet locks;
 #216 remains his and is untouched. No push, no intake, no metrics, no triage.
+
+## 2026-07-29: Session 61 (Fable). Consolidation: governance mechanized, operating files compacted
+
+Outcome: the first scheduled consolidation pass. The standing rules gained mechanical
+enforcement inside Claude Code sessions, the rules still in force from Sessions 45-60
+were promoted into their canonical homes, and CLAUDE.md was compacted to the R-V3
+contract. Michael requested the pass and the harness work in session.
+
+Harness enforcement: `.claude/settings.json` (committed) carries deny rules
+(`git add -A`/`--all`/`.`, force push), ask rules for release acts (`git push`,
+workflow dispatch, deploys) and guarded surfaces (pipeline/prompts, pipeline/config.py,
+site/public, data/derived, docs/06), the PreToolUse hook
+`.claude/hooks/governance_guard.py` enforcing the same rules against chained commands
+plus bare `python` and the Article VIII freeze window, and
+`disableBypassPermissionsMode`. Semantics verified against the Claude Code
+documentation before design: deny rules do not survive bypass-permissions mode, ask
+rules do, and deny beats ask beats allow across all settings files, so the local
+allowlist cannot override these. The guard fails open on its own defect (docs/37
+rule 4) and is tested against its live committed module (12 tests; docs/37 rules 1
+and 2 applied to the harness itself). The hook was exercised end to end: deny on
+`git add -A`, ask on `git push`, valid decision JSON on stdout.
+
+Promotions: docs/37 rule 4 gains the import-time form (the S57 watchdog outage);
+rule 14 gains worker-checkout isolation (the S50 uninvited rebase), probe independence
+(the S46 startup_failure), and the governance guard itself. CLAUDE.md standing rules
+gain the blinded-rating memory rule from Session 60: label-space memory is not
+recalled during blinded work, and anything recalled before the first label is
+disclosed in the packet as a prior.
+
+Compaction ledger (R-V3.2): the CLAUDE.md "Current build state" bullets are replaced
+by a build-history section. Each dropped fact and its home: Phase 1, 2, and 3 contents
+and dates (docs/01, docs/02, docs/03 and its amendments; dates retained in the new
+section), Phase 4 Sessions 1 and 2 evidence (docs/04 Sessions 1 and 2), the launch
+snapshot (superseded by public S3; docs/26 History), docs/05/06/07 summaries (the
+documents themselves; pointers retained). Operative decisions kept inline: completion
+defined by §1.4; §13 locked; Actions plus API for recurring work; cheapest capable
+option for one-time chapters; the 4080 for embeddings and tagging; local models never
+write the chapter voice; api-keyed daily publication. The stale dated list in Current
+status is replaced by the docs/27 calendar reference; completed items (Deep Archive
+shards, silence wiring, Stage 2 embeddings, pilot instrumentation) are named as
+complete.
+
+Evidence: suite 892/0 before, 904/0 after (the 12 guard tests are the only additions);
+zero added U+2014; site/public and data/derived untouched; no push, no dispatch, no
+flip, no prompt or config change. Branch fable/s61-consolidation, rooted on
+opus/model-rater-run because this record depends on the Session 60 entry; it merges
+with or after the rater branch under the standing loop.
+
+Next action: Michael restarts the session so the committed hook wiring takes effect,
+runs one or two ordinary sessions to judge the ask-rule ergonomics, and reviews the
+branch. NOW.md and the cross-session memory index were refreshed in the same pass.
