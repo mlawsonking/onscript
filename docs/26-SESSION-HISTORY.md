@@ -2531,3 +2531,28 @@ created unless pilot calibration shows the message-generic boundary needs earlie
 data.
 
 Michael's pilot pass is task #216. Gate B remains unclaimed per docs/35 section 10.
+
+## 2026-07-28: Session 59 (Fable). Replay-embed delivery validated and merged; the gate count corrected
+
+The replay-embed delivery (opus/replay-embed, fifteen commits) validated clean and
+merged: suite reproduced independently, registry harness 30 of 30, zero added em
+dashes anywhere, site untouched, spend 0.00 USD with the refusal record carrying the
+full budget preflight. The Alexandria Stage 2 embedding pass is COMPLETE: 26 of 26
+shards, 837,025 vectors (684,853 press, 152,172 CREC), delta zero on both lanes, the
+15-row congress-106 sliver named rather than left unexplained, 5.15 GPU hours,
+resume mechanism exercised in production twice. The session's gate finding is
+accepted and important: R-33.6 stands at 1 of 60 complete days and 2 of 200
+party-days, not the 15 and 30 the X6 delivery counted, because X6 admitted
+party-days written by earlier prompt lineages and pre-docs/28 stats schemas, which
+docs/37 rule 13 forbids comparing across. The gate did not shrink; it was never as
+full as counted. The v1.4 flip is therefore roughly two months of accumulation away
+at daily cadence.
+
+One integration fix at merge: the Y1 drift-documentation test asserted the committed
+2026-07-25 artifacts remain defective, and failed the day production healed them
+under the very inheritance fix it documented. Docs/37 rule 3 gains its mirror form:
+a live artifact is never asserted to remain defective; defects are documented in
+fixtures or literals, and the live tree is asserted in its healed state.
+
+Remaining operator acts: the live replay dispatch (key lives only in Actions
+secrets), the healthchecks signup activating H1, and the pilot annotation (#216).

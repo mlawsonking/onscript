@@ -111,14 +111,21 @@ def test_experimental_export_instrument_resource_inherits_the_cycle_fingerprint(
     assert instrument["instrument_fingerprint"] == fingerprint
 
 
-def test_committed_2026_07_25_records_show_the_drift_that_inheritance_removes():
-    # The real artifacts the third review cited: the committed post manifest carried a
-    # different fingerprint than the day record it posted (verification result 2).
+def test_committed_2026_07_25_artifacts_carry_one_inherited_fingerprint():
+    """The third review's cited artifacts, asserted in their HEALED state. The original test
+    asserted the drift itself (day != post fingerprint) and broke the day production re-rendered
+    the post manifest under the inheritance fix: a live artifact must never be asserted to remain
+    defective (docs/37 rule 3, mirror form; found at REPLAY-EMBED integration). The stable
+    invariant is Article XVII inheritance: whatever fingerprint a cycle's artifacts carry, they
+    carry the same one."""
     day_record = util.read_json(config.DERIVED / "days" / "2026-07-25.json", {})
     post_manifest = util.read_json(config.DERIVED / "manifest" / "post-2026-07-25.json", {})
     assert day_record.get("day") == "2026-07-25"
-    assert day_record["instrument_fingerprint"] != post_manifest["instrument_fingerprint"]
-    # The inheritance path now makes a post manifest carry the day record's exact stamp.
+    assert day_record.get("instrument_fingerprint"), "the cycle must be stamped"
+    posted = post_manifest.get("instrument_fingerprint")
+    if posted is not None:
+        assert posted == day_record["instrument_fingerprint"], \
+            "a post manifest must inherit its day record's exact stamp"
     assert fp.inherit(day_record) == day_record["instrument_fingerprint"]
 
 

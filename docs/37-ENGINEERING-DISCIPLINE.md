@@ -35,6 +35,13 @@ it byte-equals a fresh build from the live tree makes every future production co
 a suite failure.
 Incident: the X7 migration-evidence test broke on the first rebase over data commits
 and would have broken again daily (S52 validation).
+The mirror form is equally binding: a live artifact is never asserted to REMAIN
+defective. A test documenting a defect against mutable production files breaks the
+moment the fix heals them in production; document defects in fixtures or literals,
+and assert the healed invariant against the live tree.
+Incident: the Y1 drift-documentation test asserted the 2026-07-25 day and post
+fingerprints differ, and failed the day RUN C re-rendered the manifest under the
+inheritance fix it documented (S59 validation).
 
 ## 4. Fail-closed gates ship with their transition path
 
