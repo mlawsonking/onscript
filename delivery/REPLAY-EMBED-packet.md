@@ -32,8 +32,8 @@ C:\ProgramData\miniconda3\python.exe scripts\run_registry_mutations.py
 15/15 verifier checks and 30/30 registry invariants are load-bearing. The registry count rose
 from 20 to 30 with the ten new shadow-replay invariants (R2).
 
-**GPU wall time: 347.888 seconds** across 19 completed shards, on the RTX 4080 SUPER. The press
-lane is deliberately left partial and resumable; see G2.
+**GPU wall time: 18,533.236 seconds (5.15 hours)** across all 26 shards on the RTX 4080 SUPER.
+The embedding pass completed: 837,025 vectors, both lanes reconciling at delta 0. See G2.
 
 ## Commit order
 
@@ -54,6 +54,8 @@ early to have wall time. The order is G1, G1 followup, R1, R2, R3, R4, H1, G3, G
 | `a4df531` | R3 followup. A one-lane replay is not a whole day of gate progress |
 | `a9ad869` | G1 followup 2. Read only the mirror files a Congress can hold |
 | `df22fbb` | G2. The embedding pass and its verification manifest |
+| `8c636f4` | delivery. This packet |
+| `7dabc3c` | G2 completion. Both lanes complete, 837,025 vectors, delta 0 |
 
 Four of these are followups rather than packages, and each names the defect it repairs in its
 own message. Three were found by re-reading the work, not by a failing test, which is why each
@@ -334,13 +336,18 @@ Run on the RTX 4080 SUPER through the venv outside the repository, detached per 
 The vectors stay on X: and never enter the repository. What lands here is the verification
 manifest at `data/reference/alexandria-embeddings-manifest.json`.
 
-State at delivery:
+**The pass completed.** It was still running when the rest of the packet was written, so commit
+`df22fbb` records the partial state and `7dabc3c` records the finish. Final state:
 
 | Lane | Shards | Rows | Delta | Status |
 |---|---|---|---|---|
+| press | 13/13 | 684,853 | 0 | complete |
 | crec | 13/13 | 152,172 | 0 | complete |
-| press | 6/13 | 2,371 | congresses 113-119 outstanding | partial, resumable |
-| total | 19/26 | 154,543 | | GPU wall time 347.888 s |
+| total | 26/26 | 837,025 | 0 | complete, 0.83 GB on X: |
+
+GPU wall time **18,533.236 s (5.15 hours)** across 26 shards. 837,025 is the docs/34 gate total
+of 837,040 minus the 15 CREC rows dated to congress 106, which the manifest names rather than
+leaving as an unexplained shortfall.
 
 Model identity, carried on every shard manifest and reconciled in the verification manifest:
 
@@ -351,10 +358,12 @@ dimension  384, storage float16, compute float32, normalized, max_seq_length 256
 ```
 
 Determinism, checked inside the pass per docs/34 section 6.2 by re-encoding one batch per shard:
-worst `max_abs_delta` across 19 shards is 1.43e-07, and 0.0 exactly on most.
+worst `max_abs_delta` across all 26 shards is 1.90e-07, and 0.0 exactly on several.
 
-Independently spot-checked on written shards: vectors load at (rows, 384) float16, row counts
-equal their manifests, and L2 norms sit at 1.0000 to 1.0001, which is unit length within fp16.
+Independently spot-checked, including the two largest shards rather than only convenient small
+ones: press c116 and c119 load at (159341, 384) and (75922, 384) float16, vector rows equal
+manifest rows equal id-file lines in both, and L2 norms sit at 0.9999 to 1.0001, which is unit
+length within fp16.
 Every id row carries the provenance lane docs/34 section 2 requires: `date_source` for press
 (legacy, scraper, page_html, with the 2021-01-03 instrument seam), `source=crec` plus
 `crec_section` for CREC, alongside congress and the join keys an exhibit needs.
@@ -366,16 +375,18 @@ of exactly 15 rows are indistinguishable in a row count, and only one of them is
 manifest carries the gate total, the out-of-scope rows by name, and the in-scope expectation as
 three separate fields.
 
-**Why the press lane is partial.** Its cost is `normalize_records` over 95k to 160k full-text
-records per Congress, not the GPU, which held near 40 percent throughout. Two rounds of
-measurement went into this rather than one guess: the first pass was disk-bound, reading all 303
+**Why it took five hours.** The cost is `normalize_records` over 95k to 160k full-text records
+per Congress, not the GPU, which held near 40 percent throughout. Two rounds of measurement went
+into this rather than one guess: the first pass was additionally disk-bound, reading all 303
 mirror shards per Congress across a 2.38 GB mirror on X:, roughly 31 GB of reads for the corpus
-(fixed in `a9ad869`, and the identical fix applied to the CREC year files in this commit). What
-remains is genuine normalize cost on the large Congresses. The work order names a healthy
-partial as success, and this one is healthy: resume is per (lane, congress) and proven, since the
-restarted run skipped all six completed shards by manifest and rebuilt none of them.
+(fixed in `a9ad869`, with the identical fix applied to the CREC year files in `df22fbb`). The
+CREC lane went from tracking toward an hour to finishing in minutes on that change alone.
 
-Continue it with the same two commands; the manifest reflects exact progress each rebuild:
+Resume is per (lane, congress) and was exercised for real, not just tested: the restarted run
+skipped all six already-complete press shards and all thirteen CREC shards by manifest, rebuilt
+none of them, and wrote only the seven that were outstanding.
+
+Re-run either command at any time; the pass is idempotent and the manifest reflects exact state:
 
 ```text
 C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe scripts/deep/alexandria_embed.py
@@ -434,7 +445,7 @@ E-statements, 837,040 embeddable units.
   requirement, projection 0.008908 USD, hard bound 3.00 USD. This is the first evidence toward
   the gate, not the flip decision.
 
-- **The press embedding lane, congresses 113 through 119.** Partial by design and resumable;
-  see G2 for the command and why it is not a blocker.
-
 - **The topic-tag pass.** Prepared and deliberately unrun; see G3.
+
+The embedding pass is no longer on this list. It was outstanding when the packet was first
+written and completed before delivery closed; G2 carries the final numbers.
