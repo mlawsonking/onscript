@@ -2556,3 +2556,40 @@ fixtures or literals, and the live tree is asserted in its healed state.
 
 Remaining operator acts: the live replay dispatch (key lives only in Actions
 secrets), the healthchecks signup activating H1, and the pilot annotation (#216).
+
+## 2026-07-29: Session 60 (Opus). The model rater's answer sheet, generated locally at zero cost
+
+The frozen-prompt second reading of the 200-item gold-set pilot is generated,
+sealed, and committed on `opus/model-rater-run` (three commits, suite 883 to 892,
+spend 0.00 USD). Under Fable's S59-lineage authorization the rater's transport was
+this subscription session rather than the API, on the docs/03 precedent for
+one-time subscription-scripted work. Everything else in the N4 contract held and
+was verified: the frozen prompt only (`1aa84477`, matching the Y9 registration),
+drift refusal on both session steps, per-item request hashes for all 200 items
+re-derived from the live bundle at collect, and `rater-registration.json`
+untouched. The reader is recorded truthfully as `claude-opus-5` beside the
+registered `claude-sonnet-5` rather than in place of it.
+
+The transport is a real second path, not a wrapper: `instrument_drift()` gates on
+the five frozen prompt fields so the model field is the only one the session path
+may differ on, `item_request_sha256()` addresses one item's request over the
+instrument plus the exact block sent, session answers are validated against the
+committed `annotation.schema.json` read from its owner, and both transports share
+one parser so the sheet comes from one code path whatever read the items. The
+collect step refuses an incomplete or invalid sheet and writes the manifest naming
+every problem either way.
+
+Sheet: 200 of 200, 0 errors, sha256 `363ecdfc`, 1317 s, 148 groups, 176 families.
+Distribution is unknown-heavy (128 unknown, 41 nomenclature, 16 message, 11
+procedural, 3 biographical, 1 private), driven by a literal reading of the message
+test's completeness gate against n-gram windows that stop mid-construction. That
+reading, the task F document-counting rule, and one shape boundary that was settled
+mid-pass without revising earlier answers are all disclosed in
+`delivery/RATER-packet.md` as triage material rather than presented as findings.
+Also disclosed there: a stored memory line from an earlier session about
+classifier-versus-LLM disagreement was in context before the first label, which is
+an aggregate prior pointing the same way as the distribution.
+
+The labels are triage input and never gold labels (docs/35 section 10.2). The sheet
+is sealed for P4 and Michael should not open it before his own answer sheet locks;
+#216 remains his and is untouched. No push, no intake, no metrics, no triage.
