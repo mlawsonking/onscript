@@ -2556,3 +2556,40 @@ fixtures or literals, and the live tree is asserted in its healed state.
 
 Remaining operator acts: the live replay dispatch (key lives only in Actions
 secrets), the healthchecks signup activating H1, and the pilot annotation (#216).
+
+## 2026-07-29: Session 61 (Fable). Two outages: domain suspension (operator act) and the collect gate crash (fixed forward)
+
+Michael reported the site down. Two distinct failures found.
+
+Domain: onscript.news resolves to Namecheap parking (198.54.117.242) because the
+registrar swapped the nameservers to failed-whois-verification.namecheap.com pending
+ICANN registrant-email verification. The Vercel deployment itself is healthy
+(onscript.vercel.app serves 200). Registrar verification is Michael's act, filed as
+task #220. The Bluesky handle TXT records ride the same zone and return with it.
+Nothing paged for a domain-level outage because the external heartbeat (#203) is
+still unregistered; this incident is that task's argument.
+
+Collect: RUN A failed 2026-07-28 (run 30397343944) and 2026-07-29 (run 30448315180)
+with a bare TypeError from privacy._scan_window reading _SALT directly. The S57
+lazy-gate migration missed this third gate-touching call (S58 caught redact).
+Collect's first privacy touch is deterministic.run -> phrases.build -> person_spans,
+so the gate was never established on that path. Assemble and post stayed green on
+prior data; the dead-man paged both mornings. Fix: _scan_window establishes the gate
+through _require_gate. Two salt-less subprocess tests pin the shape (refusal with
+the remedy message when no salt exists, first-use establishment when one does). The
+new refusal test reproduces the TypeError with the fix reverted, so it is proven
+load-bearing. docs/37 rule 4 gains the sweep rule with this incident named.
+
+Evidence: baseline at origin/main 38fe64f is 883 tests, 880 passing plus 3 that
+require the operator checkout's local state (raw shards, roster cache, X: embedding
+store) and fail in any fresh worktree. With the fix: 885 tests, 882 plus the same 3.
+The state-complete operator checkout runs the full suite green with the fix applied
+(894 of 894; the count difference is the parallel branch's added model-rater tests).
+Reproduction: C:\ProgramData\miniconda3\python.exe tests\run_tests.py.
+
+Process notes: the operator checkout sat on the active worker branch
+opus/model-rater-run when this session started, so the fix was built, validated, and
+committed from an isolated worktree at origin/main and the worker checkout was
+restored untouched. That worker's packet claimed the Session 60 number, so this
+record is Session 61. Recovery: the 19:30Z collect pass runs on the fixed code and
+picks up the two-day backlog; the site returns when Michael completes #220.
