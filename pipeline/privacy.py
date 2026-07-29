@@ -351,6 +351,7 @@ def _ensure_generation() -> None:
 
 def _scan_window(window: str) -> str | None:
     """The form hash this exact token window matches, or None. Memoized within one gate generation."""
+    _require_gate()          # collect's FIRST privacy touch is this path (2026-07-28/29 outages)
     _ensure_generation()
     if window in _SCAN_MEMO:
         return _SCAN_MEMO[window]

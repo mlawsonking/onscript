@@ -53,6 +53,15 @@ whose failure blocks the process that would repair its input is a deadlock.
 Incident: the W3 restore conflict check raised on every pre-W3 archive, and the
 archive could only be rebuilt by a run that got past the check (2026-07-26).
 
+A gate that moves from import time to first use is migrated by sweep, not by
+enumeration: every direct read of the gated module state is routed through the gate
+accessor in the same change, found by searching for the state name, and every
+production entry path gets a state-less subprocess test of its exact first-touch
+shape. A missed read is a latent outage on whichever path touches it first.
+Incident: the lazy privacy gate (S57) missed redact() (caught S58), then missed
+person_spans() via _scan_window, which failed production collect with a bare
+TypeError on 2026-07-28 and 2026-07-29 (S60).
+
 ## 5. Timestamps and randomness never enter determinism claims
 
 Anything asserted byte-identical across runs must take its clock as a parameter.

@@ -80,6 +80,38 @@ def test_redaction_establishes_the_gate_on_first_use_when_a_salt_is_present():
     assert "REDACT OK public budget policy 0" in result.stdout
 
 
+def test_person_spans_fails_closed_without_the_salt_instead_of_a_typeerror():
+    """person_spans() was the third gate-touching call the lazy-gate migration missed:
+    _scan_window read _SALT directly, so a salt-less process whose first privacy touch was the
+    collect path (deterministic.run -> phrases.build -> person_spans) died with a bare
+    TypeError naming no remedy. Production collect failed this way on 2026-07-28 and
+    2026-07-29 before the path was gated."""
+    result = _run(
+        "import pipeline.privacy as p\n"
+        "try:\n"
+        "    p.person_spans('Some statement text')\n"
+        "except p.PrivacyGateError as e:\n"
+        "    print('GATE REFUSED'); print(str(e)[:80])\n"
+    )
+    assert result.returncode == 0, result.stderr[-500:]
+    assert "TypeError" not in result.stderr, "the bare-TypeError outage shape must not return"
+    assert "GATE REFUSED" in result.stdout
+    assert "PRIVACY_SALT" in result.stdout, "the remedy message must survive the lazy path"
+
+
+def test_person_spans_establishes_the_gate_on_first_use_when_a_salt_is_present():
+    """The production collect shape: person_spans is the process's first privacy call. With a
+    salt available it must establish the gate rather than read un-established module state."""
+    result = subprocess.run(
+        [PY, "-c",
+         "import pipeline.privacy as p\n"
+         "rows = p.person_spans('public budget policy text')\n"
+         "print('SPANS OK', len(rows))\n"],
+        cwd=ROOT, env=os.environ.copy(), capture_output=True, text=True, timeout=120)
+    assert result.returncode == 0, result.stderr[-500:]
+    assert "SPANS OK" in result.stdout
+
+
 def test_a_wrong_salt_still_hits_the_canary_through_the_lazy_path():
     """A salt that does not match the committed form list must refuse at first use with the
     canary-mismatch message. The lazy path preserves every fail-closed branch, including the
