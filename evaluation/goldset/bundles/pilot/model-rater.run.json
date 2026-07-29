@@ -1,0 +1,1431 @@
+{
+  "api_equivalent_estimate": {
+    "approx_tokens_in": 845769,
+    "estimate_basis": "approx 4 characters per token; output priced at the ceiling, so the estimate is an upper bound",
+    "estimated_cost_usd": 2.325938,
+    "items": 200,
+    "max_tokens_out": 63440,
+    "model": "claude-sonnet-5",
+    "requests": 148
+  },
+  "calls": [
+    {
+      "group_day": "2025-01-03",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:d5e2952b30fda124": "4ff985b088fb75766feae88db978a759194898217cfa54886f72e8cef3cd479c",
+        "cand:e1c14316be449eae": "1784e16108cb9564d3a42516a3a77def9e8c0ff251f49b8674a6632973cd94fe"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-01-08",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:23c37e3a5ef62e6d": "dc9086bfa5649fed269a94c5bd151dec7d7922044674922d25ac5cf72ae97f83"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-10",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:08e8f2ca72e68005": "c100747dbeb61177de82f734b5a496f9671898fa71ab0d386dfee09c3240afd3"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-14",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5e964225afc63299": "1c861a0cb37127309d0b1787ab7c188df7ce1f23980bab466ffbb54b8fe04c37"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-14",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:5762e282f4b88fa1": "934b88274d8ca049de74c5a6521860b182010b0dd2c83afa306e1086d9e6373e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-16",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:aeef11359829d7a2": "75c0db0979da80a9257404d10a2b7f5e931cf4a8ec5932e14f304a074bec9942"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-16",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:7f98bdddec53672d": "6b19b4951327986b18e5832777da4c7a67041248ffabd974282cd025f3a61dc0"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-17",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:23aac5c0eafe5c19": "3fde6ffc2a38eba11186e867fe041ca95f3565b73474959493b47cc83cdd6e06"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-20",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:b2d8c2ace3f40158": "295705bc9f83835c1e27e8f804cc48320edd59e3ff9ebf242e645a329f1d8b6a"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-23",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:7e92251ec0f6d8d9": "edd7585723c6abca4866f0291a9ebbcb03ffc66cf8c10463e9a5ead35e9be08f"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-24",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:f46dd20b25b446bb": "8e55d8d60dec86bc12bdc0e70f11aa50340a10948fe9274d9a070bde3e6c8e51"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-01-28",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:1c59457f3befce62": "18a934622678715cda9ea019fce882299b006d1b6430eeab8a665e136d346c30",
+        "cand:af293cac5b2cd004": "40916f204d43ac0f5ee15b25b5db89e7533b93e8b8d1bd4d72f031aba9291763"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-01-29",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:01dfacf0b8c1605b": "326afc3ee2fe7f8421d5984f6909556a8ea36ad43fd6aa179749ad275ab46f4e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-02-05",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:fd6cbf88b53c42e6": "08b7e54e9afa032c486683c9f859612550ef738063ea0110867fea773761e122"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-02-06",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:a1ce0a00127804f0": "897703c49e9cd5f4478092fc5f59646f40109ffdb3056013b1812ee70882f0da",
+        "cand:c078b96e4fed0ab2": "d3b17d6d898fee027183a49afd3336e6b700acc52ce19b2ac2aeac91809587b3"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-02-07",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:70e94f8d553c9b1c": "0ecbb84cdae4c7b7561da5cfb2ceeb916cf73a87e88225168ccc0ad31ed26baa",
+        "cand:a40b915d427f1183": "15d76fe0332f96d95cadacf377825b03195f9ac59b7571a721d75d727c5357ce"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-02-12",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:480cf77f1081e8c1": "181dffd820eb8d490e4d799a7693ba8c3955dcab7805915340d8cdd819eba05a",
+        "cand:df7e0e72d25f5b17": "dd6a727a8f9d33d8957b6d4776dff74174fe6af617deb137e1931f96b8fd753b"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-02-13",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:cab128485f70159b": "6fd5122dcdc636652c2a1c5eafcf4059917f5b111714cd2aae30f6b1e873b693"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-02-14",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:50f87a82c0dbc7c6": "2829cfdd1d5ca84160c2e35872d0d5dc87657ed4994efc917438ef0621ade792"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-02-14",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:455cc0b2ff69b856": "31f944e9c150ebb18427f637f17ba4f3f748f357637842a7674a5a17d09d8c8a"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-02-20",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:de8913698557f172": "a62d3c8f6933411e71ec1f1d4a58f223360f771e24bff046eca46aa474bfcde3"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-02-25",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:68149a85a33781e3": "95df4952ebe9901b023103ab4a22f1f5e892fc7fc900c9e0ce354f748e463be7"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-02-27",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:6c89322072aaa5f9": "b3a4462cb3836d187ee9365d6ed28ae38118530b75d1aa4b12fd373f7518cac9",
+        "cand:dac27a68be3d16bd": "4cb9e0c834ccdd37c64af2078c5a3d4db152eff445332d6c1786454417bbb2a4"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-03-03",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:1180c2c12a3cc898": "2555cfb736d7bb947bda077675b4e3731f5cac15515be79f142c1d18f1c25195"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-03-04",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:33dc597f7685204e": "ff735ba54cbb1e3d6eede58bb94681eb03e0e01b9b28cdc70deb705aba957646"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-03-11",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:343a2e9b8a3a8fec": "8dcdd45db5512b154f4445dc6dce266563c9187460eacfe58ea32e1960213069",
+        "cand:3c911b1aca8e22f4": "3089e39d95a2dd27ffdd73b7b37803edc648c0174db0a0354daee0fb50aa3bec"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-03-25",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:2fa17dcae3f66bae": "e285af60f31358de12c4956fe8c1b7b238e91279d9bc8a05a87ab86b3dda0cc3",
+        "cand:e805d0c80f614fc7": "310825056a45ce7d513c1826f916861f6b4212df5bea444ff800425cd394fe87"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-03-25",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:9efb983ac26a3207": "c1d622384ff15005016d0fd807437d147d805af9d06f3f52855d6406d919a65c"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-03-26",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:33d7fc4489393141": "7f737944e8915689a4c2481a01ab1b1cd2cf25fb8da2f974afa53ab5040788e2"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-03-28",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:930b063a8e019026": "bc68922d29894015de899d3c212a7b1b00da80c77bc63d9c256ffe0272977664",
+        "cand:c4be522cc99fd679": "6533c79be47e31315d159ae45ad5d9f2af66b1a71d9260f5aeb4affb244bd782"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-03-31",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:415e60cafca4d80b": "58d39f0e4d41747d547180c2c427ac8e35fe012e9aa5aaa4003500bff75cf86c"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-02",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:e786b8da87f6e839": "9174917784e5ca2396f540633c73c75a90a03fecbfaf3633592734dd587d48d7"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-03",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:34c3da1107e8bbab": "0271393c965ff75f3425be07f5ec96d4eb8094876fa7043d75636f599c43dd52",
+        "cand:bbbff23380becf85": "05ab249b8976605000c3fa24abbf4ce5ebd0d23f6baaa3aea0c0c846ef68b882"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-04-03",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:ccf4b255074957b3": "897abec9a899cab01e35de9c6037b90674340c449fdaead82ff1495279d9b1e0"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-04",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:32600e60cd585fd8": "6459e0c605e53699f5d381cc5c6aeff92909f6d373cb05304b3b0f5317f09a34",
+        "cand:6b383d5cfd9e0059": "d80c8587819bcd5a66f2dd7265b586d1d9e47a55771f8f8b3d3aeb2bf31a51e5"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-04-09",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:51f63acae14f1568": "7a3496c8d4e9b0e5d6722648380374c4257b04bbef89951a1f4c700790848c83"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-10",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:592a6ad1db0651a7": "f23b96d0fdc522975b8b85a711717d95cbe115b31350d1e121ea6aae0ecb11e0"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-11",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:b3e343f5a2da422d": "8783e7faadab4fdd803455fd1527966efb24f8f5bdfc686d6864da1bb50c46c0"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-15",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:769622512bccace7": "6fcfcc47237fcb173a23ea9383f19589c7e593b0aad01b46602fc30a8ffe7d09",
+        "cand:98b6233e64f92c6c": "b423af7b06fcb40792a76689b2d01e931b095130205864e1ac70629ca8ba8c54"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-04-22",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:1139d0aa8596e5c0": "428c1c263afd27a9d0deb8e0d41453e6a86f754926621e9f6c3ee892fb157500",
+        "cand:7129e55abc0db242": "0faad3f950575c25d834f7a21bbaaa55401573c97654f30f8016e7aedd9ac260"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-04-25",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:9708b1b6f6026a27": "6fc6e3eca858de7a05f3007850b8359d2b12f742eb90c5f549b75194e3a97322"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-28",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:8a8490c1cb04e798": "299c69dd939dfbb16662b237fd7b4f5aa751734de1b136d69d33a059eb812e67"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-29",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:0d88d9a43fa47c35": "8e77fd2fb693b25375a9097d3652bb5a16ced01b48a85f27e6c66406e998663e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-04-29",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:a21fea4843547680": "9d13b3e5b650366d3e47fb60d257e4aaf1bc674c5a531f14459a08ff6562fb62"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-05-01",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5a490fb544135a05": "61323330a1f5a67d7e37ee29efccd29d7e98b5b286ad630c6b825e4dd527736d"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-05-07",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:1e0198085f46e199": "ed33894f73b4157840ed7ffb108fd3dfd94665c142b77969af7b5d04dcceaaef"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-05-08",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:a5fb8efc95520187": "c7eec961df0a3eccc4f725695888aa5683d09a0ec0482c2eacd9b79db7711fa7"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-05-09",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5209cec35c2973ca": "f2ba82bf4a6a1fc3a0544d768d45b4e46f15b151f5b47b82a3c9cb8b7f0c5324"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-05-13",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:9780403db6a84cbb": "a096ede1a2e5b2bdd6502929bf8701144d2abdf96e12f21752e6e803d932a520"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-05-14",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:01c826f5cf452074": "a22d7a540d43129f52c37821cc40db3df9e6753ee896fb5b38fa5343594cdaf0",
+        "cand:6100b3a699a5e263": "b9db9cc45fac8066474c4758915a7246c09bbd5661d608d65ed1918c38f849cb",
+        "cand:9a14217bcf68e160": "191c26a9a6d7ec44d164fc610146f279d58d5ce73e5527f8d782df712db88302"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2025-05-15",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:ca5921d6be6b4fb5": "2f096e60b7a16b97241fc63a526474cfa00681dd3721055d6ee334f534fd04cf"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-05-22",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:bf414a056bb39dff": "baef91d36b7ae18f203e9b8381463f7fd95c740116299171b1d667ec1c3a2d37"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-06-04",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:1c7e2e862829055f": "3e073af78d78e72eb06493ebb7c625c3ee09ae882a64f97f449474d011668410"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-06-10",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:dc9be5de9c9a423f": "40360ec2b36e7bcf89fd6fa02cb5ebdd4f16bad2727a1ea444c711f5d32b3042"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-06-18",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:3e2b734848eeeac9": "a54591579b7834a21c73b27597162390d724a95091e17abcc0e706adc3e6d13e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-06-24",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:21a93be1e7a71f2b": "6ccd900e1af4e185be89e98701823a1559132fe83d0603f31c2e0933dcb527a8"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-03",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:94ac254a9c86d809": "91c7ac94d902a6c152bbe96383a1e1485c097b1dee7ca134d98ffa37df752732"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-16",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:3c7c6ab85b446ff6": "1643bc7b1537f10fd2b53b4bf51a0bb4e2db8079b80a39295cecae6be8affc1b",
+        "cand:5060e52e9d3fbb6a": "43956dfe9351a4f69c43d0cb0d88620a626bb06e8faeddf2c201f475c7d9416f"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-07-16",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:fab948d47f078820": "20b85b3bac5816b0b7c937da8329df185e51ea983a93ef8ec67c4fa9d282e6bd"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-17",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5cacd84b2f54f480": "5e937e35c658f87c733cc671aa80c1f5cb2ed66a430fec3f1885c2cde76cfe85"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-18",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:fcb309e6de9d346a": "a7c45eae4a1e8145c663ce8881362e0cb3f933562c00b21fbffc60a758a1a0f1"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-18",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:78bd82119c9c15d2": "49b3aca34a3a7a23272ae89820c231f46827c2d29e92c3ae3dfdfe3b45826495"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-23",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:8997fc9e0205610a": "e058fc1a33e2bd57f23bec87ae52b182011204dafa80e74a572b89a91e2697f6"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-23",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:3e5066f68f20ebcf": "f06085f8aa02eceb4a9de972339487a2042c1fecd82ecfd16d6d0cbc1347d0dc"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-24",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:7f486fab698c25d3": "f54591afd55da15c124fb25a629bc305add59b0e4a3ca01d62711f12027ab0b6"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-07-31",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:f42308e72b2e908e": "2897d29c6bcfa8c1876125dc09cd3fcf172995a92e7cf4c12955cb161504b01c"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-08-28",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:a9e18a99391657ac": "2121a1194da89fa39f38e8b087e8f069eedc2de19c4a7cfb7176b7815e3dce8e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-09-03",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5cfca447071533e5": "85e8e4ef10884b605566cc74f4803ff3a3da65916c31118e4506661a1b3c97fe",
+        "cand:8c7f699e6cbd2d72": "7f84d2b56e6d9e1b2cfb3e3a1bd753757761c857dcbbb79009e1970cb3842551",
+        "cand:bc0b4225e29a82d0": "84da2d20d3196b213f22da45c6300ba16cf2e19009544f92374ece6fcd98d0df"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2025-09-04",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:8aa7bc9c876f5caf": "72a8a40d49e9759ec8028ed078c6e235284651fb3ca82801d8ed5704fe248e17"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-09-08",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:4407750479a58df0": "4e1104d60e5c5d468339fdb0393f61b91c2a3776cb2057d2ec515e0553d5b47c"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-09-09",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:7188685b0c0c3743": "0b6e57eaed2b763fc9581876d9f237ba0f093cf0e467b48db14c3803d0cbc6ef"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-09-10",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:d3b3912e9a7af42a": "898f79b1d137fb3248891212bb60b89cecec09c8be67eb6eba9cc3e45151d997"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-09-15",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:e6b3c95d2a78377a": "0f300cc851111366e90ebf2e26b27bd441dd64dbb4e9313d9588c21ac8b182ce"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-09-16",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:316971e97f0d6b87": "36e71ef63d3492fa354dfc04a122e5a945fed03f6a296b3e08088ca7cb99461e",
+        "cand:a00f4dcddcc92e9f": "8d2888bf8f1315be61b07f8997e9721797c07c56496840feaf7548f2f19d6919"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-09-18",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:fb8e663ee79679fd": "8fbbfbed9ebd2acb09f5edd5f781b4c2ee21042dfb0b32c8c152d2dc48393874"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-09-19",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:877e3ff87130baa3": "74405dad30859a9c2e882f8da0265634368122f67bc21853d76807a03a8beba0",
+        "cand:cded3e5df67f99ac": "8987f981a8a9eb6522bf16f3cacce547dc014f198b7cccd39b813e5e67d1aab3",
+        "cand:daf1ef20b4c3c582": "e59c385908010d5a865d1c1de0bbc464f84023ccb52722bd7ec9b9aa00c0a405"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2025-09-26",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:ed9d81208c1c8d2d": "faf646bc12ec8ffb429be4b1193f3ca396b5f9fd3e0eae3dc0b1f7b5f61e3e16"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-10-03",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:acf1c78b104b4098": "e94b70727d934223c75382bbadc629f1f783f4e920ca3bc3c8c187a9f29aa178"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-10-07",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:2f2912b88200ec57": "6d6839efe96be56ae51da750eed7e064984e9c96cdc1abfe22d66e362948ca81",
+        "cand:b35f7746c6f97003": "68c890f96d2671602ec98a7732783336122632c007d8f1a456a06ab36400d46e"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-10-09",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:ad08f191091faf55": "aa56179b8baa40b17c91708f950b3b1d6dc943f4449dec9082e179bb65b1131f"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-10-10",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:311289a785cd0135": "1f0f9cfa11a556a8ccd6a0a294951df2ec318f260f9f439434203a42d67ec48e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-10-17",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5aa74a6adc271706": "d974e365e88f353e3a3ae33272973596c78bbb79718f3850f4f885387d5771e2",
+        "cand:8d145f358c93121a": "f0c9fdb2537c6cadf33999f0d19221312f082bdbd4b26b176c012c334303eb1a"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-10-21",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:ef34a3359996a877": "7bc978ff10a9e833f50c3d8bb9799aa4b54c47286cf33886fec4273c9fb90e26"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-10-23",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:87fc93297dba2363": "f04bcc321ac4bedd39542739080270dd25fb35680e41dc889b678e6796eb6547",
+        "cand:d7dc706cc31bd2c6": "ec3166a3174cbe7751fc971cc82fdc48cd84220ca04a5ea8b8db43fb1c652d1e"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-10-29",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:0348033ed74f4d8e": "f6b7f00f6391875817d09e3c748fa60004ee5e5d71c2164fa80b774df7812b36",
+        "cand:3bdeba9c7edabeeb": "ee9f0bf5c435256ed3f71ea567f3f3b35e4020ec4217d856e8d2a10231619741"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-10-30",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:39d3a8462445fd98": "2a3ab811fe81535f8880d035f588cfcb82e171134c17962e53179b8302ccf76c",
+        "cand:6df16f39ca714500": "dc5b9077df654a9a0c638fee0879d9d3c95bdad74e56e0114beba029344b6428",
+        "cand:7ce4c5b3f55e33be": "218c5095eb1c326c86506099d9f73c244b4372922105c03bbdb578fee81a282d"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2025-11-07",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:6885c5e193e70a04": "3d70e58666263763b7f8b8e1b207b813a33e58ea6e2c4f82e0d9351bd473db43"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-11-13",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:ac96838264dbf3e8": "3be4bbbad3a5cc28d170e2854356f732d148a54d297574fe82e13ed1cd1aa69f"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-11-14",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:db2bf01cdb896ff0": "e2c71ebdedb2a275e39c8408944d782e54561db04a65a9f77e48e5b82e36f918"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-11-17",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:88f11a2cf409f06f": "824d1dda5ef8c785be5c350a641ae18c71bbb2b13869af5ca892107d147ccc15",
+        "cand:93494a2a3a7110e0": "479f618f2cf89a20ac7f722991a6b45962eee696f01e019e7423c10037707f70",
+        "cand:e2b2d940d32f10ab": "6959a1a6c42a5c9d64b7d8ce42c93516e236d564bdef1b7c8a680242094182c5"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2025-11-20",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:07e8067681a73f84": "eb8a6fda75d4662084c23bee38fb4ab0c0af33c4d7959819adb2ebf1d0fb533c",
+        "cand:d7b9995f4db771e2": "1a89601f4038eb7d44ff8b1411198123edd75330edbf0c97f5807f139adfdcc9"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-11-21",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5a59ae4042954656": "ae5d240853ef9eff27bb58a513f243dde2e273b899ffa4ca6d51a7147bd985d0",
+        "cand:87cc749fbf4653d3": "a0d7d2a4827b9399b3651dfc91dada6112e1ba679d6456a58b1aa59275ebf338",
+        "cand:9cd0ae46c674f8c2": "b08e3accfd96742081b866209f2d08af2ead0904486539fb03c794284fb3dbc7",
+        "cand:d9e614903c379d31": "21119fb80f69f9f943eac5bf3bd3bbe3419cb26563e2fcd3fd78abaea1d41d48"
+      },
+      "items": 4,
+      "labels_returned": 4
+    },
+    {
+      "group_day": "2025-12-01",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:59139b97c35607e3": "cd61730434fb88234b7a173511e5ff309882b8975c822d5405cead46361432a0"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-12-04",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:be19cbb66af997e4": "03f331d45f50a7f36b715a6413de171c2e7cd7212676c2cf5829d71b9c247af2"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-12-04",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:7d10eb9a68a74efb": "20118c6c806c1c431c1b4aa4334bb717ffed10aaef04b5f3cd25ff9565822178",
+        "cand:b9ce50c87404b2d7": "4a2ebe0f7c3e627a94d807b15078840b1156d8cff4ef546b1844018d37b1caa4"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-12-09",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:4580ad3a160015ee": "8f3b30c7e0dc00c7878d387cf9ebadba48f6d377d3e8e25320fedafb1e3a5604"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-12-10",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:30d9ac9bbd64d5ab": "2384bd7b4fbbc9bf4c20db42ea7d6f4107096f516cb651ec491c24023c6953ab",
+        "cand:57be9a76f6c41620": "f428681137c747b84b65dc72b673d393543fd9f074a90355c643635b7e8fc842"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2025-12-11",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:ac6692f6c718a9a0": "b61b101c520200277286fff51ee9cd63c81bfd235fa79ec8fb929972c670cbec"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-12-17",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:90553dd64e755763": "2dac0f8dfb28c15943c788109a881ab031c3b763395d9bf41ab61a12db9535c9"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2025-12-19",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:ba818f1aff952c48": "53c4094f24df674a0dc3010e5f3a95c369d6a810d321617de953b1d64932de3b",
+        "cand:be3a9d3fc64f3794": "a79a2816101aadec2fde9567a211534c6674e7bb6952285b334c17f605c32b25"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2026-01-06",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:cb52fbc68852cd85": "3cf48062e7aa9720dc5686247b50b530c4a506a74df703156a87601c62a1a5d3"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-01-08",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:8e51257a43dd9f64": "c412eaaf84e3f20809a73d9a653e466224995d2bd6e899820b65ff6eedd37459"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-01-13",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:c5dd919b780d6c96": "b7273e2f8dcd8214cb1337341b9c359ace35a38f145f59cca9a5ce7b44bdf1c2",
+        "cand:ea09d50c004cd16c": "bc11d7f9a0bbd8d5bf7a417497b757a44230daf4284e8a219dc3ea138bdab9a1"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2026-01-14",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:35f608f5b6f4ab82": "861e83bd60fefaed7d5c3d78a195e90a16ad2611c3b0414ff1ffb74ee8acff13"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-01-14",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:b97f81778e4e988a": "eb7ce34db662e4be693c90366745e1a85ad2fa91012a799afc2b51e7570481ab"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-01-15",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:4000400ac272b7c3": "aa23280a6a7cf9e00ff71ffd083050d2caf9da3884aca40300e1747bc44711a2",
+        "cand:43ead2cf0b3cfe00": "c2d2d53ae98e7a53487567bc7c0a6cfc0f63c6966e62853a14e0378688d71489",
+        "cand:ce33588600a694ad": "53688d02a07b0c878c937e6e15946593d3fec6b6ede275f1310ad0821b93bd39"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2026-01-22",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:f699598058f21f94": "5668567c67990b147814ed0c49c4bd9139ba45fd89069f2cc64f04925c58e863"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-01-23",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:3245509f2b13153a": "6206bfd4680ef202f9d9c8be6451276b6b7edc66d9601a5954b520006bca3c1c"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-01-27",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:edcc89dbc9a13f2f": "d272b3c8ca2b52b4f1b28587879167634da73f8dcadb93e3e2053adf4ba58307"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-02-11",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:122d598cf9e9a57f": "ae1c2e7d1a929b6590d3a529b4f61fc8b59a5a0a6da9bdb0f07406a6b6cb4531"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-02-12",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:959df03197477b12": "323b9a4b20e67b8efcedc95922fda120ec0f7f1fbc9936120f9f8219a8fc840e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-02-20",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:1f173c2de698a25b": "477fb48ffd57cfbd1cd340efd2a07e19887efebdd6c81debb30123a47eac3d0c"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-02-24",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:17e06dd8a5a18052": "858cac377b80c2bf452e10483b73d13f41f68d22a7a4aaf34fa0f264ad7cac29"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-02-27",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:b95db0f14bb47c43": "97cb5f0db1cf6aa12a4d17447673eb4ed193580c3c42be62c6d5ce1d765a7a2b"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-02-28",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:ecf17bd605c97467": "83c90f3d61b34c74d46bf67c2e19dcdd3b72c5a0c52370be915826c9cfafd93d"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-03-04",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:802cc5584f87a238": "a57345d13031fbabba04aad9609e5c3157240be2bb83adcd01794f2c1a32bdfb"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-03-05",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:0c990b281575dcf1": "6d4413e3aa6cea57eed17c417e9958d87346c9f55af8705bd055c1fba0d10eea",
+        "cand:efdcce5b31ae16a4": "79b44a00126012b9cc1100fddf60ea47aebaf6a0c2838332806dc68083dc4e53",
+        "cand:f0e460e2c249bec1": "3f304909cb550dae1a66b5e9f4d83d89c221123cceb2cd2749ea4430e34728c4"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2026-03-05",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:cc970ba865485dbf": "d519a17751c8c5431c7ebfcafbd783cece2589c926e4629c85469dd5fac42fcf"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-03-12",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:a395d5b8d8737b5b": "3aa3cc664861ba00342645c08510dac46a20f4bf8a98a04f3da0bb3c07ac7dde"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-03-18",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:8ecaffbf9bcf0d6a": "680c7c17517cd2a2b9342d626a9fdd7aef14cef6763ebbc6684422a2f78bd1ac"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-03-28",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:379d4a21c4953a9e": "38e1f0e48423a1e67043bd8c1b55cf8f797477efe368b5837974a242b882fd4a"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-04-07",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:70a62db4553553a7": "87c397acfa35c485be3c2c29dbe9b201f0fd3dc4ea46396de32e76edaa420ff8",
+        "cand:79f80ae8328eba4d": "65feb0157987ccb4de88448994ae6f50e8a52d83b93ef348c72bc8ba1877c27f",
+        "cand:b83d247ec13751fe": "93dcb2748997d45d52ae120fed1b3e10dfcd31d601039c9f46edbfad6391fd54"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2026-04-15",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:04e6291eef3fe936": "bf811768e24a1e1db8e0d76b404971126bd04ff7aa1e740cf939ab076e735a39"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-04-20",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:07530ac5f449a200": "7fc9e25d1556668e5ec2759cca9ef3ee8fe20f61eb8bcd4188ae026283a074c3"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-04-23",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:834267ade8c92201": "ea5bdafab871248fb2b6d1e2a54233b1c9eced64b0e7f82ddfbef382d64bf378"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-04-28",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:a599505ed3b2b464": "a676226af0d21d5baf8e7cea72d625072f0e7eb672df9acdfcd7169dba857eef"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-04-28",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:8ffcadb485e8f3c3": "b95cfc74bc42588de81e281a2052650d809563eb3c2d2b89b0063db4a91ef2b5"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-04-29",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:14959c2113a5b377": "197619de49074691dc28fe04526a313c7c1e983a8a4256fb8d293217a49e3ce9"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-04-30",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:669c36a3da6507d3": "a22fae78fcda7f8415f0e921383f912856af124c313ce2892efbd95dda894865"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-05-14",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:2732032286459edd": "baf42debad33afe924d0f24ecdc110f642152c1f40e8ca277cbaf0dd2a030db8",
+        "cand:643fee3173af6fb8": "b51cd016192282ed1d645f7b209a74310762659c433c00ff7a8285ed9f316c0d",
+        "cand:7de53e514fef8f38": "e69d777c0b9eba0a0519ad5949297f92eb4951f98ac7273cf853b95571847ac0"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2026-05-19",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:ab746d3f82031f79": "295d9fe7cd973b05c9e9d475cfecacbb4e571abc17a418d789f8f854e47b78e2"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-05-22",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:554a1f5f2c4f43d4": "3e7dd272e3d30b27241c6af8cb401eb33d768707d84d838ce35aa3c7a6fea415"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-05-22",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:569e0221da0a3dab": "699acbab83eedb7eacc5cca8da3fd196592fcc0efe57fc59e4823cc3ddb91ff1",
+        "cand:ae54b66813703af0": "33f14b9ffc7e7909ce12d4fca427efd5bdccbf215489cfa5248b542b3a02ddf8"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2026-06-02",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:f165b264d67a77b7": "4862cf3d3791504e706db3318f187529d2a874ae0f1471b915f58a9c970b0aea"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-06-04",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:d07055061d0b6387": "d1c4929cffc03e02995fb1e4ffeec01b2da033f2fbf6200412aeee240a25add2"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-06-05",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:ab70b1a1c965270a": "c85a2fa43432f77d8c87ca6774f19e3946489cb45d69cbf3d25f970d8e8e53ad",
+        "cand:b0f79808571bcf5f": "580d086582539ec7ef5757a9da858ea74e6a893f6fe153405ae991959edfe91c"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2026-06-08",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:e274ec85fd222303": "ace1dce944ab45fa963e04fc378fb91500f3bb19766983bfee6386ec18efdd8e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-06-12",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:6ed31d0d6378a12a": "442b36759c2d1b218ac4f0afde58b247981ac8afb82ad220dcac13c69ab26cff",
+        "cand:b6d27013754f7ea7": "30e8d5e328bb6a51f4767582523dc1551be7a691cecee0d16301baba82af8cee"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2026-06-18",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:30aa29db272053b3": "bfc598c3759963996487238f3baabf2c8546b78f566f80170f6fef5c52570fc6",
+        "cand:f317f70842e2e489": "3ac51159f0b23e8e36efdbba386b1f3b68db4b9bb0afb07186fe435cf450f8b6"
+      },
+      "items": 2,
+      "labels_returned": 2
+    },
+    {
+      "group_day": "2026-06-22",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:2403fe6805c09de9": "086741c8e9bc9e99df8977004acc60d2791dc4533d3249a34ba3c6202af86110"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-06-22",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:9e51f8a55fac9d97": "47a3ad5744fcbcba413052bd3d706c3142062546c9f9d5f5268f07e9a7611f12"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-06-25",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:a79da851801a089c": "56f9c717088c71a40431b4b365e47116412d845f0ddf69c96bc9a696132539f9"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-06-25",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:6675e7969ae6490b": "b94e9d62acd841d62eb62508001d0c2a270aa0360c8219b4084a032f8ae0b46d"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-06-30",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:1ede6c7629d5a486": "ba3c686346c28a2bedeaed7ec8e14c47c8b7d1f64482991fb8e7e54ba6dbdff2",
+        "cand:db0ed05a716dfd1a": "ed841b1a680fbe4463b62b71a9efe292809d984027a0f3b3d55f184667158d9d",
+        "cand:e2f31ec5de34ebb3": "7910185f9d1ca1e93e02695456eb8a5ea71539248e9f7126b628511b61fd3550"
+      },
+      "items": 3,
+      "labels_returned": 3
+    },
+    {
+      "group_day": "2026-06-30",
+      "group_party": "R",
+      "item_request_sha256": {
+        "cand:be83fcef58da0761": "675e0fedb206859a75708014b4c427603fcda4938746a59cf76ebcf05e14bd52"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-07-01",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:b148277f1e63cecf": "3358b46dfc914e77460cd6206dd3e210ef2f62be50df223e59ada7026a7e323e"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-07-07",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:59615a26abd879b0": "8fdb589af16b2a20a5fc5b76d2d657459c717cfc62af74dbf5ea6c90afb13784"
+      },
+      "items": 1,
+      "labels_returned": 1
+    },
+    {
+      "group_day": "2026-07-09",
+      "group_party": "D",
+      "item_request_sha256": {
+        "cand:5b1a3a6535e24275": "79ed1c844ba40c5dbe62f7299a50972584fae5fead6a4f33eba889de617976d7",
+        "cand:f6461621a6d124b7": "1d2d8b28f7f14ad71a8c730619854e63a65228f352abba1e6b0b8752f107f87a"
+      },
+      "items": 2,
+      "labels_returned": 2
+    }
+  ],
+  "cost_usd": 0.0,
+  "errors": [],
+  "frozen_prompt_rater_id": "model-rater-GS1-v1.0",
+  "items_expected": 200,
+  "labels": 200,
+  "method_version": "gold-set-model-rater-v1",
+  "model": "claude-opus-5",
+  "rater_id": "model-rater-GS1-v1.0-claude-opus-5",
+  "reader_model": "claude-opus-5",
+  "registered_model": "claude-sonnet-5",
+  "registration": {
+    "guide_file": "evaluation/ANNOTATION-GUIDE.md",
+    "guide_sha256": "2243cddef095cc30e5eb39fe1c7689cbe444e409593d1f4b020891b046e0daf2",
+    "method_version": "gold-set-model-rater-v1",
+    "model": "claude-sonnet-5",
+    "prompt_file": "pipeline/prompts/GS1_gold_rater.v1.0.txt",
+    "prompt_id": "GS1",
+    "prompt_version": "v1.0",
+    "rating_prompt_sha256": "1aa8447702f2b163103a3f23fc7447ebece81395189e1a6c2bbae885144a8246",
+    "schema_version": 1,
+    "wrapper_sha256": "90e0661f52ad3f8c2943b0e07242ff6c6c03bba9fc7ef1ec11e767cf8b3402cc"
+  },
+  "sample": "pilot",
+  "schema_version": 1,
+  "seal_hash": "7facc4d2323596a71153997fda33a924324634f1a096c5dee2df221ec86a00d3",
+  "sheet_complete": true,
+  "sheet_file": "evaluation/goldset/bundles/pilot/model-rater.answersheet.csv",
+  "sheet_rows": 200,
+  "sheet_sha256": "363ecdfc2752f5371e4209b25736f8f65cd428b6ed9ccd7c80e9647138440c8e",
+  "sheet_validation": [],
+  "token_accounting": "not applicable: the session transport makes no API call",
+  "transport": "session",
+  "transport_deviation": "The reader is a subscription session rather than an API call. Authorized by Fable in the S59 lineage under the docs/03 precedent for one-time subscription-scripted work. The frozen prompt, the item context, the per-item request hashing, the drift refusal, and the answer schema are unchanged. Marginal cost is 0.00 USD.",
+  "wall_seconds": 1317.0
+}
