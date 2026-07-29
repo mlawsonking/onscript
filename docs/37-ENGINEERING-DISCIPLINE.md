@@ -5,6 +5,8 @@ found across the W, X, Deep, S1, ANNOT, and Y engineering rounds so that every f
 session inherits them as rules instead of rediscovering them as incidents. Every work
 order cites this document in its read list. Each rule names the incident that created
 it, because a rule whose reason is lost gets argued with.
+Amended: Fable, Session 61, 2026-07-29 (rule 4 import-time form; rule 14 worker
+isolation, probe independence, and the governance guard).
 
 ## 1. Registries are tested against their owners
 
@@ -52,6 +54,12 @@ A gate that dies on expected legacy state is an operator-created outage, and a g
 whose failure blocks the process that would repair its input is a deadlock.
 Incident: the W3 restore conflict check raised on every pre-W3 archive, and the
 archive could only be rebuilt by a run that got past the check (2026-07-26).
+The import-time form is equally binding: a gate establishes at first use inside the
+component that needs it, never at import time. Import-time establishment widens the
+blast radius to every importer.
+Incident: the watchdog died at import because the instrument fingerprint made privacy
+a transitive import and privacy established the Article XIII gate on import; the
+pipeline ran unwatched until the watchdog's own dead-man paged (S57).
 
 ## 5. Timestamps and randomness never enter determinism claims
 
@@ -140,12 +148,18 @@ a normalize-version artifact, not a finding (S53, ruled S54).
   append to CRLF files with a CRLF-aware writer, not a bare LF echo.
 - Session numbers are claimed by reading the docs/26 tail at session start; parallel
   sessions exist and numbers collide (S51 was taken while S51 was planned).
+- An external worker's active branch and checkout are never touched by another
+  session. Parallel sessions run in isolated worktrees; a routine pull --rebase in
+  the operator checkout once rebased a worker's in-flight branch mid-delivery (S50).
 - Pushes happen in a clean window: nothing queued or in flight, next cron slot not
   imminent. Crons drift up to 90 minutes late; the drift is part of the window math.
 - Every measured number carries estimator, unit, window, denominator, and a
   rerunnable command.
 - One alert per failure mode: a probe that pages exits 0; its own death is the only
   thing that turns its job red.
+- A liveness probe runs outside the process it watches. A probe sharing a process
+  with its subject cannot report that process failing to start (S46, the
+  startup_failure no dead-man step existed to see).
 - Workflow references key on file paths, never display names; display names are
   prose and get rewritten.
 - New scheduled or event-triggered workflow behavior activates on push to the
@@ -153,6 +167,11 @@ a normalize-version artifact, not a finding (S53, ruled S54).
 - A work order states its push scope exactly once, in one place. The Y session
   received "push only your own branch" in one section and "never push" in another
   and correctly stopped to ask; the ambiguity was the defect, not the question.
+- The governance guard (.claude/settings.json and .claude/hooks/governance_guard.py)
+  mechanically enforces the git, interpreter, release-act, generated-tree, and freeze
+  rules inside Claude Code sessions. It is tested against its live module like any
+  registry (S61). The prose rules still bind where the harness cannot see: CI, other
+  shells, other machines.
 
 ## 15. Maintenance of this document
 
