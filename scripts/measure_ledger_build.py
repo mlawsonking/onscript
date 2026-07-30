@@ -45,6 +45,9 @@ def main(argv=None) -> int:
                         help="explicit YYYY-MM month files; defaults to the epoch window")
     parser.add_argument("--no-cache", action="store_true",
                         help="disable the clean-statement scan cache for this measurement")
+    parser.add_argument("--paired", action="store_true",
+                        help="build the ledger twice in one process, cold cache then warm, so the "
+                             "pair shares one normalize pass and one identical statement list")
     parser.add_argument("--label", default="", help="free-text label echoed into the output")
     args = parser.parse_args(argv)
 
@@ -78,17 +81,6 @@ def main(argv=None) -> int:
     print(f"lane-1 units:   {len(eligible):,}   (the ledger-build denominator)")
     print(f"lane-1 chars:   {chars:,}")
 
-    cache_state = "disabled for this measurement"
-    if not args.no_cache:
-        try:
-            cache_state = privacy.activate_scan_cache()
-        except AttributeError:
-            cache_state = "absent (pre-P2 tree)"
-    print(f"scan cache:     {cache_state}")
-
-    engine = PhraseEngine()
-    privacy.reset_span_stats()
-
     def _detail() -> str:
         stats = privacy.span_stats()
         return (f"span_scan_s={stats['person_spans_s']:.1f} "
@@ -96,23 +88,47 @@ def main(argv=None) -> int:
                 f"admitted_form_s={stats['admitted_form_s']:.1f} "
                 f"admitted_form_scans={int(stats['admitted_form_scans'])}")
 
-    with util.stage_timer("ledger_build", detail_fn=_detail):
-        ledger = engine.build(statements, progress=len(statements) > 100_000)
+    def _one_build(stage: str) -> tuple[dict, float, dict]:
+        privacy.reset_span_stats()
+        before = util.stage_timings().get(stage, 0.0)
+        with util.stage_timer(stage, detail_fn=_detail):
+            built = PhraseEngine().build(statements, progress=len(statements) > 100_000)
+        elapsed = util.stage_timings()[stage] - before
+        return built, elapsed, privacy.span_stats()
 
-    if not args.no_cache:
-        from pipeline import scan_cache
-        print(f"cache flush:    {privacy.flush_scan_cache()}")
-        print(f"cache stats:    {scan_cache.stats()}")
+    # A paired run pays normalize once and hands BOTH builds the same statement list, so the two
+    # numbers differ only in what the cache could serve. Sequential separate processes would each
+    # re-normalize and the pair would carry that variance for nothing.
+    passes = ["ledger_build_cold", "ledger_build_warm"] if args.paired else ["ledger_build"]
+    results = []
+    for index, stage in enumerate(passes):
+        cache_state = "disabled for this measurement"
+        if not args.no_cache:
+            try:
+                cache_state = privacy.activate_scan_cache()
+            except AttributeError:
+                cache_state = "absent (pre-P2 tree)"
+        print(f"\npass {index + 1} ({stage})")
+        print(f"  scan cache in:  {cache_state}")
+        ledger, elapsed, span = _one_build(stage)
+        if not args.no_cache:
+            from pipeline import scan_cache
+            print(f"  cache flush:    {privacy.flush_scan_cache()}")
+            print(f"  cache stats:    {scan_cache.stats()}")
+        print(f"  ledger phrases: {len(ledger):,}")
+        print(f"  span-scan share of this build: "
+              f"{100.0 * span['person_spans_s'] / (elapsed or 1e-9):.1f}%")
+        print(f"  per-unit cost:  {1000.0 * elapsed / max(1, len(eligible)):.1f} "
+              f"ms/lane-1 unit")
+        results.append((stage, elapsed, len(ledger)))
 
-    timings = util.stage_timings()
-    print(f"\nledger phrases: {len(ledger):,}")
-    print(f"stage timings:  {timings}")
-    span = privacy.span_stats()
-    build_s = timings.get("ledger_build", 0.0) or 1e-9
-    print(f"span-scan share of ledger_build: "
-          f"{100.0 * span['person_spans_s'] / build_s:.1f}%")
-    print(f"per-unit ledger cost: "
-          f"{1000.0 * build_s / max(1, len(eligible)):.1f} ms/lane-1 unit")
+    print(f"\nstage timings:  {util.stage_timings()}")
+    if len(results) == 2:
+        (_c, cold, cold_n), (_w, warm, warm_n) = results
+        assert cold_n == warm_n, "the two builds disagree about the ledger size"
+        print(f"cold -> warm:   {cold:.1f}s -> {warm:.1f}s "
+              f"({100.0 * (cold - warm) / (cold or 1e-9):.1f}% reduction), "
+              f"{cold_n:,} phrases both times")
     return 0
 
 

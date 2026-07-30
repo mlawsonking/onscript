@@ -410,7 +410,7 @@ def _clean_scan_prefix() -> str:
 def clean_scan_key(text: str) -> str:
     """The cache key for "this text contains no admitted form", under THIS instrument.
 
-    The key commits to the method version, the admitted-form fingerprint and the entity-hierarchy
+    The key commits to the cache version, the admitted-form fingerprint and the entity-hierarchy
     version, so admitting a name or bumping a version changes every key and no prior verdict can
     be served. Invalidation that lives in the key cannot be skipped by a stale in-memory set, and
     a stale clean verdict is a published name. It is keyed under the salt because data/state is
@@ -466,6 +466,12 @@ def _suppressed_spans_uncounted(text: str) -> list[tuple[int, int, str]]:
     # _scan_window, which is where every other caller happens to establish it, and a gate that
     # only arms on the slow path is a gate that fails open exactly when the cache is warm
     # (docs/37 rule 4).
+    #
+    # WHO GETS THE CACHE. Only a process that activated it, which is the deterministic core run.
+    # `pipeline.redact` runs as its own workflow step and never activates, so the last gate before
+    # a published release asset keeps computing every verdict itself. Serving it a cached answer
+    # would be correct (the bit means exactly what redact asks) but it is the wrong place to spend
+    # the trust: the corpus walk is where the time went, and the walk is what is cached.
     _require_gate()
     _ensure_generation()
     key = None
