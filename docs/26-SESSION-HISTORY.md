@@ -2593,3 +2593,28 @@ committed from an isolated worktree at origin/main and the worker checkout was
 restored untouched. That worker's packet claimed the Session 60 number, so this
 record is Session 61. Recovery: the 19:30Z collect pass runs on the fixed code and
 picks up the two-day backlog; the site returns when Michael completes #220.
+
+## 2026-07-30: Session 61, continued (Fable). The second collect defect: wall time past the workflow timeout
+
+Michael asked why the site is three days stale. The privacy-gate fix held (no
+TypeError since), but the 07-29 19:30Z collect was killed at exactly 2h00m by
+timeout-minutes: 120, the same signature as the 07-28 morning cancellation.
+Duration trend from the run ledger (gh run list, RUN A, minutes): 55 to 62
+through 07-25, then 86 on 07-26, then 90 and 101 on 07-27, then the ceiling.
+The growth tracks the W4 span-privacy scan and the X packages joining the
+build, and the 3-day backlog pushed the total past 120. This is growth, not a
+hang. The killed runs also left blank logs because python stdout was
+block-buffered to the pipe and the kill dropped the buffer.
+
+Bridge fix pushed under the fix-forward delegation: collect timeout-minutes 120
+to 240, and PYTHONUNBUFFERED in the job env so the next run streams phase
+timings and a future kill still leaves evidence. Suite in a stateless worktree:
+882 passed plus the 3 known local-state failures, unchanged from the pre-change
+baseline at the same commit. The durable fix is ordered separately: a
+persistent person-span scan cache keyed by statement content hash and gate
+generation, valid because the corpus is append-only and only new statements
+need scanning.
+
+Proof: the 07-30 09:30Z collect must complete green and the backlog days must
+build. Last measured day is 2026-07-26; days 07-27 through 07-29 have no
+collected data yet and render under the R-36.4 ladder until recovered.
