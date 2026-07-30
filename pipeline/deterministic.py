@@ -8,19 +8,35 @@ from __future__ import annotations
 
 from collections import Counter
 
-from . import build, config, instrument_fingerprint, normalize, roster, util
+from . import build, config, instrument_fingerprint, normalize, privacy, roster, util
 from .phrases import PhraseEngine
+
+
+def _ledger_detail() -> str:
+    """The span-scan share of the ledger build, as its own greppable field.
+
+    The W4 person-span scan is the one component of this stage that grew without anyone watching
+    (the 2026-07-28/29 collect timeouts). Publishing its share every run means the next growth
+    arrives as a number in the log rather than as a workflow ceiling."""
+    stats = privacy.span_stats()
+    return (f"span_scan_s={stats['person_spans_s']:.1f} "
+            f"span_scan_calls={int(stats['person_spans_calls'])} "
+            f"admitted_form_s={stats['admitted_form_s']:.1f} "
+            f"admitted_form_scans={int(stats['admitted_form_scans'])}")
 
 
 def run(records, *, run_id: str, focus_day: str | None = None,
         source_freshness: dict | None = None, generated_at: str | None = None) -> dict:
     generated_at = generated_at or util.now_utc_iso()
     rmap = roster.load()
-    statements = normalize.normalize_records(records, run_id=run_id, roster=rmap)
+    with util.stage_timer("normalize"):
+        statements = normalize.normalize_records(records, run_id=run_id, roster=rmap)
     norm_stats = getattr(normalize.normalize_records, "last_stats", {})
 
     engine = PhraseEngine()
-    ledger = engine.build(statements, progress=len(statements) > 100_000)  # Alexandria-scale progress
+    privacy.reset_span_stats()
+    with util.stage_timer("ledger_build", detail_fn=_ledger_detail):
+        ledger = engine.build(statements, progress=len(statements) > 100_000)  # Alexandria-scale progress
     fin_stats = engine.last_finalize_stats
 
     # Persist state (Release-asset-destined, gitignored).
@@ -95,6 +111,11 @@ def run(records, *, run_id: str, focus_day: str | None = None,
         "spend_estimate_usd": 0.0,
         "governor_state": "nominal",
         "alerts": [],
+        # Additive (schemas stay compatible). Manifests are already excluded from the determinism
+        # hash in rebuild.py because they carry run-local values, so run-local seconds are at home
+        # here and nowhere else: this must never reach an artifact under a reproducibility claim.
+        "stage_timings_s": util.stage_timings(),
+        "span_scan": privacy.span_stats(),
         "instrument_fingerprint": instrument_fingerprint.build(),
     }
     util.write_json(config.DERIVED / "manifest" / f"{run_id}.json", manifest)

@@ -75,6 +75,7 @@ import hmac
 import json
 import os
 import re
+import time
 from pathlib import Path
 
 from pipeline import verify
@@ -390,6 +391,15 @@ def _fold_offsets(text: str):
 
 def _suppressed_spans(text: str) -> list[tuple[int, int, str]]:
     """Leftmost-longest suppressed spans as [start, end) offsets into the ORIGINAL text."""
+    t0 = time.perf_counter()
+    try:
+        return _suppressed_spans_uncounted(text)
+    finally:
+        _SPAN_STATS["admitted_form_scans"] += 1
+        _SPAN_STATS["admitted_form_s"] += time.perf_counter() - t0
+
+
+def _suppressed_spans_uncounted(text: str) -> list[tuple[int, int, str]]:
     folded, starts, ends = _fold_offsets(text)
     low = folded.lower()
     if len(low) == len(folded):
@@ -467,6 +477,28 @@ def _roster_names(roster_map: dict | None = None) -> dict[tuple[str, ...], str]:
     return out
 
 
+# --- span-scan accounting ----------------------------------------------------------------------
+# The 2026-07-28/29 collect timeouts were traced to this scan only AFTER the outage, because the
+# scan reported nothing about itself: the ledger build published one total and the corpus walk hid
+# inside it. The two halves are accounted separately because they have separate remedies: the
+# admitted-form half is a keyed-hash sweep over every token window (cacheable, since the corpus is
+# append-only), the capitalized-sequence half is a regex walk that must run every time.
+_SPAN_STATS: dict[str, float] = {
+    "person_spans_calls": 0, "person_spans_s": 0.0,
+    "admitted_form_scans": 0, "admitted_form_s": 0.0,
+}
+
+
+def reset_span_stats() -> None:
+    _SPAN_STATS.update({"person_spans_calls": 0, "person_spans_s": 0.0,
+                        "admitted_form_scans": 0, "admitted_form_s": 0.0})
+
+
+def span_stats() -> dict:
+    """Accumulated span-scan cost since the last reset. Read by the ledger-build stage timer."""
+    return dict(_SPAN_STATS)
+
+
 def person_spans(text: str, statement: dict | None = None,
                  roster_map: dict | None = None) -> list[dict]:
     """Classify deterministic person spans before any n-gram is generated.
@@ -475,6 +507,16 @@ def person_spans(text: str, statement: dict | None = None,
     elected-office title supplies official context. Capitalized sequences that cannot be resolved
     through the roster or public allowlist are quarantined.
     """
+    t0 = time.perf_counter()
+    try:
+        return _person_spans(text, statement, roster_map)
+    finally:
+        _SPAN_STATS["person_spans_calls"] += 1
+        _SPAN_STATS["person_spans_s"] += time.perf_counter() - t0
+
+
+def _person_spans(text: str, statement: dict | None,
+                  roster_map: dict | None) -> list[dict]:
     if not isinstance(text, str) or not text:
         return []
     rows: list[dict] = [

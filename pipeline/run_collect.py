@@ -41,14 +41,19 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
             ops.ntfy("OnScript collect", f"congress-press stale {freshness['age_hours']}h — running on mirror",
                      priority="high")
 
-    if offline:
-        records = fetch.load_mirror()
-        pull = fetch.mirror_provenance()
-    else:
-        records, pull = fetch.pull_range(start, end)
-        # merge with prior mirror months so the ledger stays a full-corpus function of raw
-        records = fetch.load_mirror()
-        alerts += ([] if pull["months_missing"] == 0 else [f"{pull['months_missing']} months missing"])
+    # The restore ran in its own workflow step, so its cost arrives through the hand-off file
+    # rather than a timer here. A first run (or a failed restore) simply has nothing to adopt.
+    util.adopt_stage_timings()
+
+    with util.stage_timer("mirror_pull"):
+        if offline:
+            records = fetch.load_mirror()
+            pull = fetch.mirror_provenance()
+        else:
+            records, pull = fetch.pull_range(start, end)
+            # merge with prior mirror months so the ledger stays a full-corpus function of raw
+            records = fetch.load_mirror()
+            alerts += ([] if pull["months_missing"] == 0 else [f"{pull['months_missing']} months missing"])
 
     roster.load()  # ensure the corpus-derived roster cache exists
     run_id = f"collect-{date.today().isoformat()}"
@@ -72,6 +77,7 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
     manifest.update({"kind": "collect", "degraded": degraded, "volume": vol,
                      "extract": extract_cost, "alerts": alerts,
                      "upstream_provenance": pull,
+                     "stage_timings_s": util.stage_timings(),
                      "runtime_environment": runtime_environment.disclosure()})
     util.write_json(config.DERIVED / "manifest" / f"{run_id}.json", manifest)
     util.write_json(config.DERIVED / "manifest" / "collect-latest.json", manifest)
@@ -96,6 +102,7 @@ def main() -> int:
     print(f"volume:        {m['volume']}")
     print(f"degraded:      {m['degraded']}   alerts: {m['alerts']}")
     print(f"extract:       {m['extract']}")
+    print(f"stage timings: {m['stage_timings_s']}")
     return 0
 
 

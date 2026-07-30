@@ -2,9 +2,12 @@
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import tarfile
 import tempfile
+import time
+from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 
 
@@ -88,13 +91,43 @@ def restore_release(directory: Path, checkout: Path) -> list[str]:
     return sorted(merged)
 
 
+STAGE_TIMING_RELPATH = "data/state/stage-timings.json"
+
+
+def publish_restore_timing(checkout: Path, seconds: float) -> Path | None:
+    """Hand the restore's cost to the collect process, which runs as a separate workflow step.
+
+    Written with stdlib json ON PURPOSE: this module validates untrusted archives and stays
+    importable without the rest of the pipeline, so it does not grow a dependency on
+    pipeline.config (which builds directories at import) just to emit one number. The shape is
+    what util.adopt_stage_timings() reads, and a test asserts that contract across the seam
+    rather than trusting two copies of it to stay in step."""
+    path = Path(checkout) / STAGE_TIMING_RELPATH
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace(
+            "+00:00", "Z")
+        path.write_text(json.dumps({"schema_version": 1, "generated_at": generated_at,
+                                    "stages": {"restore": round(seconds, 1)}},
+                                   ensure_ascii=False, indent=2), encoding="utf-8")
+        return path
+    except OSError as e:
+        # A restore that cannot report its own duration is still a completed restore.
+        print(f"[timing] could not publish the restore timing (non-fatal): {e}")
+        return None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("release_directory", type=Path)
     parser.add_argument("--checkout", type=Path, default=Path.cwd())
     args = parser.parse_args()
+    started = time.perf_counter()
     merged = restore_release(args.release_directory, args.checkout)
+    elapsed = time.perf_counter() - started
     print(f"restored {len(merged)} runtime file(s) through the allowlist")
+    print(f"[timing] restore elapsed_s={elapsed:.1f}", flush=True)
+    publish_restore_timing(args.checkout, elapsed)
 
 
 if __name__ == "__main__":
