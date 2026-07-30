@@ -2618,3 +2618,33 @@ need scanning.
 Proof: the 07-30 09:30Z collect must complete green and the backlog days must
 build. Last measured day is 2026-07-26; days 07-27 through 07-29 have no
 collected data yet and render under the R-36.4 ladder until recovered.
+
+## 2026-07-30: Session 61 (Fable), continued. Collect recovery proven; attorney packet validated; S62 hygiene merged
+
+The 240-minute collect ceiling proved itself in production: RUN A green at 2h14m36s, a
+duration the old 120-minute ceiling would have cancelled, with assemble and post green
+behind it. First fully green chain since the outage began. The published day advanced and
+moved the R-33.6 eligible set, which mattered below.
+
+The attorney research packet (Opus, deliberately outside session numbering and outside the
+repository) validated: repository footprint zero, verified byte-identical; the headline
+federal-registration finding re-verified directly against TSDR; disclaimer and UNVERIFIED
+discipline confirmed on all four documents. Contents stay out of the public record.
+
+The S62 delivery (opus/s62-path-hygiene, three commits) validated and merged: suite 885 to
+890 with zero failures reproduced independently, verifier mutations 15 of 15, registry
+mutations 30 of 30, guard failure path exercised against a live injected violation, zero
+added em dashes, footprint exactly the ruled paths. Deviations accepted as disclosed: the
+replay manifests were not regenerated because their ladder numbers are R-33.6 gate evidence
+and belong to the operational replay (#218); three allowlisted survivors carry reasons.
+docs/37 gains rule 16: legal posture and operator machine identifiers never enter the
+public tree.
+
+One integration fix at merge: the r3 gate-progress test pinned whole-tree totals against
+the live days tree and failed the moment production published a new eligible day. It now
+restricts to one day's two lanes, exact under any tree. Third instance of the docs/37
+rule 3 shape (X7 at S52, Y1 at S59, r3 here). The suite is a local instrument; scheduled
+runs do not execute it, so the coupling surfaced only at this rebase.
+
+Next: Monday 08-03 nomenclature flip decision under the health gate; green days
+accumulating; silence boards expected to begin appearing as days advance.
