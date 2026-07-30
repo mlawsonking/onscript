@@ -1,51 +1,51 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-07-27",
+  "run_id": "collect-2026-07-30",
   "kind": "deterministic",
-  "generated_at": "2026-07-27T22:07:47Z",
-  "focus_day": "2026-07-26",
+  "generated_at": "2026-07-30T11:27:58Z",
+  "focus_day": "2026-07-29",
   "days_present": [
     "2025-01-01",
-    "2026-07-26"
+    "2026-07-29"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-07-27T08:27:54Z",
-    "age_hours": 12.35
+    "pushed_at": "2026-07-30T07:35:15Z",
+    "age_hours": 3.87
   },
   "normalize": {
-    "in": 78853,
-    "kept": 78819,
+    "in": 79304,
+    "kept": 79270,
     "rejects": 34,
-    "joint_groups": 166,
-    "near_joint_groups": 2401,
+    "joint_groups": 168,
+    "near_joint_groups": 2800,
     "syndicated": 62
   },
   "phrase_engine": {
-    "candidates": 364189,
-    "df_boilerplate": 185,
-    "ledger_entries": 364004
+    "candidates": 354795,
+    "df_boilerplate": 170,
+    "ledger_entries": 354625
   },
   "per_party": {
     "D": {
-      "statements_in": 46222,
+      "statements_in": 46497,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 32113,
+      "statements_in": 32286,
       "members_covered": 272
     },
     "I": {
-      "statements_in": 370,
+      "statements_in": 373,
       "members_covered": 3
     }
   },
   "derived": {
-    "ledger_entries": 364004,
-    "phrase_pages": 0,
-    "focus_day": "2026-07-26",
+    "ledger_entries": 354625,
+    "phrase_pages": 58,
+    "focus_day": "2026-07-29",
     "focus_day_write": "written",
-    "focus_day_top_phrases": 0,
+    "focus_day_top_phrases": 20,
     "coverage_years": [
       "2025",
       "2026"
@@ -53,5 +53,19 @@
   },
   "spend_estimate_usd": 0.0,
   "governor_state": "nominal",
-  "alerts": []
+  "alerts": [],
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "4891ab2e401c962b8d1ccfedbf8410f06659c831b5ed1aa3c3cf0257c74e1703",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "e814fcaab6f856d8e1e73b1664d78fbe05f1a3d568166b963c4c54b3b924ce2c",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
