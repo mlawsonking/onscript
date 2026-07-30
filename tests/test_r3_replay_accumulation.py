@@ -135,13 +135,21 @@ def test_replaying_one_party_lane_never_counts_a_whole_day_of_gate_progress():
     minimum counted eligible days rather than days where BOTH lanes were actually scored, a
     one-lane run would report a full day of progress against the 60-day minimum.
     """
-    day, party = shadow_replay.pending(DAYS, None)[0] if shadow_replay.pending(DAYS, None) else (
-        None, None)
-    assert day, "no eligible party-day to restrict"
-    one = shadow_replay.run(DAYS, only={(day, party)})
+    pairs = shadow_replay.pending(DAYS, None)
+    assert pairs, "no eligible party-day to restrict"
+    by_day = {}
+    for d, p in pairs:
+        by_day.setdefault(d, set()).add(p)
+    full_day = next((d for d, ps in sorted(by_day.items()) if len(ps) == 2), None)
+    assert full_day, "no eligible day with both party lanes to restrict"
+    lanes = sorted(by_day[full_day])
+    one = shadow_replay.run(DAYS, only={(full_day, lanes[0])})
     assert one["gate_progress"]["party_days"]["observed"] == 1
     assert one["gate_progress"]["complete_days"]["observed"] == 0
-    both = shadow_replay.run(DAYS)
+    # Restricted to both lanes of one day the counts are exact regardless of how many
+    # eligible days the live tree carries; pinning the whole-tree totals broke the day
+    # production published a new eligible day (docs/37 rule 3, mirror form).
+    both = shadow_replay.run(DAYS, only={(full_day, lanes[0]), (full_day, lanes[1])})
     assert both["gate_progress"]["complete_days"]["observed"] == 1
     assert both["gate_progress"]["party_days"]["observed"] == 2
 
