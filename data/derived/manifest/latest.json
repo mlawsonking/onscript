@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-07-30",
   "kind": "deterministic",
-  "generated_at": "2026-07-30T11:27:58Z",
+  "generated_at": "2026-07-30T20:41:15Z",
   "focus_day": "2026-07-29",
   "days_present": [
     "2025-01-01",
@@ -11,7 +11,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-07-30T07:35:15Z",
-    "age_hours": 3.87
+    "age_hours": 13.09
   },
   "normalize": {
     "in": 79304,
@@ -57,7 +57,7 @@
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
     "component_hashes": {
-      "code_tree": "4891ab2e401c962b8d1ccfedbf8410f06659c831b5ed1aa3c3cf0257c74e1703",
+      "code_tree": "3b272bb36b6c3ed72003cfcbdbb84cbc43323bc5f57ea31de239e0521eac19f9",
       "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
       "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
       "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
@@ -65,7 +65,7 @@
       "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
       "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
     },
-    "sha256": "e814fcaab6f856d8e1e73b1664d78fbe05f1a3d568166b963c4c54b3b924ce2c",
+    "sha256": "9f49b5128dad98eed314a898b7858ea0788bc0919255cf2ef7ad5f6b8d1e37a2",
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   }
 }
