@@ -5,6 +5,8 @@ found across the W, X, Deep, S1, ANNOT, and Y engineering rounds so that every f
 session inherits them as rules instead of rediscovering them as incidents. Every work
 order cites this document in its read list. Each rule names the incident that created
 it, because a rule whose reason is lost gets argued with.
+Amended: Session 62, 2026-07-30, drafted by Opus under the Fable maintainer's
+authority (rule 16, public-tree exclusions).
 
 ## 1. Registries are tested against their owners
 
@@ -169,3 +171,27 @@ A new incident class earns a rule here in the same delivery that fixes it; the r
 names its incident. A rule that stops being true is amended, not silently ignored.
 Work orders cite this document instead of restating it, and the orchestrating
 session's validation pass checks deliveries against it.
+
+## 16. What never enters the public tree
+
+The repository and the site are public. Two classes of material have reached them that should
+not have. Both rules below are forward-looking. Neither existing exposure is retracted by this
+document, because removing something from a public repository does not recall it.
+
+Legal posture, counsel agendas, and clearance analysis stay out of the public tree. That covers
+risk assessments of a name or a mark, the questions put to counsel, what a review concluded, and
+contingencies such as a rename path. They belong on the private task bus and in Michael's own
+files. Published, they are quotable by anyone, including the party the assessment concerns, and
+they describe an unresolved weakness in the project's own words.
+Incident: docs/29 item 60 records, in a public repository, an unverified but real name risk, the
+routing of clearance to an attorney agenda, and the rename path.
+
+Operator machine identifiers never enter committed artifacts. A generator stores a repo-relative
+path or a neutral placeholder, never an absolute path from the machine that produced the file.
+The identifier discloses an account name and a private directory layout. In a manifest it is also
+wrong: the artifact belongs to the repository, not to one operator's home directory.
+`tests/test_h2_path_hygiene.py` enforces this across every tracked text file and keeps a reasoned
+allowlist for the pinned-history lines that record provenance rather than illustrate a command.
+Incident: the Session 62 survey found operator home paths in two committed manifests, four
+generators, two runbook command blocks, and a spec's file list. The manifests mattered most,
+because a generator restamps its identifier on every run.
