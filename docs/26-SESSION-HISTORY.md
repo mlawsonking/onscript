@@ -2618,3 +2618,140 @@ need scanning.
 Proof: the 07-30 09:30Z collect must complete green and the backlog days must
 build. Last measured day is 2026-07-26; days 07-27 through 07-29 have no
 collected data yet and render under the R-36.4 ladder until recovered.
+
+## 2026-07-30: Session 62 (Opus). Collect performance: the W4 scan measured, cached, and reformulated
+
+Outcome: the daily collect's growth from ~60m to ~100m+ and through the 120m workflow ceiling on
+07-28/07-29 is now measured per stage in every run log, and the two components of the W4
+person-span cost are fixed. The work order named the admitted-form scan as the dominant new cost.
+Instrumenting it first showed that reading was half right, and the delivery covers both halves.
+
+Branch opus/collect-perf, rooted on origin/main at b5b291a. Five commits, suite green at each:
+885/0 at baseline, 911/0 after P4, 911/0 after the harness commit.
+
+WHAT THE INSTRUMENTATION FOUND. Over 2026-06 (4,724 lane-1 units, one _doc_ngrams pass, the
+operator workstation), _doc_ngrams cost 151.6s: person_spans 45.7s (the admitted-form sweep 25.5s,
+the capitalized-sequence walk 20.2s) and the n-gram loop 101.3s, of which 36.6s was the
+per-occurrence held-span interval test that W4 introduced and 64.8s the pre-W4 baseline. So W4
+added 82.3s of the 151.6s and a clean-verdict cache can reach only 25.5s of it. The acceptance
+target of "back near the pre-W4 cost" was not reachable by the cache alone, which is why P4 exists.
+
+P1, phase timing. restore, mirror_pull, normalize and ledger_build each print one uniform
+greppable line and record one number; the ledger build reports the span-scan share as its own
+field, split into the admitted-form sweep and the capitalized walk because those have different
+remedies. The restore runs in its own workflow step, so its cost crosses the process seam as
+data/state/stage-timings.json, written by archive_restore with stdlib json rather than growing a
+dependency on pipeline.config for one number; a test asserts that contract across the seam.
+Timings are additive manifest fields only, and rebuild.py already excludes manifests from the
+determinism hash.
+
+P2, the clean-statement scan cache. One bit per statement text, only in the affirmative: no
+admitted form occurs here. No offsets, no counts, no per-statement structure, no negative entries
+(R-29.3 is absolute). The naive reading of clean, meaning no private OR quarantine span, has a
+clean rate of 3 in 4,724 because unresolved capitalized sequences are in nearly every release; the
+admitted-form verdict is the cacheable one, and over 2026-06 it was clean for 4,724 of 4,724.
+Keys are HMAC under the privacy salt, not plain digests, because data/state is tarred into a
+public release asset and an unkeyed digest would let anyone holding the public mirror test
+membership and read the complement as "which statements contained a suppressed name". Invalidation
+lives in the KEY, which commits to the cache version, the admitted-form fingerprint and the
+entity-hierarchy version, so a stale in-memory set cannot serve a verdict from an older form list.
+The header is validated too. Every failure mode resolves to rescanning.
+
+Two defects were found inside P2 and are pinned by tests. The first cut wrote the carrier gzipped;
+pipeline.redact handles gzip on its JSONL path but opens .json as text, so the Article XIII
+redaction step would have raised "unparseable JSON, cannot prove it is clean" and failed CLOSED on
+every collect, before the release upload and after the day's work, which is an authored outage
+(docs/37 rule 4). The carrier is plain JSON like the redaction cache it extends. Second, the
+cache-hit path never reaches _scan_window, where every other caller happens to arm the gate, so it
+would have failed OPEN exactly when warm; the gate now establishes before any short-circuit and a
+scrubbed-environment subprocess test proves activation and scanning both still refuse without a
+salt. The cache constant is CACHE_VERSION, not METHOD_VERSION: the fingerprint registry test
+correctly flagged the module, and the right answer was that a cache which never changes a verdict
+must not announce an instrument change, so it is renamed rather than exempted.
+
+P3, verdict preservation at production shape. The ledger is asserted byte-identical cold cache,
+warm cache and no cache over a deliberately contaminated fixture corpus, over real committed prose
+from the published day files, and over the append-only shape the daily run actually has.
+
+P4, the held-span reformulation (added scope, stated). intervals_overlap is true exactly when two
+half-open ranges share an integer position, so "does this occurrence touch a held span" is "are
+there more held positions before its end than before its start". One prefix walk per document
+answers every occurrence. Real releases carry a mean of 28 held spans (max 345 over 2026-06) and
+the engine walks each document twice. The loop went from 101.3s to 56.1s on the same slice, below
+the 64.8s it cost before the check existed, because a held occurrence is now skipped before the
+string join and the two boilerplate probes. A randomized probe found the one case where the two
+formulations differ, a degenerate zero-length range, so the engine's guarantee that it never
+produces one is now a test rather than an assumption.
+
+TIMED EVIDENCE. Estimator: wall-clock seconds from time.perf_counter around each stage, single
+threaded CPython 3.12.10 on the operator workstation (Ryzen 7 5800X, 8 cores) under light
+concurrent load. Unit: seconds. Window: the 19 mirror month files 2025-01 to 2026-07, which is
+what fetch.pull_range(config.STAGE1_EPOCH, today) produces on the runner; the local 25-year mirror
+is not what the daily run walks. Denominator: 76,023 records, 75,989 statements, 75,824 lane-1
+units, 243,493,544 lane-1 characters, 339,836 ledger phrases (identical in every run below).
+
+Rerunnable, from a checkout at the stated commit:
+
+    C:\ProgramData\miniconda3\python.exe scripts\measure_ledger_build.py --no-cache   # before
+    C:\ProgramData\miniconda3\python.exe scripts\measure_ledger_build.py --paired     # after
+
+Before, at 40717cc (P1 instrumentation only, W4 as shipped): mirror_read 2.3s, normalize 1,906.7s,
+ledger_build 3,999.2s, of which person_spans 968.3s (24.2%) split into the admitted-form sweep
+709.5s and the capitalized walk 258.8s. Total 5,908.2s, 98.5 minutes, which matches the observed
+production run and confirms nothing large sits outside these stages. The admitted-form sweep is
+73 percent of person_spans at corpus scale against 56 percent on a single month, because
+_SCAN_MEMO is capped at 400k windows and cleared wholesale on overflow, so the full corpus repays
+hashes a month slice never loses.
+
+After, at c9b2495, both builds in one process over one normalize pass and one identical statement
+list: normalize 1,402.1s, ledger_build_cold 2,447.7s (span_scan 919.5s, admitted-form 675.6s),
+ledger_build_warm 1,766.8s (span_scan 257.3s, admitted-form 4.3s). Warm cache hit rate 151,626 of
+151,648 calls; the 22 misses are the 11 statements that really do carry an admitted form and are
+rescanned in full every run, which is the design. Per-unit ledger cost 52.7 ms before, 23.3 ms
+warm after.
+
+CONTROLLING FOR THE MACHINE. normalize is untouched by this work and took 1,906.7s in the before
+run against 1,402.1s in the after run, so cross-run load is real and had to be handled rather than
+ignored. The right control is span_scan_s, which is the same code doing the same work inside the
+measured stage: 968.3s before against 919.5s in the cold after pass, a ratio of 0.950, so
+conditions during the ledger build differed by about 5 percent and the before run's normalize
+simply overlapped this session's heaviest suite runs. Adjusting the before build by that control
+gives 3,797.7s.
+
+  ledger_build, before, control-adjusted        3,797.7s
+  ledger_build, after, cold cache               2,447.7s   (-35.5%, the P4 reformulation)
+  ledger_build, after, warm cache               1,766.8s   (-27.8% again, the P2 cache)
+  net                                                       -53.5%
+
+The cold-to-warm number carries no cross-run noise at all: same process, same statements, back to
+back. The admitted-form sweep goes from 675.6s to 4.3s, which is the 99.4 percent the append-only
+corpus was always owed.
+
+VERDICT PRESERVATION AT PRODUCTION SCALE. All three builds produced 339,836 ledger phrases over
+75,824 lane-1 units, across two different checkouts and three cache states. That corroborates the
+byte-identity tests on a corpus no fixture reaches.
+
+BACK NEAR THE PRE-W4 COST. The residual W4 cost in the warm build is span_scan_s 257.3s, or 14.6
+percent of the build, and it is the capitalized-sequence walk, which is not cacheable: 99.94
+percent of releases contain an unresolved capitalized sequence, so its clean rate is 3 in 4,724.
+The warm build is therefore at most 14.6 percent above a build with no W4 person-span work at all,
+and in practice below that, because the prefix loop measured faster than the pre-W4 unchecked loop.
+
+EXPECTED STEADY-STATE COLLECT WALL TIME. The three measured stages fall from 5,908.2s (98.5
+minutes) to 3,171.1s (52.9 minutes). The workflow adds restore, extraction, the derived builders,
+redaction, the tar and upload, the attestation and the data commit; the 07-28 and 07-29 runs hit
+the 120-minute ceiling against a measured core of 98.5 minutes, so that remainder is at least
+about 20 minutes, and part of it also improves because build_derived, build_concordance and
+build_awards call _doc_ngrams too. Expect roughly 75 minutes in steady state, and one run about 11
+minutes longer immediately after deployment while the cache is cold. The cache rides
+data/state/clean-scan-cache.json into state.tar.gz and back through the W3 restore allowlist,
+which merges every data/state path, so the warm state survives between runs; a lost or invalidated
+cache costs one cold run and nothing else.
+
+NEXT LARGEST STAGE, NOT THIS WORK. normalize is now the second largest stage at 23 to 32 minutes
+for 76,023 records and does not touch privacy at all. It is untouched here and is the obvious
+candidate for the next performance round.
+
+Reserved for Michael: nothing was pushed, dispatched, deployed, posted or flipped. The timeout
+bridge at 012fa7b is untouched and its revert rides a later ruling once production confirms the
+new steady state.
