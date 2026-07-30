@@ -1,0 +1,2581 @@
+{
+  "day": "2026-07-27",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-07-27",
+      "party": "D",
+      "composite": "Composite withheld because its claims could not be verified.",
+      "measurement_lead": "Measurement: 72 publications were observed for the Democratic party on 2026-07-27.",
+      "composite_state": "withheld_verifier_failure",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-07-27",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "4278ec4e62da51c0bbf391987cd98ae40f4e7c92dde6e0db9a90847a1f9adf05",
+        "claim_ids": [
+          "2026-07-27-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Composite withheld because its claims could not be verified.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "0e2c256b2f56b4b049e05f47bdaab24e4cfc1585e48bfc594247b6d977127e4e",
+        "response_sha256": "2353ec9f7042ffa7926e62ff3c6f6949f0b141775309c84010df11f6521120ac",
+        "model_response_sha256": "e95853329c656ba3bb297a5b7266748d8d465965e6f78758efefc722864adc87"
+      },
+      "quiet": false,
+      "fallback": true,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:fallback",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-07-27",
+        "statements": 72,
+        "talking_points": [
+          {
+            "label": "ron wyden and jeff merkley",
+            "members": 3,
+            "quote": "Ron Wyden and Jeff Merkley",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-07-27-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 2,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "make it easier",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Maria Elvira Salazar",
+          "first_sayer_party": "R",
+          "first_sayer_state": "FL"
+        },
+        "selected_claims": [
+          {
+            "label": "ron wyden and jeff merkley",
+            "members": 3,
+            "quote": "Ron Wyden and Jeff Merkley",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-07-27-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 2,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-07-27-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": false,
+        "reasons": [
+          "un-whitelisted numbers in composite: ['2', '4']"
+        ],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2117,
+        "tokens_out": 126,
+        "model": "P2:fallback"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-07-27",
+      "party": "R",
+      "composite": "Across 55 statements, no message was shared widely enough to call dominant today. We note that the phrase generations to come appears 4 times, the most synchronized phrase of the day, first recorded in our corpus from Jodey C. Arrington (R-TX).",
+      "measurement_lead": "Measurement: 55 publications were observed for the Republican party on 2026-07-27.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-07-27",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "e7ec6377c814bc0e761f7c23bf4ecd36fa84ddba4cda5bdc862a0561fa9cdfcb",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 55 statements, no message was shared widely enough to call dominant today. We note that the phrase generations to come appears 4 times, the most synchronized phrase of the day, first recorded in our corpus from Jodey C. Arrington (R-TX).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "e01aafcae04661769e9e5659c15101898438a61c8373d20861a373f4340f35cb",
+        "response_sha256": "7838188fcbc484ddec0737488da2c14f9a068b3cd55fe187532b9f2b943f513d",
+        "model_response_sha256": "cd4cb1737822345ba35687ea9974782fd9bb940b9188e4fbed120e4d9a234955"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-07-27",
+        "statements": 55,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "generations to come",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "Jodey C. Arrington",
+          "first_sayer_party": "R",
+          "first_sayer_state": "TX"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1252,
+        "tokens_out": 83,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-07-27-D-00",
+        "party": "D",
+        "day": "2026-07-27",
+        "label": "ron wyden and jeff merkley",
+        "member_count": 3,
+        "statements": [
+          "sha256:39f5dec34af6ba3091f48f960d81a503ce76f735d5dafafc9816f62c5e28ec79",
+          "sha256:64af63c6b57e935a63b5858150568a3683d783e8ca1a361f9bc3591882e0e8b3",
+          "sha256:6e53eef1cdf5cf9454c9b21b69efe64715c8a60506a8173a3147a84cf0beaddb",
+          "sha256:9c30f5cc4b8a8ca31b586d394ae350e02e41628069430268393b5aa5f0529ac6"
+        ],
+        "fragments": [
+          {
+            "text": "ron wyden and jeff merkley along with u",
+            "statement": "sha256:6e53eef1cdf5cf9454c9b21b69efe64715c8a60506a8173a3147a84cf0beaddb"
+          },
+          {
+            "text": "ron wyden and jeff merkley along with u",
+            "statement": "sha256:64af63c6b57e935a63b5858150568a3683d783e8ca1a361f9bc3591882e0e8b3"
+          },
+          {
+            "text": "ron wyden and jeff merkley announced today that",
+            "statement": "sha256:39f5dec34af6ba3091f48f960d81a503ce76f735d5dafafc9816f62c5e28ec79"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-07-27-D-00",
+        "support_phrase": {
+          "normalized": "ron wyden and jeff merkley",
+          "text": "Ron Wyden and Jeff Merkley",
+          "occurrence_id": "occ:537e0726c1cf53f167c54139"
+        },
+        "display_quote": "Ron Wyden and Jeff Merkley",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:537e0726c1cf53f167c54139",
+            "claim_id": "2026-07-27-D-00",
+            "statement_id": "sha256:39f5dec34af6ba3091f48f960d81a503ce76f735d5dafafc9816f62c5e28ec79",
+            "publication_id": "sha256:39f5dec34af6ba3091f48f960d81a503ce76f735d5dafafc9816f62c5e28ec79",
+            "office_id": "W000779",
+            "family_id": "njoint:2bd53943d586c7d70de81a3b",
+            "family_revision": "dfrev:8fc1ef1d96e8f8d9124a120b",
+            "support_unit_id": "njoint:2bd53943d586c7d70de81a3b",
+            "party": "D",
+            "start_char": 226,
+            "end_char": 252,
+            "surface_text": "Ron Wyden and Jeff Merkley",
+            "normalized_phrase": "ron wyden and jeff merkley",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 216,
+            "sentence_end_char": 397,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 36,
+            "clause_start_char": 212,
+            "clause_end_char": 291,
+            "clause_offset_start": 14,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "d",
+              "c",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "announced",
+              "today",
+              "that",
+              "they",
+              "secured"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4cfb74db4dfc51205bda3363",
+            "claim_id": "2026-07-27-D-00",
+            "statement_id": "sha256:64af63c6b57e935a63b5858150568a3683d783e8ca1a361f9bc3591882e0e8b3",
+            "publication_id": "sha256:64af63c6b57e935a63b5858150568a3683d783e8ca1a361f9bc3591882e0e8b3",
+            "office_id": "W000779",
+            "family_id": "dfam:521fbb59bfc86be3cca3436b",
+            "family_revision": "dfrev:a01f1a6cb64f71d02668877a",
+            "support_unit_id": "W000779",
+            "party": "D",
+            "start_char": 33,
+            "end_char": 59,
+            "surface_text": "Ron Wyden and Jeff Merkley",
+            "normalized_phrase": "ron wyden and jeff merkley",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 72,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 36,
+            "clause_start_char": 19,
+            "clause_end_char": 417,
+            "clause_offset_start": 14,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "d",
+              "c",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "along",
+              "with",
+              "u",
+              "s",
+              "rep"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:24d736cc262948f7d3935f1b",
+            "claim_id": "2026-07-27-D-00",
+            "statement_id": "sha256:6e53eef1cdf5cf9454c9b21b69efe64715c8a60506a8173a3147a84cf0beaddb",
+            "publication_id": "sha256:6e53eef1cdf5cf9454c9b21b69efe64715c8a60506a8173a3147a84cf0beaddb",
+            "office_id": "M001176",
+            "family_id": "dfam:2d89830201dbfddbf5a5d10f",
+            "family_revision": "dfrev:dde8ee04877f94416afe814b",
+            "support_unit_id": "M001176",
+            "party": "D",
+            "start_char": 33,
+            "end_char": 59,
+            "surface_text": "Ron Wyden and Jeff Merkley",
+            "normalized_phrase": "ron wyden and jeff merkley",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 72,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 36,
+            "clause_start_char": 19,
+            "clause_end_char": 417,
+            "clause_offset_start": 14,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "d",
+              "c",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "along",
+              "with",
+              "u",
+              "s",
+              "rep"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3b5751f0cc5782e765854f8f",
+            "claim_id": "2026-07-27-D-00",
+            "statement_id": "sha256:9c30f5cc4b8a8ca31b586d394ae350e02e41628069430268393b5aa5f0529ac6",
+            "publication_id": "sha256:9c30f5cc4b8a8ca31b586d394ae350e02e41628069430268393b5aa5f0529ac6",
+            "office_id": "M001176",
+            "family_id": "njoint:2bd53943d586c7d70de81a3b",
+            "family_revision": "dfrev:8fc1ef1d96e8f8d9124a120b",
+            "support_unit_id": "njoint:2bd53943d586c7d70de81a3b",
+            "party": "D",
+            "start_char": 226,
+            "end_char": 252,
+            "surface_text": "Ron Wyden and Jeff Merkley",
+            "normalized_phrase": "ron wyden and jeff merkley",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 216,
+            "sentence_end_char": 397,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 36,
+            "clause_start_char": 212,
+            "clause_end_char": 291,
+            "clause_offset_start": 14,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "d",
+              "c",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "announced",
+              "today",
+              "that",
+              "they",
+              "secured"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 2,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "M001176",
+          "W000779"
+        ],
+        "publication_ids": [
+          "sha256:39f5dec34af6ba3091f48f960d81a503ce76f735d5dafafc9816f62c5e28ec79",
+          "sha256:64af63c6b57e935a63b5858150568a3683d783e8ca1a361f9bc3591882e0e8b3",
+          "sha256:6e53eef1cdf5cf9454c9b21b69efe64715c8a60506a8173a3147a84cf0beaddb",
+          "sha256:9c30f5cc4b8a8ca31b586d394ae350e02e41628069430268393b5aa5f0529ac6"
+        ],
+        "family_ids": [
+          "dfam:2d89830201dbfddbf5a5d10f",
+          "dfam:521fbb59bfc86be3cca3436b",
+          "njoint:2bd53943d586c7d70de81a3b"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:2d89830201dbfddbf5a5d10f",
+            "family_revision": "dfrev:dde8ee04877f94416afe814b"
+          },
+          {
+            "family_id": "dfam:521fbb59bfc86be3cca3436b",
+            "family_revision": "dfrev:a01f1a6cb64f71d02668877a"
+          },
+          {
+            "family_id": "njoint:2bd53943d586c7d70de81a3b",
+            "family_revision": "dfrev:8fc1ef1d96e8f8d9124a120b"
+          }
+        ],
+        "support_unit_ids": [
+          "M001176",
+          "W000779",
+          "njoint:2bd53943d586c7d70de81a3b"
+        ],
+        "citation_occurrence_ids": [
+          "occ:537e0726c1cf53f167c54139",
+          "occ:4cfb74db4dfc51205bda3363",
+          "occ:24d736cc262948f7d3935f1b"
+        ],
+        "citations": [
+          {
+            "member": "Ron Wyden",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-07-27",
+            "url": "https://www.wyden.senate.gov/news/press-releases/wyden-merkley-secure-488500-for-key-veteran-health-care-program-in-rural-oregon",
+            "quote": "ron wyden and jeff merkley announced today that",
+            "occurrence_id": "occ:537e0726c1cf53f167c54139",
+            "office_id": "W000779",
+            "publication_id": "sha256:39f5dec34af6ba3091f48f960d81a503ce76f735d5dafafc9816f62c5e28ec79",
+            "family_id": "njoint:2bd53943d586c7d70de81a3b",
+            "family_revision": "dfrev:8fc1ef1d96e8f8d9124a120b"
+          },
+          {
+            "member": "Ron Wyden",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-07-27",
+            "url": "https://www.wyden.senate.gov/news/press-releases/wyden-merkley-bynum-redmond-secures-125-million-investment-for-water-infrastructure",
+            "quote": "ron wyden and jeff merkley along with u",
+            "occurrence_id": "occ:4cfb74db4dfc51205bda3363",
+            "office_id": "W000779",
+            "publication_id": "sha256:64af63c6b57e935a63b5858150568a3683d783e8ca1a361f9bc3591882e0e8b3",
+            "family_id": "dfam:521fbb59bfc86be3cca3436b",
+            "family_revision": "dfrev:a01f1a6cb64f71d02668877a"
+          },
+          {
+            "member": "Jeff Merkley",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-07-27",
+            "url": "https://www.merkley.senate.gov/wyden-merkley-bynum-redmond-secures-1-25-million-investment-for-water-infrastructure/",
+            "quote": "ron wyden and jeff merkley along with u",
+            "occurrence_id": "occ:24d736cc262948f7d3935f1b",
+            "office_id": "M001176",
+            "publication_id": "sha256:6e53eef1cdf5cf9454c9b21b69efe64715c8a60506a8173a3147a84cf0beaddb",
+            "family_id": "dfam:2d89830201dbfddbf5a5d10f",
+            "family_revision": "dfrev:dde8ee04877f94416afe814b"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-07-27",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 2,
+          "numerator_unit": "offices",
+          "denominator": 53,
+          "denominator_unit": "offices",
+          "share": 0.037736,
+          "window": "party-day 2026-07-27",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 72,
+          "denominator_unit": "publications",
+          "share": 0.055556,
+          "window": "party-day 2026-07-27",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 67,
+          "denominator_unit": "document families",
+          "share": 0.044776,
+          "window": "party-day 2026-07-27",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-07-27",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 37,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-07-27",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 55,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-07-27",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 55,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-07-27",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": [
+      {
+        "label": "and i’m proud to join",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "top_synchronized": [
+    {
+      "ngram": "letter is available",
+      "slug": "87de773e9f6c7eb0",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": null,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 1.61,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "T000476",
+        "statement": "sha256:9bc394ba6e110d27a1d28799ac22e4861a66c259b37384bbd3c7efed91102c84",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.957,
+      "series": [
+        2,
+        2,
+        4,
+        3,
+        10,
+        2,
+        7,
+        3,
+        4,
+        6,
+        3,
+        2,
+        9,
+        7
+      ]
+    },
+    {
+      "ngram": "make it easier",
+      "slug": "d9851f9f2bdfa87c",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "S000168",
+        "statement": "sha256:33e67961cfb5fbd241d712e5c0ca54d6a0e8dd075360862049f476c3c6ff0f7f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        1,
+        2,
+        3,
+        2,
+        5,
+        3,
+        2,
+        2,
+        1,
+        1,
+        7,
+        7,
+        5,
+        6
+      ]
+    },
+    {
+      "ngram": "make sure that",
+      "slug": "375489e106510220",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001133",
+        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        2,
+        4,
+        4,
+        1,
+        1,
+        3,
+        4,
+        7,
+        2,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "proud to support",
+      "slug": "26e9b1e8da0a1211",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 0.96,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "L000600",
+        "statement": "sha256:14ad2a8d2ef003d9e07a24a3188422dffb1d6754a7348ac13845116c306a754b",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        3,
+        2,
+        1,
+        6,
+        6,
+        6,
+        4,
+        4,
+        4,
+        19,
+        11,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "wrote the senators",
+      "slug": "dd1ce953b68d3963",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.75,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "B001277",
+        "statement": "sha256:62d9df24a82d1361c54fd946e0c9c6780cb1c4361527d7d9c0aa7c09f96c924d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.954,
+      "series": [
+        2,
+        2,
+        3,
+        2,
+        1,
+        5,
+        1,
+        2,
+        4,
+        3,
+        2,
+        1,
+        7,
+        5
+      ]
+    },
+    {
+      "ngram": "assisted reproductive technology art",
+      "slug": "63604d2dbc8bc53d",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-02-05",
+        "bioguide": "H001042",
+        "statement": "sha256:3d7085e58b06629f0ba42a5384f5be51f1168dfcb91daefd7ecf006624665b86",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "help make sure",
+      "slug": "341c01199de7b8c1",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "W000779",
+        "statement": "sha256:7b04e1960d9cb3e21d08066e0eae21ed388253e1c68b08622191d03310416fe0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "full text of the letter is",
+      "slug": "264915c69f7253b1",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.6,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001056",
+        "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        3,
+        2,
+        5,
+        1,
+        6,
+        1,
+        1,
+        3,
+        2,
+        2,
+        1,
+        1,
+        6,
+        4
+      ]
+    },
+    {
+      "ngram": "text of the letter is available",
+      "slug": "f8a37997a6fd8531",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.44,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "K000400",
+        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+        "tie": [
+          "L000397",
+          "L000582",
+          "R000620",
+          "T000476"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        2,
+        3,
+        2,
+        3,
+        1,
+        6,
+        1,
+        1,
+        2,
+        2,
+        4,
+        1,
+        7,
+        4
+      ]
+    },
+    {
+      "ngram": "legislation would establish",
+      "slug": "a8d8da51e5cced98",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "N000026",
+        "statement": "sha256:75a3a51248a3477d137a0186b5a14a340b2b0c314828e87389424eeb9171fa2d",
+        "tie": [
+          "P000614"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        4,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "taxpayer dollars and",
+      "slug": "8fcea3c1631f641f",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2025-01-13",
+        "bioguide": "U000040",
+        "statement": "sha256:ce8002e4b7174ad30cd7dda2ed47d5d5dc13c9e73d3205c08b299f113cbaa905",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "war with iran",
+      "slug": "b1a3e4655dabde0b",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.1,
+      "first_seen": {
+        "date": "2025-05-06",
+        "bioguide": "K000384",
+        "statement": "sha256:807f53162a9deef18208b806efa24ad7a0eca3a22e99d338085b78690707f3f6",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        2,
+        1,
+        2,
+        5,
+        4,
+        4,
+        2,
+        3,
+        5,
+        15,
+        4,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "a critical role",
+      "slug": "3be78fe63d54fc70",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "H001101",
+        "statement": "sha256:0d0d5966a6df083dad1c07158378aba17015f822020b5a99291f93fa3dcefd1f",
+        "tie": [
+          "C000880",
+          "H001046"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        2,
+        4,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "war in iran",
+      "slug": "4abd5ede26e39eb9",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 0.73,
+      "first_seen": {
+        "date": "2026-02-24",
+        "bioguide": "R000620",
+        "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        3,
+        7,
+        5,
+        4,
+        7,
+        6,
+        2,
+        2,
+        6,
+        18,
+        10,
+        5,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "men and women in",
+      "slug": "c8749337f5786289",
+      "n": 4,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.33,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000600",
+        "statement": "sha256:8b7ff8bac8aef4b70a484f336864cf3a3e80c3d380ae8ae1e67e8afe101f4568",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.987,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        8,
+        3,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "legislation will help",
+      "slug": "10bade81ddbb9f73",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.4,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.987,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        5,
+        3,
+        2,
+        4,
+        3,
+        2,
+        5,
+        5,
+        5,
+        4
+      ]
+    },
+    {
+      "ngram": "generations to come",
+      "slug": "e5b2d728d6e0ccb4",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 1,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.33,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000375",
+        "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+        "tie": [
+          "B001285",
+          "M000194",
+          "M001204"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.981,
+      "series": [
+        1,
+        1,
+        1,
+        6,
+        6,
+        7,
+        1,
+        6,
+        1,
+        2,
+        3,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "this bipartisan bill",
+      "slug": "83690fcbebee565c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.27,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "series": [
+        1,
+        2,
+        1,
+        2,
+        2,
+        2,
+        4,
+        4,
+        4,
+        3,
+        8,
+        6,
+        4,
+        4
+      ]
+    },
+    {
+      "ngram": "years to come",
+      "slug": "62729ee9b1d09cef",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001136",
+        "statement": "sha256:24188353343d7f7b13581187eae846eb39d210cc2020ab3f6a5c32d08b4ab6e0",
+        "tie": [
+          "M001214"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.976,
+      "series": [
+        2,
+        3,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "this important legislation",
+      "slug": "f72dc9dd3483efd1",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.7,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "B001257",
+        "statement": "sha256:305cc05e54ba19ae27ec0c7d2aa8936c8b779a79c34854b16102a3d59840822e",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.976,
+      "series": [
+        3,
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        2,
+        2,
+        2,
+        6,
+        3,
+        4,
+        4
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "make it easier",
+        "slug": "d9851f9f2bdfa87c",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "S000168",
+          "statement": "sha256:33e67961cfb5fbd241d712e5c0ca54d6a0e8dd075360862049f476c3c6ff0f7f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          2,
+          3,
+          2,
+          5,
+          3,
+          2,
+          2,
+          1,
+          1,
+          7,
+          7,
+          5,
+          6
+        ]
+      },
+      {
+        "ngram": "make sure that",
+        "slug": "375489e106510220",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001133",
+          "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          2,
+          4,
+          4,
+          1,
+          1,
+          3,
+          4,
+          7,
+          2,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "proud to support",
+        "slug": "26e9b1e8da0a1211",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 0.96,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "L000600",
+          "statement": "sha256:14ad2a8d2ef003d9e07a24a3188422dffb1d6754a7348ac13845116c306a754b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          3,
+          2,
+          1,
+          6,
+          6,
+          6,
+          4,
+          4,
+          4,
+          19,
+          11,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "wrote the senators",
+        "slug": "dd1ce953b68d3963",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "B001277",
+          "statement": "sha256:62d9df24a82d1361c54fd946e0c9c6780cb1c4361527d7d9c0aa7c09f96c924d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.954,
+        "series": [
+          2,
+          2,
+          3,
+          2,
+          1,
+          5,
+          1,
+          2,
+          4,
+          3,
+          2,
+          1,
+          7,
+          5
+        ]
+      },
+      {
+        "ngram": "assisted reproductive technology art",
+        "slug": "63604d2dbc8bc53d",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-02-05",
+          "bioguide": "H001042",
+          "statement": "sha256:3d7085e58b06629f0ba42a5384f5be51f1168dfcb91daefd7ecf006624665b86",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "help make sure",
+        "slug": "341c01199de7b8c1",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "W000779",
+          "statement": "sha256:7b04e1960d9cb3e21d08066e0eae21ed388253e1c68b08622191d03310416fe0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "full text of the letter is",
+        "slug": "264915c69f7253b1",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.6,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001056",
+          "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.971,
+        "series": [
+          3,
+          2,
+          5,
+          1,
+          6,
+          1,
+          1,
+          3,
+          2,
+          2,
+          1,
+          1,
+          6,
+          4
+        ]
+      },
+      {
+        "ngram": "legislation would establish",
+        "slug": "a8d8da51e5cced98",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "N000026",
+          "statement": "sha256:75a3a51248a3477d137a0186b5a14a340b2b0c314828e87389424eeb9171fa2d",
+          "tie": [
+            "P000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "war with iran",
+        "slug": "b1a3e4655dabde0b",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.1,
+        "first_seen": {
+          "date": "2025-05-06",
+          "bioguide": "K000384",
+          "statement": "sha256:807f53162a9deef18208b806efa24ad7a0eca3a22e99d338085b78690707f3f6",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          2,
+          1,
+          2,
+          5,
+          4,
+          4,
+          2,
+          3,
+          5,
+          15,
+          4,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "a critical role",
+        "slug": "3be78fe63d54fc70",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "H001101",
+          "statement": "sha256:0d0d5966a6df083dad1c07158378aba17015f822020b5a99291f93fa3dcefd1f",
+          "tie": [
+            "C000880",
+            "H001046"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "taxpayer dollars and",
+        "slug": "8fcea3c1631f641f",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "U000040",
+          "statement": "sha256:ce8002e4b7174ad30cd7dda2ed47d5d5dc13c9e73d3205c08b299f113cbaa905",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "men and women in",
+        "slug": "c8749337f5786289",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000600",
+          "statement": "sha256:8b7ff8bac8aef4b70a484f336864cf3a3e80c3d380ae8ae1e67e8afe101f4568",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.987,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          8,
+          3,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "generations to come",
+        "slug": "e5b2d728d6e0ccb4",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000375",
+          "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+          "tie": [
+            "B001285",
+            "M000194",
+            "M001204"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          7,
+          1,
+          6,
+          1,
+          2,
+          3,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "this bipartisan bill",
+        "slug": "83690fcbebee565c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.27,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          2,
+          2,
+          4,
+          4,
+          4,
+          3,
+          8,
+          6,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "and national security",
+        "slug": "d0cf2d0365502388",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.14,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001204",
+          "statement": "sha256:59019b19bc00e9f984f6419aed71a9a48975de67cc926536fe684bd97415b6a0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.976,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          4,
+          2,
+          2,
+          6,
+          3,
+          17,
+          5,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "quality of life",
+        "slug": "cf4bb22c0daa38a7",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.93,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:5a13a88260e208fe042493beae69f1a7b84523e57c7c274c2608ddf5d5eeaa48",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          4,
+          3,
+          2,
+          1,
+          1,
+          3,
+          3,
+          1,
+          2,
+          6,
+          22,
+          7,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "proud to join",
+        "slug": "0eb1e7285c7e5088",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.02,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+          "tie": [
+            "L000593",
+            "R000610"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          3,
+          1,
+          1,
+          3,
+          3,
+          3,
+          5,
+          6,
+          3,
+          6,
+          8,
+          8,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "rule of law",
+        "slug": "ca267b9e0d15e01f",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.47,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "S001201",
+          "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          1,
+          2,
+          3,
+          4,
+          8,
+          4,
+          1,
+          2,
+          2,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "health care system",
+        "slug": "aa3ffc6a14790919",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.68,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "G000386",
+          "statement": "sha256:3be93c343af245739f881a00123edb1b12ee71f12075c5e9cb981fa3912511e1",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          1,
+          3,
+          3,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "i’m proud to join",
+        "slug": "b649c3667db4f8c7",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.31,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.982,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          6,
+          3,
+          5,
+          2,
+          2,
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "4891ab2e401c962b8d1ccfedbf8410f06659c831b5ed1aa3c3cf0257c74e1703",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "e814fcaab6f856d8e1e73b1664d78fbe05f1a3d568166b963c4c54b3b924ce2c",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
