@@ -282,11 +282,13 @@ Suite: 814 passed and 0 failed before. 822 passed and 0 failed after.
 `scripts/deep/alexandria_embed.py` and `scripts/deep/alexandria_topic_tag.py`, both specified
 in docs/34 and both previously left uncommitted because they pull a GPU stack.
 
-The stack lives outside the repository:
+The stack lives outside the repository. `<embed-venv>` is any directory outside it; the path
+strings in this block were normalized to that placeholder on 2026-07-30 under docs/37 rule 16,
+and the commands are otherwise unchanged.
 
 ```text
-C:\ProgramData\miniconda3\python.exe -m venv --system-site-packages C:/Users/bobdo/venvs/onscript-embed
-C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe -m pip install sentence-transformers==3.4.1
+C:\ProgramData\miniconda3\python.exe -m venv --system-site-packages <embed-venv>
+<embed-venv>/Scripts/python.exe -m pip install sentence-transformers==3.4.1
 ```
 
 `--system-site-packages` is deliberate: the conda base already carries a working
@@ -389,7 +391,7 @@ none of them, and wrote only the seven that were outstanding.
 Re-run either command at any time; the pass is idempotent and the manifest reflects exact state:
 
 ```text
-C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe scripts/deep/alexandria_embed.py
+<embed-venv>/Scripts/python.exe scripts/deep/alexandria_embed.py
 C:\ProgramData\miniconda3\python.exe scripts\deep\alexandria_embed_manifest.py
 ```
 

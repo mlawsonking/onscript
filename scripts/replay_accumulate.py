@@ -33,7 +33,7 @@ def accumulate(days_dir: Path, *, root: Path | None = None, live: bool = False,
     already = shadow_replay.load_evidence(root)
     outstanding = shadow_replay.pending(days_dir, root)
 
-    appended = {"path": str(shadow_replay.evidence_path(root)), "appended": 0,
+    appended = {"path": util.artifact_path(shadow_replay.evidence_path(root)), "appended": 0,
                 "already_present": 0, "total_rows": len(already)}
     report = None
     if live and outstanding:

@@ -4,6 +4,7 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
+import re
 import time
 import urllib.error
 import urllib.request
@@ -158,6 +159,31 @@ def read_json(path: Path, default: Any = None) -> Any:
         return default
     with open(path, "r", encoding="utf-8") as fh:
         return json.load(fh)
+
+
+_HOME_PREFIX = re.compile(r"(?i)^(?:[a-z]:[\\/]+Users[\\/]+|/home/|/Users/)[^\\/]+")
+
+
+def artifact_path(path: Path | str) -> str:
+    """Render a filesystem path for a committed artifact without naming the operator's machine.
+
+    A path inside the repository renders repo-relative with forward slashes, so the same artifact
+    rebuilt on any checkout carries the same string instead of the home directory of whoever ran
+    it. A path outside the repository keeps its shape and loses only the user-home prefix, which
+    is the part that identifies the machine and its account.
+
+    docs/37 rule 16: operator machine identifiers never enter committed artifacts. Manifests are
+    published evidence, and an absolute operator path in one is both a disclosure and a false
+    claim about where the artifact belongs.
+    """
+    raw = Path(path)
+    root = config.REPO_ROOT
+    for base, candidate in ((root, raw), (root.resolve(), raw.resolve())):
+        try:
+            return candidate.relative_to(base).as_posix()
+        except ValueError:
+            continue
+    return _HOME_PREFIX.sub("<home>", str(raw)).replace("\\", "/")
 
 
 def day_is_final(day: str, derived_dir: Path | None = None) -> bool:

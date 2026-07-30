@@ -45,8 +45,11 @@ OUT_OF_SCOPE = {"press": {}, "crec": {"congress_106_boundary_sliver": 15}}
 EXPECTED_UNITS = {lane: GATE_UNITS[lane] - sum(OUT_OF_SCOPE[lane].values())
                   for lane in GATE_UNITS}
 
+# The interpreter is named as a placeholder, not an operator path: the GPU venv lives outside the
+# repository (docs/34 section 3.1) and its location differs per machine. docs/37 rule 16 keeps
+# operator machine identifiers out of committed artifacts, and this string is committed.
 RESUME_COMMAND = (
-    r"C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe scripts/deep/alexandria_embed.py"
+    r"<embed-venv>/Scripts/python.exe scripts/deep/alexandria_embed.py"
 )
 
 
@@ -105,7 +108,7 @@ def collect(out_root: Path | None = None) -> dict:
         "schema_version": MANIFEST_SCHEMA,
         "method_version": METHOD_VERSION,
         "embed_method_version": embed.METHOD_VERSION,
-        "store_root": str(embed.store_root(out_root)),
+        "store_root": util.artifact_path(embed.store_root(out_root)),
         "model": {
             "id": sorted(value for value in model_ids if value),
             "revision": sorted(value for value in revisions if value),

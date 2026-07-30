@@ -79,10 +79,11 @@ def _load_encoder(device: str):
         raise GpuStackMissing(
             "torch and sentence-transformers are not importable. They live in a dedicated venv "
             "outside this repository and are never a pipeline dependency (docs/34 section 3.1, "
-            "requirements.lock). Create it with:\n"
+            "requirements.lock). Create it with, where <embed-venv> is any directory outside "
+            "this repository:\n"
             "  C:\\ProgramData\\miniconda3\\python.exe -m venv --system-site-packages "
-            "C:/Users/bobdo/venvs/onscript-embed\n"
-            "  C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe -m pip install "
+            "<embed-venv>\n"
+            "  <embed-venv>/Scripts/python.exe -m pip install "
             "sentence-transformers==3.4.1\n"
             "then run this script with that interpreter."
         ) from exc

@@ -483,7 +483,7 @@ def plan(days_dir: Path) -> dict:
     return {
         "schema_version": 1,
         "method_version": METHOD_VERSION,
-        "source": str(days_dir),
+        "source": util.artifact_path(days_dir),
         "ladder": {
             "committed_day_files": len(list(Path(days_dir).glob("*.json"))),
             "days_with_both_composites": len(days),
@@ -654,7 +654,7 @@ def append_evidence(rows: list[dict], root: Path | None = None) -> dict:
             for row in sorted(fresh, key=evidence_key):
                 handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
     return {
-        "path": str(path),
+        "path": util.artifact_path(path),
         "appended": len(fresh),
         "already_present": len(rows) - len(fresh),
         "total_rows": len(known) + len(fresh),
@@ -768,7 +768,7 @@ def run(days_dir: Path, *, live: bool = False, allow_api_spend: bool = False,
         "schema_version": 2,
         "method_version": METHOD_VERSION,
         "mode": "live" if live else "dry_run",
-        "source": str(days_dir),
+        "source": util.artifact_path(days_dir),
         "comparison_design": "the live side is the committed production record; only the "
                              "candidate side is generated",
         "window": {

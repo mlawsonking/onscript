@@ -453,7 +453,7 @@
   ],
   "determinism_worst_max_abs_delta": 1.8998980522155762e-07,
   "complete": true,
-  "resume_command": "C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe scripts/deep/alexandria_embed.py",
+  "resume_command": "<embed-venv>/Scripts/python.exe scripts/deep/alexandria_embed.py",
   "reconciliation_command": "python scripts/deep/alexandria_stage2_verify.py",
   "reconciliation_basis": "docs/34 section 1 gates 684,853 press statements and 152,187 CREC E-statements. The pass covers congresses 107 through 119, so the 15 CREC rows dated to congress 106 are out of scope and named in out_of_scope_units. A non-zero delta against expected_units means the vector store and the ledger describe different corpora."
 }

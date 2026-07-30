@@ -12,6 +12,8 @@ Never touches ANTHROPIC_API_KEY (that's the metered API; this is the subscriptio
 from __future__ import annotations
 
 import concurrent.futures as cf
+import os
+import shutil
 import subprocess
 import sys
 import time
@@ -25,10 +27,18 @@ except Exception:
 
 from pipeline import chapters, config, llm, util  # noqa: E402
 
-CLAUDE = r"C:\Users\bobdo\.local\bin\claude.exe"
 CONCURRENCY = 12          # the safe level (30 overshoots per Michael); batches never exceed this
 RETRIES = 3
 SENTINEL = config.DERIVED / "manifest" / "finalize-done.json"
+
+
+def claude_cli() -> str:
+    """The subscription CLI binary. Set ONSCRIPT_CLAUDE_BIN when it is not on PATH.
+
+    Resolved rather than hardcoded: the install location differs per machine, and docs/37 rule 16
+    keeps operator machine identifiers out of the committed tree.
+    """
+    return os.environ.get("ONSCRIPT_CLAUDE_BIN") or shutil.which("claude") or "claude"
 
 
 def build_prompt(inp: dict) -> str:
@@ -44,7 +54,7 @@ def generate_one(inp: dict) -> tuple[str, str | None]:
     prompt = build_prompt(inp)
     for attempt in range(RETRIES):
         try:
-            r = subprocess.run([CLAUDE, "-p", prompt], capture_output=True, text=True,
+            r = subprocess.run([claude_cli(), "-p", prompt], capture_output=True, text=True,
                                timeout=240, stdin=subprocess.DEVNULL, encoding="utf-8", errors="replace")
             out = (r.stdout or "").strip()
             if out and r.returncode == 0:

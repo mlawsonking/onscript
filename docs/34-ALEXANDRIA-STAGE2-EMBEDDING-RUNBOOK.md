@@ -80,11 +80,13 @@ so `requirements.lock` stays empty of third-party runtime dependencies and the d
 inherits a GPU dependency. The script imports that stack lazily and prints where it lives if it is
 missing, which is why the repository suite imports the module on a box with no GPU stack at all.
 
-Create the environment once:
+Create the environment once. `<embed-venv>` is any directory outside this repository; the path
+strings here were normalized to that placeholder on 2026-07-30 under docs/37 rule 16, and the
+procedure is unchanged.
 
 ```bash
-C:\ProgramData\miniconda3\python.exe -m venv --system-site-packages C:/Users/bobdo/venvs/onscript-embed
-C:/Users/bobdo/venvs/onscript-embed/Scripts/python.exe -m pip install sentence-transformers==3.4.1
+C:\ProgramData\miniconda3\python.exe -m venv --system-site-packages <embed-venv>
+<embed-venv>/Scripts/python.exe -m pip install sentence-transformers==3.4.1
 ```
 
 `--system-site-packages` is deliberate: the box's conda base already carries a working

@@ -1,5 +1,10 @@
 # 16. Nomenclature Segregation: the build spec (measured)
 
+> Editorial note (2026-07-30): the absolute operator paths naming repository files were shortened
+  to repo-relative paths under docs/37 rule 16. Findings, decisions, and chronology are unchanged.
+  The scratchpad path recording the verification probes is left as written, because it points
+  outside the repository and is the provenance of the "I edited no repo files" statement.
+
 > **Status: specification only; not built.** Authored 2026-07-16 by an Opus design review (3 mappers
   ->
 > 3 competing designs -> 3 adversarial judges -> synthesis; 10 agents, ~1.4M tokens). Every
@@ -402,7 +407,7 @@ into `thresholds_sha()`.
 
 ## 8. Acceptance gate
 
-1. **All 188 existing tests stay green** (`C:\Users\bobdo\projects\polispeak\tests\run_tests.py`;
+1. **All 188 existing tests stay green** (`tests\run_tests.py`;
    `CLAUDE.md`'s "138" is stale) plus the new fixture.
 2. 2026-07-15's #1 flips `national security department` → **`the west bank` (25 D)**.
 3. 2026-07-13's top row is **not** a window of the road-to-housing title (Rule B must clear all
@@ -443,9 +448,9 @@ key instead. The fix is **narrowing, not reversing**.
 
 ---
 
-**Files:** spec target `C:\Users\bobdo\projects\polispeak\pipeline\nomenclature.py`,
-`C:\Users\bobdo\projects\polispeak\pipeline\nomenclature_build.py`,
-`C:\Users\bobdo\projects\polispeak\tests\test_nomenclature.py`,
-`C:\Users\bobdo\projects\polispeak\data\reference\nomenclature\`. My verification probes:
+**Files:** spec target `pipeline\nomenclature.py`,
+`pipeline\nomenclature_build.py`,
+`tests\test_nomenclature.py`,
+`data\reference\nomenclature\`. My verification probes:
 `C:\Users\bobdo\AppData\Local\Temp\claude\C--Users-bobdo-projects-polispeak\b625d988-e876-421a-9ce3-b09a84e736e0\scratchpad\synth1.py`–`synth5.py`.
 **I edited no repo files.**
