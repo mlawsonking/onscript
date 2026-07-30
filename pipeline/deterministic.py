@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from collections import Counter
 
-from . import build, config, instrument_fingerprint, normalize, privacy, roster, util
+from . import build, config, instrument_fingerprint, normalize, privacy, roster, scan_cache, util
 from .phrases import PhraseEngine
 
 
@@ -29,6 +29,11 @@ def run(records, *, run_id: str, focus_day: str | None = None,
         source_freshness: dict | None = None, generated_at: str | None = None) -> dict:
     generated_at = generated_at or util.now_utc_iso()
     rmap = roster.load()
+    # The corpus is append-only, so a statement proven to contain no admitted form stays proven
+    # until the instrument moves. Active for the whole run: every _doc_ngrams caller downstream of
+    # the engine walks the same texts. Nothing is served that was not computed under this exact
+    # form list, salt and entity version (the key commits to all three).
+    print(f"[scan-cache] {privacy.activate_scan_cache()}")
     with util.stage_timer("normalize"):
         statements = normalize.normalize_records(records, run_id=run_id, roster=rmap)
     norm_stats = getattr(normalize.normalize_records, "last_stats", {})
@@ -120,6 +125,12 @@ def run(records, *, run_id: str, focus_day: str | None = None,
     }
     util.write_json(config.DERIVED / "manifest" / f"{run_id}.json", manifest)
     util.write_json(config.DERIVED / "manifest" / "latest.json", manifest)
+
+    # Persisted last, so the file records the verdicts of a run that got all the way here. The
+    # write is best effort by construction: a run that cannot persist its verdicts is a correct
+    # run that rescans tomorrow.
+    print(f"[scan-cache] {privacy.flush_scan_cache()}")
+    scan_cache.deactivate()
 
     return {"manifest": manifest, "engine": engine, "ledger": ledger, "statements": statements,
             "focus_day": focus_day, "days_present": days_present}

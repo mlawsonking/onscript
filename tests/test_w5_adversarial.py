@@ -21,11 +21,14 @@ ADVERSARIAL_FIXTURES = {
     "stale_archive": ("tests.test_w3_publication", "test_stale_repository_file_in_archive_is_ignored_and_the_day_survives"),
     "archive_traversal": ("tests.test_w3_publication", "test_archive_member_outside_allowlist_is_rejected"),
     "published_day_rollback": ("tests.test_final_immutable", "test_published_day_is_byte_identical_after_a_run_a_pass"),
+    # A cached "this text contains no admitted form" verdict that outlives the form list it was
+    # computed under is a published name. The cache key commits to the instrument so it cannot.
+    "stale_clean_verdict": ("tests.test_p2_scan_cache", "test_a_newly_admitted_form_voids_every_prior_clean_verdict"),
 }
 
 
 def test_adversarial_fixture_inventory_is_complete_and_callable():
-    assert len(ADVERSARIAL_FIXTURES) == 12
+    assert len(ADVERSARIAL_FIXTURES) == 13
     for fixture_class, (module_name, function_name) in ADVERSARIAL_FIXTURES.items():
         function = getattr(importlib.import_module(module_name), function_name, None)
         assert callable(function), fixture_class
