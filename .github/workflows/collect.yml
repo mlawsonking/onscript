@@ -26,10 +26,18 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    # 240, was 120: collect wall time grew from ~60m (07-23) to 101m (07-27) as the W4 span-privacy
+    # scan and the X packages joined the build, then a 3-day backlog pushed it past 120m and the
+    # timeout killed the 07-28 and 07-29 evening runs at exactly 2h00m. This raise is the bridge;
+    # the durable fix (persistent span-scan cache over the append-only corpus) has its own work
+    # order. Activates on push to main.
+    timeout-minutes: 240
     env:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # absent -> dry-run, $0
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      # Stream python output as it happens: the 2h-timeout runs left a blank log because stdout was
+      # block-buffered to the pipe and the kill dropped the buffer. Phase timings must survive a kill.
+      PYTHONUNBUFFERED: "1"
       # Art. XIII privacy gate (pipeline/privacy.py) — fail-closed; see assemble.yml for the rules.
       PRIVACY_SALT: ${{ secrets.PRIVACY_SALT }}
       DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
