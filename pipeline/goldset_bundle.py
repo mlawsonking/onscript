@@ -35,6 +35,30 @@ ANSWER_COLUMNS = [
     "proposition_consistent", "stance", "claim_supported", "notes",
 ]
 CLASS_CHOICES = "message | unknown | nomenclature | procedural | biographical | private"
+
+# The task B gate on the message class. The guide makes phrase completeness a necessary
+# condition for message (section 3.1 and section 4), so the app refuses a message label the
+# completeness answer does not support instead of recording one the guide's own rule forbids.
+# Python owns these strings and the rendered app interpolates them, so there is one copy.
+GATE_UNANSWERED = ("Answer B (phrase complete) before labeling this message. Completeness is a "
+                   "gate on the message class, not an optional extra.")
+GATE_INCOMPLETE = ("B says this phrase is not complete on its own, so it cannot be message "
+                   "(guide section 3.1). Unknown is the safe default.")
+GATE_WITHDRAWN = (" The message label on this item was withdrawn; choose a class again.")
+
+
+def message_blocked_by(answers: dict) -> str | None:
+    """Why task B forbids a message label on this item, or None when it permits one.
+
+    The authority for the rule the app enforces. ``render_app`` interpolates these strings into
+    the offline page, and ``tests/test_p3_message_gate.py`` holds the two together.
+    """
+    complete = answers.get("phrase_complete")
+    if complete is None:
+        return GATE_UNANSWERED
+    if complete is False:
+        return GATE_INCOMPLETE
+    return None
 GOLD_CLASSES = ["message", "unknown", "nomenclature", "procedural",
                 "biographical", "private"]
 STANCE_CHOICES = ["affirmative", "negated", "mixed"]
@@ -215,6 +239,12 @@ def render_html(items: list[dict], *, annotator_id: str, sample: str, seed: str)
         "answer sheet, matched by the item ID shown on each card. Judge each phrase in the "
         "context shown. Do not look up the live site.</p>")
     parts.append(
+        "<p class=\"note\">Label the phrase, not the sentence. The sentence tells you what the "
+        "phrase means; it does not lend the phrase its meaning. Cover the sentence: if the "
+        "phrase alone states no position, it is not a message. Unknown is the safe default and "
+        "you should expect to use it often. Answer B (phrase complete) before settling the "
+        "class, because a phrase that fails B cannot be a message. Guide section 3.1.</p>")
+    parts.append(
         f"<p class=\"note\">Classes: {html.escape(CLASS_CHOICES)}. "
         "Stance: affirmative | negated | mixed.</p></header>")
     parts.append("<main>")
@@ -307,11 +337,25 @@ def render_app(items: list[dict], *, annotator_id: str, sample: str, seed: str) 
         "<span class=\"progress\" id=\"progress\">0 / 0 labeled</span>"
         "<button id=\"export\" class=\"btn\">Export answer CSV</button></div>"
         "<div class=\"barnote\">Autosaves in this browser. Reopen this file to resume. "
-        "Class and family are required; the other tasks are optional per the guide.</div>"
+        "Class, family, and B (phrase complete) are required; C, D, F, and notes follow the "
+        "guide.</div>"
+        "<div class=\"standing\">Label the <b>phrase</b>, not the sentence. The sentence is "
+        "there to tell you what the phrase means, not to lend it meaning. Cover the sentence: "
+        "if the phrase alone states no position, it is not a message. "
+        "<b>Unknown is the safe default</b> and you should expect to use it often. Guide "
+        "section 3.1.</div>"
         "</header><main id=\"items\"></main>"
         "<datalist id=\"families\"></datalist>"
-        f"<script>{_APP_JS}</script></body></html>"
+        f"<script>{_app_js()}</script></body></html>"
     )
+
+
+def _app_js() -> str:
+    """The app script with the gate strings interpolated from their Python owner."""
+    return (_APP_JS
+            .replace("__GATE_UNANSWERED__", json.dumps(GATE_UNANSWERED)[1:-1])
+            .replace("__GATE_INCOMPLETE__", json.dumps(GATE_INCOMPLETE)[1:-1])
+            .replace("__GATE_WITHDRAWN__", json.dumps(GATE_WITHDRAWN)[1:-1]))
 
 
 def certify_publishable(paths, *, seed_failure: bool = False) -> dict:
@@ -417,18 +461,28 @@ _APP_CSS = """
 .opt.sel { background: #33527a; border-color: #33527a; color: #fff; }
 .fam, .notesin { font: inherit; font-size: .88rem; padding: .25rem .5rem; border: 1px solid #bbb;
   border-radius: 5px; min-width: 18rem; background: #fff; color: #111; }
+.gate { display: none; margin-top: .4rem; padding: .4rem .6rem; border-left: 3px solid #a4601a;
+  background: #fdf3e6; color: #6b3d0c; font-size: .84rem; border-radius: 0 4px 4px 0; }
+.gate.on { display: block; }
+.standing { margin-top: .35rem; font-size: .82rem; color: #555; }
+.standing b { color: #6b3d0c; }
 @media (prefers-color-scheme: dark) {
   .appbar { background: #161616; border-color: #3a3a3a; }
   .barnote { color: #aaa; } .tlabel { color: #bbb; }
   .opt { background: #242424; border-color: #444; color: #ddd; }
   .opt.sel { background: #33527a; border-color: #33527a; color: #fff; }
   .fam, .notesin { background: #1d1d1d; border-color: #444; color: #eee; }
+  .gate { background: #2a1e10; border-color: #c1802f; color: #e8c9a0; }
+  .standing { color: #aaa; } .standing b { color: #e8c9a0; }
 }
 """
 
 
 _APP_JS = r"""
 (function(){
+  const GATE_UNANSWERED = "__GATE_UNANSWERED__";
+  const GATE_INCOMPLETE = "__GATE_INCOMPLETE__";
+  const GATE_WITHDRAWN = "__GATE_WITHDRAWN__";
   const DATA = JSON.parse(document.getElementById('goldset-data').textContent);
   const KEY = 'onscript-goldset-' + DATA.sample + '-' + DATA.annotator;
   let answers = {};
@@ -467,13 +521,32 @@ _APP_JS = r"""
   function controls(cid, a){
     return '<div class="controls" data-cid="' + cid + '">' +
       group('gold_class','A. surface class', DATA.classes, a.gold_class, true) +
+      '<div class="gate" data-gate="' + cid + '"></div>' +
       '<div class="task"><span class="tlabel">E. document family *</span><input class="fam" list="families" data-field="gold_family_id" value="' + esc(a.gold_family_id||'') + '" placeholder="family id, reuse to group items"></div>' +
-      boolGroup('phrase_complete','B. phrase complete', a.phrase_complete) +
+      boolGroup('phrase_complete','B. phrase complete *', a.phrase_complete) +
       boolGroup('proposition_consistent','C. proposition consistent', a.proposition_consistent) +
       group('stance','D. stance', DATA.stances, a.stance, false) +
       boolGroup('claim_supported','F. claim supported', a.claim_supported) +
       '<div class="task"><span class="tlabel">notes</span><input class="notesin" data-field="notes" value="' + esc(a.notes||'') + '"></div>' +
       '</div>';
+  }
+
+  // Task B is a necessary condition for the message class (guide section 3.1 and section 4).
+  // The app refuses a message label that the completeness answer does not support, rather than
+  // recording one the guide's own rule forbids.
+  function gateEl(panel){ return panel.querySelector('.gate'); }
+  function showGate(panel, text){
+    const g = gateEl(panel); if (!g) return;
+    g.textContent = text; g.classList.add('on');
+  }
+  function clearGate(panel){
+    const g = gateEl(panel); if (!g) return;
+    g.textContent = ''; g.classList.remove('on');
+  }
+  function messageBlockedBy(a){
+    if (a.phrase_complete === undefined || a.phrase_complete === null) return GATE_UNANSWERED;
+    if (a.phrase_complete === false) return GATE_INCOMPLETE;
+    return null;
   }
 
   DATA.items.forEach((it, idx) => {
@@ -498,17 +571,42 @@ _APP_JS = r"""
     itemsEl.appendChild(card);
   });
 
+  function repaint(panel, a, field){
+    panel.querySelectorAll('button.opt[data-field="' + field + '"]').forEach(b => {
+      let bv = b.dataset.value; if (bv === 'true') bv = true; else if (bv === 'false') bv = false;
+      b.classList.toggle('sel', a[field] === bv);
+    });
+  }
+
   itemsEl.addEventListener('click', function(e){
     const btn = e.target.closest('button.opt'); if (!btn) return;
     const panel = btn.closest('.controls'); const cid = panel.dataset.cid;
     const field = btn.dataset.field; let value = btn.dataset.value;
     if (value === 'true') value = true; else if (value === 'false') value = false;
     const a = get(cid);
+
+    // Selecting message: refuse unless task B supports it. Nothing is recorded on refusal.
+    if (field === 'gold_class' && value === 'message' && a.gold_class !== 'message'){
+      const blocked = messageBlockedBy(a);
+      if (blocked){ showGate(panel, blocked); return; }
+    }
+
     if (a[field] === value) { delete a[field]; } else { a[field] = value; }
-    panel.querySelectorAll('button.opt[data-field="' + field + '"]').forEach(b => {
-      let bv = b.dataset.value; if (bv === 'true') bv = true; else if (bv === 'false') bv = false;
-      b.classList.toggle('sel', a[field] === bv);
-    });
+
+    // Answering B after the fact can invalidate a message label already recorded. Withdraw it
+    // rather than leave a label the guide's rule forbids, and say so.
+    if (field === 'phrase_complete' && a.gold_class === 'message'){
+      const blocked = messageBlockedBy(a);
+      if (blocked){
+        delete a.gold_class;
+        repaint(panel, a, 'gold_class');
+        showGate(panel, blocked + GATE_WITHDRAWN);
+      } else { clearGate(panel); }
+    } else if (field === 'gold_class'){
+      clearGate(panel);
+    }
+
+    repaint(panel, a, field);
     save();
   });
   itemsEl.addEventListener('input', function(e){
