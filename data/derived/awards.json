@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-30T20:41:15Z",
+  "generated_at": "2026-07-31T11:37:46Z",
   "window": {
-    "start": "2026-07-23",
-    "end": "2026-07-29"
+    "start": "2026-07-24",
+    "end": "2026-07-30"
   },
   "min_active": 20,
   "span_gated": true,
@@ -20,8 +20,8 @@
         "day": "2026-07-29",
         "party": "D",
         "offices_using": 7,
-        "offices_active": 44,
-        "office_share": 0.1591,
+        "offices_active": 49,
+        "office_share": 0.1429,
         "members": [
           {
             "bioguide": "C000127",
@@ -64,36 +64,21 @@
       {
         "ngram": "text of the bill",
         "slug": "8bd7df08e3dcea59",
-        "day": "2026-07-23",
+        "day": "2026-07-29",
         "party": "D",
-        "offices_using": 12,
-        "offices_active": 94,
-        "office_share": 0.1277,
+        "offices_using": 6,
+        "offices_active": 49,
+        "office_share": 0.1224,
         "members": [
+          {
+            "bioguide": "B001230",
+            "name": "Tammy Baldwin",
+            "state": "WI"
+          },
           {
             "bioguide": "B001267",
             "name": "Michael F. Bennet",
             "state": "CO"
-          },
-          {
-            "bioguide": "C001088",
-            "name": "Christopher A. Coons",
-            "state": "DE"
-          },
-          {
-            "bioguide": "C001121",
-            "name": "Jason Crow",
-            "state": "CO"
-          },
-          {
-            "bioguide": "D000624",
-            "name": "Debbie Dingell",
-            "state": "MI"
-          },
-          {
-            "bioguide": "F000477",
-            "name": "Valerie P. Foushee",
-            "state": "NC"
           },
           {
             "bioguide": "H000273",
@@ -106,51 +91,73 @@
             "state": "NM"
           },
           {
-            "bioguide": "M001111",
-            "name": "Patty Murray",
-            "state": "WA"
-          }
-        ],
-        "members_more": 4
-      },
-      {
-        "ngram": "war in iran",
-        "slug": "4abd5ede26e39eb9",
-        "day": "2026-07-23",
-        "party": "D",
-        "offices_using": 10,
-        "offices_active": 94,
-        "office_share": 0.1064,
-        "members": [
-          {
-            "bioguide": "B001230",
-            "name": "Tammy Baldwin",
-            "state": "WI"
-          },
-          {
-            "bioguide": "C001119",
-            "name": "Angie Craig",
-            "state": "MN"
-          },
-          {
-            "bioguide": "G000604",
-            "name": "Maggie Goodlander",
-            "state": "NH"
-          },
-          {
-            "bioguide": "H001042",
-            "name": "Mazie K. Hirono",
+            "bioguide": "S001194",
+            "name": "Brian Schatz",
             "state": "HI"
           },
           {
-            "bioguide": "H001081",
-            "name": "Jahana Hayes",
-            "state": "CT"
+            "bioguide": "W000800",
+            "name": "Peter Welch",
+            "state": "VT"
+          }
+        ],
+        "members_more": 0
+      },
+      {
+        "ngram": "that’s why i’m",
+        "slug": "864cbb04ab1c5575",
+        "day": "2026-07-29",
+        "party": "D",
+        "offices_using": 5,
+        "offices_active": 49,
+        "office_share": 0.102,
+        "members": [
+          {
+            "bioguide": "C001088",
+            "name": "Christopher A. Coons",
+            "state": "DE"
           },
           {
-            "bioguide": "J000298",
-            "name": "Pramila Jayapal",
-            "state": "WA"
+            "bioguide": "H001090",
+            "name": "Josh Harder",
+            "state": "CA"
+          },
+          {
+            "bioguide": "J000305",
+            "name": "Sara Jacobs",
+            "state": "CA"
+          },
+          {
+            "bioguide": "K000400",
+            "name": "Sydney Kamlager-Dove",
+            "state": "CA"
+          },
+          {
+            "bioguide": "R000608",
+            "name": "Jacky Rosen",
+            "state": "NV"
+          }
+        ],
+        "members_more": 0
+      },
+      {
+        "ngram": "will help ensure",
+        "slug": "3f80083bab9d0546",
+        "day": "2026-07-29",
+        "party": "D",
+        "offices_using": 5,
+        "offices_active": 49,
+        "office_share": 0.102,
+        "members": [
+          {
+            "bioguide": "B001303",
+            "name": "Lisa Blunt Rochester",
+            "state": "DE"
+          },
+          {
+            "bioguide": "D000622",
+            "name": "Tammy Duckworth",
+            "state": "IL"
           },
           {
             "bioguide": "K000384",
@@ -158,12 +165,17 @@
             "state": "VA"
           },
           {
-            "bioguide": "L000557",
-            "name": "John B. Larson",
-            "state": "CT"
+            "bioguide": "S000148",
+            "name": "Charles E. Schumer",
+            "state": "NY"
+          },
+          {
+            "bioguide": "S001194",
+            "name": "Brian Schatz",
+            "state": "HI"
           }
         ],
-        "members_more": 2
+        "members_more": 0
       },
       {
         "ngram": "proud to support",
@@ -201,136 +213,84 @@
           }
         ],
         "members_more": 0
-      },
-      {
-        "ngram": "wrote the senators",
-        "slug": "dd1ce953b68d3963",
-        "day": "2026-07-24",
-        "party": "D",
-        "offices_using": 7,
-        "offices_active": 73,
-        "office_share": 0.0959,
-        "members": [
-          {
-            "bioguide": "B001267",
-            "name": "Michael F. Bennet",
-            "state": "CO"
-          },
-          {
-            "bioguide": "G000555",
-            "name": "Kirsten E. Gillibrand",
-            "state": "NY"
-          },
-          {
-            "bioguide": "K000367",
-            "name": "Amy Klobuchar",
-            "state": "MN"
-          },
-          {
-            "bioguide": "K000377",
-            "name": "Mark Kelly",
-            "state": "AZ"
-          },
-          {
-            "bioguide": "R000608",
-            "name": "Jacky Rosen",
-            "state": "NV"
-          },
-          {
-            "bioguide": "S001208",
-            "name": "Elissa Slotkin",
-            "state": "MI"
-          },
-          {
-            "bioguide": "W000800",
-            "name": "Peter Welch",
-            "state": "VT"
-          }
-        ],
-        "members_more": 0
       }
     ],
     "R": [
       {
-        "ngram": "defense industrial base",
-        "slug": "a8f9cb20ad2e9809",
-        "day": "2026-07-23",
-        "party": "R",
-        "offices_using": 9,
-        "offices_active": 81,
-        "office_share": 0.1111,
-        "members": [
-          {
-            "bioguide": "B001321",
-            "name": "Tom Barrett",
-            "state": "MI"
-          },
-          {
-            "bioguide": "C000059",
-            "name": "Ken Calvert",
-            "state": "CA"
-          },
-          {
-            "bioguide": "C001039",
-            "name": "Kat Cammack",
-            "state": "FL"
-          },
-          {
-            "bioguide": "D000628",
-            "name": "Neal P. Dunn",
-            "state": "FL"
-          },
-          {
-            "bioguide": "L000585",
-            "name": "Darin LaHood",
-            "state": "IL"
-          },
-          {
-            "bioguide": "M000871",
-            "name": "Tracey Mann",
-            "state": "KS"
-          },
-          {
-            "bioguide": "M001239",
-            "name": "John J. McGuire III",
-            "state": "VA"
-          },
-          {
-            "bioguide": "R000575",
-            "name": "Mike Rogers",
-            "state": "AL"
-          }
-        ],
-        "members_more": 1
-      },
-      {
         "ngram": "this bipartisan bill",
         "slug": "83690fcbebee565c",
-        "day": "2026-07-27",
+        "day": "2026-07-30",
         "party": "R",
-        "offices_using": 4,
-        "offices_active": 37,
-        "office_share": 0.1081,
+        "offices_using": 6,
+        "offices_active": 44,
+        "office_share": 0.1364,
         "members": [
           {
-            "bioguide": "H001093",
-            "name": "Erin Houchin",
+            "bioguide": "B001299",
+            "name": "Jim Banks",
             "state": "IN"
           },
           {
-            "bioguide": "H001104",
-            "name": "Jon Husted",
-            "state": "OH"
+            "bioguide": "H001091",
+            "name": "Ashley Hinson",
+            "state": "IA"
           },
           {
-            "bioguide": "T000467",
-            "name": "Glenn Thompson",
-            "state": "PA"
+            "bioguide": "S001184",
+            "name": "Tim Scott",
+            "state": "SC"
           },
           {
-            "bioguide": "V000129",
-            "name": "David G. Valadao",
-            "state": "CA"
+            "bioguide": "S001232",
+            "name": "Tim Sheehy",
+            "state": "MT"
+          },
+          {
+            "bioguide": "T000476",
+            "name": "Thom Tillis",
+            "state": "NC"
+          },
+          {
+            "bioguide": "Y000064",
+            "name": "Todd Young",
+            "state": "IN"
+          }
+        ],
+        "members_more": 0
+      },
+      {
+        "ngram": "text of the legislation",
+        "slug": "58c2749240464ef7",
+        "day": "2026-07-30",
+        "party": "R",
+        "offices_using": 5,
+        "offices_active": 44,
+        "office_share": 0.1136,
+        "members": [
+          {
+            "bioguide": "C001035",
+            "name": "Susan M. Collins",
+            "state": "ME"
+          },
+          {
+            "bioguide": "M001153",
+            "name": "Lisa Murkowski",
+            "state": "AK"
+          },
+          {
+            "bioguide": "M001198",
+            "name": "Roger Marshall",
+            "state": "KS"
+          },
+          {
+            "bioguide": "S001184",
+            "name": "Tim Scott",
+            "state": "SC"
+          },
+          {
+            "bioguide": "Y000064",
+            "name": "Todd Young",
+            "state": "IN"
           }
         ],
         "members_more": 0
