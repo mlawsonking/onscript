@@ -47,6 +47,51 @@
       ]
     },
     {
+      "ngram": "text of the bill",
+      "slug": "8bd7df08e3dcea59",
+      "n": 4,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 1.2,
+      "first_seen": {
+        "date": "2025-01-05",
+        "bioguide": "C001069",
+        "statement": "sha256:d3b13fbafade11b18cd684ddba8d10d51e5f3cbc75e801e4b487649638daad92",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        1,
+        1,
+        5,
+        5,
+        7,
+        4,
+        2,
+        4,
+        15,
+        12,
+        7,
+        2,
+        4,
+        6
+      ]
+    },
+    {
       "ngram": "federal funding for",
       "slug": "6ed8efa415776803",
       "n": 3,
@@ -91,6 +136,96 @@
         1,
         3,
         6
+      ]
+    },
+    {
+      "ngram": "that’s why i’m",
+      "slug": "864cbb04ab1c5575",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.19,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.982,
+      "series": [
+        1,
+        1,
+        1,
+        4,
+        3,
+        2,
+        2,
+        3,
+        1,
+        6,
+        2,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "in ice detention",
+      "slug": "8d7ba81cb4072838",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.12,
+      "first_seen": {
+        "date": "2025-07-08",
+        "bioguide": "B001285",
+        "statement": "sha256:2ff86f173034eb70ddf396abe3b099dd87bacf79b4d027599f638efed435c884",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        5
       ]
     },
     {
@@ -139,6 +274,53 @@
       ]
     },
     {
+      "ngram": "will help ensure",
+      "slug": "3f80083bab9d0546",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000617",
+        "statement": "sha256:bc497b338a36f44b2282f8d199c2278a31c1a73686112dda8f944a84f26bbc21",
+        "tie": [
+          "L000593"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.987,
+      "series": [
+        1,
+        4,
+        4,
+        3,
+        3,
+        1,
+        1,
+        2,
+        5,
+        4,
+        2,
+        2,
+        1,
+        5
+      ]
+    },
+    {
       "ngram": "in recent years",
       "slug": "5d740866c5ff98f3",
       "n": 3,
@@ -180,6 +362,54 @@
         4,
         1,
         2,
+        5
+      ]
+    },
+    {
+      "ngram": "letter was signed",
+      "slug": "f9c916786b453fb1",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.41,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "K000400",
+        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+        "tie": [
+          "L000397",
+          "R000620"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        3,
+        1,
+        1,
+        4,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        3,
+        1,
+        4,
         5
       ]
     },
@@ -262,47 +492,137 @@
       ]
     },
     {
-      "ngram": "that’s why i’m",
-      "slug": "864cbb04ab1c5575",
+      "ngram": "inadequate medical care",
+      "slug": "54d548a333ab0339",
       "n": 3,
       "day_peak": 4,
       "party": "D",
       "counts": {
         "D": 4,
-        "R": 1,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
         "D": 4,
-        "R": 1,
+        "R": null,
         "I": null
       },
       "family_count": 4,
-      "velocity": 1.75,
+      "velocity": 3.29,
       "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "L000593",
-        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "date": "2025-05-01",
+        "bioguide": "D000563",
+        "statement": "sha256:b2c715f581bd636cdac76cd1dfa98910b5778f2d6f8bbb7415cefc5eeffe4cf6",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.982,
+      "df_weight": 0.999,
       "series": [
         1,
         1,
         1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "full text of the legislation",
+      "slug": "d6b3a72357861751",
+      "n": 5,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "N000193",
+        "statement": "sha256:3f4861ec2fec3eb7ec6e2fe3abdc72087081a87ea624074a9dca01c43beca00a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        3,
+        3,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "text of the bill is available",
+      "slug": "faf51bf843beda50",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.7,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "V000128",
+        "statement": "sha256:f514182bcdfbef7d63af7444b33a1e5261aaf4ec9b8eacd44cb6f6ee99a53cb1",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        3,
+        2,
+        3,
+        2,
+        4,
         4,
         3,
         2,
-        2,
         3,
-        1,
-        6,
-        2,
-        2,
-        2,
         4
       ]
     },
@@ -323,7 +643,7 @@
         "I": null
       },
       "family_count": 4,
-      "velocity": 1.17,
+      "velocity": 1.14,
       "first_seen": {
         "date": "2025-01-06",
         "bioguide": "C001121",
@@ -346,7 +666,7 @@
         3,
         1,
         3,
-        12,
+        13,
         8,
         5,
         2,
@@ -395,51 +715,6 @@
         1,
         1,
         3,
-        4
-      ]
-    },
-    {
-      "ngram": "in ice detention",
-      "slug": "8d7ba81cb4072838",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": null,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.29,
-      "first_seen": {
-        "date": "2025-07-08",
-        "bioguide": "B001285",
-        "statement": "sha256:2ff86f173034eb70ddf396abe3b099dd87bacf79b4d027599f638efed435c884",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
         4
       ]
     },
@@ -626,282 +901,6 @@
         1,
         4
       ]
-    },
-    {
-      "ngram": "republicans in congress",
-      "slug": "eed8e40df652ef87",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": null,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 2.0,
-      "first_seen": {
-        "date": "2025-01-06",
-        "bioguide": "E000298",
-        "statement": "sha256:a5da32b7bad74c292d8f1b260644db29143acb58203da9b40d6f8c44ca6ddac6",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.984,
-      "series": [
-        2,
-        2,
-        1,
-        3,
-        1,
-        2,
-        3,
-        1,
-        2,
-        1,
-        7,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "in federal funding",
-      "slug": "27d5305fed92a475",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": null,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 1.14,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "D000622",
-        "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.969,
-      "series": [
-        5,
-        6,
-        1,
-        6,
-        8,
-        4,
-        1,
-        3,
-        3,
-        1,
-        3,
-        2,
-        2,
-        4
-      ]
-    },
-    {
-      "ngram": "medical care and",
-      "slug": "6cf5e8eb22e2af71",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": null,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 2.43,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "H001047",
-        "statement": "sha256:47365d3a9f429d885814ba7220bc3ac708f24def56bd8591a52b0db03ab140f2",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.968,
-      "series": [
-        4,
-        2,
-        1,
-        5,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "letter was signed",
-      "slug": "f9c916786b453fb1",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": null,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 1.93,
-      "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "K000400",
-        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
-        "tie": [
-          "L000397",
-          "R000620"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.968,
-      "series": [
-        3,
-        1,
-        1,
-        4,
-        2,
-        1,
-        1,
-        1,
-        1,
-        2,
-        3,
-        1,
-        4,
-        4
-      ]
-    },
-    {
-      "ngram": "senior member of",
-      "slug": "7cbcf61f8a7d8270",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 5,
-        "R": null,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 1.22,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "B001287",
-        "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
-        "tie": [
-          "D000623",
-          "G000386",
-          "H000874",
-          "K000367",
-          "S001156"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.962,
-      "series": [
-        3,
-        6,
-        5,
-        5,
-        3,
-        1,
-        2,
-        6,
-        2,
-        3,
-        3,
-        2,
-        4,
-        4
-      ]
-    },
-    {
-      "ngram": "refused to answer questions",
-      "slug": "73059cc96398fa25",
-      "n": 4,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-24",
-        "bioguide": "B001277",
-        "statement": "sha256:ea8b8d43bd993eb80364f975bc11bb28b16a9e7ba8a40bf2dddcf6525253a73c",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
     }
   ],
   "legacy_unvalidated_metrics": {
@@ -922,5 +921,2051 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-07-29",
+      "party": "D",
+      "composite": "Composite withheld because its claims could not be verified.",
+      "measurement_lead": "Measurement: 85 publications were observed for the Democratic party on 2026-07-29.",
+      "composite_state": "withheld_verifier_failure",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-07-29",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "084e5e749689410b22000a44c2449ebc770c0b72261f5cd354f650ca33723391",
+        "claim_ids": [
+          "2026-07-29-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Composite withheld because its claims could not be verified.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "f3e0b7bda4ad742222741cb6b74a876aa44fbe67d1d235abd4eeab4832b61e14",
+        "response_sha256": "2353ec9f7042ffa7926e62ff3c6f6949f0b141775309c84010df11f6521120ac",
+        "model_response_sha256": "c5b0b949696dc29f358b4d29add5d14d25c50e44199660589adeac9c1be9dcca"
+      },
+      "quiet": false,
+      "fallback": true,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:fallback",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-07-29",
+        "statements": 85,
+        "talking_points": [
+          {
+            "label": "energy and natural resources",
+            "members": 3,
+            "quote": "Energy and Natural Resources",
+            "topics": [
+              "energy_climate"
+            ],
+            "claim_id": "2026-07-29-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "energy_climate",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "earlier this month",
+          "members": 7,
+          "family_count": 8,
+          "first_sayer": "James A. Himes",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CT"
+        },
+        "selected_claims": [
+          {
+            "label": "energy and natural resources",
+            "members": 3,
+            "quote": "Energy and Natural Resources",
+            "topics": [
+              "energy_climate"
+            ],
+            "claim_id": "2026-07-29-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "energy_climate",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-07-29-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": false,
+        "reasons": [
+          "un-whitelisted numbers in composite: ['4']"
+        ],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2104,
+        "tokens_out": 141,
+        "model": "P2:fallback"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-07-29",
+      "party": "R",
+      "composite": "Today 61 of us released statements. 4 offices across 4 publications and 4 families carried \"Energy and Natural Resources\". Our most synchronized phrase, used by 5 of us: refused to answer.",
+      "measurement_lead": "Measurement: 61 publications were observed for the Republican party on 2026-07-29.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-07-29",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "f4359a04f5eb1300ff415fd579dca104d7571ec64db73e04d1d1dabd19be03ab",
+        "claim_ids": [
+          "2026-07-29-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 61 of us released statements. 4 offices across 4 publications and 4 families carried \"Energy and Natural Resources\". Our most synchronized phrase, used by 5 of us: refused to answer.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-07-29-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "2959329b72562957404ce93b1189a4599d12b573a8efc11b6a300890ccf44f45",
+        "response_sha256": "4d27a4554af7b9b755f5d578a313a1817cffbfcb6fb306153e46e11b8580dc1c",
+        "model_response_sha256": "b164ea6368325f9a44c0ddf0e10b643ad9c117ef8e8ccc31237ff1b7f54c21d5"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-07-29-R-00"
+          ],
+          "claim_ids": [
+            "2026-07-29-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-07-29-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-07-29",
+        "statements": 61,
+        "talking_points": [
+          {
+            "label": "energy and natural resources",
+            "members": 4,
+            "quote": "Energy and Natural Resources",
+            "topics": [
+              "energy_climate"
+            ],
+            "claim_id": "2026-07-29-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "energy_climate",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "refused to answer",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Tim Kaine",
+          "first_sayer_party": "D",
+          "first_sayer_state": "VA"
+        },
+        "selected_claims": [
+          {
+            "label": "energy and natural resources",
+            "members": 4,
+            "quote": "Energy and Natural Resources",
+            "topics": [
+              "energy_climate"
+            ],
+            "claim_id": "2026-07-29-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "energy_climate",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-07-29-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2103,
+        "tokens_out": 91,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-07-29-D-00",
+        "party": "D",
+        "day": "2026-07-29",
+        "label": "energy and natural resources",
+        "member_count": 3,
+        "statements": [
+          "sha256:82209242871ee3cc8e3ea4d85029e27d86ba761adcad2944fbcf10ba84047587",
+          "sha256:b1371d0acd142bb5a18fa87bd9d76d6dfb3c0a21340be618fcaf60dd7f45a46f",
+          "sha256:e7679167e6680fe08638961cb7f3e9e3bdd9ea0707cc2070b61f5826f540c015",
+          "sha256:f796d7532bb5b2cbc4327ec1cb1b9554144bfc3a24b1fce06dd9beb90d4d8d76"
+        ],
+        "fragments": [
+          {
+            "text": "on energy and natural resources advanced two bills",
+            "statement": "sha256:b1371d0acd142bb5a18fa87bd9d76d6dfb3c0a21340be618fcaf60dd7f45a46f"
+          },
+          {
+            "text": "on energy and natural resources unanimously advanced u",
+            "statement": "sha256:f796d7532bb5b2cbc4327ec1cb1b9554144bfc3a24b1fce06dd9beb90d4d8d76"
+          },
+          {
+            "text": "senate energy and natural resources committee’s passage of",
+            "statement": "sha256:82209242871ee3cc8e3ea4d85029e27d86ba761adcad2944fbcf10ba84047587"
+          }
+        ],
+        "topics": [
+          "energy_climate"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-07-29-D-00",
+        "support_phrase": {
+          "normalized": "energy and natural resources",
+          "text": "Energy and Natural Resources",
+          "occurrence_id": "occ:ed036503b72e707bf7bbe109"
+        },
+        "display_quote": "Energy and Natural Resources",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ed036503b72e707bf7bbe109",
+            "claim_id": "2026-07-29-D-00",
+            "statement_id": "sha256:82209242871ee3cc8e3ea4d85029e27d86ba761adcad2944fbcf10ba84047587",
+            "publication_id": "sha256:82209242871ee3cc8e3ea4d85029e27d86ba761adcad2944fbcf10ba84047587",
+            "office_id": "K000384",
+            "family_id": "njoint:20ffed71d6e16c7bd9fac69b",
+            "family_revision": "dfrev:3a8a100bda6db7c77f01c7d5",
+            "support_unit_id": "njoint:20ffed71d6e16c7bd9fac69b",
+            "party": "D",
+            "start_char": 102,
+            "end_char": 130,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 61,
+            "sentence_end_char": 331,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 69,
+            "clause_start_char": 25,
+            "clause_end_char": 168,
+            "clause_offset_start": 77,
+            "clause_offset_end": 105,
+            "adjacent_tokens_before": [
+              "both",
+              "d-va",
+              "applauded",
+              "the",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "committee’s",
+              "passage",
+              "of",
+              "the",
+              "bipartisan"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9f89763e7f9c462ce20891ab",
+            "claim_id": "2026-07-29-D-00",
+            "statement_id": "sha256:b1371d0acd142bb5a18fa87bd9d76d6dfb3c0a21340be618fcaf60dd7f45a46f",
+            "publication_id": "sha256:b1371d0acd142bb5a18fa87bd9d76d6dfb3c0a21340be618fcaf60dd7f45a46f",
+            "office_id": "P000145",
+            "family_id": "dfam:6b3edaedf9cbfb4548f4e533",
+            "family_revision": "dfrev:b4d60074a04bbd18b4d73f7a",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 50,
+            "end_char": 78,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 106,
+            "sentence_offset_start": 34,
+            "sentence_offset_end": 62,
+            "clause_start_char": 25,
+            "clause_end_char": 325,
+            "clause_offset_start": 25,
+            "clause_offset_end": 53,
+            "adjacent_tokens_before": [
+              "today",
+              "the",
+              "senate",
+              "committee",
+              "on"
+            ],
+            "adjacent_tokens_after": [
+              "advanced",
+              "two",
+              "bills",
+              "led",
+              "by"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a11a3e33016f521d9a94bc76",
+            "claim_id": "2026-07-29-D-00",
+            "statement_id": "sha256:e7679167e6680fe08638961cb7f3e9e3bdd9ea0707cc2070b61f5826f540c015",
+            "publication_id": "sha256:e7679167e6680fe08638961cb7f3e9e3bdd9ea0707cc2070b61f5826f540c015",
+            "office_id": "W000805",
+            "family_id": "njoint:20ffed71d6e16c7bd9fac69b",
+            "family_revision": "dfrev:3a8a100bda6db7c77f01c7d5",
+            "support_unit_id": "njoint:20ffed71d6e16c7bd9fac69b",
+            "party": "D",
+            "start_char": 93,
+            "end_char": 121,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 38,
+            "sentence_end_char": 322,
+            "sentence_offset_start": 55,
+            "sentence_offset_end": 83,
+            "clause_start_char": 19,
+            "clause_end_char": 159,
+            "clause_offset_start": 74,
+            "clause_offset_end": 102,
+            "adjacent_tokens_before": [
+              "both",
+              "d-va",
+              "applauded",
+              "the",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "committee’s",
+              "passage",
+              "of",
+              "the",
+              "bipartisan"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:45fc4b221ba7581ba33fd554",
+            "claim_id": "2026-07-29-D-00",
+            "statement_id": "sha256:f796d7532bb5b2cbc4327ec1cb1b9554144bfc3a24b1fce06dd9beb90d4d8d76",
+            "publication_id": "sha256:f796d7532bb5b2cbc4327ec1cb1b9554144bfc3a24b1fce06dd9beb90d4d8d76",
+            "office_id": "S001150",
+            "family_id": "dfam:d8f3da2903e0e94d97c319c5",
+            "family_revision": "dfrev:d2e1959ea655d0e124d42072",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 50,
+            "end_char": 78,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 101,
+            "sentence_offset_start": 34,
+            "sentence_offset_end": 62,
+            "clause_start_char": 25,
+            "clause_end_char": 349,
+            "clause_offset_start": 25,
+            "clause_offset_end": 53,
+            "adjacent_tokens_before": [
+              "today",
+              "the",
+              "senate",
+              "committee",
+              "on"
+            ],
+            "adjacent_tokens_after": [
+              "unanimously",
+              "advanced",
+              "u",
+              "s",
+              "senator"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "K000384",
+          "P000145",
+          "S001150",
+          "W000805"
+        ],
+        "publication_ids": [
+          "sha256:82209242871ee3cc8e3ea4d85029e27d86ba761adcad2944fbcf10ba84047587",
+          "sha256:b1371d0acd142bb5a18fa87bd9d76d6dfb3c0a21340be618fcaf60dd7f45a46f",
+          "sha256:e7679167e6680fe08638961cb7f3e9e3bdd9ea0707cc2070b61f5826f540c015",
+          "sha256:f796d7532bb5b2cbc4327ec1cb1b9554144bfc3a24b1fce06dd9beb90d4d8d76"
+        ],
+        "family_ids": [
+          "dfam:6b3edaedf9cbfb4548f4e533",
+          "dfam:d8f3da2903e0e94d97c319c5",
+          "njoint:20ffed71d6e16c7bd9fac69b"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:6b3edaedf9cbfb4548f4e533",
+            "family_revision": "dfrev:b4d60074a04bbd18b4d73f7a"
+          },
+          {
+            "family_id": "dfam:d8f3da2903e0e94d97c319c5",
+            "family_revision": "dfrev:d2e1959ea655d0e124d42072"
+          },
+          {
+            "family_id": "njoint:20ffed71d6e16c7bd9fac69b",
+            "family_revision": "dfrev:3a8a100bda6db7c77f01c7d5"
+          }
+        ],
+        "support_unit_ids": [
+          "P000145",
+          "S001150",
+          "njoint:20ffed71d6e16c7bd9fac69b"
+        ],
+        "citation_occurrence_ids": [
+          "occ:ed036503b72e707bf7bbe109",
+          "occ:9f89763e7f9c462ce20891ab",
+          "occ:45fc4b221ba7581ba33fd554"
+        ],
+        "citations": [
+          {
+            "member": "Tim Kaine",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-07-29",
+            "url": "https://www.kaine.senate.gov/press-releases/kaine-and-warner-applaud-senate-committee-passage-of-wintergreen-emergency-egress-act",
+            "quote": "senate energy and natural resources committee’s passage of",
+            "occurrence_id": "occ:ed036503b72e707bf7bbe109",
+            "office_id": "K000384",
+            "publication_id": "sha256:82209242871ee3cc8e3ea4d85029e27d86ba761adcad2944fbcf10ba84047587",
+            "family_id": "njoint:20ffed71d6e16c7bd9fac69b",
+            "family_revision": "dfrev:3a8a100bda6db7c77f01c7d5"
+          },
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-07-29",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padillas-water-public-lands-conservation-bills-advance-to-the-full-senate-for-vote/",
+            "quote": "on energy and natural resources advanced two bills",
+            "occurrence_id": "occ:9f89763e7f9c462ce20891ab",
+            "office_id": "P000145",
+            "publication_id": "sha256:b1371d0acd142bb5a18fa87bd9d76d6dfb3c0a21340be618fcaf60dd7f45a46f",
+            "family_id": "dfam:6b3edaedf9cbfb4548f4e533",
+            "family_revision": "dfrev:b4d60074a04bbd18b4d73f7a"
+          },
+          {
+            "member": "Adam B. Schiff",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-07-29",
+            "url": "https://www.schiff.senate.gov/news/press-releases/news-sen-schiffs-bill-to-designate-national-scenic-trail-advances-unanimously-from-senate-committee/",
+            "quote": "on energy and natural resources unanimously advanced u",
+            "occurrence_id": "occ:45fc4b221ba7581ba33fd554",
+            "office_id": "S001150",
+            "publication_id": "sha256:f796d7532bb5b2cbc4327ec1cb1b9554144bfc3a24b1fce06dd9beb90d4d8d76",
+            "family_id": "dfam:d8f3da2903e0e94d97c319c5",
+            "family_revision": "dfrev:d2e1959ea655d0e124d42072"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "energy_climate",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-07-29-R-00",
+        "party": "R",
+        "day": "2026-07-29",
+        "label": "energy and natural resources",
+        "member_count": 4,
+        "statements": [
+          "sha256:0900088406b1e719b896b27eba047de08ebcd8df030c3342e3b1aae13e4810c1",
+          "sha256:27ff2f883e340479213a524fe23e728e5d73bed202b04f5708656c23eb76fa20",
+          "sha256:a76aec28fec9ef7594dd532da99da0ab3192cf2e9c57ac367e13d024f0b6a061",
+          "sha256:adeb114e92d903889a0301b150c526d8a589d5f6aed38994d0a0bb4b2bb095f1"
+        ],
+        "fragments": [
+          {
+            "text": "senate energy and natural resources committee passed u",
+            "statement": "sha256:a76aec28fec9ef7594dd532da99da0ab3192cf2e9c57ac367e13d024f0b6a061"
+          },
+          {
+            "text": "senate energy and natural resources committee",
+            "statement": "sha256:0900088406b1e719b896b27eba047de08ebcd8df030c3342e3b1aae13e4810c1"
+          },
+          {
+            "text": "senate energy and natural resources committee favorably reported",
+            "statement": "sha256:adeb114e92d903889a0301b150c526d8a589d5f6aed38994d0a0bb4b2bb095f1"
+          },
+          {
+            "text": "on energy and natural resources",
+            "statement": "sha256:27ff2f883e340479213a524fe23e728e5d73bed202b04f5708656c23eb76fa20"
+          }
+        ],
+        "topics": [
+          "energy_climate"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-07-29-R-00",
+        "support_phrase": {
+          "normalized": "energy and natural resources",
+          "text": "Energy and Natural Resources",
+          "occurrence_id": "occ:2bca28b7d1abb5d5dea6d0a8"
+        },
+        "display_quote": "Energy and Natural Resources",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2bca28b7d1abb5d5dea6d0a8",
+            "claim_id": "2026-07-29-R-00",
+            "statement_id": "sha256:0900088406b1e719b896b27eba047de08ebcd8df030c3342e3b1aae13e4810c1",
+            "publication_id": "sha256:0900088406b1e719b896b27eba047de08ebcd8df030c3342e3b1aae13e4810c1",
+            "office_id": "D000618",
+            "family_id": "dfam:e1171dce1d3be40719feb5d6",
+            "family_revision": "dfrev:ea43327568c5085559bc88fc",
+            "support_unit_id": "D000618",
+            "party": "R",
+            "start_char": 107,
+            "end_char": 135,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 145,
+            "sentence_offset_start": 84,
+            "sentence_offset_end": 112,
+            "clause_start_char": 19,
+            "clause_end_char": 190,
+            "clause_offset_start": 88,
+            "clause_offset_end": 116,
+            "adjacent_tokens_before": [
+              "water",
+              "bills",
+              "passed",
+              "the",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "committee",
+              "access",
+              "to",
+              "safe",
+              "water"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c18c435e43a31159bb2895a0",
+            "claim_id": "2026-07-29-R-00",
+            "statement_id": "sha256:27ff2f883e340479213a524fe23e728e5d73bed202b04f5708656c23eb76fa20",
+            "publication_id": "sha256:27ff2f883e340479213a524fe23e728e5d73bed202b04f5708656c23eb76fa20",
+            "office_id": "S001227",
+            "family_id": "dfam:87534be281a6b5dbe67203e3",
+            "family_revision": "dfrev:98b968068ccdde6e976f26aa",
+            "support_unit_id": "S001227",
+            "party": "R",
+            "start_char": 252,
+            "end_char": 280,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 122,
+            "sentence_end_char": 280,
+            "sentence_offset_start": 130,
+            "sentence_offset_end": 158,
+            "clause_start_char": 219,
+            "clause_end_char": 778,
+            "clause_offset_start": 33,
+            "clause_offset_end": 61,
+            "adjacent_tokens_before": [
+              "through",
+              "the",
+              "senate",
+              "committee",
+              "on"
+            ],
+            "adjacent_tokens_after": [
+              "senator",
+              "schmitt’s",
+              "bill",
+              "would",
+              "authorize"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:549f3e7bdf66e3795b814128",
+            "claim_id": "2026-07-29-R-00",
+            "statement_id": "sha256:a76aec28fec9ef7594dd532da99da0ab3192cf2e9c57ac367e13d024f0b6a061",
+            "publication_id": "sha256:a76aec28fec9ef7594dd532da99da0ab3192cf2e9c57ac367e13d024f0b6a061",
+            "office_id": "B001261",
+            "family_id": "dfam:2702a03329ba7cc9733e347d",
+            "family_revision": "dfrev:6907862770370cfb7b6aa5a3",
+            "support_unit_id": "B001261",
+            "party": "R",
+            "start_char": 42,
+            "end_char": 70,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 34,
+            "sentence_end_char": 89,
+            "sentence_offset_start": 8,
+            "sentence_offset_end": 36,
+            "clause_start_char": 25,
+            "clause_end_char": 296,
+            "clause_offset_start": 17,
+            "clause_offset_end": 45,
+            "adjacent_tokens_before": [
+              "today",
+              "the",
+              "u",
+              "s",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "committee",
+              "passed",
+              "u",
+              "s",
+              "senator"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:95eec9bd5b6c0f98ab475b64",
+            "claim_id": "2026-07-29-R-00",
+            "statement_id": "sha256:adeb114e92d903889a0301b150c526d8a589d5f6aed38994d0a0bb4b2bb095f1",
+            "publication_id": "sha256:adeb114e92d903889a0301b150c526d8a589d5f6aed38994d0a0bb4b2bb095f1",
+            "office_id": "M001153",
+            "family_id": "dfam:66988be79184c4b7132800fb",
+            "family_revision": "dfrev:5e04321361a47c9e6c0ba3ef",
+            "support_unit_id": "M001153",
+            "party": "R",
+            "start_char": 41,
+            "end_char": 69,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 100,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 69,
+            "clause_start_char": 29,
+            "clause_end_char": 106,
+            "clause_offset_start": 12,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "dc",
+              "earlier",
+              "today",
+              "the",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "committee",
+              "favorably",
+              "reported",
+              "s",
+              "4399"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "B001261",
+          "D000618",
+          "M001153",
+          "S001227"
+        ],
+        "publication_ids": [
+          "sha256:0900088406b1e719b896b27eba047de08ebcd8df030c3342e3b1aae13e4810c1",
+          "sha256:27ff2f883e340479213a524fe23e728e5d73bed202b04f5708656c23eb76fa20",
+          "sha256:a76aec28fec9ef7594dd532da99da0ab3192cf2e9c57ac367e13d024f0b6a061",
+          "sha256:adeb114e92d903889a0301b150c526d8a589d5f6aed38994d0a0bb4b2bb095f1"
+        ],
+        "family_ids": [
+          "dfam:2702a03329ba7cc9733e347d",
+          "dfam:66988be79184c4b7132800fb",
+          "dfam:87534be281a6b5dbe67203e3",
+          "dfam:e1171dce1d3be40719feb5d6"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:2702a03329ba7cc9733e347d",
+            "family_revision": "dfrev:6907862770370cfb7b6aa5a3"
+          },
+          {
+            "family_id": "dfam:66988be79184c4b7132800fb",
+            "family_revision": "dfrev:5e04321361a47c9e6c0ba3ef"
+          },
+          {
+            "family_id": "dfam:87534be281a6b5dbe67203e3",
+            "family_revision": "dfrev:98b968068ccdde6e976f26aa"
+          },
+          {
+            "family_id": "dfam:e1171dce1d3be40719feb5d6",
+            "family_revision": "dfrev:ea43327568c5085559bc88fc"
+          }
+        ],
+        "support_unit_ids": [
+          "B001261",
+          "D000618",
+          "M001153",
+          "S001227"
+        ],
+        "citation_occurrence_ids": [
+          "occ:2bca28b7d1abb5d5dea6d0a8",
+          "occ:c18c435e43a31159bb2895a0",
+          "occ:549f3e7bdf66e3795b814128"
+        ],
+        "citations": [
+          {
+            "member": "Steve Daines",
+            "party": "R",
+            "state": "MT",
+            "date": "2026-07-29",
+            "url": "https://www.daines.senate.gov/2026/07/29/daines-bills-protecting-tribal-water-rights-and-infrastructure-one-step-closer-to-becoming-law/",
+            "quote": "senate energy and natural resources committee",
+            "occurrence_id": "occ:2bca28b7d1abb5d5dea6d0a8",
+            "office_id": "D000618",
+            "publication_id": "sha256:0900088406b1e719b896b27eba047de08ebcd8df030c3342e3b1aae13e4810c1",
+            "family_id": "dfam:e1171dce1d3be40719feb5d6",
+            "family_revision": "dfrev:ea43327568c5085559bc88fc"
+          },
+          {
+            "member": "Eric Schmitt",
+            "party": "R",
+            "state": "MO",
+            "date": "2026-07-29",
+            "url": "https://www.schmitt.senate.gov/media/press-releases/senator-schmitt-celebrates-committee-passage-of-his-bipartisan-gateway-partnership-act/",
+            "quote": "on energy and natural resources",
+            "occurrence_id": "occ:c18c435e43a31159bb2895a0",
+            "office_id": "S001227",
+            "publication_id": "sha256:27ff2f883e340479213a524fe23e728e5d73bed202b04f5708656c23eb76fa20",
+            "family_id": "dfam:87534be281a6b5dbe67203e3",
+            "family_revision": "dfrev:98b968068ccdde6e976f26aa"
+          },
+          {
+            "member": "John Barrasso",
+            "party": "R",
+            "state": "WY",
+            "date": "2026-07-29",
+            "url": "https://www.barrasso.senate.gov/committee-passes-barrasso-bill-to-unleash-wyoming-coal-production/",
+            "quote": "senate energy and natural resources committee passed u",
+            "occurrence_id": "occ:549f3e7bdf66e3795b814128",
+            "office_id": "B001261",
+            "publication_id": "sha256:a76aec28fec9ef7594dd532da99da0ab3192cf2e9c57ac367e13d024f0b6a061",
+            "family_id": "dfam:2702a03329ba7cc9733e347d",
+            "family_revision": "dfrev:6907862770370cfb7b6aa5a3"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "energy_climate",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-07-29",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 52,
+          "denominator_unit": "offices",
+          "share": 0.076923,
+          "window": "party-day 2026-07-29",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 85,
+          "denominator_unit": "publications",
+          "share": 0.047059,
+          "window": "party-day 2026-07-29",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 81,
+          "denominator_unit": "document families",
+          "share": 0.037037,
+          "window": "party-day 2026-07-29",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-07-29",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 49,
+          "denominator_unit": "offices",
+          "share": 0.081633,
+          "window": "party-day 2026-07-29",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 61,
+          "denominator_unit": "publications",
+          "share": 0.065574,
+          "window": "party-day 2026-07-29",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 4,
+          "numerator_unit": "document families",
+          "denominator": 60,
+          "denominator_unit": "document families",
+          "share": 0.066667,
+          "window": "party-day 2026-07-29",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": [
+      {
+        "label": "letter to secretary of commerce",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 1
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "earlier this month",
+        "slug": "9afdadf953caad9e",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "H001047",
+          "statement": "sha256:47365d3a9f429d885814ba7220bc3ac708f24def56bd8591a52b0db03ab140f2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          2,
+          2,
+          4,
+          1,
+          2,
+          2,
+          4,
+          4,
+          3,
+          1,
+          6,
+          7
+        ]
+      },
+      {
+        "ngram": "text of the bill",
+        "slug": "8bd7df08e3dcea59",
+        "n": 4,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.2,
+        "first_seen": {
+          "date": "2025-01-05",
+          "bioguide": "C001069",
+          "statement": "sha256:d3b13fbafade11b18cd684ddba8d10d51e5f3cbc75e801e4b487649638daad92",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.971,
+        "series": [
+          1,
+          1,
+          5,
+          5,
+          7,
+          4,
+          2,
+          4,
+          15,
+          12,
+          7,
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "federal funding for",
+        "slug": "6ed8efa415776803",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001223",
+          "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          6,
+          5,
+          5,
+          3,
+          1,
+          1,
+          4,
+          1,
+          2,
+          1,
+          2,
+          1,
+          3,
+          6
+        ]
+      },
+      {
+        "ngram": "that’s why i’m",
+        "slug": "864cbb04ab1c5575",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.19,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.982,
+        "series": [
+          1,
+          1,
+          1,
+          4,
+          3,
+          2,
+          2,
+          3,
+          1,
+          6,
+          2,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "in ice detention",
+        "slug": "8d7ba81cb4072838",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.12,
+        "first_seen": {
+          "date": "2025-07-08",
+          "bioguide": "B001285",
+          "statement": "sha256:2ff86f173034eb70ddf396abe3b099dd87bacf79b4d027599f638efed435c884",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "will help ensure",
+        "slug": "3f80083bab9d0546",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000617",
+          "statement": "sha256:bc497b338a36f44b2282f8d199c2278a31c1a73686112dda8f944a84f26bbc21",
+          "tie": [
+            "L000593"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.987,
+        "series": [
+          1,
+          4,
+          4,
+          3,
+          3,
+          1,
+          1,
+          2,
+          5,
+          4,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "letter was signed",
+        "slug": "f9c916786b453fb1",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.41,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "K000400",
+          "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+          "tie": [
+            "L000397",
+            "R000620"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          3,
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          1,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.15,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.961,
+        "series": [
+          4,
+          3,
+          5,
+          6,
+          3,
+          2,
+          7,
+          11,
+          7,
+          5,
+          2,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "76 6 billion",
+        "slug": "4da559223f3c5030",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-06-02",
+          "bioguide": "W000800",
+          "statement": "sha256:56ee5a5bf38d2c64a4ab26d09d0f667427907cda7d8d8c264aecb5bc38bae86c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "inadequate medical care",
+        "slug": "54d548a333ab0339",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-05-01",
+          "bioguide": "D000563",
+          "statement": "sha256:b2c715f581bd636cdac76cd1dfa98910b5778f2d6f8bbb7415cefc5eeffe4cf6",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "refused to answer",
+        "slug": "c78a3a402ff3c4fe",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.38,
+        "first_seen": {
+          "date": "2025-01-21",
+          "bioguide": "K000384",
+          "statement": "sha256:0a456597b454e37552cc92cbc8c11aef035e0cabaefe5c88cfeac9eb3fa190d0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "in recent years",
+        "slug": "5d740866c5ff98f3",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "V000081",
+          "statement": "sha256:338bfc0f247fbc048c3ed21a149918fad124983ee03ab0881ebf997305318ab4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          2,
+          2,
+          3,
+          2,
+          1,
+          1,
+          4,
+          1,
+          2,
+          4,
+          4,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "to answer questions",
+        "slug": "266089199b65a62d",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-14",
+          "bioguide": "B001316",
+          "statement": "sha256:b22d0bdbc28c7c66471e6a44fe2f5287b1358c69ec4f116ba7e02cfacec74e58",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "the covid-19 pandemic",
+        "slug": "51f208a67ba915ee",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001068",
+          "statement": "sha256:2793f5940fedd661086595e1568ad56509d2bd0ed60e0a95bab344561923cd8d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "refused to answer questions",
+        "slug": "73059cc96398fa25",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-01-24",
+          "bioguide": "B001277",
+          "statement": "sha256:ea8b8d43bd993eb80364f975bc11bb28b16a9e7ba8a40bf2dddcf6525253a73c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "this sanctions bill",
+        "slug": "4f4ebc18651b0935",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-07-09",
+          "bioguide": "J000294",
+          "statement": "sha256:820ba526ddd11fd4cf35ff12677c4fc930fb3a873bf8915bd5c3266fabcfceef",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "government’s response to",
+        "slug": "95b2166ceaf46282",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.79,
+        "first_seen": {
+          "date": "2025-01-27",
+          "bioguide": "R000620",
+          "statement": "sha256:14a794b98a1cc48c5a0b1b4120f17ea49da8289c317d327b7d404060180314f8",
+          "tie": [
+            "J000305",
+            "W000830"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "i don’t know",
+        "slug": "72c222690657d971",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "B001261",
+          "statement": "sha256:6124b4759b5e6048475d421390314c744d612030c2614da67509988d609d1de3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          3,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "able to get",
+        "slug": "827218c1ffb79911",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000300",
+          "statement": "sha256:1f649f263d96fe0c5c218ab22aa93b715f31f40a8f080a34cd5b285a647ff57a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "our nation’s history",
+        "slug": "f218cb4c9dff4fd1",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.91,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000110",
+          "statement": "sha256:2f15ffd3267ba9e64f56368d169cceab04427d39be928d4a98622d7b30e5e4b0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          3,
+          2,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "12d903f280f7b5c89ed15ba24273b6e11d7a9cba3cd0d948f956ec2afea69f64",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "429fa3153bd3f2ae93bf90024bbced2aec9bff578d78eaea8e08220471706cb9",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }

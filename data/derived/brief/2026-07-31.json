@@ -12,33 +12,47 @@
     },
     {
       "name": "spend",
-      "value": 0.1321,
-      "projected": 0.1321,
+      "value": 0.1429,
+      "projected": 0.1429,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 16,
-      "note": "$0.1321 MTD, $0.13 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 17,
+      "note": "$0.1429 MTD, $0.14 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "value": null,
-      "status": "unknown",
-      "day": "2026-07-28",
+      "day": "2026-07-29",
+      "parties": {
+        "D": {
+          "statements": 85,
+          "median": 90,
+          "share": 0.944,
+          "status": "green"
+        },
+        "R": {
+          "statements": 61,
+          "median": 55,
+          "share": 1.109,
+          "status": "green"
+        }
+      },
+      "status": "green",
       "freshness": {
-        "age_hours": 13.09,
-        "day": "2026-07-30",
+        "age_hours": 3.76,
+        "day": "2026-07-31",
         "status": "green"
       },
-      "note": "newest symmetry report is 2026-07-28 (3d old) — cannot describe current coverage"
+      "excluded_reports": 0,
+      "note": "2026-07-29: D 85/90=94% R 61/55=111% of own 14d median (green >= 60%); upstream 3.8h (green < 36h)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.4545,
-      "dropped": 5,
-      "offered": 11,
+      "value": 0.4286,
+      "dropped": 6,
+      "offered": 14,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "5/11 claims dropped over 7d (green < 25%)"
+      "note": "6/14 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -51,20 +65,19 @@
     "streak",
     "verifier_drop"
   ],
-  "unknowns": [
-    "coverage"
-  ],
+  "unknowns": [],
   "degraded_days": [
     "2026-07-25",
     "2026-07-26",
     "2026-07-27",
-    "2026-07-28"
+    "2026-07-28",
+    "2026-07-29"
   ],
   "top_phrase": {
-    "ngram": "working families tax cuts",
-    "party": "R",
-    "day_peak": 9,
-    "day": "2026-07-24"
+    "ngram": "the trump administration’s",
+    "party": "D",
+    "day_peak": 10,
+    "day": "2026-07-30"
   },
   "shelf": {
     "dark": [
