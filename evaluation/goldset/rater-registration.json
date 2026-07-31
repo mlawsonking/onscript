@@ -1,12 +1,20 @@
 {
   "guide_file": "evaluation/ANNOTATION-GUIDE.md",
-  "guide_sha256": "2243cddef095cc30e5eb39fe1c7689cbe444e409593d1f4b020891b046e0daf2",
+  "guide_sha256": "bab2b3261eedadbb389f9f66f4ed109720c42d71b0bee9d64a58ea4bd6e48669",
   "method_version": "gold-set-model-rater-v1",
   "model": "claude-sonnet-5",
   "prompt_file": "pipeline/prompts/GS1_gold_rater.v1.0.txt",
   "prompt_id": "GS1",
   "prompt_version": "v1.0",
-  "rating_prompt_sha256": "1aa8447702f2b163103a3f23fc7447ebece81395189e1a6c2bbae885144a8246",
+  "rating_prompt_sha256": "ea52cd2571c821e6ae7c42cf9728d277085715886c1c925a9fc1f29cb073cbd6",
   "schema_version": 1,
+  "supersedes": {
+    "guide_sha256": "2243cddef095cc30e5eb39fe1c7689cbe444e409593d1f4b020891b046e0daf2",
+    "model": "claude-sonnet-5",
+    "prompt_id": "GS1",
+    "prompt_version": "v1.0",
+    "rating_prompt_sha256": "1aa8447702f2b163103a3f23fc7447ebece81395189e1a6c2bbae885144a8246",
+    "wrapper_sha256": "90e0661f52ad3f8c2943b0e07242ff6c6c03bba9fc7ef1ec11e767cf8b3402cc"
+  },
   "wrapper_sha256": "90e0661f52ad3f8c2943b0e07242ff6c6c03bba9fc7ef1ec11e767cf8b3402cc"
 }

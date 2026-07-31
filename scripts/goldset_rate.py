@@ -75,6 +75,22 @@ def _read_jsonl(path: Path) -> tuple[list, list[str]]:
 
 def _freeze() -> int:
     registration = goldset_rater.registration()
+    prior = {}
+    if goldset_rater.REGISTRATION_PATH.is_file():
+        prior = json.loads(goldset_rater.REGISTRATION_PATH.read_text(encoding="utf-8"))
+    # A re-freeze supersedes the instrument it replaces. Sheets already rated under the prior
+    # instrument stay attributable to it, so the succession is recorded rather than erased.
+    # Idempotent: re-freezing an unchanged instrument records nothing (docs/37 rule 6).
+    if prior.get("rating_prompt_sha256") \
+            and prior["rating_prompt_sha256"] != registration["rating_prompt_sha256"]:
+        registration["supersedes"] = {
+            key: prior.get(key) for key in
+            ("prompt_id", "prompt_version", "wrapper_sha256", "guide_sha256",
+             "rating_prompt_sha256", "model")
+        }
+        print(f"supersedes instrument {prior['rating_prompt_sha256'][:16]}", flush=True)
+    elif prior.get("supersedes"):
+        registration["supersedes"] = prior["supersedes"]
     _write_json(goldset_rater.REGISTRATION_PATH, registration)
     print(f"froze the rating instrument: {registration['rating_prompt_sha256']}", flush=True)
     print(f"wrote {goldset_rater.REGISTRATION_PATH}", flush=True)

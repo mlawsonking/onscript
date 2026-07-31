@@ -72,12 +72,52 @@ A phrase is a **message** only when all three of these hold. If any fails, it is
 - Read the class rules in order. Message is only reached after private, nomenclature,
   procedural, and biographical have been ruled out.
 
+The unit you are labeling is the candidate phrase. The sentence and its neighbors are there so
+you can tell what the phrase means, not so you can borrow their content. Section 3.1 is the
+single most common way this goes wrong, and it is worth reading before you label anything.
+
+### 3.1 The trap: letting the context supply the meaning
+
+Ask of every candidate: does this phrase carry a political position by itself, or does it
+become political only because of the words around it? If the meaning arrives from the sentence,
+the phrase is not a message.
+
+The test that settles it: cover the sentence and read only the candidate phrase. If a reader
+who saw nothing else could not tell what position is being taken, the phrase is not a message.
+
+Both phrases below come from the same sentence, and the sentence is plainly political.
+
+> "Republicans claim they are for working families, but it is Democrats who support an
+> increase in the minimum wage."
+
+- Phrase: `working families`. On its own this names a constituency a member is claiming to
+  stand for. It carries the position without help. Label: **message**.
+- Phrase: `claim they are for`. On its own this is scaffolding. It states no position, names
+  no subject, and could sit in a sentence about any topic at all. It reads as political only
+  because the rest of the sentence is. Label: **unknown**.
+
+A political sentence does not make its fragments political. Most candidate phrases in your
+packet are short windows cut out of longer sentences, so this case is common rather than rare.
+
+Two habits follow from it:
+
+- Do not reason from what the member was talking about. Reason from what the phrase says.
+- `unknown` is the safe default and you should expect to use it often. A pass that never
+  reaches for `unknown` has almost certainly been reading the sentences rather than the
+  phrases. If you are unsure between message and something thinner, the answer is unknown.
+
+The completeness question in task B is a necessary condition for message, not a separate
+opinion. Answer it first. If the phrase is not complete enough to carry meaning on its own, it
+is not a message, whatever the surrounding sentence is about.
+
 ### Worked examples for task A
 
-**Message.** Phrase: `after the supreme court`. Sentence: "Congressman Jason Crow (D-CO)
-released the following statement after the Supreme Court ruled to uphold the longstanding
-constitutionality of birthright citizenship." Office: D, House, CO. Date: 2026-06-30. This
-is a member framing a substantive response to a Supreme Court ruling. Label: message.
+**Message.** Phrase: `working families`. Sentence: "Republicans claim they are for working
+families, but it is Democrats who support an increase in the minimum wage." Office: D, House.
+The phrase names a constituency and carries the position without the sentence. Label: message.
+
+**Unknown (context supplied the meaning).** Phrase: `claim they are for`. Same sentence as
+above. Cover the sentence and the phrase states nothing. Label: unknown. See section 3.1.
 
 **Unknown (reference only).** Phrase: `the house of representatives`. Sentence: "Ciscomani
 led this bipartisan, bicameral legislative package in the House of Representatives." Office:
@@ -106,16 +146,19 @@ House, MI. Date: 2025-01-03. This is career history. Label: biographical.
 
 Record whether the candidate phrase is a complete enough unit to carry meaning on its own.
 
+Answer task B on every item, and answer it before you settle task A. It is a gate on the
+message class, not an optional extra: a phrase that fails task B cannot be a message.
+
 - Answer **yes** when the phrase is a coherent noun phrase, verb phrase, or clause that a
-  reader could understand as a unit. `working families` is complete. `after the supreme
-  court` is complete enough to place an event.
+  reader could understand as a unit. `working families` is complete.
 - Answer **no** when the phrase is a fragment that dangles: it ends on a preposition or
   conjunction that needs an object, or it starts mid-construction and only makes sense glued
   to neighboring words. `lower costs for` is incomplete, because it needs an object. `introduced
   legislation to` is incomplete, because the "to" needs a verb.
 
 Completeness is about the phrase as shown, not the sentence. A phrase can sit inside a fine
-sentence and still be an incomplete fragment on its own.
+sentence and still be an incomplete fragment on its own. This is the same reasoning as section
+3.1: the sentence is context, not content.
 
 ### Worked examples for task B
 
