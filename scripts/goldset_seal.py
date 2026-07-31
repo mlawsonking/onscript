@@ -9,6 +9,7 @@ Usage:
 
     C:\\ProgramData\\miniconda3\\python.exe scripts\\goldset_seal.py build
     C:\\ProgramData\\miniconda3\\python.exe scripts\\goldset_seal.py verify
+    C:\\ProgramData\\miniconda3\\python.exe scripts\\goldset_seal.py verify --as-of 36527f6
 """
 from __future__ import annotations
 
@@ -16,6 +17,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,12 +55,34 @@ def _write(path: Path, obj: dict) -> None:
     )
 
 
-def _day_artifacts() -> list[dict]:
-    days_dir = config.DERIVED / "days"
+def _day_artifacts(days_dir: Path | None = None) -> list[dict]:
+    days_dir = days_dir or (config.DERIVED / "days")
     return [
         json.loads(path.read_text(encoding="utf-8"))
         for path in sorted(days_dir.glob("*.json"))
     ]
+
+
+def _day_artifacts_as_of(ref: str) -> list[dict]:
+    """The day artifacts as they stood at a git ref, read from the object store.
+
+    The impact-oversampling set is built from the published day surfaces, and that tree grows
+    with every production data commit. Rebuilding the seal against the live tree therefore
+    reports a mismatch for a sample that never moved, which is the docs/37 rule 3 shape. This
+    reads the exact tree the seal was drawn from so the seal stays confirmable from the
+    committed corpus, as docs/35 section 3 requires.
+    """
+    listing = subprocess.run(
+        ["git", "ls-tree", "--name-only", ref, "data/derived/days/"],
+        cwd=ROOT, capture_output=True, text=True, check=True).stdout.split()
+    if not listing:
+        raise SystemExit(f"no data/derived/days tree at {ref}")
+    artifacts = []
+    for name in listing:
+        blob = subprocess.run(["git", "show", f"{ref}:{name}"],
+                              cwd=ROOT, capture_output=True, check=True).stdout
+        artifacts.append(json.loads(blob.decode("utf-8")))
+    return artifacts
 
 
 def public_phrase_set(day_artifacts: list[dict]) -> set[str]:
@@ -164,22 +188,42 @@ def build() -> int:
     return 0
 
 
-def verify() -> int:
-    """Rebuild from the committed corpus and confirm the seal hash matches the manifest."""
-    manifest = json.loads((OUT_DIR / "MANIFEST.json").read_text(encoding="utf-8"))
+def rebuild_seal(manifest: dict, day_artifacts: list[dict]) -> dict:
+    """Redraw the sample from the committed corpus under one impact-tagging input."""
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     universe = goldset_sample.build_universe(ledger, epoch=config.STAGE1_EPOCH)
-    goldset_sample.tag_impact(universe, public_phrases=public_phrase_set(_day_artifacts()))
-    rebuilt = goldset_sample.seal(
+    goldset_sample.tag_impact(universe, public_phrases=public_phrase_set(day_artifacts))
+    return goldset_sample.seal(
         universe, seed=manifest["seed"], pilot_size=PILOT_SIZE, full_size=FULL_SIZE,
         split_boundaries=manifest["split_boundaries"],
     )
+
+
+def verify(as_of: str | None = None) -> int:
+    """Rebuild from the committed corpus and confirm the seal hash matches the manifest.
+
+    ``--as-of REF`` pins the impact-tagging input to the day artifacts as they stood at REF,
+    which is what a reader needs to confirm a seal drawn before later days were published.
+    Without it the rebuild uses the live tree and drifts as production advances.
+    """
+    manifest = json.loads((OUT_DIR / "MANIFEST.json").read_text(encoding="utf-8"))
+    artifacts = _day_artifacts_as_of(as_of) if as_of else _day_artifacts()
+    rebuilt = rebuild_seal(manifest, artifacts)
     ok = rebuilt["seal_hash"] == manifest["seal_hash"]
     fingerprint_ok = rebuilt["universe_fingerprint"] == manifest["universe_fingerprint"]
+    source = f"day artifacts as of {as_of}" if as_of else "live day artifacts"
+    print(f"impact input: {source} ({len(artifacts)} day records)")
     print(f"seal_hash match: {ok}")
     print(f"universe_fingerprint match: {fingerprint_ok}")
     print(f"manifest seal: {manifest['seal_hash']}")
     print(f"rebuilt  seal: {rebuilt['seal_hash']}")
+    if not ok and fingerprint_ok and not as_of:
+        print("")
+        print("The candidate universe is unchanged and only the draw moved, which is the "
+              "signature of a moved impact-tagging input rather than a moved corpus. The "
+              "public-impact set is rebuilt from data/derived/days, and that tree grows with "
+              "every published day. Rerun with --as-of <sealing commit> to rebuild against "
+              "the tree the sample was drawn from before treating this as a broken seal.")
     return 0 if (ok and fingerprint_ok) else 1
 
 
@@ -187,11 +231,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("build")
-    sub.add_parser("verify")
+    verify_parser = sub.add_parser("verify")
+    verify_parser.add_argument(
+        "--as-of", default=None, metavar="REF",
+        help="pin the impact-tagging input to data/derived/days at this git ref")
     args = parser.parse_args()
     if args.command == "build":
         return build()
-    return verify()
+    return verify(args.as_of)
 
 
 if __name__ == "__main__":

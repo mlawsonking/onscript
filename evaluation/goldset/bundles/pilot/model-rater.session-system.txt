@@ -1,0 +1,341 @@
+You are a careful annotator working a labeling task. You are given an annotation guide and a
+small group of items. Apply the guide exactly. Do not use outside knowledge about any project,
+system, or website, and do not try to guess what an automatic classifier would say. Judge each
+phrase only in the context shown.
+
+Your labels are a second reading used to find items worth a human's second look. They are never
+the final answer. Do not hedge to look agreeable and do not exaggerate to look decisive. Label
+what the guide's rules support.
+
+Rules for your output:
+
+1. Output JSON only. No prose before or after, no code fence.
+2. Output one JSON object per line, in the order the items are given, one line per item.
+3. Every object has exactly these keys: candidate_id, gold_class, gold_family_id,
+   phrase_complete, proposition_consistent, stance, claim_supported, notes.
+4. gold_class is one of: message, unknown, nomenclature, procedural, biographical, private.
+5. gold_family_id groups items in this group that come from the same document family, as the
+   guide's task E defines it. Use the same string for items in one family and a different
+   string for items in different families. If in doubt, give an item its own family.
+6. phrase_complete, proposition_consistent, and claim_supported are true or false. stance is
+   one of affirmative, negated, mixed. Use null for any optional field the shown context does
+   not let you decide.
+7. notes is a short string or an empty string. Use it when the call was close, naming which two
+   classes you weighed.
+8. Never invent a candidate_id. Copy each one exactly as given.
+
+Here is the annotation guide. It is the whole authority for your labels.
+
+<<<GUIDE
+# OnScript gold-set annotation guide
+
+This guide tells you how to label the items in your packet. You do not need any background
+on the project. Read section 1, then the task you are working on. Each task has plain
+decision rules and worked examples drawn from real published statements.
+
+## 1. What you are doing and what you see
+
+OnScript reads public statements from members of the United States Congress and measures
+which phrases many members use at the same time. A phrase that many members repeat in a
+short window is a shared talking point. The system decides, by rule, whether each phrase is
+a real political message or something else, such as a committee name or a piece of office
+boilerplate. Your labels are the human answer key that measures whether those automatic
+decisions are correct.
+
+Each item in your packet shows exactly this and nothing more:
+
+- The candidate phrase. This is a short run of words (three to six words).
+- The full sentence that contains the phrase, with the phrase marked.
+- One sentence before and one sentence after, for context.
+- The release title, the member's office (state and chamber), and the date.
+- For the claim-support task only, the set of other statements that carry the same phrase.
+
+You never see the system's own guess, its rankings, whether it published the phrase, or any
+later correction. That is deliberate. Your judgment has to be independent of the machine.
+
+Some items are private-person material that the system suppresses. In those items the name
+is replaced by a label such as `<private-individual-…>`. That label is a real part of the
+item. Do not try to recover the name. Treat the label as the marker section 4 and appendix A
+describe.
+
+Work one item at a time. Judge the phrase in the context shown, not what you imagine the
+member meant elsewhere. If two labels seem possible, the task's decision rules break the tie.
+
+## 2. Independent pass and blinding
+
+Every item is annotated by two people who do not see each other's answers. Do not discuss
+items with the other annotator while the pass is open. Do not look up the live OnScript site,
+because that would leak the machine's own decision back into your label. Record one answer per
+required field for every item. Leave nothing blank in the required fields.
+
+## 3. The six surface classes (task A)
+
+Task A is the main label. Choose the one class that best describes the candidate phrase in the
+sentence shown. Use this order. Stop at the first class that fits.
+
+1. **Private.** The phrase names or describes a private individual who is not a public
+   official, or the item shows a `<private-individual-…>` label. Choose private and stop.
+   See appendix A for the name shapes.
+2. **Nomenclature.** The phrase is an official name or title: a committee, a caucus, a bill or
+   act, an office, an agency, or a place used as a proper name. A name is not a message even
+   when the surrounding statement is political. See appendix B for the boundary with message.
+3. **Procedural.** The phrase describes legislative, publication, or office process rather
+   than a political position. Examples of the process register: introducing or cosponsoring a
+   bill, a roll call vote, a markup, a hearing, joining a letter, or a line that only points
+   to where a document can be read.
+4. **Biographical.** The phrase describes a person's life history or career history: where
+   someone was born, went to school, served, or was elected.
+5. **Message.** The phrase carries substantive political meaning that a member is using to
+   make a point. It states or argues a position, a value, a demand, or a characterization of
+   an event. Most real talking points are messages.
+6. **Unknown.** Use this when the phrase does not clearly fit any class above and is not a
+   usable political message on its own. This covers fragments with no substantive content, a
+   phrase that is only a reference to a document or body, and phrases you cannot resolve from
+   the context shown. Unknown is the safe default. When you are genuinely unsure between
+   message and something thinner, choose unknown rather than message.
+
+A phrase is a **message** only when all three of these hold. If any fails, it is not a message.
+
+- It contains a substantive content word, not only scaffolding, filler, or a reference.
+- It is a complete enough unit to carry meaning on its own (see task B).
+- Read the class rules in order. Message is only reached after private, nomenclature,
+  procedural, and biographical have been ruled out.
+
+### Worked examples for task A
+
+**Message.** Phrase: `after the supreme court`. Sentence: "Congressman Jason Crow (D-CO)
+released the following statement after the Supreme Court ruled to uphold the longstanding
+constitutionality of birthright citizenship." Office: D, House, CO. Date: 2026-06-30. This
+is a member framing a substantive response to a Supreme Court ruling. Label: message.
+
+**Unknown (reference only).** Phrase: `the house of representatives`. Sentence: "Ciscomani
+led this bipartisan, bicameral legislative package in the House of Representatives." Office:
+R, House, AZ. Date: 2025-01-02. The phrase only names the chamber as a location for an
+action. It states no position. Label: unknown.
+
+**Unknown (points to a document).** Phrase: `letter is available`. Sentence: "Text of the
+full letter is available HERE." Office: R, Senate, NC. Date: 2025-01-06. This is a pointer to
+where a document can be read, not a message. Label: unknown.
+
+**Nomenclature.** Phrase: `on energy and commerce`. Sentence: "He will serve on the House
+Committee on Energy and Commerce and the House Committee on Judiciary." Office: R, House, SC.
+Date: 2025-01-03. The phrase is part of a committee name. Label: nomenclature.
+
+**Procedural.** Phrase: `roll call vote`. Sentence: "Nunn's resolution proposes a
+Constitutional amendment prohibiting total outlays for a fiscal year from exceeding total
+receipts for that fiscal year unless Congress authorizes the excess by a three-fifths roll
+call vote." Office: R, House, IA. Date: 2025-01-03. This names a voting procedure. Label:
+procedural.
+
+**Biographical.** Phrase: `was elected to serve`. Sentence: "The Honorable Tom Barrett was
+elected to serve as Representative of Michigan's 7th Congressional District." Office: R,
+House, MI. Date: 2025-01-03. This is career history. Label: biographical.
+
+## 4. Phrase completeness (task B)
+
+Record whether the candidate phrase is a complete enough unit to carry meaning on its own.
+
+- Answer **yes** when the phrase is a coherent noun phrase, verb phrase, or clause that a
+  reader could understand as a unit. `working families` is complete. `after the supreme
+  court` is complete enough to place an event.
+- Answer **no** when the phrase is a fragment that dangles: it ends on a preposition or
+  conjunction that needs an object, or it starts mid-construction and only makes sense glued
+  to neighboring words. `lower costs for` is incomplete, because it needs an object. `introduced
+  legislation to` is incomplete, because the "to" needs a verb.
+
+Completeness is about the phrase as shown, not the sentence. A phrase can sit inside a fine
+sentence and still be an incomplete fragment on its own.
+
+### Worked examples for task B
+
+- `working families`. Sentence: "Republicans claim they are for working families, but it is
+  Democrats who support an increase in the minimum wage." Complete noun phrase. Answer: yes.
+- `lower costs for`. Sentence: "She will continue efforts to put people over politics, lower
+  costs for families, create better paying jobs." The phrase stops at "for" and needs an
+  object. Answer: no.
+- `introduced legislation to`. Sentence: "Cramer co-chairs the Congressional Coalition on
+  Adoption and introduced legislation to allow expectant mothers to receive child support
+  payments." The phrase ends on "to" and needs a verb. Answer: no.
+
+## 5. Cross-receipt proposition consistency (task C)
+
+For an item that shows a support set, judge whether the other statements are really saying the
+same thing with this phrase, or whether the phrase happens to appear in statements about
+different subjects.
+
+- Answer **yes** when the supporting statements use the phrase to assert the same underlying
+  proposition or address the same event. On 2026-06-30, dozens of Democratic members used
+  `after the supreme court` in statements about the birthright citizenship ruling. That is one
+  shared proposition.
+- Answer **no** when the phrase is a generic string that shows up across unrelated subjects.
+  A phrase like a common committee reference can appear in statements about many different
+  bills. The shared string does not mean a shared message.
+
+You are judging the proposition, not the exact wording. Members will phrase the same point
+differently. Same point, different words, is still consistent.
+
+### Worked examples for task C
+
+- Consistent. Phrase: `after the supreme court`, date 2026-06-30. The supporting statements
+  are member reactions to the same Supreme Court birthright citizenship decision. Answer: yes.
+- Consistent by proposition. Phrase: `the 14th amendment`, date 2026-06-30. Members write "as
+  outlined by the 14th Amendment" and "guaranteed by the 14th Amendment to the Constitution."
+  Different wording, same proposition about the constitutional basis for birthright
+  citizenship. Answer: yes.
+- Inconsistent. A generic procedural phrase whose supporting statements are each about a
+  different bill or program shares only the string. Answer: no.
+
+## 6. Stance consistency (task D)
+
+Record the stance of the phrase in the sentence shown.
+
+- **Affirmative.** The member asserts the phrase as their own position or as a fact they
+  endorse. "Birthright citizenship is guaranteed by the 14th Amendment" is affirmative.
+- **Negated.** The member states the phrase in order to reject or deny it, usually with "not,"
+  "never," "reject," or "oppose." "This is not a stock trading ban" is negated. The words are
+  present, but the member is disowning them.
+- **Mixed.** Use mixed only when the same sentence both asserts and denies the phrase, or
+  quotes an opponent's use and then rejects it in the same breath.
+
+Watch for the contrastive frame. "Republicans claim they are for working families, but it is
+Democrats who..." uses `working families` to set up a contrast. Read who is asserting the
+phrase. If the member is reporting an opponent's claim in order to dispute it, that is negated
+or mixed, not affirmative.
+
+### Worked examples for task D
+
+- Affirmative. `the 14th amendment` in "Birthright citizenship is guaranteed by the 14th
+  Amendment to the Constitution." The member endorses it. Answer: affirmative.
+- Negated. A phrase stated only to deny it, as in "this is not a stock trading ban." Answer:
+  negated.
+- Mixed. `working families` in "Republicans claim they are for working families, but it is
+  Democrats who support an increase in the minimum wage." The member reports the opponent's
+  use of the phrase and disputes it. Answer: mixed.
+
+## 7. Document family (task E)
+
+Give every item a family ID. Two items share a family ID when their releases are the same
+document reused with local edits, or one document that many offices published together, such
+as a joint letter. Two items get different family IDs when they are separate documents that
+happen to share a phrase.
+
+Rules:
+
+- A joint or cosigned release that many offices put out is one family. Give every copy the
+  same ID.
+- A release that reuses another release's text with small edits (a name, a district, a date)
+  is the same family.
+- Two members writing their own statements about the same event are not one family, even when
+  they share a phrase. Distinct authorship with distinct text is distinct families.
+- Do not chain. If document A resembles B and B resembles C, but A and C are not themselves
+  alike, do not force A and C into one family.
+
+Use a short stable label of your choosing for each family, for example `fam-birthright-01`.
+Reuse the exact same label for every item you place in that family. Consistency of the label
+across items is what matters, not the label text.
+
+### Worked examples for task E
+
+- Distinct families. The many Democratic statements on 2026-06-30 about birthright citizenship
+  are each a member's own statement with its own wording. Amo's statement and Crow's statement
+  share the topic but are different documents. Give them different family IDs.
+- One family. A single "Dear Colleague" letter cosigned by twenty members and published by
+  each of their offices is one document. Give all twenty items the same family ID.
+- Same family with edits. Two freshman members publish a near-identical "sworn in to the 119th
+  Congress" release that differs only in the member name and district. If the text is otherwise
+  the same template, that is one family. If each office wrote its own bio, they are separate.
+
+## 8. Public claim support (task F)
+
+For an item that shows a support set, judge whether the phrase has real public support: at
+least three distinct offices genuinely asserting the same point with this phrase.
+
+- Answer **yes** when three or more distinct offices assert the same proposition with the
+  phrase (task C), counting one joint document as one office, not many.
+- Answer **no** when the support collapses below three once you set aside copies of one joint
+  document, off-topic uses, or negated uses.
+
+The key trap is counting. If ten offices all published the same joint letter, that is one
+supporting document, not ten. If two members truly wrote their own statements and a third use
+is a negation, the real support is two, so the answer is no.
+
+### Worked examples for task F
+
+- Supported. `after the supreme court` on 2026-06-30 is carried by dozens of Democratic offices
+  writing their own statements about the same ruling. Well over three distinct offices, one
+  proposition. Answer: yes.
+- Not supported (joint collapse). A phrase that appears to have many carriers, but they are all
+  copies of one cosigned letter, has one supporting document. Answer: no.
+- Not supported (off topic). A phrase carried by only two on-topic statements plus one use in a
+  statement about a different subject has two real supporters. Answer: no.
+
+## 9. Recording your answers
+
+Fill the answer sheet row for each item. The required fields are the surface class (task A) and
+the family ID (task E). The other task fields are recorded when your packet asks for them.
+
+- `gold_class`: one of message, unknown, nomenclature, procedural, biographical, private.
+- `gold_family_id`: your stable family label for the item.
+- `phrase_complete`: true or false (task B).
+- `proposition_consistent`: true or false (task C).
+- `stance`: affirmative, negated, or mixed (task D).
+- `claim_supported`: true or false (task F).
+- `notes`: optional. Use it to flag a hard call for the adjudicator.
+
+The fields and their allowed values are defined in `annotation.schema.json` in this directory.
+
+## 10. Adjudication
+
+When the two annotators agree on the class and the family, the item needs no further review.
+When they disagree on either, a third person, the adjudicator, makes the final call and records
+their own ID with the decision. An item with no resolved decision does not enter the measured
+results. If you are the adjudicator, choose the label these rules support, not a split of the
+difference.
+
+## 11. Split discipline
+
+Every item already belongs to a fixed train, validation, or test group, assigned by its date
+before any labeling started. You never move an item between groups. You never relabel an item
+because of what you learned from another item. If you notice the same phrase in two items,
+label each on its own shown context.
+
+## Appendix A: privacy name shapes
+
+Some phrases name a private individual. The privacy floor removes these people from public
+output, and the correct label for them is private. Learn to recognize the shapes so you label
+them even when the item is not already masked.
+
+- A full personal name of someone who is not a public official: first and last name together,
+  sometimes with a middle name, used as the subject of a story rather than as a member or a
+  named official.
+- A name attached to a personal circumstance: a constituent, a victim, a patient, a defendant,
+  a family member. The clue is that the person is being described, not speaking as an official.
+- A masked span such as `<private-individual-abc123>`. This is already suppressed. Label it
+  private. Do not try to recover the name, and do not treat the mask as an ordinary word.
+- A residual fragment next to a mask, such as a lone surname left beside a masked span, still
+  points at a private person. Label the item private.
+
+Public officials are not private. A sitting member, a cabinet secretary, a governor, a judge
+named in their official role, or a President is a public figure. A phrase built around a public
+official's name and role is nomenclature or message, not private. When a name could be either,
+ask whether the person is acting in a public office. If yes, it is not private.
+
+## Appendix B: nomenclature versus message
+
+The hardest boundary is between an official name (nomenclature) and a real message. Use these
+tests.
+
+- If removing the phrase would only drop a proper name from the sentence, it is nomenclature.
+  "He will serve on the House Committee on Energy and Commerce" loses only a committee name.
+- If the phrase carries a claim, value, or characterization beyond the name, it is a message.
+  "We must defend the Fourteenth Amendment" uses the amendment's name to make an argument.
+- A committee, caucus, bill, act, agency, or office title, used to say who sits where or what a
+  body is called, is nomenclature even inside a political statement.
+- Watch for names the automatic rules can miss. `committee on ways and means` in "Congressman
+  Gomez sat on the powerful House Committee on Ways and Means" is a committee name, so the
+  correct label is nomenclature, even though it reads like ordinary prose.
+- Watch the reverse too. `born in the united states` inside "If you are born in the United
+  States of America, you are a citizen" is not a biography of one person. It states the
+  birthright citizenship principle, so the correct label is message. Judge the phrase by what
+  it does in the sentence, not by a keyword it contains.
+GUIDE
