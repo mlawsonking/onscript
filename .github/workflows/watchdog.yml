@@ -68,11 +68,24 @@ jobs:
       # Sends the page itself and exits 0 when it finds an alarm: the probe worked. Letting it exit
       # non-zero would trip the dead-man below and page twice for one incident. The job goes red
       # only when the watchdog itself breaks.
-      - name: Probe — run history and advancing data
+      #
+      # --probe-domain / --probe-rdap (Session 63): the public-edge checks. Domain health fetches
+      # the site over the public domain and requires the built-site marker, because a registrar
+      # parking page answers HTTP 200 too; on 2026-07-29 the registrar swapped the nameservers to
+      # failed-whois-verification.namecheap.com and every layer here stayed green. The RDAP check
+      # reads hold/deletion statuses and time-to-expiry (<30d pages). Both probes retry and
+      # skip-and-log transient network trouble, so a flaky egress cannot page falsely; only a
+      # state that survives every attempt alarms. Read-only GETs, still $0.
+      #
+      # ACTIVATION: a scheduled workflow executes the default branch's copy of this file and of
+      # pipeline/watchdog.py, so these probes, and any future watchdog change, go live the moment
+      # the commit lands on the default branch. That push is the release act (docs/37 rule 14).
+      - name: "Probe: run history, advancing data, and the public edge"
         run: |
           python -m pipeline.watchdog \
             --collect-runs "${RUNNER_TEMP}/collect-runs.json" \
-            --assemble-runs "${RUNNER_TEMP}/assemble-runs.json"
+            --assemble-runs "${RUNNER_TEMP}/assemble-runs.json" \
+            --probe-domain --probe-rdap
 
       # Vikunja #203. The blind spot this closes: every layer above lives inside GitHub Actions,
       # so nothing here can report GitHub Actions itself being down, or this schedule silently

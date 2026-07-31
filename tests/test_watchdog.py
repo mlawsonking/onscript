@@ -270,3 +270,211 @@ def test_the_workflow_file_wires_the_probe_and_is_not_in_the_pipeline_lane():
     assert "schedule:" in wf and "if: failure()" in wf
     # Keyed by file path, because the display names are prose and can be rewritten.
     assert "workflows/${wf}.yml/runs" in wf
+    # Session 63: the scheduled tick runs the edge probes. Without these flags the code exists
+    # and the domain goes unwatched, which is exactly the 2026-07-29 shape.
+    assert "--probe-domain" in wf and "--probe-rdap" in wf
+
+
+# ---------------------------------------------------------------------------
+# Edge probes: domain health and registrar state (Session 63)
+#
+# The anchor incident: on 2026-07-29 the registrar suspended onscript.news over registrant-email
+# verification and swapped its nameservers to failed-whois-verification.namecheap.com. Every run
+# was green, every manifest advanced, and nothing paged, because the domain sits downstream of
+# everything the older signal classes observe. All fixtures below are offline summaries in the
+# exact shape fetch_domain/fetch_rdap produce; no test touches the network.
+# ---------------------------------------------------------------------------
+NOW_EDGE = datetime(2026, 7, 31, 4, 30, tzinfo=timezone.utc)
+
+# The real RDAP record for onscript.news, captured live via rdap.org (302 to Identity Digital) on
+# 2026-07-31, minutes after the suspension's resolution ("last changed" 2026-07-29 is the
+# registrar restoring the domain). Production-shaped per docs/37 rule 2: this is the healthy state
+# the probe must stay silent on, exactly as the registry serves it.
+RDAP_REAL = {
+    "ldhName": "onscript.news",
+    "status": ["client transfer prohibited"],
+    "events": [
+        {"eventAction": "expiration", "eventDate": "2027-07-14T03:09:37.624Z"},
+        {"eventAction": "registration", "eventDate": "2026-07-14T03:09:37.624Z"},
+        {"eventAction": "last changed", "eventDate": "2026-07-29T14:16:49.042Z"},
+    ],
+}
+
+
+def _domain_outcome(cls, attempts=None, **kw):
+    out = {"class": cls, **kw}
+    out["attempt_classes"] = attempts if attempts is not None else [cls] * 3
+    return out
+
+
+def _rdap_record(**overrides):
+    rec = json.loads(json.dumps(RDAP_REAL))
+    rec.update(overrides)
+    return {"class": "record", "record": rec}
+
+
+def _levels(findings):
+    return [f["level"] for f in findings]
+
+
+def test_the_2026_07_29_parking_page_pages():
+    """THE ANCHOR. A parking page answers HTTP 200, so the alarm must key on the marker, not the
+    status. This is the state the domain was in while every other signal class read green."""
+    r = watchdog.check_domain(_domain_outcome(
+        "no_marker", status=200, final_url="https://onscript.news/",
+        resolved=["198.51.100.7"]))  # placeholder IP: the incident's parking address went unrecorded
+    assert _levels(r) == ["alarm"]
+    assert "marker" in r[0]["detail"].lower()
+    assert r[0]["evidence"]["status"] == 200, "the alarm must show that 200 alone lied"
+
+
+def test_a_healthy_domain_stays_silent():
+    """Real values observed 2026-07-31: apex 301s to www, Vercel edge answers with the marker."""
+    r = watchdog.check_domain(_domain_outcome(
+        "ok", attempts=["ok"], status=200, final_url="https://www.onscript.news/"))
+    assert _levels(r) == ["ok"]
+
+
+def test_a_name_that_stops_resolving_pages():
+    """serverHold pulls the delegation; from outside it is a name that no longer resolves. Every
+    attempt agreed, so this is a confirmed state, not a blip."""
+    r = watchdog.check_domain(_domain_outcome("dns_failure", error="[Errno 11001] getaddrinfo failed"))
+    assert _levels(r) == ["alarm"]
+    assert "resolve" in r[0]["detail"]
+
+
+def test_a_consistent_connect_failure_pages_naming_the_state():
+    r = watchdog.check_domain(_domain_outcome(
+        "unreachable", error="timed out", resolved=["216.198.79.1"]))
+    assert _levels(r) == ["alarm"]
+    assert r[0]["evidence"]["resolved"] == ["216.198.79.1"], \
+        "the alarm names the resolved state so the page is diagnosable from a phone"
+
+
+def test_an_http_error_pages():
+    """Something answered and it is not the site. A served status is a state, not noise."""
+    r = watchdog.check_domain(_domain_outcome("http_error", status=503,
+                                              final_url="https://onscript.news/"))
+    assert _levels(r) == ["alarm"]
+
+
+def test_mixed_failure_classes_skip_and_log_never_page():
+    """A flaky egress path produces a different error each attempt; a real outage fails every
+    attempt identically. Only the confirmed shape may page (skip-and-log, like source outages)."""
+    r = watchdog.check_domain(_domain_outcome(
+        "unreachable", attempts=["dns_failure", "unreachable", "unreachable"], error="timed out"))
+    assert _levels(r) == ["note"], "inconsistent failures are transient, not a confirmed state"
+
+
+def test_a_domain_probe_that_did_not_run_is_a_note_never_ok():
+    assert _levels(watchdog.check_domain(None)) == ["note"]
+
+
+def test_the_real_rdap_record_stays_silent():
+    """The registry's actual answer for the healthy domain: one OK finding, no alarm. 348 days to
+    expiry at the pinned instant; `client transfer prohibited` is the normal locked state and must
+    never match the hold tokens."""
+    r = watchdog.check_rdap(_rdap_record(), NOW_EDGE)
+    assert _levels(r) == ["ok"], f"unexpected findings: {r}"
+    assert r[0]["evidence"]["days_left"] > 300
+
+
+def test_a_registrar_hold_pages_in_both_rdap_spellings():
+    """The 2026-07-29 suspension class. RFC 8056 writes `client hold`; some servers emit
+    `clientHold`. Both must page, or the probe is blind to half the registries."""
+    for spelling in ("client hold", "clientHold", "server hold", "serverHold"):
+        r = watchdog.check_rdap(_rdap_record(status=[spelling, "client transfer prohibited"]),
+                                NOW_EDGE)
+        alarms = [f for f in r if f["level"] == "alarm"]
+        assert [f["check"] for f in alarms] == ["registrar_status"], f"{spelling!r} must page"
+        assert spelling in alarms[0]["detail"]
+
+
+def test_expiry_inside_30_days_pages():
+    rec = _rdap_record()
+    rec["record"]["events"][0]["eventDate"] = "2026-08-20T03:09:37.624Z"  # 19.9d from NOW_EDGE
+    r = watchdog.check_rdap(rec, NOW_EDGE)
+    alarms = [f for f in r if f["level"] == "alarm"]
+    assert [f["check"] for f in alarms] == ["registrar_expiry"]
+    assert alarms[0]["evidence"]["days_left"] == 19.9
+
+
+def test_an_rdap_record_with_no_expiration_event_pages_rather_than_reads_as_health():
+    """Same rule as the unreadable run timestamp: a served record the probe cannot judge is an
+    alarm, not a pass."""
+    rec = _rdap_record(events=[{"eventAction": "registration",
+                                "eventDate": "2026-07-14T03:09:37.624Z"}])
+    r = watchdog.check_rdap(rec, NOW_EDGE)
+    assert [f["check"] for f in r if f["level"] == "alarm"] == ["registrar_expiry"]
+
+
+def test_rdap_404_pages():
+    """404 is a definitive registry answer, not a network failure: the domain does not exist."""
+    r = watchdog.check_rdap({"class": "not_found", "status": 404}, NOW_EDGE)
+    assert _levels(r) == ["alarm"]
+
+
+def test_rdap_network_trouble_skips_and_logs_never_pages():
+    """rdap.org throttles by IP and was observed answering in >20s on 2026-07-31. A throttled
+    probe is not a broken domain; only a served bad state may page."""
+    r = watchdog.check_rdap({"class": "network_error", "error": "HTTP 429"}, NOW_EDGE)
+    assert _levels(r) == ["note"]
+
+
+def test_the_marker_matches_the_live_site_template():
+    """docs/37 rule 1: the marker constant is a registry entry whose owner is pipeline/site.py's
+    single head template. If the template drops or rewords the tag, this fails, because otherwise
+    the first render after that change would page as a parking page (or worse, the probe would be
+    silently blind if the marker were also updated nowhere)."""
+    src = (Path(__file__).resolve().parent.parent / "pipeline" / "site.py").read_text(encoding="utf-8")
+    assert watchdog.SITE_MARKER in src
+
+
+def test_the_marker_is_in_the_committed_site():
+    """docs/37 rule 2: production-shaped proof against the real committed artifact. The page the
+    live domain actually serves must contain the exact bytes the probe requires."""
+    idx = (Path(__file__).resolve().parent.parent / "site" / "public" / "index.html"
+           ).read_text(encoding="utf-8")
+    assert watchdog.SITE_MARKER in idx
+
+
+def test_edge_probes_stay_offline_unless_flagged():
+    """Local runs and the suite are $0 and networkless by contract (the module docstring's own
+    claim). Without the flags, the fetchers must never be called."""
+    tmp = _tmp("cli_offline")
+    _derived(tmp)
+    calls = []
+    saved = watchdog.fetch_domain, watchdog.fetch_rdap
+    watchdog.fetch_domain = lambda *a, **k: calls.append("domain")
+    watchdog.fetch_rdap = lambda *a, **k: calls.append("rdap")
+    try:
+        rc = watchdog.main(["--derived", str(tmp), "--now", INCIDENT_NOW.isoformat(),
+                            "--product-day", INCIDENT_PRODUCT_DAY, "--no-notify"])
+    finally:
+        watchdog.fetch_domain, watchdog.fetch_rdap = saved
+    assert rc == 0 and calls == []
+
+
+def test_flagged_edge_probes_feed_the_verdict_and_page_once():
+    """The full 2026-07-29 shape end to end: parking page plus registrar hold, healthy manifests,
+    one page, exit 0 (the probe worked; a second page would violate one-alert-per-failure-mode)."""
+    tmp = _tmp("cli_edge")
+    # Manifests fresh at NOW_EDGE, so the ONLY alarms are the edge probes': the assertion below on
+    # the page body must not be diluted by an unrelated staleness alarm.
+    _derived(tmp, collect_at="2026-07-31T03:39:43Z", final_day="2026-07-29")
+    saved_fetch = watchdog.fetch_domain, watchdog.fetch_rdap
+    watchdog.fetch_domain = lambda *a, **k: _domain_outcome(
+        "no_marker", status=200, final_url="https://onscript.news/", resolved=["198.51.100.7"])
+    watchdog.fetch_rdap = lambda *a, **k: _rdap_record(status=["client hold"])
+    sent = []
+    saved_ntfy = ops.ntfy
+    ops.ntfy = lambda title, message, **kw: sent.append((title, message)) or {"sent": True}
+    try:
+        rc = watchdog.main(["--derived", str(tmp), "--now", NOW_EDGE.isoformat(),
+                            "--product-day", "2026-07-30", "--probe-domain", "--probe-rdap"])
+    finally:
+        watchdog.fetch_domain, watchdog.fetch_rdap = saved_fetch
+        ops.ntfy = saved_ntfy
+    assert rc == 0, "a detected alarm is a successful probe"
+    assert len(sent) == 1, f"one page per incident, got {len(sent)}"
+    assert "marker" in sent[0][1] and "client hold" in sent[0][1]
