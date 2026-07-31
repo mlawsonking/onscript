@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-07-31",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-07-30",
+      "note": "no publish for 2026-07-30 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.1321,
+      "projected": 0.1321,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 16,
+      "note": "$0.1321 MTD, $0.13 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "value": null,
+      "status": "unknown",
+      "day": "2026-07-28",
+      "freshness": {
+        "age_hours": 13.09,
+        "day": "2026-07-30",
+        "status": "green"
+      },
+      "note": "newest symmetry report is 2026-07-28 (3d old) — cannot describe current coverage"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.4545,
+      "dropped": 5,
+      "offered": 11,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "5/11 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [
+    "coverage"
+  ],
+  "degraded_days": [
+    "2026-07-25",
+    "2026-07-26",
+    "2026-07-27",
+    "2026-07-28"
+  ],
+  "top_phrase": {
+    "ngram": "working families tax cuts",
+    "party": "R",
+    "day_peak": 9,
+    "day": "2026-07-24"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}

@@ -1,0 +1,2905 @@
+{
+  "day": "2026-07-28",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-07-28",
+      "party": "D",
+      "composite": "Today 90 of us released statements. 5 offices across 5 publications and 5 families carried \"Director of National Intelligence\". 3 offices across 3 publications and 3 families carried \"American troops from the official\". Our most synchronized phrase, used by 6 of us: earlier this month.",
+      "measurement_lead": "Measurement: 90 publications were observed for the Democratic party on 2026-07-28.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-07-28",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "36cea45af3908bfe404c8b55e129b7bed8838dc964a7363e1f59dfa01b4e5821",
+        "claim_ids": [
+          "2026-07-28-D-00",
+          "2026-07-28-D-01"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 90 of us released statements. 5 offices across 5 publications and 5 families carried \"Director of National Intelligence\". 3 offices across 3 publications and 3 families carried \"American troops from the official\". Our most synchronized phrase, used by 6 of us: earlier this month.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-07-28-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-07-28-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "b5de7bc54d59090496cca12831abb9852398b2d3bfb29c7680a2eb9ee9721fd0",
+        "response_sha256": "f5cd1a9157224353184d6784a8dda7495dd0e58339c2e299abc05894b1952e1b",
+        "model_response_sha256": "628a12810e9a4c19a43c351e2f442b4162af6dd877f8223016c6b7571c9cfbb6"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-07-28-D-00"
+          ],
+          "claim_ids": [
+            "2026-07-28-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-07-28-D-01"
+          ],
+          "claim_ids": [
+            "2026-07-28-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-07-28-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-07-28-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-07-28",
+        "statements": 90,
+        "talking_points": [
+          {
+            "label": "director of national intelligence",
+            "members": 5,
+            "quote": "Director of National Intelligence",
+            "topics": [
+              "other",
+              "courts",
+              "housing"
+            ],
+            "claim_id": "2026-07-28-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "courts",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "housing",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "american troops from the official",
+            "members": 3,
+            "quote": "American troops from the official",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-07-28-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "earlier this month",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "James A. Himes",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CT"
+        },
+        "selected_claims": [
+          {
+            "label": "director of national intelligence",
+            "members": 5,
+            "quote": "Director of National Intelligence",
+            "topics": [
+              "other",
+              "courts",
+              "housing"
+            ],
+            "claim_id": "2026-07-28-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "courts",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "housing",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "american troops from the official",
+            "members": 3,
+            "quote": "American troops from the official",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-07-28-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-07-28-D-00",
+          "2026-07-28-D-01"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 3331,
+        "tokens_out": 112,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-07-28",
+      "party": "R",
+      "composite": "Today 36 of us released statements. No phrase was shared by 3 or more of us today.",
+      "measurement_lead": "Measurement: 36 publications were observed for the Republican party on 2026-07-28.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-07-28",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "1f437ed40f749eb64ad65a2f4a4943f6fa5ff5e80e7577a9e958e402c5207efb",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Today 36 of us released statements. No phrase was shared by 3 or more of us today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "c1b0b898672e4c2c643ad8d6deabdfcc57e2ff803eec663e7dc74ab26f217603",
+        "response_sha256": "db02ade06cf28183b65267000f23c3e045822293a94141d7ba1c8855ed983dea",
+        "model_response_sha256": null
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-07-28",
+        "statements": 36,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-07-28-D-00",
+        "party": "D",
+        "day": "2026-07-28",
+        "label": "director of national intelligence",
+        "member_count": 5,
+        "statements": [
+          "sha256:09a8e76365f657e29e985089ee71306181f8d97b2a15ceddf88bb70b4be4a999",
+          "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151",
+          "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17",
+          "sha256:b7785251d9269d0fc6794841f99e2e6bb9927035bcef4fc171b0222c81825bfb",
+          "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8"
+        ],
+        "fragments": [
+          {
+            "text": "clayton's nomination to serve as director of national intelligence",
+            "statement": "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8"
+          },
+          {
+            "text": "illegally appointed acting director of national intelligence has",
+            "statement": "sha256:b7785251d9269d0fc6794841f99e2e6bb9927035bcef4fc171b0222c81825bfb"
+          },
+          {
+            "text": "clayton to serve as director of national intelligence",
+            "statement": "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151"
+          },
+          {
+            "text": "nominee to serve as director of national intelligence",
+            "statement": "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17"
+          },
+          {
+            "text": "nominee to serve as director of national intelligence",
+            "statement": "sha256:09a8e76365f657e29e985089ee71306181f8d97b2a15ceddf88bb70b4be4a999"
+          }
+        ],
+        "topics": [
+          "other",
+          "courts",
+          "housing"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-07-28-D-00",
+        "support_phrase": {
+          "normalized": "director of national intelligence",
+          "text": "Director of National Intelligence",
+          "occurrence_id": "occ:a980c2b5cdd4857985f62dab"
+        },
+        "display_quote": "Director of National Intelligence",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a980c2b5cdd4857985f62dab",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:09a8e76365f657e29e985089ee71306181f8d97b2a15ceddf88bb70b4be4a999",
+            "publication_id": "sha256:09a8e76365f657e29e985089ee71306181f8d97b2a15ceddf88bb70b4be4a999",
+            "office_id": "W000800",
+            "family_id": "dfam:b03547fc9e7e3343943c8735",
+            "family_revision": "dfrev:71f69bcf13e7b70f2804a950",
+            "support_unit_id": "W000800",
+            "party": "D",
+            "start_char": 716,
+            "end_char": 749,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 607,
+            "sentence_end_char": 749,
+            "sentence_offset_start": 109,
+            "sentence_offset_end": 142,
+            "clause_start_char": 674,
+            "clause_end_char": 779,
+            "clause_offset_start": 42,
+            "clause_offset_end": 75,
+            "adjacent_tokens_before": [
+              "the",
+              "nominee",
+              "to",
+              "serve",
+              "as"
+            ],
+            "adjacent_tokens_after": [
+              "clayton",
+              "issued",
+              "the",
+              "subpoenas",
+              "including"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:120d7393716d19ed9cda52dd",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151",
+            "publication_id": "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151",
+            "office_id": "P000145",
+            "family_id": "dfam:29a6b56b2a35a5b45f7c564a",
+            "family_revision": "dfrev:770c67fca8b9993eaa8663e6",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 159,
+            "end_char": 192,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 62,
+            "sentence_end_char": 192,
+            "sentence_offset_start": 97,
+            "sentence_offset_end": 130,
+            "clause_start_char": 25,
+            "clause_end_char": 532,
+            "clause_offset_start": 134,
+            "clause_offset_end": 167,
+            "adjacent_tokens_before": [
+              "jay",
+              "clayton",
+              "to",
+              "serve",
+              "as"
+            ],
+            "adjacent_tokens_after": [
+              "acting",
+              "director",
+              "of",
+              "national",
+              "intelligence"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d8383e7d7e78d6d098cbd0a2",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151",
+            "publication_id": "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151",
+            "office_id": "P000145",
+            "family_id": "dfam:29a6b56b2a35a5b45f7c564a",
+            "family_revision": "dfrev:770c67fca8b9993eaa8663e6",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 203,
+            "end_char": 236,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 193,
+            "sentence_end_char": 426,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 43,
+            "clause_start_char": 25,
+            "clause_end_char": 532,
+            "clause_offset_start": 178,
+            "clause_offset_end": 211,
+            "adjacent_tokens_before": [
+              "director",
+              "of",
+              "national",
+              "intelligence",
+              "acting"
+            ],
+            "adjacent_tokens_after": [
+              "bill",
+              "pulte",
+              "and",
+              "former",
+              "director"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:01e7d315fe10108832e8fa05",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17",
+            "publication_id": "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17",
+            "office_id": "S001150",
+            "family_id": "dfam:4ec10a796546d6398bea17c7",
+            "family_revision": "dfrev:5697d2a7ea9f7b90bfe795dd",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 779,
+            "end_char": 812,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 670,
+            "sentence_end_char": 812,
+            "sentence_offset_start": 109,
+            "sentence_offset_end": 142,
+            "clause_start_char": 737,
+            "clause_end_char": 843,
+            "clause_offset_start": 42,
+            "clause_offset_end": 75,
+            "adjacent_tokens_before": [
+              "the",
+              "nominee",
+              "to",
+              "serve",
+              "as"
+            ],
+            "adjacent_tokens_after": [
+              "clayton",
+              "issued",
+              "the",
+              "subpoenas",
+              "including"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:fac077f248dd5a9ad20e36ef",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17",
+            "publication_id": "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17",
+            "office_id": "S001150",
+            "family_id": "dfam:4ec10a796546d6398bea17c7",
+            "family_revision": "dfrev:5697d2a7ea9f7b90bfe795dd",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 5692,
+            "end_char": 5725,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 5609,
+            "sentence_end_char": 5742,
+            "sentence_offset_start": 83,
+            "sentence_offset_end": 116,
+            "clause_start_char": 5657,
+            "clause_end_char": 5736,
+            "clause_offset_start": 35,
+            "clause_offset_end": 68,
+            "adjacent_tokens_before": [
+              "his",
+              "confirmation",
+              "hearing",
+              "to",
+              "be"
+            ],
+            "adjacent_tokens_after": [
+              "on",
+              "july",
+              "15",
+              "2026",
+              "mr"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e468e1e2833c8031c2bfd82d",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:b7785251d9269d0fc6794841f99e2e6bb9927035bcef4fc171b0222c81825bfb",
+            "publication_id": "sha256:b7785251d9269d0fc6794841f99e2e6bb9927035bcef4fc171b0222c81825bfb",
+            "office_id": "H001047",
+            "family_id": "dfam:e7a41974a8e0576d297a22a2",
+            "family_revision": "dfrev:a51b57bede95e79a50087002",
+            "support_unit_id": "H001047",
+            "party": "D",
+            "start_char": 200,
+            "end_char": 233,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 254,
+            "sentence_offset_start": 184,
+            "sentence_offset_end": 217,
+            "clause_start_char": 128,
+            "clause_end_char": 412,
+            "clause_offset_start": 72,
+            "clause_offset_end": 105,
+            "adjacent_tokens_before": [
+              "unqualified",
+              "and",
+              "illegally",
+              "appointed",
+              "acting"
+            ],
+            "adjacent_tokens_after": [
+              "has",
+              "thankfully",
+              "ended",
+              "his",
+              "short"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:25d1260077f88d20781aa115",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8",
+            "publication_id": "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8",
+            "office_id": "H001046",
+            "family_id": "dfam:74c4fc814484f6c3119e73d9",
+            "family_revision": "dfrev:67dc563aad3b612f5277b7a0",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 267,
+            "end_char": 300,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 208,
+            "sentence_end_char": 306,
+            "sentence_offset_start": 59,
+            "sentence_offset_end": 92,
+            "clause_start_char": 256,
+            "clause_end_char": 532,
+            "clause_offset_start": 11,
+            "clause_offset_end": 44,
+            "adjacent_tokens_before": [
+              "new",
+              "york",
+              "to",
+              "be",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "dni",
+              "i",
+              "voted",
+              "against",
+              "mr"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:05a8f1aecf23790bafc1fb7b",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8",
+            "publication_id": "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8",
+            "office_id": "H001046",
+            "family_id": "dfam:74c4fc814484f6c3119e73d9",
+            "family_revision": "dfrev:67dc563aad3b612f5277b7a0",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 363,
+            "end_char": 396,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 329,
+            "sentence_end_char": 462,
+            "sentence_offset_start": 34,
+            "sentence_offset_end": 67,
+            "clause_start_char": 256,
+            "clause_end_char": 532,
+            "clause_offset_start": 107,
+            "clause_offset_end": 140,
+            "adjacent_tokens_before": [
+              "clayton's",
+              "nomination",
+              "to",
+              "serve",
+              "as"
+            ],
+            "adjacent_tokens_after": [
+              "because",
+              "he",
+              "hasn’t",
+              "shown",
+              "the"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:5e76aeadacc93af85c51a174",
+            "claim_id": "2026-07-28-D-00",
+            "statement_id": "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8",
+            "publication_id": "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8",
+            "office_id": "H001046",
+            "family_id": "dfam:74c4fc814484f6c3119e73d9",
+            "family_revision": "dfrev:67dc563aad3b612f5277b7a0",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 470,
+            "end_char": 503,
+            "surface_text": "Director of National Intelligence",
+            "normalized_phrase": "director of national intelligence",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 463,
+            "sentence_end_char": 629,
+            "sentence_offset_start": 7,
+            "sentence_offset_end": 40,
+            "clause_start_char": 256,
+            "clause_end_char": 532,
+            "clause_offset_start": 214,
+            "clause_offset_end": 247,
+            "adjacent_tokens_before": [
+              "care",
+              "this",
+              "job",
+              "demands",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "has",
+              "one",
+              "job",
+              "above",
+              "all"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 5,
+          "publications": 5,
+          "families": 5,
+          "support_units": 5
+        },
+        "office_ids": [
+          "H001046",
+          "H001047",
+          "P000145",
+          "S001150",
+          "W000800"
+        ],
+        "publication_ids": [
+          "sha256:09a8e76365f657e29e985089ee71306181f8d97b2a15ceddf88bb70b4be4a999",
+          "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151",
+          "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17",
+          "sha256:b7785251d9269d0fc6794841f99e2e6bb9927035bcef4fc171b0222c81825bfb",
+          "sha256:bc13b3fc07cf50749160e83b3068ed618866ee98b7f2a47d71a23938abc759c8"
+        ],
+        "family_ids": [
+          "dfam:29a6b56b2a35a5b45f7c564a",
+          "dfam:4ec10a796546d6398bea17c7",
+          "dfam:74c4fc814484f6c3119e73d9",
+          "dfam:b03547fc9e7e3343943c8735",
+          "dfam:e7a41974a8e0576d297a22a2"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:29a6b56b2a35a5b45f7c564a",
+            "family_revision": "dfrev:770c67fca8b9993eaa8663e6"
+          },
+          {
+            "family_id": "dfam:4ec10a796546d6398bea17c7",
+            "family_revision": "dfrev:5697d2a7ea9f7b90bfe795dd"
+          },
+          {
+            "family_id": "dfam:74c4fc814484f6c3119e73d9",
+            "family_revision": "dfrev:67dc563aad3b612f5277b7a0"
+          },
+          {
+            "family_id": "dfam:b03547fc9e7e3343943c8735",
+            "family_revision": "dfrev:71f69bcf13e7b70f2804a950"
+          },
+          {
+            "family_id": "dfam:e7a41974a8e0576d297a22a2",
+            "family_revision": "dfrev:a51b57bede95e79a50087002"
+          }
+        ],
+        "support_unit_ids": [
+          "H001046",
+          "H001047",
+          "P000145",
+          "S001150",
+          "W000800"
+        ],
+        "citation_occurrence_ids": [
+          "occ:a980c2b5cdd4857985f62dab",
+          "occ:120d7393716d19ed9cda52dd",
+          "occ:01e7d315fe10108832e8fa05"
+        ],
+        "citations": [
+          {
+            "member": "Peter Welch",
+            "party": "D",
+            "state": "VT",
+            "date": "2026-07-28",
+            "url": "https://www.welch.senate.gov/welch-joins-schiff-senate-judiciary-committee-democrats-in-probing-justice-department-subpoenas-of-new-york-times-journalists-in-air-force-one-scandal/",
+            "quote": "nominee to serve as director of national intelligence",
+            "occurrence_id": "occ:a980c2b5cdd4857985f62dab",
+            "office_id": "W000800",
+            "publication_id": "sha256:09a8e76365f657e29e985089ee71306181f8d97b2a15ceddf88bb70b4be4a999",
+            "family_id": "dfam:b03547fc9e7e3343943c8735",
+            "family_revision": "dfrev:71f69bcf13e7b70f2804a950"
+          },
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-07-28",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padilla-statement-opposing-confirmation-of-jay-clayton-to-be-director-of-national-intelligence/",
+            "quote": "clayton to serve as director of national intelligence",
+            "occurrence_id": "occ:120d7393716d19ed9cda52dd",
+            "office_id": "P000145",
+            "publication_id": "sha256:0ce80a0e46b8ab98a33abb03943620330398c1f75253a5ab61c82bafdaf74151",
+            "family_id": "dfam:29a6b56b2a35a5b45f7c564a",
+            "family_revision": "dfrev:770c67fca8b9993eaa8663e6"
+          },
+          {
+            "member": "Adam B. Schiff",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-07-28",
+            "url": "https://www.schiff.senate.gov/news/press-releases/news-sen-schiff-senate-judiciary-committee-members-probe-justice-department-subpoenas-of-new-york-times-journalists-in-air-force-one-scandal/",
+            "quote": "nominee to serve as director of national intelligence",
+            "occurrence_id": "occ:01e7d315fe10108832e8fa05",
+            "office_id": "S001150",
+            "publication_id": "sha256:764f96f6f56cf5c311a97437f0b91c1207e9ae2e0dc6df9ce13d347b2472bb17",
+            "family_id": "dfam:4ec10a796546d6398bea17c7",
+            "family_revision": "dfrev:5697d2a7ea9f7b90bfe795dd"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "courts",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "housing",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-07-28-D-01",
+        "party": "D",
+        "day": "2026-07-28",
+        "label": "american troops from the official",
+        "member_count": 3,
+        "statements": [
+          "sha256:2ae6be99548f7d93cf03fbad481deec3f4243be065a7615c73e36eb5fb26efec",
+          "sha256:300e93b724c1990099b7e0df4b6d3003193d1e9994a5f8e296cd686302f318cb",
+          "sha256:f29f137c71cd642b6a3879bf7612a6cc46adc9841ee7401b0c875a0337ec7a3b"
+        ],
+        "fragments": [
+          {
+            "text": "defense removed the names of four american troops from the official",
+            "statement": "sha256:f29f137c71cd642b6a3879bf7612a6cc46adc9841ee7401b0c875a0337ec7a3b"
+          },
+          {
+            "text": "defense removed the names of four american troops from the official",
+            "statement": "sha256:300e93b724c1990099b7e0df4b6d3003193d1e9994a5f8e296cd686302f318cb"
+          },
+          {
+            "text": "defense removed the names of four american troops from the official",
+            "statement": "sha256:2ae6be99548f7d93cf03fbad481deec3f4243be065a7615c73e36eb5fb26efec"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-07-28-D-01",
+        "support_phrase": {
+          "normalized": "american troops from the official",
+          "text": "American troops from the official",
+          "occurrence_id": "occ:f04ee1711a488188dece0730"
+        },
+        "display_quote": "American troops from the official",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f04ee1711a488188dece0730",
+            "claim_id": "2026-07-28-D-01",
+            "statement_id": "sha256:2ae6be99548f7d93cf03fbad481deec3f4243be065a7615c73e36eb5fb26efec",
+            "publication_id": "sha256:2ae6be99548f7d93cf03fbad481deec3f4243be065a7615c73e36eb5fb26efec",
+            "office_id": "P000613",
+            "family_id": "dfam:906a286be2d822bf31a40c68",
+            "family_revision": "dfrev:8020cb2826018dd16dad0e3c",
+            "support_unit_id": "P000613",
+            "party": "D",
+            "start_char": 101,
+            "end_char": 134,
+            "surface_text": "American troops from the official",
+            "normalized_phrase": "american troops from the official",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 217,
+            "sentence_offset_start": 101,
+            "sentence_offset_end": 134,
+            "clause_start_char": 15,
+            "clause_end_char": 154,
+            "clause_offset_start": 86,
+            "clause_offset_end": 119,
+            "adjacent_tokens_before": [
+              "removed",
+              "the",
+              "names",
+              "of",
+              "four"
+            ],
+            "adjacent_tokens_after": [
+              "iran",
+              "war",
+              "death",
+              "toll",
+              "united"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:057c6d570d9b843789882d59",
+            "claim_id": "2026-07-28-D-01",
+            "statement_id": "sha256:300e93b724c1990099b7e0df4b6d3003193d1e9994a5f8e296cd686302f318cb",
+            "publication_id": "sha256:300e93b724c1990099b7e0df4b6d3003193d1e9994a5f8e296cd686302f318cb",
+            "office_id": "M001196",
+            "family_id": "dfam:d516f736ac0ffb23a8b95ab8",
+            "family_revision": "dfrev:c923f8476d9f0f10edae4eff",
+            "support_unit_id": "M001196",
+            "party": "D",
+            "start_char": 105,
+            "end_char": 138,
+            "surface_text": "American troops from the official",
+            "normalized_phrase": "american troops from the official",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 354,
+            "sentence_offset_start": 89,
+            "sentence_offset_end": 122,
+            "clause_start_char": 19,
+            "clause_end_char": 158,
+            "clause_offset_start": 86,
+            "clause_offset_end": 119,
+            "adjacent_tokens_before": [
+              "removed",
+              "the",
+              "names",
+              "of",
+              "four"
+            ],
+            "adjacent_tokens_after": [
+              "iran",
+              "war",
+              "death",
+              "toll",
+              "congressman"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7fc955532fa638905313b848",
+            "claim_id": "2026-07-28-D-01",
+            "statement_id": "sha256:f29f137c71cd642b6a3879bf7612a6cc46adc9841ee7401b0c875a0337ec7a3b",
+            "publication_id": "sha256:f29f137c71cd642b6a3879bf7612a6cc46adc9841ee7401b0c875a0337ec7a3b",
+            "office_id": "G000592",
+            "family_id": "dfam:714fef400307ea6aef696525",
+            "family_revision": "dfrev:ef344c6bbec8ed38312150fc",
+            "support_unit_id": "G000592",
+            "party": "D",
+            "start_char": 88,
+            "end_char": 121,
+            "surface_text": "American troops from the official",
+            "normalized_phrase": "american troops from the official",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 291,
+            "sentence_offset_start": 88,
+            "sentence_offset_end": 121,
+            "clause_start_char": 0,
+            "clause_end_char": 141,
+            "clause_offset_start": 88,
+            "clause_offset_end": 121,
+            "adjacent_tokens_before": [
+              "removed",
+              "the",
+              "names",
+              "of",
+              "four"
+            ],
+            "adjacent_tokens_after": [
+              "iran",
+              "war",
+              "death",
+              "toll",
+              "congressman"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000592",
+          "M001196",
+          "P000613"
+        ],
+        "publication_ids": [
+          "sha256:2ae6be99548f7d93cf03fbad481deec3f4243be065a7615c73e36eb5fb26efec",
+          "sha256:300e93b724c1990099b7e0df4b6d3003193d1e9994a5f8e296cd686302f318cb",
+          "sha256:f29f137c71cd642b6a3879bf7612a6cc46adc9841ee7401b0c875a0337ec7a3b"
+        ],
+        "family_ids": [
+          "dfam:714fef400307ea6aef696525",
+          "dfam:906a286be2d822bf31a40c68",
+          "dfam:d516f736ac0ffb23a8b95ab8"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:714fef400307ea6aef696525",
+            "family_revision": "dfrev:ef344c6bbec8ed38312150fc"
+          },
+          {
+            "family_id": "dfam:906a286be2d822bf31a40c68",
+            "family_revision": "dfrev:8020cb2826018dd16dad0e3c"
+          },
+          {
+            "family_id": "dfam:d516f736ac0ffb23a8b95ab8",
+            "family_revision": "dfrev:c923f8476d9f0f10edae4eff"
+          }
+        ],
+        "support_unit_ids": [
+          "G000592",
+          "M001196",
+          "P000613"
+        ],
+        "citation_occurrence_ids": [
+          "occ:f04ee1711a488188dece0730",
+          "occ:057c6d570d9b843789882d59",
+          "occ:7fc955532fa638905313b848"
+        ],
+        "citations": [
+          {
+            "member": "Jimmy Panetta",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-07-28",
+            "url": "https://panetta.house.gov/media/press-releases/rep-panetta-joins-congressional-veterans-demanding-transparency-iran-war",
+            "quote": "defense removed the names of four american troops from the official",
+            "occurrence_id": "occ:f04ee1711a488188dece0730",
+            "office_id": "P000613",
+            "publication_id": "sha256:2ae6be99548f7d93cf03fbad481deec3f4243be065a7615c73e36eb5fb26efec",
+            "family_id": "dfam:906a286be2d822bf31a40c68",
+            "family_revision": "dfrev:8020cb2826018dd16dad0e3c"
+          },
+          {
+            "member": "Seth Moulton",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-07-28",
+            "url": "https://moulton.house.gov/news/press-releases/moulton-democratic-veterans-demand-transparency-trump-iran-war-casualties",
+            "quote": "defense removed the names of four american troops from the official",
+            "occurrence_id": "occ:057c6d570d9b843789882d59",
+            "office_id": "M001196",
+            "publication_id": "sha256:300e93b724c1990099b7e0df4b6d3003193d1e9994a5f8e296cd686302f318cb",
+            "family_id": "dfam:d516f736ac0ffb23a8b95ab8",
+            "family_revision": "dfrev:c923f8476d9f0f10edae4eff"
+          },
+          {
+            "member": "Jared F. Golden",
+            "party": "D",
+            "state": "ME",
+            "date": "2026-07-28",
+            "url": "https://golden.house.gov/media/press-releases/golden-democratic-veterans-demand-transparency-on-iran-war-casualties",
+            "quote": "defense removed the names of four american troops from the official",
+            "occurrence_id": "occ:7fc955532fa638905313b848",
+            "office_id": "G000592",
+            "publication_id": "sha256:f29f137c71cd642b6a3879bf7612a6cc46adc9841ee7401b0c875a0337ec7a3b",
+            "family_id": "dfam:714fef400307ea6aef696525",
+            "family_revision": "dfrev:ef344c6bbec8ed38312150fc"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-07-28",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 8,
+          "numerator_unit": "offices",
+          "denominator": 68,
+          "denominator_unit": "offices",
+          "share": 0.117647,
+          "window": "party-day 2026-07-28",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 8,
+          "numerator_unit": "publications",
+          "denominator": 90,
+          "denominator_unit": "publications",
+          "share": 0.088889,
+          "window": "party-day 2026-07-28",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 8,
+          "numerator_unit": "document families",
+          "denominator": 83,
+          "denominator_unit": "document families",
+          "share": 0.096386,
+          "window": "party-day 2026-07-28",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-07-28",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 31,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-07-28",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 36,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-07-28",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 34,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-07-28",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "administration to invoke the defense",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 1
+      }
+    ],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "earlier this month",
+      "slug": "9afdadf953caad9e",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "H001047",
+        "statement": "sha256:47365d3a9f429d885814ba7220bc3ac708f24def56bd8591a52b0db03ab140f2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        1,
+        1,
+        2,
+        2,
+        4,
+        1,
+        2,
+        2,
+        4,
+        4,
+        3,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "responses to the following",
+      "slug": "809be01c0add7af0",
+      "n": 4,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-27",
+        "bioguide": "C001123",
+        "statement": "sha256:564b36c92070acc3632091c6f92998197f467c784dabe117922bbfecf4520e42",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "across the state",
+      "slug": "6a6b0d830bfc947c",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.63,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001323",
+        "statement": "sha256:a0c8032ea2c45288425863048906ab5923e51a1ca6beef8b66cd4bf89b15c539",
+        "tie": [
+          "B001230"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.957,
+      "series": [
+        1,
+        3,
+        7,
+        4,
+        4,
+        3,
+        2,
+        2,
+        3,
+        3,
+        2,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "joaquin castro tx-20",
+      "slug": "4dd010886850a9b0",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001091",
+        "statement": "sha256:88ceba3ff3190d5431d36327a1f2703a3862d8624f36a5e0a3f533b641bd79f8",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.996,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "release of information",
+      "slug": "9121bf3872b48305",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.4,
+      "first_seen": {
+        "date": "2025-05-20",
+        "bioguide": "K000384",
+        "statement": "sha256:f4faba79a0656ef716e9fd4fb7bd30683b3247b530077ce7c333f29ee65c1a74",
+        "tie": [
+          "L000570",
+          "V000128",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        2,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "serve as director",
+      "slug": "46cd548ef1bab6b9",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2025-01-14",
+        "bioguide": "H001068",
+        "statement": "sha256:438896d2efc49fe0d65ad21b0bf4ed1c974a076af0fe1f804f68857f27c3314f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "the press conference",
+      "slug": "3ecfad196b273972",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-18",
+        "bioguide": "G000586",
+        "statement": "sha256:75788d97a9375478e026ed5a0b0030b61647df32ce964891eebbf7a97cd7fc00",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "serious concerns about",
+      "slug": "ccdd5191d14ed461",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.65,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        7,
+        2,
+        3,
+        1,
+        3,
+        1,
+        3,
+        1,
+        1,
+        1,
+        3,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "trump administration has",
+      "slug": "6305edfb8acbdb24",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.15,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "J000298",
+        "statement": "sha256:8b93d3d65069790837009bed209fc883d32f7d51d8479de513f44a1477b401fe",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        4,
+        1,
+        2,
+        4,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "war in iran",
+      "slug": "4abd5ede26e39eb9",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 0.7,
+      "first_seen": {
+        "date": "2026-02-24",
+        "bioguide": "R000620",
+        "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        7,
+        5,
+        4,
+        7,
+        6,
+        2,
+        2,
+        6,
+        18,
+        10,
+        5,
+        1,
+        4,
+        4
+      ]
+    },
+    {
+      "ngram": "i’m grateful to",
+      "slug": "d207953af3ede662",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.75,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "B001325"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.987,
+      "series": [
+        2,
+        2,
+        1,
+        2,
+        2,
+        4,
+        3,
+        4,
+        2,
+        1,
+        1,
+        2,
+        4,
+        4
+      ]
+    },
+    {
+      "ngram": "keep fighting to",
+      "slug": "ce34d8212128c3f0",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.51,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        1,
+        1,
+        1,
+        3,
+        2,
+        3,
+        3,
+        4,
+        2,
+        5,
+        3,
+        5,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "wrote the lawmakers",
+      "slug": "f1b1a2bafe499aed",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "K000400",
+        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+        "tie": [
+          "L000397",
+          "R000620"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.983,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        2,
+        3,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "people with disabilities",
+      "slug": "7ffc9d375b748b7a",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.56,
+      "first_seen": {
+        "date": "2025-01-16",
+        "bioguide": "G000555",
+        "statement": "sha256:2305853cfe74336762d47a6bf5a1d23d1bd812cf7415d207b115ac443945750b",
+        "tie": [
+          "W000817"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.981,
+      "series": [
+        1,
+        2,
+        1,
+        2,
+        3,
+        1,
+        2,
+        1,
+        1,
+        9,
+        5,
+        4,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "care they need",
+      "slug": "08f53972e38193cb",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 1
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": 1
+      },
+      "family_count": 4,
+      "velocity": 1.24,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "M001169",
+        "statement": "sha256:d8c39d885c181e5beb7928c2f9c92eaa77cd3a482b132c150ddaa1bfd9584c19",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.981,
+      "series": [
+        1,
+        1,
+        1,
+        7,
+        6,
+        4,
+        1,
+        2,
+        2,
+        5,
+        5,
+        6,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "a press conference",
+      "slug": "947cb30ef8f2474c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.7,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.98,
+      "series": [
+        2,
+        1,
+        2,
+        1,
+        2,
+        3,
+        4,
+        1,
+        2,
+        4,
+        4,
+        5,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "years to come",
+      "slug": "62729ee9b1d09cef",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 1
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": 1
+      },
+      "family_count": 4,
+      "velocity": 2.15,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001136",
+        "statement": "sha256:24188353343d7f7b13581187eae846eb39d210cc2020ab3f6a5c32d08b4ab6e0",
+        "tie": [
+          "M001214"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.976,
+      "series": [
+        3,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        4,
+        4
+      ]
+    },
+    {
+      "ngram": "text of the bill",
+      "slug": "8bd7df08e3dcea59",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 0.82,
+      "first_seen": {
+        "date": "2025-01-05",
+        "bioguide": "C001069",
+        "statement": "sha256:d3b13fbafade11b18cd684ddba8d10d51e5f3cbc75e801e4b487649638daad92",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        1,
+        1,
+        1,
+        5,
+        5,
+        7,
+        4,
+        2,
+        4,
+        15,
+        12,
+        7,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "text of the letter is",
+      "slug": "c0294ff9d31b3d8e",
+      "n": 5,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.24,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001056",
+        "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.969,
+      "series": [
+        2,
+        5,
+        2,
+        6,
+        1,
+        1,
+        3,
+        2,
+        5,
+        1,
+        1,
+        8,
+        4,
+        4
+      ]
+    },
+    {
+      "ngram": "senate colleagues in",
+      "slug": "a82cc5465312545a",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.07,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "W000779",
+        "statement": "sha256:7de7eec643516ca4d4c8801ee1f0618580f92fa9f3cd91f2a1cc7b9323294561",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        7,
+        3,
+        1,
+        5,
+        1,
+        1,
+        4
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "earlier this month",
+        "slug": "9afdadf953caad9e",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "H001047",
+          "statement": "sha256:47365d3a9f429d885814ba7220bc3ac708f24def56bd8591a52b0db03ab140f2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          1,
+          2,
+          2,
+          4,
+          1,
+          2,
+          2,
+          4,
+          4,
+          3,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "responses to the following",
+        "slug": "809be01c0add7af0",
+        "n": 4,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-27",
+          "bioguide": "C001123",
+          "statement": "sha256:564b36c92070acc3632091c6f92998197f467c784dabe117922bbfecf4520e42",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "across the state",
+        "slug": "6a6b0d830bfc947c",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.63,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001323",
+          "statement": "sha256:a0c8032ea2c45288425863048906ab5923e51a1ca6beef8b66cd4bf89b15c539",
+          "tie": [
+            "B001230"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.957,
+        "series": [
+          1,
+          3,
+          7,
+          4,
+          4,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "joaquin castro tx-20",
+        "slug": "4dd010886850a9b0",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001091",
+          "statement": "sha256:88ceba3ff3190d5431d36327a1f2703a3862d8624f36a5e0a3f533b641bd79f8",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "release of information",
+        "slug": "9121bf3872b48305",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.4,
+        "first_seen": {
+          "date": "2025-05-20",
+          "bioguide": "K000384",
+          "statement": "sha256:f4faba79a0656ef716e9fd4fb7bd30683b3247b530077ce7c333f29ee65c1a74",
+          "tie": [
+            "L000570",
+            "V000128",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          2,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "serve as director",
+        "slug": "46cd548ef1bab6b9",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-01-14",
+          "bioguide": "H001068",
+          "statement": "sha256:438896d2efc49fe0d65ad21b0bf4ed1c974a076af0fe1f804f68857f27c3314f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "the press conference",
+        "slug": "3ecfad196b273972",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-18",
+          "bioguide": "G000586",
+          "statement": "sha256:75788d97a9375478e026ed5a0b0030b61647df32ce964891eebbf7a97cd7fc00",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "serious concerns about",
+        "slug": "ccdd5191d14ed461",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.65,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          7,
+          2,
+          3,
+          1,
+          3,
+          1,
+          3,
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "trump administration has",
+        "slug": "6305edfb8acbdb24",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.15,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "J000298",
+          "statement": "sha256:8b93d3d65069790837009bed209fc883d32f7d51d8479de513f44a1477b401fe",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          2,
+          1,
+          1,
+          2,
+          3,
+          1,
+          4,
+          1,
+          2,
+          4,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "war in iran",
+        "slug": "4abd5ede26e39eb9",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.7,
+        "first_seen": {
+          "date": "2026-02-24",
+          "bioguide": "R000620",
+          "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          7,
+          5,
+          4,
+          7,
+          6,
+          2,
+          2,
+          6,
+          18,
+          10,
+          5,
+          1,
+          4,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the vast majority",
+        "slug": "f491a8bfbc349eb7",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "M001196",
+          "statement": "sha256:378f305038d1628e180225394b8f2554b7202e01828492b80c44745b3e432299",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          2,
+          2,
+          2,
+          3,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "vast majority of",
+        "slug": "eaec6e6ce6c9a1db",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.68,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "M001196",
+          "statement": "sha256:378f305038d1628e180225394b8f2554b7202e01828492b80c44745b3e432299",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          5,
+          2,
+          2,
+          2,
+          3,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "a little bit",
+        "slug": "d04c0a8a0f31a88e",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.62,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "T000250",
+          "statement": "sha256:b8c65d288b015d0d423677982910b1b3ccabcd762518465e9157938d8a81a79f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          4,
+          2,
+          2,
+          1,
+          1,
+          3,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": true,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "12d903f280f7b5c89ed15ba24273b6e11d7a9cba3cd0d948f956ec2afea69f64",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "429fa3153bd3f2ae93bf90024bbced2aec9bff578d78eaea8e08220471706cb9",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
