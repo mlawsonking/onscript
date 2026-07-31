@@ -2648,3 +2648,44 @@ runs do not execute it, so the coupling surfaced only at this rebase.
 
 Next: Monday 08-03 nomenclature flip decision under the health gate; green days
 accumulating; silence boards expected to begin appearing as days advance.
+
+## 2026-07-31: Session 63 (Fable). Watchdog edge probes: domain health and registrar state
+
+The 2026-07-29 registrar suspension was invisible to both existing watchdog signal
+classes: Namecheap swapped onscript.news's nameservers to
+failed-whois-verification.namecheap.com over registrant-email verification, every
+run stayed green, every manifest advanced, and the site simply stopped being what
+the domain served. Nothing paged; #220 was filed by hand. The domain sits
+downstream of everything the run-level and data-level classes observe, so this
+session adds an edge-level class with two probes, both in pipeline/watchdog.py and
+both scheduled by the existing watchdog workflow.
+
+Domain health fetches https://onscript.news/ and requires HTTP 200 plus the built
+site's og:site_name marker, so a parking page's own 200 alarms naming the served
+state; a name that stops resolving, or a host unreachable the same way on all
+three attempts, alarms naming the resolved state (a registry hold pulls the
+delegation, so serverHold looks like a dead name from outside). Registrar state
+queries https://rdap.org/domain/onscript.news (the IANA bootstrap redirector; 302
+to Identity Digital for .news) and alarms on hold, redemption period, or pending
+delete status tokens in either RDAP spelling, and on expiry under 30 days. On both
+probes a bad state must survive every attempt before it pages, and transient
+network trouble skips and logs: rdap.org throttles by IP and answered its first
+query in over 20 seconds, so a flaky third-party probe is a note, never a page.
+Alarms page through the existing ntfy path and the probe exits 0 (docs/37 rule 14,
+one alert per failure mode).
+
+The marker constant is pinned against its owner, the single head template in
+pipeline/site.py, and against the committed site/public/index.html (docs/37 rules
+1 and 2). The RDAP fixture is the registry's real record captured 2026-07-31:
+expiry 2027-07-14, status client transfer prohibited, last changed 2026-07-29,
+which is the suspension's resolution timestamp. Local watchdog runs stay offline;
+the workflow passes --probe-domain and --probe-rdap, and the probes activate when
+the commit lands on the default branch, stated in comments in both files.
+
+Evidence: fresh-worktree suite at origin/main a2ae3d7 is 890 tests, 887 passing
+plus the 3 known local-state failures (roster cache, raw shard, X: embedding
+store); with this delivery it is 907 tests, 904 passing plus the same 3, so the 17
+added tests are green and no existing test moved. Reproduction: C:\ProgramData\miniconda3\python.exe tests\run_tests.py. Built
+and committed in an isolated worktree at origin/main; pushed in the clean cron
+window at about 04:45 UTC with nothing queued or in flight and the next slot at
+09:30 UTC.
