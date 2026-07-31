@@ -2685,3 +2685,63 @@ runs do not execute it, so the coupling surfaced only at this rebase.
 
 Next: Monday 08-03 nomenclature flip decision under the health gate; green days
 accumulating; silence boards expected to begin appearing as days advance.
+
+## 2026-07-30: Session 64 (Opus). The pilot annotation is a calibration record, not a gold set
+
+Outcome: the 200-item pilot could not be adjudicated. Pass 1 was performed under an
+inverted standard, the guide taught that standard, and the session delivered the
+corrected instrument and a re-issued packet instead of metrics. Branch
+`opus/goldset-pilot-processing`, four commits, suite 890 to 927 with zero failures.
+
+Evidence for the ruling, denominator the 200 sealed items or the 155 pass-1 message
+labels: `unknown` was chosen 0 times, message 155 times, and of those 155, 141 left
+the task B completeness answer blank and 3 answered it no. The guide makes
+completeness a necessary condition for message and calls unknown the safe default,
+so a pass that never reached for unknown and skipped the gate on 144 of 155 message
+labels read the sentences rather than the phrases. Class agreement with the frozen
+prompt model reader is 45 of 200, observed 0.2250, and one cell carries it: pass-1
+message against model unknown, 121 items, against 34 in every other off-diagonal
+cell combined.
+
+The guide taught the error. Its first task A worked example labelled `after the
+supreme court` a message because the member was responding to a Supreme Court
+ruling, which is the surrounding sentence supplying the meaning. Section 3.1 is new
+and names the trap with the cover-the-sentence test and a worked pair from one
+sentence. The offending example was removed rather than re-labelled, because the
+phrase is a sealed full-sample item and re-labelling it would decide that item from
+inside the guide. Two pilot items whose class the guide states outright
+(`letter is available`, `was elected to serve`) are disclosed rather than changed,
+for the same reason, and are a sampling question.
+
+The app now refuses a message label task B does not support, in both orderings, and
+carries a standing reminder that the phrase is the unit and unknown is the safe
+default. Amending the guide invalidated the model rater's freeze by design; the
+registration was re-frozen deliberately and now records what it supersedes, so the
+committed model sheet stays attributable to the instrument that produced it.
+
+Seal finding, fourth instance of the docs/37 rule 3 shape after X7 (S52), Y1 (S59),
+and the r3 gate test (S61), and the worst placed: `goldset_seal.py verify` rebuilds
+the public-impact oversampling set from the live `data/derived/days` tree, so every
+published day moves the rebuilt draw for a sample that never moved. It reported a
+false mismatch. Pinning the tree to the sealing commit `36527f6` reproduces
+`7facc4d2` exactly with the universe fingerprint matching and all 200 pilot ids
+identical. Under docs/35 section 3 a mismatch orders a re-seal, and a re-seal after
+labels exist is what the sealing rule prohibits. `verify` gains `--as-of REF`;
+whether it should pin its own impact input is a sealed-kit contract change and is
+Fable's.
+
+Also recorded: the 2026-07-28 files under `intake/pilot/single/` and `metrics/pilot/`
+are synthetic rehearsal outputs from the annotation-ops build. They predate both real
+answer sheets and could not have read either. None of them is committed and no number
+in them measures anything.
+
+Pass 2 is re-issued as `michael-pass2` over the same sealed 200 items, order
+re-randomized (0 of 200 shared positions) and on its own storage key so no pass-1
+answer preloads. Publication of the packet is disclosed as a corrected pass, not an
+independent one: between passes the rater learned the model reader's aggregate
+distribution and the 121-item message-versus-unknown cell, which is one-directional
+information. Gate B remains unclaimed and independent replication still means labels
+from someone who is not the author.
+
+Next: pass 2 is Michael's act (#216). Intake, triage, and every metric run on pass 2
+only. R-29.2 and R-33.1 stay closed.
