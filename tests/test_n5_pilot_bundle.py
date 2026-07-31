@@ -79,7 +79,14 @@ def test_the_certificate_covers_every_file_the_bundle_ships():
     assert certificate["admitted_forms_found"] == 0
     assert certificate["seal_hash"] == manifest["seal_hash"]
     names = {row["path"] for row in certificate["files"]}
-    assert names == {f"{RATER}.app.html", f"{RATER}.packet.html", f"{RATER}.answersheet.csv"}
+    # The pass-1 packet, which is what N5 sealed.
+    assert {f"{RATER}.app.html", f"{RATER}.packet.html", f"{RATER}.answersheet.csv"} <= names
+    # And every other file the bundle ships. The directory grew past N5's three when the model
+    # rater's record and the pass-2 packet landed; a certificate naming only the original three
+    # would leave the rest published and unscanned.
+    shipped = {path.name for path in BUNDLE.iterdir()
+               if path.is_file() and path.name != "PUBLISH-CHECK.json"}
+    assert shipped <= names, shipped - names
     for row in certificate["files"]:
         assert (BUNDLE / row["path"]).is_file()
 
