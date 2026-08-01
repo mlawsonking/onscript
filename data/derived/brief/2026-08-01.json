@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-01",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-07-31",
+      "note": "no publish for 2026-07-31 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": null,
+      "status": "unknown",
+      "note": "no cost ledger for 2026-08 — spend not measured (the $10 Console cap is the backstop)"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-07-30",
+      "parties": {
+        "D": {
+          "statements": 113,
+          "median": 85,
+          "share": 1.329,
+          "status": "green"
+        },
+        "R": {
+          "statements": 71,
+          "median": 55,
+          "share": 1.291,
+          "status": "green"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 12.8,
+        "day": "2026-07-31",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "note": "2026-07-30: D 113/85=133% R 71/55=129% of own 14d median (green >= 60%); upstream 12.8h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.3846,
+      "dropped": 5,
+      "offered": 13,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "5/13 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [
+    "spend"
+  ],
+  "degraded_days": [
+    "2026-07-25",
+    "2026-07-26",
+    "2026-07-27",
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30"
+  ],
+  "top_phrase": {
+    "ngram": "the trump administration’s",
+    "party": "D",
+    "day_peak": 11,
+    "day": "2026-07-30"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}
