@@ -49,7 +49,12 @@ def test_the_rendered_app_carries_the_gate_strings_from_their_owner():
 
 
 def test_the_rendered_app_enforces_the_gate_on_both_orderings():
-    """Selecting message with B unanswered, and answering B no after message was recorded."""
+    """Selecting message with B unanswered, and answering B no after message was recorded.
+
+    These assert the wiring exists. The behavior itself was exercised against the rendered
+    packet in a browser: message refused with B blank and with B false (nothing recorded),
+    accepted with B true, and withdrawn when B was flipped to false afterwards.
+    """
     app = gb.render_app([_item()], annotator_id="ann-a", sample="pilot", seed="s")
     # Refusal at the point of selecting message, recording nothing.
     assert "if (blocked){ showGate(panel, blocked); return; }" in app
