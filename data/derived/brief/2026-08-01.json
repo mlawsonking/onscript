@@ -5,10 +5,10 @@
   "numbers": [
     {
       "name": "streak",
-      "value": 0,
-      "status": "red",
-      "last_missed": "2026-07-31",
-      "note": "no publish for 2026-07-31 — Playbook P1"
+      "value": 21,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "21 consecutive days published (through 2026-07-31)"
     },
     {
       "name": "spend",
@@ -18,38 +18,38 @@
     },
     {
       "name": "coverage",
-      "day": "2026-07-30",
+      "day": "2026-07-31",
       "parties": {
         "D": {
-          "statements": 113,
-          "median": 85,
-          "share": 1.329,
+          "statements": 70,
+          "median": 87.5,
+          "share": 0.8,
           "status": "green"
         },
         "R": {
-          "statements": 71,
-          "median": 55,
-          "share": 1.291,
+          "statements": 50,
+          "median": 58.0,
+          "share": 0.862,
           "status": "green"
         }
       },
       "status": "green",
       "freshness": {
-        "age_hours": 12.8,
-        "day": "2026-07-31",
+        "age_hours": 3.43,
+        "day": "2026-08-01",
         "status": "green"
       },
       "excluded_reports": 0,
-      "note": "2026-07-30: D 113/85=133% R 71/55=129% of own 14d median (green >= 60%); upstream 12.8h (green < 36h)"
+      "note": "2026-07-31: D 70/88=80% R 50/58=86% of own 14d median (green >= 60%); upstream 3.4h (green < 36h)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.3846,
-      "dropped": 5,
-      "offered": 13,
+      "value": 0.375,
+      "dropped": 6,
+      "offered": 16,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "5/13 claims dropped over 7d (green < 25%)"
+      "note": "6/16 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -59,7 +59,6 @@
     }
   ],
   "reds": [
-    "streak",
     "verifier_drop"
   ],
   "unknowns": [
@@ -104,5 +103,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, verifier_drop"
+  "headline": "RED: verifier_drop"
 }
