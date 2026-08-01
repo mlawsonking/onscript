@@ -147,6 +147,33 @@ C:\ProgramData\miniconda3\python.exe scripts\goldset_bundle.py pilot --annotator
 
 The pass-1 bundle was not re-rendered and stays byte-identical.
 
+### P6. The required-fields list matches the gate, and a rater quick reference
+
+Commit: `1229c6e`. Suite 927, 0 failed.
+
+Guide section 9 still listed only class and family as required while section 3.1, section 4,
+and the app all treat task B as a gate. A guide that calls a field optional while the app blocks
+on it is the divergence that produced pass 1, found in this session's own work. Section 9 now
+names task B required and states what the app does in each case.
+
+The second amendment gives the instrument a third identity. `rater-registration.json` records
+one step of succession, so its `supersedes` now names step 2 rather than the instrument that
+produced the committed model sheet. PILOT-RECORD.md section 7 carries the full lineage:
+
+| Step | `guide_sha256` | `rating_prompt_sha256` | What changed |
+|---|---|---|---|
+| 1 | `2243cdde…` | `1aa84477…` | produced the committed model sheet |
+| 2 | `bab2b326…` | `ea52cd25…` | section 3.1, the task B gate, the removed example |
+| 3 | `12c9f921…` | `e2d5755f…` | the section 9 required-fields correction |
+
+The model sheet stays attributable because `model-rater.run.json` carries its entire
+registration inline rather than by reference.
+
+`evaluation/goldset/PASS2-QUICK-REFERENCE.md` is the rater-facing companion for the pass. It
+adds no rule and says so at the top; the guide wins on any difference. Every phrase quoted as
+an example in it is absent from both sealed samples, 32 checked, so it does not widen the
+section 4.3 exposure.
+
 The publish certificate now covers every file in the bundle directory rather than only what the
 run wrote, because a partial re-render would otherwise leave the rest published and unscanned.
 
@@ -220,10 +247,10 @@ Two items to carry into the pass-2 triage when it comes:
    them decides sealed items from inside the guide, which is the S58 concern. Reported in
    PILOT-RECORD.md section 4.3 for a sampling ruling.
 
-6. **Per-package suite runs.** The four packages were committed between two full-suite runs
-   rather than with a full run between each. Each package's own tests were run in isolation and
-   passed before its commit, and the two boundary runs are the 890 and 927 figures. The
-   packages are additive and non-interfering.
+6. **Per-package suite runs.** P1 through P4 were committed between two full-suite runs rather
+   than with a full run between each. Each package's own tests were run in isolation and passed
+   before its commit, and the two boundary runs are the 890 and 927 figures. The packages are
+   additive and non-interfering. P5 and P6 each got their own full run, both 927 and 0 failed.
 
 7. **The branch was not rebased** onto main's S63 advance. Stated above.
 

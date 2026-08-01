@@ -2691,7 +2691,8 @@ accumulating; silence boards expected to begin appearing as days advance.
 Outcome: the 200-item pilot could not be adjudicated. Pass 1 was performed under an
 inverted standard, the guide taught that standard, and the session delivered the
 corrected instrument and a re-issued packet instead of metrics. Branch
-`opus/goldset-pilot-processing`, four commits, suite 890 to 927 with zero failures.
+`opus/goldset-pilot-processing`, six commits over the three cherry-picked from the
+model-rater branch, suite 890 to 927 with zero failures.
 
 Evidence for the ruling, denominator the 200 sealed items or the 155 pass-1 message
 labels: `unknown` was chosen 0 times, message 155 times, and of those 155, 141 left
