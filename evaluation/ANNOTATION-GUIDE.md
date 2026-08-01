@@ -285,8 +285,15 @@ is a negation, the real support is two, so the answer is no.
 
 ## 9. Recording your answers
 
-Fill the answer sheet row for each item. The required fields are the surface class (task A) and
-the family ID (task E). The other task fields are recorded when your packet asks for them.
+Fill the answer sheet row for each item. The required fields are the surface class (task A),
+phrase completeness (task B), and the family ID (task E). The other task fields are recorded
+when your packet asks for them.
+
+Task B is required because it gates task A. A phrase that is not complete enough to carry
+meaning on its own cannot be a message (section 3.1 and section 4), so the annotation app
+refuses a message label while task B is unanswered, and refuses one when task B says no. If
+you answer task B no after already choosing message, the app withdraws the message label and
+asks you to choose again. That is the guide's rule, enforced rather than remembered.
 
 - `gold_class`: one of message, unknown, nomenclature, procedural, biographical, private.
 - `gold_family_id`: your stable family label for the item.

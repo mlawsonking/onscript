@@ -281,17 +281,23 @@ owns the rule and the rendered app interpolates its strings, so there is one cop
 
 Amending the guide changed `guide_sha256` and with it `rating_prompt_sha256`, which invalidates
 the model rater's freeze by design (docs/35 section 10.2). The registration was re-frozen
-deliberately, as the runbook's step 4 describes, and now records what it supersedes:
+deliberately, as the runbook's step 4 describes, and now records what it supersedes.
 
-| | Before | After |
-|---|---|---|
-| `guide_sha256` | `2243cddef095cc30…` | `bab2b3261eedadbb…` |
-| `rating_prompt_sha256` | `1aa8447702f2b163…` | `ea52cd2571c821e6…` |
+The guide was amended twice in this session, so the instrument has three identities. This is
+the full lineage:
 
-The committed model sheet stays attributable to the instrument that produced it: the prior
-identity is carried in `rater-registration.json` under `supersedes`, and
-`model-rater.run.json` carries the full prior registration inline. A model reading under the
-amended guide has not been run and is not required for pass 2.
+| Step | `guide_sha256` | `rating_prompt_sha256` | What changed |
+|---|---|---|---|
+| 1 | `2243cddef095cc30…` | `1aa8447702f2b163…` | the instrument that produced the committed model sheet |
+| 2 | `bab2b3261eedadbb…` | `ea52cd2571c821e6…` | section 3.1, the task B gate, the removed example |
+| 3 | `12c9f921126be255…` | `e2d5755fa28e6346…` | section 9 lists task B as required |
+
+`rater-registration.json` records one step of succession, so its `supersedes` names step 2, not
+step 1. That is the normal case for a single amendment and it is a limitation here: this table
+is the record of the full lineage. The committed model sheet stays attributable regardless,
+because `model-rater.run.json` carries its entire registration inline rather than by reference.
+
+A model reading under the amended guide has not been run and is not required for pass 2.
 
 ## 8. Reproduction
 
