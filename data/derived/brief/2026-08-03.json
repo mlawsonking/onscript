@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-03",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-08-02",
+      "note": "no publish for 2026-08-02 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": null,
+      "status": "unknown",
+      "note": "no cost ledger for 2026-08 — spend not measured (the $10 Console cap is the backstop)"
+    },
+    {
+      "name": "coverage",
+      "value": null,
+      "status": "unknown",
+      "day": "2026-07-31",
+      "freshness": {
+        "age_hours": 12.89,
+        "day": "2026-08-02",
+        "status": "green"
+      },
+      "note": "newest symmetry report is 2026-07-31 (3d old) — cannot describe current coverage"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.375,
+      "dropped": 6,
+      "offered": 16,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "6/16 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [
+    "spend",
+    "coverage"
+  ],
+  "degraded_days": [
+    "2026-07-27",
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30"
+  ],
+  "top_phrase": {
+    "ngram": "the trump administration’s",
+    "party": "D",
+    "day_peak": 11,
+    "day": "2026-07-30"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}
