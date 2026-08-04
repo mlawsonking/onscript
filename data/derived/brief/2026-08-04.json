@@ -16,20 +16,34 @@
       "projected": 0.0,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 1,
+      "ledger_days": 2,
       "note": "$0.0000 MTD, $0.00 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "value": null,
-      "status": "unknown",
-      "day": "2026-08-01",
+      "day": "2026-08-02",
+      "parties": {
+        "D": {
+          "statements": 4,
+          "median": 90,
+          "share": 0.044,
+          "status": "red"
+        },
+        "R": {
+          "statements": 4,
+          "median": 61,
+          "share": 0.066,
+          "status": "red"
+        }
+      },
+      "status": "red",
       "freshness": {
-        "age_hours": 12.24,
-        "day": "2026-08-03",
+        "age_hours": 12.39,
+        "day": "2026-08-04",
         "status": "green"
       },
-      "note": "newest symmetry report is 2026-08-01 (3d old) — cannot describe current coverage"
+      "excluded_reports": 0,
+      "note": "2026-08-02: D 4/90=4% R 4/61=7% of own 14d median (green >= 60%); upstream 12.4h (green < 36h)"
     },
     {
       "name": "verifier_drop",
@@ -49,11 +63,10 @@
   ],
   "reds": [
     "streak",
+    "coverage",
     "verifier_drop"
   ],
-  "unknowns": [
-    "coverage"
-  ],
+  "unknowns": [],
   "degraded_days": [
     "2026-07-28",
     "2026-07-29",
@@ -91,5 +104,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, verifier_drop"
+  "headline": "RED: streak, coverage, verifier_drop"
 }
