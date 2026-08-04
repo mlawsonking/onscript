@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-04",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-08-03",
+      "note": "no publish for 2026-08-03 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.0,
+      "projected": 0.0,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 1,
+      "note": "$0.0000 MTD, $0.00 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "value": null,
+      "status": "unknown",
+      "day": "2026-08-01",
+      "freshness": {
+        "age_hours": 12.24,
+        "day": "2026-08-03",
+        "status": "green"
+      },
+      "note": "newest symmetry report is 2026-08-01 (3d old) — cannot describe current coverage"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.3571,
+      "dropped": 5,
+      "offered": 14,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "5/14 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [
+    "coverage"
+  ],
+  "degraded_days": [
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30",
+    "2026-08-01"
+  ],
+  "top_phrase": {
+    "ngram": "the trump administration’s",
+    "party": "D",
+    "day_peak": 11,
+    "day": "2026-07-30"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}
