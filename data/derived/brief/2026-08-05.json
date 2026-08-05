@@ -5,54 +5,54 @@
   "numbers": [
     {
       "name": "streak",
-      "value": 0,
-      "status": "red",
-      "last_missed": "2026-08-04",
-      "note": "no publish for 2026-08-04 — Playbook P1"
+      "value": 25,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "25 consecutive days published (through 2026-08-04)"
     },
     {
       "name": "spend",
-      "value": 0.0072,
-      "projected": 0.0444,
+      "value": 0.018,
+      "projected": 0.1116,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 3,
-      "note": "$0.0072 MTD, $0.04 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 4,
+      "note": "$0.0180 MTD, $0.11 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "day": "2026-08-03",
+      "day": "2026-08-04",
       "parties": {
         "D": {
-          "statements": 74,
-          "median": 85,
-          "share": 0.871,
+          "statements": 82,
+          "median": 79.5,
+          "share": 1.031,
           "status": "green"
         },
         "R": {
-          "statements": 56,
-          "median": 55,
-          "share": 1.018,
+          "statements": 55,
+          "median": 55.5,
+          "share": 0.991,
           "status": "green"
         }
       },
       "status": "green",
       "freshness": {
-        "age_hours": 12.39,
-        "day": "2026-08-04",
+        "age_hours": 3.94,
+        "day": "2026-08-05",
         "status": "green"
       },
       "excluded_reports": 0,
-      "note": "2026-08-03: D 74/85=87% R 56/55=102% of own 14d median (green >= 60%); upstream 12.4h (green < 36h)"
+      "note": "2026-08-04: D 82/80=103% R 55/56=99% of own 14d median (green >= 60%); upstream 3.9h (green < 36h)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.2667,
-      "dropped": 4,
-      "offered": 15,
+      "value": 0.35,
+      "dropped": 7,
+      "offered": 20,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "4/15 claims dropped over 7d (green < 25%)"
+      "note": "7/20 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -62,7 +62,6 @@
     }
   ],
   "reds": [
-    "streak",
     "verifier_drop"
   ],
   "unknowns": [],
@@ -103,5 +102,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, verifier_drop"
+  "headline": "RED: verifier_drop"
 }

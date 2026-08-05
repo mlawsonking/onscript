@@ -951,5 +951,2030 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-08-04",
+      "party": "D",
+      "composite": "Today 82 of us released statements. 3 offices across 3 publications and 3 families carried \"around a new rule proposed\". 3 offices across 3 publications and 3 families carried \"Board that would weaken civil\". Our most synchronized phrase, used by 6 of us: rule of law.",
+      "measurement_lead": "Measurement: 82 publications were observed for the Democratic party on 2026-08-04.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-08-04",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "1cc9276cc9a21ee2466a512119fc9d1c0956e00c501ae0ac39a4f1d3606c1903",
+        "claim_ids": [
+          "2026-08-04-D-01",
+          "2026-08-04-D-02"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 82 of us released statements. 3 offices across 3 publications and 3 families carried \"around a new rule proposed\". 3 offices across 3 publications and 3 families carried \"Board that would weaken civil\". Our most synchronized phrase, used by 6 of us: rule of law.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-08-04-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-08-04-D-02"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "34ee5097b777f044a6a2f3963c6a56f0595d58496a9577206fb1a06e6a1ca3db",
+        "response_sha256": "fedce82ca7e8c774e43d7fa89475a65dd6ba6e4c311d80828ce683e6d848359d",
+        "model_response_sha256": "3f064c2cfa32e9b829998abeba1378a404718628cd6c07cf0e76e7245f83fa49"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-08-04-D-01"
+          ],
+          "claim_ids": [
+            "2026-08-04-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-08-04-D-02"
+          ],
+          "claim_ids": [
+            "2026-08-04-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-08-04-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-08-04-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-08-04",
+        "statements": 82,
+        "talking_points": [
+          {
+            "label": "around a new rule proposed",
+            "members": 3,
+            "quote": "around a new rule proposed",
+            "topics": [
+              "tech_ai"
+            ],
+            "claim_id": "2026-08-04-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "board that would weaken civil",
+            "members": 3,
+            "quote": "Board that would weaken civil",
+            "topics": [
+              "labor",
+              "other"
+            ],
+            "claim_id": "2026-08-04-D-02",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "labor",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "rule of law",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Thomas R. Suozzi",
+          "first_sayer_party": "D",
+          "first_sayer_state": "NY"
+        },
+        "selected_claims": [
+          {
+            "label": "around a new rule proposed",
+            "members": 3,
+            "quote": "around a new rule proposed",
+            "topics": [
+              "tech_ai"
+            ],
+            "claim_id": "2026-08-04-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "board that would weaken civil",
+            "members": 3,
+            "quote": "Board that would weaken civil",
+            "topics": [
+              "labor",
+              "other"
+            ],
+            "claim_id": "2026-08-04-D-02",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "labor",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-08-04-D-01",
+          "2026-08-04-D-02"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 3155,
+        "tokens_out": 131,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-08-04",
+      "party": "R",
+      "composite": "Across 55 statements today, no message rises to a shared position among us. The most synchronized phrase is i'm proud to join, appearing 4 times, first recorded in our corpus from Mike Levin (D-CA).",
+      "measurement_lead": "Measurement: 55 publications were observed for the Republican party on 2026-08-04.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-08-04",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "e7864c59667638c85a4eec89ff7290b9f83ed57f39fee99fc375265664df3683",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 55 statements today, no message rises to a shared position among us. The most synchronized phrase is i'm proud to join, appearing 4 times, first recorded in our corpus from Mike Levin (D-CA).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "2f4869af50f76c115205a7e802af9fee4843be990d990c0c332daf1f8da7d99c",
+        "response_sha256": "5104a12b885620435cef11d2370c37a9f2b523d9814f1b3acdc81f98a2f32897",
+        "model_response_sha256": "2d09735017dc4e8d129e37d28be47c7fc90b7a77ceec833318615c5f1f8e7fd5"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-08-04",
+        "statements": 55,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "i’m proud to join",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "Mike Levin",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CA"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1251,
+        "tokens_out": 71,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-08-04-D-01",
+        "party": "D",
+        "day": "2026-08-04",
+        "label": "around a new rule proposed",
+        "member_count": 3,
+        "statements": [
+          "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+          "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+          "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c"
+        ],
+        "fragments": [
+          {
+            "text": "congressional delegations in raising concerns around a new rule proposed",
+            "statement": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d"
+          },
+          {
+            "text": "in raising concerns around a new rule proposed by the",
+            "statement": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c"
+          },
+          {
+            "text": "in raising concerns around a new rule proposed by the",
+            "statement": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856"
+          }
+        ],
+        "topics": [
+          "tech_ai"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-04-D-01",
+        "support_phrase": {
+          "normalized": "around a new rule proposed",
+          "text": "around a new rule proposed",
+          "occurrence_id": "occ:93c8a038730175f977a0a01e"
+        },
+        "display_quote": "around a new rule proposed",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:93c8a038730175f977a0a01e",
+            "claim_id": "2026-08-04-D-01",
+            "statement_id": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+            "publication_id": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+            "office_id": "S001181",
+            "family_id": "dfam:fe7a8e403f3c7c652b4c9be1",
+            "family_revision": "dfrev:be363d24bb5e437458082c42",
+            "support_unit_id": "S001181",
+            "party": "D",
+            "start_char": 236,
+            "end_char": 262,
+            "surface_text": "around a new rule proposed",
+            "normalized_phrase": "around a new rule proposed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 123,
+            "sentence_end_char": 455,
+            "sentence_offset_start": 113,
+            "sentence_offset_end": 139,
+            "clause_start_char": 161,
+            "clause_end_char": 472,
+            "clause_offset_start": 75,
+            "clause_offset_end": 101,
+            "adjacent_tokens_before": [
+              "pingree",
+              "me-01",
+              "in",
+              "raising",
+              "concerns"
+            ],
+            "adjacent_tokens_after": [
+              "by",
+              "the",
+              "office",
+              "of",
+              "personnel"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1d070eddf2ad43ae33569b16",
+            "claim_id": "2026-08-04-D-01",
+            "statement_id": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+            "publication_id": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+            "office_id": "G000604",
+            "family_id": "dfam:5038d369059ebf6a91126c48",
+            "family_revision": "dfrev:041f75537ef0d40cd9c3ded9",
+            "support_unit_id": "G000604",
+            "party": "D",
+            "start_char": 151,
+            "end_char": 177,
+            "surface_text": "around a new rule proposed",
+            "normalized_phrase": "around a new rule proposed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 370,
+            "sentence_offset_start": 135,
+            "sentence_offset_end": 161,
+            "clause_start_char": 11,
+            "clause_end_char": 387,
+            "clause_offset_start": 140,
+            "clause_offset_end": 166,
+            "adjacent_tokens_before": [
+              "congressional",
+              "delegations",
+              "in",
+              "raising",
+              "concerns"
+            ],
+            "adjacent_tokens_after": [
+              "by",
+              "the",
+              "office",
+              "of",
+              "personnel"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:24f6bab1be7a902b85abe96e",
+            "claim_id": "2026-08-04-D-01",
+            "statement_id": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c",
+            "publication_id": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c",
+            "office_id": "P000614",
+            "family_id": "dfam:9d522c8ee45f70250a7259ce",
+            "family_revision": "dfrev:848d8e13bf18f4288e491a61",
+            "support_unit_id": "P000614",
+            "party": "D",
+            "start_char": 220,
+            "end_char": 246,
+            "surface_text": "around a new rule proposed",
+            "normalized_phrase": "around a new rule proposed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 439,
+            "sentence_offset_start": 220,
+            "sentence_offset_end": 246,
+            "clause_start_char": 157,
+            "clause_end_char": 456,
+            "clause_offset_start": 63,
+            "clause_offset_end": 89,
+            "adjacent_tokens_before": [
+              "pingree",
+              "me-01",
+              "in",
+              "raising",
+              "concerns"
+            ],
+            "adjacent_tokens_after": [
+              "by",
+              "the",
+              "office",
+              "of",
+              "personnel"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000604",
+          "P000614",
+          "S001181"
+        ],
+        "publication_ids": [
+          "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+          "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+          "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c"
+        ],
+        "family_ids": [
+          "dfam:5038d369059ebf6a91126c48",
+          "dfam:9d522c8ee45f70250a7259ce",
+          "dfam:fe7a8e403f3c7c652b4c9be1"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:5038d369059ebf6a91126c48",
+            "family_revision": "dfrev:041f75537ef0d40cd9c3ded9"
+          },
+          {
+            "family_id": "dfam:9d522c8ee45f70250a7259ce",
+            "family_revision": "dfrev:848d8e13bf18f4288e491a61"
+          },
+          {
+            "family_id": "dfam:fe7a8e403f3c7c652b4c9be1",
+            "family_revision": "dfrev:be363d24bb5e437458082c42"
+          }
+        ],
+        "support_unit_ids": [
+          "G000604",
+          "P000614",
+          "S001181"
+        ],
+        "citation_occurrence_ids": [
+          "occ:93c8a038730175f977a0a01e",
+          "occ:1d070eddf2ad43ae33569b16",
+          "occ:24f6bab1be7a902b85abe96e"
+        ],
+        "citations": [
+          {
+            "member": "Jeanne Shaheen",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-08-04",
+            "url": "https://www.shaheen.senate.gov/news/press/shaheen-leads-new-hampshire-and-maine-colleagues-in-opposing-new-opm-rule-weakening-civilian-labor-protections-at-portsmouth-naval-shipyard",
+            "quote": "in raising concerns around a new rule proposed by the",
+            "occurrence_id": "occ:93c8a038730175f977a0a01e",
+            "office_id": "S001181",
+            "publication_id": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+            "family_id": "dfam:fe7a8e403f3c7c652b4c9be1",
+            "family_revision": "dfrev:be363d24bb5e437458082c42"
+          },
+          {
+            "member": "Maggie Goodlander",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-08-04",
+            "url": "https://goodlander.house.gov/media/press-releases/goodlander-joins-new-hampshire-and-maine-delegations-in-opposing-new-opm-rule-weakening-civilian-labor-protections-at-portsmouth-naval-shipyard/",
+            "quote": "congressional delegations in raising concerns around a new rule proposed",
+            "occurrence_id": "occ:1d070eddf2ad43ae33569b16",
+            "office_id": "G000604",
+            "publication_id": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+            "family_id": "dfam:5038d369059ebf6a91126c48",
+            "family_revision": "dfrev:041f75537ef0d40cd9c3ded9"
+          },
+          {
+            "member": "Chris Pappas",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-08-04",
+            "url": "https://pappas.house.gov/media/press-releases/pappas-joins-new-hampshire-and-maine-colleagues-in-opposing-new-opm-rule-weakening-civilian-labor-protections-at-portsmouth-naval-shipyard",
+            "quote": "in raising concerns around a new rule proposed by the",
+            "occurrence_id": "occ:24f6bab1be7a902b85abe96e",
+            "office_id": "P000614",
+            "publication_id": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c",
+            "family_id": "dfam:9d522c8ee45f70250a7259ce",
+            "family_revision": "dfrev:848d8e13bf18f4288e491a61"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "tech_ai",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-08-04-D-02",
+        "party": "D",
+        "day": "2026-08-04",
+        "label": "board that would weaken civil",
+        "member_count": 3,
+        "statements": [
+          "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+          "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+          "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c"
+        ],
+        "fragments": [
+          {
+            "text": "protection board that would weaken civil service protections and undermine workers",
+            "statement": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d"
+          },
+          {
+            "text": "protection board that would weaken civil service protections and undermine",
+            "statement": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c"
+          },
+          {
+            "text": "protection board that would weaken civil service protections and undermine",
+            "statement": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856"
+          }
+        ],
+        "topics": [
+          "labor",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-04-D-02",
+        "support_phrase": {
+          "normalized": "board that would weaken civil",
+          "text": "Board that would weaken civil",
+          "occurrence_id": "occ:addb7661355d0d21dddf9c95"
+        },
+        "display_quote": "Board that would weaken civil",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:addb7661355d0d21dddf9c95",
+            "claim_id": "2026-08-04-D-02",
+            "statement_id": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+            "publication_id": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+            "office_id": "S001181",
+            "family_id": "dfam:fe7a8e403f3c7c652b4c9be1",
+            "family_revision": "dfrev:be363d24bb5e437458082c42",
+            "support_unit_id": "S001181",
+            "party": "D",
+            "start_char": 340,
+            "end_char": 369,
+            "surface_text": "Board that would weaken civil",
+            "normalized_phrase": "board that would weaken civil",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 123,
+            "sentence_end_char": 455,
+            "sentence_offset_start": 217,
+            "sentence_offset_end": 246,
+            "clause_start_char": 161,
+            "clause_end_char": 472,
+            "clause_offset_start": 179,
+            "clause_offset_end": 208,
+            "adjacent_tokens_before": [
+              "and",
+              "the",
+              "merit",
+              "systems",
+              "protection"
+            ],
+            "adjacent_tokens_after": [
+              "service",
+              "protections",
+              "and",
+              "undermine",
+              "workers"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:933dfcd8bdef919b430ee146",
+            "claim_id": "2026-08-04-D-02",
+            "statement_id": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+            "publication_id": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+            "office_id": "G000604",
+            "family_id": "dfam:5038d369059ebf6a91126c48",
+            "family_revision": "dfrev:041f75537ef0d40cd9c3ded9",
+            "support_unit_id": "G000604",
+            "party": "D",
+            "start_char": 255,
+            "end_char": 284,
+            "surface_text": "Board that would weaken civil",
+            "normalized_phrase": "board that would weaken civil",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 370,
+            "sentence_offset_start": 239,
+            "sentence_offset_end": 268,
+            "clause_start_char": 11,
+            "clause_end_char": 387,
+            "clause_offset_start": 244,
+            "clause_offset_end": 273,
+            "adjacent_tokens_before": [
+              "and",
+              "the",
+              "merit",
+              "systems",
+              "protection"
+            ],
+            "adjacent_tokens_after": [
+              "service",
+              "protections",
+              "and",
+              "undermine",
+              "workers"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bd52317066449eabaa20c745",
+            "claim_id": "2026-08-04-D-02",
+            "statement_id": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c",
+            "publication_id": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c",
+            "office_id": "P000614",
+            "family_id": "dfam:9d522c8ee45f70250a7259ce",
+            "family_revision": "dfrev:848d8e13bf18f4288e491a61",
+            "support_unit_id": "P000614",
+            "party": "D",
+            "start_char": 324,
+            "end_char": 353,
+            "surface_text": "Board that would weaken civil",
+            "normalized_phrase": "board that would weaken civil",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 439,
+            "sentence_offset_start": 324,
+            "sentence_offset_end": 353,
+            "clause_start_char": 157,
+            "clause_end_char": 456,
+            "clause_offset_start": 167,
+            "clause_offset_end": 196,
+            "adjacent_tokens_before": [
+              "and",
+              "the",
+              "merit",
+              "systems",
+              "protection"
+            ],
+            "adjacent_tokens_after": [
+              "service",
+              "protections",
+              "and",
+              "undermine",
+              "workers"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000604",
+          "P000614",
+          "S001181"
+        ],
+        "publication_ids": [
+          "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+          "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+          "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c"
+        ],
+        "family_ids": [
+          "dfam:5038d369059ebf6a91126c48",
+          "dfam:9d522c8ee45f70250a7259ce",
+          "dfam:fe7a8e403f3c7c652b4c9be1"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:5038d369059ebf6a91126c48",
+            "family_revision": "dfrev:041f75537ef0d40cd9c3ded9"
+          },
+          {
+            "family_id": "dfam:9d522c8ee45f70250a7259ce",
+            "family_revision": "dfrev:848d8e13bf18f4288e491a61"
+          },
+          {
+            "family_id": "dfam:fe7a8e403f3c7c652b4c9be1",
+            "family_revision": "dfrev:be363d24bb5e437458082c42"
+          }
+        ],
+        "support_unit_ids": [
+          "G000604",
+          "P000614",
+          "S001181"
+        ],
+        "citation_occurrence_ids": [
+          "occ:addb7661355d0d21dddf9c95",
+          "occ:933dfcd8bdef919b430ee146",
+          "occ:bd52317066449eabaa20c745"
+        ],
+        "citations": [
+          {
+            "member": "Jeanne Shaheen",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-08-04",
+            "url": "https://www.shaheen.senate.gov/news/press/shaheen-leads-new-hampshire-and-maine-colleagues-in-opposing-new-opm-rule-weakening-civilian-labor-protections-at-portsmouth-naval-shipyard",
+            "quote": "protection board that would weaken civil service protections and undermine",
+            "occurrence_id": "occ:addb7661355d0d21dddf9c95",
+            "office_id": "S001181",
+            "publication_id": "sha256:5a3938c0923af7be8399e161ad6ba7ed0900f05bccde4121fcf26310c2477856",
+            "family_id": "dfam:fe7a8e403f3c7c652b4c9be1",
+            "family_revision": "dfrev:be363d24bb5e437458082c42"
+          },
+          {
+            "member": "Maggie Goodlander",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-08-04",
+            "url": "https://goodlander.house.gov/media/press-releases/goodlander-joins-new-hampshire-and-maine-delegations-in-opposing-new-opm-rule-weakening-civilian-labor-protections-at-portsmouth-naval-shipyard/",
+            "quote": "protection board that would weaken civil service protections and undermine workers",
+            "occurrence_id": "occ:933dfcd8bdef919b430ee146",
+            "office_id": "G000604",
+            "publication_id": "sha256:c2029d21a2078a5b0597dfc99eb52d7532f7e19e79025b5dd45100afa242ac3d",
+            "family_id": "dfam:5038d369059ebf6a91126c48",
+            "family_revision": "dfrev:041f75537ef0d40cd9c3ded9"
+          },
+          {
+            "member": "Chris Pappas",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-08-04",
+            "url": "https://pappas.house.gov/media/press-releases/pappas-joins-new-hampshire-and-maine-colleagues-in-opposing-new-opm-rule-weakening-civilian-labor-protections-at-portsmouth-naval-shipyard",
+            "quote": "protection board that would weaken civil service protections and undermine",
+            "occurrence_id": "occ:bd52317066449eabaa20c745",
+            "office_id": "P000614",
+            "publication_id": "sha256:f932114eec75e1cefa85e51c44e6f450ceed40bd99dc18a29f5d30f5c80c3e6c",
+            "family_id": "dfam:9d522c8ee45f70250a7259ce",
+            "family_revision": "dfrev:848d8e13bf18f4288e491a61"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "labor",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-08-04",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 57,
+          "denominator_unit": "offices",
+          "share": 0.052632,
+          "window": "party-day 2026-08-04",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 82,
+          "denominator_unit": "publications",
+          "share": 0.036585,
+          "window": "party-day 2026-08-04",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 80,
+          "denominator_unit": "document families",
+          "share": 0.0375,
+          "window": "party-day 2026-08-04",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-08-04",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 43,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-08-04",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 55,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-08-04",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 55,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-08-04",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "the rule of law",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 4
+      },
+      {
+        "label": "in pressing the trump administration",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      },
+      {
+        "label": "on the usage of credit-based",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 1.65,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          3,
+          2,
+          7,
+          11,
+          7,
+          5,
+          2,
+          1,
+          2,
+          5,
+          11,
+          2,
+          4,
+          8
+        ]
+      },
+      {
+        "ngram": "strong opposition to",
+        "slug": "1b5fea18f578780a",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": null,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.63,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "M001177",
+          "statement": "sha256:5d160a19185e9267c691d29598938885394ed7871967b49088b6e0c4a854b229",
+          "tie": [
+            "B001277"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          1,
+          3,
+          1,
+          2,
+          2,
+          3,
+          1,
+          3,
+          1,
+          1,
+          3,
+          2,
+          3,
+          7
+        ]
+      },
+      {
+        "ngram": "rule of law",
+        "slug": "ca267b9e0d15e01f",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.53,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "S001201",
+          "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          8,
+          4,
+          1,
+          2,
+          2,
+          4,
+          3,
+          4,
+          1,
+          1,
+          7,
+          8,
+          6,
+          6
+        ]
+      },
+      {
+        "ngram": "billions of dollars",
+        "slug": "ef73ccf05a80670c",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.58,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.966,
+        "series": [
+          1,
+          4,
+          9,
+          11,
+          7,
+          6,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.3,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.974,
+        "series": [
+          1,
+          5,
+          3,
+          1,
+          3,
+          13,
+          8,
+          5,
+          2,
+          4,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "serious concerns about",
+        "slug": "ccdd5191d14ed461",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.19,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          4,
+          2,
+          4,
+          5,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "companion legislation in",
+        "slug": "cc348fc42de2875a",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.06,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000305",
+          "statement": "sha256:4f9f6a47ec14d03f0d4f143a48b8094a370ba7c3bea97a6166c8f46dc6eb1b9f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.983,
+        "series": [
+          6,
+          2,
+          3,
+          1,
+          1,
+          1,
+          4,
+          2,
+          3,
+          2,
+          3,
+          3,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "the lawmakers wrote",
+        "slug": "13d49ed92594daf1",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.06,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001117",
+          "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.978,
+        "series": [
+          5,
+          1,
+          2,
+          3,
+          3,
+          4,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "american people and",
+        "slug": "e4dc02f67535e6ca",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.94,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:cf6244b38ff5612e425dda155e1b3450519b5415925d5a49985856077cc75227",
+          "tie": [
+            "B001261",
+            "C001098",
+            "F000466",
+            "M001210",
+            "W000829"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.974,
+        "series": [
+          3,
+          6,
+          2,
+          5,
+          3,
+          1,
+          1,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "defense industrial base",
+        "slug": "a8f9cb20ad2e9809",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.98,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "N000188",
+          "statement": "sha256:dd5e2d9e9cabbc8cd9ab1c5343d5f4954f850ec251288027ddc8748ea671a548",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.963,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          33,
+          9,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "i’m proud to join",
+        "slug": "b649c3667db4f8c7",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.27,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.982,
+        "series": [
+          2,
+          3,
+          6,
+          3,
+          5,
+          2,
+          2,
+          3,
+          3,
+          1,
+          6,
+          4,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "this bipartisan bill",
+        "slug": "83690fcbebee565c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.98,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          4,
+          4,
+          4,
+          3,
+          8,
+          6,
+          4,
+          4,
+          1,
+          2,
+          7,
+          5,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "tools they need",
+        "slug": "0bafdfc68e799e34",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.4,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "S000168",
+          "statement": "sha256:33e67961cfb5fbd241d712e5c0ca54d6a0e8dd075360862049f476c3c6ff0f7f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          3,
+          3,
+          1,
+          2,
+          9,
+          6,
+          3,
+          2,
+          1,
+          3,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "resources they need",
+        "slug": "37ccc78cc6a4d4b9",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.02,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000468",
+          "statement": "sha256:85610104dcbcd355441f3a9e350a66c8249fb2e164026da3e089386be7d93af9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          3,
+          3,
+          5,
+          10,
+          7,
+          1,
+          4,
+          3,
+          1,
+          8,
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "full text of the bill here",
+        "slug": "d8a536fcc47d54c1",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "R000614",
+          "statement": "sha256:16603276656aee3046bd2a72984e9db4aa57bd32f315a4151b2cdf9fac781fd4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "read the full text",
+        "slug": "9e7f786501c48ef2",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.27,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "R000614",
+          "statement": "sha256:16603276656aee3046bd2a72984e9db4aa57bd32f315a4151b2cdf9fac781fd4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          2,
+          4,
+          2,
+          1,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          6,
+          4,
+          3,
+          3
+        ]
+      },
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.3,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.974,
+        "series": [
+          1,
+          5,
+          3,
+          1,
+          3,
+          13,
+          8,
+          5,
+          2,
+          4,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "brave men and women",
+        "slug": "4a6dfb7ae0b8adc0",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.62,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001133",
+          "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6,
+          3,
+          2,
+          3,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "full bill text",
+        "slug": "533c110fb83896e6",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.08,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001103",
+          "statement": "sha256:07beaf43ab61b6ae7fb5d7211df4b6f0dc0378d87296eb95c480c8a2cba7fcfc",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          4,
+          2,
+          4,
+          4,
+          7,
+          7,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "questions from senators",
+        "slug": "7395223f32ff9f0b",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-07-31",
+          "bioguide": "M001218",
+          "statement": "sha256:2b69e015b264a103d91df81d13607bd6a84b4d5935a5f6ca14a11d4002872b04",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "12d903f280f7b5c89ed15ba24273b6e11d7a9cba3cd0d948f956ec2afea69f64",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "429fa3153bd3f2ae93bf90024bbced2aec9bff578d78eaea8e08220471706cb9",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
