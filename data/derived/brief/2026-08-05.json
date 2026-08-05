@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-05",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-08-04",
+      "note": "no publish for 2026-08-04 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.0072,
+      "projected": 0.0444,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 3,
+      "note": "$0.0072 MTD, $0.04 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-08-03",
+      "parties": {
+        "D": {
+          "statements": 74,
+          "median": 85,
+          "share": 0.871,
+          "status": "green"
+        },
+        "R": {
+          "statements": 56,
+          "median": 55,
+          "share": 1.018,
+          "status": "green"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 12.39,
+        "day": "2026-08-04",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "note": "2026-08-03: D 74/85=87% R 56/55=102% of own 14d median (green >= 60%); upstream 12.4h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.2667,
+      "dropped": 4,
+      "offered": 15,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "4/15 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [
+    "2026-07-29",
+    "2026-07-30",
+    "2026-08-01",
+    "2026-08-03"
+  ],
+  "top_phrase": {
+    "ngram": "the trump administration’s",
+    "party": "D",
+    "day_peak": 11,
+    "day": "2026-07-30"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}

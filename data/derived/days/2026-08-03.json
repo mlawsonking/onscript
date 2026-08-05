@@ -1,0 +1,3532 @@
+{
+  "day": "2026-08-03",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-08-03",
+      "party": "D",
+      "composite": "Composite withheld because its claims could not be verified.",
+      "measurement_lead": "Measurement: 74 publications were observed for the Democratic party on 2026-08-03.",
+      "composite_state": "withheld_verifier_failure",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-08-03",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "87841c09b762621df353dd49d619778f80d55225ddecbe418d37cbb9da603b6c",
+        "claim_ids": [
+          "2026-08-03-D-00",
+          "2026-08-03-D-03"
+        ]
+      },
+      "structured_output": {
+        "composite": "Composite withheld because its claims could not be verified.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "5d7adcb0a223267b7b83cd8260caacda734126fa7bbc439d591c86c05363465b",
+        "response_sha256": "2353ec9f7042ffa7926e62ff3c6f6949f0b141775309c84010df11f6521120ac",
+        "model_response_sha256": "9ef952daab388add164ee7c21d66ef3ba20e76aaa4dedcf67cab838ecbbc3351"
+      },
+      "quiet": false,
+      "fallback": true,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:fallback",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-08-03",
+        "statements": 74,
+        "talking_points": [
+          {
+            "label": "the devastating wildfires sweeping",
+            "members": 4,
+            "quote": "the devastating wildfires sweeping",
+            "topics": [
+              "disasters"
+            ],
+            "claim_id": "2026-08-03-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "disasters",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 5,
+              "families": 4,
+              "support_units": 4
+            }
+          },
+          {
+            "label": "from the cftc following public",
+            "members": 4,
+            "quote": "from the CFTC following public",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-08-03-D-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "rule of law",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Thomas R. Suozzi",
+          "first_sayer_party": "D",
+          "first_sayer_state": "NY"
+        },
+        "selected_claims": [
+          {
+            "label": "the devastating wildfires sweeping",
+            "members": 4,
+            "quote": "the devastating wildfires sweeping",
+            "topics": [
+              "disasters"
+            ],
+            "claim_id": "2026-08-03-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "disasters",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 5,
+              "families": 4,
+              "support_units": 4
+            }
+          },
+          {
+            "label": "from the cftc following public",
+            "members": 4,
+            "quote": "from the CFTC following public",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-08-03-D-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 4,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-08-03-D-00",
+          "2026-08-03-D-03"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": false,
+        "reasons": [
+          "un-whitelisted numbers in composite: ['5']"
+        ],
+        "talking_points_published": 4
+      },
+      "usage": {
+        "tokens_in": 2942,
+        "tokens_out": 128,
+        "model": "P2:fallback"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-08-03",
+      "party": "R",
+      "composite": "Today 56 of us released statements. No phrase was shared by 3 or more of us today.",
+      "measurement_lead": "Measurement: 56 publications were observed for the Republican party on 2026-08-03.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-08-03",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "d60b56092673417d295f2f39e5821ceb97a9ec70df2beaac132c3ecc0332f5d9",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Today 56 of us released statements. No phrase was shared by 3 or more of us today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "14a259824181513cccc7b34524b4eaecc0a1cf8331bd8634c1842624ed8a0a4d",
+        "response_sha256": "f2dd1de1a10cc97d9ab870de7ba2c3393e61123f08e83c588a4a8321c73a655d",
+        "model_response_sha256": null
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-08-03",
+        "statements": 56,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-08-03-D-00",
+        "party": "D",
+        "day": "2026-08-03",
+        "label": "the devastating wildfires sweeping",
+        "member_count": 4,
+        "statements": [
+          "sha256:0a6011f8bb45c54ec39dc02c6f612f37f64a644604b848b03b69ee7d4baa09d2",
+          "sha256:2dd2bea89d749c14c150548525982431981dba1eaf24a06e520503295e1c1bf7",
+          "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+          "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+          "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6"
+        ],
+        "fragments": [
+          {
+            "text": "emergency declaration for the devastating wildfires sweeping through central and",
+            "statement": "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6"
+          },
+          {
+            "text": "floor about the devastating wildfires sweeping through the spokane region",
+            "statement": "sha256:2dd2bea89d749c14c150548525982431981dba1eaf24a06e520503295e1c1bf7"
+          },
+          {
+            "text": "declaration for the devastating wildfires sweeping through central and eastern",
+            "statement": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa"
+          },
+          {
+            "text": "emergency declaration for the devastating wildfires sweeping through central",
+            "statement": "sha256:0a6011f8bb45c54ec39dc02c6f612f37f64a644604b848b03b69ee7d4baa09d2"
+          }
+        ],
+        "topics": [
+          "disasters"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-03-D-00",
+        "support_phrase": {
+          "normalized": "the devastating wildfires sweeping",
+          "text": "the devastating wildfires sweeping",
+          "occurrence_id": "occ:0ff8fad726cce8020530356f"
+        },
+        "display_quote": "the devastating wildfires sweeping",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0ff8fad726cce8020530356f",
+            "claim_id": "2026-08-03-D-00",
+            "statement_id": "sha256:0a6011f8bb45c54ec39dc02c6f612f37f64a644604b848b03b69ee7d4baa09d2",
+            "publication_id": "sha256:0a6011f8bb45c54ec39dc02c6f612f37f64a644604b848b03b69ee7d4baa09d2",
+            "office_id": "L000560",
+            "family_id": "njoint:2cf2d9279063c052e37496a7",
+            "family_revision": "dfrev:0402d83c3c8f2cf8f818dcf8",
+            "support_unit_id": "njoint:2cf2d9279063c052e37496a7",
+            "party": "D",
+            "start_char": 262,
+            "end_char": 296,
+            "surface_text": "the devastating wildfires sweeping",
+            "normalized_phrase": "the devastating wildfires sweeping",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 341,
+            "sentence_offset_start": 262,
+            "sentence_offset_end": 296,
+            "clause_start_char": 6,
+            "clause_end_char": 355,
+            "clause_offset_start": 256,
+            "clause_offset_end": 290,
+            "adjacent_tokens_before": [
+              "an",
+              "expedited",
+              "emergency",
+              "declaration",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "through",
+              "central",
+              "and",
+              "eastern",
+              "washington"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:126b2e9ce8fa255fa19bad6e",
+            "claim_id": "2026-08-03-D-00",
+            "statement_id": "sha256:2dd2bea89d749c14c150548525982431981dba1eaf24a06e520503295e1c1bf7",
+            "publication_id": "sha256:2dd2bea89d749c14c150548525982431981dba1eaf24a06e520503295e1c1bf7",
+            "office_id": "M001111",
+            "family_id": "dfam:427bcf88a877f5f081f7976f",
+            "family_revision": "dfrev:e9d401f3659e423ab8274176",
+            "support_unit_id": "M001111",
+            "party": "D",
+            "start_char": 420,
+            "end_char": 454,
+            "surface_text": "the devastating wildfires sweeping",
+            "normalized_phrase": "the devastating wildfires sweeping",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 299,
+            "sentence_end_char": 606,
+            "sentence_offset_start": 121,
+            "sentence_offset_end": 155,
+            "clause_start_char": 379,
+            "clause_end_char": 501,
+            "clause_offset_start": 41,
+            "clause_offset_end": 75,
+            "adjacent_tokens_before": [
+              "on",
+              "the",
+              "senate",
+              "floor",
+              "about"
+            ],
+            "adjacent_tokens_after": [
+              "through",
+              "the",
+              "spokane",
+              "region",
+              "in"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0864f780cf253f00259dd040",
+            "claim_id": "2026-08-03-D-00",
+            "statement_id": "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+            "publication_id": "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+            "office_id": "M001111",
+            "family_id": "njoint:2cf2d9279063c052e37496a7",
+            "family_revision": "dfrev:0402d83c3c8f2cf8f818dcf8",
+            "support_unit_id": "njoint:2cf2d9279063c052e37496a7",
+            "party": "D",
+            "start_char": 649,
+            "end_char": 683,
+            "surface_text": "the devastating wildfires sweeping",
+            "normalized_phrase": "the devastating wildfires sweeping",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 350,
+            "sentence_end_char": 728,
+            "sentence_offset_start": 299,
+            "sentence_offset_end": 333,
+            "clause_start_char": 430,
+            "clause_end_char": 742,
+            "clause_offset_start": 219,
+            "clause_offset_end": 253,
+            "adjacent_tokens_before": [
+              "an",
+              "expedited",
+              "emergency",
+              "declaration",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "through",
+              "central",
+              "and",
+              "eastern",
+              "washington"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6864fe78cfdb1b420e276e23",
+            "claim_id": "2026-08-03-D-00",
+            "statement_id": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+            "publication_id": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+            "office_id": "S001216",
+            "family_id": "dfam:7baf444e01f39f8e765e0cd0",
+            "family_revision": "dfrev:c8aedad6e84a3066a0c1d6da",
+            "support_unit_id": "S001216",
+            "party": "D",
+            "start_char": 265,
+            "end_char": 299,
+            "surface_text": "the devastating wildfires sweeping",
+            "normalized_phrase": "the devastating wildfires sweeping",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 344,
+            "sentence_offset_start": 249,
+            "sentence_offset_end": 283,
+            "clause_start_char": 25,
+            "clause_end_char": 358,
+            "clause_offset_start": 240,
+            "clause_offset_end": 274,
+            "adjacent_tokens_before": [
+              "an",
+              "expedited",
+              "emergency",
+              "declaration",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "through",
+              "central",
+              "and",
+              "eastern",
+              "washington"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9174f76187ad858a517c428f",
+            "claim_id": "2026-08-03-D-00",
+            "statement_id": "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6",
+            "publication_id": "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6",
+            "office_id": "C000127",
+            "family_id": "dfam:55d0e5126ca5522bbdd9dade",
+            "family_revision": "dfrev:761cc24d35aa6976a82ac137",
+            "support_unit_id": "C000127",
+            "party": "D",
+            "start_char": 847,
+            "end_char": 881,
+            "surface_text": "the devastating wildfires sweeping",
+            "normalized_phrase": "the devastating wildfires sweeping",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 463,
+            "sentence_end_char": 926,
+            "sentence_offset_start": 384,
+            "sentence_offset_end": 418,
+            "clause_start_char": 625,
+            "clause_end_char": 940,
+            "clause_offset_start": 222,
+            "clause_offset_end": 256,
+            "adjacent_tokens_before": [
+              "an",
+              "expedited",
+              "emergency",
+              "declaration",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "through",
+              "central",
+              "and",
+              "eastern",
+              "washington"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 5,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "C000127",
+          "L000560",
+          "M001111",
+          "S001216"
+        ],
+        "publication_ids": [
+          "sha256:0a6011f8bb45c54ec39dc02c6f612f37f64a644604b848b03b69ee7d4baa09d2",
+          "sha256:2dd2bea89d749c14c150548525982431981dba1eaf24a06e520503295e1c1bf7",
+          "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+          "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+          "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6"
+        ],
+        "family_ids": [
+          "dfam:427bcf88a877f5f081f7976f",
+          "dfam:55d0e5126ca5522bbdd9dade",
+          "dfam:7baf444e01f39f8e765e0cd0",
+          "njoint:2cf2d9279063c052e37496a7"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:427bcf88a877f5f081f7976f",
+            "family_revision": "dfrev:e9d401f3659e423ab8274176"
+          },
+          {
+            "family_id": "dfam:55d0e5126ca5522bbdd9dade",
+            "family_revision": "dfrev:761cc24d35aa6976a82ac137"
+          },
+          {
+            "family_id": "dfam:7baf444e01f39f8e765e0cd0",
+            "family_revision": "dfrev:c8aedad6e84a3066a0c1d6da"
+          },
+          {
+            "family_id": "njoint:2cf2d9279063c052e37496a7",
+            "family_revision": "dfrev:0402d83c3c8f2cf8f818dcf8"
+          }
+        ],
+        "support_unit_ids": [
+          "C000127",
+          "M001111",
+          "S001216",
+          "njoint:2cf2d9279063c052e37496a7"
+        ],
+        "citation_occurrence_ids": [
+          "occ:0ff8fad726cce8020530356f",
+          "occ:126b2e9ce8fa255fa19bad6e",
+          "occ:6864fe78cfdb1b420e276e23"
+        ],
+        "citations": [
+          {
+            "member": "Rick Larsen",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-08-03",
+            "url": "https://larsen.house.gov/news/documentsingle.aspx?DocumentID=4241",
+            "quote": "emergency declaration for the devastating wildfires sweeping through central",
+            "occurrence_id": "occ:0ff8fad726cce8020530356f",
+            "office_id": "L000560",
+            "publication_id": "sha256:0a6011f8bb45c54ec39dc02c6f612f37f64a644604b848b03b69ee7d4baa09d2",
+            "family_id": "njoint:2cf2d9279063c052e37496a7",
+            "family_revision": "dfrev:0402d83c3c8f2cf8f818dcf8"
+          },
+          {
+            "member": "Patty Murray",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-08-03",
+            "url": "https://www.murray.senate.gov/on-senate-floor-senator-murray-urges-trump-administration-to-support-expedited-emergency-declaration-for-spokane-wildfires/",
+            "quote": "floor about the devastating wildfires sweeping through the spokane region",
+            "occurrence_id": "occ:126b2e9ce8fa255fa19bad6e",
+            "office_id": "M001111",
+            "publication_id": "sha256:2dd2bea89d749c14c150548525982431981dba1eaf24a06e520503295e1c1bf7",
+            "family_id": "dfam:427bcf88a877f5f081f7976f",
+            "family_revision": "dfrev:e9d401f3659e423ab8274176"
+          },
+          {
+            "member": "Kim Schrier",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-08-03",
+            "url": "https://schrier.house.gov/media/press-releases/congresswoman-schrier-joins-wa-delegation-requesting-expedited-emergency",
+            "quote": "declaration for the devastating wildfires sweeping through central and eastern",
+            "occurrence_id": "occ:6864fe78cfdb1b420e276e23",
+            "office_id": "S001216",
+            "publication_id": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+            "family_id": "dfam:7baf444e01f39f8e765e0cd0",
+            "family_revision": "dfrev:c8aedad6e84a3066a0c1d6da"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "disasters",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-08-03-D-01",
+        "party": "D",
+        "day": "2026-08-03",
+        "label": "in a letter to president",
+        "member_count": 4,
+        "statements": [
+          "sha256:6d9d4415e34ce0db1f401d355c1577d43108eedff42f90abcce352315308cc50",
+          "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+          "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+          "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6"
+        ],
+        "fragments": [
+          {
+            "text": "entire congressional delegation in a letter to president donald trump",
+            "statement": "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6"
+          },
+          {
+            "text": "state’s congressional delegation in a letter to president donald",
+            "statement": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa"
+          },
+          {
+            "text": "led 63 colleagues in a letter to president trump",
+            "statement": "sha256:6d9d4415e34ce0db1f401d355c1577d43108eedff42f90abcce352315308cc50"
+          },
+          {
+            "text": "entire congressional delegation in a letter to president donald trump",
+            "statement": "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-03-D-01",
+        "support_phrase": {
+          "normalized": "in a letter to president",
+          "text": "in a letter to President",
+          "occurrence_id": "occ:6cc174de697492b77c245a1c"
+        },
+        "display_quote": "in a letter to President",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6cc174de697492b77c245a1c",
+            "claim_id": "2026-08-03-D-01",
+            "statement_id": "sha256:6d9d4415e34ce0db1f401d355c1577d43108eedff42f90abcce352315308cc50",
+            "publication_id": "sha256:6d9d4415e34ce0db1f401d355c1577d43108eedff42f90abcce352315308cc50",
+            "office_id": "S001226",
+            "family_id": "dfam:a96093bf2968b808968fa0c7",
+            "family_revision": "dfrev:17004d9eeb59968a62c600bd",
+            "support_unit_id": "S001226",
+            "party": "D",
+            "start_char": 124,
+            "end_char": 148,
+            "surface_text": "in a letter to President",
+            "normalized_phrase": "in a letter to president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 83,
+            "sentence_end_char": 340,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 65,
+            "clause_start_char": 105,
+            "clause_end_char": 400,
+            "clause_offset_start": 19,
+            "clause_offset_end": 43,
+            "adjacent_tokens_before": [
+              "mfume",
+              "md-07",
+              "led",
+              "63",
+              "colleagues"
+            ],
+            "adjacent_tokens_after": [
+              "trump",
+              "requesting",
+              "updates",
+              "from",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:379825a55b29313dc781bfb4",
+            "claim_id": "2026-08-03-D-01",
+            "statement_id": "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+            "publication_id": "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+            "office_id": "M001111",
+            "family_id": "njoint:2cf2d9279063c052e37496a7",
+            "family_revision": "dfrev:0402d83c3c8f2cf8f818dcf8",
+            "support_unit_id": "njoint:2cf2d9279063c052e37496a7",
+            "party": "D",
+            "start_char": 486,
+            "end_char": 510,
+            "surface_text": "in a letter to President",
+            "normalized_phrase": "in a letter to president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 350,
+            "sentence_end_char": 728,
+            "sentence_offset_start": 136,
+            "sentence_offset_end": 160,
+            "clause_start_char": 430,
+            "clause_end_char": 742,
+            "clause_offset_start": 56,
+            "clause_offset_end": 80,
+            "adjacent_tokens_before": [
+              "washington",
+              "state’s",
+              "entire",
+              "congressional",
+              "delegation"
+            ],
+            "adjacent_tokens_after": [
+              "donald",
+              "trump",
+              "urging",
+              "him",
+              "to"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:153802bf6a0927b6e8b345ee",
+            "claim_id": "2026-08-03-D-01",
+            "statement_id": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+            "publication_id": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+            "office_id": "S001216",
+            "family_id": "dfam:7baf444e01f39f8e765e0cd0",
+            "family_revision": "dfrev:c8aedad6e84a3066a0c1d6da",
+            "support_unit_id": "S001216",
+            "party": "D",
+            "start_char": 113,
+            "end_char": 137,
+            "surface_text": "in a letter to President",
+            "normalized_phrase": "in a letter to president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 344,
+            "sentence_offset_start": 97,
+            "sentence_offset_end": 121,
+            "clause_start_char": 25,
+            "clause_end_char": 358,
+            "clause_offset_start": 88,
+            "clause_offset_end": 112,
+            "adjacent_tokens_before": [
+              "joined",
+              "washington",
+              "state’s",
+              "congressional",
+              "delegation"
+            ],
+            "adjacent_tokens_after": [
+              "donald",
+              "trump",
+              "urging",
+              "him",
+              "to"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9741891f8e1aeff0e3481b7f",
+            "claim_id": "2026-08-03-D-01",
+            "statement_id": "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6",
+            "publication_id": "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6",
+            "office_id": "C000127",
+            "family_id": "dfam:55d0e5126ca5522bbdd9dade",
+            "family_revision": "dfrev:761cc24d35aa6976a82ac137",
+            "support_unit_id": "C000127",
+            "party": "D",
+            "start_char": 684,
+            "end_char": 708,
+            "surface_text": "in a letter to President",
+            "normalized_phrase": "in a letter to president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 463,
+            "sentence_end_char": 926,
+            "sentence_offset_start": 221,
+            "sentence_offset_end": 245,
+            "clause_start_char": 625,
+            "clause_end_char": 940,
+            "clause_offset_start": 59,
+            "clause_offset_end": 83,
+            "adjacent_tokens_before": [
+              "washington",
+              "state’s",
+              "entire",
+              "congressional",
+              "delegation"
+            ],
+            "adjacent_tokens_after": [
+              "donald",
+              "trump",
+              "urging",
+              "him",
+              "to"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "C000127",
+          "M001111",
+          "S001216",
+          "S001226"
+        ],
+        "publication_ids": [
+          "sha256:6d9d4415e34ce0db1f401d355c1577d43108eedff42f90abcce352315308cc50",
+          "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+          "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+          "sha256:c479d9429060505ffa20f07bd2f11699f6fc19c5fb5533d796f48d7fe337a3d6"
+        ],
+        "family_ids": [
+          "dfam:55d0e5126ca5522bbdd9dade",
+          "dfam:7baf444e01f39f8e765e0cd0",
+          "dfam:a96093bf2968b808968fa0c7",
+          "njoint:2cf2d9279063c052e37496a7"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:55d0e5126ca5522bbdd9dade",
+            "family_revision": "dfrev:761cc24d35aa6976a82ac137"
+          },
+          {
+            "family_id": "dfam:7baf444e01f39f8e765e0cd0",
+            "family_revision": "dfrev:c8aedad6e84a3066a0c1d6da"
+          },
+          {
+            "family_id": "dfam:a96093bf2968b808968fa0c7",
+            "family_revision": "dfrev:17004d9eeb59968a62c600bd"
+          },
+          {
+            "family_id": "njoint:2cf2d9279063c052e37496a7",
+            "family_revision": "dfrev:0402d83c3c8f2cf8f818dcf8"
+          }
+        ],
+        "support_unit_ids": [
+          "C000127",
+          "S001216",
+          "S001226",
+          "njoint:2cf2d9279063c052e37496a7"
+        ],
+        "citation_occurrence_ids": [
+          "occ:6cc174de697492b77c245a1c",
+          "occ:379825a55b29313dc781bfb4",
+          "occ:153802bf6a0927b6e8b345ee"
+        ],
+        "citations": [
+          {
+            "member": "Andrea Salinas",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-08-03",
+            "url": "https://salinas.house.gov/media/press-releases/rep-salinas-presses-trump-administration-updates-gaza-ceasefire-and-peace-plan",
+            "quote": "led 63 colleagues in a letter to president trump",
+            "occurrence_id": "occ:6cc174de697492b77c245a1c",
+            "office_id": "S001226",
+            "publication_id": "sha256:6d9d4415e34ce0db1f401d355c1577d43108eedff42f90abcce352315308cc50",
+            "family_id": "dfam:a96093bf2968b808968fa0c7",
+            "family_revision": "dfrev:17004d9eeb59968a62c600bd"
+          },
+          {
+            "member": "Patty Murray",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-08-03",
+            "url": "https://www.murray.senate.gov/senator-murray-leads-entire-wa-delegation-in-requesting-expedited-emergency-declaration-for-devastating-wildfires-in-spokane/",
+            "quote": "entire congressional delegation in a letter to president donald trump",
+            "occurrence_id": "occ:379825a55b29313dc781bfb4",
+            "office_id": "M001111",
+            "publication_id": "sha256:8c91c00013813e5d00c7050d92e52edb0a5099aa217de05c615d50a269cebb5b",
+            "family_id": "njoint:2cf2d9279063c052e37496a7",
+            "family_revision": "dfrev:0402d83c3c8f2cf8f818dcf8"
+          },
+          {
+            "member": "Kim Schrier",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-08-03",
+            "url": "https://schrier.house.gov/media/press-releases/congresswoman-schrier-joins-wa-delegation-requesting-expedited-emergency",
+            "quote": "state’s congressional delegation in a letter to president donald",
+            "occurrence_id": "occ:153802bf6a0927b6e8b345ee",
+            "office_id": "S001216",
+            "publication_id": "sha256:a948029e3875684fc72c602b02208cc23dc583e07812275cb46966c299c995aa",
+            "family_id": "dfam:7baf444e01f39f8e765e0cd0",
+            "family_revision": "dfrev:c8aedad6e84a3066a0c1d6da"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-08-03-D-02",
+        "party": "D",
+        "day": "2026-08-03",
+        "label": "to bet on wildfires",
+        "member_count": 4,
+        "statements": [
+          "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+          "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+          "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31"
+        ],
+        "fragments": [
+          {
+            "text": "people to bet on wildfires",
+            "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3"
+          },
+          {
+            "text": "individuals to bet on wildfires",
+            "statement": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e"
+          },
+          {
+            "text": "people to bet on wildfires",
+            "statement": "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31"
+          },
+          {
+            "text": "individuals to bet on wildfires",
+            "statement": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a"
+          }
+        ],
+        "topics": [
+          "disasters"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-03-D-02",
+        "support_phrase": {
+          "normalized": "to bet on wildfires",
+          "text": "to bet on wildfires",
+          "occurrence_id": "occ:95e7c25037fe159ae70f44ea"
+        },
+        "display_quote": "to bet on wildfires",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:95e7c25037fe159ae70f44ea",
+            "claim_id": "2026-08-03-D-02",
+            "statement_id": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+            "publication_id": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+            "office_id": "C001113",
+            "family_id": "dfam:10f24ce146493bac632f9486",
+            "family_revision": "dfrev:080cf1d06aa06b1c0fa603dc",
+            "support_unit_id": "C001113",
+            "party": "D",
+            "start_char": 274,
+            "end_char": 293,
+            "surface_text": "to bet on wildfires",
+            "normalized_phrase": "to bet on wildfires",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 154,
+            "sentence_end_char": 293,
+            "sentence_offset_start": 120,
+            "sentence_offset_end": 139,
+            "clause_start_char": 25,
+            "clause_end_char": 345,
+            "clause_offset_start": 249,
+            "clause_offset_end": 268,
+            "adjacent_tokens_before": [
+              "offshore",
+              "prediction",
+              "markets",
+              "allowing",
+              "people"
+            ],
+            "adjacent_tokens_after": [
+              "as",
+              "wildfires",
+              "burn",
+              "in",
+              "nevada"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:86da018723cf523b97201221",
+            "claim_id": "2026-08-03-D-02",
+            "statement_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "publication_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "office_id": "S001150",
+            "family_id": "dfam:cc7e07eb9359b5647cffe706",
+            "family_revision": "dfrev:04e810ce2046d811675383c1",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 395,
+            "end_char": 414,
+            "surface_text": "to bet on wildfires",
+            "normalized_phrase": "to bet on wildfires",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 243,
+            "sentence_end_char": 414,
+            "sentence_offset_start": 152,
+            "sentence_offset_end": 171,
+            "clause_start_char": 220,
+            "clause_end_char": 494,
+            "clause_offset_start": 175,
+            "clause_offset_end": 194,
+            "adjacent_tokens_before": [
+              "offering",
+              "event",
+              "contracts",
+              "for",
+              "individuals"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "light",
+              "of",
+              "recent",
+              "wildfires"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bb195dfd2dc8dfb9aa8d6795",
+            "claim_id": "2026-08-03-D-02",
+            "statement_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "publication_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "office_id": "S001150",
+            "family_id": "dfam:cc7e07eb9359b5647cffe706",
+            "family_revision": "dfrev:04e810ce2046d811675383c1",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 2656,
+            "end_char": 2675,
+            "surface_text": "to bet on wildfires",
+            "normalized_phrase": "to bet on wildfires",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2450,
+            "sentence_end_char": 2675,
+            "sentence_offset_start": 206,
+            "sentence_offset_end": 225,
+            "clause_start_char": 2523,
+            "clause_end_char": 2731,
+            "clause_offset_start": 133,
+            "clause_offset_end": 152,
+            "adjacent_tokens_before": [
+              "offering",
+              "event",
+              "contracts",
+              "for",
+              "individuals"
+            ],
+            "adjacent_tokens_after": [
+              "prediction",
+              "markets",
+              "have",
+              "been",
+              "enabled"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:53a0263b6868b49480f8b018",
+            "claim_id": "2026-08-03-D-02",
+            "statement_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "publication_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "office_id": "M001176",
+            "family_id": "dfam:61dcd2be491a6225095f413d",
+            "family_revision": "dfrev:3183f7f2c53c71ed19eb816e",
+            "support_unit_id": "M001176",
+            "party": "D",
+            "start_char": 412,
+            "end_char": 431,
+            "surface_text": "to bet on wildfires",
+            "normalized_phrase": "to bet on wildfires",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 69,
+            "sentence_end_char": 431,
+            "sentence_offset_start": 343,
+            "sentence_offset_end": 362,
+            "clause_start_char": 235,
+            "clause_end_char": 483,
+            "clause_offset_start": 177,
+            "clause_offset_end": 196,
+            "adjacent_tokens_before": [
+              "offering",
+              "event",
+              "contracts",
+              "for",
+              "individuals"
+            ],
+            "adjacent_tokens_after": [
+              "as",
+              "wildfires",
+              "burn",
+              "in",
+              "oregon"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:003b536e6c90c03b11683ce4",
+            "claim_id": "2026-08-03-D-02",
+            "statement_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "publication_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "office_id": "M001176",
+            "family_id": "dfam:61dcd2be491a6225095f413d",
+            "family_revision": "dfrev:3183f7f2c53c71ed19eb816e",
+            "support_unit_id": "M001176",
+            "party": "D",
+            "start_char": 2415,
+            "end_char": 2434,
+            "surface_text": "to bet on wildfires",
+            "normalized_phrase": "to bet on wildfires",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2189,
+            "sentence_end_char": 2434,
+            "sentence_offset_start": 226,
+            "sentence_offset_end": 245,
+            "clause_start_char": 2282,
+            "clause_end_char": 2490,
+            "clause_offset_start": 133,
+            "clause_offset_end": 152,
+            "adjacent_tokens_before": [
+              "offering",
+              "event",
+              "contracts",
+              "for",
+              "individuals"
+            ],
+            "adjacent_tokens_after": [
+              "prediction",
+              "markets",
+              "have",
+              "been",
+              "enabled"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:61c4750ac184543c0e274251",
+            "claim_id": "2026-08-03-D-02",
+            "statement_id": "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31",
+            "publication_id": "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31",
+            "office_id": "R000608",
+            "family_id": "dfam:4fd3b9770d6a607cb0895689",
+            "family_revision": "dfrev:a245aba21342613d2f044246",
+            "support_unit_id": "R000608",
+            "party": "D",
+            "start_char": 266,
+            "end_char": 285,
+            "surface_text": "to bet on wildfires",
+            "normalized_phrase": "to bet on wildfires",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 118,
+            "sentence_end_char": 285,
+            "sentence_offset_start": 148,
+            "sentence_offset_end": 167,
+            "clause_start_char": 23,
+            "clause_end_char": 336,
+            "clause_offset_start": 243,
+            "clause_offset_end": 262,
+            "adjacent_tokens_before": [
+              "offshore",
+              "prediction",
+              "markets",
+              "allowing",
+              "people"
+            ],
+            "adjacent_tokens_after": [
+              "as",
+              "wildfires",
+              "burn",
+              "in",
+              "nevada"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "C001113",
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "publication_ids": [
+          "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+          "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+          "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31"
+        ],
+        "family_ids": [
+          "dfam:10f24ce146493bac632f9486",
+          "dfam:4fd3b9770d6a607cb0895689",
+          "dfam:61dcd2be491a6225095f413d",
+          "dfam:cc7e07eb9359b5647cffe706"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:10f24ce146493bac632f9486",
+            "family_revision": "dfrev:080cf1d06aa06b1c0fa603dc"
+          },
+          {
+            "family_id": "dfam:4fd3b9770d6a607cb0895689",
+            "family_revision": "dfrev:a245aba21342613d2f044246"
+          },
+          {
+            "family_id": "dfam:61dcd2be491a6225095f413d",
+            "family_revision": "dfrev:3183f7f2c53c71ed19eb816e"
+          },
+          {
+            "family_id": "dfam:cc7e07eb9359b5647cffe706",
+            "family_revision": "dfrev:04e810ce2046d811675383c1"
+          }
+        ],
+        "support_unit_ids": [
+          "C001113",
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "citation_occurrence_ids": [
+          "occ:95e7c25037fe159ae70f44ea",
+          "occ:86da018723cf523b97201221",
+          "occ:53a0263b6868b49480f8b018"
+        ],
+        "citations": [
+          {
+            "member": "Catherine Cortez Masto",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-08-03",
+            "url": "https://www.cortezmasto.senate.gov/news/press-releases/cortez-masto-rosen-merkley-cftc-must-rein-in-wildfire-bets-on-prediction-markets/",
+            "quote": "people to bet on wildfires",
+            "occurrence_id": "occ:95e7c25037fe159ae70f44ea",
+            "office_id": "C001113",
+            "publication_id": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+            "family_id": "dfam:10f24ce146493bac632f9486",
+            "family_revision": "dfrev:080cf1d06aa06b1c0fa603dc"
+          },
+          {
+            "member": "Adam B. Schiff",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-08-03",
+            "url": "https://www.schiff.senate.gov/news/press-releases/news-sens-schiff-padilla-democratic-senators-demand-cftc-rein-in-wildfire-bets-on-prediction-markets/",
+            "quote": "individuals to bet on wildfires",
+            "occurrence_id": "occ:86da018723cf523b97201221",
+            "office_id": "S001150",
+            "publication_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "family_id": "dfam:cc7e07eb9359b5647cffe706",
+            "family_revision": "dfrev:04e810ce2046d811675383c1"
+          },
+          {
+            "member": "Jeff Merkley",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-08-03",
+            "url": "https://www.merkley.senate.gov/merkley-padilla-shaheen-schiff-rosen-cortez-masto-heinrich-wyden-klobuchar-cftc-must-rein-in-wildfire-bets-on-prediction-markets/",
+            "quote": "individuals to bet on wildfires",
+            "occurrence_id": "occ:53a0263b6868b49480f8b018",
+            "office_id": "M001176",
+            "publication_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "family_id": "dfam:61dcd2be491a6225095f413d",
+            "family_revision": "dfrev:3183f7f2c53c71ed19eb816e"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "disasters",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-08-03-D-03",
+        "party": "D",
+        "day": "2026-08-03",
+        "label": "from the cftc following public",
+        "member_count": 4,
+        "statements": [
+          "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+          "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+          "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31"
+        ],
+        "fragments": [
+          {
+            "text": "answers from the cftc following public reporting that highlights the public",
+            "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3"
+          },
+          {
+            "text": "action from the cftc following public reporting that highlighted the public",
+            "statement": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e"
+          },
+          {
+            "text": "answers from the cftc following public reporting that highlights the public",
+            "statement": "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31"
+          },
+          {
+            "text": "action from the cftc following public reporting that highlighted the public",
+            "statement": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-03-D-03",
+        "support_phrase": {
+          "normalized": "from the cftc following public",
+          "text": "from the CFTC following public",
+          "occurrence_id": "occ:85cb8f2e846a0e41399afa63"
+        },
+        "display_quote": "from the CFTC following public",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:85cb8f2e846a0e41399afa63",
+            "claim_id": "2026-08-03-D-03",
+            "statement_id": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+            "publication_id": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+            "office_id": "C001113",
+            "family_id": "dfam:10f24ce146493bac632f9486",
+            "family_revision": "dfrev:080cf1d06aa06b1c0fa603dc",
+            "support_unit_id": "C001113",
+            "party": "D",
+            "start_char": 382,
+            "end_char": 412,
+            "surface_text": "from the CFTC following public",
+            "normalized_phrase": "from the cftc following public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 294,
+            "sentence_end_char": 578,
+            "sentence_offset_start": 88,
+            "sentence_offset_end": 118,
+            "clause_start_char": 346,
+            "clause_end_char": 601,
+            "clause_offset_start": 36,
+            "clause_offset_end": 66,
+            "adjacent_tokens_before": [
+              "the",
+              "senators",
+              "are",
+              "demanding",
+              "answers"
+            ],
+            "adjacent_tokens_after": [
+              "reporting",
+              "that",
+              "highlights",
+              "the",
+              "public"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0967d8df8bf92af11456bd53",
+            "claim_id": "2026-08-03-D-03",
+            "statement_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "publication_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "office_id": "S001150",
+            "family_id": "dfam:cc7e07eb9359b5647cffe706",
+            "family_revision": "dfrev:04e810ce2046d811675383c1",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 530,
+            "end_char": 560,
+            "surface_text": "from the CFTC following public",
+            "normalized_phrase": "from the cftc following public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 415,
+            "sentence_end_char": 727,
+            "sentence_offset_start": 115,
+            "sentence_offset_end": 145,
+            "clause_start_char": 495,
+            "clause_end_char": 854,
+            "clause_offset_start": 35,
+            "clause_offset_end": 65,
+            "adjacent_tokens_before": [
+              "the",
+              "senators",
+              "are",
+              "demanding",
+              "action"
+            ],
+            "adjacent_tokens_after": [
+              "reporting",
+              "that",
+              "highlighted",
+              "the",
+              "public"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9ed286d201196513dd62133c",
+            "claim_id": "2026-08-03-D-03",
+            "statement_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "publication_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "office_id": "M001176",
+            "family_id": "dfam:61dcd2be491a6225095f413d",
+            "family_revision": "dfrev:3183f7f2c53c71ed19eb816e",
+            "support_unit_id": "M001176",
+            "party": "D",
+            "start_char": 519,
+            "end_char": 549,
+            "surface_text": "from the CFTC following public",
+            "normalized_phrase": "from the cftc following public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 432,
+            "sentence_end_char": 716,
+            "sentence_offset_start": 87,
+            "sentence_offset_end": 117,
+            "clause_start_char": 484,
+            "clause_end_char": 843,
+            "clause_offset_start": 35,
+            "clause_offset_end": 65,
+            "adjacent_tokens_before": [
+              "the",
+              "senators",
+              "are",
+              "demanding",
+              "action"
+            ],
+            "adjacent_tokens_after": [
+              "reporting",
+              "that",
+              "highlighted",
+              "the",
+              "public"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:5e1fc727328d39f0ab7e94de",
+            "claim_id": "2026-08-03-D-03",
+            "statement_id": "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31",
+            "publication_id": "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31",
+            "office_id": "R000608",
+            "family_id": "dfam:4fd3b9770d6a607cb0895689",
+            "family_revision": "dfrev:a245aba21342613d2f044246",
+            "support_unit_id": "R000608",
+            "party": "D",
+            "start_char": 373,
+            "end_char": 403,
+            "surface_text": "from the CFTC following public",
+            "normalized_phrase": "from the cftc following public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 286,
+            "sentence_end_char": 571,
+            "sentence_offset_start": 87,
+            "sentence_offset_end": 117,
+            "clause_start_char": 337,
+            "clause_end_char": 698,
+            "clause_offset_start": 36,
+            "clause_offset_end": 66,
+            "adjacent_tokens_before": [
+              "the",
+              "senators",
+              "are",
+              "demanding",
+              "answers"
+            ],
+            "adjacent_tokens_after": [
+              "reporting",
+              "that",
+              "highlights",
+              "the",
+              "public"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "C001113",
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "publication_ids": [
+          "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+          "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+          "sha256:d34f8f19791d8597f7b4b430b1e37311a06da1e513d4429cf99cae4e1b405f31"
+        ],
+        "family_ids": [
+          "dfam:10f24ce146493bac632f9486",
+          "dfam:4fd3b9770d6a607cb0895689",
+          "dfam:61dcd2be491a6225095f413d",
+          "dfam:cc7e07eb9359b5647cffe706"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:10f24ce146493bac632f9486",
+            "family_revision": "dfrev:080cf1d06aa06b1c0fa603dc"
+          },
+          {
+            "family_id": "dfam:4fd3b9770d6a607cb0895689",
+            "family_revision": "dfrev:a245aba21342613d2f044246"
+          },
+          {
+            "family_id": "dfam:61dcd2be491a6225095f413d",
+            "family_revision": "dfrev:3183f7f2c53c71ed19eb816e"
+          },
+          {
+            "family_id": "dfam:cc7e07eb9359b5647cffe706",
+            "family_revision": "dfrev:04e810ce2046d811675383c1"
+          }
+        ],
+        "support_unit_ids": [
+          "C001113",
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "citation_occurrence_ids": [
+          "occ:85cb8f2e846a0e41399afa63",
+          "occ:0967d8df8bf92af11456bd53",
+          "occ:9ed286d201196513dd62133c"
+        ],
+        "citations": [
+          {
+            "member": "Catherine Cortez Masto",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-08-03",
+            "url": "https://www.cortezmasto.senate.gov/news/press-releases/cortez-masto-rosen-merkley-cftc-must-rein-in-wildfire-bets-on-prediction-markets/",
+            "quote": "answers from the cftc following public reporting that highlights the public",
+            "occurrence_id": "occ:85cb8f2e846a0e41399afa63",
+            "office_id": "C001113",
+            "publication_id": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+            "family_id": "dfam:10f24ce146493bac632f9486",
+            "family_revision": "dfrev:080cf1d06aa06b1c0fa603dc"
+          },
+          {
+            "member": "Adam B. Schiff",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-08-03",
+            "url": "https://www.schiff.senate.gov/news/press-releases/news-sens-schiff-padilla-democratic-senators-demand-cftc-rein-in-wildfire-bets-on-prediction-markets/",
+            "quote": "action from the cftc following public reporting that highlighted the public",
+            "occurrence_id": "occ:0967d8df8bf92af11456bd53",
+            "office_id": "S001150",
+            "publication_id": "sha256:1c8a16d27b967a5ca8a098c89f01bc593d6cc408756e1d29346598841c9cff8a",
+            "family_id": "dfam:cc7e07eb9359b5647cffe706",
+            "family_revision": "dfrev:04e810ce2046d811675383c1"
+          },
+          {
+            "member": "Jeff Merkley",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-08-03",
+            "url": "https://www.merkley.senate.gov/merkley-padilla-shaheen-schiff-rosen-cortez-masto-heinrich-wyden-klobuchar-cftc-must-rein-in-wildfire-bets-on-prediction-markets/",
+            "quote": "action from the cftc following public reporting that highlighted the public",
+            "occurrence_id": "occ:9ed286d201196513dd62133c",
+            "office_id": "M001176",
+            "publication_id": "sha256:5076a4df4c5dfff7b7edc0970d28329a3fce9f5f42d889a4f7edb134ec74a49e",
+            "family_id": "dfam:61dcd2be491a6225095f413d",
+            "family_revision": "dfrev:3183f7f2c53c71ed19eb816e"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-08-03",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 9,
+          "numerator_unit": "offices",
+          "denominator": 55,
+          "denominator_unit": "offices",
+          "share": 0.163636,
+          "window": "party-day 2026-08-03",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 10,
+          "numerator_unit": "publications",
+          "denominator": 74,
+          "denominator_unit": "publications",
+          "share": 0.135135,
+          "window": "party-day 2026-08-03",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 9,
+          "numerator_unit": "document families",
+          "denominator": 72,
+          "denominator_unit": "document families",
+          "share": 0.125,
+          "window": "party-day 2026-08-03",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-08-03",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 40,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-08-03",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 56,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-08-03",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 55,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-08-03",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "letter is available",
+      "slug": "87de773e9f6c7eb0",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": null,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 1.38,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "T000476",
+        "statement": "sha256:9bc394ba6e110d27a1d28799ac22e4861a66c259b37384bbd3c7efed91102c84",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.957,
+      "series": [
+        2,
+        7,
+        3,
+        4,
+        6,
+        3,
+        2,
+        9,
+        8,
+        5,
+        4,
+        4,
+        4,
+        7
+      ]
+    },
+    {
+      "ngram": "rule of law",
+      "slug": "ca267b9e0d15e01f",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.62,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "S001201",
+        "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        4,
+        8,
+        4,
+        1,
+        2,
+        2,
+        4,
+        3,
+        4,
+        1,
+        1,
+        7,
+        8,
+        6
+      ]
+    },
+    {
+      "ngram": "across the nation",
+      "slug": "261f12b192c19bdd",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.1,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001053",
+        "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.953,
+      "series": [
+        3,
+        5,
+        1,
+        2,
+        3,
+        6,
+        4,
+        3,
+        2,
+        2,
+        1,
+        2,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "place to live",
+      "slug": "3406665415fd494d",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.89,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001039",
+        "statement": "sha256:fc87b15bc01a220b6502b177d0c0229e1f34dfd7aae88ec33ce065510f2aec9c",
+        "tie": [
+          "B001285"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "bill will help",
+      "slug": "e59f14082305c5d5",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.33,
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "L000590",
+        "statement": "sha256:8f5c1b2dcbe45b23033dbc26181cf577397027b85e3899694d4dafddce049125",
+        "tie": [
+          "B001243",
+          "C001129"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        4,
+        4,
+        2,
+        2,
+        2,
+        3,
+        4,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "started creating additional concerns around public",
+      "slug": "2825dc29e8ee193b",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "already started creating additional concerns around",
+      "slug": "3eded37306af5aaa",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "creating additional concerns around public safety",
+      "slug": "ae3333295cfc7f28",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "contracts on fires prediction market sites",
+      "slug": "97f5cc3a3916934b",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "prediction market platforms to offer bets",
+      "slug": "7212a088995bf720",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "public safety and insider trading concerns",
+      "slug": "76adbd7122769197",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "offering contracts on fires prediction market",
+      "slug": "909af55c6347969f",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "wildfires threatens to minimize communities suffering",
+      "slug": "69682e891da67d0e",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "offering bets on destructive wildfires threatens",
+      "slug": "96296389927953cd",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "allowing prediction market platforms to offer",
+      "slug": "1831cd39e4a5b9da",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "prediction market sites run the risk",
+      "slug": "a073e64b0b8013df",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "concerns around public safety and insider",
+      "slug": "c309a44a98872a43",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "around public safety and insider trading",
+      "slug": "04a5018ff4dd0faa",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "destructive wildfires threatens to minimize communities",
+      "slug": "73e40b18e63e5c8a",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "fires prediction market sites run",
+      "slug": "a5fbaa6e276cda24",
+      "n": 5,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-08-03",
+        "bioguide": "C001113",
+        "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+        "tie": [
+          "M001176",
+          "R000608",
+          "S001150"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "rule of law",
+        "slug": "ca267b9e0d15e01f",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.62,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "S001201",
+          "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          4,
+          8,
+          4,
+          1,
+          2,
+          2,
+          4,
+          3,
+          4,
+          1,
+          1,
+          7,
+          8,
+          6
+        ]
+      },
+      {
+        "ngram": "across the nation",
+        "slug": "261f12b192c19bdd",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.953,
+        "series": [
+          3,
+          5,
+          1,
+          2,
+          3,
+          6,
+          4,
+          3,
+          2,
+          2,
+          1,
+          2,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "place to live",
+        "slug": "3406665415fd494d",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.89,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001039",
+          "statement": "sha256:fc87b15bc01a220b6502b177d0c0229e1f34dfd7aae88ec33ce065510f2aec9c",
+          "tie": [
+            "B001285"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "bill will help",
+        "slug": "e59f14082305c5d5",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "L000590",
+          "statement": "sha256:8f5c1b2dcbe45b23033dbc26181cf577397027b85e3899694d4dafddce049125",
+          "tie": [
+            "B001243",
+            "C001129"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          4,
+          4,
+          2,
+          2,
+          2,
+          3,
+          4,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "started creating additional concerns around public",
+        "slug": "2825dc29e8ee193b",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-08-03",
+          "bioguide": "C001113",
+          "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "tie": [
+            "M001176",
+            "R000608",
+            "S001150"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "already started creating additional concerns around",
+        "slug": "3eded37306af5aaa",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-08-03",
+          "bioguide": "C001113",
+          "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "tie": [
+            "M001176",
+            "R000608",
+            "S001150"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "creating additional concerns around public safety",
+        "slug": "ae3333295cfc7f28",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-08-03",
+          "bioguide": "C001113",
+          "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "tie": [
+            "M001176",
+            "R000608",
+            "S001150"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "contracts on fires prediction market sites",
+        "slug": "97f5cc3a3916934b",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-08-03",
+          "bioguide": "C001113",
+          "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "tie": [
+            "M001176",
+            "R000608",
+            "S001150"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "prediction market platforms to offer bets",
+        "slug": "7212a088995bf720",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-08-03",
+          "bioguide": "C001113",
+          "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "tie": [
+            "M001176",
+            "R000608",
+            "S001150"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "public safety and insider trading concerns",
+        "slug": "76adbd7122769197",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-08-03",
+          "bioguide": "C001113",
+          "statement": "sha256:1c5c99a27f35ea530fb553f69e27c80c378f84494a74c0750519ee8d0d7112f3",
+          "tie": [
+            "M001176",
+            "R000608",
+            "S001150"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "federal government and",
+        "slug": "a9e4815a6351ce47",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001228",
+          "statement": "sha256:710aacdfc8d2069cf0df815bd72bf2170eaa55a340e88b66f4ad394c052c7264",
+          "tie": [
+            "S001217"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          1,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "the health care",
+        "slug": "5cc1ed23f55fee21",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "S001190",
+          "statement": "sha256:3301a23405fef036db40a9d2fc5384e6a19bfe12dcd2efd59882eb4a57f84544",
+          "tie": [
+            "B001277"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.98,
+        "series": [
+          2,
+          3,
+          2,
+          5,
+          5,
+          2,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "expand access to",
+        "slug": "0c3cd1524acb667f",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.98,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [
+            "D000622"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.966,
+        "series": [
+          2,
+          5,
+          3,
+          4,
+          2,
+          4,
+          7,
+          4,
+          8,
+          2,
+          3,
+          6,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "we look forward",
+        "slug": "bea5f990ffc8921a",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.17,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001230",
+          "statement": "sha256:edb4ac8bc3b192bba31b1382b124e41ab12c8370419d75c648e805833e399e79",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.958,
+        "series": [
+          1,
+          5,
+          5,
+          6,
+          3,
+          5,
+          3,
+          4,
+          2,
+          5,
+          4,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "i’m proud to join",
+        "slug": "b649c3667db4f8c7",
+        "n": 4,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 3,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 3,
+          "I": 1
+        },
+        "family_count": 3,
+        "velocity": 1.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.982,
+        "series": [
+          1,
+          2,
+          3,
+          6,
+          3,
+          5,
+          2,
+          2,
+          3,
+          3,
+          1,
+          6,
+          4,
+          3
+        ]
+      },
+      {
+        "ngram": "leadership and determination",
+        "slug": "aed84b6ef631bd3e",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-20",
+          "bioguide": "G000359",
+          "statement": "sha256:8079a8291ded474f3b38afd51ff95d44a423c9d4e19369b7c69339f8dd37e46e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "providers that provide",
+        "slug": "1c88452a5cb51859",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.5,
+        "first_seen": {
+          "date": "2025-03-07",
+          "bioguide": "N000191",
+          "statement": "sha256:33a3bd95f8be4a4ad32f0dd3746ece3e96a00dff723a185efff3a39fbca91487",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "to see how",
+        "slug": "99a6dc8cf115d87c",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "S000148",
+          "statement": "sha256:362e2650638cedeca6b6068ee33914f0b61c5d3b1c166b57af5be68c470deac3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "end of the day",
+        "slug": "68a00340d185ea3b",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "B001327",
+          "statement": "sha256:7f3321a70b9c0bd61084b5f850a03dd82db6f63197864dc64f6793f23d3d79f2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "for health care",
+        "slug": "ffb0f0c6bc07b249",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.21,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "U000040",
+          "statement": "sha256:6c9fedbbd600f814e4f21f72221a237529fc2b1b1a89f8ef3947197bc2e49f18",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "12d903f280f7b5c89ed15ba24273b6e11d7a9cba3cd0d948f956ec2afea69f64",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "429fa3153bd3f2ae93bf90024bbced2aec9bff578d78eaea8e08220471706cb9",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
