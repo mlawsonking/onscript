@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-06",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 26,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "26 consecutive days published (through 2026-08-05)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0263,
+      "projected": 0.1358,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 5,
+      "note": "$0.0263 MTD, $0.14 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-08-05",
+      "parties": {
+        "D": {
+          "statements": 88,
+          "median": 78.0,
+          "share": 1.128,
+          "status": "green"
+        },
+        "R": {
+          "statements": 68,
+          "median": 55.0,
+          "share": 1.236,
+          "status": "green"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 13.06,
+        "day": "2026-08-05",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "note": "2026-08-05: D 88/78=113% R 68/55=124% of own 14d median (green >= 60%); upstream 13.1h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.4,
+      "dropped": 8,
+      "offered": 20,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "8/20 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [
+    "2026-07-30",
+    "2026-08-01",
+    "2026-08-03"
+  ],
+  "top_phrase": {
+    "ngram": "the trump administration’s",
+    "party": "D",
+    "day_peak": 11,
+    "day": "2026-07-30"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: verifier_drop"
+}
