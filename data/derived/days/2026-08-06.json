@@ -1,6 +1,942 @@
 {
   "day": "2026-08-06",
-  "top_synchronized": [],
+  "top_synchronized": [
+    {
+      "ngram": "full text of the bill",
+      "slug": "b40273a0c687b8c0",
+      "n": 5,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 2.14,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001121",
+        "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+        "tie": [
+          "R000614"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.974,
+      "series": [
+        3,
+        1,
+        3,
+        13,
+        8,
+        5,
+        2,
+        4,
+        1,
+        2,
+        3,
+        6,
+        3,
+        9
+      ]
+    },
+    {
+      "ngram": "communities across the",
+      "slug": "c8a50f6895b6292b",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 2.11,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "R000621",
+        "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+        "tie": [
+          "B001230",
+          "C001098",
+          "G000386",
+          "V000138"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        5,
+        6,
+        6,
+        5,
+        5,
+        3,
+        3,
+        3,
+        2,
+        1,
+        3,
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "ngram": "farmers and ranchers",
+      "slug": "fc10f0af5a69262b",
+      "n": 3,
+      "day_peak": 7,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 7,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 8,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 3.63,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001053",
+        "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2,
+        2,
+        1,
+        3,
+        7
+      ]
+    },
+    {
+      "ngram": "a senior member",
+      "slug": "f34a91c237c39881",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 10,
+        "R": null,
+        "I": null
+      },
+      "family_count": 10,
+      "velocity": 2.88,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001287",
+        "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+        "tie": [
+          "D000623",
+          "K000367",
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.961,
+      "series": [
+        3,
+        3,
+        3,
+        1,
+        3,
+        3,
+        5,
+        2,
+        0,
+        1,
+        1,
+        3,
+        1,
+        7
+      ]
+    },
+    {
+      "ngram": "bipartisan bill to",
+      "slug": "f17a7ce21ba8a087",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": null,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "G000602",
+        "statement": "sha256:cc723f3cc18171309ec3d7aa3847ae472712cc0af8a40ecdcce6fda5c3d34358",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        4,
+        2,
+        2,
+        1,
+        1,
+        1,
+        3,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "bill will help",
+      "slug": "e59f14082305c5d5",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.9,
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "L000590",
+        "statement": "sha256:8f5c1b2dcbe45b23033dbc26181cf577397027b85e3899694d4dafddce049125",
+        "tie": [
+          "B001243",
+          "C001129"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        2,
+        2,
+        3,
+        4,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        5,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "legislation will help",
+      "slug": "10bade81ddbb9f73",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.79,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.987,
+      "series": [
+        3,
+        2,
+        5,
+        5,
+        5,
+        4,
+        3,
+        4,
+        2,
+        3,
+        1,
+        4,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "senior member of",
+      "slug": "7cbcf61f8a7d8270",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": null,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 2.21,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001287",
+        "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+        "tie": [
+          "D000623",
+          "G000386",
+          "H000874",
+          "K000367",
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.961,
+      "series": [
+        2,
+        3,
+        3,
+        2,
+        4,
+        4,
+        3,
+        3,
+        0,
+        1,
+        2,
+        3,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "communities across the country",
+      "slug": "743e783403b630d9",
+      "n": 4,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.63,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "R000621",
+        "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+        "tie": [
+          "G000386"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.979,
+      "series": [
+        5,
+        6,
+        4,
+        4,
+        5,
+        3,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "ngram": "full bill text",
+      "slug": "533c110fb83896e6",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 3,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": 6,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.84,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001103",
+        "statement": "sha256:07beaf43ab61b6ae7fb5d7211df4b6f0dc0378d87296eb95c480c8a2cba7fcfc",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        4,
+        4,
+        7,
+        7,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        3,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "fight to protect",
+      "slug": "b1dfe5891146624b",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.04,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001110",
+        "statement": "sha256:e3766d9d8208923aa53990a8cf9842d97d89945a27d7cb22dfa93d1ef55dcdf7",
+        "tie": [
+          "C001121"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        2,
+        1,
+        2,
+        1,
+        3,
+        2,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "this critical legislation",
+      "slug": "96659c4506a7a862",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.33,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "D000594",
+        "statement": "sha256:eced0fc67a96a01126d2705ecf6377d70bbf68e4f35e74b9af59223bb3232b50",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        2,
+        3,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "red tape and",
+      "slug": "1159a2e414a976ea",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.94,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "L000571",
+        "statement": "sha256:d2812fe524600f0442e7ad60665dd7f14f9a4d890adde07973604beaa2e12abd",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        2,
+        6,
+        4,
+        1,
+        2,
+        2,
+        5,
+        3,
+        3,
+        2,
+        1,
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "ngram": "for american families",
+      "slug": "055e857e9ffb03bb",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.41,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000582",
+        "statement": "sha256:030b3527131ef12f086666a21479817714dbeba626e6a90809dba6df477ab53d",
+        "tie": [
+          "C000880",
+          "C001098"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "generations to come",
+      "slug": "e5b2d728d6e0ccb4",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.26,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000375",
+        "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+        "tie": [
+          "B001285",
+          "M000194",
+          "M001204"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.979,
+      "series": [
+        1,
+        2,
+        3,
+        2,
+        1,
+        4,
+        1,
+        2,
+        2,
+        3,
+        1,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "health and safety",
+      "slug": "3f5b1f04adeb8f5d",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "G000386",
+        "statement": "sha256:3be93c343af245739f881a00123edb1b12ee71f12075c5e9cb981fa3912511e1",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.979,
+      "series": [
+        4,
+        1,
+        3,
+        5,
+        2,
+        5,
+        2,
+        3,
+        4,
+        2,
+        1,
+        0,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "president and ceo",
+      "slug": "b4f682ccffffac21",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.63,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "S000522",
+        "statement": "sha256:c2b5659a4605907a173992cfa018f9b859e203736e729dd514c20e6ed8e7d662",
+        "tie": [
+          "B001230",
+          "B001267",
+          "G000585"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.979,
+      "series": [
+        2,
+        2,
+        9,
+        7,
+        2,
+        2,
+        2,
+        3,
+        5,
+        1,
+        3,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "expanding access to",
+      "slug": "6a824207413e3d8c",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 1,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.71,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001133",
+        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        3,
+        2,
+        2,
+        7,
+        5,
+        4,
+        2,
+        1,
+        1,
+        6,
+        2,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "an important step",
+      "slug": "79f874be4a2748ec",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.43,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001129",
+        "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        4,
+        12,
+        8,
+        4,
+        1,
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "ngram": "across the nation",
+      "slug": "261f12b192c19bdd",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.71,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001053",
+        "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.953,
+      "series": [
+        2,
+        3,
+        6,
+        4,
+        3,
+        2,
+        2,
+        1,
+        2,
+        2,
+        6,
+        4,
+        3,
+        5
+      ]
+    }
+  ],
   "legacy_unvalidated_metrics": {
     "status": "withdrawn",
     "reason": "The per-party discipline index divided mixed units and was never validated. It is superseded by the unit-safe participation measures (participation-measures-v1). Withdrawn under R-36.3, which extends R-33.1.",
@@ -19,5 +955,2515 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-08-06",
+      "party": "D",
+      "composite": "Across 115 statements today, no message rises to a shared claim we can point to beyond the phrasing itself. The most synchronized phrase is full text of the bill, appearing 9 times, first recorded in our corpus from Jason Crow (D-CO). Beyond that measure, we do not have a common message to report today.",
+      "measurement_lead": "Measurement: 115 publications were observed for the Democratic party on 2026-08-06.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-08-06",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "5d5c682f68970e1ae94eb4f5ef81d914141ca70cea9e09f3f7c70801e3dfa290",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 115 statements today, no message rises to a shared claim we can point to beyond the phrasing itself. The most synchronized phrase is full text of the bill, appearing 9 times, first recorded in our corpus from Jason Crow (D-CO). Beyond that measure, we do not have a common message to report today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "44f8b64d0f611027e02b3250db844e09cb6e4969ec3674e6971bdee6943b0acf",
+        "response_sha256": "f68a22c9ac8c87fa959da389fd8fe76948bdcd9a5cfe7b5c8ed72cd707731a49",
+        "model_response_sha256": "f292a476a5142054e83eb8522848525d844e19718c1b0ecc83b438d104f2c7d0"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-08-06",
+        "statements": 115,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "full text of the bill",
+          "members": 9,
+          "family_count": 9,
+          "first_sayer": "Jason Crow",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CO"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1252,
+        "tokens_out": 102,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-08-06",
+      "party": "R",
+      "composite": "Today 74 of us released statements. 5 offices across 5 publications and 5 families carried \"the Working Families Tax Cuts\". Our most synchronized phrase, used by 7 of us: farmers and ranchers.",
+      "measurement_lead": "Measurement: 74 publications were observed for the Republican party on 2026-08-06.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-08-06",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "92847ecb4bc92fd52f0e2a904b8cc81a31cbcaf4a32f619b57c7de5901acdaed",
+        "claim_ids": [
+          "2026-08-06-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 74 of us released statements. 5 offices across 5 publications and 5 families carried \"the Working Families Tax Cuts\". Our most synchronized phrase, used by 7 of us: farmers and ranchers.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-08-06-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "8cba04e1518adaeba19454e8d5be774bef8fc087b03846a609bdd9aef171b851",
+        "response_sha256": "58d9e302ade2b944a1ccf1f915aa2923c7b733369719731819c488bb17593fae",
+        "model_response_sha256": "775cb9a43cf7c469228b00c68a2c2887279a4c64faf259dd5f850b709b2eaf60"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-08-06-R-00"
+          ],
+          "claim_ids": [
+            "2026-08-06-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-08-06-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-08-06",
+        "statements": 74,
+        "talking_points": [
+          {
+            "label": "the working families tax cuts",
+            "members": 5,
+            "quote": "the Working Families Tax Cuts",
+            "topics": [
+              "taxes_debt"
+            ],
+            "claim_id": "2026-08-06-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "taxes_debt",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "farmers and ranchers",
+          "members": 7,
+          "family_count": 8,
+          "first_sayer": "Tom Cole",
+          "first_sayer_party": "R",
+          "first_sayer_state": "OK"
+        },
+        "selected_claims": [
+          {
+            "label": "the working families tax cuts",
+            "members": 5,
+            "quote": "the Working Families Tax Cuts",
+            "topics": [
+              "taxes_debt"
+            ],
+            "claim_id": "2026-08-06-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "taxes_debt",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-08-06-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2120,
+        "tokens_out": 122,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [],
+    "R": [
+      {
+        "id": "2026-08-06-R-00",
+        "party": "R",
+        "day": "2026-08-06",
+        "label": "the working families tax cuts",
+        "member_count": 5,
+        "statements": [
+          "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011",
+          "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+          "sha256:401c64531db35372dcb845bcb3f84b1b1d97fdca8cd19b1656fa829208e8c546",
+          "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+          "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40"
+        ],
+        "fragments": [
+          {
+            "text": "included in the working families tax cuts act",
+            "statement": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d"
+          },
+          {
+            "text": "discuss how the working families tax cuts act",
+            "statement": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40"
+          },
+          {
+            "text": "discuss how the working families tax cuts have",
+            "statement": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d"
+          },
+          {
+            "text": "we saw the working families tax cuts and",
+            "statement": "sha256:401c64531db35372dcb845bcb3f84b1b1d97fdca8cd19b1656fa829208e8c546"
+          },
+          {
+            "text": "hear that the working families tax cuts are",
+            "statement": "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011"
+          }
+        ],
+        "topics": [
+          "taxes_debt"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-06-R-00",
+        "support_phrase": {
+          "normalized": "the working families tax cuts",
+          "text": "the Working Families Tax Cuts",
+          "occurrence_id": "occ:055e16fe57585dd712084164"
+        },
+        "display_quote": "the Working Families Tax Cuts",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:055e16fe57585dd712084164",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011",
+            "publication_id": "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011",
+            "office_id": "S001195",
+            "family_id": "dfam:9123f4814dbd82c6fc205e9d",
+            "family_revision": "dfrev:8b70179ec38a22229a7f4777",
+            "support_unit_id": "S001195",
+            "party": "R",
+            "start_char": 738,
+            "end_char": 767,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 711,
+            "sentence_end_char": 970,
+            "sentence_offset_start": 27,
+            "sentence_offset_end": 56,
+            "clause_start_char": 633,
+            "clause_end_char": 815,
+            "clause_offset_start": 105,
+            "clause_offset_end": 134,
+            "adjacent_tokens_before": [
+              "was",
+              "glad",
+              "to",
+              "hear",
+              "that"
+            ],
+            "adjacent_tokens_after": [
+              "are",
+              "already",
+              "helping",
+              "freddie",
+              "plan"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f3fe562de285526847a41215",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011",
+            "publication_id": "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011",
+            "office_id": "S001195",
+            "family_id": "dfam:9123f4814dbd82c6fc205e9d",
+            "family_revision": "dfrev:8b70179ec38a22229a7f4777",
+            "support_unit_id": "S001195",
+            "party": "R",
+            "start_char": 1630,
+            "end_char": 1659,
+            "surface_text": "The Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1628,
+            "sentence_end_char": 1992,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 31,
+            "clause_start_char": 1614,
+            "clause_end_char": 1659,
+            "clause_offset_start": 16,
+            "clause_offset_end": 45,
+            "adjacent_tokens_before": [
+              "across",
+              "missouri",
+              "kansas",
+              "and",
+              "oklahoma"
+            ],
+            "adjacent_tokens_after": [
+              "which",
+              "congressman",
+              "smith",
+              "authored",
+              "made"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1645e1f51b390ee5d4bfee2f",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+            "publication_id": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+            "office_id": "B001319",
+            "family_id": "dfam:bbb824688acc405e4efb5574",
+            "family_revision": "dfrev:202078b55307bb703346c6b4",
+            "support_unit_id": "B001319",
+            "party": "R",
+            "start_char": 414,
+            "end_char": 443,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 262,
+            "sentence_end_char": 479,
+            "sentence_offset_start": 152,
+            "sentence_offset_end": 181,
+            "clause_start_char": 391,
+            "clause_end_char": 818,
+            "clause_offset_start": 23,
+            "clause_offset_end": 52,
+            "adjacent_tokens_before": [
+              "program",
+              "which",
+              "was",
+              "included",
+              "in"
+            ],
+            "adjacent_tokens_after": [
+              "act",
+              "and",
+              "championed",
+              "by",
+              "senator"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:280b4330c42e3fcdd1c0b452",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+            "publication_id": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+            "office_id": "B001319",
+            "family_id": "dfam:bbb824688acc405e4efb5574",
+            "family_revision": "dfrev:202078b55307bb703346c6b4",
+            "support_unit_id": "B001319",
+            "party": "R",
+            "start_char": 2434,
+            "end_char": 2463,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2423,
+            "sentence_end_char": 2641,
+            "sentence_offset_start": 11,
+            "sentence_offset_end": 40,
+            "clause_start_char": 2378,
+            "clause_end_char": 2467,
+            "clause_offset_start": 56,
+            "clause_offset_end": 85,
+            "adjacent_tokens_before": [
+              "to",
+              "agricultural",
+              "landscapes",
+              "thanks",
+              "to"
+            ],
+            "adjacent_tokens_after": [
+              "act",
+              "nrcs",
+              "is",
+              "able",
+              "to"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:860a661c34655dc6d65c9eea",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+            "publication_id": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+            "office_id": "B001319",
+            "family_id": "dfam:bbb824688acc405e4efb5574",
+            "family_revision": "dfrev:202078b55307bb703346c6b4",
+            "support_unit_id": "B001319",
+            "party": "R",
+            "start_char": 2813,
+            "end_char": 2842,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2643,
+            "sentence_end_char": 2846,
+            "sentence_offset_start": 170,
+            "sentence_offset_end": 199,
+            "clause_start_char": 2809,
+            "clause_end_char": 2963,
+            "clause_offset_start": 4,
+            "clause_offset_end": 33,
+            "adjacent_tokens_before": [
+              "support",
+              "for",
+              "this",
+              "program",
+              "in"
+            ],
+            "adjacent_tokens_after": [
+              "act",
+              "it",
+              "continued",
+              "the",
+              "program"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bd75e77ca3c3cd7aa82c660b",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:401c64531db35372dcb845bcb3f84b1b1d97fdca8cd19b1656fa829208e8c546",
+            "publication_id": "sha256:401c64531db35372dcb845bcb3f84b1b1d97fdca8cd19b1656fa829208e8c546",
+            "office_id": "M001239",
+            "family_id": "dfam:f91bb34455e8a6f23fa5058d",
+            "family_revision": "dfrev:b650b1ad70e8f9664a4a1b92",
+            "support_unit_id": "M001239",
+            "party": "R",
+            "start_char": 981,
+            "end_char": 1010,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 944,
+            "sentence_end_char": 1138,
+            "sentence_offset_start": 37,
+            "sentence_offset_end": 66,
+            "clause_start_char": 973,
+            "clause_end_char": 1035,
+            "clause_offset_start": 8,
+            "clause_offset_end": 37,
+            "adjacent_tokens_before": [
+              "in",
+              "central",
+              "virginia",
+              "we",
+              "saw"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "fair",
+              "trade",
+              "in",
+              "action"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c06d3517141adb4a376eb176",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "publication_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "office_id": "J000299",
+            "family_id": "dfam:89bd6ba761324cd0db1c6409",
+            "family_revision": "dfrev:61a43ff21808d4e0d3970686",
+            "support_unit_id": "J000299",
+            "party": "R",
+            "start_char": 198,
+            "end_char": 227,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 95,
+            "sentence_end_char": 278,
+            "sentence_offset_start": 103,
+            "sentence_offset_end": 132,
+            "clause_start_char": 174,
+            "clause_end_char": 330,
+            "clause_offset_start": 24,
+            "clause_offset_end": 53,
+            "adjacent_tokens_before": [
+              "grande",
+              "arizona",
+              "to",
+              "discuss",
+              "how"
+            ],
+            "adjacent_tokens_after": [
+              "have",
+              "benefitted",
+              "american",
+              "workers",
+              "and"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0ecd26dfff5db136694d833d",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "publication_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "office_id": "J000299",
+            "family_id": "dfam:89bd6ba761324cd0db1c6409",
+            "family_revision": "dfrev:61a43ff21808d4e0d3970686",
+            "support_unit_id": "J000299",
+            "party": "R",
+            "start_char": 767,
+            "end_char": 796,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 754,
+            "sentence_end_char": 844,
+            "sentence_offset_start": 13,
+            "sentence_offset_end": 42,
+            "clause_start_char": 678,
+            "clause_end_char": 796,
+            "clause_offset_start": 89,
+            "clause_offset_end": 118,
+            "adjacent_tokens_before": [
+              "conference",
+              "remarks",
+              "here",
+              "thanks",
+              "to"
+            ],
+            "adjacent_tokens_after": [
+              "american",
+              "manufacturing",
+              "is",
+              "roaring",
+              "back"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:920a29b3a2883a9437eef95c",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "publication_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "office_id": "J000299",
+            "family_id": "dfam:89bd6ba761324cd0db1c6409",
+            "family_revision": "dfrev:61a43ff21808d4e0d3970686",
+            "support_unit_id": "J000299",
+            "party": "R",
+            "start_char": 1385,
+            "end_char": 1414,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1263,
+            "sentence_end_char": 1509,
+            "sentence_offset_start": 122,
+            "sentence_offset_end": 151,
+            "clause_start_char": 1170,
+            "clause_end_char": 1414,
+            "clause_offset_start": 215,
+            "clause_offset_end": 244,
+            "adjacent_tokens_before": [
+              "american",
+              "businesses",
+              "are",
+              "benefitting",
+              "from"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "to",
+              "discuss",
+              "how",
+              "republicans"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:cf3248fde43a1ca10195e2c1",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "publication_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "office_id": "J000299",
+            "family_id": "dfam:89bd6ba761324cd0db1c6409",
+            "family_revision": "dfrev:61a43ff21808d4e0d3970686",
+            "support_unit_id": "J000299",
+            "party": "R",
+            "start_char": 1552,
+            "end_char": 1581,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1511,
+            "sentence_end_char": 1701,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 70,
+            "clause_start_char": 1415,
+            "clause_end_char": 1590,
+            "clause_offset_start": 137,
+            "clause_offset_end": 166,
+            "adjacent_tokens_before": [
+              "year",
+              "after",
+              "president",
+              "trump",
+              "signed"
+            ],
+            "adjacent_tokens_after": [
+              "into",
+              "law",
+              "the",
+              "promise",
+              "of"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": true,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e7306f9055d7948094a27168",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "publication_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "office_id": "J000299",
+            "family_id": "dfam:89bd6ba761324cd0db1c6409",
+            "family_revision": "dfrev:61a43ff21808d4e0d3970686",
+            "support_unit_id": "J000299",
+            "party": "R",
+            "start_char": 2110,
+            "end_char": 2139,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1945,
+            "sentence_end_char": 2172,
+            "sentence_offset_start": 165,
+            "sentence_offset_end": 194,
+            "clause_start_char": 2090,
+            "clause_end_char": 2143,
+            "clause_offset_start": 20,
+            "clause_offset_end": 49,
+            "adjacent_tokens_before": [
+              "the",
+              "real",
+              "tangible",
+              "impact",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "act",
+              "congressman",
+              "ciscomani",
+              "said",
+              "manufacturing"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0359e3f67e280187605d1035",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 194,
+            "end_char": 223,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 333,
+            "sentence_offset_start": 194,
+            "sentence_offset_end": 223,
+            "clause_start_char": 178,
+            "clause_end_char": 266,
+            "clause_offset_start": 16,
+            "clause_offset_end": 45,
+            "adjacent_tokens_before": [
+              "grande",
+              "az",
+              "to",
+              "discuss",
+              "how"
+            ],
+            "adjacent_tokens_after": [
+              "act",
+              "is",
+              "strengthening",
+              "arizona",
+              "manufacturing"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3371ec0578adcc4c9d2c4ca3",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 593,
+            "end_char": 622,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 577,
+            "sentence_end_char": 883,
+            "sentence_offset_start": 16,
+            "sentence_offset_end": 45,
+            "clause_start_char": 520,
+            "clause_end_char": 646,
+            "clause_offset_start": 73,
+            "clause_offset_end": 102,
+            "adjacent_tokens_before": [
+              "sixth",
+              "district",
+              "one",
+              "year",
+              "after"
+            ],
+            "adjacent_tokens_after": [
+              "act",
+              "was",
+              "signed",
+              "into",
+              "law"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:76b191d6d22a7a3ead0e74f1",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 1153,
+            "end_char": 1182,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 988,
+            "sentence_end_char": 1220,
+            "sentence_offset_start": 165,
+            "sentence_offset_end": 194,
+            "clause_start_char": 1133,
+            "clause_end_char": 1186,
+            "clause_offset_start": 20,
+            "clause_offset_end": 49,
+            "adjacent_tokens_before": [
+              "the",
+              "real",
+              "tangible",
+              "impact",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "act",
+              "said",
+              "congressman",
+              "juan",
+              "ciscomani"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": true,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3409783db349ad2f530f055d",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 1831,
+            "end_char": 1860,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1790,
+            "sentence_end_char": 1980,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 70,
+            "clause_start_char": 1503,
+            "clause_end_char": 1869,
+            "clause_offset_start": 328,
+            "clause_offset_end": 357,
+            "adjacent_tokens_before": [
+              "year",
+              "after",
+              "president",
+              "trump",
+              "signed"
+            ],
+            "adjacent_tokens_after": [
+              "into",
+              "law",
+              "the",
+              "promise",
+              "of"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": true,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:482b3fb1108d6aa4c01011e0",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 2237,
+            "end_char": 2266,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2224,
+            "sentence_end_char": 2314,
+            "sentence_offset_start": 13,
+            "sentence_offset_end": 42,
+            "clause_start_char": 2213,
+            "clause_end_char": 2266,
+            "clause_offset_start": 24,
+            "clause_offset_end": 53,
+            "adjacent_tokens_before": [
+              "expand",
+              "and",
+              "hire",
+              "thanks",
+              "to"
+            ],
+            "adjacent_tokens_after": [
+              "american",
+              "manufacturing",
+              "is",
+              "roaring",
+              "back"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:049474dc5098ad6542ea8c61",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 2839,
+            "end_char": 2868,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2717,
+            "sentence_end_char": 2963,
+            "sentence_offset_start": 122,
+            "sentence_offset_end": 151,
+            "clause_start_char": 2640,
+            "clause_end_char": 2868,
+            "clause_offset_start": 199,
+            "clause_offset_end": 228,
+            "adjacent_tokens_before": [
+              "american",
+              "businesses",
+              "are",
+              "benefitting",
+              "from"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "to",
+              "discuss",
+              "how",
+              "republicans"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:cd9398d0ef5c68c0468902fb",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 3049,
+            "end_char": 3078,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2965,
+            "sentence_end_char": 3161,
+            "sentence_offset_start": 84,
+            "sentence_offset_end": 113,
+            "clause_start_char": 2984,
+            "clause_end_char": 3212,
+            "clause_offset_start": 65,
+            "clause_offset_end": 94,
+            "adjacent_tokens_before": [
+              "a",
+              "newly",
+              "unveiled",
+              "expansion",
+              "to"
+            ],
+            "adjacent_tokens_after": [
+              "that",
+              "permanently",
+              "expands",
+              "the",
+              "employer"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:94c07abd40cedb15c04c7d3c",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 3771,
+            "end_char": 3800,
+            "surface_text": "The Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 3769,
+            "sentence_end_char": 4099,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 31,
+            "clause_start_char": 3729,
+            "clause_end_char": 3873,
+            "clause_offset_start": 42,
+            "clause_offset_end": 71,
+            "adjacent_tokens_before": [
+              "said",
+              "treasury",
+              "secretary",
+              "scott",
+              "bessent"
+            ],
+            "adjacent_tokens_after": [
+              "permanently",
+              "expands",
+              "the",
+              "federal",
+              "paid"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:237f0c632a4880e157c892a5",
+            "claim_id": "2026-08-06-R-00",
+            "statement_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "publication_id": "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40",
+            "office_id": "C001133",
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9",
+            "support_unit_id": "C001133",
+            "party": "R",
+            "start_char": 4432,
+            "end_char": 4461,
+            "surface_text": "the Working Families Tax Cuts",
+            "normalized_phrase": "the working families tax cuts",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 4407,
+            "sentence_end_char": 4573,
+            "sentence_offset_start": 25,
+            "sentence_offset_end": 54,
+            "clause_start_char": 4353,
+            "clause_end_char": 4680,
+            "clause_offset_start": 79,
+            "clause_offset_end": 108,
+            "adjacent_tokens_before": [
+              "bisignano",
+              "the",
+              "changes",
+              "enacted",
+              "by"
+            ],
+            "adjacent_tokens_after": [
+              "will",
+              "make",
+              "more",
+              "employers",
+              "eligible"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 5,
+          "publications": 5,
+          "families": 5,
+          "support_units": 5
+        },
+        "office_ids": [
+          "B001319",
+          "C001133",
+          "J000299",
+          "M001239",
+          "S001195"
+        ],
+        "publication_ids": [
+          "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011",
+          "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+          "sha256:401c64531db35372dcb845bcb3f84b1b1d97fdca8cd19b1656fa829208e8c546",
+          "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+          "sha256:f985e866944cf70d9a4118c2eee89447395b00ab50511b092be48a6e8b020e40"
+        ],
+        "family_ids": [
+          "dfam:06d557aa9e0eea696974d71d",
+          "dfam:89bd6ba761324cd0db1c6409",
+          "dfam:9123f4814dbd82c6fc205e9d",
+          "dfam:bbb824688acc405e4efb5574",
+          "dfam:f91bb34455e8a6f23fa5058d"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:06d557aa9e0eea696974d71d",
+            "family_revision": "dfrev:b27a58cbf8e1a3605f1d94e9"
+          },
+          {
+            "family_id": "dfam:89bd6ba761324cd0db1c6409",
+            "family_revision": "dfrev:61a43ff21808d4e0d3970686"
+          },
+          {
+            "family_id": "dfam:9123f4814dbd82c6fc205e9d",
+            "family_revision": "dfrev:8b70179ec38a22229a7f4777"
+          },
+          {
+            "family_id": "dfam:bbb824688acc405e4efb5574",
+            "family_revision": "dfrev:202078b55307bb703346c6b4"
+          },
+          {
+            "family_id": "dfam:f91bb34455e8a6f23fa5058d",
+            "family_revision": "dfrev:b650b1ad70e8f9664a4a1b92"
+          }
+        ],
+        "support_unit_ids": [
+          "B001319",
+          "C001133",
+          "J000299",
+          "M001239",
+          "S001195"
+        ],
+        "citation_occurrence_ids": [
+          "occ:055e16fe57585dd712084164",
+          "occ:1645e1f51b390ee5d4bfee2f",
+          "occ:c06d3517141adb4a376eb176"
+        ],
+        "citations": [
+          {
+            "member": "Jason Smith",
+            "party": "R",
+            "state": "MO",
+            "date": "2026-08-06",
+            "url": "https://jasonsmith.house.gov/2026/08/06/smith-visits-keaton-cattle-company-in-dent-county/",
+            "quote": "hear that the working families tax cuts are",
+            "occurrence_id": "occ:055e16fe57585dd712084164",
+            "office_id": "S001195",
+            "publication_id": "sha256:176ce15d0afe1bc60e9d66619702432d8c3a497047d6d73900ed68f145a0a011",
+            "family_id": "dfam:9123f4814dbd82c6fc205e9d",
+            "family_revision": "dfrev:8b70179ec38a22229a7f4777"
+          },
+          {
+            "member": "Katie Boyd Britt",
+            "party": "R",
+            "state": "AL",
+            "date": "2026-08-06",
+            "url": "https://www.britt.senate.gov/news/press-releases/u-s-senator-katie-britt-applauds-35-million-announcement-from-usda-to-combat-feral-swine-secured-through-the-working-families-tax-cuts-act/",
+            "quote": "included in the working families tax cuts act",
+            "occurrence_id": "occ:1645e1f51b390ee5d4bfee2f",
+            "office_id": "B001319",
+            "publication_id": "sha256:3bab9b96e21e2f228b4d8764bca8de033256f1891f04772af77dabacd0b5438d",
+            "family_id": "dfam:bbb824688acc405e4efb5574",
+            "family_revision": "dfrev:202078b55307bb703346c6b4"
+          },
+          {
+            "member": "Mike Johnson",
+            "party": "R",
+            "state": "LA",
+            "date": "2026-08-06",
+            "url": "https://mikejohnson.house.gov/news/documentsingle.aspx?DocumentID=2927",
+            "quote": "discuss how the working families tax cuts have",
+            "occurrence_id": "occ:c06d3517141adb4a376eb176",
+            "office_id": "J000299",
+            "publication_id": "sha256:47a343a00a7588b78891439db011b751429fed1100c1d7187188a7bd5a10457d",
+            "family_id": "dfam:89bd6ba761324cd0db1c6409",
+            "family_revision": "dfrev:61a43ff21808d4e0d3970686"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "taxes_debt",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-08-06",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 67,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-08-06",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 115,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-08-06",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 107,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-08-06",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-08-06",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 5,
+          "numerator_unit": "offices",
+          "denominator": 48,
+          "denominator_unit": "offices",
+          "share": 0.104167,
+          "window": "party-day 2026-08-06",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 5,
+          "numerator_unit": "publications",
+          "denominator": 74,
+          "denominator_unit": "publications",
+          "share": 0.067568,
+          "window": "party-day 2026-08-06",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 5,
+          "numerator_unit": "document families",
+          "denominator": 74,
+          "denominator_unit": "document families",
+          "share": 0.067568,
+          "window": "party-day 2026-08-06",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "calling on the trump administration",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      },
+      {
+        "label": "committee and a senior member",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": [
+      {
+        "label": "fauci in contempt of congress",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "with the trump administration",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 2.14,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.974,
+        "series": [
+          3,
+          1,
+          3,
+          13,
+          8,
+          5,
+          2,
+          4,
+          1,
+          2,
+          3,
+          6,
+          3,
+          9
+        ]
+      },
+      {
+        "ngram": "communities across the",
+        "slug": "c8a50f6895b6292b",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.11,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000621",
+          "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+          "tie": [
+            "B001230",
+            "C001098",
+            "G000386",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          5,
+          6,
+          6,
+          5,
+          5,
+          3,
+          3,
+          3,
+          2,
+          1,
+          3,
+          3,
+          4,
+          8
+        ]
+      },
+      {
+        "ngram": "a senior member",
+        "slug": "f34a91c237c39881",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 10,
+          "R": null,
+          "I": null
+        },
+        "family_count": 10,
+        "velocity": 2.88,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001287",
+          "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+          "tie": [
+            "D000623",
+            "K000367",
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.961,
+        "series": [
+          3,
+          3,
+          3,
+          1,
+          3,
+          3,
+          5,
+          2,
+          0,
+          1,
+          1,
+          3,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "bipartisan bill to",
+        "slug": "f17a7ce21ba8a087",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": null,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "G000602",
+          "statement": "sha256:cc723f3cc18171309ec3d7aa3847ae472712cc0af8a40ecdcce6fda5c3d34358",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          4,
+          2,
+          2,
+          1,
+          1,
+          1,
+          3,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "bill will help",
+        "slug": "e59f14082305c5d5",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.9,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "L000590",
+          "statement": "sha256:8f5c1b2dcbe45b23033dbc26181cf577397027b85e3899694d4dafddce049125",
+          "tie": [
+            "B001243",
+            "C001129"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          2,
+          2,
+          3,
+          4,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          5,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "legislation will help",
+        "slug": "10bade81ddbb9f73",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.79,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.987,
+        "series": [
+          3,
+          2,
+          5,
+          5,
+          5,
+          4,
+          3,
+          4,
+          2,
+          3,
+          1,
+          4,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "senior member of",
+        "slug": "7cbcf61f8a7d8270",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": null,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 2.21,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001287",
+          "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+          "tie": [
+            "D000623",
+            "G000386",
+            "H000874",
+            "K000367",
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.961,
+        "series": [
+          2,
+          3,
+          3,
+          2,
+          4,
+          4,
+          3,
+          3,
+          0,
+          1,
+          2,
+          3,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "communities across the country",
+        "slug": "743e783403b630d9",
+        "n": 4,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.63,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000621",
+          "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+          "tie": [
+            "G000386"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          5,
+          6,
+          4,
+          4,
+          5,
+          3,
+          1,
+          2,
+          2,
+          1,
+          2,
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "fight to protect",
+        "slug": "b1dfe5891146624b",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.04,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001110",
+          "statement": "sha256:e3766d9d8208923aa53990a8cf9842d97d89945a27d7cb22dfa93d1ef55dcdf7",
+          "tie": [
+            "C001121"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          3,
+          2,
+          2,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "this critical legislation",
+        "slug": "96659c4506a7a862",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.33,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "D000594",
+          "statement": "sha256:eced0fc67a96a01126d2705ecf6377d70bbf68e4f35e74b9af59223bb3232b50",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          2,
+          3,
+          1,
+          1,
+          2,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          5
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "farmers and ranchers",
+        "slug": "fc10f0af5a69262b",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 3.63,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          3,
+          7
+        ]
+      },
+      {
+        "ngram": "full bill text",
+        "slug": "533c110fb83896e6",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.84,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001103",
+          "statement": "sha256:07beaf43ab61b6ae7fb5d7211df4b6f0dc0378d87296eb95c480c8a2cba7fcfc",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          4,
+          4,
+          7,
+          7,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          3,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "for american families",
+        "slug": "055e857e9ffb03bb",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.41,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000582",
+          "statement": "sha256:030b3527131ef12f086666a21479817714dbeba626e6a90809dba6df477ab53d",
+          "tie": [
+            "C000880",
+            "C001098"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          3,
+          3,
+          3,
+          3,
+          2,
+          3,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "expanding access to",
+        "slug": "6a824207413e3d8c",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.71,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001133",
+          "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          3,
+          2,
+          2,
+          7,
+          5,
+          4,
+          2,
+          1,
+          1,
+          6,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "proud to lead the effort",
+        "slug": "8281f9f000a43138",
+        "n": 5,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "S001223",
+          "statement": "sha256:9e5a2d14d989d85f3d9f0276aed4756e3df5ac656cad7a8f0ec2381e4f159ff9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "greenhouse gas emissions",
+        "slug": "0fea124cfe8ad1e4",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001096",
+          "statement": "sha256:68e13f100d5ef6548c8b93778bc9bf8994eaaf971e264c7525d2d3d8d1c5c27f",
+          "tie": [
+            "C001098"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "i’m proud to support",
+        "slug": "e82b3d5fd47b1375",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.07,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "L000600",
+          "statement": "sha256:14ad2a8d2ef003d9e07a24a3188422dffb1d6754a7348ac13845116c306a754b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          2,
+          4,
+          2,
+          1,
+          2,
+          4,
+          1,
+          1,
+          1,
+          2,
+          3,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "full senate to",
+        "slug": "d9f5cb55a1d45842",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.56,
+        "first_seen": {
+          "date": "2025-02-05",
+          "bioguide": "F000463",
+          "statement": "sha256:dcb019fdf41f5b41489b593f655a69843107f2be3979b09caa88c6d9c1a593a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "contempt of congress",
+        "slug": "098b8ca7d9cda18c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.27,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "B001316",
+          "statement": "sha256:20c3a55d472f1ba48e79dd766744f0d34f53a75a61d28dc20e6dd5c1230e22e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "rest of the country",
+        "slug": "b5a2a197001d836e",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "N000189",
+          "statement": "sha256:9c1802dbee5dd7726b96004155eac5d6968f5b354f104abeb1302959c5cf9f90",
+          "tie": [
+            "C001075"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          4
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "in the house of representatives",
+      "slug": "37cf24d9283996d5",
+      "n": 5,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001133",
+        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "tie": [
+          "W000779"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "velocity": 1.5,
+      "sides": {
+        "D": [
+          {
+            "member": "Christopher A. Coons",
+            "party": "D",
+            "state": "DE",
+            "date": "2026-08-06",
+            "url": "https://www.coons.senate.gov/news/press-releases/senators-coons-murkowski-introduce-bipartisan-bill-to-use-temporary-protected-status-to-help-vulnerable-afghans-in-the-united-states/",
+            "quote": "A bipartisan companion bill was introduced in the House of Representatives by Jason Crow (D-Colo.), Sam Liccardo (D-Calif.), Don Bacon (R-Neb.), and María Elvira Salazar (R-Fla.)."
+          },
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-08-06",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/senate-committee-advances-bipartisan-padilla-bill-to-support-tribal-land-management/",
+            "quote": "The late Representative Doug LaMalfa (R-Calif.-01) introduced companion legislation in the House of Representatives."
+          },
+          {
+            "member": "Adam B. Schiff",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-08-06",
+            "url": "https://www.schiff.senate.gov/news/press-releases/news-senate-committee-advances-bipartisan-schiff-padilla-bill-to-support-tribal-land-management/",
+            "quote": "The late Representative Doug LaMalfa (R-Calif.-01) introduced companion legislation in the House of Representatives."
+          }
+        ],
+        "R": [
+          {
+            "member": "Mario Diaz-Balart",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-08-06",
+            "url": "https://mariodiazbalart.house.gov/media-center/press-releases/chairman-diaz-balart-joins-united-states-presidential-delegation",
+            "quote": "The caucus played a pivotal role in advancing a vote on the U.S.-Colombia Free Trade Agreement in the House of Representatives."
+          },
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-08-06",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-joins-lankford-to-introduce-bill-strengthening-and-protecting-military-chaplains-ministry",
+            "quote": "Rep. Keith Self (R-Texas) leads companion legislation in the House of Representatives, and the bill was included in the House-passed Fiscal Year 2027 National Defense Authorization Act (NDAA)."
+          },
+          {
+            "member": "Mark B. Messmer",
+            "party": "R",
+            "state": "IN",
+            "date": "2026-08-06",
+            "url": "https://messmer.house.gov/news/documentsingle.aspx?DocumentID=324",
+            "quote": "To learn more about how Congressman Messmer is supporting America's veterans in the House of Representatives, visit Messmer.House.Gov.\n\n###"
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "12d903f280f7b5c89ed15ba24273b6e11d7a9cba3cd0d948f956ec2afea69f64",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "429fa3153bd3f2ae93bf90024bbced2aec9bff578d78eaea8e08220471706cb9",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
