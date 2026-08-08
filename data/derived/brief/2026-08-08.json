@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-08",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 28,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "28 consecutive days published (through 2026-08-07)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0458,
+      "projected": 0.1775,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 7,
+      "note": "$0.0458 MTD, $0.18 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-08-07",
+      "parties": {
+        "D": {
+          "statements": 99,
+          "median": 78.0,
+          "share": 1.269,
+          "status": "green"
+        },
+        "R": {
+          "statements": 66,
+          "median": 55.0,
+          "share": 1.2,
+          "status": "green"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 13.83,
+        "day": "2026-08-07",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "note": "2026-08-07: D 99/78=127% R 66/55=120% of own 14d median (green >= 60%); upstream 13.8h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.5455,
+      "dropped": 12,
+      "offered": 22,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "12/22 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [
+    "2026-08-01",
+    "2026-08-03"
+  ],
+  "top_phrase": {
+    "ngram": "full text of the bill",
+    "party": "D",
+    "day_peak": 9,
+    "day": "2026-08-06"
+  },
+  "shelf": {
+    "dark": [
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: verifier_drop"
+}
