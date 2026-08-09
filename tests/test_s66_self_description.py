@@ -47,7 +47,9 @@ def test_the_two_strings_are_verbatim_and_carry_no_em_dash():
     assert public_strings.HOMEPAGE_HONESTY_NOTE == HONESTY
     assert public_strings.LANE_TWO_POPULATION_NOTE == LANE_TWO
     for value in (HONESTY, LANE_TWO):
-        assert "—" not in value
+        # docs/25 forbids U+2014 in authored prose. Written as an escape so this detector is not
+        # itself the one em dash in the delivery.
+        assert chr(0x2014) not in value
 
 
 def test_both_strings_stay_plain_text_because_their_renderers_emit_them_raw():
