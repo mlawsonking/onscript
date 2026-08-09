@@ -3024,3 +3024,59 @@ gate should clear on the next scheduled pair, which Monday's flip decision can r
 19:10 UTC on 2026-08-09 with nothing queued or running and the 19:30 slot, which drifts late,
 not yet started, so tonight's pair is the first production exercise of the merged stack. The
 operator checkout and its in-flight annotation files were never touched.
+## 2026-08-09: Session 66 (Opus). The integrity order: a cosigned release counts once
+
+ORDER S66, packages 1 through 8, executed in an isolated worktree on `opus/s66-integrity` off
+`origin/main` at a10c695. Suite 1028 to 1081, zero failures throughout, one commit per package.
+No API calls, $0. Nothing pushed, nothing dispatched, no flag flipped.
+
+S66-1 is the P0 and the order's stated root cause did not survive measurement. The review read
+`joint_group` as exact-text only; `apply_families` has assigned near-duplicate family ids since
+W7, so folding the document-family identity into the unit key changes nothing for the pair that
+caused the finding. The Cortez Masto and Rosen Nevada airports releases score Jaccard 0.647
+against a 0.72 bar and never form a family at all. The real gap is that the standing rule names
+joint AND COSIGNED releases and only the joint half was ever built. A cosigned release is one
+announcement two offices publish under their own letterheads, each with its own dateline, name
+order, and member quote, which is exactly how the texts diverge below a similarity bar while the
+announcement stays single. `document_families` now recognizes it: a pair the existing MinHash
+retrieval already paired, same day, two offices, whose headlines each name the other member, is
+one project unit. The decision is a boolean on reciprocal headline naming, so no threshold moved
+and the quorum stays at 3. Measured over 2026-07-06 to 2026-07-10, 53 candidate pairs yield 15
+cosigned pairs and every one is genuine; requiring retrieval is what removes the surname
+collisions (two Smiths, two Scotts) that naming alone produces. Validated against the real
+2026-07-09 corpus into a temp directory: 007eacff261c652d, 2dc5adb851e6e29d and e0b16e162cdabc40
+fall from 3 grounded units to 2 and lose their evidentiary section, while control phrase
+2804ea76c2dafbc4 keeps 3 units and its section. METHOD_VERSION moves to document-families-v3 at
+the owning stage and the evidence slice inherits it into its cache key, so no count measured
+under the superseded collapse is served. One correction entry names all three pages, appended as
+a pure addition (21 added, 0 removed) with the checkpoint at 7.
+
+S66-3's diagnosis also moved, and the repository's own history settles it. RUN B is exonerated:
+commit 8b8a02e (assemble) renders 0 of 627 phrase pages as "member name unavailable" and commit
+7784628 (post) renders 553. RUN C re-renders the whole site on a bare checkout with no state
+restore and commits it over RUN B's correct output about an hour later. The transport chain was
+intact the entire time. `post.yml` gains the restore, placed after posting and fail-soft
+throughout so it can never cost the irreversible act, and `site.py` now says ROSTER EMPTY out
+loud instead of returning `{}`. The regression test is the general rule: any workflow that runs
+`pipeline/site.py` must also run `pipeline.archive_restore`.
+
+The rest. S66-2 escapes the concordance citation URL and adds poisoned-URL tests for every dark
+render plus a source-level rule so a new render cannot reintroduce the hole. S66-4 replaces the
+homepage note that claimed the model voice was unbuilt while the same page showed the other
+party's line generated and verified, and states plainly that Lane 2 is empty; both strings live
+in `public_strings` with live-read probes. S66-5 stamps withdrawal, an interpretation floor, and
+the epoch into `discipline.json`, additively, with the floor stamped and never applied. S66-6
+closes three quiet failure modes: `post.yml` asserts its trigger by path before touching a
+credential, `assemble.yml` passes the dispatch day through env, and `pipeline/freeze_window.py`
+plus `freeze-check.yml` make Article VIII machine-enforced on every push. Writing that test found
+a real bug: `lstrip("./")` eats the leading dot of `.github`, which would have exempted every
+workflow from the freeze it exists to enforce. S66-7 scrubs the operator path from docs/16 and
+leaves the DEEP packet's two paths, which are the evidence for their own claim. S66-8 imports the
+review as docs/39, byte-identical.
+
+Two things stay open for Michael. `data/derived` and `site/public` are deliberately not
+regenerated; production rebuilds them on the first run after the push, and only then do the three
+phrase pages actually lose their quorum claim in public. `tests/_tmp_watchdog` exists only in the
+operator checkout, which no other session may touch. One question is referred to Fable at
+validation: whether `discipline.json` should stop being emitted rather than carry a withdrawal
+stamp. The stamp is what shipped, because the order said not to act on that judgment alone.
