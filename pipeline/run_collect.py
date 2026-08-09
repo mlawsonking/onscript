@@ -25,12 +25,13 @@ from pipeline import (config, deterministic, extract, fetch, llm, ops, roster,
 STALE_HOURS = 36.0
 
 
-def _volume_anomaly(statements, focus_day) -> dict:
+def _volume_anomaly(statements, focus_day, *, maturity=None) -> dict:
     # Single definition in ops so collect and assemble compute the anomaly identically.
-    return ops.volume_anomaly(statements, focus_day)
+    return ops.volume_anomaly(statements, focus_day, maturity=maturity)
 
 
-def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_extract: bool) -> dict:
+def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_extract: bool,
+            reference_day: str | None = None) -> dict:
     freshness = {"ok": True, "note": "offline"} if offline else fetch.upstream_freshness()
     alerts = []
     degraded = False
@@ -56,10 +57,19 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
     statements = res["statements"]
     focus_day = res["focus_day"]
 
-    vol = _volume_anomaly(statements, focus_day)
+    # RUN A meets the focus day while upstream is still delivering it, so the volume
+    # comparison is gated on collection maturity. An immature day is logged, never paged: a
+    # partial count is not a thin day. The upstream-stale alert above remains the dead-man for
+    # a feed that has stopped. §S65.
+    maturity = ops.collection_maturity(statements, focus_day,
+                                       reference_day=reference_day or util.product_day())
+    vol = _volume_anomaly(statements, focus_day, maturity=maturity)
     if vol["anomalously_low"]:
         alerts.append(f"volume {vol['today']} < 40% of median {vol['trailing_median']}")
         ops.ntfy("OnScript collect", f"low volume on {focus_day}: {vol['today']} (median {vol['trailing_median']})")
+    elif not maturity["mature"]:
+        alerts.append(f"volume comparison withheld on {focus_day}: {maturity['reason']} "
+                      f"({vol['today']} so far, median {vol['trailing_median']})")
 
     extract_cost = {"skipped": True}
     if do_extract:

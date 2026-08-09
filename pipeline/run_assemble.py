@@ -390,6 +390,10 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         "rule": config.NULL_SERVICE_RULE,
         "conditions": {
             "force_finalized": bool(forced),
+            # No maturity gate here, deliberately. A day reaching assemble has already cleared
+            # the readiness gate or been force-finalized past its wait, so it has stopped
+            # filling and its volume is judgeable. Gating it would flip this condition to False
+            # on exactly the thin force-finalized days the no-post rule exists to hold. §S65.
             "anomalously_low_volume": bool(ops.volume_anomaly(statements, day)["anomalously_low"]),
             "zero_eligible_claims_both_parties": bool(zero_both),
         },
