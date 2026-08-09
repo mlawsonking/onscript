@@ -30,13 +30,17 @@ TEST_SALT = "test-salt-not-the-real-one"
 
 
 @contextlib.contextmanager
-def gate(forms=FORMS, allow=None, max_tokens=3):
-    """Load the gate against an injected test list. Restores the production gate on exit."""
+def gate(forms=FORMS, allow=None, max_tokens=3, salt=TEST_SALT):
+    """Load the gate against an injected test list. Restores the production gate on exit.
+
+    `salt` exists so a test can build two gates whose form PLAINTEXTS agree while their keyed
+    hashes do not, which is the only way to exercise a salt change without touching the real one
+    (tests/test_p2_scan_cache.py needs exactly that)."""
     import hashlib
     import hmac
 
     def mac(s):
-        return hmac.new(TEST_SALT.encode(), s.encode(), hashlib.sha256).hexdigest()
+        return hmac.new(salt.encode(), s.encode(), hashlib.sha256).hexdigest()
 
     tmp = ROOT / "tests" / "_tmp_privacy"
     tmp.mkdir(parents=True, exist_ok=True)
@@ -49,7 +53,7 @@ def gate(forms=FORMS, allow=None, max_tokens=3):
     }), encoding="utf-8")
     ap.write_text(json.dumps({"allow": allow or []}), encoding="utf-8")
     prev = os.environ.get("PRIVACY_TEST_SALT")
-    os.environ["PRIVACY_TEST_SALT"] = TEST_SALT
+    os.environ["PRIVACY_TEST_SALT"] = salt
     try:
         privacy.load(forms_path=fp, allowlist_path=ap)
         yield

@@ -75,9 +75,10 @@ import hmac
 import json
 import os
 import re
+import time
 from pathlib import Path
 
-from pipeline import verify
+from pipeline import scan_cache, verify
 
 ROOT = Path(__file__).resolve().parent.parent
 REFERENCE = ROOT / "data" / "reference"
@@ -388,8 +389,103 @@ def _fold_offsets(text: str):
     return "".join(out), starts, ends
 
 
+_KEY_PREFIX: tuple = ()          # (gen, entity_version, prefix_string)
+
+
+def _clean_scan_prefix() -> str:
+    """The instrument half of a cache key, recomputed only when the instrument moves.
+
+    Validity is checked against the gate generation AND the entity-hierarchy version rather than
+    the generation alone: the version is a module constant, so a bump that does not reload the
+    gate would otherwise keep serving keys built under the old one."""
+    global _KEY_PREFIX
+    stamp = (_GEN, ENTITY_HIERARCHY_VERSION)
+    if len(_KEY_PREFIX) != 3 or _KEY_PREFIX[:2] != stamp:
+        _KEY_PREFIX = (_GEN, ENTITY_HIERARCHY_VERSION,
+                       f"{scan_cache.CACHE_VERSION}|{forms_fingerprint()}|"
+                       f"{ENTITY_HIERARCHY_VERSION}|")
+    return _KEY_PREFIX[2]
+
+
+def clean_scan_key(text: str) -> str:
+    """The cache key for "this text contains no admitted form", under THIS instrument.
+
+    The key commits to the cache version, the admitted-form fingerprint and the entity-hierarchy
+    version, so admitting a name or bumping a version changes every key and no prior verdict can
+    be served. Invalidation that lives in the key cannot be skipped by a stale in-memory set, and
+    a stale clean verdict is a published name. It is keyed under the salt because data/state is
+    published as a release asset: without the salt, membership is not testable, so the file
+    discloses nothing about which statements were touched (R-29.3)."""
+    _require_gate()
+    return _mac_with(  # type: ignore[arg-type]
+        _SALT, _clean_scan_prefix() + text)[:scan_cache.KEY_HEX_CHARS]
+
+
+def salt_fingerprint() -> str:
+    """Salt identity, derived from the canary that is already published in the form list.
+
+    Discloses nothing new: the canary is a committed, public value. It exists here so a cache file
+    built under a different salt is refused at load rather than carried as dead weight."""
+    _require_gate()
+    return hashlib.sha256(_mac_with(_SALT, CANARY_PLAINTEXT).encode("utf-8")).hexdigest()  # type: ignore[arg-type]
+
+
+def scan_cache_header() -> dict:
+    """The validity header the clean-scan cache is stored under."""
+    return {
+        "schema_version": scan_cache.SCHEMA_VERSION,
+        "kind": scan_cache.KIND,
+        "cache_version": scan_cache.CACHE_VERSION,
+        "forms_fingerprint": forms_fingerprint(),
+        "salt_fingerprint": salt_fingerprint(),
+        "entity_hierarchy_version": ENTITY_HIERARCHY_VERSION,
+    }
+
+
+def activate_scan_cache(*, path: Path | None = None) -> str:
+    """Begin a run that may serve prior clean verdicts. Returns a status line for the run log."""
+    return scan_cache.activate(scan_cache_header(), path=path)
+
+
+def flush_scan_cache(*, path: Path | None = None) -> str:
+    return scan_cache.flush(path=path)
+
+
 def _suppressed_spans(text: str) -> list[tuple[int, int, str]]:
     """Leftmost-longest suppressed spans as [start, end) offsets into the ORIGINAL text."""
+    t0 = time.perf_counter()
+    try:
+        return _suppressed_spans_uncounted(text)
+    finally:
+        _SPAN_STATS["admitted_form_scans"] += 1
+        _SPAN_STATS["admitted_form_s"] += time.perf_counter() - t0
+
+
+def _suppressed_spans_uncounted(text: str) -> list[tuple[int, int, str]]:
+    # Establish and settle the gate BEFORE any short-circuit. The cache-hit path never reaches
+    # _scan_window, which is where every other caller happens to establish it, and a gate that
+    # only arms on the slow path is a gate that fails open exactly when the cache is warm
+    # (docs/37 rule 4).
+    #
+    # WHO GETS THE CACHE. Only a process that activated it, which is the deterministic core run.
+    # `pipeline.redact` runs as its own workflow step and never activates, so the last gate before
+    # a published release asset keeps computing every verdict itself. Serving it a cached answer
+    # would be correct (the bit means exactly what redact asks) but it is the wrong place to spend
+    # the trust: the corpus walk is where the time went, and the walk is what is cached.
+    _require_gate()
+    _ensure_generation()
+    key = None
+    if scan_cache.active():
+        key = clean_scan_key(text)
+        if scan_cache.is_clean(key):
+            return []
+    spans = _compute_suppressed_spans(text)
+    if not spans and key is not None:
+        scan_cache.mark_clean(key)
+    return spans
+
+
+def _compute_suppressed_spans(text: str) -> list[tuple[int, int, str]]:
     folded, starts, ends = _fold_offsets(text)
     low = folded.lower()
     if len(low) == len(folded):
@@ -467,6 +563,28 @@ def _roster_names(roster_map: dict | None = None) -> dict[tuple[str, ...], str]:
     return out
 
 
+# --- span-scan accounting ----------------------------------------------------------------------
+# The 2026-07-28/29 collect timeouts were traced to this scan only AFTER the outage, because the
+# scan reported nothing about itself: the ledger build published one total and the corpus walk hid
+# inside it. The two halves are accounted separately because they have separate remedies: the
+# admitted-form half is a keyed-hash sweep over every token window (cacheable, since the corpus is
+# append-only), the capitalized-sequence half is a regex walk that must run every time.
+_SPAN_STATS: dict[str, float] = {
+    "person_spans_calls": 0, "person_spans_s": 0.0,
+    "admitted_form_scans": 0, "admitted_form_s": 0.0,
+}
+
+
+def reset_span_stats() -> None:
+    _SPAN_STATS.update({"person_spans_calls": 0, "person_spans_s": 0.0,
+                        "admitted_form_scans": 0, "admitted_form_s": 0.0})
+
+
+def span_stats() -> dict:
+    """Accumulated span-scan cost since the last reset. Read by the ledger-build stage timer."""
+    return dict(_SPAN_STATS)
+
+
 def person_spans(text: str, statement: dict | None = None,
                  roster_map: dict | None = None) -> list[dict]:
     """Classify deterministic person spans before any n-gram is generated.
@@ -475,6 +593,16 @@ def person_spans(text: str, statement: dict | None = None,
     elected-office title supplies official context. Capitalized sequences that cannot be resolved
     through the roster or public allowlist are quarantined.
     """
+    t0 = time.perf_counter()
+    try:
+        return _person_spans(text, statement, roster_map)
+    finally:
+        _SPAN_STATS["person_spans_calls"] += 1
+        _SPAN_STATS["person_spans_s"] += time.perf_counter() - t0
+
+
+def _person_spans(text: str, statement: dict | None,
+                  roster_map: dict | None) -> list[dict]:
     if not isinstance(text, str) or not text:
         return []
     rows: list[dict] = [

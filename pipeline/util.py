@@ -184,6 +184,94 @@ def artifact_path(path: Path | str) -> str:
         except ValueError:
             continue
     return _HOME_PREFIX.sub("<home>", str(raw)).replace("\\", "/")
+# --- stage timing -----------------------------------------------------------------------------
+# Collect wall time grew from ~60m to ~100m+ and hit the 120m workflow ceiling on 2026-07-28/29
+# before anyone could say WHICH stage had grown, because no stage published its own cost. The
+# regression had to be reconstructed from an outage. Every long stage now prints one uniform,
+# greppable line and records one number, so the next one shows up in the run log instead.
+#
+# perf_counter, not time(): this measures a duration, never a wall-clock instant, and it is
+# unaffected by a clock step mid-run. Nothing here enters a determinism claim: rebuild.py
+# excludes manifests from the determinism hash precisely because they carry run-local values.
+_STAGE_TIMINGS: dict[str, float] = {}
+
+STAGE_TIMING_FILE = config.STATE / "stage-timings.json"
+
+
+def reset_stage_timings() -> None:
+    _STAGE_TIMINGS.clear()
+
+
+def stage_timings() -> dict[str, float]:
+    """Accumulated seconds per stage name, in first-recorded order."""
+    return dict(_STAGE_TIMINGS)
+
+
+def record_stage(name: str, seconds: float, *, detail: str | None = None) -> None:
+    """Record and print one stage's elapsed seconds. Repeat names ACCUMULATE.
+
+    Summing is the honest reading: a stage entered twice (two mirror reads, two engine passes)
+    cost the run the sum of both, and overwriting would silently report only the cheaper one."""
+    _STAGE_TIMINGS[name] = round(_STAGE_TIMINGS.get(name, 0.0) + float(seconds), 1)
+    line = f"[timing] {name} elapsed_s={float(seconds):.1f}"
+    if detail:
+        line += f" {detail}"
+    print(line, flush=True)
+
+
+class stage_timer:
+    """Time one named stage; print and record on exit, even when the body raises.
+
+    `detail_fn` is called AT EXIT, not at entry, so a stage can report counters that only exist
+    once its work is done (the ledger build's span-scan share is the reason this exists)."""
+
+    def __init__(self, name: str, *, detail_fn=None) -> None:
+        self.name = name
+        self._detail_fn = detail_fn
+        self._t0 = 0.0
+
+    def __enter__(self) -> "stage_timer":
+        self._t0 = time.perf_counter()
+        return self
+
+    def __exit__(self, exc_type, exc, tb) -> bool:
+        elapsed = time.perf_counter() - self._t0
+        detail = None
+        if self._detail_fn is not None:
+            try:
+                detail = self._detail_fn()
+            except Exception as e:  # noqa: BLE001 - instrumentation never breaks the stage it times
+                detail = f"detail_unavailable={e.__class__.__name__}"
+        record_stage(self.name, elapsed, detail=detail)
+        return False
+
+
+def publish_stage_timings(path: Path | None = None) -> None:
+    """Hand this process's stage timings to the next one (restore runs in its own workflow step).
+
+    Best effort by construction: a run whose timings cannot be written is a run with one fewer
+    log line, not a failed run."""
+    try:
+        write_json(path or STAGE_TIMING_FILE,
+                   {"schema_version": 1, "generated_at": now_utc_iso(),
+                    "stages": stage_timings()})
+    except OSError as e:
+        print(f"[timing] could not publish stage timings (non-fatal): {e}")
+
+
+def adopt_stage_timings(path: Path | None = None) -> dict[str, float]:
+    """Fold a prior process's published timings into this one. Returns what was adopted."""
+    p = path or STAGE_TIMING_FILE
+    try:
+        doc = read_json(p, {}) or {}
+        stages = doc.get("stages") or {}
+        adopted = {str(k): float(v) for k, v in stages.items() if isinstance(v, (int, float))}
+    except Exception as e:  # noqa: BLE001 - a malformed hand-off costs a log line, never the run
+        print(f"[timing] could not adopt stage timings (non-fatal): {e}")
+        return {}
+    for name, seconds in adopted.items():
+        _STAGE_TIMINGS[name] = round(_STAGE_TIMINGS.get(name, 0.0) + seconds, 1)
+    return adopted
 
 
 def day_is_final(day: str, derived_dir: Path | None = None) -> bool:
