@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "disableBypassPermissionsMode": "disable",
+    "deny": [
+      "Bash(git add -A*)",
+      "Bash(git add --all*)",
+      "Bash(git add .)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "PowerShell(git add -A*)",
+      "PowerShell(git add --all*)",
+      "PowerShell(git add .)",
+      "PowerShell(git push --force*)",
+      "PowerShell(git push -f*)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "PowerShell(git push*)",
+      "Bash(gh workflow run*)",
+      "PowerShell(gh workflow run*)",
+      "Bash(vercel*)",
+      "PowerShell(vercel*)",
+      "Edit(pipeline/prompts/**)",
+      "Write(pipeline/prompts/**)",
+      "Edit(pipeline/config.py)",
+      "Write(pipeline/config.py)",
+      "Edit(site/public/**)",
+      "Write(site/public/**)",
+      "Edit(data/derived/**)",
+      "Write(data/derived/**)",
+      "Edit(docs/06-CONSTITUTION.md)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell|Edit|Write|MultiEdit|NotebookEdit|mcp__Windows-MCP__PowerShell|mcp__plugin_desktop-commander_desktop-commander__start_process|mcp__plugin_desktop-commander_desktop-commander__interact_with_process",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/ProgramData/miniconda3/python.exe \"$CLAUDE_PROJECT_DIR/.claude/hooks/governance_guard.py\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

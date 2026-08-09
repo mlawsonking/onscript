@@ -74,65 +74,25 @@ remain
 - **Storage:** schemas remain compatible. Raw records are append-only and date-stamped. The time
   series is the long-term asset.
 
-## Current build state
+## Build history
 
-The Phase 4 implementation record began on 2026-07-10. Completion is defined by §1.4 passing in
-full. The presence of code alone is insufficient. Section §13 decisions remain locked, including the
-open implementation choices recorded there.
+Phases 1 to 3 completed 2026-07-10 and their documents are the record: `docs/01-VISION.md`
+(insight families, the ranked feature set, assumptions R1-R11), `docs/02-RESEARCH.md`
+(R1-R11 tested; X is DEAD as an automated channel; the name OnScript replaced Party Lines;
+press releases plus Bluesky as the symmetric source; GDELT as the news baseline), and
+`docs/03-GAMEPLAN.md` with its amendments (cadence, budget governor, two-lane neutrality,
+the Alexandria 2001 corpus and 25-year ledger, the `congress` key, era chapters in v2).
+Phase 4 began 2026-07-10 and is recorded in `docs/04-BUILDLOG.md`; completion is defined
+by §1.4 passing in full, and §13 decisions remain locked. Longer-term bets are in
+`docs/05-HORIZON.md`; governance is `docs/06-CONSTITUTION.md` (17 articles, v1.2) and
+`docs/07-OPERATIONS.md` (states, health measures, playbooks). Launch history through
+public S3 is in `docs/26-SESSION-HISTORY.md`.
 
-- **Phase 1, completed 2026-07-10:** `docs/01-VISION.md` defines 5 insight families, a ranked
-  37-feature set, the top-5
-  artifacts, distribution ideas, voice, names, design rules, and assumptions R1–R11.
-- **Phase 2, completed 2026-07-10:** `docs/02-RESEARCH.md` tests R1–R11 against primary sources. The
-  source design uses
-  press releases from `dwillis/congress-press` plus Bluesky. X is DEAD as an automated channel.
-  “Party Lines” is DEAD as the name; **OnScript** replaced it. GDELT 2.0 supplies the news baseline.
-  Batched, cached, routed model work fits about $6–9/mo. Press releases are the symmetric two-party
-  source, and the scraper is mirrored. No feature was eliminated.
-- **Phase 3, completed 2026-07-10:** `docs/03-GAMEPLAN.md` defines the daily cadence, budget governor,
-  two-lane neutrality
-  design, nightly public audit, scraper mirror and cold-standby fork, dead-man path, and public
-P1–P3
-  prompts. The ledger starts at 2025-01-03. Stages A1–B9 have explicit failure behavior. Account
-  specifications use `blue.onscript.news` and `red.onscript.news`. The roadmap set v2 work for Aug
-10,
-  v3 work for Oct 5, and assimilation curves for Jan 2027.
-- **Phase 3 amendments, completed 2026-07-10:** the Library of Alexandria covers the full 2001 corpus
-  with a deterministic
-  25-year ledger. Era chapters belong to v2. Cross-era claims have temporal coverage gates, and v1
-  schemas use a `congress` key. Recurring work uses Actions plus the API. One-time chapters use the
-  cheapest capable option: subscription-scripted `claude -p` at $0 marginal cost, or API batch up to
-  $30 before Sep 1. Michael's 4080 handles Alexandria embeddings and free historical topic tagging.
-  Local models never write the chapter voice. Daily publication remains api-keyed.
-- **Phase 4, Session 1:** the standard-library pipeline was verified against live `congress-press`
-  data. It implements ingestion, mirroring, deduplication, syndication handling, joint-family
-  collapse, boilerplate and date suppression, content n-grams, first appearances, adoption curves,
-  the discipline index, coverage tables, and deterministic citation checks. P1–P3,
-  `taxonomy_v1.json`, and `rebuild.py` were committed. The first suite had 17 tests. The §1.4.5
-  boilerplate proof and §1.4.4 full-epoch backfill passed. The 8-Democrat “birthright citizenship”
-  convergence on 2026-06-30 is recorded in `docs/04-BUILDLOG.md`.
-- **Phase 4, Session 2:** the remaining v1 publication path was verified end to end in dry-run mode.
-  Without `ANTHROPIC_API_KEY`, the pipeline spends $0 and makes no Anthropic call. The LLM layer,
-  cached P1 fragments, 4-gram clustering, P2/P3 Daily Lines, Batch API path, direct fallback,
-  verifier, two-lane enforcement (§5.1), symmetry audit (§6.4), RUN A, RUN B, workflows, Lane-2
-  Bluesky ingest,
-  at-Proto posting, and static site were added. The 2026-06-30 render showed 53 D members on “born
-in
-  the united states” and 12 R members on “supreme court's decision in little v,” with 100% coverage.
-  The suite then held 25 tests. The static generator replaced Astro because the development machine
-  had no Node installation; both use the same derived contract.
-- **Launch snapshot from the original Phase 4 handoff:** the remaining §7.3/§9 work was assigned to
-  Michael: create and push the public repository, register the domains and the
-  `blue.onscript.news`/`red.onscript.news` accounts, set the Actions secrets, and set the $10 Console
-  cap. The cloud gate required 3 consecutive unattended runs. The nonblocking list held the
-  ~130-member Bluesky map, incremental ledger merge, and Alexandria Stage 2. This snapshot is
-  historical; the current status below records that those launch steps later completed.
-- **Idea document, completed 2026-07-11:** `docs/05-HORIZON.md` holds 8 longer-term bets, the §2.5
-  Appendix, and publication gates.
-- **Governance documents, completed 2026-07-11:** `docs/06-CONSTITUTION.md` defines 15 original
-  invariants; Article XVI was added later. `docs/07-OPERATIONS.md` defines states S0–S∞, 5 weekly
-  health measures, the 15-min, monthly, and quarterly checks, the Owner's Brief, and playbooks
-  P1–P10.
+Decisions from the Phase 3 amendments that still steer work: recurring work uses Actions
+plus the API; one-time chapters use the cheapest capable option, including
+subscription-scripted `claude -p` at $0 marginal cost; Michael's 4080 handles Alexandria
+embeddings and historical topic tagging; local models never write the chapter voice;
+daily publication stays api-keyed.
 
 ## Standing rules and traps
 
@@ -154,6 +114,8 @@ These rules were extracted from the dated session record. Detailed evidence rema
 - The public epoch comes only from `config.STAGE1_EPOCH`. Earlier first carriers remain unattributed
   on public surfaces. Permanent phrase pages may remain while zero-in-window phrases leave search.
 - Code computes numbers. Models may copy approved numbers but cannot derive them.
+- Blinded rating or annotation sessions do not recall label-space memory. Anything recalled
+  before the first label is disclosed in the delivery packet as a prior (Session 60).
 
 ### Publication and privacy
 
@@ -210,6 +172,12 @@ results.
   brief `68ef5ce` are present locally. Voice-rewrite commits wait for Michael's review and the
 release
   order in `docs/24-PUBLIC-SURFACE-STABILIZATION-BRIEF.md`.
+- The harness enforces the mechanical rules inside Claude Code sessions: `.claude/settings.json`
+  carries deny and ask permission rules plus the `.claude/hooks/governance_guard.py` PreToolUse
+  hook covering `git add -A`, bare `python`, release acts, the generated trees, prompt and config
+  edits, and the freeze window. Bypass-permissions mode is disabled for this project; ask rules
+  survive bypass in any case, deny rules do not, and deny beats ask beats allow across all
+  settings files. The prose rules still bind where the harness cannot see.
 
 ### Engineering discipline (every implementation session)
 
@@ -227,16 +195,21 @@ self-description integrity constitutional. The headline traps:
 - Runs over 10 minutes go through the harness detached mechanism; never a manual nohup, never a
   polling loop.
 - Session numbers are claimed from the docs/26 tail at session start; parallel sessions collide.
+- An external worker's active branch and checkout are never touched by another session; parallel
+  sessions run in isolated worktrees.
+- A liveness probe runs outside the process it watches; fail-closed gates establish at first use,
+  never at import time.
 
 ## Current status
 
 OnScript reached public S3 on 2026-07-22. The site, party posting, announcement, repository, public
-prompts, nightly symmetry audit, corrections log, and `data-latest` release are live. The next
-planned
-operating work includes the 07-27 nomenclature flip, Archive and `silence_board` wiring by 08-03,
-the
-first editorial publication around 08-05 P1, Deep Archive work for Congresses 111/112 and 117–119,
-SD.8, and the October registration wave.
+prompts, nightly symmetry audit, corrections log, and `data-latest` release are live. The Deep
+Archive shards (Congresses 111/112 and 117-119), the three-lane substrate, the silence-board
+wiring (dark, flip pending), the Alexandria Stage 2 embeddings, and the gold-set pilot
+instrumentation are complete and recorded in `docs/26-SESSION-HISTORY.md`. Operating work follows
+the `docs/27` calendar: Monday flips under the docs/23 health gate, the first editorial
+publication around 08-05, and the October registration wave. Open operator items ride the task
+bus.
 
 The active documentation task is governed by `docs/25-DOCUMENTATION-VOICE-BRIEF.md`. Release and
 rollout through the election freeze are governed by `docs/27-RELEASE-AND-ROLLOUT-ORDER.md`: the
