@@ -35,6 +35,30 @@ ANSWER_COLUMNS = [
     "proposition_consistent", "stance", "claim_supported", "notes",
 ]
 CLASS_CHOICES = "message | unknown | nomenclature | procedural | biographical | private"
+
+# The task B gate on the message class. The guide makes phrase completeness a necessary
+# condition for message (section 3.1 and section 4), so the app refuses a message label the
+# completeness answer does not support instead of recording one the guide's own rule forbids.
+# Python owns these strings and the rendered app interpolates them, so there is one copy.
+GATE_UNANSWERED = ("Answer B (phrase complete) before labeling this message. Completeness is a "
+                   "gate on the message class, not an optional extra.")
+GATE_INCOMPLETE = ("B says this phrase is not complete on its own, so it cannot be message "
+                   "(guide section 3.1). Unknown is the safe default.")
+GATE_WITHDRAWN = (" The message label on this item was withdrawn; choose a class again.")
+
+
+def message_blocked_by(answers: dict) -> str | None:
+    """Why task B forbids a message label on this item, or None when it permits one.
+
+    The authority for the rule the app enforces. ``render_app`` interpolates these strings into
+    the offline page, and ``tests/test_p3_message_gate.py`` holds the two together.
+    """
+    complete = answers.get("phrase_complete")
+    if complete is None:
+        return GATE_UNANSWERED
+    if complete is False:
+        return GATE_INCOMPLETE
+    return None
 GOLD_CLASSES = ["message", "unknown", "nomenclature", "procedural",
                 "biographical", "private"]
 STANCE_CHOICES = ["affirmative", "negated", "mixed"]
@@ -215,6 +239,12 @@ def render_html(items: list[dict], *, annotator_id: str, sample: str, seed: str)
         "answer sheet, matched by the item ID shown on each card. Judge each phrase in the "
         "context shown. Do not look up the live site.</p>")
     parts.append(
+        "<p class=\"note\">Label the phrase, not the sentence. The sentence tells you what the "
+        "phrase means; it does not lend the phrase its meaning. Cover the sentence: if the "
+        "phrase alone states no position, it is not a message. Unknown is the safe default and "
+        "you should expect to use it often. Answer B (phrase complete) before settling the "
+        "class, because a phrase that fails B cannot be a message. Guide section 3.1.</p>")
+    parts.append(
         f"<p class=\"note\">Classes: {html.escape(CLASS_CHOICES)}. "
         "Stance: affirmative | negated | mixed.</p></header>")
     parts.append("<main>")
@@ -298,6 +328,8 @@ def render_app(items: list[dict], *, annotator_id: str, sample: str, seed: str) 
     return (
         "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        # A working answer sheet is never a search result, wherever the file is served from.
+        "<meta name=\"robots\" content=\"noindex,nofollow\">"
         f"<title>OnScript gold-set annotator: {html.escape(annotator_id)}</title>"
         f"<style>{_CSS}{_APP_CSS}</style></head><body>"
         f"<script id=\"goldset-data\" type=\"application/json\">{data}</script>"
@@ -306,12 +338,41 @@ def render_app(items: list[dict], *, annotator_id: str, sample: str, seed: str) 
         f"&middot; sample <b>{html.escape(sample)}</b>"
         "<span class=\"progress\" id=\"progress\">0 / 0 labeled</span>"
         "<button id=\"export\" class=\"btn\">Export answer CSV</button></div>"
-        "<div class=\"barnote\">Autosaves in this browser. Reopen this file to resume. "
-        "Class and family are required; the other tasks are optional per the guide.</div>"
+        "<div class=\"barnote\">Autosaves in this browser, on this device. Reopen this file to "
+        "resume. Class, family, and B (phrase complete) are required; C, D, F, and notes follow "
+        "the guide.</div>"
+        "<div class=\"standing\">Label the <b>phrase</b>, not the sentence. The sentence is "
+        "there to tell you what the phrase means, not to lend it meaning. Cover the sentence: "
+        "if the phrase alone states no position, it is not a message. "
+        "<b>Unknown is the safe default</b> and you should expect to use it often. Guide "
+        "section 3.1.</div>"
+        "<div class=\"tools\">"
+        "<button id=\"nextnew\" class=\"tool\">Next unlabeled</button>"
+        "<button id=\"togglemap\" class=\"tool\">Jump to item</button>"
+        "<button id=\"saveprog\" class=\"tool\">Save progress</button>"
+        "<button id=\"loadprog\" class=\"tool\">Load progress</button>"
+        "<button id=\"copyprog\" class=\"tool\">Copy progress</button>"
+        "<button id=\"pasteprog\" class=\"tool\">Paste progress</button>"
+        "<input id=\"progfile\" type=\"file\" accept=\"application/json,.json\" hidden>"
+        "</div><div class=\"map\" id=\"map\"></div>"
         "</header><main id=\"items\"></main>"
+        "<nav class=\"navbar\">"
+        "<button id=\"prev\" class=\"nav\">Previous</button>"
+        "<button id=\"next\" class=\"nav primary\">Next</button>"
+        "<span class=\"pos\" id=\"pos\">1 / 1</span>"
+        "</nav>"
+        "<div class=\"toast\" id=\"toast\"></div>"
         "<datalist id=\"families\"></datalist>"
-        f"<script>{_APP_JS}</script></body></html>"
+        f"<script>{_app_js()}</script></body></html>"
     )
+
+
+def _app_js() -> str:
+    """The app script with the gate strings interpolated from their Python owner."""
+    return (_APP_JS
+            .replace("__GATE_UNANSWERED__", json.dumps(GATE_UNANSWERED)[1:-1])
+            .replace("__GATE_INCOMPLETE__", json.dumps(GATE_INCOMPLETE)[1:-1])
+            .replace("__GATE_WITHDRAWN__", json.dumps(GATE_WITHDRAWN)[1:-1]))
 
 
 def certify_publishable(paths, *, seed_failure: bool = False) -> dict:
@@ -417,18 +478,68 @@ _APP_CSS = """
 .opt.sel { background: #33527a; border-color: #33527a; color: #fff; }
 .fam, .notesin { font: inherit; font-size: .88rem; padding: .25rem .5rem; border: 1px solid #bbb;
   border-radius: 5px; min-width: 18rem; background: #fff; color: #111; }
+.gate { display: none; margin-top: .4rem; padding: .4rem .6rem; border-left: 3px solid #a4601a;
+  background: #fdf3e6; color: #6b3d0c; font-size: .84rem; border-radius: 0 4px 4px 0; }
+.gate.on { display: block; }
+.standing { margin-top: .35rem; font-size: .82rem; color: #555; }
+.standing b { color: #6b3d0c; }
+.navbar { position: sticky; bottom: 0; z-index: 6; background: #fff; border-top: 2px solid #ccc;
+  margin: 1rem -1.5rem -1.5rem; padding: .6rem 1.5rem; display: flex; align-items: center;
+  gap: .5rem; flex-wrap: wrap; }
+.nav { font: inherit; padding: .55rem 1rem; border: 1px solid #33527a; border-radius: 6px;
+  background: #fff; color: #33527a; cursor: pointer; min-width: 5rem; }
+.nav:disabled { opacity: .4; cursor: default; }
+.nav.primary { background: #33527a; color: #fff; }
+.pos { margin-left: auto; font-weight: bold; font-variant-numeric: tabular-nums; }
+.tools { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .5rem; }
+.tool { font: inherit; font-size: .8rem; padding: .3rem .7rem; border: 1px solid #bbb;
+  border-radius: 6px; background: #f4f4f2; color: #222; cursor: pointer; }
+.map { display: none; flex-wrap: wrap; gap: 3px; margin-top: .5rem; }
+.map.on { display: flex; }
+.dot { width: 15px; height: 15px; border-radius: 3px; border: 1px solid #bbb; background: #f4f4f2;
+  cursor: pointer; padding: 0; }
+.dot.done { background: #33527a; border-color: #33527a; }
+.dot.here { outline: 2px solid #a4601a; outline-offset: 1px; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 5.5rem; z-index: 9;
+  background: #33527a; color: #fff; padding: .5rem .9rem; border-radius: 6px; font-size: .85rem;
+  max-width: 90vw; display: none; }
+.toast.on { display: block; }
 @media (prefers-color-scheme: dark) {
   .appbar { background: #161616; border-color: #3a3a3a; }
   .barnote { color: #aaa; } .tlabel { color: #bbb; }
   .opt { background: #242424; border-color: #444; color: #ddd; }
   .opt.sel { background: #33527a; border-color: #33527a; color: #fff; }
   .fam, .notesin { background: #1d1d1d; border-color: #444; color: #eee; }
+  .gate { background: #2a1e10; border-color: #c1802f; color: #e8c9a0; }
+  .standing { color: #aaa; } .standing b { color: #e8c9a0; }
+  .navbar { background: #161616; border-color: #3a3a3a; }
+  .nav { background: #1d1d1d; color: #9db4d8; border-color: #3f5a80; }
+  .nav.primary { background: #33527a; color: #fff; }
+  .tool { background: #242424; border-color: #444; color: #ddd; }
+  .dot { background: #242424; border-color: #444; }
+  .dot.done { background: #4a6ea5; border-color: #4a6ea5; }
+}
+/* Phones. The pass is worked in gaps between other things, so the controls have to be
+   thumb-sized and nothing may overflow a narrow screen. */
+@media (max-width: 34rem) {
+  body { padding: .75rem; }
+  .appbar { margin: -.75rem -.75rem .75rem; padding: .6rem .75rem; }
+  .navbar { margin: 1rem -.75rem -.75rem; padding: .6rem .75rem; }
+  .tlabel { min-width: 100%; }
+  .fam, .notesin { min-width: 0; width: 100%; }
+  .opt { font-size: .95rem; padding: .45rem .8rem; }
+  .nav { flex: 1 1 auto; padding: .7rem .5rem; }
+  .pos { flex-basis: 100%; margin-left: 0; text-align: center; order: -1; }
+  .progress { margin-left: 0; }
 }
 """
 
 
 _APP_JS = r"""
 (function(){
+  const GATE_UNANSWERED = "__GATE_UNANSWERED__";
+  const GATE_INCOMPLETE = "__GATE_INCOMPLETE__";
+  const GATE_WITHDRAWN = "__GATE_WITHDRAWN__";
   const DATA = JSON.parse(document.getElementById('goldset-data').textContent);
   const KEY = 'onscript-goldset-' + DATA.sample + '-' + DATA.annotator;
   let answers = {};
@@ -439,7 +550,7 @@ _APP_JS = r"""
 
   function esc(s){ const d = document.createElement('div'); d.textContent = (s==null?'':String(s)); return d.innerHTML; }
   function get(cid){ return answers[cid] || (answers[cid] = {}); }
-  function save(){ try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) {} updateProgress(); updateFamilies(); }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) {} updateProgress(); updateFamilies(); paintMap(); }
 
   function updateProgress(){
     const done = DATA.items.filter(it => { const a = answers[it.candidate_id]||{}; return a.gold_class && a.gold_family_id; }).length;
@@ -467,8 +578,9 @@ _APP_JS = r"""
   function controls(cid, a){
     return '<div class="controls" data-cid="' + cid + '">' +
       group('gold_class','A. surface class', DATA.classes, a.gold_class, true) +
+      '<div class="gate" data-gate="' + cid + '"></div>' +
       '<div class="task"><span class="tlabel">E. document family *</span><input class="fam" list="families" data-field="gold_family_id" value="' + esc(a.gold_family_id||'') + '" placeholder="family id, reuse to group items"></div>' +
-      boolGroup('phrase_complete','B. phrase complete', a.phrase_complete) +
+      boolGroup('phrase_complete','B. phrase complete *', a.phrase_complete) +
       boolGroup('proposition_consistent','C. proposition consistent', a.proposition_consistent) +
       group('stance','D. stance', DATA.stances, a.stance, false) +
       boolGroup('claim_supported','F. claim supported', a.claim_supported) +
@@ -476,16 +588,38 @@ _APP_JS = r"""
       '</div>';
   }
 
-  DATA.items.forEach((it, idx) => {
+  // Task B is a necessary condition for the message class (guide section 3.1 and section 4).
+  // The app refuses a message label that the completeness answer does not support, rather than
+  // recording one the guide's own rule forbids.
+  function gateEl(panel){ return panel.querySelector('.gate'); }
+  function showGate(panel, text){
+    const g = gateEl(panel); if (!g) return;
+    g.textContent = text; g.classList.add('on');
+  }
+  function clearGate(panel){
+    const g = gateEl(panel); if (!g) return;
+    g.textContent = ''; g.classList.remove('on');
+  }
+  function messageBlockedBy(a){
+    if (a.phrase_complete === undefined || a.phrase_complete === null) return GATE_UNANSWERED;
+    if (a.phrase_complete === false) return GATE_INCOMPLETE;
+    return null;
+  }
+
+  // One item at a time. Rendering all 200 cards at once builds a page no phone enjoys, and the
+  // pass is worked in gaps between other things, so position and resume matter more than scroll.
+  let cursor = 0;
+  try { cursor = Math.min(Math.max(parseInt(localStorage.getItem(KEY + '-at') || '0', 10) || 0, 0),
+                          DATA.items.length - 1); } catch (e) { cursor = 0; }
+
+  function cardHTML(it, idx){
     const a = get(it.candidate_id);
-    const card = document.createElement('article');
-    card.className = 'item'; card.dataset.cid = it.candidate_id;
     let support = '';
     if (it.support && it.support.length){
       support = '<details class="support"><summary>Support set (' + it.support.length + ' offices carrying this phrase)</summary><ul>' +
         it.support.map(s => '<li><span class="soffice">' + esc(s.office) + '</span> <span class="sdate">' + esc(s.date) + '</span><div class="ssent">' + esc(s.sentence) + '</div></li>').join('') + '</ul></details>';
     }
-    card.innerHTML =
+    return '<article class="item" data-cid="' + esc(it.candidate_id) + '">' +
       '<div class="idline"><span class="num">' + (idx+1) + '</span><code class="cid">' + esc(it.candidate_id) + '</code></div>' +
       '<div class="phrase">Candidate phrase: <b>' + esc(it.phrase) + '</b></div>' +
       '<div class="context">' +
@@ -494,9 +628,55 @@ _APP_JS = r"""
         (it.after ? '<p class="ctx after">' + esc(it.after) + '</p>' : '') +
       '</div>' +
       '<div class="src">' + esc(it.office) + ' &middot; ' + esc(it.date) + ' &middot; <span class="title">' + esc(it.title) + '</span></div>' +
-      support + controls(it.candidate_id, a);
-    itemsEl.appendChild(card);
-  });
+      support + controls(it.candidate_id, a) + '</article>';
+  }
+
+  function labeled(it){
+    const a = answers[it.candidate_id] || {};
+    return !!(a.gold_class && a.gold_family_id);
+  }
+
+  function show(idx){
+    cursor = Math.min(Math.max(idx, 0), DATA.items.length - 1);
+    try { localStorage.setItem(KEY + '-at', String(cursor)); } catch (e) {}
+    itemsEl.innerHTML = cardHTML(DATA.items[cursor], cursor);
+    document.getElementById('pos').textContent = (cursor + 1) + ' / ' + DATA.items.length;
+    document.getElementById('prev').disabled = cursor === 0;
+    document.getElementById('next').disabled = cursor === DATA.items.length - 1;
+    paintMap();
+    window.scrollTo(0, 0);
+  }
+
+  function nextUnlabeled(){
+    for (let step = 1; step <= DATA.items.length; step++){
+      const idx = (cursor + step) % DATA.items.length;
+      if (!labeled(DATA.items[idx])) { show(idx); return; }
+    }
+    toast('Every item has a class and a family. Export when you are ready.');
+  }
+
+  function paintMap(){
+    const map = document.getElementById('map');
+    if (!map.classList.contains('on')) return;
+    map.innerHTML = DATA.items.map((it, i) =>
+      '<button class="dot' + (labeled(it) ? ' done' : '') + (i === cursor ? ' here' : '') +
+      '" data-idx="' + i + '" title="' + (i+1) + '"></button>').join('');
+  }
+
+  let toastTimer = null;
+  function toast(text){
+    const el = document.getElementById('toast');
+    el.textContent = text; el.classList.add('on');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('on'), 4000);
+  }
+
+  function repaint(panel, a, field){
+    panel.querySelectorAll('button.opt[data-field="' + field + '"]').forEach(b => {
+      let bv = b.dataset.value; if (bv === 'true') bv = true; else if (bv === 'false') bv = false;
+      b.classList.toggle('sel', a[field] === bv);
+    });
+  }
 
   itemsEl.addEventListener('click', function(e){
     const btn = e.target.closest('button.opt'); if (!btn) return;
@@ -504,11 +684,29 @@ _APP_JS = r"""
     const field = btn.dataset.field; let value = btn.dataset.value;
     if (value === 'true') value = true; else if (value === 'false') value = false;
     const a = get(cid);
+
+    // Selecting message: refuse unless task B supports it. Nothing is recorded on refusal.
+    if (field === 'gold_class' && value === 'message' && a.gold_class !== 'message'){
+      const blocked = messageBlockedBy(a);
+      if (blocked){ showGate(panel, blocked); return; }
+    }
+
     if (a[field] === value) { delete a[field]; } else { a[field] = value; }
-    panel.querySelectorAll('button.opt[data-field="' + field + '"]').forEach(b => {
-      let bv = b.dataset.value; if (bv === 'true') bv = true; else if (bv === 'false') bv = false;
-      b.classList.toggle('sel', a[field] === bv);
-    });
+
+    // Answering B after the fact can invalidate a message label already recorded. Withdraw it
+    // rather than leave a label the guide's rule forbids, and say so.
+    if (field === 'phrase_complete' && a.gold_class === 'message'){
+      const blocked = messageBlockedBy(a);
+      if (blocked){
+        delete a.gold_class;
+        repaint(panel, a, 'gold_class');
+        showGate(panel, blocked + GATE_WITHDRAWN);
+      } else { clearGate(panel); }
+    } else if (field === 'gold_class'){
+      clearGate(panel);
+    }
+
+    repaint(panel, a, field);
     save();
   });
   itemsEl.addEventListener('input', function(e){
@@ -521,21 +719,119 @@ _APP_JS = r"""
   });
 
   function csvCell(v){ if (v === true) v = 'true'; else if (v === false) v = 'false'; v = (v==null?'':String(v)); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v; }
+  function download(name, text, mime){
+    const blob = new Blob([text], {type: mime});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url; link.download = name;
+    document.body.appendChild(link); link.click(); link.remove();
+    URL.revokeObjectURL(url);
+  }
+  function doneCount(){ return DATA.items.filter(labeled).length; }
+
   function exportCSV(){
     const cols = DATA.columns; const lines = [cols.join(',')];
     DATA.items.forEach(it => {
       const a = answers[it.candidate_id] || {};
       lines.push(cols.map(c => c === 'candidate_id' ? it.candidate_id : csvCell(a[c])).join(','));
     });
-    const blob = new Blob([lines.join('\n') + '\n'], {type: 'text/csv'});
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url; link.download = DATA.annotator + '.answersheet.csv';
-    document.body.appendChild(link); link.click(); link.remove();
-    URL.revokeObjectURL(url);
+    download(DATA.annotator + '.answersheet.csv', lines.join('\n') + '\n', 'text/csv');
+    const done = doneCount();
+    toast(done === DATA.items.length
+      ? 'Exported all ' + done + ' labels.'
+      : 'Exported a PARTIAL sheet: ' + done + ' of ' + DATA.items.length +
+        ' items have a class and a family. The rest are blank rows.');
   }
-  document.getElementById('export').addEventListener('click', exportCSV);
 
-  updateProgress(); updateFamilies();
+  // Progress moves between devices as a file. localStorage is per browser, so a pass worked on a
+  // phone and a laptop would otherwise be two half-passes that never meet.
+  function progressBlob(){
+    return JSON.stringify({
+      format: 'onscript-goldset-progress', version: 1,
+      sample: DATA.sample, annotator: DATA.annotator,
+      labeled: doneCount(), total: DATA.items.length, answers: answers
+    }, null, 1);
+  }
+  function saveProgress(){
+    download(DATA.annotator + '.progress.json', progressBlob(), 'application/json');
+    toast('Saved ' + doneCount() + ' of ' + DATA.items.length + '. Open this file on the other device with Load progress.');
+  }
+  function applyProgress(text){
+    let payload;
+    try { payload = JSON.parse(text); } catch (e) { toast('That file is not valid JSON.'); return; }
+    if (!payload || payload.format !== 'onscript-goldset-progress'){
+      toast('That is not a progress file from this app.'); return;
+    }
+    if (payload.sample !== DATA.sample || payload.annotator !== DATA.annotator){
+      toast('Refused: that progress is for ' + payload.sample + '/' + payload.annotator +
+            ', this packet is ' + DATA.sample + '/' + DATA.annotator + '.'); return;
+    }
+    const valid = new Set(DATA.items.map(it => it.candidate_id));
+    let added = 0, changed = 0, skipped = 0;
+    Object.keys(payload.answers || {}).forEach(cid => {
+      if (!valid.has(cid)) { skipped++; return; }
+      const incoming = payload.answers[cid];
+      if (!incoming || !Object.keys(incoming).length) return;
+      const existing = answers[cid];
+      if (!existing || !Object.keys(existing).length) { added++; }
+      else if (JSON.stringify(existing) !== JSON.stringify(incoming)) { changed++; }
+      else { return; }
+      answers[cid] = incoming;
+    });
+    save(); show(cursor);
+    toast('Merged: ' + added + ' new, ' + changed + ' replaced' +
+          (skipped ? ', ' + skipped + ' ignored (not in this packet)' : '') +
+          '. Now at ' + doneCount() + ' of ' + DATA.items.length + '.');
+  }
+
+  document.getElementById('export').addEventListener('click', exportCSV);
+  document.getElementById('saveprog').addEventListener('click', saveProgress);
+  document.getElementById('copyprog').addEventListener('click', function(){
+    const text = progressBlob();
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(
+        () => toast('Progress copied. Paste it into Load progress on the other device.'),
+        () => toast('Clipboard blocked. Use Save progress instead.'));
+    } else { toast('Clipboard unavailable here. Use Save progress instead.'); }
+  });
+  document.getElementById('loadprog').addEventListener('click', function(){
+    document.getElementById('progfile').click();
+  });
+  document.getElementById('progfile').addEventListener('change', function(e){
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => applyProgress(String(reader.result));
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+  document.getElementById('pasteprog').addEventListener('click', function(){
+    const text = prompt('Paste the progress text copied from the other device:');
+    if (text) applyProgress(text);
+  });
+
+  document.getElementById('prev').addEventListener('click', () => show(cursor - 1));
+  document.getElementById('next').addEventListener('click', () => show(cursor + 1));
+  document.getElementById('nextnew').addEventListener('click', nextUnlabeled);
+  document.getElementById('togglemap').addEventListener('click', function(){
+    const map = document.getElementById('map');
+    map.classList.toggle('on');
+    this.textContent = map.classList.contains('on') ? 'Hide map' : 'Jump to item';
+    paintMap();
+  });
+  document.getElementById('map').addEventListener('click', function(e){
+    const dot = e.target.closest('button.dot'); if (!dot) return;
+    show(parseInt(dot.dataset.idx, 10));
+  });
+
+  // Arrow keys move between items, but never while typing a family id or a note.
+  document.addEventListener('keydown', function(e){
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'ArrowLeft') { show(cursor - 1); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { show(cursor + 1); e.preventDefault(); }
+  });
+
+  show(cursor); updateProgress(); updateFamilies();
 })();
 """

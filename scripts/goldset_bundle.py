@@ -77,8 +77,14 @@ def main() -> int:
               f"-> {', '.join(written)}", flush=True)
 
     # docs/35 section 10.6 publishes the bundle, so it clears the publication privacy floor
-    # here rather than at the moment someone uploads it.
-    certificate = goldset_bundle.certify_publishable(written_paths)
+    # here rather than at the moment someone uploads it. The certificate covers everything in
+    # the bundle directory, not only what this run wrote: a partial re-render (one annotator's
+    # packet re-issued beside an earlier one that must stay byte-identical) would otherwise
+    # leave the untouched files published and uncertified.
+    publishable = sorted(
+        path for path in out_dir.iterdir()
+        if path.is_file() and path.name != "PUBLISH-CHECK.json")
+    certificate = goldset_bundle.certify_publishable(publishable)
     certificate["sample"] = args.sample
     certificate["seal_hash"] = sample["seal_hash"]
     (out_dir / "PUBLISH-CHECK.json").write_text(

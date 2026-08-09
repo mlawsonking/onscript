@@ -33,9 +33,34 @@ def _load(name: str) -> dict:
 
 
 def test_build_and_verify_read_one_public_impact_set():
+    """Both paths reach the impact set through ``public_phrase_set`` and nothing else.
+
+    The seal is auditable only if the verifier reconstructs the frame the builder sealed, so
+    neither path may carry its own copy of the union. ``verify`` now reaches it through
+    ``rebuild_seal``, which is where the impact input became a parameter so a rebuild can be
+    pinned to the tree the sample was drawn from.
+    """
     module = _seal_module()
     assert "public_phrase_set(" in inspect.getsource(module.build)
-    assert "public_phrase_set(" in inspect.getsource(module.verify)
+    assert "public_phrase_set(" in inspect.getsource(module.rebuild_seal)
+    assert "rebuild_seal(" in inspect.getsource(module.verify)
+    # One definition and exactly two call sites: no third construction of the set.
+    assert inspect.getsource(module).count("public_phrase_set(") == 3
+
+
+def test_verify_can_pin_its_impact_input_to_the_sealing_commit():
+    """The impact set is built from data/derived/days, a tree that grows with production.
+
+    Rebuilding against the live tree reports a mismatch for a sample that never moved, which
+    is the docs/37 rule 3 shape, so verify accepts the tree the seal was drawn from. Behavior
+    with no ref is unchanged.
+    """
+    module = _seal_module()
+    source = inspect.getsource(module.verify)
+    assert "_day_artifacts_as_of(as_of) if as_of else _day_artifacts()" in source
+    signature = inspect.signature(module.verify)
+    assert list(signature.parameters) == ["as_of"]
+    assert signature.parameters["as_of"].default is None
 
 
 def test_the_public_impact_set_admits_the_generic_survivors():

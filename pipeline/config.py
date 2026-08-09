@@ -230,6 +230,14 @@ FEATURES = {
     # N-of-caucus), fixing the pooled rank-and-truncate that makes the flagship 88% D. Data
     # (sync_by_party) is built every day; this gates only the RENDER, so the flip is a pure release act.
     "party_columns": True,
+    # Serves the sealed gold-set annotation packet at an unlisted path so the rater can work the
+    # pass from any device. docs/35 §10.6 publishes the bundle openly in any case and the packet
+    # already clears the publication privacy floor, so this is a convenience flag, not a
+    # disclosure decision. Unlisted means absent from the nav, absent from the sitemap,
+    # disallowed in robots.txt, and noindex in the page itself. It does NOT mean private: the
+    # path is derived in committed code, so anyone reading this public repository can compute it.
+    # Off by default, and meant to be turned off again when the pass is finished.
+    "annotation_packet": False,
 }
 
 

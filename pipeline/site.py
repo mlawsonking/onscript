@@ -3064,6 +3064,55 @@ def status_body(model: dict) -> str:
     return "".join(parts)
 
 
+ANNOTATION_PACKETS = ("michael-pass2",)
+ANNOTATION_BUNDLE = config.REPO_ROOT / "evaluation" / "goldset" / "bundles" / "pilot"
+
+
+def annotation_packet_slug(annotator: str) -> str:
+    """The unlisted directory a packet is served from.
+
+    Derived from the sealed sample so it is stable and auditable. This raises the cost of
+    stumbling on the page; it is not access control, because the derivation lives in committed
+    code in a public repository. The page carries nothing that is not already publishable under
+    docs/35 §10.6.
+    """
+    seal = json.loads((config.REPO_ROOT / "evaluation" / "goldset" / "MANIFEST.json")
+                      .read_text(encoding="utf-8"))["seal_hash"]
+    return util.sha256_hex(f"annotation-packet\n{seal}\n{annotator}")[:16]
+
+
+def annotation_packet_pages() -> list[str]:
+    """Copy each annotation packet to its unlisted path. Returns the paths written.
+
+    The served bytes are the committed bundle's bytes, copied rather than re-rendered, so the
+    page a rater works and the artifact that publishes for replication cannot drift apart.
+    """
+    on = config.feature_on("annotation_packet")
+    written: list[str] = []
+    for annotator in ANNOTATION_PACKETS:
+        rel = f"annotate/{annotation_packet_slug(annotator)}/index.html"
+        target = OUT / rel
+        # The flag switches both ways. A flag that only ever adds a page leaves the rater no way
+        # to take a finished working sheet down again, and the build does not clear its output
+        # tree, so turning it off has to remove the page explicitly.
+        if not on:
+            if target.is_file():
+                target.unlink()
+                if not any(target.parent.iterdir()):
+                    target.parent.rmdir()
+                print(f"annotation packet withdrawn: /{rel}", flush=True)
+            continue
+        source = ANNOTATION_BUNDLE / f"{annotator}.app.html"
+        if not source.is_file():
+            print(f"annotation packet missing, skipped: {source}", flush=True)
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
+        written.append(rel)
+        print(f"unlisted annotation packet -> /{rel}", flush=True)
+    return written
+
+
 def build_site():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
@@ -3393,13 +3442,21 @@ def build_site():
         encoding="utf-8")
     written.append("404.html")
 
+    # ---- unlisted working surfaces ----
+    unlisted = annotation_packet_pages()
+
     # ---- machine-readable discovery surfaces (W2-B) ----
     # Feed entries are driven by the SAME `rendered` set as day pages and contain only deterministic
     # dates + aggregate counts. The sitemap is driven by `written`, so it cannot invent or omit a page.
+    # `unlisted` is deliberately not in `written`: those pages are deployed and reachable but are
+    # working surfaces, not part of the public record, so they are named here rather than omitted
+    # quietly.
     (OUT / "feed.xml").write_text(atom_feed(rendered), encoding="utf-8")
     (OUT / "sitemap.xml").write_text(sitemap(written), encoding="utf-8")
+    disallow = "".join(f"Disallow: /{path}\n" for path in sorted(unlisted))
     (OUT / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {config.SITE_URL}/sitemap.xml\n", encoding="utf-8")
+        f"User-agent: *\nAllow: /\n{disallow}Sitemap: {config.SITE_URL}/sitemap.xml\n",
+        encoding="utf-8")
 
     return written
 

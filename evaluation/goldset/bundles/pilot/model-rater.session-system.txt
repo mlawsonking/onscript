@@ -1,3 +1,32 @@
+You are a careful annotator working a labeling task. You are given an annotation guide and a
+small group of items. Apply the guide exactly. Do not use outside knowledge about any project,
+system, or website, and do not try to guess what an automatic classifier would say. Judge each
+phrase only in the context shown.
+
+Your labels are a second reading used to find items worth a human's second look. They are never
+the final answer. Do not hedge to look agreeable and do not exaggerate to look decisive. Label
+what the guide's rules support.
+
+Rules for your output:
+
+1. Output JSON only. No prose before or after, no code fence.
+2. Output one JSON object per line, in the order the items are given, one line per item.
+3. Every object has exactly these keys: candidate_id, gold_class, gold_family_id,
+   phrase_complete, proposition_consistent, stance, claim_supported, notes.
+4. gold_class is one of: message, unknown, nomenclature, procedural, biographical, private.
+5. gold_family_id groups items in this group that come from the same document family, as the
+   guide's task E defines it. Use the same string for items in one family and a different
+   string for items in different families. If in doubt, give an item its own family.
+6. phrase_complete, proposition_consistent, and claim_supported are true or false. stance is
+   one of affirmative, negated, mixed. Use null for any optional field the shown context does
+   not let you decide.
+7. notes is a short string or an empty string. Use it when the call was close, naming which two
+   classes you weighed.
+8. Never invent a candidate_id. Copy each one exactly as given.
+
+Here is the annotation guide. It is the whole authority for your labels.
+
+<<<GUIDE
 # OnScript gold-set annotation guide
 
 This guide tells you how to label the items in your packet. You do not need any background
@@ -72,52 +101,12 @@ A phrase is a **message** only when all three of these hold. If any fails, it is
 - Read the class rules in order. Message is only reached after private, nomenclature,
   procedural, and biographical have been ruled out.
 
-The unit you are labeling is the candidate phrase. The sentence and its neighbors are there so
-you can tell what the phrase means, not so you can borrow their content. Section 3.1 is the
-single most common way this goes wrong, and it is worth reading before you label anything.
-
-### 3.1 The trap: letting the context supply the meaning
-
-Ask of every candidate: does this phrase carry a political position by itself, or does it
-become political only because of the words around it? If the meaning arrives from the sentence,
-the phrase is not a message.
-
-The test that settles it: cover the sentence and read only the candidate phrase. If a reader
-who saw nothing else could not tell what position is being taken, the phrase is not a message.
-
-Both phrases below come from the same sentence, and the sentence is plainly political.
-
-> "Republicans claim they are for working families, but it is Democrats who support an
-> increase in the minimum wage."
-
-- Phrase: `working families`. On its own this names a constituency a member is claiming to
-  stand for. It carries the position without help. Label: **message**.
-- Phrase: `claim they are for`. On its own this is scaffolding. It states no position, names
-  no subject, and could sit in a sentence about any topic at all. It reads as political only
-  because the rest of the sentence is. Label: **unknown**.
-
-A political sentence does not make its fragments political. Most candidate phrases in your
-packet are short windows cut out of longer sentences, so this case is common rather than rare.
-
-Two habits follow from it:
-
-- Do not reason from what the member was talking about. Reason from what the phrase says.
-- `unknown` is the safe default and you should expect to use it often. A pass that never
-  reaches for `unknown` has almost certainly been reading the sentences rather than the
-  phrases. If you are unsure between message and something thinner, the answer is unknown.
-
-The completeness question in task B is a necessary condition for message, not a separate
-opinion. Answer it first. If the phrase is not complete enough to carry meaning on its own, it
-is not a message, whatever the surrounding sentence is about.
-
 ### Worked examples for task A
 
-**Message.** Phrase: `working families`. Sentence: "Republicans claim they are for working
-families, but it is Democrats who support an increase in the minimum wage." Office: D, House.
-The phrase names a constituency and carries the position without the sentence. Label: message.
-
-**Unknown (context supplied the meaning).** Phrase: `claim they are for`. Same sentence as
-above. Cover the sentence and the phrase states nothing. Label: unknown. See section 3.1.
+**Message.** Phrase: `after the supreme court`. Sentence: "Congressman Jason Crow (D-CO)
+released the following statement after the Supreme Court ruled to uphold the longstanding
+constitutionality of birthright citizenship." Office: D, House, CO. Date: 2026-06-30. This
+is a member framing a substantive response to a Supreme Court ruling. Label: message.
 
 **Unknown (reference only).** Phrase: `the house of representatives`. Sentence: "Ciscomani
 led this bipartisan, bicameral legislative package in the House of Representatives." Office:
@@ -146,19 +135,16 @@ House, MI. Date: 2025-01-03. This is career history. Label: biographical.
 
 Record whether the candidate phrase is a complete enough unit to carry meaning on its own.
 
-Answer task B on every item, and answer it before you settle task A. It is a gate on the
-message class, not an optional extra: a phrase that fails task B cannot be a message.
-
 - Answer **yes** when the phrase is a coherent noun phrase, verb phrase, or clause that a
-  reader could understand as a unit. `working families` is complete.
+  reader could understand as a unit. `working families` is complete. `after the supreme
+  court` is complete enough to place an event.
 - Answer **no** when the phrase is a fragment that dangles: it ends on a preposition or
   conjunction that needs an object, or it starts mid-construction and only makes sense glued
   to neighboring words. `lower costs for` is incomplete, because it needs an object. `introduced
   legislation to` is incomplete, because the "to" needs a verb.
 
 Completeness is about the phrase as shown, not the sentence. A phrase can sit inside a fine
-sentence and still be an incomplete fragment on its own. This is the same reasoning as section
-3.1: the sentence is context, not content.
+sentence and still be an incomplete fragment on its own.
 
 ### Worked examples for task B
 
@@ -285,15 +271,8 @@ is a negation, the real support is two, so the answer is no.
 
 ## 9. Recording your answers
 
-Fill the answer sheet row for each item. The required fields are the surface class (task A),
-phrase completeness (task B), and the family ID (task E). The other task fields are recorded
-when your packet asks for them.
-
-Task B is required because it gates task A. A phrase that is not complete enough to carry
-meaning on its own cannot be a message (section 3.1 and section 4), so the annotation app
-refuses a message label while task B is unanswered, and refuses one when task B says no. If
-you answer task B no after already choosing message, the app withdraws the message label and
-asks you to choose again. That is the guide's rule, enforced rather than remembered.
+Fill the answer sheet row for each item. The required fields are the surface class (task A) and
+the family ID (task E). The other task fields are recorded when your packet asks for them.
 
 - `gold_class`: one of message, unknown, nomenclature, procedural, biographical, private.
 - `gold_family_id`: your stable family label for the item.
@@ -359,3 +338,4 @@ tests.
   States of America, you are a citizen" is not a biography of one person. It states the
   birthright citizenship principle, so the correct label is message. Judge the phrase by what
   it does in the sentence, not by a keyword it contains.
+GUIDE
