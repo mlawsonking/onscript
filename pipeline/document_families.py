@@ -9,9 +9,20 @@ import zlib
 from . import config, util
 
 
-METHOD_VERSION = "document-families-v2"
+METHOD_VERSION = "document-families-v3"
 _WORD = re.compile(r"[a-z0-9]+(?:['’-][a-z0-9]+)*", re.IGNORECASE)
 _PRIME = 4_294_967_311
+
+# Headline-name tokens. Unicode-aware so Lujan and Ocasio-Cortez tokenize the same way in a
+# roster name and in a press-release headline; a mangled token is only harmful when the two
+# sides mangle it differently.
+_NAME_TOKEN = re.compile(r"[^\W\d_]+(?:['’-][^\W\d_]+)*", re.UNICODE)
+_NAME_SUFFIXES = frozenset({"jr", "sr", "ii", "iii", "iv", "v"})
+
+# Every prefix a joint_group can carry. A joint_group with one of these is a GROUP of offices,
+# never a bioguide, so any consumer that reports member identities filters on this one list
+# rather than keeping its own copy (docs/37 rule 1).
+UNIT_GROUP_PREFIXES = ("joint:", "njoint:", "cosign:")
 
 
 def shingles(text: str, size: int | None = None) -> frozenset[int]:
@@ -89,8 +100,14 @@ def _content_hash(row: dict) -> str:
     return util.sha256_hex(normalized)
 
 
-def cluster_documents(documents: list[dict]) -> list[dict]:
-    """Cluster candidates against a fixed medoid anchor, never by transitive closure."""
+def _retrieval(documents: list[dict]) -> tuple[list[tuple[dict, frozenset[int]]], dict]:
+    """Candidate retrieval shared by every near-joint identity built from one corpus.
+
+    Both identities below (near-duplicate families and cosigned releases) answer the same
+    retrieval question and differ only in the decision they make about a candidate pair, so
+    the MinHash pass runs once per corpus. Splitting it in two would double the cost of the
+    most expensive stage in the daily run (docs/37 rule 10's cousin: the collect wall-time
+    curve is already the standing reliability risk)."""
     ordered = sorted(documents, key=lambda row: row.get("id") or "")
     usable = []
     for row in ordered:
@@ -99,7 +116,7 @@ def cluster_documents(documents: list[dict]) -> list[dict]:
         if len(tokens) >= config.DOCUMENT_FAMILY_MIN_TOKENS and values:
             usable.append((row, values))
     if not usable:
-        return []
+        return [], {}
 
     signatures = [minhash_signature(values) for _row, values in usable]
     candidates = {
@@ -110,6 +127,18 @@ def cluster_documents(documents: list[dict]) -> list[dict]:
         pair: exact_similarity(usable[pair[0]][1], usable[pair[1]][1])
         for pair in sorted(candidates)
     }
+    return usable, exact
+
+
+def cluster_documents(documents: list[dict]) -> list[dict]:
+    """Cluster candidates against a fixed medoid anchor, never by transitive closure."""
+    usable, exact = _retrieval(documents)
+    return _families_from_retrieval(usable, exact)
+
+
+def _families_from_retrieval(usable: list[tuple[dict, frozenset[int]]], exact: dict) -> list[dict]:
+    if not usable:
+        return []
 
     clusters: list[dict] = []
     for index, (row, values) in enumerate(usable):
@@ -190,22 +219,169 @@ def cluster_documents(documents: list[dict]) -> list[dict]:
     return out
 
 
-def apply_families(statements: list[dict]) -> int:
-    """Assign near-duplicate families within the bounded temporal candidate window."""
+def _name_words(value: str) -> tuple[str, ...]:
+    return tuple(match.group(0).casefold().replace("’", "'")
+                 for match in _NAME_TOKEN.finditer(value or ""))
+
+
+def surname_words(full_name: str) -> tuple[str, ...]:
+    """The office's headline surname: the roster name minus given name, initials, and suffix.
+
+    Multi-word surnames survive as a run ("Cortez Masto", "Van Hollen"), because a headline
+    naming a co-announcer writes the surname and nothing else."""
+    words = _name_words(full_name)
+    if len(words) < 2:
+        return ()
+    return tuple(word for word in words[1:] if len(word) > 1 and word not in _NAME_SUFFIXES)
+
+
+def _names_run(container: tuple[str, ...], wanted: tuple[str, ...]) -> bool:
+    return bool(wanted) and any(
+        container[index:index + len(wanted)] == wanted
+        for index in range(len(container) - len(wanted) + 1)
+    )
+
+
+def _cosigned_from_retrieval(usable: list[tuple[dict, frozenset[int]]], exact: dict,
+                             roster_map: dict | None) -> list[dict]:
+    """Group candidate pairs that miss the similarity bar but name each other in their headlines.
+
+    A cosigned release is ONE document that two or more offices publish under their own
+    letterheads: each office rewrites the dateline, swaps the name order, and quotes its own
+    member, so the texts diverge below the near-duplicate bar while the announcement stays
+    single. The standing rule is that joint AND COSIGNED releases count once through the
+    project unit key; only the joint half was implemented, so a cosigned pair counted twice
+    and could carry a citation quorum on its own (docs/39 C1: three live phrase pages held
+    quorum 3 with two receipts from one 2026-07-09 Nevada airports release).
+
+    The decision here is a boolean, not a threshold: each headline must name the other
+    member. Retrieval is the existing candidate set, so the similarity bar is untouched and
+    an unrelated pair that merely shares a surname is never a candidate. Two offices with the
+    same surname supply no evidence that either named the other, so that pair is skipped."""
+    surnames: dict[str, tuple[str, ...]] = {}
+    for bioguide, row in (roster_map or {}).items():
+        words = surname_words((row or {}).get("name") or "") if isinstance(row, dict) else ()
+        if words:
+            surnames[str(bioguide)] = words
+    if not surnames:
+        return []
+
+    titles = [_name_words(row.get("title")) for row, _values in usable]
+    bios = [str((row.get("member") or {}).get("bioguide") or "") for row, _values in usable]
+    edges: list[tuple[int, int]] = []
+    for left, right in sorted(exact):
+        if usable[left][0].get("published_at") != usable[right][0].get("published_at"):
+            continue
+        left_name, right_name = surnames.get(bios[left]), surnames.get(bios[right])
+        if not left_name or not right_name or left_name == right_name:
+            continue
+        if _names_run(titles[left], right_name) and _names_run(titles[right], left_name):
+            edges.append((left, right))
+    if not edges:
+        return []
+
+    # Union by CURRENT unit identity, so a cosigned member joins the family its partner
+    # already belongs to instead of splitting it (docs/37 rule 6: one identity per document).
+    parent: dict[str, str] = {}
+
+    def find(key: str) -> str:
+        parent.setdefault(key, key)
+        while parent[key] != key:
+            parent[key] = parent[parent[key]]
+            key = parent[key]
+        return key
+
+    def unit_of(index: int) -> str:
+        return str(usable[index][0].get("joint_group") or f"unit:{index}")
+
+    for index in range(len(usable)):
+        find(unit_of(index))
+    for left, right in edges:
+        left_root, right_root = find(unit_of(left)), find(unit_of(right))
+        if left_root != right_root:
+            parent[left_root] = right_root
+
+    grouped: dict[str, list[int]] = defaultdict(list)
+    for index in range(len(usable)):
+        grouped[find(unit_of(index))].append(index)
+    touched = {find(unit_of(index)) for pair in edges for index in pair}
+
+    out = []
+    for root in sorted(touched):
+        indexes = grouped[root]
+        members = [usable[index][0] for index in indexes]
+        offices = sorted({
+            (row.get("member") or {}).get("bioguide") for row in members
+            if (row.get("member") or {}).get("bioguide")
+        })
+        if len(members) < 2 or len(offices) < 2:
+            continue
+        existing = sorted({row.get("joint_group") for row in members if row.get("joint_group")})
+        member_hashes = sorted(_content_hash(row) for row in members)
+        family_id = existing[0] if existing else "cosign:" + util.sha256_hex(
+            "\n".join(member_hashes))[:24]
+        medoid_index = min(indexes, key=lambda index: usable[index][0].get("id") or "")
+        medoid = usable[medoid_index][0]
+        out.append({
+            "schema_version": 2,
+            "object_type": "document_family",
+            "method_version": METHOD_VERSION,
+            "family_id": family_id,
+            "family_revision": "dfrev:" + util.sha256_hex(
+                family_id + "\n" + "\n".join(member_hashes))[:24],
+            "previous_revisions": [],
+            "medoid_statement_id": medoid.get("id"),
+            "medoid_content_sha256": _content_hash(medoid),
+            "statement_ids": [usable[index][0].get("id") for index in indexes],
+            "office_ids": offices,
+            "publication_count": len(members),
+            "member_similarities": {
+                usable[index][0].get("id"): round(
+                    exact_similarity(usable[medoid_index][1], usable[index][1]), 6)
+                for index in indexes
+            },
+            "retrieval_path": "minhash-band then reciprocal-headline naming",
+            "duplicate_class": "cosigned",
+            "versions": {
+                "method": METHOD_VERSION,
+                "shingle_k": config.DOCUMENT_FAMILY_SHINGLE_K,
+                "minhashes": config.DOCUMENT_FAMILY_MINHASHES,
+                "bands": config.DOCUMENT_FAMILY_MINHASH_BANDS,
+                "window_hours": config.DOCUMENT_FAMILY_WINDOW_HOURS,
+                "decision": "reciprocal headline naming",
+            },
+        })
+    return out
+
+
+def apply_families(statements: list[dict], roster_map: dict | None = None) -> int:
+    """Assign near-duplicate and cosigned families within the bounded candidate window."""
     eligible = []
     for statement in statements:
         group = statement.get("joint_group")
-        if (group is None or str(group).startswith(("dfam:", "njoint:"))) \
+        if (group is None or str(group).startswith(("dfam:", "njoint:", "cosign:"))) \
                 and (statement.get("member") or {}).get("bioguide"):
             eligible.append(statement)
     by_id = {row.get("id"): row for row in statements}
-    families = cluster_documents(eligible)
+    usable, exact = _retrieval(eligible)
+    families = _families_from_retrieval(usable, exact)
     for family in families:
         for statement_id in family["statement_ids"]:
             statement = by_id.get(statement_id)
             if statement is not None:
                 statement["joint_group"] = family["family_id"]
                 statement["document_family"] = dict(family)
+    cosigned = _cosigned_from_retrieval(usable, exact, roster_map)
+    for family in cosigned:
+        for statement_id in family["statement_ids"]:
+            statement = by_id.get(statement_id)
+            if statement is not None:
+                statement["joint_group"] = family["family_id"]
+                if not statement.get("document_family"):
+                    statement["document_family"] = dict(family)
+    apply_families.last_stats = {  # type: ignore[attr-defined]
+        "near_joint_groups": len(families), "cosigned_groups": len(cosigned),
+    }
     return len(families)
 
 

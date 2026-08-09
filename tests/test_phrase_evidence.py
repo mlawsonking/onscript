@@ -76,7 +76,7 @@ def test_below_quorum_writes_no_section_and_logs_the_omission():
     with redirect_stdout(log):
         holder, _, _, artifact, stats = _build([_statement(1), _statement(2)])
     try:
-        assert artifact == {"phrases": {}}
+        assert artifact["phrases"] == {}
         assert stats["omitted"] == 1
         assert "omitted" in log.getvalue() and "(<3)" in log.getvalue()
         assert "Peak-day evidence" not in site.phrase_page_body(_phrase(), evidence=artifact)
@@ -120,7 +120,7 @@ def test_suppressed_phrase_produces_no_slice_or_evidentiary_section():
     try:
         holder, _, _, artifact, _ = _build([_statement(1), _statement(2), _statement(3)])
         try:
-            assert artifact == {"phrases": {}}
+            assert artifact["phrases"] == {}
             fake = {"phrases": {SLUG: {"peak_day": DAY, "grounded_units": 3,
                     "counts": {"D": 3, "R": 0},
                     "receipts": [{"member": f"Member {i}", "party": "D", "state": "CA",

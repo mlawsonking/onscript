@@ -136,8 +136,9 @@ def normalize_records(records, *, run_id: str, roster: dict | None = None):
     # Pass 2b: near-identical (delegation) collapse (§11 trap 2). Within a day, cluster
     # not-yet-grouped statements whose shingle Jaccard >= threshold; a multi-member cluster
     # is one coordinated document, not independent adoption.
-    near_joint_groups = _near_dup_collapse(statements)
+    near_joint_groups = _near_dup_collapse(statements, roster)
     document_families.annotate_all_families(statements)
+    family_stats = getattr(document_families.apply_families, "last_stats", {})
 
     normalize_records.last_stats = {  # type: ignore[attr-defined]
         "in": len(statements) + rejects,
@@ -145,11 +146,12 @@ def normalize_records(records, *, run_id: str, roster: dict | None = None):
         "rejects": rejects,
         "joint_groups": joint_groups,
         "near_joint_groups": near_joint_groups,
+        "cosigned_groups": family_stats.get("cosigned_groups", 0),
         "syndicated": sum(1 for s in statements if s["syndicated"]),
     }
     return statements
 
 
-def _near_dup_collapse(statements: list[dict]) -> int:
+def _near_dup_collapse(statements: list[dict], roster: dict | None = None) -> int:
     """Compatibility wrapper for the W7 document-family implementation."""
-    return document_families.apply_families(statements)
+    return document_families.apply_families(statements, roster)

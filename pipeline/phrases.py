@@ -25,7 +25,7 @@ from __future__ import annotations
 from collections import defaultdict
 from itertools import accumulate
 
-from . import boilerplate, config, privacy, util
+from . import boilerplate, config, document_families, privacy, util
 
 
 def _sentence_token_spans(text: str) -> list[list[tuple[str, int, int]]]:
@@ -115,6 +115,15 @@ def _doc_ngrams(text: str, statement: dict | None = None, roster_map: dict | Non
 
 
 def _unit_key(stmt: dict) -> str:
+    """The project unit a statement counts as, for every quorum and adoption count.
+
+    `joint_group` is the one authority for document identity and is stamped at its owning
+    stage (normalize -> document_families), so this reads it and never recomputes it
+    (docs/37 rule 6). It now carries three collapses, not one: exact joint releases
+    (`joint:`), near-duplicate families (`njoint:`), and cosigned releases whose offices name
+    each other in their headlines (`cosign:`). The last of those is what closes docs/39 C1,
+    where one Nevada airports announcement published by two offices supplied two of the three
+    receipts behind a citation quorum. A statement with no group counts as its office."""
     m = stmt.get("member") or {}
     return stmt.get("joint_group") or m.get("bioguide") or stmt["id"]
 
@@ -245,7 +254,9 @@ class PhraseEngine:
                 entry = {}
                 for party, units in by_party.items():
                     entry[party] = len(units)
-                    entry[f"members_{party}"] = sorted(u for u in units if not str(u).startswith(("joint:", "njoint:")))
+                    entry[f"members_{party}"] = sorted(
+                        u for u in units
+                        if not str(u).startswith(document_families.UNIT_GROUP_PREFIXES))
                     families = self.family_occ.get(ngram, {}).get(day, {}).get(party, set())
                     entry[f"families_{party}"] = len(families)
                     entry[f"family_ids_{party}"] = sorted(families)

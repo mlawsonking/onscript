@@ -11,12 +11,18 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-from . import boilerplate, config, privacy, roster, util
+from . import boilerplate, config, document_families, privacy, roster, util
 from .phrase_window import public_phrase_window
 from .phrases import _unit_key
 
 QUORUM = 3
 STORED_PER_PARTY = 6
+
+# The quorum counts PROJECT UNITS, so the identity that decides what one unit is belongs in
+# this artifact's identity too. It is read live from the stage that owns it and never copied
+# (docs/37 rules 1 and 6); a bump there invalidates every cached count here rather than
+# serving a quorum measured under the superseded collapse.
+UNIT_IDENTITY_METHOD = "document_families.METHOD_VERSION"
 
 
 def _http_url(value) -> str:
@@ -122,12 +128,13 @@ def build_phrase_evidence(statements: list[dict], out_dir: Path, *, cache_path: 
             by_day[day].append(statement)
     fingerprints = {day: _source_fingerprint(by_day.get(day, []), rmap) for day in peak_days}
 
+    unit_identity = document_families.METHOD_VERSION
     prior = util.read_json(cache_path, {})
     prior_entries = prior.get("entries", {}) if isinstance(prior, dict) else {}
     next_cache, published = {}, {}
     hits = misses = omissions = 0
     for slug, ngram, peak_day in sorted(targets):
-        key = f"{slug}|{peak_day}|{fingerprints[peak_day]}"
+        key = f"{slug}|{peak_day}|{fingerprints[peak_day]}|{unit_identity}"
         if key in prior_entries:
             result, hits = prior_entries[key], hits + 1
         else:
@@ -144,7 +151,7 @@ def build_phrase_evidence(statements: list[dict], out_dir: Path, *, cache_path: 
             continue
         published[slug] = result
 
-    artifact = {"phrases": published}
+    artifact = {"phrases": published, "unit_identity_method": unit_identity}
     util.write_json(cache_path, {"entries": next_cache}, indent=None)
     util.write_json(out_dir / "phrase-evidence.json", artifact, indent=None)
     stats = {

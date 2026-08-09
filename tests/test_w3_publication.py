@@ -110,7 +110,9 @@ def test_correction_count_checkpoint_rejects_a_removed_entry():
     checkpoint = json.loads(
         (config.REFERENCE / "corrections-count.json").read_text(encoding="utf-8")
     )
-    assert checkpoint["count"] == len(rows) == 6
+    # The ledger is append-only, so the checkpoint tracks its length and only ever grows.
+    # Pinning a literal here made every correction append a suite failure (docs/37 rule 3).
+    assert checkpoint["count"] == len(rows) >= 6
     try:
         corrections.validate(rows[:-1], expected_count=checkpoint["count"])
     except ValueError as error:

@@ -30,7 +30,8 @@ def _scan_unregistered() -> list[str]:
 
 def test_method_versions_import_the_live_owning_authorities():
     versions = fp.method_versions()
-    assert versions["document_families"] == document_families.METHOD_VERSION == "document-families-v2"
+    # v3 folds cosigned releases into the project unit key (S66-1, docs/39 C1).
+    assert versions["document_families"] == document_families.METHOD_VERSION == "document-families-v3"
     assert versions["surface_eligibility"] == eligibility.CLASSIFIER == "surface-eligibility-v3"
     assert versions["phrase_statistics"] == surges.METHOD_VERSION
     assert versions["participation"] == participation.METHOD_VERSION
