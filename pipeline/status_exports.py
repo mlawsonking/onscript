@@ -36,6 +36,14 @@ VERIFIER_DROP_WINDOWS = ((1, "latest"), (7, "seven_day"), (30, "thirty_day"))
 # The recent (seven-day) rate at this multiple of the long (thirty-day) rate is a red spike.
 # Estimator: seven-day dropped/offered over thirty-day dropped/offered; unit: ratio.
 VERIFIER_DROP_RECENT_MULTIPLE = 2.0
+# Minimum offered claims before a drop rate is read as red or green. Unit: claims offered in
+# the window. A rate over a couple of dozen offered claims moves by tens of percentage points
+# on one claim, so colouring the instrument off it reports precision the denominator does not
+# support. Below the floor the check reports state unknown and keeps its raw dropped and
+# offered counts on its own face, so nothing is hidden; only the verdict is withheld. Each
+# window is tested against the floor separately, so a thin recent week does not disturb a
+# thirty-day window that has the volume to be read. §S65.
+VERIFIER_DROP_MIN_OFFERED = 30
 # A measured day trailing the expected latest complete day by more than this is a lag incident.
 PUBLICATION_LAG_MAX_DAYS = 1
 POSTING_STATES = frozenset({"disabled", "not_due", "ready", "held", "partial", "posted", "failed"})
@@ -171,6 +179,10 @@ def _windowed_drop(history: list[tuple[str, dict]], anchor_day: str | None,
         "dropped": dropped, "offered": offered,
         "rate": round(dropped / offered, 6) if offered else None,
         "unmeasured_days": unmeasured_days,
+        # Whether this window carries enough offered claims for its rate to be read as a
+        # verdict. The rate is published either way; this says whether it can be coloured.
+        "minimum_offered": VERIFIER_DROP_MIN_OFFERED,
+        "sufficient_volume": offered >= VERIFIER_DROP_MIN_OFFERED,
         "sources": sources,
         "unit": "claims dropped over claims offered",
     }
@@ -270,16 +282,45 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
     drop_windows = {key: _windowed_drop(history, anchor, span) for span, key in VERIFIER_DROP_WINDOWS}
     seven, thirty = drop_windows["seven_day"], drop_windows["thirty_day"]
     seven_rate, thirty_rate = seven["rate"], thirty["rate"]
-    verifier_red = (
+    # The spike comparison needs a long window whose own denominator clears the floor. A
+    # thirty-day window under the floor stops serving as the baseline; it is not otherwise
+    # touched by a thin seven-day window.
+    verifier_red = seven["sufficient_volume"] and (
         (seven_rate is not None and seven_rate >= VERIFIER_DROP_SLO)
-        or (seven_rate is not None and thirty_rate not in (None, 0)
+        or (seven_rate is not None and thirty["sufficient_volume"]
+            and thirty_rate not in (None, 0)
             and seven_rate >= thirty_rate * VERIFIER_DROP_RECENT_MULTIPLE)
     )
-    checks.append(_check(
-        "verifier_drop", "Verifier drop rate (seven day)", seven_rate, "share",
-        "red" if verifier_red else "green", seven["sources"],
-        "seven-day claims dropped over offered; red on an SLO breach or a spike over the long window",
-    ))
+    if seven_rate is None:
+        # Nothing was offered in the window, so there is no reading at all. That is the older
+        # unavailable case and keeps its null value; the volume floor is about a reading too
+        # thin to colour, which is a different statement and must not borrow this one's shape.
+        drop_value, drop_status = None, "unknown"
+        drop_derivation = ("seven-day claims dropped over offered; red on an SLO breach or a "
+                           "spike over the long window")
+    elif seven["sufficient_volume"]:
+        drop_value, drop_status = seven_rate, ("red" if verifier_red else "green")
+        drop_derivation = ("seven-day claims dropped over offered; red on an SLO breach or a "
+                           "spike over the long window")
+    else:
+        # State the uncertainty rather than a verdict. The counts below carry the measurement.
+        drop_value = f"insufficient volume ({seven['offered']} offered)"
+        drop_status = "unknown"
+        drop_derivation = (
+            f"seven-day claims dropped over offered; read as red or green only at "
+            f"{VERIFIER_DROP_MIN_OFFERED} or more offered claims in the window"
+        )
+    verifier_check = _check(
+        "verifier_drop", "Verifier drop rate (seven day)", drop_value, "share",
+        drop_status, seven["sources"], drop_derivation,
+    )
+    # The raw counts stay on the face of the check itself, whichever state it reports, so a
+    # withheld verdict never reads as a withheld measurement.
+    verifier_check["dropped"] = seven["dropped"]
+    verifier_check["offered"] = seven["offered"]
+    verifier_check["rate"] = seven_rate
+    verifier_check["minimum_offered"] = VERIFIER_DROP_MIN_OFFERED
+    checks.append(verifier_check)
     drop_window = thirty  # existing key keeps its thirty-day meaning (additive)
 
     degraded = assemble.get("degraded")
