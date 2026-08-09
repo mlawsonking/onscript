@@ -38,12 +38,12 @@
       },
       "status": "red",
       "freshness": {
-        "age_hours": 4.22,
+        "age_hours": 14.08,
         "day": "2026-08-09",
         "status": "green"
       },
       "excluded_reports": 0,
-      "note": "2026-08-08: D 21/78=27% R 11/55=20% of own 14d median (green >= 60%); upstream 4.2h (green < 36h)"
+      "note": "2026-08-08: D 21/78=27% R 11/55=20% of own 14d median (green >= 60%); upstream 14.1h (green < 36h)"
     },
     {
       "name": "verifier_drop",
@@ -77,6 +77,7 @@
   },
   "shelf": {
     "dark": [
+      "annotation_packet",
       "archive",
       "authors_vessels",
       "awards",
