@@ -56,7 +56,9 @@ def test_workflow_dispatch_asks_in_summer_and_is_denied_in_freeze():
 def test_generated_trees_ask_on_stage_and_edit():
     assert _bash("git add site/public/index.html")[0] == "ask"
     assert _bash("git commit -m x data/derived/foo.json")[0] == "ask"
-    assert _edit(r"C:\Users\bobdo\projects\polispeak\site\public\index.html")[0] == "ask"
+    # Neutral absolute prefix (docs/37 rule 16 forbids the user-home shape anywhere tracked):
+    # the assertion's point is that an ABSOLUTE path still matches the generated-tree rule.
+    assert _edit(r"D:\anywhere\checkout\site\public\index.html")[0] == "ask"
     assert _edit("data/derived/audit.json")[0] == "ask"
 
 
