@@ -2801,7 +2801,9 @@ def _concordance_column(party: str, rows: list, root: str) -> str:
             items = []
             for r in receipts:
                 url = _safe_http_url(r.get("url"))
-                link = f' <a href="{url}" rel="nofollow noopener">source</a>' if url else ""
+                # The scheme whitelist stops javascript:, never a quote that ends the attribute.
+                # Every sibling receipt path already escaped here; this one did not (docs/39 H4).
+                link = f' <a href="{esc(url)}" rel="nofollow noopener">source</a>' if url else ""
                 items.append(f'<li>&ldquo;{esc(r.get("phrase"))}&rdquo; '
                              f'<span class="faint">{esc(r.get("date"))}</span>{link}</li>')
             rc = (f'<details class="receipts"><summary>{len(receipts)} receipt'
