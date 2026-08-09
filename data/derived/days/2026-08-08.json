@@ -458,5 +458,1200 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-08-08",
+      "party": "D",
+      "composite": "Today 21 of us released statements. 3 offices across 3 publications and 3 families carried \"statement after voting against\". Our most synchronized phrase, used by 6 of us: statement after voting against.",
+      "measurement_lead": "Measurement: 21 publications were observed for the Democratic party on 2026-08-08.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-08-08",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "103a25603845a864372d2e78a996f0e7beb6ab55a143fc92a992e7d847e9c1f6",
+        "claim_ids": [
+          "2026-08-08-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 21 of us released statements. 3 offices across 3 publications and 3 families carried \"statement after voting against\". Our most synchronized phrase, used by 6 of us: statement after voting against.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-08-08-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "aab53d7889417f232453374ea991d88ac4d32102b890dcdff9a5972f174f7ba5",
+        "response_sha256": "edb105546e67d1d7d684a4f7c16f22785870ab84d1be5bf4004e66efafffda35",
+        "model_response_sha256": "f3060136ea2a182dc1b673c516fdf101cd8e51281fbc1a315cd8a06e672482d4"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-08-08-D-00"
+          ],
+          "claim_ids": [
+            "2026-08-08-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-08-08-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-08-08",
+        "statements": 21,
+        "talking_points": [
+          {
+            "label": "statement after voting against",
+            "members": 3,
+            "quote": "statement after voting against",
+            "topics": [
+              "tech_ai",
+              "elections_democracy",
+              "other"
+            ],
+            "claim_id": "2026-08-08-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "statement after voting against",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Sean Casten",
+          "first_sayer_party": "D",
+          "first_sayer_state": "IL"
+        },
+        "selected_claims": [
+          {
+            "label": "statement after voting against",
+            "members": 3,
+            "quote": "statement after voting against",
+            "topics": [
+              "tech_ai",
+              "elections_democracy",
+              "other"
+            ],
+            "claim_id": "2026-08-08-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-08-08-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2546,
+        "tokens_out": 106,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-08-08",
+      "party": "R",
+      "composite": "We released 11 statements today.",
+      "measurement_lead": "Measurement: 11 publications were observed for the Republican party on 2026-08-08.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-08-08",
+        "prompt": {
+          "id": "P3",
+          "version": "1.1",
+          "sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+        },
+        "stats_sha256": "402f992379caf376a4bc8ec513335a2e6dcf73b32a121959f1fbd72a4b4877f1",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "We released 11 statements today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "13766951666a023ddb120e19d3ce084518ce3a9c269fe17f6182e451a6e9004c",
+        "response_sha256": "2ed2661d74d17d842fa824f1b7b9fad240c09a3af25b23250c7d8eaf3b92a91f",
+        "model_response_sha256": "2b00cca90ac46b097a9b76b68d8681284a2113bfaa9c418a1385466734dd2f6d"
+      },
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.1",
+      "prompt_sha": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-08-08",
+        "statements": 11,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "continuing resolution cr",
+          "members": 3,
+          "family_count": 3,
+          "first_sayer": "Eleanor Holmes Norton",
+          "first_sayer_party": "D",
+          "first_sayer_state": "DC"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 672,
+        "tokens_out": 11,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-08-08-D-00",
+        "party": "D",
+        "day": "2026-08-08",
+        "label": "statement after voting against",
+        "member_count": 3,
+        "statements": [
+          "sha256:2925cf67e284aa2315dcf9bd6ab6ce665f86669736ca039d1f375b75aacd4cde",
+          "sha256:433668f4836d66b40099095385ad33bc4da34a7f57be118b9961798482313447",
+          "sha256:e45bf1f25f8f11797c73c11c4ccbfe7e9498887850ce11cccc2046b4b7516b88"
+        ],
+        "fragments": [
+          {
+            "text": "statement after voting against the continuing resolution to",
+            "statement": "sha256:2925cf67e284aa2315dcf9bd6ab6ce665f86669736ca039d1f375b75aacd4cde"
+          },
+          {
+            "text": "statement after voting against the nomination of todd",
+            "statement": "sha256:e45bf1f25f8f11797c73c11c4ccbfe7e9498887850ce11cccc2046b4b7516b88"
+          },
+          {
+            "text": "statement after voting against the confirmation of the",
+            "statement": "sha256:433668f4836d66b40099095385ad33bc4da34a7f57be118b9961798482313447"
+          }
+        ],
+        "topics": [
+          "tech_ai",
+          "elections_democracy",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-08-D-00",
+        "support_phrase": {
+          "normalized": "statement after voting against",
+          "text": "statement after voting against",
+          "occurrence_id": "occ:2501088d30aa02ef996bf65c"
+        },
+        "display_quote": "statement after voting against",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2501088d30aa02ef996bf65c",
+            "claim_id": "2026-08-08-D-00",
+            "statement_id": "sha256:2925cf67e284aa2315dcf9bd6ab6ce665f86669736ca039d1f375b75aacd4cde",
+            "publication_id": "sha256:2925cf67e284aa2315dcf9bd6ab6ce665f86669736ca039d1f375b75aacd4cde",
+            "office_id": "M000133",
+            "family_id": "dfam:f5dcdba304b0accf2a6e3f88",
+            "family_revision": "dfrev:6950c26ed36fc0756474bad7",
+            "support_unit_id": "M000133",
+            "party": "D",
+            "start_char": 88,
+            "end_char": 118,
+            "surface_text": "statement after voting against",
+            "normalized_phrase": "statement after voting against",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 64,
+            "sentence_end_char": 175,
+            "sentence_offset_start": 24,
+            "sentence_offset_end": 54,
+            "clause_start_char": 30,
+            "clause_end_char": 285,
+            "clause_offset_start": 58,
+            "clause_offset_end": 88,
+            "adjacent_tokens_before": [
+              "markey",
+              "d-mass",
+              "released",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "continuing",
+              "resolution",
+              "to",
+              "fund"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:dd423933687f366ac8483fc7",
+            "claim_id": "2026-08-08-D-00",
+            "statement_id": "sha256:433668f4836d66b40099095385ad33bc4da34a7f57be118b9961798482313447",
+            "publication_id": "sha256:433668f4836d66b40099095385ad33bc4da34a7f57be118b9961798482313447",
+            "office_id": "S001203",
+            "family_id": "dfam:ea78147f7eda3620e1e8378d",
+            "family_revision": "dfrev:604a5063c8adcc31c719895a",
+            "support_unit_id": "S001203",
+            "party": "D",
+            "start_char": 67,
+            "end_char": 97,
+            "surface_text": "statement after voting against",
+            "normalized_phrase": "statement after voting against",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 17,
+            "sentence_end_char": 279,
+            "sentence_offset_start": 50,
+            "sentence_offset_end": 80,
+            "clause_start_char": 13,
+            "clause_end_char": 173,
+            "clause_offset_start": 54,
+            "clause_offset_end": 84,
+            "adjacent_tokens_before": [
+              "smith",
+              "d-mn",
+              "released",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "confirmation",
+              "of",
+              "the",
+              "president’s"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d253e6cbf7b2990acc36e941",
+            "claim_id": "2026-08-08-D-00",
+            "statement_id": "sha256:e45bf1f25f8f11797c73c11c4ccbfe7e9498887850ce11cccc2046b4b7516b88",
+            "publication_id": "sha256:e45bf1f25f8f11797c73c11c4ccbfe7e9498887850ce11cccc2046b4b7516b88",
+            "office_id": "S001150",
+            "family_id": "dfam:25bf7fc70eee31af7af81a7f",
+            "family_revision": "dfrev:7d91af9c4779c9284269c4c3",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 83,
+            "end_char": 113,
+            "surface_text": "statement after voting against",
+            "normalized_phrase": "statement after voting against",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 61,
+            "sentence_end_char": 152,
+            "sentence_offset_start": 22,
+            "sentence_offset_end": 52,
+            "clause_start_char": 25,
+            "clause_end_char": 172,
+            "clause_offset_start": 58,
+            "clause_offset_end": 88,
+            "adjacent_tokens_before": [
+              "schiff",
+              "d-calif",
+              "issued",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "nomination",
+              "of",
+              "todd",
+              "blanche"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "M000133",
+          "S001150",
+          "S001203"
+        ],
+        "publication_ids": [
+          "sha256:2925cf67e284aa2315dcf9bd6ab6ce665f86669736ca039d1f375b75aacd4cde",
+          "sha256:433668f4836d66b40099095385ad33bc4da34a7f57be118b9961798482313447",
+          "sha256:e45bf1f25f8f11797c73c11c4ccbfe7e9498887850ce11cccc2046b4b7516b88"
+        ],
+        "family_ids": [
+          "dfam:25bf7fc70eee31af7af81a7f",
+          "dfam:ea78147f7eda3620e1e8378d",
+          "dfam:f5dcdba304b0accf2a6e3f88"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:25bf7fc70eee31af7af81a7f",
+            "family_revision": "dfrev:7d91af9c4779c9284269c4c3"
+          },
+          {
+            "family_id": "dfam:ea78147f7eda3620e1e8378d",
+            "family_revision": "dfrev:604a5063c8adcc31c719895a"
+          },
+          {
+            "family_id": "dfam:f5dcdba304b0accf2a6e3f88",
+            "family_revision": "dfrev:6950c26ed36fc0756474bad7"
+          }
+        ],
+        "support_unit_ids": [
+          "M000133",
+          "S001150",
+          "S001203"
+        ],
+        "citation_occurrence_ids": [
+          "occ:2501088d30aa02ef996bf65c",
+          "occ:dd423933687f366ac8483fc7",
+          "occ:d253e6cbf7b2990acc36e941"
+        ],
+        "citations": [
+          {
+            "member": "Edward J. Markey",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-08-08",
+            "url": "https://www.markey.senate.gov/news/press-releases/senator-markey-votes-against-continuing-resolution-refuses-to-fund-trumps-unwinnable-iran-war-and-authoritarian-agenda",
+            "quote": "statement after voting against the continuing resolution to",
+            "occurrence_id": "occ:2501088d30aa02ef996bf65c",
+            "office_id": "M000133",
+            "publication_id": "sha256:2925cf67e284aa2315dcf9bd6ab6ce665f86669736ca039d1f375b75aacd4cde",
+            "family_id": "dfam:f5dcdba304b0accf2a6e3f88",
+            "family_revision": "dfrev:6950c26ed36fc0756474bad7"
+          },
+          {
+            "member": "Tina Smith",
+            "party": "D",
+            "state": "MN",
+            "date": "2026-08-08",
+            "url": "https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-on-voting-against-the-confirmation-of-attorney-general-todd-blanche/",
+            "quote": "statement after voting against the confirmation of the",
+            "occurrence_id": "occ:dd423933687f366ac8483fc7",
+            "office_id": "S001203",
+            "publication_id": "sha256:433668f4836d66b40099095385ad33bc4da34a7f57be118b9961798482313447",
+            "family_id": "dfam:ea78147f7eda3620e1e8378d",
+            "family_revision": "dfrev:604a5063c8adcc31c719895a"
+          },
+          {
+            "member": "Adam B. Schiff",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-08-08",
+            "url": "https://www.schiff.senate.gov/news/press-releases/statement-sen-schiff-on-todd-blanches-confirmation-as-attorney-general/",
+            "quote": "statement after voting against the nomination of todd",
+            "occurrence_id": "occ:d253e6cbf7b2990acc36e941",
+            "office_id": "S001150",
+            "publication_id": "sha256:e45bf1f25f8f11797c73c11c4ccbfe7e9498887850ce11cccc2046b4b7516b88",
+            "family_id": "dfam:25bf7fc70eee31af7af81a7f",
+            "family_revision": "dfrev:7d91af9c4779c9284269c4c3"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "tech_ai",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "elections_democracy",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-08-08",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 16,
+          "denominator_unit": "offices",
+          "share": 0.1875,
+          "window": "party-day 2026-08-08",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 21,
+          "denominator_unit": "publications",
+          "share": 0.142857,
+          "window": "party-day 2026-08-08",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 21,
+          "denominator_unit": "document families",
+          "share": 0.142857,
+          "window": "party-day 2026-08-08",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-08-08",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 8,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-08-08",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 11,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-08-08",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 11,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-08-08",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "statement after voting against",
+        "slug": "591ce8e95d2d5210",
+        "n": 4,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.71,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "C001117",
+          "statement": "sha256:5ec9aa17d10ace75c8276be2549b24fcf57faaa2cf331be6dee044abef023271",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          3,
+          2,
+          1,
+          3,
+          1,
+          2,
+          10,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "rule of law",
+        "slug": "ca267b9e0d15e01f",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "S001201",
+          "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          4,
+          3,
+          4,
+          1,
+          1,
+          8,
+          8,
+          6,
+          8,
+          2,
+          1,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "1 8 billion",
+        "slug": "8ce53cbd6d132054",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.07,
+        "first_seen": {
+          "date": "2025-01-16",
+          "bioguide": "R000609",
+          "statement": "sha256:f0efe8f6b5e15d069090a81d54b73a5401f42cc476beb845b9aac8c14631354c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          6,
+          1,
+          1,
+          1,
+          4,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "uphold the rule of law",
+        "slug": "14177677a097ee84",
+        "n": 5,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001123",
+          "statement": "sha256:083f2c5139427565ce94403fc3113d2d65765013a934309747ebf324c60adeef",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "applied fairly and",
+        "slug": "a710a7d041f91fee",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-03-20",
+          "bioguide": "K000384",
+          "statement": "sha256:1d804cb0cef4e53aa5ce5a632d7a2e0353625e83b3ef12b29688234baba56058",
+          "tie": [
+            "V000128",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "family and his businesses",
+        "slug": "ec00281631125421",
+        "n": 4,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.7,
+        "first_seen": {
+          "date": "2026-05-19",
+          "bioguide": "W000800",
+          "statement": "sha256:7912989154cbe369b3fcf5dc06b6879a9b87e9e6136113fcc711b25ff5da6442",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "the president’s personal",
+        "slug": "e29ac32ee0001833",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-02-19",
+          "bioguide": "C001117",
+          "statement": "sha256:4b0cf0cd72cd7ccb124cb76c6a50c1677a0a1e84661c48181a538264f52bc22c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "voting against the",
+        "slug": "6e2cab9fb5b1cd1d",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.5,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "N000147",
+          "statement": "sha256:5f8d9f33dd3b825c0bcb4797a4e2a89527e8d73431d5560aa7041eae2c79fee0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          10,
+          1,
+          2,
+          1,
+          3
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "continuing resolution cr",
+        "slug": "3d866a990d38aa19",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "N000147",
+          "statement": "sha256:5798ecf3f937f0e84c45dec0d32c3a3c006d3126737fd501c64bbb3f18f795f2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "a continuing resolution",
+        "slug": "832aa60764c2788d",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.91,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "N000147",
+          "statement": "sha256:5798ecf3f937f0e84c45dec0d32c3a3c006d3126737fd501c64bbb3f18f795f2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          3,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": true,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "12d903f280f7b5c89ed15ba24273b6e11d7a9cba3cd0d948f956ec2afea69f64",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "429fa3153bd3f2ae93bf90024bbced2aec9bff578d78eaea8e08220471706cb9",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
