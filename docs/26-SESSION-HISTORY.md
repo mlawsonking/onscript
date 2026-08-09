@@ -2975,3 +2975,52 @@ from someone who is not the author.
 
 Next: pass 2 is Michael's act (#216). Intake, triage, and every metric run on pass 2
 only. R-29.2 and R-33.1 stay closed.
+
+## 2026-08-09: Session 65 (Fable). The adversarial review, and the four parked branches consolidated
+
+Five-lane adversarial review of the whole system (market and distribution; CI and security;
+pipeline code and suite; data integrity with live citation fetches; docs, governance, and
+schedule), requested by Michael in session. The full record is
+X:\onscript-data
+eviews6-08-09-adversarial-review.md and imports as docs/39 under the S66
+order (task #259). Headline findings: the 3-distinct-unit citation claim is breached on three
+live phrase pages by a near-duplicate joint release the byte-identical unit key cannot collapse
+(about 16 percent of evidence entries carry an uncollapsed pair); a latent stored XSS sits in the
+dark concordance render; first-carrier attribution renders unavailable on 88 percent of phrase
+pages; the rollout calendar had zero flips since launch while roughly nineteen commits of
+finished work sat unmerged on four local branches; distribution is effectively zero and
+unmeasured. Independent re-verification passed 6 of 6 citation containment checks, found zero
+bioguide leaks across 673 rendered files, and confirmed the niche unoccupied. Tasks filed: #259
+(integrity session, S66) and #260 (repo hardening, analytics, contact clicks). Order 2, the
+polish wave, is written and gated behind S66 plus this merge.
+
+This session then executed the consolidation the review ordered. Isolated worktree at
+origin/main 7784628; merge order opus/collect-perf, opus/s65-voice-status,
+fable/s61-consolidation, opus/goldset-pilot-processing; suite green at every step: 907, 933,
+961, 982, 1028, zero failures throughout. Conflicts were resolved by keeping both sides verbatim
+(pipeline/util.py took the rule-16 path helper and the stage-timing block together; docs/37 keeps
+both amendment lines; docs/26 splices are chronological at the 07-29 to 08-01 seam, entry order
+following merge order where same-day sessions interleave). One integration fix:
+tests/test_governance_guard.py carried a literal operator path that predates docs/37 rule 16 and
+the path-hygiene suite guard caught it at merge; the assertion keeps its point with a neutral
+absolute prefix. The only pipeline/config.py change in the whole integration is the goldset
+branch's annotation_packet flag, present and False; no prompt, threshold, workflow, or FEATURES
+flip anywhere.
+
+Session numbering is reconciled by annotation, not rewriting, because committed records are
+pinned history: S60 is the model rater; the number 61 was claimed twice on 2026-07-29 and both
+records stand, the outage line as the mainline S61 and the consolidation line as the Fable lane;
+the number 62 was likewise claimed twice, the collect-performance session holding the header
+while the path-hygiene delivery is recorded inside the second S61-continued entry; S63 is the
+watchdog edge probes; S64 the pilot-annotation calibration; S65 this session; S66 is assigned to
+the ordered integrity session. From here the tail is single-headed and numbers are claimed from
+this file at origin/main only.
+
+With this merge the governance harness (.claude deny and ask rules, the PreToolUse guard, bypass
+disabled) reaches the default branch for the first time; sessions must restart to load it, and
+its known alternate-spelling gaps are docs/39 findings assigned to S66. The durable collect fix
+and the recalibrated status alarms also land here; the red status readings that paused the flip
+gate should clear on the next scheduled pair, which Monday's flip decision can read. Pushed at about
+19:10 UTC on 2026-08-09 with nothing queued or running and the 19:30 slot, which drifts late,
+not yet started, so tonight's pair is the first production exercise of the merged stack. The
+operator checkout and its in-flight annotation files were never touched.
