@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-08-09",
   "kind": "deterministic",
-  "generated_at": "2026-08-09T10:03:32Z",
+  "generated_at": "2026-08-09T19:54:59Z",
   "focus_day": "2026-08-08",
   "days_present": [
     "2025-01-01",
@@ -11,7 +11,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-08-09T05:49:57Z",
-    "age_hours": 4.22
+    "age_hours": 14.08
   },
   "normalize": {
     "in": 80617,
@@ -44,8 +44,8 @@
     "ledger_entries": 360948,
     "phrase_pages": 10,
     "focus_day": "2026-08-08",
-    "focus_day_write": "written",
-    "focus_day_top_phrases": 10,
+    "focus_day_write": "skipped-final",
+    "focus_day_top_phrases": null,
     "coverage_years": [
       "2025",
       "2026"
@@ -54,10 +54,22 @@
   "spend_estimate_usd": 0.0,
   "governor_state": "nominal",
   "alerts": [],
+  "stage_timings_s": {
+    "restore": 7.6,
+    "mirror_pull": 14.2,
+    "normalize": 2063.3,
+    "ledger_build": 2499.3
+  },
+  "span_scan": {
+    "person_spans_calls": 234190,
+    "person_spans_s": 1353.504838386129,
+    "admitted_form_scans": 234190,
+    "admitted_form_s": 860.6747773880184
+  },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
     "component_hashes": {
-      "code_tree": "12d903f280f7b5c89ed15ba24273b6e11d7a9cba3cd0d948f956ec2afea69f64",
+      "code_tree": "dd96efe5626b14fbe09e644cbe463d79ef3a7ba5b9d19e43eb330b83f52f872e",
       "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
       "method_versions": "076b6882c1179410941f440a7e0b7d5d8cb14d8833af90ef2534090c674580c8",
       "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
@@ -65,7 +77,7 @@
       "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
       "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
     },
-    "sha256": "429fa3153bd3f2ae93bf90024bbced2aec9bff578d78eaea8e08220471706cb9",
+    "sha256": "2aba96dc8cdfdeb604d2329be70e4c8562a3fefc8c7a5ade34a3cdd4f59287a8",
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   }
 }
