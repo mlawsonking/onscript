@@ -76,9 +76,13 @@ jobs:
       - name: RUN B assemble (cluster -> distill -> VERIFY -> symmetry)
         # Blank day (the scheduled case) => the readiness gate picks the oldest not-yet-final READY day,
         # or no-ops at $0. A supplied day is an explicit REPAIR/backfill and bypasses the gate.
+        # The dispatch input arrives through env, never interpolated into the run block: an
+        # expression pasted into a shell is the shell's to parse, and this one is operator-supplied.
+        env:
+          DAY: ${{ github.event.inputs.day }}
         run: |
-          if [ -n "${{ github.event.inputs.day }}" ]; then
-            python pipeline/run_assemble.py --day "${{ github.event.inputs.day }}"
+          if [ -n "$DAY" ]; then
+            python pipeline/run_assemble.py --day "$DAY"
           else
             python pipeline/run_assemble.py
           fi

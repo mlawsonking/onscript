@@ -1,0 +1,41 @@
+name: freeze check
+
+# Constitution Article VIII, the election freeze: Oct 15 through Nov 10, the prompts, the
+# thresholds, and the workflows that run them do not move. Until now that promise was enforced
+# only by prose and by a Claude Code hook, and a hook sees one operator's session, not CI, not
+# another shell, not another machine, and not a merge.
+#
+# ACTIVATION: this is event-triggered behavior, so it goes live the moment it lands on the
+# default branch (docs/37 rule 14) and that push is a release act. It is INERT until Oct 15:
+# outside the window pipeline/freeze_window.report() allows every input and exits 0.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  freeze-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12.10"
+
+      - name: Refuse instrument changes during the election freeze
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          # A brand-new branch reports an all-zero "before"; compare against the first parent then,
+          # so the check reads the push's own changes rather than the entire history.
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] \
+             || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            BEFORE="$AFTER^"
+          fi
+          git diff --name-only "$BEFORE" "$AFTER" | python -m pipeline.freeze_window --stdin

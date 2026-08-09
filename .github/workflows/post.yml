@@ -29,6 +29,20 @@ jobs:
       POSTING_ENABLED: ${{ vars.POSTING_ENABLED }}
       GH_TOKEN: ${{ github.token }}
     steps:
+      # docs/37 rule 14: workflow references key on file paths, never display names. The
+      # workflow_run filter above can only match on the display name "RUN B assemble", which is
+      # prose and gets rewritten. A rename would stop posting with every workflow still green and
+      # nothing to see. This asserts the stable identity and fails loudly into the dead-man, which
+      # is the only way a silent stop becomes a visible one.
+      - name: Assert the trigger is the assemble workflow, by path
+        env:
+          TRIGGER_PATH: ${{ github.event.workflow_run.path }}
+        run: |
+          if [ "$TRIGGER_PATH" != ".github/workflows/assemble.yml" ]; then
+            echo "::error::RUN C was triggered by '$TRIGGER_PATH', not .github/workflows/assemble.yml. The workflow_run filter keys on the display name 'RUN B assemble'; if assemble.yml was renamed, restore the name or update both references together."
+            exit 1
+          fi
+
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: main
