@@ -31,7 +31,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipeline import (boilerplate, build, config, contracts, corrections, distill, eligibility,
                       nomenclature, privacy,
-                      public_strings, status_exports, surges, util, verify)  # noqa: E402
+                      public_strings, roster, status_exports, surges, util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
 # Windows console: emit UTF-8 (member text contains curly quotes, accents).
@@ -107,7 +107,26 @@ def _pct(value) -> str:
 # ---------------------------------------------------------------------------
 # Reference data (loaded once)
 # ---------------------------------------------------------------------------
-ROSTER = _load_json(ROSTER_FILE) or {}
+def _load_roster() -> dict:
+    """The roster, or an empty map that says so out loud.
+
+    docs/39 M1. This was `_load_json(ROSTER_FILE) or {}`, which turned an absent roster into a
+    silent empty dict, and member_name() then rendered "member name unavailable" on 553 of 627
+    phrase pages. The absence is real and specific: roster.json is gitignored, RUN A and RUN B
+    restore it from the state asset, and RUN C used to re-render the whole site on a bare
+    checkout without that restore, committing its nameless output over RUN B's correct pages.
+    allow_build=False is deliberate: rebuilding from the raw mirror inside a render is both slow
+    and a way to persist an empty roster (roster.py writes whatever it builds), so a render that
+    has no roster says so and continues rather than manufacturing one."""
+    loaded = roster.load(allow_build=False)
+    if not loaded:
+        print(f"[site] ROSTER EMPTY: {ROSTER_FILE} is missing or unreadable. Every member name "
+              f"will render as 'member name unavailable' and no office will be named. If this is "
+              f"a render job, it is missing the state-asset restore step.", file=sys.stderr)
+    return loaded
+
+
+ROSTER = _load_roster()
 TAXONOMY = _load_json(TAXONOMY_FILE) or {}
 CORRECTIONS = corrections.load(CORRECTIONS_FILE)
 PHRASE_EVIDENCE = _load_json(DERIVED / "phrase-evidence.json") or {"phrases": {}}

@@ -52,6 +52,22 @@ jobs:
       - name: Post both Daily Line threads
         run: python pipeline/post_bluesky.py || echo "posting skipped or failed; manifest records the result"
 
+      # docs/39 M1. This job re-renders the WHOLE site and commits it over RUN B's output, but it
+      # ran on a bare checkout. data/reference/roster.json is gitignored and reaches a job only
+      # through the state asset, so every member name resolved to "member name unavailable" here
+      # (553 of 627 phrase pages) and RUN B's correct pages were overwritten about an hour later.
+      # Placed AFTER posting and fail-soft throughout: posting is the irreversible act and the
+      # commit step below is what records it, so a restore problem must never cost either. If the
+      # restore does not land, site.py logs ROSTER EMPTY and renders exactly what it renders today.
+      - name: Restore reference state written by RUN A and RUN B
+        continue-on-error: true
+        run: |
+          mkdir -p data/state data/raw data/reference
+          gh release download data-latest --dir data/_restore --clobber || echo "no state asset; the render will report an empty roster"
+          if [ -d data/_restore ]; then
+            python -m pipeline.archive_restore data/_restore --checkout . || echo "restore failed; the render will report an empty roster"
+          fi
+
       - name: Refresh the signed post archive
         run: python pipeline/site.py
 
