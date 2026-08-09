@@ -606,6 +606,56 @@ def _day_discipline_metrics(day_data: dict | None) -> dict:
     return top_level if isinstance(top_level, dict) else {}
 
 
+DISCIPLINE_ARTIFACT_SCHEMA_VERSION = 1
+# Reserved top-level names in discipline.json. Party codes are single letters, so these can never
+# collide with a series key, and stripping them on read makes the stamp idempotent through the
+# regen round-trip (scripts/regen_derived.py reads this artifact and passes it straight back).
+DISCIPLINE_ARTIFACT_KEYS = ("schema_version", "status", "reason", "min_statements",
+                            "min_statements_note", "days_below_min_statements", "window")
+DISCIPLINE_MIN_STATEMENTS_NOTE = (
+    "A party-day with fewer statements than this cannot carry an interpretable share: the ratio "
+    "saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single "
+    "digits. The floor is stamped, not applied: the values below are the raw per-day measurements "
+    "and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS."
+)
+
+
+def public_discipline_artifact(discipline: dict | None) -> dict:
+    """Stamp the withdrawal, the interpretation floor, and the public epoch into discipline.json.
+
+    docs/39, the low findings. This artifact ships in a public repository carrying per-day indices
+    with no floor (213 Democratic and Republican days read exactly 1.0, every one of them from 19
+    statements or fewer), while its withdrawal under R-36.3 lived only in build.py and in the day
+    records. A reader who found the file could learn none of that from the file. Its window also
+    began 2025-01-01, two days before the public epoch, which the standing epoch rule reserves to
+    config.STAGE1_EPOCH.
+
+    Additive and schema-compatible: the per-party series stay at the top level with an unchanged
+    row shape and the metadata arrives as siblings. Pre-epoch rows leave, which is the epoch rule
+    applied rather than an edit to any measurement."""
+    series = {party: dict(days) for party, days in (discipline or {}).items()
+              if party not in DISCIPLINE_ARTIFACT_KEYS and isinstance(days, dict)}
+    epoch = config.STAGE1_EPOCH
+    trimmed = {party: {day: row for day, row in sorted(days.items()) if str(day) >= epoch}
+               for party, days in sorted(series.items())}
+    floor = config.CONCORDANCE_MIN_STATEMENTS
+    below = {party: sum(1 for row in days.values()
+                        if isinstance(row, dict) and int(row.get("statements") or 0) < floor)
+             for party, days in trimmed.items()}
+    every_day = [day for days in trimmed.values() for day in days]
+    return {
+        **trimmed,
+        "schema_version": DISCIPLINE_ARTIFACT_SCHEMA_VERSION,
+        "status": "withdrawn",
+        "reason": DISCIPLINE_WITHDRAWN_REASON,
+        "min_statements": floor,
+        "min_statements_note": DISCIPLINE_MIN_STATEMENTS_NOTE,
+        "days_below_min_statements": below,
+        "window": {"start": epoch, "end": max(every_day) if every_day else None,
+                   "epoch_authority": "config.STAGE1_EPOCH"},
+    }
+
+
 def withdrawn_discipline_view(day_data: dict | None) -> dict:
     """Return the discipline metric as a withdrawn carrier for any reader.
 
@@ -633,7 +683,7 @@ def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_
     phrases_dir = out_dir / "phrases"
     days_dir = out_dir / "days"
 
-    _u.write_json(out_dir / "discipline.json", discipline)
+    _u.write_json(out_dir / "discipline.json", public_discipline_artifact(discipline))
     if coverage is None:
         coverage = coverage_tables(statements)
     _u.write_json(out_dir / "coverage.json", coverage)
