@@ -452,5 +452,5 @@ key instead. The fix is **narrowing, not reversing**.
 `pipeline\nomenclature_build.py`,
 `tests\test_nomenclature.py`,
 `data\reference\nomenclature\`. My verification probes:
-`C:\Users\bobdo\AppData\Local\Temp\claude\C--Users-bobdo-projects-polispeak\b625d988-e876-421a-9ce3-b09a84e736e0\scratchpad\synth1.py`–`synth5.py`.
+`synth1.py`–`synth5.py`, written to that session's scratchpad outside the repository.
 **I edited no repo files.**

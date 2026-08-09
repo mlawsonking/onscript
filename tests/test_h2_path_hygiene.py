@@ -53,13 +53,12 @@ ALLOWLIST: dict[str, tuple[int, str]] = {
         "the delivery ran in one checkout while an active worker owned the other. Replacing them "
         "with a placeholder would delete the fact the section exists to record.",
     ),
-    "docs/16-NOMENCLATURE-SPEC.md": (
-        1,
-        "Pinned history (docs/37 rule 3). The session scratchpad path is the provenance of the "
-        "'I edited no repo files' statement, points outside the repository, and has no "
-        "repo-relative form. The repository file pointers in the same document were normalized "
-        "in H1.",
-    ),
+    # docs/16-NOMENCLATURE-SPEC.md was allowlisted here as pinned provenance until S66-7. The
+    # exemption did not survive reading it: the path pointed at a throwaway scratchpad, and
+    # "synth1.py through synth5.py, written to that session's scratchpad outside the repository"
+    # records the same fact without publishing an account name and a private directory layout.
+    # An exemption is worth keeping only when the identifier is the evidence, as it is for the
+    # DEEP packet's two checkouts, whose whole claim is that they were two different checkouts.
 }
 
 
