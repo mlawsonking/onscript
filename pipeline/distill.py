@@ -193,15 +193,16 @@ def _compose_dry(stats: dict, allow_absence_claim: bool = True) -> str:
         if tp["quote"]:
             # "carried", not "said": the phrase appeared in these members' statements — which may quote
             # third parties. "N of us" (member count), not "N statements" — members is the unit. §S8.
-            counts = tp.get("counts") or {}
-            if tp.get("object_type") == contracts.CLAIM_TYPE:
-                parts.append(
-                    f'{counts.get("offices", 0)} offices across '
-                    f'{counts.get("publications", 0)} publications and '
-                    f'{counts.get("families", 0)} families carried "{tp["quote"]}".'
-                )
-            else:
-                parts.append(f'{tp["members"]} of us carried "{tp["quote"]}".')
+            # One number per claim sentence, and it is the support count that
+            # verify.code_allowed_numbers admits. The W2 claim contract also computes offices,
+            # publications, and families, but those are not whitelist entries, so a sentence
+            # stating them failed the template's own verifier whenever they disagreed with the
+            # support count, and the day's composite was withheld (2026-07-27, 07-29, 07-30,
+            # and 08-03, all Democratic). Those three denominators stay labeled on the day page,
+            # where site.receipts_strip renders the same counts object. This form also carries
+            # the count-binding check in verify.quotes_bound_to_talking_points, which the
+            # three-denominator sentence had no equivalent of. §S65.
+            parts.append(f'{tp["members"]} of us carried "{tp["quote"]}".')
             quoted += 1
     tp = stats.get("top_phrase")
     if quoted == 0 and not (tp and tp.get("text")) and allow_absence_claim:
@@ -210,9 +211,15 @@ def _compose_dry(stats: dict, allow_absence_claim: bool = True) -> str:
         # Gated: an absence produced by privacy suppression is not a measurement (see docstring).
         if stats.get("eligibility_withheld_count"):
             parts.append("No measured phrase met the message-eligibility standard today.")
+        elif stats.get("sync_min") is not None:
+            parts.append(f"No phrase was shared by {stats['sync_min']} or more of us today.")
         else:
-            parts.append(f"No phrase was shared by {stats.get('sync_min', config.SYNC_MIN_MEMBERS)} "
-                         f"or more of us today.")
+            # A legacy STATS block carries no sync_min, so verify.code_allowed_numbers does not
+            # whitelist the threshold and printing config.SYNC_MIN_MEMBERS here would fail the
+            # verifier and withhold the line. State the measured absence without the number.
+            # Six committed party-days (2026-06-30, 07-11, 07-12) have such STATS and reach this
+            # template through the site recompose path. §S65.
+            parts.append("No phrase was shared by enough of us to clear the coordination bar today.")
     if tp and tp.get("text"):
         # No quotation marks: the top synchronized phrase is a code-computed ledger n-gram, not a
         # verbatim member quote — render it as the measured phrase it is (§Session-5 HIGH-1 fix).
