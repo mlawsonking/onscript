@@ -10,22 +10,80 @@ import os
 import statistics
 from collections import Counter
 
-from . import config, denominators, instrument_fingerprint, llm, public_strings, roster, util
+from datetime import date
+
+from . import (config, denominators, instrument_fingerprint, llm, public_strings, readiness,
+               roster, util)
 
 
-def volume_anomaly(statements, focus_day) -> dict:
+def collection_maturity(statements, focus_day, *, reference_day: str | None = None) -> dict:
+    """Has `focus_day` finished landing, so its volume can be compared with prior days?
+
+    A morning collect run sees the focus day hours before upstream finishes delivering it.
+    On 2026-08-08 the run counted 2 statements against a trailing median of 138.5 and paged,
+    and the same day later assembled 192. Comparing a partial day with complete ones measures
+    the clock, not the corpus.
+
+    Maturity has two arms, both taken from the readiness gate so this and the publication
+    path agree on when a day has stopped filling:
+      ready       - the day holds at least READY_RATIO of its trailing same-weekday median,
+                    which is the same test that lets the day be assembled at all.
+      waited out  - the day is at least MAX_WAIT_DAYS old, which is the point at which the
+                    readiness gate stops waiting and force-finalizes. Whatever is there is
+                    what upstream is going to deliver.
+
+    `reference_day` is the clock, injected rather than read, so the manifest a run writes is
+    reproducible (docs/37 rule 5). Without one only the ready arm can be evaluated.
+    """
+    by_day = Counter(s["published_at"] for s in statements if s.get("lane") == 1)
+    row = readiness.day_readiness(by_day, focus_day)
+    age_days = None
+    if reference_day:
+        try:
+            age_days = (date.fromisoformat(reference_day) - date.fromisoformat(focus_day)).days
+        except (TypeError, ValueError):
+            age_days = None
+    waited_out = age_days is not None and age_days >= readiness.MAX_WAIT_DAYS
+    mature = bool(row["ready"] or waited_out)
+    if row["ready"]:
+        reason = "the focus day cleared the readiness gate"
+    elif waited_out:
+        reason = (f"the focus day is {age_days} days old, past the {readiness.MAX_WAIT_DAYS}-day "
+                  f"readiness wait, so upstream is not still landing it")
+    else:
+        reason = (f"upstream is still landing the focus day ({row['reason']})"
+                  if age_days is None else
+                  f"upstream is still landing the focus day, {age_days} days old ({row['reason']})")
+    return {"mature": mature, "ready": bool(row["ready"]), "age_days": age_days,
+            "same_weekday_baseline": row["baseline"], "share": row["share"], "reason": reason}
+
+
+def volume_anomaly(statements, focus_day, *, maturity: dict | None = None) -> dict:
     """Lane-1 daily volume against the trailing-14-day median for one focus day.
 
     Single definition shared by collect (the run's newest day) and assemble (the target
     day), so the two callers cannot compute the anomaly two different ways (docs/37 rule 12).
+
+    `maturity` is a collection_maturity row. When it reports an immature focus day the
+    comparison is withheld and `anomalously_low` is False, because a partial count is not
+    evidence of a thin day. The count and the median are published either way, so a withheld
+    comparison never reads as a healthy one. Omitting `maturity` judges the day, which is
+    what the assemble caller wants: a day it is publishing has already cleared the readiness
+    gate or been force-finalized past it. The default is the arm that alerts.
     """
     by_day = Counter(s["published_at"] for s in statements if s.get("lane") == 1)
     days = sorted(by_day)
     prior = [by_day[d] for d in days if d < focus_day][-14:]
     today = by_day.get(focus_day, 0)
     med = statistics.median(prior) if prior else 0
-    low = bool(med) and today < config.NULL_SERVICE_VOLUME_RATIO * med
-    return {"today": today, "trailing_median": med, "anomalously_low": low}
+    mature = True if maturity is None else bool(maturity.get("mature"))
+    low = mature and bool(med) and today < config.NULL_SERVICE_VOLUME_RATIO * med
+    out = {"today": today, "trailing_median": med, "anomalously_low": low}
+    if maturity is not None:
+        out["collection_mature"] = mature
+        out["comparison"] = "judged" if mature else "withheld"
+        out["maturity_reason"] = maturity.get("reason")
+    return out
 
 
 def thresholds_sha() -> str:

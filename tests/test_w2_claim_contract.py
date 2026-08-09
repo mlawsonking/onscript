@@ -96,7 +96,13 @@ def test_stats_and_sentences_use_typed_claim_ids_and_only_counted_quote():
     assert stats["claim_ids"] == [claim_id]
     assert stats["talking_points"][0]["quote"] == PHRASE
     rendered = distill._compose_dry(stats)
-    assert f'3 offices across 3 publications and 3 families carried "{PHRASE}"' in rendered
+    # One number per claim sentence, and it is the support count the digit whitelist admits.
+    # The three labeled unit counts stay on the day page (receipts_strip, tested below). §S65.
+    assert f'3 of us carried "{PHRASE}"' in rendered
+    rendered_ok, rendered_reasons = verify.verify_daily_line(
+        {"composite": rendered}, json.dumps(stats, ensure_ascii=False), stats=stats
+    )
+    assert rendered_ok, rendered_reasons
     composite = f'3 of us carried "{PHRASE}."'
     # A model-added character inside the quotation is not the counted phrase.
     assert contracts.sentence_claims(composite, stats)[0]["claim_ids"] == []

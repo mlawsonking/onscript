@@ -3021,7 +3021,11 @@ def status_body(model: dict) -> str:
     parts.append('<div class="receipts">')
     for check in model.get("checks") or []:
         value = "unavailable" if check.get("value") is None else str(check.get("value"))
-        unit = f' {check.get("unit")}' if check.get("value") is not None else ""
+        # A unit belongs to a reading. An unknown check has no reading, so it carries no unit.
+        # This generalises the older "value is None" rule, which was the only way a check could
+        # be unknown before the verifier-drop volume floor (S65) introduced a stated one.
+        known = check.get("value") is not None and check.get("status") != "unknown"
+        unit = f' {check.get("unit")}' if known else ""
         sources = ", ".join(
             f'{source.get("manifest")}:{source.get("field")}' for source in (check.get("sources") or [])
         ) or "source unavailable"
