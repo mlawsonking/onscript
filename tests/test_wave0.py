@@ -234,7 +234,10 @@ def test_deterministic_and_legacy_sonnet_batch_are_disclosed_as_stub():
                                      "verifier": {"checked": True, "passed": True}}}}
         need, msg, has_stub = site.honesty_state(day, None)
         assert need is True and has_stub is True, gen
-        assert "not a language model" in site.banner_html(day, None), gen
+        # S66-4 / docs/39 M3: the banner now names the deterministic composer instead of claiming
+        # the model voice is unbuilt. The per-line flag still carries "not a language model".
+        assert "composed deterministically" in site.banner_html(day, None), gen
+        assert "not a language model" in " ".join(site._voice_flags(day["daily_lines"]["D"])), gen
 
 
 def test_real_quiet_day_flags_without_stub_copy():
@@ -254,7 +257,7 @@ def test_dry_run_is_disclosed_as_stub():
                            "R": {"composite": "y", "generator": "dry_run"}}}
     need, msg, has_stub = site.honesty_state(dry, None)
     assert need is True and has_stub is True and "dry-run stub" in msg
-    assert "placeholder" in site.banner_html(dry, None)
+    assert "composed deterministically" in site.banner_html(dry, None)
 
 
 def test_voice_flags_suppress_false_model_on_stub_generators():

@@ -41,6 +41,23 @@ DAY_CITATION_NOTE = "Every distilled claim above is citation-backed."
 
 ABOUT_DESCRIPTION = "A symmetric, citation-backed measurement of observed congressional language."
 
+# docs/39 M3, Constitution Article XVII. The homepage note used to say the composite phrasing was
+# "a placeholder until the live model voice is wired in" while the same page showed the other
+# party's line generated and verified by the model. The instrument may not misdescribe itself.
+HOMEPAGE_HONESTY_NOTE = (
+    "Honesty note: when a day's verified claims cannot support a model-written composite, that "
+    "party's line is composed deterministically from the day's measured statistics. The numbers, "
+    "quotes, and receipts are always real and verified; only the connective phrasing differs. "
+    "Each line states its own generator, so the two parties can legitimately differ on the same day."
+)
+
+# docs/39 M2. The methodology described Lane 2 in the present tense while the corpus is entirely
+# Lane 1. That is the good outcome for symmetry and it deserves saying plainly.
+LANE_TWO_POPULATION_NOTE = (
+    "Lane 2 is not currently populated: every citation on this site today is Lane 1, a press "
+    "release from an official office."
+)
+
 BETA_LABEL = "Public beta measurement instrument"
 BETA_LABEL_ENV = "ONSCRIPT_BETA_LABEL_ENABLED"
 

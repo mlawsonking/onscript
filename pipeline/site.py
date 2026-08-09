@@ -954,13 +954,17 @@ def banner_html(day_data, symmetry, depth: int = 1) -> str:
     if not need:
         return ""
     if has_stub_voice:
-        tail = (" The composite voice for any line above marked a stub/template is <strong>not a "
-                "language model</strong> — it is composed deterministically from the day's measured "
-                "statistics. The numbers, quotes, and receipts are real and verified; the phrasing is "
-                "a placeholder until the live model voice is wired in.")
-    else:
-        # Genuine LLM voice, just a transparency flag (quiet / fallback / degraded).
-        tail = " Numbers, quotes, and receipts are real and verified; the note above is a transparency flag."
+        # docs/39 M3, Article XVII. The old tail said the phrasing was "a placeholder until the
+        # live model voice is wired in" while the other party's line on the same page carried
+        # generator sonnet_direct and generated_verified. The model voice went live 2026-07-14;
+        # a deterministic line is now a per-day outcome, not an unbuilt feature. The wording is
+        # read live from public_strings so a review has one surface.
+        # Authored copy, emitted like the sibling paragraphs on this page and not escaped, so the
+        # reviewed wording survives verbatim in the page source. A test holds it to plain text.
+        return (f'<div class="banner">{public_strings.HOMEPAGE_HONESTY_NOTE} '
+                f'On this day: {msg}.</div>')
+    # Genuine LLM voice, just a transparency flag (quiet / fallback / degraded).
+    tail = " Numbers, quotes, and receipts are real and verified; the note above is a transparency flag."
     return f'<div class="banner">Honesty note: {msg}.{tail}</div>'
 
 
@@ -2229,6 +2233,9 @@ def methodology_body():
         "<em>machine-blocked from every comparative metric</em>. Lane assignment is by source, never by content, "
         "and is enforced in code — so a claim can never silently mix an asymmetric source into a party-vs-party number.</p>"
     )
+    # docs/39 M2: the paragraph above describes Lane 2 in the present tense. Say plainly that it is
+    # empty in production, which is the good outcome for symmetry.
+    parts.append(f"<p><strong>{public_strings.LANE_TWO_POPULATION_NOTE}</strong></p>")
     parts.append(
         f"<p><strong>Public phrase window.</strong> Stage-1 phrase statistics and coverage begin "
         f"<strong>{esc(config.STAGE1_EPOCH)}</strong>. Earlier retained observations remain out of the public "
