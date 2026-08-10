@@ -1,0 +1,89 @@
+# REPLAY - the R-33.6 shadow replay, dispatch-only (task #218).
+#
+# The comparison harness (scripts/shadow_replay.py) reads the LIVE side from committed
+# production records under data/derived/days and generates only the v1.4/v1.2 candidate side,
+# so the free modes cost nothing and the live mode spends only on the candidate. The key lives
+# only in Actions secrets by design, which is why this dispatch exists at all: the live replay
+# cannot run anywhere else. This workflow never pushes, never posts, and never touches the
+# pipeline concurrency group; it reads the checkout it was given.
+#
+# mode=plan   the run plan and R-33.6 gate progress. Never calls a model. Run this first.
+# mode=live   the real candidate replay behind BOTH script authorizations (--live and
+#             --allow-api-spend). This is the #218 operator act. Fail-closed without the key.
+name: REPLAY - R-33.6 shadow
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "plan = free gate progress. live = spend on the candidate side (#218)."
+        required: true
+        default: plan
+        type: choice
+        options:
+          - plan
+          - live
+
+permissions:
+  contents: read
+
+concurrency:
+  group: onscript-replay
+  cancel-in-progress: false
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12.10"
+
+      - name: Run plan and gate progress (free, never calls a model)
+        run: |
+          python scripts/shadow_replay.py --plan --out replay-plan.json
+          {
+            echo "## R-33.6 shadow replay: plan and gate progress"
+            echo '```json'
+            cat replay-plan.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Secret preflight (fail-closed, live mode only)
+        if: ${{ inputs.mode == 'live' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::live replay dispatched without ANTHROPIC_API_KEY; refusing"
+            exit 1
+          fi
+
+      - name: Live candidate replay (spends API budget; the #218 act)
+        if: ${{ inputs.mode == 'live' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python scripts/shadow_replay.py --live --allow-api-spend --out replay-report.json
+          {
+            echo "## R-33.6 shadow replay: live report"
+            echo '```json'
+            cat replay-report.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the reports as a run artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: replay-reports
+          path: |
+            replay-plan.json
+            replay-report.json
+          if-no-files-found: ignore
+          retention-days: 90
