@@ -58,6 +58,90 @@ LANE_TWO_POPULATION_NOTE = (
     "release from an official office."
 )
 
+# docs/39 §6, S67-1. THE FRONT DOOR. Everything else on the homepage assumes the reader already
+# knows what this is; a stranger arriving from a shared link got a temporal-state banner and a
+# participation table before any sentence told them what they were looking at. Plain words on
+# purpose: no lane, no unit key, no composite, no denominator.
+FRONT_DOOR = (
+    "OnScript reads what members of Congress publish and counts the phrases they say together. "
+    "Every claim below links to the press releases it came from."
+)
+
+# S67-1. The method blocks that used to sit above the composites now sit inside collapsed
+# disclosures. Each summary says, in reader words, what opening it will show.
+DISCLOSURE_PARTICIPATION = "How this is counted"
+DISCLOSURE_CLASS_LANES = "How phrases are sorted"
+
+# S67-1. Member counts and publication counts are different bases and sit next to each other on the
+# day page. Saying so once, where they touch, is cheaper than a reader inferring that one is wrong.
+DENOMINATOR_BASES_NOTE = (
+    "These two bases differ. Office counts come from the day's eligible caucus offices in the "
+    "nightly symmetry audit; publication counts come from the day's source publications. A joint "
+    "release is one publication and can carry several offices, so the two never have to agree."
+)
+
+# S67-2b. The homepage exemplar charts pick themselves, and the rule is printed under them so a
+# reader can check the pick rather than trust it. The office floor is interpolated from its owning
+# constant at render time; this string carries the shape of the rule, never the number.
+ADOPTION_SELECTION_RULE = (
+    "How these two were chosen: for each party independently, code takes that party's phrase with "
+    "the highest single-day office count in the trailing {window} days, counting only phrases that "
+    "reached at least {floor} offices on some day in that window. Ties go to the earlier first "
+    "appearance, then to the alphabetically first identifier. No model chooses, and neither party's "
+    "pick constrains the other's."
+)
+ADOPTION_EMPTY_PANEL = (
+    "No phrase reached the coordination floor in this window. The panel is left empty rather than "
+    "lowering the bar to fill it."
+)
+
+# S67-4d. Vercel Web Analytics, enabled 2026-08-09. One same-origin script served by the host.
+ANALYTICS_DISCLOSURE = (
+    "Visit counting: the host counts page views in aggregate and without cookies. No identifier is "
+    "set, nothing follows a reader to another site, and no data is sold or shared."
+)
+
+# S67-6. Velocity is a ranked column on the phrases index with no definition anywhere on the site.
+# The wording follows pipeline/build._velocity's docstring, which owns the calculation.
+VELOCITY_DEFINITION = (
+    "Velocity is the day's office count for a phrase divided by the average of its office counts "
+    "over the previous 14 days it appeared. A phrase used as much as usual sits near 1."
+)
+
+# S67-6. Repeated-phrase tables are per-party against each caucus's own denominator, so a reader
+# comparing raw row counts across the two tables is reading caucus size, not coordination.
+PARTY_IMBALANCE_NOTE = (
+    "Each table is one party measured against that party's own caucus, so row counts are not "
+    "comparable across the two. Differences in how much each party publishes are measured in the "
+    "nightly symmetry audit, not here."
+)
+
+# S67-6. The measured identity is the normalized key ("1 8 billion"); the surface form is one real
+# spelling from the sources, shown so the key reads as measurement output rather than a typo.
+SURFACE_FORM_LABEL = "As published"
+SURFACE_FORM_NOTE = (
+    "The measured identity is the normalized key above. This is one spelling of it as it appeared "
+    "in the sources, chosen by frequency."
+)
+
+# S67-7a. The standing labels an essay carries, from the docs/20 publication gates and the finding
+# cards that already use these exact keys. The renderer shows the label with its meaning, so a
+# reader meets the caveat rather than a tag they have to decode.
+ESSAY_LABELS = {
+    "correlation-not-cause": "A measured association. No causal claim is made.",
+    "replication": "A re-run of an earlier finding on a different instrument or window.",
+    "matched-controls": "Compared groups were matched before measuring.",
+    "symmetric-instrument": "Both parties passed through the same pipeline and thresholds.",
+    "party-asymmetric": "The result differs by party. The method that produced it does not.",
+    "descriptive": "A description of the corpus, not a test of a hypothesis.",
+    "pre-registered": "The direction was recorded before the measurement ran.",
+}
+
+ESSAY_STANDING_NOTE = (
+    "Every number in this piece comes from the published record and can be recomputed from the "
+    "sources it cites."
+)
+
 BETA_LABEL = "Public beta measurement instrument"
 BETA_LABEL_ENV = "ONSCRIPT_BETA_LABEL_ENABLED"
 

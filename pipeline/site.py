@@ -2,12 +2,14 @@
 
 Reads the committed derived JSON in ``data/derived/`` and writes a plain,
 fast, newspaper-style static site to ``site/public/``. Pure Python stdlib:
-no Node, no build step, no client JS framework, zero external requests.
-Every page is self-contained HTML with one inline stylesheet and inline SVG.
+no Node, no build step, no client JS framework, no third-party requests.
+Every page is self-contained HTML with one inline stylesheet and inline SVG,
+plus one deferred SAME-ORIGIN script the host serves for cookieless aggregate
+visit counting (S67-4; disclosed in the footer and on About).
 Vercel serves ``site/public/`` as static files.
 
 Design tenets honored here (gameplan §8 / design tenets):
-  * newspaper-plain, muted palette, system fonts, no CDNs/web-fonts/analytics.
+  * newspaper-plain, muted palette, system fonts, no CDNs and no web fonts.
   * the "receipts strip" (member count + verbatim quote + topic) under every
     composite claim is the visual signature.
   * neutrality is armor: the Methodology page shows the nightly symmetry audit
@@ -24,7 +26,7 @@ import json
 import re
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
@@ -130,6 +132,10 @@ ROSTER = _load_roster()
 TAXONOMY = _load_json(TAXONOMY_FILE) or {}
 CORRECTIONS = corrections.load(CORRECTIONS_FILE)
 PHRASE_EVIDENCE = _load_json(DERIVED / "phrase-evidence.json") or {"phrases": {}}
+# S67-6. {slug: one raw spelling of the normalized key, as published}. Absent until the builder that
+# owns it has run in production, and every read below degrades to showing only the normalized key,
+# which is exactly what the site shows today.
+PHRASE_SURFACES = (_load_json(DERIVED / "phrase-surfaces.json") or {}).get("surfaces") or {}
 TOPIC_LABEL = {t.get("id"): t.get("label", t.get("id")) for t in TAXONOMY.get("topics", [])}
 
 
@@ -169,6 +175,30 @@ CSS = """
   --blue:#2b4c7e; --blue-bg:#eef2f8; --blue-line:#c7d6ea;
   --red:#8a2f2f; --red-bg:#f8eeee; --red-line:#e6cccc;
   --warn-bg:#fff6e0; --warn-line:#e8cf8a; --warn-ink:#6b4e00;
+  /* S67-5. Values that used to be written inline at their one use site. They are named here so the
+     dark block can move them; a literal left in a rule is a rule that only has a light theme. */
+  --rowhover:#faf9f6; --code-bg:#f6f5f1; --code-ink:#2a2a2a;
+  --neutral-bg:#eeeeee; --neutral-ink:#555555;
+  --mark-bg:#fff2ab; --ok:#1a7f37; --ok-line:#b7e0c0; --no-line:#e6b8b8;
+  --grid:#ececec; --axis:#cccccc; --axistext:#8a8a8a;
+}
+/* S67-5. A dark reader gets the same instrument, not a second design: the type, the density and the
+   two party hues survive; only the surfaces they sit on invert. Blue and red are LIGHTENED rather
+   than reused, because #2b4c7e on a near-black panel is a smudge and the party cue is load-bearing
+   (Article IV: neither party may be the more legible one). Contrast is checked in
+   tests/test_s67_dark_theme.py rather than eyeballed. */
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#e8e6e1; --muted:#a6a29b; --faint:#8e8a84; --line:#33322f;
+    --bg:#14140f; --panel:#1c1c18; --accent:#d8d5cf;
+    --blue:#8fb4e8; --blue-bg:#1b2534; --blue-line:#33507d;
+    --red:#e79b9b; --red-bg:#301d1d; --red-line:#7d3d3d;
+    --warn-bg:#2e2513; --warn-line:#6b5620; --warn-ink:#f0d99a;
+    --rowhover:#22221d; --code-bg:#20201b; --code-ink:#d6d3cd;
+    --neutral-bg:#2a2a25; --neutral-ink:#b3afa8;
+    --mark-bg:#6a5a12; --ok:#7fca94; --ok-line:#2f5c3b; --no-line:#7a4141;
+    --grid:#2c2c27; --axis:#4a4944; --axistext:#8e8a84;
+  }
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -244,12 +274,12 @@ small{font-size:13px}
 .receipt .claim-correction{margin:7px 0; padding:7px 9px; border:1px solid var(--warn-line);
   background:var(--warn-bg); color:var(--warn-ink); font-size:12px}
 .receipt ul.cites a{color:var(--blue)}
-.receipt .quote mark.keyspan{background:#fff2ab; color:inherit; padding:0 1px; border-radius:2px}
+.receipt .quote mark.keyspan{background:var(--mark-bg); color:inherit; padding:0 1px; border-radius:2px}
 .receipt .rtests{margin:5px 0 2px; display:flex; flex-wrap:wrap; gap:5px}
 .tchip{display:inline-block; font-size:10.5px; font-weight:600; padding:0 6px; border-radius:9px;
        border:1px solid var(--line); white-space:nowrap; line-height:1.7}
-.tchip.ok{color:#1a7f37; border-color:#b7e0c0}
-.tchip.no{color:var(--red); border-color:#e6b8b8}
+.tchip.ok{color:var(--ok); border-color:var(--ok-line)}
+.tchip.no{color:var(--red); border-color:var(--no-line)}
 .tchip.info{color:var(--muted)}
 
 .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
@@ -257,11 +287,11 @@ table{border-collapse:collapse; width:100%; font-size:14.5px}
 th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:middle}
 th{font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:600; white-space:nowrap}
 td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
-tr:hover td{background:#faf9f6}
+tr:hover td{background:var(--rowhover)}
 .pill{display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; line-height:1.5}
 .pill.D{background:var(--blue-bg); color:var(--blue)}
 .pill.R{background:var(--red-bg); color:var(--red)}
-.pill.I{background:#eee; color:#555}
+.pill.I{background:var(--neutral-bg); color:var(--neutral-ink)}
 .nomtag{display:inline-block; font-size:10.5px; font-weight:600; padding:0 6px; margin-left:6px;
         border:1px solid var(--line); border-radius:9px; color:var(--muted); background:var(--panel);
         white-space:nowrap; vertical-align:1px; cursor:help}
@@ -286,24 +316,63 @@ ul.daylist li{padding:5px 0; border-bottom:1px solid var(--line)}
 .kv dd{margin:0}
 @media(max-width:520px){.kv{grid-template-columns:1fr; gap:0}.kv dd{margin-bottom:8px}}
 
-pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:#f6f5f1; border:1px solid var(--line);
+pre.prompt{white-space:pre-wrap; word-wrap:break-word; background:var(--code-bg); border:1px solid var(--line);
   border-radius:6px; padding:12px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  font-size:13px; line-height:1.5; color:#2a2a2a; overflow-x:auto}
+  font-size:13px; line-height:1.5; color:var(--code-ink); overflow-x:auto}
 .promptmeta{font-size:12.5px; color:var(--faint); margin:4px 0 2px}
 
 ul.tight{margin:8px 0; padding-left:22px}
 ul.tight li{margin:3px 0}
+
+/* S67-7a. The essays surface. Same shell, same density, no second design language. */
+ul.elabels{list-style:none; margin:12px 0 18px; padding:10px 14px; border:1px solid var(--line);
+  border-radius:8px; background:var(--panel); font-size:13.5px}
+ul.elabels li{margin:3px 0}
+ul.elist{list-style:none; margin:18px 0; padding:0}
+ul.elist li{padding:10px 0; border-bottom:1px solid var(--line)}
+
+/* S67-1. Progressive disclosure. The method blocks are still on the page and still one click from
+   the composites; they are simply no longer the first thing a stranger reads. */
+details.method{border:1px solid var(--line); border-radius:8px; background:var(--panel);
+  margin:18px 0; padding:0}
+details.method>summary{cursor:pointer; padding:11px 14px; font-size:14.5px; font-weight:600;
+  color:var(--ink); list-style:none}
+details.method>summary::-webkit-details-marker{display:none}
+details.method>summary:before{content:"\\25B8"; color:var(--faint); margin-right:8px; font-size:12px}
+details.method[open]>summary:before{content:"\\25BE"}
+details.method>summary:focus-visible{outline:2px solid var(--blue); outline-offset:-2px}
+details.method .dbody{padding:0 14px 12px}
+details.method .dbody>section:first-child h2:first-child,
+details.method .dbody h2:first-child{margin-top:6px}
+
+/* S67-1/S67-2. The front door and the two exemplar charts. Equal columns are an Article IV
+   requirement, not a layout preference: one party rendered wider is a claim. */
+.frontdoor{font-size:19px; line-height:1.5; margin:18px 0 4px; color:var(--ink)}
+.frontdoor-links{font-size:14.5px; color:var(--muted); margin:0 0 6px}
+.exemplars{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:14px 0 6px}
+@media(max-width:720px){.exemplars{grid-template-columns:1fr}}
+.exemplar h3{font-size:14px; margin:0 0 4px; font-weight:600}
+.exemplar .xphrase{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:14px;
+  font-weight:700; word-break:break-word}
+.exemplar .xempty{color:var(--faint); font-size:14px; margin:10px 0}
+.selrule{font-size:12.5px; color:var(--faint); margin:4px 0 0}
+.surface{font-size:15px; margin:2px 0 0; color:var(--ink)}
+.surface .slabel{font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--faint);
+  margin-right:6px}
+.normkey{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; color:var(--faint)}
 
 footer.site{border-top:1px solid var(--line); margin-top:50px; padding-top:16px; color:var(--faint); font-size:13px}
 footer.site a{color:var(--muted)}
 """.strip()
 
 
-def page(title: str, body: str, depth: int = 0, description: str = "", path: str = "") -> str:
+def page(title: str, body: str, depth: int = 0, description: str = "", path: str = "",
+         card: str = "", card_alt: str = "") -> str:
     """Wrap page ``body`` in the shared shell. ``depth`` = subdir levels below
     the site root (0 for /index.html, 1 for /day/*.html and /phrases/*.html).
     ``path`` = this page's path relative to the site root (e.g. "day/2026-07-18.html"), used to build
-    the absolute og:url / canonical. It matches the value the caller appends to ``written``."""
+    the absolute og:url / canonical. It matches the value the caller appends to ``written``.
+    ``card`` = this page's own share card relative to the site root, or "" to use the brand card."""
     root = "../" * depth
     # Dark features (docs/11-BUILD-PROGRAM.md) link into the nav only once their FEATURES flag
     # flips True in a commit (the release act). Built-but-unreleased => no public link.
@@ -320,6 +389,10 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
     # pre-launch it exists at /posts.html but isn't advertised as an empty page.
     if HAS_POSTS:
         dark_nav += f'<a href="{root}posts.html">Posts</a>'
+    # Same rule, one step stricter: essays are not merely unlinked while empty, they are unwritten
+    # (S67-7a). Content presence is the gate; there is no flag to forget to flip.
+    if HAS_ESSAYS:
+        dark_nav += f'<a href="{root}essays/index.html">Essays</a>'
     nav = (
         f'<a href="{root}index.html">Today</a>'
         # The date archive is NAVIGATION to already-public pages, not a feature: the day pages have
@@ -328,6 +401,11 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
         # here would be gating the table of contents of a book that is already on the shelf.
         f'<a href="{root}day/index.html">Days</a>'
         f'<a href="{root}phrases/index.html">Phrases</a>'
+        # docs/39 H1. The exports page has always been written and has never been linked from
+        # anywhere, so the one artifact a researcher would actually reuse was reachable only by
+        # guessing its URL. Ungated for the same reason the day archive is: this is navigation to a
+        # page that is already public, not a feature release.
+        f'<a href="{root}api/index.html">Data</a>'
         f'<a href="{root}corrections/index.html">Corrections</a>'
         f'<a href="{root}status/index.html">Status</a>'
         f'{dark_nav}'
@@ -349,7 +427,11 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
     # (`esc(..., quote=True)`), which also closes attribute injection: real composites contain
     # literal double quotes.
     canonical = f"{config.SITE_URL}/" if path in ("", "index.html") else f"{config.SITE_URL}/{path}"
-    og_image = f"{config.SITE_URL}/{config.OG_IMAGE}"
+    # S67-3. A page unfurls with its OWN numbers when a card was built for it, and with the brand
+    # card when one was not. The fallback is the whole safety story for the card builder: it runs
+    # optional and skip-and-log, so "no card" has to be an ordinary, silent, correct outcome.
+    og_image = f"{config.SITE_URL}/{card}" if card else f"{config.SITE_URL}/{config.OG_IMAGE}"
+    og_alt = esc(card_alt) if (card and card_alt) else esc(public_strings.OG_IMAGE_ALT)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -370,9 +452,10 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 <meta property="og:image" content="{esc(og_image)}">
 <meta property="og:image:width" content="{config.OG_IMAGE_W}">
 <meta property="og:image:height" content="{config.OG_IMAGE_H}">
-<meta property="og:image:alt" content="{esc(public_strings.OG_IMAGE_ALT)}">
+<meta property="og:image:alt" content="{og_alt}">
 <meta name="twitter:card" content="summary_large_image">
 <style>{CSS}</style>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -388,7 +471,12 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 </main>
 <footer class="site">
   <p>{esc(public_strings.SYMMETRY_PROMISE)} See the <a href="{root}methodology.html">Methodology</a>.
-  {esc(public_strings.CITATION_PROMISE)} No tracking and no external requests.</p>
+  {esc(public_strings.CITATION_PROMISE)}</p>
+  <p>Feeds: <a href="{root}feed.xml">daily readings</a> &middot;
+  <a href="{root}corrections/feed.xml">corrections</a> &middot;
+  <a href="{root}alerts/feed.xml">watchlist alerts</a>. Machine-readable exports are on the
+  <a href="{root}api/index.html">Data</a> page.</p>
+  <p>{esc(public_strings.ANALYTICS_DISCLOSURE)} No third-party requests and no advertising.</p>
 </footer>
 </div>
 </body>
@@ -397,22 +485,74 @@ def page(title: str, body: str, depth: int = 0, description: str = "", path: str
 
 
 # ---------------------------------------------------------------------------
+# Per-page share cards (S67-3): read, never built, here
+# ---------------------------------------------------------------------------
+# The card builder (pipeline/cards.py) owns the pixels AND the alt text, and publishes both through
+# one manifest it writes next to the images. The renderer never re-derives an alt string from a
+# filename: that is a second authority for one fact, and the two drift the first time the card
+# design changes (docs/37 rules 1 and 6). An absent or unreadable manifest means every page falls
+# back to the brand card, which is the correct behavior when the optional builder was skipped.
+_CARD_INDEX: dict = {}
+
+
+def load_card_index() -> dict:
+    """{key: {"path":..., "alt":...}} from the card manifest, or {} when no cards were built."""
+    data = _load_json(OUT / config.OG_CARD_DIR / "index.json")
+    cards = data.get("cards") if isinstance(data, dict) else None
+    return cards if isinstance(cards, dict) else {}
+
+
+def _card_for(key: str) -> dict:
+    """page() keyword arguments for this page's own card, or {} to inherit the brand card."""
+    entry = _CARD_INDEX.get(key)
+    if not isinstance(entry, dict):
+        return {}
+    path, alt = entry.get("path"), entry.get("alt")
+    if not path or not alt or not (OUT / path).exists():
+        return {}
+    return {"card": str(path), "card_alt": str(alt)}
+
+
+# ---------------------------------------------------------------------------
 # Inline SVG charts (no external libs)
 # ---------------------------------------------------------------------------
-_SPARK_COLOR = {"D": "#2b4c7e", "R": "#8a2f2f"}
+# Party hues come from the stylesheet so one definition serves both themes. The literal hexes that
+# used to live here rendered as smudges against the S67-5 dark panel, and a party cue that is
+# legible for one side and not the other is an Article IV problem, not a styling one.
+_SPARK_COLOR = {"D": "var(--blue)", "R": "var(--red)"}
+# The non-color cue. Color alone cannot carry the party distinction: about one man in twelve cannot
+# separate these two hues, and a chart screenshotted in grayscale loses them for everyone. D is the
+# solid line, R the dashed one, on every chart the site draws.
+_SERIES_DASH = {"D": "", "R": "6 4"}
+
+
+def _series_legend(labels: tuple[str, ...] = ("D", "R")) -> str:
+    """The text legend that names each party's line AND its dash pattern.
+
+    The swatch is a CSS border, not an inline SVG: a decorative swatch has nothing to put in a
+    <title>/<desc>, and the site's accessibility rule is that every SVG it emits carries both."""
+    bits = []
+    for party in labels:
+        style = "dashed" if _SERIES_DASH.get(party) else "solid"
+        bits.append(
+            f'<span class="sw" style="border-top-style:{style}; '
+            f'border-color:{_SPARK_COLOR.get(party, "var(--blue)")}"></span>'
+            f'{esc(PARTY_NAME.get(party, party))} <span class="faint">({style} line)</span>'
+        )
+    return '<p class="legend">' + "&nbsp;&nbsp;&nbsp;".join(bits) + "</p>"
 
 
 def sparkline_svg(values, width: int = 120, height: int = 28, party: str | None = None) -> str:
     """Tiny inline SVG sparkline for a list of numeric values (max(D,R) per day). Colored by the
     phrase's leading party so a red-dominant phrase's trend isn't drawn in Democratic blue (§S7 D)."""
-    color = _SPARK_COLOR.get(party or "", "#2b4c7e")
+    color = _SPARK_COLOR.get(party or "", "var(--blue)")
     vals = [max(0, int(v)) for v in values if v is not None]
     if len(vals) < 2:
         # Not enough points: draw a flat baseline so the cell isn't empty.
         return (
             f'<svg class="spark" width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
             f'role="img"><title>Phrase trend</title><desc>No trend series is available.</desc>'
-            f'<line x1="1" y1="{height-3}" x2="{width-1}" y2="{height-3}" stroke="#ccc" stroke-width="1"/></svg>'
+            f'<line x1="1" y1="{height-3}" x2="{width-1}" y2="{height-3}" stroke="var(--axis)" stroke-width="1"/></svg>'
         )
     vmax = max(vals) or 1
     n = len(vals)
@@ -436,10 +576,21 @@ def sparkline_svg(values, width: int = 120, height: int = 28, party: str | None 
 
 
 def curve_svg(series, width: int = 900, height: int = 260) -> str:
-    """Larger adoption-curve line chart: D and R series over time with axes,
-    gridlines, a peak marker, and sampled date labels on the x-axis.
+    """The adoption curve: distinct offices carrying one phrase, per party, per day.
 
     ``series`` is the chronological list of {"day":..,"D":..,"R":..,"I":..}.
+
+    THE CHART IS COUNTS AND DATES AND NOTHING ELSE. The rule that keeps composite prose and source
+    statement text out of Atom entries and og: values applies inside an SVG for exactly the same
+    reason: an <title>/<desc> is read by screen readers and scraped by crawlers, it is not
+    scanned by any publication audit, and privacy_correct_line() never runs on it. Everything
+    written below is derived from the numeric series and its day strings.
+
+    Both series are drawn with a dash pattern as well as a hue (``_SERIES_DASH``), so the party
+    distinction survives color blindness, grayscale printing and a screenshot run through a filter.
+
+    NO CLOCK (docs/37 rule 5). Every coordinate is a pure function of ``series``, so two renders of
+    the same input are byte-identical; tests/test_s67_charts.py holds that.
     """
     rows = [r for r in (series or []) if isinstance(r, dict) and r.get("day")]
     if len(rows) < 2:
@@ -463,15 +614,16 @@ def curve_svg(series, width: int = 900, height: int = 260) -> str:
     def poly_for(vals):
         return " ".join(f"{x_of(i):.1f},{y_of(v):.1f}" for i, v in enumerate(vals))
 
+    d_peak, r_peak = max(d_vals or [0]), max(r_vals or [0])
     parts = [
         f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
         f'role="img" preserveAspectRatio="xMinYMin meet" style="min-width:{width}px">'
-        '<title>Phrase adoption curve</title>'
-        f'<desc>Democrats peak at {max(d_vals or [0])} member'
-        f'{"" if max(d_vals or [0]) == 1 else "s"}; Republicans peak at '
-        f'{max(r_vals or [0])} member{"" if max(r_vals or [0]) == 1 else "s"}, from '
-        f'{esc(rows[0].get("day"))} through '
-        f'{esc(rows[-1].get("day"))}.</desc>'
+        '<title>Adoption curve: distinct offices using this phrase each day, by party</title>'
+        f'<desc>Democratic offices, drawn as a solid line, peak at {d_peak} on one day; '
+        f'Republican offices, drawn as a dashed line, peak at {r_peak}. '
+        f'The horizontal axis runs from {esc(rows[0].get("day"))} through '
+        f'{esc(rows[-1].get("day"))}; the vertical axis counts distinct offices, '
+        f'from 0 to {vmax}.</desc>'
     ]
     # y gridlines + labels (0, mid, max)
     for frac in (0.0, 0.5, 1.0):
@@ -479,24 +631,25 @@ def curve_svg(series, width: int = 900, height: int = 260) -> str:
         yy = y_of(yv)
         parts.append(
             f'<line x1="{left}" y1="{yy:.1f}" x2="{width-right}" y2="{yy:.1f}" '
-            f'stroke="#ececec" stroke-width="1"/>'
+            f'stroke="var(--grid)" stroke-width="1"/>'
         )
         parts.append(
             f'<text x="{left-6}" y="{yy+4:.1f}" text-anchor="end" '
-            f'font-size="11" fill="#8a8a8a">{int(round(yv))}</text>'
+            f'font-size="11" fill="var(--axistext)">{int(round(yv))}</text>'
         )
     # axes
-    parts.append(f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top+plot_h}" stroke="#ccc" stroke-width="1"/>')
+    parts.append(f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top+plot_h}" stroke="var(--axis)" stroke-width="1"/>')
     parts.append(
-        f'<line x1="{left}" y1="{top+plot_h}" x2="{width-right}" y2="{top+plot_h}" stroke="#ccc" stroke-width="1"/>'
+        f'<line x1="{left}" y1="{top+plot_h}" x2="{width-right}" y2="{top+plot_h}" stroke="var(--axis)" stroke-width="1"/>'
     )
-    # R then D so D (usually the mover) sits on top
+    # R then D so D (usually the mover) sits on top. R is dashed, D solid: the non-color cue.
     parts.append(
-        f'<polyline fill="none" stroke="#8a2f2f" stroke-width="1.8" '
+        f'<polyline fill="none" stroke="{_SPARK_COLOR["R"]}" stroke-width="1.8" '
+        f'stroke-dasharray="{_SERIES_DASH["R"]}" '
         f'stroke-linejoin="round" points="{poly_for(r_vals)}"/>'
     )
     parts.append(
-        f'<polyline fill="none" stroke="#2b4c7e" stroke-width="2" '
+        f'<polyline fill="none" stroke="{_SPARK_COLOR["D"]}" stroke-width="2" '
         f'stroke-linejoin="round" points="{poly_for(d_vals)}"/>'
     )
     # peak marker on the higher-of-the-two series
@@ -504,13 +657,13 @@ def curve_svg(series, width: int = 900, height: int = 260) -> str:
     peak_i = combined.index(max(combined))
     peak_v = combined[peak_i]
     px, py = x_of(peak_i), y_of(peak_v)
-    parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.2" fill="#1a1a1a"/>')
-    label = f"peak {peak_v} · {esc(rows[peak_i].get('day'))}"
+    parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.2" fill="var(--ink)"/>')
+    label = f"peak {peak_v} &middot; {esc(rows[peak_i].get('day'))}"
     anchor = "end" if px > width * 0.7 else "start"
     dx = -6 if anchor == "end" else 6
     parts.append(
         f'<text x="{px+dx:.1f}" y="{py-6:.1f}" text-anchor="{anchor}" '
-        f'font-size="11" fill="#1a1a1a">{label}</text>'
+        f'font-size="11" fill="var(--ink)">{label}</text>'
     )
     # sampled x-axis date labels (~5 across)
     n_labels = min(5, n)
@@ -524,10 +677,128 @@ def curve_svg(series, width: int = 900, height: int = 260) -> str:
         anchor = "start" if k == 0 else ("end" if k == n_labels - 1 else "middle")
         parts.append(
             f'<text x="{xx:.1f}" y="{top+plot_h+16:.1f}" text-anchor="{anchor}" '
-            f'font-size="11" fill="#8a8a8a">{esc(rows[i].get("day"))}</text>'
+            f'font-size="11" fill="var(--axistext)">{esc(rows[i].get("day"))}</text>'
         )
     parts.append("</svg>")
     return "".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# Homepage adoption exemplars (S67-2b)
+# ---------------------------------------------------------------------------
+# The trailing window the two exemplar picks are drawn from. It is a DISPLAY window, not a
+# measurement threshold: nothing downstream reads it, moving it changes which phrase is illustrated
+# and no published number.
+ADOPTION_WINDOW_DAYS = 90
+
+
+def _window_rows(pdata: dict, anchor_day: str, window_days: int) -> list[dict]:
+    """The public-window series rows falling inside the trailing window that ends at ``anchor_day``.
+
+    ``anchor_day`` is supplied by the caller (the day the homepage is showing), never read from a
+    clock: a chart whose contents depend on when the renderer ran cannot be reproduced, and RUN C
+    re-renders published days months later (docs/37 rule 5)."""
+    try:
+        end = datetime.strptime(anchor_day, "%Y-%m-%d").date()
+    except (TypeError, ValueError):
+        return []
+    start = (end - timedelta(days=window_days - 1)).isoformat()
+    end_s = end.isoformat()
+    return [r for r in public_phrase_window(pdata)["series"]
+            if isinstance(r.get("day"), str) and start <= r["day"] <= end_s]
+
+
+def adoption_exemplars(records, anchor_day: str, *, window_days: int = ADOPTION_WINDOW_DAYS,
+                       floor: int | None = None) -> dict:
+    """Pick one illustrative phrase PER PARTY, by rule, from ``records`` = [(slug, pdata)].
+
+    THE RULE, and it is printed on the page under the charts so a reader can check the pick rather
+    than trust it: for each party independently, the phrase with the highest single-day count of
+    distinct offices FROM THAT PARTY inside the trailing window, among phrases that reached the
+    coordination floor on some day in that window. Ties break to the earlier first appearance, then
+    to the lexicographically first slug, so the pick is a pure function of the corpus and two runs
+    over one corpus cannot disagree.
+
+    INDEPENDENT PER PARTY (Article IV). The obvious implementation ranks every phrase once and takes
+    the top two, and that implementation publishes the larger caucus twice on most days: the pooled
+    top-20 measured 88 percent Democratic (#146). Each party is ranked against its own phrases and
+    neither pick constrains the other, so a Republican recess week yields an honestly empty panel
+    rather than a lowered bar.
+
+    The floor is READ FROM ITS OWNER (config.CONCORDANCE_PEAK_FLOOR, the same coordination floor the
+    on-script index and origination use) and never restated here: a second copy of a threshold is a
+    threshold that drifts (docs/37 rule 1)."""
+    floor = config.CONCORDANCE_PEAK_FLOOR if floor is None else floor
+    best: dict[str, dict] = {}
+    for slug, pdata in records:
+        if not isinstance(pdata, dict):
+            continue
+        ngram = pdata.get("ngram") or ""
+        # Art. XIII at the selection gate as well as the render gate: a suppressed phrase must not
+        # even be a candidate for the most prominent chart on the site.
+        if not ngram or privacy.is_suppressed(ngram):
+            continue
+        rows = _window_rows(pdata, anchor_day, window_days)
+        if len(rows) < 2:
+            continue
+        first_seen = str((pdata.get("first_seen") or {}).get("date") or "")
+        for party in config.COMPOSITE_PARTIES:
+            peak, peak_day = 0, ""
+            for row in rows:
+                try:
+                    value = max(0, int(row.get(party) or 0))
+                except (TypeError, ValueError):
+                    value = 0
+                if value > peak:
+                    peak, peak_day = value, row.get("day") or ""
+            if peak < floor:
+                continue
+            # Sort key, most-preferred first: larger peak, earlier first appearance, then slug. A
+            # record with no first-appearance date sorts LAST among equals rather than winning by
+            # virtue of an empty string.
+            key = (-peak, first_seen or "9999-99-99", str(slug))
+            if party not in best or key < best[party]["_key"]:
+                best[party] = {"_key": key, "slug": str(slug), "ngram": ngram, "peak": peak,
+                               "peak_day": peak_day, "first_seen": first_seen, "series": rows}
+    return {party: best.get(party) for party in config.COMPOSITE_PARTIES}
+
+
+def adoption_exemplar_panel(exemplars: dict, depth: int = 0, *,
+                            window_days: int = ADOPTION_WINDOW_DAYS,
+                            floor: int | None = None,
+                            slugs_with_pages: set | None = None) -> str:
+    """Two equal-weight panels, one per party, plus the selection rule in small type."""
+    floor = config.CONCORDANCE_PEAK_FLOOR if floor is None else floor
+    root = "../" * depth
+    slugs_with_pages = SLUGS_WITH_PAGES if slugs_with_pages is None else slugs_with_pages
+    if not any(exemplars.get(party) for party in config.COMPOSITE_PARTIES):
+        return ""
+    columns = []
+    for party in config.COMPOSITE_PARTIES:
+        pick = exemplars.get(party)
+        head = (f'<h3><span class="pill {esc(party)}">{esc(party)}</span> '
+                f'{esc(PARTY_NAME.get(party, party))}</h3>')
+        if not pick:
+            columns.append(f'<div class="exemplar chartbox" data-party="{esc(party)}">{head}'
+                           f'<p class="xempty">{esc(public_strings.ADOPTION_EMPTY_PANEL)}</p></div>')
+            continue
+        label = esc(pick["ngram"])
+        if pick["slug"] in slugs_with_pages:
+            label = f'<a href="{root}phrases/{esc(pick["slug"])}.html">{label}</a>'
+        columns.append(
+            f'<div class="exemplar chartbox" data-party="{esc(party)}">{head}'
+            f'<p class="xphrase">{label}</p>'
+            f'<p class="muted"><small>Peak {esc(pick["peak"])} offices on '
+            f'{esc(pick["peak_day"])}.</small></p>'
+            f'<div class="scroll">{curve_svg(pick["series"], width=440, height=190)}</div>'
+            f'{_series_legend()}</div>'
+        )
+    rule = public_strings.ADOPTION_SELECTION_RULE.format(window=window_days, floor=floor)
+    return (
+        '<section class="adoption-exemplars"><h2>Where language spread this window</h2>'
+        f'<div class="exemplars">{"".join(columns)}</div>'
+        f'<p class="selrule">{esc(rule)}</p></section>'
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -556,6 +827,21 @@ def phrase_page_slugs():
             if p.stem != "top":
                 slugs.add(p.stem)
     return slugs
+
+
+def phrase_records() -> list[tuple[str, dict]]:
+    """Every phrase record as (slug, data), read once and sorted, so a render that needs the set
+    twice (the exemplar picks and the phrase pages) cannot see two different corpora."""
+    pdir = DERIVED / "phrases"
+    out = []
+    if pdir.exists():
+        for p in sorted(pdir.glob("*.json")):
+            if p.stem == "top":
+                continue
+            data = _load_json(p)
+            if isinstance(data, dict) and data.get("ngram"):
+                out.append((p.stem, data))
+    return out
 
 
 def has_daily_lines(day_data) -> bool:
@@ -1588,9 +1874,15 @@ def party_columns_table(day_data, slugs_with_pages, depth, caucus) -> str:
             rows = sorted((r for r in pooled if (r.get("counts") or {}).get(p, 0) >= config.SYNC_MIN_MEMBERS),
                           key=lambda r: (r.get("counts") or {}).get(p, 0), reverse=True)[:10]
         cols.append(_party_column(p, rows, slugs_with_pages, depth, (caucus or {}).get(p)))
+    root = "../" * depth
     return ('<p class="subhead">Each party&rsquo;s own most-synchronized phrases, ranked within the '
             'party so the larger caucus can&rsquo;t fill the table — every count travels with its '
-            f'caucus denominator.</p><div class="pcols">{"".join(cols)}</div>')
+            f'caucus denominator.</p><div class="pcols">{"".join(cols)}</div>'
+            # S67-6. Two columns side by side invite a reader to compare their row counts, which is
+            # a comparison of caucus sizes wearing a coordination costume. The note says where the
+            # volume question is actually answered.
+            f'<p class="muted"><small>{esc(public_strings.PARTY_IMBALANCE_NOTE)} '
+            f'See the <a href="{root}methodology.html">nightly symmetry audit</a>.</small></p>')
 
 
 def participation_panel(day_data: dict) -> str:
@@ -1624,7 +1916,41 @@ def participation_panel(day_data: dict) -> str:
     return (
         '<section class="participation"><h2>Participation in eligible message claims</h2>'
         '<p class="subhead">Each measure keeps one count unit from numerator through denominator.</p>'
-        f'<div class="pcols">{"".join(columns)}</div></section>'
+        f'<div class="pcols">{"".join(columns)}</div>'
+        # S67-1. Office participation and publication participation are stacked one line apart and
+        # their denominators are different populations. A reader who assumes they should reconcile
+        # concludes one of them is wrong, which is the cheapest way to lose an honest reader.
+        f'<p class="muted"><small>{esc(public_strings.DENOMINATOR_BASES_NOTE)}</small></p>'
+        '</section>'
+    )
+
+
+def details_block(summary: str, body: str, *, name: str = "") -> str:
+    """Wrap a method block in a collapsed disclosure with a plain-English summary line.
+
+    S67-1. Participation tables and classification lanes used to sit ABOVE the composites, so the
+    first thing a stranger read was a denominator. They are unchanged and one click away; only their
+    position in the reading order moved. Native <details>, so this costs no script and still works
+    with the stylesheet stripped."""
+    if not body:
+        return ""
+    attr = f' data-disclosure="{esc(name)}"' if name else ""
+    return (f'<details class="method"{attr}><summary>{esc(summary)}</summary>'
+            f'<div class="dbody">{body}</div></details>')
+
+
+def front_door(depth: int = 0) -> str:
+    """The one sentence a stranger needs, above everything else on the homepage.
+
+    docs/39 H1 and §6. Three weeks public with an audience of about two, and the top of the page
+    opened with a temporal-state banner. Someone arriving from a shared link has to learn what this
+    is before any measurement means anything, and they will not read a methodology page to find
+    out."""
+    root = "../" * depth
+    return (
+        f'<p class="frontdoor">{esc(public_strings.FRONT_DOOR)}</p>'
+        f'<p class="frontdoor-links"><a href="{root}methodology.html">How it works</a> '
+        f'&middot; <a href="{root}about.html">Who makes it</a></p>'
     )
 
 
@@ -1745,16 +2071,23 @@ def temporal_state_banner(state, day, lag_days=0):
 
 
 def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_day=None,
-                  is_today=False, temporal_state=None, lag_days=0):
+                  is_today=False, temporal_state=None, lag_days=0, exemplars=None):
     symmetry = _load_json(DERIVED / "symmetry" / f"{day}.json")
     root = "../" * depth
+    parts = []
+
+    # S67-1. The front door goes first on the homepage, ahead of the heading, the status header and
+    # every banner. On a dated day page it is redundant (that reader followed a link into the
+    # archive and the nav is already above them), so it is not repeated 32 times.
+    if is_today:
+        parts.append(front_door(depth))
 
     if temporal_state is not None:
         heading = public_strings.temporal_heading(temporal_state)
         title_line = heading if temporal_state == "today" else f"{heading}: {day}"
     else:
         title_line = "Today on OnScript" if is_today else f"OnScript · {day}"
-    parts = [f"<h1>{esc(title_line)}</h1>"]
+    parts.append(f"<h1>{esc(title_line)}</h1>")
     parts.append(f'<p class="subhead">{esc(public_strings.day_tagline(day))}</p>')
     parts.append(instrument_status_header(depth))
 
@@ -1793,10 +2126,19 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
             f'threshold changed and no finding was produced.</small></p>'
         )
 
-    parts.append(participation_panel(day_data))
+    # S67-2b. The flagship visual sits directly under the composites: it is the one thing on the
+    # page that shows the instrument doing what it claims to do, and until now the only adoption
+    # curves on the site were one click and one phrase page away.
+    if is_today and exemplars:
+        parts.append(adoption_exemplar_panel(exemplars, depth=depth, slugs_with_pages=slugs_with_pages))
+
+    # S67-1. Method blocks, collapsed. Same content, same numbers, no longer ahead of the reading.
+    parts.append(details_block(public_strings.DISCLOSURE_PARTICIPATION,
+                               participation_panel(day_data), name="participation"))
 
     if is_today:
-        parts.append(class_lanes_panel(day_data, depth))
+        parts.append(details_block(public_strings.DISCLOSURE_CLASS_LANES,
+                                   class_lanes_panel(day_data, depth), name="class-lanes"))
 
     # links to audit + methodology
     audit_link = (
@@ -2026,6 +2368,18 @@ def phrase_page_body(pdata, depth=1, evidence=None):
     series = window["series"]
 
     parts = [f'<h1>&ldquo;{esc(ngram)}&rdquo;</h1>']
+    # S67-6. The heading is the NORMALIZED key, which is the phrase's identity and stays. Underneath
+    # it, one real spelling from the sources, so "1 8 billion" reads as measurement output rather
+    # than as a broken string. Display only: nothing downstream reads this, and a phrase with no
+    # surface on record simply does not get the line.
+    surface = str(PHRASE_SURFACES.get(pdata.get("slug") or "") or "")
+    if surface and not privacy.is_suppressed(surface):
+        parts.append(
+            f'<p class="surface"><span class="slabel">{esc(public_strings.SURFACE_FORM_LABEL)}</span>'
+            f'&ldquo;{esc(surface)}&rdquo;</p>'
+            f'<p class="normkey">{esc(public_strings.SURFACE_FORM_NOTE)} '
+            f'Normalized key: {esc(ngram)}</p>'
+        )
     # docs/19 §2b — nomenclature tag on the phrase/curve page (DARK until FEATURES["nomenclature_tags"]).
     # Congress from the row if present, else the first-seen date; skip silently if neither resolves.
     if config.feature_on("nomenclature_tags") and ngram:
@@ -2038,10 +2392,7 @@ def phrase_page_body(pdata, depth=1, evidence=None):
 
     parts.append('<div class="chartbox scroll">')
     parts.append(curve_svg(series))
-    parts.append(
-        '<p class="legend"><span class="sw" style="border-color:#2b4c7e"></span>Democrats'
-        '&nbsp;&nbsp;<span class="sw" style="border-color:#8a2f2f"></span>Republicans</p>'
-    )
+    parts.append(_series_legend())
     parts.append("</div>")
 
     source_first_is_public = bool(source_fs_date and source_fs_date >= config.STAGE1_EPOCH)
@@ -2156,11 +2507,17 @@ def phrases_index_body(top):
     # Art. XIII: the one display path that does NOT route through build.collapse_and_rank (the peak
     # table below does), so it needs its own filter.
     parts.append(render_table(privacy.filter_rows(top.get("by_velocity") or [])[0], "Fastest-spreading", "Ranked by adoption velocity — phrases going viral within a caucus."))
+    # S67-6. The Velocity column has been a ranked number with no definition anywhere on the site.
+    # The sentence is the owning docstring's calculation (pipeline/build._velocity) in reader words.
+    parts.append(f'<p class="muted"><small>{esc(public_strings.VELOCITY_DEFINITION)}</small></p>')
     # collapse near-dups on the peak table (render-time refresh); the velocity table keeps its own order.
     parts.append(render_table(
         build.collapse_and_rank(top.get("by_peak") or [], k=40),
         "Repeated phrase observations",
         public_strings.LEXICAL_TABLE_DISCLAIMER + " Ranked by peak single-day member count."))
+    parts.append(
+        f'<p class="muted"><small>{esc(public_strings.PARTY_IMBALANCE_NOTE)} '
+        f'See the <a href="../methodology.html">nightly symmetry audit</a>.</small></p>')
     return "".join(parts)
 
 
@@ -2543,6 +2900,23 @@ def about_body():
         "never a silent edit. OnScript has no comment section and solicits no engagement; it broadcasts a "
         "measurement and links its receipts.</p>"
     )
+    # docs/39 H1. The instrument had no address: the corrections process assumed a GitHub account,
+    # and the bot accounts have DMs off. The constant is the whole switch: empty it and this
+    # paragraph disappears, with no flag, no template branch and no second place to look.
+    if config.CONTACT_EMAIL:
+        parts.append(
+            f"<p>A reader who is not a GitHub user can write to "
+            f"<a href='mailto:{esc(config.CONTACT_EMAIL)}'>{esc(config.CONTACT_EMAIL)}</a>. "
+            "Corrections sent there are logged publicly like any other; the instrument does not "
+            "take private corrections.</p>"
+        )
+    # S67-4d. Article XVII: the site now loads one script, so the site now says so, on the page
+    # that carries its disclosures rather than only in a footer line.
+    parts.append(
+        f"<p><strong>Visit counting.</strong> {esc(public_strings.ANALYTICS_DISCLOSURE)} The script "
+        "is served from this domain by the host; there is no third-party request on any page, no "
+        "advertising, and no comment or engagement surface anywhere on the instrument.</p>"
+    )
     parts.append("<h2>The accounts</h2>")
     parts.append(
         "<p>Two accounts publish automated measurements and composites on Bluesky, one per party. "
@@ -2668,6 +3042,118 @@ def posts_log_body(threads) -> str:
 SLUGS_WITH_PAGES = phrase_page_slugs()
 _POSTED_THREADS = posted_threads()
 HAS_POSTS = bool(_POSTED_THREADS)
+
+
+# ---------------------------------------------------------------------------
+# Essays (S67-7a): the editorial surface, unlinked and unwritten while empty
+# ---------------------------------------------------------------------------
+# CONTENT IS THE GATE, not a FEATURES flag. An empty essays index is worse than no essays index:
+# it is a promise with nothing behind it, and it gets crawled, shared and cached in that state. So
+# zero essays means zero bytes and no nav link, exactly like posts.html before the first thread
+# (§Session-8). The first commit that adds a file under content/essays/ turns the surface on, which
+# makes publishing an essay one act instead of two.
+ESSAYS_DIR = config.REPO_ROOT / "content" / "essays"
+
+
+def load_essays(directory: Path | None = None) -> list[dict]:
+    """Authored essays, newest first. Authored JSON, not derived output: prose is Michael's."""
+    directory = ESSAYS_DIR if directory is None else Path(directory)
+    out = []
+    if directory.exists():
+        for path in sorted(directory.glob("*.json")):
+            essay = _load_json(path)
+            if isinstance(essay, dict) and essay.get("title") and essay.get("date"):
+                essay.setdefault("slug", path.stem)
+                out.append(essay)
+    out.sort(key=lambda e: (str(e.get("date") or ""), str(e.get("slug") or "")), reverse=True)
+    return out
+
+
+def _essay_labels(labels) -> str:
+    """The standing labels row. An unknown label still renders, with no invented explanation."""
+    chips = []
+    for label in labels or []:
+        meaning = public_strings.ESSAY_LABELS.get(str(label))
+        chips.append(
+            f'<li><strong>{esc(label)}</strong>'
+            + (f' <span class="faint">{esc(meaning)}</span>' if meaning else "")
+            + "</li>"
+        )
+    if not chips:
+        return ""
+    return f'<ul class="elabels">{"".join(chips)}</ul>'
+
+
+def _essay_receipts(receipts) -> str:
+    """The receipts section: member, date, and a link, on the same pattern as a phrase page.
+
+    Metadata only, and every URL goes through the same scheme whitelist and escaping the live
+    citation paths use, because essay JSON is authored by hand and a hand can type anything."""
+    rows = []
+    for receipt in receipts or []:
+        if not isinstance(receipt, dict):
+            continue
+        url = _safe_http_url(receipt.get("url"))
+        who, when = receipt.get("member"), receipt.get("date")
+        if not url or not who or not when:
+            continue
+        rows.append(
+            '<div class="receipt"><div class="rhead">'
+            f'{esc(who)} &middot; {esc(when)} &middot; '
+            f'<a href="{esc(url)}" rel="nofollow noopener">source</a></div>'
+            + (f'<div class="rtopics">{esc(receipt.get("note"))}</div>'
+               if receipt.get("note") else "")
+            + "</div>"
+        )
+    if not rows:
+        return ""
+    return ('<div class="receipts"><div class="rlabel">Receipts</div>'
+            + "".join(rows) + "</div>")
+
+
+def essay_body(essay: dict) -> str:
+    """One essay. Every field is escaped: this is authored content, not a template to trust."""
+    parts = [f'<h1>{esc(essay.get("title"))}</h1>']
+    if essay.get("dek"):
+        parts.append(f'<p class="subhead">{esc(essay["dek"])}</p>')
+    byline = essay.get("byline") or SITE_AUTHOR
+    parts.append(f'<p class="muted"><small>By {esc(byline)} &middot; {esc(essay.get("date"))}</small></p>')
+    parts.append(_essay_labels(essay.get("labels")))
+    for block in essay.get("body") or []:
+        text = str(block or "")
+        if text.startswith("## "):
+            parts.append(f"<h2>{esc(text[3:].strip())}</h2>")
+        elif text.strip():
+            parts.append(f"<p>{esc(text)}</p>")
+    parts.append(_essay_receipts(essay.get("receipts")))
+    provenance = essay.get("provenance") or {}
+    if provenance:
+        rows = "".join(f"<dt>{esc(k)}</dt><dd class='mono'>{esc(v)}</dd>"
+                       for k, v in sorted(provenance.items()))
+        parts.append(f'<h2>Provenance</h2><dl class="kv">{rows}</dl>')
+    parts.append(f'<p class="muted"><small>{esc(public_strings.ESSAY_STANDING_NOTE)}</small></p>')
+    parts.append('<p style="margin-top:22px"><a href="index.html">&larr; All essays</a></p>')
+    return "".join(parts)
+
+
+def essays_index_body(essays: list[dict]) -> str:
+    rows = []
+    for essay in essays:
+        rows.append(
+            f'<li><a href="{esc(essay.get("slug"))}.html">{esc(essay.get("title"))}</a> '
+            f'<span class="faint">{esc(essay.get("date"))}</span>'
+            + (f'<div class="muted"><small>{esc(essay["dek"])}</small></div>'
+               if essay.get("dek") else "")
+            + "</li>"
+        )
+    return ("<h1>Essays</h1>"
+            "<p class=\"subhead\">Longer pieces about what the instrument measured, each with its "
+            "receipts and its standing labels.</p>"
+            f'<ul class="elist">{"".join(rows)}</ul>')
+
+
+ESSAYS = load_essays()
+HAS_ESSAYS = bool(ESSAYS)
 
 
 # --- The Archive (dark feature 1.1, docs/11) — 25-year era/month chapters + era fingerprints --------
@@ -3142,9 +3628,11 @@ def annotation_packet_pages() -> list[str]:
 
 
 def build_site():
+    global _CARD_INDEX
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "day").mkdir(parents=True, exist_ok=True)
     (OUT / "phrases").mkdir(parents=True, exist_ok=True)
+    _CARD_INDEX = load_card_index()
     try:
         shutil.copyfile(FAVICON_SOURCE, OUT / "favicon.png")
     except Exception as e:  # skip-and-log: optional chrome cannot cost render 1 or the posting streak
@@ -3163,6 +3651,10 @@ def build_site():
     days = all_day_files()  # sorted ascending by day
     day_index = {d: data for d, data in days}
     day_order = [d for d, _ in days]
+    # Read once; the exemplar picks and the phrase pages below share this list so they cannot see
+    # two different corpora, and 625 small JSONs are not opened twice per render.
+    records = phrase_records()
+    slugs_with_pages = {slug for slug, _ in records} or SLUGS_WITH_PAGES
 
     # The set of days that ACTUALLY get a page. Computed BEFORE index.html so the homepage can link
     # the previously published day — index.html is the only entry point into the day chain, and it
@@ -3201,14 +3693,17 @@ def build_site():
             source_ok=has_daily_lines(data),
         )
         lag_days = _calendar_lag_days(today_day, prod_day)
-        body = day_view_body(today_day, data, SLUGS_WITH_PAGES, depth=0,
+        # The window ends at the day the homepage is SHOWING, not at wall-clock today: the render
+        # must reproduce byte for byte whenever it is re-run for this reading (docs/37 rule 5).
+        exemplars = adoption_exemplars(records, today_day)
+        body = day_view_body(today_day, data, slugs_with_pages, depth=0,
                              prev_day=home_prev, is_today=True,
-                             temporal_state=state, lag_days=lag_days)
+                             temporal_state=state, lag_days=lag_days, exemplars=exemplars)
         heading = "Today" if state == "today" else public_strings.temporal_heading(state)
         (OUT / "index.html").write_text(
             page(f"OnScript: {heading} ({today_day})", body, depth=0,
                  description=public_strings.day_tagline(today_day),
-                 path="index.html"),
+                 path="index.html", **_card_for(f"day/{today_day}")),
             encoding="utf-8",
         )
     else:
@@ -3225,11 +3720,12 @@ def build_site():
     for i, (d, data) in enumerate(rendered):
         prev_day = rendered_order[i - 1] if i > 0 else None
         next_day = rendered_order[i + 1] if i < len(rendered_order) - 1 else None
-        body = day_view_body(d, data, SLUGS_WITH_PAGES, depth=1,
+        body = day_view_body(d, data, slugs_with_pages, depth=1,
                              prev_day=prev_day, next_day=next_day, is_today=False)
         (OUT / "day" / f"{d}.html").write_text(
             page(f"OnScript · {d}", body, depth=1,
-                 description=public_strings.day_tagline(d), path=f"day/{d}.html"),
+                 description=public_strings.day_tagline(d), path=f"day/{d}.html",
+                 **_card_for(f"day/{d}")),
             encoding="utf-8",
         )
         written.append(f"day/{d}.html")
@@ -3278,25 +3774,18 @@ def build_site():
         written.append("phrases/search.html")
 
     # ---- phrases/<slug>.html for every phrase page ----
-    pdir = DERIVED / "phrases"
-    if pdir.exists():
-        for p in sorted(pdir.glob("*.json")):
-            if p.stem == "top":
-                continue
-            pdata = _load_json(p)
-            if not isinstance(pdata, dict) or not pdata.get("ngram"):
-                continue
-            # Art. XIII belt to purge_derived's braces: a restored/re-generated JSON can never render.
-            if privacy.is_suppressed(pdata.get("ngram") or ""):
-                continue
-            body = phrase_page_body(pdata, depth=1)
-            (OUT / "phrases" / f"{p.stem}.html").write_text(
-                page(f"OnScript · “{pdata.get('ngram')}”", body, depth=1,
-                     description=f"Adoption curve for the phrase “{pdata.get('ngram')}”.",
-                     path=f"phrases/{p.stem}.html"),
-                encoding="utf-8",
-            )
-            written.append(f"phrases/{p.stem}.html")
+    for slug, pdata in records:
+        # Art. XIII belt to purge_derived's braces: a restored/re-generated JSON can never render.
+        if privacy.is_suppressed(pdata.get("ngram") or ""):
+            continue
+        body = phrase_page_body(pdata, depth=1)
+        (OUT / "phrases" / f"{slug}.html").write_text(
+            page(f"OnScript · “{pdata.get('ngram')}”", body, depth=1,
+                 description=f"Adoption curve for the phrase “{pdata.get('ngram')}”.",
+                 path=f"phrases/{slug}.html", **_card_for(f"phrases/{slug}")),
+            encoding="utf-8",
+        )
+        written.append(f"phrases/{slug}.html")
 
     # ---- concordance.html (1.4 The Concordance / R4) — dark until FEATURES["concordance"] ----
     # Not written at all while dark: an unlinked page is still crawlable/shareable, so "built dark"
@@ -3350,6 +3839,30 @@ def build_site():
         encoding="utf-8",
     )
     written.append("posts.html")
+
+    # ---- essays/ (S67-7a), written ONLY when essays exist ----
+    # Reloaded here rather than trusted from import, so a test (and RUN C) sees the tree as it is
+    # at render time. HAS_ESSAYS still gates the nav link, and the two agree because both read the
+    # same directory.
+    essays = load_essays()
+    if essays:
+        (OUT / "essays").mkdir(parents=True, exist_ok=True)
+        (OUT / "essays" / "index.html").write_text(
+            page("OnScript · Essays", essays_index_body(essays), depth=1,
+                 description="Longer pieces about what the instrument measured, with receipts.",
+                 path="essays/index.html"),
+            encoding="utf-8",
+        )
+        written.append("essays/index.html")
+        for essay in essays:
+            slug = str(essay.get("slug"))
+            (OUT / "essays" / f"{slug}.html").write_text(
+                page(f"OnScript · {essay.get('title')}", essay_body(essay), depth=1,
+                     description=str(essay.get("dek") or essay.get("title") or ""),
+                     path=f"essays/{slug}.html"),
+                encoding="utf-8",
+            )
+            written.append(f"essays/{slug}.html")
 
     # ---- structured corrections record ----
     (OUT / "corrections").mkdir(parents=True, exist_ok=True)
@@ -3443,8 +3956,8 @@ def build_site():
         target.write_bytes(content)
     (OUT / "api").mkdir(parents=True, exist_ok=True)
     (OUT / "api" / "index.html").write_text(
-        page("OnScript · Experimental API", status_exports.api_documentation(), depth=1,
-             description="Experimental static API resources and normalized exports.",
+        page("OnScript · Data and API", status_exports.api_documentation(), depth=1,
+             description="Downloadable JSON and CSV exports of every published OnScript measurement.",
              path="api/index.html"),
         encoding="utf-8",
     )

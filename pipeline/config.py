@@ -54,6 +54,16 @@ SITE_URL = "https://onscript.news"
 REPO_URL = "https://github.com/mlawsonking/onscript"
 OG_IMAGE = "og.png"          # committed at site/public/og.png — 1200x630, the link-card image
 OG_IMAGE_W, OG_IMAGE_H = 1200, 630
+# Per-page share cards (S67-3) live under this prefix. A page's card is optional by construction:
+# when the file is absent the page falls back to OG_IMAGE, so a skipped card build costs a generic
+# link preview and nothing else.
+OG_CARD_DIR = "cards"
+
+# docs/39 H1. The instrument had no way to be reached: no address anywhere on the site, bot accounts
+# with DMs off, and a corrections process that assumed the reader already had a GitHub account. This
+# is a PLAIN CONSTANT, not a feature flag. About renders a contact line only while it is non-empty,
+# so emptying the string is the whole off switch and there is no second place to look.
+CONTACT_EMAIL = "hello@onscript.news"
 
 # ---------------------------------------------------------------------------
 # Backfill epoch (gameplan §1.3). Stage 1 gates the weekend; 119th Congress seated.

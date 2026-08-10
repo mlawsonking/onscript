@@ -597,7 +597,12 @@ def api_documentation() -> str:
         fields = ", ".join(RESOURCE_FIELDS[name])
         rows.append(f"<tr><td><code>/{endpoint}</code></td><td>{name}</td><td>{fields}</td></tr>")
     return (
-        "<h1>Experimental API</h1>"
+        # docs/39 H1: this page is now linked from the nav as "Data". The first thing a researcher
+        # arriving on that link needs is that the files exist and are usable; the provisional
+        # contract is the second thing, not the headline. Both facts still appear.
+        "<h1>Data and API</h1>"
+        "<p class='subhead'>Every number this site publishes is downloadable here as JSON and CSV, "
+        "under the same citation rules as the pages.</p>"
         "<p class='subhead'>These static resources are experimental. They are not a supported API "
         "commitment before Gate B.</p>"
         "<p>Additive fields may appear. A field removal receives 30 days of notice. A breaking "

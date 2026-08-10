@@ -111,7 +111,12 @@ def test_missing_favicon_source_is_loud_but_cannot_stop_the_site_render():
 
 
 def test_faint_token_meets_aa_on_both_surfaces_and_no_other_palette_token_moves():
-    tokens = dict(re.findall(r"--([a-z-]+):(#[0-9a-fA-F]{3,6})", site.CSS))
+    # S67-5 added a prefers-color-scheme:dark variant, so the stylesheet declares the palette TWICE
+    # and an unscoped scrape reads the LAST definition of each token. Scoped to the first :root
+    # block (the light theme) so this test asserts exactly what it always asserted; the dark palette
+    # has its own contrast test in tests/test_s67_dark_theme.py.
+    light = re.search(r":root\s*\{(.*?)\}", site.CSS, re.S).group(1)
+    tokens = dict(re.findall(r"--([a-z-]+):(#[0-9a-fA-F]{3,6})", light))
     expected_unchanged = {
         "ink": "#1a1a1a", "muted": "#5a5a5a", "line": "#e2e2e2",
         "bg": "#fbfbf9", "panel": "#ffffff", "accent": "#333",
