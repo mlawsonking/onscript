@@ -3080,3 +3080,93 @@ phrase pages actually lose their quorum claim in public. `tests/_tmp_watchdog` e
 operator checkout, which no other session may touch. One question is referred to Fable at
 validation: whether `discipline.json` should stop being emitted rather than carry a withdrawal
 stamp. The stamp is what shipped, because the order said not to act on that judgment alone.
+## 2026-08-09: Session 67 (Opus). The polish order: a front door, and the curves out front
+
+ORDER S67, packages 1 through 9, executed in an isolated worktree on `opus/s67-polish` off
+`origin/main` at cc3b784. Suite 1081 to 1165, zero failures throughout. No API calls, $0. Nothing
+pushed, nothing dispatched, no flag flipped, and `data/derived` and `site/public` are deliberately
+not regenerated; every render and card build in this session went to a temp directory.
+
+The order's design register held: system fonts, the palette and the density on auditor surfaces
+are unchanged. What moved is reading order and findability. The homepage now opens with one
+sentence in plain words and a line to Methodology and About, above the heading, the status header
+and every banner, because a stranger arriving from a shared link previously met a temporal-state
+ladder first. The participation table and the classification lanes moved into collapsed
+disclosures with plain summaries; nothing was thinned, and a test asserts every number those
+blocks carried before is still in them.
+
+S67-2 is the flagship. The adoption curve draws distinct offices per party per day with a dash
+pattern as well as a hue, because about one man in twelve cannot separate these two hues and a
+grayscale screenshot loses them for everyone; the legend names both cues in words. Every stroke
+resolves through a stylesheet token, so the chart moves with the dark theme instead of leaving a
+black line on a black panel. The homepage gains one exemplar chart per party, side by side, picked
+by code and by a rule printed under the charts: that party's highest single-day office count in
+the trailing 90 days among phrases that reached the coordination floor, ties to the earlier first
+appearance then the slug. Per party and never pooled, because the pooled top-20 measured 88
+percent Democratic (#146) and pooling would publish the larger caucus twice on most days. The
+window anchors on the day being shown rather than a clock, so a re-render is byte-identical. On
+the live corpus tonight both parties qualify: "the supreme court" at 45 offices on 2026-06-30 and
+"defense industrial base" at 33 on 2026-07-22.
+
+S67-3 takes the project's first third-party runtime package, and takes it for decoration, so the
+fence is the design. Pillow is pinned with artifact hashes, recorded in the SBOM as an optional
+dependency, imported inside `pipeline/cards.py` and nowhere else, and called only from a wrapped
+skip-and-log builder in `run_assemble` that runs after the day summary and the manifest and before
+the site render. Day-one state is no Pillow and no cards directory, which is exactly what every
+live deployment looks like now and renders the site that shipped yesterday. The CI install cannot
+fail the run. Determinism is proven rather than asserted: no clock reaches a pixel, and the font
+is Pillow's embedded 6x11 raster upscaled with integer NEAREST, because `load_default()` returns a
+FreeType face on any Pillow built with FreeType and its hinting is not guaranteed identical
+between the Windows wheel and the manylinux one. 640 cards over the live corpus, 4.6 MB, 8
+seconds, and an unchanged card is not rewritten so the data commit does not churn. The look is
+blunt and instrument-like; a designed typeface later means a vendored TTF, never a system lookup.
+
+S67-6's surface form needed a ruling the order did not anticipate. `phrase-evidence.json` is
+contractually metadata-only, locked by its own test, and a raw surface form is by definition a
+fragment of a source statement. Rather than quietly widen that contract, the surface publishes
+through its own artifact, `phrase-surfaces.json`, with its own gate and its own revision, and the
+evidence slice is untouched. The revision is deliberately not named `*METHOD_VERSION`: it selects
+which already-measured spelling to display and no count, denominator, quorum or ranking reads it,
+so folding it into the measurement fingerprint would make a cosmetic edit announce itself as an
+instrument change. It does participate in the evidence cache key, so entries production cached
+before surfaces existed are recomputed rather than served back empty.
+
+The rest. S67-4 links the exports page from the nav as Data, retitles it Data and API, puts the
+three Atom feeds in every footer where a reader can see them, adds `config.CONTACT_EMAIL` as a
+plain constant whose emptiness is the whole off switch, and adds one deferred same-origin visit
+counter. Because the site now loads a script, the footer promise of "No tracking and no external
+requests" and the module docstring claiming no analytics were corrected rather than left standing.
+S67-5 adds a dark variant of the one CSS block, lightening the party hues rather than reusing
+them, with contrast asserted for both palettes including that the two party hues do not differ by
+more than 2.0 in contrast on either theme. S67-7a builds the essays surface on the posts.html
+rule, one notch stricter: content is the gate, there is no flag, and zero essays means zero bytes
+and no nav link. No prose was drafted. S67-8 folds in the replay dispatch the Fable session
+prepared, byte for byte, after verifying it parses, that its pins match collect.yml's, and that
+the flags it passes are flags the script defines. S67-9 gives the disabled cosigned collapse a
+loud line naming its consequence; writing that test found `sys` was never imported in
+`document_families`, caught by the real-mirror G1 test rather than by a fixture.
+
+Two existing tests moved, both mechanically. `test_accessibility`'s palette scrape read the whole
+stylesheet and now reads the first `:root` block, because the stylesheet declares the palette
+twice; its assertions are unchanged and the dark palette has its own contrast test. `test_g1`
+asserted `requirements.lock` was empty and now asserts what it was always for, that the Alexandria
+GPU stack never becomes a pipeline dependency, plus that the pinned set is exactly the one
+sanctioned package with artifact hashes. `test_x11`'s SBOM package set gains Pillow, which the
+order authorised.
+
+The P1 assets were written to `X:\onscript-data\drafts\P1-assets\` and nothing from there enters
+the repository. The chart is the paired weekly-overlap line Michael's edit note asked for, with
+the 75 D-greater weeks shaded and a dash pattern as the non-color cue, and the script refuses to
+write it unless its recomputed aggregates equal the published S1.9 card. They do, exactly: 105
+matched weeks, 75 with Democrats higher, means 0.00176 and 0.00095.
+
+The receipts pull surfaced a real problem worth naming. Ranked without a nomenclature filter, the
+five highest-peak Democratic 5-grams of Congress 117 are all bill titles, and `is_nomenclature()`
+cannot catch them: only `verdicts-119.json` exists, so the verdict lookup returns None for every
+phrase in that window and silently filters nothing. `bill-titles-117.json` is present, so the
+receipts are ranked with the docs/19 name-span strip instead, which removes the outright titles.
+Procedural and ceremonial language still survives it, which is the docs/38 H3 result appearing in
+a second window rather than a new defect. What shipped is five phrases with six member, date and
+URL receipts each, and a header telling Michael to cut any that still reads as a name rather than
+a message. That is the same signal the gold-set pilot exists to resolve, and no threshold was
+touched here.
