@@ -177,6 +177,40 @@ def voice_budget_state(day: str, projected_usd: float = 0.0) -> str:
     return "nominal"
 
 
+# A NOTIFICATION MAY NOT DIE OF ITS OWN SUBJECT LINE. An ntfy title rides in an HTTP HEADER, and
+# http.client encodes header values as latin-1, so one typographic dash in a title raises
+# UnicodeEncodeError inside urlopen, the except below swallows it, and the page is silently not
+# sent. That is not hypothetical. The Monday Owner's Brief titled itself with U+2014, so every
+# Monday send since FEATURES["owners_brief"] flipped died on "'latin-1' codec can't encode
+# character U+2014 in position 15" and logged one line nobody was reading. Observed in run
+# 31386662898 at 12:19:29.08Z on 2026-08-10; the defect is deterministic, so it had been eating the
+# digest every week. A fail-closed encoder that closes against the exact message the mechanism
+# exists to carry is an authored outage, not safety (docs/37 rule 4). §S68-5.
+#
+# ASCII, not latin-1, and the narrowing is the header's alone. The body already goes out as UTF-8
+# bytes and keeps every character it had. The header is narrowed one step further than the
+# transport requires because ntfy decodes header bytes as UTF-8: a latin-1 "e-acute" would satisfy
+# http.client and arrive as mojibake, which is a quieter failure than the one being fixed.
+# Characters with a readable ASCII spelling get it; anything else becomes "?" and costs a glyph
+# rather than the notification.
+HEADER_TRANSLITERATIONS = {
+    0x2014: " - ", 0x2013: "-", 0x2212: "-", 0x2010: "-", 0x2011: "-",
+    0x2018: "'", 0x2019: "'", 0x201A: "'", 0x201C: '"', 0x201D: '"', 0x201E: '"',
+    0x2026: "...", 0x00A0: " ", 0x2022: "*", 0x00B7: "*", 0x2192: "->", 0x2190: "<-",
+    0x00A7: "S", 0x00B1: "+/-", 0x00D7: "x", 0x2264: "<=", 0x2265: ">=",
+}
+
+
+def header_safe(value) -> str:
+    """An HTTP-header-safe spelling of `value`: ASCII by construction, and it never raises.
+
+    Total by construction rather than by enumeration. The transliteration table is a readability
+    courtesy for the characters this project actually writes; the `encode("ascii", "replace")` is
+    the guarantee, and it holds for any input including one nobody predicted.
+    """
+    return str(value).translate(HEADER_TRANSLITERATIONS).encode("ascii", "replace").decode("ascii")
+
+
 def ntfy(title: str, message: str, *, priority: str = "default") -> dict:
     """Dead-man switch. Posts to ntfy.sh/<NTFY_TOPIC> if the secret is set; else logs (the topic
     is a secret and NEVER lives in the repo — CLAUDE.md constraint)."""
@@ -184,10 +218,13 @@ def ntfy(title: str, message: str, *, priority: str = "default") -> dict:
     if not topic:
         print(f"[ntfy:{priority}] {title} — {message}")
         return {"sent": False, "reason": "no NTFY_TOPIC set (dev)"}
-    try:  # pragma: no cover - requires the secret + network
+    try:  # pragma: no cover - the network leg; the header construction above it is covered
         import urllib.request
+        # header_safe on BOTH values: priority is a caller-supplied string too, and a header that
+        # cannot encode is a dropped page whichever field carries the character.
         req = urllib.request.Request(f"https://ntfy.sh/{topic}", data=message.encode(),
-                                     headers={"Title": title, "Priority": priority}, method="POST")
+                                     headers={"Title": header_safe(title),
+                                              "Priority": header_safe(priority)}, method="POST")
         urllib.request.urlopen(req, timeout=15)
         return {"sent": True}
     except Exception as e:

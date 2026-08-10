@@ -401,7 +401,11 @@ def send_brief(today: str, *, force_cadence: bool = False) -> dict:
         return {"sent": False, "reason": "feature dark", "brief": b}
     if _parse(today).weekday() != 0 and not force_cadence:
         return {"sent": False, "reason": "not Monday", "brief": b}
-    r = ops.ntfy(f"OnScript brief — {b['headline']}", render_brief(b),
+    # Colon, not a dash. docs/25 wants it anyway, and this title is a live HTTP header: the U+2014
+    # that stood here encoded to nothing http.client would send, so `ops.ntfy` swallowed the failure
+    # and no Monday digest was ever delivered. `ops.header_safe` makes that class of defect
+    # non-fatal at the owner; this is the belt beside those braces. §S68-5.
+    r = ops.ntfy(f"OnScript brief: {b['headline']}", render_brief(b),
                  priority="high" if b["reds"] else "default")
     return {"sent": bool(r.get("sent")), "reason": r.get("reason"), "brief": b}
 
