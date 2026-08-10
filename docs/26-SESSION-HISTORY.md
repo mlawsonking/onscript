@@ -3290,3 +3290,37 @@ Sunday because S65's maturity arm reads the same-weekday baseline while the anom
 against an all-days trailing median: 6 statements cleared the Sunday readiness bar, so the day was
 judged mature, and then it was measured against 141.5. That is the shape of false page S65 exists
 to prevent, arriving through the seam between the two baselines rather than through the gate.
+
+## 2026-08-10: Session 69 (Fable). The docs/29 operator inputs resolved; task #204 closed
+
+Michael supplied the four rulings docs/29 section 6 still owed, in session, and this entry
+records them with their follow-through.
+
+1. Corrections channel (item 40): hello@onscript.news is RATIFIED as the public corrections
+   and contact channel, the same address the About page began rendering with the S67 deploy.
+   Recorded honestly: the Namecheap forward behind the address did not exist at ratification
+   time, so mail to it bounces until Michael creates the forward; that click is his and was
+   handed to him with exact steps in session. No dedicated corrections mailbox is created; the
+   one address serves both purposes until volume argues otherwise.
+2. Structured review sample (item 54): ACCEPTED. docs/07 section 3's weekly ritual now runs
+   scripts/reproduce_subset.py and spot-reads the deterministic sample in place of ad-hoc
+   skimming; the ritual budget moves from 15 to 15-20 minutes. Amended in this commit.
+3. Service metrics over followers (item 57): ACCEPTED, with a correction to the adjudication's
+   own pointer: no follower clause exists anywhere in docs/23, so the amendment lands where the
+   clause actually lives, docs/07. The S3 ladder's advance criterion drops the 1k-followers arm
+   for "30 unbroken days green on the published status SLOs and a first external citation or
+   embed", and health number five retires follower counts with the reason stated: accounts that
+   solicit no engagement have followers that measure posture, not reach. Amended in this commit.
+4. SLO ratification (item 52): Michael delegated the review and decision. Reviewed against the
+   live status surface and RATIFIED AS PUBLISHED: source freshness 36 hours, verifier drop 0.25
+   over the seven-day window with the S65 sufficiency floor and the spike-over-thirty-day
+   comparison, posting parties 2, and the three-window publication design that keeps a recent
+   breach from hiding behind a healthy long window. One watch item recorded rather than acted
+   on: August recess thins the verifier denominator, so the drop rate runs hot in exactly the
+   weeks least able to bear a threshold judgment; if it still reads red once volume returns in
+   September, the monthly review owns the question. No number changed today.
+
+Same-day operator completions, for the record: the first live R-33.6 shadow replay ran green
+from the new dispatch workflow (task #218, open since Jul 27, closed), and the external
+heartbeat is signed up, integrated to ntfy plus email, and armed at the first watchdog ping
+(task #203, closed). Suite at this commit is documentation-only relative to fdbbfe3.

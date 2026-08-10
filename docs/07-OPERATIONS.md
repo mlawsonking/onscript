@@ -17,7 +17,7 @@ do your job, ignore everything else.
 | **S0** | Built, dark | Machine verified in dry-run; no remote/keys | The 90-min errand batch: public repo + push, domains, Bluesky accounts, secrets, Console $10 cap | **First cloud dry-run** RUN A+B green *(passed 07-12)* |
 | **S1** | Cloud-proven | Workflows green in the cloud, still $0 | Watch 3 consecutive dry-run days; fix yaml friction (Opus session if needed) | 3 green days + Release assets populating *(passed 07-14)* |
 | **S2** | Live voice, dark | `ANTHROPIC_API_KEY` set; real Daily Lines; accounts unannounced *(first live run passed 2026-07-14; exited after the unattended streak and launch gates cleared)* | The dark week: hand-audit 5 receipts/day, tune P2 taste (free now, public diffs later), attorney hour | §1.4.1 gate (3 consecutive unattended real runs) + audits clean |
-| **S3** | Launched | Accounts public, launch artifact out **(← current, 2026-07-22: site + posting + announce live; repo public)** | The §9 circuit; then *let the streak work*, your only daily job is the 15-min ritual (§3) | 30 unbroken days and (first external citation/embed OR 1k combined followers) |
+| **S3** | Launched | Accounts public, launch artifact out **(← current, 2026-07-22: site + posting + announce live; repo public)** | The §9 circuit; then *let the streak work*, your only daily job is the 15-min ritual (§3) | 30 unbroken days green on the published status SLOs and a first external citation or embed *(amended S69 per docs/29 item 57: the follower arm is retired; a no-engagement instrument's followers measure nothing)* |
 | **S4** | v2, the insight release | Building silence detector, leaderboard, floor leg, The Archive/Alexandria | Opus sessions against gameplan §10 v2; chapters via `claude -p` (before Sep 1) | v2 acceptance (gameplan §10) |
 | **S5** | v3, the coordination release | Building alerts, Memory Hole, upstream graph, bill-brands, API | Opus sessions against §10 v3 | v3 acceptance, by Oct 5 |
 | **S6** | Election mode | Oct 15 – Nov 10, 2026 | **Freeze** (Constitution viii); daily receipt spot-checks; capacity watch; prep the retrospective | Retrospective artifact ships ≤7 days post-election |
@@ -40,8 +40,10 @@ they exist so you never have to *interpret* on a tired Monday.
    parties ≥ 60% of trailing 14-day median and upstream < 36h stale. Red → Playbook P2.
 4. **Verifier drop rate**, claims dropped ÷ claims published, 7-day. Green: < 25%. Red (sustained
    rise): upstream text quality shifted or prompt drift → Opus session, don't hand-tune.
-5. **Reach**, followers + site sessions + citations/embeds (count monthly, not daily; vanity is a
-   monthly vitamin, not a daily meal).
+5. **Reach**, citations/embeds + site sessions (analytics live since 2026-08-10; count monthly,
+   not daily; vanity is a monthly vitamin, not a daily meal). Follower counts are retired as a
+   health input (S69, docs/29 item 57): the accounts solicit no engagement, so their followers
+   measure the instrument's posture, not its reach.
 
 Numbers 1–4 are machine-readable today (manifests + symmetry reports). **The Owner's Brief**
 (small v2 item, spec below) turns them into a push notification so "understanding where I'm
@@ -53,10 +55,13 @@ committed record stops advancing. See P12 and docs/04-BUILDLOG.md, Session 46.
 
 ## §3 Rituals, the entire human cost of stewardship
 
-- **Weekly (Monday, 15 min):** read the five numbers · skim both Daily Lines with your editor
-  hat (true is guaranteed; you're checking *funny/fair*) · glance at the best chart · anything
-  odd → one line in `04-BUILDLOG.md`. That's it. **This ritual is the minimum viable
-  stewardship: if life gets loud, do this and nothing else, the machine runs without you.**
+- **Weekly (Monday, 15-20 min):** read the five numbers · run the structured review sample,
+  `C:\ProgramData\miniconda3\python.exe scripts\reproduce_subset.py`, and spot-read the sampled
+  claims with your editor hat (true is guaranteed; you're checking *funny/fair*; the
+  deterministic sample replaces ad-hoc skimming, per docs/29 item 54, accepted S69) · glance at
+  the best chart · anything odd → one line in `04-BUILDLOG.md`. That's it. **This ritual is the
+  minimum viable stewardship: if life gets loud, do this and nothing else, the machine runs
+  without you.**
 - **Monthly (1st weekend, 1 hr):** spend vs. cap · coverage trend · prompt-diff review (should
   be empty or justified) · ladder check: still in the right state? · pick/adjust next state work.
 - **Quarterly (2 hr):** re-verify Anthropic pricing + model IDs (model swap = regression-test
