@@ -114,8 +114,8 @@ def test_the_renderer_uses_the_raster_font_and_never_a_freetype_face():
 def test_non_ascii_source_text_folds_instead_of_raising():
     """The raster font cannot encode above U+00FF, and office names really do carry curly
     apostrophes and accents. The fold is explicit so the pixels stay specified."""
-    assert cards._ascii("O’Halleran — café “quote”") == "O'Halleran - cafe \"quote\""
-    assert cards._ascii("中文") == "??"
+    assert cards._ascii("O\u2019Halleran \u2014 caf\u00e9 \u201cquote\u201d") == "O'Halleran - cafe \"quote\""
+    assert cards._ascii("\u4e2d\u6587") == "??"
 
 
 # --- the content ----------------------------------------------------------------------------
@@ -143,6 +143,32 @@ def test_alt_text_is_authored_where_the_card_is_authored():
     fn = ast.parse(re.search(r"def _card_for\(.*?\n\n\n", source, re.S).group(0)).body[0]
     literals = {n.value for n in ast.walk(fn) if isinstance(n, ast.Constant) and isinstance(n.value, str)}
     assert "alt" in literals and not any("OnScript share card" in s for s in literals)
+
+
+def test_a_newly_suppressed_phrase_loses_the_card_a_previous_run_wrote():
+    """purge_derived's whole reason for existing: nothing in site.py unlinks, and site/public is
+    git-tracked and deployed, so a render-time skip leaves the file live at its public URL. A card
+    is a public URL a crawler fetches without ever loading the page it belongs to."""
+    from pipeline import privacy
+    saved = (privacy.ROOT, privacy.DERIVED, privacy.SITE_PUBLIC, privacy.is_suppressed)
+    tmp = Path(tempfile.mkdtemp(prefix="onscript-s67-purge-"))
+    derived, public = tmp / "derived", tmp / "public"
+    (derived / "phrases").mkdir(parents=True)
+    (derived / "phrases" / f"{SLUG}.json").write_text(json.dumps(PHRASE), encoding="utf-8")
+    (public / "phrases").mkdir(parents=True)
+    (public / "phrases" / f"{SLUG}.html").write_text("<p>x</p>", encoding="utf-8")
+    card = public / config.OG_CARD_DIR / "phrases" / f"{SLUG}.png"
+    card.parent.mkdir(parents=True)
+    card.write_bytes(b"\x89PNG stale")
+    try:
+        privacy.ROOT, privacy.DERIVED, privacy.SITE_PUBLIC = tmp, derived, public
+        privacy.is_suppressed = lambda text: "billion" in str(text)
+        removed = privacy.purge_derived()
+    finally:
+        privacy.ROOT, privacy.DERIVED, privacy.SITE_PUBLIC, privacy.is_suppressed = saved
+    assert not card.exists(), f"the stale card survived the purge; removed {removed}"
+    assert not (public / "phrases" / f"{SLUG}.html").exists()
+    assert not (derived / "phrases" / f"{SLUG}.json").exists()
 
 
 def test_a_suppressed_phrase_gets_no_card():

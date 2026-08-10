@@ -802,11 +802,23 @@ def filter_stats(stats) -> tuple[dict, int]:
 
 
 def purge_derived(dry_run: bool = False) -> list[str]:
-    """Unlink every contaminated derived phrase page AND its rendered HTML twin.
+    """Unlink every contaminated derived phrase page AND its rendered twins.
 
     Required, not belt: nothing in pipeline/site.py ever unlinks (build_site only writes) and
     site/public is git-tracked (Vercel deploys from the repo), so a render-time SKIP alone would
-    leave every contaminated phrase page live at its public URL forever."""
+    leave every contaminated phrase page live at its public URL forever.
+
+    TWINS, PLURAL, since S67-3. A phrase page now also has a share card at
+    site/public/cards/phrases/<slug>.png, which is a public file with its own URL that crawlers
+    fetch without ever loading the page it belongs to. The card BUILDER already refuses a
+    suppressed phrase, so no new card appears; this removes the one a previous run wrote before
+    the phrase became suppressed, which is the exact failure mode the paragraph above describes."""
+    # Imported HERE, not at module scope: pipeline.config creates its data directories as an
+    # import-time side effect, and this module is deliberately import-light so a read-only process
+    # (the watchdog) can load it without authoring directories (docs/37 rule 4, the S57 outage).
+    # Read from the owner all the same, rather than repeating the literal "cards" here.
+    from pipeline.config import OG_CARD_DIR
+
     removed: list[str] = []
     pdir = DERIVED / "phrases"
     if not pdir.exists():
@@ -820,8 +832,9 @@ def purge_derived(dry_run: bool = False) -> list[str]:
             continue
         if not is_suppressed((d or {}).get("ngram") or ""):
             continue
-        twin = SITE_PUBLIC / "phrases" / f"{p.stem}.html"
-        for target in (p, twin):
+        twins = (SITE_PUBLIC / "phrases" / f"{p.stem}.html",
+                 SITE_PUBLIC / OG_CARD_DIR / "phrases" / f"{p.stem}.png")
+        for target in (p, *twins):
             if target.exists():
                 removed.append(str(target.relative_to(ROOT)).replace("\\", "/"))
                 if not dry_run:
