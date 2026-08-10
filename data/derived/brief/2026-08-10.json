@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-10",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 30,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "30 consecutive days published (through 2026-08-09)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0534,
+      "projected": 0.1656,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 9,
+      "note": "$0.0534 MTD, $0.17 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-08-09",
+      "parties": {
+        "D": {
+          "statements": 0,
+          "median": 78.0,
+          "share": 0.0,
+          "status": "red"
+        },
+        "R": {
+          "statements": 6,
+          "median": 55.0,
+          "share": 0.109,
+          "status": "red"
+        }
+      },
+      "status": "red",
+      "freshness": {
+        "age_hours": 13.85,
+        "day": "2026-08-10",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "note": "2026-08-09: D 0/78=0% R 6/55=11% of own 14d median (green >= 60%); upstream 13.8h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.5217,
+      "dropped": 12,
+      "offered": 23,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "12/23 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "coverage",
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [
+    "2026-08-03"
+  ],
+  "top_phrase": {
+    "ngram": "full text of the bill",
+    "party": "D",
+    "day_peak": 9,
+    "day": "2026-08-06"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: coverage, verifier_drop"
+}
