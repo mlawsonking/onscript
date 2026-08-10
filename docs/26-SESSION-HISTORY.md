@@ -3174,7 +3174,7 @@ touched here.
 ## 2026-08-10: Session 68 (Opus). The two runs were never serialized, and the day file proved it
 
 ORDER S68, an urgent forward fix under docs/27, executed in an isolated worktree on
-`opus/s68-race-fix` off `origin/main` at cbb280b. Suite 1166 to 1183, zero failures. No API calls,
+`opus/s68-race-fix` off `origin/main` at cbb280b. Suite 1166 to 1192, zero failures. No API calls,
 $0. Nothing pushed, nothing dispatched, no flag flipped, and no commit anywhere under
 `data/derived`: day 2026-08-09 heals in production tonight.
 
@@ -3243,18 +3243,43 @@ WHAT HEALS ITSELF. Day 2026-08-09 has RUN A's stub on main, `daily_lines: null`,
 `assemble-2026-08-09.json` manifest, so it is not final and tonight's 21:30Z pass will select it
 through the readiness gate exactly as the gate is designed to. That write is a modify over an
 existing file, so it cannot reproduce the add/add even without the serializer. Sunday 2026-08-02
-assembled and published normally, so the thin Sunday is not itself an obstacle. The Owner's Brief
-is a smaller correction than the order assumed: `_owners_brief()` runs inside `run_assemble.py`,
-which completed, and the failure was two steps later in the push, so this morning's digest was
-sent. What evaporated with the failed run was its `brief/2026-08-10.json` artifact, and the
-evening pass rewrites it and sends again, since the brief gates on Monday and keeps no
-once-a-day marker.
+assembled and published normally, so the thin Sunday is not itself an obstacle.
+
+WHAT DID NOT HEAL, AND HAD NEVER WORKED. This record first stated that the Monday digest was sent,
+reasoning that `_owners_brief()` runs inside `run_assemble.py`, which completed, while the failure
+came two steps later in the push. The run log refutes it. At 12:19:29.08Z run 31386662898 printed
+`[ntfy-failed] OnScript brief <U+2014> RED: coverage, verifier_drop: 'latin-1' codec can't encode
+character U+2014 in position 15: ordinal not in range(256)`. `_owners_brief()` completed and
+`ops.ntfy` failed to SEND. An ntfy title travels in an HTTP header, `http.client` encodes header
+values as latin-1, and `brief.py` titled the digest with U+2014 at exactly position 15, right after
+"OnScript brief ". The failure is deterministic and the literal was constant, so the finding is
+larger than one lost Monday: the Owner's Brief has almost certainly never been delivered on any
+Monday since `FEATURES["owners_brief"]` flipped. The `except` in `ops.ntfy` caught it every week
+and printed one line into a log nobody reads, which is what a skip-and-log costs when it wraps the
+send itself rather than an optional extra.
+
+S68-5 fixes it at the owner. `ops.header_safe` renders any header value ASCII by construction, so
+no caller can cost a page a character it happened to contain; the body still goes out as UTF-8 and
+keeps everything it had. The narrowing is to ASCII rather than latin-1 on purpose, because ntfy
+decodes header bytes as UTF-8 and a merely latin-1 title would satisfy `http.client` and arrive as
+mojibake, a quieter failure than the one being fixed. Characters this project actually writes get a
+readable transliteration; anything else costs a glyph, never the notification. The brief's own
+literal becomes "OnScript brief: {headline}", which docs/25 wanted regardless. An audit of all nine
+`ops.ntfy` call sites found the brief was the only one with a non-ASCII TITLE; four carry U+2014 in
+the BODY (`announce.py` twice, `post_bluesky.py`, `run_collect.py`) and were never at risk, because
+the body is sent as encoded bytes. Tonight's evening pass is therefore the first Monday digest that
+can actually reach Michael's phone, and only if this branch is pushed before it runs.
 
 TESTS. `tests/test_s68_run_serialization.py`, seventeen cases, driving the live script's own loop
 with the clock and the API injected rather than a second copy of the decision (docs/37 rule 1):
 wait, proceed, bound exceeded, the retry-then-fail error budget, the property that no failed poll
 can ever produce `proceed`, and three that assert the workflow against the module's own constants,
-including that the job budget still covers the bound.
+including that the job budget still covers the bound. `tests/test_s68_ntfy_encoding.py`, nine more:
+the exact title that died replayed through the fixed owner, arbitrary non-latin-1 codepoints, the
+body proven to keep what the header gave up, the totality of the guarantee over hostile input, the
+brief's literal, the real `build_brief` over the committed corpus driven through `send_brief` and
+`ops.ntfy` with only the network replaced, and an `ast` walk of every `ops.ntfy` call in every
+pipeline module holding the whole title surface ASCII.
 
 PARKED FOR A RULING, NOT IMPLEMENTED. Two observations the order's scope did not cover. RUN A's
 stub for a day RUN B is about to assemble carries only `top_synchronized`, which
