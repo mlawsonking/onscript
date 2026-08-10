@@ -3170,3 +3170,98 @@ a second window rather than a new defect. What shipped is five phrases with six 
 URL receipts each, and a header telling Michael to cut any that still reads as a name rather than
 a message. That is the same signal the gold-set pilot exists to resolve, and no threshold was
 touched here.
+
+## 2026-08-10: Session 68 (Opus). The two runs were never serialized, and the day file proved it
+
+ORDER S68, an urgent forward fix under docs/27, executed in an isolated worktree on
+`opus/s68-race-fix` off `origin/main` at cbb280b. Suite 1166 to 1183, zero failures. No API calls,
+$0. Nothing pushed, nothing dispatched, no flag flipped, and no commit anywhere under
+`data/derived`: day 2026-08-09 heals in production tonight.
+
+THE INCIDENT. RUN A was created at 10:41:20Z, ran 1h38m, and pushed its data commit cbb280b at
+12:18:15Z. RUN B (31386662898) was created at 12:09:00Z, while RUN A was still in_progress, under
+a concurrency group both workflows share with `cancel-in-progress: false`. At 12:19:58Z RUN B's
+push step fetched 752fe29..cbb280b, rebased its own data commit onto it, and died on CONFLICT
+(add/add) in `data/derived/days/2026-08-09.json`. RUN C skipped, correctly. Nothing was lost but
+RUN B's build.
+
+THE MECHANISM. Three lines carry it. `deterministic.py:52` sets RUN A's focus day to
+`days_present[-1]`, the newest `published_at` in the corpus, not the clock. `build.py:718-738`
+writes `days/{focus_day}.json` unless that day is already final. `run_assemble.py:358-359` merges
+the Daily Lines through `util.read_json(day_file, {"day": day})`, which creates the file when it is
+absent. So the only window in which two runs write the same day file is its first write, and RUN A
+normally reaches it alone and hours early: on 08-04, 08-06, 08-07 and 08-08 the day's own morning
+collect created that day's file, because a few of that day's releases were already mirrored.
+
+2026-08-09 was a Sunday, and no statement dated 08-09 was in the mirror at any point that day. The
+committed manifests say so in their own hand: `collect-2026-08-09.json` at c631f25 (the 09:30
+pass) and again at adb6149 (the 19:30 pass) both report `focus_day 2026-08-08` over a corpus
+ending 2026-08-08. Sunday's six releases arrived in Monday's mirror publication, so
+`collect-2026-08-10.json` at cbb280b is the first run in the series to report `focus_day
+2026-08-09`. Its ADD of the day file met RUN B's ADD of the same path from a checkout that
+predated it. An add/add rebase conflict is not a race that sometimes resolves; it is the only
+outcome.
+
+THE ATTRIBUTION THE ORDER GOT WRONG. The S65 merge is not the cause, and the log holds its own
+control. `a10c695` landed at 19:09:51Z on 08-09, between the two Sunday collects: the earlier
+manifest carries no maturity fields and the later one does, so those two runs sit on opposite
+sides of the merge and report the same focus day for the same reason. The three S65 commits touch
+`ops.py`, `run_collect.py`, `distill.py`, `site.py`, `status_exports.py`, and a four-line comment
+in `run_assemble.py`. None touches focus-day selection, the day-file write, `readiness.py`, or the
+gate that picks RUN B's target, and the focus-day line has not changed since `11d27da` on
+2026-07-10. S65's gate did not even engage on the incident run: this morning's manifest reads
+`collection_mature: true, comparison: judged`. What did change on 08-09 was upstream's calendar.
+
+The 08-08 overlap cost nothing for a reason worth writing down, because it is why the group's
+failure to serialize went unseen: RUN A's 355f685 added `days/2026-08-08.json` while RUN B's
+06056a1 modified `days/2026-08-07.json`. Different files. Luck, not scheduling.
+
+THE FIX. `assemble.yml` gains a fail-closed serializer, `scripts/wait_for_collect.py`, that runs
+before the tree is read: it polls the Actions API every 60 seconds while any `collect.yml` run is
+queued or in progress, logs a line per cycle, and past a 150-minute bound or three consecutive
+unreadable polls exits 1 into the dead-man. It matches the workflow by FILE, never by display
+name, which is the docs/39 lesson `post.yml` already learned. `proceed` is reachable only from a
+successful poll that saw nothing running, so an unknown state never walks into a known race. Day
+one is the ordinary day: no live collect, first poll, exit 0 in about a second. The shared
+concurrency group is kept and is not trusted, and the workflow now carries both run ids and both
+overlap windows in a comment so the next reader does not delete one of the two as redundant.
+
+Two things the order did not anticipate, both mechanically necessary or the fix would have been
+theatre. First, waiting alone would not have saved the run: a scheduled workflow checks out
+`github.sha`, the default-branch tip from when the run was CREATED, so RUN B would still have held
+752fe29 after the wait and still committed an ADD of the file RUN A added at 12:18:15Z. The tree
+is now resolved with `ref: main` in a second, authoritative checkout after the wait, and the first
+checkout is marked provisional; it exists to fetch the serializer. Second, `contents` does not
+cover the Actions API and an explicit permissions block sets every scope it omits to none, so the
+job gains `actions: read`; without it the gate would read 403 as an unknown state and refuse every
+day. The job timeout moves from 60 to 210 for the same reason: a JOB timeout cancels rather than
+fails, and a cancelled job skips the `if: failure()` dead-man, so a 150-minute bound under a
+60-minute budget would have converted a loud failure into a silent one. The wait step carries its
+own 155-minute timeout, which fails the step and does reach the dead-man.
+
+WHAT HEALS ITSELF. Day 2026-08-09 has RUN A's stub on main, `daily_lines: null`, and no
+`assemble-2026-08-09.json` manifest, so it is not final and tonight's 21:30Z pass will select it
+through the readiness gate exactly as the gate is designed to. That write is a modify over an
+existing file, so it cannot reproduce the add/add even without the serializer. Sunday 2026-08-02
+assembled and published normally, so the thin Sunday is not itself an obstacle. The Owner's Brief
+is a smaller correction than the order assumed: `_owners_brief()` runs inside `run_assemble.py`,
+which completed, and the failure was two steps later in the push, so this morning's digest was
+sent. What evaporated with the failed run was its `brief/2026-08-10.json` artifact, and the
+evening pass rewrites it and sends again, since the brief gates on Monday and keeps no
+once-a-day marker.
+
+TESTS. `tests/test_s68_run_serialization.py`, seventeen cases, driving the live script's own loop
+with the clock and the API injected rather than a second copy of the decision (docs/37 rule 1):
+wait, proceed, bound exceeded, the retry-then-fail error budget, the property that no failed poll
+can ever produce `proceed`, and three that assert the workflow against the module's own constants,
+including that the job budget still covers the bound.
+
+PARKED FOR A RULING, NOT IMPLEMENTED. Two observations the order's scope did not cover. RUN A's
+stub for a day RUN B is about to assemble carries only `top_synchronized`, which
+`run_assemble.py:372` recomputes anyway, and the withdrawn discipline block; having a single
+writer create the day record would close the collision at the source rather than at the scheduler,
+but it changes what RUN A writes and needs Fable. Separately, this morning's page fired on a
+Sunday because S65's maturity arm reads the same-weekday baseline while the anomaly arm compares
+against an all-days trailing median: 6 statements cleared the Sunday readiness bar, so the day was
+judged mature, and then it was measured against 141.5. That is the shape of false page S65 exists
+to prevent, arriving through the seam between the two baselines rather than through the gate.
