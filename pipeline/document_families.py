@@ -4,6 +4,7 @@ from __future__ import annotations
 from collections import defaultdict
 from datetime import datetime, timezone
 import re
+import sys
 import zlib
 
 from . import config, util
@@ -264,6 +265,17 @@ def _cosigned_from_retrieval(usable: list[tuple[dict, frozenset[int]]], exact: d
         if words:
             surnames[str(bioguide)] = words
     if not surnames:
+        # S67-9. The roster is the ONLY input that decides whether two offices named each other,
+        # so an unusable roster silently disables the entire cosigned collapse and every cosigned
+        # release counts once PER OFFICE for the rest of the run. That is exactly the double count
+        # docs/39 C1 was about: it inflates unit totals and can carry a citation quorum on a single
+        # announcement. The run continues, because a missing roster must not cost the day, but it
+        # says out loud what the day's numbers now mean.
+        print("[document-families] COSIGNED COLLAPSE DISABLED: no usable roster surnames, so "
+              "cosigned releases will count once PER OFFICE this run instead of once per "
+              "announcement. Unit counts and citation quorums are inflated wherever two offices "
+              "published the same announcement. Restore data/reference/roster.json and rebuild.",
+              file=sys.stderr)
         return []
 
     titles = [_name_words(row.get("title")) for row, _values in usable]
