@@ -96,8 +96,11 @@ def test_real_committed_raw_shard_has_reproducible_offline_provenance():
 def test_sbom_and_native_attestation_are_committed_and_pinned():
     sbom = json.loads((ROOT / "sbom.spdx.json").read_text(encoding="utf-8"))
     assert sbom["spdxVersion"] == "SPDX-2.3"
+    # S67-3 added Pillow as the project's first third-party runtime package. It is OPTIONAL and
+    # decorative (see the SBOM comment and requirements.lock); the set is asserted exactly so a
+    # future dependency cannot arrive without appearing in this list.
     assert {row["name"] for row in sbom["packages"]} == {
-        "OnScript deterministic pipeline", "CPython"
+        "OnScript deterministic pipeline", "CPython", "Pillow"
     }
     site_source = (ROOT / "pipeline/site.py").read_text(encoding="utf-8")
     assert 'shutil.copyfile(SBOM_SOURCE, OUT / "sbom.spdx.json")' in site_source

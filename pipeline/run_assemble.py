@@ -505,6 +505,34 @@ def _owners_brief() -> None:
         print(f"[brief] skipped (skip-and-log): {e}")
 
 
+def _share_cards() -> None:
+    """S67-3: per-page Open Graph cards. Optional, skip-and-log, and downstream of everything.
+
+    Placement is the whole safety argument, so it is written down here rather than inferred:
+
+      * AFTER the day summary and the manifest. By the time this runs, `assemble()` has already
+        written days/<day>.json and manifest/assemble-<day>.json, so the day's core artifact exists
+        on disk no matter what happens next.
+      * BEFORE `python pipeline/site.py` in the workflow, because site.py reads the card manifest
+        this writes and points each page's og:image at its own card. A page whose card is missing
+        keeps the brand card, which is exactly what every deployment looks like today.
+      * WRAPPED. Pillow is the project's first third-party runtime dependency and it is taken for
+        decoration; an absent, broken or too-old Pillow must cost a nicer link preview and nothing
+        else. The `except Exception` is the point, not laziness (docs/37 rule 4: enumerate day-one
+        state, and day-one state here is "no Pillow, no cards directory").
+    """
+    try:
+        from pipeline import cards, site
+        days = [(day, data) for day, data in site.all_day_files()]
+        stats = cards.build_cards(days, site.phrase_records(), site.OUT,
+                                  symmetry_dir=config.DERIVED / "symmetry",
+                                  generated_at=util.now_utc_iso())
+        print(f"[cards] {stats['cards']} card(s) manifested; "
+              f"{stats['written']} written, {stats['unchanged']} unchanged")
+    except Exception as e:  # pragma: no cover - the whole point is that nothing escapes
+        print(f"[cards] skipped (skip-and-log): {e}. Pages keep the brand link card.")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--day", default=None,
@@ -525,6 +553,11 @@ def main() -> int:
         if sel["day"] is None:
             print(f"===== RUN B assemble — NO-OP (no cluster, no distill, no API spend) =====")
             print(sel["reason"])
+            # The workflow renders the site on this path too, and RUN A may have advanced a phrase
+            # curve since the last pass. Refreshing the cards here keeps them in step with the
+            # pages that are about to be written; it is deterministic and rewrites nothing that
+            # did not change.
+            _share_cards()
             _owners_brief()      # a Monday with nothing to assemble is a Monday that needs a brief
             return 0
         day, forced = sel["day"], sel["forced"]
@@ -548,6 +581,7 @@ def main() -> int:
         print(f"  {p}: {pp['statements_ingested']} statements, {pp['members_covered']}/{pp['caucus_size']} members "
               f"({pp['coverage_pct']}%), claims {pp['claims_published']} published / {pp['claims_dropped']} dropped")
     print(f"  prompts_sha={list(r['prompts_sha'].values())[0][:12]}…  thresholds_sha={r['thresholds_sha'][:12]}… (identical both parties)")
+    _share_cards()
     _owners_brief()
     return 0
 

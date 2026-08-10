@@ -1,2 +1,20 @@
 # The deterministic runtime has no third-party Python packages.
 # Additions require an exact version and artifact hash in this file.
+#
+# ---------------------------------------------------------------------------
+# OPTIONAL, DECORATIVE, NEVER ON THE DAILY CRITICAL PATH.
+#
+# Nothing in this file is needed to collect, assemble, verify, publish or post. The daily pipeline
+# is still stdlib-only and still runs to completion with this file's contents absent: Pillow is
+# imported inside pipeline/cards.py alone, called only from run_assemble's optional skip-and-log
+# builder, and a failure there costs a nicer link-preview image and nothing else (S67-3).
+#
+# Installed in CI with --require-hashes, which is why the hashes are here rather than a bare pin: a
+# version alone lets a compromised index serve different bytes under the same name. The wheel below
+# is the one ubuntu-latest + CPython 3.12 resolves to; the sdist hash is the fallback and the
+# reproducibility record. Re-pinning means replacing BOTH lines and the sbom.spdx.json entry, which
+# tests/test_s67_cards.py checks agree.
+# ---------------------------------------------------------------------------
+pillow==12.2.0 \
+    --hash=sha256:62f5409336adb0663b7caa0da5c7d9e7bdbaae9ce761d34669420c2a801b2780 \
+    --hash=sha256:a830b1a40919539d07806aa58e1b114df53ddd43213d9c8b75847eee6c0182b5

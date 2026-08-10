@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -23,10 +24,21 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_gpu_stack_is_never_a_pipeline_dependency():
+    # S67-3 put the first package in requirements.lock: Pillow, optional and decorative, imported
+    # only by pipeline/cards.py from a skip-and-log builder. So this no longer asserts the file is
+    # empty; it asserts what it was always FOR, which is that the GPU stack never crosses into the
+    # pipeline, plus that the pinned set is exactly the one package the project has sanctioned and
+    # every pin carries artifact hashes.
     lock = (ROOT / "requirements.lock").read_text(encoding="utf-8")
-    for line in lock.splitlines():
-        assert not line.strip() or line.lstrip().startswith("#"), (
-            f"requirements.lock gained a runtime dependency: {line!r}")
+    requirements = [line.strip() for line in lock.splitlines()
+                    if line.strip() and not line.lstrip().startswith(("#", "--hash"))]
+    names = {re.split(r"[=<>~!\[ ]", line.strip(" \\"))[0].lower() for line in requirements}
+    assert names <= {"pillow"}, f"requirements.lock gained an unsanctioned dependency: {sorted(names)}"
+    assert not (names & {"torch", "sentence-transformers", "sentence_transformers",
+                         "numpy", "transformers", "accelerate"}), (
+        "the Alexandria GPU stack must never be a pipeline dependency")
+    assert "pillow==12.2.0" in lock and lock.count("--hash=sha256:") >= 2, (
+        "a pinned dependency needs an exact version and artifact hashes")
     # A fresh interpreter, so the check is about these two modules and not about whatever an
     # earlier test file happened to import.
     probe = (

@@ -1,11 +1,11 @@
 {
   "SPDXID": "SPDXRef-DOCUMENT",
   "creationInfo": {
-    "created": "2026-07-27T00:00:00Z",
+    "created": "2026-08-09T00:00:00Z",
     "creators": ["Tool: OnScript deterministic SBOM generator"]
   },
   "dataLicense": "CC0-1.0",
-  "documentNamespace": "https://onscript.news/sbom/2026-07-27/x11",
+  "documentNamespace": "https://onscript.news/sbom/2026-08-09/s67",
   "name": "OnScript runtime SBOM",
   "packages": [
     {
@@ -31,6 +31,19 @@
       "primaryPackagePurpose": "RUNTIME",
       "supplier": "Organization: Python Software Foundation",
       "versionInfo": "3.12.10"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-Pillow",
+      "comment": "OPTIONAL. Imported only by pipeline/cards.py to render Open Graph share cards, called only from run_assemble's skip-and-log builder. Absent Pillow degrades link previews to the static brand card; no collect, assemble, verify, publish or post path imports it. Pinned with artifact hashes in requirements.lock.",
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "https://pypi.org/project/pillow/12.2.0/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT-CMU",
+      "licenseDeclared": "MIT-CMU",
+      "name": "Pillow",
+      "primaryPackagePurpose": "LIBRARY",
+      "supplier": "Organization: Python Imaging Library contributors",
+      "versionInfo": "12.2.0"
     }
   ],
   "relationships": [
@@ -42,6 +55,11 @@
     {
       "relatedSpdxElement": "SPDXRef-Package-CPython",
       "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-OnScript"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-Pillow",
+      "relationshipType": "OPTIONAL_DEPENDENCY_OF",
       "spdxElementId": "SPDXRef-Package-OnScript"
     }
   ],

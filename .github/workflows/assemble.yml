@@ -63,6 +63,17 @@ jobs:
         with:
           python-version: "3.12.10"
 
+      # S67-3. The only third-party package this pipeline installs, and it is decorative: it renders
+      # the per-page Open Graph share cards. --require-hashes so a compromised index cannot serve
+      # different bytes under the pinned version. The `|| echo` is deliberate and is the whole
+      # safety argument: an install failure must cost link previews, never the day's artifact or
+      # the posting streak. When it fails, pipeline/cards.py raises ImportError inside
+      # run_assemble's skip-and-log builder and every page keeps the static brand card.
+      - name: Install the optional card renderer (never blocks the run)
+        run: |
+          pip install --require-hashes -r requirements.lock \
+            || echo "::warning::optional card renderer not installed; link previews fall back to the brand card"
+
       - name: Restore state written by RUN A
         run: |
           mkdir -p data/state data/raw data/reference
