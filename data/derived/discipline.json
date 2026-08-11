@@ -2806,19 +2806,19 @@
       "index": 0.7078
     },
     "2026-07-22": {
-      "statements": 238,
-      "on_message_units": 145,
-      "index": 0.6092
+      "statements": 239,
+      "on_message_units": 146,
+      "index": 0.6109
     },
     "2026-07-23": {
-      "statements": 162,
+      "statements": 164,
       "on_message_units": 110,
-      "index": 0.679
+      "index": 0.6707
     },
     "2026-07-24": {
-      "statements": 106,
-      "on_message_units": 83,
-      "index": 0.783
+      "statements": 107,
+      "on_message_units": 84,
+      "index": 0.785
     },
     "2026-07-25": {
       "statements": 5,
@@ -2831,14 +2831,14 @@
       "index": 1.0
     },
     "2026-07-27": {
-      "statements": 77,
-      "on_message_units": 57,
-      "index": 0.7403
+      "statements": 78,
+      "on_message_units": 58,
+      "index": 0.7436
     },
     "2026-07-28": {
-      "statements": 93,
-      "on_message_units": 73,
-      "index": 0.7849
+      "statements": 95,
+      "on_message_units": 75,
+      "index": 0.7895
     },
     "2026-07-29": {
       "statements": 101,
@@ -2851,9 +2851,9 @@
       "index": 0.6587
     },
     "2026-07-31": {
-      "statements": 85,
+      "statements": 86,
       "on_message_units": 62,
-      "index": 0.7294
+      "index": 0.7209
     },
     "2026-08-01": {
       "statements": 5,
@@ -2866,9 +2866,9 @@
       "index": 1.0
     },
     "2026-08-03": {
-      "statements": 80,
-      "on_message_units": 59,
-      "index": 0.7375
+      "statements": 81,
+      "on_message_units": 60,
+      "index": 0.7407
     },
     "2026-08-04": {
       "statements": 101,
@@ -2876,24 +2876,29 @@
       "index": 0.6733
     },
     "2026-08-05": {
-      "statements": 97,
-      "on_message_units": 67,
-      "index": 0.6907
+      "statements": 98,
+      "on_message_units": 68,
+      "index": 0.6939
     },
     "2026-08-06": {
-      "statements": 126,
-      "on_message_units": 69,
-      "index": 0.5476
+      "statements": 134,
+      "on_message_units": 75,
+      "index": 0.5597
     },
     "2026-08-07": {
-      "statements": 100,
-      "on_message_units": 60,
-      "index": 0.6
+      "statements": 104,
+      "on_message_units": 63,
+      "index": 0.6058
     },
     "2026-08-08": {
-      "statements": 22,
-      "on_message_units": 16,
-      "index": 0.7273
+      "statements": 24,
+      "on_message_units": 17,
+      "index": 0.7083
+    },
+    "2026-08-10": {
+      "statements": 61,
+      "on_message_units": 48,
+      "index": 0.7869
     }
   },
   "I": {
@@ -4203,6 +4208,11 @@
       "index": 1.0
     },
     "2026-08-07": {
+      "statements": 1,
+      "on_message_units": 1,
+      "index": 1.0
+    },
+    "2026-08-10": {
       "statements": 1,
       "on_message_units": 1,
       "index": 1.0
@@ -7070,19 +7080,24 @@
       "index": 0.6265
     },
     "2026-08-07": {
-      "statements": 67,
-      "on_message_units": 43,
-      "index": 0.6418
+      "statements": 69,
+      "on_message_units": 45,
+      "index": 0.6522
     },
     "2026-08-08": {
-      "statements": 11,
-      "on_message_units": 8,
-      "index": 0.7273
+      "statements": 13,
+      "on_message_units": 10,
+      "index": 0.7692
     },
     "2026-08-09": {
       "statements": 6,
       "on_message_units": 4,
       "index": 0.6667
+    },
+    "2026-08-10": {
+      "statements": 29,
+      "on_message_units": 26,
+      "index": 0.8966
     }
   },
   "schema_version": 1,
@@ -7092,12 +7107,12 @@
   "min_statements_note": "A party-day with fewer statements than this cannot carry an interpretable share: the ratio saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single digits. The floor is stamped, not applied: the values below are the raw per-day measurements and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS.",
   "days_below_min_statements": {
     "D": 124,
-    "I": 262,
+    "I": 263,
     "R": 155
   },
   "window": {
     "start": "2025-01-03",
-    "end": "2026-08-09",
+    "end": "2026-08-10",
     "epoch_authority": "config.STAGE1_EPOCH"
   }
 }
