@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-08-11",
   "kind": "collect",
-  "generated_at": "2026-08-11T10:23:22Z",
+  "generated_at": "2026-08-11T20:09:01Z",
   "focus_day": "2026-08-10",
   "days_present": [
     "2025-01-01",
@@ -11,7 +11,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-08-11T05:57:10Z",
-    "age_hours": 4.43
+    "age_hours": 14.19
   },
   "normalize": {
     "in": 80816,
@@ -45,8 +45,8 @@
     "ledger_entries": 305294,
     "phrase_pages": 55,
     "focus_day": "2026-08-10",
-    "focus_day_write": "written",
-    "focus_day_top_phrases": 20,
+    "focus_day_write": "skipped-final",
+    "focus_day_top_phrases": null,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 7.1,
-    "mirror_pull": 22.5,
-    "normalize": 2027.1,
-    "ledger_build": 1911.7
+    "restore": 6.9,
+    "mirror_pull": 13.3,
+    "normalize": 2069.1,
+    "ledger_build": 1863.4
   },
   "span_scan": {
     "person_spans_calls": 232857,
-    "person_spans_s": 484.67847992699217,
+    "person_spans_s": 485.8998326999558,
     "admitted_form_scans": 232857,
-    "admitted_form_s": 7.830606375036496
+    "admitted_form_s": 5.455073241965692
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
@@ -94,10 +94,10 @@
     "stage": "extract",
     "model": "claude-haiku-4-5",
     "generator": "deterministic",
-    "new_statements": 119,
-    "tokens_in": 167975,
-    "tokens_out": 14280,
-    "est_cost_usd": 0.119688
+    "new_statements": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "est_cost_usd": 0.0
   },
   "upstream_provenance": {
     "months_present": 20,
@@ -114,7 +114,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-01.jsonl",
         "content_sha256": "167783c5ae1595e75d244949f106a2db8d6ccde0a57353c96a69112e9baf2e7d",
         "etag": "\"6cfefe8b41a549796ace03378cc97ba5b74d1ff9ff935237b0238b4814792a60\"",
-        "collected_at": "2026-08-11T10:23:01Z",
+        "collected_at": "2026-08-11T20:08:49Z",
         "records": 4862
       },
       {
@@ -122,7 +122,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-02.jsonl",
         "content_sha256": "6f971c77175e4075c8cfb25ae3d5e0d4c1e7d1f4f1c71f9453634f431dd49ef6",
         "etag": "\"84f92f26f33c945cb360371db6ea3817a8a47e7161f6cd042839ee9c12253e26\"",
-        "collected_at": "2026-08-11T10:23:03Z",
+        "collected_at": "2026-08-11T20:08:50Z",
         "records": 4433
       },
       {
@@ -130,7 +130,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-03.jsonl",
         "content_sha256": "4148a558956536f994f95a2c3c5b5e1d0b29068dc086603b4761712b40c14750",
         "etag": "\"06086fa7f1c6b7128ba79acfd3af7286c1600c9be6ff1bcdabf3ab1ce70d08fa\"",
-        "collected_at": "2026-08-11T10:23:04Z",
+        "collected_at": "2026-08-11T20:08:50Z",
         "records": 4483
       },
       {
@@ -138,7 +138,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-04.jsonl",
         "content_sha256": "d570ff9a2a311bb88bdb018fb7e4110e4898a704be355dec33e4fb1832f6dcf2",
         "etag": "\"69fb930368c61b7351ef4e2b079a8dd1292abe28a7e52149d242797d49a99271\"",
-        "collected_at": "2026-08-11T10:23:05Z",
+        "collected_at": "2026-08-11T20:08:51Z",
         "records": 4214
       },
       {
@@ -146,7 +146,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-05.jsonl",
         "content_sha256": "f18f02ab08fbb53018988c8227edfb525a8a3812cfd9ebce40e5b98728cc7692",
         "etag": "\"3576f87ce16c0d8a70dc918a89cb7e7f820dd394fdfa8f9bef674f46500b65d8\"",
-        "collected_at": "2026-08-11T10:23:06Z",
+        "collected_at": "2026-08-11T20:08:51Z",
         "records": 4447
       },
       {
@@ -154,7 +154,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-06.jsonl",
         "content_sha256": "49c01965f3c4e4c1939449efedf885a63c9a048b59dec70e97127615b6e1e564",
         "etag": "\"aa3c2c145970f2ee6ec775c053c78cb5c2a67e0be64f75d923e4b206c6e8f739\"",
-        "collected_at": "2026-08-11T10:23:07Z",
+        "collected_at": "2026-08-11T20:08:52Z",
         "records": 4166
       },
       {
@@ -162,7 +162,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-07.jsonl",
         "content_sha256": "04d72609bc416f87cb55904a323966b5146aa31332f40e722dcab59054822e7e",
         "etag": "\"22fc5bb15998d4dacf39bfef862791cfb74222da74105934f615279d6019a8e6\"",
-        "collected_at": "2026-08-11T10:23:08Z",
+        "collected_at": "2026-08-11T20:08:53Z",
         "records": 4463
       },
       {
@@ -170,7 +170,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-08.jsonl",
         "content_sha256": "1a0a372930794560e807431427cc76a4dda999e2aad1279d4ccbac82edd07d0a",
         "etag": "\"0f9f96f2c9e9434242fca78ff46f50f22d5292f6f8fe4f3736e163b19b4891af\"",
-        "collected_at": "2026-08-11T10:23:09Z",
+        "collected_at": "2026-08-11T20:08:53Z",
         "records": 2384
       },
       {
@@ -178,7 +178,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-09.jsonl",
         "content_sha256": "a76c6996a87157151bdcd82ea995c1470b8841f2d46b414102739261a25bf5ac",
         "etag": "\"d395653d670ba177e9eb38da4412e70b0ad998dc1400ce5d77903400202e0960\"",
-        "collected_at": "2026-08-11T10:23:10Z",
+        "collected_at": "2026-08-11T20:08:54Z",
         "records": 4358
       },
       {
@@ -186,7 +186,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-10.jsonl",
         "content_sha256": "a1ca2121f33dc04aa9aaeb69ab8d380a07474c11d6d11ba821c2e7b9b16d582c",
         "etag": "\"f0f37c5b7e5fc1652a13a4cb7dce34b65617ca821e5463d531d24208851c5bcd\"",
-        "collected_at": "2026-08-11T10:23:10Z",
+        "collected_at": "2026-08-11T20:08:54Z",
         "records": 3583
       },
       {
@@ -194,7 +194,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-11.jsonl",
         "content_sha256": "fa5686907e923b1a13d379c94fc68387a06b3f579dbd9402c05bc8063b652ac2",
         "etag": "\"69ffd9a494a378486abeba4625b81f0e1b580ca1b3846d510d76422eddb8547f\"",
-        "collected_at": "2026-08-11T10:23:11Z",
+        "collected_at": "2026-08-11T20:08:55Z",
         "records": 3309
       },
       {
@@ -202,7 +202,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2025/2025-12.jsonl",
         "content_sha256": "8680a5313db88502ba96417ea157925677d107c03ba0defcf876346ffd1db5c5",
         "etag": "\"42ff6846b443db0980099d32c9df24c8ba82a7018e72d441267046f2ba3ecb4c\"",
-        "collected_at": "2026-08-11T10:23:12Z",
+        "collected_at": "2026-08-11T20:08:55Z",
         "records": 4016
       },
       {
@@ -210,7 +210,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-01.jsonl",
         "content_sha256": "76a94202a2d2546b56895b8ebc572ee79501a46f15d5e94a3e7b227556ac8bdc",
         "etag": "\"bf42ecb60b2b8c8b416cae912c32aa15d818f213a5096b930f15ecbc7344b128\"",
-        "collected_at": "2026-08-11T10:23:13Z",
+        "collected_at": "2026-08-11T20:08:56Z",
         "records": 4144
       },
       {
@@ -218,7 +218,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-02.jsonl",
         "content_sha256": "b9fafd941edd95b79dc28e5be8e9e11bf109cce739ad1497efee86fea6321bff",
         "etag": "\"b27e90c752269e3443b89383da08a067ab451a20fbda146aa28bafc6a1f34ff5\"",
-        "collected_at": "2026-08-11T10:23:14Z",
+        "collected_at": "2026-08-11T20:08:56Z",
         "records": 4502
       },
       {
@@ -226,7 +226,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-03.jsonl",
         "content_sha256": "16ca31a016b4087ec5bd845d37411707781f7d183155e30c6dee2eb361e09ea7",
         "etag": "\"f1e168c85eed25f2aef48c9f3dc33603fbc13134f383373c7628aed1fcbbcc85\"",
-        "collected_at": "2026-08-11T10:23:15Z",
+        "collected_at": "2026-08-11T20:08:57Z",
         "records": 4552
       },
       {
@@ -234,7 +234,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-04.jsonl",
         "content_sha256": "d709898e691076c2a78d2e9ee10cd6a52f86d036ad0d592be35492799816e92a",
         "etag": "\"13a63c0b705e0a97fe577888e7504ffa4a378c2e39305f5c6a86325f62e33ea6\"",
-        "collected_at": "2026-08-11T10:23:16Z",
+        "collected_at": "2026-08-11T20:08:57Z",
         "records": 4394
       },
       {
@@ -242,7 +242,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-05.jsonl",
         "content_sha256": "9a36654af3d026000dc24c8c3f330251573146d918a789f748ae659e34fbdf12",
         "etag": "\"3d1bb693a24ffdc6b1fc3765da36d7b48d0c821afbe8957ea376bf8d13d63437\"",
-        "collected_at": "2026-08-11T10:23:17Z",
+        "collected_at": "2026-08-11T20:08:58Z",
         "records": 4169
       },
       {
@@ -250,7 +250,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-06.jsonl",
         "content_sha256": "917dc7cd6dec2ce8beca43fb5982c0a36bd00844985110d3a9dfcc4fc8a93f63",
         "etag": "\"f62a27fcdb473b1a30d123bc433e8e420eb66d05a6def5e9998eaa3b8924ad4f\"",
-        "collected_at": "2026-08-11T10:23:18Z",
+        "collected_at": "2026-08-11T20:08:58Z",
         "records": 4811
       },
       {
@@ -258,7 +258,7 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-07.jsonl",
         "content_sha256": "bf4d1af83dc1f87f777f510a1ac79c3f5805733e96e66e8957e39f8e906104b9",
         "etag": "\"f2ba7196bdae8452952f04be75d946ef29e2c25794a75b61784668e1bc7a72e1\"",
-        "collected_at": "2026-08-11T10:23:20Z",
+        "collected_at": "2026-08-11T20:08:59Z",
         "records": 4504
       },
       {
@@ -266,11 +266,11 @@
         "url": "https://raw.githubusercontent.com/dwillis/congress-press/e67fc65380c5f043d43b6b9811e6ac6f8bd7680c/data/2026/2026-08.jsonl",
         "content_sha256": "ac67ce646e9f07e2e4eece06930084b584897f58aaa35f5b178d08b9e082e5b4",
         "etag": "\"12b7c40e37f5e703fcb5364e478055b29d140f15bc3783c8aabd60f33221ddb4\"",
-        "collected_at": "2026-08-11T10:23:20Z",
+        "collected_at": "2026-08-11T20:08:59Z",
         "records": 1022
       }
     ],
-    "collected_at": "2026-08-11T10:23:20Z"
+    "collected_at": "2026-08-11T20:08:59Z"
   },
   "runtime_environment": {
     "python": "3.12.10",
