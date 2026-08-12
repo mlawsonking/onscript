@@ -1,52 +1,52 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-08-11",
+  "run_id": "collect-2026-08-12",
   "kind": "deterministic",
-  "generated_at": "2026-08-11T20:09:01Z",
-  "focus_day": "2026-08-10",
+  "generated_at": "2026-08-12T10:33:51Z",
+  "focus_day": "2026-08-11",
   "days_present": [
     "2025-01-01",
-    "2026-08-10"
+    "2026-08-11"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-08-11T05:57:10Z",
-    "age_hours": 14.19
+    "pushed_at": "2026-08-12T06:21:29Z",
+    "age_hours": 4.2
   },
   "normalize": {
-    "in": 80816,
-    "kept": 80782,
+    "in": 80927,
+    "kept": 80893,
     "rejects": 34,
     "joint_groups": 169,
-    "near_joint_groups": 2858,
-    "cosigned_groups": 2262,
+    "near_joint_groups": 2860,
+    "cosigned_groups": 2263,
     "syndicated": 63
   },
   "phrase_engine": {
-    "candidates": 305460,
+    "candidates": 305466,
     "df_boilerplate": 166,
-    "ledger_entries": 305294
+    "ledger_entries": 305300
   },
   "per_party": {
     "D": {
-      "statements_in": 47417,
+      "statements_in": 47482,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 32860,
+      "statements_in": 32905,
       "members_covered": 272
     },
     "I": {
-      "statements_in": 384,
+      "statements_in": 385,
       "members_covered": 3
     }
   },
   "derived": {
-    "ledger_entries": 305294,
-    "phrase_pages": 55,
-    "focus_day": "2026-08-10",
-    "focus_day_write": "skipped-final",
-    "focus_day_top_phrases": null,
+    "ledger_entries": 305300,
+    "phrase_pages": 34,
+    "focus_day": "2026-08-11",
+    "focus_day_write": "written",
+    "focus_day_top_phrases": 20,
     "coverage_years": [
       "2025",
       "2026"
@@ -57,15 +57,15 @@
   "alerts": [],
   "stage_timings_s": {
     "restore": 6.9,
-    "mirror_pull": 13.3,
-    "normalize": 2069.1,
-    "ledger_build": 1863.4
+    "mirror_pull": 19.7,
+    "normalize": 2024.7,
+    "ledger_build": 1856.3
   },
   "span_scan": {
-    "person_spans_calls": 232857,
-    "person_spans_s": 485.8998326999558,
-    "admitted_form_scans": 232857,
-    "admitted_form_s": 5.455073241965692
+    "person_spans_calls": 233185,
+    "person_spans_s": 488.3651306321194,
+    "admitted_form_scans": 233185,
+    "admitted_form_s": 6.328913427934367
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
