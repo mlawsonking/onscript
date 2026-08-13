@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-13",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-08-12",
+      "note": "no publish for 2026-08-12 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.0604,
+      "projected": 0.144,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 10,
+      "note": "$0.0604 MTD, $0.14 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "value": null,
+      "status": "unknown",
+      "day": "2026-08-10",
+      "freshness": {
+        "age_hours": 4.26,
+        "day": "2026-08-13",
+        "status": "green"
+      },
+      "note": "newest symmetry report is 2026-08-10 (3d old) — cannot describe current coverage"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.6667,
+      "dropped": 8,
+      "offered": 12,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "8/12 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [
+    "coverage"
+  ],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "full text of the bill",
+    "party": "D",
+    "day_peak": 9,
+    "day": "2026-08-06"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}
