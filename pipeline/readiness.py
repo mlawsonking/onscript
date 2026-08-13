@@ -93,7 +93,7 @@ def expected_volume(counts_by_day: dict, day: str, *, weeks: int = BASELINE_WEEK
         # One observation is not a norm. At the start of a corpus or an era a single busy Saturday
         # would otherwise set a judgeable bar for the Saturday after it.
         return {"baseline": long_, "long_baseline": long_, "recent_baseline": recent,
-                "judgeable": False,
+                "observations": n_long, "recent_observations": n_recent, "judgeable": False,
                 "method": ("no same-weekday history" if not n_long else
                            f"only {n_long} same-weekday observation, under the "
                            f"{MIN_BASELINE_DAYS} a median needs")}
@@ -105,6 +105,7 @@ def expected_volume(counts_by_day: dict, day: str, *, weeks: int = BASELINE_WEEK
     else:
         baseline, method = long_, f"trailing {weeks}-week same-weekday median"
     return {"baseline": baseline, "long_baseline": long_, "recent_baseline": recent,
+            "observations": n_long, "recent_observations": n_recent,
             "judgeable": baseline >= MIN_JUDGEABLE_BASELINE, "method": method}
 
 

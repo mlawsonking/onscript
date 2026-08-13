@@ -3329,7 +3329,9 @@ heartbeat is signed up, integrated to ntfy plus email, and armed at the first wa
 
 ORDER S70, a calibration ruling under the docs/39 review program and the S68 parked ruling on
 baseline seams, executed in an isolated worktree on `opus/s70-recess-baseline` off `origin/main`
-at 86d48910. Suite 1192 to 1207, zero failures, verified green at the branch point first. No API
+at 86d48910, in two parts: S70-1 the publication gate and the volume alert, S70-2 the coverage arm
+of the Monday digest, ordered by Fable after validating the first. Suite 1192 to 1215, zero
+failures, verified green at the branch point first. No API
 calls, $0. Nothing pushed, nothing dispatched, no flag flipped, no commit under `data/derived` or
 `site/public`. The published `thresholds_sha` is byte-identical before and after
 (`0291ebf5...f57d376`), because every constant that moved is an operating threshold and none of
@@ -3490,3 +3492,116 @@ regime-blind baseline, each party's own trailing 14-day ALL-DAYS median at a 0.6
 the coverage input to the same Monday digest. It survives the recess only because weekend days drag
 that median down alongside the weekday level. It was left alone because it is a health-gate input
 and this order covered the publication gate and the volume alert.
+
+### Session 70-2: the third baseline, and the Monday nobody could pass
+
+FABLE'S RULINGS ON THE THREE ITEMS ABOVE, in session, 2026-08-13. R1, the docs/23 wording: AMEND,
+landed in this commit. R2, R-36.5 on quiet weekends: ACCEPTED, constants untouched, the change
+disclosed in this record. R3, the two ratios meeting at 0.40: ACCEPTED as coherent, the
+publish-and-warn band deferred past the freeze, R-36.5 constants stay where they are. The paragraph
+recorded above as "for the reader rather than acted on" was then promoted to the real work.
+
+THE MONDAY DEFECT, MEASURED. `brief.coverage` scored the NEWEST symmetry report against a trailing
+ALL-DAYS median. On a Monday the newest day-scoped report is SUNDAY's, where each party lands 0 to
+6 statements, and the median it met was weekday-dominated at 55 to 95. Replaying the committed
+symmetry series through that arm gives the same answer on every Monday the record holds:
+
+| brief day | scored | D | R | verdict |
+|---|---|---|---|---|
+| 2026-07-20 | 2026-07-19 Sun | 0/82 = 0% | 2/55 = 4% | RED |
+| 2026-07-27 | 2026-07-26 Sun | 3/95 = 3% | 0/68.5 = 0% | RED |
+| 2026-08-03 | 2026-08-02 Sun | 4/87.5 = 5% | 4/58 = 7% | RED |
+| 2026-08-10 | 2026-08-09 Sun | 0/78 = 0% | 6/55 = 11% | RED |
+
+Four Mondays, four reds, none of them about the machine. docs/23 section 7.3 conditions every
+scheduled flip on the Monday digest being green, so this arm alone made the gate unpassable from
+the day it was written. Nobody saw it because S68-5 found the Monday digest had never been
+delivered: the latin-1 header defect ate every send since the flag flipped. The first Monday digest
+that can arrive is 2026-08-17, and it would have arrived carrying this.
+
+THE FIX, AND THE HALF OF IT THAT IS INTERESTING. The baseline is now per-party SAME-WEEKDAY, taken
+from `readiness.expected_volume`, the S70 owner the publication gate and the volume alert already
+read, called once per party so the parties are still never pooled. That alone is not enough, and
+the reason is the same floor S70-1 built: a per-party Sunday baseline is 1.5 to 4 statements, which
+no ratio can carry, so on a Monday the newest day is unjudgeable however it is measured. Three ways
+to report that, and only one survives this module's own load-bearing rule that a green means
+MEASURED and healthy. Green-with-note reports green for a day nobody measured and breaks the rule
+outright. UNKNOWN obeys the rule and still leaves the digest un-green every Monday, which fails the
+gate for a machine that is working and teaches the owner that Monday-unknown is normal, rebuilding
+inside the digest exactly the alert fatigue S70-1 removed from the volume alert. Scoring the newest
+JUDGEABLE day obeys the rule at no cost: the number reported is measured and healthy, and the note
+names the day it scored, that day's age, and the days it skipped with the reason. The third is what
+ships. The stale-REPORTING guard is untouched and still fires when reports stop arriving, which is
+the defect it was built for; `MAX_SCORED_AGE_DAYS` bounds the walk, and on a Monday it reaches
+Friday.
+
+THE DECISIVE WITNESS uses no projection at all. Replaying Monday 2026-08-10 from the committed
+symmetry series through the shipped arm: GREEN, scored 2026-08-07, D 99/82 = 121%, R 66/55 = 120%,
+with `2026-08-09, 2026-08-08 skipped, baseline under the 20 a ratio needs` written into the note.
+The morning the live brief read RED, the fixed arm reads green on measured numbers and says which
+day it measured.
+
+THE RESIDUAL, STATED RATHER THAN HIDDEN. A one-party ingest break beginning on a Saturday is
+invisible until Tuesday's brief. That is a property of weekends, not of this design: both parties'
+weekend counts run 0 to 21 against baselines of 1.5 to 4, so no ratio can see it, and the old
+all-days median did not see it either. It called every weekend RED whether a party had broken or
+not, which is the same thing as not seeing it.
+
+CONSTANTS THAT MOVED IN S70-2.
+
+| constant | owner | old | new | reason |
+|---|---|---|---|---|
+| coverage baseline | `brief.coverage` | trailing all-days median of the newest report | per-party `readiness.expected_volume` on the newest judgeable day | a Sunday must be judged against Sundays, and a baseline of 1.5 cannot carry a ratio |
+| `COVERAGE_WINDOW` | `brief` | 14 | 42 | the baseline is same-weekday now, and 14 calendar days holds two same-weekdays; 42 is `BASELINE_WEEKS` weeks |
+| `MAX_SCORED_AGE_DAYS` | `brief` | new | 4 | bounds the walk for a judgeable day; Friday from a Monday, with one day of slack |
+| `COVERAGE_MIN_SHARE` | `brief` | 0.60 | 0.60 | unchanged, deliberately: see the prediction below |
+| `MAX_REPORT_AGE_DAYS` | `brief` | 2 | 2 | unchanged; still the stale-REPORTING guard |
+| `MIN_MEDIAN_SAMPLES` | `brief` | 3 | 3 | unchanged, now applied to same-weekday observations |
+| `expected_volume` return | `readiness` | | gains `observations`, `recent_observations` | coverage needs the sample count to keep its own stricter floor |
+
+THE MONDAY 2026-08-17 PREDICTION, and it is not a green one. Assuming the branch pushes Thursday
+evening, the gate drains 08-11 and 08-12 on Friday's two passes, 08-13 and 08-14 on Saturday's,
+08-15 on Sunday's, and 08-16 on Monday's own run before the brief is built, since `_owners_brief`
+is called after `assemble` in `run_assemble.main`. Days 08-11 to 08-16 are projected as each
+party's median over its last three same-weekdays times that party's recess factor, measured from
+2026-08-10, the one recess weekday the record holds: D 0.824, R 0.518. The projection's pooled
+totals run 102 and 108 for 08-11 and 08-12 against the 96 and 86 actually observed, so it flatters
+the arms rather than the reverse.
+
+| arm | predicted | number |
+|---|---|---|
+| streak | GREEN | 32 consecutive days published through 2026-08-16; it HEALS, because a day published late but ready and unforced is a publish and leaves no hole |
+| spend | GREEN | $0.05 MTD, $0.09 projected |
+| coverage | RED | scored 2026-08-14, D 75/86.5 = 87% green, R 34/60.5 = 56% red |
+| verifier_drop | RED | 13/20 = 65% over 7 days |
+| reach | manual | monthly hand count |
+| headline | RED: coverage, verifier_drop | |
+
+Both reds are worth naming precisely, because neither is this order's to fix and neither is an
+instrument artifact. Coverage is red on the R arm alone: R published 52% of its own same-weekday
+norm on the one recess weekday measured, and the same-weekday baseline cannot adapt until three
+recess Fridays sit in the recent window, which happens on 2026-08-31. Sweeping R's recess factor
+through the shipped arm puts the break-even between 0.55 and 0.60, with D never falling below the
+floor at any point in the sweep; the observed factor is 0.518. That is a true statement about R's
+recess volume, so `COVERAGE_MIN_SHARE` was NOT moved to make it green: tuning a health floor to
+clear a gate is how the one-party-ingest-break detector would be blinded. Verifier drop is red
+independently and already reads red today at 8/12; docs/39 M5 named it and Session 69 recorded it
+as a watch item, that the recess thins the denominator in exactly the weeks least able to bear a
+threshold judgment. Fixing coverage was necessary and is not sufficient: as things stand the docs/23
+gate pauses on 2026-08-17, which under its own wording is the system working.
+
+R1 AS LANDED. docs/23 section 7.3's `site current` clause now reads against the pipeline's own
+temporal ladder rather than against the word "yesterday": `site.temporal_state` resolves to `today`
+or `latest_complete`, so the newest published day lags by at most 1, and that day is
+`degraded=False` and `forced_finalize=False`.
+
+TESTS, S70-2. `tests/test_s70_monday_gate.py`, eight fixtures: the Monday that read red reads green
+on committed data alone; per-party weekend baselines are withheld while a weekday in the same
+series is judgeable, so the floor is not muting everything; a one-party ingest break still reads
+red on a scored weekday; the stale-REPORTING guard is untouched, so the judgeable walk did not
+quietly become a staleness bypass; the walk stops at `MAX_SCORED_AGE_DAYS` rather than reaching for
+a week-old number to dress in a green; coverage reads the S70 owner and keeps no median of its own;
+the full 2026-08-17 gate replay asserts every arm and the headline; and the R-arm sweep pins the
+break-even. One existing fixture moved: `_healthy()` in `tests/test_v2_build.py` grows from 8
+consecutive days to 29, because a same-weekday baseline cannot be formed from eight consecutive
+days, and the streak assertion that hard-coded 8 now reads the named constant.
