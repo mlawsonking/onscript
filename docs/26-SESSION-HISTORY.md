@@ -3324,3 +3324,169 @@ Same-day operator completions, for the record: the first live R-33.6 shadow repl
 from the new dispatch workflow (task #218, open since Jul 27, closed), and the external
 heartbeat is signed up, integrated to ntfy plus email, and armed at the first watchdog ping
 (task #203, closed). Suite at this commit is documentation-only relative to fdbbfe3.
+
+## 2026-08-13: Session 70 (Opus). Congress leaving town is not upstream being late
+
+ORDER S70, a calibration ruling under the docs/39 review program and the S68 parked ruling on
+baseline seams, executed in an isolated worktree on `opus/s70-recess-baseline` off `origin/main`
+at 86d48910. Suite 1192 to 1207, zero failures, verified green at the branch point first. No API
+calls, $0. Nothing pushed, nothing dispatched, no flag flipped, no commit under `data/derived` or
+`site/public`. The published `thresholds_sha` is byte-identical before and after
+(`0291ebf5...f57d376`), because every constant that moved is an operating threshold and none of
+them is in `instrument_fingerprint.LIVE_THRESHOLD_NAMES`.
+
+THE DISEASE, ONE SENTENCE. Both the publication gate and the volume alert judged a day against
+volumes from a regime the day was no longer in, and they did it against two different baselines.
+
+THE TWO ARMS, FROM THE RECORD. `collect-2026-08-12.json` holds the first: "volume comparison
+withheld on 2026-08-11 ... only 89 vs same-weekday median 215 (41% < 55%)", and the 2026-08-13
+12:11Z assemble repeated it at 96 against the same 215. 96 is a normal deep-recess Tuesday. The
+six trailing Tuesdays reached back through 07-28 and 08-04 into 07-21, 07-14, 07-07 and 06-30,
+which were session Tuesdays running 220 to 253. Upstream was healthy while this happened: the
+2026-08-13 collect manifest records `source_freshness` ok, age 4.26 hours, corpus through 08-12.
+`collect-2026-08-10.json` holds the second, exactly as S68 parked it: `{"today": 6,
+"trailing_median": 141.5, "anomalously_low": true, "collection_mature": true, "comparison":
+"judged", "maturity_reason": "the focus day cleared the readiness gate"}`. Six statements cleared
+the Sunday readiness bar, which is a same-weekday test, and were then measured against an all-days
+median twenty-three times the Sunday norm. The order's diagnosis is confirmed on both arms.
+
+THE MEASUREMENT. Counts come from the committed day records, `daily_lines[party].stats.statements`
+summed over D and R, which is the count each day actually assembled from. Recorded baselines and
+shares come from the readiness row each assemble manifest carries. The two held days wrote no day
+record, so their readings are the frozen manifest literals 89 and 86.
+
+| case | day | count | live baseline | live share | live verdict | S70 baseline | S70 share | S70 verdict |
+|---|---|---|---|---|---|---|---|---|
+| session Tuesday | 2026-07-21 | 232 | 250.0 (6w) | 0.932 | ready, quiet | 236.0 (6w) | 0.983 | ready, quiet |
+| regime-step Tuesday | 2026-07-28 | 126 | 250.0 (6w) | 0.508 | FORCE-FINALIZED | 232.0 (6w) | 0.543 | ready, quiet |
+| recess Saturday | 2026-08-01 | 3 | 9.5 (6w) | 0.421 | FORCE-FINALIZED | 8.0, unjudgeable | n/a | ready, withheld |
+| recess Sunday | 2026-08-02 | 8 | 5.0 (6w) | 1.600 | ready, PAGED | 3.0, unjudgeable | n/a | ready, withheld |
+| the Sunday page | 2026-08-09 | 6 | 7.0 (6w) | 0.857 | ready, PAGED | 3.0, unjudgeable | n/a | ready, withheld |
+| the hold | 2026-08-11 | 89 | 215.0 (6w) | 0.414 | HELD | 137.0 (recent 3w) | 0.650 | ready, quiet |
+| the second hold | 2026-08-12 | 86 | 185.5 (6w) | 0.464 | HELD | 156.0 (recent 3w) | 0.551 | ready, quiet |
+
+Two counts that name the cost. Four days were force-finalized in the whole committed record
+(2026-07-25, 07-26, 07-28, 08-01) and every one of them writes `degraded: true`; three were
+weekends judged against single-digit baselines and the fourth was the July regime step. Of 31
+collect manifests, 23 sent an ntfy volume page; after S65's maturity gate landed on 08-09 exactly
+two pages were judged mature, and both of those were weekends measured against weekdays. The alert
+has never once fired on a real incident.
+
+THE SEPARATION THAT SET THE RATIO. The gate exists to tell a day that is still landing from a day
+that has landed, and the record measures both populations directly. Still-landing: the fifteen
+collect runs that metered their own day mid-morning read 1 to 5 statements, a maximum share of
+0.0190. Landed: the nineteen judgeable readiness rows in the assemble manifests run 0.414 to
+1.638. The two populations are separated by a factor of 21.8 and nothing lies between them.
+READY_RATIO at 0.55 sat inside the landed population, above three of its nineteen members, so it
+was guaranteed to misclassify landed days; 0.40 sits in the empty gap, below every landed
+observation and twenty-one times above every still-landing one.
+
+THE MECHANISM. `readiness.expected_volume` is now the single owner of "what should this day hold",
+and `ops.volume_anomaly` reads it instead of computing a median of its own (docs/37 rule 1). The
+baseline is the LOWER of a trailing six-week and a recent three-week same-weekday median. The
+recent arm tracks a level drop within two weeks, so a recess day is not read as a half-landed
+session day; the long arm caps it, so a single loud week cannot raise the bar, which is not
+hypothetical: 2026-07-22 ran 377 against a 232 norm and the Wednesdays after it keep the long arm.
+The recent arm must have a FULL window before it may lower the bar, because a median over one
+observation is that observation. Below `MIN_JUDGEABLE_BASELINE` the comparison is withheld rather
+than answered: the seven weekend baselines the live gate recorded run 5.0 to 11.0 statements, and
+the recent arm puts them lower still, so one statement moves the share by five to ten points and
+the ratio measures noise, not completeness. Withheld means the gate does not
+block and the alert does not page, and both say so in words, so a withheld comparison never reads
+as a healthy one. The dead-man that the floor would otherwise mute is restored as an absolute arm:
+a matured day holding nothing pages whatever the baseline says, because the quietest day in the
+record still held 2.
+
+CANDIDATES REJECTED, EACH ON THE DATA. A three-week same-weekday median alone frees 08-11 but
+raises the bar after a loud week: with the committed Wednesdays it puts 2026-07-29 at 147 against
+336.5, a hold that the live six-week baseline of 248 never produced. Weekday-factor scaling of a
+short all-days level (long-window weekday shape times the median regime ratio of the last seven
+days) fails the case it was proposed for: on the morning of 08-12 only one recess weekday had been
+observed, so the level estimator still reads 0.805 and 08-11 lands at 0.54, held. Explicit
+regime-shift detection from a trailing all-days level change was rejected for the same reason plus
+a cost: it needs its own thresholds and its own failure modes to earn what taking a minimum over
+two nested windows already does. Lowering READY_RATIO alone, without touching the baseline, leaves
+the alert arm reading an all-days median and does not stop the false pages at all. Shortening
+BASELINE_WEEKS was rejected because the long arm is doing real work in the record.
+
+CONSTANTS THAT MOVED.
+
+| constant | owner | old | new | reason |
+|---|---|---|---|---|
+| `READY_RATIO` | `readiness` | 0.55 | 0.40 | 0.55 sits inside the landed population; 0.40 sits in the 21.8x empty gap |
+| volume alert baseline | `ops.volume_anomaly` | trailing 14-day all-days median | `readiness.expected_volume` | the alert and the gate may not hold two ideas of normal |
+| `RECENT_WEEKS` | `readiness` | new | 3 | tracks a regime level drop within two weeks; a median of three survives one odd week |
+| `MIN_JUDGEABLE_BASELINE` | `readiness` | new | 20 | the recorded weekend baselines are 5.0 to 11.0, where one statement moves the share by five to ten points |
+| `MIN_BASELINE_DAYS` | `readiness` | new | 2 | a median over one observation is that observation, not a norm |
+| `MIN_LIVE_VOLUME` | `ops` | new | 1 | the absolute dead-man the withheld ratio would otherwise mute |
+| `BASELINE_WEEKS` | `readiness` | 6 | 6 | unchanged; it is the cap arm |
+| `MAX_WAIT_DAYS` | `readiness` | 2 | 2 | unchanged; the outer safety net stays |
+| `LOOKBACK_DAYS` | `readiness` | 5 | 5 | unchanged |
+| `MIN_PUBLISHABLE` | `readiness` | 1 | 1 | unchanged value, guard extended to the ready route as well as the forced one |
+| `NULL_SERVICE_VOLUME_RATIO` | `config` | 0.4 | 0.4 | unchanged; only what it is measured against changed |
+
+Manifest fields follow the measurement. `volume.trailing_median` becomes `volume.baseline` and gains
+`volume.baseline_method` and `volume.judgeable`; the readiness row gains `judgeable` and
+`baseline_method`. `readiness.ready` and `readiness.count`, the two fields `status_exports` reads,
+are untouched.
+
+WHAT THIS DOES TO THE 2026-08-13 STATE. Replaying the committed counts through the shipped selector
+with days final through 08-10 returns `{"day": "2026-08-11", "forced": false, "reason": "ready"}`
+at share 0.65, and the next pass returns 2026-08-12, also unforced. Two assemble runs fire per day,
+so the backlog drains inside one day rather than sitting behind `MAX_WAIT_DAYS`.
+
+TESTS. `tests/test_s70_recess_baseline.py`, fourteen fixtures built from the committed August
+series and the frozen manifest readings: the two incidents are asserted still present in the
+manifests they were written into; the held Tuesday is ready on the morning after and is what the
+selector picks; the recess weekend is exempt rather than force-finalized; no day the live gate
+published becomes a day this one holds, over the whole recorded August; the recess Sunday and
+Saturday do not page and no day in the series pages; a dead weekday holds and pages; a dead weekend
+pages on the absolute arm even though its ratio is withheld and is never published as an empty
+page; the transport dead-man is asserted independent of the volume baseline by parsing
+`run_collect.collect`; the loud session Wednesday keeps the long arm; and both arms are asserted to
+return the same baseline, method and judgeability for every day in the series. Four existing
+fixtures moved, all inside the seam being repaired and each for a stated mechanical reason: the
+S65 fixture that asserted a PAGE for a Saturday holding three quarters of its Saturday norm now
+asserts the quiet it should always have had, and is joined by a companion that collapses the same
+Saturday against its own Saturdays and asserts the page and the hold together; the no-history
+fixture moves its dead-man from a ratio that no longer exists to the absolute arm; the exact-shape
+assertion follows the renamed keys; and the Y4 DRY fixture goes from 10 statements a day to 100,
+because 10 is beneath the judgeable floor.
+
+FOR FABLE, THREE ITEMS THAT ARE NOT THIS SESSION'S TO RULE.
+
+1. The docs/23 section 7.3 health gate reads, literally: "the Monday owners-brief digest green, no
+   open P0, the prior week's nightly symmetry audits clean, site current (yesterday's day
+   published, `degraded=False`)". A force-finalized day fails it twice over. Every force-finalized
+   day in the record writes `degraded: true`, so the parenthesis can never be satisfied; and
+   force-finalize publishes at age two or more, so the newest published day is at least two behind
+   "yesterday". The digest clause fails independently, because `ops.unattended_streak` breaks on
+   `forced_finalize` or `degraded`: the 2026-08-13 brief already reads streak 0, red. Under the fix
+   the days publish clean and unforced and the gate is satisfiable as written, so no amendment is
+   required to hold Monday 2026-08-17. The wording question that remains is narrower: a day the
+   gate legitimately holds for one day and then publishes ready at lag 2 is honest, undegraded, and
+   still fails "yesterday's day published", while the pipeline's own ladder in
+   `site.temporal_state` calls lag 1 `latest_complete` and only lag above 1 `publication_delayed`.
+   Whether the gate should read against that ladder instead of against the literal "yesterday" is
+   Fable's call.
+2. R-36.5 loses two of its four inputs on regime-normal quiet days, as a consequence rather than a
+   rule change. `NULL_SERVICE_CONDITIONS` is untouched, but on 2026-08-01 both `force_finalized`
+   and `anomalously_low_volume` were true only because a 3-statement Saturday was judged against a
+   9.5 Saturday median, and the party threads were held. Under the fix that Saturday publishes the
+   quiet-day line, which is what the 8-statement Sunday of 08-02 and the 6-statement Sunday of
+   08-09 already did: the record shows both posted normally. The fix makes the three weekends
+   consistent rather than changing a policy, but it does move a live posting surface and Fable
+   should say whether R-36.5 wants an absolute quiet-day input in place of the ratio input it just
+   lost.
+3. `READY_RATIO` and `NULL_SERVICE_VOLUME_RATIO` are now both 0.40, so for a judgeable day the gate
+   and the alert are exactly complementary: every day that publishes normally is quiet and every
+   day that pages is one the gate also held. That is coherent and it is a deliberate consequence of
+   giving them one baseline, but it removes the band in which a day publishes AND warns. Raising the
+   alert ratio above the ready ratio would restore that band and would move a constant that belongs
+   to the R-36.5 rule, so it was not done here.
+
+A finding recorded for the reader rather than acted on: `brief.coverage` carries a third
+regime-blind baseline, each party's own trailing 14-day ALL-DAYS median at a 0.60 floor, and it is
+the coverage input to the same Monday digest. It survives the recess only because weekend days drag
+that median down alongside the weekday level. It was left alone because it is a health-gate input
+and this order covered the publication gate and the volume alert.
