@@ -96,23 +96,68 @@
       ]
     },
     {
-      "ngram": "education labor and pensions help",
-      "slug": "3b8f9606fc1ee8c8",
-      "n": 5,
+      "ngram": "letter is available",
+      "slug": "87de773e9f6c7eb0",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.09,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "T000476",
+        "statement": "sha256:9bc394ba6e110d27a1d28799ac22e4861a66c259b37384bbd3c7efed91102c84",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.957,
+      "series": [
+        9,
+        8,
+        5,
+        4,
+        4,
+        4,
+        7,
+        6,
+        5,
+        3,
+        2,
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "ngram": "health education labor and pensions help",
+      "slug": "6c648bcf461401d7",
+      "n": 6,
       "day_peak": 4,
       "party": "D",
       "counts": {
         "D": 4,
         "R": 0,
-        "I": 1
+        "I": 0
       },
       "family_counts": {
         "D": 4,
         "R": null,
-        "I": 1
+        "I": null
       },
       "family_count": 4,
-      "velocity": 1.81,
+      "velocity": 2.95,
       "first_seen": {
         "date": "2025-01-09",
         "bioguide": "T000278",
@@ -122,20 +167,110 @@
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.958,
+      "df_weight": 0.969,
       "series": [
+        2,
         1,
-        5,
-        6,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
         2,
         1,
         1,
         1,
-        6,
+        4
+      ]
+    },
+    {
+      "ngram": "and federal immigration",
+      "slug": "ddcb45e4fe41215c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.73,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "L000600",
+        "statement": "sha256:8337b36db9b3e830d8fa8360243a1acac9efd02956ce00c81955697ba5d68917",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "deserve to know",
+      "slug": "c42e27b93170529c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "B001243",
+        "statement": "sha256:09325af0fb301f836f532a3b2fdfc782f5c496e04f8f95ab3dfa8c38e0445dbd",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        2,
         1,
         3,
+        2,
         1,
+        2,
         1,
         4
       ]
@@ -278,6 +413,54 @@
       ]
     },
     {
+      "ngram": "letter was signed",
+      "slug": "f9c916786b453fb1",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.19,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "K000400",
+        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+        "tie": [
+          "L000397",
+          "R000620"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.969,
+      "series": [
+        1,
+        2,
+        3,
+        2,
+        5,
+        5,
+        6,
+        6,
+        1,
+        5,
+        3,
+        4,
+        3,
+        4
+      ]
+    },
+    {
       "ngram": "billions of dollars",
       "slug": "ef73ccf05a80670c",
       "n": 3,
@@ -370,6 +553,251 @@
       ]
     },
     {
+      "ngram": "firm’s plans to provide legal assistance",
+      "slug": "a91c8baa72148742",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-11",
+        "bioguide": "K000377",
+        "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+        "tie": [
+          "M001111",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "unaccompanied children are provided competent legal",
+      "slug": "d166c3a1cb2aff64",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-11",
+        "bioguide": "K000377",
+        "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+        "tie": [
+          "M001111",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "child welfare and federal immigration law",
+      "slug": "544f89e6ff418aa4",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-11",
+        "bioguide": "K000377",
+        "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+        "tie": [
+          "M001111",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "children are provided competent legal aid",
+      "slug": "132df5268556b1bb",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-11",
+        "bioguide": "K000377",
+        "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+        "tie": [
+          "M001111",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "children deserve competent representation by attorneys",
+      "slug": "758155839feeb287",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-11",
+        "bioguide": "K000377",
+        "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+        "tie": [
+          "M001111",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "provide legal assistance to unaccompanied children",
+      "slug": "9b963274f61477dc",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-11",
+        "bioguide": "K000377",
+        "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+        "tie": [
+          "M001111",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "apparent immigration law experience allowing",
+      "slug": "e53c2b0a98ad3db1",
+      "n": 5,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-11",
+        "bioguide": "K000377",
+        "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+        "tie": [
+          "M001111",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
       "ngram": "education labor and pensions help committee",
       "slug": "656d2713aa14872b",
       "n": 6,
@@ -413,506 +841,6 @@
         1,
         3
       ]
-    },
-    {
-      "ngram": "health education labor and pensions help",
-      "slug": "6c648bcf461401d7",
-      "n": 6,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.21,
-      "first_seen": {
-        "date": "2025-01-09",
-        "bioguide": "T000278",
-        "statement": "sha256:d50ccf2c75cfa70622b8394ccbf9cc93fcd5ea62d22142d9ad364dcd16e845ee",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.969,
-      "series": [
-        2,
-        1,
-        2,
-        2,
-        1,
-        1,
-        2,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "ice detention centers",
-      "slug": "a78bb7462324957b",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.33,
-      "first_seen": {
-        "date": "2025-05-02",
-        "bioguide": "W000808",
-        "statement": "sha256:63384fc563825b622020fd8b26c539b555141b7908d9c945996d81673746208b",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        3,
-        3
-      ]
-    },
-    {
-      "ngram": "full text of the letter here",
-      "slug": "9e4890cd76ac3128",
-      "n": 6,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 1,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 1,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 1.75,
-      "first_seen": {
-        "date": "2025-01-06",
-        "bioguide": "C001098",
-        "statement": "sha256:fd2f197a9ee336c480eb5422a4eb3f2b15c478f761d14d67b51409a6213fb340",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.996,
-      "series": [
-        2,
-        1,
-        1,
-        2,
-        1,
-        3,
-        2,
-        1,
-        1,
-        3,
-        2,
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "oversight and enforcement",
-      "slug": "b1a18715c3b5cdaf",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-04-01",
-        "bioguide": "H001046",
-        "statement": "sha256:cac4fe10f55c008cec5504e216ef5693b462abce61bae4fd8a3889cd85bc5789",
-        "tie": [
-          "V000128",
-          "W000817"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        2,
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "lawmakers requested that",
-      "slug": "ae0ee7a8632a54fa",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.33,
-      "first_seen": {
-        "date": "2025-03-17",
-        "bioguide": "W000817",
-        "statement": "sha256:6be97d5e6718241e14113fdb8ce06d09b6204fc0bb5b88b43c91d1b7da5c6d73",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        3,
-        3
-      ]
-    },
-    {
-      "ngram": "family members of",
-      "slug": "17b1d42b886fb47f",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.8,
-      "first_seen": {
-        "date": "2025-01-09",
-        "bioguide": "S001198",
-        "statement": "sha256:dbc66bae60c8ed610984412646692f89f6f2cb2f24b98e9b78bf10fd6f9e6de6",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "family members and",
-      "slug": "6c88d7c49c5c28fb",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.33,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "M001235",
-        "statement": "sha256:81afee09f7a734422b9272cef14f34cb2f938969d9d7fb54885b31bf08589f46",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.997,
-      "series": [
-        1,
-        2,
-        2,
-        1,
-        2,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "efforts to strengthen",
-      "slug": "7c6ed458fa5928b1",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 1,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 1,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.21,
-      "first_seen": {
-        "date": "2025-01-09",
-        "bioguide": "R000600",
-        "statement": "sha256:33c99e6b909c057fb04534f40502538bf945f9ef685881c10ad1d259b18295ed",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.996,
-      "series": [
-        2,
-        2,
-        1,
-        3,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "the lawmakers requested",
-      "slug": "042f76bb5de7d209",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.0,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "V000128",
-        "statement": "sha256:4741828ba5434372255dfeee644dbc0c4a93427b9efd2c1b03d6dda90193c336",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.996,
-      "series": [
-        3,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        3,
-        3
-      ]
-    },
-    {
-      "ngram": "in ice custody",
-      "slug": "261f3f4bd6f130ac",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 1.91,
-      "first_seen": {
-        "date": "2025-02-21",
-        "bioguide": "H001079",
-        "statement": "sha256:c5f567b9e3327503077a4193c15c1ffdfc01a0cc9aa4750acd1516e87f65f17c",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.995,
-      "series": [
-        2,
-        1,
-        1,
-        1,
-        2,
-        3,
-        1,
-        3,
-        1,
-        1,
-        1,
-        2,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "to hear directly",
-      "slug": "0fda21dfe864f3bd",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-01-07",
-        "bioguide": "K000384",
-        "statement": "sha256:b08145c76584c2e8bcac4e69befde733812003ba0a59941fc673fd6f4be01a10",
-        "tie": [
-          "W000805"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.994,
-      "series": [
-        2,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        3
-      ]
     }
   ],
   "legacy_unvalidated_metrics": {
@@ -933,5 +861,1317 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-08-11",
+      "party": "D",
+      "composite": "Today 61 of us released statements. 3 of us carried \"contract to a Trump-aligned law\". Our most synchronized phrase, used by 4 of us: health education labor and pensions help.",
+      "measurement_lead": "Measurement: 61 publications were observed for the Democratic party on 2026-08-11.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-08-11",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "41e3c7184badf836670e4dc2c3610c0b54fda43acc19d54d3362a0c1957baa04",
+        "claim_ids": [
+          "2026-08-11-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 61 of us released statements. 3 of us carried \"contract to a Trump-aligned law\". Our most synchronized phrase, used by 4 of us: health education labor and pensions help.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-08-11-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "4035e0f8ffc3ccbd71d4073344b5894c5dda1be02e3879279fd03f2556b409ea",
+        "response_sha256": "43b4ef43f1ec76c1a20ebb80c4fffe8c5f2cd33363dc2c30fbd4730acae71bef",
+        "model_response_sha256": "9ec97f0ee74ca318bcdbcae17e284c2d59c0c6ff1add5e947b8279bf13882e08"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-08-11-D-00"
+          ],
+          "claim_ids": [
+            "2026-08-11-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-08-11-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-08-11",
+        "statements": 61,
+        "talking_points": [
+          {
+            "label": "contract to a trump-aligned law",
+            "members": 3,
+            "quote": "contract to a Trump-aligned law",
+            "topics": [
+              "other",
+              "housing",
+              "immigration"
+            ],
+            "claim_id": "2026-08-11-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "housing",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "immigration",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "health education labor and pensions help",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "Tommy Tuberville",
+          "first_sayer_party": "R",
+          "first_sayer_state": "AL"
+        },
+        "selected_claims": [
+          {
+            "label": "contract to a trump-aligned law",
+            "members": 3,
+            "quote": "contract to a Trump-aligned law",
+            "topics": [
+              "other",
+              "housing",
+              "immigration"
+            ],
+            "claim_id": "2026-08-11-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "housing",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "immigration",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-08-11-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2549,
+        "tokens_out": 124,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-08-11",
+      "party": "R",
+      "composite": "Today 36 of us released statements. No phrase was shared by 3 or more of us today.",
+      "measurement_lead": "Measurement: 36 publications were observed for the Republican party on 2026-08-11.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-08-11",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "7441b140bfc5dfa62b2d6cc210e3f3eb8baffb65e8d2fcda4f447d476b34118d",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Today 36 of us released statements. No phrase was shared by 3 or more of us today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "573fc94ce0a83f91b9065e91503e9676f04f76f34549174c4a91c772caad2577",
+        "response_sha256": "db02ade06cf28183b65267000f23c3e045822293a94141d7ba1c8855ed983dea",
+        "model_response_sha256": null
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-08-11",
+        "statements": 36,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-08-11-D-00",
+        "party": "D",
+        "day": "2026-08-11",
+        "label": "contract to a trump-aligned law",
+        "member_count": 3,
+        "statements": [
+          "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+          "sha256:5967758b485564d7999261a8be5a354e3e0b332fe0e3a835fd257e46868b20d9",
+          "sha256:d41c648df71ce829e1acbf6a743e9a5d2ebe4d54326026508d70a0e30e42c608"
+        ],
+        "fragments": [
+          {
+            "text": "administration awarded a no-bid contract to a trump-aligned law",
+            "statement": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4"
+          },
+          {
+            "text": "awarded a no-bid contract to a trump-aligned law",
+            "statement": "sha256:d41c648df71ce829e1acbf6a743e9a5d2ebe4d54326026508d70a0e30e42c608"
+          },
+          {
+            "text": "a no-bid contract to a trump-aligned law firm with no apparent",
+            "statement": "sha256:5967758b485564d7999261a8be5a354e3e0b332fe0e3a835fd257e46868b20d9"
+          }
+        ],
+        "topics": [
+          "other",
+          "housing",
+          "immigration"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-11-D-00",
+        "support_phrase": {
+          "normalized": "contract to a trump-aligned law",
+          "text": "contract to a Trump-aligned law",
+          "occurrence_id": "occ:3cee69e18ff616e8d45b54da"
+        },
+        "display_quote": "contract to a Trump-aligned law",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3cee69e18ff616e8d45b54da",
+            "claim_id": "2026-08-11-D-00",
+            "statement_id": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+            "publication_id": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+            "office_id": "K000377",
+            "family_id": "dfam:d6ef9565110fc5ec06316eba",
+            "family_revision": "dfrev:fff5adaa7b01e38bd7a61c29",
+            "support_unit_id": "K000377",
+            "party": "D",
+            "start_char": 232,
+            "end_char": 263,
+            "surface_text": "contract to a Trump-aligned law",
+            "normalized_phrase": "contract to a trump-aligned law",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 183,
+            "sentence_end_char": 435,
+            "sentence_offset_start": 49,
+            "sentence_offset_end": 80,
+            "clause_start_char": 55,
+            "clause_end_char": 312,
+            "clause_offset_start": 177,
+            "clause_offset_end": 208,
+            "adjacent_tokens_before": [
+              "trump",
+              "administration",
+              "awarded",
+              "a",
+              "no-bid"
+            ],
+            "adjacent_tokens_after": [
+              "firm",
+              "with",
+              "no",
+              "apparent",
+              "immigration"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a13b7525bb49bc3107f2602d",
+            "claim_id": "2026-08-11-D-00",
+            "statement_id": "sha256:5967758b485564d7999261a8be5a354e3e0b332fe0e3a835fd257e46868b20d9",
+            "publication_id": "sha256:5967758b485564d7999261a8be5a354e3e0b332fe0e3a835fd257e46868b20d9",
+            "office_id": "M001111",
+            "family_id": "njoint:7fb08bdf9147f14617de6001",
+            "family_revision": "dfrev:3e23c2d09e165452adc4f266",
+            "support_unit_id": "njoint:7fb08bdf9147f14617de6001",
+            "party": "D",
+            "start_char": 696,
+            "end_char": 727,
+            "surface_text": "contract to a Trump-aligned law",
+            "normalized_phrase": "contract to a trump-aligned law",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 619,
+            "sentence_end_char": 903,
+            "sentence_offset_start": 77,
+            "sentence_offset_end": 108,
+            "clause_start_char": 615,
+            "clause_end_char": 776,
+            "clause_offset_start": 81,
+            "clause_offset_end": 112,
+            "adjacent_tokens_before": [
+              "planned",
+              "to",
+              "award",
+              "a",
+              "no-bid"
+            ],
+            "adjacent_tokens_after": [
+              "firm",
+              "with",
+              "no",
+              "apparent",
+              "immigration"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:365a42d02d8441e52510f258",
+            "claim_id": "2026-08-11-D-00",
+            "statement_id": "sha256:d41c648df71ce829e1acbf6a743e9a5d2ebe4d54326026508d70a0e30e42c608",
+            "publication_id": "sha256:d41c648df71ce829e1acbf6a743e9a5d2ebe4d54326026508d70a0e30e42c608",
+            "office_id": "M001169",
+            "family_id": "dfam:607ed6af75f11f458f503b5d",
+            "family_revision": "dfrev:fb96d39da5537aad4adb98e3",
+            "support_unit_id": "M001169",
+            "party": "D",
+            "start_char": 692,
+            "end_char": 723,
+            "surface_text": "contract to a Trump-aligned law",
+            "normalized_phrase": "contract to a trump-aligned law",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 624,
+            "sentence_end_char": 899,
+            "sentence_offset_start": 68,
+            "sentence_offset_end": 99,
+            "clause_start_char": 620,
+            "clause_end_char": 772,
+            "clause_offset_start": 72,
+            "clause_offset_end": 103,
+            "adjacent_tokens_before": [
+              "trump",
+              "administration",
+              "awarded",
+              "a",
+              "no-bid"
+            ],
+            "adjacent_tokens_after": [
+              "firm",
+              "with",
+              "no",
+              "apparent",
+              "immigration"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "K000377",
+          "M001111",
+          "M001169"
+        ],
+        "publication_ids": [
+          "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+          "sha256:5967758b485564d7999261a8be5a354e3e0b332fe0e3a835fd257e46868b20d9",
+          "sha256:d41c648df71ce829e1acbf6a743e9a5d2ebe4d54326026508d70a0e30e42c608"
+        ],
+        "family_ids": [
+          "dfam:607ed6af75f11f458f503b5d",
+          "dfam:d6ef9565110fc5ec06316eba",
+          "njoint:7fb08bdf9147f14617de6001"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:607ed6af75f11f458f503b5d",
+            "family_revision": "dfrev:fb96d39da5537aad4adb98e3"
+          },
+          {
+            "family_id": "dfam:d6ef9565110fc5ec06316eba",
+            "family_revision": "dfrev:fff5adaa7b01e38bd7a61c29"
+          },
+          {
+            "family_id": "njoint:7fb08bdf9147f14617de6001",
+            "family_revision": "dfrev:3e23c2d09e165452adc4f266"
+          }
+        ],
+        "support_unit_ids": [
+          "K000377",
+          "M001169",
+          "njoint:7fb08bdf9147f14617de6001"
+        ],
+        "citation_occurrence_ids": [
+          "occ:3cee69e18ff616e8d45b54da",
+          "occ:a13b7525bb49bc3107f2602d",
+          "occ:365a42d02d8441e52510f258"
+        ],
+        "citations": [
+          {
+            "member": "Mark Kelly",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-08-11",
+            "url": "https://www.kelly.senate.gov/newsroom/press-releases/kelly-colleagues-demand-answers-on-trump-aligned-law-firm-hired-to-represent-unaccompanied-children/",
+            "quote": "administration awarded a no-bid contract to a trump-aligned law",
+            "occurrence_id": "occ:3cee69e18ff616e8d45b54da",
+            "office_id": "K000377",
+            "publication_id": "sha256:0d889ecd91821628f4a28230a3238a7762e77fdb1e4df7ba2efa6a03d9a20db4",
+            "family_id": "dfam:d6ef9565110fc5ec06316eba",
+            "family_revision": "dfrev:fff5adaa7b01e38bd7a61c29"
+          },
+          {
+            "member": "Patty Murray",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-08-11",
+            "url": "https://www.murray.senate.gov/senators-to-rfk-jr-why-was-a-trump-aligned-firm-with-no-immigration-experience-considered-for-no-bid-contract-to-represent-unaccompanied-children/",
+            "quote": "a no-bid contract to a trump-aligned law firm with no apparent",
+            "occurrence_id": "occ:a13b7525bb49bc3107f2602d",
+            "office_id": "M001111",
+            "publication_id": "sha256:5967758b485564d7999261a8be5a354e3e0b332fe0e3a835fd257e46868b20d9",
+            "family_id": "njoint:7fb08bdf9147f14617de6001",
+            "family_revision": "dfrev:3e23c2d09e165452adc4f266"
+          },
+          {
+            "member": "Christopher Murphy",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-08-11",
+            "url": "https://www.murphy.senate.gov/newsroom/press-releases/senators-to-rfk-jr-why-was-a-trump-aligned-firm-with-no-immigration-experience-granted-no-bid-contract-to-represent-unaccompanied-children",
+            "quote": "awarded a no-bid contract to a trump-aligned law",
+            "occurrence_id": "occ:365a42d02d8441e52510f258",
+            "office_id": "M001169",
+            "publication_id": "sha256:d41c648df71ce829e1acbf6a743e9a5d2ebe4d54326026508d70a0e30e42c608",
+            "family_id": "dfam:607ed6af75f11f458f503b5d",
+            "family_revision": "dfrev:fb96d39da5537aad4adb98e3"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "housing",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "immigration",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-08-11",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 52,
+          "denominator_unit": "offices",
+          "share": 0.057692,
+          "window": "party-day 2026-08-11",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 61,
+          "denominator_unit": "publications",
+          "share": 0.04918,
+          "window": "party-day 2026-08-11",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 60,
+          "denominator_unit": "document families",
+          "share": 0.05,
+          "window": "party-day 2026-08-11",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-08-11",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 28,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-08-11",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 36,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-08-11",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 36,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-08-11",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": [
+      {
+        "label": "3 million in federal",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "bipartisan bill would",
+        "slug": "85831937a8c38073",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.59,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "C001059",
+          "statement": "sha256:f3b9baea065970a010100461d582cbf7dc7503790d61866f7ca816382297dac7",
+          "tie": [
+            "P000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          1,
+          1,
+          2,
+          3,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "expand access to",
+        "slug": "0c3cd1524acb667f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.19,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [
+            "D000622"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.966,
+        "series": [
+          7,
+          4,
+          8,
+          2,
+          3,
+          6,
+          4,
+          4,
+          3,
+          5,
+          2,
+          4,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "health education labor and pensions help",
+        "slug": "6c648bcf461401d7",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "T000278",
+          "statement": "sha256:d50ccf2c75cfa70622b8394ccbf9cc93fcd5ea62d22142d9ad364dcd16e845ee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          2,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "and federal immigration",
+        "slug": "ddcb45e4fe41215c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "L000600",
+          "statement": "sha256:8337b36db9b3e830d8fa8360243a1acac9efd02956ce00c81955697ba5d68917",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "deserve to know",
+        "slug": "c42e27b93170529c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "B001243",
+          "statement": "sha256:09325af0fb301f836f532a3b2fdfc782f5c496e04f8f95ab3dfa8c38e0445dbd",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          2,
+          1,
+          3,
+          2,
+          1,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "keep fighting to",
+        "slug": "ce34d8212128c3f0",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.65,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          5,
+          3,
+          5,
+          2,
+          4,
+          2,
+          1,
+          1,
+          2,
+          3,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "food on the table",
+        "slug": "589df2db6ff052d6",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "T000487",
+          "statement": "sha256:3d3e634b889cf59de305f31e8982f8fa4c6fd6c903ebc8336b4fe23f1b2f4018",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          3,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          1,
+          1,
+          1,
+          2,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "their loved ones",
+        "slug": "d100144f2d08921f",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.93,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001047",
+          "statement": "sha256:46851499ece5252266e9485b402342e47789809f1c67e2b9a4826acacaa7cd0c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          3,
+          3,
+          2,
+          2,
+          4,
+          5,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "letter was signed",
+        "slug": "f9c916786b453fb1",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.19,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "K000400",
+          "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+          "tie": [
+            "L000397",
+            "R000620"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          1,
+          2,
+          3,
+          2,
+          5,
+          5,
+          6,
+          6,
+          1,
+          5,
+          3,
+          4,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "billions of dollars",
+        "slug": "ef73ccf05a80670c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.22,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.964,
+        "series": [
+          6,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          8,
+          3,
+          3,
+          5,
+          2,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the federal level",
+        "slug": "7537580bd4e5d1fc",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "H001096",
+          "statement": "sha256:05db9e4fdb9fea63420c38ddd960a47b59455f5498476f74f158507bb5f9484c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          3,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "million in federal",
+        "slug": "b04cb6da38f47ab4",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.31,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          3,
+          3,
+          1,
+          3,
+          1,
+          2,
+          3,
+          4,
+          3,
+          1,
+          3,
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": true,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "82d97eb04ca45486153279b1451433d3d2685614ab00720cfe76c5f50fb72843",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "4ed093a55d899e574e5da6ab6dc048b39e8ea49d4a57e3d3a83b4470e576002b",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
