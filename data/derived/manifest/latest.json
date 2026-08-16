@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-08-16",
   "kind": "deterministic",
-  "generated_at": "2026-08-16T09:50:11Z",
+  "generated_at": "2026-08-16T19:41:46Z",
   "focus_day": "2026-08-15",
   "days_present": [
     "2025-01-01",
@@ -11,7 +11,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-08-16T05:27:57Z",
-    "age_hours": 4.36
+    "age_hours": 14.23
   },
   "normalize": {
     "in": 81275,
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 6.3,
-    "mirror_pull": 28.1,
-    "normalize": 1589.6,
-    "ledger_build": 1442.9
+    "restore": 7.1,
+    "mirror_pull": 14.4,
+    "normalize": 2126.1,
+    "ledger_build": 1929.3
   },
   "span_scan": {
     "person_spans_calls": 234184,
-    "person_spans_s": 361.43475885182784,
+    "person_spans_s": 512.8947421659036,
     "admitted_form_scans": 234184,
-    "admitted_form_s": 5.371848208087158
+    "admitted_form_s": 6.665659935963049
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
