@@ -12,33 +12,51 @@
     },
     {
       "name": "spend",
-      "value": 0.0806,
-      "projected": 0.1561,
+      "value": 0.0905,
+      "projected": 0.1753,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 13,
-      "note": "$0.0806 MTD, $0.16 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 14,
+      "note": "$0.0905 MTD, $0.18 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "value": null,
-      "status": "unknown",
-      "day": "2026-08-13",
+      "day": "2026-08-14",
+      "scored_age_days": 2,
+      "parties": {
+        "D": {
+          "statements": 61,
+          "median": 86.5,
+          "share": 0.705,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 34,
+          "median": 60.5,
+          "share": 0.562,
+          "status": "red",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "red",
       "freshness": {
-        "age_hours": 4.36,
+        "age_hours": 14.23,
         "day": "2026-08-16",
         "status": "green"
       },
-      "note": "newest symmetry report is 2026-08-13 (3d old), cannot describe current coverage"
+      "excluded_reports": 2,
+      "skipped_days": [],
+      "note": "2026-08-14 (2d): D 61/86=70% R 34/60=56% of own same-weekday baseline (green >= 60%); upstream 14.2h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.8571,
+      "value": 0.75,
       "dropped": 6,
-      "offered": 7,
+      "offered": 8,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "6/7 claims dropped over 7d (green < 25%)"
+      "note": "6/8 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -49,19 +67,18 @@
   ],
   "reds": [
     "streak",
+    "coverage",
     "verifier_drop"
   ],
-  "unknowns": [
-    "coverage"
-  ],
+  "unknowns": [],
   "degraded_days": [
     "2026-08-11"
   ],
   "top_phrase": {
-    "ngram": "letter is available",
+    "ngram": "in federal funding",
     "party": "D",
-    "day_peak": 8,
-    "day": "2026-08-13"
+    "day_peak": 9,
+    "day": "2026-08-14"
   },
   "shelf": {
     "dark": [
@@ -89,5 +106,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, verifier_drop"
+  "headline": "RED: streak, coverage, verifier_drop"
 }
