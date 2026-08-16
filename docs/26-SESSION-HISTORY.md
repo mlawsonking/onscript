@@ -3605,3 +3605,90 @@ the full 2026-08-17 gate replay asserts every arm and the headline; and the R-ar
 break-even. One existing fixture moved: `_healthy()` in `tests/test_v2_build.py` grows from 8
 consecutive days to 29, because a same-weekday baseline cannot be formed from eight consecutive
 days, and the streak assertion that hard-coded 8 now reads the named constant.
+
+## 2026-08-15: Session 71 (Fable). Two days behind and telling the truth; the ruling the fix does not make
+
+Michael asked how the site looked. The answer, verified rather than assumed: the site is fine and
+the instrument is honest. onscript.news serves the designed delayed state — newest reading
+2026-08-12, "publication is 2 days behind," status page overall RED with publication lag 2d and
+incident state open — while all eight of the day's workflow runs are green, spend is $0.0737 MTD
+against the $8 line with the governor nominal, and Vercel is deploying faithfully (the committed
+`site/public/index.html` on origin/main carries the same delayed title as the live page; the badge
+and the site agree). The green-badge rule was applied and the tree read: `data/derived/days/` holds
+08-14 and 08-15 but no 08-13, and assemble/post manifests, symmetry reports, and day pages all stop
+at 08-12.
+
+THE MECHANISM, from the 2026-08-15 evening assemble log (reproduce:
+`gh run list --workflow "RUN B assemble"` → newest run → log):
+
+    2026-08-13 not ready (only 107 vs same-weekday median 214.5 (50% < 55%) —
+    upstream likely still landing) and only 1d old — HOLD, retry later
+
+August recess volume against an in-session same-weekday median trips `READY_RATIO = 0.55`
+(`pipeline/readiness.py`), so each recess day is held until `MAX_WAIT_DAYS = 2` force-finalizes it
+degraded. No hole ever forms — that is the S65 design working — but every recess day publishes two
+days late, forced and degraded, the site trails permanently, and the docs/23 §7.3 `site current`
+clause (R1 as landed in S70-2: newest published day lags ≤1, `degraded=False`,
+`forced_finalize=False`) can never read true. This is exactly the regime S70 diagnosed from the
+08-10 false page; nothing new broke. The disagreement between the brief's streak 0 RED and the
+status page's publication streak 23 is anchor semantics, not a contradiction: `brief.streak`
+anchors at yesterday and asks "are we current," `status_exports._streak` counts the published run
+ending at the newest published manifest. Both are defensible, the lag row sits beside the 23 on the
+same surface, and the hole case is unreachable while force-finalize holds. Recorded as a naming
+watch item under Article XVII; renaming a public health label is not a Friday drive-by.
+
+WHAT THIS SESSION DID. Claimed S71 (highest across every ref: S70). In an isolated worktree
+(branch `worktree-s71-recess-verify`, junctions replicated for raw/state/releases), merged
+`opus/s70-recess-baseline` onto the origin/main tip (754c97bd, the 08-15 evening data commit):
+clean ort merge, zero conflicts, merge commit 3c375318. The authoritative suite on the merged
+tree: **1215 passed, 0 failed** (S68 baseline 1192 + S70's new fixtures), run as
+`C:\ProgramData\miniconda3\python.exe tests\run_tests.py`. One caveat stated rather than hidden:
+the worktree lacks the state-restored `data/reference/roster.json`, the site module said so loudly
+at import, and the suite passed identically — the warning is the tested loud-but-not-fatal path.
+The `opus/s70-recess-baseline` branch and its checkout at `polispeak-wt-s70` were not touched.
+
+EXAMINED AND LEFT ALONE, with reasons. The brief's `verifier_drop` colors RED on 3/5 and 8/12
+offered claims while the status face withholds a verdict under the S65 ≥30 floor; S69 and docs/39
+M5 already hold this as a watch item and S70-2 declined to move it — it stands, because tuning a
+health floor in the week it is inconvenient is the blinding S70 refused. The Democratic composite's
+"deserve to know … first recorded in our corpus from Marsha Blackburn (R-TN)" was checked against
+the epoch rules and is BY DESIGN: first appearance is measured corpus-wide, the launch threads were
+symmetric in exactly this way, and the "in our corpus" qualifier is the S35 item-5 ruling shipped
+as P2 v1.3 (`pipeline/llm.py`). No prompt, threshold, schema, flag, or public label changed in this
+session.
+
+THE PUSH WINDOW, corrected from S70's Thursday assumption. Pending at Friday evening: 08-13 and
+08-14, with 08-15 completing overnight and 08-16 on Sunday. One held day drains per assemble pass,
+two passes per day. Pushed before Saturday's evening assemble (~21:45 UTC), the drain runs
+Sat 08-13, Sun 08-14 and 08-15, Monday-morning 08-16 before the brief builds — S70-2's Monday
+table holds, streak heals green, days land ready and unforced. Pushed after that, Monday's brief
+finds 08-16 unpublished and the streak arm reads RED on timing alone. Without the push the days
+still drain — force-finalized, degraded, two days late each — which fails the gate's clean-day
+clause instead. A Friday-night or Saturday-morning push is the difference between a Monday gate
+that reads the machine and one that reads the calendar.
+
+THE RULING THE FIX DOES NOT MAKE, filed as the day's one new errand. S70-2's own replay says the
+08-17 digest reads RED even with the branch pushed: coverage red on the R arm alone (R at ~52-56%
+of its own same-weekday norm — true recess volume, floor deliberately not moved, heals around
+08-31 when three recess same-weekdays enter the window) and verifier_drop red on thin recess
+denominators. The gate pauses, and under its own wording that is the system working. The
+arithmetic that follows: 08-17 pauses, 08-24 almost certainly pauses, and seven dark features then
+face at most six Mondays (Aug 31 – Oct 5), so concordance slips past its protected Oct 5 date even
+in the good case. The options that keep S70's principle intact: accept the slip into the
+post-freeze window, or amend docs/27 to allow a catch-up double-flip on a green Monday. Tuning
+gate floors to green a Monday is the option already refused. Michael's call; on the bus.
+
+WATCH ITEMS. (1) Nothing pages on publication lag: the site sat incident-open RED from 08-13 to
+08-15 and the operator learned it by asking. The volume alert is the only pager on this path, S65
+correctly muted its false weekend fires, and the only scheduled carrier of the streak number is
+the Monday digest, whose first-ever delivery is expected 08-17 (S68-5). A lag pager is alert
+design, S70's domain, deliberately not improvised here. (2) `vtask` derives its project from the
+repo directory name, so a task filed from this worktree landed in project `s71-recess-verify`
+instead of `polispeak` and was refiled with `--project`; worktree sessions must pass `--project
+polispeak` explicitly — docs/37 candidate. (3) The status/brief streak naming seam, above.
+
+Pass-2 annotation stands at 20/200; the app, guide, quick reference, and export path are untouched
+by this branch, and per the Session 60 rule this record carries no label-space content.
+
+This session did not push, deploy, dispatch, or post. The push remains task #272; the release
+sequence remains docs/27; both remain Michael's.
