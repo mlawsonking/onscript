@@ -2916,9 +2916,14 @@
       "index": 0.8088
     },
     "2026-08-14": {
-      "statements": 56,
-      "on_message_units": 44,
-      "index": 0.7857
+      "statements": 61,
+      "on_message_units": 49,
+      "index": 0.8033
+    },
+    "2026-08-15": {
+      "statements": 4,
+      "on_message_units": 4,
+      "index": 1.0
     }
   },
   "I": {
@@ -7155,9 +7160,9 @@
       "index": 0.7353
     },
     "2026-08-15": {
-      "statements": 1,
-      "on_message_units": 1,
-      "index": 1.0
+      "statements": 5,
+      "on_message_units": 4,
+      "index": 0.8
     }
   },
   "schema_version": 1,
@@ -7166,7 +7171,7 @@
   "min_statements": 10,
   "min_statements_note": "A party-day with fewer statements than this cannot carry an interpretable share: the ratio saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single digits. The floor is stamped, not applied: the values below are the raw per-day measurements and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS.",
   "days_below_min_statements": {
-    "D": 124,
+    "D": 125,
     "I": 266,
     "R": 156
   },
