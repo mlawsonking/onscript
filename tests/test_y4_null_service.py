@@ -39,7 +39,9 @@ def test_the_voiceable_predicate_matches_the_withheld_state():
 # --- shared volume anomaly (DRY) --------------------------------------------------------
 def test_volume_anomaly_is_one_shared_definition():
     assert run_collect._volume_anomaly is not None
-    statements = ([{"published_at": f"2026-05-{d:02d}", "lane": 1} for d in range(1, 15) for _ in range(10)]
+    # 100 a day, not 10: S70 withholds the comparison under a baseline too small to carry a ratio
+    # and a 10-statement norm is beneath that floor. The DRY assertion is what this test is for.
+    statements = ([{"published_at": f"2026-05-{d:02d}", "lane": 1} for d in range(1, 15) for _ in range(100)]
                   + [{"published_at": "2026-05-20", "lane": 1}])
     low = ops.volume_anomaly(statements, "2026-05-20")
     assert low["anomalously_low"] is True

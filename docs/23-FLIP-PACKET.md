@@ -320,8 +320,13 @@ below).
 ### 7.3 The release schedule (standing authorization, bounded, conditional, revocable)
 
 **The health gate (every scheduled flip is conditional on all of):** the Monday owners-brief digest
-green · no open P0 · the prior week's nightly symmetry audits clean · site current (yesterday's day
-published, `degraded=False`). **Any failure pauses the whole schedule and escalates to Michael via
+green · no open P0 · the prior week's nightly symmetry audits clean · site current (**amended by
+Fable in Session 70, 2026-08-13**, from "yesterday's day published, `degraded=False`" to a read of
+the pipeline's own temporal ladder: `site.temporal_state` resolves to `today` or `latest_complete`,
+so the newest published day lags by at most 1, and that day is `degraded=False` and
+`forced_finalize=False`. The literal "yesterday" failed a day the gate had legitimately held for one
+day and then published ready and undegraded at lag 2, which the ladder already calls current).
+**Any failure pauses the whole schedule and escalates to Michael via
 ntfy, a paused schedule is the system working.** Michael retains a standing veto ("pause the
 schedule" in any session stops everything). Flips execute Monday afternoons, after the digest.
 

@@ -33,18 +33,17 @@ import calendar
 import datetime as dt
 import json
 
-import statistics
+from . import config, ops, privacy, readiness, util
 
-from . import config, ops, privacy, util
-
-COVERAGE_MIN_SHARE = 0.60     # §2.3 green: each party >= 60% of its own trailing median
-COVERAGE_WINDOW = 14          # §2.3 trailing window, in CALENDAR DAYS (not "the newest 14 files")
+COVERAGE_MIN_SHARE = 0.60     # §2.3 green: each party >= 60% of its own same-weekday baseline
+COVERAGE_WINDOW = 42          # §2.3 trailing window, in CALENDAR DAYS (not "the newest N files")
 UPSTREAM_STALE_HOURS = 36.0   # §2.3 green also requires upstream < 36h stale (P2's clock)
 DROP_RATE_MAX = 0.25          # §2.4 green: < 25% of claims dropped
 DROP_WINDOW = 7               # §2.4 window, in CALENDAR DAYS
 SPEND_PROJECTED_MAX = 8.0     # §2.2 green: projected month-end <= $8
 DEGRADED_WINDOW = 7           # the ritual is weekly, so "recent degraded days" is weekly too
-MAX_REPORT_AGE_DAYS = 2       # a symmetry report older than this cannot describe current coverage
+MAX_REPORT_AGE_DAYS = 2       # symmetry REPORTING older than this cannot describe current coverage
+MAX_SCORED_AGE_DAYS = 4       # S70-2: how far back the scored day itself may sit (see coverage)
 MIN_MEDIAN_SAMPLES = 3        # below this there is no baseline to compare against
 
 # The Session-5 day-scoping fix (ops.symmetry_report: "DAY-SCOPED ... never the cumulative corpus
@@ -215,53 +214,130 @@ def upstream_freshness(today: str) -> dict:
     return {"age_hours": None, "status": UNKNOWN}
 
 
-def coverage(today: str) -> dict:
-    """§2.3 — each party's newest Lane-1 ingest vs its OWN trailing median, AND upstream freshness.
+def _party_series(rows: list[dict], party: str) -> dict:
+    """day -> that party's Lane-1 ingest, from the symmetry reports. Absent fields are absent days,
+    never healthy zeroes: `_req` is the guard and a day it rejects simply does not enter the norm."""
+    out = {}
+    for r in rows:
+        day = r.get("day")
+        n = _req((r.get("parties") or {}).get(party), "statements_ingested")
+        if day and n is not None:
+            out[day] = n
+    return out
 
-    Per-party medians (never pooled): the parties legitimately differ in volume, and the question is
-    whether a party fell off its own baseline — which is exactly what a one-party ingest break looks
-    like, and exactly what pooling would hide."""
-    rows = [r for r in _symmetry_days(today, COVERAGE_WINDOW + 1) if _day_scoped(r)]
-    excluded = len(_symmetry_days(today, COVERAGE_WINDOW + 1)) - len(rows)
+
+def _scorable(series_by_party: dict, day: str) -> dict | None:
+    """Baselines for `day` if EVERY party can carry a ratio there, else None.
+
+    All parties or none: coverage is one number over both, and scoring a day where only one party
+    has a usable norm would publish a half-measured green. The baseline itself is
+    `readiness.expected_volume`, the S70 owner the publication gate and the volume alert already
+    read, called once per party so the parties are never pooled."""
+    out = {}
+    for party, series in series_by_party.items():
+        if series.get(day) is None:
+            return None
+        exp = readiness.expected_volume(series, day)
+        if not exp["judgeable"] or exp["observations"] < MIN_MEDIAN_SAMPLES:
+            return None
+        out[party] = exp
+    return out
+
+
+def coverage(today: str) -> dict:
+    """§2.3, each party's Lane-1 ingest vs its OWN same-weekday baseline, AND upstream freshness.
+
+    Per-party baselines (never pooled): the parties legitimately differ in volume, and the question
+    is whether a party fell off its own baseline, which is exactly what a one-party ingest break
+    looks like, and exactly what pooling would hide.
+
+    S70-2, THE MONDAY DEFECT. This used to score the newest report against a trailing ALL-DAYS
+    median. On a Monday the newest day-scoped report is SUNDAY's, where each party lands 0 to 6
+    statements, and the median it was scored against was weekday-dominated at 55 to 95. Coverage
+    therefore read RED on every Monday in the committed record (07-20, 07-27, 08-03, 08-10) whatever
+    the machine was doing, and the docs/23 §7.3 flip gate requires the Monday digest green. The
+    baseline is now same-weekday, so a Sunday is judged against Sundays.
+
+    THAT ALONE IS NOT ENOUGH, and the second half is the interesting one. A per-party Sunday
+    baseline is 1.5 to 4 statements, which no ratio can carry, so on a Monday the newest day is
+    unjudgeable however it is measured. Three ways to report that, and only one survives this
+    module's own rule that a green means MEASURED and healthy:
+      * green-with-note would report green for a day nobody measured. It breaks the rule outright.
+      * unknown obeys the rule and still leaves the digest un-green every Monday, which fails the
+        gate for a machine that is working and teaches the owner that Monday-unknown is normal.
+        That is the alert fatigue S70 removed from the volume alert, rebuilt in the digest.
+      * scoring the newest JUDGEABLE day obeys the rule at no cost: the number reported is measured
+        and healthy, it names the day it scored and the days it skipped and why.
+    The third is what happens here. The stale-REPORTING guard is untouched and still fires when
+    reports stop arriving (that is the defect it was built for); `MAX_SCORED_AGE_DAYS` bounds how
+    far the walk may reach for a judgeable day, which on a Monday is Friday.
+
+    The residual, stated rather than hidden: a one-party ingest break that begins on a Saturday is
+    invisible until Tuesday's brief. That is a property of weekends, not of this design. Both
+    parties' weekend counts run 0 to 21 against baselines of 1.5 to 4, so no ratio can see it, and
+    the old all-days median did not see it either: it called every weekend RED whether a party had
+    broken or not, which is the same thing as not seeing it.
+    """
+    all_rows = _symmetry_days(today, COVERAGE_WINDOW + 1)
+    rows = [r for r in all_rows if _day_scoped(r)]
+    excluded = len(all_rows) - len(rows)
     fresh = upstream_freshness(today)
     if not rows:
         return {"name": "coverage", "value": None, "status": UNKNOWN, "freshness": fresh,
                 "note": "no comparable symmetry reports — coverage not measured"}
-    latest, prior = rows[0], rows[1:]
-    used_day = latest.get("day")
-    age = (_parse(today) - _parse(used_day)).days if used_day else None
-    if age is None or age > MAX_REPORT_AGE_DAYS:
-        return {"name": "coverage", "value": None, "status": UNKNOWN, "day": used_day,
+    newest = rows[0].get("day")
+    newest_age = (_parse(today) - _parse(newest)).days if newest else None
+    if newest_age is None or newest_age > MAX_REPORT_AGE_DAYS:
+        return {"name": "coverage", "value": None, "status": UNKNOWN, "day": newest,
                 "freshness": fresh,
-                "note": f"newest symmetry report is {used_day} ({age}d old) — cannot describe "
+                "note": f"newest symmetry report is {newest} ({newest_age}d old), cannot describe "
                         f"current coverage"}
+    series = {p: _party_series(rows, p) for p in config.COMPOSITE_PARTIES}
+    used_day, used_age, exps, skipped = None, None, None, []
+    for r in rows:
+        day = r.get("day")
+        try:
+            age = (_parse(today) - _parse(day)).days
+        except (TypeError, ValueError):
+            continue
+        if age > MAX_SCORED_AGE_DAYS:
+            break
+        found = _scorable(series, day)
+        if found:
+            used_day, used_age, exps = day, age, found
+            break
+        skipped.append(day)
+    if exps is None:
+        return {"name": "coverage", "value": None, "status": UNKNOWN, "day": newest,
+                "freshness": fresh, "skipped_days": skipped,
+                "note": f"no day within {MAX_SCORED_AGE_DAYS}d carries a per-party baseline over "
+                        f"{readiness.MIN_JUDGEABLE_BASELINE} with {MIN_MEDIAN_SAMPLES} samples, "
+                        f"so coverage is not measured"}
     parties, statuses = {}, []
     for p in config.COMPOSITE_PARTIES:
-        now = _req((latest.get("parties") or {}).get(p), "statements_ingested")
-        hist = [_req((r.get("parties") or {}).get(p), "statements_ingested") for r in prior]
-        hist = [h for h in hist if h is not None]
-        if now is None or len(hist) < MIN_MEDIAN_SAMPLES:
-            parties[p] = {"statements": now, "median": None, "share": None, "status": UNKNOWN}
-            statuses.append(UNKNOWN)
-            continue
-        med = statistics.median(hist)
-        share = round(now / med, 3) if med else None
-        st = UNKNOWN if share is None else (GREEN if share >= COVERAGE_MIN_SHARE else RED)
-        parties[p] = {"statements": now, "median": med, "share": share, "status": st}
+        now, base = series[p][used_day], exps[p]["baseline"]
+        share = round(now / base, 3)
+        st = GREEN if share >= COVERAGE_MIN_SHARE else RED
+        parties[p] = {"statements": now, "median": base, "share": share, "status": st,
+                      "baseline_method": exps[p]["method"]}
         statuses.append(st)
     statuses.append(fresh["status"])              # §2.3: freshness is part of the green, not a sidecar
     status = RED if RED in statuses else (UNKNOWN if UNKNOWN in statuses else GREEN)
-    detail = " ".join(
-        f"{p} {v['statements']}/{v['median']:.0f}={v['share']:.0%}" if v["share"] is not None
-        else f"{p} {v['statements']}/? " for p, v in parties.items())
+    detail = " ".join(f"{p} {v['statements']}/{v['median']:.0f}={v['share']:.0%}"
+                      for p, v in parties.items())
     fresh_txt = (f"upstream {fresh['age_hours']:.1f}h" if fresh["age_hours"] is not None
                  else "upstream age unknown")
-    note = (f"{used_day}: {detail} of own {COVERAGE_WINDOW}d median (green >= {COVERAGE_MIN_SHARE:.0%}); "
-            f"{fresh_txt} (green < {UPSTREAM_STALE_HOURS:.0f}h)")
+    note = (f"{used_day} ({used_age}d): {detail} of own same-weekday baseline "
+            f"(green >= {COVERAGE_MIN_SHARE:.0%}); {fresh_txt} "
+            f"(green < {UPSTREAM_STALE_HOURS:.0f}h)")
+    if skipped:
+        note += (f"; {', '.join(skipped)} skipped, baseline under the "
+                 f"{readiness.MIN_JUDGEABLE_BASELINE} a ratio needs")
     if excluded:
         note += f"; {excluded} pre-{DAY_SCOPED_FROM} report(s) excluded (cumulative-total schema)"
-    return {"name": "coverage", "day": used_day, "parties": parties, "status": status,
-            "freshness": fresh, "excluded_reports": excluded, "note": note}
+    return {"name": "coverage", "day": used_day, "scored_age_days": used_age, "parties": parties,
+            "status": status, "freshness": fresh, "excluded_reports": excluded,
+            "skipped_days": skipped, "note": note}
 
 
 def verifier_drop(today: str) -> dict:

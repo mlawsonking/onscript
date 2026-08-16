@@ -7,13 +7,19 @@ asymmetric finding is reality's, not the instrument's.
 from __future__ import annotations
 
 import os
-import statistics
 from collections import Counter
 
 from datetime import date
 
 from . import (config, denominators, instrument_fingerprint, llm, public_strings, readiness,
                roster, util)
+
+
+# The absolute arm of the volume alert (S70). A matured day below this count pages whatever its
+# baseline says, so an outage that lands on a weekend, where the ratio is withheld, is still a
+# page. The bar is one statement: the quietest day in the committed record (2026-07-19, a recess
+# Sunday) held 2, so a matured day holding nothing is not a quiet day in any observed regime.
+MIN_LIVE_VOLUME = 1
 
 
 def collection_maturity(statements, focus_day, *, reference_day: str | None = None) -> dict:
@@ -26,8 +32,8 @@ def collection_maturity(statements, focus_day, *, reference_day: str | None = No
 
     Maturity has two arms, both taken from the readiness gate so this and the publication
     path agree on when a day has stopped filling:
-      ready       - the day holds at least READY_RATIO of its trailing same-weekday median,
-                    which is the same test that lets the day be assembled at all.
+      ready       - the day holds at least READY_RATIO of its expected volume, which is the
+                    same test that lets the day be assembled at all.
       waited out  - the day is at least MAX_WAIT_DAYS old, which is the point at which the
                     readiness gate stops waiting and force-finalizes. Whatever is there is
                     what upstream is going to deliver.
@@ -59,29 +65,45 @@ def collection_maturity(statements, focus_day, *, reference_day: str | None = No
 
 
 def volume_anomaly(statements, focus_day, *, maturity: dict | None = None) -> dict:
-    """Lane-1 daily volume against the trailing-14-day median for one focus day.
+    """Lane-1 daily volume against what this day was expected to hold.
 
     Single definition shared by collect (the run's newest day) and assemble (the target
     day), so the two callers cannot compute the anomaly two different ways (docs/37 rule 12).
+    The baseline itself comes from `readiness.expected_volume`, the same owner the publication
+    gate reads, so the alert and the gate cannot answer "is this day normal" differently.
 
-    `maturity` is a collection_maturity row. When it reports an immature focus day the
-    comparison is withheld and `anomalously_low` is False, because a partial count is not
-    evidence of a thin day. The count and the median are published either way, so a withheld
-    comparison never reads as a healthy one. Omitting `maturity` judges the day, which is
-    what the assemble caller wants: a day it is publishing has already cleared the readiness
-    gate or been force-finalized past it. The default is the arm that alerts.
+    S70. This used to compare against a trailing-14-day ALL-DAYS median while the maturity arm
+    read a same-weekday baseline. On 2026-08-10 the seam paged the operator about 2026-08-09, a
+    recess Sunday: 6 statements cleared the Sunday readiness bar, so the day was judged mature,
+    and then it was measured against 141.5. Every page the alert produced after the S65 maturity
+    gate landed was a weekend judged against weekdays. A page that is wrong every time it fires
+    is a page nobody reads.
+
+    Three ways to be quiet and one absolute way to be loud:
+      * an IMMATURE focus day withholds the comparison (S65) - a partial count is not a thin day;
+      * an UNJUDGEABLE baseline withholds it (S70) - weekend baselines run 5 to 11 statements,
+        where the ratio measures noise;
+      * a day at or above the ratio is simply normal for its own regime.
+      * a matured day holding NOTHING pages whatever the baseline says. Zero is an outage against
+        every regime, and the quietest day in the committed record still held 2 statements.
+
+    The count and the baseline are published either way, so a withheld comparison never reads as
+    a healthy one. Omitting `maturity` judges the day, which is what the assemble caller wants: a
+    day it is publishing has already cleared the readiness gate or been force-finalized past it.
+    The default is the arm that alerts.
     """
     by_day = Counter(s["published_at"] for s in statements if s.get("lane") == 1)
-    days = sorted(by_day)
-    prior = [by_day[d] for d in days if d < focus_day][-14:]
     today = by_day.get(focus_day, 0)
-    med = statistics.median(prior) if prior else 0
+    exp = readiness.expected_volume(by_day, focus_day)
+    baseline, judgeable = exp["baseline"], exp["judgeable"]
     mature = True if maturity is None else bool(maturity.get("mature"))
-    low = mature and bool(med) and today < config.NULL_SERVICE_VOLUME_RATIO * med
-    out = {"today": today, "trailing_median": med, "anomalously_low": low}
+    low = mature and (today < MIN_LIVE_VOLUME
+                      or (judgeable and today < config.NULL_SERVICE_VOLUME_RATIO * baseline))
+    out = {"today": today, "baseline": baseline, "baseline_method": exp["method"],
+           "judgeable": judgeable, "anomalously_low": low}
     if maturity is not None:
         out["collection_mature"] = mature
-        out["comparison"] = "judged" if mature else "withheld"
+        out["comparison"] = "judged" if (mature and judgeable) else "withheld"
         out["maturity_reason"] = maturity.get("reason")
     return out
 

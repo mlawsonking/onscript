@@ -67,7 +67,7 @@ def test_a_partly_landed_focus_day_is_immature_and_is_not_paged():
     assert volume["collection_mature"] is False
     # The measurement is still published, so a withheld comparison is not a healthy one.
     assert volume["today"] == 2
-    assert volume["trailing_median"] == WEEKDAY_BASELINE
+    assert volume["baseline"] == WEEKDAY_BASELINE
     assert volume["maturity_reason"] == maturity["reason"]
 
     # Ungated, this is exactly the false page the gate removes.
@@ -101,17 +101,47 @@ def test_a_focus_day_that_finished_landing_is_judged_on_the_morning_run():
     assert volume["comparison"] == "judged"
 
 
-def test_a_ready_day_below_the_volume_ratio_is_still_paged_on_the_morning_run():
-    """The ready arm is not a mute button. A day that landed, and landed thin against the
-    trailing all-days median, pages immediately."""
+def test_a_saturday_holding_a_normal_saturday_volume_is_not_paged():
+    """S70 replaces the arm this fixture used to prove.
+
+    Until S70 this same fixture asserted a PAGE, because the alert compared 15 statements with a
+    trailing ALL-DAYS median of 140 while the maturity arm compared them with a Saturday median of
+    20. A Saturday holding three quarters of its own Saturday norm is not an incident; measuring it
+    against Tuesdays is what made it look like one. Both arms now read one baseline, so the day is
+    mature AND quiet.
+    """
     saturdays = {"2026-07-04": 20, "2026-07-11": 20, "2026-07-18": 20, "2026-07-25": 20}
     statements = _corpus({**_trailing("2026-08-01"), **saturdays, "2026-08-01": 15})
     maturity = ops.collection_maturity(statements, "2026-08-01", reference_day="2026-08-02")
-    assert maturity["ready"] is True                    # 15 clears 55 percent of 20
+    assert maturity["ready"] is True
     assert maturity["mature"] is True
     volume = ops.volume_anomaly(statements, "2026-08-01", maturity=maturity)
-    assert volume["today"] < config.NULL_SERVICE_VOLUME_RATIO * volume["trailing_median"]
-    assert volume["anomalously_low"] is True
+    assert volume["baseline"] == 20                     # Saturdays, not the 140 weekday median
+    assert volume["today"] >= config.NULL_SERVICE_VOLUME_RATIO * volume["baseline"]
+    assert volume["anomalously_low"] is False
+    assert volume["comparison"] == "judged"
+
+
+def test_a_saturday_that_collapsed_against_its_OWN_saturdays_is_paged_and_held():
+    """The quiet arm is not a mute button. Same fixture, same weekday, a real collapse.
+
+    On the morning after, S65 still withholds: 2 statements at age 1 is a day that may yet land.
+    Once it has aged past the readiness wait, the same two arms agree from the same baseline that
+    the day is dead: the alert pages and the gate refuses to call it ready.
+    """
+    saturdays = {"2026-07-04": 20, "2026-07-11": 20, "2026-07-18": 20, "2026-07-25": 20}
+    statements = _corpus({**_trailing("2026-08-01"), **saturdays, "2026-08-01": 2})
+    morning = ops.collection_maturity(statements, "2026-08-01", reference_day="2026-08-02")
+    assert ops.volume_anomaly(statements, "2026-08-01",
+                              maturity=morning)["comparison"] == "withheld"
+
+    aged = ops.collection_maturity(statements, "2026-08-01", reference_day="2026-08-04")
+    assert aged["mature"] is True and aged["ready"] is False
+    volume = ops.volume_anomaly(statements, "2026-08-01", maturity=aged)
+    assert volume["baseline"] == 20                     # Saturdays, not the 140 weekday median
+    assert volume["today"] < config.NULL_SERVICE_VOLUME_RATIO * volume["baseline"]
+    assert volume["anomalously_low"] is True            # the page fires
+    assert volume["comparison"] == "judged"
 
 
 def test_without_a_reference_day_only_the_ready_arm_can_be_evaluated():
@@ -125,13 +155,26 @@ def test_without_a_reference_day_only_the_ready_arm_can_be_evaluated():
 
 def test_a_day_with_no_same_weekday_history_is_mature_and_never_blocks():
     """readiness treats absent history as ready rather than blocking. The alert inherits
-    that, so a new corpus or a new era keeps its dead-man rather than going quiet."""
+    that, so a new corpus or a new era keeps its dead-man rather than going quiet.
+
+    S70 moved which arm carries that dead-man. There is no ratio to apply without a same-weekday
+    baseline, so the ratio is withheld and the ABSOLUTE arm answers instead: a matured day holding
+    nothing pages whatever the baseline says. The old fixture used one statement and relied on the
+    all-days median that no longer exists.
+    """
     statements = _corpus({"2026-08-05": 100, "2026-08-06": 100, FOCUS: 1})
     maturity = ops.collection_maturity(statements, FOCUS, reference_day=MORNING_AFTER)
     assert maturity["same_weekday_baseline"] == 0.0
     assert maturity["ready"] is True
     assert maturity["mature"] is True
-    assert ops.volume_anomaly(statements, FOCUS, maturity=maturity)["anomalously_low"] is True
+    withheld = ops.volume_anomaly(statements, FOCUS, maturity=maturity)
+    assert withheld["judgeable"] is False and withheld["comparison"] == "withheld"
+    assert withheld["anomalously_low"] is False
+
+    dead = _corpus({"2026-08-05": 100, "2026-08-06": 100})           # FOCUS holds nothing at all
+    dead_maturity = ops.collection_maturity(dead, FOCUS, reference_day=MORNING_AFTER)
+    assert dead_maturity["mature"] is True
+    assert ops.volume_anomaly(dead, FOCUS, maturity=dead_maturity)["anomalously_low"] is True
 
 
 def test_the_default_call_judges_the_day_so_assemble_is_unchanged():
@@ -140,7 +183,9 @@ def test_the_default_call_judges_the_day_so_assemble_is_unchanged():
     False on exactly the thin force-finalized days the no-post rule holds for."""
     statements = _corpus({**_trailing(FOCUS), FOCUS: 2})
     assert ops.volume_anomaly(statements, FOCUS) == {
-        "today": 2, "trailing_median": WEEKDAY_BASELINE, "anomalously_low": True,
+        "today": 2, "baseline": float(WEEKDAY_BASELINE),
+        "baseline_method": f"trailing {readiness.BASELINE_WEEKS}-week same-weekday median",
+        "judgeable": True, "anomalously_low": True,
     }
     assert "anomalously_low_volume" in config.NULL_SERVICE_CONDITIONS
     # The contract that makes the assemble call site ungated: maturity is keyword-only and

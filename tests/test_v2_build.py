@@ -206,11 +206,17 @@ def _sym(day, d=200, r=150, pub=10, drop=1):
         "R": {"statements_ingested": r, "claims_published": pub, "claims_dropped": drop}}}
 
 
+_HEALTHY_DAYS = 29            # S70-2: coverage is now a SAME-WEEKDAY baseline, so a fixture of 8
+                              # consecutive days supplies ONE prior same-weekday and cannot be
+                              # judged at all. 29 days supplies four of every weekday, over the
+                              # MIN_MEDIAN_SAMPLES floor, and leaves every other number untouched.
+
+
 def _healthy(day="2026-07-20"):
-    """A fully-green synthetic week: 8 published days, a real ledger, day-scoped symmetry, fresh
-    upstream. Every honesty test below starts here and breaks exactly one thing."""
+    """A fully-green synthetic month: `_HEALTHY_DAYS` published days, a real ledger, day-scoped
+    symmetry, fresh upstream. Every honesty test below starts here and breaks exactly one thing."""
     f = {}
-    for i in range(1, 9):
+    for i in range(1, _HEALTHY_DAYS + 1):
         d = brief._iso(brief._parse(day) - _dt.timedelta(days=i))
         f[f"manifest__assemble-{d}.json"] = {"kind": "assemble", "day": d}
         f[f"symmetry__{d}.json"] = _sym(d)
@@ -359,7 +365,7 @@ def test_a_missing_publish_is_a_miss_not_a_pending_run():
     with _derived_fixture(**_healthy()):
         assert brief.streak("2030-01-01")["status"] == "red"
         s = brief.streak("2026-07-20")
-        assert s["status"] == "green" and s["value"] == 8
+        assert s["status"] == "green" and s["value"] == _HEALTHY_DAYS
 
 
 def test_streak_does_not_invent_a_miss_before_the_first_publish_ever():

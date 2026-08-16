@@ -2,7 +2,9 @@
 then submit/queue P1 extraction. Writes state (Release-asset-destined) + deterministic derived.
 
 Dead-man semantics (§4 A1, §4 B9): stale upstream (>36h) -> proceed on mirror, degraded, ntfy;
-daily volume < 40% of the trailing-14-day median -> ntfy. Skip-and-log throughout; never crash.
+daily volume anomalously low against what the day was expected to hold -> ntfy. The expectation
+comes from `readiness.expected_volume`, the same owner the publication gate reads, so a page and a
+hold can never disagree about whether a day is normal (S70). Skip-and-log throughout; never crash.
 """
 from __future__ import annotations
 
@@ -19,7 +21,7 @@ try:
 except Exception:
     pass
 
-from pipeline import (config, deterministic, extract, fetch, llm, ops, roster,
+from pipeline import (config, deterministic, extract, fetch, llm, ops, readiness, roster,
                       runtime_environment, util)  # noqa: E402
 
 STALE_HOURS = 36.0
@@ -69,12 +71,22 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
     maturity = ops.collection_maturity(statements, focus_day,
                                        reference_day=reference_day or util.product_day())
     vol = _volume_anomaly(statements, focus_day, maturity=maturity)
+    pct = int(config.NULL_SERVICE_VOLUME_RATIO * 100)
     if vol["anomalously_low"]:
-        alerts.append(f"volume {vol['today']} < 40% of median {vol['trailing_median']}")
-        ops.ntfy("OnScript collect", f"low volume on {focus_day}: {vol['today']} (median {vol['trailing_median']})")
-    elif not maturity["mature"]:
-        alerts.append(f"volume comparison withheld on {focus_day}: {maturity['reason']} "
-                      f"({vol['today']} so far, median {vol['trailing_median']})")
+        alerts.append(f"volume {vol['today']} < {pct}% of {vol['baseline_method']} "
+                      f"{vol['baseline']:g}")
+        ops.ntfy("OnScript collect",
+                 f"low volume on {focus_day}: {vol['today']} against a {vol['baseline_method']} "
+                 f"of {vol['baseline']:g}")
+    elif vol.get("comparison") == "withheld":
+        # Two ways to be withheld and they are not the same fact, so both are named. An immature
+        # day is still landing; an unjudgeable baseline is too small to carry a ratio at all.
+        why = (maturity["reason"] if not maturity["mature"] else
+               f"the baseline cannot carry a ratio ({vol['baseline_method']}, "
+               f"{vol['baseline']:g}, against a floor of "
+               f"{readiness.MIN_JUDGEABLE_BASELINE})")
+        alerts.append(f"volume comparison withheld on {focus_day}: {why} "
+                      f"({vol['today']} statements)")
 
     extract_cost = {"skipped": True}
     if do_extract:
