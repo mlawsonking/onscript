@@ -5,10 +5,10 @@
   "numbers": [
     {
       "name": "streak",
-      "value": 0,
-      "status": "red",
-      "last_missed": "2026-08-16",
-      "note": "no publish for 2026-08-16 — Playbook P1"
+      "value": 37,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "37 consecutive days published (through 2026-08-16)"
     },
     {
       "name": "spend",
@@ -16,7 +16,7 @@
       "projected": 0.165,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 15,
+      "ledger_days": 16,
       "note": "$0.0905 MTD, $0.17 projected month-end (green <= $8); governor nominal"
     },
     {
@@ -41,15 +41,16 @@
       },
       "status": "red",
       "freshness": {
-        "age_hours": 4.48,
+        "age_hours": 14.24,
         "day": "2026-08-17",
         "status": "green"
       },
       "excluded_reports": 2,
       "skipped_days": [
+        "2026-08-16",
         "2026-08-15"
       ],
-      "note": "2026-08-14 (3d): D 61/86=70% R 34/60=56% of own same-weekday baseline (green >= 60%); upstream 4.5h (green < 36h); 2026-08-15 skipped, baseline under the 20 a ratio needs; 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+      "note": "2026-08-14 (3d): D 61/86=70% R 34/60=56% of own same-weekday baseline (green >= 60%); upstream 14.2h (green < 36h); 2026-08-16, 2026-08-15 skipped, baseline under the 20 a ratio needs; 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
     },
     {
       "name": "verifier_drop",
@@ -68,7 +69,6 @@
     }
   ],
   "reds": [
-    "streak",
     "coverage",
     "verifier_drop"
   ],
@@ -108,5 +108,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, coverage, verifier_drop"
+  "headline": "RED: coverage, verifier_drop"
 }
