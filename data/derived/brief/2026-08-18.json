@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-18",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 38,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "38 consecutive days published (through 2026-08-17)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0974,
+      "projected": 0.1677,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 17,
+      "note": "$0.0974 MTD, $0.17 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-08-17",
+      "scored_age_days": 1,
+      "parties": {
+        "D": {
+          "statements": 66,
+          "median": 72.0,
+          "share": 0.917,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        },
+        "R": {
+          "statements": 42,
+          "median": 55.0,
+          "share": 0.764,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 4.44,
+        "day": "2026-08-18",
+        "status": "green"
+      },
+      "excluded_reports": 2,
+      "skipped_days": [],
+      "note": "2026-08-17 (1d): D 66/72=92% R 42/55=76% of own same-weekday baseline (green >= 60%); upstream 4.4h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.6,
+      "dropped": 6,
+      "offered": 10,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "6/10 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [
+    "2026-08-11"
+  ],
+  "top_phrase": {
+    "ngram": "letter was signed",
+    "party": "D",
+    "day_peak": 9,
+    "day": "2026-08-17"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: verifier_drop"
+}
