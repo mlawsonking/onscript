@@ -3692,3 +3692,42 @@ by this branch, and per the Session 60 rule this record carries no label-space c
 
 This session did not push, deploy, dispatch, or post. The push remains task #272; the release
 sequence remains docs/27; both remain Michael's.
+
+### Session 71-2 (2026-08-18): the Monday verified, the seal that moved because the site healed, and the two-item gate
+
+Michael pushed 1e095fa4 on 2026-08-16 at 05:46 UTC, before Saturday's first cycle. The weekend
+is the witness that S70 read the world correctly. The drain landed on the S71 schedule: day
+records, symmetry reports, day pages, and cards now exist for 08-13 through 08-16, and the
+2026-08-17 evening brief reads streak GREEN, 37 consecutive days published through 2026-08-16 —
+healed, ready and unforced, no holes. The Monday gate then paused on exactly the arms S70-2
+predicted from committed data before those days existed: coverage RED on the R arm alone at
+34/60 = 56% against a predicted 34/60.5 = 56%, scored day 2026-08-14 with the judgeable-day walk
+naming what it skipped, and verifier_drop RED at 6/8 over 7d. Headline: RED: coverage,
+verifier_drop. The pause is the gate reading recess truthfully; the ruling it forces is task
+#279 and now governs 08-24. One delivery fact for the record: the morning digest send died on an
+ntfy HTTP 429 and the evening send reports "sent" — the first Owner's Brief ever delivered
+(run 32073219432). A 429 on the sole weekly send is a delivery-robustness watch item; it logged
+loudly and the same-day retry existed only because Monday has two cycles.
+
+Pass-2 landed the same evening. Michael exported at 23:34 local; the sheet was placed at
+`evaluation/goldset/bundles/pilot/michael-pass2.answersheet.csv` (11,643 bytes). Raw counts,
+code-computed (`Import-Csv … | Group-Object gold_class`, rerunnable on the two committed
+sheets): pass-1 labeled message 155, nomenclature 27, procedural 14, biographical 3, private 1,
+unknown 0; pass-2 labels unknown 132, message 27, procedural 17, nomenclature 14, biographical
+6, private 2, with 198 of 200 classed, task B answered on 185, and a family id on all 200. The
+message-to-unknown swing is the §8-disclosed correction landing (the model-versus-pass-1
+dispute sat on message-against-unknown for 121 items); these are distribution counts, not
+agreement metrics, and carry the single-rater provisional label like everything else in this
+mode.
+
+The tooling behaved like the constitution says it should. `goldset_seal.py verify` failed its
+naive rebuild — universe fingerprint TRUE, seal hash FALSE — because the public-impact set
+rebuilds from `data/derived/days` and the weekend drain grew that tree: the sealed sample and
+the healing site share an input, and the tool's own split diagnosis plus `--as-of 36527f6`
+(the N1 re-seal commit) verified the seal clean. Then `goldset_intake.py` refused the sheet
+outright: SCHEMA VALIDATION FAILED on the two unclassed items, `cand:f699598058f21f94` and
+`cand:ba818f1aff952c48`. Fail-closed held; no agreement number exists until the author labels
+two items and re-exports. Pass-1 intake artifacts were archived to `intake/pilot/single-pass1/`
+before any pass-2 intake write. Remaining on #216: two labels, one re-export, one intake run,
+the triage sitting, then metrics under the mandatory label. Gate B still waits for a rater who
+is not the author; nothing in this session changes that.
