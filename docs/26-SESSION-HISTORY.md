@@ -3731,3 +3731,45 @@ two items and re-exports. Pass-1 intake artifacts were archived to `intake/pilot
 before any pass-2 intake write. Remaining on #216: two labels, one re-export, one intake run,
 the triage sitting, then metrics under the mandatory label. Gate B still waits for a rater who
 is not the author; nothing in this session changes that.
+
+### Session 71-3 (2026-08-18): P1 assembled — the knife, the walk, and the first essay in the tree
+
+Later the same day Michael finished pass-2 (200/200; intake ran clean; human-versus-model
+surface-class agreement 61.5%, 77 class and 123 family flags queued) and called bullshit on the
+family dimension: originating document clusters from memory across 200 near-identical windows is
+retrieval work assigned to a human. The objection is upheld by the pilot's own data (family is the
+noisiest dimension; `claim_supported`, the task family exists to serve, was rated on zero items by
+both readers in both passes) while the underlying need is real (family gold grades the production
+dedupe that makes cosigned-counts-once and every N-offices claim honest). Ruling options were put
+to Michael: pilot family goes not-evaluated with a docs/35 §10 amendment, and any full-sample run
+inverts the workflow to machine-proposed clusters with human pair-verification under a relabeled
+provenance. His triage sitting shrinks to the 77 class disputes; family flags wait on the ruling.
+
+P1 then went from stalled draft to publish candidate in one loop. Michael's knife, round 1 (on
+the S67 receipts pull): kept "18 to 21 years old", cut four as names rather than messages. The
+round-2 walk (script archived beside the assets; mirror direct, verbatim-cosign excluded,
+docs/19 name-span strip index 117, plus a shadow rule dropping any 5-gram sharing >=4 tokens
+with a cut phrase — 7 shadows dropped) surfaced 14 candidates at the 30-office bar from 36,914
+statements walked. Round 2, "same knife, cut as read": kept "paid family and medical leave"
+(33, 2021-W46), "the price of prescription drugs" (33, 2022-W32), "gun trafficking and straw
+purchases" (32, 2022-W23). Final set: four phrases, three topics, both years, all >=30 offices.
+
+The essay lives at `content/essays/self-audit.json` on this branch: the Jul 19 draft's prose
+with the Aug 9 review's three edits applied (tightened lede A, "quietly", the September
+power-position pointer), em dashes converted per the voice rule, twelve receipts (three per
+phrase, twelve distinct members), all five standing labels, and a provenance block carrying the
+estimator, window, both rerun commands, and the receipts method. The final neutrality read is
+`p1-neutrality-round2.md` beside the assets: publishable pending Michael's voice pass and his
+push. Two flags for him: the essays renderer escapes everything and has no figure block, so the
+verified S67 chart ships in the assets rather than the page (a renderer extension is a separate
+ruling); the byline is set to "Michael King" because `SITE_AUTHOR` defaults to "OnScript",
+which is wrong for a first-person essay.
+
+Suite: **1215 passed, 0 failed** with the essays surface live on real content for the first
+time. One environment incident recorded for docs/37 candidacy: this session removed the
+worktree's data junctions after Saturday's suite (reasonable-seeming cleanup) and today's first
+essay-suite run, finding them gone, mkdir'd empty real directories in their place, failing g1
+(vector store resolved inside the repo tree) and x11 (committed raw shard unreachable) — the
+impostor dirs then read as "present" to the restore check. Lesson: a worktree's junctions live
+as long as the worktree, never removed while further suite runs are possible; and "present"
+must be verified as a junction, not as a directory.

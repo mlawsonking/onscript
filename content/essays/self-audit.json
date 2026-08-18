@@ -1,0 +1,58 @@
+{
+  "title": "The First Thing We Did Was Audit Ourselves",
+  "dek": "Before OnScript measured anyone else, it measured its own past. The one finding the 2022 predecessor left behind replicates on official press releases, with receipts.",
+  "byline": "Michael King",
+  "date": "2026-08-18",
+  "labels": [
+    "correlation-not-cause",
+    "replication",
+    "matched-controls",
+    "symmetric-instrument",
+    "party-asymmetric"
+  ],
+  "body": [
+    "In 2022, a small project found that Democratic members of Congress tweeted the same phrases as each other more tightly than Republicans did. Then Twitter closed the door it came through. OnScript is the rebuild, so the first question we owed anyone was whether the old finding was ever real. We re-ran it on a different instrument, a different decade, and a stricter control. It held.",
+    "## The finding, stated exactly",
+    "In Congress 117 (2021 to 2022), Democratic members' press releases repeated the same five-word phrases from one week to the next at a higher rate than Republican members' did. The Democratic weekly five-gram overlap was 0.00176; the Republican, 0.00095. That is about 85 percent higher, roughly 1.85 times.",
+    "Democrats were higher in 75 of the 105 weeks measured: 71 percent of weeks, not a handful of outliers dragging an average. Member counts were matched per party per week (equal N, capped at 40), so this is not \"there are more of one party.\" It is a rate, per party, on equal footing.",
+    "This is the same direction the 2022 Twitter-era predecessor found, measured on a completely different corpus (official .gov press releases, not tweets), a different Congress, and with a control the old project never ran.",
+    "## The control that matters",
+    "The obvious objection: maybe one party just co-signs more joint releases, so identical text is really one document with many names on it. We tested exactly that. When we removed every verbatim co-signed release, the gap did not shrink; it widened (Democrats 0.00173 to 0.00176, Republicans 0.00102 to 0.00095). And Republicans co-sign more (48 co-signed releases dropped versus 37), so co-signing works against this finding, not for it. What is left is independent message discipline: different offices, separately, reaching for the same words in the same week.",
+    "Twice-validated. When we later discovered our corpus was quietly two datasets stitched together at 2021-01-03 (a forthcoming piece walks that seam), we re-checked every finding inside a single clean data lane. This one reproduced identically: 0.00200 versus 0.00119, still 75 of 105 weeks. It did not depend on the seam.",
+    "## What this means, and what it does not",
+    "Higher week-to-week phrase overlap is a measurable property of a party's press operation. Call it message discipline, stated symmetrically: it is not a virtue and not a vice. One operation reuses language more tightly; the other varies more. That is the whole claim.",
+    "It is not an intrinsic partisan trait. A related measure shows the Democratic tightness concentrates in the 2023 to 2025 House-minority years, which points at power position, not party essence. The out-party, whoever it is, may simply run a tighter message shop. We return to the power-position question in a September piece.",
+    "The instrument is symmetric by construction: identical pipeline, prompts, and thresholds for both parties, and we would have published an R-greater-than-D result the same way. That symmetry is the answer to the first accusation, and it belongs in this essay.",
+    "## The receipts",
+    "The overlap number is an aggregate. Here is some of what it is made of: the highest-peaking content five-grams that Democratic offices shared in single weeks of Congress 117, pulled from the same corpus with the same controls. Verbatim co-signed releases were excluded, and any five-gram overlapping an official bill, committee, or office name was stripped, so naming a statute never counts as message reuse. Each phrase below was carried by 30 or more distinct Democratic offices in one ISO week, and the author read every surviving candidate and cut any that still read as a name rather than a message. Three source links per phrase are shown; each is a real release with a member, a date, and a URL.",
+    "\"18 to 21 years old\": 39 distinct offices in one June 2022 week, the age provision at the center of that month's gun legislation.",
+    "\"gun trafficking and straw purchases\": 32 offices the same week, the enforcement half of the same package.",
+    "\"paid family and medical leave\": 33 offices in one November 2021 week, as the House passed the Build Back Better Act.",
+    "\"the price of prescription drugs\": 33 offices in one August 2022 week, as the Inflation Reduction Act passed. Note what this one is not: it is not the bill's name. The bill's name peaked that week too, and the name strip excluded it. This is the message that traveled with it.",
+    "## Why this is the launch essay",
+    "OnScript's entire posture is: symmetric instrument, asymmetric findings allowed. The most credible way to open is to point the instrument at our own prior work first, to show we will publish a finding even when it is about us, and to show the controls before the conclusion. The founder's 2022 result was a loose thread. We pulled it, and it held. That is the origin story, and it is true."
+  ],
+  "receipts": [
+    { "member": "Adam Smith (D-WA)", "date": "2022-06-08", "url": "https://adamsmith.house.gov/news/press-releases/house-passes-historic-legislative-package-reduce-gun-violence-communities", "note": "\"18 to 21 years old\", peak week 2022-W23" },
+    { "member": "Sanford D. Bishop, Jr. (D-GA)", "date": "2022-06-08", "url": "https://bishop.house.gov/media-center/press-releases/congressman-bishop-supports-bill-to-make-it-harder-for-dangerous-people-to-get-guns-and-prevent-gun-violence", "note": "\"18 to 21 years old\", peak week 2022-W23" },
+    { "member": "Robert C. \"Bobby\" Scott (D-VA)", "date": "2022-06-08", "url": "https://bobbyscott.house.gov/media-center/press-releases/scott-votes-reduce-gun-violence-keep-kids-communities-safe", "note": "\"18 to 21 years old\", peak week 2022-W23" },
+    { "member": "Terri A. Sewell (D-AL)", "date": "2022-06-07", "url": "https://sewell.house.gov/2022/6/rep-sewell-votes-life-saving-gun-violence-prevention-legislation", "note": "\"gun trafficking and straw purchases\", peak week 2022-W23" },
+    { "member": "Jim Costa (D-CA)", "date": "2022-06-08", "url": "https://costa.house.gov/media-center/press-releases/costa-votes-strengthen-gun-laws-protect-our-kids", "note": "\"gun trafficking and straw purchases\", peak week 2022-W23" },
+    { "member": "Joe Courtney (D-CT)", "date": "2022-06-08", "url": "https://courtney.house.gov/media-center/press-releases/courtney-votes-protect-american-kids-curbing-gun-violence-and", "note": "\"gun trafficking and straw purchases\", peak week 2022-W23" },
+    { "member": "Kathy Castor (D-FL)", "date": "2021-11-18", "url": "https://castor.house.gov/news/documentsingle.aspx?DocumentID=403736", "note": "\"paid family and medical leave\", peak week 2021-W46" },
+    { "member": "Danny K. Davis (D-IL)", "date": "2021-11-18", "url": "https://davis.house.gov/media/press-releases/congressman-danny-k-davis-support-build-back-better-act-november-18-2021", "note": "\"paid family and medical leave\", peak week 2021-W46" },
+    { "member": "Rosa L. DeLauro (D-CT)", "date": "2021-11-18", "url": "https://delauro.house.gov/media-center/press-releases/delauro-floor-remarks-support-build-back-better-act", "note": "\"paid family and medical leave\", peak week 2021-W46" },
+    { "member": "Charles E. Schumer (D-NY)", "date": "2022-08-08", "url": "https://www.schumer.senate.gov/newsroom/press-releases/just-back-from-dc-schumer-outlines-historic-passage-of-inflation-reduction-act-and-its-impact-on-upstate-new-york-from-reducing-rx-costs-for-over-37m-ny-ers-lowering-utility-bills-closing-tax-loopholes-for-big-corps-fighting-climate-crisis-creating-new-jobs-rebuilding-american-manufacturing_more--", "note": "\"the price of prescription drugs\", peak week 2022-W32" },
+    { "member": "Brendan F. Boyle (D-PA)", "date": "2022-08-12", "url": "https://boyle.house.gov/media-center/press-releases/boyle-votes-historic-inflation-reduction-act-lower-pennsylvanian-s-costs", "note": "\"the price of prescription drugs\", peak week 2022-W32" },
+    { "member": "Sean Casten (D-IL)", "date": "2022-08-12", "url": "https://casten.house.gov/media/press-releases/casten-celebrates-passage-largest-investment-climate-action-us-history", "note": "\"the price of prescription drugs\", peak week 2022-W32" }
+  ],
+  "provenance": {
+    "finding card": "data/derived/findings/S1.9.json (CONFIRMED, twice-validated)",
+    "ledger": "docs/13 search ledger, S1.9",
+    "estimator": "mean pairwise weekly content five-gram Jaccard overlap, per party, matched member counts (cap 40), verbatim co-signed releases excluded",
+    "window": "Congress 117, 2021-01-03 to 2023-01-02, 105 matched weeks",
+    "rerun, finding": "python scripts/search/revalidate_s1_9_s2_9.py",
+    "rerun, name-strip rider": "python scripts/search/revalidate_nomenclature_rider.py",
+    "receipts method": "C117 press-release mirror walked directly; peak = distinct Democratic offices in one ISO week, bar 30+; docs/19 name-span strip, index 117; verbatim co-signed excluded; author knife 2026-08-18; walk script archived with the draft assets"
+  }
+}
