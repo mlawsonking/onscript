@@ -3774,3 +3774,29 @@ essay-suite run, finding them gone, mkdir'd empty real directories in their plac
 impostor dirs then read as "present" to the restore check. Lesson: a worktree's junctions live
 as long as the worktree, never removed while further suite runs are possible; and "present"
 must be verified as a junction, not as a directory.
+
+S71-4/S71-5, 2026-08-19, same worktree, after the essay reached the morning render. S71-4
+(pushed in b5afb811): the 2022 Flourish race ("House Representative Trigrams by Party over
+Time," 2022-05-25, untouched since) became the essay's first receipt with a body line naming
+it the audited artifact. Its 2026 sibling was then built for Michael's Flourish account:
+`X:\onscript-data\drafts\P1-assets\flourish-race-c117.csv` plus upload README, content
+five-grams over the C117 mirror with the essay's exact controls, deterministic symmetric
+selection (top 12 per party by peak weekly distinct offices), apostrophe normalization and a
+>=4-shared-token window collapse after v1 raced mojibake twins as separate bars. The original
+stays untouched by rule; the sibling publishes as a new visualization. S71-5: viz-lab
+exploration under Michael's order to treat glanceable visualization ambitiously. Three
+findings made it cheap: day and phrase pages already wire per-page PNG cards into og:image
+(essays fall back to generic `og.png`); `top_synchronized` entries already carry
+`series`/`velocity`/`first_seen`, so adoption-curve renders need no new analysis; mirror
+records already carry `member.state` and `member.chamber`. Four prototypes rendered from real
+data into `X:\onscript-data\drafts\viz-lab\` (SOTU pulse, phrase trace card, state tile map,
+essay OG card); the map walk independently reproduced the receipts number, 39 distinct D
+offices for "18 to 21 years old" in 2022-W23 (20 states, 39 House 0 Senate), a second code
+path landing on the published digit. The strategy memo `VIZ-EXPLORATION-2026-08-19.md` sits
+beside them: site stays minimal, cards and off-site assets carry the viz weight, dimensional
+joins (state/leadership/margins open; inferred identity never; caucus cohorts only by
+explicit ruling plus the #110 agenda), r/dataisbeautiful US-politics posts are Thursdays-only
+per community documentation (verify the sidebar at post time; Reddit is policy-blocked from
+sessions). `data/derived/discipline.json` noted withdrawn; nothing in this exploration
+touches it. No repo surface changed; the ruling task rides the bus; cards-v2 sequencing
+belongs inside the #279 decision.
