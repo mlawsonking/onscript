@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "day": "2026-08-13",
+  "day_scoped": true,
+  "statement": "Both parties use the same pipeline, prompts, thresholds, and publication checks. The nightly audit publishes the shared fingerprints.",
+  "prompts_sha": {
+    "P1": "0cddc44ce3b70062f8bce6e98e50132553ff16b3e383a51a29fd867b3b134e9f",
+    "P2": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+    "P3": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+  },
+  "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376",
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "44b7e2354bd17430e526f39d149eb2c789b9908f195fcafa9f9983a42122b7a3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "063e5a092b69c6cbed57192603a82ce87bb22a0919504cd3f8f59834427153ca",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  },
+  "lane1_only": true,
+  "degraded": false,
+  "source_freshness": {
+    "note": "assemble stage; freshness measured in RUN A"
+  },
+  "source_collection_health_detail": "The mirror can attest to the files used by this run. It cannot attest to every eligible office endpoint, so endpoint completeness is not claimed.",
+  "deprecated_fields": {
+    "parties.*.coverage_pct": "The legacy coverage percentage is retained for schema compatibility. Use observed publishing offices, eligible caucus offices, and source collection health as separate fields."
+  },
+  "parties": {
+    "D": {
+      "statements_ingested": 68,
+      "members_covered": 55,
+      "caucus_size": 263,
+      "coverage_pct": 20.9,
+      "observed_publishing_offices": 55,
+      "eligible_caucus_offices": 263,
+      "date_effective_eligible_caucus_offices": 257,
+      "source_supported_offices": 0,
+      "publications": 68,
+      "document_families": 62,
+      "office_source_states": {
+        "source_supported": 0,
+        "source_unsupported": 0,
+        "unattestable": 257
+      },
+      "denominator_method_version": "date-effective-denominators-v1",
+      "denominator_window": "party-day 2026-08-13",
+      "date_effective_denominators": {
+        "method_version": "date-effective-denominators-v1",
+        "window": "party-day 2026-08-13",
+        "eligible_caucus_offices": 257,
+        "source_supported_offices": 0,
+        "observed_publishing_offices": 55,
+        "publications": 68,
+        "document_families": 62,
+        "office_source_states": {
+          "source_supported": 0,
+          "source_unsupported": 0,
+          "unattestable": 257
+        }
+      },
+      "source_collection_health": "not_attested",
+      "tokens_in": 1251,
+      "tokens_out": 100,
+      "claims_published": 0,
+      "claims_dropped": 2,
+      "nomenclature_tagged": 0,
+      "nomenclature_total": 43,
+      "nomenclature_rate": 0.0
+    },
+    "R": {
+      "statements_ingested": 38,
+      "members_covered": 36,
+      "caucus_size": 272,
+      "coverage_pct": 13.2,
+      "observed_publishing_offices": 36,
+      "eligible_caucus_offices": 272,
+      "date_effective_eligible_caucus_offices": 271,
+      "source_supported_offices": 0,
+      "publications": 38,
+      "document_families": 38,
+      "office_source_states": {
+        "source_supported": 0,
+        "source_unsupported": 0,
+        "unattestable": 271
+      },
+      "denominator_method_version": "date-effective-denominators-v1",
+      "denominator_window": "party-day 2026-08-13",
+      "date_effective_denominators": {
+        "method_version": "date-effective-denominators-v1",
+        "window": "party-day 2026-08-13",
+        "eligible_caucus_offices": 271,
+        "source_supported_offices": 0,
+        "observed_publishing_offices": 36,
+        "publications": 38,
+        "document_families": 38,
+        "office_source_states": {
+          "source_supported": 0,
+          "source_unsupported": 0,
+          "unattestable": 271
+        }
+      },
+      "source_collection_health": "not_attested",
+      "tokens_in": 1252,
+      "tokens_out": 84,
+      "claims_published": 0,
+      "claims_dropped": 1,
+      "nomenclature_tagged": 1,
+      "nomenclature_total": 12,
+      "nomenclature_rate": 0.0833
+    }
+  }
+}
