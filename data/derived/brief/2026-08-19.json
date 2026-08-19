@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-08-19",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 39,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "39 consecutive days published (through 2026-08-18)"
+    },
+    {
+      "name": "spend",
+      "value": 0.1029,
+      "projected": 0.1679,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 18,
+      "note": "$0.1029 MTD, $0.17 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-08-18",
+      "scored_age_days": 1,
+      "parties": {
+        "D": {
+          "statements": 73,
+          "median": 82.0,
+          "share": 0.89,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        },
+        "R": {
+          "statements": 32,
+          "median": 36.0,
+          "share": 0.889,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 3.39,
+        "day": "2026-08-19",
+        "status": "green"
+      },
+      "excluded_reports": 2,
+      "skipped_days": [],
+      "note": "2026-08-18 (1d): D 73/82=89% R 32/36=89% of own same-weekday baseline (green >= 60%); upstream 3.4h (green < 36h); 2 pre-2026-07-13 report(s) excluded (cumulative-total schema)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.6364,
+      "dropped": 7,
+      "offered": 11,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "7/11 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "federal funding for",
+    "party": "D",
+    "day_peak": 9,
+    "day": "2026-08-18"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: verifier_drop"
+}
