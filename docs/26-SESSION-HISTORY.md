@@ -3760,7 +3760,8 @@ power-position pointer), em dashes converted per the voice rule, twelve receipts
 phrase, twelve distinct members), all five standing labels, and a provenance block carrying the
 estimator, window, both rerun commands, and the receipts method. The final neutrality read is
 `p1-neutrality-round2.md` beside the assets: publishable pending Michael's voice pass and his
-push. Two flags for him: the essays renderer escapes everything and has no figure block, so the
+push. The voice pass happened in session the same day, on the full rendered text: approved
+unchanged, byline and date confirmed. Two flags for him: the essays renderer escapes everything and has no figure block, so the
 verified S67 chart ships in the assets rather than the page (a renderer extension is a separate
 ruling); the byline is set to "Michael King" because `SITE_AUTHOR` defaults to "OnScript",
 which is wrong for a first-person essay.
