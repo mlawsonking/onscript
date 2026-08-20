@@ -3846,3 +3846,13 @@ what remains equals the undecorated page byte for byte. Nothing pushed; the work
 `opus/s72-essay-figures`. One item for Michael: Flourish's thumbnail is the frame at 2021-W27,
 where nearly every bar is still zero — a mid-race frame would show the form better, and
 regenerating it is an action in his Flourish account, not in the repository.
+
+S72 postscript, same evening (Fable, orchestrating session). Figure 1's file was replaced
+before any push: the Flourish auto-thumbnail was a near-empty 2021-W27 frame with
+overlapping labels, so it was swapped for `figures/race-2026-w23.svg`, a static frame of
+the 2022-W23 gun-package week rendered directly from the committed race CSV (values 39,
+33, 27 leading; both parties present; the SVG states it is one frame of the animated
+race). The essay's figure src, alt, and caption were updated to match; the jpg left the
+tree. Task #285 remains open if Michael prefers a literal Flourish capture, which swaps
+the file with no code change. Suite re-verified independently by the orchestrating
+session after the swap.
