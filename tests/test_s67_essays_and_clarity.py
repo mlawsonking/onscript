@@ -7,9 +7,11 @@ zero essays is zero bytes, not an empty index waiting to be shared.
 """
 from __future__ import annotations
 
+import io
 import json
 import re
 import tempfile
+from contextlib import redirect_stdout
 from pathlib import Path
 
 from pipeline import build, config, public_strings, site
@@ -158,10 +160,13 @@ def _essay(slug="p1", date="2026-08-20"):
     }
 
 
-def _with_essays(essays: list[dict]) -> Path:
+def _with_essays(essays: list[dict], figures: dict[str, bytes] | None = None) -> Path:
     directory = Path(tempfile.mkdtemp(prefix="onscript-s67-essays-"))
     for essay in essays:
         (directory / f"{essay['slug']}.json").write_text(json.dumps(essay), encoding="utf-8")
+    for name, payload in (figures or {}).items():
+        (directory / "figures").mkdir(exist_ok=True)
+        (directory / "figures" / name).write_bytes(payload)
     return _build(essays_dir=directory)
 
 
@@ -235,3 +240,160 @@ def test_a_malformed_essay_file_is_skipped_rather_than_crashing_the_render():
     out = _build(essays_dir=directory)
     assert not (out / "essays").exists()
     assert (out / "index.html").exists()
+
+
+# --- S72 essay figures ----------------------------------------------------------------------
+# A figure is a committed image between two body blocks. Nothing on the page loads or runs from
+# another origin: the Flourish race is linked and the thing on the page is a thumbnail this
+# repository owns. Malformed metadata raises at build; an absent FILE logs and skips.
+
+REAL_ESSAY = "self-audit"
+# A minimal but honest SVG for the synthetic cases: role/title/desc, because a figure that ships
+# without them fails the accessibility guard the moment someone inlines one.
+STUB_SVG = (b'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" role="img" '
+            b'aria-labelledby="t"><title id="t">Stub</title><desc>Stub.</desc>'
+            b'<rect width="10" height="10" fill="#2b4c7e"/></svg>')
+
+
+def _rendered_block(text: str) -> str:
+    """The exact string a body block contributes to the page, so a position assertion can look for
+    it. Mirrors essay_body's two cases: a "## " block becomes a heading, everything else a p."""
+    text = str(text)
+    return site.esc(text[3:].strip()) if text.startswith("## ") else site.esc(text)
+
+
+def test_the_committed_essay_renders_its_committed_figures_where_the_author_put_them():
+    """The production-shaped one (docs/37 §2): the real content/essays/self-audit.json, the real
+    committed figure files, the real build path — no fixture stands in for any of it."""
+    essay = json.loads((site.ESSAYS_DIR / f"{REAL_ESSAY}.json").read_text(encoding="utf-8"))
+    figures = essay["figures"]
+    assert len(figures) == 2, "this test is about the two day-one figures"
+
+    out = _build()
+    page = (out / "essays" / f"{REAL_ESSAY}.html").read_text(encoding="utf-8")
+
+    # 1. Both files were copied beside the page, byte for byte, and nothing else was.
+    copied = sorted(p.name for p in (out / "essays" / "figures").iterdir())
+    assert copied == sorted(Path(f["src"]).name for f in figures)
+    for figure in figures:
+        name = Path(figure["src"]).name
+        assert (out / "essays" / "figures" / name).read_bytes() == \
+            (site.essay_figures_dir() / name).read_bytes()
+
+    # 2. Each figure sits between the block it was placed after and the next one, in body order.
+    body = essay["body"]
+    marks = []
+    for figure in figures:
+        mark = f'<img src="{figure["src"]}"'
+        after = figure["after_block"]
+        assert page.index(_rendered_block(body[after])) < page.index(mark) \
+            < page.index(_rendered_block(body[after + 1])), figure["src"]
+        marks.append(page.index(mark))
+    assert marks == sorted(marks), "figures render in body order"
+
+    # 3. Captions and alt text are escaped author prose, never markup.
+    for figure in figures:
+        assert site.esc(figure["caption"]) in page
+        assert site.esc(figure["alt"]) in page
+    apostrophe = next(f for f in figures if "'" in f["caption"])
+    assert apostrophe["caption"] not in page, "the raw caption reached the page unescaped"
+
+    # 4. Every src is a local figures/ path, and the ONE external href the block adds is the
+    #    authored link, exactly as _safe_http_url returned it.
+    blocks = re.findall(r'<figure class="essay-figure">.*?</figure>', page, re.S)
+    assert len(blocks) == 2
+    joined = "".join(blocks)
+    assert re.findall(r'src="([^"]+)"', joined) == [f["src"] for f in figures]
+    assert re.findall(r'href="([^"]+)"', joined) == [site._safe_http_url(figures[0]["link"])]
+    assert "<script" not in joined and "<iframe" not in joined
+    assert not re.search(r'<img\b[^>]*src="(?!figures/)', page), "an off-site image on the page"
+
+
+def test_figures_stay_out_of_the_feed_the_sitemap_and_the_share_card():
+    """Feeds and social metadata are deterministic fields only. A figure is page furniture; it has
+    no business in an Atom entry, and the sitemap indexes pages, not the images they carry."""
+    out = _build()
+    essay = json.loads((site.ESSAYS_DIR / f"{REAL_ESSAY}.json").read_text(encoding="utf-8"))
+    for name in ("feed.xml", "sitemap.xml"):
+        text = (out / name).read_text(encoding="utf-8")
+        assert "figures/" not in text, name
+        for figure in essay["figures"]:
+            assert figure["caption"][:40] not in text, name
+    page = (out / "essays" / f"{REAL_ESSAY}.html").read_text(encoding="utf-8")
+    card = re.search(r'<meta property="og:image" content="([^"]+)"', page)
+    assert card and "figures/" not in card.group(1)
+
+
+def test_a_figure_src_that_leaves_the_committed_figures_directory_refuses_at_build():
+    """Fail-closed, and on the METADATA rather than the file: a scheme, a data: payload or a
+    traversal is an authoring mistake, and every silent handling of it is worse than a stopped
+    build — a page that quietly lost its evidence, or an arbitrary file copied into the public
+    tree. There is no legacy state to migrate (docs/37 §4): no essay carried figures before S72."""
+    for src in ("https://evil/x.png", "data:image/png;base64,x", "../x.svg", "figures/../x.svg"):
+        essay = _essay()
+        essay["figures"] = [{"src": src, "after_block": 0, "alt": "a", "caption": "c"}]
+        try:
+            _with_essays([essay])
+        except ValueError as e:
+            assert src in str(e) and "figure src" in str(e), src
+        else:
+            raise AssertionError(f"{src!r} was allowed to build a page")
+
+
+def test_a_figure_position_link_or_alt_the_page_cannot_honour_also_refuses():
+    """The rest of the fail-closed surface. A position past the end of the body would render the
+    figure somewhere the author did not choose, or nowhere; a javascript: link would vanish
+    through the scheme whitelist and look exactly like an essay that never had one."""
+    def refuses(figure: dict) -> str:
+        essay = _essay()
+        essay["figures"] = [figure]
+        try:
+            _with_essays([essay], figures={"x.svg": STUB_SVG})
+        except ValueError as e:
+            return str(e)
+        raise AssertionError(f"{figure!r} was allowed to build a page")
+
+    good = {"src": "figures/x.svg", "after_block": 0, "alt": "a", "caption": "c"}
+    assert "after_block" in refuses({**good, "after_block": 9})
+    assert "after_block" in refuses({**good, "after_block": -1})
+    assert "after_block" in refuses({**good, "after_block": "0"})
+    assert "alt" in refuses({**good, "alt": "  "})
+    assert "not http(s)" in refuses({**good, "link": "javascript:alert(1)"})
+    assert "object" in refuses("figures/x.svg")
+
+
+def test_a_figure_whose_file_is_missing_logs_loudly_and_leaves_the_page_standing():
+    """The optional-brand-asset rule. The file is the only part of a figure that may be absent at
+    render time, and its absence costs that one block, never the page."""
+    essay = _essay()
+    essay["figures"] = [{"src": "figures/not-here.svg", "after_block": 0,
+                         "alt": "absent", "caption": "absent"}]
+    log = io.StringIO()
+    with redirect_stdout(log):
+        out = _with_essays([essay])
+    html = (out / "essays" / "p1.html").read_text(encoding="utf-8")
+    assert "<figure" not in html and "not-here.svg" not in html
+    assert site.esc("A paragraph of the author's prose.") in html
+    assert "<h1>A Title</h1>" in html
+    assert log.getvalue().count("[essay-figure] missing") == 2, "logged at the copy AND the render"
+    assert not (out / "essays" / "figures").exists()
+
+
+def test_the_figure_block_is_purely_additive_to_the_page_that_shipped_before():
+    """The regression guard, stated so it needs no pinned prose: delete every figure block from the
+    page of an essay WITH figures and you get back, byte for byte, the page the same essay renders
+    without them — which is the page the pre-S72 renderer wrote. (The stylesheet is the one global
+    change: three rules for figure.essay-figure ride the shared shell onto every page.)"""
+    plain = _essay()
+    decorated = _essay()
+    decorated["figures"] = [{"src": "figures/x.svg", "after_block": 1, "alt": "A", "caption": "C"}]
+
+    before = (_with_essays([plain]) / "essays" / "p1.html").read_text(encoding="utf-8")
+    out = _with_essays([decorated], figures={"x.svg": STUB_SVG})
+    after = (out / "essays" / "p1.html").read_text(encoding="utf-8")
+
+    assert '<figure class="essay-figure">' in after
+    assert re.sub(r'<figure class="essay-figure">.*?</figure>', "", after, flags=re.S) == before
+    assert "<figure" not in before and "<img" not in before
+    assert site.essay_figures(plain) == []
+    assert site.essay_figures({**plain, "figures": []}) == []

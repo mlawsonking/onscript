@@ -330,6 +330,11 @@ ul.elabels{list-style:none; margin:12px 0 18px; padding:10px 14px; border:1px so
 ul.elabels li{margin:3px 0}
 ul.elist{list-style:none; margin:18px 0; padding:0}
 ul.elist li{padding:10px 0; border-bottom:1px solid var(--line)}
+/* S72. Essay figures. A committed image and its caption, nothing that loads or runs off-site. */
+figure.essay-figure{margin:22px 0; padding:0}
+figure.essay-figure img{display:block; max-width:100%; height:auto; border:1px solid var(--line);
+  border-radius:8px; background:var(--panel)}
+figure.essay-figure figcaption{margin-top:8px; font-size:13px; line-height:1.5; color:var(--muted)}
 
 /* S67-1. Progressive disclosure. The method blocks are still on the page and still one click from
    the composites; they are simply no longer the first thing a stranger reads. */
@@ -3056,7 +3061,10 @@ ESSAYS_DIR = config.REPO_ROOT / "content" / "essays"
 
 
 def load_essays(directory: Path | None = None) -> list[dict]:
-    """Authored essays, newest first. Authored JSON, not derived output: prose is Michael's."""
+    """Authored essays, newest first. Authored JSON, not derived output: prose is Michael's.
+
+    A malformed FILE is skipped (a half-written essay is not worth a failed render), but a
+    malformed ``figures`` entry raises here, before anything renders — see essay_figures()."""
     directory = ESSAYS_DIR if directory is None else Path(directory)
     out = []
     if directory.exists():
@@ -3064,6 +3072,7 @@ def load_essays(directory: Path | None = None) -> list[dict]:
             essay = _load_json(path)
             if isinstance(essay, dict) and essay.get("title") and essay.get("date"):
                 essay.setdefault("slug", path.stem)
+                essay_figures(essay)          # validate at load: a bad src never reaches a renderer
                 out.append(essay)
     out.sort(key=lambda e: (str(e.get("date") or ""), str(e.get("slug") or "")), reverse=True)
     return out
@@ -3111,6 +3120,96 @@ def _essay_receipts(receipts) -> str:
             + "".join(rows) + "</div>")
 
 
+# --- Essay figures (S72) -----------------------------------------------------------------------
+# A figure is a committed image on a path this repository owns, placed between two body blocks, with
+# an escaped caption and an optional outbound link. It is never an iframe, never a script, never a
+# remote src: the Flourish race is LINKED and what sits on the page is a thumbnail we committed. An
+# instrument that imports someone else's JavaScript hands its critics a tampering story for free.
+#
+# The two failure modes are deliberately asymmetric:
+#   * malformed METADATA raises at load time. It is a typo in a hand-written file, and both silent
+#     alternatives are worse — publish a page that quietly lost its evidence, or copy an arbitrary
+#     file out of the machine into the public tree.
+#   * a missing FILE logs loudly and skips that one figure; the page still renders. Same posture as
+#     the favicon and the other optional brand assets: optional chrome cannot cost the render.
+# Day one the gate meets no legacy state (docs/37 §4): `figures` is a new optional key, no committed
+# essay carried one before this change, and an essay without it renders exactly as it did.
+FIGURE_SRC_PREFIX = "figures/"
+FIGURE_SUFFIXES = (".svg", ".png", ".jpg", ".jpeg", ".webp")
+# One file name, no separator and no scheme: "../x.svg", "figures/../x.svg", "https://evil/x.png"
+# and "data:image/png;base64,x" all fail this before anything opens a file.
+_FIGURE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*")
+
+
+def essay_figures_dir() -> Path:
+    """Where figure files live. Derived at call time from ESSAYS_DIR rather than frozen at import,
+    because the essays directory is rebindable and the two must never point at different trees."""
+    return ESSAYS_DIR / "figures"
+
+
+def _essay_figure_name(src, slug: str) -> str:
+    """The bare file name for an authored ``src``, or raise. Fail-closed; see the block above."""
+    text = str(src or "")
+    if not text.startswith(FIGURE_SRC_PREFIX):
+        raise ValueError(f"essay {slug!r}: figure src must start with {FIGURE_SRC_PREFIX!r}, "
+                         f"got {text!r}")
+    name = text[len(FIGURE_SRC_PREFIX):]
+    if not _FIGURE_NAME.fullmatch(name):
+        raise ValueError(f"essay {slug!r}: figure src must name one file inside "
+                         f"{FIGURE_SRC_PREFIX!r} (letters, digits, dot, dash, underscore; no path "
+                         f"separator, no scheme), got {text!r}")
+    if not name.lower().endswith(FIGURE_SUFFIXES):
+        raise ValueError(f"essay {slug!r}: figure src must be one of {FIGURE_SUFFIXES}, "
+                         f"got {text!r}")
+    return name
+
+
+def essay_figures(essay: dict) -> list[dict]:
+    """This essay's figures, validated and in authored order. Raises on anything malformed.
+
+    Called once at load and once at render, so there is one validator and no weaker second path."""
+    slug = str(essay.get("slug") or essay.get("title") or "?")
+    blocks = len(essay.get("body") or [])
+    out = []
+    for figure in essay.get("figures") or []:
+        if not isinstance(figure, dict):
+            raise ValueError(f"essay {slug!r}: every figure is an object, got {figure!r}")
+        name = _essay_figure_name(figure.get("src"), slug)
+        after = figure.get("after_block")
+        # An out-of-range position is refused rather than clamped: a figure silently rendered at the
+        # end of the piece, or not at all, is an unnoticed editorial change.
+        if not isinstance(after, int) or isinstance(after, bool) or not 0 <= after < blocks:
+            raise ValueError(f"essay {slug!r}: figure {name!r} needs after_block within "
+                             f"0..{blocks - 1}, got {after!r}")
+        alt = str(figure.get("alt") or "").strip()
+        if not alt:
+            raise ValueError(f"essay {slug!r}: figure {name!r} needs alt text")
+        authored_link = figure.get("link")
+        link = _safe_http_url(authored_link)
+        # The scheme whitelist decides, and a rejected link RAISES rather than vanishing: a dropped
+        # outbound reference looks identical to an essay that never had one.
+        if authored_link and not link:
+            raise ValueError(f"essay {slug!r}: figure {name!r} link is not http(s): "
+                             f"{authored_link!r}")
+        out.append({"name": name, "src": FIGURE_SRC_PREFIX + name, "after_block": after,
+                    "alt": alt, "caption": str(figure.get("caption") or "").strip(), "link": link})
+    return out
+
+
+def _essay_figure(figure: dict) -> str:
+    """One rendered figure, or "" when its file is absent (skip-and-log). Metadata was validated at
+    load, so everything interpolated here is either a checked file name or an escaped string."""
+    source = essay_figures_dir() / figure["name"]
+    if not source.is_file():
+        print(f"[essay-figure] missing, skipped (skip-and-log): {source}", flush=True)
+        return ""
+    img = f'<img src="{esc(figure["src"])}" alt="{esc(figure["alt"])}">'
+    if figure["link"]:
+        img = f'<a href="{esc(figure["link"])}" rel="nofollow noopener">{img}</a>'
+    caption = f'<figcaption>{esc(figure["caption"])}</figcaption>' if figure["caption"] else ""
+    return f'<figure class="essay-figure">{img}{caption}</figure>'
+
+
 def essay_body(essay: dict) -> str:
     """One essay. Every field is escaped: this is authored content, not a template to trust."""
     parts = [f'<h1>{esc(essay.get("title"))}</h1>']
@@ -3119,12 +3218,17 @@ def essay_body(essay: dict) -> str:
     byline = essay.get("byline") or SITE_AUTHOR
     parts.append(f'<p class="muted"><small>By {esc(byline)} &middot; {esc(essay.get("date"))}</small></p>')
     parts.append(_essay_labels(essay.get("labels")))
-    for block in essay.get("body") or []:
+    after_block: dict[int, list[dict]] = {}
+    for figure in essay_figures(essay):
+        after_block.setdefault(figure["after_block"], []).append(figure)
+    for index, block in enumerate(essay.get("body") or []):
         text = str(block or "")
         if text.startswith("## "):
             parts.append(f"<h2>{esc(text[3:].strip())}</h2>")
         elif text.strip():
             parts.append(f"<p>{esc(text)}</p>")
+        for figure in after_block.get(index, ()):
+            parts.append(_essay_figure(figure))
     parts.append(_essay_receipts(essay.get("receipts")))
     provenance = essay.get("provenance") or {}
     if provenance:
@@ -3847,6 +3951,18 @@ def build_site():
     essays = load_essays()
     if essays:
         (OUT / "essays").mkdir(parents=True, exist_ok=True)
+        # S72. The figure files, copied beside the pages that reference them. Deliberately NOT
+        # appended to `written`: that list drives the sitemap, and a sitemap indexes pages. A file
+        # that is named but absent logs and is skipped here and again at render, so the page ships.
+        for essay in essays:
+            for figure in essay_figures(essay):
+                source = essay_figures_dir() / figure["name"]
+                if not source.is_file():
+                    print(f"[essay-figure] missing, not copied (skip-and-log): {source}", flush=True)
+                    continue
+                target = OUT / "essays" / "figures" / figure["name"]
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(source, target)
         (OUT / "essays" / "index.html").write_text(
             page("OnScript · Essays", essays_index_body(essays), depth=1,
                  description="Longer pieces about what the instrument measured, with receipts.",
