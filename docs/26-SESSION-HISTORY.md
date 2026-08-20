@@ -3800,3 +3800,49 @@ per community documentation (verify the sidebar at post time; Reddit is policy-b
 sessions). `data/derived/discipline.json` noted withdrawn; nothing in this exploration
 touches it. No repo surface changed; the ruling task rides the bus; cards-v2 sequencing
 belongs inside the #279 decision.
+
+## 2026-08-19: Session 72 (Opus). The essays renderer learns figures, and links what it will not embed
+
+The essays surface gained one optional field. An essay JSON may now carry `figures`, a list of
+`{src, after_block, alt, caption, link?}`, and `pipeline/site.py` renders each one after the body
+block at its index as `<figure class="essay-figure">` wrapping an `<img>`, an optional outbound
+`<a>`, and an escaped `<figcaption>`. `src` is local by construction: it must read `figures/<name>`
+naming one file inside `content/essays/figures/` (letters, digits, dot, dash, underscore; one of
+.svg/.png/.jpg/.jpeg/.webp), so `https://evil/x.png`, `data:image/png;base64,x`, `../x.svg` and
+`figures/../x.svg` all fail before anything opens a file. There is no iframe, no script and no
+remote src anywhere in the block: the Flourish race is LINKED and what sits on the page is a
+thumbnail this repository owns, because an instrument that imports someone else's JavaScript hands
+its critics a tampering story for free. Feeds, sitemap and share cards are untouched — the copied
+image files are deliberately not appended to `written`, which drives the sitemap, and no figure
+reaches an Atom entry or an og:image.
+
+The two failure modes are asymmetric on purpose. Malformed METADATA raises at load, before any
+renderer sees it, because a typo in a hand-written file has only worse silent outcomes: a page that
+quietly lost its evidence, or an arbitrary file copied out of the machine into the public tree.
+That gate covers `src`, an `after_block` outside the body, missing alt text, and a link the scheme
+whitelist rejects (a dropped outbound reference looks exactly like an essay that never had one). A
+missing FILE is the opposite: it logs loudly at both the copy step and the render, skips that one
+block, and leaves the page standing — the favicon rule, where optional chrome cannot cost the
+render. The gate meets no legacy state (docs/37 §4): `figures` is new and optional, and an essay
+without it renders exactly the page it rendered before. The one global change is three CSS rules
+riding the shared shell onto every page.
+
+Day-one content: `content/essays/figures/s19-weekly-overlap.svg` is the S1.9 weekly-overlap chart
+committed byte-unchanged from the P1 assets (standalone SVG, viewBox present so the max-width rule
+scales it, no external reference, no member name), and `race-2026-thumbnail.jpg` is the 2026
+Flourish race thumbnail downloaded once and committed rather than hotlinked. `self-audit.json`
+places the race after body[1] (the paragraph about the 2022 visualization still standing) and the
+overlap chart after body[4] (the 75-of-105-weeks paragraph), captions copied verbatim from the
+approved digits. Two deviations from the work order, recorded rather than quietly absorbed:
+Flourish's thumbnail endpoint serves `image/jpeg` (1020x650, 63,671 bytes), so the file is
+committed as `.jpg` rather than the ordered `.png`, because JPEG bytes under a `.png` name are a
+false Content-Type; and the outbound link carries `rel="nofollow noopener"`, this file's convention
+for every external href, rather than the order's bare `noopener`. Suite **1221 passed, 0 failed**
+(1215 before the change), six new tests in `tests/test_s67_essays_and_clarity.py`: the real
+committed essay built through the real build path with both real figure files, the four fail-closed
+src refusals, the position/alt/link refusals, the missing-file skip-and-log, and an
+additive-by-construction guard that deletes every figure block from the decorated page and asserts
+what remains equals the undecorated page byte for byte. Nothing pushed; the work sits on
+`opus/s72-essay-figures`. One item for Michael: Flourish's thumbnail is the frame at 2021-W27,
+where nearly every bar is still zero — a mid-race frame would show the form better, and
+regenerating it is an action in his Flourish account, not in the repository.
