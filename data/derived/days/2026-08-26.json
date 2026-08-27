@@ -1,0 +1,1975 @@
+{
+  "day": "2026-08-26",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-08-26",
+      "party": "D",
+      "composite": "Today 58 of us released statements. 3 of us carried \"to take immediate action\". Our most synchronized phrase, used by 5 of us: of justice doj.",
+      "measurement_lead": "Measurement: 58 publications were observed for the Democratic party on 2026-08-26.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-08-26",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "ed517af94cf084c34d912d956c384a0d9aad15de4ecd508db7ece7dfe8d3aaac",
+        "claim_ids": [
+          "2026-08-26-D-01"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 58 of us released statements. 3 of us carried \"to take immediate action\". Our most synchronized phrase, used by 5 of us: of justice doj.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-08-26-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "fce3d8d94f9bb792145ad494fba2834473ef6ee2758868f066c50ce93c133f5e",
+        "response_sha256": "060a979e137681c29056bc425982a278e9b411249d92f77734187ab023394366",
+        "model_response_sha256": "e70c9ec6e943722c3e703d5f8bd3e49f0bc421ed9bee54bfc0d625f7acd73a2b"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-08-26-D-01"
+          ],
+          "claim_ids": [
+            "2026-08-26-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-08-26-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-08-26",
+        "statements": 58,
+        "talking_points": [
+          {
+            "label": "to take immediate action",
+            "members": 3,
+            "quote": "to take immediate action",
+            "topics": [
+              "elections_democracy",
+              "other"
+            ],
+            "claim_id": "2026-08-26-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "of justice doj",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Ted Cruz",
+          "first_sayer_party": "R",
+          "first_sayer_state": "TX"
+        },
+        "selected_claims": [
+          {
+            "label": "to take immediate action",
+            "members": 3,
+            "quote": "to take immediate action",
+            "topics": [
+              "elections_democracy",
+              "other"
+            ],
+            "claim_id": "2026-08-26-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-08-26-D-01"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2309,
+        "tokens_out": 108,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-08-26",
+      "party": "R",
+      "composite": "Today 24 of us released statements. No phrase was shared by 3 or more of us today.",
+      "measurement_lead": "Measurement: 24 publications were observed for the Republican party on 2026-08-26.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-08-26",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "12ed0d0db5397e25201f53b6f95952ba7d5c9d221ee018750d89a251a2fe2524",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Today 24 of us released statements. No phrase was shared by 3 or more of us today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "f2d5d53ac43d98d0ff625e9da2109db96d6b62cf3abc2fdd725849162e7771a2",
+        "response_sha256": "229b1aa076ee41df889dad746855c16ff67682076981f8d8989f59c997410b84",
+        "model_response_sha256": null
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-08-26",
+        "statements": 24,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-08-26-D-01",
+        "party": "D",
+        "day": "2026-08-26",
+        "label": "to take immediate action",
+        "member_count": 3,
+        "statements": [
+          "sha256:1c94a1121dc243815e5ef5f7abeb9605e5cea00f887a832457a7668f99fe17d6",
+          "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+          "sha256:4f8a8946d7644ede6b0b69dc61a535d0dfa033632dc05288f86478c06502b2f8",
+          "sha256:587f4e37ce96effae82a1c0dc860f6bdc0e0ff5f6df5113464fd5ad105df3ef9"
+        ],
+        "fragments": [
+          {
+            "text": "on your administration to take immediate action by",
+            "statement": "sha256:587f4e37ce96effae82a1c0dc860f6bdc0e0ff5f6df5113464fd5ad105df3ef9"
+          },
+          {
+            "text": "benjamin netanyahu to take immediate action to reduce",
+            "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141"
+          },
+          {
+            "text": "them to take immediate action to protect election integrity",
+            "statement": "sha256:1c94a1121dc243815e5ef5f7abeb9605e5cea00f887a832457a7668f99fe17d6"
+          }
+        ],
+        "topics": [
+          "elections_democracy",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-08-26-D-01",
+        "support_phrase": {
+          "normalized": "to take immediate action",
+          "text": "to take immediate action",
+          "occurrence_id": "occ:29fee989ba4d493e1e7ad6a2"
+        },
+        "display_quote": "to take immediate action",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:29fee989ba4d493e1e7ad6a2",
+            "claim_id": "2026-08-26-D-01",
+            "statement_id": "sha256:1c94a1121dc243815e5ef5f7abeb9605e5cea00f887a832457a7668f99fe17d6",
+            "publication_id": "sha256:1c94a1121dc243815e5ef5f7abeb9605e5cea00f887a832457a7668f99fe17d6",
+            "office_id": "P000145",
+            "family_id": "njoint:dec6ab0971fa4bb156b56a5f",
+            "family_revision": "dfrev:351e7eef34e521240de50b20",
+            "support_unit_id": "njoint:dec6ab0971fa4bb156b56a5f",
+            "party": "D",
+            "start_char": 447,
+            "end_char": 471,
+            "surface_text": "to take immediate action",
+            "normalized_phrase": "to take immediate action",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 296,
+            "sentence_end_char": 637,
+            "sentence_offset_start": 151,
+            "sentence_offset_end": 175,
+            "clause_start_char": 359,
+            "clause_end_char": 676,
+            "clause_offset_start": 88,
+            "clause_offset_end": 112,
+            "adjacent_tokens_before": [
+              "market",
+              "platforms",
+              "and",
+              "urged",
+              "them"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "protect",
+              "election",
+              "integrity",
+              "ahead"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1010d0fe1ed46883ac072692",
+            "claim_id": "2026-08-26-D-01",
+            "statement_id": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+            "publication_id": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+            "office_id": "B001288",
+            "family_id": "njoint:d048c8b8dd895ffdea92af90",
+            "family_revision": "dfrev:b9e8be4da287021d0a396463",
+            "support_unit_id": "njoint:d048c8b8dd895ffdea92af90",
+            "party": "D",
+            "start_char": 276,
+            "end_char": 300,
+            "surface_text": "to take immediate action",
+            "normalized_phrase": "to take immediate action",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 152,
+            "sentence_end_char": 454,
+            "sentence_offset_start": 124,
+            "sentence_offset_end": 148,
+            "clause_start_char": 110,
+            "clause_end_char": 407,
+            "clause_offset_start": 166,
+            "clause_offset_end": 190,
+            "adjacent_tokens_before": [
+              "israel’s",
+              "prime",
+              "minister",
+              "benjamin",
+              "netanyahu"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "reduce",
+              "violence",
+              "in",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:83f0c530c19b46f37dc91a45",
+            "claim_id": "2026-08-26-D-01",
+            "statement_id": "sha256:4f8a8946d7644ede6b0b69dc61a535d0dfa033632dc05288f86478c06502b2f8",
+            "publication_id": "sha256:4f8a8946d7644ede6b0b69dc61a535d0dfa033632dc05288f86478c06502b2f8",
+            "office_id": "W000805",
+            "family_id": "njoint:dec6ab0971fa4bb156b56a5f",
+            "family_revision": "dfrev:351e7eef34e521240de50b20",
+            "support_unit_id": "njoint:dec6ab0971fa4bb156b56a5f",
+            "party": "D",
+            "start_char": 293,
+            "end_char": 317,
+            "surface_text": "to take immediate action",
+            "normalized_phrase": "to take immediate action",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 38,
+            "sentence_end_char": 483,
+            "sentence_offset_start": 255,
+            "sentence_offset_end": 279,
+            "clause_start_char": 205,
+            "clause_end_char": 522,
+            "clause_offset_start": 88,
+            "clause_offset_end": 112,
+            "adjacent_tokens_before": [
+              "market",
+              "platforms",
+              "and",
+              "urged",
+              "them"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "protect",
+              "election",
+              "integrity",
+              "ahead"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:8edc1bdffa6a53ab1866c3c0",
+            "claim_id": "2026-08-26-D-01",
+            "statement_id": "sha256:587f4e37ce96effae82a1c0dc860f6bdc0e0ff5f6df5113464fd5ad105df3ef9",
+            "publication_id": "sha256:587f4e37ce96effae82a1c0dc860f6bdc0e0ff5f6df5113464fd5ad105df3ef9",
+            "office_id": "L000601",
+            "family_id": "dfam:dc17712ed260f6f9f1ae7cba",
+            "family_revision": "dfrev:625b9d0f3d7a267dbf03056a",
+            "support_unit_id": "L000601",
+            "party": "D",
+            "start_char": 677,
+            "end_char": 701,
+            "surface_text": "to take immediate action",
+            "normalized_phrase": "to take immediate action",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 452,
+            "sentence_end_char": 862,
+            "sentence_offset_start": 225,
+            "sentence_offset_end": 249,
+            "clause_start_char": 626,
+            "clause_end_char": 875,
+            "clause_offset_start": 51,
+            "clause_offset_end": 75,
+            "adjacent_tokens_before": [
+              "reece",
+              "calls",
+              "on",
+              "your",
+              "administration"
+            ],
+            "adjacent_tokens_after": [
+              "by",
+              "establishing",
+              "a",
+              "moratorium",
+              "on"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "B001288",
+          "L000601",
+          "P000145",
+          "W000805"
+        ],
+        "publication_ids": [
+          "sha256:1c94a1121dc243815e5ef5f7abeb9605e5cea00f887a832457a7668f99fe17d6",
+          "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+          "sha256:4f8a8946d7644ede6b0b69dc61a535d0dfa033632dc05288f86478c06502b2f8",
+          "sha256:587f4e37ce96effae82a1c0dc860f6bdc0e0ff5f6df5113464fd5ad105df3ef9"
+        ],
+        "family_ids": [
+          "dfam:dc17712ed260f6f9f1ae7cba",
+          "njoint:d048c8b8dd895ffdea92af90",
+          "njoint:dec6ab0971fa4bb156b56a5f"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:dc17712ed260f6f9f1ae7cba",
+            "family_revision": "dfrev:625b9d0f3d7a267dbf03056a"
+          },
+          {
+            "family_id": "njoint:d048c8b8dd895ffdea92af90",
+            "family_revision": "dfrev:b9e8be4da287021d0a396463"
+          },
+          {
+            "family_id": "njoint:dec6ab0971fa4bb156b56a5f",
+            "family_revision": "dfrev:351e7eef34e521240de50b20"
+          }
+        ],
+        "support_unit_ids": [
+          "L000601",
+          "njoint:d048c8b8dd895ffdea92af90",
+          "njoint:dec6ab0971fa4bb156b56a5f"
+        ],
+        "citation_occurrence_ids": [
+          "occ:29fee989ba4d493e1e7ad6a2",
+          "occ:1010d0fe1ed46883ac072692",
+          "occ:8edc1bdffa6a53ab1866c3c0"
+        ],
+        "citations": [
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-08-26",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padilla-warner-demand-answers-from-prediction-market-companies-paying-influencers-spreading-election-disinformation/",
+            "quote": "them to take immediate action to protect election integrity",
+            "occurrence_id": "occ:29fee989ba4d493e1e7ad6a2",
+            "office_id": "P000145",
+            "publication_id": "sha256:1c94a1121dc243815e5ef5f7abeb9605e5cea00f887a832457a7668f99fe17d6",
+            "family_id": "njoint:dec6ab0971fa4bb156b56a5f",
+            "family_revision": "dfrev:351e7eef34e521240de50b20"
+          },
+          {
+            "member": "Cory A. Booker",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-08-26",
+            "url": "https://www.booker.senate.gov/news/press/booker-schiff-schumer-lead-45-senators-in-urging-netanyahu-to-immediately-crack-down-on-settler-violence-in-west-bank-protect-us-citizens",
+            "quote": "benjamin netanyahu to take immediate action to reduce",
+            "occurrence_id": "occ:1010d0fe1ed46883ac072692",
+            "office_id": "B001288",
+            "publication_id": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+            "family_id": "njoint:d048c8b8dd895ffdea92af90",
+            "family_revision": "dfrev:b9e8be4da287021d0a396463"
+          },
+          {
+            "member": "Greg Landsman",
+            "party": "D",
+            "state": "OH",
+            "date": "2026-08-26",
+            "url": "https://landsman.house.gov/posts/landsman-reece-call-on-dewine-to-rein-in-energy-costs-in-southwest-ohio",
+            "quote": "on your administration to take immediate action by",
+            "occurrence_id": "occ:8edc1bdffa6a53ab1866c3c0",
+            "office_id": "L000601",
+            "publication_id": "sha256:587f4e37ce96effae82a1c0dc860f6bdc0e0ff5f6df5113464fd5ad105df3ef9",
+            "family_id": "dfam:dc17712ed260f6f9f1ae7cba",
+            "family_revision": "dfrev:625b9d0f3d7a267dbf03056a"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "elections_democracy",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-08-26",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 47,
+          "denominator_unit": "offices",
+          "share": 0.085106,
+          "window": "party-day 2026-08-26",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 58,
+          "denominator_unit": "publications",
+          "share": 0.068966,
+          "window": "party-day 2026-08-26",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 53,
+          "denominator_unit": "document families",
+          "share": 0.056604,
+          "window": "party-day 2026-08-26",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-08-26",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 22,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-08-26",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 24,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-08-26",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 24,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-08-26",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "million in federal funding",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      }
+    ],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "of justice doj",
+      "slug": "8642341bee6bc053",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        4,
+        7,
+        2,
+        1,
+        2,
+        5,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "wrote the senators",
+      "slug": "dd1ce953b68d3963",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.41,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "B001277",
+        "statement": "sha256:62d9df24a82d1361c54fd946e0c9c6780cb1c4361527d7d9c0aa7c09f96c924d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.957,
+      "series": [
+        1,
+        3,
+        1,
+        1,
+        5,
+        3,
+        3,
+        1,
+        1,
+        4,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "take the following",
+      "slug": "66ad1baaa3eaeabe",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-02-04",
+        "bioguide": "B001277",
+        "statement": "sha256:d85c5c59a5c54844d03ea3588e5ad81dc557c0d35d64ca1aded9d0bdd043632c",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        3,
+        2,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "urge you to take",
+      "slug": "4886a27f5c9e9433",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "C001117",
+        "statement": "sha256:87fce09ca8c367e497f21c4f3c16956e60a67fac7925dc114efd05a4b9f7127e",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        1,
+        1,
+        3,
+        1,
+        2,
+        2,
+        4,
+        2,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "the lawmakers wrote",
+      "slug": "13d49ed92594daf1",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.65,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001117",
+        "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.978,
+      "series": [
+        5,
+        1,
+        2,
+        2,
+        2,
+        1,
+        2,
+        4,
+        1,
+        4,
+        1,
+        5,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "approving additional settlements and stop allowing",
+      "slug": "7e00dafa3722947d",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "stop approving additional settlements and stop",
+      "slug": "9c4f47f2bb568289",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "take the following actions issue clear",
+      "slug": "ce06b314a6a5d454",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "threats and violence against palestinians including",
+      "slug": "51cd6d6223ace087",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "large-scale response by israeli security forces",
+      "slug": "fe2634582853d00e",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "weeks alone saw a significant surge",
+      "slug": "26878be089644a56",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "harassment threats and violence against palestinians",
+      "slug": "283edd6e59611e74",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "take steps to remove illegal outposts",
+      "slug": "a8b06f6998f92cf8",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "security forces mass arrests of palestinians",
+      "slug": "a8d6e7210363be84",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "response by israeli security forces mass",
+      "slug": "6a2d51464e7b9bc5",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "against palestinians including palestinian-americans are held",
+      "slug": "978e0d48034e560a",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "palestinians including palestinian-americans are held accountable",
+      "slug": "92d09fd950c0df58",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "violence against palestinians including palestinian-americans",
+      "slug": "08d23d1146728175",
+      "n": 5,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "israeli security forces mass arrests",
+      "slug": "004716a51d57b85f",
+      "n": 5,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "following actions issue clear directives",
+      "slug": "dc6878ca3654ad71",
+      "n": 5,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-08-26",
+        "bioguide": "B001288",
+        "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+        "tie": [
+          "C000127",
+          "S001150",
+          "S001208",
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "of justice doj",
+        "slug": "8642341bee6bc053",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          4,
+          7,
+          2,
+          1,
+          2,
+          5,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "wrote the senators",
+        "slug": "dd1ce953b68d3963",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.41,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "B001277",
+          "statement": "sha256:62d9df24a82d1361c54fd946e0c9c6780cb1c4361527d7d9c0aa7c09f96c924d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.957,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          5,
+          3,
+          3,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "take the following",
+        "slug": "66ad1baaa3eaeabe",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-02-04",
+          "bioguide": "B001277",
+          "statement": "sha256:d85c5c59a5c54844d03ea3588e5ad81dc557c0d35d64ca1aded9d0bdd043632c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "urge you to take",
+        "slug": "4886a27f5c9e9433",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "C001117",
+          "statement": "sha256:87fce09ca8c367e497f21c4f3c16956e60a67fac7925dc114efd05a4b9f7127e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          2,
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "the lawmakers wrote",
+        "slug": "13d49ed92594daf1",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.65,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001117",
+          "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.978,
+        "series": [
+          5,
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          4,
+          1,
+          4,
+          1,
+          5,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "approving additional settlements and stop allowing",
+        "slug": "7e00dafa3722947d",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-08-26",
+          "bioguide": "B001288",
+          "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+          "tie": [
+            "C000127",
+            "S001150",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "stop approving additional settlements and stop",
+        "slug": "9c4f47f2bb568289",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-08-26",
+          "bioguide": "B001288",
+          "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+          "tie": [
+            "C000127",
+            "S001150",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "take the following actions issue clear",
+        "slug": "ce06b314a6a5d454",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-08-26",
+          "bioguide": "B001288",
+          "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+          "tie": [
+            "C000127",
+            "S001150",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "threats and violence against palestinians including",
+        "slug": "51cd6d6223ace087",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-08-26",
+          "bioguide": "B001288",
+          "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+          "tie": [
+            "C000127",
+            "S001150",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "large-scale response by israeli security forces",
+        "slug": "fe2634582853d00e",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-08-26",
+          "bioguide": "B001288",
+          "statement": "sha256:1f90a816dbf31e71f04d7ce94b15d42376774fd0e4f75aa7b10fa33002034141",
+          "tie": [
+            "C000127",
+            "S001150",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      }
+    ],
+    "R": []
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
