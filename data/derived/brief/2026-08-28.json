@@ -5,58 +5,58 @@
   "numbers": [
     {
       "name": "streak",
-      "value": 0,
-      "status": "red",
-      "last_missed": "2026-08-27",
-      "note": "no publish for 2026-08-27 — Playbook P1"
+      "value": 48,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "48 consecutive days published (through 2026-08-27)"
     },
     {
       "name": "spend",
-      "value": 0.1435,
-      "projected": 0.1589,
+      "value": 0.152,
+      "projected": 0.1683,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 26,
-      "note": "$0.1435 MTD, $0.16 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 27,
+      "note": "$0.1520 MTD, $0.17 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "day": "2026-08-26",
-      "scored_age_days": 2,
+      "day": "2026-08-27",
+      "scored_age_days": 1,
       "parties": {
         "D": {
-          "statements": 58,
-          "median": 63.0,
-          "share": 0.921,
+          "statements": 72,
+          "median": 68.0,
+          "share": 1.059,
           "status": "green",
           "baseline_method": "recent 3-week same-weekday median"
         },
         "R": {
-          "statements": 24,
-          "median": 41.0,
-          "share": 0.585,
-          "status": "red",
+          "statements": 47,
+          "median": 38.0,
+          "share": 1.237,
+          "status": "green",
           "baseline_method": "recent 3-week same-weekday median"
         }
       },
-      "status": "red",
+      "status": "green",
       "freshness": {
-        "age_hours": 3.72,
-        "day": "2026-08-27",
+        "age_hours": 3.73,
+        "day": "2026-08-28",
         "status": "green"
       },
       "excluded_reports": 0,
       "skipped_days": [],
-      "note": "2026-08-26 (2d): D 58/63=92% R 24/41=58% of own same-weekday baseline (green >= 60%); upstream 3.7h (green < 36h)"
+      "note": "2026-08-27 (1d): D 72/68=106% R 47/38=124% of own same-weekday baseline (green >= 60%); upstream 3.7h (green < 36h)"
     },
     {
       "name": "verifier_drop",
       "value": 0.5,
-      "dropped": 2,
-      "offered": 4,
+      "dropped": 3,
+      "offered": 6,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "2/4 claims dropped over 7d (green < 25%)"
+      "note": "3/6 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -66,17 +66,15 @@
     }
   ],
   "reds": [
-    "streak",
-    "coverage",
     "verifier_drop"
   ],
   "unknowns": [],
   "degraded_days": [],
   "top_phrase": {
-    "ngram": "will keep fighting",
+    "ngram": "to lower costs",
     "party": "D",
-    "day_peak": 6,
-    "day": "2026-08-25"
+    "day_peak": 7,
+    "day": "2026-08-27"
   },
   "shelf": {
     "dark": [
@@ -104,5 +102,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, coverage, verifier_drop"
+  "headline": "RED: verifier_drop"
 }
