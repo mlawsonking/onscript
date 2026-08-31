@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-08-30",
+  "run_id": "collect-2026-08-31",
   "kind": "deterministic",
-  "generated_at": "2026-08-30T21:57:02Z",
-  "focus_day": "2026-08-29",
+  "generated_at": "2026-08-31T17:10:37Z",
+  "focus_day": "2026-08-30",
   "days_present": [
     "2025-01-01",
-    "2026-08-29"
+    "2026-08-30"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-08-30T10:19:38Z",
-    "age_hours": 11.62
+    "pushed_at": "2026-08-31T11:24:07Z",
+    "age_hours": 5.74
   },
   "normalize": {
-    "in": 82525,
-    "kept": 82491,
+    "in": 82530,
+    "kept": 82496,
     "rejects": 34,
     "joint_groups": 171,
     "near_joint_groups": 2941,
@@ -29,11 +29,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 48474,
+      "statements_in": 48476,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 33500,
+      "statements_in": 33503,
       "members_covered": 272
     },
     "I": {
@@ -44,9 +44,9 @@
   "derived": {
     "ledger_entries": 312954,
     "phrase_pages": 0,
-    "focus_day": "2026-08-29",
-    "focus_day_write": "skipped-final",
-    "focus_day_top_phrases": null,
+    "focus_day": "2026-08-30",
+    "focus_day_write": "written",
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 6.6,
-    "mirror_pull": 20.0,
-    "normalize": 2130.7,
-    "ledger_build": 1899.8
+    "restore": 7.2,
+    "mirror_pull": 109.7,
+    "normalize": 2171.6,
+    "ledger_build": 1978.4
   },
   "span_scan": {
-    "person_spans_calls": 237741,
-    "person_spans_s": 496.09963823498265,
-    "admitted_form_scans": 237741,
-    "admitted_form_s": 5.857450971841445
+    "person_spans_calls": 237756,
+    "person_spans_s": 498.64576881579706,
+    "admitted_form_scans": 237756,
+    "admitted_form_s": 6.689221666928461
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
