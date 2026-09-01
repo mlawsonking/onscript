@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-09-01",
   "kind": "deterministic",
-  "generated_at": "2026-09-01T14:13:51Z",
+  "generated_at": "2026-09-01T21:53:07Z",
   "focus_day": "2026-09-01",
   "days_present": [
     "2025-01-01",
@@ -11,7 +11,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-09-01T09:50:34Z",
-    "age_hours": 4.38
+    "age_hours": 12.04
   },
   "normalize": {
     "in": 82691,
@@ -57,15 +57,15 @@
   "alerts": [],
   "stage_timings_s": {
     "restore": 7.2,
-    "mirror_pull": 20.7,
-    "normalize": 2103.8,
-    "ledger_build": 1914.7
+    "mirror_pull": 21.4,
+    "normalize": 2162.2,
+    "ledger_build": 1952.7
   },
   "span_scan": {
     "person_spans_calls": 238227,
-    "person_spans_s": 507.50928834561864,
+    "person_spans_s": 489.103973828137,
     "admitted_form_scans": 238227,
-    "admitted_form_s": 7.109445060884809
+    "admitted_form_s": 6.292220591071327
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
