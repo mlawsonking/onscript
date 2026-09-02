@@ -921,5 +921,3458 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-01",
+      "party": "D",
+      "composite": "Today 99 of us released statements. 4 of us carried \"continuing resolution to keep\". Our most synchronized phrase, used by 8 of us: statement after voting.",
+      "measurement_lead": "Measurement: 99 publications were observed for the Democratic party on 2026-09-01.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-01",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "05fd7b1cda75b8243c2b8c1e48d2af080ce2f1d0fb0fbe8b96e571dc561a505b",
+        "claim_ids": [
+          "2026-09-01-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 99 of us released statements. 4 of us carried \"continuing resolution to keep\". Our most synchronized phrase, used by 8 of us: statement after voting.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-01-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "19a4b778693335c9c6e6eb0d3e6dfa109a2d56f723fc1d4e0ffdeaf6dca3dfcf",
+        "response_sha256": "8d14332f94bb4ca0f7657553483bc6aaab8e30f9f370a7dec86e652c7c3cfbfc",
+        "model_response_sha256": "664d2779288c4f7367c622419ffe1c6962944c33dffa391b46b861037fcfd7a2"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-01-D-00"
+          ],
+          "claim_ids": [
+            "2026-09-01-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-01-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-01",
+        "statements": 99,
+        "talking_points": [
+          {
+            "label": "continuing resolution to keep",
+            "members": 4,
+            "quote": "continuing resolution to keep",
+            "topics": [
+              "other",
+              "elections_democracy"
+            ],
+            "claim_id": "2026-09-01-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "statement after voting",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Mark E. Amodei",
+          "first_sayer_party": "R",
+          "first_sayer_state": "NV"
+        },
+        "selected_claims": [
+          {
+            "label": "continuing resolution to keep",
+            "members": 4,
+            "quote": "continuing resolution to keep",
+            "topics": [
+              "other",
+              "elections_democracy"
+            ],
+            "claim_id": "2026-09-01-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-01-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2329,
+        "tokens_out": 93,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-01",
+      "party": "R",
+      "composite": "Today 69 of us released statements. 6 of us carried \"to keep the government open\". 3 of us carried \"on the House floor\". Our most synchronized phrase, used by 14 of us: the government open.",
+      "measurement_lead": "Measurement: 69 publications were observed for the Republican party on 2026-09-01.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-01",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "25bf1601d50e97c89ff7ff6f78e7b5e05d43f9be4aad1333254f2a4f73c5a752",
+        "claim_ids": [
+          "2026-09-01-R-00",
+          "2026-09-01-R-03"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 69 of us released statements. 6 of us carried \"to keep the government open\". 3 of us carried \"on the House floor\". Our most synchronized phrase, used by 14 of us: the government open.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-01-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-09-01-R-03"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "182fcf1b4036f019abb6790bb8b1cbf5eb57a44df18853829a7366159d08b72e",
+        "response_sha256": "d2297cd920e3944707cec6210c7d814af0e531b6f487b17d68675264747a6e9d",
+        "model_response_sha256": "5ead59ac62d6f8f22e98e057367e30e5c4d4d99b20a1686aacab96f2c3bda227"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-01-R-00"
+          ],
+          "claim_ids": [
+            "2026-09-01-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-09-01-R-03"
+          ],
+          "claim_ids": [
+            "2026-09-01-R-03"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-01-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-09-01-R-03"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-01",
+        "statements": 69,
+        "talking_points": [
+          {
+            "label": "to keep the government open",
+            "members": 6,
+            "quote": "to keep the government open",
+            "topics": [
+              "other",
+              "trade_tariffs"
+            ],
+            "claim_id": "2026-09-01-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "trade_tariffs",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 6,
+              "publications": 6,
+              "families": 6,
+              "support_units": 6
+            }
+          },
+          {
+            "label": "on the house floor",
+            "members": 3,
+            "quote": "on the House floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-01-R-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "the government open",
+          "members": 14,
+          "family_count": 14,
+          "first_sayer": "Emilia Strong Sykes",
+          "first_sayer_party": "D",
+          "first_sayer_state": "OH"
+        },
+        "selected_claims": [
+          {
+            "label": "to keep the government open",
+            "members": 6,
+            "quote": "to keep the government open",
+            "topics": [
+              "other",
+              "trade_tariffs"
+            ],
+            "claim_id": "2026-09-01-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "trade_tariffs",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 6,
+              "publications": 6,
+              "families": 6,
+              "support_units": 6
+            }
+          },
+          {
+            "label": "on the house floor",
+            "members": 3,
+            "quote": "on the House floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-01-R-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 1,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 1,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-01-R-00",
+          "2026-09-01-R-03"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 3
+      },
+      "usage": {
+        "tokens_in": 3125,
+        "tokens_out": 110,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-01-D-00",
+        "party": "D",
+        "day": "2026-09-01",
+        "label": "continuing resolution to keep",
+        "member_count": 4,
+        "statements": [
+          "sha256:9c93ea1646acdaa0be8109bf026d821c74e46dbca7fab470448ac0488dae1383",
+          "sha256:d30acb84cb9a1a8565e303b381bb6353f1631fb49392e35d377fb5a70cb2c15b",
+          "sha256:e1a4ab0481ff43b04dee69e80e9af65e73b56fc9f741cbfb74c8985771568c9b",
+          "sha256:ee2030c06c78b200782e2d9eb977aefdbcb70f97182380016ae1928a5137423b"
+        ],
+        "fragments": [
+          {
+            "text": "bipartisan continuing resolution to keep the government funded through december",
+            "statement": "sha256:d30acb84cb9a1a8565e303b381bb6353f1631fb49392e35d377fb5a70cb2c15b"
+          },
+          {
+            "text": "the senate-passed continuing resolution to keep the federal government",
+            "statement": "sha256:ee2030c06c78b200782e2d9eb977aefdbcb70f97182380016ae1928a5137423b"
+          },
+          {
+            "text": "continuing resolution to keep the federal government funded through december",
+            "statement": "sha256:e1a4ab0481ff43b04dee69e80e9af65e73b56fc9f741cbfb74c8985771568c9b"
+          },
+          {
+            "text": "favor of a continuing resolution to keep the government",
+            "statement": "sha256:9c93ea1646acdaa0be8109bf026d821c74e46dbca7fab470448ac0488dae1383"
+          }
+        ],
+        "topics": [
+          "other",
+          "elections_democracy"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-01-D-00",
+        "support_phrase": {
+          "normalized": "continuing resolution to keep",
+          "text": "continuing resolution to keep",
+          "occurrence_id": "occ:980ed038a190c904a52172a5"
+        },
+        "display_quote": "continuing resolution to keep",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:980ed038a190c904a52172a5",
+            "claim_id": "2026-09-01-D-00",
+            "statement_id": "sha256:9c93ea1646acdaa0be8109bf026d821c74e46dbca7fab470448ac0488dae1383",
+            "publication_id": "sha256:9c93ea1646acdaa0be8109bf026d821c74e46dbca7fab470448ac0488dae1383",
+            "office_id": "T000491",
+            "family_id": "dfam:687a6bccf1e5760a3a853635",
+            "family_revision": "dfrev:c2825f8e94de1bcadaff1b4f",
+            "support_unit_id": "T000491",
+            "party": "D",
+            "start_char": 270,
+            "end_char": 299,
+            "surface_text": "continuing resolution to keep",
+            "normalized_phrase": "continuing resolution to keep",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 116,
+            "sentence_end_char": 339,
+            "sentence_offset_start": 154,
+            "sentence_offset_end": 183,
+            "clause_start_char": 247,
+            "clause_end_char": 665,
+            "clause_offset_start": 23,
+            "clause_offset_end": 52,
+            "adjacent_tokens_before": [
+              "voted",
+              "in",
+              "favor",
+              "of",
+              "a"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "government",
+              "open",
+              "through",
+              "december"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:09a3fba264c46e5461c186ba",
+            "claim_id": "2026-09-01-D-00",
+            "statement_id": "sha256:d30acb84cb9a1a8565e303b381bb6353f1631fb49392e35d377fb5a70cb2c15b",
+            "publication_id": "sha256:d30acb84cb9a1a8565e303b381bb6353f1631fb49392e35d377fb5a70cb2c15b",
+            "office_id": "C001110",
+            "family_id": "dfam:2a56a73892506411e545456d",
+            "family_revision": "dfrev:9fce61d86359274929f70106",
+            "support_unit_id": "C001110",
+            "party": "D",
+            "start_char": 135,
+            "end_char": 164,
+            "surface_text": "continuing resolution to keep",
+            "normalized_phrase": "continuing resolution to keep",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 21,
+            "sentence_end_char": 212,
+            "sentence_offset_start": 114,
+            "sentence_offset_end": 143,
+            "clause_start_char": 17,
+            "clause_end_char": 206,
+            "clause_offset_start": 118,
+            "clause_offset_end": 147,
+            "adjacent_tokens_before": [
+              "in",
+              "favor",
+              "of",
+              "the",
+              "bipartisan"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "government",
+              "funded",
+              "through",
+              "december"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9119d4d288d58ed1cf5ab39f",
+            "claim_id": "2026-09-01-D-00",
+            "statement_id": "sha256:e1a4ab0481ff43b04dee69e80e9af65e73b56fc9f741cbfb74c8985771568c9b",
+            "publication_id": "sha256:e1a4ab0481ff43b04dee69e80e9af65e73b56fc9f741cbfb74c8985771568c9b",
+            "office_id": "H001094",
+            "family_id": "dfam:f8baa9b17f7c9934f4938231",
+            "family_revision": "dfrev:1ea3464237847d1b1bd5429b",
+            "support_unit_id": "H001094",
+            "party": "D",
+            "start_char": 111,
+            "end_char": 140,
+            "surface_text": "continuing resolution to keep",
+            "normalized_phrase": "continuing resolution to keep",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 192,
+            "sentence_offset_start": 95,
+            "sentence_offset_end": 124,
+            "clause_start_char": 25,
+            "clause_end_char": 221,
+            "clause_offset_start": 86,
+            "clause_offset_end": 115,
+            "adjacent_tokens_before": [
+              "statement",
+              "after",
+              "voting",
+              "for",
+              "a"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "federal",
+              "government",
+              "funded",
+              "through"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:62e684401e4c3c81f9d1c7d0",
+            "claim_id": "2026-09-01-D-00",
+            "statement_id": "sha256:ee2030c06c78b200782e2d9eb977aefdbcb70f97182380016ae1928a5137423b",
+            "publication_id": "sha256:ee2030c06c78b200782e2d9eb977aefdbcb70f97182380016ae1928a5137423b",
+            "office_id": "G000581",
+            "family_id": "dfam:2aa1544ec11dde3d52291142",
+            "family_revision": "dfrev:46926b5cf1e7732a4381de26",
+            "support_unit_id": "G000581",
+            "party": "D",
+            "start_char": 161,
+            "end_char": 190,
+            "surface_text": "continuing resolution to keep",
+            "normalized_phrase": "continuing resolution to keep",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 40,
+            "sentence_end_char": 390,
+            "sentence_offset_start": 121,
+            "sentence_offset_end": 150,
+            "clause_start_char": 47,
+            "clause_end_char": 240,
+            "clause_offset_start": 114,
+            "clause_offset_end": 143,
+            "adjacent_tokens_before": [
+              "in",
+              "favor",
+              "of",
+              "the",
+              "senate-passed"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "federal",
+              "government",
+              "funded",
+              "through"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "C001110",
+          "G000581",
+          "H001094",
+          "T000491"
+        ],
+        "publication_ids": [
+          "sha256:9c93ea1646acdaa0be8109bf026d821c74e46dbca7fab470448ac0488dae1383",
+          "sha256:d30acb84cb9a1a8565e303b381bb6353f1631fb49392e35d377fb5a70cb2c15b",
+          "sha256:e1a4ab0481ff43b04dee69e80e9af65e73b56fc9f741cbfb74c8985771568c9b",
+          "sha256:ee2030c06c78b200782e2d9eb977aefdbcb70f97182380016ae1928a5137423b"
+        ],
+        "family_ids": [
+          "dfam:2a56a73892506411e545456d",
+          "dfam:2aa1544ec11dde3d52291142",
+          "dfam:687a6bccf1e5760a3a853635",
+          "dfam:f8baa9b17f7c9934f4938231"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:2a56a73892506411e545456d",
+            "family_revision": "dfrev:9fce61d86359274929f70106"
+          },
+          {
+            "family_id": "dfam:2aa1544ec11dde3d52291142",
+            "family_revision": "dfrev:46926b5cf1e7732a4381de26"
+          },
+          {
+            "family_id": "dfam:687a6bccf1e5760a3a853635",
+            "family_revision": "dfrev:c2825f8e94de1bcadaff1b4f"
+          },
+          {
+            "family_id": "dfam:f8baa9b17f7c9934f4938231",
+            "family_revision": "dfrev:1ea3464237847d1b1bd5429b"
+          }
+        ],
+        "support_unit_ids": [
+          "C001110",
+          "G000581",
+          "H001094",
+          "T000491"
+        ],
+        "citation_occurrence_ids": [
+          "occ:980ed038a190c904a52172a5",
+          "occ:09a3fba264c46e5461c186ba",
+          "occ:9119d4d288d58ed1cf5ab39f"
+        ],
+        "citations": [
+          {
+            "member": "Derek Tran",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-01",
+            "url": "https://tran.house.gov/media/press-releases/representative-tran-issues-statement-cr-vote-fund-government-through-december",
+            "quote": "favor of a continuing resolution to keep the government",
+            "occurrence_id": "occ:980ed038a190c904a52172a5",
+            "office_id": "T000491",
+            "publication_id": "sha256:9c93ea1646acdaa0be8109bf026d821c74e46dbca7fab470448ac0488dae1383",
+            "family_id": "dfam:687a6bccf1e5760a3a853635",
+            "family_revision": "dfrev:c2825f8e94de1bcadaff1b4f"
+          },
+          {
+            "member": "J. Luis Correa",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-01",
+            "url": "https://correa.house.gov/news/press-releases/correa-bipartisan-deal-keeps-government-open-without-funding-border-patrol",
+            "quote": "bipartisan continuing resolution to keep the government funded through december",
+            "occurrence_id": "occ:09a3fba264c46e5461c186ba",
+            "office_id": "C001110",
+            "publication_id": "sha256:d30acb84cb9a1a8565e303b381bb6353f1631fb49392e35d377fb5a70cb2c15b",
+            "family_id": "dfam:2a56a73892506411e545456d",
+            "family_revision": "dfrev:9fce61d86359274929f70106"
+          },
+          {
+            "member": "Val T. Hoyle",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-09-01",
+            "url": "https://hoyle.house.gov/media/press-releases/rep-val-hoyle-votes-for-continuing-resolution",
+            "quote": "continuing resolution to keep the federal government funded through december",
+            "occurrence_id": "occ:9119d4d288d58ed1cf5ab39f",
+            "office_id": "H001094",
+            "publication_id": "sha256:e1a4ab0481ff43b04dee69e80e9af65e73b56fc9f741cbfb74c8985771568c9b",
+            "family_id": "dfam:f8baa9b17f7c9934f4938231",
+            "family_revision": "dfrev:1ea3464237847d1b1bd5429b"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "elections_democracy",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-09-01-R-00",
+        "party": "R",
+        "day": "2026-09-01",
+        "label": "to keep the government open",
+        "member_count": 6,
+        "statements": [
+          "sha256:2885809958b94f342ce1cab803a20a46fba161a28333ed2d69812ca2db161f31",
+          "sha256:2c3d38d40382c3bcf29cf58c3525275571bb731856080af65d7b980a8f47b54e",
+          "sha256:32615f1cff5ecbe4c217b6c876f9000819522fd3feaa99fe8cab680c419a4503",
+          "sha256:63a1399ef12b9a30972b4664cc8e4647c69f76c100574fafdf09dd7f88692902",
+          "sha256:74901f14244547d96194fe004f7c2515230cd250fa2ab12a0a2e2e214eb2c0d2",
+          "sha256:e4f8db1ec0066ab4781e63c4f39c32e3b28eee80cfdeda0245295ede2e94899c"
+        ],
+        "fragments": [
+          {
+            "text": "have a responsibility to keep the government open and do our",
+            "statement": "sha256:74901f14244547d96194fe004f7c2515230cd250fa2ab12a0a2e2e214eb2c0d2"
+          },
+          {
+            "text": "that will keep the federal government open and operating",
+            "statement": "sha256:32615f1cff5ecbe4c217b6c876f9000819522fd3feaa99fe8cab680c419a4503"
+          },
+          {
+            "text": "legislation to keep the government open and funded through",
+            "statement": "sha256:2c3d38d40382c3bcf29cf58c3525275571bb731856080af65d7b980a8f47b54e"
+          },
+          {
+            "text": "taken responsible action to keep the government open",
+            "statement": "sha256:63a1399ef12b9a30972b4664cc8e4647c69f76c100574fafdf09dd7f88692902"
+          },
+          {
+            "text": "we voted to keep the government open and running for",
+            "statement": "sha256:e4f8db1ec0066ab4781e63c4f39c32e3b28eee80cfdeda0245295ede2e94899c"
+          },
+          {
+            "text": "it’s important to keep the government open so that",
+            "statement": "sha256:2885809958b94f342ce1cab803a20a46fba161a28333ed2d69812ca2db161f31"
+          }
+        ],
+        "topics": [
+          "other",
+          "trade_tariffs"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-01-R-00",
+        "support_phrase": {
+          "normalized": "to keep the government open",
+          "text": "to keep the government open",
+          "occurrence_id": "occ:77597778a5dce4affc254266"
+        },
+        "display_quote": "to keep the government open",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:77597778a5dce4affc254266",
+            "claim_id": "2026-09-01-R-00",
+            "statement_id": "sha256:2885809958b94f342ce1cab803a20a46fba161a28333ed2d69812ca2db161f31",
+            "publication_id": "sha256:2885809958b94f342ce1cab803a20a46fba161a28333ed2d69812ca2db161f31",
+            "office_id": "W000804",
+            "family_id": "dfam:9e326740fb1f2274f725e789",
+            "family_revision": "dfrev:908ed7a0f6be9764b7e9dc6d",
+            "support_unit_id": "W000804",
+            "party": "R",
+            "start_char": 443,
+            "end_char": 470,
+            "surface_text": "to keep the government open",
+            "normalized_phrase": "to keep the government open",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 426,
+            "sentence_end_char": 621,
+            "sentence_offset_start": 17,
+            "sentence_offset_end": 44,
+            "clause_start_char": 407,
+            "clause_end_char": 572,
+            "clause_offset_start": 36,
+            "clause_offset_end": 63,
+            "adjacent_tokens_before": [
+              "said",
+              "rep",
+              "wittman",
+              "it’s",
+              "important"
+            ],
+            "adjacent_tokens_after": [
+              "so",
+              "that",
+              "americans",
+              "continue",
+              "to"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9fe50a2a01468a0a9b030ae6",
+            "claim_id": "2026-09-01-R-00",
+            "statement_id": "sha256:2c3d38d40382c3bcf29cf58c3525275571bb731856080af65d7b980a8f47b54e",
+            "publication_id": "sha256:2c3d38d40382c3bcf29cf58c3525275571bb731856080af65d7b980a8f47b54e",
+            "office_id": "J000302",
+            "family_id": "dfam:ee1a7fb4b78ac5e194eac423",
+            "family_revision": "dfrev:9dc1e8af1c03ec6a7243f222",
+            "support_unit_id": "J000302",
+            "party": "R",
+            "start_char": 137,
+            "end_char": 164,
+            "surface_text": "to keep the government open",
+            "normalized_phrase": "to keep the government open",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 73,
+            "sentence_end_char": 201,
+            "sentence_offset_start": 64,
+            "sentence_offset_end": 91,
+            "clause_start_char": 74,
+            "clause_end_char": 195,
+            "clause_offset_start": 63,
+            "clause_offset_end": 90,
+            "adjacent_tokens_before": [
+              "colleagues",
+              "to",
+              "proactively",
+              "pass",
+              "legislation"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "funded",
+              "through",
+              "december",
+              "11"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f0dd3b76f2a8699d027dc7ad",
+            "claim_id": "2026-09-01-R-00",
+            "statement_id": "sha256:32615f1cff5ecbe4c217b6c876f9000819522fd3feaa99fe8cab680c419a4503",
+            "publication_id": "sha256:32615f1cff5ecbe4c217b6c876f9000819522fd3feaa99fe8cab680c419a4503",
+            "office_id": "J000295",
+            "family_id": "dfam:c453687e4d65cb88309b2578",
+            "family_revision": "dfrev:91e99bc5852f9d253cbb4734",
+            "support_unit_id": "J000295",
+            "party": "R",
+            "start_char": 464,
+            "end_char": 491,
+            "surface_text": "to keep the government open",
+            "normalized_phrase": "to keep the government open",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 389,
+            "sentence_end_char": 628,
+            "sentence_offset_start": 75,
+            "sentence_offset_end": 102,
+            "clause_start_char": 330,
+            "clause_end_char": 690,
+            "clause_offset_start": 134,
+            "clause_offset_end": 161,
+            "adjacent_tokens_before": [
+              "today",
+              "is",
+              "a",
+              "necessary",
+              "step"
+            ],
+            "adjacent_tokens_after": [
+              "past",
+              "the",
+              "end",
+              "of",
+              "the"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:698280d82faa2bf868f820f7",
+            "claim_id": "2026-09-01-R-00",
+            "statement_id": "sha256:32615f1cff5ecbe4c217b6c876f9000819522fd3feaa99fe8cab680c419a4503",
+            "publication_id": "sha256:32615f1cff5ecbe4c217b6c876f9000819522fd3feaa99fe8cab680c419a4503",
+            "office_id": "J000295",
+            "family_id": "dfam:c453687e4d65cb88309b2578",
+            "family_revision": "dfrev:91e99bc5852f9d253cbb4734",
+            "support_unit_id": "J000295",
+            "party": "R",
+            "start_char": 996,
+            "end_char": 1023,
+            "surface_text": "to keep the government open",
+            "normalized_phrase": "to keep the government open",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 965,
+            "sentence_end_char": 1168,
+            "sentence_offset_start": 31,
+            "sentence_offset_end": 58,
+            "clause_start_char": 916,
+            "clause_end_char": 1065,
+            "clause_offset_start": 80,
+            "clause_offset_end": 107,
+            "adjacent_tokens_before": [
+              "work",
+              "congress",
+              "has",
+              "a",
+              "responsibility"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "provide",
+              "certainty",
+              "for",
+              "our"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d6f0639747939848dec6aa02",
+            "claim_id": "2026-09-01-R-00",
+            "statement_id": "sha256:63a1399ef12b9a30972b4664cc8e4647c69f76c100574fafdf09dd7f88692902",
+            "publication_id": "sha256:63a1399ef12b9a30972b4664cc8e4647c69f76c100574fafdf09dd7f88692902",
+            "office_id": "K000376",
+            "family_id": "dfam:8f7a03336443c03283431e50",
+            "family_revision": "dfrev:6cdd97d54471ee2c07caaf2a",
+            "support_unit_id": "K000376",
+            "party": "R",
+            "start_char": 417,
+            "end_char": 444,
+            "surface_text": "to keep the government open",
+            "normalized_phrase": "to keep the government open",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 355,
+            "sentence_end_char": 525,
+            "sentence_offset_start": 62,
+            "sentence_offset_end": 89,
+            "clause_start_char": 296,
+            "clause_end_char": 444,
+            "clause_offset_start": 121,
+            "clause_offset_end": 148,
+            "adjacent_tokens_before": [
+              "once",
+              "again",
+              "taken",
+              "responsible",
+              "action"
+            ],
+            "adjacent_tokens_after": [
+              "protect",
+              "essential",
+              "services",
+              "and",
+              "provide"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:440e9e1dbc17ae0f8c320fa1",
+            "claim_id": "2026-09-01-R-00",
+            "statement_id": "sha256:74901f14244547d96194fe004f7c2515230cd250fa2ab12a0a2e2e214eb2c0d2",
+            "publication_id": "sha256:74901f14244547d96194fe004f7c2515230cd250fa2ab12a0a2e2e214eb2c0d2",
+            "office_id": "F000472",
+            "family_id": "dfam:f0d30afbf19e61e3db900ba9",
+            "family_revision": "dfrev:004ccdd712d7d7b33013245c",
+            "support_unit_id": "F000472",
+            "party": "R",
+            "start_char": 320,
+            "end_char": 347,
+            "surface_text": "to keep the government open",
+            "normalized_phrase": "to keep the government open",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 294,
+            "sentence_end_char": 395,
+            "sentence_offset_start": 26,
+            "sentence_offset_end": 53,
+            "clause_start_char": 176,
+            "clause_end_char": 417,
+            "clause_offset_start": 144,
+            "clause_offset_end": 171,
+            "adjacent_tokens_before": [
+              "deadline",
+              "we",
+              "have",
+              "a",
+              "responsibility"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "do",
+              "our",
+              "job",
+              "on"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:672b0c054757105f5aed85a8",
+            "claim_id": "2026-09-01-R-00",
+            "statement_id": "sha256:e4f8db1ec0066ab4781e63c4f39c32e3b28eee80cfdeda0245295ede2e94899c",
+            "publication_id": "sha256:e4f8db1ec0066ab4781e63c4f39c32e3b28eee80cfdeda0245295ede2e94899c",
+            "office_id": "R000395",
+            "family_id": "dfam:8683984c81d4607d83c563c4",
+            "family_revision": "dfrev:713f011772af58f9a45259d3",
+            "support_unit_id": "R000395",
+            "party": "R",
+            "start_char": 340,
+            "end_char": 367,
+            "surface_text": "to keep the government open",
+            "normalized_phrase": "to keep the government open",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 328,
+            "sentence_end_char": 576,
+            "sentence_offset_start": 12,
+            "sentence_offset_end": 39,
+            "clause_start_char": 322,
+            "clause_end_char": 403,
+            "clause_offset_start": 18,
+            "clause_offset_end": 45,
+            "adjacent_tokens_before": [
+              "september",
+              "30",
+              "2026",
+              "we",
+              "voted"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "running",
+              "for",
+              "the",
+              "american"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": true,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 6,
+          "publications": 6,
+          "families": 6,
+          "support_units": 6
+        },
+        "office_ids": [
+          "F000472",
+          "J000295",
+          "J000302",
+          "K000376",
+          "R000395",
+          "W000804"
+        ],
+        "publication_ids": [
+          "sha256:2885809958b94f342ce1cab803a20a46fba161a28333ed2d69812ca2db161f31",
+          "sha256:2c3d38d40382c3bcf29cf58c3525275571bb731856080af65d7b980a8f47b54e",
+          "sha256:32615f1cff5ecbe4c217b6c876f9000819522fd3feaa99fe8cab680c419a4503",
+          "sha256:63a1399ef12b9a30972b4664cc8e4647c69f76c100574fafdf09dd7f88692902",
+          "sha256:74901f14244547d96194fe004f7c2515230cd250fa2ab12a0a2e2e214eb2c0d2",
+          "sha256:e4f8db1ec0066ab4781e63c4f39c32e3b28eee80cfdeda0245295ede2e94899c"
+        ],
+        "family_ids": [
+          "dfam:8683984c81d4607d83c563c4",
+          "dfam:8f7a03336443c03283431e50",
+          "dfam:9e326740fb1f2274f725e789",
+          "dfam:c453687e4d65cb88309b2578",
+          "dfam:ee1a7fb4b78ac5e194eac423",
+          "dfam:f0d30afbf19e61e3db900ba9"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:8683984c81d4607d83c563c4",
+            "family_revision": "dfrev:713f011772af58f9a45259d3"
+          },
+          {
+            "family_id": "dfam:8f7a03336443c03283431e50",
+            "family_revision": "dfrev:6cdd97d54471ee2c07caaf2a"
+          },
+          {
+            "family_id": "dfam:9e326740fb1f2274f725e789",
+            "family_revision": "dfrev:908ed7a0f6be9764b7e9dc6d"
+          },
+          {
+            "family_id": "dfam:c453687e4d65cb88309b2578",
+            "family_revision": "dfrev:91e99bc5852f9d253cbb4734"
+          },
+          {
+            "family_id": "dfam:ee1a7fb4b78ac5e194eac423",
+            "family_revision": "dfrev:9dc1e8af1c03ec6a7243f222"
+          },
+          {
+            "family_id": "dfam:f0d30afbf19e61e3db900ba9",
+            "family_revision": "dfrev:004ccdd712d7d7b33013245c"
+          }
+        ],
+        "support_unit_ids": [
+          "F000472",
+          "J000295",
+          "J000302",
+          "K000376",
+          "R000395",
+          "W000804"
+        ],
+        "citation_occurrence_ids": [
+          "occ:77597778a5dce4affc254266",
+          "occ:9fe50a2a01468a0a9b030ae6",
+          "occ:d6f0639747939848dec6aa02"
+        ],
+        "citations": [
+          {
+            "member": "Robert J. Wittman",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-09-01",
+            "url": "https://wittman.house.gov/newsroom/press-releases/congressman-wittman-releases-statement-on-voting-for-continuing-appropriations-and-extensions-act",
+            "quote": "it’s important to keep the government open so that",
+            "occurrence_id": "occ:77597778a5dce4affc254266",
+            "office_id": "W000804",
+            "publication_id": "sha256:2885809958b94f342ce1cab803a20a46fba161a28333ed2d69812ca2db161f31",
+            "family_id": "dfam:9e326740fb1f2274f725e789",
+            "family_revision": "dfrev:908ed7a0f6be9764b7e9dc6d"
+          },
+          {
+            "member": "John Joyce",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-09-01",
+            "url": "https://johnjoyce.house.gov/media/press-releases/dr-joyce-votes-avoid-government-shutdown",
+            "quote": "legislation to keep the government open and funded through",
+            "occurrence_id": "occ:9fe50a2a01468a0a9b030ae6",
+            "office_id": "J000302",
+            "publication_id": "sha256:2c3d38d40382c3bcf29cf58c3525275571bb731856080af65d7b980a8f47b54e",
+            "family_id": "dfam:ee1a7fb4b78ac5e194eac423",
+            "family_revision": "dfrev:9dc1e8af1c03ec6a7243f222"
+          },
+          {
+            "member": "Mike Kelly",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-09-01",
+            "url": "https://kelly.house.gov/media/press-releases/kelly-votes-continuing-resolution-keep-government-open-0",
+            "quote": "taken responsible action to keep the government open",
+            "occurrence_id": "occ:d6f0639747939848dec6aa02",
+            "office_id": "K000376",
+            "publication_id": "sha256:63a1399ef12b9a30972b4664cc8e4647c69f76c100574fafdf09dd7f88692902",
+            "family_id": "dfam:8f7a03336443c03283431e50",
+            "family_revision": "dfrev:6cdd97d54471ee2c07caaf2a"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "trade_tariffs",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-01-R-01",
+        "party": "R",
+        "day": "2026-09-01",
+        "label": "socialism in all its forms",
+        "member_count": 4,
+        "statements": [
+          "sha256:30d3a7465f4c2c5da79759e578e51fb5bd631af4425c5501b77426dda5275911",
+          "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+          "sha256:48e42e1ea86a9a1e3e695efc849142dd915665067a579de695d9087876e8e62d",
+          "sha256:7dc4aa2064a676b03dbbd99c15371030c94e411287cfc6a88e765af740ec487f"
+        ],
+        "fragments": [
+          {
+            "text": "resolution condemning socialism in all its forms and denouncing the",
+            "statement": "sha256:7dc4aa2064a676b03dbbd99c15371030c94e411287cfc6a88e765af740ec487f"
+          },
+          {
+            "text": "to condemn socialism in all its forms and the democratic",
+            "statement": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0"
+          },
+          {
+            "text": "and denouncing socialism in all its forms",
+            "statement": "sha256:48e42e1ea86a9a1e3e695efc849142dd915665067a579de695d9087876e8e62d"
+          },
+          {
+            "text": "to condemn socialism in all its forms and the democratic",
+            "statement": "sha256:30d3a7465f4c2c5da79759e578e51fb5bd631af4425c5501b77426dda5275911"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-01-R-01",
+        "support_phrase": {
+          "normalized": "socialism in all its forms",
+          "text": "socialism in all its forms",
+          "occurrence_id": "occ:a02929d7f1af80192fee415e"
+        },
+        "display_quote": "socialism in all its forms",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a02929d7f1af80192fee415e",
+            "claim_id": "2026-09-01-R-01",
+            "statement_id": "sha256:30d3a7465f4c2c5da79759e578e51fb5bd631af4425c5501b77426dda5275911",
+            "publication_id": "sha256:30d3a7465f4c2c5da79759e578e51fb5bd631af4425c5501b77426dda5275911",
+            "office_id": "W000798",
+            "family_id": "dfam:eb280023f3d99f97ac237752",
+            "family_revision": "dfrev:29b49a69540d538c5515b60a",
+            "support_unit_id": "W000798",
+            "party": "R",
+            "start_char": 108,
+            "end_char": 134,
+            "surface_text": "socialism in all its forms",
+            "normalized_phrase": "socialism in all its forms",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 63,
+            "sentence_end_char": 181,
+            "sentence_offset_start": 45,
+            "sentence_offset_end": 71,
+            "clause_start_char": 68,
+            "clause_end_char": 233,
+            "clause_offset_start": 40,
+            "clause_offset_end": 66,
+            "adjacent_tokens_before": [
+              "resolution",
+              "he",
+              "cosponsored",
+              "to",
+              "condemn"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "the",
+              "democratic",
+              "socialists",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d2aa56a8ad2bbe971d596978",
+            "claim_id": "2026-09-01-R-01",
+            "statement_id": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+            "publication_id": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+            "office_id": "C001137",
+            "family_id": "dfam:a60ff7df3a835d43dbd7adb2",
+            "family_revision": "dfrev:75d72cf23a1130fead8a17ed",
+            "support_unit_id": "C001137",
+            "party": "R",
+            "start_char": 85,
+            "end_char": 111,
+            "surface_text": "socialism in all its forms",
+            "normalized_phrase": "socialism in all its forms",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 172,
+            "sentence_offset_start": 69,
+            "sentence_offset_end": 95,
+            "clause_start_char": 26,
+            "clause_end_char": 158,
+            "clause_offset_start": 59,
+            "clause_offset_end": 85,
+            "adjacent_tokens_before": [
+              "crank's",
+              "co-05",
+              "resolution",
+              "to",
+              "condemn"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "the",
+              "democratic",
+              "socialists",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:5bf43f12be60899d1f08d874",
+            "claim_id": "2026-09-01-R-01",
+            "statement_id": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+            "publication_id": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+            "office_id": "C001137",
+            "family_id": "dfam:a60ff7df3a835d43dbd7adb2",
+            "family_revision": "dfrev:75d72cf23a1130fead8a17ed",
+            "support_unit_id": "C001137",
+            "party": "R",
+            "start_char": 790,
+            "end_char": 816,
+            "surface_text": "socialism in all its forms",
+            "normalized_phrase": "socialism in all its forms",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 764,
+            "sentence_end_char": 971,
+            "sentence_offset_start": 26,
+            "sentence_offset_end": 52,
+            "clause_start_char": 584,
+            "clause_end_char": 816,
+            "clause_offset_start": 206,
+            "clause_offset_end": 232,
+            "adjacent_tokens_before": [
+              "for",
+              "socialism",
+              "this",
+              "resolution",
+              "condemns"
+            ],
+            "adjacent_tokens_after": [
+              "as",
+              "well",
+              "as",
+              "highlights",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:98d1b82adc8827fbfa6634ae",
+            "claim_id": "2026-09-01-R-01",
+            "statement_id": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+            "publication_id": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+            "office_id": "C001137",
+            "family_id": "dfam:a60ff7df3a835d43dbd7adb2",
+            "family_revision": "dfrev:75d72cf23a1130fead8a17ed",
+            "support_unit_id": "C001137",
+            "party": "R",
+            "start_char": 1354,
+            "end_char": 1380,
+            "surface_text": "socialism in all its forms",
+            "normalized_phrase": "socialism in all its forms",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1282,
+            "sentence_end_char": 1380,
+            "sentence_offset_start": 72,
+            "sentence_offset_end": 98,
+            "clause_start_char": 1264,
+            "clause_end_char": 1397,
+            "clause_offset_start": 90,
+            "clause_offset_end": 116,
+            "adjacent_tokens_before": [
+              "against",
+              "my",
+              "resolution",
+              "to",
+              "condemn"
+            ],
+            "adjacent_tokens_after": [
+              "10-15",
+              "years",
+              "ago",
+              "a",
+              "resolution"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "negated"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:64b6543ab032f4a5f09931af",
+            "claim_id": "2026-09-01-R-01",
+            "statement_id": "sha256:48e42e1ea86a9a1e3e695efc849142dd915665067a579de695d9087876e8e62d",
+            "publication_id": "sha256:48e42e1ea86a9a1e3e695efc849142dd915665067a579de695d9087876e8e62d",
+            "office_id": "P000609",
+            "family_id": "dfam:58125c45b0d28d4d47c66ca4",
+            "family_revision": "dfrev:7076039ef5e58db6d5cbf85c",
+            "support_unit_id": "P000609",
+            "party": "R",
+            "start_char": 198,
+            "end_char": 224,
+            "surface_text": "socialism in all its forms",
+            "normalized_phrase": "socialism in all its forms",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 152,
+            "sentence_end_char": 224,
+            "sentence_offset_start": 46,
+            "sentence_offset_end": 72,
+            "clause_start_char": 158,
+            "clause_end_char": 244,
+            "clause_offset_start": 40,
+            "clause_offset_end": 66,
+            "adjacent_tokens_before": [
+              "a",
+              "resolution",
+              "condemning",
+              "and",
+              "denouncing"
+            ],
+            "adjacent_tokens_after": [
+              "following",
+              "the",
+              "vote",
+              "rep",
+              "palmer"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:add703a85de4789703d6137d",
+            "claim_id": "2026-09-01-R-01",
+            "statement_id": "sha256:7dc4aa2064a676b03dbbd99c15371030c94e411287cfc6a88e765af740ec487f",
+            "publication_id": "sha256:7dc4aa2064a676b03dbbd99c15371030c94e411287cfc6a88e765af740ec487f",
+            "office_id": "A000055",
+            "family_id": "dfam:6b395557acd26e2ff81dc416",
+            "family_revision": "dfrev:daf44aecd2e84fce269c05fe",
+            "support_unit_id": "A000055",
+            "party": "R",
+            "start_char": 109,
+            "end_char": 135,
+            "surface_text": "socialism in all its forms",
+            "normalized_phrase": "socialism in all its forms",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 237,
+            "sentence_offset_start": 93,
+            "sentence_offset_end": 119,
+            "clause_start_char": 11,
+            "clause_end_char": 284,
+            "clause_offset_start": 98,
+            "clause_offset_end": 124,
+            "adjacent_tokens_before": [
+              "of",
+              "a",
+              "house",
+              "resolution",
+              "condemning"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "denouncing",
+              "the",
+              "growing",
+              "influence"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d8b157b67948c881b21c7ed4",
+            "claim_id": "2026-09-01-R-01",
+            "statement_id": "sha256:7dc4aa2064a676b03dbbd99c15371030c94e411287cfc6a88e765af740ec487f",
+            "publication_id": "sha256:7dc4aa2064a676b03dbbd99c15371030c94e411287cfc6a88e765af740ec487f",
+            "office_id": "A000055",
+            "family_id": "dfam:6b395557acd26e2ff81dc416",
+            "family_revision": "dfrev:daf44aecd2e84fce269c05fe",
+            "support_unit_id": "A000055",
+            "party": "R",
+            "start_char": 1759,
+            "end_char": 1785,
+            "surface_text": "socialism in all its forms",
+            "normalized_phrase": "socialism in all its forms",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1730,
+            "sentence_end_char": 1908,
+            "sentence_offset_start": 29,
+            "sentence_offset_end": 55,
+            "clause_start_char": 1699,
+            "clause_end_char": 1785,
+            "clause_offset_start": 60,
+            "clause_offset_end": 86,
+            "adjacent_tokens_before": [
+              "res",
+              "1490",
+              "condemns",
+              "and",
+              "denounces"
+            ],
+            "adjacent_tokens_after": [
+              "including",
+              "the",
+              "democratic",
+              "socialists",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "A000055",
+          "C001137",
+          "P000609",
+          "W000798"
+        ],
+        "publication_ids": [
+          "sha256:30d3a7465f4c2c5da79759e578e51fb5bd631af4425c5501b77426dda5275911",
+          "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+          "sha256:48e42e1ea86a9a1e3e695efc849142dd915665067a579de695d9087876e8e62d",
+          "sha256:7dc4aa2064a676b03dbbd99c15371030c94e411287cfc6a88e765af740ec487f"
+        ],
+        "family_ids": [
+          "dfam:58125c45b0d28d4d47c66ca4",
+          "dfam:6b395557acd26e2ff81dc416",
+          "dfam:a60ff7df3a835d43dbd7adb2",
+          "dfam:eb280023f3d99f97ac237752"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:58125c45b0d28d4d47c66ca4",
+            "family_revision": "dfrev:7076039ef5e58db6d5cbf85c"
+          },
+          {
+            "family_id": "dfam:6b395557acd26e2ff81dc416",
+            "family_revision": "dfrev:daf44aecd2e84fce269c05fe"
+          },
+          {
+            "family_id": "dfam:a60ff7df3a835d43dbd7adb2",
+            "family_revision": "dfrev:75d72cf23a1130fead8a17ed"
+          },
+          {
+            "family_id": "dfam:eb280023f3d99f97ac237752",
+            "family_revision": "dfrev:29b49a69540d538c5515b60a"
+          }
+        ],
+        "support_unit_ids": [
+          "A000055",
+          "C001137",
+          "P000609",
+          "W000798"
+        ],
+        "citation_occurrence_ids": [
+          "occ:a02929d7f1af80192fee415e",
+          "occ:d2aa56a8ad2bbe971d596978",
+          "occ:64b6543ab032f4a5f09931af"
+        ],
+        "citations": [
+          {
+            "member": "Tim Walberg",
+            "party": "R",
+            "state": "MI",
+            "date": "2026-09-01",
+            "url": "https://walberg.house.gov/media/press-releases/walberg-votes-condemn-horrors-socialism",
+            "quote": "to condemn socialism in all its forms and the democratic",
+            "occurrence_id": "occ:a02929d7f1af80192fee415e",
+            "office_id": "W000798",
+            "publication_id": "sha256:30d3a7465f4c2c5da79759e578e51fb5bd631af4425c5501b77426dda5275911",
+            "family_id": "dfam:eb280023f3d99f97ac237752",
+            "family_revision": "dfrev:29b49a69540d538c5515b60a"
+          },
+          {
+            "member": "Jeff Crank",
+            "party": "R",
+            "state": "CO",
+            "date": "2026-09-01",
+            "url": "https://crank.house.gov/media/press-releases/breaking-house-adopts-rep-cranks-resolution-condemn-socialism",
+            "quote": "to condemn socialism in all its forms and the democratic",
+            "occurrence_id": "occ:d2aa56a8ad2bbe971d596978",
+            "office_id": "C001137",
+            "publication_id": "sha256:323b018decbbf7a5300a8e569722e7aee28a1d321434ab4761928b9bfeda10c0",
+            "family_id": "dfam:a60ff7df3a835d43dbd7adb2",
+            "family_revision": "dfrev:75d72cf23a1130fead8a17ed"
+          },
+          {
+            "member": "Gary J. Palmer",
+            "party": "R",
+            "state": "AL",
+            "date": "2026-09-01",
+            "url": "https://palmer.house.gov/media-center/press-releases/palmer-votes-condemn-socialism",
+            "quote": "and denouncing socialism in all its forms",
+            "occurrence_id": "occ:64b6543ab032f4a5f09931af",
+            "office_id": "P000609",
+            "publication_id": "sha256:48e42e1ea86a9a1e3e695efc849142dd915665067a579de695d9087876e8e62d",
+            "family_id": "dfam:58125c45b0d28d4d47c66ca4",
+            "family_revision": "dfrev:7076039ef5e58db6d5cbf85c"
+          }
+        ],
+        "surface_class": "unknown",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "mixed-stance"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-01-R-03",
+        "party": "R",
+        "day": "2026-09-01",
+        "label": "on the house floor",
+        "member_count": 3,
+        "statements": [
+          "sha256:292b3b3645638e57e9b30ef84e0e3f3df8e54b0eaaefe61202d0ed94919eb50a",
+          "sha256:34a51a3f39e3d5d974bbabdac78d43aa8c94357bb574c776bf307b39e6e0d8b1",
+          "sha256:f550596e4fa0e19d8e7fc8ca64c1350d3894a55884f685ec5b2fc2096a6c4323"
+        ],
+        "fragments": [
+          {
+            "text": "delivered the following remarks on the house floor in",
+            "statement": "sha256:34a51a3f39e3d5d974bbabdac78d43aa8c94357bb574c776bf307b39e6e0d8b1"
+          },
+          {
+            "text": "on the house floor to honor darren solomon",
+            "statement": "sha256:292b3b3645638e57e9b30ef84e0e3f3df8e54b0eaaefe61202d0ed94919eb50a"
+          },
+          {
+            "text": "spoke on the house floor prior to its",
+            "statement": "sha256:f550596e4fa0e19d8e7fc8ca64c1350d3894a55884f685ec5b2fc2096a6c4323"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-01-R-03",
+        "support_phrase": {
+          "normalized": "on the house floor",
+          "text": "on the House floor",
+          "occurrence_id": "occ:6fb6a196d4207f85dde0d888"
+        },
+        "display_quote": "on the House floor",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6fb6a196d4207f85dde0d888",
+            "claim_id": "2026-09-01-R-03",
+            "statement_id": "sha256:292b3b3645638e57e9b30ef84e0e3f3df8e54b0eaaefe61202d0ed94919eb50a",
+            "publication_id": "sha256:292b3b3645638e57e9b30ef84e0e3f3df8e54b0eaaefe61202d0ed94919eb50a",
+            "office_id": "H001102",
+            "family_id": "dfam:16b388b8d665a4bc0dbcea1d",
+            "family_revision": "dfrev:63b02b009577583a2945b9e0",
+            "support_unit_id": "H001102",
+            "party": "R",
+            "start_char": 64,
+            "end_char": 82,
+            "surface_text": "on the House floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 210,
+            "sentence_offset_start": 48,
+            "sentence_offset_end": 66,
+            "clause_start_char": 25,
+            "clause_end_char": 171,
+            "clause_offset_start": 39,
+            "clause_offset_end": 57,
+            "adjacent_tokens_before": [
+              "congressman",
+              "mark",
+              "harris",
+              "nc-08",
+              "spoke"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "honor",
+              "darren",
+              "solomon",
+              "on"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bed55b4064e1ba65830f9231",
+            "claim_id": "2026-09-01-R-03",
+            "statement_id": "sha256:34a51a3f39e3d5d974bbabdac78d43aa8c94357bb574c776bf307b39e6e0d8b1",
+            "publication_id": "sha256:34a51a3f39e3d5d974bbabdac78d43aa8c94357bb574c776bf307b39e6e0d8b1",
+            "office_id": "H001091",
+            "family_id": "dfam:d8d5604765cc3ebbd904e11f",
+            "family_revision": "dfrev:d13f372ba1574d2d5cfdfcdb",
+            "support_unit_id": "H001091",
+            "party": "R",
+            "start_char": 87,
+            "end_char": 105,
+            "surface_text": "on the House Floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 219,
+            "sentence_offset_start": 71,
+            "sentence_offset_end": 89,
+            "clause_start_char": 19,
+            "clause_end_char": 139,
+            "clause_offset_start": 68,
+            "clause_offset_end": 86,
+            "adjacent_tokens_before": [
+              "ia-02",
+              "delivered",
+              "the",
+              "following",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "support",
+              "of",
+              "her",
+              "bipartisan"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:334bd10700935352519d33ee",
+            "claim_id": "2026-09-01-R-03",
+            "statement_id": "sha256:f550596e4fa0e19d8e7fc8ca64c1350d3894a55884f685ec5b2fc2096a6c4323",
+            "publication_id": "sha256:f550596e4fa0e19d8e7fc8ca64c1350d3894a55884f685ec5b2fc2096a6c4323",
+            "office_id": "M001213",
+            "family_id": "dfam:4998b11773413feba0eb8274",
+            "family_revision": "dfrev:7a096ecfc5313cab9fad4563",
+            "support_unit_id": "M001213",
+            "party": "R",
+            "start_char": 503,
+            "end_char": 521,
+            "surface_text": "on the House floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 478,
+            "sentence_end_char": 578,
+            "sentence_offset_start": 25,
+            "sentence_offset_end": 43,
+            "clause_start_char": 425,
+            "clause_end_char": 542,
+            "clause_offset_start": 78,
+            "clause_offset_end": 96,
+            "adjacent_tokens_before": [
+              "pass",
+              "away",
+              "congressman",
+              "moore",
+              "spoke"
+            ],
+            "adjacent_tokens_after": [
+              "prior",
+              "to",
+              "its",
+              "passage",
+              "and"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "H001091",
+          "H001102",
+          "M001213"
+        ],
+        "publication_ids": [
+          "sha256:292b3b3645638e57e9b30ef84e0e3f3df8e54b0eaaefe61202d0ed94919eb50a",
+          "sha256:34a51a3f39e3d5d974bbabdac78d43aa8c94357bb574c776bf307b39e6e0d8b1",
+          "sha256:f550596e4fa0e19d8e7fc8ca64c1350d3894a55884f685ec5b2fc2096a6c4323"
+        ],
+        "family_ids": [
+          "dfam:16b388b8d665a4bc0dbcea1d",
+          "dfam:4998b11773413feba0eb8274",
+          "dfam:d8d5604765cc3ebbd904e11f"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:16b388b8d665a4bc0dbcea1d",
+            "family_revision": "dfrev:63b02b009577583a2945b9e0"
+          },
+          {
+            "family_id": "dfam:4998b11773413feba0eb8274",
+            "family_revision": "dfrev:7a096ecfc5313cab9fad4563"
+          },
+          {
+            "family_id": "dfam:d8d5604765cc3ebbd904e11f",
+            "family_revision": "dfrev:d13f372ba1574d2d5cfdfcdb"
+          }
+        ],
+        "support_unit_ids": [
+          "H001091",
+          "H001102",
+          "M001213"
+        ],
+        "citation_occurrence_ids": [
+          "occ:6fb6a196d4207f85dde0d888",
+          "occ:bed55b4064e1ba65830f9231",
+          "occ:334bd10700935352519d33ee"
+        ],
+        "citations": [
+          {
+            "member": "Mark Harris",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-09-01",
+            "url": "https://markharris.house.gov/media/press-releases/rep-mark-harris-honors-retiring-atf-agent-darren-solomon",
+            "quote": "on the house floor to honor darren solomon",
+            "occurrence_id": "occ:6fb6a196d4207f85dde0d888",
+            "office_id": "H001102",
+            "publication_id": "sha256:292b3b3645638e57e9b30ef84e0e3f3df8e54b0eaaefe61202d0ed94919eb50a",
+            "family_id": "dfam:16b388b8d665a4bc0dbcea1d",
+            "family_revision": "dfrev:63b02b009577583a2945b9e0"
+          },
+          {
+            "member": "Ashley Hinson",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-09-01",
+            "url": "https://hinson.house.gov/media/press-releases/hinson-china-shouldnt-be-allowed-cheat-our-trade-laws-expense-american-workers",
+            "quote": "delivered the following remarks on the house floor in",
+            "occurrence_id": "occ:bed55b4064e1ba65830f9231",
+            "office_id": "H001091",
+            "publication_id": "sha256:34a51a3f39e3d5d974bbabdac78d43aa8c94357bb574c776bf307b39e6e0d8b1",
+            "family_id": "dfam:d8d5604765cc3ebbd904e11f",
+            "family_revision": "dfrev:d13f372ba1574d2d5cfdfcdb"
+          },
+          {
+            "member": "Blake D. Moore",
+            "party": "R",
+            "state": "UT",
+            "date": "2026-09-01",
+            "url": "https://blakemoore.house.gov/media/press-releases/congressman-blake-moores-hershel-woody-williams-national-medal-of-honor-monument-location-act-passes-the-house",
+            "quote": "spoke on the house floor prior to its",
+            "occurrence_id": "occ:334bd10700935352519d33ee",
+            "office_id": "M001213",
+            "publication_id": "sha256:f550596e4fa0e19d8e7fc8ca64c1350d3894a55884f685ec5b2fc2096a6c4323",
+            "family_id": "dfam:4998b11773413feba0eb8274",
+            "family_revision": "dfrev:7a096ecfc5313cab9fad4563"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-01",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 74,
+          "denominator_unit": "offices",
+          "share": 0.054054,
+          "window": "party-day 2026-09-01",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 99,
+          "denominator_unit": "publications",
+          "share": 0.040404,
+          "window": "party-day 2026-09-01",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 4,
+          "numerator_unit": "document families",
+          "denominator": 91,
+          "denominator_unit": "document families",
+          "share": 0.043956,
+          "window": "party-day 2026-09-01",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-01",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 13,
+          "numerator_unit": "offices",
+          "denominator": 58,
+          "denominator_unit": "offices",
+          "share": 0.224138,
+          "window": "party-day 2026-09-01",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 13,
+          "numerator_unit": "publications",
+          "denominator": 69,
+          "denominator_unit": "publications",
+          "share": 0.188406,
+          "window": "party-day 2026-09-01",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 13,
+          "numerator_unit": "document families",
+          "denominator": 69,
+          "denominator_unit": "document families",
+          "share": 0.188406,
+          "window": "party-day 2026-09-01",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "the house of representatives",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      },
+      {
+        "label": "bipartisan legislation to prevent artificial",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 1
+      }
+    ],
+    "R": [
+      {
+        "label": "favor of the continuing appropriations",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "statement after voting",
+        "slug": "ad5810750e301c01",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000369",
+          "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
+          "tie": [
+            "B000740",
+            "B001291"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.987,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5,
+          7,
+          1,
+          1,
+          1,
+          8
+        ]
+      },
+      {
+        "ngram": "continuing resolution to",
+        "slug": "08d23f114fe88e4d",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 4.9,
+        "first_seen": {
+          "date": "2025-02-26",
+          "bioguide": "L000598",
+          "statement": "sha256:b24b98f2c808a60587ca030877482b19ea32ca2f3ec971e8e3ab1d81fa0a3ffb",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "government funded through december",
+        "slug": "126b21dfd9970916",
+        "n": 4,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 5.0,
+        "first_seen": {
+          "date": "2026-07-22",
+          "bioguide": "B001327",
+          "statement": "sha256:e8eaf8e486493ec01e9b52f9e6a9e59eb01081cb683f27b6eed7c21b81f7fb97",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "funding bills that",
+        "slug": "11d1e5928b018d72",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-03-11",
+          "bioguide": "R000305",
+          "statement": "sha256:c43ca8237b24e57ff503ab729a63f4173891cb42170f143be807fe8fe8534b3a",
+          "tie": [
+            "W000822"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "today i voted",
+        "slug": "95b968e62d26f772",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 2.26,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "N000026",
+          "statement": "sha256:d3aff47aa039d016eca03a00948710303fe788dff139118954f40cccbbbac938",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          2,
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          4,
+          1,
+          1,
+          5,
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "the government open",
+        "slug": "2e7fe29d9c5f27fb",
+        "n": 3,
+        "day_peak": 14,
+        "party": "R",
+        "counts": {
+          "D": 5,
+          "R": 14,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 14,
+          "I": null
+        },
+        "family_count": 14,
+        "velocity": 7.26,
+        "first_seen": {
+          "date": "2025-02-12",
+          "bioguide": "S001223",
+          "statement": "sha256:4d6fe5e99c8b3f08f502d409be4e3e46913c9ed9e2508d9873c954bf04ea019a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          9,
+          6,
+          1,
+          1,
+          1,
+          1,
+          1,
+          14
+        ]
+      },
+      {
+        "ngram": "in federal funding",
+        "slug": "27d5305fed92a475",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 0.97,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000622",
+          "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          7,
+          6,
+          7,
+          4,
+          3,
+          4,
+          5,
+          6,
+          4,
+          8,
+          1,
+          1,
+          6,
+          5
+        ]
+      },
+      {
+        "ngram": "senior member of",
+        "slug": "7cbcf61f8a7d8270",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001287",
+          "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+          "tie": [
+            "D000623",
+            "G000386",
+            "H000874",
+            "K000367",
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.962,
+        "series": [
+          2,
+          1,
+          3,
+          4,
+          3,
+          1,
+          1,
+          3,
+          2,
+          3,
+          2,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "a senior member",
+        "slug": "f34a91c237c39881",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.41,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001287",
+          "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+          "tie": [
+            "D000623",
+            "K000367",
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.962,
+        "series": [
+          2,
+          1,
+          3,
+          3,
+          2,
+          1,
+          1,
+          3,
+          4,
+          3,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.71,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          1,
+          3,
+          3,
+          3,
+          6,
+          2,
+          1,
+          4,
+          3,
+          3,
+          4,
+          3,
+          3,
+          5
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the government open",
+        "slug": "2e7fe29d9c5f27fb",
+        "n": 3,
+        "day_peak": 14,
+        "party": "R",
+        "counts": {
+          "D": 5,
+          "R": 14,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 14,
+          "I": null
+        },
+        "family_count": 14,
+        "velocity": 7.26,
+        "first_seen": {
+          "date": "2025-02-12",
+          "bioguide": "S001223",
+          "statement": "sha256:4d6fe5e99c8b3f08f502d409be4e3e46913c9ed9e2508d9873c954bf04ea019a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          9,
+          6,
+          1,
+          1,
+          1,
+          1,
+          1,
+          14
+        ]
+      },
+      {
+        "ngram": "keep the government open",
+        "slug": "e7b58b770d419e31",
+        "n": 4,
+        "day_peak": 10,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 10,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 10,
+          "I": null
+        },
+        "family_count": 10,
+        "velocity": 6.36,
+        "first_seen": {
+          "date": "2025-02-12",
+          "bioguide": "S001223",
+          "statement": "sha256:4d6fe5e99c8b3f08f502d409be4e3e46913c9ed9e2508d9873c954bf04ea019a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          7,
+          3,
+          1,
+          1,
+          1,
+          1,
+          10
+        ]
+      },
+      {
+        "ngram": "voted in favor",
+        "slug": "9a609218bc1e227e",
+        "n": 3,
+        "day_peak": 9,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 9,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 10,
+          "I": null
+        },
+        "family_count": 10,
+        "velocity": 3.32,
+        "first_seen": {
+          "date": "2025-01-05",
+          "bioguide": "S001223",
+          "statement": "sha256:aaac0d0180a0666b2e4f9a7156c02f6f6753a2401352fde068c1f6ab42f85a93",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          1,
+          1,
+          4,
+          1,
+          2,
+          16,
+          4,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          9
+        ]
+      },
+      {
+        "ngram": "additional time to",
+        "slug": "e4f3d2a23dd05287",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-14",
+          "bioguide": "K000384",
+          "statement": "sha256:0d21e765f3ff145e17e31cc4995746ea8f9516d3ef4b4d10b4da06a4d583425a",
+          "tie": [
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "a continuing resolution",
+        "slug": "832aa60764c2788d",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 4.08,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "N000147",
+          "statement": "sha256:5798ecf3f937f0e84c45dec0d32c3a3c006d3126737fd501c64bbb3f18f795f2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          3,
+          1,
+          1,
+          3,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "fund the government",
+        "slug": "25cee893ce11c864",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.92,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "K000384",
+          "statement": "sha256:b08145c76584c2e8bcac4e69befde733812003ba0a59941fc673fd6f4be01a10",
+          "tie": [
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          1,
+          4,
+          4,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3,
+          2,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "government open and",
+        "slug": "9781f3f2710433ec",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 5.44,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "a government shutdown",
+        "slug": "527fb15479d0ab2e",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.92,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:290fb868d7e59018b55f3bab60242f3d542214496edf1fcf2880ab9b4f86929a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          1,
+          6,
+          5,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          7
+        ]
+      },
+      {
+        "ngram": "socialism in all its forms",
+        "slug": "d88bc15542637855",
+        "n": 5,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 5.14,
+        "first_seen": {
+          "date": "2025-09-04",
+          "bioguide": "S000168",
+          "statement": "sha256:73d029d6edd5abee1a617b9aec4e6a79c7949603f595da9e88063489b4e2fb92",
+          "tie": [
+            "S001217"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "government through december",
+        "slug": "0628dabd5409add9",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-07-21",
+          "bioguide": "E000299",
+          "statement": "sha256:08dd280344077fb2eee25e6d4bb28b94398cf5e602ec5511dbbdbc110922c81f",
+          "tie": [
+            "P000048",
+            "W000806"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          2,
+          1,
+          1,
+          2,
+          6
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "the government open",
+      "slug": "2e7fe29d9c5f27fb",
+      "n": 3,
+      "both": 5,
+      "day_peak": 5,
+      "counts": {
+        "D": 5,
+        "R": 14,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-02-12",
+        "bioguide": "S001223",
+        "statement": "sha256:4d6fe5e99c8b3f08f502d409be4e3e46913c9ed9e2508d9873c954bf04ea019a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "velocity": 7.26,
+      "sides": {
+        "D": [
+          {
+            "member": "Joe Courtney",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-09-01",
+            "url": "https://courtney.house.gov/media-center/press-releases/final-house-passed-continuing-resolution-fixes-house-republicans",
+            "quote": "Passage of this bill keeps the government open past November, avoiding a disruption to the economy and critical government services that people rely on, especially as the cost of living continues to rise,” Courtney said."
+          },
+          {
+            "member": "J. Luis Correa",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-01",
+            "url": "https://correa.house.gov/news/press-releases/correa-bipartisan-deal-keeps-government-open-without-funding-border-patrol",
+            "quote": "Today I voted to keep the government open, keep seniors fed, keep families housed, and block the Trump Administration’s latest power grab."
+          },
+          {
+            "member": "Derek Tran",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-01",
+            "url": "https://tran.house.gov/media/press-releases/representative-tran-issues-statement-cr-vote-fund-government-through-december",
+            "quote": "Today, I voted in favor of a continuing resolution to keep the government open through December 11."
+          }
+        ],
+        "R": [
+          {
+            "member": "James R. Baird",
+            "party": "R",
+            "state": "IN",
+            "date": "2026-09-01",
+            "url": "https://baird.house.gov/news/documentsingle.aspx?DocumentID=2614",
+            "quote": "Congress must responsibly address spending while keeping the government open, allowing essential federal personnel to keep working."
+          },
+          {
+            "member": "Juan Ciscomani",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-09-01",
+            "url": "https://ciscomani.house.gov/media/press-releases/ciscomani-issues-statement-after-house-votes-avert-government-shutdown",
+            "quote": "The House did the right thing today by coming together to keep the government open, keep essential services running, and continue delivering for Arizona."
+          },
+          {
+            "member": "Mario Diaz-Balart",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-09-01",
+            "url": "https://mariodiazbalart.house.gov/media-center/press-releases/congressman-diaz-balart-commends-passage-hr-6500-continuing",
+            "quote": "While I support keeping the government open, a continuing resolution is not a permanent solution."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "a continuing resolution",
+      "slug": "832aa60764c2788d",
+      "n": 3,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 4,
+        "R": 7,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "N000147",
+        "statement": "sha256:5798ecf3f937f0e84c45dec0d32c3a3c006d3126737fd501c64bbb3f18f795f2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "velocity": 4.08,
+      "sides": {
+        "D": [
+          {
+            "member": "Emanuel Cleaver",
+            "party": "D",
+            "state": "MO",
+            "date": "2026-09-01",
+            "url": "https://cleaver.house.gov/media-center/press-releases/congressman-cleaver-votes-pass-bipartisan-funding-bill-avoid-another",
+            "quote": "(Washington, D.C.) – Today, U.S. Representative Emanuel Cleaver, II (D-MO) voted in favor of a Continuing Resolution that maintains funding for federal programs through December 11."
+          },
+          {
+            "member": "Chrissy Houlahan",
+            "party": "D",
+            "state": "PA",
+            "date": "2026-09-01",
+            "url": "http://houlahan.house.gov/news/documentsingle.aspx?DocumentID=5163",
+            "quote": "When Speaker Johnson tried to pass a Continuing Resolution in July, I voted against it, because we still had months before the federal government’s budget would expire."
+          },
+          {
+            "member": "Derek Tran",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-01",
+            "url": "https://tran.house.gov/media/press-releases/representative-tran-issues-statement-cr-vote-fund-government-through-december",
+            "quote": "Today, I voted in favor of a continuing resolution to keep the government open through December 11."
+          }
+        ],
+        "R": [
+          {
+            "member": "Stephanie I. Bice",
+            "party": "R",
+            "state": "OK",
+            "date": "2026-09-01",
+            "url": "https://bice.house.gov/media/press-releases/bice-supports-continuing-resolution-fund-government",
+            "quote": "In July, the House passed a continuing resolution to fully fund the government."
+          },
+          {
+            "member": "Mario Diaz-Balart",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-09-01",
+            "url": "https://mariodiazbalart.house.gov/media-center/press-releases/congressman-diaz-balart-commends-passage-hr-6500-continuing",
+            "quote": "While I support keeping the government open, a continuing resolution is not a permanent solution."
+          },
+          {
+            "member": "Brett Guthrie",
+            "party": "R",
+            "state": "KY",
+            "date": "2026-09-01",
+            "url": "https://guthrie.house.gov/news/documentsingle.aspx?DocumentID=391158",
+            "quote": "H.R. 6500 is a continuing resolution that would extend government funding through December 11, 2026."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "voted in favor",
+      "slug": "9a609218bc1e227e",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 9,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-05",
+        "bioguide": "S001223",
+        "statement": "sha256:aaac0d0180a0666b2e4f9a7156c02f6f6753a2401352fde068c1f6ab42f85a93",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "velocity": 3.32,
+      "sides": {
+        "D": [
+          {
+            "member": "Emanuel Cleaver",
+            "party": "D",
+            "state": "MO",
+            "date": "2026-09-01",
+            "url": "https://cleaver.house.gov/media-center/press-releases/congressman-cleaver-votes-pass-bipartisan-funding-bill-avoid-another",
+            "quote": "(Washington, D.C.) – Today, U.S. Representative Emanuel Cleaver, II (D-MO) voted in favor of a Continuing Resolution that maintains funding for federal programs through December 11."
+          },
+          {
+            "member": "Veronica Escobar",
+            "party": "D",
+            "state": "TX",
+            "date": "2026-09-01",
+            "url": "https://escobar.house.gov/news/documentsingle.aspx?DocumentID=3337",
+            "quote": "Today, I voted in favor of the Senate legislation to fund our government, protect vulnerable populations, continue funding vital programs, and avoid yet another Republican shutdown."
+          },
+          {
+            "member": "Derek Tran",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-01",
+            "url": "https://tran.house.gov/media/press-releases/representative-tran-issues-statement-cr-vote-fund-government-through-december",
+            "quote": "Today, I voted in favor of a continuing resolution to keep the government open through December 11."
+          }
+        ],
+        "R": [
+          {
+            "member": "Mario Diaz-Balart",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-09-01",
+            "url": "https://mariodiazbalart.house.gov/media-center/press-releases/congressman-diaz-balart-commends-passage-hr-6500-continuing",
+            "quote": "I am proud to have voted in favor of keeping the American government open and ensuring that our troops, law enforcement officers, and air traffic controllers continue to receive their pay."
+          },
+          {
+            "member": "Brett Guthrie",
+            "party": "R",
+            "state": "KY",
+            "date": "2026-09-01",
+            "url": "https://guthrie.house.gov/news/documentsingle.aspx?DocumentID=391158",
+            "quote": "Today, I voted in favor of a Continuing Resolution to give Congress additional time to finalize the appropriations process without running the risk of another detrimental government shutdown."
+          },
+          {
+            "member": "Mike Kelly",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-09-01",
+            "url": "https://kelly.house.gov/media/press-releases/kelly-votes-continuing-resolution-keep-government-open-0",
+            "quote": "WASHINGTON, D.C. -- Today, U.S. Rep. Mike Kelly (R-PA) voted in favor of H.R. 6500, Continuing Appropriations and Extensions Act, 2027, legislation to keep the federal government open through December 11, 2026."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "be signed into law",
+      "slug": "9b985d594c4891d3",
+      "n": 4,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "E000297",
+        "statement": "sha256:517c2b3697fe0669018c9c906bb0827ae73c6dbbcf84f356acf5baaa5a9d1a17",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "velocity": 1.5,
+      "sides": {
+        "D": [
+          {
+            "member": "Joe Courtney",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-09-01",
+            "url": "https://courtney.house.gov/media-center/press-releases/final-house-passed-continuing-resolution-fixes-house-republicans",
+            "quote": "The Senate has already passed H.R. 6500, and it now heads directly to be signed into law."
+          },
+          {
+            "member": "Stacey E. Plaskett",
+            "party": "D",
+            "state": "VI",
+            "date": "2026-09-01",
+            "url": "https://plaskett.house.gov/news/documentsingle.aspx?DocumentID=6114",
+            "quote": "The legislation, which was passed by the U.S. Senate on August 8, 2026, now proceeds to the President's desk to be signed into law:"
+          },
+          {
+            "member": "Emilia Strong Sykes",
+            "party": "D",
+            "state": "OH",
+            "date": "2026-09-01",
+            "url": "https://sykes.house.gov/media/press-releases/reps-sykes-votes-to-extend-government-funding-delay-implementation-of-harmful-omb-rule-impacting-federal-grants-for-local-entities",
+            "quote": "It now goes to President Trump to be signed into law."
+          }
+        ],
+        "R": [
+          {
+            "member": "Stephanie I. Bice",
+            "party": "R",
+            "state": "OK",
+            "date": "2026-09-01",
+            "url": "https://bice.house.gov/media/press-releases/bice-supports-continuing-resolution-fund-government",
+            "quote": "The Senate recently amended the legislation forcing the House to pass it again before it can be signed into law by President Trump."
+          },
+          {
+            "member": "David P. Joyce",
+            "party": "R",
+            "state": "OH",
+            "date": "2026-09-01",
+            "url": "https://joyce.house.gov/posts/joyce-supports-fy-27-continuing-resolution-set-to-become-law",
+            "quote": "This legislation, which passed both the House and the Senate, now heads to President Trump’s desk to be signed into law."
+          },
+          {
+            "member": "Tim Moore",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-09-01",
+            "url": "https://timmoore.house.gov/media/press-releases/congressman-tim-moore-votes-extend-government-funding-avert-shutdown",
+            "quote": "H.R. 6500 now advances to President Trump’s desk to be signed into law."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
