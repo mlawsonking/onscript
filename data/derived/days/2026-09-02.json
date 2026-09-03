@@ -942,5 +942,1673 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-02",
+      "party": "D",
+      "composite": "Today 73 of us released statements. 3 of us carried \"took to the House Floor\". Our most synchronized phrase, used by 5 of us: the next generation.",
+      "measurement_lead": "Measurement: 73 publications were observed for the Democratic party on 2026-09-02.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-02",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "fa5eafb31b69a4bcd3ac0f6ef5e946a078e07887e93ea817bafc1de4c088e514",
+        "claim_ids": [
+          "2026-09-02-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 73 of us released statements. 3 of us carried \"took to the House Floor\". Our most synchronized phrase, used by 5 of us: the next generation.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-02-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "b63c3ca933b66b8c03b9903f6bf5e53417e4fbac0f3fdfe83b5068e452b34e3c",
+        "response_sha256": "dda76c538754c8b6206c3647589425aa2583e57e7e2b51e1c99e286508a83300",
+        "model_response_sha256": "6f06696507a67e428fd97f5c500864f835d4fcabda37765cb4e3a545de89d7e5"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-02-D-00"
+          ],
+          "claim_ids": [
+            "2026-09-02-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-02-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-02",
+        "statements": 73,
+        "talking_points": [
+          {
+            "label": "took to the house floor",
+            "members": 3,
+            "quote": "took to the House Floor",
+            "topics": [
+              "other",
+              "immigration",
+              "veterans"
+            ],
+            "claim_id": "2026-09-02-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "immigration",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "veterans",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "the next generation",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Russ Fulcher",
+          "first_sayer_party": "R",
+          "first_sayer_state": "ID"
+        },
+        "selected_claims": [
+          {
+            "label": "took to the house floor",
+            "members": 3,
+            "quote": "took to the House Floor",
+            "topics": [
+              "other",
+              "immigration",
+              "veterans"
+            ],
+            "claim_id": "2026-09-02-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "immigration",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "veterans",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-02-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2519,
+        "tokens_out": 87,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-02",
+      "party": "R",
+      "composite": "Across 43 statements, no phrase was shared widely enough to call a dominant message today. The most synchronized phrase, will continue working, appears 3 times, first recorded in our corpus from Brendan F. Boyle (D-PA).",
+      "measurement_lead": "Measurement: 43 publications were observed for the Republican party on 2026-09-02.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-02",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "98ba70140cc29b88dd46b43568195cf4ce232786f165f010983624b55e50eaf6",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 43 statements, no phrase was shared widely enough to call a dominant message today. The most synchronized phrase, will continue working, appears 3 times, first recorded in our corpus from Brendan F. Boyle (D-PA).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "8198c99277f991e3887efa2867df8534d6e28b84d01e55f132629b3ac434224f",
+        "response_sha256": "63eb14f1466d31a7f996ebca69eab177e934b604c48518e0e7334b55d79b45fe",
+        "model_response_sha256": "dc0a2516f62b09b2ef9dda8b081850a87ffcc80b207a81484c16b1865f9c4d04"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-02",
+        "statements": 43,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "will continue working",
+          "members": 3,
+          "family_count": 3,
+          "first_sayer": "Brendan F. Boyle",
+          "first_sayer_party": "D",
+          "first_sayer_state": "PA"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1252,
+        "tokens_out": 78,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-02-D-00",
+        "party": "D",
+        "day": "2026-09-02",
+        "label": "took to the house floor",
+        "member_count": 3,
+        "statements": [
+          "sha256:29b17f835cdd90b8c9433ee58052205bbd0de6524c099b183c0491de8425c8e7",
+          "sha256:42f8a093a1b95cd9815e99645a25254fdef4fea11eb9a3180c0309e4020d0988",
+          "sha256:477f70c99fabe30bb3b77ba99ac8ee3c26e5e948e8ad5b9bb6359c6172ad6932"
+        ],
+        "fragments": [
+          {
+            "text": "grijalva took to the house floor to honor the",
+            "statement": "sha256:477f70c99fabe30bb3b77ba99ac8ee3c26e5e948e8ad5b9bb6359c6172ad6932"
+          },
+          {
+            "text": "took to the house floor this week to",
+            "statement": "sha256:42f8a093a1b95cd9815e99645a25254fdef4fea11eb9a3180c0309e4020d0988"
+          },
+          {
+            "text": "took to the house floor to condemn immigrations",
+            "statement": "sha256:29b17f835cdd90b8c9433ee58052205bbd0de6524c099b183c0491de8425c8e7"
+          }
+        ],
+        "topics": [
+          "other",
+          "immigration",
+          "veterans"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-02-D-00",
+        "support_phrase": {
+          "normalized": "took to the house floor",
+          "text": "took to the House Floor",
+          "occurrence_id": "occ:b492d73773e0688ad3959d0d"
+        },
+        "display_quote": "took to the House Floor",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b492d73773e0688ad3959d0d",
+            "claim_id": "2026-09-02-D-00",
+            "statement_id": "sha256:29b17f835cdd90b8c9433ee58052205bbd0de6524c099b183c0491de8425c8e7",
+            "publication_id": "sha256:29b17f835cdd90b8c9433ee58052205bbd0de6524c099b183c0491de8425c8e7",
+            "office_id": "L000607",
+            "family_id": "dfam:6c7f1e3fcb4bb9d36640bd59",
+            "family_revision": "dfrev:593148d325238bb43b15219c",
+            "support_unit_id": "L000607",
+            "party": "D",
+            "start_char": 52,
+            "end_char": 75,
+            "surface_text": "took to the House Floor",
+            "normalized_phrase": "took to the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 228,
+            "sentence_offset_start": 36,
+            "sentence_offset_end": 59,
+            "clause_start_char": 19,
+            "clause_end_char": 304,
+            "clause_offset_start": 33,
+            "clause_offset_end": 56,
+            "adjacent_tokens_before": [
+              "c",
+              "congressman",
+              "sam",
+              "liccardo",
+              "ca-16"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "condemn",
+              "immigrations",
+              "and",
+              "custom"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2266bb2e451007786aa9ea87",
+            "claim_id": "2026-09-02-D-00",
+            "statement_id": "sha256:42f8a093a1b95cd9815e99645a25254fdef4fea11eb9a3180c0309e4020d0988",
+            "publication_id": "sha256:42f8a093a1b95cd9815e99645a25254fdef4fea11eb9a3180c0309e4020d0988",
+            "office_id": "H001068",
+            "family_id": "dfam:573974d79ed9e495479c87c0",
+            "family_revision": "dfrev:4bef4c3e25f24224c7b29b77",
+            "support_unit_id": "H001068",
+            "party": "D",
+            "start_char": 93,
+            "end_char": 116,
+            "surface_text": "took to the House Floor",
+            "normalized_phrase": "took to the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 92,
+            "sentence_end_char": 138,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 24,
+            "clause_start_char": 11,
+            "clause_end_char": 146,
+            "clause_offset_start": 82,
+            "clause_offset_end": 105,
+            "adjacent_tokens_before": [
+              "ranking",
+              "member",
+              "jared",
+              "huffman",
+              "d-calif"
+            ],
+            "adjacent_tokens_after": [
+              "this",
+              "week",
+              "to",
+              "oppose",
+              "h"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:935c0442410c6ef430d0bf78",
+            "claim_id": "2026-09-02-D-00",
+            "statement_id": "sha256:477f70c99fabe30bb3b77ba99ac8ee3c26e5e948e8ad5b9bb6359c6172ad6932",
+            "publication_id": "sha256:477f70c99fabe30bb3b77ba99ac8ee3c26e5e948e8ad5b9bb6359c6172ad6932",
+            "office_id": "G000606",
+            "family_id": "dfam:37c49276d6d29f74859c67c9",
+            "family_revision": "dfrev:867ed908c72a732f8344a164",
+            "support_unit_id": "G000606",
+            "party": "D",
+            "start_char": 60,
+            "end_char": 83,
+            "surface_text": "took to the House floor",
+            "normalized_phrase": "took to the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 50,
+            "sentence_end_char": 238,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 33,
+            "clause_start_char": 25,
+            "clause_end_char": 156,
+            "clause_offset_start": 35,
+            "clause_offset_end": 58,
+            "adjacent_tokens_before": [
+              "today",
+              "congresswoman",
+              "adelita",
+              "s",
+              "grijalva"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "honor",
+              "the",
+              "lives",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000606",
+          "H001068",
+          "L000607"
+        ],
+        "publication_ids": [
+          "sha256:29b17f835cdd90b8c9433ee58052205bbd0de6524c099b183c0491de8425c8e7",
+          "sha256:42f8a093a1b95cd9815e99645a25254fdef4fea11eb9a3180c0309e4020d0988",
+          "sha256:477f70c99fabe30bb3b77ba99ac8ee3c26e5e948e8ad5b9bb6359c6172ad6932"
+        ],
+        "family_ids": [
+          "dfam:37c49276d6d29f74859c67c9",
+          "dfam:573974d79ed9e495479c87c0",
+          "dfam:6c7f1e3fcb4bb9d36640bd59"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:37c49276d6d29f74859c67c9",
+            "family_revision": "dfrev:867ed908c72a732f8344a164"
+          },
+          {
+            "family_id": "dfam:573974d79ed9e495479c87c0",
+            "family_revision": "dfrev:4bef4c3e25f24224c7b29b77"
+          },
+          {
+            "family_id": "dfam:6c7f1e3fcb4bb9d36640bd59",
+            "family_revision": "dfrev:593148d325238bb43b15219c"
+          }
+        ],
+        "support_unit_ids": [
+          "G000606",
+          "H001068",
+          "L000607"
+        ],
+        "citation_occurrence_ids": [
+          "occ:b492d73773e0688ad3959d0d",
+          "occ:2266bb2e451007786aa9ea87",
+          "occ:935c0442410c6ef430d0bf78"
+        ],
+        "citations": [
+          {
+            "member": "Sam T. Liccardo",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-02",
+            "url": "https://liccardo.house.gov/media/press-releases/congressman-sam-liccardo-condemns-ice-house-stop-digging-graveyards-living",
+            "quote": "took to the house floor to condemn immigrations",
+            "occurrence_id": "occ:b492d73773e0688ad3959d0d",
+            "office_id": "L000607",
+            "publication_id": "sha256:29b17f835cdd90b8c9433ee58052205bbd0de6524c099b183c0491de8425c8e7",
+            "family_id": "dfam:6c7f1e3fcb4bb9d36640bd59",
+            "family_revision": "dfrev:593148d325238bb43b15219c"
+          },
+          {
+            "member": "Jared Huffman",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-02",
+            "url": "https://huffman.house.gov/media-center/press-releases/house-republicans-pass-bills-to-push-north-atlantic-right-whales-toward-extinction-let-trump-fast-track-permits-for-any-mine-he-likes",
+            "quote": "took to the house floor this week to",
+            "occurrence_id": "occ:2266bb2e451007786aa9ea87",
+            "office_id": "H001068",
+            "publication_id": "sha256:42f8a093a1b95cd9815e99645a25254fdef4fea11eb9a3180c0309e4020d0988",
+            "family_id": "dfam:573974d79ed9e495479c87c0",
+            "family_revision": "dfrev:4bef4c3e25f24224c7b29b77"
+          },
+          {
+            "member": "Adelita S. Grijalva",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-09-02",
+            "url": "https://grijalva.house.gov/media/press-releases/rep-grijalva-holds-moment-of-silence-on-house-floor-for-tucson-hate-crime-victims-calls-on-congress-to-act",
+            "quote": "grijalva took to the house floor to honor the",
+            "occurrence_id": "occ:935c0442410c6ef430d0bf78",
+            "office_id": "G000606",
+            "publication_id": "sha256:477f70c99fabe30bb3b77ba99ac8ee3c26e5e948e8ad5b9bb6359c6172ad6932",
+            "family_id": "dfam:37c49276d6d29f74859c67c9",
+            "family_revision": "dfrev:867ed908c72a732f8344a164"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "immigration",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "veterans",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-02",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 62,
+          "denominator_unit": "offices",
+          "share": 0.048387,
+          "window": "party-day 2026-09-02",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 73,
+          "denominator_unit": "publications",
+          "share": 0.041096,
+          "window": "party-day 2026-09-02",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 71,
+          "denominator_unit": "document families",
+          "share": 0.042254,
+          "window": "party-day 2026-09-02",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-02",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 38,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-09-02",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 43,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-09-02",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 42,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-09-02",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "of members of congress",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      },
+      {
+        "label": "million in federal funding",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.46,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.97,
+        "series": [
+          9,
+          1,
+          2,
+          1,
+          3,
+          6,
+          6,
+          5,
+          4,
+          1,
+          2,
+          3,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "million in federal",
+        "slug": "b04cb6da38f47ab4",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.25,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          6,
+          6,
+          4,
+          2,
+          3,
+          5,
+          4,
+          3,
+          5,
+          1,
+          1,
+          6,
+          5,
+          5
+        ]
+      },
+      {
+        "ngram": "the average family",
+        "slug": "09cfe8d40d9730dd",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "M001169",
+          "statement": "sha256:b30e66bc40506c14643ea594033b917b50b6ef870b4186b922074a114b695742",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "federal funding to",
+        "slug": "472a760aeae1d4f2",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.24,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "G000555",
+          "statement": "sha256:eb638a997acc8901dc25261bb63f7028171bd64df0100e940a27f8959800fdee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          4,
+          3,
+          2,
+          2,
+          1,
+          4,
+          5,
+          5,
+          6,
+          1,
+          1,
+          5,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.27,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          3,
+          3,
+          3,
+          6,
+          2,
+          1,
+          4,
+          3,
+          3,
+          4,
+          3,
+          3,
+          5,
+          4
+        ]
+      },
+      {
+        "ngram": "fight back against",
+        "slug": "3fcda78ab1727de5",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "P000620",
+          "statement": "sha256:c2f4347c5183d0028f225d367ac97bd0c3906adb27b2f0587aea3e4889507f5f",
+          "tie": [
+            "R000305"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "hundreds of billions",
+        "slug": "cd62224dcfcdc59c",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "B001260",
+          "statement": "sha256:420ca19eceb35121be196f8121112be6b407d4f9712e26203297b61024532d23",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "a fair shot",
+        "slug": "21a274c5c1006540",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.21,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "B001296",
+          "statement": "sha256:33a2ad4c2c199092fc07d3b6d1a11fd9fdf88abd4f395d1f72ea3ebd8b0c4dce",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "the federal funding",
+        "slug": "f8e5a18c319ef585",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001257",
+          "statement": "sha256:615154e166da1558471be3b75ad75c61739eb2d79ae6288b16109757703d4a39",
+          "tie": [
+            "H001061"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3,
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "ngram": "make sure the",
+        "slug": "e9689c4a2b2d7e9f",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-04",
+          "bioguide": "S001188",
+          "statement": "sha256:11598b5695ec158406970574ea0de9c6f6193a95125d57229dfe16e3cd1d1132",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          0,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "critical minerals and",
+        "slug": "1f028f3294f09d4b",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-02-01",
+          "bioguide": "S001211",
+          "statement": "sha256:2519777e90bfb589952d8314357c8fbacdcf0aa834500f1f2f841adc53b1dce1",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "federal government and",
+        "slug": "a9e4815a6351ce47",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001228",
+          "statement": "sha256:710aacdfc8d2069cf0df815bd72bf2170eaa55a340e88b66f4ad394c052c7264",
+          "tie": [
+            "S001217"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          4,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "continue working to",
+        "slug": "07f193983e4c3095",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.62,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001296",
+          "statement": "sha256:9dad811aca53320dd4a698fea09dff69c04935f29b7ef882f06755ad57f7c0f8",
+          "tie": [
+            "D000622",
+            "E000296",
+            "H001061",
+            "L000593"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          4,
+          3,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "will continue working",
+        "slug": "929436cdb31fec6a",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.45,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001296",
+          "statement": "sha256:9dad811aca53320dd4a698fea09dff69c04935f29b7ef882f06755ad57f7c0f8",
+          "tie": [
+            "E000296",
+            "H001061",
+            "L000593"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          6,
+          2,
+          3,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      {
+        "ngram": "the house floor",
+        "slug": "6360114b9c2c20ee",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.91,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001103",
+          "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+          "tie": [
+            "F000483",
+            "M001215",
+            "P000609"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          4,
+          3
+        ]
+      },
+      {
+        "ngram": "under current law",
+        "slug": "1267683aa0b11a1f",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "P000595",
+          "statement": "sha256:fe9b17bf9d68da4ea9ef65ae7228f007e979389894b87ed915b4e4c6083d8898",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.98,
+        "series": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          2,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "and national security",
+        "slug": "d0cf2d0365502388",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001204",
+          "statement": "sha256:59019b19bc00e9f984f6419aed71a9a48975de67cc926536fe684bd97415b6a0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          3,
+          4,
+          3,
+          3
+        ]
+      },
+      {
+        "ngram": "our supply chains",
+        "slug": "f54250d727e4557a",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.83,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          3,
+          2,
+          4,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "we look forward",
+        "slug": "bea5f990ffc8921a",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.91,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001230",
+          "statement": "sha256:edb4ac8bc3b192bba31b1382b124e41ab12c8370419d75c648e805833e399e79",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.959,
+        "series": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
