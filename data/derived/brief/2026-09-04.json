@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-09-04",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 55,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "55 consecutive days published (through 2026-09-03)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0501,
+      "projected": 0.3758,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 3,
+      "note": "$0.0501 MTD, $0.38 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-09-03",
+      "scored_age_days": 1,
+      "parties": {
+        "D": {
+          "statements": 100,
+          "median": 68.0,
+          "share": 1.471,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        },
+        "R": {
+          "statements": 57,
+          "median": 38.0,
+          "share": 1.5,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 4.28,
+        "day": "2026-09-04",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-09-03 (1d): D 100/68=147% R 57/38=150% of own same-weekday baseline (green >= 60%); upstream 4.3h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.4118,
+      "dropped": 7,
+      "offered": 17,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "7/17 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "the government open",
+    "party": "R",
+    "day_peak": 14,
+    "day": "2026-09-01"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: verifier_drop"
+}
