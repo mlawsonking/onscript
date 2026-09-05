@@ -853,5 +853,1202 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-04",
+      "party": "D",
+      "composite": "Across 63 statements today, no phrase was shared widely enough to call a dominant message. The most synchronized phrase in the record is in federal funding, appearing 6 times, first recorded in our corpus from Tammy Duckworth (D-IL). Beyond that, we do not have shared language substantial enough to report as a coordinated message today.",
+      "measurement_lead": "Measurement: 63 publications were observed for the Democratic party on 2026-09-04.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-04",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "b8532222f4e1f50dcb9a94c934785da58dee5ccd47d59d28bf7334f03896a84e",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 63 statements today, no phrase was shared widely enough to call a dominant message. The most synchronized phrase in the record is in federal funding, appearing 6 times, first recorded in our corpus from Tammy Duckworth (D-IL). Beyond that, we do not have shared language substantial enough to report as a coordinated message today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "83825162511d5b49d7ee108ea692eef36361c2208006b4bffe9e66b7acffba08",
+        "response_sha256": "70df87221779c0d4c088811113acd13cfeaa4a3565ccce802b9332f440e38f13",
+        "model_response_sha256": "699ba35d3d5e6da2243c06d3f6ce477d02d0fe79d56971f14c887e420ded1b0b"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-04",
+        "statements": 63,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "in federal funding",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Tammy Duckworth",
+          "first_sayer_party": "D",
+          "first_sayer_state": "IL"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1254,
+        "tokens_out": 111,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-04",
+      "party": "R",
+      "composite": "Across 42 statements today, no message rose to real prominence among us. We can note that the phrase marketing decisions threatens to pick winners was our most synchronized formulation, shared by 3 of us, first recorded in our corpus from Adrian Smith (R-NE). Beyond that single measured point, we are not given further shared claims or quotes to report today.",
+      "measurement_lead": "Measurement: 42 publications were observed for the Republican party on 2026-09-04.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-04",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "2c6eebe2b065c27b5de88ed61d5a0f2bc73bc374040ff7edd8e5e4455e3983dd",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 42 statements today, no message rose to real prominence among us. We can note that the phrase marketing decisions threatens to pick winners was our most synchronized formulation, shared by 3 of us, first recorded in our corpus from Adrian Smith (R-NE). Beyond that single measured point, we are not given further shared claims or quotes to report today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "f0a328ce74fd3cffc589ab573f7a829678320fa6c0027cc0aab39d5949e313de",
+        "response_sha256": "0a2c3fd919775fac4f45d5f958359d9405f861f8515e390631fa1777b46a1508",
+        "model_response_sha256": "2d9ee981c51f290614083062c6a41f881a16cbaf8adf966db507c30ab5671ac7"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-04",
+        "statements": 42,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "marketing decisions threatens to pick winners",
+          "members": 3,
+          "family_count": 3,
+          "first_sayer": "Adrian Smith",
+          "first_sayer_party": "R",
+          "first_sayer_state": "NE"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1259,
+        "tokens_out": 115,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-04",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 50,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-09-04",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 63,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-09-04",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 59,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-09-04",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-04",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 35,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-09-04",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 42,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-09-04",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 41,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-09-04",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "in federal funding",
+        "slug": "27d5305fed92a475",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.4,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000622",
+          "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          4,
+          3,
+          4,
+          5,
+          6,
+          4,
+          8,
+          1,
+          1,
+          6,
+          5,
+          3,
+          3,
+          6
+        ]
+      },
+      {
+        "ngram": "proud to join",
+        "slug": "0eb1e7285c7e5088",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+          "tie": [
+            "L000593",
+            "R000610"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          4,
+          2,
+          1,
+          2,
+          3,
+          1,
+          1,
+          5,
+          2,
+          1,
+          1,
+          1,
+          5,
+          5
+        ]
+      },
+      {
+        "ngram": "federal funding to",
+        "slug": "472a760aeae1d4f2",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.59,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "G000555",
+          "statement": "sha256:eb638a997acc8901dc25261bb63f7028171bd64df0100e940a27f8959800fdee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          2,
+          1,
+          4,
+          5,
+          5,
+          6,
+          1,
+          1,
+          5,
+          3,
+          4,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "communities across the country",
+        "slug": "743e783403b630d9",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.15,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000621",
+          "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+          "tie": [
+            "G000386"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          1,
+          1,
+          3,
+          2,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5,
+          4
+        ]
+      },
+      {
+        "ngram": "the first time",
+        "slug": "8fe6d589eaa68645",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.93,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001069",
+          "statement": "sha256:daa123314c438532c216b5c73bd14620a4f1e9c5d9ca096c9edcc6a22b578b6e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          3,
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          4,
+          1,
+          2,
+          1,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "text of the letter is",
+        "slug": "c0294ff9d31b3d8e",
+        "n": 5,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001056",
+          "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          4,
+          2,
+          2,
+          7,
+          1,
+          5,
+          1,
+          2,
+          4,
+          1,
+          2,
+          2,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "around the world",
+        "slug": "61da32700dea14ca",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.07,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:1f40a23fc323f17f14470b35470a4feabfe987f39f0c7ab17f2c0a3cde97f789",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.967,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3,
+          4,
+          1,
+          3,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "a senior member",
+        "slug": "f34a91c237c39881",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001287",
+          "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+          "tie": [
+            "D000623",
+            "K000367",
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.962,
+        "series": [
+          3,
+          2,
+          1,
+          1,
+          3,
+          4,
+          3,
+          2,
+          2,
+          1,
+          5,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "senior member of",
+        "slug": "7cbcf61f8a7d8270",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.7,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001287",
+          "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+          "tie": [
+            "D000623",
+            "G000386",
+            "H000874",
+            "K000367",
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.962,
+        "series": [
+          4,
+          3,
+          1,
+          1,
+          3,
+          2,
+          3,
+          2,
+          1,
+          1,
+          5,
+          2,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.17,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          3,
+          6,
+          2,
+          1,
+          4,
+          3,
+          3,
+          4,
+          3,
+          3,
+          5,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "marketing decisions threatens to pick winners",
+        "slug": "7035ff55106cd116",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "making marketing decisions threatens to pick",
+        "slug": "1960b4b3321a6a7f",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "less weather volatile markets and provide",
+        "slug": "d72989de1692d7ba",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "consulting closely with impacted stakeholders concluded",
+        "slug": "4b99794c0741f237",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "deliver long-term market stability and confidence",
+        "slug": "ee0ba0b41e5a2be4",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "producers are making marketing decisions threatens",
+        "slug": "a11a78345b5b481a",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "impact american livestock producers we urge",
+        "slug": "7c837bd728b1a392",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "prioritize proposals which deliver long-term market",
+        "slug": "1646bee88f1ec60c",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "viability of family-owned cattle operations throughout",
+        "slug": "904567a7a5cea409",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "deliver certainty for american cattle producers",
+        "slug": "a3cef24a4dd4bfea",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-09-02",
+          "bioguide": "S001172",
+          "statement": "sha256:e8573056bfdadaf0302bc3547cba5a778daad5be6d428a494851e76108b2c398",
+          "tie": [
+            "M000934"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
