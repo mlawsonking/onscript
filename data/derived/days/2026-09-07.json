@@ -6,10 +6,14 @@
     "reason": "The per-party discipline index divided mixed units and was never validated. It is superseded by the unit-safe participation measures (participation-measures-v1). Withdrawn under R-36.3, which extends R-33.1.",
     "metrics": {
       "discipline": {
-        "D": null,
+        "D": {
+          "statements": 6,
+          "on_message_units": 5,
+          "index": 0.8333
+        },
         "R": {
-          "statements": 1,
-          "on_message_units": 1,
+          "statements": 4,
+          "on_message_units": 4,
           "index": 1.0
         }
       }

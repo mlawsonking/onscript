@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-09-07",
+  "run_id": "collect-2026-09-08",
   "kind": "deterministic",
-  "generated_at": "2026-09-07T22:09:38Z",
+  "generated_at": "2026-09-08T13:44:52Z",
   "focus_day": "2026-09-07",
   "days_present": [
     "2025-01-01",
@@ -10,12 +10,12 @@
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-09-07T09:59:56Z",
-    "age_hours": 12.16
+    "pushed_at": "2026-09-08T09:26:22Z",
+    "age_hours": 4.3
   },
   "normalize": {
-    "in": 83378,
-    "kept": 83344,
+    "in": 83390,
+    "kept": 83356,
     "rejects": 34,
     "joint_groups": 171,
     "near_joint_groups": 2973,
@@ -29,11 +29,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 48986,
+      "statements_in": 48994,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 33838,
+      "statements_in": 33842,
       "members_covered": 272
     },
     "I": {
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 6.7,
-    "mirror_pull": 13.7,
-    "normalize": 1946.3,
-    "ledger_build": 1781.1
+    "restore": 7.5,
+    "mirror_pull": 15.2,
+    "normalize": 2364.4,
+    "ledger_build": 2075.0
   },
   "span_scan": {
-    "person_spans_calls": 240200,
-    "person_spans_s": 438.2973150729829,
-    "admitted_form_scans": 240200,
-    "admitted_form_s": 5.661319303977962
+    "person_spans_calls": 240236,
+    "person_spans_s": 516.8586649251688,
+    "admitted_form_scans": 240236,
+    "admitted_form_s": 8.143009315122072
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
