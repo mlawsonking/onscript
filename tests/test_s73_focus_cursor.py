@@ -461,6 +461,21 @@ def test_a_published_day_missing_its_deterministic_half_is_reported_not_rewritte
         assert "2026-09-06" not in out["records_written"], "reporting is not permission to rewrite"
 
 
+def test_one_unreadable_day_does_not_stop_the_other_repairs():
+    """A sweep that aborts on the first bad file stops healing exactly when it is needed most."""
+    with _temp_tree():
+        res = _run(_SEED, product_day="2026-09-08", run_id="s73-corrupt")
+        _day_file("2026-09-06").write_text("{ truncated", encoding="utf-8")
+        _day_file("2026-09-07").unlink()
+        _board("2026-09-07").unlink()
+        out = deterministic._sweep_unwritten_days(
+            res["statements"], res["ledger"], res["engine"].discipline_index(),
+            focus_day="2026-09-08", product_day="2026-09-08", out_dir=config.DERIVED)
+        assert [r["day"] for r in out["failed"]] == ["2026-09-06"]
+        assert "2026-09-07" in out["records_written"], "the readable hole must still heal"
+        assert _day_file("2026-09-07").exists() and _board("2026-09-07").exists()
+
+
 def test_the_day_record_key_set_comes_from_its_owner():
     """docs/37 rule 1: the sweep's notion of a complete record is the writer's, not a copy of it."""
     assert build.day_record_keys() == frozenset(build.day_record({}, {}, "2026-09-08"))

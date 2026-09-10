@@ -68,6 +68,13 @@ def _sweep_unwritten_days(statements, ledger, discipline, *, focus_day: str, pro
     Deterministic: a function of (statements, ledger, discipline, window, disk). The second pass of
     `rebuild.py` finds the first pass's writes already present and correct, so the derived tree hash
     is unchanged (docs/37 rule 5).
+
+    COST, because the ledger is not small (316,492 entries on 2026-09-09) and `build.day_record`
+    walks all of it once. The decision to walk is made from a file existence check and a lane-1
+    count, never from the ledger, so a day needing nothing costs nothing. In steady state that is
+    zero or one extra walk per run against the three `build_derived` already performs; the ceiling
+    is `LOOKBACK_DAYS` walks on the one run that clears a full backlog, and it is a ceiling rather
+    than a trend because the window does not grow with the corpus.
     """
     lane1 = config.LANE_BY_SOURCE["press_release"]
     window = [d for d in readiness.sweep_window(focus_day) if d != focus_day and d <= product_day]
@@ -84,37 +91,48 @@ def _sweep_unwritten_days(statements, ledger, discipline, *, focus_day: str, pro
     records_written: list[str] = []
     boards_written: list[str] = []
     held: list[dict] = []
+    failed: list[dict] = []
     for day in window:                                   # oldest -> newest, like every other walk
         day_stmts = by_day.get(day, [])
         if len(day_stmts) < readiness.MIN_PUBLISHABLE:
             continue                                     # guard 3: a gap is not a day
-        is_final = util.day_is_final(day, out_dir)
-        existing = util.read_json(days_dir / f"{day}.json", None)
-        premature_empty = bool(existing) and existing.get("daily_lines") is None \
-            and not existing.get("top_synchronized")
-        needs_record = (not is_final) and (existing is None or premature_empty)
-        needs_board = not (board_dir / f"{day}.json").exists()
-        if is_final and not build.day_record_keys() <= set(existing or {}):
-            # Published, yet its record never got the deterministic half. This is the third thing the
-            # old cursor cost: a day it skipped was never written by RUN A, so assemble's
-            # read-modify-write started from a bare {"day": day} and published a record with no
-            # `legacy_unvalidated_metrics` at all. Eight published days carry that shape. Guard 2
-            # forbids repairing them here, so the sweep NAMES them every run instead of passing over
-            # them in silence: the repair is `run_assemble --day`, and nothing else in the pipeline
-            # would ever tell an operator the backlog exists.
-            held.append({"day": day, "reason": "published without its deterministic half"})
-        if not (needs_record or needs_board):
-            continue
-        if needs_record:
-            util.write_json(days_dir / f"{day}.json", build.day_record(ledger, discipline, day))
-            records_written.append(day)
-        if needs_board:
-            from . import silence
-            silence.build_day_board(day, day_stmts)
-            boards_written.append(day)
+        # Per day, not per sweep. A truncated day file makes `read_json` raise, and one unreadable
+        # day must not cost the repair of the other four: the point of the sweep is that holes heal,
+        # and a sweep that aborts on the first bad file is a sweep that stops healing the moment it
+        # is needed most.
+        try:
+            is_final = util.day_is_final(day, out_dir)
+            existing = util.read_json(days_dir / f"{day}.json", None)
+            premature_empty = bool(existing) and existing.get("daily_lines") is None \
+                and not existing.get("top_synchronized")
+            needs_record = (not is_final) and (existing is None or premature_empty)
+            needs_board = not (board_dir / f"{day}.json").exists()
+            if is_final and not build.day_record_keys() <= set(existing or {}):
+                # Published, yet its record never got the deterministic half. This is the third thing
+                # the old cursor cost: a day it skipped was never written by RUN A, so assemble's
+                # read-modify-write started from a bare day stub and published a record carrying no
+                # `legacy_unvalidated_metrics` at all. Eight published days have that shape. Guard 2
+                # forbids repairing them here, so the sweep NAMES them every run rather than passing
+                # over them in silence. There is no one-command repair: `run_assemble --day` restores
+                # composites but never writes this key, and `scripts/regen_derived.py --force` writes
+                # the key but blanks composites, so completing one of these days is a decision about
+                # a published record and not a routine operator action (S73, open).
+                held.append({"day": day, "reason": "published without its deterministic half"})
+            if not (needs_record or needs_board):
+                continue
+            if needs_record:
+                util.write_json(days_dir / f"{day}.json", build.day_record(ledger, discipline, day))
+                records_written.append(day)
+            if needs_board:
+                from . import silence
+                silence.build_day_board(day, day_stmts)
+                boards_written.append(day)
+        except Exception as e:  # pragma: no cover - exercised only by an unreadable artifact
+            failed.append({"day": day, "error": str(e)})
+            print(f"[sweep] {day} skipped (skip-and-log): {e}")
     return {"window": [window[0], window[-1]] if window else None,
             "records_written": records_written, "boards_written": boards_written,
-            "held": held}
+            "held": held, "failed": failed}
 
 
 def run(records, *, run_id: str, focus_day: str | None = None,
@@ -205,8 +223,8 @@ def run(records, *, run_id: str, focus_day: str | None = None,
             print(f"[sweep] backfilled records={sweep['records_written']} "
                   f"boards={sweep['boards_written']}")
         for row in sweep["held"]:
-            print(f"[sweep] {row['day']}: {row['reason']} (repair: "
-                  f"python -m pipeline.run_assemble --day {row['day']})")
+            print(f"[sweep] {row['day']}: {row['reason']} (not repairable from here; see docs/26 "
+                  f"S73, the repair is a decision about a published record)")
     except Exception as e:  # pragma: no cover - streak safety belt, exercised only on a real defect
         sweep = {"error": str(e)}
         print(f"[sweep] skipped (skip-and-log): {e}")
