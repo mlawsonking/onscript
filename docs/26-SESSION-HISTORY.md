@@ -3994,6 +3994,21 @@ Pushed before the evening collect, the sweep writes 09-08's record and board at 
 publishes a complete day twenty minutes later, while the same run refreshes 09-09 and keys
 `top.json` to 09-09 with real rows instead of 09-10 with none.
 
+THAT COMMIT ALSO BROKE THE SUITE, and the break was worth keeping rather than working around.
+Rebasing onto it turned `test_s70_recess_baseline.py::test_no_regime_normal_day_in_the_committed_series_pages`
+red: the census reads the LIVE day records, counts only PUBLISHED days, and asserted that not one
+of them pages the volume alert. 2026-09-07 published at 15:25Z holding 20 statements against a 131
+same-weekday baseline, so it pages, and it should: it was force-finalized because upstream never
+filled it, which is the dead-man doing its job rather than the alert fatigue S70 set out to kill.
+The assertion was right about alert fatigue and wrong about its population, which is docs/37 rule 3
+in its mirror form: a property asserted over mutable live files must be one production cannot
+legitimately violate. It now reads as containment, that a day may page ONLY if the record says the
+gate force-finalized it, with the population taken from the assemble manifests. Verified
+load-bearing rather than vacuous: six force-finalized days in the record, exactly one paging day,
+and it is one of the six. Nothing in this session's change touches that path, and the proof is in
+the diff, where the only line removed from `ops.py` and `readiness.py` together is the `if` that
+became an `elif` inside `collection_maturity`, a function the failing census never calls.
+
 THE SELF-HEAL HAS A DEADLINE, which is the one thing about this delivery that is time-sensitive.
 The sweep reaches `LOOKBACK_DAYS` back from the focus day, so it can only repair 2026-09-08 while
 that day is inside the window: a run whose focus day is 09-09 through 09-13 reaches it, and from
@@ -4031,5 +4046,5 @@ alternative, letting RUN A add the one missing key additively to a final day, is
 but crosses the docs/23 section 7.5 R-C immutability line, and that line is not an implementation
 detail to move.
 
-Delivered on `opus/s73-focus-cursor`, six commits, nothing pushed, no workflow dispatched, no flag
+Delivered on `opus/s73-focus-cursor`, seven commits, nothing pushed, no workflow dispatched, no flag
 or threshold touched. Task #299 covers the review and push.
