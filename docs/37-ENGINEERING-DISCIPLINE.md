@@ -9,6 +9,9 @@ Amended: Fable, Session 61, 2026-07-29 (rule 4 import-time form; rule 14 worker
 isolation, probe independence, and the governance guard).
 Amended: Session 62, 2026-07-30, drafted by Opus under the Fable maintainer's
 authority (rule 16, public-tree exclusions).
+Amended: Session 73, 2026-09-10, drafted by Opus under rule 15, which requires a new
+incident class to earn its rule in the delivery that fixes it (rule 17, skipping cursors
+and impossible quantities).
 
 ## 1. Registries are tested against their owners
 
@@ -214,3 +217,26 @@ allowlist for the pinned-history lines that record provenance rather than illust
 Incident: the Session 62 survey found operator home paths in two committed manifests, four
 generators, two runbook command blocks, and a spec's file list. The manifests mattered most,
 because a generator restamps its identifier on every run.
+
+## 17. A cursor that can skip is a cursor that will
+
+Any stage that picks ONE item out of an advancing series and writes only that item must either
+prove it cannot skip or stop picking and sweep the window instead. A maximum over what is present
+is not a cursor, it is a follower: it moves to whatever arrived most recently and never returns for
+what arrived out of order. The stage that WRITES a unit and the stage that PUBLISHES it reach the
+same distance back, so the writer cannot hand the publisher a unit nobody built. Both report what
+they touched and what they declined to touch, because a skip that nothing records is
+indistinguishable from a day that never existed, and a repair that nothing records is the same
+failure pointed the other way.
+Incident: RUN A focused the newest day in the corpus, so one statement dated the run's own day
+pulled the cursor past yesterday. Across 58 runs it took 27 same-day focuses and skipped 13 days;
+nine silence boards were lost, eight published day records went out without their deterministic
+half, and 2026-09-08 was orphaned outright while every workflow run stayed green (S73).
+
+The companion rule is about impossible quantities. A value whose sign or range is meaningless is
+checked where it is COMPUTED, not narrated where it is displayed. An age, a count, a share or a
+duration that cannot be negative is either made unreachable at its source or floored and flagged as
+its own field, so an operator alert never has to be read as a bug report.
+Incident: the same cursor produced a collection-maturity line reading "upstream is still landing
+the focus day, -1 days old". That clause was the only visible trace of a day being skipped, it was
+buried inside a withheld volume comparison, and it printed twice before anyone read it (S73).

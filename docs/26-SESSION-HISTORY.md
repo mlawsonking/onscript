@@ -3856,3 +3856,180 @@ race). The essay's figure src, alt, and caption were updated to match; the jpg l
 tree. Task #285 remains open if Michael prefers a literal Flourish capture, which swaps
 the file with no code change. Suite re-verified independently by the orchestrating
 session after the swap.
+
+## 2026-09-10: Session 73 (Opus). The cursor followed the newest statement and left holes behind it
+
+The site stopped advancing on 2026-09-08. Publication lag reached 2, the last posted day was
+2026-09-06, post manifests ended at `post-2026-09-06.json`, and every workflow run was GREEN
+throughout. That is the whole difficulty: this failed by design, through skip-and-log, and its only
+visible trace was one clause inside a withheld volume comparison.
+
+Two things were happening at once and only one was a defect. The honest half: assemble's readiness
+gate held 2026-09-07, a Labor Day Monday, on 20 statements against a recent three-week same-weekday
+median of 130 (15 percent, under the 40 percent bar). That is the gate doing its job, and
+`MAX_WAIT_DAYS` was always going to drain it.
+
+The defect was two lines in `pipeline/deterministic.py`:
+
+    days_present = sorted({s["published_at"] for s in statements})
+    focus_day = focus_day or (days_present[-1] if days_present else util.product_day())
+
+The focus day was the newest day present in the corpus. The congress-press mirror pushes every
+morning around 09:30Z (`source_freshness.pushed_at` records it), so by either of the day's two
+collect runs a handful of statements dated the RUN's own day had usually landed, and the cursor
+followed them. It was a maximum with no memory of what it had already written, so the day in
+between was vaulted over permanently: `build.build_derived` writes exactly one day record, for the
+focus day, and no later run would ever come back for the one it missed.
+
+The manifests are an unbroken record of it. Replaying `focus_day` across all 58 committed collect
+manifests from 2026-07-12 to 2026-09-09 gives 27 same-day focuses and 13 skipped days. Of the nine
+skips falling after the silence board was wired on 2026-07-29, ALL NINE are missing their board:
+2026-08-03, 08-05, 08-13, 08-16, 08-21, 08-26, 08-31, 09-06 and 09-08. Nine skips, nine holes, no
+exceptions. `collect-2026-09-09.json` carries the tell in words: focus_day 2026-09-09, alert
+"upstream is still landing the focus day, -1 days old (only 1 vs recent 3-week same-weekday median
+122 (1% < 40%))". A negative age is not a fact about upstream. It was the cursor announcing that it
+had run past the calendar, and nothing was listening.
+
+2026-09-08 is what makes this an incident rather than a cleanup. It is Congress's first day back
+from recess, `data/derived/days/2026-09-08.json` has never existed in any commit, and its
+statements are in the ledger: `normalize.in` moved 83,390 to 83,512 between the 09-08 and 09-09
+runs. Also live and public: `phrases/top.json` was keyed to 2026-09-09 with zero rows, because the
+run measured a day holding one statement. The site's fallback to the most recent rendered day kept
+the hub from going blank, which is why nobody saw it.
+
+A THIRD damage surface turned up in testing and was not in the work order. A day the cursor skipped
+was never written by RUN A at all, so when assemble later published it, its read-modify-write
+started from a bare `{"day": day}` and the record went out with no `legacy_unvalidated_metrics`. In
+the era where that field exists, from 2026-07-29, the day records missing it are EXACTLY the days
+the cursor skipped: eight for eight, 2026-08-03 through 2026-09-06. Eight published days carry an
+incomplete public record.
+
+THE FIX has two halves, because the mechanism and the class are different problems. `readiness` now
+owns both decisions. `resolve_focus_day` clamps the focus day to the product day, which is by
+definition the last New York day that is over, so a statement dated today cannot pull the cursor
+forward; a corpus ending BEFORE the product day still governs, so a backfill or a stalled mirror is
+untouched. That removes the mechanism but not the class: any run that does not happen, or any day
+delivered late, still leaves a day unwritten, and a single-focus writer cannot notice. So the
+writer stops being a cursor. `deterministic._sweep_unwritten_days` walks `readiness.sweep_window`,
+the same five-day width and oldest-first direction as `select_target_day`'s publication walk, and
+writes every judgeable day missing its record or its board.
+
+The sweep is also the transition path this change owes its own damage, and it needs no operator
+step. The raw mirror is immutable and holds the statements, so the first run after deploy finds
+2026-09-08 unwritten, sees that it holds data, and writes it; 2026-09-06's board returns in the
+same pass, both being inside the window.
+
+Four guards, each of them a way the repair could destroy instead of fix. The focus day is not
+swept, because `build_derived` owns it. A published day is never rewritten, through the same
+`util.day_is_final` authority RUN A's own write guard consults, so the sweep cannot become a second
+route to the defect that nulled 2026-07-12 and 2026-07-18. A day below `MIN_PUBLISHABLE` is never
+written, because a gap is not a day and writing it would manufacture the empty page
+`select_target_day` refuses to publish. A silence board is only ever CREATED, never replaced, so
+filling a hole cannot edit a published day. A published day missing its deterministic half is
+REPORTED in the manifest rather than repaired, since guard 2 forbids the repair and nothing else in
+the pipeline would tell an operator the backlog exists.
+
+Negative ages are now unreachable twice over. `ops.collection_maturity` floors the age at zero and
+carries `future_focus_day` as its own field, so no alert can print "-1 days old" again, and
+`run_collect` pages on the condition instead of burying it inside a withheld comparison. Flooring
+cannot move a verdict: `waited_out` compares against a positive `MAX_WAIT_DAYS`, so a negative age
+and a zero age fail it identically. `focus_cursor` and `day_sweep` now ride the collect manifest,
+because a silent repair is the same failure as a silent skip.
+
+NOTHING THRESHOLD-SHAPED MOVED. `READY_RATIO`, `MAX_WAIT_DAYS`, `MIN_PUBLISHABLE`,
+`MIN_JUDGEABLE_BASELINE` and `LOOKBACK_DAYS` are untouched and no flag was added. The age-floor
+question the work order raised turned out not to be an arithmetic error: `select_target_day`
+measures age in PRODUCT days, and the product day is already yesterday, so a day is "0 days old" on
+the first run after it ends and `MAX_WAIT_DAYS` of 2 finalizes it on the third calendar day.
+2026-09-07 was held at age 0 on the 09-08 runs and age 1 on the 09-09 runs (the "only 1d old" in
+the 23:28Z log) and force-finalizes at age 2 on 09-10. The unit is consistent everywhere, so the
+lag is what `MAX_WAIT_DAYS` means rather than a slip. Documented in place; changing it is a
+threshold decision and was left alone.
+
+One clock per run, while the file was open. The cursor, the sweep window and the maturity age are
+three readings of the same question and were sampled separately; `run_collect` now samples once and
+passes it down, and `rebuild.py` freezes it across both determinism passes so the section 1.4.8
+drill cannot fail over a midnight tick (docs/37 rule 5).
+
+Suite **1242 passed, 0 failed** (1221 before), twenty-one new tests in
+`tests/test_s73_focus_cursor.py`. The replay section runs on the real committed collect manifests
+rather than fixtures: all 58 runs resolved again through the fixed resolver, none landing past its
+product day, the run that orphaned 2026-09-08 resolving to it, and all 13 skipped days either
+focused or inside a later run's sweep window. They assert the healed invariant against the live
+tree rather than that a live artifact stays defective, so they keep passing as new days land and as
+the backlog is repaired. The incident itself is reconstructed end to end: two consecutive runs with
+day N's data landing between them, N written with real content despite never being a focus day. The
+fixture is 240 documents deliberately, because the phrase engine's boilerplate cut is a
+document-frequency share within (congress, party) and four carriers in a six-document corpus are 67
+percent of that party: a smaller fixture builds an EMPTY ledger, and every "the day was written
+empty" assertion would have passed for the wrong reason. `tests/test_w5_adversarial.py` gains
+`sweep_published_day_rewrite`, because the sweep is a second route to a destructive class that had
+only its first route covered.
+
+PRODUCTION, OBSERVED RATHER THAN PREDICTED (Article XVI: read the record, not the run status). The
+morning block landed at 15:23Z to 15:26Z while this session was open, and it did three things.
+Michael's machine had intermittent DNS failure to github.com throughout, so every fetch was retried.
+
+Collect focused **2026-09-10**, the run's OWN day, on ONE statement, and wrote it: a day record with
+zero phrases, a silence board for a day that is not over, and `phrases/top.json` repointed to 09-10
+with zero rows. The maturity line reads "-1 days old" again. The defect fired in front of the
+session fixing it, which is the cleanest confirmation of the mechanism available. The same run
+declined to refresh 2026-09-09, whose record was written on 09-09 from one statement while its real
+statements have since landed (`normalize.in` 83,512 to 83,633), and left 2026-09-08 untouched for
+the third consecutive day.
+
+Assemble force-finalized **2026-09-07** at 15:24Z, exactly on the arithmetic above: age 2, forced,
+degraded, 20 statements against a 131 baseline (share 0.153), `event: schedule`,
+`unattended: true`, alerts "degraded" and "forced-finalize: upstream never filled". All three
+assemble-observable null-service conditions came back true, so post wrote a null-service manifest
+for the day and published no party thread. The hold, the force-finalize and the refusal to post a
+hollow day are the ladder behaving exactly as designed; none of that was the defect.
+
+So the publication lag is draining on its own and needs nothing from this branch. What tonight's
+block does, however, depends on whether the branch is pushed first. The evening order is collect at
+about 23:06Z then assemble at about 23:28Z. Unpushed, assemble reaches 2026-09-08, finds no day
+record, creates one from a bare stub and publishes it: that record ships without
+`legacy_unvalidated_metrics` and becomes the NINTH in the backlog, and its board stays missing.
+Pushed before the evening collect, the sweep writes 09-08's record and board at 23:06Z and assemble
+publishes a complete day twenty minutes later, while the same run refreshes 09-09 and keys
+`top.json` to 09-09 with real rows instead of 09-10 with none.
+
+THE SELF-HEAL HAS A DEADLINE, which is the one thing about this delivery that is time-sensitive.
+The sweep reaches `LOOKBACK_DAYS` back from the focus day, so it can only repair 2026-09-08 while
+that day is inside the window: a run whose focus day is 09-09 through 09-13 reaches it, and from
+2026-09-15 it does not. Two separate clocks matter. The board comes back on any run inside that
+window, whether or not the day has been published, because a missing board is only ever created.
+The RECORD comes back only if 09-08 is still unpublished when the fix runs, since guard 2 refuses a
+published day: once assemble publishes 09-08 from a bare stub, its record joins the eight that are
+missing `legacy_unvalidated_metrics` and the backlog becomes nine. 09-07 was force-finalized on the
+15:24Z run as recorded above, so assemble reaches 09-08 on the 23:28Z run tonight and the record is
+saved by a push before tonight and the board by a push this week. Neither is an emergency; the
+difference is one withdrawn-metrics block on one public day.
+
+THREE ITEMS FOR A RULING, none self-authorized.
+
+First, and larger than the incident that found it: every silence board ever written is UNSCORED.
+All 34 carry `scored: false` and the note "no news baseline for this day", and
+`data/derived/news_baseline/` does not exist in the tree at all. The GDELT pull that
+`silence.build_day_board` reads has never produced a committed artifact, so the series is 34 empty
+shells with nine holes in it. The missing boards are the smaller half of that problem. The docs/27
+Monday flip for `FEATURES["silence_board"]` should not happen until the baseline job exists and
+boards accumulate scored.
+
+Second, seven board holes sit outside any bounded window: 2026-08-03, 08-05, 08-13, 08-16, 08-21,
+08-26 and 08-31. The sweep reaches five days back by design, and widening it for a one-time repair
+would turn a historical cost into a permanent daily one. Backfilling them is a script run against
+production state, not a pipeline change.
+
+Third, the eight published days with no deterministic half cannot be repaired by either existing
+path alone. `run_assemble --day` restores composites but never writes `legacy_unvalidated_metrics`;
+`scripts/regen_derived.py --force` writes the full deterministic record but blanks composites,
+which is the clobber defect in manual form. The working sequence is regen with `--force` then
+`run_assemble --day`, which momentarily leaves a published day composite-less and strands it there
+if the second step fails. Eight published days is too many to run that on without a decision. The
+alternative, letting RUN A add the one missing key additively to a final day, is safe in mechanism
+but crosses the docs/23 section 7.5 R-C immutability line, and that line is not an implementation
+detail to move.
+
+Delivered on `opus/s73-focus-cursor`, six commits, nothing pushed, no workflow dispatched, no flag
+or threshold touched. Task #299 covers the review and push.
