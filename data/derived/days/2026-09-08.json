@@ -1,0 +1,1994 @@
+{
+  "day": "2026-09-08",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-08",
+      "party": "D",
+      "composite": "Today 61 of us released statements. 3 of us carried \"control over mail-in ballots ahead\". Our most synchronized phrase, used by 6 of us: an amicus brief.",
+      "measurement_lead": "Measurement: 61 publications were observed for the Democratic party on 2026-09-08.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-08",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "6472c28f8600ebc9ad442285d3e160182879718618a211f4221abfd9a8e02525",
+        "claim_ids": [
+          "2026-09-08-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 61 of us released statements. 3 of us carried \"control over mail-in ballots ahead\". Our most synchronized phrase, used by 6 of us: an amicus brief.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-08-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "98a91ee5ea866266627e80e2b0a1ebcf98573d9b60951eb79a2aa629159313d1",
+        "response_sha256": "e4eae8f545c0dae20f94800c1300101f2453dc68f7cf17cacaf36cbaf4d80d04",
+        "model_response_sha256": "a348692374957ada2f247a9ebfe7c456520fe4f329ef13c42d65aada3a1b90ab"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-08-D-00"
+          ],
+          "claim_ids": [
+            "2026-09-08-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-08-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-08",
+        "statements": 61,
+        "talking_points": [
+          {
+            "label": "control over mail-in ballots ahead",
+            "members": 3,
+            "quote": "control over mail-in ballots ahead",
+            "topics": [
+              "tech_ai",
+              "elections_democracy",
+              "other"
+            ],
+            "claim_id": "2026-09-08-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "an amicus brief",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Ted Cruz",
+          "first_sayer_party": "R",
+          "first_sayer_state": "TX"
+        },
+        "selected_claims": [
+          {
+            "label": "control over mail-in ballots ahead",
+            "members": 3,
+            "quote": "control over mail-in ballots ahead",
+            "topics": [
+              "tech_ai",
+              "elections_democracy",
+              "other"
+            ],
+            "claim_id": "2026-09-08-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-08-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2583,
+        "tokens_out": 94,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-08",
+      "party": "R",
+      "composite": "Today 20 of us released statements. No phrase was shared by 3 or more of us today.",
+      "measurement_lead": "Measurement: 20 publications were observed for the Republican party on 2026-09-08.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-08",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "0c21651b47a0521fec155e6e8493e76efac34572c62d0c839741bcfea66bb58c",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Today 20 of us released statements. No phrase was shared by 3 or more of us today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "ffc5abe0d2c7053ae2ae5597384abe9c0a6279c23e3023d94ec0e202039e8656",
+        "response_sha256": "8976cef3441b37c33cb9ffc2e60a155dfe7f34cea468f71537bcbd7ecfa6a3a7",
+        "model_response_sha256": null
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-08",
+        "statements": 20,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-08-D-00",
+        "party": "D",
+        "day": "2026-09-08",
+        "label": "control over mail-in ballots ahead",
+        "member_count": 3,
+        "statements": [
+          "sha256:55b05265d9c0253912de9f6366e85ab2501ffceb21e59daae93b261d2f2231ab",
+          "sha256:9ae278d94ed3647dabe5e03af5c69579bb758967ce321b29b7b0f756eeab045c",
+          "sha256:d9f25e2c9f5c0550707a105c07006b4779d021702e9e152ca0fabb8c7fc2dcdc"
+        ],
+        "fragments": [
+          {
+            "text": "seeking to exert control over mail-in ballots ahead",
+            "statement": "sha256:d9f25e2c9f5c0550707a105c07006b4779d021702e9e152ca0fabb8c7fc2dcdc"
+          },
+          {
+            "text": "seeking to exert control over mail-in ballots ahead",
+            "statement": "sha256:9ae278d94ed3647dabe5e03af5c69579bb758967ce321b29b7b0f756eeab045c"
+          },
+          {
+            "text": "exert federal control over mail-in ballots ahead of",
+            "statement": "sha256:55b05265d9c0253912de9f6366e85ab2501ffceb21e59daae93b261d2f2231ab"
+          }
+        ],
+        "topics": [
+          "tech_ai",
+          "elections_democracy",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-08-D-00",
+        "support_phrase": {
+          "normalized": "control over mail-in ballots ahead",
+          "text": "control over mail-in ballots ahead",
+          "occurrence_id": "occ:b4d4720b6c12df1329d84328"
+        },
+        "display_quote": "control over mail-in ballots ahead",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b4d4720b6c12df1329d84328",
+            "claim_id": "2026-09-08-D-00",
+            "statement_id": "sha256:55b05265d9c0253912de9f6366e85ab2501ffceb21e59daae93b261d2f2231ab",
+            "publication_id": "sha256:55b05265d9c0253912de9f6366e85ab2501ffceb21e59daae93b261d2f2231ab",
+            "office_id": "T000482",
+            "family_id": "dfam:edeb2c91600c17b9a754415e",
+            "family_revision": "dfrev:6c4d5e784f12b66b36725dc5",
+            "support_unit_id": "T000482",
+            "party": "D",
+            "start_char": 238,
+            "end_char": 272,
+            "surface_text": "control over mail-in ballots ahead",
+            "normalized_phrase": "control over mail-in ballots ahead",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 138,
+            "sentence_end_char": 302,
+            "sentence_offset_start": 100,
+            "sentence_offset_end": 134,
+            "clause_start_char": 6,
+            "clause_end_char": 339,
+            "clause_offset_start": 232,
+            "clause_offset_end": 266,
+            "adjacent_tokens_before": [
+              "order",
+              "seeking",
+              "to",
+              "exert",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "2026",
+              "midterm",
+              "elections"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:96b809e8070b342ec10a8a84",
+            "claim_id": "2026-09-08-D-00",
+            "statement_id": "sha256:9ae278d94ed3647dabe5e03af5c69579bb758967ce321b29b7b0f756eeab045c",
+            "publication_id": "sha256:9ae278d94ed3647dabe5e03af5c69579bb758967ce321b29b7b0f756eeab045c",
+            "office_id": "P000145",
+            "family_id": "dfam:185b7c159a0146e3f839b231",
+            "family_revision": "dfrev:a1bd5e985e5285ed872ec153",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 966,
+            "end_char": 1000,
+            "surface_text": "control over mail-in ballots ahead",
+            "normalized_phrase": "control over mail-in ballots ahead",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 928,
+            "sentence_end_char": 1030,
+            "sentence_offset_start": 38,
+            "sentence_offset_end": 72,
+            "clause_start_char": 828,
+            "clause_end_char": 1042,
+            "clause_offset_start": 138,
+            "clause_offset_end": 172,
+            "adjacent_tokens_before": [
+              "service",
+              "rule",
+              "seeking",
+              "to",
+              "exert"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "2026",
+              "midterm",
+              "elections"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7efd7e02994340cb36f9326d",
+            "claim_id": "2026-09-08-D-00",
+            "statement_id": "sha256:d9f25e2c9f5c0550707a105c07006b4779d021702e9e152ca0fabb8c7fc2dcdc",
+            "publication_id": "sha256:d9f25e2c9f5c0550707a105c07006b4779d021702e9e152ca0fabb8c7fc2dcdc",
+            "office_id": "M000133",
+            "family_id": "dfam:bdca19ab046cebb26ef2ebd9",
+            "family_revision": "dfrev:4406ed3107e6dacdf86c2a74",
+            "support_unit_id": "M000133",
+            "party": "D",
+            "start_char": 1005,
+            "end_char": 1039,
+            "surface_text": "control over mail-in ballots ahead",
+            "normalized_phrase": "control over mail-in ballots ahead",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 967,
+            "sentence_end_char": 1069,
+            "sentence_offset_start": 38,
+            "sentence_offset_end": 72,
+            "clause_start_char": 860,
+            "clause_end_char": 1154,
+            "clause_offset_start": 145,
+            "clause_offset_end": 179,
+            "adjacent_tokens_before": [
+              "service",
+              "rule",
+              "seeking",
+              "to",
+              "exert"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "2026",
+              "midterm",
+              "elections"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "publication_ids": [
+          "sha256:55b05265d9c0253912de9f6366e85ab2501ffceb21e59daae93b261d2f2231ab",
+          "sha256:9ae278d94ed3647dabe5e03af5c69579bb758967ce321b29b7b0f756eeab045c",
+          "sha256:d9f25e2c9f5c0550707a105c07006b4779d021702e9e152ca0fabb8c7fc2dcdc"
+        ],
+        "family_ids": [
+          "dfam:185b7c159a0146e3f839b231",
+          "dfam:bdca19ab046cebb26ef2ebd9",
+          "dfam:edeb2c91600c17b9a754415e"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:185b7c159a0146e3f839b231",
+            "family_revision": "dfrev:a1bd5e985e5285ed872ec153"
+          },
+          {
+            "family_id": "dfam:bdca19ab046cebb26ef2ebd9",
+            "family_revision": "dfrev:4406ed3107e6dacdf86c2a74"
+          },
+          {
+            "family_id": "dfam:edeb2c91600c17b9a754415e",
+            "family_revision": "dfrev:6c4d5e784f12b66b36725dc5"
+          }
+        ],
+        "support_unit_ids": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "citation_occurrence_ids": [
+          "occ:b4d4720b6c12df1329d84328",
+          "occ:96b809e8070b342ec10a8a84",
+          "occ:7efd7e02994340cb36f9326d"
+        ],
+        "citations": [
+          {
+            "member": "Lori Trahan",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-09-08",
+            "url": "https://trahan.house.gov/news/documentsingle.aspx?DocumentID=3843",
+            "quote": "exert federal control over mail-in ballots ahead of",
+            "occurrence_id": "occ:b4d4720b6c12df1329d84328",
+            "office_id": "T000482",
+            "publication_id": "sha256:55b05265d9c0253912de9f6366e85ab2501ffceb21e59daae93b261d2f2231ab",
+            "family_id": "dfam:edeb2c91600c17b9a754415e",
+            "family_revision": "dfrev:6c4d5e784f12b66b36725dc5"
+          },
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-08",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padilla-schumer-lead-all-senate-democrats-to-urge-supreme-court-to-block-postal-service-rule-limiting-mail-in-voting/",
+            "quote": "seeking to exert control over mail-in ballots ahead",
+            "occurrence_id": "occ:96b809e8070b342ec10a8a84",
+            "office_id": "P000145",
+            "publication_id": "sha256:9ae278d94ed3647dabe5e03af5c69579bb758967ce321b29b7b0f756eeab045c",
+            "family_id": "dfam:185b7c159a0146e3f839b231",
+            "family_revision": "dfrev:a1bd5e985e5285ed872ec153"
+          },
+          {
+            "member": "Edward J. Markey",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-09-08",
+            "url": "https://www.markey.senate.gov/news/press-releases/markey-joins-padilla-schumer-all-senate-democrats-to-urge-supreme-court-to-block-postal-service-rule-limiting-mail-in-voting",
+            "quote": "seeking to exert control over mail-in ballots ahead",
+            "occurrence_id": "occ:7efd7e02994340cb36f9326d",
+            "office_id": "M000133",
+            "publication_id": "sha256:d9f25e2c9f5c0550707a105c07006b4779d021702e9e152ca0fabb8c7fc2dcdc",
+            "family_id": "dfam:bdca19ab046cebb26ef2ebd9",
+            "family_revision": "dfrev:4406ed3107e6dacdf86c2a74"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "tech_ai",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "elections_democracy",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-08",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 46,
+          "denominator_unit": "offices",
+          "share": 0.065217,
+          "window": "party-day 2026-09-08",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 61,
+          "denominator_unit": "publications",
+          "share": 0.04918,
+          "window": "party-day 2026-09-08",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 58,
+          "denominator_unit": "document families",
+          "share": 0.051724,
+          "window": "party-day 2026-09-08",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-08",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 19,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-09-08",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 20,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-09-08",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 20,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-09-08",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "an amicus brief",
+      "slug": "a9579ba9d057557c",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        3,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "upcoming midterm elections",
+      "slug": "840096fc1913eab1",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.67,
+      "first_seen": {
+        "date": "2025-12-17",
+        "bioguide": "O000172",
+        "statement": "sha256:a7fad3b6b0357ca9ce9c636b326c4fd1ad5cf3f298fdd8c6d3a479870a477a2b",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "the upcoming midterm",
+      "slug": "dace5217c17a20df",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.67,
+      "first_seen": {
+        "date": "2025-07-17",
+        "bioguide": "D000618",
+        "statement": "sha256:c6fc1c028041c6e7aee905bf1741aafa30cb2eae6b85bfbcebe689e27330144d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "trade war with",
+      "slug": "c61b1b3b84d2d2d7",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-02-02",
+        "bioguide": "D000216",
+        "statement": "sha256:89e9f770275c8fda1306d31b1fe47e2d8da8f4b7fea5f94f6ccd17ecb368061e",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "vote by mail",
+      "slug": "4b29e20d7023d1c9",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.18,
+      "first_seen": {
+        "date": "2025-01-24",
+        "bioguide": "S001226",
+        "statement": "sha256:2ce5fa938c254cc78d88a1745983e49570ab3bbf0899ee44675e0daaea1bd700",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        3,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "generations to come",
+      "slug": "e5b2d728d6e0ccb4",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 1
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": 1
+      },
+      "family_count": 5,
+      "velocity": 2.26,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000375",
+        "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+        "tie": [
+          "B001285",
+          "M000194",
+          "M001204"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.975,
+      "series": [
+        3,
+        1,
+        1,
+        2,
+        4,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        6,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "bipartisan bicameral coalition of 261 lawmakers",
+      "slug": "6f9bd0dd20de0976",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "congress exclusive authority over election administration",
+      "slug": "513fb20be2662f52",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "himself used as recently as august",
+      "slug": "9b25355306209dd9",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "gives the states and congress exclusive",
+      "slug": "275a2d151a073710",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "states and congress exclusive authority",
+      "slug": "e4a871cfa5ca95bc",
+      "n": 5,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "power to administer elections",
+      "slug": "b0069bb8888b8efc",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "elections a voting practice",
+      "slug": "1f774516e9156144",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "filed an amicus brief",
+      "slug": "729b8d4ad6f3eaf1",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "G000386",
+        "statement": "sha256:bf30b76e94c0b907b34bd6b1331e546c3fd4f62539157bf15da5eb72a3d832cc",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "control over who can vote",
+      "slug": "18631778d8df65a2",
+      "n": 5,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-09-08",
+        "bioguide": "L000557",
+        "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+        "tie": [
+          "M000133",
+          "P000145",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "the court filing",
+      "slug": "cd4040184b6d52dc",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-01-20",
+        "bioguide": "G000555",
+        "statement": "sha256:5fd15552cd2385ecc316a05d31f81a9e32375e31b39199ef9bc9c22be206baec",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "court filing the",
+      "slug": "2b2a4fd80993cf55",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-02-02",
+        "bioguide": "G000555",
+        "statement": "sha256:881fe1dc40d1888405b2529ccb7220aabb787a322807d35c704b53583389f50a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "current and former",
+      "slug": "adadbf383d7c5a35",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-05",
+        "bioguide": "K000367",
+        "statement": "sha256:5354b1b79a532131a67340022f750c3e3c8405ef4b2f8f7682b18df9195662eb",
+        "tie": [
+          "R000122"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "state of california",
+      "slug": "e7b78343260276ed",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "R000620",
+        "statement": "sha256:48fdcd61112235f7318080405d28a382af04480abedac3777d1267b2de41a36a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "demanded answers from",
+      "slug": "75d25716169fe8c6",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.67,
+      "first_seen": {
+        "date": "2025-01-17",
+        "bioguide": "T000278",
+        "statement": "sha256:ad0fd2776aaf988915a402ee477cd4a63404beea74ec7253a7fb2c559b579bf0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.994,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        3,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        4
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "an amicus brief",
+        "slug": "a9579ba9d057557c",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "upcoming midterm elections",
+        "slug": "840096fc1913eab1",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-12-17",
+          "bioguide": "O000172",
+          "statement": "sha256:a7fad3b6b0357ca9ce9c636b326c4fd1ad5cf3f298fdd8c6d3a479870a477a2b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "the upcoming midterm",
+        "slug": "dace5217c17a20df",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-07-17",
+          "bioguide": "D000618",
+          "statement": "sha256:c6fc1c028041c6e7aee905bf1741aafa30cb2eae6b85bfbcebe689e27330144d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "trade war with",
+        "slug": "c61b1b3b84d2d2d7",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-02-02",
+          "bioguide": "D000216",
+          "statement": "sha256:89e9f770275c8fda1306d31b1fe47e2d8da8f4b7fea5f94f6ccd17ecb368061e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "vote by mail",
+        "slug": "4b29e20d7023d1c9",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.18,
+        "first_seen": {
+          "date": "2025-01-24",
+          "bioguide": "S001226",
+          "statement": "sha256:2ce5fa938c254cc78d88a1745983e49570ab3bbf0899ee44675e0daaea1bd700",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "generations to come",
+        "slug": "e5b2d728d6e0ccb4",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": 1
+        },
+        "family_count": 5,
+        "velocity": 2.26,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000375",
+          "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+          "tie": [
+            "B001285",
+            "M000194",
+            "M001204"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.975,
+        "series": [
+          3,
+          1,
+          1,
+          2,
+          4,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          6,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "bipartisan bicameral coalition of 261 lawmakers",
+        "slug": "6f9bd0dd20de0976",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-09-08",
+          "bioguide": "L000557",
+          "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+          "tie": [
+            "M000133",
+            "P000145",
+            "T000482"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "congress exclusive authority over election administration",
+        "slug": "513fb20be2662f52",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-09-08",
+          "bioguide": "L000557",
+          "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+          "tie": [
+            "M000133",
+            "P000145",
+            "T000482"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "himself used as recently as august",
+        "slug": "9b25355306209dd9",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-09-08",
+          "bioguide": "L000557",
+          "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+          "tie": [
+            "M000133",
+            "P000145",
+            "T000482"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "gives the states and congress exclusive",
+        "slug": "275a2d151a073710",
+        "n": 6,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-09-08",
+          "bioguide": "L000557",
+          "statement": "sha256:40602d12b2507a8bdcff476074e181bf5e03caa777f24a701985c36418700c12",
+          "tie": [
+            "M000133",
+            "P000145",
+            "T000482"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      }
+    ],
+    "R": []
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
