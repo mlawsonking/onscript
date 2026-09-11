@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-09-11",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-09-10",
+      "note": "no publish for 2026-09-10 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.0822,
+      "projected": 0.2241,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 9,
+      "note": "$0.0822 MTD, $0.22 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-09-09",
+      "scored_age_days": 2,
+      "parties": {
+        "D": {
+          "statements": 79,
+          "median": 59.0,
+          "share": 1.339,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        },
+        "R": {
+          "statements": 31,
+          "median": 39.0,
+          "share": 0.795,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 4.23,
+        "day": "2026-09-11",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-09-09 (2d): D 79/59=134% R 31/39=80% of own same-weekday baseline (green >= 60%); upstream 4.2h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.0,
+      "dropped": 0,
+      "offered": 4,
+      "unmeasured_rows": 0,
+      "status": "green",
+      "note": "0/4 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak"
+  ],
+  "unknowns": [],
+  "degraded_days": [
+    "2026-09-07"
+  ],
+  "top_phrase": {
+    "ngram": "ballots ahead of",
+    "party": "D",
+    "day_peak": 7,
+    "day": "2026-09-09"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak"
+}
