@@ -934,5 +934,3802 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-11",
+      "party": "D",
+      "composite": "Today 69 of us released statements. 13 of us carried \"25th anniversary of the September\". 3 of us carried \"families and loved ones\". Our most synchronized phrase, used by 28 of us: the 25th anniversary.",
+      "measurement_lead": "Measurement: 69 publications were observed for the Democratic party on 2026-09-11.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-11",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "154f3f7e40b8ba967814452f17bf52d0cdced97783787e338d01a5fe0a1cf541",
+        "claim_ids": [
+          "2026-09-11-D-00",
+          "2026-09-11-D-01"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 69 of us released statements. 13 of us carried \"25th anniversary of the September\". 3 of us carried \"families and loved ones\". Our most synchronized phrase, used by 28 of us: the 25th anniversary.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-11-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-09-11-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "71534d911af61d2f469bc692712c4e4b64a45639fb9022d23a7976c3f2f75d07",
+        "response_sha256": "57f79c42cfdfa316c0bef8c4c8f38af8b4a8c44d1c8053cff6b9000e51405417",
+        "model_response_sha256": "3547333ce64e391545ba7c7d02cc33f56cc8ed103eda416342380392e6ab33f4"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-11-D-00"
+          ],
+          "claim_ids": [
+            "2026-09-11-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-09-11-D-01"
+          ],
+          "claim_ids": [
+            "2026-09-11-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-11-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-09-11-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-11",
+        "statements": 69,
+        "talking_points": [
+          {
+            "label": "25th anniversary of the september",
+            "members": 13,
+            "quote": "25th anniversary of the September",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-11-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 13,
+              "publications": 13,
+              "families": 13,
+              "support_units": 13
+            }
+          },
+          {
+            "label": "families and loved ones",
+            "members": 3,
+            "quote": "families and loved ones",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-11-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "the 25th anniversary",
+          "members": 28,
+          "family_count": 29,
+          "first_sayer": "John Boozman",
+          "first_sayer_party": "R",
+          "first_sayer_state": "AR"
+        },
+        "selected_claims": [
+          {
+            "label": "25th anniversary of the september",
+            "members": 13,
+            "quote": "25th anniversary of the September",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-11-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 13,
+              "publications": 13,
+              "families": 13,
+              "support_units": 13
+            }
+          },
+          {
+            "label": "families and loved ones",
+            "members": 3,
+            "quote": "families and loved ones",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-11-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-11-D-00",
+          "2026-09-11-D-01"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 2901,
+        "tokens_out": 121,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-11",
+      "party": "R",
+      "composite": "Today our dominant message marks the \"25th anniversary of the September\" among 9 of us. The most synchronized phrase in our statements today is ran toward danger, appearing 8 times, first recorded in our corpus from Andrew R. Garbarino (R-NY). Across 37 statements, this remembrance stands as the shared thread of the day, with no other message rising to comparable coordination among us.",
+      "measurement_lead": "Measurement: 37 publications were observed for the Republican party on 2026-09-11.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-11",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "b9fd2c16a0975976dbba2c239c581ec00580c7de23493b152984b4f035c5d46a",
+        "claim_ids": [
+          "2026-09-11-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today our dominant message marks the \"25th anniversary of the September\" among 9 of us. The most synchronized phrase in our statements today is ran toward danger, appearing 8 times, first recorded in our corpus from Andrew R. Garbarino (R-NY). Across 37 statements, this remembrance stands as the shared thread of the day, with no other message rising to comparable coordination among us.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": [
+              "2026-09-11-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "8669b76f3b9320d59a7b57d55aeae0c80d7a3065bbac06ab8e92d173ceff08f9",
+        "response_sha256": "d3038673e45e536eddfc6c9953e4f11cb1580fcac78decd46df72436fdc61697",
+        "model_response_sha256": "c2b3cb60f2325408152a75e2b779e8237750e4a7a67170b7bf847b9d2d8f23d2"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-09-11-R-00"
+          ],
+          "claim_ids": [
+            "2026-09-11-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": [
+            "2026-09-11-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-11",
+        "statements": 37,
+        "talking_points": [
+          {
+            "label": "25th anniversary of the september",
+            "members": 9,
+            "quote": "25th anniversary of the September",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-11-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 9,
+              "publications": 9,
+              "families": 9,
+              "support_units": 9
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "ran toward danger",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Andrew R. Garbarino",
+          "first_sayer_party": "R",
+          "first_sayer_state": "NY"
+        },
+        "selected_claims": [
+          {
+            "label": "25th anniversary of the september",
+            "members": 9,
+            "quote": "25th anniversary of the September",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-11-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 9,
+              "publications": 9,
+              "families": 9,
+              "support_units": 9
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-11-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2087,
+        "tokens_out": 128,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-11-D-00",
+        "party": "D",
+        "day": "2026-09-11",
+        "label": "25th anniversary of the september",
+        "member_count": 13,
+        "statements": [
+          "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6",
+          "sha256:1e9bef02d82574fca52e55aff5e4a8c90d90f0c16c63da199582016bcdaa5b8d",
+          "sha256:31fd6c88a5b0827e1c96e400fd6d448bfb8585b489dff698bb460be77a6bafe8",
+          "sha256:3f55bc32a4b6f93ef5ee9476a9f5d569355bda8d6f271b7405303022a9a47b12",
+          "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+          "sha256:53fab1fac9e0e487fd08a44765e882661f676d62902f0558a62c4c6616435f03",
+          "sha256:541f1341e27a62daaacd51e8b6da5403d9fc02dc8ac1853b6d0692dba277e254",
+          "sha256:5b545c2c0b8844ba2e60b3e2e9cb7d2c43ddcd70bc363d3dc206c9b000094fbd",
+          "sha256:5e687fc50b5a40c2a6a0790fa2700936bf209222853ce3e924348fa03dc7e6ca",
+          "sha256:5ecfea7936703bc9b10cd475634143a348a60a5c4d43904c376c9916ff8c4232",
+          "sha256:a61c4420bd790f2e70151b24ab0871459bb68d68302b12852c5037c9bc75edce",
+          "sha256:a8a107c75825a5473cecbca007b7e5956a4dced6e299620c45ff5a5bd5537e4a",
+          "sha256:bf512617ef6812093dc9c60a7e28a48f2076a5b36fcf65f472232d260e5af7d9"
+        ],
+        "fragments": [
+          {
+            "text": "we commemorate the 25th anniversary of the september",
+            "statement": "sha256:a61c4420bd790f2e70151b24ab0871459bb68d68302b12852c5037c9bc75edce"
+          },
+          {
+            "text": "statement marking the 25th anniversary of the september",
+            "statement": "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e"
+          },
+          {
+            "text": "on the 25th anniversary of the terrorist attacks of",
+            "statement": "sha256:31fd6c88a5b0827e1c96e400fd6d448bfb8585b489dff698bb460be77a6bafe8"
+          },
+          {
+            "text": "service commemorating the 25th anniversary of the september",
+            "statement": "sha256:a8a107c75825a5473cecbca007b7e5956a4dced6e299620c45ff5a5bd5537e4a"
+          },
+          {
+            "text": "recognition of the 25th anniversary of the september",
+            "statement": "sha256:541f1341e27a62daaacd51e8b6da5403d9fc02dc8ac1853b6d0692dba277e254"
+          },
+          {
+            "text": "on the 25th anniversary of the september 11th",
+            "statement": "sha256:53fab1fac9e0e487fd08a44765e882661f676d62902f0558a62c4c6616435f03"
+          },
+          {
+            "text": "statement on the 25th anniversary of the september",
+            "statement": "sha256:5e687fc50b5a40c2a6a0790fa2700936bf209222853ce3e924348fa03dc7e6ca"
+          },
+          {
+            "text": "on the 25th anniversary of the september 11th attacks on",
+            "statement": "sha256:bf512617ef6812093dc9c60a7e28a48f2076a5b36fcf65f472232d260e5af7d9"
+          },
+          {
+            "text": "25th anniversary of the september 11th terrorist attacks",
+            "statement": "sha256:5b545c2c0b8844ba2e60b3e2e9cb7d2c43ddcd70bc363d3dc206c9b000094fbd"
+          },
+          {
+            "text": "statement regarding the 25th anniversary of the september",
+            "statement": "sha256:1e9bef02d82574fca52e55aff5e4a8c90d90f0c16c63da199582016bcdaa5b8d"
+          },
+          {
+            "text": "on the 25th anniversary of the september 11th",
+            "statement": "sha256:5ecfea7936703bc9b10cd475634143a348a60a5c4d43904c376c9916ff8c4232"
+          },
+          {
+            "text": "on the 25th anniversary of the september 11th",
+            "statement": "sha256:3f55bc32a4b6f93ef5ee9476a9f5d569355bda8d6f271b7405303022a9a47b12"
+          },
+          {
+            "text": "1511 commemorating the 25th anniversary of the september 11th terrorist",
+            "statement": "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-11-D-00",
+        "support_phrase": {
+          "normalized": "25th anniversary of the september",
+          "text": "25th anniversary of the September",
+          "occurrence_id": "occ:45b45db9786a760127a0ae1a"
+        },
+        "display_quote": "25th anniversary of the September",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:45b45db9786a760127a0ae1a",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6",
+            "publication_id": "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6",
+            "office_id": "T000491",
+            "family_id": "dfam:e0423e1e48d9a873c3a78cc8",
+            "family_revision": "dfrev:76a204cc742521dfd15aa1d6",
+            "support_unit_id": "T000491",
+            "party": "D",
+            "start_char": 111,
+            "end_char": 144,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 313,
+            "sentence_offset_start": 88,
+            "sentence_offset_end": 121,
+            "clause_start_char": 19,
+            "clause_end_char": 167,
+            "clause_offset_start": 92,
+            "clause_offset_end": 125,
+            "adjacent_tokens_before": [
+              "house",
+              "resolution",
+              "1511",
+              "commemorating",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "terrorist",
+              "attacks",
+              "honoring",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3fbe5a821295329b9c49a49e",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6",
+            "publication_id": "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6",
+            "office_id": "T000491",
+            "family_id": "dfam:e0423e1e48d9a873c3a78cc8",
+            "family_revision": "dfrev:76a204cc742521dfd15aa1d6",
+            "support_unit_id": "T000491",
+            "party": "D",
+            "start_char": 1082,
+            "end_char": 1115,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1058,
+            "sentence_end_char": 1249,
+            "sentence_offset_start": 24,
+            "sentence_offset_end": 57,
+            "clause_start_char": 1018,
+            "clause_end_char": 1218,
+            "clause_offset_start": 64,
+            "clause_offset_end": 97,
+            "adjacent_tokens_before": [
+              "ny-17",
+              "in",
+              "recognition",
+              "of",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "terrorist",
+              "attacks",
+              "and",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a9fbcc8d0fb83b7ca02bd937",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:1e9bef02d82574fca52e55aff5e4a8c90d90f0c16c63da199582016bcdaa5b8d",
+            "publication_id": "sha256:1e9bef02d82574fca52e55aff5e4a8c90d90f0c16c63da199582016bcdaa5b8d",
+            "office_id": "R000608",
+            "family_id": "dfam:14c5c356d2a66d5128e9fd95",
+            "family_revision": "dfrev:d225c6a0982bb972bd86d325",
+            "support_unit_id": "R000608",
+            "party": "D",
+            "start_char": 103,
+            "end_char": 136,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 28,
+            "sentence_end_char": 163,
+            "sentence_offset_start": 75,
+            "sentence_offset_end": 108,
+            "clause_start_char": 23,
+            "clause_end_char": 139,
+            "clause_offset_start": 80,
+            "clause_offset_end": 113,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "regarding",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "it’s"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6c7e308e6922a30f703248f6",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:31fd6c88a5b0827e1c96e400fd6d448bfb8585b489dff698bb460be77a6bafe8",
+            "publication_id": "sha256:31fd6c88a5b0827e1c96e400fd6d448bfb8585b489dff698bb460be77a6bafe8",
+            "office_id": "D000563",
+            "family_id": "dfam:d6c40b273c1250190a9e8f77",
+            "family_revision": "dfrev:5c732809c331292cd520e9f6",
+            "support_unit_id": "D000563",
+            "party": "D",
+            "start_char": 1197,
+            "end_char": 1230,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1108,
+            "sentence_end_char": 1258,
+            "sentence_offset_start": 89,
+            "sentence_offset_end": 122,
+            "clause_start_char": 1184,
+            "clause_end_char": 1233,
+            "clause_offset_start": 13,
+            "clause_offset_end": 46,
+            "adjacent_tokens_before": [
+              "9",
+              "11",
+              "tribute",
+              "marking",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7724a1243c065df6857b1960",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:3f55bc32a4b6f93ef5ee9476a9f5d569355bda8d6f271b7405303022a9a47b12",
+            "publication_id": "sha256:3f55bc32a4b6f93ef5ee9476a9f5d569355bda8d6f271b7405303022a9a47b12",
+            "office_id": "T000193",
+            "family_id": "dfam:58a40f4880d0312da3e6e0e8",
+            "family_revision": "dfrev:b7b003f21c53cc44ee4b4d46",
+            "support_unit_id": "T000193",
+            "party": "D",
+            "start_char": 148,
+            "end_char": 181,
+            "surface_text": "25th Anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 36,
+            "sentence_end_char": 200,
+            "sentence_offset_start": 112,
+            "sentence_offset_end": 145,
+            "clause_start_char": 107,
+            "clause_end_char": 186,
+            "clause_offset_start": 41,
+            "clause_offset_end": 74,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "2001",
+              "attacks",
+              "twenty-five",
+              "years"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7d4b31eed6ba93ad0e2c8851",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+            "publication_id": "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+            "office_id": "B001287",
+            "family_id": "dfam:64f6bb3d58a4e30052aa6322",
+            "family_revision": "dfrev:e4f9bb68459e56b1b8e93769",
+            "support_unit_id": "B001287",
+            "party": "D",
+            "start_char": 105,
+            "end_char": 138,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 53,
+            "sentence_end_char": 269,
+            "sentence_offset_start": 52,
+            "sentence_offset_end": 85,
+            "clause_start_char": 48,
+            "clause_end_char": 141,
+            "clause_offset_start": 57,
+            "clause_offset_end": 90,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "marking",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "twenty-five"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6669f60db98ef667724445a9",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:53fab1fac9e0e487fd08a44765e882661f676d62902f0558a62c4c6616435f03",
+            "publication_id": "sha256:53fab1fac9e0e487fd08a44765e882661f676d62902f0558a62c4c6616435f03",
+            "office_id": "H001076",
+            "family_id": "dfam:c4a49b59224eaaf4d180a701",
+            "family_revision": "dfrev:fd0ee04d0e3bb76525fea6c6",
+            "support_unit_id": "H001076",
+            "party": "D",
+            "start_char": 80,
+            "end_char": 113,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 17,
+            "sentence_end_char": 303,
+            "sentence_offset_start": 63,
+            "sentence_offset_end": 96,
+            "clause_start_char": 0,
+            "clause_end_char": 118,
+            "clause_offset_start": 80,
+            "clause_offset_end": 113,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "2001",
+              "terrorist",
+              "attacks",
+              "september"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4e6bbef7bcf6422e49a8b6cf",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:541f1341e27a62daaacd51e8b6da5403d9fc02dc8ac1853b6d0692dba277e254",
+            "publication_id": "sha256:541f1341e27a62daaacd51e8b6da5403d9fc02dc8ac1853b6d0692dba277e254",
+            "office_id": "H001046",
+            "family_id": "dfam:d1f9797e973c68b888ba9cdf",
+            "family_revision": "dfrev:80829bad3675bdd32d4b7140",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 104,
+            "end_char": 137,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 50,
+            "sentence_end_char": 164,
+            "sentence_offset_start": 54,
+            "sentence_offset_end": 87,
+            "clause_start_char": 13,
+            "clause_end_char": 140,
+            "clause_offset_start": 91,
+            "clause_offset_end": 124,
+            "adjacent_tokens_before": [
+              "statement",
+              "in",
+              "recognition",
+              "of",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "today"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:498861e3d60ced95a8597081",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:5b545c2c0b8844ba2e60b3e2e9cb7d2c43ddcd70bc363d3dc206c9b000094fbd",
+            "publication_id": "sha256:5b545c2c0b8844ba2e60b3e2e9cb7d2c43ddcd70bc363d3dc206c9b000094fbd",
+            "office_id": "O000174",
+            "family_id": "dfam:dc07e85206628a89b64cf433",
+            "family_revision": "dfrev:6b34e441b976f146b8386fb6",
+            "support_unit_id": "O000174",
+            "party": "D",
+            "start_char": 60,
+            "end_char": 93,
+            "surface_text": "25th Anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 19,
+            "sentence_end_char": 116,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 74,
+            "clause_start_char": 8,
+            "clause_end_char": 125,
+            "clause_offset_start": 52,
+            "clause_offset_end": 85,
+            "adjacent_tokens_before": [
+              "jon",
+              "ossoff",
+              "is",
+              "commemorating",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "terrorist",
+              "attacks",
+              "today",
+              "i"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:698bae3b0db99803c836c97a",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:5e687fc50b5a40c2a6a0790fa2700936bf209222853ce3e924348fa03dc7e6ca",
+            "publication_id": "sha256:5e687fc50b5a40c2a6a0790fa2700936bf209222853ce3e924348fa03dc7e6ca",
+            "office_id": "K000367",
+            "family_id": "dfam:bf87f98992ea3999eec6e83a",
+            "family_revision": "dfrev:69011bf868d4cd6626ad6d3b",
+            "support_unit_id": "K000367",
+            "party": "D",
+            "start_char": 84,
+            "end_char": 117,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 267,
+            "sentence_offset_start": 68,
+            "sentence_offset_end": 101,
+            "clause_start_char": 12,
+            "clause_end_char": 120,
+            "clause_offset_start": 72,
+            "clause_offset_end": 105,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "attacks",
+              "this",
+              "year"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:54ce3a9d5ceed4501890e5fc",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:5ecfea7936703bc9b10cd475634143a348a60a5c4d43904c376c9916ff8c4232",
+            "publication_id": "sha256:5ecfea7936703bc9b10cd475634143a348a60a5c4d43904c376c9916ff8c4232",
+            "office_id": "S001145",
+            "family_id": "dfam:9b32720e05bda1be5c8bacaa",
+            "family_revision": "dfrev:3a481f74fc966a4c131c4846",
+            "support_unit_id": "S001145",
+            "party": "D",
+            "start_char": 99,
+            "end_char": 132,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 22,
+            "sentence_end_char": 298,
+            "sentence_offset_start": 77,
+            "sentence_offset_end": 110,
+            "clause_start_char": 17,
+            "clause_end_char": 145,
+            "clause_offset_start": 82,
+            "clause_offset_end": 115,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "attacks",
+              "twenty-five",
+              "years",
+              "ago"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c26a1ada538b97229613d5ec",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:a61c4420bd790f2e70151b24ab0871459bb68d68302b12852c5037c9bc75edce",
+            "publication_id": "sha256:a61c4420bd790f2e70151b24ab0871459bb68d68302b12852c5037c9bc75edce",
+            "office_id": "B000490",
+            "family_id": "dfam:ef3cd86a66047cb3c93da3e0",
+            "family_revision": "dfrev:0e7b63cab477d765e3839e02",
+            "support_unit_id": "B000490",
+            "party": "D",
+            "start_char": 205,
+            "end_char": 238,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 50,
+            "sentence_end_char": 353,
+            "sentence_offset_start": 155,
+            "sentence_offset_end": 188,
+            "clause_start_char": 185,
+            "clause_end_char": 241,
+            "clause_offset_start": 20,
+            "clause_offset_end": 53,
+            "adjacent_tokens_before": [
+              "states",
+              "today",
+              "we",
+              "commemorate",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "on"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e7e664f7c95f271d4e308bbd",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:a8a107c75825a5473cecbca007b7e5956a4dced6e299620c45ff5a5bd5537e4a",
+            "publication_id": "sha256:a8a107c75825a5473cecbca007b7e5956a4dced6e299620c45ff5a5bd5537e4a",
+            "office_id": "D000622",
+            "family_id": "dfam:78764cb8c0410648af23181c",
+            "family_revision": "dfrev:640ffa7f503583f8f57b5dcb",
+            "support_unit_id": "D000622",
+            "party": "D",
+            "start_char": 354,
+            "end_char": 387,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 85,
+            "sentence_end_char": 415,
+            "sentence_offset_start": 269,
+            "sentence_offset_end": 302,
+            "clause_start_char": 238,
+            "clause_end_char": 390,
+            "clause_offset_start": 116,
+            "clause_offset_end": 149,
+            "adjacent_tokens_before": [
+              "day",
+              "of",
+              "service",
+              "commemorating",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "photos"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:beaba3573bd16356e3bebe01",
+            "claim_id": "2026-09-11-D-00",
+            "statement_id": "sha256:bf512617ef6812093dc9c60a7e28a48f2076a5b36fcf65f472232d260e5af7d9",
+            "publication_id": "sha256:bf512617ef6812093dc9c60a7e28a48f2076a5b36fcf65f472232d260e5af7d9",
+            "office_id": "K000377",
+            "family_id": "dfam:1e0198e1aa159d56527c4df2",
+            "family_revision": "dfrev:32c7bc54944293306741e08d",
+            "support_unit_id": "K000377",
+            "party": "D",
+            "start_char": 71,
+            "end_char": 104,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 4,
+            "sentence_end_char": 219,
+            "sentence_offset_start": 67,
+            "sentence_offset_end": 100,
+            "clause_start_char": 0,
+            "clause_end_char": 143,
+            "clause_offset_start": 71,
+            "clause_offset_end": 104,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "attacks",
+              "on",
+              "the",
+              "world"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 13,
+          "publications": 13,
+          "families": 13,
+          "support_units": 13
+        },
+        "office_ids": [
+          "B000490",
+          "B001287",
+          "D000563",
+          "D000622",
+          "H001046",
+          "H001076",
+          "K000367",
+          "K000377",
+          "O000174",
+          "R000608",
+          "S001145",
+          "T000193",
+          "T000491"
+        ],
+        "publication_ids": [
+          "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6",
+          "sha256:1e9bef02d82574fca52e55aff5e4a8c90d90f0c16c63da199582016bcdaa5b8d",
+          "sha256:31fd6c88a5b0827e1c96e400fd6d448bfb8585b489dff698bb460be77a6bafe8",
+          "sha256:3f55bc32a4b6f93ef5ee9476a9f5d569355bda8d6f271b7405303022a9a47b12",
+          "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+          "sha256:53fab1fac9e0e487fd08a44765e882661f676d62902f0558a62c4c6616435f03",
+          "sha256:541f1341e27a62daaacd51e8b6da5403d9fc02dc8ac1853b6d0692dba277e254",
+          "sha256:5b545c2c0b8844ba2e60b3e2e9cb7d2c43ddcd70bc363d3dc206c9b000094fbd",
+          "sha256:5e687fc50b5a40c2a6a0790fa2700936bf209222853ce3e924348fa03dc7e6ca",
+          "sha256:5ecfea7936703bc9b10cd475634143a348a60a5c4d43904c376c9916ff8c4232",
+          "sha256:a61c4420bd790f2e70151b24ab0871459bb68d68302b12852c5037c9bc75edce",
+          "sha256:a8a107c75825a5473cecbca007b7e5956a4dced6e299620c45ff5a5bd5537e4a",
+          "sha256:bf512617ef6812093dc9c60a7e28a48f2076a5b36fcf65f472232d260e5af7d9"
+        ],
+        "family_ids": [
+          "dfam:14c5c356d2a66d5128e9fd95",
+          "dfam:1e0198e1aa159d56527c4df2",
+          "dfam:58a40f4880d0312da3e6e0e8",
+          "dfam:64f6bb3d58a4e30052aa6322",
+          "dfam:78764cb8c0410648af23181c",
+          "dfam:9b32720e05bda1be5c8bacaa",
+          "dfam:bf87f98992ea3999eec6e83a",
+          "dfam:c4a49b59224eaaf4d180a701",
+          "dfam:d1f9797e973c68b888ba9cdf",
+          "dfam:d6c40b273c1250190a9e8f77",
+          "dfam:dc07e85206628a89b64cf433",
+          "dfam:e0423e1e48d9a873c3a78cc8",
+          "dfam:ef3cd86a66047cb3c93da3e0"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:14c5c356d2a66d5128e9fd95",
+            "family_revision": "dfrev:d225c6a0982bb972bd86d325"
+          },
+          {
+            "family_id": "dfam:1e0198e1aa159d56527c4df2",
+            "family_revision": "dfrev:32c7bc54944293306741e08d"
+          },
+          {
+            "family_id": "dfam:58a40f4880d0312da3e6e0e8",
+            "family_revision": "dfrev:b7b003f21c53cc44ee4b4d46"
+          },
+          {
+            "family_id": "dfam:64f6bb3d58a4e30052aa6322",
+            "family_revision": "dfrev:e4f9bb68459e56b1b8e93769"
+          },
+          {
+            "family_id": "dfam:78764cb8c0410648af23181c",
+            "family_revision": "dfrev:640ffa7f503583f8f57b5dcb"
+          },
+          {
+            "family_id": "dfam:9b32720e05bda1be5c8bacaa",
+            "family_revision": "dfrev:3a481f74fc966a4c131c4846"
+          },
+          {
+            "family_id": "dfam:bf87f98992ea3999eec6e83a",
+            "family_revision": "dfrev:69011bf868d4cd6626ad6d3b"
+          },
+          {
+            "family_id": "dfam:c4a49b59224eaaf4d180a701",
+            "family_revision": "dfrev:fd0ee04d0e3bb76525fea6c6"
+          },
+          {
+            "family_id": "dfam:d1f9797e973c68b888ba9cdf",
+            "family_revision": "dfrev:80829bad3675bdd32d4b7140"
+          },
+          {
+            "family_id": "dfam:d6c40b273c1250190a9e8f77",
+            "family_revision": "dfrev:5c732809c331292cd520e9f6"
+          },
+          {
+            "family_id": "dfam:dc07e85206628a89b64cf433",
+            "family_revision": "dfrev:6b34e441b976f146b8386fb6"
+          },
+          {
+            "family_id": "dfam:e0423e1e48d9a873c3a78cc8",
+            "family_revision": "dfrev:76a204cc742521dfd15aa1d6"
+          },
+          {
+            "family_id": "dfam:ef3cd86a66047cb3c93da3e0",
+            "family_revision": "dfrev:0e7b63cab477d765e3839e02"
+          }
+        ],
+        "support_unit_ids": [
+          "B000490",
+          "B001287",
+          "D000563",
+          "D000622",
+          "H001046",
+          "H001076",
+          "K000367",
+          "K000377",
+          "O000174",
+          "R000608",
+          "S001145",
+          "T000193",
+          "T000491"
+        ],
+        "citation_occurrence_ids": [
+          "occ:45b45db9786a760127a0ae1a",
+          "occ:a9fbcc8d0fb83b7ca02bd937",
+          "occ:7724a1243c065df6857b1960"
+        ],
+        "citations": [
+          {
+            "member": "Derek Tran",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-11",
+            "url": "https://tran.house.gov/media/press-releases/representative-derek-tran-co-sponsors-resolution-commemorating-25th",
+            "quote": "1511 commemorating the 25th anniversary of the september 11th terrorist",
+            "occurrence_id": "occ:45b45db9786a760127a0ae1a",
+            "office_id": "T000491",
+            "publication_id": "sha256:1bbef9db8b22dee8e65abe399f113f40b8f66b6e46237b785a7f37df8e2f8af6",
+            "family_id": "dfam:e0423e1e48d9a873c3a78cc8",
+            "family_revision": "dfrev:76a204cc742521dfd15aa1d6"
+          },
+          {
+            "member": "Jacky Rosen",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-09-11",
+            "url": "https://www.rosen.senate.gov/2026/09/11/rosen-commemorates-25th-anniversary-of-september-11-terrorist-attacks/",
+            "quote": "statement regarding the 25th anniversary of the september",
+            "occurrence_id": "occ:a9fbcc8d0fb83b7ca02bd937",
+            "office_id": "R000608",
+            "publication_id": "sha256:1e9bef02d82574fca52e55aff5e4a8c90d90f0c16c63da199582016bcdaa5b8d",
+            "family_id": "dfam:14c5c356d2a66d5128e9fd95",
+            "family_revision": "dfrev:d225c6a0982bb972bd86d325"
+          },
+          {
+            "member": "Bennie G. Thompson",
+            "party": "D",
+            "state": "MS",
+            "date": "2026-09-11",
+            "url": "https://benniethompson.house.gov/media/press-releases/thompson-marks-25th-anniversary-september-11-attacks",
+            "quote": "on the 25th anniversary of the september 11th",
+            "occurrence_id": "occ:7724a1243c065df6857b1960",
+            "office_id": "T000193",
+            "publication_id": "sha256:3f55bc32a4b6f93ef5ee9476a9f5d569355bda8d6f271b7405303022a9a47b12",
+            "family_id": "dfam:58a40f4880d0312da3e6e0e8",
+            "family_revision": "dfrev:b7b003f21c53cc44ee4b4d46"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-11-D-01",
+        "party": "D",
+        "day": "2026-09-11",
+        "label": "families and loved ones",
+        "member_count": 3,
+        "statements": [
+          "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+          "sha256:56b74b905760774f82b7cf035aae62b9b1b8788d1d5a2f47971718dd8f9770cc",
+          "sha256:d1a332b93ade43f0b4d3fe56bfbb7ed84a7c3d3d956e600e7cc3ecbdfb8be505"
+        ],
+        "fragments": [
+          {
+            "text": "hold their families and loved ones in our hearts",
+            "statement": "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e"
+          },
+          {
+            "text": "stand with the families and loved ones who continue",
+            "statement": "sha256:d1a332b93ade43f0b4d3fe56bfbb7ed84a7c3d3d956e600e7cc3ecbdfb8be505"
+          },
+          {
+            "text": "their families and loved ones",
+            "statement": "sha256:56b74b905760774f82b7cf035aae62b9b1b8788d1d5a2f47971718dd8f9770cc"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-11-D-01",
+        "support_phrase": {
+          "normalized": "families and loved ones",
+          "text": "families and loved ones",
+          "occurrence_id": "occ:72506834ee75c6d6211b49ef"
+        },
+        "display_quote": "families and loved ones",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:72506834ee75c6d6211b49ef",
+            "claim_id": "2026-09-11-D-01",
+            "statement_id": "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+            "publication_id": "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+            "office_id": "B001287",
+            "family_id": "dfam:64f6bb3d58a4e30052aa6322",
+            "family_revision": "dfrev:e4f9bb68459e56b1b8e93769",
+            "support_unit_id": "B001287",
+            "party": "D",
+            "start_char": 381,
+            "end_char": 404,
+            "surface_text": "families and loved ones",
+            "normalized_phrase": "families and loved ones",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 270,
+            "sentence_end_char": 418,
+            "sentence_offset_start": 111,
+            "sentence_offset_end": 134,
+            "clause_start_char": 362,
+            "clause_end_char": 605,
+            "clause_offset_start": 19,
+            "clause_offset_end": 42,
+            "adjacent_tokens_before": [
+              "day",
+              "and",
+              "we",
+              "hold",
+              "their"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "our",
+              "hearts",
+              "we",
+              "also"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b28e9b40f2ef0684a1e0660e",
+            "claim_id": "2026-09-11-D-01",
+            "statement_id": "sha256:56b74b905760774f82b7cf035aae62b9b1b8788d1d5a2f47971718dd8f9770cc",
+            "publication_id": "sha256:56b74b905760774f82b7cf035aae62b9b1b8788d1d5a2f47971718dd8f9770cc",
+            "office_id": "G000592",
+            "family_id": "dfam:1e48d999ae3c3c3a113ef00e",
+            "family_revision": "dfrev:a7a3f72690490d95907d11f5",
+            "support_unit_id": "G000592",
+            "party": "D",
+            "start_char": 321,
+            "end_char": 344,
+            "surface_text": "families and loved ones",
+            "normalized_phrase": "families and loved ones",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 227,
+            "sentence_end_char": 344,
+            "sentence_offset_start": 94,
+            "sentence_offset_end": 117,
+            "clause_start_char": 314,
+            "clause_end_char": 451,
+            "clause_offset_start": 7,
+            "clause_offset_end": 30,
+            "adjacent_tokens_before": [
+              "on",
+              "september",
+              "11",
+              "2001",
+              "their"
+            ],
+            "adjacent_tokens_after": [
+              "their",
+              "memory",
+              "will",
+              "not",
+              "be"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:dfeb56cd21209e6ab843a3e0",
+            "claim_id": "2026-09-11-D-01",
+            "statement_id": "sha256:d1a332b93ade43f0b4d3fe56bfbb7ed84a7c3d3d956e600e7cc3ecbdfb8be505",
+            "publication_id": "sha256:d1a332b93ade43f0b4d3fe56bfbb7ed84a7c3d3d956e600e7cc3ecbdfb8be505",
+            "office_id": "D000216",
+            "family_id": "dfam:9c432484a75b658d5692da65",
+            "family_revision": "dfrev:f5db83955a93448e966d4075",
+            "support_unit_id": "D000216",
+            "party": "D",
+            "start_char": 616,
+            "end_char": 639,
+            "surface_text": "families and loved ones",
+            "normalized_phrase": "families and loved ones",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 520,
+            "sentence_end_char": 677,
+            "sentence_offset_start": 96,
+            "sentence_offset_end": 119,
+            "clause_start_char": 596,
+            "clause_end_char": 774,
+            "clause_offset_start": 20,
+            "clause_offset_end": 43,
+            "adjacent_tokens_before": [
+              "responded",
+              "and",
+              "stand",
+              "with",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "who",
+              "continue",
+              "to",
+              "preserve",
+              "their"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "B001287",
+          "D000216",
+          "G000592"
+        ],
+        "publication_ids": [
+          "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+          "sha256:56b74b905760774f82b7cf035aae62b9b1b8788d1d5a2f47971718dd8f9770cc",
+          "sha256:d1a332b93ade43f0b4d3fe56bfbb7ed84a7c3d3d956e600e7cc3ecbdfb8be505"
+        ],
+        "family_ids": [
+          "dfam:1e48d999ae3c3c3a113ef00e",
+          "dfam:64f6bb3d58a4e30052aa6322",
+          "dfam:9c432484a75b658d5692da65"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:1e48d999ae3c3c3a113ef00e",
+            "family_revision": "dfrev:a7a3f72690490d95907d11f5"
+          },
+          {
+            "family_id": "dfam:64f6bb3d58a4e30052aa6322",
+            "family_revision": "dfrev:e4f9bb68459e56b1b8e93769"
+          },
+          {
+            "family_id": "dfam:9c432484a75b658d5692da65",
+            "family_revision": "dfrev:f5db83955a93448e966d4075"
+          }
+        ],
+        "support_unit_ids": [
+          "B001287",
+          "D000216",
+          "G000592"
+        ],
+        "citation_occurrence_ids": [
+          "occ:72506834ee75c6d6211b49ef",
+          "occ:b28e9b40f2ef0684a1e0660e",
+          "occ:dfeb56cd21209e6ab843a3e0"
+        ],
+        "citations": [
+          {
+            "member": "Ami Bera",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-11",
+            "url": "https://bera.house.gov/news/press-releases/rep-bera-statement-on-25th-anniversary-of-911-terror-attacks",
+            "quote": "hold their families and loved ones in our hearts",
+            "occurrence_id": "occ:72506834ee75c6d6211b49ef",
+            "office_id": "B001287",
+            "publication_id": "sha256:40d96fa46e3d69058d9b32932e022e7c1e45ee8961297568ec16ba70c1ff757e",
+            "family_id": "dfam:64f6bb3d58a4e30052aa6322",
+            "family_revision": "dfrev:e4f9bb68459e56b1b8e93769"
+          },
+          {
+            "member": "Jared F. Golden",
+            "party": "D",
+            "state": "ME",
+            "date": "2026-09-11",
+            "url": "https://golden.house.gov/media/press-releases/golden-statement-on-the-25th-anniversary-of-911",
+            "quote": "their families and loved ones",
+            "occurrence_id": "occ:b28e9b40f2ef0684a1e0660e",
+            "office_id": "G000592",
+            "publication_id": "sha256:56b74b905760774f82b7cf035aae62b9b1b8788d1d5a2f47971718dd8f9770cc",
+            "family_id": "dfam:1e48d999ae3c3c3a113ef00e",
+            "family_revision": "dfrev:a7a3f72690490d95907d11f5"
+          },
+          {
+            "member": "Rosa L. DeLauro",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-09-11",
+            "url": "https://delauro.house.gov/media-center/press-releases/delauro-statement-marking-25th-anniversary-attacks-september-11-2001",
+            "quote": "stand with the families and loved ones who continue",
+            "occurrence_id": "occ:dfeb56cd21209e6ab843a3e0",
+            "office_id": "D000216",
+            "publication_id": "sha256:d1a332b93ade43f0b4d3fe56bfbb7ed84a7c3d3d956e600e7cc3ecbdfb8be505",
+            "family_id": "dfam:9c432484a75b658d5692da65",
+            "family_revision": "dfrev:f5db83955a93448e966d4075"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-09-11-R-00",
+        "party": "R",
+        "day": "2026-09-11",
+        "label": "25th anniversary of the september",
+        "member_count": 9,
+        "statements": [
+          "sha256:04ae3f0810a49614889beb0175ae227969610bd9402e9390758a1078635723ad",
+          "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3",
+          "sha256:27903b96c3132a705ac5309ea93d3b66634ad7c787a5d15c6dca9d13f265b0bb",
+          "sha256:6a9b30fe12d4b006ba60294d9701a61837382be64937ed9e65332501eedae8ab",
+          "sha256:847d6bf6906b1e735941781e5a65be85aa1e03ea181ba03a56301c41b9c0be41",
+          "sha256:99881a6b72b51a1d4adc9975f0595cb45ecde1c3fd3f8fda5697c9a57d2d4d5a",
+          "sha256:99c45cafb43340058c9d2375a5a3249cea4081b91deb1b3c0268f99b81b57cd9",
+          "sha256:abecfed6539c37cbc6f2dec56aa2cb548d4eb62a9de2677ed6119ec7f71d81ad",
+          "sha256:ed51642b3cc819fd11f12bed9467bd271deb138afe6d62f41a5fe1bd2575b12e"
+        ],
+        "fragments": [
+          {
+            "text": "a video marking the 25th anniversary of the september 11th",
+            "statement": "sha256:6a9b30fe12d4b006ba60294d9701a61837382be64937ed9e65332501eedae8ab"
+          },
+          {
+            "text": "ceremony marking the 25th anniversary of the september",
+            "statement": "sha256:99c45cafb43340058c9d2375a5a3249cea4081b91deb1b3c0268f99b81b57cd9"
+          },
+          {
+            "text": "on the 25th anniversary of the september 11th terrorist",
+            "statement": "sha256:847d6bf6906b1e735941781e5a65be85aa1e03ea181ba03a56301c41b9c0be41"
+          },
+          {
+            "text": "statement commemorating 25 years since the terrorist attacks",
+            "statement": "sha256:04ae3f0810a49614889beb0175ae227969610bd9402e9390758a1078635723ad"
+          },
+          {
+            "text": "statement marking the 25th anniversary of the september",
+            "statement": "sha256:99881a6b72b51a1d4adc9975f0595cb45ecde1c3fd3f8fda5697c9a57d2d4d5a"
+          },
+          {
+            "text": "mark the 25th anniversary of the september 11th",
+            "statement": "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3"
+          },
+          {
+            "text": "statement on the 25th anniversary of the september",
+            "statement": "sha256:abecfed6539c37cbc6f2dec56aa2cb548d4eb62a9de2677ed6119ec7f71d81ad"
+          },
+          {
+            "text": "statement marking the 25th anniversary of the september",
+            "statement": "sha256:27903b96c3132a705ac5309ea93d3b66634ad7c787a5d15c6dca9d13f265b0bb"
+          },
+          {
+            "text": "on the 25th anniversary of the september 11th terrorist",
+            "statement": "sha256:ed51642b3cc819fd11f12bed9467bd271deb138afe6d62f41a5fe1bd2575b12e"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-11-R-00",
+        "support_phrase": {
+          "normalized": "25th anniversary of the september",
+          "text": "25th anniversary of the September",
+          "occurrence_id": "occ:b23e09430c9a843a533d2c8f"
+        },
+        "display_quote": "25th anniversary of the September",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b23e09430c9a843a533d2c8f",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:04ae3f0810a49614889beb0175ae227969610bd9402e9390758a1078635723ad",
+            "publication_id": "sha256:04ae3f0810a49614889beb0175ae227969610bd9402e9390758a1078635723ad",
+            "office_id": "G000597",
+            "family_id": "dfam:7e560ec87e6f1c42c9b197bb",
+            "family_revision": "dfrev:595f6acdf97e6faae9655764",
+            "support_unit_id": "G000597",
+            "party": "R",
+            "start_char": 3492,
+            "end_char": 3525,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 3329,
+            "sentence_end_char": 3553,
+            "sentence_offset_start": 163,
+            "sentence_offset_end": 196,
+            "clause_start_char": 3408,
+            "clause_end_char": 3528,
+            "clause_offset_start": 84,
+            "clause_offset_end": 117,
+            "adjacent_tokens_before": [
+              "bipartisan",
+              "house",
+              "resolution",
+              "commemorating",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "the"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f427aed69cd5b7a5931b9fc9",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:04ae3f0810a49614889beb0175ae227969610bd9402e9390758a1078635723ad",
+            "publication_id": "sha256:04ae3f0810a49614889beb0175ae227969610bd9402e9390758a1078635723ad",
+            "office_id": "G000597",
+            "family_id": "dfam:7e560ec87e6f1c42c9b197bb",
+            "family_revision": "dfrev:595f6acdf97e6faae9655764",
+            "support_unit_id": "G000597",
+            "party": "R",
+            "start_char": 5059,
+            "end_char": 5092,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 5011,
+            "sentence_end_char": 5103,
+            "sentence_offset_start": 48,
+            "sentence_offset_end": 81,
+            "clause_start_char": 4884,
+            "clause_end_char": 5492,
+            "clause_offset_start": 175,
+            "clause_offset_end": 208,
+            "adjacent_tokens_before": [
+              "issue",
+              "commemorative",
+              "coins",
+              "honoring",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "attacks",
+              "surcharges",
+              "from",
+              "coin"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c1aadb7bc709fa3db896f37f",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3",
+            "publication_id": "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3",
+            "office_id": "K000376",
+            "family_id": "dfam:3eb69a0e2c24272dab1ef89a",
+            "family_revision": "dfrev:2a482737fd7cd8b344ad387e",
+            "support_unit_id": "K000376",
+            "party": "R",
+            "start_char": 34,
+            "end_char": 67,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 129,
+            "sentence_offset_start": 18,
+            "sentence_offset_end": 51,
+            "clause_start_char": 26,
+            "clause_end_char": 70,
+            "clause_offset_start": 8,
+            "clause_offset_end": 41,
+            "adjacent_tokens_before": [
+              "d",
+              "c",
+              "today",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "on"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ca6fba41676bcb2f9b2a6023",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3",
+            "publication_id": "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3",
+            "office_id": "K000376",
+            "family_id": "dfam:3eb69a0e2c24272dab1ef89a",
+            "family_revision": "dfrev:2a482737fd7cd8b344ad387e",
+            "support_unit_id": "K000376",
+            "party": "R",
+            "start_char": 214,
+            "end_char": 247,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 137,
+            "sentence_end_char": 377,
+            "sentence_offset_start": 77,
+            "sentence_offset_end": 110,
+            "clause_start_char": 198,
+            "clause_end_char": 260,
+            "clause_offset_start": 16,
+            "clause_offset_end": 49,
+            "adjacent_tokens_before": [
+              "today",
+              "as",
+              "we",
+              "mark",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "attacks",
+              "i",
+              "encourage",
+              "everyone"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:af0507fad467c0fd3026a055",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:27903b96c3132a705ac5309ea93d3b66634ad7c787a5d15c6dca9d13f265b0bb",
+            "publication_id": "sha256:27903b96c3132a705ac5309ea93d3b66634ad7c787a5d15c6dca9d13f265b0bb",
+            "office_id": "L000575",
+            "family_id": "dfam:a86d01f43790c41a790f83e5",
+            "family_revision": "dfrev:127f4f87cc582e6073245bbd",
+            "support_unit_id": "L000575",
+            "party": "R",
+            "start_char": 98,
+            "end_char": 131,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 276,
+            "sentence_offset_start": 98,
+            "sentence_offset_end": 131,
+            "clause_start_char": 14,
+            "clause_end_char": 134,
+            "clause_offset_start": 84,
+            "clause_offset_end": 117,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "marking",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "twenty-five"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:cdc6b505a6a7217291d9b252",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:6a9b30fe12d4b006ba60294d9701a61837382be64937ed9e65332501eedae8ab",
+            "publication_id": "sha256:6a9b30fe12d4b006ba60294d9701a61837382be64937ed9e65332501eedae8ab",
+            "office_id": "B001243",
+            "family_id": "dfam:6f3905b821552643b8789154",
+            "family_revision": "dfrev:da18e9bd82edaa638e2ff18e",
+            "support_unit_id": "B001243",
+            "party": "R",
+            "start_char": 95,
+            "end_char": 128,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 65,
+            "sentence_end_char": 258,
+            "sentence_offset_start": 30,
+            "sentence_offset_end": 63,
+            "clause_start_char": 25,
+            "clause_end_char": 173,
+            "clause_offset_start": 70,
+            "clause_offset_end": 103,
+            "adjacent_tokens_before": [
+              "released",
+              "a",
+              "video",
+              "marking",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "terror",
+              "attacks",
+              "and",
+              "honoring"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a5a626629e500fb8f1cd9c8d",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:847d6bf6906b1e735941781e5a65be85aa1e03ea181ba03a56301c41b9c0be41",
+            "publication_id": "sha256:847d6bf6906b1e735941781e5a65be85aa1e03ea181ba03a56301c41b9c0be41",
+            "office_id": "C001047",
+            "family_id": "dfam:100c047c41345c1809917758",
+            "family_revision": "dfrev:4343ddfb4a2f8e786f30b40c",
+            "support_unit_id": "C001047",
+            "party": "R",
+            "start_char": 110,
+            "end_char": 143,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 63,
+            "sentence_end_char": 238,
+            "sentence_offset_start": 47,
+            "sentence_offset_end": 80,
+            "clause_start_char": 20,
+            "clause_end_char": 166,
+            "clause_offset_start": 90,
+            "clause_offset_end": 123,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "terrorist",
+              "attacks",
+              "on",
+              "september"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:cdc366024bbe34f375373f15",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:99881a6b72b51a1d4adc9975f0595cb45ecde1c3fd3f8fda5697c9a57d2d4d5a",
+            "publication_id": "sha256:99881a6b72b51a1d4adc9975f0595cb45ecde1c3fd3f8fda5697c9a57d2d4d5a",
+            "office_id": "H001061",
+            "family_id": "dfam:776e6a901cff2a88263540fe",
+            "family_revision": "dfrev:2674d6dfc7858e8d1d284808",
+            "support_unit_id": "H001061",
+            "party": "R",
+            "start_char": 146,
+            "end_char": 179,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 14,
+            "sentence_end_char": 207,
+            "sentence_offset_start": 132,
+            "sentence_offset_end": 165,
+            "clause_start_char": 94,
+            "clause_end_char": 182,
+            "clause_offset_start": 52,
+            "clause_offset_end": 85,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "marking",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "twenty-five"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:67b36fa6016163cbcf77e0e5",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:99c45cafb43340058c9d2375a5a3249cea4081b91deb1b3c0268f99b81b57cd9",
+            "publication_id": "sha256:99c45cafb43340058c9d2375a5a3249cea4081b91deb1b3c0268f99b81b57cd9",
+            "office_id": "C001035",
+            "family_id": "dfam:dd9a31ee735f7becad59bd97",
+            "family_revision": "dfrev:6fef306d7da7297ef9f57538",
+            "support_unit_id": "C001035",
+            "party": "R",
+            "start_char": 204,
+            "end_char": 237,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 81,
+            "sentence_end_char": 265,
+            "sentence_offset_start": 123,
+            "sentence_offset_end": 156,
+            "clause_start_char": 77,
+            "clause_end_char": 240,
+            "clause_offset_start": 127,
+            "clause_offset_end": 160,
+            "adjacent_tokens_before": [
+              "during",
+              "a",
+              "ceremony",
+              "marking",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "terrorist",
+              "attacks",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7adc2a5005c158751508cdbe",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:abecfed6539c37cbc6f2dec56aa2cb548d4eb62a9de2677ed6119ec7f71d81ad",
+            "publication_id": "sha256:abecfed6539c37cbc6f2dec56aa2cb548d4eb62a9de2677ed6119ec7f71d81ad",
+            "office_id": "L000566",
+            "family_id": "dfam:3f37de5e02b7ad27eaf7e993",
+            "family_revision": "dfrev:34a362313373096f5616bdb8",
+            "support_unit_id": "L000566",
+            "party": "R",
+            "start_char": 76,
+            "end_char": 109,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 196,
+            "sentence_offset_start": 76,
+            "sentence_offset_end": 109,
+            "clause_start_char": 6,
+            "clause_end_char": 112,
+            "clause_offset_start": 70,
+            "clause_offset_end": 103,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11",
+              "2001",
+              "september",
+              "11",
+              "2001"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1492be8152e7d7c79ef133f1",
+            "claim_id": "2026-09-11-R-00",
+            "statement_id": "sha256:ed51642b3cc819fd11f12bed9467bd271deb138afe6d62f41a5fe1bd2575b12e",
+            "publication_id": "sha256:ed51642b3cc819fd11f12bed9467bd271deb138afe6d62f41a5fe1bd2575b12e",
+            "office_id": "M000194",
+            "family_id": "dfam:3e7376442463080873a3840c",
+            "family_revision": "dfrev:cf40701bd34ca6205b56dd24",
+            "support_unit_id": "M000194",
+            "party": "R",
+            "start_char": 107,
+            "end_char": 140,
+            "surface_text": "25th anniversary of the September",
+            "normalized_phrase": "25th anniversary of the september",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 24,
+            "sentence_end_char": 277,
+            "sentence_offset_start": 83,
+            "sentence_offset_end": 116,
+            "clause_start_char": 43,
+            "clause_end_char": 163,
+            "clause_offset_start": 64,
+            "clause_offset_end": 97,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "11th",
+              "terrorist",
+              "attacks",
+              "twenty-five",
+              "years"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 9,
+          "publications": 9,
+          "families": 9,
+          "support_units": 9
+        },
+        "office_ids": [
+          "B001243",
+          "C001035",
+          "C001047",
+          "G000597",
+          "H001061",
+          "K000376",
+          "L000566",
+          "L000575",
+          "M000194"
+        ],
+        "publication_ids": [
+          "sha256:04ae3f0810a49614889beb0175ae227969610bd9402e9390758a1078635723ad",
+          "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3",
+          "sha256:27903b96c3132a705ac5309ea93d3b66634ad7c787a5d15c6dca9d13f265b0bb",
+          "sha256:6a9b30fe12d4b006ba60294d9701a61837382be64937ed9e65332501eedae8ab",
+          "sha256:847d6bf6906b1e735941781e5a65be85aa1e03ea181ba03a56301c41b9c0be41",
+          "sha256:99881a6b72b51a1d4adc9975f0595cb45ecde1c3fd3f8fda5697c9a57d2d4d5a",
+          "sha256:99c45cafb43340058c9d2375a5a3249cea4081b91deb1b3c0268f99b81b57cd9",
+          "sha256:abecfed6539c37cbc6f2dec56aa2cb548d4eb62a9de2677ed6119ec7f71d81ad",
+          "sha256:ed51642b3cc819fd11f12bed9467bd271deb138afe6d62f41a5fe1bd2575b12e"
+        ],
+        "family_ids": [
+          "dfam:100c047c41345c1809917758",
+          "dfam:3e7376442463080873a3840c",
+          "dfam:3eb69a0e2c24272dab1ef89a",
+          "dfam:3f37de5e02b7ad27eaf7e993",
+          "dfam:6f3905b821552643b8789154",
+          "dfam:776e6a901cff2a88263540fe",
+          "dfam:7e560ec87e6f1c42c9b197bb",
+          "dfam:a86d01f43790c41a790f83e5",
+          "dfam:dd9a31ee735f7becad59bd97"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:100c047c41345c1809917758",
+            "family_revision": "dfrev:4343ddfb4a2f8e786f30b40c"
+          },
+          {
+            "family_id": "dfam:3e7376442463080873a3840c",
+            "family_revision": "dfrev:cf40701bd34ca6205b56dd24"
+          },
+          {
+            "family_id": "dfam:3eb69a0e2c24272dab1ef89a",
+            "family_revision": "dfrev:2a482737fd7cd8b344ad387e"
+          },
+          {
+            "family_id": "dfam:3f37de5e02b7ad27eaf7e993",
+            "family_revision": "dfrev:34a362313373096f5616bdb8"
+          },
+          {
+            "family_id": "dfam:6f3905b821552643b8789154",
+            "family_revision": "dfrev:da18e9bd82edaa638e2ff18e"
+          },
+          {
+            "family_id": "dfam:776e6a901cff2a88263540fe",
+            "family_revision": "dfrev:2674d6dfc7858e8d1d284808"
+          },
+          {
+            "family_id": "dfam:7e560ec87e6f1c42c9b197bb",
+            "family_revision": "dfrev:595f6acdf97e6faae9655764"
+          },
+          {
+            "family_id": "dfam:a86d01f43790c41a790f83e5",
+            "family_revision": "dfrev:127f4f87cc582e6073245bbd"
+          },
+          {
+            "family_id": "dfam:dd9a31ee735f7becad59bd97",
+            "family_revision": "dfrev:6fef306d7da7297ef9f57538"
+          }
+        ],
+        "support_unit_ids": [
+          "B001243",
+          "C001035",
+          "C001047",
+          "G000597",
+          "H001061",
+          "K000376",
+          "L000566",
+          "L000575",
+          "M000194"
+        ],
+        "citation_occurrence_ids": [
+          "occ:c1aadb7bc709fa3db896f37f",
+          "occ:af0507fad467c0fd3026a055",
+          "occ:cdc6b505a6a7217291d9b252"
+        ],
+        "citations": [
+          {
+            "member": "Mike Kelly",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-09-11",
+            "url": "https://kelly.house.gov/media/press-releases/kelly-visits-shanksville-issues-statement-25th-anniversary-september-11",
+            "quote": "mark the 25th anniversary of the september 11th",
+            "occurrence_id": "occ:c1aadb7bc709fa3db896f37f",
+            "office_id": "K000376",
+            "publication_id": "sha256:1d7dbd37dafbc438643a65e823e0c948aac05bc1391874526c166729a99f14e3",
+            "family_id": "dfam:3eb69a0e2c24272dab1ef89a",
+            "family_revision": "dfrev:2a482737fd7cd8b344ad387e"
+          },
+          {
+            "member": "James Lankford",
+            "party": "R",
+            "state": "OK",
+            "date": "2026-09-11",
+            "url": "https://www.lankford.senate.gov/news/press-releases/lankford-marks-25th-anniversary-of-september-11th-attacks/",
+            "quote": "statement marking the 25th anniversary of the september",
+            "occurrence_id": "occ:af0507fad467c0fd3026a055",
+            "office_id": "L000575",
+            "publication_id": "sha256:27903b96c3132a705ac5309ea93d3b66634ad7c787a5d15c6dca9d13f265b0bb",
+            "family_id": "dfam:a86d01f43790c41a790f83e5",
+            "family_revision": "dfrev:127f4f87cc582e6073245bbd"
+          },
+          {
+            "member": "Marsha Blackburn",
+            "party": "R",
+            "state": "TN",
+            "date": "2026-09-11",
+            "url": "https://www.blackburn.senate.gov/2026/9/video-blackburn-honors-victims-of-9-11-on-25th-anniversary",
+            "quote": "a video marking the 25th anniversary of the september 11th",
+            "occurrence_id": "occ:cdc6b505a6a7217291d9b252",
+            "office_id": "B001243",
+            "publication_id": "sha256:6a9b30fe12d4b006ba60294d9701a61837382be64937ed9e65332501eedae8ab",
+            "family_id": "dfam:6f3905b821552643b8789154",
+            "family_revision": "dfrev:da18e9bd82edaa638e2ff18e"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-11",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 15,
+          "numerator_unit": "offices",
+          "denominator": 56,
+          "denominator_unit": "offices",
+          "share": 0.267857,
+          "window": "party-day 2026-09-11",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 15,
+          "numerator_unit": "publications",
+          "denominator": 69,
+          "denominator_unit": "publications",
+          "share": 0.217391,
+          "window": "party-day 2026-09-11",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 15,
+          "numerator_unit": "document families",
+          "denominator": 69,
+          "denominator_unit": "document families",
+          "share": 0.217391,
+          "window": "party-day 2026-09-11",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-11",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 9,
+          "numerator_unit": "offices",
+          "denominator": 35,
+          "denominator_unit": "offices",
+          "share": 0.257143,
+          "window": "party-day 2026-09-11",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 9,
+          "numerator_unit": "publications",
+          "denominator": 37,
+          "denominator_unit": "publications",
+          "share": 0.243243,
+          "window": "party-day 2026-09-11",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 9,
+          "numerator_unit": "document families",
+          "denominator": 37,
+          "denominator_unit": "document families",
+          "share": 0.243243,
+          "window": "party-day 2026-09-11",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "the world trade center",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "of the first responders",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": [
+      {
+        "label": "who ran toward danger",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "the 25th anniversary",
+        "slug": "a4961fa8dcee6345",
+        "n": 3,
+        "day_peak": 28,
+        "party": "D",
+        "counts": {
+          "D": 28,
+          "R": 19,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 29,
+          "R": 19,
+          "I": null
+        },
+        "family_count": 29,
+        "velocity": 19.6,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "B001236",
+          "statement": "sha256:b10248958ee85494a6cb460d3f259027a1cb4cee2dc772cf2beb8afb1fb61bb3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          4,
+          28
+        ]
+      },
+      {
+        "ngram": "25th anniversary of",
+        "slug": "615f5f413812ba5f",
+        "n": 3,
+        "day_peak": 28,
+        "party": "D",
+        "counts": {
+          "D": 28,
+          "R": 19,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 29,
+          "R": 19,
+          "I": null
+        },
+        "family_count": 29,
+        "velocity": 18.67,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "B001236",
+          "statement": "sha256:b10248958ee85494a6cb460d3f259027a1cb4cee2dc772cf2beb8afb1fb61bb3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          4,
+          28
+        ]
+      },
+      {
+        "ngram": "first responders who",
+        "slug": "b46dd4720445c0fc",
+        "n": 3,
+        "day_peak": 19,
+        "party": "D",
+        "counts": {
+          "D": 19,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 19,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 19,
+        "velocity": 16.62,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "R000122",
+          "statement": "sha256:169540f106e1aa92367251e59d4e90833c33b8beebab2f9398868c73350546b7",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          19
+        ]
+      },
+      {
+        "ngram": "25th anniversary of the september",
+        "slug": "f3fab7766647fdc5",
+        "n": 5,
+        "day_peak": 15,
+        "party": "D",
+        "counts": {
+          "D": 15,
+          "R": 10,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 15,
+          "R": 10,
+          "I": null
+        },
+        "family_count": 15,
+        "velocity": 10.83,
+        "first_seen": {
+          "date": "2025-04-04",
+          "bioguide": "C001047",
+          "statement": "sha256:377ac59c79821b1c26fdf0ad33035bd490df7d9077f1e3f20bc0dd91d2c76d02",
+          "tie": [
+            "G000555"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          15
+        ]
+      },
+      {
+        "ngram": "the first responders",
+        "slug": "4144328094c8d091",
+        "n": 3,
+        "day_peak": 14,
+        "party": "D",
+        "counts": {
+          "D": 14,
+          "R": 9,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 14,
+          "R": 9,
+          "I": null
+        },
+        "family_count": 14,
+        "velocity": 11.53,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "W000830",
+          "statement": "sha256:3fca8d058b43fe76a45492eb7eadf67308eaa3141bd182fd638a5792871d006a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          14
+        ]
+      },
+      {
+        "ngram": "nearly 3 000",
+        "slug": "374744f65eaf4780",
+        "n": 3,
+        "day_peak": 13,
+        "party": "D",
+        "counts": {
+          "D": 13,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 13,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 13,
+        "velocity": 12.13,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "S000148",
+          "statement": "sha256:d432835f9002d2b596a6292c673b88df00f792feff43f730bb4f6af5149dac83",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          13
+        ]
+      },
+      {
+        "ngram": "will never forget",
+        "slug": "cc5aaf3178178409",
+        "n": 3,
+        "day_peak": 13,
+        "party": "D",
+        "counts": {
+          "D": 13,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 13,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 13,
+        "velocity": 10.11,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:b9452064f570ea426c3d4f4e3372de98e43ed2eb73801b8db9ec9300bf4342e4",
+          "tie": [
+            "G000587",
+            "J000298",
+            "K000385",
+            "T000474"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          13
+        ]
+      },
+      {
+        "ngram": "lost their lives",
+        "slug": "d67bbe871dd82da6",
+        "n": 3,
+        "day_peak": 12,
+        "party": "D",
+        "counts": {
+          "D": 12,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 12,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 12,
+        "velocity": 8.0,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "H001085",
+          "statement": "sha256:b78c1592b009660d588018f44f471d2caaa4b8fad81aa87a81a9ed82d19888c5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          12
+        ]
+      },
+      {
+        "ngram": "statement on the 25th anniversary",
+        "slug": "47e0c173498ccb7c",
+        "n": 5,
+        "day_peak": 11,
+        "party": "D",
+        "counts": {
+          "D": 11,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 11,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 11,
+        "velocity": 11.0,
+        "first_seen": {
+          "date": "2026-09-11",
+          "bioguide": "A000375",
+          "statement": "sha256:b711a114d24f7fa0cbc37a08e89beaff15bf052cc7144d9863fa55605b6885c9",
+          "tie": [
+            "C001047",
+            "D000563",
+            "G000592",
+            "H001076",
+            "K000367",
+            "K000377",
+            "L000566",
+            "L000570",
+            "M000194",
+            "M001111",
+            "P000145",
+            "P000614",
+            "S001145",
+            "T000193"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          11
+        ]
+      },
+      {
+        "ngram": "twenty-five years ago",
+        "slug": "cfa9506fbb57adcc",
+        "n": 3,
+        "day_peak": 11,
+        "party": "D",
+        "counts": {
+          "D": 11,
+          "R": 9,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 11,
+          "R": 9,
+          "I": null
+        },
+        "family_count": 11,
+        "velocity": 11.0,
+        "first_seen": {
+          "date": "2025-02-25",
+          "bioguide": "G000386",
+          "statement": "sha256:852779cc9298526ccd37e1f3a85a5da1ec1a9c052902001c8b27f39600dab10c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          11
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the 25th anniversary",
+        "slug": "a4961fa8dcee6345",
+        "n": 3,
+        "day_peak": 28,
+        "party": "D",
+        "counts": {
+          "D": 28,
+          "R": 19,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 29,
+          "R": 19,
+          "I": null
+        },
+        "family_count": 29,
+        "velocity": 19.6,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "B001236",
+          "statement": "sha256:b10248958ee85494a6cb460d3f259027a1cb4cee2dc772cf2beb8afb1fb61bb3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          4,
+          28
+        ]
+      },
+      {
+        "ngram": "25th anniversary of",
+        "slug": "615f5f413812ba5f",
+        "n": 3,
+        "day_peak": 28,
+        "party": "D",
+        "counts": {
+          "D": 28,
+          "R": 19,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 29,
+          "R": 19,
+          "I": null
+        },
+        "family_count": 29,
+        "velocity": 18.67,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "B001236",
+          "statement": "sha256:b10248958ee85494a6cb460d3f259027a1cb4cee2dc772cf2beb8afb1fb61bb3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          4,
+          28
+        ]
+      },
+      {
+        "ngram": "25th anniversary of the september",
+        "slug": "f3fab7766647fdc5",
+        "n": 5,
+        "day_peak": 15,
+        "party": "D",
+        "counts": {
+          "D": 15,
+          "R": 10,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 15,
+          "R": 10,
+          "I": null
+        },
+        "family_count": 15,
+        "velocity": 10.83,
+        "first_seen": {
+          "date": "2025-04-04",
+          "bioguide": "C001047",
+          "statement": "sha256:377ac59c79821b1c26fdf0ad33035bd490df7d9077f1e3f20bc0dd91d2c76d02",
+          "tie": [
+            "G000555"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          15
+        ]
+      },
+      {
+        "ngram": "twenty-five years ago",
+        "slug": "cfa9506fbb57adcc",
+        "n": 3,
+        "day_peak": 11,
+        "party": "D",
+        "counts": {
+          "D": 11,
+          "R": 9,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 11,
+          "R": 9,
+          "I": null
+        },
+        "family_count": 11,
+        "velocity": 11.0,
+        "first_seen": {
+          "date": "2025-02-25",
+          "bioguide": "G000386",
+          "statement": "sha256:852779cc9298526ccd37e1f3a85a5da1ec1a9c052902001c8b27f39600dab10c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          11
+        ]
+      },
+      {
+        "ngram": "the first responders",
+        "slug": "4144328094c8d091",
+        "n": 3,
+        "day_peak": 14,
+        "party": "D",
+        "counts": {
+          "D": 14,
+          "R": 9,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 14,
+          "R": 9,
+          "I": null
+        },
+        "family_count": 14,
+        "velocity": 11.53,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "W000830",
+          "statement": "sha256:3fca8d058b43fe76a45492eb7eadf67308eaa3141bd182fd638a5792871d006a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          14
+        ]
+      },
+      {
+        "ngram": "nearly 3 000",
+        "slug": "374744f65eaf4780",
+        "n": 3,
+        "day_peak": 13,
+        "party": "D",
+        "counts": {
+          "D": 13,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 13,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 13,
+        "velocity": 12.13,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "S000148",
+          "statement": "sha256:d432835f9002d2b596a6292c673b88df00f792feff43f730bb4f6af5149dac83",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          13
+        ]
+      },
+      {
+        "ngram": "ran toward danger",
+        "slug": "2e0d1665f473479b",
+        "n": 3,
+        "day_peak": 8,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 7.0,
+        "first_seen": {
+          "date": "2025-02-26",
+          "bioguide": "G000597",
+          "statement": "sha256:066ec65bcc77e2579a07ba9f51002cf9d0886b5a458a419e549bc68ac9ceb9f9",
+          "tie": [
+            "G000555",
+            "S000148"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          8
+        ]
+      },
+      {
+        "ngram": "answered the call",
+        "slug": "81abfc96c6e68f0b",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 5,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 5.76,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "G000581",
+          "statement": "sha256:6c3329b8d9d5e38ddb85d4587236e4d0b55c536dd900644eec374fbdf7b79e2a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          7
+        ]
+      },
+      {
+        "ngram": "the 9 11",
+        "slug": "7590f50255254d51",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001095",
+          "statement": "sha256:c570c3dcefde1f24020a7fa50d277053592334e3f6747d5c34f2f050449ee56b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          7
+        ]
+      },
+      {
+        "ngram": "11 terrorist attacks",
+        "slug": "dfa380707f1bb005",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 6.0,
+        "first_seen": {
+          "date": "2025-02-05",
+          "bioguide": "L000598",
+          "statement": "sha256:159df5dc7f17f305ded0f3ac876cb9abd4777e4c257ebfb86a6d07596baf38ec",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "the 25th anniversary",
+      "slug": "a4961fa8dcee6345",
+      "n": 3,
+      "both": 19,
+      "day_peak": 19,
+      "counts": {
+        "D": 28,
+        "R": 19,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-13",
+        "bioguide": "B001236",
+        "statement": "sha256:b10248958ee85494a6cb460d3f259027a1cb4cee2dc772cf2beb8afb1fb61bb3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "velocity": 19.6,
+      "sides": {
+        "D": [
+          {
+            "member": "Sanford D. Bishop, Jr.",
+            "party": "D",
+            "state": "GA",
+            "date": "2026-09-11",
+            "url": "https://bishop.house.gov/media-center/press-releases/congressman-bishop-remembers-the-september-11-2001-terrorist-attacks-on-the-united-states",
+            "quote": "Today, we commemorate the 25th anniversary of the September 11, 2001, terrorist attacks on our country which claimed the lives of 2,977 people and injured thousands of others."
+          },
+          {
+            "member": "Richard J. Durbin",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-09-11",
+            "url": "https://www.durbin.senate.gov/newsroom/press-releases/durbin-statement-on-the-25th-anniversary-of-the-9/11-terrorist-attacks",
+            "quote": "Today, Durbin attended the City of Chicago Fire Department’s 9/11 Tribute, marking the 25th anniversary of the September 11, 2001, terrorist attacks."
+          },
+          {
+            "member": "Tammy Duckworth",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-09-11",
+            "url": "https://www.duckworth.senate.gov/news/press-releases/duckworth-commemorates-25th-anniversary-of-9/11-attacks-with-day-of-service",
+            "quote": "[CHICAGO, IL] — Combat Veteran and U.S. Senator Tammy Duckworth, a member of the U.S. Senate Armed Services Committee (SASC) who served in the Reserve Forces for 23 years, today joined volunteers at Chicago Union Station to help pack 520,000 meals that will be donated to the Greater Chicago Food Depository as part of a day of service commemorating the 25th anniversary of the September 11, 2001, terrorist attacks."
+          }
+        ],
+        "R": [
+          {
+            "member": "Rick W. Allen",
+            "party": "R",
+            "state": "GA",
+            "date": "2026-09-11",
+            "url": "https://allen.house.gov/news/documentsingle.aspx?DocumentID=7381",
+            "quote": "Today, on the 25th anniversary of the September 11, 2001 terrorist attacks, Congressman Rick W. Allen (GA-12) attended the annual 9/11 Remembrance Ceremony and Memorial Stair Climb in Evans, Georgia."
+          },
+          {
+            "member": "Marsha Blackburn",
+            "party": "R",
+            "state": "TN",
+            "date": "2026-09-11",
+            "url": "https://www.blackburn.senate.gov/2026/9/video-blackburn-honors-victims-of-9-11-on-25th-anniversary",
+            "quote": "– Today, U.S. Senator Marsha Blackburn (R-Tenn.) released a video marking the 25th anniversary of the September 11th terror attacks and honoring the victims, their families, the first responders, and the service members who answered the call."
+          },
+          {
+            "member": "Susan M. Collins",
+            "party": "R",
+            "state": "ME",
+            "date": "2026-09-11",
+            "url": "https://www.collins.senate.gov/newsroom/senator-collins-honors-victims-and-first-responders-at-9/11-memorial-ceremony-in-augusta",
+            "quote": "AUGUSTA, ME – U.S. Senator Susan Collins delivered remarks today at the Maine Firefighters Memorial in Augusta during a ceremony marking the 25th anniversary of the September 11, 2001, terrorist attacks."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "twenty-five years ago",
+      "slug": "cfa9506fbb57adcc",
+      "n": 3,
+      "both": 9,
+      "day_peak": 9,
+      "counts": {
+        "D": 11,
+        "R": 9,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-02-25",
+        "bioguide": "G000386",
+        "statement": "sha256:852779cc9298526ccd37e1f3a85a5da1ec1a9c052902001c8b27f39600dab10c",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "velocity": 11.0,
+      "sides": {
+        "D": [
+          {
+            "member": "Ami Bera",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-11",
+            "url": "https://bera.house.gov/news/press-releases/rep-bera-statement-on-25th-anniversary-of-911-terror-attacks",
+            "quote": "Twenty-five years ago, our nation was forever changed by the terrorist attacks of September 11, 2001."
+          },
+          {
+            "member": "Rosa L. DeLauro",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-09-11",
+            "url": "https://delauro.house.gov/media-center/press-releases/delauro-statement-marking-25th-anniversary-attacks-september-11-2001",
+            "quote": "Twenty-five years ago, today, the United States of America experienced one of its darkest days in history."
+          },
+          {
+            "member": "Richard J. Durbin",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-09-11",
+            "url": "https://www.durbin.senate.gov/newsroom/press-releases/durbin-statement-on-the-25th-anniversary-of-the-9/11-terrorist-attacks",
+            "quote": "Twenty-five years ago today, I vividly recall looking down the National Mall from the Capitol Building and watching as black smoke billowed up from the Pentagon."
+          }
+        ],
+        "R": [
+          {
+            "member": "Jodey C. Arrington",
+            "party": "R",
+            "state": "TX",
+            "date": "2026-09-11",
+            "url": "https://arrington.house.gov/news/documentsingle.aspx?DocumentID=4631",
+            "quote": "Twenty-five years ago, America suffered the deadliest foreign attack on American soil in our nation’s history."
+          },
+          {
+            "member": "Joni Ernst",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-09-11",
+            "url": "https://www.ernst.senate.gov/news/press-releases/ernst-marks-25-years-since-september-11-freedom-is-never-free",
+            "quote": "Twenty-five years ago, America’s strength was tested."
+          },
+          {
+            "member": "Andrew R. Garbarino",
+            "party": "R",
+            "state": "NY",
+            "date": "2026-09-11",
+            "url": "https://garbarino.house.gov/media/press-releases/chairman-garbarino-marks-25-years-september-11-attacks",
+            "quote": "Twenty-five years ago today, America faced an unimaginable tragedy, and our nation was forever changed."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "the first responders",
+      "slug": "4144328094c8d091",
+      "n": 3,
+      "both": 9,
+      "day_peak": 9,
+      "counts": {
+        "D": 14,
+        "R": 9,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "W000830",
+        "statement": "sha256:3fca8d058b43fe76a45492eb7eadf67308eaa3141bd182fd638a5792871d006a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "velocity": 11.53,
+      "sides": {
+        "D": [
+          {
+            "member": "Sanford D. Bishop, Jr.",
+            "party": "D",
+            "state": "GA",
+            "date": "2026-09-11",
+            "url": "https://bishop.house.gov/media-center/press-releases/congressman-bishop-remembers-the-september-11-2001-terrorist-attacks-on-the-united-states",
+            "quote": "Our solemn commemoration keeps alive the memory of those who were lost and honors the first responders who selflessly put themselves in harm’s way to protect others and save lives."
+          },
+          {
+            "member": "Ami Bera",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-11",
+            "url": "https://bera.house.gov/news/press-releases/rep-bera-statement-on-25th-anniversary-of-911-terror-attacks",
+            "quote": "We also honor the extraordinary courage of the first responders who rushed toward danger and helped save countless lives."
+          },
+          {
+            "member": "Jason Crow",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-09-11",
+            "url": "https://crow.house.gov/media/press-releases/crow-reflects-on-25-years-since-the-september-11th-attacks",
+            "quote": "Seeing the towers collapse, the imagery of the towers collapse, and the first responders who gave their lives."
+          }
+        ],
+        "R": [
+          {
+            "member": "Rick W. Allen",
+            "party": "R",
+            "state": "GA",
+            "date": "2026-09-11",
+            "url": "https://allen.house.gov/news/documentsingle.aspx?DocumentID=7381",
+            "quote": "Today, we remember the lives of those who died on September 11, 2001 from terrorist attacks on the World Trade Center in New York City, the Pentagon in Virginia, on United Airlines Flight 93 which crashed in rural Pennsylvania, and the first responders who charged toward the chaos as others fled to safety."
+          },
+          {
+            "member": "Marsha Blackburn",
+            "party": "R",
+            "state": "TN",
+            "date": "2026-09-11",
+            "url": "https://www.blackburn.senate.gov/2026/9/video-blackburn-honors-victims-of-9-11-on-25th-anniversary",
+            "quote": "– Today, U.S. Senator Marsha Blackburn (R-Tenn.) released a video marking the 25th anniversary of the September 11th terror attacks and honoring the victims, their families, the first responders, and the service members who answered the call."
+          },
+          {
+            "member": "Shelley Moore Capito",
+            "party": "R",
+            "state": "WV",
+            "date": "2026-09-11",
+            "url": "https://www.capito.senate.gov/news/press-releases/capito-statement-on-25th-anniversary-of-9/11",
+            "quote": "We honor the first responders who ran toward danger, the brave passengers and crew of Flight 93 who sacrificed their lives to save others, and the many others who stepped up to help our nation."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "will never forget",
+      "slug": "cc5aaf3178178409",
+      "n": 3,
+      "both": 6,
+      "day_peak": 6,
+      "counts": {
+        "D": 13,
+        "R": 6,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001121",
+        "statement": "sha256:b9452064f570ea426c3d4f4e3372de98e43ed2eb73801b8db9ec9300bf4342e4",
+        "tie": [
+          "G000587",
+          "J000298",
+          "K000385",
+          "T000474"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "velocity": 10.11,
+      "sides": {
+        "D": [
+          {
+            "member": "Catherine Cortez Masto",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-09-11",
+            "url": "https://www.cortezmasto.senate.gov/news/press-releases/cortez-masto-honors-the-25th-anniversary-of-september-11-2001/",
+            "quote": "Today, let us keep all of those we lost in our thoughts, let us pray for their families and loved ones, and let us hold true to the words “we will never forget."
+          },
+          {
+            "member": "Debbie Dingell",
+            "party": "D",
+            "state": "MI",
+            "date": "2026-09-11",
+            "url": "https://debbiedingell.house.gov/news/documentsingle.aspx?DocumentID=7315",
+            "quote": "But something else happened in those days that I will never forget: America came together."
+          },
+          {
+            "member": "Josh Gottheimer",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-09-11",
+            "url": "https://gottheimer.house.gov/posts/release-on-25th-anniversary-of-9-11-attacks-gottheimer-honors-the-fallen-of-north-jersey",
+            "quote": "We will never forget."
+          }
+        ],
+        "R": [
+          {
+            "member": "Andrew R. Garbarino",
+            "party": "R",
+            "state": "NY",
+            "date": "2026-09-11",
+            "url": "https://garbarino.house.gov/media/press-releases/chairman-garbarino-marks-25-years-september-11-attacks",
+            "quote": "Twenty-five years later, our promise remains the same: We will never forget."
+          },
+          {
+            "member": "James C. Justice",
+            "party": "R",
+            "state": "WV",
+            "date": "2026-09-11",
+            "url": "https://www.justice.senate.gov/newsroom/press-releases/senator-justice-commemorates-25th-anniversary-of-september-11/",
+            "quote": "A quarter-century has passed, but our promise remains the same: we will never forget the lives taken from us, and we will never forget the quiet strength and goodness that brought us through."
+          },
+          {
+            "member": "Mike Kelly",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-09-11",
+            "url": "https://kelly.house.gov/media/press-releases/kelly-visits-shanksville-issues-statement-25th-anniversary-september-11",
+            "quote": "We will never forget"
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "the nearly 3",
+      "slug": "01ac5d185177b551",
+      "n": 3,
+      "both": 5,
+      "day_peak": 5,
+      "counts": {
+        "D": 7,
+        "R": 5,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-02-05",
+        "bioguide": "L000598",
+        "statement": "sha256:159df5dc7f17f305ded0f3ac876cb9abd4777e4c257ebfb86a6d07596baf38ec",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "velocity": 4.9,
+      "sides": {
+        "D": [
+          {
+            "member": "Debbie Dingell",
+            "party": "D",
+            "state": "MI",
+            "date": "2026-09-11",
+            "url": "https://debbiedingell.house.gov/news/documentsingle.aspx?DocumentID=7315",
+            "quote": "As we mark the 25th anniversary of 9/11, we will remember the nearly 3,000 people who were killed, and the countless families whose lives were changed forever."
+          },
+          {
+            "member": "Tim Kaine",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-09-11",
+            "url": "https://www.kaine.senate.gov/press-releases/kaine-statement-on-25th-anniversary-of-september-11th-attacks",
+            "quote": "Twenty-five years later, I’m praying for the families of the nearly 3,000 Americans who died, the first responders who heroically put themselves in harm’s way in the aftermath, the thousands of Americans who suffered disability or death because of the dangerous recovery work, the tens of thousands of servicemembers who answered the call and defended our nation in the War on Terror, and the millions of ordinary Americans who pulled together to try and help the nation heal."
+          },
+          {
+            "member": "Ben Ray Luján",
+            "party": "D",
+            "state": "NM",
+            "date": "2026-09-11",
+            "url": "https://www.lujan.senate.gov/newsroom/press-releases/lujan-statement-on-the-25th-anniversary-of-9-11-terrorist-attacks/",
+            "quote": "Twenty-five years later, we remember the nearly 3,000 people who lost their lives and the families and loved ones whose lives were forever changed."
+          }
+        ],
+        "R": [
+          {
+            "member": "Shelley Moore Capito",
+            "party": "R",
+            "state": "WV",
+            "date": "2026-09-11",
+            "url": "https://www.capito.senate.gov/news/press-releases/capito-statement-on-25th-anniversary-of-9/11",
+            "quote": "Today on the 25th anniversary, we remember the nearly 3,000 innocent lives taken from us, and we continue to pray for the families and loved ones who have carried that loss."
+          },
+          {
+            "member": "Juan Ciscomani",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-09-11",
+            "url": "https://ciscomani.house.gov/media/press-releases/ciscomani-commemorates-25th-anniversary-september-11-attacks-honors-victims",
+            "quote": "Tucson, AZ - U.S. Representative Juan Ciscomani is commemorating the 25th anniversary of September 11, 2001 today in remembering the nearly 3,000 Americans who lost their lives, honoring the survivors who continue to carry the scars of that day, and recognizing the brave law enforcement officers, firefighters, first responders, and ordinary Americans who ran toward danger when our nation needed them most."
+          },
+          {
+            "member": "Andrew R. Garbarino",
+            "party": "R",
+            "state": "NY",
+            "date": "2026-09-11",
+            "url": "https://garbarino.house.gov/media/press-releases/chairman-garbarino-marks-25-years-september-11-attacks",
+            "quote": "Chairman Garbarino is committed to honoring the nearly 3,000 people killed, including almost 500 Long Islanders, recognizing the heroism of first responders and civilians, and ensuring younger generations and future national security leaders understand the significance of 9/11 and why continued commitment to the homeland security mission is as important as ever."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
