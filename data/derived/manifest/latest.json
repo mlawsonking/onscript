@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-09-12",
+  "run_id": "collect-2026-09-13",
   "kind": "deterministic",
-  "generated_at": "2026-09-12T21:32:03Z",
-  "focus_day": "2026-09-11",
+  "generated_at": "2026-09-13T13:51:11Z",
+  "focus_day": "2026-09-12",
   "days_present": [
     "2025-01-01",
-    "2026-09-11"
+    "2026-09-12"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-09-12T09:04:06Z",
-    "age_hours": 12.46
+    "pushed_at": "2026-09-13T10:01:37Z",
+    "age_hours": 3.82
   },
   "normalize": {
-    "in": 83904,
-    "kept": 83870,
+    "in": 83905,
+    "kept": 83871,
     "rejects": 34,
     "joint_groups": 172,
     "near_joint_groups": 2996,
@@ -29,7 +29,7 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 49331,
+      "statements_in": 49332,
       "members_covered": 263
     },
     "R": {
@@ -43,10 +43,10 @@
   },
   "derived": {
     "ledger_entries": 317423,
-    "phrase_pages": 53,
-    "focus_day": "2026-09-11",
-    "focus_day_write": "skipped-final",
-    "focus_day_top_phrases": null,
+    "phrase_pages": 0,
+    "focus_day": "2026-09-12",
+    "focus_day_write": "written",
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 7.9,
-    "mirror_pull": 15.1,
-    "normalize": 2245.4,
-    "ledger_build": 1994.0
+    "restore": 7.2,
+    "mirror_pull": 12.8,
+    "normalize": 2259.9,
+    "ledger_build": 1963.9
   },
   "span_scan": {
-    "person_spans_calls": 241715,
-    "person_spans_s": 515.5814886022076,
-    "admitted_form_scans": 241715,
-    "admitted_form_s": 6.497686427967437
+    "person_spans_calls": 241718,
+    "person_spans_s": 499.91468876671615,
+    "admitted_form_scans": 241718,
+    "admitted_form_s": 6.389107958943896
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
