@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-09-11",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 62,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "62 consecutive days published (through 2026-09-10)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0875,
+      "projected": 0.2387,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 10,
+      "note": "$0.0875 MTD, $0.24 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-09-10",
+      "scored_age_days": 1,
+      "parties": {
+        "D": {
+          "statements": 66,
+          "median": 72.0,
+          "share": 0.917,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        },
+        "R": {
+          "statements": 30,
+          "median": 47.0,
+          "share": 0.638,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 12.35,
+        "day": "2026-09-11",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-09-10 (1d): D 66/72=92% R 30/47=64% of own same-weekday baseline (green >= 60%); upstream 12.3h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.2,
+      "dropped": 1,
+      "offered": 5,
+      "unmeasured_rows": 0,
+      "status": "green",
+      "note": "1/5 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [],
+  "unknowns": [],
+  "degraded_days": [
+    "2026-09-07"
+  ],
+  "top_phrase": {
+    "ngram": "ballots ahead of",
+    "party": "D",
+    "day_peak": 7,
+    "day": "2026-09-09"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "ALL GREEN"
+}

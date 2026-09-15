@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "day": "2026-09-07",
+  "day": "2026-09-13",
   "day_scoped": true,
   "statement": "Both parties use the same pipeline, prompts, thresholds, and publication checks. The nightly audit publishes the shared fingerprints.",
   "prompts_sha": {
@@ -24,7 +24,7 @@
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   },
   "lane1_only": true,
-  "degraded": true,
+  "degraded": false,
   "source_freshness": {
     "note": "assemble stage; freshness measured in RUN A"
   },
@@ -34,31 +34,31 @@
   },
   "parties": {
     "D": {
-      "statements_ingested": 7,
-      "members_covered": 6,
+      "statements_ingested": 4,
+      "members_covered": 4,
       "caucus_size": 263,
-      "coverage_pct": 2.3,
-      "observed_publishing_offices": 6,
+      "coverage_pct": 1.5,
+      "observed_publishing_offices": 4,
       "eligible_caucus_offices": 263,
       "date_effective_eligible_caucus_offices": 257,
       "source_supported_offices": 0,
-      "publications": 7,
-      "document_families": 7,
+      "publications": 4,
+      "document_families": 4,
       "office_source_states": {
         "source_supported": 0,
         "source_unsupported": 0,
         "unattestable": 257
       },
       "denominator_method_version": "date-effective-denominators-v1",
-      "denominator_window": "party-day 2026-09-07",
+      "denominator_window": "party-day 2026-09-13",
       "date_effective_denominators": {
         "method_version": "date-effective-denominators-v1",
-        "window": "party-day 2026-09-07",
+        "window": "party-day 2026-09-13",
         "eligible_caucus_offices": 257,
         "source_supported_offices": 0,
-        "observed_publishing_offices": 6,
-        "publications": 7,
-        "document_families": 7,
+        "observed_publishing_offices": 4,
+        "publications": 4,
+        "document_families": 4,
         "office_source_states": {
           "source_supported": 0,
           "source_unsupported": 0,
@@ -75,31 +75,31 @@
       "nomenclature_rate": null
     },
     "R": {
-      "statements_ingested": 13,
-      "members_covered": 5,
+      "statements_ingested": 1,
+      "members_covered": 1,
       "caucus_size": 272,
-      "coverage_pct": 1.8,
-      "observed_publishing_offices": 5,
+      "coverage_pct": 0.4,
+      "observed_publishing_offices": 1,
       "eligible_caucus_offices": 272,
       "date_effective_eligible_caucus_offices": 271,
       "source_supported_offices": 0,
-      "publications": 13,
-      "document_families": 13,
+      "publications": 1,
+      "document_families": 1,
       "office_source_states": {
         "source_supported": 0,
         "source_unsupported": 0,
         "unattestable": 271
       },
       "denominator_method_version": "date-effective-denominators-v1",
-      "denominator_window": "party-day 2026-09-07",
+      "denominator_window": "party-day 2026-09-13",
       "date_effective_denominators": {
         "method_version": "date-effective-denominators-v1",
-        "window": "party-day 2026-09-07",
+        "window": "party-day 2026-09-13",
         "eligible_caucus_offices": 271,
         "source_supported_offices": 0,
-        "observed_publishing_offices": 5,
-        "publications": 13,
-        "document_families": 13,
+        "observed_publishing_offices": 1,
+        "publications": 1,
+        "document_families": 1,
         "office_source_states": {
           "source_supported": 0,
           "source_unsupported": 0,

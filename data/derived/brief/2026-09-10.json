@@ -12,33 +12,51 @@
     },
     {
       "name": "spend",
-      "value": 0.061,
-      "projected": 0.1831,
+      "value": 0.0702,
+      "projected": 0.2106,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 7,
-      "note": "$0.0610 MTD, $0.18 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 8,
+      "note": "$0.0702 MTD, $0.21 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "value": null,
-      "status": "unknown",
-      "day": "2026-09-07",
+      "day": "2026-09-08",
+      "scored_age_days": 2,
+      "parties": {
+        "D": {
+          "statements": 61,
+          "median": 73.0,
+          "share": 0.836,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 20,
+          "median": 33.0,
+          "share": 0.606,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        }
+      },
+      "status": "green",
       "freshness": {
-        "age_hours": 4.26,
+        "age_hours": 12.26,
         "day": "2026-09-10",
         "status": "green"
       },
-      "note": "newest symmetry report is 2026-09-07 (3d old), cannot describe current coverage"
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-09-08 (2d): D 61/73=84% R 20/33=61% of own same-weekday baseline (green >= 60%); upstream 12.3h (green < 36h)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.4,
+      "value": 0.3333,
       "dropped": 2,
-      "offered": 5,
+      "offered": 6,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "2/5 claims dropped over 7d (green < 25%)"
+      "note": "2/6 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -51,17 +69,15 @@
     "streak",
     "verifier_drop"
   ],
-  "unknowns": [
-    "coverage"
-  ],
+  "unknowns": [],
   "degraded_days": [
     "2026-09-07"
   ],
   "top_phrase": {
-    "ngram": "in federal funding",
+    "ngram": "an amicus brief",
     "party": "D",
     "day_peak": 6,
-    "day": "2026-09-04"
+    "day": "2026-09-08"
   },
   "shelf": {
     "dark": [
