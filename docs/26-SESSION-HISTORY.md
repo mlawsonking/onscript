@@ -4048,3 +4048,12 @@ detail to move.
 
 Delivered on `opus/s73-focus-cursor`, seven commits, nothing pushed, no workflow dispatched, no flag
 or threshold touched. Task #299 covers the review and push.
+
+S73 postscript, 2026-09-15 (Fable, orchestrating session). The branch waited five days
+unpushed. Outcome of the delay, recorded so the record stays honest: 2026-09-08's sweep
+window closed on 09-13 and the day published on the pre-fix path as the NINTH incomplete
+record (no legacy_unvalidated_metrics; #301's population is nine, not eight). The pre-fix
+cursor fired same-day focuses again on the 09-11 and 09-14 runs but skipped no further
+days; no new holes. The branch was merged onto the 09-15 origin tip (data-only commits),
+the S70-census containment test re-verified against five new published days, and the full
+suite re-run green by the orchestrating session before the push was re-requested.
