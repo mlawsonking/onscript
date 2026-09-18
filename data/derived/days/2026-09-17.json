@@ -940,5 +940,3334 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-17",
+      "party": "D",
+      "composite": "Today 127 of us released statements. 3 of us carried \"Chris Van Hollen and Angela\". 3 of us carried \"took to the Senate floor\". Our most synchronized phrase, used by 9 of us: this bipartisan bill.",
+      "measurement_lead": "Measurement: 127 publications were observed for the Democratic party on 2026-09-17.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-17",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "38c0b5ffe8dbef43baf4c2bb6027d3bf35ae5b9f35ea8b614f74d626cf302825",
+        "claim_ids": [
+          "2026-09-17-D-01",
+          "2026-09-17-D-03"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 127 of us released statements. 3 of us carried \"Chris Van Hollen and Angela\". 3 of us carried \"took to the Senate floor\". Our most synchronized phrase, used by 9 of us: this bipartisan bill.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-17-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-09-17-D-03"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "ca8914227deeb88b78414984d848cd8c8eadc18980557858b52e465cb190e120",
+        "response_sha256": "e86556905834075ab1f522ea5a467326a0904c4f3c0c9ece9fe26671461dda35",
+        "model_response_sha256": "6d93048aa41f8673f4d85b8649079930f4d082cf9181e19b09639e08d6863d9c"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-17-D-01"
+          ],
+          "claim_ids": [
+            "2026-09-17-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-09-17-D-03"
+          ],
+          "claim_ids": [
+            "2026-09-17-D-03"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-17-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-09-17-D-03"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-17",
+        "statements": 127,
+        "talking_points": [
+          {
+            "label": "chris van hollen and angela",
+            "members": 3,
+            "quote": "Chris Van Hollen and Angela",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-17-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 6,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "took to the senate floor",
+            "members": 3,
+            "quote": "took to the Senate floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-17-D-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "this bipartisan bill",
+          "members": 9,
+          "family_count": 9,
+          "first_sayer": "Mike Levin",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CA"
+        },
+        "selected_claims": [
+          {
+            "label": "chris van hollen and angela",
+            "members": 3,
+            "quote": "Chris Van Hollen and Angela",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-17-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 6,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "took to the senate floor",
+            "members": 3,
+            "quote": "took to the Senate floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-17-D-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 1,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 1,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-17-D-01",
+          "2026-09-17-D-03"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 3
+      },
+      "usage": {
+        "tokens_in": 2923,
+        "tokens_out": 126,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-17",
+      "party": "R",
+      "composite": "Today 88 of us released statements. 5 of us carried \"House of Representatives passed\". Our most synchronized phrase, used by 8 of us: of representatives passed.",
+      "measurement_lead": "Measurement: 88 publications were observed for the Republican party on 2026-09-17.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-17",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "545bd328e812f7eb8ac65b856b73d54cded6b61e906bd673ebf2ed121f93e78b",
+        "claim_ids": [
+          "2026-09-17-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 88 of us released statements. 5 of us carried \"House of Representatives passed\". Our most synchronized phrase, used by 8 of us: of representatives passed.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-17-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "1089fdf7d18037e4248c618500f56f22305982c9ac993ffe5b9fbef92fd94a5f",
+        "response_sha256": "150ff2d972dc186613f89b2c2f4aa00997ce7011a4a300f0ac23b8083f0f695b",
+        "model_response_sha256": "a0e6cb79734a3c29542a482d6d261293a21da411f502a69111eb60407d57374f"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-17-R-00"
+          ],
+          "claim_ids": [
+            "2026-09-17-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-17-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-17",
+        "statements": 88,
+        "talking_points": [
+          {
+            "label": "house of representatives passed",
+            "members": 5,
+            "quote": "House of Representatives passed",
+            "topics": [
+              "other",
+              "social_security_medicare"
+            ],
+            "claim_id": "2026-09-17-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "social_security_medicare",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "of representatives passed",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Rick W. Allen",
+          "first_sayer_party": "R",
+          "first_sayer_state": "GA"
+        },
+        "selected_claims": [
+          {
+            "label": "house of representatives passed",
+            "members": 5,
+            "quote": "House of Representatives passed",
+            "topics": [
+              "other",
+              "social_security_medicare"
+            ],
+            "claim_id": "2026-09-17-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "social_security_medicare",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-17-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2324,
+        "tokens_out": 96,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-17-D-00",
+        "party": "D",
+        "day": "2026-09-17",
+        "label": "the house of representatives",
+        "member_count": 3,
+        "statements": [
+          "sha256:3f1aaade736ebfc4f846345abaab72214f0352ac7aae56dfb3183e439664996f",
+          "sha256:735fada3b240c5fbb295e38a7de514c7847020d2358248842510f52739a92382",
+          "sha256:dbfe79378fad0a724a6b09469b28764f6ab6206daa1bdf29f0d7f56bc42ea335"
+        ],
+        "fragments": [
+          {
+            "text": "the floor of the house of representatives",
+            "statement": "sha256:dbfe79378fad0a724a6b09469b28764f6ab6206daa1bdf29f0d7f56bc42ea335"
+          },
+          {
+            "text": "leading companion legislation in the house of representatives",
+            "statement": "sha256:3f1aaade736ebfc4f846345abaab72214f0352ac7aae56dfb3183e439664996f"
+          },
+          {
+            "text": "companion resolution in the house of representatives",
+            "statement": "sha256:735fada3b240c5fbb295e38a7de514c7847020d2358248842510f52739a92382"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-17-D-00",
+        "support_phrase": {
+          "normalized": "the house of representatives",
+          "text": "the House of Representatives",
+          "occurrence_id": "occ:fbf2f87a6a4bfec76195ccd2"
+        },
+        "display_quote": "the House of Representatives",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:fbf2f87a6a4bfec76195ccd2",
+            "claim_id": "2026-09-17-D-00",
+            "statement_id": "sha256:3f1aaade736ebfc4f846345abaab72214f0352ac7aae56dfb3183e439664996f",
+            "publication_id": "sha256:3f1aaade736ebfc4f846345abaab72214f0352ac7aae56dfb3183e439664996f",
+            "office_id": "P000145",
+            "family_id": "dfam:6ba770cd96b25cecbac2ab66",
+            "family_revision": "dfrev:ce40b96ece6912846c001b6d",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 486,
+            "end_char": 514,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 445,
+            "sentence_end_char": 514,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 69,
+            "clause_start_char": 270,
+            "clause_end_char": 536,
+            "clause_offset_start": 216,
+            "clause_offset_end": 244,
+            "adjacent_tokens_before": [
+              "is",
+              "leading",
+              "companion",
+              "legislation",
+              "in"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "nearly",
+              "30",
+              "years",
+              "federal"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:63d1e626143c8e2dd4ba6e9f",
+            "claim_id": "2026-09-17-D-00",
+            "statement_id": "sha256:735fada3b240c5fbb295e38a7de514c7847020d2358248842510f52739a92382",
+            "publication_id": "sha256:735fada3b240c5fbb295e38a7de514c7847020d2358248842510f52739a92382",
+            "office_id": "K000367",
+            "family_id": "njoint:5744d74b86bf38bc90c68589",
+            "family_revision": "dfrev:21e8269af9f3a1d120f22e4e",
+            "support_unit_id": "njoint:5744d74b86bf38bc90c68589",
+            "party": "D",
+            "start_char": 610,
+            "end_char": 638,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 514,
+            "sentence_end_char": 638,
+            "sentence_offset_start": 96,
+            "sentence_offset_end": 124,
+            "clause_start_char": 508,
+            "clause_end_char": 690,
+            "clause_offset_start": 102,
+            "clause_offset_end": 130,
+            "adjacent_tokens_before": [
+              "introduced",
+              "a",
+              "companion",
+              "resolution",
+              "in"
+            ],
+            "adjacent_tokens_after": [
+              "following",
+              "the",
+              "tragic",
+              "loss",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7cb25a9e66a77df4275dc7b9",
+            "claim_id": "2026-09-17-D-00",
+            "statement_id": "sha256:dbfe79378fad0a724a6b09469b28764f6ab6206daa1bdf29f0d7f56bc42ea335",
+            "publication_id": "sha256:dbfe79378fad0a724a6b09469b28764f6ab6206daa1bdf29f0d7f56bc42ea335",
+            "office_id": "D000530",
+            "family_id": "dfam:7857ed5a09ec48b17ee0b3db",
+            "family_revision": "dfrev:61cc6e659ed8ec2b3377f014",
+            "support_unit_id": "D000530",
+            "party": "D",
+            "start_char": 204,
+            "end_char": 232,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 98,
+            "sentence_end_char": 232,
+            "sentence_offset_start": 106,
+            "sentence_offset_end": 134,
+            "clause_start_char": 104,
+            "clause_end_char": 247,
+            "clause_offset_start": 100,
+            "clause_offset_end": 128,
+            "adjacent_tokens_before": [
+              "unanimously",
+              "off",
+              "the",
+              "floor",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "this",
+              "biennial",
+              "bipartisan",
+              "legislation",
+              "also"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "D000530",
+          "K000367",
+          "P000145"
+        ],
+        "publication_ids": [
+          "sha256:3f1aaade736ebfc4f846345abaab72214f0352ac7aae56dfb3183e439664996f",
+          "sha256:735fada3b240c5fbb295e38a7de514c7847020d2358248842510f52739a92382",
+          "sha256:dbfe79378fad0a724a6b09469b28764f6ab6206daa1bdf29f0d7f56bc42ea335"
+        ],
+        "family_ids": [
+          "dfam:6ba770cd96b25cecbac2ab66",
+          "dfam:7857ed5a09ec48b17ee0b3db",
+          "njoint:5744d74b86bf38bc90c68589"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:6ba770cd96b25cecbac2ab66",
+            "family_revision": "dfrev:ce40b96ece6912846c001b6d"
+          },
+          {
+            "family_id": "dfam:7857ed5a09ec48b17ee0b3db",
+            "family_revision": "dfrev:61cc6e659ed8ec2b3377f014"
+          },
+          {
+            "family_id": "njoint:5744d74b86bf38bc90c68589",
+            "family_revision": "dfrev:21e8269af9f3a1d120f22e4e"
+          }
+        ],
+        "support_unit_ids": [
+          "D000530",
+          "P000145",
+          "njoint:5744d74b86bf38bc90c68589"
+        ],
+        "citation_occurrence_ids": [
+          "occ:fbf2f87a6a4bfec76195ccd2",
+          "occ:63d1e626143c8e2dd4ba6e9f",
+          "occ:7cb25a9e66a77df4275dc7b9"
+        ],
+        "citations": [
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-17",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padilla-curtis-merkley-sheehy-dexter-announce-bipartisan-legislation-to-protect-federal-wildland-firefighters/",
+            "quote": "leading companion legislation in the house of representatives",
+            "occurrence_id": "occ:fbf2f87a6a4bfec76195ccd2",
+            "office_id": "P000145",
+            "publication_id": "sha256:3f1aaade736ebfc4f846345abaab72214f0352ac7aae56dfb3183e439664996f",
+            "family_id": "dfam:6ba770cd96b25cecbac2ab66",
+            "family_revision": "dfrev:ce40b96ece6912846c001b6d"
+          },
+          {
+            "member": "Amy Klobuchar",
+            "party": "D",
+            "state": "MN",
+            "date": "2026-09-17",
+            "url": "https://www.klobuchar.senate.gov/public/index.cfm/news-releases?ID=F4146A58-8BB0-43FF-98A3-2EC82AFB2F9B",
+            "quote": "companion resolution in the house of representatives",
+            "occurrence_id": "occ:63d1e626143c8e2dd4ba6e9f",
+            "office_id": "K000367",
+            "publication_id": "sha256:735fada3b240c5fbb295e38a7de514c7847020d2358248842510f52739a92382",
+            "family_id": "njoint:5744d74b86bf38bc90c68589",
+            "family_revision": "dfrev:21e8269af9f3a1d120f22e4e"
+          },
+          {
+            "member": "Christopher R. Deluzio",
+            "party": "D",
+            "state": "PA",
+            "date": "2026-09-17",
+            "url": "https://deluzio.house.gov/media/press-releases/deluzio-secures-wins-western-pa-biennial-water-resources-bill",
+            "quote": "the floor of the house of representatives",
+            "occurrence_id": "occ:7cb25a9e66a77df4275dc7b9",
+            "office_id": "D000530",
+            "publication_id": "sha256:dbfe79378fad0a724a6b09469b28764f6ab6206daa1bdf29f0d7f56bc42ea335",
+            "family_id": "dfam:7857ed5a09ec48b17ee0b3db",
+            "family_revision": "dfrev:61cc6e659ed8ec2b3377f014"
+          }
+        ],
+        "surface_class": "unknown",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "title-reference-only"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-17-D-01",
+        "party": "D",
+        "day": "2026-09-17",
+        "label": "chris van hollen and angela",
+        "member_count": 3,
+        "statements": [
+          "sha256:262c1a6ded5aed1917c5bf15e0a9616e4292b76adcbbe620fd35a98ec820a091",
+          "sha256:699c901c41b2cec636dc0ee684bdd58c8ed13061a534381f587b3f6eb472318f",
+          "sha256:a702c7349902c86e469629b175c38ff807390a483d8bca0e1d8ea90419aaaf44",
+          "sha256:b24d759b060758b0b76781076b4bad9ff2bac18e61cd01b50b009ca2ecac8d45",
+          "sha256:d0d34d9ad9782dab1c17c862828b4c6b5ccc3fddfbce32317eb5211752f86000",
+          "sha256:fcbc8a71eccac1ef891ca4c6a045f81e4d754b1314d59970e831639d626e27c1"
+        ],
+        "fragments": [
+          {
+            "text": "senators chris van hollen and angela alsobrooks",
+            "statement": "sha256:d0d34d9ad9782dab1c17c862828b4c6b5ccc3fddfbce32317eb5211752f86000"
+          },
+          {
+            "text": "senators chris van hollen and angela alsobrooks",
+            "statement": "sha256:699c901c41b2cec636dc0ee684bdd58c8ed13061a534381f587b3f6eb472318f"
+          },
+          {
+            "text": "senators chris van hollen and angela alsobrooks",
+            "statement": "sha256:262c1a6ded5aed1917c5bf15e0a9616e4292b76adcbbe620fd35a98ec820a091"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-17-D-01",
+        "support_phrase": {
+          "normalized": "chris van hollen and angela",
+          "text": "Chris Van Hollen and Angela",
+          "occurrence_id": "occ:ed282230dbc7647777dff5d6"
+        },
+        "display_quote": "Chris Van Hollen and Angela",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ed282230dbc7647777dff5d6",
+            "claim_id": "2026-09-17-D-01",
+            "statement_id": "sha256:262c1a6ded5aed1917c5bf15e0a9616e4292b76adcbbe620fd35a98ec820a091",
+            "publication_id": "sha256:262c1a6ded5aed1917c5bf15e0a9616e4292b76adcbbe620fd35a98ec820a091",
+            "office_id": "H000874",
+            "family_id": "njoint:93382865975a50034aad4ce2",
+            "family_revision": "dfrev:005d18b899cd87105297a8be",
+            "support_unit_id": "njoint:93382865975a50034aad4ce2",
+            "party": "D",
+            "start_char": 185,
+            "end_char": 212,
+            "surface_text": "Chris Van Hollen and Angela",
+            "normalized_phrase": "chris van hollen and angela",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 175,
+            "sentence_end_char": 535,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 37,
+            "clause_start_char": 136,
+            "clause_end_char": 458,
+            "clause_offset_start": 49,
+            "clause_offset_end": 76,
+            "adjacent_tokens_before": [
+              "along",
+              "with",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "alsobrooks",
+              "both",
+              "d-md",
+              "sent",
+              "a"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:217d672f10b06847d2471aa9",
+            "claim_id": "2026-09-17-D-01",
+            "statement_id": "sha256:699c901c41b2cec636dc0ee684bdd58c8ed13061a534381f587b3f6eb472318f",
+            "publication_id": "sha256:699c901c41b2cec636dc0ee684bdd58c8ed13061a534381f587b3f6eb472318f",
+            "office_id": "V000128",
+            "family_id": "njoint:6eed6b7d52cebaad69701653",
+            "family_revision": "dfrev:7f739c0fd6879e835e5c4fc7",
+            "support_unit_id": "njoint:6eed6b7d52cebaad69701653",
+            "party": "D",
+            "start_char": 66,
+            "end_char": 93,
+            "surface_text": "Chris Van Hollen and Angela",
+            "normalized_phrase": "chris van hollen and angela",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 56,
+            "sentence_end_char": 110,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 37,
+            "clause_start_char": 52,
+            "clause_end_char": 141,
+            "clause_offset_start": 14,
+            "clause_offset_end": 41,
+            "adjacent_tokens_before": [
+              "congressional",
+              "delegation",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "alsobrooks",
+              "and",
+              "u",
+              "s",
+              "representatives"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6e62041c7c9a7aa2d7df9be1",
+            "claim_id": "2026-09-17-D-01",
+            "statement_id": "sha256:a702c7349902c86e469629b175c38ff807390a483d8bca0e1d8ea90419aaaf44",
+            "publication_id": "sha256:a702c7349902c86e469629b175c38ff807390a483d8bca0e1d8ea90419aaaf44",
+            "office_id": "E000301",
+            "family_id": "njoint:6eed6b7d52cebaad69701653",
+            "family_revision": "dfrev:7f739c0fd6879e835e5c4fc7",
+            "support_unit_id": "njoint:6eed6b7d52cebaad69701653",
+            "party": "D",
+            "start_char": 126,
+            "end_char": 153,
+            "surface_text": "Chris Van Hollen and Angela",
+            "normalized_phrase": "chris van hollen and angela",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 116,
+            "sentence_end_char": 170,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 37,
+            "clause_start_char": 112,
+            "clause_end_char": 201,
+            "clause_offset_start": 14,
+            "clause_offset_end": 41,
+            "adjacent_tokens_before": [
+              "congressional",
+              "delegation",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "alsobrooks",
+              "and",
+              "u",
+              "s",
+              "representatives"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bf8642f531975c51f5b1a4e5",
+            "claim_id": "2026-09-17-D-01",
+            "statement_id": "sha256:b24d759b060758b0b76781076b4bad9ff2bac18e61cd01b50b009ca2ecac8d45",
+            "publication_id": "sha256:b24d759b060758b0b76781076b4bad9ff2bac18e61cd01b50b009ca2ecac8d45",
+            "office_id": "H000874",
+            "family_id": "njoint:6eed6b7d52cebaad69701653",
+            "family_revision": "dfrev:7f739c0fd6879e835e5c4fc7",
+            "support_unit_id": "njoint:6eed6b7d52cebaad69701653",
+            "party": "D",
+            "start_char": 119,
+            "end_char": 146,
+            "surface_text": "Chris Van Hollen and Angela",
+            "normalized_phrase": "chris van hollen and angela",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 109,
+            "sentence_end_char": 175,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 37,
+            "clause_start_char": 104,
+            "clause_end_char": 215,
+            "clause_offset_start": 15,
+            "clause_offset_end": 42,
+            "adjacent_tokens_before": [
+              "hoyer",
+              "md-05",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "alsobrooks",
+              "both",
+              "d-md",
+              "and",
+              "u"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a7d73aca059e026b4015a5fd",
+            "claim_id": "2026-09-17-D-01",
+            "statement_id": "sha256:d0d34d9ad9782dab1c17c862828b4c6b5ccc3fddfbce32317eb5211752f86000",
+            "publication_id": "sha256:d0d34d9ad9782dab1c17c862828b4c6b5ccc3fddfbce32317eb5211752f86000",
+            "office_id": "V000128",
+            "family_id": "dfam:3e53157312175c1466946966",
+            "family_revision": "dfrev:cf69a9b3304b11dd407211e3",
+            "support_unit_id": "V000128",
+            "party": "D",
+            "start_char": 21,
+            "end_char": 48,
+            "surface_text": "Chris Van Hollen and Angela",
+            "normalized_phrase": "chris van hollen and angela",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 11,
+            "sentence_end_char": 65,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 37,
+            "clause_start_char": 6,
+            "clause_end_char": 148,
+            "clause_offset_start": 15,
+            "clause_offset_end": 42,
+            "adjacent_tokens_before": [
+              "today",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "alsobrooks",
+              "and",
+              "u",
+              "s",
+              "representative"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:12b04edd9f2e63e3795655a2",
+            "claim_id": "2026-09-17-D-01",
+            "statement_id": "sha256:fcbc8a71eccac1ef891ca4c6a045f81e4d754b1314d59970e831639d626e27c1",
+            "publication_id": "sha256:fcbc8a71eccac1ef891ca4c6a045f81e4d754b1314d59970e831639d626e27c1",
+            "office_id": "M001232",
+            "family_id": "njoint:6eed6b7d52cebaad69701653",
+            "family_revision": "dfrev:7f739c0fd6879e835e5c4fc7",
+            "support_unit_id": "njoint:6eed6b7d52cebaad69701653",
+            "party": "D",
+            "start_char": 79,
+            "end_char": 106,
+            "surface_text": "Chris Van Hollen and Angela",
+            "normalized_phrase": "chris van hollen and angela",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 69,
+            "sentence_end_char": 123,
+            "sentence_offset_start": 10,
+            "sentence_offset_end": 37,
+            "clause_start_char": 65,
+            "clause_end_char": 154,
+            "clause_offset_start": 14,
+            "clause_offset_end": 41,
+            "adjacent_tokens_before": [
+              "congressional",
+              "delegation",
+              "u",
+              "s",
+              "senators"
+            ],
+            "adjacent_tokens_after": [
+              "alsobrooks",
+              "and",
+              "u",
+              "s",
+              "representatives"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 6,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "E000301",
+          "H000874",
+          "M001232",
+          "V000128"
+        ],
+        "publication_ids": [
+          "sha256:262c1a6ded5aed1917c5bf15e0a9616e4292b76adcbbe620fd35a98ec820a091",
+          "sha256:699c901c41b2cec636dc0ee684bdd58c8ed13061a534381f587b3f6eb472318f",
+          "sha256:a702c7349902c86e469629b175c38ff807390a483d8bca0e1d8ea90419aaaf44",
+          "sha256:b24d759b060758b0b76781076b4bad9ff2bac18e61cd01b50b009ca2ecac8d45",
+          "sha256:d0d34d9ad9782dab1c17c862828b4c6b5ccc3fddfbce32317eb5211752f86000",
+          "sha256:fcbc8a71eccac1ef891ca4c6a045f81e4d754b1314d59970e831639d626e27c1"
+        ],
+        "family_ids": [
+          "dfam:3e53157312175c1466946966",
+          "njoint:6eed6b7d52cebaad69701653",
+          "njoint:93382865975a50034aad4ce2"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:3e53157312175c1466946966",
+            "family_revision": "dfrev:cf69a9b3304b11dd407211e3"
+          },
+          {
+            "family_id": "njoint:6eed6b7d52cebaad69701653",
+            "family_revision": "dfrev:7f739c0fd6879e835e5c4fc7"
+          },
+          {
+            "family_id": "njoint:93382865975a50034aad4ce2",
+            "family_revision": "dfrev:005d18b899cd87105297a8be"
+          }
+        ],
+        "support_unit_ids": [
+          "V000128",
+          "njoint:6eed6b7d52cebaad69701653",
+          "njoint:93382865975a50034aad4ce2"
+        ],
+        "citation_occurrence_ids": [
+          "occ:ed282230dbc7647777dff5d6",
+          "occ:217d672f10b06847d2471aa9",
+          "occ:a7d73aca059e026b4015a5fd"
+        ],
+        "citations": [
+          {
+            "member": "Steny H. Hoyer",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-09-17",
+            "url": "https://hoyer.house.gov/media/press-releases/bicameral-lawmakers-demand-answers-usda-cyclospora-research-terminations",
+            "quote": "senators chris van hollen and angela alsobrooks",
+            "occurrence_id": "occ:ed282230dbc7647777dff5d6",
+            "office_id": "H000874",
+            "publication_id": "sha256:262c1a6ded5aed1917c5bf15e0a9616e4292b76adcbbe620fd35a98ec820a091",
+            "family_id": "njoint:93382865975a50034aad4ce2",
+            "family_revision": "dfrev:005d18b899cd87105297a8be"
+          },
+          {
+            "member": "Chris Van Hollen",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-09-17",
+            "url": "https://www.vanhollen.senate.gov/news/press-releases/maryland-delegation-members-statement-on-trump-administration-decision-rolling-back-federal-coordination-of-chesapeake-bay-restoration",
+            "quote": "senators chris van hollen and angela alsobrooks",
+            "occurrence_id": "occ:217d672f10b06847d2471aa9",
+            "office_id": "V000128",
+            "publication_id": "sha256:699c901c41b2cec636dc0ee684bdd58c8ed13061a534381f587b3f6eb472318f",
+            "family_id": "njoint:6eed6b7d52cebaad69701653",
+            "family_revision": "dfrev:7f739c0fd6879e835e5c4fc7"
+          },
+          {
+            "member": "Chris Van Hollen",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-09-17",
+            "url": "https://www.vanhollen.senate.gov/news/press-releases/maryland-delegation-members-call-for-answers-investigation-following-alarming-ice-operation-in-frederick",
+            "quote": "senators chris van hollen and angela alsobrooks",
+            "occurrence_id": "occ:a7d73aca059e026b4015a5fd",
+            "office_id": "V000128",
+            "publication_id": "sha256:d0d34d9ad9782dab1c17c862828b4c6b5ccc3fddfbce32317eb5211752f86000",
+            "family_id": "dfam:3e53157312175c1466946966",
+            "family_revision": "dfrev:cf69a9b3304b11dd407211e3"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-17-D-03",
+        "party": "D",
+        "day": "2026-09-17",
+        "label": "took to the senate floor",
+        "member_count": 3,
+        "statements": [
+          "sha256:018934391396afdc69ee1d564e8e6d0c7a2b0a0a193c0d07a7e54615871857cb",
+          "sha256:64b9664c422de97913d4693d9aeb041ff58ff6fcd2616cff9336d52be078bd7f",
+          "sha256:ff62404441fb894b8eb7cf944e86e31d55e8c61032b30acb8c57272cf605d16f"
+        ],
+        "fragments": [
+          {
+            "text": "took to the senate floor to call on president",
+            "statement": "sha256:64b9664c422de97913d4693d9aeb041ff58ff6fcd2616cff9336d52be078bd7f"
+          },
+          {
+            "text": "took to the senate floor to object to senate",
+            "statement": "sha256:018934391396afdc69ee1d564e8e6d0c7a2b0a0a193c0d07a7e54615871857cb"
+          },
+          {
+            "text": "murphy took to the senate floor after breaking investigative",
+            "statement": "sha256:ff62404441fb894b8eb7cf944e86e31d55e8c61032b30acb8c57272cf605d16f"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-17-D-03",
+        "support_phrase": {
+          "normalized": "took to the senate floor",
+          "text": "took to the Senate floor",
+          "occurrence_id": "occ:2b497b5330cc37c479e4c160"
+        },
+        "display_quote": "took to the Senate floor",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2b497b5330cc37c479e4c160",
+            "claim_id": "2026-09-17-D-03",
+            "statement_id": "sha256:018934391396afdc69ee1d564e8e6d0c7a2b0a0a193c0d07a7e54615871857cb",
+            "publication_id": "sha256:018934391396afdc69ee1d564e8e6d0c7a2b0a0a193c0d07a7e54615871857cb",
+            "office_id": "H001046",
+            "family_id": "dfam:40ffe0f5a89cee43ca05f62a",
+            "family_revision": "dfrev:d9f81d9e355a0278fcd3ee5b",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 133,
+            "end_char": 157,
+            "surface_text": "took to the Senate floor",
+            "normalized_phrase": "took to the senate floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 85,
+            "sentence_end_char": 243,
+            "sentence_offset_start": 48,
+            "sentence_offset_end": 72,
+            "clause_start_char": 132,
+            "clause_end_char": 217,
+            "clause_offset_start": 1,
+            "clause_offset_end": 25,
+            "adjacent_tokens_before": [
+              "energy",
+              "and",
+              "natural",
+              "resources",
+              "committee"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "object",
+              "to",
+              "senate",
+              "passage"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0cc47ed3d0f4a3430ff7f10f",
+            "claim_id": "2026-09-17-D-03",
+            "statement_id": "sha256:64b9664c422de97913d4693d9aeb041ff58ff6fcd2616cff9336d52be078bd7f",
+            "publication_id": "sha256:64b9664c422de97913d4693d9aeb041ff58ff6fcd2616cff9336d52be078bd7f",
+            "office_id": "B001288",
+            "family_id": "dfam:6b86e953f441278d4cf3ed28",
+            "family_revision": "dfrev:588dbc2663e68e9d4e255d8f",
+            "support_unit_id": "B001288",
+            "party": "D",
+            "start_char": 58,
+            "end_char": 82,
+            "surface_text": "took to the Senate floor",
+            "normalized_phrase": "took to the senate floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 30,
+            "sentence_end_char": 313,
+            "sentence_offset_start": 28,
+            "sentence_offset_end": 52,
+            "clause_start_char": 25,
+            "clause_end_char": 147,
+            "clause_offset_start": 33,
+            "clause_offset_end": 57,
+            "adjacent_tokens_before": [
+              "s",
+              "senator",
+              "cory",
+              "booker",
+              "d-nj"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "call",
+              "on",
+              "president",
+              "trump"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c913a095d1f1f031627ba72a",
+            "claim_id": "2026-09-17-D-03",
+            "statement_id": "sha256:ff62404441fb894b8eb7cf944e86e31d55e8c61032b30acb8c57272cf605d16f",
+            "publication_id": "sha256:ff62404441fb894b8eb7cf944e86e31d55e8c61032b30acb8c57272cf605d16f",
+            "office_id": "M001169",
+            "family_id": "dfam:bb448fde382ef9c84fe17c91",
+            "family_revision": "dfrev:52f935ab0320db6abeb73e2e",
+            "support_unit_id": "M001169",
+            "party": "D",
+            "start_char": 474,
+            "end_char": 498,
+            "surface_text": "took to the Senate floor",
+            "normalized_phrase": "took to the senate floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 447,
+            "sentence_end_char": 656,
+            "sentence_offset_start": 27,
+            "sentence_offset_end": 51,
+            "clause_start_char": 466,
+            "clause_end_char": 754,
+            "clause_offset_start": 8,
+            "clause_offset_end": 32,
+            "adjacent_tokens_before": [
+              "deals",
+              "earlier",
+              "this",
+              "week",
+              "murphy"
+            ],
+            "adjacent_tokens_after": [
+              "after",
+              "breaking",
+              "investigative",
+              "reporting",
+              "found"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "B001288",
+          "H001046",
+          "M001169"
+        ],
+        "publication_ids": [
+          "sha256:018934391396afdc69ee1d564e8e6d0c7a2b0a0a193c0d07a7e54615871857cb",
+          "sha256:64b9664c422de97913d4693d9aeb041ff58ff6fcd2616cff9336d52be078bd7f",
+          "sha256:ff62404441fb894b8eb7cf944e86e31d55e8c61032b30acb8c57272cf605d16f"
+        ],
+        "family_ids": [
+          "dfam:40ffe0f5a89cee43ca05f62a",
+          "dfam:6b86e953f441278d4cf3ed28",
+          "dfam:bb448fde382ef9c84fe17c91"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:40ffe0f5a89cee43ca05f62a",
+            "family_revision": "dfrev:d9f81d9e355a0278fcd3ee5b"
+          },
+          {
+            "family_id": "dfam:6b86e953f441278d4cf3ed28",
+            "family_revision": "dfrev:588dbc2663e68e9d4e255d8f"
+          },
+          {
+            "family_id": "dfam:bb448fde382ef9c84fe17c91",
+            "family_revision": "dfrev:52f935ab0320db6abeb73e2e"
+          }
+        ],
+        "support_unit_ids": [
+          "B001288",
+          "H001046",
+          "M001169"
+        ],
+        "citation_occurrence_ids": [
+          "occ:2b497b5330cc37c479e4c160",
+          "occ:0cc47ed3d0f4a3430ff7f10f",
+          "occ:c913a095d1f1f031627ba72a"
+        ],
+        "citations": [
+          {
+            "member": "Martin Heinrich",
+            "party": "D",
+            "state": "NM",
+            "date": "2026-09-17",
+            "url": "https://www.heinrich.senate.gov/newsroom/press-releases/heinrich-offers-his-grid-savings-act-to-force-ai-data-centers-to-pay-for-grid-upgrades-highlights-how-husted-backed-bill-falls-short",
+            "quote": "took to the senate floor to object to senate",
+            "occurrence_id": "occ:2b497b5330cc37c479e4c160",
+            "office_id": "H001046",
+            "publication_id": "sha256:018934391396afdc69ee1d564e8e6d0c7a2b0a0a193c0d07a7e54615871857cb",
+            "family_id": "dfam:40ffe0f5a89cee43ca05f62a",
+            "family_revision": "dfrev:d9f81d9e355a0278fcd3ee5b"
+          },
+          {
+            "member": "Cory A. Booker",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-09-17",
+            "url": "https://www.booker.senate.gov/news/press/booker-calls-on-trump-to-convene-congress-for-special-session-on-ai",
+            "quote": "took to the senate floor to call on president",
+            "occurrence_id": "occ:0cc47ed3d0f4a3430ff7f10f",
+            "office_id": "B001288",
+            "publication_id": "sha256:64b9664c422de97913d4693d9aeb041ff58ff6fcd2616cff9336d52be078bd7f",
+            "family_id": "dfam:6b86e953f441278d4cf3ed28",
+            "family_revision": "dfrev:588dbc2663e68e9d4e255d8f"
+          },
+          {
+            "member": "Christopher Murphy",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-09-17",
+            "url": "https://www.murphy.senate.gov/newsroom/press-releases/murphy-to-trump-nominees-no-you-cannot-promote-the-presidents-businesses-as-ambassador",
+            "quote": "murphy took to the senate floor after breaking investigative",
+            "occurrence_id": "occ:c913a095d1f1f031627ba72a",
+            "office_id": "M001169",
+            "publication_id": "sha256:ff62404441fb894b8eb7cf944e86e31d55e8c61032b30acb8c57272cf605d16f",
+            "family_id": "dfam:bb448fde382ef9c84fe17c91",
+            "family_revision": "dfrev:52f935ab0320db6abeb73e2e"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-09-17-R-00",
+        "party": "R",
+        "day": "2026-09-17",
+        "label": "house of representatives passed",
+        "member_count": 5,
+        "statements": [
+          "sha256:1438e7685d09f1b714b68192978612ae4955560b68a625e8ae1a0c58eb35ae14",
+          "sha256:2990fe38d340c26ccfb6e7acb8176a76bb6e41e9e3b18449f7e1644ea382a740",
+          "sha256:7399782b3a138e49ff6fdf99298b432d5ba1bdf6b763e815c77f89a8053b9e0a",
+          "sha256:aa24e514663c40e94310bc05557cd0dd756b6069d5c931495247fd00709e16a9",
+          "sha256:adeb45160aa49c8660e2e5118cf39884acafa392f46fb210f242a96cc223b252"
+        ],
+        "fragments": [
+          {
+            "text": "house of representatives passed s",
+            "statement": "sha256:2990fe38d340c26ccfb6e7acb8176a76bb6e41e9e3b18449f7e1644ea382a740"
+          },
+          {
+            "text": "house of representatives passed the bipartisan water",
+            "statement": "sha256:7399782b3a138e49ff6fdf99298b432d5ba1bdf6b763e815c77f89a8053b9e0a"
+          },
+          {
+            "text": "access to additional funding to protect seniors from",
+            "statement": "sha256:aa24e514663c40e94310bc05557cd0dd756b6069d5c931495247fd00709e16a9"
+          },
+          {
+            "text": "after the house of representatives passed legislation to protect",
+            "statement": "sha256:1438e7685d09f1b714b68192978612ae4955560b68a625e8ae1a0c58eb35ae14"
+          },
+          {
+            "text": "house of representatives passed his bipartisan legislation",
+            "statement": "sha256:adeb45160aa49c8660e2e5118cf39884acafa392f46fb210f242a96cc223b252"
+          }
+        ],
+        "topics": [
+          "other",
+          "social_security_medicare"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-17-R-00",
+        "support_phrase": {
+          "normalized": "house of representatives passed",
+          "text": "House of Representatives passed",
+          "occurrence_id": "occ:69b384fc46f88129f2677a24"
+        },
+        "display_quote": "House of Representatives passed",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:69b384fc46f88129f2677a24",
+            "claim_id": "2026-09-17-R-00",
+            "statement_id": "sha256:1438e7685d09f1b714b68192978612ae4955560b68a625e8ae1a0c58eb35ae14",
+            "publication_id": "sha256:1438e7685d09f1b714b68192978612ae4955560b68a625e8ae1a0c58eb35ae14",
+            "office_id": "L000566",
+            "family_id": "dfam:b3057f9134243ac4e1949ed9",
+            "family_revision": "dfrev:60fdfd87925058715c69e704",
+            "support_unit_id": "L000566",
+            "party": "R",
+            "start_char": 133,
+            "end_char": 164,
+            "surface_text": "House of Representatives passed",
+            "normalized_phrase": "house of representatives passed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 484,
+            "sentence_offset_start": 133,
+            "sentence_offset_end": 164,
+            "clause_start_char": 89,
+            "clause_end_char": 235,
+            "clause_offset_start": 44,
+            "clause_offset_end": 75,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "after",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "legislation",
+              "to",
+              "protect",
+              "americans",
+              "from"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:24725b5af68fe3669eae62b9",
+            "claim_id": "2026-09-17-R-00",
+            "statement_id": "sha256:2990fe38d340c26ccfb6e7acb8176a76bb6e41e9e3b18449f7e1644ea382a740",
+            "publication_id": "sha256:2990fe38d340c26ccfb6e7acb8176a76bb6e41e9e3b18449f7e1644ea382a740",
+            "office_id": "A000372",
+            "family_id": "dfam:1627e4927d6af14d37e5e848",
+            "family_revision": "dfrev:a4307c68db00fab8ebb1cfbe",
+            "support_unit_id": "A000372",
+            "party": "R",
+            "start_char": 20,
+            "end_char": 51,
+            "surface_text": "House of Representatives passed",
+            "normalized_phrase": "house of representatives passed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 19,
+            "sentence_end_char": 53,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 32,
+            "clause_start_char": 10,
+            "clause_end_char": 59,
+            "clause_offset_start": 10,
+            "clause_offset_end": 41,
+            "adjacent_tokens_before": [
+              "yesterday",
+              "the",
+              "u",
+              "s"
+            ],
+            "adjacent_tokens_after": [
+              "s",
+              "2403",
+              "the",
+              "retire",
+              "through"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:92062528d07bd0172b58fc41",
+            "claim_id": "2026-09-17-R-00",
+            "statement_id": "sha256:7399782b3a138e49ff6fdf99298b432d5ba1bdf6b763e815c77f89a8053b9e0a",
+            "publication_id": "sha256:7399782b3a138e49ff6fdf99298b432d5ba1bdf6b763e815c77f89a8053b9e0a",
+            "office_id": "B001257",
+            "family_id": "dfam:7cc009d9129f8abe8394e2e1",
+            "family_revision": "dfrev:da21a64227547aa5dff7b1de",
+            "support_unit_id": "B001257",
+            "party": "R",
+            "start_char": 69,
+            "end_char": 100,
+            "surface_text": "House of Representatives passed",
+            "normalized_phrase": "house of representatives passed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 68,
+            "sentence_end_char": 405,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 32,
+            "clause_start_char": 11,
+            "clause_end_char": 162,
+            "clause_offset_start": 58,
+            "clause_offset_end": 89,
+            "adjacent_tokens_before": [
+              "announced",
+              "that",
+              "the",
+              "u",
+              "s"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "bipartisan",
+              "water",
+              "resources",
+              "development"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e555a0722d98cc794ec66dfa",
+            "claim_id": "2026-09-17-R-00",
+            "statement_id": "sha256:aa24e514663c40e94310bc05557cd0dd756b6069d5c931495247fd00709e16a9",
+            "publication_id": "sha256:aa24e514663c40e94310bc05557cd0dd756b6069d5c931495247fd00709e16a9",
+            "office_id": "G000558",
+            "family_id": "dfam:d7024de4201c61718b382907",
+            "family_revision": "dfrev:52df30f71ee67ddb0815b26a",
+            "support_unit_id": "G000558",
+            "party": "R",
+            "start_char": 34,
+            "end_char": 65,
+            "surface_text": "House of Representatives passed",
+            "normalized_phrase": "house of representatives passed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 67,
+            "sentence_offset_start": 18,
+            "sentence_offset_end": 49,
+            "clause_start_char": 29,
+            "clause_end_char": 75,
+            "clause_offset_start": 5,
+            "clause_offset_end": 36,
+            "adjacent_tokens_before": [
+              "d",
+              "c",
+              "this",
+              "week",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "h",
+              "r",
+              "2978",
+              "the",
+              "guarding"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:69f62ae859ca8d01cb2449fd",
+            "claim_id": "2026-09-17-R-00",
+            "statement_id": "sha256:adeb45160aa49c8660e2e5118cf39884acafa392f46fb210f242a96cc223b252",
+            "publication_id": "sha256:adeb45160aa49c8660e2e5118cf39884acafa392f46fb210f242a96cc223b252",
+            "office_id": "M001198",
+            "family_id": "dfam:497cecdfcb17aa675dc31e8b",
+            "family_revision": "dfrev:f2e655680bbffa3ef03bab32",
+            "support_unit_id": "M001198",
+            "party": "R",
+            "start_char": 107,
+            "end_char": 138,
+            "surface_text": "House of Representatives passed",
+            "normalized_phrase": "house of representatives passed",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 106,
+            "sentence_end_char": 209,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 32,
+            "clause_start_char": 58,
+            "clause_end_char": 281,
+            "clause_offset_start": 49,
+            "clause_offset_end": 80,
+            "adjacent_tokens_before": [
+              "statement",
+              "after",
+              "the",
+              "u",
+              "s"
+            ],
+            "adjacent_tokens_after": [
+              "his",
+              "bipartisan",
+              "legislation",
+              "strengthening",
+              "employee"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 5,
+          "publications": 5,
+          "families": 5,
+          "support_units": 5
+        },
+        "office_ids": [
+          "A000372",
+          "B001257",
+          "G000558",
+          "L000566",
+          "M001198"
+        ],
+        "publication_ids": [
+          "sha256:1438e7685d09f1b714b68192978612ae4955560b68a625e8ae1a0c58eb35ae14",
+          "sha256:2990fe38d340c26ccfb6e7acb8176a76bb6e41e9e3b18449f7e1644ea382a740",
+          "sha256:7399782b3a138e49ff6fdf99298b432d5ba1bdf6b763e815c77f89a8053b9e0a",
+          "sha256:aa24e514663c40e94310bc05557cd0dd756b6069d5c931495247fd00709e16a9",
+          "sha256:adeb45160aa49c8660e2e5118cf39884acafa392f46fb210f242a96cc223b252"
+        ],
+        "family_ids": [
+          "dfam:1627e4927d6af14d37e5e848",
+          "dfam:497cecdfcb17aa675dc31e8b",
+          "dfam:7cc009d9129f8abe8394e2e1",
+          "dfam:b3057f9134243ac4e1949ed9",
+          "dfam:d7024de4201c61718b382907"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:1627e4927d6af14d37e5e848",
+            "family_revision": "dfrev:a4307c68db00fab8ebb1cfbe"
+          },
+          {
+            "family_id": "dfam:497cecdfcb17aa675dc31e8b",
+            "family_revision": "dfrev:f2e655680bbffa3ef03bab32"
+          },
+          {
+            "family_id": "dfam:7cc009d9129f8abe8394e2e1",
+            "family_revision": "dfrev:da21a64227547aa5dff7b1de"
+          },
+          {
+            "family_id": "dfam:b3057f9134243ac4e1949ed9",
+            "family_revision": "dfrev:60fdfd87925058715c69e704"
+          },
+          {
+            "family_id": "dfam:d7024de4201c61718b382907",
+            "family_revision": "dfrev:52df30f71ee67ddb0815b26a"
+          }
+        ],
+        "support_unit_ids": [
+          "A000372",
+          "B001257",
+          "G000558",
+          "L000566",
+          "M001198"
+        ],
+        "citation_occurrence_ids": [
+          "occ:69b384fc46f88129f2677a24",
+          "occ:24725b5af68fe3669eae62b9",
+          "occ:92062528d07bd0172b58fc41"
+        ],
+        "citations": [
+          {
+            "member": "Robert E. Latta",
+            "party": "R",
+            "state": "OH",
+            "date": "2026-09-17",
+            "url": "https://latta.house.gov/news/documentsingle.aspx?DocumentID=406849",
+            "quote": "after the house of representatives passed legislation to protect",
+            "occurrence_id": "occ:69b384fc46f88129f2677a24",
+            "office_id": "L000566",
+            "publication_id": "sha256:1438e7685d09f1b714b68192978612ae4955560b68a625e8ae1a0c58eb35ae14",
+            "family_id": "dfam:b3057f9134243ac4e1949ed9",
+            "family_revision": "dfrev:60fdfd87925058715c69e704"
+          },
+          {
+            "member": "Rick W. Allen",
+            "party": "R",
+            "state": "GA",
+            "date": "2026-09-17",
+            "url": "https://allen.house.gov/news/documentsingle.aspx?DocumentID=7387",
+            "quote": "house of representatives passed s",
+            "occurrence_id": "occ:24725b5af68fe3669eae62b9",
+            "office_id": "A000372",
+            "publication_id": "sha256:2990fe38d340c26ccfb6e7acb8176a76bb6e41e9e3b18449f7e1644ea382a740",
+            "family_id": "dfam:1627e4927d6af14d37e5e848",
+            "family_revision": "dfrev:a4307c68db00fab8ebb1cfbe"
+          },
+          {
+            "member": "Gus M. Bilirakis",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-09-17",
+            "url": "https://bilirakis.house.gov/media/press-releases/bilirakis-secures-major-tampa-bay-and-nature-coast-water-infrastructure",
+            "quote": "house of representatives passed the bipartisan water",
+            "occurrence_id": "occ:92062528d07bd0172b58fc41",
+            "office_id": "B001257",
+            "publication_id": "sha256:7399782b3a138e49ff6fdf99298b432d5ba1bdf6b763e815c77f89a8053b9e0a",
+            "family_id": "dfam:7cc009d9129f8abe8394e2e1",
+            "family_revision": "dfrev:da21a64227547aa5dff7b1de"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "social_security_medicare",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-17",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 10,
+          "numerator_unit": "offices",
+          "denominator": 91,
+          "denominator_unit": "offices",
+          "share": 0.10989,
+          "window": "party-day 2026-09-17",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 12,
+          "numerator_unit": "publications",
+          "denominator": 127,
+          "denominator_unit": "publications",
+          "share": 0.094488,
+          "window": "party-day 2026-09-17",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 9,
+          "numerator_unit": "document families",
+          "denominator": 114,
+          "denominator_unit": "document families",
+          "share": 0.078947,
+          "window": "party-day 2026-09-17",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-17",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 5,
+          "numerator_unit": "offices",
+          "denominator": 71,
+          "denominator_unit": "offices",
+          "share": 0.070423,
+          "window": "party-day 2026-09-17",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 5,
+          "numerator_unit": "publications",
+          "denominator": 88,
+          "denominator_unit": "publications",
+          "share": 0.056818,
+          "window": "party-day 2026-09-17",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 5,
+          "numerator_unit": "document families",
+          "denominator": 88,
+          "denominator_unit": "document families",
+          "share": 0.056818,
+          "window": "party-day 2026-09-17",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "water resources development act",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "member of the house",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": [
+      {
+        "label": "house ways and means committee",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "centers are the ones paying",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "this bipartisan bill",
+        "slug": "83690fcbebee565c",
+        "n": 3,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          2,
+          4,
+          4,
+          2,
+          1,
+          2,
+          1,
+          2,
+          12,
+          9
+        ]
+      },
+      {
+        "ngram": "and small businesses",
+        "slug": "6d1c17b0422a77da",
+        "n": 3,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 3.82,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "W000779",
+          "statement": "sha256:a856a52c3c400fccea0dc24919a58b18ab99d3fe707b4fbc9df678a48cfa1b3d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          3,
+          1,
+          3,
+          1,
+          1,
+          3,
+          1,
+          2,
+          1,
+          2,
+          3,
+          8,
+          9
+        ]
+      },
+      {
+        "ngram": "water resources development act",
+        "slug": "26a53c5620251115",
+        "n": 4,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 4.48,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "A000372",
+          "statement": "sha256:3d9a08a71028fc91c392e014b1a40fc3208631fb0fbdab36e4c573b06bfe94f5",
+          "tie": [
+            "C001110"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          11,
+          8
+        ]
+      },
+      {
+        "ngram": "war in iran",
+        "slug": "4abd5ede26e39eb9",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2026-02-24",
+          "bioguide": "R000620",
+          "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.987,
+        "series": [
+          5,
+          3,
+          4,
+          1,
+          2,
+          3,
+          1,
+          4,
+          2,
+          1,
+          2,
+          6,
+          10,
+          8
+        ]
+      },
+      {
+        "ngram": "text of the bill",
+        "slug": "8bd7df08e3dcea59",
+        "n": 4,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 10,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 10,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-05",
+          "bioguide": "C001069",
+          "statement": "sha256:d3b13fbafade11b18cd684ddba8d10d51e5f3cbc75e801e4b487649638daad92",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.971,
+        "series": [
+          2,
+          1,
+          4,
+          1,
+          2,
+          5,
+          1,
+          1,
+          3,
+          1,
+          2,
+          2,
+          9,
+          8
+        ]
+      },
+      {
+        "ngram": "this bipartisan legislation",
+        "slug": "95c3c736eba4c20f",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 3.2,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [
+            "H001076",
+            "M001196"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          5,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          2,
+          6,
+          8,
+          8
+        ]
+      },
+      {
+        "ngram": "the water resources",
+        "slug": "514b77e14046245d",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 2.04,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001110",
+          "statement": "sha256:0a2cb38ba899e29fc7446112a1a9a9af89ce94a4ddf9ac9f3c3400a60eccf629",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          8,
+          3,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          12,
+          7
+        ]
+      },
+      {
+        "ngram": "generations to come",
+        "slug": "e5b2d728d6e0ccb4",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 2.72,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000375",
+          "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+          "tie": [
+            "B001285",
+            "M000194",
+            "M001204"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.975,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          6,
+          2,
+          5,
+          2,
+          1,
+          1,
+          2,
+          2,
+          7,
+          7
+        ]
+      },
+      {
+        "ngram": "important step toward",
+        "slug": "3060ca3cd5d89ce4",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "E000246",
+          "statement": "sha256:c22319edde8a08cfff810bc47eeac6ffb5d5846848e991bb00e4d4e01363f6d5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          4,
+          1,
+          1,
+          1,
+          2,
+          6,
+          7,
+          6
+        ]
+      },
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 2.9,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.975,
+        "series": [
+          1,
+          1,
+          3,
+          1,
+          2,
+          4,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          6,
+          6
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "of representatives passed",
+        "slug": "6f7edb84f6f606df",
+        "n": 3,
+        "day_peak": 8,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 4.87,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "A000372",
+          "statement": "sha256:e566d61dfe329f83240171b70bc659be236705b9cf0e2cf2c127cf157d6e9c20",
+          "tie": [
+            "C001132",
+            "F000446",
+            "M000194",
+            "M001211",
+            "M001235",
+            "W000806"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          6,
+          8
+        ]
+      },
+      {
+        "ngram": "introduced the bipartisan",
+        "slug": "f9c08c8e26755308",
+        "n": 3,
+        "day_peak": 8,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 3.03,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.953,
+        "series": [
+          1,
+          2,
+          3,
+          3,
+          1,
+          6,
+          4,
+          3,
+          4,
+          1,
+          2,
+          3,
+          3,
+          8
+        ]
+      },
+      {
+        "ngram": "and small businesses",
+        "slug": "6d1c17b0422a77da",
+        "n": 3,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 3.82,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "W000779",
+          "statement": "sha256:a856a52c3c400fccea0dc24919a58b18ab99d3fe707b4fbc9df678a48cfa1b3d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          3,
+          1,
+          3,
+          1,
+          1,
+          3,
+          1,
+          2,
+          1,
+          2,
+          3,
+          8,
+          9
+        ]
+      },
+      {
+        "ngram": "water resources development act",
+        "slug": "26a53c5620251115",
+        "n": 4,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 4.48,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "A000372",
+          "statement": "sha256:3d9a08a71028fc91c392e014b1a40fc3208631fb0fbdab36e4c573b06bfe94f5",
+          "tie": [
+            "C001110"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          11,
+          8
+        ]
+      },
+      {
+        "ngram": "footing the bill",
+        "slug": "2c2375b022bf0f22",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 5.25,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "V000128",
+          "statement": "sha256:f514182bcdfbef7d63af7444b33a1e5261aaf4ec9b8eacd44cb6f6ee99a53cb1",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "house passage of",
+        "slug": "281e8909d5f42dc6",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.95,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "A000375",
+          "statement": "sha256:fac1528fba48222457c08c047eebdd898ab112ac4d74541a648f18f912a84d13",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          4,
+          13,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          9,
+          6
+        ]
+      },
+      {
+        "ngram": "water resources development act wrda",
+        "slug": "db0799e0e0e75db1",
+        "n": 5,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.69,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "L000590",
+          "statement": "sha256:ff2184c21aea464eb6368892a68091742d72f20052e2a5bf88599fed26a10392",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          8,
+          5
+        ]
+      },
+      {
+        "ngram": "families and small businesses",
+        "slug": "82d95344e57722b2",
+        "n": 4,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+          "tie": [
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          7,
+          5
+        ]
+      },
+      {
+        "ngram": "a data center",
+        "slug": "78c796ebaf23593e",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.12,
+        "first_seen": {
+          "date": "2025-02-14",
+          "bioguide": "Y000064",
+          "statement": "sha256:0a4f0f4bdf03b643d13a8367e0c14fb6d8194f9741a8cb0a2ea7977c765b3a84",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "act wrda of",
+        "slug": "63e16357b4aa285f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.5,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "A000372",
+          "statement": "sha256:3d9a08a71028fc91c392e014b1a40fc3208631fb0fbdab36e4c573b06bfe94f5",
+          "tie": [
+            "W000795"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          5,
+          6,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "and small businesses",
+      "slug": "6d1c17b0422a77da",
+      "n": 3,
+      "both": 7,
+      "day_peak": 7,
+      "counts": {
+        "D": 9,
+        "R": 7,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "W000779",
+        "statement": "sha256:a856a52c3c400fccea0dc24919a58b18ab99d3fe707b4fbc9df678a48cfa1b3d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "velocity": 3.82,
+      "sides": {
+        "D": [
+          {
+            "member": "Tammy Baldwin",
+            "party": "D",
+            "state": "WI",
+            "date": "2026-09-17",
+            "url": "https://www.baldwin.senate.gov/news/press-releases/baldwin-scott-lead-bipartisan-call-for-investigation-into-amazon-and-walmart-for-hiding-made-in-america-goods",
+            "quote": "We all share the goal of strengthening American manufacturing and small businesses through initiatives such as Made in USA labeling, all while ensuring consumers receive accurate information about where the products they buy are made."
+          },
+          {
+            "member": "Emanuel Cleaver",
+            "party": "D",
+            "state": "MO",
+            "date": "2026-09-17",
+            "url": "https://cleaver.house.gov/media-center/press-releases/congressman-cleaver-votes-legislation-protect-missourians-paying",
+            "quote": "Without proper safeguards, families and small businesses in communities where data center development occurs could see higher electricity bills at the end of every month."
+          },
+          {
+            "member": "Angie Craig",
+            "party": "D",
+            "state": "MN",
+            "date": "2026-09-17",
+            "url": "https://craig.house.gov/media/press-releases/reps-craig-omar-introduce-legislation-reimburse-minnesota-and-other-states",
+            "quote": "This funding would be available to states targeted by President Trump’s reckless and lawless immigration enforcement operations – including Minnesota, California, Illinois, Louisiana, Maine, North Carolina and Oregon – and would be distributed to impacted nonprofits and small businesses."
+          }
+        ],
+        "R": [
+          {
+            "member": "Juan Ciscomani",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-09-17",
+            "url": "https://ciscomani.house.gov/media/press-releases/ciscomani-votes-keep-data-center-costs-arizonans-utility-bills",
+            "quote": "Across Arizona’s Sixth District, families and small businesses are already feeling the pressure of rising electricity costs."
+          },
+          {
+            "member": "Mike Flood",
+            "party": "R",
+            "state": "NE",
+            "date": "2026-09-17",
+            "url": "https://flood.house.gov/media/press-releases/congressman-flood-celebrates-house-passage-ratepayer-protection-act",
+            "quote": "This legislation will protect our energy grid and address the growing costs data centers can place on hardworking families and small businesses."
+          },
+          {
+            "member": "Jon Husted",
+            "party": "R",
+            "state": "OH",
+            "date": "2026-09-17",
+            "url": "https://www.husted.senate.gov/media/press-releases/husted-bill-to-protect-americans-from-footing-the-bill-for-new-data-centers-blocked-from-passage/",
+            "quote": "We can protect families and small businesses from unfair costs."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "this bipartisan bill",
+      "slug": "83690fcbebee565c",
+      "n": 3,
+      "both": 5,
+      "day_peak": 5,
+      "counts": {
+        "D": 9,
+        "R": 5,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "velocity": 3.5,
+      "sides": {
+        "D": [
+          {
+            "member": "Michael F. Bennet",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-09-17",
+            "url": "https://www.bennet.senate.gov/2026/09/17/bennet-van-hollen-tillis-reintroduce-bipartisan-bill-to-boost-innovation-in-education/",
+            "quote": "This bipartisan bill will help schools, educators, and policymakers make data driven decisions that strengthen education today and in the years ahead."
+          },
+          {
+            "member": "J. Luis Correa",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-17",
+            "url": "https://correa.house.gov/news/press-releases/correa-joyce-providing-emotional-assistance-with-relief-and-love-act-passes-house",
+            "quote": "This bipartisan bill will allow more frontline officers to receive support canines to help them cope with the many stresses they face while protecting our homeland."
+          },
+          {
+            "member": "Steny H. Hoyer",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-09-17",
+            "url": "https://hoyer.house.gov/media/press-releases/hoyer-sessions-introduce-american-procurement-improvement-act",
+            "quote": "This bipartisan bill is endorsed by a coalition of 50 organizations, unions, disability stakeholders, and advocacy groups."
+          }
+        ],
+        "R": [
+          {
+            "member": "David P. Joyce",
+            "party": "R",
+            "state": "OH",
+            "date": "2026-09-17",
+            "url": "https://joyce.house.gov/posts/joyce-providing-emotional-assistance-with-relief-and-love-act-passes-house",
+            "quote": "This bipartisan bill would require U.S. Customs and Border Protection (CBP) to establish a pilot program to adopt dogs from local animal shelters to be trained as support dogs for CBP’s Support Canine Program."
+          },
+          {
+            "member": "Darin LaHood",
+            "party": "R",
+            "state": "IL",
+            "date": "2026-09-17",
+            "url": "https://lahood.house.gov/2026/9/lahood-s-change-act-passes-out-of-the-ways-and-means-committee",
+            "quote": "This bipartisan bill provides help to patients and clinicians through expanded early detection support and improved data collection"
+          },
+          {
+            "member": "Pete Ricketts",
+            "party": "R",
+            "state": "NE",
+            "date": "2026-09-17",
+            "url": "https://www.ricketts.senate.gov/news/press-releases/video-ricketts-addresses-suicide-awareness-month/",
+            "quote": "This bipartisan bill would increase awareness of the 988 Suicide & Crisis Lifeline and expand resources to students nationwide."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "passed the house",
+      "slug": "5fdd08ccb514c98e",
+      "n": 3,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 4,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "D000230",
+        "statement": "sha256:290fb868d7e59018b55f3bab60242f3d542214496edf1fcf2880ab9b4f86929a",
+        "tie": [
+          "T000478"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "velocity": 1.37,
+      "sides": {
+        "D": [
+          {
+            "member": "Michael F. Bennet",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-09-17",
+            "url": "https://www.bennet.senate.gov/2026/09/17/bennet-collins-celebrate-house-passage-of-their-bill-to-expand-tax-deduction-to-include-early-childhood-educators/",
+            "quote": "The SEED Act served as the legislative vehicle for passage of the Lindsey O. Graham Sanctioning Russia and Iran Act of 2026, which has now passed the House of Representatives and the United States Senate."
+          },
+          {
+            "member": "Jason Crow",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-09-17",
+            "url": "https://crow.house.gov/media/press-releases/crow-outlines-vision-for-the-future-of-us-national-security-ending-forever-wars",
+            "quote": "It passed the House with bipartisan support."
+          },
+          {
+            "member": "Laura Gillen",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-09-17",
+            "url": "https://gillen.house.gov/media/press-releases/rep-gillen-celebrates-passage-125-million-federal-funding-authorization-long",
+            "quote": "I am thrilled that this bipartisan water infrastructure package has passed the House with real investments for Long Island"
+          }
+        ],
+        "R": [
+          {
+            "member": "Jon Husted",
+            "party": "R",
+            "state": "OH",
+            "date": "2026-09-17",
+            "url": "https://www.husted.senate.gov/media/press-releases/husted-bill-to-protect-americans-from-footing-the-bill-for-new-data-centers-blocked-from-passage/",
+            "quote": "Yesterday, this bill passed the House of Representatives by a nearly unanimous vote of 417 to 3."
+          },
+          {
+            "member": "Jennifer A. Kiggans",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-09-17",
+            "url": "https://kiggans.house.gov/2026/09/17/kiggans-statement-on-new-federal-approach-to-improving-chesapeake-bay-water-quality/",
+            "quote": "In September 2026, the Chesapeake Bay WATERS Act passed the House of Representatives."
+          },
+          {
+            "member": "Jimmy Patronis",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-09-17",
+            "url": "https://patronis.house.gov/media/press-releases/congressman-patronis-votes-to-advance-legislation-to-protect-consumers-from-rising-utility-costs-driven-by-ai-data-centers",
+            "quote": "The Ratepayer Protection Act passed the House by a vote of 417-3 and now moves to the Senate for consideration."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "data center development",
+      "slug": "130972d8230f9de7",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 4,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-04-01",
+        "bioguide": "S001230",
+        "statement": "sha256:9e779c3e715362fc7a0bb61d5ccbc7c720b36409471908b2f9ec0815bffdf73d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "velocity": 2.8,
+      "sides": {
+        "D": [
+          {
+            "member": "Emanuel Cleaver",
+            "party": "D",
+            "state": "MO",
+            "date": "2026-09-17",
+            "url": "https://cleaver.house.gov/media-center/press-releases/congressman-cleaver-votes-legislation-protect-missourians-paying",
+            "quote": "Without proper safeguards, families and small businesses in communities where data center development occurs could see higher electricity bills at the end of every month."
+          },
+          {
+            "member": "Chris Pappas",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-09-17",
+            "url": "https://pappas.house.gov/media/press-releases/pappas-helps-introduce-new-legislation-to-stop-tax-giveaways-for-data-centers",
+            "quote": "The incentives are accelerating AI data center development."
+          },
+          {
+            "member": "Eugene Simon Vindman",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-09-17",
+            "url": "https://vindman.house.gov/2026/09/17/vindman-votes-to-protect-ratepayers-from-data-center-grid-upgrade-costs/",
+            "quote": "In August, he introduced legislation to prevent data center development near neighborhoods, schools, and parks."
+          }
+        ],
+        "R": [
+          {
+            "member": "Juan Ciscomani",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-09-17",
+            "url": "https://ciscomani.house.gov/media/press-releases/ciscomani-votes-keep-data-center-costs-arizonans-utility-bills",
+            "quote": "We cannot allow rapid data center development to come at the expense of affordable energy or leave hardworking Arizonans footing the bill for the massive amount of power these facilities require."
+          },
+          {
+            "member": "Mike Kelly",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-09-17",
+            "url": "https://kelly.house.gov/media/press-releases/kelly-backs-ratepayer-protection-act-calls-data-center-companies-pay-their-own",
+            "quote": "The growth in data center development is coinciding with the exposure of systemic challenges to deploying reliable and affordable electricity resulting from harmful Biden-era policies, namely the premature retirement of baseload power and the overreliance on intermittent sources, like wind and solar."
+          },
+          {
+            "member": "Robert E. Latta",
+            "party": "R",
+            "state": "OH",
+            "date": "2026-09-17",
+            "url": "https://latta.house.gov/news/documentsingle.aspx?DocumentID=406849",
+            "quote": "Yesterday's passage of the Ratepayer Protection Act is a significant step forward in protecting American families from rising costs associated with data center development, and I was proud to move this legislation through the Energy Subcommittee."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "water infrastructure projects",
+      "slug": "fea768a6e61ab4cc",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "P000620",
+        "statement": "sha256:54c9ee40a8b51c13fd4f282443d0e87934454522c2efc382485c587987672c94",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "velocity": 1.91,
+      "sides": {
+        "D": [
+          {
+            "member": "Laura Gillen",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-09-17",
+            "url": "https://gillen.house.gov/media/press-releases/rep-gillen-celebrates-passage-125-million-federal-funding-authorization-long",
+            "quote": "Through my work on the House Transportation and Infrastructure Committee, I fought to secure $125 million for critical water infrastructure projects across our communities."
+          },
+          {
+            "member": "Alexandria Ocasio-Cortez",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-09-17",
+            "url": "https://ocasio-cortez.house.gov/media/press-releases/ocasio-cortez-secures-351-million-flood-prevention-bronx-and-queens",
+            "quote": "The funding authorizes projects that would directly improve water and wastewater infrastructure, including new flood control and stormwater infrastructure projects in New York’s 14th District."
+          },
+          {
+            "member": "Lori Trahan",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-09-17",
+            "url": "https://trahan.house.gov/news/documentsingle.aspx?DocumentID=3849",
+            "quote": "Yesterday, Congresswoman Lori Trahan (MA-03) voted to advance the bipartisan 2026 Water Resources Development Act (WRDA), reauthorizing federal investments in water infrastructure projects across the country and in Massachusetts."
+          }
+        ],
+        "R": [
+          {
+            "member": "Scott Franklin",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-09-17",
+            "url": "https://franklin.house.gov/news/documentsingle.aspx?DocumentID=1933",
+            "quote": "WRDA is one of the most important tools Congress has to set priorities for the Army Corps and keep critical water infrastructure projects moving."
+          },
+          {
+            "member": "Brett Guthrie",
+            "party": "R",
+            "state": "KY",
+            "date": "2026-09-17",
+            "url": "https://guthrie.house.gov/news/documentsingle.aspx?DocumentID=391196",
+            "quote": "H.R. 9497 would reauthorize and update the Water Resources Development Act to support water infrastructure projects nationwide, including navigation, flood and storm risk management, and environmental restoration."
+          },
+          {
+            "member": "Randy K. Weber, Sr.",
+            "party": "R",
+            "state": "TX",
+            "date": "2026-09-17",
+            "url": "https://weber.house.gov/news/documentsingle.aspx?DocumentID=3883",
+            "quote": "Congress considers WRDA every two years to authorize locally driven water infrastructure projects and establish policies governing how the United States Army Corps of Engineers manages the nation’s ports, waterways, flood protection, and storm risk reduction projects."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
