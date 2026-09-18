@@ -1,17 +1,942 @@
 {
   "day": "2026-09-17",
-  "top_synchronized": [],
+  "top_synchronized": [
+    {
+      "ngram": "this bipartisan bill",
+      "slug": "83690fcbebee565c",
+      "n": 3,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        4,
+        4,
+        2,
+        1,
+        2,
+        1,
+        2,
+        12,
+        9
+      ]
+    },
+    {
+      "ngram": "and small businesses",
+      "slug": "6d1c17b0422a77da",
+      "n": 3,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 7,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": 7,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 3.82,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "W000779",
+        "statement": "sha256:a856a52c3c400fccea0dc24919a58b18ab99d3fe707b4fbc9df678a48cfa1b3d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        3,
+        1,
+        3,
+        1,
+        1,
+        3,
+        1,
+        2,
+        1,
+        2,
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "ngram": "water resources development act",
+      "slug": "26a53c5620251115",
+      "n": 4,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 6,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": 6,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 4.48,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "A000372",
+        "statement": "sha256:3d9a08a71028fc91c392e014b1a40fc3208631fb0fbdab36e4c573b06bfe94f5",
+        "tie": [
+          "C001110"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        11,
+        8
+      ]
+    },
+    {
+      "ngram": "war in iran",
+      "slug": "4abd5ede26e39eb9",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2026-02-24",
+        "bioguide": "R000620",
+        "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.987,
+      "series": [
+        5,
+        3,
+        4,
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        1,
+        2,
+        6,
+        10,
+        8
+      ]
+    },
+    {
+      "ngram": "of representatives passed",
+      "slug": "6f7edb84f6f606df",
+      "n": 3,
+      "day_peak": 8,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 8,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 8,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 4.87,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "A000372",
+        "statement": "sha256:e566d61dfe329f83240171b70bc659be236705b9cf0e2cf2c127cf157d6e9c20",
+        "tie": [
+          "C001132",
+          "F000446",
+          "M000194",
+          "M001211",
+          "M001235",
+          "W000806"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.984,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        6,
+        8
+      ]
+    },
+    {
+      "ngram": "text of the bill",
+      "slug": "8bd7df08e3dcea59",
+      "n": 4,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 10,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 10,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-05",
+        "bioguide": "C001069",
+        "statement": "sha256:d3b13fbafade11b18cd684ddba8d10d51e5f3cbc75e801e4b487649638daad92",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        2,
+        1,
+        4,
+        1,
+        2,
+        5,
+        1,
+        1,
+        3,
+        1,
+        2,
+        2,
+        9,
+        8
+      ]
+    },
+    {
+      "ngram": "this bipartisan legislation",
+      "slug": "95c3c736eba4c20f",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 3.2,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [
+          "H001076",
+          "M001196"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        1,
+        5,
+        1,
+        1,
+        4,
+        1,
+        1,
+        1,
+        1,
+        2,
+        6,
+        8,
+        8
+      ]
+    },
+    {
+      "ngram": "introduced the bipartisan",
+      "slug": "f9c08c8e26755308",
+      "n": 3,
+      "day_peak": 8,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 8,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 8,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 3.03,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.953,
+      "series": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        6,
+        4,
+        3,
+        4,
+        1,
+        2,
+        3,
+        3,
+        8
+      ]
+    },
+    {
+      "ngram": "the water resources",
+      "slug": "514b77e14046245d",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 2.04,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001110",
+        "statement": "sha256:0a2cb38ba899e29fc7446112a1a9a9af89ce94a4ddf9ac9f3c3400a60eccf629",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        8,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        12,
+        7
+      ]
+    },
+    {
+      "ngram": "generations to come",
+      "slug": "e5b2d728d6e0ccb4",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 2.72,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000375",
+        "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+        "tie": [
+          "B001285",
+          "M000194",
+          "M001204"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.975,
+      "series": [
+        1,
+        2,
+        1,
+        2,
+        6,
+        2,
+        5,
+        2,
+        1,
+        1,
+        2,
+        2,
+        7,
+        7
+      ]
+    },
+    {
+      "ngram": "important step toward",
+      "slug": "3060ca3cd5d89ce4",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.62,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "E000246",
+        "statement": "sha256:c22319edde8a08cfff810bc47eeac6ffb5d5846848e991bb00e4d4e01363f6d5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        4,
+        1,
+        1,
+        1,
+        2,
+        6,
+        7,
+        6
+      ]
+    },
+    {
+      "ngram": "full text of the bill",
+      "slug": "b40273a0c687b8c0",
+      "n": 5,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 2.9,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001121",
+        "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+        "tie": [
+          "R000614"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.975,
+      "series": [
+        1,
+        1,
+        3,
+        1,
+        2,
+        4,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        6,
+        6
+      ]
+    },
+    {
+      "ngram": "footing the bill",
+      "slug": "2c2375b022bf0f22",
+      "n": 3,
+      "day_peak": 6,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 6,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 1,
+        "R": 6,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 5.25,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "V000128",
+        "statement": "sha256:f514182bcdfbef7d63af7444b33a1e5261aaf4ec9b8eacd44cb6f6ee99a53cb1",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "congress and the public",
+      "slug": "069a9f90a689396a",
+      "n": 4,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 4.2,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "S001217",
+        "statement": "sha256:a8c46aaab075dbe8bedea8558f72a740f9b423cdf3ab04507ac7216fefc79bb2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.993,
+      "series": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        3,
+        6
+      ]
+    },
+    {
+      "ngram": "house passage of",
+      "slug": "281e8909d5f42dc6",
+      "n": 3,
+      "day_peak": 6,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 6,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 6,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.95,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "A000375",
+        "statement": "sha256:fac1528fba48222457c08c047eebdd898ab112ac4d74541a648f18f912a84d13",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        4,
+        13,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        9,
+        6
+      ]
+    },
+    {
+      "ngram": "support they need",
+      "slug": "c471f43eebc5efae",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "B001301",
+        "statement": "sha256:74b8bbbc030faaca71638a8f6e357c2ad5eed90b2e922f0d320670210f3719d3",
+        "tie": [
+          "D000594"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.983,
+      "series": [
+        3,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        2,
+        1,
+        2,
+        5,
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "ngram": "tens of thousands",
+      "slug": "bef83d10f8e5d58a",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-04",
+        "bioguide": "G000386",
+        "statement": "sha256:abc5c878b39d3c3bc9a7d13d4dac61e85de34e404358b0fa4c3402c80032b6b9",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.973,
+      "series": [
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        4,
+        2,
+        2,
+        6,
+        3,
+        6
+      ]
+    },
+    {
+      "ngram": "a critical step",
+      "slug": "74bb99887a8a1cb4",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.65,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001103",
+        "statement": "sha256:07beaf43ab61b6ae7fb5d7211df4b6f0dc0378d87296eb95c480c8a2cba7fcfc",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        5,
+        4,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        6
+      ]
+    },
+    {
+      "ngram": "an important step",
+      "slug": "79f874be4a2748ec",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.33,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001129",
+        "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        2,
+        4,
+        1,
+        1,
+        3,
+        1,
+        2,
+        6,
+        10,
+        6
+      ]
+    },
+    {
+      "ngram": "we look forward",
+      "slug": "bea5f990ffc8921a",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "M001230",
+        "statement": "sha256:edb4ac8bc3b192bba31b1382b124e41ab12c8370419d75c648e805833e399e79",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.96,
+      "series": [
+        3,
+        1,
+        1,
+        1,
+        3,
+        3,
+        2,
+        1,
+        4,
+        1,
+        5,
+        3,
+        4,
+        6
+      ]
+    }
+  ],
   "legacy_unvalidated_metrics": {
     "status": "withdrawn",
     "reason": "The per-party discipline index divided mixed units and was never validated. It is superseded by the unit-safe participation measures (participation-measures-v1). Withdrawn under R-36.3, which extends R-33.1.",
     "metrics": {
       "discipline": {
         "D": {
-          "statements": 1,
-          "on_message_units": 1,
-          "index": 1.0
+          "statements": 127,
+          "on_message_units": 95,
+          "index": 0.748
         },
-        "R": null
+        "R": {
+          "statements": 88,
+          "on_message_units": 72,
+          "index": 0.8182
+        }
       }
     }
   },
