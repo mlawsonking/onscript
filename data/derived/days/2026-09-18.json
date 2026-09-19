@@ -825,5 +825,2062 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-18",
+      "party": "D",
+      "composite": "Today 90 of us released statements. 5 of us carried \"full accounting of the costs\". Our most synchronized phrase, used by 8 of us: congress and the american.",
+      "measurement_lead": "Measurement: 90 publications were observed for the Democratic party on 2026-09-18.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-18",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "e209230058834e744e1f84425054d0fc9d16f4bfce314d1651fde903cd18d5f7",
+        "claim_ids": [
+          "2026-09-18-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 90 of us released statements. 5 of us carried \"full accounting of the costs\". Our most synchronized phrase, used by 8 of us: congress and the american.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-18-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "e6439a1653d73d04471da559b8dc4354ca3bdec72b553f9dfe1bcceb83a4f847",
+        "response_sha256": "6b11af9272b41bbc92f0d7a560a0b56eb3b9db4963770b304837bdc3dfa6e30d",
+        "model_response_sha256": "d054cfc5ee0ad20faa79187477ab6c65cd8a7d6cf705f3228aaa9a4cc3d5f546"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-18-D-00"
+          ],
+          "claim_ids": [
+            "2026-09-18-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-18-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-18",
+        "statements": 90,
+        "talking_points": [
+          {
+            "label": "full accounting of the costs",
+            "members": 5,
+            "quote": "full accounting of the costs",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-18-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "congress and the american",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Pete Sessions",
+          "first_sayer_party": "R",
+          "first_sayer_state": "TX"
+        },
+        "selected_claims": [
+          {
+            "label": "full accounting of the costs",
+            "members": 5,
+            "quote": "full accounting of the costs",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-18-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-18-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2078,
+        "tokens_out": 92,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-18",
+      "party": "R",
+      "composite": "Today 54 of us released statements. 3 of us carried \"on the front lines\".",
+      "measurement_lead": "Measurement: 54 publications were observed for the Republican party on 2026-09-18.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-18",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "a0c9cf81438b2de2492e1d508d3da2b27419205a06536ce8ca08a7573a701d3b",
+        "claim_ids": [
+          "2026-09-18-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 54 of us released statements. 3 of us carried \"on the front lines\".",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-18-R-00"
+            ]
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "0f3cabbc8edae1097f0b2ad8accb542123d6eba49f9e48c78a7732671c9a20b6",
+        "response_sha256": "5641a3e0c5cf7e01d2bf5549411e762b3fa306dca9e6237549d749164faaba76",
+        "model_response_sha256": "5c0d0955217d2a560a241024bde6adf314592ca0be9bc65fe1104ba8fea5565d"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-18-R-00"
+          ],
+          "claim_ids": [
+            "2026-09-18-R-00"
+          ]
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-18-R-00"
+          ]
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-18",
+        "statements": 54,
+        "talking_points": [
+          {
+            "label": "on the front lines",
+            "members": 3,
+            "quote": "on the front lines",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-18-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": null,
+        "selected_claims": [
+          {
+            "label": "on the front lines",
+            "members": 3,
+            "quote": "on the front lines",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-18-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [
+          "2026-09-18-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 1923,
+        "tokens_out": 86,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-18-D-00",
+        "party": "D",
+        "day": "2026-09-18",
+        "label": "full accounting of the costs",
+        "member_count": 5,
+        "statements": [
+          "sha256:27db3ad486b09ab653bac9870e46bad863af24c79fda460978eb200855198751",
+          "sha256:6497cef3e8abc78abfb2a5e9be5f4235973fb3ecc1184c67443656f7a56cd2a6",
+          "sha256:7258f57d398537ee5ecf7acc50d1743511e2f692fd6e2de28ba887e587274e97",
+          "sha256:8fc46b16e4377fa278acddc568a707464f60806cdaad69ebfe354bd1a8703805",
+          "sha256:b26e83af635d0d12d29809bc314d8cb831a71aaad528277ede3525910d91a8fb"
+        ],
+        "fragments": [
+          {
+            "text": "a full accounting of the costs of the ongoing war with",
+            "statement": "sha256:8fc46b16e4377fa278acddc568a707464f60806cdaad69ebfe354bd1a8703805"
+          },
+          {
+            "text": "a full accounting of the costs of president trump’s reckless",
+            "statement": "sha256:b26e83af635d0d12d29809bc314d8cb831a71aaad528277ede3525910d91a8fb"
+          },
+          {
+            "text": "a full accounting of the costs of the ongoing war with",
+            "statement": "sha256:7258f57d398537ee5ecf7acc50d1743511e2f692fd6e2de28ba887e587274e97"
+          },
+          {
+            "text": "a full accounting of the costs of the ongoing war with",
+            "statement": "sha256:27db3ad486b09ab653bac9870e46bad863af24c79fda460978eb200855198751"
+          },
+          {
+            "text": "a full accounting of the costs of the ongoing war with",
+            "statement": "sha256:6497cef3e8abc78abfb2a5e9be5f4235973fb3ecc1184c67443656f7a56cd2a6"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-18-D-00",
+        "support_phrase": {
+          "normalized": "full accounting of the costs",
+          "text": "full accounting of the costs",
+          "occurrence_id": "occ:b53924566c8b8c79e82d82b6"
+        },
+        "display_quote": "full accounting of the costs",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b53924566c8b8c79e82d82b6",
+            "claim_id": "2026-09-18-D-00",
+            "statement_id": "sha256:27db3ad486b09ab653bac9870e46bad863af24c79fda460978eb200855198751",
+            "publication_id": "sha256:27db3ad486b09ab653bac9870e46bad863af24c79fda460978eb200855198751",
+            "office_id": "S001150",
+            "family_id": "dfam:5ff2cbf97714ba12f53cf451",
+            "family_revision": "dfrev:4c1e165a87cf88fb1d9cb764",
+            "support_unit_id": "S001150",
+            "party": "D",
+            "start_char": 350,
+            "end_char": 378,
+            "surface_text": "full accounting of the costs",
+            "normalized_phrase": "full accounting of the costs",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 167,
+            "sentence_end_char": 407,
+            "sentence_offset_start": 183,
+            "sentence_offset_end": 211,
+            "clause_start_char": 337,
+            "clause_end_char": 797,
+            "clause_offset_start": 13,
+            "clause_offset_end": 41,
+            "adjacent_tokens_before": [
+              "defense",
+              "pete",
+              "hegseth",
+              "demanding",
+              "a"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "ongoing",
+              "war",
+              "with"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6d94cb3bd2a68b26136a6f16",
+            "claim_id": "2026-09-18-D-00",
+            "statement_id": "sha256:6497cef3e8abc78abfb2a5e9be5f4235973fb3ecc1184c67443656f7a56cd2a6",
+            "publication_id": "sha256:6497cef3e8abc78abfb2a5e9be5f4235973fb3ecc1184c67443656f7a56cd2a6",
+            "office_id": "S001181",
+            "family_id": "dfam:56ce7246508bd2056070dd54",
+            "family_revision": "dfrev:3bb197e8ea6ab1d8b3ecffd9",
+            "support_unit_id": "S001181",
+            "party": "D",
+            "start_char": 297,
+            "end_char": 325,
+            "surface_text": "full accounting of the costs",
+            "normalized_phrase": "full accounting of the costs",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 354,
+            "sentence_offset_start": 274,
+            "sentence_offset_end": 302,
+            "clause_start_char": 171,
+            "clause_end_char": 752,
+            "clause_offset_start": 126,
+            "clause_offset_end": 154,
+            "adjacent_tokens_before": [
+              "defense",
+              "pete",
+              "hegseth",
+              "demanding",
+              "a"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "ongoing",
+              "war",
+              "with"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:114aa99169f724f5dba502fe",
+            "claim_id": "2026-09-18-D-00",
+            "statement_id": "sha256:7258f57d398537ee5ecf7acc50d1743511e2f692fd6e2de28ba887e587274e97",
+            "publication_id": "sha256:7258f57d398537ee5ecf7acc50d1743511e2f692fd6e2de28ba887e587274e97",
+            "office_id": "K000377",
+            "family_id": "dfam:b822b8270871ea1a13391e6e",
+            "family_revision": "dfrev:7b7530f566bc995cf25c4895",
+            "support_unit_id": "K000377",
+            "party": "D",
+            "start_char": 142,
+            "end_char": 170,
+            "surface_text": "full accounting of the costs",
+            "normalized_phrase": "full accounting of the costs",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 199,
+            "sentence_offset_start": 142,
+            "sentence_offset_end": 170,
+            "clause_start_char": 60,
+            "clause_end_char": 599,
+            "clause_offset_start": 82,
+            "clause_offset_end": 110,
+            "adjacent_tokens_before": [
+              "defense",
+              "pete",
+              "hegseth",
+              "for",
+              "a"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "ongoing",
+              "war",
+              "with"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b5b1e3181c766cab36894f6c",
+            "claim_id": "2026-09-18-D-00",
+            "statement_id": "sha256:8fc46b16e4377fa278acddc568a707464f60806cdaad69ebfe354bd1a8703805",
+            "publication_id": "sha256:8fc46b16e4377fa278acddc568a707464f60806cdaad69ebfe354bd1a8703805",
+            "office_id": "G000555",
+            "family_id": "dfam:d97e8cea24c4469be6abc20a",
+            "family_revision": "dfrev:189d428d39f7f8e218de0073",
+            "support_unit_id": "G000555",
+            "party": "D",
+            "start_char": 300,
+            "end_char": 328,
+            "surface_text": "full accounting of the costs",
+            "normalized_phrase": "full accounting of the costs",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 80,
+            "sentence_end_char": 357,
+            "sentence_offset_start": 220,
+            "sentence_offset_end": 248,
+            "clause_start_char": 230,
+            "clause_end_char": 702,
+            "clause_offset_start": 70,
+            "clause_offset_end": 98,
+            "adjacent_tokens_before": [
+              "defense",
+              "pete",
+              "hegseth",
+              "demanding",
+              "a"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "ongoing",
+              "war",
+              "with"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:21c2d95a2ece82663255295c",
+            "claim_id": "2026-09-18-D-00",
+            "statement_id": "sha256:b26e83af635d0d12d29809bc314d8cb831a71aaad528277ede3525910d91a8fb",
+            "publication_id": "sha256:b26e83af635d0d12d29809bc314d8cb831a71aaad528277ede3525910d91a8fb",
+            "office_id": "H000273",
+            "family_id": "dfam:e168a4603272daa041674fde",
+            "family_revision": "dfrev:3ec2c8af73c8543e0b4c6cbd",
+            "support_unit_id": "H000273",
+            "party": "D",
+            "start_char": 156,
+            "end_char": 184,
+            "surface_text": "full accounting of the costs",
+            "normalized_phrase": "full accounting of the costs",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 86,
+            "sentence_end_char": 238,
+            "sentence_offset_start": 70,
+            "sentence_offset_end": 98,
+            "clause_start_char": 23,
+            "clause_end_char": 473,
+            "clause_offset_start": 133,
+            "clause_offset_end": 161,
+            "adjacent_tokens_before": [
+              "senate",
+              "colleagues",
+              "to",
+              "demand",
+              "a"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "president",
+              "trump’s",
+              "reckless",
+              "war"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 5,
+          "publications": 5,
+          "families": 5,
+          "support_units": 5
+        },
+        "office_ids": [
+          "G000555",
+          "H000273",
+          "K000377",
+          "S001150",
+          "S001181"
+        ],
+        "publication_ids": [
+          "sha256:27db3ad486b09ab653bac9870e46bad863af24c79fda460978eb200855198751",
+          "sha256:6497cef3e8abc78abfb2a5e9be5f4235973fb3ecc1184c67443656f7a56cd2a6",
+          "sha256:7258f57d398537ee5ecf7acc50d1743511e2f692fd6e2de28ba887e587274e97",
+          "sha256:8fc46b16e4377fa278acddc568a707464f60806cdaad69ebfe354bd1a8703805",
+          "sha256:b26e83af635d0d12d29809bc314d8cb831a71aaad528277ede3525910d91a8fb"
+        ],
+        "family_ids": [
+          "dfam:56ce7246508bd2056070dd54",
+          "dfam:5ff2cbf97714ba12f53cf451",
+          "dfam:b822b8270871ea1a13391e6e",
+          "dfam:d97e8cea24c4469be6abc20a",
+          "dfam:e168a4603272daa041674fde"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:56ce7246508bd2056070dd54",
+            "family_revision": "dfrev:3bb197e8ea6ab1d8b3ecffd9"
+          },
+          {
+            "family_id": "dfam:5ff2cbf97714ba12f53cf451",
+            "family_revision": "dfrev:4c1e165a87cf88fb1d9cb764"
+          },
+          {
+            "family_id": "dfam:b822b8270871ea1a13391e6e",
+            "family_revision": "dfrev:7b7530f566bc995cf25c4895"
+          },
+          {
+            "family_id": "dfam:d97e8cea24c4469be6abc20a",
+            "family_revision": "dfrev:189d428d39f7f8e218de0073"
+          },
+          {
+            "family_id": "dfam:e168a4603272daa041674fde",
+            "family_revision": "dfrev:3ec2c8af73c8543e0b4c6cbd"
+          }
+        ],
+        "support_unit_ids": [
+          "G000555",
+          "H000273",
+          "K000377",
+          "S001150",
+          "S001181"
+        ],
+        "citation_occurrence_ids": [
+          "occ:b53924566c8b8c79e82d82b6",
+          "occ:6d94cb3bd2a68b26136a6f16",
+          "occ:114aa99169f724f5dba502fe"
+        ],
+        "citations": [
+          {
+            "member": "Adam B. Schiff",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-09-18",
+            "url": "https://www.schiff.senate.gov/news/press-releases/news-schiff-joins-slotkin-and-senate-democrats-in-demanding-answers-from-hegseth-on-cost-of-iran-war/",
+            "quote": "a full accounting of the costs of the ongoing war with",
+            "occurrence_id": "occ:b53924566c8b8c79e82d82b6",
+            "office_id": "S001150",
+            "publication_id": "sha256:27db3ad486b09ab653bac9870e46bad863af24c79fda460978eb200855198751",
+            "family_id": "dfam:5ff2cbf97714ba12f53cf451",
+            "family_revision": "dfrev:4c1e165a87cf88fb1d9cb764"
+          },
+          {
+            "member": "Jeanne Shaheen",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-09-18",
+            "url": "https://www.shaheen.senate.gov/news/press/shaheen-hassan-demand-answers-from-secretary-of-defense-pete-hegseth-on-cost-of-iran-warshaheen-hassan-demand-answers-from-secretary-of-defense-pete-hegseth-on-cost-of-iran-war",
+            "quote": "a full accounting of the costs of the ongoing war with",
+            "occurrence_id": "occ:6d94cb3bd2a68b26136a6f16",
+            "office_id": "S001181",
+            "publication_id": "sha256:6497cef3e8abc78abfb2a5e9be5f4235973fb3ecc1184c67443656f7a56cd2a6",
+            "family_id": "dfam:56ce7246508bd2056070dd54",
+            "family_revision": "dfrev:3bb197e8ea6ab1d8b3ecffd9"
+          },
+          {
+            "member": "Mark Kelly",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-09-18",
+            "url": "https://www.kelly.senate.gov/newsroom/press-releases/kelly-slotkin-colleagues-demand-answers-from-hegseth-on-cost-of-iran-war/",
+            "quote": "a full accounting of the costs of the ongoing war with",
+            "occurrence_id": "occ:114aa99169f724f5dba502fe",
+            "office_id": "K000377",
+            "publication_id": "sha256:7258f57d398537ee5ecf7acc50d1743511e2f692fd6e2de28ba887e587274e97",
+            "family_id": "dfam:b822b8270871ea1a13391e6e",
+            "family_revision": "dfrev:7b7530f566bc995cf25c4895"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-09-18-R-00",
+        "party": "R",
+        "day": "2026-09-18",
+        "label": "on the front lines",
+        "member_count": 3,
+        "statements": [
+          "sha256:199544986332ee32c37097963b24253faf0567a374ca2872dd2605084f694708",
+          "sha256:e50a13c7d3b628df4788f200b5bef17b99c494a9efe996a4a491caf1305524b4",
+          "sha256:f370ee3e44ff6dc82db3e786fe7cf3e0e290ee3a1e111026edc8435bb4e452ca"
+        ],
+        "fragments": [
+          {
+            "text": "partners on the front lines",
+            "statement": "sha256:e50a13c7d3b628df4788f200b5bef17b99c494a9efe996a4a491caf1305524b4"
+          },
+          {
+            "text": "for organizations on the front lines of the addiction crisis",
+            "statement": "sha256:199544986332ee32c37097963b24253faf0567a374ca2872dd2605084f694708"
+          },
+          {
+            "text": "professionals working on the front lines",
+            "statement": "sha256:f370ee3e44ff6dc82db3e786fe7cf3e0e290ee3a1e111026edc8435bb4e452ca"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-18-R-00",
+        "support_phrase": {
+          "normalized": "on the front lines",
+          "text": "on the front lines",
+          "occurrence_id": "occ:e9ce2de93c6819de55331f0f"
+        },
+        "display_quote": "on the front lines",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e9ce2de93c6819de55331f0f",
+            "claim_id": "2026-09-18-R-00",
+            "statement_id": "sha256:199544986332ee32c37097963b24253faf0567a374ca2872dd2605084f694708",
+            "publication_id": "sha256:199544986332ee32c37097963b24253faf0567a374ca2872dd2605084f694708",
+            "office_id": "S001184",
+            "family_id": "dfam:2d4b55023289dab9f4bb5a59",
+            "family_revision": "dfrev:669ab5d420a324396f34a6a6",
+            "support_unit_id": "S001184",
+            "party": "R",
+            "start_char": 273,
+            "end_char": 291,
+            "surface_text": "on the front lines",
+            "normalized_phrase": "on the front lines",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 213,
+            "sentence_end_char": 442,
+            "sentence_offset_start": 60,
+            "sentence_offset_end": 78,
+            "clause_start_char": 154,
+            "clause_end_char": 378,
+            "clause_offset_start": 119,
+            "clause_offset_end": 137,
+            "adjacent_tokens_before": [
+              "make",
+              "it",
+              "easier",
+              "for",
+              "organizations"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "addiction",
+              "crisis",
+              "to"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7fec60ef4e7948ef3ad520c7",
+            "claim_id": "2026-09-18-R-00",
+            "statement_id": "sha256:e50a13c7d3b628df4788f200b5bef17b99c494a9efe996a4a491caf1305524b4",
+            "publication_id": "sha256:e50a13c7d3b628df4788f200b5bef17b99c494a9efe996a4a491caf1305524b4",
+            "office_id": "P000048",
+            "family_id": "dfam:f31140e8a50e0223f03384d0",
+            "family_revision": "dfrev:7b104258968fc2740199c59f",
+            "support_unit_id": "P000048",
+            "party": "R",
+            "start_char": 891,
+            "end_char": 909,
+            "surface_text": "on the front lines",
+            "normalized_phrase": "on the front lines",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 713,
+            "sentence_end_char": 909,
+            "sentence_offset_start": 178,
+            "sentence_offset_end": 196,
+            "clause_start_char": 838,
+            "clause_end_char": 995,
+            "clause_offset_start": 53,
+            "clause_offset_end": 71,
+            "adjacent_tokens_before": [
+              "to",
+              "state",
+              "and",
+              "local",
+              "partners"
+            ],
+            "adjacent_tokens_after": [
+              "by",
+              "strengthening",
+              "information",
+              "sharing",
+              "and"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:050b8fb0197a10761bc50de6",
+            "claim_id": "2026-09-18-R-00",
+            "statement_id": "sha256:f370ee3e44ff6dc82db3e786fe7cf3e0e290ee3a1e111026edc8435bb4e452ca",
+            "publication_id": "sha256:f370ee3e44ff6dc82db3e786fe7cf3e0e290ee3a1e111026edc8435bb4e452ca",
+            "office_id": "S001213",
+            "family_id": "dfam:c639d88c7a09882746a3e213",
+            "family_revision": "dfrev:82035ee0f40a30006ad5eb2f",
+            "support_unit_id": "S001213",
+            "party": "R",
+            "start_char": 357,
+            "end_char": 375,
+            "surface_text": "on the front lines",
+            "normalized_phrase": "on the front lines",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 275,
+            "sentence_end_char": 375,
+            "sentence_offset_start": 82,
+            "sentence_offset_end": 100,
+            "clause_start_char": 19,
+            "clause_end_char": 427,
+            "clause_offset_start": 338,
+            "clause_offset_end": 356,
+            "adjacent_tokens_before": [
+              "the",
+              "health",
+              "care",
+              "professionals",
+              "working"
+            ],
+            "adjacent_tokens_after": [
+              "dr",
+              "durbin",
+              "and",
+              "dr",
+              "golden"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "P000048",
+          "S001184",
+          "S001213"
+        ],
+        "publication_ids": [
+          "sha256:199544986332ee32c37097963b24253faf0567a374ca2872dd2605084f694708",
+          "sha256:e50a13c7d3b628df4788f200b5bef17b99c494a9efe996a4a491caf1305524b4",
+          "sha256:f370ee3e44ff6dc82db3e786fe7cf3e0e290ee3a1e111026edc8435bb4e452ca"
+        ],
+        "family_ids": [
+          "dfam:2d4b55023289dab9f4bb5a59",
+          "dfam:c639d88c7a09882746a3e213",
+          "dfam:f31140e8a50e0223f03384d0"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:2d4b55023289dab9f4bb5a59",
+            "family_revision": "dfrev:669ab5d420a324396f34a6a6"
+          },
+          {
+            "family_id": "dfam:c639d88c7a09882746a3e213",
+            "family_revision": "dfrev:82035ee0f40a30006ad5eb2f"
+          },
+          {
+            "family_id": "dfam:f31140e8a50e0223f03384d0",
+            "family_revision": "dfrev:7b104258968fc2740199c59f"
+          }
+        ],
+        "support_unit_ids": [
+          "P000048",
+          "S001184",
+          "S001213"
+        ],
+        "citation_occurrence_ids": [
+          "occ:e9ce2de93c6819de55331f0f",
+          "occ:7fec60ef4e7948ef3ad520c7",
+          "occ:050b8fb0197a10761bc50de6"
+        ],
+        "citations": [
+          {
+            "member": "Tim Scott",
+            "party": "R",
+            "state": "SC",
+            "date": "2026-09-18",
+            "url": "https://www.scott.senate.gov/media-center/press-releases/sens-scott-hassan-introduce-bill-to-streamline-application-process-for-federal-addiction-related-grant-funding/",
+            "quote": "for organizations on the front lines of the addiction crisis",
+            "occurrence_id": "occ:e9ce2de93c6819de55331f0f",
+            "office_id": "S001184",
+            "publication_id": "sha256:199544986332ee32c37097963b24253faf0567a374ca2872dd2605084f694708",
+            "family_id": "dfam:2d4b55023289dab9f4bb5a59",
+            "family_revision": "dfrev:669ab5d420a324396f34a6a6"
+          },
+          {
+            "member": "August Pfluger",
+            "party": "R",
+            "state": "TX",
+            "date": "2026-09-18",
+            "url": "https://pfluger.house.gov/news/documentsingle.aspx?DocumentID=3044",
+            "quote": "partners on the front lines",
+            "occurrence_id": "occ:7fec60ef4e7948ef3ad520c7",
+            "office_id": "P000048",
+            "publication_id": "sha256:e50a13c7d3b628df4788f200b5bef17b99c494a9efe996a4a491caf1305524b4",
+            "family_id": "dfam:f31140e8a50e0223f03384d0",
+            "family_revision": "dfrev:7b104258968fc2740199c59f"
+          },
+          {
+            "member": "Bryan Steil",
+            "party": "R",
+            "state": "WI",
+            "date": "2026-09-18",
+            "url": "https://steil.house.gov/media/press-releases/steil-presents-racine-physicians-with-2026-health-care-hero-awards",
+            "quote": "professionals working on the front lines",
+            "occurrence_id": "occ:050b8fb0197a10761bc50de6",
+            "office_id": "S001213",
+            "publication_id": "sha256:f370ee3e44ff6dc82db3e786fe7cf3e0e290ee3a1e111026edc8435bb4e452ca",
+            "family_id": "dfam:c639d88c7a09882746a3e213",
+            "family_revision": "dfrev:82035ee0f40a30006ad5eb2f"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-18",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 5,
+          "numerator_unit": "offices",
+          "denominator": 64,
+          "denominator_unit": "offices",
+          "share": 0.078125,
+          "window": "party-day 2026-09-18",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 5,
+          "numerator_unit": "publications",
+          "denominator": 90,
+          "denominator_unit": "publications",
+          "share": 0.055556,
+          "window": "party-day 2026-09-18",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 5,
+          "numerator_unit": "document families",
+          "denominator": 82,
+          "denominator_unit": "document families",
+          "share": 0.060976,
+          "window": "party-day 2026-09-18",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-18",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 45,
+          "denominator_unit": "offices",
+          "share": 0.066667,
+          "window": "party-day 2026-09-18",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 54,
+          "denominator_unit": "publications",
+          "share": 0.055556,
+          "window": "party-day 2026-09-18",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 54,
+          "denominator_unit": "document families",
+          "share": 0.055556,
+          "window": "party-day 2026-09-18",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "in a letter to secretary",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "congress and the american",
+        "slug": "10fa47eb69ab23df",
+        "n": 4,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": 1
+        },
+        "family_count": 8,
+        "velocity": 5.09,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "S000250",
+          "statement": "sha256:e38c017caa53f4a829d28a0476c5e58a7a93e73dbe49239658cfa8e3cc7283fd",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          2,
+          5,
+          8
+        ]
+      },
+      {
+        "ngram": "letter was signed",
+        "slug": "f9c916786b453fb1",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": null,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.16,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "K000400",
+          "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+          "tie": [
+            "L000397",
+            "R000620"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          6,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          4,
+          7
+        ]
+      },
+      {
+        "ngram": "a full accounting",
+        "slug": "9ece6927a17d5103",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": 1
+        },
+        "family_count": 6,
+        "velocity": 3.65,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "C001091",
+          "statement": "sha256:8ba743d5cd56a8d5a0f315c19fbe8219de92adbd6c4064f8c00b9deefcb59cc4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "serious concerns about",
+        "slug": "ccdd5191d14ed461",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          2,
+          1,
+          1,
+          2,
+          2,
+          3,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          3,
+          6
+        ]
+      },
+      {
+        "ngram": "war of choice",
+        "slug": "158a23db2d41d85f",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": 1
+        },
+        "family_count": 6,
+        "velocity": 3.23,
+        "first_seen": {
+          "date": "2025-03-04",
+          "bioguide": "D000622",
+          "statement": "sha256:a30c3fb10d8a3df243e8059f83ce6ac81fa4716b3727a6e45a191ac5091e5a20",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          4,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "ngram": "wrote the senators",
+        "slug": "dd1ce953b68d3963",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": null,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 2.21,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "B001277",
+          "statement": "sha256:62d9df24a82d1361c54fd946e0c9c6780cb1c4361527d7d9c0aa7c09f96c924d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.958,
+        "series": [
+          1,
+          3,
+          7,
+          4,
+          4,
+          1,
+          3,
+          2,
+          2,
+          2,
+          1,
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "withholding basic budget information from congress",
+        "slug": "cc550e4bc0315f7f",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": 1
+        },
+        "family_count": 5,
+        "velocity": 1.25,
+        "first_seen": {
+          "date": "2026-09-17",
+          "bioguide": "C000127",
+          "statement": "sha256:6c0fcfce2361becac716bad752e6653cccd02daa4c950278fc8642290b8cc352",
+          "tie": [
+            "D000622",
+            "G000574",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "far failed to provide basic information",
+        "slug": "96bd2378be928a0f",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": 1
+        },
+        "family_count": 5,
+        "velocity": 1.25,
+        "first_seen": {
+          "date": "2026-09-17",
+          "bioguide": "C000127",
+          "statement": "sha256:6c0fcfce2361becac716bad752e6653cccd02daa4c950278fc8642290b8cc352",
+          "tie": [
+            "D000622",
+            "G000574",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "casualties and taxpayer costs continue",
+        "slug": "615368d9b71607f5",
+        "n": 5,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.25,
+        "first_seen": {
+          "date": "2026-09-17",
+          "bioguide": "C000127",
+          "statement": "sha256:6c0fcfce2361becac716bad752e6653cccd02daa4c950278fc8642290b8cc352",
+          "tie": [
+            "D000622",
+            "G000574",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "taxpayer costs continue to increase",
+        "slug": "9c53551a90dd648a",
+        "n": 5,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.25,
+        "first_seen": {
+          "date": "2026-09-17",
+          "bioguide": "C000127",
+          "statement": "sha256:6c0fcfce2361becac716bad752e6653cccd02daa4c950278fc8642290b8cc352",
+          "tie": [
+            "D000622",
+            "G000574",
+            "S001208",
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4,
+          5
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "communities across the country",
+        "slug": "743e783403b630d9",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.7,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000621",
+          "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+          "tie": [
+            "G000386"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          1,
+          1,
+          2,
+          6,
+          4,
+          2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          6,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "pleased to see",
+        "slug": "50d8d494d1ca27a1",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.24,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001068",
+          "statement": "sha256:da0f13b49b4c47b96c9cc6b012026befcd7f11a9c8d138da4fc45db5f783b542",
+          "tie": [
+            "K000376"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "this bipartisan legislation",
+        "slug": "95c3c736eba4c20f",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.3,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [
+            "H001076",
+            "M001196"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          5,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          2,
+          6,
+          9,
+          8,
+          4
+        ]
+      },
+      {
+        "ngram": "brings us one step closer",
+        "slug": "f247f613ab64447f",
+        "n": 5,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-31",
+          "bioguide": "D000032",
+          "statement": "sha256:2c0afab4a1865bf75fa586d6770b0f2deda7fdacd0f148c9c9e5dafdb0344d0e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "being signed into law",
+        "slug": "b67ec3ecaa547c7a",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001110",
+          "statement": "sha256:0a2cb38ba899e29fc7446112a1a9a9af89ce94a4ddf9ac9f3c3400a60eccf629",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "steadfast commitment to",
+        "slug": "88a2d074d1b4aed3",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001226",
+          "statement": "sha256:ea985effafee2b615f3e009e4354187a213e5df3cc8b8bd78fed32d8d324f018",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "i know firsthand",
+        "slug": "5d00642d829058ed",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001217",
+          "statement": "sha256:596ac6dbadf6878a6054647696d09ca72b2126179d46586051625ebc8e5d7875",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "ngram": "the front lines",
+        "slug": "049e15010ea65a1c",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          3,
+          2,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          4,
+          4,
+          3
+        ]
+      },
+      {
+        "ngram": "our service members",
+        "slug": "96cdc4d20989e280",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "B001243",
+          "statement": "sha256:2358f4bfb6f725e8c9d94eea769cc670df77571110bdbbf01575feae944a9e9d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "step closer to",
+        "slug": "93fd49b9e317a74f",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.31,
+        "first_seen": {
+          "date": "2025-01-04",
+          "bioguide": "S001188",
+          "statement": "sha256:11598b5695ec158406970574ea0de9c6f6193a95125d57229dfe16e3cd1d1132",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5,
+          10,
+          5,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
