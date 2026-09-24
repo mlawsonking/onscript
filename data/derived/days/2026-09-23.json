@@ -971,5 +971,2484 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-23",
+      "party": "D",
+      "composite": "Today 88 of us released statements. 3 of us carried \"in calling on President\". 3 of us carried \"Secretary of State Marco Rubio\". Our most synchronized phrase, used by 7 of us: around the world.",
+      "measurement_lead": "Measurement: 88 publications were observed for the Democratic party on 2026-09-23.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-23",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "0f1039b278111a21f6c41ef39302f2d058c71ae14d1f5ea1b268ef071af5129a",
+        "claim_ids": [
+          "2026-09-23-D-01",
+          "2026-09-23-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 88 of us released statements. 3 of us carried \"in calling on President\". 3 of us carried \"Secretary of State Marco Rubio\". Our most synchronized phrase, used by 7 of us: around the world.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-23-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-09-23-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "5f98949780620060f1506f0031e7db9c7af878af8ef623165efb6f544e34160d",
+        "response_sha256": "cf64dd4f0c217357acb7b872c502f0b5106f4146c6aff09eff37cd923e4d8c5a",
+        "model_response_sha256": "514566f6b98d81419967a92cbfdbc5ea97a990ba61e6ff3a04d6c703f90c887b"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-23-D-01"
+          ],
+          "claim_ids": [
+            "2026-09-23-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-09-23-D-00"
+          ],
+          "claim_ids": [
+            "2026-09-23-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-23-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-09-23-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-23",
+        "statements": 88,
+        "talking_points": [
+          {
+            "label": "in calling on president",
+            "members": 3,
+            "quote": "in calling on President",
+            "topics": [
+              "other",
+              "veterans"
+            ],
+            "claim_id": "2026-09-23-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "veterans",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "secretary of state marco rubio",
+            "members": 3,
+            "quote": "Secretary of State Marco Rubio",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-23-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "around the world",
+          "members": 7,
+          "family_count": 7,
+          "first_sayer": "Tom Cole",
+          "first_sayer_party": "R",
+          "first_sayer_state": "OK"
+        },
+        "selected_claims": [
+          {
+            "label": "in calling on president",
+            "members": 3,
+            "quote": "in calling on President",
+            "topics": [
+              "other",
+              "veterans"
+            ],
+            "claim_id": "2026-09-23-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "veterans",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "secretary of state marco rubio",
+            "members": 3,
+            "quote": "Secretary of State Marco Rubio",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-23-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 3,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-23-D-01",
+          "2026-09-23-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 3
+      },
+      "usage": {
+        "tokens_in": 3131,
+        "tokens_out": 141,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-23",
+      "party": "R",
+      "composite": "Across 51 statements today, no phrase was shared widely enough to call a dominant message. We note that economic and national security was the day's most synchronized phrase, appearing 4 times, first recorded in our corpus from Gary C. Peters (D-MI).",
+      "measurement_lead": "Measurement: 51 publications were observed for the Republican party on 2026-09-23.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-23",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "5c15d921dd1890156fd5c0fa7beb18c1f563eaf10b7b0714c394b98f08f23d88",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 51 statements today, no phrase was shared widely enough to call a dominant message. We note that economic and national security was the day's most synchronized phrase, appearing 4 times, first recorded in our corpus from Gary C. Peters (D-MI).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "490b8bea88c149a321bd70e709a8ee47b964cce0449d5882f1cfed9fc480f0d6",
+        "response_sha256": "6cba5f5739faeb9da8ad7898ab90d3072bea0cd7324d85a91c9525702ddc3fc1",
+        "model_response_sha256": "718ea93b490ac224d59555c9747f77b61ef2110e4e84d9079590cad335b7fa9a"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-23",
+        "statements": 51,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "economic and national security",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "Gary C. Peters",
+          "first_sayer_party": "D",
+          "first_sayer_state": "MI"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1251,
+        "tokens_out": 83,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-23-D-00",
+        "party": "D",
+        "day": "2026-09-23",
+        "label": "secretary of state marco rubio",
+        "member_count": 3,
+        "statements": [
+          "sha256:aec02d5e95266536f33bd85ba2cabdfa6970e2fc7be0f09d048c61bb8813345b",
+          "sha256:be01ac52e3a725ab5abd721a589c36912c215ab12c24b8861ea0b55859ed80ff",
+          "sha256:da31a770e34456520c58f821c06c672f796e882a26ff99526db41d1ae77423f1",
+          "sha256:eaf0682337c01ee792112a359808a5873c579da45abacd96be3c78aa4538504b"
+        ],
+        "fragments": [
+          {
+            "text": "secretary of state marco rubio and",
+            "statement": "sha256:aec02d5e95266536f33bd85ba2cabdfa6970e2fc7be0f09d048c61bb8813345b"
+          },
+          {
+            "text": "letter urging secretary of state marco rubio to",
+            "statement": "sha256:da31a770e34456520c58f821c06c672f796e882a26ff99526db41d1ae77423f1"
+          },
+          {
+            "text": "calling on secretary of state marco rubio to",
+            "statement": "sha256:be01ac52e3a725ab5abd721a589c36912c215ab12c24b8861ea0b55859ed80ff"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-23-D-00",
+        "support_phrase": {
+          "normalized": "secretary of state marco rubio",
+          "text": "Secretary of State Marco Rubio",
+          "occurrence_id": "occ:2483b4ae9902d065e0bdaa89"
+        },
+        "display_quote": "Secretary of State Marco Rubio",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2483b4ae9902d065e0bdaa89",
+            "claim_id": "2026-09-23-D-00",
+            "statement_id": "sha256:aec02d5e95266536f33bd85ba2cabdfa6970e2fc7be0f09d048c61bb8813345b",
+            "publication_id": "sha256:aec02d5e95266536f33bd85ba2cabdfa6970e2fc7be0f09d048c61bb8813345b",
+            "office_id": "B001267",
+            "family_id": "dfam:5e6c60cf65166885a5b995e2",
+            "family_revision": "dfrev:6e4bb8278e12333099d8743a",
+            "support_unit_id": "B001267",
+            "party": "D",
+            "start_char": 238,
+            "end_char": 268,
+            "surface_text": "Secretary of State Marco Rubio",
+            "normalized_phrase": "secretary of state marco rubio",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 237,
+            "sentence_end_char": 274,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 31,
+            "clause_start_char": 180,
+            "clause_end_char": 310,
+            "clause_offset_start": 58,
+            "clause_offset_end": 88,
+            "adjacent_tokens_before": [
+              "a",
+              "letter",
+              "to",
+              "u",
+              "s"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "u",
+              "s",
+              "secretary",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:274c29afbec092590e31decd",
+            "claim_id": "2026-09-23-D-00",
+            "statement_id": "sha256:be01ac52e3a725ab5abd721a589c36912c215ab12c24b8861ea0b55859ed80ff",
+            "publication_id": "sha256:be01ac52e3a725ab5abd721a589c36912c215ab12c24b8861ea0b55859ed80ff",
+            "office_id": "N000002",
+            "family_id": "njoint:bd708ee9041f611480ea1d77",
+            "family_revision": "dfrev:4ea7235f90c1a2e1aff9f490",
+            "support_unit_id": "njoint:bd708ee9041f611480ea1d77",
+            "party": "D",
+            "start_char": 160,
+            "end_char": 190,
+            "surface_text": "Secretary of State Marco Rubio",
+            "normalized_phrase": "secretary of state marco rubio",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 426,
+            "sentence_offset_start": 144,
+            "sentence_offset_end": 174,
+            "clause_start_char": 25,
+            "clause_end_char": 595,
+            "clause_offset_start": 135,
+            "clause_offset_end": 165,
+            "adjacent_tokens_before": [
+              "jewish",
+              "caucus",
+              "in",
+              "calling",
+              "on"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "preserve",
+              "the",
+              "office",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d1bedffc39c90e6952ca14e3",
+            "claim_id": "2026-09-23-D-00",
+            "statement_id": "sha256:da31a770e34456520c58f821c06c672f796e882a26ff99526db41d1ae77423f1",
+            "publication_id": "sha256:da31a770e34456520c58f821c06c672f796e882a26ff99526db41d1ae77423f1",
+            "office_id": "M000312",
+            "family_id": "dfam:526738dbc4e5bf885c3c2112",
+            "family_revision": "dfrev:ebdda32b8cbdf9f442d6d849",
+            "support_unit_id": "M000312",
+            "party": "D",
+            "start_char": 251,
+            "end_char": 281,
+            "surface_text": "Secretary of State Marco Rubio",
+            "normalized_phrase": "secretary of state marco rubio",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 38,
+            "sentence_end_char": 442,
+            "sentence_offset_start": 213,
+            "sentence_offset_end": 243,
+            "clause_start_char": 155,
+            "clause_end_char": 451,
+            "clause_offset_start": 96,
+            "clause_offset_end": 126,
+            "adjacent_tokens_before": [
+              "members",
+              "sent",
+              "a",
+              "letter",
+              "urging"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "advocate",
+              "with",
+              "the",
+              "government"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d0c410c3027e14ffa6168668",
+            "claim_id": "2026-09-23-D-00",
+            "statement_id": "sha256:eaf0682337c01ee792112a359808a5873c579da45abacd96be3c78aa4538504b",
+            "publication_id": "sha256:eaf0682337c01ee792112a359808a5873c579da45abacd96be3c78aa4538504b",
+            "office_id": "S001190",
+            "family_id": "njoint:bd708ee9041f611480ea1d77",
+            "family_revision": "dfrev:4ea7235f90c1a2e1aff9f490",
+            "support_unit_id": "njoint:bd708ee9041f611480ea1d77",
+            "party": "D",
+            "start_char": 160,
+            "end_char": 190,
+            "surface_text": "Secretary of State Marco Rubio",
+            "normalized_phrase": "secretary of state marco rubio",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 426,
+            "sentence_offset_start": 160,
+            "sentence_offset_end": 190,
+            "clause_start_char": 145,
+            "clause_end_char": 595,
+            "clause_offset_start": 15,
+            "clause_offset_end": 45,
+            "adjacent_tokens_before": [
+              "jewish",
+              "caucus",
+              "in",
+              "calling",
+              "on"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "preserve",
+              "the",
+              "office",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "B001267",
+          "M000312",
+          "N000002",
+          "S001190"
+        ],
+        "publication_ids": [
+          "sha256:aec02d5e95266536f33bd85ba2cabdfa6970e2fc7be0f09d048c61bb8813345b",
+          "sha256:be01ac52e3a725ab5abd721a589c36912c215ab12c24b8861ea0b55859ed80ff",
+          "sha256:da31a770e34456520c58f821c06c672f796e882a26ff99526db41d1ae77423f1",
+          "sha256:eaf0682337c01ee792112a359808a5873c579da45abacd96be3c78aa4538504b"
+        ],
+        "family_ids": [
+          "dfam:526738dbc4e5bf885c3c2112",
+          "dfam:5e6c60cf65166885a5b995e2",
+          "njoint:bd708ee9041f611480ea1d77"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:526738dbc4e5bf885c3c2112",
+            "family_revision": "dfrev:ebdda32b8cbdf9f442d6d849"
+          },
+          {
+            "family_id": "dfam:5e6c60cf65166885a5b995e2",
+            "family_revision": "dfrev:6e4bb8278e12333099d8743a"
+          },
+          {
+            "family_id": "njoint:bd708ee9041f611480ea1d77",
+            "family_revision": "dfrev:4ea7235f90c1a2e1aff9f490"
+          }
+        ],
+        "support_unit_ids": [
+          "B001267",
+          "M000312",
+          "njoint:bd708ee9041f611480ea1d77"
+        ],
+        "citation_occurrence_ids": [
+          "occ:2483b4ae9902d065e0bdaa89",
+          "occ:274c29afbec092590e31decd",
+          "occ:d1bedffc39c90e6952ca14e3"
+        ],
+        "citations": [
+          {
+            "member": "Michael F. Bennet",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-09-23",
+            "url": "https://www.bennet.senate.gov/2026/09/23/bennet-markey-merkley-demand-trump-administration-release-all-documents-from-u-s-saudi-nuclear-deal/",
+            "quote": "secretary of state marco rubio and",
+            "occurrence_id": "occ:2483b4ae9902d065e0bdaa89",
+            "office_id": "B001267",
+            "publication_id": "sha256:aec02d5e95266536f33bd85ba2cabdfa6970e2fc7be0f09d048c61bb8813345b",
+            "family_id": "dfam:5e6c60cf65166885a5b995e2",
+            "family_revision": "dfrev:6e4bb8278e12333099d8743a"
+          },
+          {
+            "member": "Jerrold Nadler",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-09-23",
+            "url": "https://nadler.house.gov/news/documentsingle.aspx?DocumentID=397536",
+            "quote": "calling on secretary of state marco rubio to",
+            "occurrence_id": "occ:274c29afbec092590e31decd",
+            "office_id": "N000002",
+            "publication_id": "sha256:be01ac52e3a725ab5abd721a589c36912c215ab12c24b8861ea0b55859ed80ff",
+            "family_id": "njoint:bd708ee9041f611480ea1d77",
+            "family_revision": "dfrev:4ea7235f90c1a2e1aff9f490"
+          },
+          {
+            "member": "James P. McGovern",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-09-23",
+            "url": "https://mcgovern.house.gov/news/documentsingle.aspx?DocumentID=400462",
+            "quote": "letter urging secretary of state marco rubio to",
+            "occurrence_id": "occ:d1bedffc39c90e6952ca14e3",
+            "office_id": "M000312",
+            "publication_id": "sha256:da31a770e34456520c58f821c06c672f796e882a26ff99526db41d1ae77423f1",
+            "family_id": "dfam:526738dbc4e5bf885c3c2112",
+            "family_revision": "dfrev:ebdda32b8cbdf9f442d6d849"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-23-D-01",
+        "party": "D",
+        "day": "2026-09-23",
+        "label": "in calling on president",
+        "member_count": 3,
+        "statements": [
+          "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+          "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+          "sha256:32912346c726caede4190253379cb33ebdef8a1671a8a5ecc7f87f30be3ce370",
+          "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77"
+        ],
+        "fragments": [
+          {
+            "text": "her democratic colleagues in calling on president donald trump",
+            "statement": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77"
+          },
+          {
+            "text": "democratic veteran colleagues in calling on president trump",
+            "statement": "sha256:32912346c726caede4190253379cb33ebdef8a1671a8a5ecc7f87f30be3ce370"
+          },
+          {
+            "text": "of his colleagues in calling on president donald",
+            "statement": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e"
+          }
+        ],
+        "topics": [
+          "other",
+          "veterans"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-23-D-01",
+        "support_phrase": {
+          "normalized": "in calling on president",
+          "text": "in calling on President",
+          "occurrence_id": "occ:39e6d3cf385609aeb4feb03d"
+        },
+        "display_quote": "in calling on President",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:39e6d3cf385609aeb4feb03d",
+            "claim_id": "2026-09-23-D-01",
+            "statement_id": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+            "publication_id": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+            "office_id": "V000128",
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94",
+            "support_unit_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "party": "D",
+            "start_char": 80,
+            "end_char": 103,
+            "surface_text": "in calling on President",
+            "normalized_phrase": "in calling on president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 44,
+            "sentence_end_char": 162,
+            "sentence_offset_start": 36,
+            "sentence_offset_end": 59,
+            "clause_start_char": 6,
+            "clause_end_char": 230,
+            "clause_offset_start": 74,
+            "clause_offset_end": 97,
+            "adjacent_tokens_before": [
+              "than",
+              "15",
+              "of",
+              "his",
+              "colleagues"
+            ],
+            "adjacent_tokens_after": [
+              "donald",
+              "trump",
+              "to",
+              "negotiate",
+              "a"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0e6fe2306f81b18526be0ed6",
+            "claim_id": "2026-09-23-D-01",
+            "statement_id": "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+            "publication_id": "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+            "office_id": "L000570",
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94",
+            "support_unit_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "party": "D",
+            "start_char": 234,
+            "end_char": 257,
+            "surface_text": "in calling on President",
+            "normalized_phrase": "in calling on president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 215,
+            "sentence_end_char": 316,
+            "sentence_offset_start": 19,
+            "sentence_offset_end": 42,
+            "clause_start_char": 134,
+            "clause_end_char": 384,
+            "clause_offset_start": 100,
+            "clause_offset_end": 123,
+            "adjacent_tokens_before": [
+              "hollen",
+              "d-md",
+              "and",
+              "15",
+              "colleagues"
+            ],
+            "adjacent_tokens_after": [
+              "donald",
+              "trump",
+              "to",
+              "negotiate",
+              "a"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1dc24b517087c444cb93c000",
+            "claim_id": "2026-09-23-D-01",
+            "statement_id": "sha256:32912346c726caede4190253379cb33ebdef8a1671a8a5ecc7f87f30be3ce370",
+            "publication_id": "sha256:32912346c726caede4190253379cb33ebdef8a1671a8a5ecc7f87f30be3ce370",
+            "office_id": "V000138",
+            "family_id": "dfam:799c709d1ed4f7a661657e94",
+            "family_revision": "dfrev:57dbcbadd870ad14cbf13905",
+            "support_unit_id": "V000138",
+            "party": "D",
+            "start_char": 139,
+            "end_char": 162,
+            "surface_text": "in calling on President",
+            "normalized_phrase": "in calling on president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 88,
+            "sentence_end_char": 242,
+            "sentence_offset_start": 51,
+            "sentence_offset_end": 74,
+            "clause_start_char": 11,
+            "clause_end_char": 326,
+            "clause_offset_start": 128,
+            "clause_offset_end": 151,
+            "adjacent_tokens_before": [
+              "of",
+              "their",
+              "democratic",
+              "veteran",
+              "colleagues"
+            ],
+            "adjacent_tokens_after": [
+              "trump",
+              "to",
+              "publicly",
+              "condemn",
+              "china’s"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:93d48f4a9af555157e0bf774",
+            "claim_id": "2026-09-23-D-01",
+            "statement_id": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77",
+            "publication_id": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77",
+            "office_id": "C001113",
+            "family_id": "dfam:12b41db4035fe37690e9608f",
+            "family_revision": "dfrev:6ad10150313bd3f05cbb1bf7",
+            "support_unit_id": "C001113",
+            "party": "D",
+            "start_char": 244,
+            "end_char": 267,
+            "surface_text": "in calling on President",
+            "normalized_phrase": "in calling on president",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 207,
+            "sentence_end_char": 360,
+            "sentence_offset_start": 37,
+            "sentence_offset_end": 60,
+            "clause_start_char": 122,
+            "clause_end_char": 437,
+            "clause_offset_start": 122,
+            "clause_offset_end": 145,
+            "adjacent_tokens_before": [
+              "15",
+              "of",
+              "her",
+              "democratic",
+              "colleagues"
+            ],
+            "adjacent_tokens_after": [
+              "donald",
+              "trump",
+              "to",
+              "negotiate",
+              "a"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "C001113",
+          "L000570",
+          "V000128",
+          "V000138"
+        ],
+        "publication_ids": [
+          "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+          "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+          "sha256:32912346c726caede4190253379cb33ebdef8a1671a8a5ecc7f87f30be3ce370",
+          "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77"
+        ],
+        "family_ids": [
+          "dfam:12b41db4035fe37690e9608f",
+          "dfam:799c709d1ed4f7a661657e94",
+          "njoint:1905a8b0b0520d8e9abae1db"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:12b41db4035fe37690e9608f",
+            "family_revision": "dfrev:6ad10150313bd3f05cbb1bf7"
+          },
+          {
+            "family_id": "dfam:799c709d1ed4f7a661657e94",
+            "family_revision": "dfrev:57dbcbadd870ad14cbf13905"
+          },
+          {
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94"
+          }
+        ],
+        "support_unit_ids": [
+          "C001113",
+          "V000138",
+          "njoint:1905a8b0b0520d8e9abae1db"
+        ],
+        "citation_occurrence_ids": [
+          "occ:39e6d3cf385609aeb4feb03d",
+          "occ:1dc24b517087c444cb93c000",
+          "occ:93d48f4a9af555157e0bf774"
+        ],
+        "citations": [
+          {
+            "member": "Chris Van Hollen",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-09-23",
+            "url": "https://www.vanhollen.senate.gov/news/press-releases/van-hollen-more-than-15-senate-democrats-push-trump-to-negotiate-ai-guardrails-with-xi",
+            "quote": "of his colleagues in calling on president donald",
+            "occurrence_id": "occ:39e6d3cf385609aeb4feb03d",
+            "office_id": "V000128",
+            "publication_id": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94"
+          },
+          {
+            "member": "Eugene Simon Vindman",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-09-23",
+            "url": "https://vindman.house.gov/2026/09/23/vindman-joins-democratic-veterans-in-demanding-trump-hold-beijing-accountable-for-providing-key-intelligence-to-iran/",
+            "quote": "democratic veteran colleagues in calling on president trump",
+            "occurrence_id": "occ:1dc24b517087c444cb93c000",
+            "office_id": "V000138",
+            "publication_id": "sha256:32912346c726caede4190253379cb33ebdef8a1671a8a5ecc7f87f30be3ce370",
+            "family_id": "dfam:799c709d1ed4f7a661657e94",
+            "family_revision": "dfrev:57dbcbadd870ad14cbf13905"
+          },
+          {
+            "member": "Catherine Cortez Masto",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-09-23",
+            "url": "https://www.cortezmasto.senate.gov/news/press-releases/cortez-masto-van-hollen-colleagues-push-trump-to-negotiate-global-ai-guardrails-with-china/",
+            "quote": "her democratic colleagues in calling on president donald trump",
+            "occurrence_id": "occ:93d48f4a9af555157e0bf774",
+            "office_id": "C001113",
+            "publication_id": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77",
+            "family_id": "dfam:12b41db4035fe37690e9608f",
+            "family_revision": "dfrev:6ad10150313bd3f05cbb1bf7"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "veterans",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-23-D-02",
+        "party": "D",
+        "day": "2026-09-23",
+        "label": "to negotiate a formal agreement",
+        "member_count": 3,
+        "statements": [
+          "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+          "sha256:22bde5d021b89fc58e305f8a07f03cc8cd8b00cf4ae4f2ec6bb01c40ab52ee4d",
+          "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+          "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77"
+        ],
+        "fragments": [
+          {
+            "text": "donald trump to negotiate a formal agreement with chinese president",
+            "statement": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77"
+          },
+          {
+            "text": "donald trump to negotiate a formal agreement between the u",
+            "statement": "sha256:22bde5d021b89fc58e305f8a07f03cc8cd8b00cf4ae4f2ec6bb01c40ab52ee4d"
+          },
+          {
+            "text": "donald trump to negotiate a formal agreement between the",
+            "statement": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-23-D-02",
+        "support_phrase": {
+          "normalized": "to negotiate a formal agreement",
+          "text": "to negotiate a formal agreement",
+          "occurrence_id": "occ:cd2b17ec4dc9c42d7bdac65d"
+        },
+        "display_quote": "to negotiate a formal agreement",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:cd2b17ec4dc9c42d7bdac65d",
+            "claim_id": "2026-09-23-D-02",
+            "statement_id": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+            "publication_id": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+            "office_id": "V000128",
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94",
+            "support_unit_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "party": "D",
+            "start_char": 117,
+            "end_char": 148,
+            "surface_text": "to negotiate a formal agreement",
+            "normalized_phrase": "to negotiate a formal agreement",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 44,
+            "sentence_end_char": 162,
+            "sentence_offset_start": 73,
+            "sentence_offset_end": 104,
+            "clause_start_char": 6,
+            "clause_end_char": 230,
+            "clause_offset_start": 111,
+            "clause_offset_end": 142,
+            "adjacent_tokens_before": [
+              "calling",
+              "on",
+              "president",
+              "donald",
+              "trump"
+            ],
+            "adjacent_tokens_after": [
+              "between",
+              "the",
+              "u",
+              "s",
+              "and"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a0ea09f8293bd63590cf49b9",
+            "claim_id": "2026-09-23-D-02",
+            "statement_id": "sha256:22bde5d021b89fc58e305f8a07f03cc8cd8b00cf4ae4f2ec6bb01c40ab52ee4d",
+            "publication_id": "sha256:22bde5d021b89fc58e305f8a07f03cc8cd8b00cf4ae4f2ec6bb01c40ab52ee4d",
+            "office_id": "R000608",
+            "family_id": "dfam:46e50d2d3d4306c6c42253a5",
+            "family_revision": "dfrev:37ed7e46a3a3c0ca800737d4",
+            "support_unit_id": "R000608",
+            "party": "D",
+            "start_char": 287,
+            "end_char": 318,
+            "surface_text": "to negotiate a formal agreement",
+            "normalized_phrase": "to negotiate a formal agreement",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 198,
+            "sentence_end_char": 332,
+            "sentence_offset_start": 89,
+            "sentence_offset_end": 120,
+            "clause_start_char": 193,
+            "clause_end_char": 400,
+            "clause_offset_start": 94,
+            "clause_offset_end": 125,
+            "adjacent_tokens_before": [
+              "letter",
+              "calling",
+              "on",
+              "donald",
+              "trump"
+            ],
+            "adjacent_tokens_after": [
+              "between",
+              "the",
+              "u",
+              "s",
+              "and"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:fa0ff3d4042930dbf1ae7ace",
+            "claim_id": "2026-09-23-D-02",
+            "statement_id": "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+            "publication_id": "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+            "office_id": "L000570",
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94",
+            "support_unit_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "party": "D",
+            "start_char": 271,
+            "end_char": 302,
+            "surface_text": "to negotiate a formal agreement",
+            "normalized_phrase": "to negotiate a formal agreement",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 215,
+            "sentence_end_char": 316,
+            "sentence_offset_start": 56,
+            "sentence_offset_end": 87,
+            "clause_start_char": 134,
+            "clause_end_char": 384,
+            "clause_offset_start": 137,
+            "clause_offset_end": 168,
+            "adjacent_tokens_before": [
+              "calling",
+              "on",
+              "president",
+              "donald",
+              "trump"
+            ],
+            "adjacent_tokens_after": [
+              "between",
+              "the",
+              "u",
+              "s",
+              "and"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:db34ee69488238aa7201811d",
+            "claim_id": "2026-09-23-D-02",
+            "statement_id": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77",
+            "publication_id": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77",
+            "office_id": "C001113",
+            "family_id": "dfam:12b41db4035fe37690e9608f",
+            "family_revision": "dfrev:6ad10150313bd3f05cbb1bf7",
+            "support_unit_id": "C001113",
+            "party": "D",
+            "start_char": 281,
+            "end_char": 312,
+            "surface_text": "to negotiate a formal agreement",
+            "normalized_phrase": "to negotiate a formal agreement",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 207,
+            "sentence_end_char": 360,
+            "sentence_offset_start": 74,
+            "sentence_offset_end": 105,
+            "clause_start_char": 122,
+            "clause_end_char": 437,
+            "clause_offset_start": 159,
+            "clause_offset_end": 190,
+            "adjacent_tokens_before": [
+              "calling",
+              "on",
+              "president",
+              "donald",
+              "trump"
+            ],
+            "adjacent_tokens_after": [
+              "with",
+              "chinese",
+              "president",
+              "xi",
+              "jinping"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "C001113",
+          "L000570",
+          "R000608",
+          "V000128"
+        ],
+        "publication_ids": [
+          "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+          "sha256:22bde5d021b89fc58e305f8a07f03cc8cd8b00cf4ae4f2ec6bb01c40ab52ee4d",
+          "sha256:2f13f6cc5babfb68ec23b3f45c412195000657fa0682806294884ac70227466f",
+          "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77"
+        ],
+        "family_ids": [
+          "dfam:12b41db4035fe37690e9608f",
+          "dfam:46e50d2d3d4306c6c42253a5",
+          "njoint:1905a8b0b0520d8e9abae1db"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:12b41db4035fe37690e9608f",
+            "family_revision": "dfrev:6ad10150313bd3f05cbb1bf7"
+          },
+          {
+            "family_id": "dfam:46e50d2d3d4306c6c42253a5",
+            "family_revision": "dfrev:37ed7e46a3a3c0ca800737d4"
+          },
+          {
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94"
+          }
+        ],
+        "support_unit_ids": [
+          "C001113",
+          "R000608",
+          "njoint:1905a8b0b0520d8e9abae1db"
+        ],
+        "citation_occurrence_ids": [
+          "occ:cd2b17ec4dc9c42d7bdac65d",
+          "occ:a0ea09f8293bd63590cf49b9",
+          "occ:db34ee69488238aa7201811d"
+        ],
+        "citations": [
+          {
+            "member": "Chris Van Hollen",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-09-23",
+            "url": "https://www.vanhollen.senate.gov/news/press-releases/van-hollen-more-than-15-senate-democrats-push-trump-to-negotiate-ai-guardrails-with-xi",
+            "quote": "donald trump to negotiate a formal agreement between the",
+            "occurrence_id": "occ:cd2b17ec4dc9c42d7bdac65d",
+            "office_id": "V000128",
+            "publication_id": "sha256:1765e5674b0dc3106def01fcc12ea75ee74e7679fc571115d6252bf99a66393e",
+            "family_id": "njoint:1905a8b0b0520d8e9abae1db",
+            "family_revision": "dfrev:8da0e252e23dfb38cd27ac94"
+          },
+          {
+            "member": "Jacky Rosen",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-09-23",
+            "url": "https://www.rosen.senate.gov/2026/09/23/rosen-joins-push-calling-on-trump-to-negotiate-ai-guardrails-with-china/",
+            "quote": "donald trump to negotiate a formal agreement between the u",
+            "occurrence_id": "occ:a0ea09f8293bd63590cf49b9",
+            "office_id": "R000608",
+            "publication_id": "sha256:22bde5d021b89fc58e305f8a07f03cc8cd8b00cf4ae4f2ec6bb01c40ab52ee4d",
+            "family_id": "dfam:46e50d2d3d4306c6c42253a5",
+            "family_revision": "dfrev:37ed7e46a3a3c0ca800737d4"
+          },
+          {
+            "member": "Catherine Cortez Masto",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-09-23",
+            "url": "https://www.cortezmasto.senate.gov/news/press-releases/cortez-masto-van-hollen-colleagues-push-trump-to-negotiate-global-ai-guardrails-with-china/",
+            "quote": "donald trump to negotiate a formal agreement with chinese president",
+            "occurrence_id": "occ:db34ee69488238aa7201811d",
+            "office_id": "C001113",
+            "publication_id": "sha256:d68f061fba129daf80251e7a1341c98c5c3ba69ec0850bc1a92a95e55cfabc77",
+            "family_id": "dfam:12b41db4035fe37690e9608f",
+            "family_revision": "dfrev:6ad10150313bd3f05cbb1bf7"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-23",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 9,
+          "numerator_unit": "offices",
+          "denominator": 61,
+          "denominator_unit": "offices",
+          "share": 0.147541,
+          "window": "party-day 2026-09-23",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 9,
+          "numerator_unit": "publications",
+          "denominator": 88,
+          "denominator_unit": "publications",
+          "share": 0.102273,
+          "window": "party-day 2026-09-23",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 7,
+          "numerator_unit": "document families",
+          "denominator": 82,
+          "denominator_unit": "document families",
+          "share": 0.085366,
+          "window": "party-day 2026-09-23",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-23",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 42,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-09-23",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 51,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-09-23",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 50,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-09-23",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "around the world",
+        "slug": "61da32700dea14ca",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 3,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 3,
+          "I": 1
+        },
+        "family_count": 7,
+        "velocity": 2.58,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:1f40a23fc323f17f14470b35470a4feabfe987f39f0c7ab17f2c0a3cde97f789",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.961,
+        "series": [
+          3,
+          4,
+          1,
+          3,
+          1,
+          3,
+          5,
+          3,
+          5,
+          3,
+          2,
+          0,
+          2,
+          7
+        ]
+      },
+      {
+        "ngram": "the lawmakers wrote",
+        "slug": "13d49ed92594daf1",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.9,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001117",
+          "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.978,
+        "series": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          1,
+          3,
+          1,
+          1,
+          3,
+          1,
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "full text of the letter is",
+        "slug": "264915c69f7253b1",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001056",
+          "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.971,
+        "series": [
+          2,
+          1,
+          2,
+          4,
+          2,
+          1,
+          2,
+          4,
+          3,
+          6,
+          4,
+          4,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "american people and",
+        "slug": "e4dc02f67535e6ca",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.18,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:cf6244b38ff5612e425dda155e1b3450519b5415925d5a49985856077cc75227",
+          "tie": [
+            "B001261",
+            "C001098",
+            "F000466",
+            "M001210",
+            "W000829"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.976,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          3,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "access to health care",
+        "slug": "9b5c57350224b7e2",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001243",
+            "M001163",
+            "M001238",
+            "S001185"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "local state and federal",
+        "slug": "8660f1594afc8725",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "R000122",
+          "statement": "sha256:169540f106e1aa92367251e59d4e90833c33b8beebab2f9398868c73350546b7",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "of ai models",
+        "slug": "a08d87030a32bc7e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-04-02",
+          "bioguide": "B001277",
+          "statement": "sha256:4fc3e2af4f08e7e2f3f9cb788d14478c23d1b6ebd5bcd750bab682f673a70696",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "human control over",
+        "slug": "30d90e4a85cf420a",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-02-27",
+          "bioguide": "V000128",
+          "statement": "sha256:1a5798e303d6f01d09fb2903ef20a04998387667e2da3dd01440a19c3a0690b3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "development of biological",
+        "slug": "ea4f5b1c0c48df1d",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-02-11",
+          "bioguide": "B001305",
+          "statement": "sha256:30983c7569ed00a5f9f2ea618c4d8d584bfc718cf798946cbfdd8570c07b8410",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "lead the world",
+        "slug": "11683a1fb74eefce",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "M001237",
+          "statement": "sha256:3455f9c13c18020ca33d983049d03a9987aa7d03176eab14e818c780df46a0c2",
+          "tie": [
+            "P000595",
+            "S001212"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "economic and national security",
+        "slug": "2f300d9c657277ed",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "P000595",
+          "statement": "sha256:16fa14ed9f59b1439680922b601a8066f753c6f9692f7c252a91f944d137f23c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "get to work",
+        "slug": "28bc085e15851d66",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:cf6244b38ff5612e425dda155e1b3450519b5415925d5a49985856077cc75227",
+          "tie": [
+            "A000372",
+            "B001230",
+            "B001291",
+            "B001305",
+            "B001322",
+            "B001326",
+            "C001053",
+            "C001067",
+            "C001098",
+            "C001114",
+            "C001136",
+            "C001137",
+            "D000618",
+            "D000629",
+            "D000635",
+            "E000300",
+            "F000459",
+            "H001046",
+            "H001067",
+            "H001082",
+            "H001091",
+            "H001099",
+            "H001100",
+            "J000301",
+            "J000311",
+            "K000376",
+            "L000600",
+            "M001143",
+            "M001169",
+            "M001234",
+            "M001235",
+            "M001237",
+            "M001238",
+            "M001239",
+            "M001240",
+            "N000026",
+            "P000609",
+            "P000610",
+            "R000610",
+            "S001184",
+            "S001199",
+            "S001217",
+            "S001228",
+            "T000490",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "supply chains and",
+        "slug": "860e1aad9a7a67c4",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "H001101",
+          "statement": "sha256:8073dff9956e0dc0c00f7e49b73380feea629a00b69387eabd04442da2bda06f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "a press conference",
+        "slug": "947cb30ef8f2474c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.65,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.98,
+        "series": [
+          3,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          6,
+          6,
+          3,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "next generation of",
+        "slug": "5527941b4a339267",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.3,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "B001326"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.978,
+        "series": [
+          4,
+          5,
+          1,
+          1,
+          3,
+          2,
+          3,
+          6,
+          4,
+          3,
+          3,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.98,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          5,
+          2,
+          2,
+          4,
+          3,
+          3,
+          5,
+          7,
+          6,
+          3,
+          5,
+          2,
+          5,
+          4
+        ]
+      },
+      {
+        "ngram": "foreign supply chains",
+        "slug": "e5b7d65c3eb4fc9a",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-17",
+          "bioguide": "F000479",
+          "statement": "sha256:e2f1251e3998767756e66ec4fb421803e62fe768c5be764dd113690f85459d29",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "remarks on the senate floor",
+        "slug": "c3e8cffee3225666",
+        "n": 5,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "T000250",
+          "statement": "sha256:65e75acc520ef51787133a7104c630ca4841abcdc73857cad87bcf392cd41a37",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "ready to roll",
+        "slug": "151643b16dd78682",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001295",
+          "statement": "sha256:b3863a683cb9d74b6f86d079cbb4fb2105c45a2eb5e136dc014f11931232ffed",
+          "tie": [
+            "S001225"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "on foreign supply",
+        "slug": "d03ad55d8ac5f072",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-17",
+          "bioguide": "F000479",
+          "statement": "sha256:e2f1251e3998767756e66ec4fb421803e62fe768c5be764dd113690f85459d29",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
