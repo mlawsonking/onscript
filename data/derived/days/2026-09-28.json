@@ -1,0 +1,3322 @@
+{
+  "day": "2026-09-28",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-09-28",
+      "party": "D",
+      "composite": "Across our 89 statements today, we converge on control over and undermine public, echoed by 4 of us. Our most synchronized phrase today is efforts to undermine, appearing among 7 of us, first recorded in our corpus from Laura Friedman (D-CA). We note the overlap between these two lines — undermine recurring as our shared register today, though we are given no further quotes to elaborate the point. Beyond this, we do not report additional shared phrasing at the threshold observed today.",
+      "measurement_lead": "Measurement: 89 publications were observed for the Democratic party on 2026-09-28.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-09-28",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "6c1ef6e67dcb4f1a8108784cba3b23c9c553c4877c8b8868ebb23739f9216262",
+        "claim_ids": [
+          "2026-09-28-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Across our 89 statements today, we converge on control over and undermine public, echoed by 4 of us. Our most synchronized phrase today is efforts to undermine, appearing among 7 of us, first recorded in our corpus from Laura Friedman (D-CA). We note the overlap between these two lines — undermine recurring as our shared register today, though we are given no further quotes to elaborate the point. Beyond this, we do not report additional shared phrasing at the threshold observed today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "8ec4394bcabd8e2f4fe92d03907597c8cbdc81154b3d6e7ddfc5de03c2f4ee80",
+        "response_sha256": "dd9e2bce68296e2fd18fcae4a3624e0199f0a36c029ad1c882cbb36c5d98e4e1",
+        "model_response_sha256": "1214eaa0ad3bc7564ab0fce88e3ec7c81aa6ca85320bbec38122e2feadbbc9b5"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-09-28",
+        "statements": 89,
+        "talking_points": [
+          {
+            "label": "control over and undermine public",
+            "members": 4,
+            "quote": "control over and undermine public",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-28-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "efforts to undermine",
+          "members": 7,
+          "family_count": 8,
+          "first_sayer": "Laura Friedman",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CA"
+        },
+        "selected_claims": [
+          {
+            "label": "control over and undermine public",
+            "members": 4,
+            "quote": "control over and undermine public",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-09-28-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 1,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 1,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-28-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 2074,
+        "tokens_out": 156,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-09-28",
+      "party": "R",
+      "composite": "Today 67 of us released statements. 3 of us carried \"investment is a major\". Our most synchronized phrase, used by 8 of us: the next generation.",
+      "measurement_lead": "Measurement: 67 publications were observed for the Republican party on 2026-09-28.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-09-28",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "a74ad14fd87d631ed17b50d48383b44250b22c8a09e23e3f54b627d92ea55ebb",
+        "claim_ids": [
+          "2026-09-28-R-01"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 67 of us released statements. 3 of us carried \"investment is a major\". Our most synchronized phrase, used by 8 of us: the next generation.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-09-28-R-01"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "5fd8bcdd5f39b0ac352da46b07e07862179d1ccca4da5483aed46d862a7562bc",
+        "response_sha256": "6d07bc673d61e47b94ac77d1fc37c682f5aeec61048b1a868d4e46f1b8007b3f",
+        "model_response_sha256": "7bfe639ca02d7546efe20255b1ab097ea2c6d621ee55e784f54c9da69b49431b"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-09-28-R-01"
+          ],
+          "claim_ids": [
+            "2026-09-28-R-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-09-28-R-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-09-28",
+        "statements": 67,
+        "talking_points": [
+          {
+            "label": "investment is a major",
+            "members": 3,
+            "quote": "investment is a major",
+            "topics": [
+              "labor",
+              "other"
+            ],
+            "claim_id": "2026-09-28-R-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "labor",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "the next generation",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Russ Fulcher",
+          "first_sayer_party": "R",
+          "first_sayer_state": "ID"
+        },
+        "selected_claims": [
+          {
+            "label": "investment is a major",
+            "members": 3,
+            "quote": "investment is a major",
+            "topics": [
+              "labor",
+              "other"
+            ],
+            "claim_id": "2026-09-28-R-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "labor",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-09-28-R-01"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2277,
+        "tokens_out": 87,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-09-28-D-00",
+        "party": "D",
+        "day": "2026-09-28",
+        "label": "control over and undermine public",
+        "member_count": 4,
+        "statements": [
+          "sha256:41329612d9ac135d8867d47b019cddd2b8c3b8851f5493701491a607675a05db",
+          "sha256:dcb7a166004d4d06cbcf67c82f3bbe0f9bdaae53868df9920b9595c1c532540e",
+          "sha256:f458c555e4f203ed026b27d7423cb9c9adde8c45876171fecccc9a8cebc99583",
+          "sha256:fffa446a68396995dea2efd4dac09de2138bd13dc8f3dae01b7ab9ced87c1154"
+        ],
+        "fragments": [
+          {
+            "text": "the department’s efforts to assert federal control over and undermine public",
+            "statement": "sha256:fffa446a68396995dea2efd4dac09de2138bd13dc8f3dae01b7ab9ced87c1154"
+          },
+          {
+            "text": "the department’s efforts to assert federal control over and undermine public",
+            "statement": "sha256:41329612d9ac135d8867d47b019cddd2b8c3b8851f5493701491a607675a05db"
+          },
+          {
+            "text": "extend federal control over and undermine public trust in the",
+            "statement": "sha256:f458c555e4f203ed026b27d7423cb9c9adde8c45876171fecccc9a8cebc99583"
+          },
+          {
+            "text": "immediately halt the department’s efforts to assert federal control over",
+            "statement": "sha256:dcb7a166004d4d06cbcf67c82f3bbe0f9bdaae53868df9920b9595c1c532540e"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-28-D-00",
+        "support_phrase": {
+          "normalized": "control over and undermine public",
+          "text": "control over and undermine public",
+          "occurrence_id": "occ:ee199d35e22b4d3b3e1bc15f"
+        },
+        "display_quote": "control over and undermine public",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ee199d35e22b4d3b3e1bc15f",
+            "claim_id": "2026-09-28-D-00",
+            "statement_id": "sha256:41329612d9ac135d8867d47b019cddd2b8c3b8851f5493701491a607675a05db",
+            "publication_id": "sha256:41329612d9ac135d8867d47b019cddd2b8c3b8851f5493701491a607675a05db",
+            "office_id": "K000377",
+            "family_id": "dfam:6d4906dd22a3beb317963ea8",
+            "family_revision": "dfrev:455c4c1f829009ff396cceff",
+            "support_unit_id": "K000377",
+            "party": "D",
+            "start_char": 290,
+            "end_char": 323,
+            "surface_text": "control over and undermine public",
+            "normalized_phrase": "control over and undermine public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 359,
+            "sentence_offset_start": 290,
+            "sentence_offset_end": 323,
+            "clause_start_char": 110,
+            "clause_end_char": 618,
+            "clause_offset_start": 180,
+            "clause_offset_end": 213,
+            "adjacent_tokens_before": [
+              "department’s",
+              "efforts",
+              "to",
+              "assert",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "trust",
+              "in",
+              "the",
+              "2026",
+              "midterm"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7a8d5df1f98bfb66d813344a",
+            "claim_id": "2026-09-28-D-00",
+            "statement_id": "sha256:dcb7a166004d4d06cbcf67c82f3bbe0f9bdaae53868df9920b9595c1c532540e",
+            "publication_id": "sha256:dcb7a166004d4d06cbcf67c82f3bbe0f9bdaae53868df9920b9595c1c532540e",
+            "office_id": "P000145",
+            "family_id": "dfam:54f1392aa1e2d0f7866aa19c",
+            "family_revision": "dfrev:e9c49a44bce917e1fddf21be",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 564,
+            "end_char": 598,
+            "surface_text": "control over, and undermine public",
+            "normalized_phrase": "control over and undermine public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 390,
+            "sentence_end_char": 635,
+            "sentence_offset_start": 174,
+            "sentence_offset_end": 208,
+            "clause_start_char": 391,
+            "clause_end_char": 607,
+            "clause_offset_start": 173,
+            "clause_offset_end": 207,
+            "adjacent_tokens_before": [
+              "department’s",
+              "efforts",
+              "to",
+              "assert",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "trust",
+              "in",
+              "the",
+              "2026",
+              "midterm"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:43f5fc078753fc455c1fa57f",
+            "claim_id": "2026-09-28-D-00",
+            "statement_id": "sha256:f458c555e4f203ed026b27d7423cb9c9adde8c45876171fecccc9a8cebc99583",
+            "publication_id": "sha256:f458c555e4f203ed026b27d7423cb9c9adde8c45876171fecccc9a8cebc99583",
+            "office_id": "K000384",
+            "family_id": "dfam:1b0e2f6633654c9c0dd147a5",
+            "family_revision": "dfrev:bba66feb79ba22d8974a8da3",
+            "support_unit_id": "K000384",
+            "party": "D",
+            "start_char": 224,
+            "end_char": 257,
+            "surface_text": "control over and undermine public",
+            "normalized_phrase": "control over and undermine public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 293,
+            "sentence_offset_start": 201,
+            "sentence_offset_end": 234,
+            "clause_start_char": 19,
+            "clause_end_char": 415,
+            "clause_offset_start": 205,
+            "clause_offset_end": 238,
+            "adjacent_tokens_before": [
+              "department’s",
+              "efforts",
+              "to",
+              "extend",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "trust",
+              "in",
+              "the",
+              "2026",
+              "midterm"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e89f81e7be3447e69c9a5405",
+            "claim_id": "2026-09-28-D-00",
+            "statement_id": "sha256:fffa446a68396995dea2efd4dac09de2138bd13dc8f3dae01b7ab9ced87c1154",
+            "publication_id": "sha256:fffa446a68396995dea2efd4dac09de2138bd13dc8f3dae01b7ab9ced87c1154",
+            "office_id": "G000574",
+            "family_id": "dfam:7edc372c337174a46fc8c9fd",
+            "family_revision": "dfrev:7ca2517d3e4fdd6c6fb2f6c2",
+            "support_unit_id": "G000574",
+            "party": "D",
+            "start_char": 299,
+            "end_char": 332,
+            "surface_text": "control over and undermine public",
+            "normalized_phrase": "control over and undermine public",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 368,
+            "sentence_offset_start": 299,
+            "sentence_offset_end": 332,
+            "clause_start_char": 126,
+            "clause_end_char": 597,
+            "clause_offset_start": 173,
+            "clause_offset_end": 206,
+            "adjacent_tokens_before": [
+              "department’s",
+              "efforts",
+              "to",
+              "assert",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "trust",
+              "in",
+              "the",
+              "2026",
+              "midterm"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "publication_ids": [
+          "sha256:41329612d9ac135d8867d47b019cddd2b8c3b8851f5493701491a607675a05db",
+          "sha256:dcb7a166004d4d06cbcf67c82f3bbe0f9bdaae53868df9920b9595c1c532540e",
+          "sha256:f458c555e4f203ed026b27d7423cb9c9adde8c45876171fecccc9a8cebc99583",
+          "sha256:fffa446a68396995dea2efd4dac09de2138bd13dc8f3dae01b7ab9ced87c1154"
+        ],
+        "family_ids": [
+          "dfam:1b0e2f6633654c9c0dd147a5",
+          "dfam:54f1392aa1e2d0f7866aa19c",
+          "dfam:6d4906dd22a3beb317963ea8",
+          "dfam:7edc372c337174a46fc8c9fd"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:1b0e2f6633654c9c0dd147a5",
+            "family_revision": "dfrev:bba66feb79ba22d8974a8da3"
+          },
+          {
+            "family_id": "dfam:54f1392aa1e2d0f7866aa19c",
+            "family_revision": "dfrev:e9c49a44bce917e1fddf21be"
+          },
+          {
+            "family_id": "dfam:6d4906dd22a3beb317963ea8",
+            "family_revision": "dfrev:455c4c1f829009ff396cceff"
+          },
+          {
+            "family_id": "dfam:7edc372c337174a46fc8c9fd",
+            "family_revision": "dfrev:7ca2517d3e4fdd6c6fb2f6c2"
+          }
+        ],
+        "support_unit_ids": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "citation_occurrence_ids": [
+          "occ:ee199d35e22b4d3b3e1bc15f",
+          "occ:43f5fc078753fc455c1fa57f",
+          "occ:e89f81e7be3447e69c9a5405"
+        ],
+        "citations": [
+          {
+            "member": "Mark Kelly",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-09-28",
+            "url": "https://www.kelly.senate.gov/newsroom/press-releases/kelly-colleagues-demand-that-dhs-halt-2026-election-interference-efforts/",
+            "quote": "the department’s efforts to assert federal control over and undermine public",
+            "occurrence_id": "occ:ee199d35e22b4d3b3e1bc15f",
+            "office_id": "K000377",
+            "publication_id": "sha256:41329612d9ac135d8867d47b019cddd2b8c3b8851f5493701491a607675a05db",
+            "family_id": "dfam:6d4906dd22a3beb317963ea8",
+            "family_revision": "dfrev:455c4c1f829009ff396cceff"
+          },
+          {
+            "member": "Tim Kaine",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-09-28",
+            "url": "https://www.kaine.senate.gov/press-releases/kaine-colleagues-demand-dhs-halt-efforts-to-undermine-2026-midterm-elections",
+            "quote": "extend federal control over and undermine public trust in the",
+            "occurrence_id": "occ:43f5fc078753fc455c1fa57f",
+            "office_id": "K000384",
+            "publication_id": "sha256:f458c555e4f203ed026b27d7423cb9c9adde8c45876171fecccc9a8cebc99583",
+            "family_id": "dfam:1b0e2f6633654c9c0dd147a5",
+            "family_revision": "dfrev:bba66feb79ba22d8974a8da3"
+          },
+          {
+            "member": "Ruben Gallego",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-09-28",
+            "url": "https://www.gallego.senate.gov/news/press-releases/gallego-colleagues-demand-that-dhs-halt-2026-election-interference-efforts/",
+            "quote": "the department’s efforts to assert federal control over and undermine public",
+            "occurrence_id": "occ:e89f81e7be3447e69c9a5405",
+            "office_id": "G000574",
+            "publication_id": "sha256:fffa446a68396995dea2efd4dac09de2138bd13dc8f3dae01b7ab9ced87c1154",
+            "family_id": "dfam:7edc372c337174a46fc8c9fd",
+            "family_revision": "dfrev:7ca2517d3e4fdd6c6fb2f6c2"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-09-28-D-01",
+        "party": "D",
+        "day": "2026-09-28",
+        "label": "in sending a letter",
+        "member_count": 3,
+        "statements": [
+          "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+          "sha256:be97ca48bc01f8b77eb0f20298d3fa471df1abaf89a094ef36bfc6ab06c12ea8",
+          "sha256:cf7514dcc1e007339890c8f248d58f7dcc55521d1e4073076d08c448451c4b12"
+        ],
+        "fragments": [
+          {
+            "text": "12 bipartisan colleagues in sending a letter to president",
+            "statement": "sha256:cf7514dcc1e007339890c8f248d58f7dcc55521d1e4073076d08c448451c4b12"
+          },
+          {
+            "text": "judiciary democrats in sending a letter to senate judiciary committee",
+            "statement": "sha256:be97ca48bc01f8b77eb0f20298d3fa471df1abaf89a094ef36bfc6ab06c12ea8"
+          },
+          {
+            "text": "his senate colleagues in sending a letter to",
+            "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-28-D-01",
+        "support_phrase": {
+          "normalized": "in sending a letter",
+          "text": "in sending a letter",
+          "occurrence_id": "occ:c4bcf6981846154856f0d74e"
+        },
+        "display_quote": "in sending a letter",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c4bcf6981846154856f0d74e",
+            "claim_id": "2026-09-28-D-01",
+            "statement_id": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+            "publication_id": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+            "office_id": "F000479",
+            "family_id": "dfam:c98b2014779cd42c6776b22c",
+            "family_revision": "dfrev:5edc9158bd26a3d258712bea",
+            "support_unit_id": "F000479",
+            "party": "D",
+            "start_char": 164,
+            "end_char": 183,
+            "surface_text": "in sending a letter",
+            "normalized_phrase": "in sending a letter",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 386,
+            "sentence_offset_start": 141,
+            "sentence_offset_end": 160,
+            "clause_start_char": 134,
+            "clause_end_char": 500,
+            "clause_offset_start": 30,
+            "clause_offset_end": 49,
+            "adjacent_tokens_before": [
+              "affairs",
+              "joined",
+              "his",
+              "senate",
+              "colleagues"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "department",
+              "of",
+              "homeland",
+              "security"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e4d89d5e1b5009e97f79f1a8",
+            "claim_id": "2026-09-28-D-01",
+            "statement_id": "sha256:be97ca48bc01f8b77eb0f20298d3fa471df1abaf89a094ef36bfc6ab06c12ea8",
+            "publication_id": "sha256:be97ca48bc01f8b77eb0f20298d3fa471df1abaf89a094ef36bfc6ab06c12ea8",
+            "office_id": "D000563",
+            "family_id": "dfam:33e7c92c42dfd76d1533dac4",
+            "family_revision": "dfrev:c0ada1ec773d5781205c9445",
+            "support_unit_id": "D000563",
+            "party": "D",
+            "start_char": 2500,
+            "end_char": 2519,
+            "surface_text": "in sending a letter",
+            "normalized_phrase": "in sending a letter",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2411,
+            "sentence_end_char": 2670,
+            "sentence_offset_start": 89,
+            "sentence_offset_end": 108,
+            "clause_start_char": 2457,
+            "clause_end_char": 2688,
+            "clause_offset_start": 43,
+            "clause_offset_end": 62,
+            "adjacent_tokens_before": [
+              "led",
+              "all",
+              "senate",
+              "judiciary",
+              "democrats"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "senate",
+              "judiciary",
+              "committee",
+              "chairman"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:584f44859e89aedfbec5a34f",
+            "claim_id": "2026-09-28-D-01",
+            "statement_id": "sha256:cf7514dcc1e007339890c8f248d58f7dcc55521d1e4073076d08c448451c4b12",
+            "publication_id": "sha256:cf7514dcc1e007339890c8f248d58f7dcc55521d1e4073076d08c448451c4b12",
+            "office_id": "B001277",
+            "family_id": "dfam:e168327fc84135a731b7e71c",
+            "family_revision": "dfrev:047e0dc228d285d42ae4c5da",
+            "support_unit_id": "B001277",
+            "party": "D",
+            "start_char": 187,
+            "end_char": 206,
+            "surface_text": "in sending a letter",
+            "normalized_phrase": "in sending a letter",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 118,
+            "sentence_end_char": 376,
+            "sentence_offset_start": 69,
+            "sentence_offset_end": 88,
+            "clause_start_char": 157,
+            "clause_end_char": 346,
+            "clause_offset_start": 30,
+            "clause_offset_end": 49,
+            "adjacent_tokens_before": [
+              "relations",
+              "and",
+              "12",
+              "bipartisan",
+              "colleagues"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "president",
+              "trump",
+              "inquiring",
+              "about"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "B001277",
+          "D000563",
+          "F000479"
+        ],
+        "publication_ids": [
+          "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+          "sha256:be97ca48bc01f8b77eb0f20298d3fa471df1abaf89a094ef36bfc6ab06c12ea8",
+          "sha256:cf7514dcc1e007339890c8f248d58f7dcc55521d1e4073076d08c448451c4b12"
+        ],
+        "family_ids": [
+          "dfam:33e7c92c42dfd76d1533dac4",
+          "dfam:c98b2014779cd42c6776b22c",
+          "dfam:e168327fc84135a731b7e71c"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:33e7c92c42dfd76d1533dac4",
+            "family_revision": "dfrev:c0ada1ec773d5781205c9445"
+          },
+          {
+            "family_id": "dfam:c98b2014779cd42c6776b22c",
+            "family_revision": "dfrev:5edc9158bd26a3d258712bea"
+          },
+          {
+            "family_id": "dfam:e168327fc84135a731b7e71c",
+            "family_revision": "dfrev:047e0dc228d285d42ae4c5da"
+          }
+        ],
+        "support_unit_ids": [
+          "B001277",
+          "D000563",
+          "F000479"
+        ],
+        "citation_occurrence_ids": [
+          "occ:c4bcf6981846154856f0d74e",
+          "occ:e4d89d5e1b5009e97f79f1a8",
+          "occ:584f44859e89aedfbec5a34f"
+        ],
+        "citations": [
+          {
+            "member": "John Fetterman",
+            "party": "D",
+            "state": "PA",
+            "date": "2026-09-28",
+            "url": "https://www.fetterman.senate.gov/fetterman-joins-senate-colleagues-in-letter-to-dhs-on-election-interference/",
+            "quote": "his senate colleagues in sending a letter to",
+            "occurrence_id": "occ:c4bcf6981846154856f0d74e",
+            "office_id": "F000479",
+            "publication_id": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+            "family_id": "dfam:c98b2014779cd42c6776b22c",
+            "family_revision": "dfrev:5edc9158bd26a3d258712bea"
+          },
+          {
+            "member": "Richard J. Durbin",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-09-28",
+            "url": "https://www.durbin.senate.gov/newsroom/press-releases/durbin-previews-tomorrows-judiciary-committee-hearing-with-former-special-counsel-jack-smith",
+            "quote": "judiciary democrats in sending a letter to senate judiciary committee",
+            "occurrence_id": "occ:e4d89d5e1b5009e97f79f1a8",
+            "office_id": "D000563",
+            "publication_id": "sha256:be97ca48bc01f8b77eb0f20298d3fa471df1abaf89a094ef36bfc6ab06c12ea8",
+            "family_id": "dfam:33e7c92c42dfd76d1533dac4",
+            "family_revision": "dfrev:c0ada1ec773d5781205c9445"
+          },
+          {
+            "member": "Richard Blumenthal",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-09-28",
+            "url": "https://www.blumenthal.senate.gov/newsroom/press/release/blumenthal-shaheen-and-12-bipartisan-senators-question-president-trump-on-invitation-of-vladimir-putin-to-g20-on-american-soil",
+            "quote": "12 bipartisan colleagues in sending a letter to president",
+            "occurrence_id": "occ:584f44859e89aedfbec5a34f",
+            "office_id": "B001277",
+            "publication_id": "sha256:cf7514dcc1e007339890c8f248d58f7dcc55521d1e4073076d08c448451c4b12",
+            "family_id": "dfam:e168327fc84135a731b7e71c",
+            "family_revision": "dfrev:047e0dc228d285d42ae4c5da"
+          }
+        ],
+        "surface_class": "unknown",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "title-reference-only"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-09-28-R-01",
+        "party": "R",
+        "day": "2026-09-28",
+        "label": "investment is a major",
+        "member_count": 3,
+        "statements": [
+          "sha256:12206d9ccfebce2f98dd834e7d9647284bbd82444457f2333281bdc044a941f3",
+          "sha256:32bc8c0c971b87f6b40fddd4ae52fda321932d9c894d05ea62f7a893a6637936",
+          "sha256:5b401dcb2fac1efd8044a73f97fc255e15142c6f1d1d9ceae7ee816a5f9bb0d2",
+          "sha256:94a6cc54a4bc35dec311ec0c3ec0e8037c0c0c75a1281132d3792a5300ed4de6"
+        ],
+        "fragments": [
+          {
+            "text": "historic investment is a major win for iowa workers",
+            "statement": "sha256:5b401dcb2fac1efd8044a73f97fc255e15142c6f1d1d9ceae7ee816a5f9bb0d2"
+          },
+          {
+            "text": "investment is a major step toward ensuring ilm",
+            "statement": "sha256:12206d9ccfebce2f98dd834e7d9647284bbd82444457f2333281bdc044a941f3"
+          },
+          {
+            "text": "historic investment is a major win for iowa workers",
+            "statement": "sha256:32bc8c0c971b87f6b40fddd4ae52fda321932d9c894d05ea62f7a893a6637936"
+          }
+        ],
+        "topics": [
+          "labor",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-09-28-R-01",
+        "support_phrase": {
+          "normalized": "investment is a major",
+          "text": "investment is a major",
+          "occurrence_id": "occ:42910f2997c6e1343e4fc3a7"
+        },
+        "display_quote": "investment is a major",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:42910f2997c6e1343e4fc3a7",
+            "claim_id": "2026-09-28-R-01",
+            "statement_id": "sha256:12206d9ccfebce2f98dd834e7d9647284bbd82444457f2333281bdc044a941f3",
+            "publication_id": "sha256:12206d9ccfebce2f98dd834e7d9647284bbd82444457f2333281bdc044a941f3",
+            "office_id": "R000603",
+            "family_id": "dfam:9831729f8727cc3c26e236b7",
+            "family_revision": "dfrev:c6fb6f1cea6be2da64f3070b",
+            "support_unit_id": "R000603",
+            "party": "R",
+            "start_char": 656,
+            "end_char": 677,
+            "surface_text": "investment is a major",
+            "normalized_phrase": "investment is a major",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 649,
+            "sentence_end_char": 784,
+            "sentence_offset_start": 7,
+            "sentence_offset_end": 28,
+            "clause_start_char": 623,
+            "clause_end_char": 923,
+            "clause_offset_start": 33,
+            "clause_offset_end": 54,
+            "adjacent_tokens_before": [
+              "economy",
+              "said",
+              "congressman",
+              "rouzer",
+              "this"
+            ],
+            "adjacent_tokens_after": [
+              "step",
+              "toward",
+              "ensuring",
+              "ilm",
+              "can"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6679934f749c1c5d7b42898e",
+            "claim_id": "2026-09-28-R-01",
+            "statement_id": "sha256:32bc8c0c971b87f6b40fddd4ae52fda321932d9c894d05ea62f7a893a6637936",
+            "publication_id": "sha256:32bc8c0c971b87f6b40fddd4ae52fda321932d9c894d05ea62f7a893a6637936",
+            "office_id": "G000386",
+            "family_id": "njoint:79cfa08e399a31cb2842c302",
+            "family_revision": "dfrev:867b27e75c446d7a28d5ef48",
+            "support_unit_id": "njoint:79cfa08e399a31cb2842c302",
+            "party": "R",
+            "start_char": 233,
+            "end_char": 254,
+            "surface_text": "investment is a major",
+            "normalized_phrase": "investment is a major",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 76,
+            "sentence_end_char": 347,
+            "sentence_offset_start": 157,
+            "sentence_offset_end": 178,
+            "clause_start_char": 216,
+            "clause_end_char": 404,
+            "clause_offset_start": 17,
+            "clause_offset_end": 38,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "this",
+              "historic"
+            ],
+            "adjacent_tokens_after": [
+              "win",
+              "for",
+              "iowa",
+              "workers",
+              "and"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:fa18d255b3f3154a79ada088",
+            "claim_id": "2026-09-28-R-01",
+            "statement_id": "sha256:5b401dcb2fac1efd8044a73f97fc255e15142c6f1d1d9ceae7ee816a5f9bb0d2",
+            "publication_id": "sha256:5b401dcb2fac1efd8044a73f97fc255e15142c6f1d1d9ceae7ee816a5f9bb0d2",
+            "office_id": "N000193",
+            "family_id": "dfam:93486d6497fe150fad5129d1",
+            "family_revision": "dfrev:0e2efd2ecee824e8f86c75ca",
+            "support_unit_id": "N000193",
+            "party": "R",
+            "start_char": 442,
+            "end_char": 463,
+            "surface_text": "investment is a major",
+            "normalized_phrase": "investment is a major",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 218,
+            "sentence_end_char": 556,
+            "sentence_offset_start": 224,
+            "sentence_offset_end": 245,
+            "clause_start_char": 425,
+            "clause_end_char": 613,
+            "clause_offset_start": 17,
+            "clause_offset_end": 38,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "this",
+              "historic"
+            ],
+            "adjacent_tokens_after": [
+              "win",
+              "for",
+              "iowa",
+              "workers",
+              "and"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:af64f97ae669ab59f6af765d",
+            "claim_id": "2026-09-28-R-01",
+            "statement_id": "sha256:94a6cc54a4bc35dec311ec0c3ec0e8037c0c0c75a1281132d3792a5300ed4de6",
+            "publication_id": "sha256:94a6cc54a4bc35dec311ec0c3ec0e8037c0c0c75a1281132d3792a5300ed4de6",
+            "office_id": "H001091",
+            "family_id": "njoint:79cfa08e399a31cb2842c302",
+            "family_revision": "dfrev:867b27e75c446d7a28d5ef48",
+            "support_unit_id": "njoint:79cfa08e399a31cb2842c302",
+            "party": "R",
+            "start_char": 215,
+            "end_char": 236,
+            "surface_text": "investment is a major",
+            "normalized_phrase": "investment is a major",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 329,
+            "sentence_offset_start": 199,
+            "sentence_offset_end": 220,
+            "clause_start_char": 198,
+            "clause_end_char": 386,
+            "clause_offset_start": 17,
+            "clause_offset_end": 38,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "this",
+              "historic"
+            ],
+            "adjacent_tokens_after": [
+              "win",
+              "for",
+              "iowa",
+              "workers",
+              "and"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000386",
+          "H001091",
+          "N000193",
+          "R000603"
+        ],
+        "publication_ids": [
+          "sha256:12206d9ccfebce2f98dd834e7d9647284bbd82444457f2333281bdc044a941f3",
+          "sha256:32bc8c0c971b87f6b40fddd4ae52fda321932d9c894d05ea62f7a893a6637936",
+          "sha256:5b401dcb2fac1efd8044a73f97fc255e15142c6f1d1d9ceae7ee816a5f9bb0d2",
+          "sha256:94a6cc54a4bc35dec311ec0c3ec0e8037c0c0c75a1281132d3792a5300ed4de6"
+        ],
+        "family_ids": [
+          "dfam:93486d6497fe150fad5129d1",
+          "dfam:9831729f8727cc3c26e236b7",
+          "njoint:79cfa08e399a31cb2842c302"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:93486d6497fe150fad5129d1",
+            "family_revision": "dfrev:0e2efd2ecee824e8f86c75ca"
+          },
+          {
+            "family_id": "dfam:9831729f8727cc3c26e236b7",
+            "family_revision": "dfrev:c6fb6f1cea6be2da64f3070b"
+          },
+          {
+            "family_id": "njoint:79cfa08e399a31cb2842c302",
+            "family_revision": "dfrev:867b27e75c446d7a28d5ef48"
+          }
+        ],
+        "support_unit_ids": [
+          "N000193",
+          "R000603",
+          "njoint:79cfa08e399a31cb2842c302"
+        ],
+        "citation_occurrence_ids": [
+          "occ:42910f2997c6e1343e4fc3a7",
+          "occ:6679934f749c1c5d7b42898e",
+          "occ:fa18d255b3f3154a79ada088"
+        ],
+        "citations": [
+          {
+            "member": "David Rouzer",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-09-28",
+            "url": "https://rouzer.house.gov/news/documentsingle.aspx?DocumentID=3239",
+            "quote": "investment is a major step toward ensuring ilm",
+            "occurrence_id": "occ:42910f2997c6e1343e4fc3a7",
+            "office_id": "R000603",
+            "publication_id": "sha256:12206d9ccfebce2f98dd834e7d9647284bbd82444457f2333281bdc044a941f3",
+            "family_id": "dfam:9831729f8727cc3c26e236b7",
+            "family_revision": "dfrev:c6fb6f1cea6be2da64f3070b"
+          },
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-09-28",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-iowa-congressional-delegation-applaud-historic-steel-investment-in-iowa",
+            "quote": "historic investment is a major win for iowa workers",
+            "occurrence_id": "occ:6679934f749c1c5d7b42898e",
+            "office_id": "G000386",
+            "publication_id": "sha256:32bc8c0c971b87f6b40fddd4ae52fda321932d9c894d05ea62f7a893a6637936",
+            "family_id": "njoint:79cfa08e399a31cb2842c302",
+            "family_revision": "dfrev:867b27e75c446d7a28d5ef48"
+          },
+          {
+            "member": "Zachary Nunn",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-09-28",
+            "url": "https://nunn.house.gov/2026/09/28/nunn-welcomes-1700-jobs-and-15-billion-steel-investment-coming-to-iowa/",
+            "quote": "historic investment is a major win for iowa workers",
+            "occurrence_id": "occ:fa18d255b3f3154a79ada088",
+            "office_id": "N000193",
+            "publication_id": "sha256:5b401dcb2fac1efd8044a73f97fc255e15142c6f1d1d9ceae7ee816a5f9bb0d2",
+            "family_id": "dfam:93486d6497fe150fad5129d1",
+            "family_revision": "dfrev:0e2efd2ecee824e8f86c75ca"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "labor",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-09-28",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 7,
+          "numerator_unit": "offices",
+          "denominator": 56,
+          "denominator_unit": "offices",
+          "share": 0.125,
+          "window": "party-day 2026-09-28",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 7,
+          "numerator_unit": "publications",
+          "denominator": 89,
+          "denominator_unit": "publications",
+          "share": 0.078652,
+          "window": "party-day 2026-09-28",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 7,
+          "numerator_unit": "document families",
+          "denominator": 84,
+          "denominator_unit": "document families",
+          "share": 0.083333,
+          "window": "party-day 2026-09-28",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-09-28",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 49,
+          "denominator_unit": "offices",
+          "share": 0.081633,
+          "window": "party-day 2026-09-28",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 67,
+          "denominator_unit": "publications",
+          "share": 0.059701,
+          "window": "party-day 2026-09-28",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 65,
+          "denominator_unit": "document families",
+          "share": 0.046154,
+          "window": "party-day 2026-09-28",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "the house of representatives",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": [
+      {
+        "label": "the funding will support",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "and will continue working",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "top_synchronized": [
+    {
+      "ngram": "text of the letter is available",
+      "slug": "f8a37997a6fd8531",
+      "n": 6,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": null,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 2.74,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "K000400",
+        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+        "tie": [
+          "L000397",
+          "L000582",
+          "R000620",
+          "T000476"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        3,
+        1,
+        4,
+        5,
+        1,
+        3,
+        6,
+        4,
+        3,
+        3,
+        5,
+        2,
+        4,
+        9
+      ]
+    },
+    {
+      "ngram": "full text of the letter is",
+      "slug": "264915c69f7253b1",
+      "n": 6,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 2.49,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001056",
+        "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        4,
+        2,
+        1,
+        2,
+        4,
+        3,
+        6,
+        4,
+        4,
+        3,
+        5,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "ngram": "the next generation",
+      "slug": "6158281d917beb8e",
+      "n": 3,
+      "day_peak": 8,
+      "party": "R",
+      "counts": {
+        "D": 7,
+        "R": 8,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 8,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 1.67,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "F000469",
+        "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.969,
+      "series": [
+        4,
+        3,
+        3,
+        5,
+        7,
+        6,
+        3,
+        5,
+        2,
+        6,
+        4,
+        13,
+        4,
+        8
+      ]
+    },
+    {
+      "ngram": "efforts to undermine",
+      "slug": "573ab0bc4e5ee124",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 6.53,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "F000483",
+        "statement": "sha256:f08d5ea1fea28d3eb7ecb3a2437eaa977a80bb1e8367920bf75f417f8a478a62",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.996,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        7
+      ]
+    },
+    {
+      "ngram": "letter was signed",
+      "slug": "f9c916786b453fb1",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": null,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 2.88,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "K000400",
+        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+        "tie": [
+          "L000397",
+          "R000620"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.969,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        3,
+        5,
+        7,
+        3,
+        4,
+        1,
+        1,
+        3,
+        7
+      ]
+    },
+    {
+      "ngram": "sending a letter",
+      "slug": "bd17dd407f81c894",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.65,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.984,
+      "series": [
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "next generation of",
+      "slug": "5527941b4a339267",
+      "n": 3,
+      "day_peak": 6,
+      "party": "R",
+      "counts": {
+        "D": 5,
+        "R": 6,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 6,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.71,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001282",
+        "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+        "tie": [
+          "B001326"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.978,
+      "series": [
+        1,
+        3,
+        2,
+        3,
+        6,
+        4,
+        3,
+        3,
+        2,
+        3,
+        4,
+        10,
+        4,
+        6
+      ]
+    },
+    {
+      "ngram": "major win for",
+      "slug": "9c99dfd7c7db1e41",
+      "n": 3,
+      "day_peak": 6,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 6,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 6,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 4.67,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "B001260",
+        "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "proud to join",
+      "slug": "0eb1e7285c7e5088",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.75,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "S001172",
+        "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+        "tie": [
+          "L000593",
+          "R000610"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.969,
+      "series": [
+        2,
+        2,
+        2,
+        4,
+        4,
+        8,
+        4,
+        1,
+        3,
+        2,
+        3,
+        8,
+        4,
+        6
+      ]
+    },
+    {
+      "ngram": "senate colleagues in",
+      "slug": "a82cc5465312545a",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "W000779",
+        "statement": "sha256:7de7eec643516ca4d4c8801ee1f0618580f92fa9f3cd91f2a1cc7b9323294561",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        3,
+        1,
+        3,
+        5,
+        2,
+        3,
+        3,
+        3,
+        3,
+        1,
+        2,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "the trump administration’s",
+      "slug": "6cd624c98e95c190",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.56,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "D000530",
+        "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.96,
+      "series": [
+        2,
+        3,
+        4,
+        7,
+        5,
+        6,
+        3,
+        4,
+        5,
+        1,
+        5,
+        6,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "voter fraud public recitation of unreliable",
+      "slug": "f3b91db2339c02e8",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "elections and risks wrongly disenfranchising voters",
+      "slug": "ca53a6ecc0a62a6c",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "funding for state election security measures",
+      "slug": "6a4f0658284c36d7",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "unsubstantiated allegations of noncitizen voter fraud",
+      "slug": "a276b51efd594f75",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "states to provide sensitive voter roll",
+      "slug": "54a3aeead8bf8939",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "reduce grant funding and initiate criminal",
+      "slug": "e3eea2bfe0e9a0d5",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "grant funding for state election security",
+      "slug": "40dc5e8ab3b2a151",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "allegations of noncitizen voter fraud public",
+      "slug": "431aff04630ccb3f",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "explicitly threatened to reduce grant funding",
+      "slug": "5d57024b90f1eae1",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-09-28",
+        "bioguide": "F000479",
+        "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+        "tie": [
+          "G000574",
+          "K000377",
+          "K000384",
+          "P000145"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "full text of the letter is",
+        "slug": "264915c69f7253b1",
+        "n": 6,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.49,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001056",
+          "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.971,
+        "series": [
+          4,
+          2,
+          1,
+          2,
+          4,
+          3,
+          6,
+          4,
+          4,
+          3,
+          5,
+          2,
+          3,
+          8
+        ]
+      },
+      {
+        "ngram": "efforts to undermine",
+        "slug": "573ab0bc4e5ee124",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 6.53,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000483",
+          "statement": "sha256:f08d5ea1fea28d3eb7ecb3a2437eaa977a80bb1e8367920bf75f417f8a478a62",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          7
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 8,
+        "party": "R",
+        "counts": {
+          "D": 7,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 1.67,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          4,
+          3,
+          3,
+          5,
+          7,
+          6,
+          3,
+          5,
+          2,
+          6,
+          4,
+          13,
+          4,
+          8
+        ]
+      },
+      {
+        "ngram": "letter was signed",
+        "slug": "f9c916786b453fb1",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": null,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 2.88,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "K000400",
+          "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+          "tie": [
+            "L000397",
+            "R000620"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          5,
+          7,
+          3,
+          4,
+          1,
+          1,
+          3,
+          7
+        ]
+      },
+      {
+        "ngram": "proud to join",
+        "slug": "0eb1e7285c7e5088",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+          "tie": [
+            "L000593",
+            "R000610"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          2,
+          2,
+          2,
+          4,
+          4,
+          8,
+          4,
+          1,
+          3,
+          2,
+          3,
+          8,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "senate colleagues in",
+        "slug": "a82cc5465312545a",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "W000779",
+          "statement": "sha256:7de7eec643516ca4d4c8801ee1f0618580f92fa9f3cd91f2a1cc7b9323294561",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          3,
+          1,
+          3,
+          5,
+          2,
+          3,
+          3,
+          3,
+          3,
+          1,
+          2,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          2,
+          3,
+          4,
+          7,
+          5,
+          6,
+          3,
+          4,
+          5,
+          1,
+          5,
+          6,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "voter fraud public recitation of unreliable",
+        "slug": "f3b91db2339c02e8",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 5.0,
+        "first_seen": {
+          "date": "2026-09-28",
+          "bioguide": "F000479",
+          "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+          "tie": [
+            "G000574",
+            "K000377",
+            "K000384",
+            "P000145"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          5
+        ]
+      },
+      {
+        "ngram": "elections and risks wrongly disenfranchising voters",
+        "slug": "ca53a6ecc0a62a6c",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 5.0,
+        "first_seen": {
+          "date": "2026-09-28",
+          "bioguide": "F000479",
+          "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+          "tie": [
+            "G000574",
+            "K000377",
+            "K000384",
+            "P000145"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          5
+        ]
+      },
+      {
+        "ngram": "funding for state election security measures",
+        "slug": "6a4f0658284c36d7",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 5.0,
+        "first_seen": {
+          "date": "2026-09-28",
+          "bioguide": "F000479",
+          "statement": "sha256:bd1e6b7c38ffe023f710443a7e218b084ebd5dfff2d2dcd16f3a34190f7b26b3",
+          "tie": [
+            "G000574",
+            "K000377",
+            "K000384",
+            "P000145"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          5
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 8,
+        "party": "R",
+        "counts": {
+          "D": 7,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 1.67,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          4,
+          3,
+          3,
+          5,
+          7,
+          6,
+          3,
+          5,
+          2,
+          6,
+          4,
+          13,
+          4,
+          8
+        ]
+      },
+      {
+        "ngram": "next generation of",
+        "slug": "5527941b4a339267",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 5,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.71,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "B001326"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.978,
+        "series": [
+          1,
+          3,
+          2,
+          3,
+          6,
+          4,
+          3,
+          3,
+          2,
+          3,
+          4,
+          10,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "major win for",
+        "slug": "9c99dfd7c7db1e41",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "look forward to seeing",
+        "slug": "b134a79673ee6e91",
+        "n": 4,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.69,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000468",
+          "statement": "sha256:85610104dcbcd355441f3a9e350a66c8249fb2e164026da3e089386be7d93af9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "centers for medicare",
+        "slug": "1dd8d8b325111606",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.92,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "S000344",
+          "statement": "sha256:71098b32855f24855cfe8b6ddcbb286d682a5d8c64560e60380042af9b9d417a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          2,
+          1,
+          2,
+          3,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "will continue working",
+        "slug": "929436cdb31fec6a",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001296",
+          "statement": "sha256:9dad811aca53320dd4a698fea09dff69c04935f29b7ef882f06755ad57f7c0f8",
+          "tie": [
+            "E000296",
+            "H001061",
+            "L000593"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          2,
+          2,
+          3,
+          2,
+          2,
+          9,
+          5,
+          1,
+          1,
+          2,
+          3,
+          4,
+          7,
+          5
+        ]
+      },
+      {
+        "ngram": "a major win",
+        "slug": "18a2870716a03a8a",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.68,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "expand access to care",
+        "slug": "97c31d139fe29628",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001216",
+          "statement": "sha256:3da5ddfae7686c6640e9f2b696676a65399513505f7aa8908bd74319f48e60e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "investment is a major",
+        "slug": "80dc2baa7b072dac",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-01-14",
+          "bioguide": "H001046",
+          "statement": "sha256:7085c754e6919c7d8247dd06b6eab4d39a4afd7c611a680d4fd90e1875576801",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "will help keep",
+        "slug": "1645f3eaf39a5323",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "F000446",
+          "statement": "sha256:7312f64226369aae4e26636b19bb0052b1f85a41630c28b2971750ee8db14c35",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "the next generation",
+      "slug": "6158281d917beb8e",
+      "n": 3,
+      "both": 7,
+      "day_peak": 7,
+      "counts": {
+        "D": 7,
+        "R": 8,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "F000469",
+        "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.969,
+      "velocity": 1.67,
+      "sides": {
+        "D": [
+          {
+            "member": "Debbie Dingell",
+            "party": "D",
+            "state": "MI",
+            "date": "2026-09-28",
+            "url": "https://debbiedingell.house.gov/news/documentsingle.aspx?DocumentID=7398",
+            "quote": "We need policies that give consumers choices while ensuring the next generation of vehicles, including EVs, are developed and built right here in America."
+          },
+          {
+            "member": "Patrick Ryan",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-09-28",
+            "url": "https://patryan.house.gov/media/press-releases/one-month-left-congressman-pat-ryan-invites-hudson-valley-middle-and-high",
+            "quote": "I am consistently so impressed with what our students submit – it truly gives me hope for the next generation of innovators growing up right here in the Hudson Valley."
+          },
+          {
+            "member": "Gabe Vasquez",
+            "party": "D",
+            "state": "NM",
+            "date": "2026-09-28",
+            "url": "https://vasquez.house.gov/media/press-releases/reps-vasquez-nunn-introduce-bipartisan-beef-act-protect-american-ranchers-and",
+            "quote": "If we want more affordable beef, the answer is to grow American production, strengthen competition, and make it easier for the next generation of ranchers to stay in business – not make our country more dependent on un-vetted foreign imports"
+          }
+        ],
+        "R": [
+          {
+            "member": "Jodey C. Arrington",
+            "party": "R",
+            "state": "TX",
+            "date": "2026-09-28",
+            "url": "https://arrington.house.gov/news/documentsingle.aspx?DocumentID=4638",
+            "quote": "We won’t have the next generation of agriculture and energy producers providing America with food security and energy independence without access to basic health care in rural communities."
+          },
+          {
+            "member": "Jim Banks",
+            "party": "R",
+            "state": "IN",
+            "date": "2026-09-28",
+            "url": "https://www.banks.senate.gov/news/press-releases/icymi-inside-indiana-business-banks-calls-for-grissom-to-be-new-u-s-space-academy-home/",
+            "quote": "The order said the country must “prepare the next generation of astronauts, scientists, engineers, operators, entrepreneurs, civil servants, and warfighters and ensure that they are capable of advancing American interests in space."
+          },
+          {
+            "member": "Ted Budd",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-09-28",
+            "url": "https://www.budd.senate.gov/2026/09/28/senator-budd-wraps-second-official-100-county-tour/",
+            "quote": "Additionally, Senator Budd discussed how his bipartisan Biomanufacturing Excellence Act, geared toward promoting U.S. leadership in biotechnology, could support Novonesis’ goals in developing the next generation of BioSolutions."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
