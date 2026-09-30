@@ -3106,9 +3106,9 @@
       "index": 1.0
     },
     "2026-09-21": {
-      "statements": 76,
-      "on_message_units": 58,
-      "index": 0.7632
+      "statements": 77,
+      "on_message_units": 59,
+      "index": 0.7662
     },
     "2026-09-22": {
       "statements": 94,
@@ -3121,18 +3121,18 @@
       "index": 0.7379
     },
     "2026-09-24": {
-      "statements": 164,
-      "on_message_units": 112,
-      "index": 0.6829
+      "statements": 165,
+      "on_message_units": 114,
+      "index": 0.6909
     },
     "2026-09-25": {
-      "statements": 109,
-      "on_message_units": 73,
-      "index": 0.6697
+      "statements": 113,
+      "on_message_units": 74,
+      "index": 0.6549
     },
     "2026-09-26": {
-      "statements": 6,
-      "on_message_units": 6,
+      "statements": 7,
+      "on_message_units": 7,
       "index": 1.0
     },
     "2026-09-27": {
@@ -3141,14 +3141,14 @@
       "index": 0.75
     },
     "2026-09-28": {
-      "statements": 89,
-      "on_message_units": 58,
-      "index": 0.6517
+      "statements": 98,
+      "on_message_units": 63,
+      "index": 0.6429
     },
     "2026-09-29": {
-      "statements": 1,
-      "on_message_units": 1,
-      "index": 1.0
+      "statements": 99,
+      "on_message_units": 67,
+      "index": 0.6768
     }
   },
   "I": {
@@ -4591,6 +4591,11 @@
       "statements": 1,
       "on_message_units": 1,
       "index": 1.0
+    },
+    "2026-09-29": {
+      "statements": 3,
+      "on_message_units": 2,
+      "index": 0.6667
     }
   },
   "R": {
@@ -7391,8 +7396,8 @@
     },
     "2026-07-24": {
       "statements": 73,
-      "on_message_units": 59,
-      "index": 0.8082
+      "on_message_units": 60,
+      "index": 0.8219
     },
     "2026-07-25": {
       "statements": 2,
@@ -7585,9 +7590,9 @@
       "index": 0.8046
     },
     "2026-09-02": {
-      "statements": 53,
+      "statements": 54,
       "on_message_units": 46,
-      "index": 0.8679
+      "index": 0.8519
     },
     "2026-09-03": {
       "statements": 64,
@@ -7650,14 +7655,14 @@
       "index": 0.7333
     },
     "2026-09-15": {
-      "statements": 98,
+      "statements": 99,
       "on_message_units": 80,
-      "index": 0.8163
+      "index": 0.8081
     },
     "2026-09-16": {
-      "statements": 166,
-      "on_message_units": 110,
-      "index": 0.6627
+      "statements": 168,
+      "on_message_units": 111,
+      "index": 0.6607
     },
     "2026-09-17": {
       "statements": 103,
@@ -7700,26 +7705,31 @@
       "index": 0.7179
     },
     "2026-09-25": {
-      "statements": 62,
-      "on_message_units": 52,
-      "index": 0.8387
+      "statements": 63,
+      "on_message_units": 53,
+      "index": 0.8413
     },
     "2026-09-26": {
-      "statements": 6,
-      "on_message_units": 4,
-      "index": 0.6667
+      "statements": 7,
+      "on_message_units": 5,
+      "index": 0.7143
     },
     "2026-09-27": {
-      "statements": 2,
-      "on_message_units": 2,
+      "statements": 3,
+      "on_message_units": 3,
       "index": 1.0
     },
     "2026-09-28": {
-      "statements": 67,
-      "on_message_units": 48,
-      "index": 0.7164
+      "statements": 72,
+      "on_message_units": 53,
+      "index": 0.7361
     },
     "2026-09-29": {
+      "statements": 75,
+      "on_message_units": 50,
+      "index": 0.6667
+    },
+    "2026-09-30": {
       "statements": 1,
       "on_message_units": 1,
       "index": 1.0
@@ -7731,13 +7741,13 @@
   "min_statements": 10,
   "min_statements_note": "A party-day with fewer statements than this cannot carry an interpretable share: the ratio saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single digits. The floor is stamped, not applied: the values below are the raw per-day measurements and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS.",
   "days_below_min_statements": {
-    "D": 139,
-    "I": 288,
+    "D": 138,
+    "I": 289,
     "R": 170
   },
   "window": {
     "start": "2025-01-03",
-    "end": "2026-09-29",
+    "end": "2026-09-30",
     "epoch_authority": "config.STAGE1_EPOCH"
   }
 }
