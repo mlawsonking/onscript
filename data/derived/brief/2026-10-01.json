@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-10-01",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 82,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "82 consecutive days published (through 2026-09-30)"
+    },
+    {
+      "name": "spend",
+      "value": null,
+      "status": "unknown",
+      "note": "no cost ledger for 2026-10 — spend not measured (the $10 Console cap is the backstop)"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-09-30",
+      "scored_age_days": 1,
+      "parties": {
+        "D": {
+          "statements": 119,
+          "median": 76.0,
+          "share": 1.566,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 90,
+          "median": 41.0,
+          "share": 2.195,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 5.15,
+        "day": "2026-10-01",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-09-30 (1d): D 119/76=157% R 90/41=219% of own same-weekday baseline (green >= 60%); upstream 5.2h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.5484,
+      "dropped": 17,
+      "offered": 31,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "17/31 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "verifier_drop"
+  ],
+  "unknowns": [
+    "spend"
+  ],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "communities across the",
+    "party": "D",
+    "day_peak": 15,
+    "day": "2026-09-24"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: verifier_drop"
+}
