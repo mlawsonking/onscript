@@ -3116,9 +3116,9 @@
       "index": 0.7979
     },
     "2026-09-23": {
-      "statements": 104,
-      "on_message_units": 77,
-      "index": 0.7404
+      "statements": 105,
+      "on_message_units": 78,
+      "index": 0.7429
     },
     "2026-09-24": {
       "statements": 169,
@@ -3156,16 +3156,21 @@
       "index": 0.6028
     },
     "2026-10-01": {
-      "statements": 126,
-      "on_message_units": 89,
-      "index": 0.7063
+      "statements": 130,
+      "on_message_units": 91,
+      "index": 0.7
     },
     "2026-10-02": {
-      "statements": 72,
-      "on_message_units": 50,
-      "index": 0.6944
+      "statements": 74,
+      "on_message_units": 51,
+      "index": 0.6892
     },
     "2026-10-03": {
+      "statements": 1,
+      "on_message_units": 1,
+      "index": 1.0
+    },
+    "2026-10-04": {
       "statements": 1,
       "on_message_units": 1,
       "index": 1.0
@@ -7765,16 +7770,21 @@
       "index": 0.7097
     },
     "2026-10-01": {
-      "statements": 80,
-      "on_message_units": 63,
-      "index": 0.7875
+      "statements": 81,
+      "on_message_units": 64,
+      "index": 0.7901
     },
     "2026-10-02": {
-      "statements": 44,
-      "on_message_units": 34,
-      "index": 0.7727
+      "statements": 46,
+      "on_message_units": 35,
+      "index": 0.7609
     },
     "2026-10-03": {
+      "statements": 1,
+      "on_message_units": 1,
+      "index": 1.0
+    },
+    "2026-10-04": {
       "statements": 1,
       "on_message_units": 1,
       "index": 1.0
@@ -7786,13 +7796,13 @@
   "min_statements": 10,
   "min_statements_note": "A party-day with fewer statements than this cannot carry an interpretable share: the ratio saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single digits. The floor is stamped, not applied: the values below are the raw per-day measurements and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS.",
   "days_below_min_statements": {
-    "D": 139,
+    "D": 140,
     "I": 291,
-    "R": 170
+    "R": 171
   },
   "window": {
     "start": "2025-01-03",
-    "end": "2026-10-03",
+    "end": "2026-10-04",
     "epoch_authority": "config.STAGE1_EPOCH"
   }
 }
