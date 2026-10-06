@@ -813,5 +813,2129 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-10-05",
+      "party": "D",
+      "composite": "Today 66 of us released statements. 5 of us carried \"million in federal funding\". 3 of us carried \"30-day mandatory public notice period\". Our most synchronized phrase, used by 5 of us: million in federal funding.",
+      "measurement_lead": "Measurement: 66 publications were observed for the Democratic party on 2026-10-05.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-10-05",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "9c62184bc8acc0d447e11cf0b2f01237e03439a20cddf39679d114fcc5a5b019",
+        "claim_ids": [
+          "2026-10-05-D-00",
+          "2026-10-05-D-01"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 66 of us released statements. 5 of us carried \"million in federal funding\". 3 of us carried \"30-day mandatory public notice period\". Our most synchronized phrase, used by 5 of us: million in federal funding.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-10-05-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-10-05-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "c68319e07129de1834dc82f4dd14b952c0d0fdc11cba84d0d1e1d2cb62f4f449",
+        "response_sha256": "faa2648f5aa04e8296a256d51c870feed25b06acba0fb9060526b73a43e43085",
+        "model_response_sha256": "3efe34f8377ec532e476c7dfe95d14e809d0fde01ce66d021a05c5fc7c864e26"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-10-05-D-00"
+          ],
+          "claim_ids": [
+            "2026-10-05-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-10-05-D-01"
+          ],
+          "claim_ids": [
+            "2026-10-05-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-10-05-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-10-05-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-10-05",
+        "statements": 66,
+        "talking_points": [
+          {
+            "label": "million in federal funding",
+            "members": 5,
+            "quote": "million in federal funding",
+            "topics": [
+              "district_funding",
+              "agriculture",
+              "housing"
+            ],
+            "claim_id": "2026-10-05-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "district_funding",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "agriculture",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "housing",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "30-day mandatory public notice period",
+            "members": 3,
+            "quote": "30-day mandatory public notice period",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-05-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "million in federal funding",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "John Hoeven",
+          "first_sayer_party": "R",
+          "first_sayer_state": "ND"
+        },
+        "selected_claims": [
+          {
+            "label": "million in federal funding",
+            "members": 5,
+            "quote": "million in federal funding",
+            "topics": [
+              "district_funding",
+              "agriculture",
+              "housing"
+            ],
+            "claim_id": "2026-10-05-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "district_funding",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "agriculture",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "housing",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "30-day mandatory public notice period",
+            "members": 3,
+            "quote": "30-day mandatory public notice period",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-05-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-10-05-D-00",
+          "2026-10-05-D-01"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 3380,
+        "tokens_out": 134,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-10-05",
+      "party": "R",
+      "composite": "Across 49 statements today, no message rose to the level of a shared message beyond one phrase. The most synchronized phrase in our record is the next generation, appearing 6 times, first recorded in our corpus from Russ Fulcher (R-ID). Beyond that, we do not report a dominant message today, as no further phrase was shared widely enough among us to describe as such.",
+      "measurement_lead": "Measurement: 49 publications were observed for the Republican party on 2026-10-05.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-10-05",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "a6dcf555a2a132b281326c24826ed0198f4c028df0525319d8aec18ad266618a",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 49 statements today, no message rose to the level of a shared message beyond one phrase. The most synchronized phrase in our record is the next generation, appearing 6 times, first recorded in our corpus from Russ Fulcher (R-ID). Beyond that, we do not report a dominant message today, as no further phrase was shared widely enough among us to describe as such.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "4450d0f36cd96640c5640239690543fa6d50311418912e0dfa0f6f1f84985b83",
+        "response_sha256": "1ac44a74c89a3ac20db992cbd46951e23bd45bfdb814b6f60360a02773f6f3bc",
+        "model_response_sha256": "c3fb233e6384de82de2809eee7d4f10273faf84ab4a69ceef88875b0a003c2f5"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-10-05",
+        "statements": 49,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "the next generation",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Russ Fulcher",
+          "first_sayer_party": "R",
+          "first_sayer_state": "ID"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1250,
+        "tokens_out": 119,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-10-05-D-00",
+        "party": "D",
+        "day": "2026-10-05",
+        "label": "million in federal funding",
+        "member_count": 5,
+        "statements": [
+          "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f",
+          "sha256:8a825b20b593bd27a2b7242901cc64755d85324e9a073cf07429ef656279b187",
+          "sha256:975b1d7ba85e242e0197c284780ab849f5b3435432f7d14534169f2e7a3fa50d",
+          "sha256:b840a305370c57d810fbc879df69974c2c1d68e93ef909b9c006398b2bd5ad74",
+          "sha256:c9c5bb2b32183b1210d83694c1e4bc7e06466570fe5539d12492d5d83c1f2621"
+        ],
+        "fragments": [
+          {
+            "text": "11 million in federal funding that helps low-income",
+            "statement": "sha256:b840a305370c57d810fbc879df69974c2c1d68e93ef909b9c006398b2bd5ad74"
+          },
+          {
+            "text": "2 million in federal funding she secured to",
+            "statement": "sha256:8a825b20b593bd27a2b7242901cc64755d85324e9a073cf07429ef656279b187"
+          },
+          {
+            "text": "230 million in federal funding for housing in rural",
+            "statement": "sha256:c9c5bb2b32183b1210d83694c1e4bc7e06466570fe5539d12492d5d83c1f2621"
+          },
+          {
+            "text": "25 million in federal funding from the u",
+            "statement": "sha256:975b1d7ba85e242e0197c284780ab849f5b3435432f7d14534169f2e7a3fa50d"
+          },
+          {
+            "text": "232 million in federal funding meant to help",
+            "statement": "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f"
+          }
+        ],
+        "topics": [
+          "district_funding",
+          "agriculture",
+          "housing"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-05-D-00",
+        "support_phrase": {
+          "normalized": "million in federal funding",
+          "text": "million in federal funding",
+          "occurrence_id": "occ:59177f585c77a8e78caede97"
+        },
+        "display_quote": "million in federal funding",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:59177f585c77a8e78caede97",
+            "claim_id": "2026-10-05-D-00",
+            "statement_id": "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f",
+            "publication_id": "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f",
+            "office_id": "W000790",
+            "family_id": "dfam:3a53283bfead5dffe15dc513",
+            "family_revision": "dfrev:9ffde5cf1a295c421afb8c44",
+            "support_unit_id": "W000790",
+            "party": "D",
+            "start_char": 90,
+            "end_char": 116,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 261,
+            "sentence_offset_start": 90,
+            "sentence_offset_end": 116,
+            "clause_start_char": 35,
+            "clause_end_char": 359,
+            "clause_offset_start": 55,
+            "clause_offset_end": 81,
+            "adjacent_tokens_before": [
+              "refused",
+              "to",
+              "spend",
+              "around",
+              "232"
+            ],
+            "adjacent_tokens_after": [
+              "meant",
+              "to",
+              "help",
+              "low-income",
+              "families"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4b27c073c786c03964ed1221",
+            "claim_id": "2026-10-05-D-00",
+            "statement_id": "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f",
+            "publication_id": "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f",
+            "office_id": "W000790",
+            "family_id": "dfam:3a53283bfead5dffe15dc513",
+            "family_revision": "dfrev:9ffde5cf1a295c421afb8c44",
+            "support_unit_id": "W000790",
+            "party": "D",
+            "start_char": 905,
+            "end_char": 931,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 728,
+            "sentence_end_char": 1007,
+            "sentence_offset_start": 177,
+            "sentence_offset_end": 203,
+            "clause_start_char": 737,
+            "clause_end_char": 1030,
+            "clause_offset_start": 168,
+            "clause_offset_end": 194,
+            "adjacent_tokens_before": [
+              "threw",
+              "away",
+              "more",
+              "than",
+              "230"
+            ],
+            "adjacent_tokens_after": [
+              "congress",
+              "already",
+              "allocated",
+              "to",
+              "help"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4428995e4af0cfcb648990da",
+            "claim_id": "2026-10-05-D-00",
+            "statement_id": "sha256:8a825b20b593bd27a2b7242901cc64755d85324e9a073cf07429ef656279b187",
+            "publication_id": "sha256:8a825b20b593bd27a2b7242901cc64755d85324e9a073cf07429ef656279b187",
+            "office_id": "D000629",
+            "family_id": "dfam:dddbf7d8dbbca952a2022a85",
+            "family_revision": "dfrev:d9ae4d1c9a4d082626bdc8c2",
+            "support_unit_id": "D000629",
+            "party": "D",
+            "start_char": 306,
+            "end_char": 332,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 255,
+            "sentence_end_char": 444,
+            "sentence_offset_start": 51,
+            "sentence_offset_end": 77,
+            "clause_start_char": 276,
+            "clause_end_char": 491,
+            "clause_offset_start": 30,
+            "clause_offset_end": 56,
+            "adjacent_tokens_before": [
+              "ceremony",
+              "davids",
+              "highlighted",
+              "nearly",
+              "2"
+            ],
+            "adjacent_tokens_after": [
+              "she",
+              "secured",
+              "to",
+              "outfit",
+              "kckcc’s"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:55ad3cfc0a3cd7d9a4a9f80d",
+            "claim_id": "2026-10-05-D-00",
+            "statement_id": "sha256:975b1d7ba85e242e0197c284780ab849f5b3435432f7d14534169f2e7a3fa50d",
+            "publication_id": "sha256:975b1d7ba85e242e0197c284780ab849f5b3435432f7d14534169f2e7a3fa50d",
+            "office_id": "T000474",
+            "family_id": "dfam:b7264c3b9560253de7d7b936",
+            "family_revision": "dfrev:5fe2d94e7d830d071cdbbfef",
+            "support_unit_id": "T000474",
+            "party": "D",
+            "start_char": 431,
+            "end_char": 457,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 187,
+            "sentence_end_char": 468,
+            "sentence_offset_start": 244,
+            "sentence_offset_end": 270,
+            "clause_start_char": 326,
+            "clause_end_char": 592,
+            "clause_offset_start": 105,
+            "clause_offset_end": 131,
+            "adjacent_tokens_before": [
+              "la",
+              "metro",
+              "will",
+              "receive",
+              "25"
+            ],
+            "adjacent_tokens_after": [
+              "from",
+              "the",
+              "u",
+              "s",
+              "department"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:fcb30fc35e1a25ebb9b08869",
+            "claim_id": "2026-10-05-D-00",
+            "statement_id": "sha256:b840a305370c57d810fbc879df69974c2c1d68e93ef909b9c006398b2bd5ad74",
+            "publication_id": "sha256:b840a305370c57d810fbc879df69974c2c1d68e93ef909b9c006398b2bd5ad74",
+            "office_id": "B001230",
+            "family_id": "dfam:95fec8bfda6039a087882bb4",
+            "family_revision": "dfrev:8f814bed8ab9bfafd72a5e1a",
+            "support_unit_id": "B001230",
+            "party": "D",
+            "start_char": 110,
+            "end_char": 136,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 23,
+            "sentence_end_char": 207,
+            "sentence_offset_start": 87,
+            "sentence_offset_end": 113,
+            "clause_start_char": 18,
+            "clause_end_char": 218,
+            "clause_offset_start": 92,
+            "clause_offset_end": 118,
+            "adjacent_tokens_before": [
+              "trump",
+              "administration",
+              "for",
+              "slashing",
+              "11"
+            ],
+            "adjacent_tokens_after": [
+              "that",
+              "helps",
+              "low-income",
+              "families",
+              "in"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4b8d4cc65b48919e5783ecb4",
+            "claim_id": "2026-10-05-D-00",
+            "statement_id": "sha256:c9c5bb2b32183b1210d83694c1e4bc7e06466570fe5539d12492d5d83c1f2621",
+            "publication_id": "sha256:c9c5bb2b32183b1210d83694c1e4bc7e06466570fe5539d12492d5d83c1f2621",
+            "office_id": "R000608",
+            "family_id": "dfam:7d705dff40ab5acb1494201e",
+            "family_revision": "dfrev:a6362e36efa551f4cf82612e",
+            "support_unit_id": "R000608",
+            "party": "D",
+            "start_char": 255,
+            "end_char": 281,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 126,
+            "sentence_end_char": 315,
+            "sentence_offset_start": 129,
+            "sentence_offset_end": 155,
+            "clause_start_char": 121,
+            "clause_end_char": 509,
+            "clause_offset_start": 134,
+            "clause_offset_end": 160,
+            "adjacent_tokens_before": [
+              "decision",
+              "to",
+              "let",
+              "over",
+              "230"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "housing",
+              "in",
+              "rural",
+              "areas"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:15c987a144e5d5621f771363",
+            "claim_id": "2026-10-05-D-00",
+            "statement_id": "sha256:c9c5bb2b32183b1210d83694c1e4bc7e06466570fe5539d12492d5d83c1f2621",
+            "publication_id": "sha256:c9c5bb2b32183b1210d83694c1e4bc7e06466570fe5539d12492d5d83c1f2621",
+            "office_id": "R000608",
+            "family_id": "dfam:7d705dff40ab5acb1494201e",
+            "family_revision": "dfrev:a6362e36efa551f4cf82612e",
+            "support_unit_id": "R000608",
+            "party": "D",
+            "start_char": 1786,
+            "end_char": 1812,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1743,
+            "sentence_end_char": 1831,
+            "sentence_offset_start": 43,
+            "sentence_offset_end": 69,
+            "clause_start_char": 1757,
+            "clause_end_char": 1993,
+            "clause_offset_start": 29,
+            "clause_offset_end": 55,
+            "adjacent_tokens_before": [
+              "she",
+              "helped",
+              "secure",
+              "almost",
+              "5"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "tribal",
+              "housing",
+              "senator",
+              "rosen"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 5,
+          "publications": 5,
+          "families": 5,
+          "support_units": 5
+        },
+        "office_ids": [
+          "B001230",
+          "D000629",
+          "R000608",
+          "T000474",
+          "W000790"
+        ],
+        "publication_ids": [
+          "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f",
+          "sha256:8a825b20b593bd27a2b7242901cc64755d85324e9a073cf07429ef656279b187",
+          "sha256:975b1d7ba85e242e0197c284780ab849f5b3435432f7d14534169f2e7a3fa50d",
+          "sha256:b840a305370c57d810fbc879df69974c2c1d68e93ef909b9c006398b2bd5ad74",
+          "sha256:c9c5bb2b32183b1210d83694c1e4bc7e06466570fe5539d12492d5d83c1f2621"
+        ],
+        "family_ids": [
+          "dfam:3a53283bfead5dffe15dc513",
+          "dfam:7d705dff40ab5acb1494201e",
+          "dfam:95fec8bfda6039a087882bb4",
+          "dfam:b7264c3b9560253de7d7b936",
+          "dfam:dddbf7d8dbbca952a2022a85"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:3a53283bfead5dffe15dc513",
+            "family_revision": "dfrev:9ffde5cf1a295c421afb8c44"
+          },
+          {
+            "family_id": "dfam:7d705dff40ab5acb1494201e",
+            "family_revision": "dfrev:a6362e36efa551f4cf82612e"
+          },
+          {
+            "family_id": "dfam:95fec8bfda6039a087882bb4",
+            "family_revision": "dfrev:8f814bed8ab9bfafd72a5e1a"
+          },
+          {
+            "family_id": "dfam:b7264c3b9560253de7d7b936",
+            "family_revision": "dfrev:5fe2d94e7d830d071cdbbfef"
+          },
+          {
+            "family_id": "dfam:dddbf7d8dbbca952a2022a85",
+            "family_revision": "dfrev:d9ae4d1c9a4d082626bdc8c2"
+          }
+        ],
+        "support_unit_ids": [
+          "B001230",
+          "D000629",
+          "R000608",
+          "T000474",
+          "W000790"
+        ],
+        "citation_occurrence_ids": [
+          "occ:59177f585c77a8e78caede97",
+          "occ:4428995e4af0cfcb648990da",
+          "occ:55ad3cfc0a3cd7d9a4a9f80d"
+        ],
+        "citations": [
+          {
+            "member": "Raphael G. Warnock",
+            "party": "D",
+            "state": "GA",
+            "date": "2026-10-05",
+            "url": "https://www.warnock.senate.gov/newsroom/press-releases/warnock-statement-on-reporting-that-trump-admin-let-millions-in-rural-housing-development-dollars-expire/",
+            "quote": "232 million in federal funding meant to help",
+            "occurrence_id": "occ:59177f585c77a8e78caede97",
+            "office_id": "W000790",
+            "publication_id": "sha256:096f12ddd9bd9ef3ba0c945ffe47112fff3f1f4366cc86a327b3ad4ba0707d3f",
+            "family_id": "dfam:3a53283bfead5dffe15dc513",
+            "family_revision": "dfrev:9ffde5cf1a295c421afb8c44"
+          },
+          {
+            "member": "Sharice Davids",
+            "party": "D",
+            "state": "KS",
+            "date": "2026-10-05",
+            "url": "https://davids.house.gov/media/press-releases/davids-celebrates-opening-kckcc-downtown-center-highlighting-her-secured",
+            "quote": "2 million in federal funding she secured to",
+            "occurrence_id": "occ:4428995e4af0cfcb648990da",
+            "office_id": "D000629",
+            "publication_id": "sha256:8a825b20b593bd27a2b7242901cc64755d85324e9a073cf07429ef656279b187",
+            "family_id": "dfam:dddbf7d8dbbca952a2022a85",
+            "family_revision": "dfrev:d9ae4d1c9a4d082626bdc8c2"
+          },
+          {
+            "member": "Norma J. Torres",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-05",
+            "url": "https://torres.house.gov/media-center/press-releases/rep-norma-torres-secures-25-million-for-state-route_71-gap-closure-project-in-pomona",
+            "quote": "25 million in federal funding from the u",
+            "occurrence_id": "occ:55ad3cfc0a3cd7d9a4a9f80d",
+            "office_id": "T000474",
+            "publication_id": "sha256:975b1d7ba85e242e0197c284780ab849f5b3435432f7d14534169f2e7a3fa50d",
+            "family_id": "dfam:b7264c3b9560253de7d7b936",
+            "family_revision": "dfrev:5fe2d94e7d830d071cdbbfef"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "district_funding",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "agriculture",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "housing",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-10-05-D-01",
+        "party": "D",
+        "day": "2026-10-05",
+        "label": "30-day mandatory public notice period",
+        "member_count": 3,
+        "statements": [
+          "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+          "sha256:87aa23829210621a093a1286ea2bfa790bf6c0c94f5db71621db871b11528904",
+          "sha256:f0ff573a6f4a16387cd2978288725a687491b7d0229d25bd9099a9af3e50fa9e"
+        ],
+        "fragments": [
+          {
+            "text": "30-day mandatory public notice period that allows communities to provide input",
+            "statement": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f"
+          },
+          {
+            "text": "30-day mandatory public notice period that allows communities to provide input",
+            "statement": "sha256:87aa23829210621a093a1286ea2bfa790bf6c0c94f5db71621db871b11528904"
+          },
+          {
+            "text": "30-day mandatory public notice period that allows communities to provide input",
+            "statement": "sha256:f0ff573a6f4a16387cd2978288725a687491b7d0229d25bd9099a9af3e50fa9e"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-05-D-01",
+        "support_phrase": {
+          "normalized": "30-day mandatory public notice period",
+          "text": "30-day mandatory public notice period",
+          "occurrence_id": "occ:0be7e7d2e90381f0060ddd19"
+        },
+        "display_quote": "30-day mandatory public notice period",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0be7e7d2e90381f0060ddd19",
+            "claim_id": "2026-10-05-D-01",
+            "statement_id": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+            "publication_id": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+            "office_id": "D000622",
+            "family_id": "dfam:5a92c870ca1c164309476045",
+            "family_revision": "dfrev:9c4aede4e00f02a2a853f2c8",
+            "support_unit_id": "D000622",
+            "party": "D",
+            "start_char": 354,
+            "end_char": 391,
+            "surface_text": "30-day mandatory public notice period",
+            "normalized_phrase": "30-day mandatory public notice period",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 122,
+            "sentence_end_char": 512,
+            "sentence_offset_start": 232,
+            "sentence_offset_end": 269,
+            "clause_start_char": 251,
+            "clause_end_char": 455,
+            "clause_offset_start": 103,
+            "clause_offset_end": 140,
+            "adjacent_tokens_before": [
+              "epa",
+              "proposal",
+              "to",
+              "eliminate",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "that",
+              "allows",
+              "communities",
+              "to",
+              "provide"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:22a233ae0bec036452eaf3e3",
+            "claim_id": "2026-10-05-D-01",
+            "statement_id": "sha256:87aa23829210621a093a1286ea2bfa790bf6c0c94f5db71621db871b11528904",
+            "publication_id": "sha256:87aa23829210621a093a1286ea2bfa790bf6c0c94f5db71621db871b11528904",
+            "office_id": "G000574",
+            "family_id": "dfam:eebd1a5eaf84d6f88e4b9264",
+            "family_revision": "dfrev:3fa77bc70247c02846a13948",
+            "support_unit_id": "G000574",
+            "party": "D",
+            "start_char": 217,
+            "end_char": 254,
+            "surface_text": "30-day mandatory public notice period",
+            "normalized_phrase": "30-day mandatory public notice period",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 375,
+            "sentence_offset_start": 217,
+            "sentence_offset_end": 254,
+            "clause_start_char": 19,
+            "clause_end_char": 318,
+            "clause_offset_start": 198,
+            "clause_offset_end": 235,
+            "adjacent_tokens_before": [
+              "epa",
+              "proposed",
+              "elimination",
+              "of",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "that",
+              "allows",
+              "communities",
+              "to",
+              "provide"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ea0df1b93add1d2db18a0c22",
+            "claim_id": "2026-10-05-D-01",
+            "statement_id": "sha256:f0ff573a6f4a16387cd2978288725a687491b7d0229d25bd9099a9af3e50fa9e",
+            "publication_id": "sha256:f0ff573a6f4a16387cd2978288725a687491b7d0229d25bd9099a9af3e50fa9e",
+            "office_id": "K000377",
+            "family_id": "dfam:07fc64753700393c18b6a065",
+            "family_revision": "dfrev:2f3d65a9974ec6e798778db7",
+            "support_unit_id": "K000377",
+            "party": "D",
+            "start_char": 224,
+            "end_char": 261,
+            "surface_text": "30-day mandatory public notice period",
+            "normalized_phrase": "30-day mandatory public notice period",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 4,
+            "sentence_end_char": 382,
+            "sentence_offset_start": 220,
+            "sentence_offset_end": 257,
+            "clause_start_char": 127,
+            "clause_end_char": 325,
+            "clause_offset_start": 97,
+            "clause_offset_end": 134,
+            "adjacent_tokens_before": [
+              "epa",
+              "proposal",
+              "to",
+              "eliminate",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "that",
+              "allows",
+              "communities",
+              "to",
+              "provide"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "D000622",
+          "G000574",
+          "K000377"
+        ],
+        "publication_ids": [
+          "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+          "sha256:87aa23829210621a093a1286ea2bfa790bf6c0c94f5db71621db871b11528904",
+          "sha256:f0ff573a6f4a16387cd2978288725a687491b7d0229d25bd9099a9af3e50fa9e"
+        ],
+        "family_ids": [
+          "dfam:07fc64753700393c18b6a065",
+          "dfam:5a92c870ca1c164309476045",
+          "dfam:eebd1a5eaf84d6f88e4b9264"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:07fc64753700393c18b6a065",
+            "family_revision": "dfrev:2f3d65a9974ec6e798778db7"
+          },
+          {
+            "family_id": "dfam:5a92c870ca1c164309476045",
+            "family_revision": "dfrev:9c4aede4e00f02a2a853f2c8"
+          },
+          {
+            "family_id": "dfam:eebd1a5eaf84d6f88e4b9264",
+            "family_revision": "dfrev:3fa77bc70247c02846a13948"
+          }
+        ],
+        "support_unit_ids": [
+          "D000622",
+          "G000574",
+          "K000377"
+        ],
+        "citation_occurrence_ids": [
+          "occ:0be7e7d2e90381f0060ddd19",
+          "occ:22a233ae0bec036452eaf3e3",
+          "occ:ea0df1b93add1d2db18a0c22"
+        ],
+        "citations": [
+          {
+            "member": "Tammy Duckworth",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-10-05",
+            "url": "https://www.duckworth.senate.gov/news/press-releases/duckworth-join-colleagues-in-pressing-epa-ai-companies-on-rollback-of-public-input-rules-for-data-center-air-permits",
+            "quote": "30-day mandatory public notice period that allows communities to provide input",
+            "occurrence_id": "occ:0be7e7d2e90381f0060ddd19",
+            "office_id": "D000622",
+            "publication_id": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+            "family_id": "dfam:5a92c870ca1c164309476045",
+            "family_revision": "dfrev:9c4aede4e00f02a2a853f2c8"
+          },
+          {
+            "member": "Ruben Gallego",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-10-05",
+            "url": "https://www.gallego.senate.gov/news/press-releases/gallego-colleagues-press-epa-ai-companies-on-rollback-of-public-input-rules-for-data-center-air-permits/",
+            "quote": "30-day mandatory public notice period that allows communities to provide input",
+            "occurrence_id": "occ:22a233ae0bec036452eaf3e3",
+            "office_id": "G000574",
+            "publication_id": "sha256:87aa23829210621a093a1286ea2bfa790bf6c0c94f5db71621db871b11528904",
+            "family_id": "dfam:eebd1a5eaf84d6f88e4b9264",
+            "family_revision": "dfrev:3fa77bc70247c02846a13948"
+          },
+          {
+            "member": "Mark Kelly",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-10-05",
+            "url": "https://www.kelly.senate.gov/newsroom/press-releases/kelly-whitehouse-press-epa-ai-companies-on-rollback-of-public-input-rules-for-data-center-air-permits/",
+            "quote": "30-day mandatory public notice period that allows communities to provide input",
+            "occurrence_id": "occ:ea0df1b93add1d2db18a0c22",
+            "office_id": "K000377",
+            "publication_id": "sha256:f0ff573a6f4a16387cd2978288725a687491b7d0229d25bd9099a9af3e50fa9e",
+            "family_id": "dfam:07fc64753700393c18b6a065",
+            "family_revision": "dfrev:2f3d65a9974ec6e798778db7"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-10-05",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 8,
+          "numerator_unit": "offices",
+          "denominator": 51,
+          "denominator_unit": "offices",
+          "share": 0.156863,
+          "window": "party-day 2026-10-05",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 8,
+          "numerator_unit": "publications",
+          "denominator": 66,
+          "denominator_unit": "publications",
+          "share": 0.121212,
+          "window": "party-day 2026-10-05",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 8,
+          "numerator_unit": "document families",
+          "denominator": 56,
+          "denominator_unit": "document families",
+          "share": 0.142857,
+          "window": "party-day 2026-10-05",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-10-05",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 38,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-10-05",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 49,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-10-05",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 49,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-10-05",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": [
+      {
+        "label": "in sending a letter",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "million in federal funding",
+        "slug": "3edf9fb2999b89ff",
+        "n": 4,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.37,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "H001061",
+          "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
+          "tie": [
+            "S000148"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          6,
+          4,
+          1,
+          1,
+          3,
+          4,
+          7,
+          1,
+          2,
+          6,
+          8,
+          4,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "the infrastructure needed",
+        "slug": "b0b5bc61e2ddfee5",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.89,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "B001322",
+          "statement": "sha256:39b80c83dd05be7f3a6796fe56b194cf7d8c1fc5f144f6c8866981d4931f3216",
+          "tie": [
+            "G000599"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "infrastructure needed to",
+        "slug": "77408d5178f1f48b",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-04",
+          "bioguide": "M001163",
+          "statement": "sha256:3d3ae726ce3bd93e3d092fc79adac7f32c1c5a86bd5c28a86e480cb701b4ae9f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          2,
+          5,
+          3,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          3,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "the proposed rule",
+        "slug": "adda95ee3389f61e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.15,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "S001216",
+          "statement": "sha256:f3de9ead3f3613c18a5ceafbc78debe4a74e0a3834e87824451e660a14207894",
+          "tie": [
+            "B001277",
+            "H001079",
+            "T000278"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          6,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "wrote the senators",
+        "slug": "dd1ce953b68d3963",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.51,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "B001277",
+          "statement": "sha256:62d9df24a82d1361c54fd946e0c9c6780cb1c4361527d7d9c0aa7c09f96c924d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          2,
+          1,
+          3,
+          4,
+          6,
+          2,
+          3,
+          4,
+          2,
+          3,
+          2,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "anthropic aws fermi google joule meta",
+        "slug": "687ee1ac1f3b196b",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-05",
+          "bioguide": "D000622",
+          "statement": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+          "tie": [
+            "G000574",
+            "K000377"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "maintain current public participation standards regardless",
+        "slug": "0a715ad43708e892",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-05",
+          "bioguide": "D000622",
+          "statement": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+          "tie": [
+            "G000574",
+            "K000377"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "aws fermi google joule meta microsoft",
+        "slug": "f3a19a2bfebf102a",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-05",
+          "bioguide": "D000622",
+          "statement": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+          "tie": [
+            "G000574",
+            "K000377"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "data center companies anthropic aws fermi",
+        "slug": "8b2d594780ace3ce",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-05",
+          "bioguide": "D000622",
+          "statement": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+          "tie": [
+            "G000574",
+            "K000377"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "major data center companies anthropic aws",
+        "slug": "cc89c2b4a06ec91f",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-05",
+          "bioguide": "D000622",
+          "statement": "sha256:3d29f3b8611d915d298ec38a0a6609191c325e94d77d4ad0d0f88699a3177a4f",
+          "tie": [
+            "G000574",
+            "K000377"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.06,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          6,
+          3,
+          5,
+          2,
+          6,
+          4,
+          14,
+          4,
+          8,
+          7,
+          6,
+          4,
+          3,
+          6
+        ]
+      },
+      {
+        "ngram": "next generation of",
+        "slug": "5527941b4a339267",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.11,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "B001326"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          4,
+          3,
+          3,
+          2,
+          3,
+          4,
+          11,
+          4,
+          6,
+          5,
+          5,
+          4,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "proud to join",
+        "slug": "0eb1e7285c7e5088",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.93,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+          "tie": [
+            "L000593",
+            "R000610"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.969,
+        "series": [
+          8,
+          4,
+          1,
+          3,
+          2,
+          3,
+          8,
+          4,
+          6,
+          5,
+          4,
+          5,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "the front lines",
+        "slug": "049e15010ea65a1c",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.31,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          2,
+          4,
+          4,
+          3,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4,
+          3,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "rural communities and",
+        "slug": "6bccea8c3fbe2c71",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.83,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "F000479",
+          "statement": "sha256:dc449433ba79927f32900d573e82e16ad6f896ff47ce6567dd134f2179144273",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          2,
+          5,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "introduced a resolution",
+        "slug": "5039478297783f4b",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "K000400",
+          "statement": "sha256:fad602b28b7e71590d3e8546eda8b7d3b3008667606a8d39d6674e1702d7b950",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          1,
+          4,
+          1,
+          2,
+          1,
+          2,
+          3,
+          1,
+          2,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "work together to",
+        "slug": "1d2a0acc6233ccaf",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.62,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "S001201",
+          "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3,
+          4,
+          2,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "proud to support",
+        "slug": "26e9b1e8da0a1211",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 0.76,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "L000600",
+          "statement": "sha256:14ad2a8d2ef003d9e07a24a3188422dffb1d6754a7348ac13845116c306a754b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.967,
+        "series": [
+          6,
+          3,
+          2,
+          1,
+          1,
+          11,
+          4,
+          1,
+          5,
+          3,
+          3,
+          6,
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
