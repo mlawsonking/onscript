@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-10-05",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 86,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "86 consecutive days published (through 2026-10-04)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0266,
+      "projected": 0.1652,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 4,
+      "note": "$0.0266 MTD, $0.17 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-10-02",
+      "scored_age_days": 3,
+      "parties": {
+        "D": {
+          "statements": 69,
+          "median": 73.0,
+          "share": 0.945,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 44,
+          "median": 42.0,
+          "share": 1.048,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 6.57,
+        "day": "2026-10-05",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [
+        "2026-10-04",
+        "2026-10-03"
+      ],
+      "note": "2026-10-02 (3d): D 69/73=94% R 44/42=105% of own same-weekday baseline (green >= 60%); upstream 6.6h (green < 36h); 2026-10-04, 2026-10-03 skipped, baseline under the 20 a ratio needs"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.6129,
+      "dropped": 19,
+      "offered": 31,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "19/31 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "passed the house",
+    "party": "R",
+    "day_peak": 10,
+    "day": "2026-09-30"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: verifier_drop"
+}
