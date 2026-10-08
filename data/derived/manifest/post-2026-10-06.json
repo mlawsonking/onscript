@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "post",
   "day": "2026-10-06",
-  "generated_at": "2026-10-07T18:12:18Z",
+  "generated_at": "2026-10-08T01:24:41Z",
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
     "component_hashes": {
@@ -33,7 +33,9 @@
       "posted": true,
       "root_uri": "at://did:plc:7mzshf53gvt7wcm37fy3k6ir/app.bsky.feed.post/3mx64r2722222",
       "creds_present": true,
-      "posts_written": 4
+      "posts_written": 4,
+      "reason": "already posted (idempotent)",
+      "idempotent_skip": true
     },
     {
       "party": "R",
@@ -46,7 +48,9 @@
       "posted": true,
       "root_uri": "at://did:plc:pusxqtfjqpiqkw5fhe6b5mii/app.bsky.feed.post/3mx64r2722223",
       "creds_present": true,
-      "posts_written": 3
+      "posts_written": 3,
+      "reason": "already posted (idempotent)",
+      "idempotent_skip": true
     }
   ]
 }
