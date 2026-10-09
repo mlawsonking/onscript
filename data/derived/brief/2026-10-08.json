@@ -5,58 +5,58 @@
   "numbers": [
     {
       "name": "streak",
-      "value": 0,
-      "status": "red",
-      "last_missed": "2026-10-07",
-      "note": "no publish for 2026-10-07 — Playbook P1"
+      "value": 89,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "89 consecutive days published (through 2026-10-07)"
     },
     {
       "name": "spend",
-      "value": 0.0546,
-      "projected": 0.2116,
+      "value": 0.0736,
+      "projected": 0.2853,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 6,
-      "note": "$0.0546 MTD, $0.21 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 7,
+      "note": "$0.0736 MTD, $0.29 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "day": "2026-10-06",
-      "scored_age_days": 2,
+      "day": "2026-10-07",
+      "scored_age_days": 1,
       "parties": {
         "D": {
-          "statements": 50,
-          "median": 99.0,
-          "share": 0.505,
-          "status": "red",
+          "statements": 90,
+          "median": 83.5,
+          "share": 1.078,
+          "status": "green",
           "baseline_method": "trailing 6-week same-weekday median"
         },
         "R": {
-          "statements": 29,
-          "median": 69.0,
-          "share": 0.42,
-          "status": "red",
+          "statements": 43,
+          "median": 47.0,
+          "share": 0.915,
+          "status": "green",
           "baseline_method": "trailing 6-week same-weekday median"
         }
       },
-      "status": "red",
+      "status": "green",
       "freshness": {
-        "age_hours": 12.05,
-        "day": "2026-10-07",
+        "age_hours": 11.97,
+        "day": "2026-10-08",
         "status": "green"
       },
       "excluded_reports": 0,
       "skipped_days": [],
-      "note": "2026-10-06 (2d): D 50/99=50% R 29/69=42% of own same-weekday baseline (green >= 60%); upstream 12.1h (green < 36h)"
+      "note": "2026-10-07 (1d): D 90/84=108% R 43/47=92% of own same-weekday baseline (green >= 60%); upstream 12.0h (green < 36h)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.5455,
+      "value": 0.4286,
       "dropped": 6,
-      "offered": 11,
+      "offered": 14,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "6/11 claims dropped over 7d (green < 25%)"
+      "note": "6/14 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -66,8 +66,6 @@
     }
   ],
   "reds": [
-    "streak",
-    "coverage",
     "verifier_drop"
   ],
   "unknowns": [],
@@ -104,5 +102,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, coverage, verifier_drop"
+  "headline": "RED: verifier_drop"
 }

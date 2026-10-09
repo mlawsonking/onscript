@@ -1,0 +1,3902 @@
+{
+  "day": "2026-10-07",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-10-07",
+      "party": "D",
+      "composite": "Today our dominant message marks the \"anniversary of the October\" day, raised by 6 of us. The most synchronized phrase across our statements is around the world, appearing among 8 of us, first recorded in our corpus from Tom Cole (R-OK). Beyond that single message, our 90 statements today show no further phrase shared widely enough to report.",
+      "measurement_lead": "Measurement: 90 publications were observed for the Democratic party on 2026-10-07.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-10-07",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "d834914164512a62ad7ebe59115dedb646a2d602bbd81c70e4213a233dfda7a1",
+        "claim_ids": [
+          "2026-10-07-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today our dominant message marks the \"anniversary of the October\" day, raised by 6 of us. The most synchronized phrase across our statements is around the world, appearing among 8 of us, first recorded in our corpus from Tom Cole (R-OK). Beyond that single message, our 90 statements today show no further phrase shared widely enough to report.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": [
+              "2026-10-07-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "3f6f28ba9963798776df9ae92ff2750027da4bfbceb6192aecb7d200d31412f8",
+        "response_sha256": "537e0c8e14b8338bae1634bfc4ff8845106277514328b8e93d56e45b25f80bed",
+        "model_response_sha256": "02bdbe8a452de61e73e70344546401d2f10a10d1fbed7209f2e02e5be0f814b1"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-10-07-D-00"
+          ],
+          "claim_ids": [
+            "2026-10-07-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": [
+            "2026-10-07-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-10-07",
+        "statements": 90,
+        "talking_points": [
+          {
+            "label": "anniversary of the october",
+            "members": 6,
+            "quote": "anniversary of the October",
+            "topics": [
+              "other",
+              "israel_gaza"
+            ],
+            "claim_id": "2026-10-07-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "israel_gaza",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 6,
+              "publications": 6,
+              "families": 6,
+              "support_units": 6
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "around the world",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Tom Cole",
+          "first_sayer_party": "R",
+          "first_sayer_state": "OK"
+        },
+        "selected_claims": [
+          {
+            "label": "anniversary of the october",
+            "members": 6,
+            "quote": "anniversary of the October",
+            "topics": [
+              "other",
+              "israel_gaza"
+            ],
+            "claim_id": "2026-10-07-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "israel_gaza",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 6,
+              "publications": 6,
+              "families": 6,
+              "support_units": 6
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-10-07-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2312,
+        "tokens_out": 112,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-10-07",
+      "party": "R",
+      "composite": "Today 43 of us released statements. 4 of us carried \"third anniversary of the October\". 3 of us carried \"Jewish people since the Holocaust\". Our most synchronized phrase, used by 5 of us: men women and children.",
+      "measurement_lead": "Measurement: 43 publications were observed for the Republican party on 2026-10-07.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-10-07",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "87655175a2219c7ce4bd53d56da65e9a3707b84c3493ad8c8f7934ee66796df1",
+        "claim_ids": [
+          "2026-10-07-R-00",
+          "2026-10-07-R-01"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 43 of us released statements. 4 of us carried \"third anniversary of the October\". 3 of us carried \"Jewish people since the Holocaust\". Our most synchronized phrase, used by 5 of us: men women and children.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-10-07-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-10-07-R-01"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "9100dfaa2cdc8a43660f21d8d067e9e321c4ecc98cef972b987952e138a63110",
+        "response_sha256": "a5efc46d84d76450c85b656bcae2f733b89c9f006e1574fadb35fe4c9144dc52",
+        "model_response_sha256": "cb898d96880c1c61a6d48585ef612661af9d57d7eb03c7aea44d69b3bade4d5b"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-10-07-R-00"
+          ],
+          "claim_ids": [
+            "2026-10-07-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-10-07-R-01"
+          ],
+          "claim_ids": [
+            "2026-10-07-R-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-10-07-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-10-07-R-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-10-07",
+        "statements": 43,
+        "talking_points": [
+          {
+            "label": "third anniversary of the october",
+            "members": 4,
+            "quote": "third anniversary of the October",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-07-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          },
+          {
+            "label": "jewish people since the holocaust",
+            "members": 3,
+            "quote": "Jewish people since the Holocaust",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-07-R-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "men women and children",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Cindy Hyde-Smith",
+          "first_sayer_party": "R",
+          "first_sayer_state": "MS"
+        },
+        "selected_claims": [
+          {
+            "label": "third anniversary of the october",
+            "members": 4,
+            "quote": "third anniversary of the October",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-07-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          },
+          {
+            "label": "jewish people since the holocaust",
+            "members": 3,
+            "quote": "Jewish people since the Holocaust",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-07-R-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-10-07-R-00",
+          "2026-10-07-R-01"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 2926,
+        "tokens_out": 109,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-10-07-D-00",
+        "party": "D",
+        "day": "2026-10-07",
+        "label": "anniversary of the october",
+        "member_count": 6,
+        "statements": [
+          "sha256:298f0390d0b2d7df1c6d000ebd3afc966d183572bf6fa31d77dae90cb279d7d6",
+          "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332",
+          "sha256:6eb9c15fa9d5a2454175b8bafe54c0638e67db376eec7d438d481bc73877e4ed",
+          "sha256:87972ceb3216055c4b9bc434a15d679fd3569460aaae3b15bc81773752e34582",
+          "sha256:d2574141de02eb7c68623d72a9f417d53a264d04163f4eaa87ca537bd892f2d7",
+          "sha256:f044124002b8ebae602b9010d4fb16194ff22ef8c1758aad28ebef668bd0e6bc"
+        ],
+        "fragments": [
+          {
+            "text": "statement marking the third anniversary of the october",
+            "statement": "sha256:87972ceb3216055c4b9bc434a15d679fd3569460aaae3b15bc81773752e34582"
+          },
+          {
+            "text": "statement on the third anniversary of the october",
+            "statement": "sha256:6eb9c15fa9d5a2454175b8bafe54c0638e67db376eec7d438d481bc73877e4ed"
+          },
+          {
+            "text": "on the third anniversary of the october 7th terrorist attack",
+            "statement": "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332"
+          },
+          {
+            "text": "on the third anniversary of the october 7th",
+            "statement": "sha256:298f0390d0b2d7df1c6d000ebd3afc966d183572bf6fa31d77dae90cb279d7d6"
+          },
+          {
+            "text": "statement on the three-year anniversary of the october 7th",
+            "statement": "sha256:f044124002b8ebae602b9010d4fb16194ff22ef8c1758aad28ebef668bd0e6bc"
+          },
+          {
+            "text": "on the third anniversary of the october 7th terror attack",
+            "statement": "sha256:d2574141de02eb7c68623d72a9f417d53a264d04163f4eaa87ca537bd892f2d7"
+          }
+        ],
+        "topics": [
+          "other",
+          "israel_gaza"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-07-D-00",
+        "support_phrase": {
+          "normalized": "anniversary of the october",
+          "text": "anniversary of the October",
+          "occurrence_id": "occ:6c0ada6737ba3f6668f15576"
+        },
+        "display_quote": "anniversary of the October",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6c0ada6737ba3f6668f15576",
+            "claim_id": "2026-10-07-D-00",
+            "statement_id": "sha256:298f0390d0b2d7df1c6d000ebd3afc966d183572bf6fa31d77dae90cb279d7d6",
+            "publication_id": "sha256:298f0390d0b2d7df1c6d000ebd3afc966d183572bf6fa31d77dae90cb279d7d6",
+            "office_id": "H001094",
+            "family_id": "dfam:68c06103c7f85b942b47512e",
+            "family_revision": "dfrev:24fd5bcc316767076df32d03",
+            "support_unit_id": "H001094",
+            "party": "D",
+            "start_char": 96,
+            "end_char": 122,
+            "surface_text": "anniversary of the October",
+            "normalized_phrase": "anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 24,
+            "sentence_end_char": 204,
+            "sentence_offset_start": 72,
+            "sentence_offset_end": 98,
+            "clause_start_char": 19,
+            "clause_end_char": 133,
+            "clause_offset_start": 77,
+            "clause_offset_end": 103,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "on",
+              "the",
+              "third"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "attack",
+              "it’s",
+              "been",
+              "3"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7a18dccc591787c4d4988316",
+            "claim_id": "2026-10-07-D-00",
+            "statement_id": "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332",
+            "publication_id": "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332",
+            "office_id": "G000583",
+            "family_id": "dfam:a7ae8663a4ba50a34ae04d2f",
+            "family_revision": "dfrev:7b0dc4423a2609a275a4e0af",
+            "support_unit_id": "G000583",
+            "party": "D",
+            "start_char": 176,
+            "end_char": 202,
+            "surface_text": "anniversary of the October",
+            "normalized_phrase": "anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 112,
+            "sentence_end_char": 497,
+            "sentence_offset_start": 64,
+            "sentence_offset_end": 90,
+            "clause_start_char": 162,
+            "clause_end_char": 233,
+            "clause_offset_start": 14,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "7",
+              "2026",
+              "on",
+              "the",
+              "third"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "terrorist",
+              "attack",
+              "on",
+              "israel"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d753f378b048d6eae3c66d9c",
+            "claim_id": "2026-10-07-D-00",
+            "statement_id": "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332",
+            "publication_id": "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332",
+            "office_id": "G000583",
+            "family_id": "dfam:a7ae8663a4ba50a34ae04d2f",
+            "family_revision": "dfrev:7b0dc4423a2609a275a4e0af",
+            "support_unit_id": "G000583",
+            "party": "D",
+            "start_char": 8534,
+            "end_char": 8560,
+            "surface_text": "anniversary of the October",
+            "normalized_phrase": "anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 8518,
+            "sentence_end_char": 8684,
+            "sentence_offset_start": 16,
+            "sentence_offset_end": 42,
+            "clause_start_char": 8462,
+            "clause_end_char": 8591,
+            "clause_offset_start": 72,
+            "clause_offset_end": 98,
+            "adjacent_tokens_before": [
+              "north",
+              "america",
+              "on",
+              "the",
+              "third"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "terrorist",
+              "attack",
+              "on",
+              "israel"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2f530af681ec15182df25916",
+            "claim_id": "2026-10-07-D-00",
+            "statement_id": "sha256:6eb9c15fa9d5a2454175b8bafe54c0638e67db376eec7d438d481bc73877e4ed",
+            "publication_id": "sha256:6eb9c15fa9d5a2454175b8bafe54c0638e67db376eec7d438d481bc73877e4ed",
+            "office_id": "D000631",
+            "family_id": "dfam:accc5b3c011aa706f382c341",
+            "family_revision": "dfrev:5c3f024b0eee21f929f245c3",
+            "support_unit_id": "D000631",
+            "party": "D",
+            "start_char": 170,
+            "end_char": 196,
+            "surface_text": "anniversary of the October",
+            "normalized_phrase": "anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 327,
+            "sentence_offset_start": 154,
+            "sentence_offset_end": 180,
+            "clause_start_char": 123,
+            "clause_end_char": 207,
+            "clause_offset_start": 47,
+            "clause_offset_end": 73,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "on",
+              "the",
+              "third"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "attack",
+              "three",
+              "years",
+              "ago"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:749b23d9eb51a8a03638b9dd",
+            "claim_id": "2026-10-07-D-00",
+            "statement_id": "sha256:87972ceb3216055c4b9bc434a15d679fd3569460aaae3b15bc81773752e34582",
+            "publication_id": "sha256:87972ceb3216055c4b9bc434a15d679fd3569460aaae3b15bc81773752e34582",
+            "office_id": "C001059",
+            "family_id": "dfam:0dff20a6dddf8d685f7aa978",
+            "family_revision": "dfrev:e60bb886a4d889556a8ef33c",
+            "support_unit_id": "C001059",
+            "party": "D",
+            "start_char": 105,
+            "end_char": 131,
+            "surface_text": "anniversary of the October",
+            "normalized_phrase": "anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 14,
+            "sentence_end_char": 326,
+            "sentence_offset_start": 91,
+            "sentence_offset_end": 117,
+            "clause_start_char": 23,
+            "clause_end_char": 160,
+            "clause_offset_start": 82,
+            "clause_offset_end": 108,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "marking",
+              "the",
+              "third"
+            ],
+            "adjacent_tokens_after": [
+              "7",
+              "terrorist",
+              "attacks",
+              "by",
+              "hamas"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:99844580a54e8e73515d5847",
+            "claim_id": "2026-10-07-D-00",
+            "statement_id": "sha256:d2574141de02eb7c68623d72a9f417d53a264d04163f4eaa87ca537bd892f2d7",
+            "publication_id": "sha256:d2574141de02eb7c68623d72a9f417d53a264d04163f4eaa87ca537bd892f2d7",
+            "office_id": "W000800",
+            "family_id": "dfam:791acc5505895ffa16ff490d",
+            "family_revision": "dfrev:5a4b8180dc3e9a851b0c1028",
+            "support_unit_id": "W000800",
+            "party": "D",
+            "start_char": 102,
+            "end_char": 128,
+            "surface_text": "anniversary of the October",
+            "normalized_phrase": "anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 49,
+            "sentence_end_char": 331,
+            "sentence_offset_start": 53,
+            "sentence_offset_end": 79,
+            "clause_start_char": 11,
+            "clause_end_char": 156,
+            "clause_offset_start": 91,
+            "clause_offset_end": 117,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "on",
+              "the",
+              "third"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "terror",
+              "attack",
+              "on",
+              "israel"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:185c788d2bc47e1aa0ff1684",
+            "claim_id": "2026-10-07-D-00",
+            "statement_id": "sha256:f044124002b8ebae602b9010d4fb16194ff22ef8c1758aad28ebef668bd0e6bc",
+            "publication_id": "sha256:f044124002b8ebae602b9010d4fb16194ff22ef8c1758aad28ebef668bd0e6bc",
+            "office_id": "L000582",
+            "family_id": "dfam:3f76dd85f1f587769f899bc5",
+            "family_revision": "dfrev:72015668dae9a8e6b6cc93af",
+            "support_unit_id": "L000582",
+            "party": "D",
+            "start_char": 116,
+            "end_char": 142,
+            "surface_text": "anniversary of the October",
+            "normalized_phrase": "anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 38,
+            "sentence_end_char": 174,
+            "sentence_offset_start": 78,
+            "sentence_offset_end": 104,
+            "clause_start_char": 19,
+            "clause_end_char": 390,
+            "clause_offset_start": 97,
+            "clause_offset_end": 123,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "on",
+              "the",
+              "three-year"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "terrorist",
+              "attacks",
+              "in",
+              "israel"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 6,
+          "publications": 6,
+          "families": 6,
+          "support_units": 6
+        },
+        "office_ids": [
+          "C001059",
+          "D000631",
+          "G000583",
+          "H001094",
+          "L000582",
+          "W000800"
+        ],
+        "publication_ids": [
+          "sha256:298f0390d0b2d7df1c6d000ebd3afc966d183572bf6fa31d77dae90cb279d7d6",
+          "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332",
+          "sha256:6eb9c15fa9d5a2454175b8bafe54c0638e67db376eec7d438d481bc73877e4ed",
+          "sha256:87972ceb3216055c4b9bc434a15d679fd3569460aaae3b15bc81773752e34582",
+          "sha256:d2574141de02eb7c68623d72a9f417d53a264d04163f4eaa87ca537bd892f2d7",
+          "sha256:f044124002b8ebae602b9010d4fb16194ff22ef8c1758aad28ebef668bd0e6bc"
+        ],
+        "family_ids": [
+          "dfam:0dff20a6dddf8d685f7aa978",
+          "dfam:3f76dd85f1f587769f899bc5",
+          "dfam:68c06103c7f85b942b47512e",
+          "dfam:791acc5505895ffa16ff490d",
+          "dfam:a7ae8663a4ba50a34ae04d2f",
+          "dfam:accc5b3c011aa706f382c341"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:0dff20a6dddf8d685f7aa978",
+            "family_revision": "dfrev:e60bb886a4d889556a8ef33c"
+          },
+          {
+            "family_id": "dfam:3f76dd85f1f587769f899bc5",
+            "family_revision": "dfrev:72015668dae9a8e6b6cc93af"
+          },
+          {
+            "family_id": "dfam:68c06103c7f85b942b47512e",
+            "family_revision": "dfrev:24fd5bcc316767076df32d03"
+          },
+          {
+            "family_id": "dfam:791acc5505895ffa16ff490d",
+            "family_revision": "dfrev:5a4b8180dc3e9a851b0c1028"
+          },
+          {
+            "family_id": "dfam:a7ae8663a4ba50a34ae04d2f",
+            "family_revision": "dfrev:7b0dc4423a2609a275a4e0af"
+          },
+          {
+            "family_id": "dfam:accc5b3c011aa706f382c341",
+            "family_revision": "dfrev:5c3f024b0eee21f929f245c3"
+          }
+        ],
+        "support_unit_ids": [
+          "C001059",
+          "D000631",
+          "G000583",
+          "H001094",
+          "L000582",
+          "W000800"
+        ],
+        "citation_occurrence_ids": [
+          "occ:6c0ada6737ba3f6668f15576",
+          "occ:7a18dccc591787c4d4988316",
+          "occ:2f530af681ec15182df25916"
+        ],
+        "citations": [
+          {
+            "member": "Val T. Hoyle",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-10-07",
+            "url": "https://hoyle.house.gov/media/press-releases/rep-hoyle-statement-on-third-anniversary-of-october-7th",
+            "quote": "on the third anniversary of the october 7th",
+            "occurrence_id": "occ:6c0ada6737ba3f6668f15576",
+            "office_id": "H001094",
+            "publication_id": "sha256:298f0390d0b2d7df1c6d000ebd3afc966d183572bf6fa31d77dae90cb279d7d6",
+            "family_id": "dfam:68c06103c7f85b942b47512e",
+            "family_revision": "dfrev:24fd5bcc316767076df32d03"
+          },
+          {
+            "member": "Josh Gottheimer",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-10-07",
+            "url": "https://gottheimer.house.gov/posts/release-on-edan-alexander-way-in-tenafly-gottheimer-marks-third-anniversary-of-october-7th",
+            "quote": "on the third anniversary of the october 7th terrorist attack",
+            "occurrence_id": "occ:7a18dccc591787c4d4988316",
+            "office_id": "G000583",
+            "publication_id": "sha256:6eb34746283943722be4f406c6775e4784edac5948ad0a21dc2cb22cddfa9332",
+            "family_id": "dfam:a7ae8663a4ba50a34ae04d2f",
+            "family_revision": "dfrev:7b0dc4423a2609a275a4e0af"
+          },
+          {
+            "member": "Madeleine Dean",
+            "party": "D",
+            "state": "PA",
+            "date": "2026-10-07",
+            "url": "https://dean.house.gov/2026/10/congresswoman-dean-s-statement-on-third-anniversary-of-october-7th-attack",
+            "quote": "statement on the third anniversary of the october",
+            "occurrence_id": "occ:2f530af681ec15182df25916",
+            "office_id": "D000631",
+            "publication_id": "sha256:6eb9c15fa9d5a2454175b8bafe54c0638e67db376eec7d438d481bc73877e4ed",
+            "family_id": "dfam:accc5b3c011aa706f382c341",
+            "family_revision": "dfrev:5c3f024b0eee21f929f245c3"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "israel_gaza",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-10-07-R-00",
+        "party": "R",
+        "day": "2026-10-07",
+        "label": "third anniversary of the october",
+        "member_count": 4,
+        "statements": [
+          "sha256:1c2c22a1f10de152168dcc8eec8be7b1ec87dd7c226728593241396dff05b673",
+          "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+          "sha256:6a3b93fd37a3bcd99882407c7405c2e15424bb8de55a6698a4106cde16b0ddad",
+          "sha256:927389978890eeb864237eac096c52c0e8874bd51183fd559237012a43b384c8"
+        ],
+        "fragments": [
+          {
+            "text": "third anniversary of the october 7th terrorist attack",
+            "statement": "sha256:927389978890eeb864237eac096c52c0e8874bd51183fd559237012a43b384c8"
+          },
+          {
+            "text": "statement on the third anniversary of the october",
+            "statement": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3"
+          },
+          {
+            "text": "marked the third anniversary of the october 7th terrorist attacks",
+            "statement": "sha256:1c2c22a1f10de152168dcc8eec8be7b1ec87dd7c226728593241396dff05b673"
+          },
+          {
+            "text": "on the third anniversary of the october 7th",
+            "statement": "sha256:6a3b93fd37a3bcd99882407c7405c2e15424bb8de55a6698a4106cde16b0ddad"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-07-R-00",
+        "support_phrase": {
+          "normalized": "third anniversary of the october",
+          "text": "third anniversary of the October",
+          "occurrence_id": "occ:32d8474f457064fa2a4c17db"
+        },
+        "display_quote": "third anniversary of the October",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:32d8474f457064fa2a4c17db",
+            "claim_id": "2026-10-07-R-00",
+            "statement_id": "sha256:1c2c22a1f10de152168dcc8eec8be7b1ec87dd7c226728593241396dff05b673",
+            "publication_id": "sha256:1c2c22a1f10de152168dcc8eec8be7b1ec87dd7c226728593241396dff05b673",
+            "office_id": "L000575",
+            "family_id": "dfam:304782282dafb67e4ba20e92",
+            "family_revision": "dfrev:bc7b7ece0944c6788968a623",
+            "support_unit_id": "L000575",
+            "party": "R",
+            "start_char": 144,
+            "end_char": 176,
+            "surface_text": "third anniversary of the October",
+            "normalized_phrase": "third anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 335,
+            "sentence_offset_start": 144,
+            "sentence_offset_end": 176,
+            "clause_start_char": 126,
+            "clause_end_char": 396,
+            "clause_offset_start": 18,
+            "clause_offset_end": 50,
+            "adjacent_tokens_before": [
+              "combating",
+              "antisemitism",
+              "today",
+              "marked",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "terrorist",
+              "attacks",
+              "in",
+              "a"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b5b73dfa9cc1a594c4691d41",
+            "claim_id": "2026-10-07-R-00",
+            "statement_id": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+            "publication_id": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+            "office_id": "H001102",
+            "family_id": "dfam:ec96a499424bac184d543c1b",
+            "family_revision": "dfrev:2b75ee5c3de05a56d9415533",
+            "support_unit_id": "H001102",
+            "party": "R",
+            "start_char": 98,
+            "end_char": 130,
+            "surface_text": "third anniversary of the October",
+            "normalized_phrase": "third anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 254,
+            "sentence_offset_start": 82,
+            "sentence_offset_end": 114,
+            "clause_start_char": 25,
+            "clause_end_char": 160,
+            "clause_offset_start": 73,
+            "clause_offset_end": 105,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "7",
+              "terrorist",
+              "attacks",
+              "on",
+              "israel"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c4fba9c88fc9846b31a6f4fb",
+            "claim_id": "2026-10-07-R-00",
+            "statement_id": "sha256:6a3b93fd37a3bcd99882407c7405c2e15424bb8de55a6698a4106cde16b0ddad",
+            "publication_id": "sha256:6a3b93fd37a3bcd99882407c7405c2e15424bb8de55a6698a4106cde16b0ddad",
+            "office_id": "M000355",
+            "family_id": "dfam:bc4457ff3f5a7832b253fb96",
+            "family_revision": "dfrev:b9f4c2d965199b20c66370dd",
+            "support_unit_id": "M000355",
+            "party": "R",
+            "start_char": 92,
+            "end_char": 124,
+            "surface_text": "third anniversary of the October",
+            "normalized_phrase": "third anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 20,
+            "sentence_end_char": 248,
+            "sentence_offset_start": 72,
+            "sentence_offset_end": 104,
+            "clause_start_char": 53,
+            "clause_end_char": 136,
+            "clause_offset_start": 39,
+            "clause_offset_end": 71,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "attacks",
+              "three",
+              "years",
+              "on"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a45c793ff41c0ff01a37932a",
+            "claim_id": "2026-10-07-R-00",
+            "statement_id": "sha256:927389978890eeb864237eac096c52c0e8874bd51183fd559237012a43b384c8",
+            "publication_id": "sha256:927389978890eeb864237eac096c52c0e8874bd51183fd559237012a43b384c8",
+            "office_id": "C001098",
+            "family_id": "dfam:63b766b12dd2dc7f44a4ea9e",
+            "family_revision": "dfrev:4ba083b41d8feebd8ff1a313",
+            "support_unit_id": "C001098",
+            "party": "R",
+            "start_char": 99,
+            "end_char": 131,
+            "surface_text": "third anniversary of the October",
+            "normalized_phrase": "third anniversary of the october",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 28,
+            "sentence_end_char": 152,
+            "sentence_offset_start": 71,
+            "sentence_offset_end": 103,
+            "clause_start_char": 19,
+            "clause_end_char": 169,
+            "clause_offset_start": 80,
+            "clause_offset_end": 112,
+            "adjacent_tokens_before": [
+              "the",
+              "following",
+              "statement",
+              "commemorating",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "7th",
+              "terrorist",
+              "attack",
+              "sen",
+              "cruz"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "C001098",
+          "H001102",
+          "L000575",
+          "M000355"
+        ],
+        "publication_ids": [
+          "sha256:1c2c22a1f10de152168dcc8eec8be7b1ec87dd7c226728593241396dff05b673",
+          "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+          "sha256:6a3b93fd37a3bcd99882407c7405c2e15424bb8de55a6698a4106cde16b0ddad",
+          "sha256:927389978890eeb864237eac096c52c0e8874bd51183fd559237012a43b384c8"
+        ],
+        "family_ids": [
+          "dfam:304782282dafb67e4ba20e92",
+          "dfam:63b766b12dd2dc7f44a4ea9e",
+          "dfam:bc4457ff3f5a7832b253fb96",
+          "dfam:ec96a499424bac184d543c1b"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:304782282dafb67e4ba20e92",
+            "family_revision": "dfrev:bc7b7ece0944c6788968a623"
+          },
+          {
+            "family_id": "dfam:63b766b12dd2dc7f44a4ea9e",
+            "family_revision": "dfrev:4ba083b41d8feebd8ff1a313"
+          },
+          {
+            "family_id": "dfam:bc4457ff3f5a7832b253fb96",
+            "family_revision": "dfrev:b9f4c2d965199b20c66370dd"
+          },
+          {
+            "family_id": "dfam:ec96a499424bac184d543c1b",
+            "family_revision": "dfrev:2b75ee5c3de05a56d9415533"
+          }
+        ],
+        "support_unit_ids": [
+          "C001098",
+          "H001102",
+          "L000575",
+          "M000355"
+        ],
+        "citation_occurrence_ids": [
+          "occ:32d8474f457064fa2a4c17db",
+          "occ:b5b73dfa9cc1a594c4691d41",
+          "occ:c4fba9c88fc9846b31a6f4fb"
+        ],
+        "citations": [
+          {
+            "member": "James Lankford",
+            "party": "R",
+            "state": "OK",
+            "date": "2026-10-07",
+            "url": "https://www.lankford.senate.gov/news/press-releases/lankford-in-washington-examiner-the-world-of-oct-8-where-antisemitism-didnt-just-return-it-became-trendy/",
+            "quote": "marked the third anniversary of the october 7th terrorist attacks",
+            "occurrence_id": "occ:32d8474f457064fa2a4c17db",
+            "office_id": "L000575",
+            "publication_id": "sha256:1c2c22a1f10de152168dcc8eec8be7b1ec87dd7c226728593241396dff05b673",
+            "family_id": "dfam:304782282dafb67e4ba20e92",
+            "family_revision": "dfrev:bc7b7ece0944c6788968a623"
+          },
+          {
+            "member": "Mark Harris",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-10-07",
+            "url": "https://markharris.house.gov/media/press-releases/harris-statement-third-anniversary-october-7th-attack",
+            "quote": "statement on the third anniversary of the october",
+            "occurrence_id": "occ:b5b73dfa9cc1a594c4691d41",
+            "office_id": "H001102",
+            "publication_id": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+            "family_id": "dfam:ec96a499424bac184d543c1b",
+            "family_revision": "dfrev:2b75ee5c3de05a56d9415533"
+          },
+          {
+            "member": "Mitch McConnell",
+            "party": "R",
+            "state": "KY",
+            "date": "2026-10-07",
+            "url": "https://www.mcconnell.senate.gov/public/index.cfm/pressreleases?ID=91801C3B-0B8B-4A6D-BE9C-036C06D39330",
+            "quote": "on the third anniversary of the october 7th",
+            "occurrence_id": "occ:c4fba9c88fc9846b31a6f4fb",
+            "office_id": "M000355",
+            "publication_id": "sha256:6a3b93fd37a3bcd99882407c7405c2e15424bb8de55a6698a4106cde16b0ddad",
+            "family_id": "dfam:bc4457ff3f5a7832b253fb96",
+            "family_revision": "dfrev:b9f4c2d965199b20c66370dd"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-10-07-R-01",
+        "party": "R",
+        "day": "2026-10-07",
+        "label": "jewish people since the holocaust",
+        "member_count": 3,
+        "statements": [
+          "sha256:121b60201d308679970259238d97ff4710b6cd714b49b183281f5f614254bf31",
+          "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+          "sha256:a2a500b78a6cf00dde82ee76c969d2675b575dde5b5c22085c898f873a1b15e1"
+        ],
+        "fragments": [
+          {
+            "text": "in the deadliest day for the jewish people since the holocaust",
+            "statement": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3"
+          },
+          {
+            "text": "day for the jewish people since the holocaust",
+            "statement": "sha256:121b60201d308679970259238d97ff4710b6cd714b49b183281f5f614254bf31"
+          },
+          {
+            "text": "attack on the jewish people since the holocaust",
+            "statement": "sha256:a2a500b78a6cf00dde82ee76c969d2675b575dde5b5c22085c898f873a1b15e1"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-07-R-01",
+        "support_phrase": {
+          "normalized": "jewish people since the holocaust",
+          "text": "Jewish people since the Holocaust",
+          "occurrence_id": "occ:7baa5944bbaf68df64d3f51e"
+        },
+        "display_quote": "Jewish people since the Holocaust",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7baa5944bbaf68df64d3f51e",
+            "claim_id": "2026-10-07-R-01",
+            "statement_id": "sha256:121b60201d308679970259238d97ff4710b6cd714b49b183281f5f614254bf31",
+            "publication_id": "sha256:121b60201d308679970259238d97ff4710b6cd714b49b183281f5f614254bf31",
+            "office_id": "L000599",
+            "family_id": "dfam:df77d7979b626a4d85ea3f89",
+            "family_revision": "dfrev:5602aa498b5ae6bebd536d12",
+            "support_unit_id": "L000599",
+            "party": "R",
+            "start_char": 342,
+            "end_char": 375,
+            "surface_text": "Jewish people since the Holocaust",
+            "normalized_phrase": "jewish people since the holocaust",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 17,
+            "sentence_end_char": 375,
+            "sentence_offset_start": 325,
+            "sentence_offset_end": 358,
+            "clause_start_char": 295,
+            "clause_end_char": 414,
+            "clause_offset_start": 47,
+            "clause_offset_end": 80,
+            "adjacent_tokens_before": [
+              "the",
+              "deadliest",
+              "day",
+              "for",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "hamas",
+              "terrorists",
+              "murdered",
+              "more",
+              "than"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e9ef0c17dd80c57214449c06",
+            "claim_id": "2026-10-07-R-01",
+            "statement_id": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+            "publication_id": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+            "office_id": "H001102",
+            "family_id": "dfam:ec96a499424bac184d543c1b",
+            "family_revision": "dfrev:2b75ee5c3de05a56d9415533",
+            "support_unit_id": "H001102",
+            "party": "R",
+            "start_char": 378,
+            "end_char": 411,
+            "surface_text": "Jewish people since the Holocaust",
+            "normalized_phrase": "jewish people since the holocaust",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 255,
+            "sentence_end_char": 411,
+            "sentence_offset_start": 123,
+            "sentence_offset_end": 156,
+            "clause_start_char": 330,
+            "clause_end_char": 601,
+            "clause_offset_start": 48,
+            "clause_offset_end": 81,
+            "adjacent_tokens_before": [
+              "the",
+              "deadliest",
+              "day",
+              "for",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "we",
+              "must",
+              "never",
+              "forget",
+              "the"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d299eda133a098d65be54233",
+            "claim_id": "2026-10-07-R-01",
+            "statement_id": "sha256:a2a500b78a6cf00dde82ee76c969d2675b575dde5b5c22085c898f873a1b15e1",
+            "publication_id": "sha256:a2a500b78a6cf00dde82ee76c969d2675b575dde5b5c22085c898f873a1b15e1",
+            "office_id": "S001184",
+            "family_id": "dfam:a5bf9def8aced40615447719",
+            "family_revision": "dfrev:a73b46f4c5efbc4077503db2",
+            "support_unit_id": "S001184",
+            "party": "R",
+            "start_char": 462,
+            "end_char": 495,
+            "surface_text": "Jewish people since the Holocaust",
+            "normalized_phrase": "jewish people since the holocaust",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 370,
+            "sentence_end_char": 495,
+            "sentence_offset_start": 92,
+            "sentence_offset_end": 125,
+            "clause_start_char": 420,
+            "clause_end_char": 564,
+            "clause_offset_start": 42,
+            "clause_offset_end": 75,
+            "adjacent_tokens_before": [
+              "the",
+              "deadliest",
+              "attack",
+              "on",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "thank",
+              "the",
+              "good",
+              "lord",
+              "there"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "H001102",
+          "L000599",
+          "S001184"
+        ],
+        "publication_ids": [
+          "sha256:121b60201d308679970259238d97ff4710b6cd714b49b183281f5f614254bf31",
+          "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+          "sha256:a2a500b78a6cf00dde82ee76c969d2675b575dde5b5c22085c898f873a1b15e1"
+        ],
+        "family_ids": [
+          "dfam:a5bf9def8aced40615447719",
+          "dfam:df77d7979b626a4d85ea3f89",
+          "dfam:ec96a499424bac184d543c1b"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:a5bf9def8aced40615447719",
+            "family_revision": "dfrev:a73b46f4c5efbc4077503db2"
+          },
+          {
+            "family_id": "dfam:df77d7979b626a4d85ea3f89",
+            "family_revision": "dfrev:5602aa498b5ae6bebd536d12"
+          },
+          {
+            "family_id": "dfam:ec96a499424bac184d543c1b",
+            "family_revision": "dfrev:2b75ee5c3de05a56d9415533"
+          }
+        ],
+        "support_unit_ids": [
+          "H001102",
+          "L000599",
+          "S001184"
+        ],
+        "citation_occurrence_ids": [
+          "occ:7baa5944bbaf68df64d3f51e",
+          "occ:e9ef0c17dd80c57214449c06",
+          "occ:d299eda133a098d65be54233"
+        ],
+        "citations": [
+          {
+            "member": "Michael Lawler",
+            "party": "R",
+            "state": "NY",
+            "date": "2026-10-07",
+            "url": "https://lawler.house.gov/news/documentsingle.aspx?DocumentID=6589",
+            "quote": "day for the jewish people since the holocaust",
+            "occurrence_id": "occ:7baa5944bbaf68df64d3f51e",
+            "office_id": "L000599",
+            "publication_id": "sha256:121b60201d308679970259238d97ff4710b6cd714b49b183281f5f614254bf31",
+            "family_id": "dfam:df77d7979b626a4d85ea3f89",
+            "family_revision": "dfrev:5602aa498b5ae6bebd536d12"
+          },
+          {
+            "member": "Mark Harris",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-10-07",
+            "url": "https://markharris.house.gov/media/press-releases/harris-statement-third-anniversary-october-7th-attack",
+            "quote": "in the deadliest day for the jewish people since the holocaust",
+            "occurrence_id": "occ:e9ef0c17dd80c57214449c06",
+            "office_id": "H001102",
+            "publication_id": "sha256:1f78913ec002234145418779f245efe7973b8715244ac662d51e2f7250c639d3",
+            "family_id": "dfam:ec96a499424bac184d543c1b",
+            "family_revision": "dfrev:2b75ee5c3de05a56d9415533"
+          },
+          {
+            "member": "Tim Scott",
+            "party": "R",
+            "state": "SC",
+            "date": "2026-10-07",
+            "url": "https://www.scott.senate.gov/media-center/press-releases/sen-tim-scott-marks-three-years-since-hamas-october-7th-terrorist-attack-on-israel/",
+            "quote": "attack on the jewish people since the holocaust",
+            "occurrence_id": "occ:d299eda133a098d65be54233",
+            "office_id": "S001184",
+            "publication_id": "sha256:a2a500b78a6cf00dde82ee76c969d2675b575dde5b5c22085c898f873a1b15e1",
+            "family_id": "dfam:a5bf9def8aced40615447719",
+            "family_revision": "dfrev:a73b46f4c5efbc4077503db2"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-10-07",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 6,
+          "numerator_unit": "offices",
+          "denominator": 68,
+          "denominator_unit": "offices",
+          "share": 0.088235,
+          "window": "party-day 2026-10-07",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 6,
+          "numerator_unit": "publications",
+          "denominator": 90,
+          "denominator_unit": "publications",
+          "share": 0.066667,
+          "window": "party-day 2026-10-07",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 6,
+          "numerator_unit": "document families",
+          "denominator": 84,
+          "denominator_unit": "document families",
+          "share": 0.071429,
+          "window": "party-day 2026-10-07",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-10-07",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 6,
+          "numerator_unit": "offices",
+          "denominator": 34,
+          "denominator_unit": "offices",
+          "share": 0.176471,
+          "window": "party-day 2026-10-07",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 6,
+          "numerator_unit": "publications",
+          "denominator": 43,
+          "denominator_unit": "publications",
+          "share": 0.139535,
+          "window": "party-day 2026-10-07",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 6,
+          "numerator_unit": "document families",
+          "denominator": 43,
+          "denominator_unit": "document families",
+          "share": 0.139535,
+          "window": "party-day 2026-10-07",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "three years since",
+      "slug": "944f8abd0aa6d442",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 8.0,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "M001143",
+        "statement": "sha256:b1576382763fd9792369012b777a0d718ffde61960a58b1acfa3d70f66993087",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        8
+      ]
+    },
+    {
+      "ngram": "around the world",
+      "slug": "61da32700dea14ca",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 2.2,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001053",
+        "statement": "sha256:1f40a23fc323f17f14470b35470a4feabfe987f39f0c7ab17f2c0a3cde97f789",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.962,
+      "series": [
+        2,
+        0,
+        2,
+        7,
+        7,
+        2,
+        1,
+        6,
+        3,
+        3,
+        6,
+        6,
+        3,
+        8
+      ]
+    },
+    {
+      "ngram": "three years ago",
+      "slug": "44f71af5fb29b66c",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 6.12,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "H001068",
+        "statement": "sha256:5e6c36fa0256ddc495644445cc5a5c75cb3f9f9503c7f839dfb8bbf60d851762",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        7
+      ]
+    },
+    {
+      "ngram": "the october 7th",
+      "slug": "f1a3c816be892259",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 6.12,
+      "first_seen": {
+        "date": "2025-01-13",
+        "bioguide": "C001137",
+        "statement": "sha256:4bf8955a2835f724887fc0adfa0202c38ec1b594469fc37006df8920e61cdaf5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        7
+      ]
+    },
+    {
+      "ngram": "anniversary of the october",
+      "slug": "63dbfb99a0bfd674",
+      "n": 4,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 1.17,
+      "first_seen": {
+        "date": "2025-09-29",
+        "bioguide": "W000805",
+        "statement": "sha256:5819f2a8720750751c8e20573b23212c2b133fb3fb00a94fcc9bc2c4fe8065f9",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        21,
+        1,
+        1,
+        7
+      ]
+    },
+    {
+      "ngram": "years ago today",
+      "slug": "f58b057fabffb9a8",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 4.2,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "A000370",
+        "statement": "sha256:61f54905a6319aed5329b8ae9ed7c1163e1bd93559c909d48855762ef9a2ac63",
+        "tie": [
+          "C001130",
+          "H000874",
+          "H001046",
+          "P000197",
+          "R000305",
+          "S001223",
+          "T000469",
+          "T000474"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        6,
+        1,
+        1,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "the third anniversary",
+      "slug": "35680afc2719edb2",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 6.0,
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "M001235",
+        "statement": "sha256:f38124a65a50d5ccc0045da40c9e75865ecb0a419bd86b06e457f16c76094ba8",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "third anniversary of",
+      "slug": "635e363b6f6a451f",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 6.0,
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "M001235",
+        "statement": "sha256:f38124a65a50d5ccc0045da40c9e75865ecb0a419bd86b06e457f16c76094ba8",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "israelis and palestinians",
+      "slug": "da1eb391d5f59195",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.4,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "A000380",
+        "statement": "sha256:f86a4889b5ad778da6c1915823270998352229a13be1e9ae2c69ef0dde079579",
+        "tie": [
+          "B001313",
+          "C001101",
+          "D000622",
+          "F000468",
+          "G000599",
+          "J000298",
+          "K000384",
+          "K000391",
+          "L000557",
+          "M001163",
+          "M001238",
+          "P000613",
+          "S001145",
+          "S001156",
+          "W000822"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.996,
+      "series": [
+        3,
+        1,
+        5,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "men women and children",
+      "slug": "5aa92a24cf0401a4",
+      "n": 4,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 3,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "H001079",
+        "statement": "sha256:8346ddfa26c94847653a7874ed473241ebd09c102f047e01a6bc08a0946236d0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "of october 7th",
+      "slug": "4f1e283905cd1a48",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.89,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "C001067",
+        "statement": "sha256:edf9537efb7beba0c60569cf50e33aec9dacebfdd073a0eedb8668dd219417d4",
+        "tie": [
+          "D000631",
+          "L000599",
+          "M001169"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "the jewish people",
+      "slug": "9aa8871057462b3a",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.38,
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "S000522",
+        "statement": "sha256:80dbd92a0f15aa0363c76751c065f7144fb009d0c7ffc9e09497587d57e344a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "will keep fighting",
+      "slug": "9781b85cec6cda3f",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "S001156",
+        "statement": "sha256:a403d7103910bc34b1eb0f7ff6542a7aacdfcaffb149b08fef28b96ea74cbba0",
+        "tie": [
+          "F000463",
+          "H001042"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "war in iran",
+      "slug": "4abd5ede26e39eb9",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.71,
+      "first_seen": {
+        "date": "2026-02-24",
+        "bioguide": "R000620",
+        "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        5,
+        1,
+        2,
+        3,
+        4,
+        6,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "ngram": "keep fighting to",
+      "slug": "ce34d8212128c3f0",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.19,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        3,
+        5,
+        2,
+        1,
+        1,
+        2,
+        2,
+        3,
+        1,
+        4,
+        2,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "support they need",
+      "slug": "c471f43eebc5efae",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.67,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "B001301",
+        "statement": "sha256:74b8bbbc030faaca71638a8f6e357c2ad5eed90b2e922f0d320670210f3719d3",
+        "tie": [
+          "D000594"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.983,
+      "series": [
+        7,
+        3,
+        1,
+        4,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        2,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "the trump administration to",
+      "slug": "861434c922fcb718",
+      "n": 4,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.92,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001133",
+        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        4,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        0,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "their loved ones",
+      "slug": "d100144f2d08921f",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.19,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001047",
+        "statement": "sha256:46851499ece5252266e9485b402342e47789809f1c67e2b9a4826acacaa7cd0c",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        3,
+        3,
+        2,
+        1,
+        1,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        4,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "the trump administration’s",
+      "slug": "6cd624c98e95c190",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.27,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "D000530",
+        "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.96,
+      "series": [
+        3,
+        4,
+        5,
+        1,
+        5,
+        7,
+        1,
+        8,
+        5,
+        2,
+        3,
+        4,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "three years ago today hamas terrorists",
+      "slug": "fd9bab4720b1414c",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-10-07",
+        "bioguide": "D000631",
+        "statement": "sha256:6eb9c15fa9d5a2454175b8bafe54c0638e67db376eec7d438d481bc73877e4ed",
+        "tie": [
+          "H001102",
+          "J000294",
+          "O000174",
+          "S000344",
+          "S001184"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "three years since",
+        "slug": "944f8abd0aa6d442",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 8.0,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "M001143",
+          "statement": "sha256:b1576382763fd9792369012b777a0d718ffde61960a58b1acfa3d70f66993087",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          8
+        ]
+      },
+      {
+        "ngram": "around the world",
+        "slug": "61da32700dea14ca",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.2,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:1f40a23fc323f17f14470b35470a4feabfe987f39f0c7ab17f2c0a3cde97f789",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.962,
+        "series": [
+          2,
+          0,
+          2,
+          7,
+          7,
+          2,
+          1,
+          6,
+          3,
+          3,
+          6,
+          6,
+          3,
+          8
+        ]
+      },
+      {
+        "ngram": "three years ago",
+        "slug": "44f71af5fb29b66c",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "H001068",
+          "statement": "sha256:5e6c36fa0256ddc495644445cc5a5c75cb3f9f9503c7f839dfb8bbf60d851762",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "the october 7th",
+        "slug": "f1a3c816be892259",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "C001137",
+          "statement": "sha256:4bf8955a2835f724887fc0adfa0202c38ec1b594469fc37006df8920e61cdaf5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "anniversary of the october",
+        "slug": "63dbfb99a0bfd674",
+        "n": 4,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.17,
+        "first_seen": {
+          "date": "2025-09-29",
+          "bioguide": "W000805",
+          "statement": "sha256:5819f2a8720750751c8e20573b23212c2b133fb3fb00a94fcc9bc2c4fe8065f9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          21,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "years ago today",
+        "slug": "f58b057fabffb9a8",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 4.2,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "A000370",
+          "statement": "sha256:61f54905a6319aed5329b8ae9ed7c1163e1bd93559c909d48855762ef9a2ac63",
+          "tie": [
+            "C001130",
+            "H000874",
+            "H001046",
+            "P000197",
+            "R000305",
+            "S001223",
+            "T000469",
+            "T000474"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          6,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "the third anniversary",
+        "slug": "35680afc2719edb2",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 6.0,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "M001235",
+          "statement": "sha256:f38124a65a50d5ccc0045da40c9e75865ecb0a419bd86b06e457f16c76094ba8",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "third anniversary of",
+        "slug": "635e363b6f6a451f",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 6.0,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "M001235",
+          "statement": "sha256:f38124a65a50d5ccc0045da40c9e75865ecb0a419bd86b06e457f16c76094ba8",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "israelis and palestinians",
+        "slug": "da1eb391d5f59195",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.4,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "A000380",
+          "statement": "sha256:f86a4889b5ad778da6c1915823270998352229a13be1e9ae2c69ef0dde079579",
+          "tie": [
+            "B001313",
+            "C001101",
+            "D000622",
+            "F000468",
+            "G000599",
+            "J000298",
+            "K000384",
+            "K000391",
+            "L000557",
+            "M001163",
+            "M001238",
+            "P000613",
+            "S001145",
+            "S001156",
+            "W000822"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          3,
+          1,
+          5,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "of october 7th",
+        "slug": "4f1e283905cd1a48",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.89,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "C001067",
+          "statement": "sha256:edf9537efb7beba0c60569cf50e33aec9dacebfdd073a0eedb8668dd219417d4",
+          "tie": [
+            "D000631",
+            "L000599",
+            "M001169"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          5
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "men women and children",
+        "slug": "5aa92a24cf0401a4",
+        "n": 4,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 5.0,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "H001079",
+          "statement": "sha256:8346ddfa26c94847653a7874ed473241ebd09c102f047e01a6bc08a0946236d0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "anniversary of the october",
+        "slug": "63dbfb99a0bfd674",
+        "n": 4,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.17,
+        "first_seen": {
+          "date": "2025-09-29",
+          "bioguide": "W000805",
+          "statement": "sha256:5819f2a8720750751c8e20573b23212c2b133fb3fb00a94fcc9bc2c4fe8065f9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          21,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "years ago today",
+        "slug": "f58b057fabffb9a8",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 4.2,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "A000370",
+          "statement": "sha256:61f54905a6319aed5329b8ae9ed7c1163e1bd93559c909d48855762ef9a2ac63",
+          "tie": [
+            "C001130",
+            "H000874",
+            "H001046",
+            "P000197",
+            "R000305",
+            "S001223",
+            "T000469",
+            "T000474"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          6,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "three years ago",
+        "slug": "44f71af5fb29b66c",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "H001068",
+          "statement": "sha256:5e6c36fa0256ddc495644445cc5a5c75cb3f9f9503c7f839dfb8bbf60d851762",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "the october 7th",
+        "slug": "f1a3c816be892259",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "C001137",
+          "statement": "sha256:4bf8955a2835f724887fc0adfa0202c38ec1b594469fc37006df8920e61cdaf5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "the third anniversary",
+        "slug": "35680afc2719edb2",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 6.0,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "M001235",
+          "statement": "sha256:f38124a65a50d5ccc0045da40c9e75865ecb0a419bd86b06e457f16c76094ba8",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "third anniversary of",
+        "slug": "635e363b6f6a451f",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 6.0,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "M001235",
+          "statement": "sha256:f38124a65a50d5ccc0045da40c9e75865ecb0a419bd86b06e457f16c76094ba8",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "the jewish people",
+        "slug": "9aa8871057462b3a",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.38,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "S000522",
+          "statement": "sha256:80dbd92a0f15aa0363c76751c065f7144fb009d0c7ffc9e09497587d57e344a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.75,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          5,
+          2,
+          6,
+          4,
+          14,
+          4,
+          8,
+          7,
+          7,
+          5,
+          3,
+          6,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "men women and children including 46",
+        "slug": "d109efed81683cc4",
+        "n": 6,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-01-27",
+          "bioguide": "F000466",
+          "statement": "sha256:c8a6fb749823693e9243c4079cb47f1daa7fc4c918535a6c0b507db078eba628",
+          "tie": [
+            "S001215"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "three years ago today",
+      "slug": "1c5548e9c09e6231",
+      "n": 4,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 5,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-02-24",
+        "bioguide": "B001296",
+        "statement": "sha256:3ec35d86578a903a223763b2c0bdd049c772024febae04930196d47dd17b486e",
+        "tie": [
+          "B001313",
+          "C001114",
+          "D000563",
+          "M000355",
+          "M001157",
+          "P000613",
+          "S001190"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "velocity": 2.5,
+      "sides": {
+        "D": [
+          {
+            "member": "Madeleine Dean",
+            "party": "D",
+            "state": "PA",
+            "date": "2026-10-07",
+            "url": "https://dean.house.gov/2026/10/congresswoman-dean-s-statement-on-third-anniversary-of-october-7th-attack",
+            "quote": "Three years ago today, Hamas terrorists launched a brutal, barbaric — most inhumane — attack on the people of Israel."
+          },
+          {
+            "member": "Hakeem S. Jeffries",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-10-07",
+            "url": "https://jeffries.house.gov/2026/10/07/leader-jeffries-statement-marking-three-years-since-the-terrorist-attack-of-october-7/",
+            "quote": "Three years ago today, Hamas terrorists intent on destroying Israel launched an unthinkable massacre, murdering, kidnapping and sexually assaulting innocent Israeli civilians, as well as American citizens."
+          },
+          {
+            "member": "Dave Min",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-07",
+            "url": "https://min.house.gov/media/press-releases/statement-rep-dave-min-three-year-anniversary-october-7th-attack",
+            "quote": "Three years ago today, Israel suffered the worst terrorist attack in its history."
+          }
+        ],
+        "R": [
+          {
+            "member": "Mark Harris",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-10-07",
+            "url": "https://markharris.house.gov/media/press-releases/harris-statement-third-anniversary-october-7th-attack",
+            "quote": "Three years ago today, Hamas terrorists unleashed unspeakable evil on the people of Israel."
+          },
+          {
+            "member": "Michael Lawler",
+            "party": "R",
+            "state": "NY",
+            "date": "2026-10-07",
+            "url": "https://lawler.house.gov/news/documentsingle.aspx?DocumentID=6589",
+            "quote": "Three years ago today, the world witnessed the deadliest day for the Jewish people since the Holocaust."
+          },
+          {
+            "member": "Christopher H. Smith",
+            "party": "R",
+            "state": "NJ",
+            "date": "2026-10-07",
+            "url": "https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=415890",
+            "quote": "We remember, with profound sadness, the more than 1,200 innocent men, women and children—including 46 Americans—who were tortured, raped, and murdered by Hamas terrorists in Israel during the October 7th Massacre three years ago today."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "the october 7th",
+      "slug": "f1a3c816be892259",
+      "n": 3,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 7,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-13",
+        "bioguide": "C001137",
+        "statement": "sha256:4bf8955a2835f724887fc0adfa0202c38ec1b594469fc37006df8920e61cdaf5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "velocity": 6.12,
+      "sides": {
+        "D": [
+          {
+            "member": "Josh Gottheimer",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-10-07",
+            "url": "https://gottheimer.house.gov/posts/release-on-edan-alexander-way-in-tenafly-gottheimer-marks-third-anniversary-of-october-7th",
+            "quote": "TENAFLY, NJ — Today, Wednesday, October 7, 2026, on the third anniversary of the October 7th terrorist attack on Israel, Congressman Josh Gottheimer (NJ-5) joined local leaders, community members, and the family of former hostage Edan Alexander on Edan Alexander Way in Tenafly to remember the victims, honor the hostages and their families, and announce new efforts to combat terror."
+          },
+          {
+            "member": "Ayanna Pressley",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-10-07",
+            "url": "https://pressley.house.gov/2026/10/07/rep-pressley-statement-marking-three-year-somber-anniversary-of-october-7th-attack/",
+            "quote": "As we mark three years since the October 7th attack, it is incumbent upon us all to center the humanity of every impacted individual and honor those whose lives were taken in such inhumane, horrifying acts on that day and every day since."
+          },
+          {
+            "member": "Brad Sherman",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-07",
+            "url": "https://sherman.house.gov/media-center/press-releases/congressman-brad-sherman-marks-three-years-october-7th-attack-israel",
+            "quote": "Their release brought enormous relief, but it did not erase the suffering inflicted upon the hostages and their families, nor diminish our obligation to ensure that every terrorist organization that participated in the October 7th attack is held accountable."
+          }
+        ],
+        "R": [
+          {
+            "member": "Ted Cruz",
+            "party": "R",
+            "state": "TX",
+            "date": "2026-10-07",
+            "url": "https://www.cruz.senate.gov/newsroom/press-releases/sen-cruz-statement-on-third-anniversary-of-october-7th-terrorist-attack",
+            "quote": "Over the last three years, Israel has demonstrated extraordinary courage, resolve, and skill in destroying the Hamas terrorists who committed the October 7th attack and in dismantling the Iranian-controlled terrorist armies that the Iranian regime had built across the Middle East."
+          },
+          {
+            "member": "James Lankford",
+            "party": "R",
+            "state": "OK",
+            "date": "2026-10-07",
+            "url": "https://www.lankford.senate.gov/news/press-releases/lankford-in-washington-examiner-the-world-of-oct-8-where-antisemitism-didnt-just-return-it-became-trendy/",
+            "quote": "OKLAHOMA CITY, OK — US Senator James Lankford (R-OK), co-chair of the Senate Bipartisan Task Force for Combating Antisemitism, today marked the third anniversary of the October 7th terrorist attacks in a new Washington Examiner column analyzing the rise of antisemitism since the attacks and the need to confront it wherever it appears."
+          },
+          {
+            "member": "Christopher H. Smith",
+            "party": "R",
+            "state": "NJ",
+            "date": "2026-10-07",
+            "url": "https://chrissmith.house.gov/news/documentsingle.aspx?DocumentID=415890",
+            "quote": "We remember, with profound sadness, the more than 1,200 innocent men, women and children—including 46 Americans—who were tortured, raped, and murdered by Hamas terrorists in Israel during the October 7th Massacre three years ago today."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "the jewish people",
+      "slug": "9aa8871057462b3a",
+      "n": 3,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 5,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "S000522",
+        "statement": "sha256:80dbd92a0f15aa0363c76751c065f7144fb009d0c7ffc9e09497587d57e344a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "velocity": 4.38,
+      "sides": {
+        "D": [
+          {
+            "member": "Madeleine Dean",
+            "party": "D",
+            "state": "PA",
+            "date": "2026-10-07",
+            "url": "https://dean.house.gov/2026/10/congresswoman-dean-s-statement-on-third-anniversary-of-october-7th-attack",
+            "quote": "My prayer, and my work as a member of Congress, remains focused on supporting these essential pillars of peace: disarming of Hamas, a durable ceasefire to enable the mass distribution of humanitarian aid to the people of Gaza; a safe and secure future for Israel as a democratic home for the Jewish people; self-determination and dignity for the Palestinian people to rebuild their lives and create a democratic, sovereign state of their own; and a commitment by leaders around the world to these principles, that we might truly end the cycle of violence."
+          },
+          {
+            "member": "Josh Gottheimer",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-10-07",
+            "url": "https://gottheimer.house.gov/posts/release-on-edan-alexander-way-in-tenafly-gottheimer-marks-third-anniversary-of-october-7th",
+            "quote": "October 7th Remembrance Resolution: The bipartisan resolution honors every person murdered on October 7th, condemns the attacks as the deadliest day for the Jewish people since the Holocaust, and honors the hostages and their families."
+          },
+          {
+            "member": "Hakeem S. Jeffries",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-10-07",
+            "url": "https://jeffries.house.gov/2026/10/07/leader-jeffries-statement-marking-three-years-since-the-terrorist-attack-of-october-7/",
+            "quote": "As we solemnly commemorate October 7 and antisemitic attacks around the world surge, we are reminded of the painful reality that the Jewish people are in a constant struggle for survival, as has been the case for thousands of years."
+          }
+        ],
+        "R": [
+          {
+            "member": "Mark Harris",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-10-07",
+            "url": "https://markharris.house.gov/media/press-releases/harris-statement-third-anniversary-october-7th-attack",
+            "quote": "May God bless the victims and their families, the Jewish people, and the State of Israel."
+          },
+          {
+            "member": "James Lankford",
+            "party": "R",
+            "state": "OK",
+            "date": "2026-10-07",
+            "url": "https://www.lankford.senate.gov/news/press-releases/lankford-in-washington-examiner-the-world-of-oct-8-where-antisemitism-didnt-just-return-it-became-trendy/",
+            "quote": "Hatred isn’t new for the Jewish people."
+          },
+          {
+            "member": "Michael Lawler",
+            "party": "R",
+            "state": "NY",
+            "date": "2026-10-07",
+            "url": "https://lawler.house.gov/news/documentsingle.aspx?DocumentID=6589",
+            "quote": "Three years ago today, the world witnessed the deadliest day for the Jewish people since the Holocaust."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "will continue working",
+      "slug": "929436cdb31fec6a",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001296",
+        "statement": "sha256:9dad811aca53320dd4a698fea09dff69c04935f29b7ef882f06755ad57f7c0f8",
+        "tie": [
+          "E000296",
+          "H001061",
+          "L000593"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "velocity": 0.89,
+      "sides": {
+        "D": [
+          {
+            "member": "Ben Ray Luján",
+            "party": "D",
+            "state": "NM",
+            "date": "2026-10-07",
+            "url": "https://www.lujan.senate.gov/newsroom/press-releases/lujan-statement-on-trump-administration-move-to-roll-back-methane-rules-that-protect-new-mexico-communities/",
+            "quote": "I strongly oppose these efforts to weaken these vital standards and will continue working to protect New Mexicans’ health, our environment, and energy needs."
+          },
+          {
+            "member": "Mike Levin",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-07",
+            "url": "https://levin.house.gov/media/press-releases/rep-mike-levin-pushes-administration-to-adopt-critical-reforms-to-improve-access-to-snap-benefits-for-veterans",
+            "quote": "Rep. Levin will continue working with the relevant federal agencies to ensure they implement GAO’s recommendations and address reducing barriers for veterans seeking access to SNAP."
+          },
+          {
+            "member": "John W. Mannion",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-10-07",
+            "url": "https://mannion.house.gov/media/press-releases/representative-john-w-mannion-announces-500000-federal-grant-brownfield",
+            "quote": "I will continue working with our local leaders to ensure our communities get the support they deserve, and I look forward to seeing this project drive lasting change in the region."
+          }
+        ],
+        "R": [
+          {
+            "member": "Andy Barr",
+            "party": "R",
+            "state": "KY",
+            "date": "2026-10-07",
+            "url": "https://barr.house.gov/press-releases?ID=9ED27DCE-3201-4700-ACF2-2A1617F10BFB",
+            "quote": "I was proud to support this funding and will continue working to make sure our first responders have the tools they need to protect our communities."
+          },
+          {
+            "member": "Mark Harris",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-10-07",
+            "url": "https://markharris.house.gov/media/press-releases/harris-statement-third-anniversary-october-7th-attack",
+            "quote": "As a member of the House Education and Workforce Committee, I will continue working to ensure Jewish students feel safe on campus and to confront this hatred across our country."
+          },
+          {
+            "member": "Riley M. Moore",
+            "party": "R",
+            "state": "WV",
+            "date": "2026-10-07",
+            "url": "https://rileymoore.house.gov/media/press-releases/congressman-riley-m-moore-secures-15-million-weston-corridor-h-sewer",
+            "quote": "I will continue working through the House Appropriations Committee to make sure West Virginia communities have the infrastructure they need to compete, grow, and create jobs."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
