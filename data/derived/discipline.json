@@ -3161,9 +3161,9 @@
       "index": 0.6948
     },
     "2026-10-02": {
-      "statements": 98,
-      "on_message_units": 67,
-      "index": 0.6837
+      "statements": 102,
+      "on_message_units": 69,
+      "index": 0.6765
     },
     "2026-10-03": {
       "statements": 2,
@@ -3176,24 +3176,24 @@
       "index": 1.0
     },
     "2026-10-05": {
-      "statements": 79,
-      "on_message_units": 56,
-      "index": 0.7089
+      "statements": 84,
+      "on_message_units": 60,
+      "index": 0.7143
     },
     "2026-10-06": {
-      "statements": 68,
-      "on_message_units": 58,
-      "index": 0.8529
+      "statements": 70,
+      "on_message_units": 60,
+      "index": 0.8571
     },
     "2026-10-07": {
-      "statements": 90,
-      "on_message_units": 67,
-      "index": 0.7444
+      "statements": 109,
+      "on_message_units": 76,
+      "index": 0.6972
     },
     "2026-10-08": {
-      "statements": 1,
-      "on_message_units": 1,
-      "index": 1.0
+      "statements": 62,
+      "on_message_units": 52,
+      "index": 0.8387
     }
   },
   "I": {
@@ -4653,6 +4653,11 @@
       "index": 1.0
     },
     "2026-10-05": {
+      "statements": 1,
+      "on_message_units": 1,
+      "index": 1.0
+    },
+    "2026-10-08": {
       "statements": 1,
       "on_message_units": 1,
       "index": 1.0
@@ -7455,9 +7460,9 @@
       "index": 0.7826
     },
     "2026-07-24": {
-      "statements": 73,
-      "on_message_units": 60,
-      "index": 0.8219
+      "statements": 74,
+      "on_message_units": 61,
+      "index": 0.8243
     },
     "2026-07-25": {
       "statements": 2,
@@ -7545,9 +7550,9 @@
       "index": 0.8
     },
     "2026-08-12": {
-      "statements": 44,
-      "on_message_units": 30,
-      "index": 0.6818
+      "statements": 45,
+      "on_message_units": 31,
+      "index": 0.6889
     },
     "2026-08-13": {
       "statements": 45,
@@ -7635,8 +7640,8 @@
       "index": 0.6667
     },
     "2026-08-30": {
-      "statements": 2,
-      "on_message_units": 2,
+      "statements": 3,
+      "on_message_units": 3,
       "index": 1.0
     },
     "2026-08-31": {
@@ -7655,9 +7660,9 @@
       "index": 0.8545
     },
     "2026-09-03": {
-      "statements": 64,
-      "on_message_units": 49,
-      "index": 0.7656
+      "statements": 65,
+      "on_message_units": 50,
+      "index": 0.7692
     },
     "2026-09-04": {
       "statements": 55,
@@ -7725,9 +7730,9 @@
       "index": 0.6607
     },
     "2026-09-17": {
-      "statements": 104,
-      "on_message_units": 83,
-      "index": 0.7981
+      "statements": 105,
+      "on_message_units": 84,
+      "index": 0.8
     },
     "2026-09-18": {
       "statements": 64,
@@ -7760,9 +7765,9 @@
       "index": 0.807
     },
     "2026-09-24": {
-      "statements": 79,
-      "on_message_units": 56,
-      "index": 0.7089
+      "statements": 80,
+      "on_message_units": 57,
+      "index": 0.7125
     },
     "2026-09-25": {
       "statements": 65,
@@ -7816,18 +7821,23 @@
     },
     "2026-10-05": {
       "statements": 51,
-      "on_message_units": 38,
-      "index": 0.7451
+      "on_message_units": 39,
+      "index": 0.7647
     },
     "2026-10-06": {
-      "statements": 43,
-      "on_message_units": 38,
-      "index": 0.8837
+      "statements": 45,
+      "on_message_units": 39,
+      "index": 0.8667
     },
     "2026-10-07": {
-      "statements": 43,
-      "on_message_units": 32,
-      "index": 0.7442
+      "statements": 48,
+      "on_message_units": 36,
+      "index": 0.75
+    },
+    "2026-10-08": {
+      "statements": 37,
+      "on_message_units": 31,
+      "index": 0.8378
     }
   },
   "schema_version": 1,
@@ -7836,8 +7846,8 @@
   "min_statements": 10,
   "min_statements_note": "A party-day with fewer statements than this cannot carry an interpretable share: the ratio saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single digits. The floor is stamped, not applied: the values below are the raw per-day measurements and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS.",
   "days_below_min_statements": {
-    "D": 141,
-    "I": 292,
+    "D": 140,
+    "I": 293,
     "R": 171
   },
   "window": {
