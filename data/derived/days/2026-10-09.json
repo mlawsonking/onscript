@@ -921,5 +921,1161 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-10-09",
+      "party": "D",
+      "composite": "Across 74 statements today, no message rose to dominance beyond a shared phrase. The phrase care they need appears 5 times, first recorded in our corpus from Christopher Murphy (D-CT). Beyond that measure of overlap, we do not have further messages to report for today.",
+      "measurement_lead": "Measurement: 74 publications were observed for the Democratic party on 2026-10-09.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-10-09",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "abfaf99e940ae5858dd14f02f2870c0c5ba21d943b29a6ac212ee5b00a23e634",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 74 statements today, no message rose to dominance beyond a shared phrase. The phrase care they need appears 5 times, first recorded in our corpus from Christopher Murphy (D-CT). Beyond that measure of overlap, we do not have further messages to report for today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "ba03e031a3f49cdfd429a809f53b069d2af9fbecc629b31a2827e897eb675fed",
+        "response_sha256": "9dd4519700695abc757de13ee2b4be53e3cb5dc602a23b5f038095e8ff341169",
+        "model_response_sha256": "1a9dcb11c465672fc793a68c8ab6998487a87fd2dea19373612f67a4bf7ceaaa"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-10-09",
+        "statements": 74,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "care they need",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Christopher Murphy",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CT"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1251,
+        "tokens_out": 91,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-10-09",
+      "party": "R",
+      "composite": "Across 42 statements today, no message rose to the level of a shared party-wide line. The only measured coordination we can report is the phrase fought so hard, appearing 3 times, first recorded in our corpus from Cleo Fields (D-LA). Beyond that single echo, we are not presenting a unified message today.",
+      "measurement_lead": "Measurement: 42 publications were observed for the Republican party on 2026-10-09.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-10-09",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "59c9a10130662253438895c534d3a758c93b33392985b505e572eef03dc14fef",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 42 statements today, no message rose to the level of a shared party-wide line. The only measured coordination we can report is the phrase fought so hard, appearing 3 times, first recorded in our corpus from Cleo Fields (D-LA). Beyond that single echo, we are not presenting a unified message today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "fbfe7f5845ccda150f268789bd42914e575d2a126ae675118f516d5577a63be2",
+        "response_sha256": "8fba2a8997a57a3884b65eec3092358cd59f5004ca39e77fa2019a2e4141fe1e",
+        "model_response_sha256": "9e3cc37fe2aacada7da105aa0327824f1e10adb3fe8a6ddbf77f4b5f7e344aa2"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-10-09",
+        "statements": 42,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "fought so hard",
+          "members": 3,
+          "family_count": 3,
+          "first_sayer": "Cleo Fields",
+          "first_sayer_party": "D",
+          "first_sayer_state": "LA"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1250,
+        "tokens_out": 101,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-10-09",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 58,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-10-09",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 74,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-10-09",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 72,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-10-09",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-10-09",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 37,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-10-09",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 42,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-10-09",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 41,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-10-09",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "care they need",
+        "slug": "08f53972e38193cb",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.06,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001169",
+          "statement": "sha256:d8c39d885c181e5beb7928c2f9c92eaa77cd3a482b132c150ddaa1bfd9584c19",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          2,
+          3,
+          6,
+          4,
+          2,
+          4,
+          1,
+          5,
+          2,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "oil and gas",
+        "slug": "5fdd09bdfdfbec19",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000300",
+          "statement": "sha256:5425f2dd4e31efd5113b4f6aeb5687a1279f1b5566c89d5b89625be505df64a8",
+          "tie": [
+            "C001098"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "to lower costs",
+        "slug": "10e0b9788fba1877",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001261",
+            "E000300",
+            "H001046",
+            "M001223",
+            "M001237",
+            "P000610",
+            "S000168",
+            "S001230",
+            "T000460",
+            "V000129",
+            "V000136",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "next generation of",
+        "slug": "5527941b4a339267",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.9,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "B001326"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          2,
+          3,
+          4,
+          11,
+          4,
+          6,
+          5,
+          6,
+          5,
+          3,
+          5,
+          3,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "children and families",
+        "slug": "f642e62483858d7e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 4,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 4,
+          "I": 1
+        },
+        "family_count": 4,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001129",
+          "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          2,
+          3,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          4,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "soon as possible",
+        "slug": "d17cb50b547c35c0",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "S001217",
+          "statement": "sha256:9240ff1da2df8be6e1938aa58797ec2930331cbf253c647f03748b43466666aa",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          2,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.76,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          6,
+          4,
+          14,
+          4,
+          8,
+          7,
+          7,
+          5,
+          3,
+          6,
+          1,
+          4,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "remove more than 90 percent",
+        "slug": "31357094d6b65da5",
+        "n": 5,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-07",
+          "bioguide": "S000185",
+          "statement": "sha256:dbaaeeb0230a44802e578b1c924fcf55ec36dccd96af085f515402c168a4fb94",
+          "tie": [
+            "B001285"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "lawmakers request answers",
+        "slug": "6904efaf0bf2f458",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.73,
+        "first_seen": {
+          "date": "2025-03-25",
+          "bioguide": "H001042",
+          "statement": "sha256:95d28dbad2e51effc51923e35b498a6be0226f3fbefbed2c52012e1795d1ee70",
+          "tie": [
+            "W000779"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "greenhouse gas emissions",
+        "slug": "0fea124cfe8ad1e4",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001096",
+          "statement": "sha256:68e13f100d5ef6548c8b93778bc9bf8994eaaf971e264c7525d2d3d8d1c5c27f",
+          "tie": [
+            "C001098"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          4,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "children and families",
+        "slug": "f642e62483858d7e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 4,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 4,
+          "I": 1
+        },
+        "family_count": 4,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001129",
+          "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          2,
+          3,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          4,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "federal funding for",
+        "slug": "6ed8efa415776803",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.04,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001223",
+          "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.967,
+        "series": [
+          2,
+          5,
+          5,
+          1,
+          4,
+          3,
+          5,
+          4,
+          6,
+          3,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "fought so hard",
+        "slug": "d03a546ac13ce7f0",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000110",
+          "statement": "sha256:2f15ffd3267ba9e64f56368d169cceab04427d39be928d4a98622d7b30e5e4b0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "challenges facing our",
+        "slug": "177538a08e253e80",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001112",
+          "statement": "sha256:81126cfc3898b73f18b9c6acab37122bf59510bec6a2eab83f0cf6686af369b5",
+          "tie": [
+            "L000593"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "help ensure that",
+        "slug": "a2122a73409065fd",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "L000590",
+          "statement": "sha256:ff2184c21aea464eb6368892a68091742d72f20052e2a5bf88599fed26a10392",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          8,
+          1,
+          2,
+          1,
+          2,
+          3,
+          1,
+          1,
+          1,
+          3,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "communities across the",
+        "slug": "c8a50f6895b6292b",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 0.64,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000621",
+          "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+          "tie": [
+            "B001230",
+            "C001098",
+            "G000386",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.967,
+        "series": [
+          3,
+          4,
+          16,
+          6,
+          6,
+          3,
+          4,
+          6,
+          3,
+          3,
+          6,
+          3,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "in federal funding",
+        "slug": "27d5305fed92a475",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 0.58,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000622",
+          "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.966,
+        "series": [
+          2,
+          9,
+          7,
+          1,
+          2,
+          6,
+          12,
+          7,
+          7,
+          6,
+          2,
+          2,
+          4,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
