@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-10-12",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 93,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "93 consecutive days published (through 2026-10-11)"
+    },
+    {
+      "name": "spend",
+      "value": 0.0941,
+      "projected": 0.243,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 11,
+      "note": "$0.0941 MTD, $0.24 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-10-09",
+      "scored_age_days": 3,
+      "parties": {
+        "D": {
+          "statements": 74,
+          "median": 69.0,
+          "share": 1.072,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 42,
+          "median": 44.0,
+          "share": 0.955,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 6.41,
+        "day": "2026-10-12",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [
+        "2026-10-11",
+        "2026-10-10"
+      ],
+      "note": "2026-10-09 (3d): D 74/69=107% R 42/44=96% of own same-weekday baseline (green >= 60%); upstream 6.4h (green < 36h); 2026-10-11, 2026-10-10 skipped, baseline under the 20 a ratio needs"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.1667,
+      "dropped": 1,
+      "offered": 6,
+      "unmeasured_rows": 0,
+      "status": "green",
+      "note": "1/6 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "three years since",
+    "party": "D",
+    "day_peak": 8,
+    "day": "2026-10-07"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "ALL GREEN"
+}
