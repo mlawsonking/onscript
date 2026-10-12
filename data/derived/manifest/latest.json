@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-10-11",
   "kind": "deterministic",
-  "generated_at": "2026-10-11T15:51:33Z",
+  "generated_at": "2026-10-11T23:01:44Z",
   "focus_day": "2026-10-10",
   "days_present": [
     "2025-01-01",
@@ -11,7 +11,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-10-11T11:14:51Z",
-    "age_hours": 4.61
+    "age_hours": 11.77
   },
   "normalize": {
     "in": 87938,
@@ -45,8 +45,8 @@
     "ledger_entries": 332666,
     "phrase_pages": 0,
     "focus_day": "2026-10-10",
-    "focus_day_write": "written",
-    "focus_day_top_phrases": 0,
+    "focus_day_write": "skipped-final",
+    "focus_day_top_phrases": null,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 7.8,
-    "mirror_pull": 17.8,
-    "normalize": 2389.8,
-    "ledger_build": 2071.6
+    "restore": 7.2,
+    "mirror_pull": 28.1,
+    "normalize": 2471.3,
+    "ledger_build": 2084.1
   },
   "span_scan": {
     "person_spans_calls": 253137,
-    "person_spans_s": 544.6244346949907,
+    "person_spans_s": 550.3301147221105,
     "admitted_form_scans": 253137,
-    "admitted_form_s": 6.836593952282783
+    "admitted_form_s": 7.790924693074885
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
