@@ -1,5 +1,283 @@
 {
   "day": "2026-10-12",
-  "by_peak": [],
-  "by_velocity": []
+  "by_peak": [
+    {
+      "ngram": "abuse of power",
+      "slug": "da9dc1d686329a70",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.47,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "R000614",
+        "statement": "sha256:16603276656aee3046bd2a72984e9db4aa57bd32f315a4151b2cdf9fac781fd4",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.993,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "of the federal government",
+      "slug": "e568c9d572c81c3f",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "H001096",
+        "statement": "sha256:05db9e4fdb9fea63420c38ddd960a47b59455f5498476f74f158507bb5f9484c",
+        "tie": [
+          "M001143",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "member of congress",
+      "slug": "cafa1719cd6025e0",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.62,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "S001201",
+        "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        4,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        5,
+        1,
+        3,
+        1,
+        3
+      ]
+    }
+  ],
+  "by_velocity": [
+    {
+      "ngram": "abuse of power",
+      "slug": "da9dc1d686329a70",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.47,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "R000614",
+        "statement": "sha256:16603276656aee3046bd2a72984e9db4aa57bd32f315a4151b2cdf9fac781fd4",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.993,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "of the federal government",
+      "slug": "e568c9d572c81c3f",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "H001096",
+        "statement": "sha256:05db9e4fdb9fea63420c38ddd960a47b59455f5498476f74f158507bb5f9484c",
+        "tie": [
+          "M001143",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "member of congress",
+      "slug": "cafa1719cd6025e0",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.62,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "S001201",
+        "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        4,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        5,
+        1,
+        3,
+        1,
+        3
+      ]
+    }
+  ]
 }
