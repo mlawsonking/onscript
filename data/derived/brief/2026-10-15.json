@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-10-15",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-10-14",
+      "note": "no publish for 2026-10-14 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.0994,
+      "projected": 0.2054,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 12,
+      "note": "$0.0994 MTD, $0.21 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "value": null,
+      "status": "unknown",
+      "day": "2026-10-12",
+      "freshness": {
+        "age_hours": 4.61,
+        "day": "2026-10-15",
+        "status": "green"
+      },
+      "note": "newest symmetry report is 2026-10-12 (3d old), cannot describe current coverage"
+    },
+    {
+      "name": "verifier_drop",
+      "value": null,
+      "status": "unknown",
+      "note": "no measured claims in 7d (0 unmeasured party-rows) — drop rate not measured"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak"
+  ],
+  "unknowns": [
+    "coverage",
+    "verifier_drop"
+  ],
+  "degraded_days": [
+    "2026-10-12"
+  ],
+  "top_phrase": {
+    "ngram": "care they need",
+    "party": "D",
+    "day_peak": 5,
+    "day": "2026-10-09"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak"
+}
