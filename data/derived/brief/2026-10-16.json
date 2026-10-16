@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-10-16",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-10-15",
+      "note": "no publish for 2026-10-15 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.1147,
+      "projected": 0.2222,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 14,
+      "note": "$0.1147 MTD, $0.22 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-10-14",
+      "scored_age_days": 2,
+      "parties": {
+        "D": {
+          "statements": 58,
+          "median": 90.0,
+          "share": 0.644,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 26,
+          "median": 51.0,
+          "share": 0.51,
+          "status": "red",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "red",
+      "freshness": {
+        "age_hours": 4.52,
+        "day": "2026-10-16",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-10-14 (2d): D 58/90=64% R 26/51=51% of own same-weekday baseline (green >= 60%); upstream 4.5h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": null,
+      "status": "unknown",
+      "note": "no measured claims in 7d (0 unmeasured party-rows) — drop rate not measured"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "coverage"
+  ],
+  "unknowns": [
+    "verifier_drop"
+  ],
+  "degraded_days": [
+    "2026-10-12"
+  ],
+  "top_phrase": {
+    "ngram": "communities across the",
+    "party": "D",
+    "day_peak": 7,
+    "day": "2026-10-15"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, coverage"
+}

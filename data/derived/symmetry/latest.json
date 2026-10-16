@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "day": "2026-10-13",
+  "day": "2026-10-14",
   "day_scoped": true,
   "statement": "Both parties use the same pipeline, prompts, thresholds, and publication checks. The nightly audit publishes the shared fingerprints.",
   "prompts_sha": {
@@ -34,31 +34,31 @@
   },
   "parties": {
     "D": {
-      "statements_ingested": 45,
-      "members_covered": 40,
+      "statements_ingested": 58,
+      "members_covered": 48,
       "caucus_size": 263,
-      "coverage_pct": 15.2,
-      "observed_publishing_offices": 40,
+      "coverage_pct": 18.3,
+      "observed_publishing_offices": 48,
       "eligible_caucus_offices": 263,
       "date_effective_eligible_caucus_offices": 257,
       "source_supported_offices": 0,
-      "publications": 45,
-      "document_families": 43,
+      "publications": 58,
+      "document_families": 57,
       "office_source_states": {
         "source_supported": 0,
         "source_unsupported": 0,
         "unattestable": 257
       },
       "denominator_method_version": "date-effective-denominators-v1",
-      "denominator_window": "party-day 2026-10-13",
+      "denominator_window": "party-day 2026-10-14",
       "date_effective_denominators": {
         "method_version": "date-effective-denominators-v1",
-        "window": "party-day 2026-10-13",
+        "window": "party-day 2026-10-14",
         "eligible_caucus_offices": 257,
         "source_supported_offices": 0,
-        "observed_publishing_offices": 40,
-        "publications": 45,
-        "document_families": 43,
+        "observed_publishing_offices": 48,
+        "publications": 58,
+        "document_families": 57,
         "office_source_states": {
           "source_supported": 0,
           "source_unsupported": 0,
@@ -66,40 +66,40 @@
         }
       },
       "source_collection_health": "not_attested",
-      "tokens_in": 1254,
-      "tokens_out": 100,
+      "tokens_in": 1255,
+      "tokens_out": 88,
       "claims_published": 0,
       "claims_dropped": 0,
       "nomenclature_tagged": 0,
-      "nomenclature_total": 16,
+      "nomenclature_total": 36,
       "nomenclature_rate": 0.0
     },
     "R": {
-      "statements_ingested": 35,
-      "members_covered": 32,
+      "statements_ingested": 26,
+      "members_covered": 25,
       "caucus_size": 275,
-      "coverage_pct": 11.6,
-      "observed_publishing_offices": 32,
+      "coverage_pct": 9.1,
+      "observed_publishing_offices": 25,
       "eligible_caucus_offices": 275,
       "date_effective_eligible_caucus_offices": 271,
       "source_supported_offices": 0,
-      "publications": 35,
-      "document_families": 34,
+      "publications": 26,
+      "document_families": 26,
       "office_source_states": {
         "source_supported": 0,
         "source_unsupported": 0,
         "unattestable": 271
       },
       "denominator_method_version": "date-effective-denominators-v1",
-      "denominator_window": "party-day 2026-10-13",
+      "denominator_window": "party-day 2026-10-14",
       "date_effective_denominators": {
         "method_version": "date-effective-denominators-v1",
-        "window": "party-day 2026-10-13",
+        "window": "party-day 2026-10-14",
         "eligible_caucus_offices": 271,
         "source_supported_offices": 0,
-        "observed_publishing_offices": 32,
-        "publications": 35,
-        "document_families": 34,
+        "observed_publishing_offices": 25,
+        "publications": 26,
+        "document_families": 26,
         "office_source_states": {
           "source_supported": 0,
           "source_unsupported": 0,
@@ -107,13 +107,13 @@
         }
       },
       "source_collection_health": "not_attested",
-      "tokens_in": 1249,
-      "tokens_out": 78,
+      "tokens_in": 0,
+      "tokens_out": 0,
       "claims_published": 0,
       "claims_dropped": 0,
       "nomenclature_tagged": 0,
-      "nomenclature_total": 7,
-      "nomenclature_rate": 0.0
+      "nomenclature_total": 0,
+      "nomenclature_rate": null
     }
   }
 }
