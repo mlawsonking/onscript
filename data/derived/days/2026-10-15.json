@@ -940,5 +940,1781 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-10-15",
+      "party": "D",
+      "composite": "Today 76 of us released statements. 3 of us carried \"We write to express\". Our most synchronized phrase, used by 5 of us: the members wrote.",
+      "measurement_lead": "Measurement: 76 publications were observed for the Democratic party on 2026-10-15.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-10-15",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "005208e015908cbc22ca63ef2d3f7f8d63cd989f79410652345ad3eff37cfffc",
+        "claim_ids": [
+          "2026-10-15-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 76 of us released statements. 3 of us carried \"We write to express\". Our most synchronized phrase, used by 5 of us: the members wrote.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-10-15-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "100aa06c4e579fac54928e3c2a6d756c8b4c416b5909c73da569e655a1c9d77a",
+        "response_sha256": "2e6078e8f4ff22bbeccd26416be18a86c30c4a488bf117a0315b92acfe3c27c8",
+        "model_response_sha256": "3f0034a17ed1b86b8369426292fec50f9bfd6af850fbc22981fcc9293acee2b0"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-10-15-D-00"
+          ],
+          "claim_ids": [
+            "2026-10-15-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-10-15-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-10-15",
+        "statements": 76,
+        "talking_points": [
+          {
+            "label": "we write to express",
+            "members": 3,
+            "quote": "We write to express",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-15-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 2,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "the members wrote",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Troy A. Carter",
+          "first_sayer_party": "D",
+          "first_sayer_state": "LA"
+        },
+        "selected_claims": [
+          {
+            "label": "we write to express",
+            "members": 3,
+            "quote": "We write to express",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-15-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 2,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-10-15-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2055,
+        "tokens_out": 110,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-10-15",
+      "party": "R",
+      "composite": "Across 58 statements, no phrase was shared widely enough to call a dominant message today. We note the day's most synchronized phrase, funding will support, recorded among 4 of us, first recorded in our corpus from Charles E. Schumer (D-NY).",
+      "measurement_lead": "Measurement: 58 publications were observed for the Republican party on 2026-10-15.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-10-15",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "fcfd7145796b15e5fe526ee5fbaf86cb304ff408b44e8d6f1b10ac8db8f5abc7",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 58 statements, no phrase was shared widely enough to call a dominant message today. We note the day's most synchronized phrase, funding will support, recorded among 4 of us, first recorded in our corpus from Charles E. Schumer (D-NY).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "5335aff93d0e9af1c50c80a357c3173c4cfa08b3a211e53aa5aa0bc67985407e",
+        "response_sha256": "1baa92b87df295e5d0c623b578ca88fa13c1d26e40e458607e15f5b490987f28",
+        "model_response_sha256": "90d1d52cc08ff6338e848a1740e40535af955ced571d85d4797852759c1d6564"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-10-15",
+        "statements": 58,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "funding will support",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "Charles E. Schumer",
+          "first_sayer_party": "D",
+          "first_sayer_state": "NY"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1251,
+        "tokens_out": 84,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-10-15-D-00",
+        "party": "D",
+        "day": "2026-10-15",
+        "label": "we write to express",
+        "member_count": 3,
+        "statements": [
+          "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b",
+          "sha256:d9ca3c54e416c19f9951f90b53bf7f9754a3fa2eedc15d36d380cc7c2fe7b101",
+          "sha256:dfdd81f487b659c9a7246c1a0a8a1e3271099dab0730522dfc119633ec690a34"
+        ],
+        "fragments": [
+          {
+            "text": "we write to express our serious concerns with",
+            "statement": "sha256:dfdd81f487b659c9a7246c1a0a8a1e3271099dab0730522dfc119633ec690a34"
+          },
+          {
+            "text": "we write to express our serious concerns with the",
+            "statement": "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b"
+          },
+          {
+            "text": "we write to express our concern regarding",
+            "statement": "sha256:d9ca3c54e416c19f9951f90b53bf7f9754a3fa2eedc15d36d380cc7c2fe7b101"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-15-D-00",
+        "support_phrase": {
+          "normalized": "we write to express",
+          "text": "We write to express",
+          "occurrence_id": "occ:051e5bfca5e0592c900a614c"
+        },
+        "display_quote": "We write to express",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:051e5bfca5e0592c900a614c",
+            "claim_id": "2026-10-15-D-00",
+            "statement_id": "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b",
+            "publication_id": "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b",
+            "office_id": "M001111",
+            "family_id": "dfam:fb1b92e6697fe8182c11e20f",
+            "family_revision": "dfrev:86605a252e0590f9510dc8e0",
+            "support_unit_id": "M001111",
+            "party": "D",
+            "start_char": 910,
+            "end_char": 929,
+            "surface_text": "We write to express",
+            "normalized_phrase": "we write to express",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 907,
+            "sentence_end_char": 1187,
+            "sentence_offset_start": 3,
+            "sentence_offset_end": 22,
+            "clause_start_char": 524,
+            "clause_end_char": 1166,
+            "clause_offset_start": 386,
+            "clause_offset_end": 405,
+            "adjacent_tokens_before": [
+              "for",
+              "humans",
+              "and",
+              "the",
+              "environment"
+            ],
+            "adjacent_tokens_after": [
+              "our",
+              "serious",
+              "concerns",
+              "with",
+              "the"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:287540a92a8cb489236a7f85",
+            "claim_id": "2026-10-15-D-00",
+            "statement_id": "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b",
+            "publication_id": "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b",
+            "office_id": "M001111",
+            "family_id": "dfam:fb1b92e6697fe8182c11e20f",
+            "family_revision": "dfrev:86605a252e0590f9510dc8e0",
+            "support_unit_id": "M001111",
+            "party": "D",
+            "start_char": 4695,
+            "end_char": 4714,
+            "surface_text": "We write to express",
+            "normalized_phrase": "we write to express",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 4619,
+            "sentence_end_char": 4951,
+            "sentence_offset_start": 76,
+            "sentence_offset_end": 95,
+            "clause_start_char": 4693,
+            "clause_end_char": 5486,
+            "clause_offset_start": 2,
+            "clause_offset_end": 21,
+            "adjacent_tokens_before": [
+              "and",
+              "below",
+              "dear",
+              "administrator",
+              "zeldin"
+            ],
+            "adjacent_tokens_after": [
+              "our",
+              "serious",
+              "concerns",
+              "with",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:047db972b0ccc5e1376d87d1",
+            "claim_id": "2026-10-15-D-00",
+            "statement_id": "sha256:d9ca3c54e416c19f9951f90b53bf7f9754a3fa2eedc15d36d380cc7c2fe7b101",
+            "publication_id": "sha256:d9ca3c54e416c19f9951f90b53bf7f9754a3fa2eedc15d36d380cc7c2fe7b101",
+            "office_id": "M001111",
+            "family_id": "njoint:3f822d0bb4c78d81b5744628",
+            "family_revision": "dfrev:a30572a4c3c3799603593c8b",
+            "support_unit_id": "njoint:3f822d0bb4c78d81b5744628",
+            "party": "D",
+            "start_char": 704,
+            "end_char": 723,
+            "surface_text": "We write to express",
+            "normalized_phrase": "we write to express",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 702,
+            "sentence_end_char": 800,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 21,
+            "clause_start_char": 680,
+            "clause_end_char": 1065,
+            "clause_offset_start": 24,
+            "clause_offset_end": 43,
+            "adjacent_tokens_before": [
+              "moving",
+              "forward",
+              "the",
+              "lawmakers",
+              "wrote"
+            ],
+            "adjacent_tokens_after": [
+              "our",
+              "concern",
+              "regarding",
+              "this",
+              "decision"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2a8054ac816ce8a33dcbdc82",
+            "claim_id": "2026-10-15-D-00",
+            "statement_id": "sha256:dfdd81f487b659c9a7246c1a0a8a1e3271099dab0730522dfc119633ec690a34",
+            "publication_id": "sha256:dfdd81f487b659c9a7246c1a0a8a1e3271099dab0730522dfc119633ec690a34",
+            "office_id": "C001113",
+            "family_id": "dfam:5434e7b17ee3ff26f703aafc",
+            "family_revision": "dfrev:e474577e44b501c654006c44",
+            "support_unit_id": "C001113",
+            "party": "D",
+            "start_char": 833,
+            "end_char": 852,
+            "surface_text": "We write to express",
+            "normalized_phrase": "we write to express",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 830,
+            "sentence_end_char": 1110,
+            "sentence_offset_start": 3,
+            "sentence_offset_end": 22,
+            "clause_start_char": 18,
+            "clause_end_char": 1089,
+            "clause_offset_start": 815,
+            "clause_offset_end": 834,
+            "adjacent_tokens_before": [
+              "for",
+              "humans",
+              "and",
+              "the",
+              "environment"
+            ],
+            "adjacent_tokens_after": [
+              "our",
+              "serious",
+              "concerns",
+              "with",
+              "the"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 2,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "C001113",
+          "M001111"
+        ],
+        "publication_ids": [
+          "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b",
+          "sha256:d9ca3c54e416c19f9951f90b53bf7f9754a3fa2eedc15d36d380cc7c2fe7b101",
+          "sha256:dfdd81f487b659c9a7246c1a0a8a1e3271099dab0730522dfc119633ec690a34"
+        ],
+        "family_ids": [
+          "dfam:5434e7b17ee3ff26f703aafc",
+          "dfam:fb1b92e6697fe8182c11e20f",
+          "njoint:3f822d0bb4c78d81b5744628"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:5434e7b17ee3ff26f703aafc",
+            "family_revision": "dfrev:e474577e44b501c654006c44"
+          },
+          {
+            "family_id": "dfam:fb1b92e6697fe8182c11e20f",
+            "family_revision": "dfrev:86605a252e0590f9510dc8e0"
+          },
+          {
+            "family_id": "njoint:3f822d0bb4c78d81b5744628",
+            "family_revision": "dfrev:a30572a4c3c3799603593c8b"
+          }
+        ],
+        "support_unit_ids": [
+          "C001113",
+          "M001111",
+          "njoint:3f822d0bb4c78d81b5744628"
+        ],
+        "citation_occurrence_ids": [
+          "occ:051e5bfca5e0592c900a614c",
+          "occ:047db972b0ccc5e1376d87d1",
+          "occ:2a8054ac816ce8a33dcbdc82"
+        ],
+        "citations": [
+          {
+            "member": "Patty Murray",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-10-15",
+            "url": "https://www.murray.senate.gov/murray-leads-senate-democrats-in-demanding-answers-on-epa-surveillance-of-medication-abortion-drugs-in-drinking-water/",
+            "quote": "we write to express our serious concerns with the",
+            "occurrence_id": "occ:051e5bfca5e0592c900a614c",
+            "office_id": "M001111",
+            "publication_id": "sha256:821cf55ae1f85e749e0ff61f35d3ba1e0f7e11faa1218cda3e98b5cf92b2b47b",
+            "family_id": "dfam:fb1b92e6697fe8182c11e20f",
+            "family_revision": "dfrev:86605a252e0590f9510dc8e0"
+          },
+          {
+            "member": "Patty Murray",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-10-15",
+            "url": "https://www.murray.senate.gov/murray-larsen-urge-trump-administration-to-fund-sumas-and-lynden-border-station-modernization-projects/",
+            "quote": "we write to express our concern regarding",
+            "occurrence_id": "occ:047db972b0ccc5e1376d87d1",
+            "office_id": "M001111",
+            "publication_id": "sha256:d9ca3c54e416c19f9951f90b53bf7f9754a3fa2eedc15d36d380cc7c2fe7b101",
+            "family_id": "njoint:3f822d0bb4c78d81b5744628",
+            "family_revision": "dfrev:a30572a4c3c3799603593c8b"
+          },
+          {
+            "member": "Catherine Cortez Masto",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-10-15",
+            "url": "https://www.cortezmasto.senate.gov/news/press-releases/cortez-masto-senate-democrats-demand-answers-on-epa-surveillance-of-medication-abortion-drugs-in-drinking-water/",
+            "quote": "we write to express our serious concerns with",
+            "occurrence_id": "occ:2a8054ac816ce8a33dcbdc82",
+            "office_id": "C001113",
+            "publication_id": "sha256:dfdd81f487b659c9a7246c1a0a8a1e3271099dab0730522dfc119633ec690a34",
+            "family_id": "dfam:5434e7b17ee3ff26f703aafc",
+            "family_revision": "dfrev:e474577e44b501c654006c44"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-10-15",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 2,
+          "numerator_unit": "offices",
+          "denominator": 60,
+          "denominator_unit": "offices",
+          "share": 0.033333,
+          "window": "party-day 2026-10-15",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 76,
+          "denominator_unit": "publications",
+          "share": 0.039474,
+          "window": "party-day 2026-10-15",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 74,
+          "denominator_unit": "document families",
+          "share": 0.040541,
+          "window": "party-day 2026-10-15",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-10-15",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 40,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-10-15",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 58,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-10-15",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 58,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-10-15",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "of the next generation",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": [
+      {
+        "label": "the funding will support",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "communities across the",
+        "slug": "c8a50f6895b6292b",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.42,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "R000621",
+          "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+          "tie": [
+            "B001230",
+            "C001098",
+            "G000386",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.967,
+        "series": [
+          16,
+          6,
+          6,
+          3,
+          4,
+          6,
+          3,
+          3,
+          6,
+          3,
+          1,
+          4,
+          4,
+          7
+        ]
+      },
+      {
+        "ngram": "full text of the letter is",
+        "slug": "264915c69f7253b1",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001056",
+          "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.967,
+        "series": [
+          3,
+          4,
+          8,
+          1,
+          2,
+          6,
+          4,
+          3,
+          2,
+          2,
+          2,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "the members wrote",
+        "slug": "7e6ff7d66208abb2",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.69,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001125",
+          "statement": "sha256:ab9875b313b977cbb585e548e1c0c7e68e0499393cde437184034250889c41cf",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          1,
+          5,
+          2,
+          1,
+          3,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "the lawmakers wrote",
+        "slug": "13d49ed92594daf1",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.67,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001117",
+          "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.978,
+        "series": [
+          4,
+          2,
+          2,
+          3,
+          3,
+          5,
+          2,
+          1,
+          3,
+          2,
+          2,
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "years to come",
+        "slug": "62729ee9b1d09cef",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 3,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 3,
+          "I": 1
+        },
+        "family_count": 5,
+        "velocity": 2.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001136",
+          "statement": "sha256:24188353343d7f7b13581187eae846eb39d210cc2020ab3f6a5c32d08b4ab6e0",
+          "tie": [
+            "M001214"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          2,
+          4,
+          1,
+          2,
+          2,
+          2,
+          3,
+          2,
+          1,
+          3,
+          2,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "million in federal",
+        "slug": "b04cb6da38f47ab4",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.21,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          5,
+          7,
+          9,
+          5,
+          3,
+          7,
+          2,
+          2,
+          3,
+          2,
+          3,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "write to express",
+        "slug": "5c010489259aaef7",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.89,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "B001243",
+          "statement": "sha256:09325af0fb301f836f532a3b2fdfc782f5c496e04f8f95ab3dfa8c38e0445dbd",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.967,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "billions of dollars",
+        "slug": "ef73ccf05a80670c",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.19,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.963,
+        "series": [
+          3,
+          4,
+          5,
+          4,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          8,
+          5,
+          2,
+          3,
+          5,
+          1,
+          6,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "gas prices are",
+        "slug": "db619072034f30ac",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-03-04",
+          "bioguide": "S001181",
+          "statement": "sha256:3d26d9c00e7ff9765e5f341a07984ad65638ab07d09ca0ade87f67ceda2b4f73",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "funding will support",
+        "slug": "f91ca94f02ea8dcb",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 1
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": 1
+        },
+        "family_count": 4,
+        "velocity": 2.15,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "S000148",
+          "statement": "sha256:58672497f36ff2bf0791c4298faa2f4073584d2641d1698dda980dfa4c3c1117",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          3,
+          2,
+          1,
+          3,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "i’m grateful to",
+        "slug": "d207953af3ede662",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.6,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001325"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          3,
+          1,
+          4,
+          4,
+          2,
+          3,
+          3,
+          1,
+          2,
+          1,
+          1,
+          4,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.97,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          8,
+          7,
+          7,
+          5,
+          3,
+          7,
+          1,
+          4,
+          4,
+          4,
+          1,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "help save lives",
+        "slug": "a354ed63b35dd1d0",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 14,
+          "I": null
+        },
+        "family_count": 14,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "C001059",
+          "statement": "sha256:f3b9baea065970a010100461d582cbf7dc7503790d61866f7ca816382297dac7",
+          "tie": [
+            "M001227"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "american energy production",
+        "slug": "2074314baf9b7ded",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001205",
+          "statement": "sha256:0b5702ff33852279778b41e472711cabeb5a501d655417f1e0f879f06b5a3d48",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          1,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "million investment will",
+        "slug": "6983374c3bed6579",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 1
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": 1
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "G000555",
+          "statement": "sha256:da010d118e5fc9d3d8945ded146ee73666fb8ae6d272aefb38413452f641d816",
+          "tie": [
+            "S000148"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "letter of support",
+        "slug": "2f58e2ace82451cf",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "G000585",
+          "statement": "sha256:0e598f190972c8773e88ca5a0a8d98a55bcd3ba91ffa20cc4d8bf939846216e4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "forward to continuing our",
+        "slug": "ca95007f707b72e7",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000369",
+          "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "remains committed to",
+        "slug": "2e366e3c19173177",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000110",
+          "statement": "sha256:2f15ffd3267ba9e64f56368d169cceab04427d39be928d4a98622d7b30e5e4b0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "the world said",
+        "slug": "2adf72e2f53574d9",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 1
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": 1
+        },
+        "family_count": 3,
+        "velocity": 1.91,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S000168",
+          "statement": "sha256:5fcdfdf2336b002a03e1ce930c5c53a2cc5ce2be734f4b95bc32b1d6eb55e16a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          4,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "the next generation",
+      "slug": "6158281d917beb8e",
+      "n": 3,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 4,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "F000469",
+        "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "velocity": 0.97,
+      "sides": {
+        "D": [
+          {
+            "member": "Veronica Escobar",
+            "party": "D",
+            "state": "TX",
+            "date": "2026-10-15",
+            "url": "https://escobar.house.gov/news/documentsingle.aspx?DocumentID=3391",
+            "quote": "I started this contest in the hope that we could come together to celebrate and uplift the voices of the next generation of great writers in our community"
+          },
+          {
+            "member": "Joseph D. Morelle",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-10-15",
+            "url": "https://morelle.house.gov/media/press-releases/congressman-joe-morelle-honors-rochester-student-azalea-dietz-congressional",
+            "quote": "Azalea represents the very best of the next generation of leaders in our community"
+          },
+          {
+            "member": "Jeanne Shaheen",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-10-15",
+            "url": "https://www.shaheen.senate.gov/news/press/at-new-hampshire-womens-foundation-luncheon-in-manchester-shaheen-honored-for-decades-of-service-with-establishment-of-shaheen-girls-leadership-award",
+            "quote": "At the event, which was also attended by Senator Maggie Hassan (D-NH), Congressman Chris Pappas (NH-01) and Congresswoman Maggie Goodlander (NH-02), Senator Shaheen delivered brief remarks encouraging the next generation of female leaders and celebrating the progress that has been made in achieving social, political and economic gender equality."
+          }
+        ],
+        "R": [
+          {
+            "member": "Juan Ciscomani",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-10-15",
+            "url": "https://ciscomani.house.gov/media/press-releases/ciscomani-touts-900000-pima-community-college-stem-education",
+            "quote": "Pima Community College helped open doors for me, and I want to make sure the next generation has those same opportunities"
+          },
+          {
+            "member": "Jennifer A. Kiggans",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-10-15",
+            "url": "https://kiggans.house.gov/2026/10/15/kiggans-hhs-secretary-robert-f-kennedy-jr-discuss-healthcare-workforce-challenges-tour-regional-health-professions-center-at-tcc/",
+            "quote": "Every day, TCC is preparing the next generation of young men and women to enter the healthcare profession with the skills and experience they need to succeed."
+          },
+          {
+            "member": "Tim Sheehy",
+            "party": "R",
+            "state": "MT",
+            "date": "2026-10-15",
+            "url": "https://www.sheehy.senate.gov/news/press-releases/sheehy-praises-president-trumps-announcement-of-next-generation-military-training-range-in-montana/",
+            "quote": "Montana is uniquely positioned to spearhead the development of the next generation of instruments for the warfighter."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
