@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-10-17",
+  "run_id": "collect-2026-10-18",
   "kind": "deterministic",
-  "generated_at": "2026-10-17T13:05:01Z",
-  "focus_day": "2026-10-16",
+  "generated_at": "2026-10-18T13:24:22Z",
+  "focus_day": "2026-10-17",
   "days_present": [
     "2025-01-01",
-    "2026-10-16"
+    "2026-10-17"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-10-17T09:05:03Z",
-    "age_hours": 3.99
+    "pushed_at": "2026-10-18T09:22:22Z",
+    "age_hours": 4.03
   },
   "normalize": {
-    "in": 88487,
-    "kept": 88453,
+    "in": 88491,
+    "kept": 88457,
     "rejects": 34,
     "joint_groups": 186,
     "near_joint_groups": 3193,
@@ -29,11 +29,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 52120,
+      "statements_in": 52123,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 35753,
+      "statements_in": 35754,
       "members_covered": 275
     },
     "I": {
@@ -43,10 +43,10 @@
   },
   "derived": {
     "ledger_entries": 334143,
-    "phrase_pages": 79,
-    "focus_day": "2026-10-16",
+    "phrase_pages": 0,
+    "focus_day": "2026-10-17",
     "focus_day_write": "written",
-    "focus_day_top_phrases": 20,
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 7.8,
-    "mirror_pull": 26.4,
-    "normalize": 2569.8,
-    "ledger_build": 1890.7
+    "restore": 7.5,
+    "mirror_pull": 23.5,
+    "normalize": 2534.3,
+    "ledger_build": 2074.4
   },
   "span_scan": {
-    "person_spans_calls": 254736,
-    "person_spans_s": 509.08839890293893,
-    "admitted_form_scans": 254736,
-    "admitted_form_s": 10.519001049397957
+    "person_spans_calls": 254748,
+    "person_spans_s": 549.1977838179569,
+    "admitted_form_scans": 254748,
+    "admitted_form_s": 7.079389027782327
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
