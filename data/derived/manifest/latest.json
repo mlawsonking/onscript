@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-10-18",
+  "run_id": "collect-2026-10-19",
   "kind": "deterministic",
-  "generated_at": "2026-10-18T21:38:44Z",
-  "focus_day": "2026-10-17",
+  "generated_at": "2026-10-19T16:34:37Z",
+  "focus_day": "2026-10-18",
   "days_present": [
     "2025-01-01",
-    "2026-10-17"
+    "2026-10-18"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-10-18T09:22:22Z",
-    "age_hours": 12.27
+    "pushed_at": "2026-10-19T10:32:42Z",
+    "age_hours": 6.03
   },
   "normalize": {
-    "in": 88491,
-    "kept": 88457,
+    "in": 88499,
+    "kept": 88465,
     "rejects": 34,
     "joint_groups": 186,
     "near_joint_groups": 3193,
@@ -29,11 +29,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 52123,
+      "statements_in": 52127,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 35754,
+      "statements_in": 35758,
       "members_covered": 275
     },
     "I": {
@@ -44,9 +44,9 @@
   "derived": {
     "ledger_entries": 334143,
     "phrase_pages": 0,
-    "focus_day": "2026-10-17",
-    "focus_day_write": "skipped-final",
-    "focus_day_top_phrases": null,
+    "focus_day": "2026-10-18",
+    "focus_day_write": "written",
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 7.2,
-    "mirror_pull": 14.0,
-    "normalize": 2436.0,
-    "ledger_build": 2068.5
+    "restore": 8.5,
+    "mirror_pull": 16.7,
+    "normalize": 2402.0,
+    "ledger_build": 2125.6
   },
   "span_scan": {
-    "person_spans_calls": 254748,
-    "person_spans_s": 546.7977651377992,
-    "admitted_form_scans": 254748,
-    "admitted_form_s": 6.84013538923864
+    "person_spans_calls": 254772,
+    "person_spans_s": 528.0749809829504,
+    "admitted_form_scans": 254772,
+    "admitted_form_s": 7.58594315015398
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
