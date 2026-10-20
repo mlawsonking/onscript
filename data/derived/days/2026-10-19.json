@@ -833,5 +833,2496 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-10-19",
+      "party": "D",
+      "composite": "We speak today of officials across the country and of intimidation have no place, each raised by 3 of us. The most synchronized phrase in the record today is million in federal, appearing 7 times, first recorded in our corpus from Donald G. Davis (D-NC). Beyond that, our statements touch threats to those who serve and the conduct owed to them, without further elaboration we can verify. We note the coordination plainly, as is our habit, and leave the rest to the record.",
+      "measurement_lead": "Measurement: 55 publications were observed for the Democratic party on 2026-10-19.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-10-19",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "6a4ce197a3ac89232dc8f968dd4f6d03f778b76f9246b100e84c2cae3f91a44f",
+        "claim_ids": [
+          "2026-10-19-D-01",
+          "2026-10-19-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "We speak today of officials across the country and of intimidation have no place, each raised by 3 of us. The most synchronized phrase in the record today is million in federal, appearing 7 times, first recorded in our corpus from Donald G. Davis (D-NC). Beyond that, our statements touch threats to those who serve and the conduct owed to them, without further elaboration we can verify. We note the coordination plainly, as is our habit, and leave the rest to the record.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 4,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "f45b7d655d0a11b9674d5a1782d9690dd35076ab060994f00142db35b72f4f89",
+        "response_sha256": "9b3a8c71350f2943f17052489f2a8aca8fbc74be7aca4130ff3796a32c9d78a3",
+        "model_response_sha256": "7a5a4c629d38b2684494a29020bd89d59a2fa476b9a577bff253d697395774c5"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 4,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 4,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-10-19",
+        "statements": 55,
+        "talking_points": [
+          {
+            "label": "officials across the country",
+            "members": 3,
+            "quote": "officials across the country",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-19-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "intimidation have no place",
+            "members": 3,
+            "quote": "intimidation have no place",
+            "topics": [
+              "other",
+              "elections_democracy"
+            ],
+            "claim_id": "2026-10-19-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "million in federal",
+          "members": 7,
+          "family_count": 7,
+          "first_sayer": "Donald G. Davis",
+          "first_sayer_party": "D",
+          "first_sayer_state": "NC"
+        },
+        "selected_claims": [
+          {
+            "label": "officials across the country",
+            "members": 3,
+            "quote": "officials across the country",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-19-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "intimidation have no place",
+            "members": 3,
+            "quote": "intimidation have no place",
+            "topics": [
+              "other",
+              "elections_democracy"
+            ],
+            "claim_id": "2026-10-19-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "elections_democracy",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-10-19-D-01",
+          "2026-10-19-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 3125,
+        "tokens_out": 148,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-10-19",
+      "party": "R",
+      "composite": "Today our dominant message touches district funding, where we are highlighting \"million in federal funding\" reaching our districts. Across 50 statements, the most synchronized phrase is million in federal funding, appearing among 4 of us, first recorded in our corpus from John Hoeven (R-ND).",
+      "measurement_lead": "Measurement: 50 publications were observed for the Republican party on 2026-10-19.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-10-19",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "a03985610d9ea903ac6de0f399fa1401cf692762cb97eed0019c5be3d00edf91",
+        "claim_ids": [
+          "2026-10-19-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today our dominant message touches district funding, where we are highlighting \"million in federal funding\" reaching our districts. Across 50 statements, the most synchronized phrase is million in federal funding, appearing among 4 of us, first recorded in our corpus from John Hoeven (R-ND).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": [
+              "2026-10-19-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "629d2d745e68562285c8b46091f44782defb3cd1653db7d3d231ce621a398ffa",
+        "response_sha256": "c30026c52a28bb35e1a2df68cd5090b84e9b5df48ccc241a43286b1a4bf1be9b",
+        "model_response_sha256": "d84a6107e7c41a7bcb876572d86098ed196a907d5a60c74204d0e60bc59e6212"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-10-19-R-00"
+          ],
+          "claim_ids": [
+            "2026-10-19-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": [
+            "2026-10-19-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-10-19",
+        "statements": 50,
+        "talking_points": [
+          {
+            "label": "million in federal funding",
+            "members": 4,
+            "quote": "million in federal funding",
+            "topics": [
+              "district_funding"
+            ],
+            "claim_id": "2026-10-19-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "district_funding",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "million in federal funding",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "John Hoeven",
+          "first_sayer_party": "R",
+          "first_sayer_state": "ND"
+        },
+        "selected_claims": [
+          {
+            "label": "million in federal funding",
+            "members": 4,
+            "quote": "million in federal funding",
+            "topics": [
+              "district_funding"
+            ],
+            "claim_id": "2026-10-19-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "district_funding",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-10-19-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2082,
+        "tokens_out": 94,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-10-19-D-00",
+        "party": "D",
+        "day": "2026-10-19",
+        "label": "intimidation have no place",
+        "member_count": 3,
+        "statements": [
+          "sha256:418ea608e125c20276e3a690a4574e151399a135955740b64dbe17e8234230be",
+          "sha256:959fa13a9445ed15b4a72c900f0c21c0a3f312b2242e497e76cad70b6cbddafd",
+          "sha256:cee625a193f30acb2b8f27313ebf316e4a89d90fb3d59477ca47e6cdebd89e7c"
+        ],
+        "fragments": [
+          {
+            "text": "intimidation have no place in our democracy",
+            "statement": "sha256:959fa13a9445ed15b4a72c900f0c21c0a3f312b2242e497e76cad70b6cbddafd"
+          },
+          {
+            "text": "violence and intimidation have no place in our politics",
+            "statement": "sha256:418ea608e125c20276e3a690a4574e151399a135955740b64dbe17e8234230be"
+          },
+          {
+            "text": "of political intimidation have no place in our country",
+            "statement": "sha256:cee625a193f30acb2b8f27313ebf316e4a89d90fb3d59477ca47e6cdebd89e7c"
+          }
+        ],
+        "topics": [
+          "other",
+          "elections_democracy"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-19-D-00",
+        "support_phrase": {
+          "normalized": "intimidation have no place",
+          "text": "intimidation have no place",
+          "occurrence_id": "occ:54a59d6dff013a745250bff7"
+        },
+        "display_quote": "intimidation have no place",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:54a59d6dff013a745250bff7",
+            "claim_id": "2026-10-19-D-00",
+            "statement_id": "sha256:418ea608e125c20276e3a690a4574e151399a135955740b64dbe17e8234230be",
+            "publication_id": "sha256:418ea608e125c20276e3a690a4574e151399a135955740b64dbe17e8234230be",
+            "office_id": "H000273",
+            "family_id": "dfam:54aed277d74180e4a0cc669a",
+            "family_revision": "dfrev:30961eb0a9719d31c66aebb6",
+            "support_unit_id": "H000273",
+            "party": "D",
+            "start_char": 558,
+            "end_char": 584,
+            "surface_text": "intimidation have no place",
+            "normalized_phrase": "intimidation have no place",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 544,
+            "sentence_end_char": 600,
+            "sentence_offset_start": 14,
+            "sentence_offset_end": 40,
+            "clause_start_char": 314,
+            "clause_end_char": 609,
+            "clause_offset_start": 244,
+            "clause_offset_end": 270,
+            "adjacent_tokens_before": [
+              "have",
+              "been",
+              "targeted",
+              "violence",
+              "and"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "our",
+              "politics",
+              "not",
+              "now"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d7db9269b241e56415aed0a7",
+            "claim_id": "2026-10-19-D-00",
+            "statement_id": "sha256:959fa13a9445ed15b4a72c900f0c21c0a3f312b2242e497e76cad70b6cbddafd",
+            "publication_id": "sha256:959fa13a9445ed15b4a72c900f0c21c0a3f312b2242e497e76cad70b6cbddafd",
+            "office_id": "G000553",
+            "family_id": "dfam:8bc0b6b694d3ad62e91e532e",
+            "family_revision": "dfrev:fa7c8c1c2ebdfdde2a8b95ea",
+            "support_unit_id": "G000553",
+            "party": "D",
+            "start_char": 857,
+            "end_char": 883,
+            "surface_text": "intimidation have no place",
+            "normalized_phrase": "intimidation have no place",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 826,
+            "sentence_end_char": 900,
+            "sentence_offset_start": 31,
+            "sentence_offset_end": 57,
+            "clause_start_char": 549,
+            "clause_end_char": 1045,
+            "clause_offset_start": 308,
+            "clause_offset_end": 334,
+            "adjacent_tokens_before": [
+              "political",
+              "threats",
+              "and",
+              "acts",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "our",
+              "democracy",
+              "i",
+              "thank"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a7350578d6d56c768620eab2",
+            "claim_id": "2026-10-19-D-00",
+            "statement_id": "sha256:cee625a193f30acb2b8f27313ebf316e4a89d90fb3d59477ca47e6cdebd89e7c",
+            "publication_id": "sha256:cee625a193f30acb2b8f27313ebf316e4a89d90fb3d59477ca47e6cdebd89e7c",
+            "office_id": "S001230",
+            "family_id": "dfam:26ca8c37193b18593d02542b",
+            "family_revision": "dfrev:3b19f92b3f983faf1cf22542",
+            "support_unit_id": "S001230",
+            "party": "D",
+            "start_char": 471,
+            "end_char": 497,
+            "surface_text": "intimidation have no place",
+            "normalized_phrase": "intimidation have no place",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 446,
+            "sentence_end_char": 549,
+            "sentence_offset_start": 25,
+            "sentence_offset_end": 51,
+            "clause_start_char": 398,
+            "clause_end_char": 512,
+            "clause_offset_start": 73,
+            "clause_offset_end": 99,
+            "adjacent_tokens_before": [
+              "response",
+              "these",
+              "acts",
+              "of",
+              "political"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "our",
+              "country",
+              "congressman",
+              "suhas"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": true,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000553",
+          "H000273",
+          "S001230"
+        ],
+        "publication_ids": [
+          "sha256:418ea608e125c20276e3a690a4574e151399a135955740b64dbe17e8234230be",
+          "sha256:959fa13a9445ed15b4a72c900f0c21c0a3f312b2242e497e76cad70b6cbddafd",
+          "sha256:cee625a193f30acb2b8f27313ebf316e4a89d90fb3d59477ca47e6cdebd89e7c"
+        ],
+        "family_ids": [
+          "dfam:26ca8c37193b18593d02542b",
+          "dfam:54aed277d74180e4a0cc669a",
+          "dfam:8bc0b6b694d3ad62e91e532e"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:26ca8c37193b18593d02542b",
+            "family_revision": "dfrev:3b19f92b3f983faf1cf22542"
+          },
+          {
+            "family_id": "dfam:54aed277d74180e4a0cc669a",
+            "family_revision": "dfrev:30961eb0a9719d31c66aebb6"
+          },
+          {
+            "family_id": "dfam:8bc0b6b694d3ad62e91e532e",
+            "family_revision": "dfrev:fa7c8c1c2ebdfdde2a8b95ea"
+          }
+        ],
+        "support_unit_ids": [
+          "G000553",
+          "H000273",
+          "S001230"
+        ],
+        "citation_occurrence_ids": [
+          "occ:54a59d6dff013a745250bff7",
+          "occ:d7db9269b241e56415aed0a7",
+          "occ:a7350578d6d56c768620eab2"
+        ],
+        "citations": [
+          {
+            "member": "John W. Hickenlooper",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-10-19",
+            "url": "https://www.hickenlooper.senate.gov/press_releases/hickenloopers-office-issues-statement-on-suspicious-letter-intercepted-by-postal-investigators/",
+            "quote": "violence and intimidation have no place in our politics",
+            "occurrence_id": "occ:54a59d6dff013a745250bff7",
+            "office_id": "H000273",
+            "publication_id": "sha256:418ea608e125c20276e3a690a4574e151399a135955740b64dbe17e8234230be",
+            "family_id": "dfam:54aed277d74180e4a0cc669a",
+            "family_revision": "dfrev:30961eb0a9719d31c66aebb6"
+          },
+          {
+            "member": "Al Green",
+            "party": "D",
+            "state": "TX",
+            "date": "2026-10-19",
+            "url": "https://algreen.house.gov/media/press-releases/congressman-al-green-hold-press-conference-330-pm-houston-district-office",
+            "quote": "intimidation have no place in our democracy",
+            "occurrence_id": "occ:d7db9269b241e56415aed0a7",
+            "office_id": "G000553",
+            "publication_id": "sha256:959fa13a9445ed15b4a72c900f0c21c0a3f312b2242e497e76cad70b6cbddafd",
+            "family_id": "dfam:8bc0b6b694d3ad62e91e532e",
+            "family_revision": "dfrev:fa7c8c1c2ebdfdde2a8b95ea"
+          },
+          {
+            "member": "Suhas Subramanyam",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-10-19",
+            "url": "https://subramanyam.house.gov/media/press-releases/rep-subramanyam-issues-statement-suspicious-mail-received-district-office",
+            "quote": "of political intimidation have no place in our country",
+            "occurrence_id": "occ:a7350578d6d56c768620eab2",
+            "office_id": "S001230",
+            "publication_id": "sha256:cee625a193f30acb2b8f27313ebf316e4a89d90fb3d59477ca47e6cdebd89e7c",
+            "family_id": "dfam:26ca8c37193b18593d02542b",
+            "family_revision": "dfrev:3b19f92b3f983faf1cf22542"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "elections_democracy",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-10-19-D-01",
+        "party": "D",
+        "day": "2026-10-19",
+        "label": "officials across the country",
+        "member_count": 3,
+        "statements": [
+          "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a",
+          "sha256:52fec00e452b54671a1faa37d013de1a5e0a705d44867ade53fa40ba2c66af23",
+          "sha256:5bef79155d1eae0f171fac2c94f60192831271943a5338ad3c429f3658cb3e90",
+          "sha256:a7c8ef6f0b3379c7e78606e822d8fcf0ce286b8d5c3a5feb64fb16167584db26"
+        ],
+        "fragments": [
+          {
+            "text": "by public officials across the country",
+            "statement": "sha256:5bef79155d1eae0f171fac2c94f60192831271943a5338ad3c429f3658cb3e90"
+          },
+          {
+            "text": "from public officials across the country",
+            "statement": "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a"
+          },
+          {
+            "text": "to elected officials across the country",
+            "statement": "sha256:52fec00e452b54671a1faa37d013de1a5e0a705d44867ade53fa40ba2c66af23"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-19-D-01",
+        "support_phrase": {
+          "normalized": "officials across the country",
+          "text": "officials across the country",
+          "occurrence_id": "occ:8bb5c575637e6f2ca0cde9b8"
+        },
+        "display_quote": "officials across the country",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:8bb5c575637e6f2ca0cde9b8",
+            "claim_id": "2026-10-19-D-01",
+            "statement_id": "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a",
+            "publication_id": "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a",
+            "office_id": "N000191",
+            "family_id": "dfam:a62c460f0dc3ec25a5a08da0",
+            "family_revision": "dfrev:a3f1e47faef0bf8b13e82b68",
+            "support_unit_id": "N000191",
+            "party": "D",
+            "start_char": 437,
+            "end_char": 465,
+            "surface_text": "officials across the country",
+            "normalized_phrase": "officials across the country",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 294,
+            "sentence_end_char": 465,
+            "sentence_offset_start": 143,
+            "sentence_offset_end": 171,
+            "clause_start_char": 394,
+            "clause_end_char": 599,
+            "clause_offset_start": 43,
+            "clause_offset_end": 71,
+            "adjacent_tokens_before": [
+              "string",
+              "of",
+              "reports",
+              "from",
+              "public"
+            ],
+            "adjacent_tokens_after": [
+              "so",
+              "far",
+              "none",
+              "of",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:440920991c99df513d413c77",
+            "claim_id": "2026-10-19-D-01",
+            "statement_id": "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a",
+            "publication_id": "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a",
+            "office_id": "N000191",
+            "family_id": "dfam:a62c460f0dc3ec25a5a08da0",
+            "family_revision": "dfrev:a3f1e47faef0bf8b13e82b68",
+            "support_unit_id": "N000191",
+            "party": "D",
+            "start_char": 1056,
+            "end_char": 1084,
+            "surface_text": "officials across the country",
+            "normalized_phrase": "officials across the country",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 980,
+            "sentence_end_char": 1268,
+            "sentence_offset_start": 76,
+            "sentence_offset_end": 104,
+            "clause_start_char": 1010,
+            "clause_end_char": 1084,
+            "clause_offset_start": 46,
+            "clause_offset_end": 74,
+            "adjacent_tokens_before": [
+              "it",
+              "being",
+              "received",
+              "by",
+              "elected"
+            ],
+            "adjacent_tokens_after": [
+              "whether",
+              "to",
+              "cause",
+              "physical",
+              "harm"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f9355a0ef98c84dda80e36b4",
+            "claim_id": "2026-10-19-D-01",
+            "statement_id": "sha256:52fec00e452b54671a1faa37d013de1a5e0a705d44867ade53fa40ba2c66af23",
+            "publication_id": "sha256:52fec00e452b54671a1faa37d013de1a5e0a705d44867ade53fa40ba2c66af23",
+            "office_id": "A000381",
+            "family_id": "cosign:972b9c276a3ef9cc6004690c",
+            "family_revision": "dfrev:5332eb281c888c8cdffa7e1b",
+            "support_unit_id": "cosign:972b9c276a3ef9cc6004690c",
+            "party": "D",
+            "start_char": 378,
+            "end_char": 406,
+            "surface_text": "officials across the country",
+            "normalized_phrase": "officials across the country",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 296,
+            "sentence_end_char": 406,
+            "sentence_offset_start": 82,
+            "sentence_offset_end": 110,
+            "clause_start_char": 349,
+            "clause_end_char": 832,
+            "clause_offset_start": 29,
+            "clause_offset_end": 57,
+            "adjacent_tokens_before": [
+              "have",
+              "been",
+              "mailed",
+              "to",
+              "elected"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "fbi",
+              "and",
+              "the",
+              "u"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:544267bba521aacc318451e6",
+            "claim_id": "2026-10-19-D-01",
+            "statement_id": "sha256:5bef79155d1eae0f171fac2c94f60192831271943a5338ad3c429f3658cb3e90",
+            "publication_id": "sha256:5bef79155d1eae0f171fac2c94f60192831271943a5338ad3c429f3658cb3e90",
+            "office_id": "H000874",
+            "family_id": "dfam:65f7b13e0f50360ca1eeab6e",
+            "family_revision": "dfrev:308cd525d3ed72afd440aa6a",
+            "support_unit_id": "H000874",
+            "party": "D",
+            "start_char": 305,
+            "end_char": 333,
+            "surface_text": "officials across the country",
+            "normalized_phrase": "officials across the country",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 43,
+            "sentence_end_char": 333,
+            "sentence_offset_start": 262,
+            "sentence_offset_end": 290,
+            "clause_start_char": 239,
+            "clause_end_char": 364,
+            "clause_offset_start": 66,
+            "clause_offset_end": 94,
+            "adjacent_tokens_before": [
+              "to",
+              "those",
+              "received",
+              "by",
+              "public"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "office",
+              "has",
+              "been",
+              "evacuated"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9bdde3a5e1f55adc291f85a8",
+            "claim_id": "2026-10-19-D-01",
+            "statement_id": "sha256:a7c8ef6f0b3379c7e78606e822d8fcf0ce286b8d5c3a5feb64fb16167584db26",
+            "publication_id": "sha256:a7c8ef6f0b3379c7e78606e822d8fcf0ce286b8d5c3a5feb64fb16167584db26",
+            "office_id": "G000606",
+            "family_id": "cosign:972b9c276a3ef9cc6004690c",
+            "family_revision": "dfrev:5332eb281c888c8cdffa7e1b",
+            "support_unit_id": "cosign:972b9c276a3ef9cc6004690c",
+            "party": "D",
+            "start_char": 574,
+            "end_char": 602,
+            "surface_text": "officials across the country",
+            "normalized_phrase": "officials across the country",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 492,
+            "sentence_end_char": 602,
+            "sentence_offset_start": 82,
+            "sentence_offset_end": 110,
+            "clause_start_char": 545,
+            "clause_end_char": 794,
+            "clause_offset_start": 29,
+            "clause_offset_end": 57,
+            "adjacent_tokens_before": [
+              "have",
+              "been",
+              "mailed",
+              "to",
+              "elected"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "fbi",
+              "and",
+              "the",
+              "u"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "A000381",
+          "G000606",
+          "H000874",
+          "N000191"
+        ],
+        "publication_ids": [
+          "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a",
+          "sha256:52fec00e452b54671a1faa37d013de1a5e0a705d44867ade53fa40ba2c66af23",
+          "sha256:5bef79155d1eae0f171fac2c94f60192831271943a5338ad3c429f3658cb3e90",
+          "sha256:a7c8ef6f0b3379c7e78606e822d8fcf0ce286b8d5c3a5feb64fb16167584db26"
+        ],
+        "family_ids": [
+          "cosign:972b9c276a3ef9cc6004690c",
+          "dfam:65f7b13e0f50360ca1eeab6e",
+          "dfam:a62c460f0dc3ec25a5a08da0"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "cosign:972b9c276a3ef9cc6004690c",
+            "family_revision": "dfrev:5332eb281c888c8cdffa7e1b"
+          },
+          {
+            "family_id": "dfam:65f7b13e0f50360ca1eeab6e",
+            "family_revision": "dfrev:308cd525d3ed72afd440aa6a"
+          },
+          {
+            "family_id": "dfam:a62c460f0dc3ec25a5a08da0",
+            "family_revision": "dfrev:a3f1e47faef0bf8b13e82b68"
+          }
+        ],
+        "support_unit_ids": [
+          "H000874",
+          "N000191",
+          "cosign:972b9c276a3ef9cc6004690c"
+        ],
+        "citation_occurrence_ids": [
+          "occ:8bb5c575637e6f2ca0cde9b8",
+          "occ:f9355a0ef98c84dda80e36b4",
+          "occ:544267bba521aacc318451e6"
+        ],
+        "citations": [
+          {
+            "member": "Joe Neguse",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-10-19",
+            "url": "https://neguse.house.gov/media/press-releases/rep-neguse-issues-statement-suspicious-mail-received-district-office",
+            "quote": "from public officials across the country",
+            "occurrence_id": "occ:8bb5c575637e6f2ca0cde9b8",
+            "office_id": "N000191",
+            "publication_id": "sha256:4aa38c85d30ca3e6c4b709f61a148b23dab6410fb14b3a5d012a8fb5887b068a",
+            "family_id": "dfam:a62c460f0dc3ec25a5a08da0",
+            "family_revision": "dfrev:a3f1e47faef0bf8b13e82b68"
+          },
+          {
+            "member": "Yassamin Ansari",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-10-19",
+            "url": "https://ansari.house.gov/media/press-releases/ansari-stanton-and-grijalva-statement-on-suspicious-letters-sent-to-arizona-offices",
+            "quote": "to elected officials across the country",
+            "occurrence_id": "occ:f9355a0ef98c84dda80e36b4",
+            "office_id": "A000381",
+            "publication_id": "sha256:52fec00e452b54671a1faa37d013de1a5e0a705d44867ade53fa40ba2c66af23",
+            "family_id": "cosign:972b9c276a3ef9cc6004690c",
+            "family_revision": "dfrev:5332eb281c888c8cdffa7e1b"
+          },
+          {
+            "member": "Steny H. Hoyer",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-10-19",
+            "url": "https://hoyer.house.gov/media/press-releases/hoyer-statement-suspicious-letter-received-district-office",
+            "quote": "by public officials across the country",
+            "occurrence_id": "occ:544267bba521aacc318451e6",
+            "office_id": "H000874",
+            "publication_id": "sha256:5bef79155d1eae0f171fac2c94f60192831271943a5338ad3c429f3658cb3e90",
+            "family_id": "dfam:65f7b13e0f50360ca1eeab6e",
+            "family_revision": "dfrev:308cd525d3ed72afd440aa6a"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-10-19-R-00",
+        "party": "R",
+        "day": "2026-10-19",
+        "label": "million in federal funding",
+        "member_count": 4,
+        "statements": [
+          "sha256:15cd0506a6c45ddcb82b50b4f96c95f3eedaab9ba0ddba238bcab6cbef46beef",
+          "sha256:1720283ac5d108aaa7bde08292be3a2ec6b7a4858b88d2ee701c3ccd5bfa6138",
+          "sha256:76b648ba15da1a6fb6b7f12b2432cf7dd5f49b08b04d4b5623e63d74671dd97e",
+          "sha256:d4d9152ba068f9650d9feb3410aa32ded17325aadfe56f6a43cc0103a1a49bab"
+        ],
+        "fragments": [
+          {
+            "text": "7 million in federal funding from the u",
+            "statement": "sha256:1720283ac5d108aaa7bde08292be3a2ec6b7a4858b88d2ee701c3ccd5bfa6138"
+          },
+          {
+            "text": "3 million in federal funding for helene relief",
+            "statement": "sha256:76b648ba15da1a6fb6b7f12b2432cf7dd5f49b08b04d4b5623e63d74671dd97e"
+          },
+          {
+            "text": "871 million in federal funding from the u",
+            "statement": "sha256:d4d9152ba068f9650d9feb3410aa32ded17325aadfe56f6a43cc0103a1a49bab"
+          },
+          {
+            "text": "6 million in federal funding will be awarded",
+            "statement": "sha256:15cd0506a6c45ddcb82b50b4f96c95f3eedaab9ba0ddba238bcab6cbef46beef"
+          }
+        ],
+        "topics": [
+          "district_funding"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-19-R-00",
+        "support_phrase": {
+          "normalized": "million in federal funding",
+          "text": "million in federal funding",
+          "occurrence_id": "occ:c63e5678842c1d03c2d6386b"
+        },
+        "display_quote": "million in federal funding",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c63e5678842c1d03c2d6386b",
+            "claim_id": "2026-10-19-R-00",
+            "statement_id": "sha256:15cd0506a6c45ddcb82b50b4f96c95f3eedaab9ba0ddba238bcab6cbef46beef",
+            "publication_id": "sha256:15cd0506a6c45ddcb82b50b4f96c95f3eedaab9ba0ddba238bcab6cbef46beef",
+            "office_id": "R000603",
+            "family_id": "dfam:837d08ba33fcfe70f386ecd8",
+            "family_revision": "dfrev:0d47ff4264c378a14f8538f4",
+            "support_unit_id": "R000603",
+            "party": "R",
+            "start_char": 79,
+            "end_char": 105,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 77,
+            "sentence_end_char": 126,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 28,
+            "clause_start_char": 23,
+            "clause_end_char": 482,
+            "clause_offset_start": 56,
+            "clause_offset_end": 82,
+            "adjacent_tokens_before": [
+              "announced",
+              "up",
+              "to",
+              "43",
+              "6"
+            ],
+            "adjacent_tokens_after": [
+              "will",
+              "be",
+              "awarded",
+              "to",
+              "r"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:56e7f771c8d339dbe2d750f2",
+            "claim_id": "2026-10-19-R-00",
+            "statement_id": "sha256:1720283ac5d108aaa7bde08292be3a2ec6b7a4858b88d2ee701c3ccd5bfa6138",
+            "publication_id": "sha256:1720283ac5d108aaa7bde08292be3a2ec6b7a4858b88d2ee701c3ccd5bfa6138",
+            "office_id": "G000386",
+            "family_id": "dfam:f5690f1d2787bb9fb84cbc43",
+            "family_revision": "dfrev:7dec3b33f5c2b3fef3ca08e9",
+            "support_unit_id": "G000386",
+            "party": "R",
+            "start_char": 80,
+            "end_char": 106,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 78,
+            "sentence_end_char": 117,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 28,
+            "clause_start_char": 22,
+            "clause_end_char": 171,
+            "clause_offset_start": 58,
+            "clause_offset_end": 84,
+            "adjacent_tokens_before": [
+              "is",
+              "welcoming",
+              "over",
+              "62",
+              "7"
+            ],
+            "adjacent_tokens_after": [
+              "from",
+              "the",
+              "u",
+              "s",
+              "department"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:8cc9a58ce5a42a66413e3da2",
+            "claim_id": "2026-10-19-R-00",
+            "statement_id": "sha256:76b648ba15da1a6fb6b7f12b2432cf7dd5f49b08b04d4b5623e63d74671dd97e",
+            "publication_id": "sha256:76b648ba15da1a6fb6b7f12b2432cf7dd5f49b08b04d4b5623e63d74671dd97e",
+            "office_id": "G000568",
+            "family_id": "dfam:4e8db38e741d43a5101322e0",
+            "family_revision": "dfrev:09431aac77edf09d36bdc1c4",
+            "support_unit_id": "G000568",
+            "party": "R",
+            "start_char": 1932,
+            "end_char": 1958,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1930,
+            "sentence_end_char": 2007,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 28,
+            "clause_start_char": 1884,
+            "clause_end_char": 2022,
+            "clause_offset_start": 48,
+            "clause_offset_end": 74,
+            "adjacent_tokens_before": [
+              "celebrated",
+              "more",
+              "than",
+              "7",
+              "3"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "helene",
+              "relief",
+              "projects",
+              "in"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1b7b9fd1bd487f1ca931763b",
+            "claim_id": "2026-10-19-R-00",
+            "statement_id": "sha256:d4d9152ba068f9650d9feb3410aa32ded17325aadfe56f6a43cc0103a1a49bab",
+            "publication_id": "sha256:d4d9152ba068f9650d9feb3410aa32ded17325aadfe56f6a43cc0103a1a49bab",
+            "office_id": "M001236",
+            "family_id": "dfam:bab5db19ebc85f2391850fb1",
+            "family_revision": "dfrev:8b8708f6599e0f5317b3b9d8",
+            "support_unit_id": "M001236",
+            "party": "R",
+            "start_char": 81,
+            "end_char": 107,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 118,
+            "sentence_offset_start": 65,
+            "sentence_offset_end": 91,
+            "clause_start_char": 25,
+            "clause_end_char": 208,
+            "clause_offset_start": 56,
+            "clause_offset_end": 82,
+            "adjacent_tokens_before": [
+              "nc-14",
+              "announced",
+              "more",
+              "than",
+              "871"
+            ],
+            "adjacent_tokens_after": [
+              "from",
+              "the",
+              "u",
+              "s",
+              "department"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "G000386",
+          "G000568",
+          "M001236",
+          "R000603"
+        ],
+        "publication_ids": [
+          "sha256:15cd0506a6c45ddcb82b50b4f96c95f3eedaab9ba0ddba238bcab6cbef46beef",
+          "sha256:1720283ac5d108aaa7bde08292be3a2ec6b7a4858b88d2ee701c3ccd5bfa6138",
+          "sha256:76b648ba15da1a6fb6b7f12b2432cf7dd5f49b08b04d4b5623e63d74671dd97e",
+          "sha256:d4d9152ba068f9650d9feb3410aa32ded17325aadfe56f6a43cc0103a1a49bab"
+        ],
+        "family_ids": [
+          "dfam:4e8db38e741d43a5101322e0",
+          "dfam:837d08ba33fcfe70f386ecd8",
+          "dfam:bab5db19ebc85f2391850fb1",
+          "dfam:f5690f1d2787bb9fb84cbc43"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:4e8db38e741d43a5101322e0",
+            "family_revision": "dfrev:09431aac77edf09d36bdc1c4"
+          },
+          {
+            "family_id": "dfam:837d08ba33fcfe70f386ecd8",
+            "family_revision": "dfrev:0d47ff4264c378a14f8538f4"
+          },
+          {
+            "family_id": "dfam:bab5db19ebc85f2391850fb1",
+            "family_revision": "dfrev:8b8708f6599e0f5317b3b9d8"
+          },
+          {
+            "family_id": "dfam:f5690f1d2787bb9fb84cbc43",
+            "family_revision": "dfrev:7dec3b33f5c2b3fef3ca08e9"
+          }
+        ],
+        "support_unit_ids": [
+          "G000386",
+          "G000568",
+          "M001236",
+          "R000603"
+        ],
+        "citation_occurrence_ids": [
+          "occ:c63e5678842c1d03c2d6386b",
+          "occ:56e7f771c8d339dbe2d750f2",
+          "occ:8cc9a58ce5a42a66413e3da2"
+        ],
+        "citations": [
+          {
+            "member": "David Rouzer",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-10-19",
+            "url": "https://rouzer.house.gov/news/documentsingle.aspx?DocumentID=3275",
+            "quote": "6 million in federal funding will be awarded",
+            "occurrence_id": "occ:c63e5678842c1d03c2d6386b",
+            "office_id": "R000603",
+            "publication_id": "sha256:15cd0506a6c45ddcb82b50b4f96c95f3eedaab9ba0ddba238bcab6cbef46beef",
+            "family_id": "dfam:837d08ba33fcfe70f386ecd8",
+            "family_revision": "dfrev:0d47ff4264c378a14f8538f4"
+          },
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-10-19",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-backed-infrastructure-law-bringing-627-million-in-improvements-to-iowa-railroads",
+            "quote": "7 million in federal funding from the u",
+            "occurrence_id": "occ:56e7f771c8d339dbe2d750f2",
+            "office_id": "G000386",
+            "publication_id": "sha256:1720283ac5d108aaa7bde08292be3a2ec6b7a4858b88d2ee701c3ccd5bfa6138",
+            "family_id": "dfam:f5690f1d2787bb9fb84cbc43",
+            "family_revision": "dfrev:7dec3b33f5c2b3fef3ca08e9"
+          },
+          {
+            "member": "H. Morgan Griffith",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-10-19",
+            "url": "https://morgangriffith.house.gov/news/documentsingle.aspx?DocumentID=405853",
+            "quote": "3 million in federal funding for helene relief",
+            "occurrence_id": "occ:8cc9a58ce5a42a66413e3da2",
+            "office_id": "G000568",
+            "publication_id": "sha256:76b648ba15da1a6fb6b7f12b2432cf7dd5f49b08b04d4b5623e63d74671dd97e",
+            "family_id": "dfam:4e8db38e741d43a5101322e0",
+            "family_revision": "dfrev:09431aac77edf09d36bdc1c4"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "district_funding",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-10-19",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 7,
+          "numerator_unit": "offices",
+          "denominator": 49,
+          "denominator_unit": "offices",
+          "share": 0.142857,
+          "window": "party-day 2026-10-19",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 7,
+          "numerator_unit": "publications",
+          "denominator": 55,
+          "denominator_unit": "publications",
+          "share": 0.127273,
+          "window": "party-day 2026-10-19",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 6,
+          "numerator_unit": "document families",
+          "denominator": 53,
+          "denominator_unit": "document families",
+          "share": 0.113208,
+          "window": "party-day 2026-10-19",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-10-19",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 30,
+          "denominator_unit": "offices",
+          "share": 0.133333,
+          "window": "party-day 2026-10-19",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 50,
+          "denominator_unit": "publications",
+          "share": 0.08,
+          "window": "party-day 2026-10-19",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 4,
+          "numerator_unit": "document families",
+          "denominator": 50,
+          "denominator_unit": "document families",
+          "share": 0.08,
+          "window": "party-day 2026-10-19",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "to individuals under the age",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "million in federal funding",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "million in federal",
+        "slug": "b04cb6da38f47ab4",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.61,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          7,
+          9,
+          5,
+          3,
+          7,
+          2,
+          2,
+          3,
+          2,
+          3,
+          3,
+          5,
+          5,
+          7
+        ]
+      },
+      {
+        "ngram": "a suspicious letter",
+        "slug": "23e77aa8db83e491",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.67,
+        "first_seen": {
+          "date": "2026-10-16",
+          "bioguide": "G000602",
+          "statement": "sha256:106dca3eb80581bf474e96a1af04f291e94c7c348c13dfe5334b3e80763a3f00",
+          "tie": [
+            "M001196",
+            "S001145"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "the following information",
+        "slug": "fc9321508dec7a52",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.38,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "S000344",
+          "statement": "sha256:71098b32855f24855cfe8b6ddcbb286d682a5d8c64560e60380042af9b9d417a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "following information on",
+        "slug": "56c22891e00a9d70",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-02-07",
+          "bioguide": "P000595",
+          "statement": "sha256:454ff4671d33e72cedc19c0b54686392e297e66ec0809840e7cfb9a93b9f9fbd",
+          "tie": [
+            "S001208"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "district office in",
+        "slug": "c8aa8321c96c61f6",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "O000176",
+          "statement": "sha256:2e1b6aa0f28a0ba92355ab4f6952720876028c31cf87bb576e6b0bbf13f471a7",
+          "tie": [
+            "T000478"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "provide the following",
+        "slug": "f2b5c013cebb0674",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-02-04",
+          "bioguide": "B001277",
+          "statement": "sha256:487114713abfff67e07d10faaa053a84bd655f0bf43532303ef5525e0adbee52",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "of federal law",
+        "slug": "b9c2bbc2053be157",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "to public safety",
+        "slug": "3bc28e0c7795f831",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000381",
+          "statement": "sha256:9149914d64d7fd83768dab24b282fa3787e56e44c9eab8ec2be7a489d0ab88a6",
+          "tie": [
+            "E000300",
+            "L000593"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "c 1 against federally licensed firearm",
+        "slug": "f5270c80db175ee0",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-16",
+          "bioguide": "M001169",
+          "statement": "sha256:152ccacef1f8942414872896487e5f673ea6154bbd63ba84e6316cbb22e5a16c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "1 against federally licensed firearm dealers",
+        "slug": "c3c79872500b15b6",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-10-16",
+          "bioguide": "M001169",
+          "statement": "sha256:152ccacef1f8942414872896487e5f673ea6154bbd63ba84e6316cbb22e5a16c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          3
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "million in federal funding",
+        "slug": "3edf9fb2999b89ff",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.24,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "H001061",
+          "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
+          "tie": [
+            "S000148"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          6,
+          8,
+          4,
+          2,
+          6,
+          1,
+          1,
+          2,
+          2,
+          1,
+          3,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "funding will support",
+        "slug": "f91ca94f02ea8dcb",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.07,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "S000148",
+          "statement": "sha256:58672497f36ff2bf0791c4298faa2f4073584d2641d1698dda980dfa4c3c1117",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          2,
+          1,
+          3,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "improve access to",
+        "slug": "15a6f6fa83815f31",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          2,
+          3,
+          1,
+          1,
+          2,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "million in federal",
+        "slug": "b04cb6da38f47ab4",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.61,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          7,
+          9,
+          5,
+          3,
+          7,
+          2,
+          2,
+          3,
+          2,
+          3,
+          3,
+          5,
+          5,
+          7
+        ]
+      },
+      {
+        "ngram": "and look forward",
+        "slug": "2565b8dc37521123",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.07,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [
+            "F000468"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          3,
+          2,
+          3,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          3,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "look forward to supporting",
+        "slug": "9c19dcf560e62527",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "C001137",
+          "statement": "sha256:3e681a0aea71396841b1d7f9f956f5ada9454dbce8f3ba03c1c970a153087d18",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "support they need",
+        "slug": "c471f43eebc5efae",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.27,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "B001301",
+          "statement": "sha256:74b8bbbc030faaca71638a8f6e357c2ad5eed90b2e922f0d320670210f3719d3",
+          "tie": [
+            "D000594"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.983,
+        "series": [
+          3,
+          4,
+          4,
+          1,
+          1,
+          5,
+          4,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "bill text here",
+        "slug": "b46fc91f6726e459",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.68,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001103",
+          "statement": "sha256:07beaf43ab61b6ae7fb5d7211df4b6f0dc0378d87296eb95c480c8a2cba7fcfc",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          1,
+          1,
+          3,
+          1,
+          1,
+          3,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "the full bill",
+        "slug": "545c5db282595fad",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.5,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001103",
+          "statement": "sha256:07beaf43ab61b6ae7fb5d7211df4b6f0dc0378d87296eb95c480c8a2cba7fcfc",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          1,
+          4,
+          3,
+          1,
+          1,
+          3,
+          1,
+          2,
+          2,
+          3,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 0.79,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          7,
+          5,
+          3,
+          7,
+          1,
+          4,
+          4,
+          4,
+          1,
+          2,
+          2,
+          4,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
