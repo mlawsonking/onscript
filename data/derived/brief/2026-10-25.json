@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-10-25",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 106,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "106 consecutive days published (through 2026-10-24)"
+    },
+    {
+      "name": "spend",
+      "value": 0.1966,
+      "projected": 0.2437,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 24,
+      "note": "$0.1966 MTD, $0.24 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-10-23",
+      "scored_age_days": 2,
+      "parties": {
+        "D": {
+          "statements": 31,
+          "median": 74.0,
+          "share": 0.419,
+          "status": "red",
+          "baseline_method": "recent 3-week same-weekday median"
+        },
+        "R": {
+          "statements": 29,
+          "median": 42.0,
+          "share": 0.69,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        }
+      },
+      "status": "red",
+      "freshness": {
+        "age_hours": 4.18,
+        "day": "2026-10-25",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [
+        "2026-10-24"
+      ],
+      "note": "2026-10-23 (2d): D 31/74=42% R 29/42=69% of own same-weekday baseline (green >= 60%); upstream 4.2h (green < 36h); 2026-10-24 skipped, baseline under the 20 a ratio needs"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.4286,
+      "dropped": 3,
+      "offered": 7,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "3/7 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "coverage",
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "million in federal",
+    "party": "D",
+    "day_peak": 7,
+    "day": "2026-10-19"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: coverage, verifier_drop"
+}
