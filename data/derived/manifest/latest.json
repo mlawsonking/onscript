@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-10-24",
+  "run_id": "collect-2026-10-25",
   "kind": "deterministic",
-  "generated_at": "2026-10-24T21:42:54Z",
-  "focus_day": "2026-10-23",
+  "generated_at": "2026-10-25T13:48:18Z",
+  "focus_day": "2026-10-24",
   "days_present": [
     "2025-01-01",
-    "2026-10-23"
+    "2026-10-24"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-10-24T09:20:46Z",
-    "age_hours": 12.36
+    "pushed_at": "2026-10-25T09:37:27Z",
+    "age_hours": 4.18
   },
   "normalize": {
-    "in": 89073,
-    "kept": 89038,
+    "in": 89079,
+    "kept": 89044,
     "rejects": 35,
     "joint_groups": 187,
     "near_joint_groups": 3209,
@@ -29,11 +29,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 52468,
+      "statements_in": 52470,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 35986,
+      "statements_in": 35990,
       "members_covered": 275
     },
     "I": {
@@ -43,10 +43,10 @@
   },
   "derived": {
     "ledger_entries": 335884,
-    "phrase_pages": 8,
-    "focus_day": "2026-10-23",
-    "focus_day_write": "skipped-final",
-    "focus_day_top_phrases": null,
+    "phrase_pages": 0,
+    "focus_day": "2026-10-24",
+    "focus_day_write": "written",
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 8.4,
-    "mirror_pull": 24.0,
-    "normalize": 2466.2,
-    "ledger_build": 2090.5
+    "restore": 8.6,
+    "mirror_pull": 15.3,
+    "normalize": 2660.1,
+    "ledger_build": 2141.4
   },
   "span_scan": {
-    "person_spans_calls": 256424,
-    "person_spans_s": 568.7438019250021,
-    "admitted_form_scans": 256424,
-    "admitted_form_s": 6.5859286358918325
+    "person_spans_calls": 256442,
+    "person_spans_s": 563.236914998874,
+    "admitted_form_scans": 256442,
+    "admitted_form_s": 8.468274673738051
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",

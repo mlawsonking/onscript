@@ -3269,6 +3269,11 @@
       "statements": 31,
       "on_message_units": 25,
       "index": 0.8065
+    },
+    "2026-10-24": {
+      "statements": 2,
+      "on_message_units": 2,
+      "index": 1.0
     }
   },
   "I": {
@@ -8018,6 +8023,11 @@
       "statements": 29,
       "on_message_units": 25,
       "index": 0.8621
+    },
+    "2026-10-24": {
+      "statements": 4,
+      "on_message_units": 4,
+      "index": 1.0
     }
   },
   "schema_version": 1,
@@ -8026,13 +8036,13 @@
   "min_statements": 10,
   "min_statements_note": "A party-day with fewer statements than this cannot carry an interpretable share: the ratio saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single digits. The floor is stamped, not applied: the values below are the raw per-day measurements and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS.",
   "days_below_min_statements": {
-    "D": 144,
+    "D": 145,
     "I": 299,
-    "R": 175
+    "R": 176
   },
   "window": {
     "start": "2025-01-03",
-    "end": "2026-10-23",
+    "end": "2026-10-24",
     "epoch_authority": "config.STAGE1_EPOCH"
   }
 }
