@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-10-25",
+  "run_id": "collect-2026-10-26",
   "kind": "deterministic",
-  "generated_at": "2026-10-25T21:57:58Z",
-  "focus_day": "2026-10-24",
+  "generated_at": "2026-10-26T16:14:09Z",
+  "focus_day": "2026-10-26",
   "days_present": [
     "2025-01-01",
-    "2026-10-24"
+    "2026-10-26"
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-10-25T09:37:27Z",
-    "age_hours": 12.34
+    "pushed_at": "2026-10-26T10:48:46Z",
+    "age_hours": 5.42
   },
   "normalize": {
-    "in": 89079,
-    "kept": 89044,
+    "in": 89086,
+    "kept": 89051,
     "rejects": 35,
     "joint_groups": 187,
     "near_joint_groups": 3209,
@@ -29,11 +29,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 52470,
+      "statements_in": 52475,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 35990,
+      "statements_in": 35992,
       "members_covered": 275
     },
     "I": {
@@ -44,9 +44,9 @@
   "derived": {
     "ledger_entries": 335884,
     "phrase_pages": 0,
-    "focus_day": "2026-10-24",
-    "focus_day_write": "skipped-final",
-    "focus_day_top_phrases": null,
+    "focus_day": "2026-10-26",
+    "focus_day_write": "written",
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -56,16 +56,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 7.6,
-    "mirror_pull": 18.2,
-    "normalize": 2515.7,
-    "ledger_build": 2101.2
+    "restore": 7.2,
+    "mirror_pull": 15.5,
+    "normalize": 2550.3,
+    "ledger_build": 2091.5
   },
   "span_scan": {
-    "person_spans_calls": 256442,
-    "person_spans_s": 551.5276988990659,
-    "admitted_form_scans": 256442,
-    "admitted_form_s": 6.941011209924
+    "person_spans_calls": 256463,
+    "person_spans_s": 549.2754141188575,
+    "admitted_form_scans": 256463,
+    "admitted_form_s": 7.374881608982832
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
