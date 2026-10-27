@@ -1,17 +1,112 @@
 {
   "day": "2026-10-26",
-  "top_synchronized": [],
+  "top_synchronized": [
+    {
+      "ngram": "important step toward",
+      "slug": "3060ca3cd5d89ce4",
+      "n": 3,
+      "day_peak": 3,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.1,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "E000246",
+        "statement": "sha256:c22319edde8a08cfff810bc47eeac6ffb5d5846848e991bb00e4d4e01363f6d5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        3,
+        3
+      ]
+    },
+    {
+      "ngram": "the next generation",
+      "slug": "6158281d917beb8e",
+      "n": 3,
+      "day_peak": 3,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 1,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.11,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "F000469",
+        "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        4,
+        4,
+        4,
+        1,
+        2,
+        2,
+        5,
+        2,
+        3,
+        4,
+        2,
+        2,
+        2,
+        3
+      ]
+    }
+  ],
   "legacy_unvalidated_metrics": {
     "status": "withdrawn",
     "reason": "The per-party discipline index divided mixed units and was never validated. It is superseded by the unit-safe participation measures (participation-measures-v1). Withdrawn under R-36.3, which extends R-33.1.",
     "metrics": {
       "discipline": {
         "D": {
-          "statements": 1,
-          "on_message_units": 1,
-          "index": 1.0
+          "statements": 27,
+          "on_message_units": 22,
+          "index": 0.8148
         },
-        "R": null
+        "R": {
+          "statements": 33,
+          "on_message_units": 22,
+          "index": 0.6667
+        }
       }
     }
   },
