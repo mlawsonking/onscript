@@ -42,6 +42,9 @@ jobs:
       PRIVACY_SALT: ${{ secrets.PRIVACY_SALT }}
       DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
       GH_TOKEN: ${{ github.token }}
+      # util._base_headers sends this to api.github.com only; unauthenticated, the runner IP's
+      # 60/hour limit failed this job on 2026-10-08.
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       # Art. XVI: a fail-closed gate without its key is an outage authored, not safety. The privacy
       # gate raises at IMPORT if PRIVACY_SALT is absent — 14 silent hours on 2026-07-17 proved that a

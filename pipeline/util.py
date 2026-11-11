@@ -4,9 +4,11 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
+import os
 import re
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -77,9 +79,19 @@ def congress_for_date(iso_date: str) -> int:
 # ---------------------------------------------------------------------------
 # HTTP
 # ---------------------------------------------------------------------------
+def _base_headers(url: str) -> dict:
+    """User-Agent everywhere; the Actions token only on api.github.com, whose unauthenticated
+    limit (60/hour per runner IP) failed RUN A on 2026-10-08. Never sent to any other host."""
+    hdrs = {"User-Agent": config.USER_AGENT}
+    token = os.environ.get("GITHUB_TOKEN")
+    if token and urllib.parse.urlsplit(url).hostname == "api.github.com":
+        hdrs["Authorization"] = f"Bearer {token}"
+    return hdrs
+
+
 def http_get(url: str, *, timeout: int = 60, retries: int = 3, headers: dict | None = None) -> bytes:
     """GET with exponential backoff (skip-and-log philosophy: caller decides degrade)."""
-    hdrs = {"User-Agent": config.USER_AGENT}
+    hdrs = _base_headers(url)
     if headers:
         hdrs.update(headers)
     last_err: Exception | None = None
@@ -98,7 +110,7 @@ def http_get(url: str, *, timeout: int = 60, retries: int = 3, headers: dict | N
 def http_get_metadata(url: str, *, timeout: int = 60, retries: int = 3,
                       headers: dict | None = None) -> tuple[bytes, dict[str, str]]:
     """GET bytes plus response headers with the same retry policy as ``http_get``."""
-    hdrs = {"User-Agent": config.USER_AGENT}
+    hdrs = _base_headers(url)
     if headers:
         hdrs.update(headers)
     last_err: Exception | None = None
