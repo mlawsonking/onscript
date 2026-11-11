@@ -1,0 +1,3508 @@
+{
+  "day": "2026-11-09",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-09",
+      "party": "D",
+      "composite": "Today 77 of us released statements. 3 of us carried \"a discharge petition to force\". 3 of us carried \"The Bipartisan American Affordability\". Our most synchronized phrase, used by 5 of us: data centers pay.",
+      "measurement_lead": "Measurement: 77 publications were observed for the Democratic party on 2026-11-09.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-09",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "4d0917fbf8819f99bf29ba094159fc6a2dc0b22d11ef8302efac71b5e3ce0920",
+        "claim_ids": [
+          "2026-11-09-D-00",
+          "2026-11-09-D-01"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 77 of us released statements. 3 of us carried \"a discharge petition to force\". 3 of us carried \"The Bipartisan American Affordability\". Our most synchronized phrase, used by 5 of us: data centers pay.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-09-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-11-09-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "e39106544d9f97d9d671dcba21ac4826a3dda7935be746cac387c01d7c892e62",
+        "response_sha256": "fa560543266afc61f14ca4ab5e5bbe5d8e6b6c15e6670091d1b2e5ba5ab2e5e4",
+        "model_response_sha256": "eb86f8a84526f4bce424206b29eacdbde1923889db5bc6a409404a4dba9f2568"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-09-D-00"
+          ],
+          "claim_ids": [
+            "2026-11-09-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-11-09-D-01"
+          ],
+          "claim_ids": [
+            "2026-11-09-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-09-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-11-09-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-09",
+        "statements": 77,
+        "talking_points": [
+          {
+            "label": "a discharge petition to force",
+            "members": 3,
+            "quote": "a discharge petition to force",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-09-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "the bipartisan american affordability",
+            "members": 3,
+            "quote": "The Bipartisan American Affordability",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-09-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "data centers pay",
+          "members": 5,
+          "family_count": 6,
+          "first_sayer": "Mike Levin",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CA"
+        },
+        "selected_claims": [
+          {
+            "label": "a discharge petition to force",
+            "members": 3,
+            "quote": "a discharge petition to force",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-09-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          },
+          {
+            "label": "the bipartisan american affordability",
+            "members": 3,
+            "quote": "The Bipartisan American Affordability",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-09-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-09-D-00",
+          "2026-11-09-D-01"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 2923,
+        "tokens_out": 144,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-09",
+      "party": "R",
+      "composite": "Today 36 of us released statements. 3 of us carried \"Rural Health Transformation Program\". Our most synchronized phrase, used by 4 of us: rural health care.",
+      "measurement_lead": "Measurement: 36 publications were observed for the Republican party on 2026-11-09.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-09",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "b947071a59e78d2e5b21855eb9395263d4d0dd48f65665ac7e44ef692d56abcf",
+        "claim_ids": [
+          "2026-11-09-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 36 of us released statements. 3 of us carried \"Rural Health Transformation Program\". Our most synchronized phrase, used by 4 of us: rural health care.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-09-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "b179f44dfa024220fc46c353a904ae5064bdb1cfa67b08aac0df5febdf1e44db",
+        "response_sha256": "c5e5daf990b18c221affedd8bc7b270f7bce9cc7122c2e1b0475cb16e9e8c1ae",
+        "model_response_sha256": "f1185e4987acec1a5118d2dd0e93eea1f29466408499b8c526158c202f4fe7c4"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-09-R-00"
+          ],
+          "claim_ids": [
+            "2026-11-09-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-09-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-09",
+        "statements": 36,
+        "talking_points": [
+          {
+            "label": "rural health transformation program",
+            "members": 3,
+            "quote": "Rural Health Transformation Program",
+            "topics": [
+              "agriculture"
+            ],
+            "claim_id": "2026-11-09-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "agriculture",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "rural health care",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "Mike Crapo",
+          "first_sayer_party": "R",
+          "first_sayer_state": "ID"
+        },
+        "selected_claims": [
+          {
+            "label": "rural health transformation program",
+            "members": 3,
+            "quote": "Rural Health Transformation Program",
+            "topics": [
+              "agriculture"
+            ],
+            "claim_id": "2026-11-09-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "agriculture",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-09-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2099,
+        "tokens_out": 101,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-11-09-D-00",
+        "party": "D",
+        "day": "2026-11-09",
+        "label": "a discharge petition to force",
+        "member_count": 3,
+        "statements": [
+          "sha256:dc905f0e556bc4abe9e16b488aa4d5f836f734d56402095b5171b4b7b3972b1a",
+          "sha256:eb9ee89038595465994b2a592feb5ff5ed9956c5932e8509ef66e05d75cad28c",
+          "sha256:facce75cc590eb60307fd6af67b15489608b9bfdac9ff65f5040cf9723e81e4d"
+        ],
+        "fragments": [
+          {
+            "text": "a discharge petition to force a vote on the bill in",
+            "statement": "sha256:eb9ee89038595465994b2a592feb5ff5ed9956c5932e8509ef66e05d75cad28c"
+          },
+          {
+            "text": "file a discharge petition to force a vote on his",
+            "statement": "sha256:facce75cc590eb60307fd6af67b15489608b9bfdac9ff65f5040cf9723e81e4d"
+          },
+          {
+            "text": "a discharge petition to force a house vote on",
+            "statement": "sha256:dc905f0e556bc4abe9e16b488aa4d5f836f734d56402095b5171b4b7b3972b1a"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-09-D-00",
+        "support_phrase": {
+          "normalized": "a discharge petition to force",
+          "text": "a discharge petition to force",
+          "occurrence_id": "occ:30ba9d958e4b1bcc884d285b"
+        },
+        "display_quote": "a discharge petition to force",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:30ba9d958e4b1bcc884d285b",
+            "claim_id": "2026-11-09-D-00",
+            "statement_id": "sha256:dc905f0e556bc4abe9e16b488aa4d5f836f734d56402095b5171b4b7b3972b1a",
+            "publication_id": "sha256:dc905f0e556bc4abe9e16b488aa4d5f836f734d56402095b5171b4b7b3972b1a",
+            "office_id": "L000607",
+            "family_id": "dfam:4d53be839223d5709d2542d2",
+            "family_revision": "dfrev:be43446eb7a31645059d5bae",
+            "support_unit_id": "L000607",
+            "party": "D",
+            "start_char": 84,
+            "end_char": 113,
+            "surface_text": "a discharge petition to force",
+            "normalized_phrase": "a discharge petition to force",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 356,
+            "sentence_offset_start": 68,
+            "sentence_offset_end": 97,
+            "clause_start_char": 25,
+            "clause_end_char": 172,
+            "clause_offset_start": 59,
+            "clause_offset_end": 88,
+            "adjacent_tokens_before": [
+              "ca-16",
+              "jason",
+              "crow",
+              "co-06",
+              "filed"
+            ],
+            "adjacent_tokens_after": [
+              "a",
+              "house",
+              "vote",
+              "on",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:eaaabbca68ac188fe9605625",
+            "claim_id": "2026-11-09-D-00",
+            "statement_id": "sha256:eb9ee89038595465994b2a592feb5ff5ed9956c5932e8509ef66e05d75cad28c",
+            "publication_id": "sha256:eb9ee89038595465994b2a592feb5ff5ed9956c5932e8509ef66e05d75cad28c",
+            "office_id": "C001069",
+            "family_id": "dfam:1955a645922c470a84600f13",
+            "family_revision": "dfrev:67a4e2f70e26ebd5b10d4717",
+            "support_unit_id": "C001069",
+            "party": "D",
+            "start_char": 512,
+            "end_char": 541,
+            "surface_text": "a discharge petition to force",
+            "normalized_phrase": "a discharge petition to force",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 412,
+            "sentence_end_char": 573,
+            "sentence_offset_start": 100,
+            "sentence_offset_end": 129,
+            "clause_start_char": 501,
+            "clause_end_char": 629,
+            "clause_offset_start": 11,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "earlier",
+              "this",
+              "year",
+              "he",
+              "signed"
+            ],
+            "adjacent_tokens_after": [
+              "a",
+              "vote",
+              "on",
+              "the",
+              "bill"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:dda45822fd698d9fdf5512be",
+            "claim_id": "2026-11-09-D-00",
+            "statement_id": "sha256:facce75cc590eb60307fd6af67b15489608b9bfdac9ff65f5040cf9723e81e4d",
+            "publication_id": "sha256:facce75cc590eb60307fd6af67b15489608b9bfdac9ff65f5040cf9723e81e4d",
+            "office_id": "C001121",
+            "family_id": "dfam:ead3f5813c25e584ff759cab",
+            "family_revision": "dfrev:936b10395423c9f116fabc27",
+            "support_unit_id": "C001121",
+            "party": "D",
+            "start_char": 192,
+            "end_char": 221,
+            "surface_text": "a discharge petition to force",
+            "normalized_phrase": "a discharge petition to force",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 255,
+            "sentence_offset_start": 192,
+            "sentence_offset_end": 221,
+            "clause_start_char": 181,
+            "clause_end_char": 565,
+            "clause_offset_start": 11,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "armed",
+              "services",
+              "committee",
+              "will",
+              "file"
+            ],
+            "adjacent_tokens_after": [
+              "a",
+              "vote",
+              "on",
+              "his",
+              "afghanistan"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "C001069",
+          "C001121",
+          "L000607"
+        ],
+        "publication_ids": [
+          "sha256:dc905f0e556bc4abe9e16b488aa4d5f836f734d56402095b5171b4b7b3972b1a",
+          "sha256:eb9ee89038595465994b2a592feb5ff5ed9956c5932e8509ef66e05d75cad28c",
+          "sha256:facce75cc590eb60307fd6af67b15489608b9bfdac9ff65f5040cf9723e81e4d"
+        ],
+        "family_ids": [
+          "dfam:1955a645922c470a84600f13",
+          "dfam:4d53be839223d5709d2542d2",
+          "dfam:ead3f5813c25e584ff759cab"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:1955a645922c470a84600f13",
+            "family_revision": "dfrev:67a4e2f70e26ebd5b10d4717"
+          },
+          {
+            "family_id": "dfam:4d53be839223d5709d2542d2",
+            "family_revision": "dfrev:be43446eb7a31645059d5bae"
+          },
+          {
+            "family_id": "dfam:ead3f5813c25e584ff759cab",
+            "family_revision": "dfrev:936b10395423c9f116fabc27"
+          }
+        ],
+        "support_unit_ids": [
+          "C001069",
+          "C001121",
+          "L000607"
+        ],
+        "citation_occurrence_ids": [
+          "occ:30ba9d958e4b1bcc884d285b",
+          "occ:eaaabbca68ac188fe9605625",
+          "occ:dda45822fd698d9fdf5512be"
+        ],
+        "citations": [
+          {
+            "member": "Sam T. Liccardo",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-09",
+            "url": "https://liccardo.house.gov/media/press-releases/liccardo-crow-launch-discharge-petition-force-vote-protections-afghan-allies",
+            "quote": "a discharge petition to force a house vote on",
+            "occurrence_id": "occ:30ba9d958e4b1bcc884d285b",
+            "office_id": "L000607",
+            "publication_id": "sha256:dc905f0e556bc4abe9e16b488aa4d5f836f734d56402095b5171b4b7b3972b1a",
+            "family_id": "dfam:4d53be839223d5709d2542d2",
+            "family_revision": "dfrev:be43446eb7a31645059d5bae"
+          },
+          {
+            "member": "Joe Courtney",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-11-09",
+            "url": "https://courtney.house.gov/media-center/press-releases/ahead-veterans-day-courtney-calls-passage-major-richard-star-act",
+            "quote": "a discharge petition to force a vote on the bill in",
+            "occurrence_id": "occ:eaaabbca68ac188fe9605625",
+            "office_id": "C001069",
+            "publication_id": "sha256:eb9ee89038595465994b2a592feb5ff5ed9956c5932e8509ef66e05d75cad28c",
+            "family_id": "dfam:1955a645922c470a84600f13",
+            "family_revision": "dfrev:67a4e2f70e26ebd5b10d4717"
+          },
+          {
+            "member": "Jason Crow",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-11-09",
+            "url": "https://crow.house.gov/media/press-releases/crow-moves-to-force-vote-on-granting-vulnerable-afghans-temporary-protected-status",
+            "quote": "file a discharge petition to force a vote on his",
+            "occurrence_id": "occ:dda45822fd698d9fdf5512be",
+            "office_id": "C001121",
+            "publication_id": "sha256:facce75cc590eb60307fd6af67b15489608b9bfdac9ff65f5040cf9723e81e4d",
+            "family_id": "dfam:ead3f5813c25e584ff759cab",
+            "family_revision": "dfrev:936b10395423c9f116fabc27"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-11-09-D-01",
+        "party": "D",
+        "day": "2026-11-09",
+        "label": "the bipartisan american affordability",
+        "member_count": 3,
+        "statements": [
+          "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd",
+          "sha256:445476e59676db9a1dc989ba293d26f212948aaab546b13fb54daeb37f99e2f7",
+          "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910"
+        ],
+        "fragments": [
+          {
+            "text": "senate voted to advance the bipartisan american affordability",
+            "statement": "sha256:445476e59676db9a1dc989ba293d26f212948aaab546b13fb54daeb37f99e2f7"
+          },
+          {
+            "text": "after he voted to advance the bipartisan american affordability",
+            "statement": "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd"
+          },
+          {
+            "text": "senate colleagues to pass the bipartisan american affordability and",
+            "statement": "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-09-D-01",
+        "support_phrase": {
+          "normalized": "the bipartisan american affordability",
+          "text": "The Bipartisan American Affordability",
+          "occurrence_id": "occ:d8e89ced9c37ca62939d3936"
+        },
+        "display_quote": "The Bipartisan American Affordability",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d8e89ced9c37ca62939d3936",
+            "claim_id": "2026-11-09-D-01",
+            "statement_id": "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd",
+            "publication_id": "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd",
+            "office_id": "H000273",
+            "family_id": "dfam:1104f8261884b5f7d64f84c0",
+            "family_revision": "dfrev:be906ae2975945de6436e8cd",
+            "support_unit_id": "H000273",
+            "party": "D",
+            "start_char": 0,
+            "end_char": 37,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 121,
+            "sentence_offset_start": 0,
+            "sentence_offset_end": 37,
+            "clause_start_char": 0,
+            "clause_end_char": 67,
+            "clause_offset_start": 0,
+            "clause_offset_end": 37,
+            "adjacent_tokens_before": [],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "will",
+              "lower"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b2e812510a38184ac3e9fd6b",
+            "claim_id": "2026-11-09-D-01",
+            "statement_id": "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd",
+            "publication_id": "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd",
+            "office_id": "H000273",
+            "family_id": "dfam:1104f8261884b5f7d64f84c0",
+            "family_revision": "dfrev:be906ae2975945de6436e8cd",
+            "support_unit_id": "H000273",
+            "party": "D",
+            "start_char": 210,
+            "end_char": 247,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 124,
+            "sentence_end_char": 260,
+            "sentence_offset_start": 86,
+            "sentence_offset_end": 123,
+            "clause_start_char": 119,
+            "clause_end_char": 369,
+            "clause_offset_start": 91,
+            "clause_offset_end": 128,
+            "adjacent_tokens_before": [
+              "after",
+              "he",
+              "voted",
+              "to",
+              "advance"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "the",
+              "senate"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a77d5d2784e4834865420201",
+            "claim_id": "2026-11-09-D-01",
+            "statement_id": "sha256:445476e59676db9a1dc989ba293d26f212948aaab546b13fb54daeb37f99e2f7",
+            "publication_id": "sha256:445476e59676db9a1dc989ba293d26f212948aaab546b13fb54daeb37f99e2f7",
+            "office_id": "G000606",
+            "family_id": "dfam:e5e17063bb7e7a7396381ebe",
+            "family_revision": "dfrev:8a6b1ec35369991da08b936d",
+            "support_unit_id": "G000606",
+            "party": "D",
+            "start_char": 125,
+            "end_char": 162,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 100,
+            "sentence_end_char": 191,
+            "sentence_offset_start": 25,
+            "sentence_offset_end": 62,
+            "clause_start_char": 11,
+            "clause_end_char": 211,
+            "clause_offset_start": 114,
+            "clause_offset_end": 151,
+            "adjacent_tokens_before": [
+              "s",
+              "senate",
+              "voted",
+              "to",
+              "advance"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:58537bd5e07642ab209ab780",
+            "claim_id": "2026-11-09-D-01",
+            "statement_id": "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910",
+            "publication_id": "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910",
+            "office_id": "H001046",
+            "family_id": "dfam:b326ab071381655893444de6",
+            "family_revision": "dfrev:9dcc2f3480dd20a36c3b0259",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 437,
+            "end_char": 474,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 326,
+            "sentence_end_char": 648,
+            "sentence_offset_start": 111,
+            "sentence_offset_end": 148,
+            "clause_start_char": 373,
+            "clause_end_char": 495,
+            "clause_offset_start": 64,
+            "clause_offset_end": 101,
+            "adjacent_tokens_before": [
+              "their",
+              "senate",
+              "colleagues",
+              "to",
+              "pass"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "bipartisan"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e8fc248b0ab04ddc4812e3c3",
+            "claim_id": "2026-11-09-D-01",
+            "statement_id": "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910",
+            "publication_id": "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910",
+            "office_id": "H001046",
+            "family_id": "dfam:b326ab071381655893444de6",
+            "family_revision": "dfrev:9dcc2f3480dd20a36c3b0259",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 2429,
+            "end_char": 2466,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2380,
+            "sentence_end_char": 2497,
+            "sentence_offset_start": 49,
+            "sentence_offset_end": 86,
+            "clause_start_char": 2130,
+            "clause_end_char": 2479,
+            "clause_offset_start": 299,
+            "clause_offset_end": 336,
+            "adjacent_tokens_before": [
+              "to",
+              "urge",
+              "senate",
+              "passage",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "november",
+              "9"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000606",
+          "H000273",
+          "H001046"
+        ],
+        "publication_ids": [
+          "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd",
+          "sha256:445476e59676db9a1dc989ba293d26f212948aaab546b13fb54daeb37f99e2f7",
+          "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910"
+        ],
+        "family_ids": [
+          "dfam:1104f8261884b5f7d64f84c0",
+          "dfam:b326ab071381655893444de6",
+          "dfam:e5e17063bb7e7a7396381ebe"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:1104f8261884b5f7d64f84c0",
+            "family_revision": "dfrev:be906ae2975945de6436e8cd"
+          },
+          {
+            "family_id": "dfam:b326ab071381655893444de6",
+            "family_revision": "dfrev:9dcc2f3480dd20a36c3b0259"
+          },
+          {
+            "family_id": "dfam:e5e17063bb7e7a7396381ebe",
+            "family_revision": "dfrev:8a6b1ec35369991da08b936d"
+          }
+        ],
+        "support_unit_ids": [
+          "G000606",
+          "H000273",
+          "H001046"
+        ],
+        "citation_occurrence_ids": [
+          "occ:d8e89ced9c37ca62939d3936",
+          "occ:a77d5d2784e4834865420201",
+          "occ:58537bd5e07642ab209ab780"
+        ],
+        "citations": [
+          {
+            "member": "John W. Hickenlooper",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-11-09",
+            "url": "https://www.hickenlooper.senate.gov/press_releases/hickenlooper-votes-to-advance-long-overdue-permitting-reform-bill/",
+            "quote": "after he voted to advance the bipartisan american affordability",
+            "occurrence_id": "occ:d8e89ced9c37ca62939d3936",
+            "office_id": "H000273",
+            "publication_id": "sha256:0c838c506803d1b2aa47a6bb922351f8441428a584fb533269c84c969d21e5bd",
+            "family_id": "dfam:1104f8261884b5f7d64f84c0",
+            "family_revision": "dfrev:be906ae2975945de6436e8cd"
+          },
+          {
+            "member": "Adelita S. Grijalva",
+            "party": "D",
+            "state": "AZ",
+            "date": "2026-11-09",
+            "url": "https://grijalva.house.gov/media/press-releases/rep-grijalva-statement-following-senate-vote-on-permitting-reform-bill",
+            "quote": "senate voted to advance the bipartisan american affordability",
+            "occurrence_id": "occ:a77d5d2784e4834865420201",
+            "office_id": "G000606",
+            "publication_id": "sha256:445476e59676db9a1dc989ba293d26f212948aaab546b13fb54daeb37f99e2f7",
+            "family_id": "dfam:e5e17063bb7e7a7396381ebe",
+            "family_revision": "dfrev:8a6b1ec35369991da08b936d"
+          },
+          {
+            "member": "Martin Heinrich",
+            "party": "D",
+            "state": "NM",
+            "date": "2026-11-09",
+            "url": "https://www.heinrich.senate.gov/newsroom/press-releases/video-heinrich-and-whitehouse-urge-senate-passage-of-bipartisan-american-affordability-and-jobs-act",
+            "quote": "senate colleagues to pass the bipartisan american affordability and",
+            "occurrence_id": "occ:58537bd5e07642ab209ab780",
+            "office_id": "H001046",
+            "publication_id": "sha256:4c37831809aaad2b76d93113965230e73a77fa9254e6ec655c564ff7f9752910",
+            "family_id": "dfam:b326ab071381655893444de6",
+            "family_revision": "dfrev:9dcc2f3480dd20a36c3b0259"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-11-09-R-00",
+        "party": "R",
+        "day": "2026-11-09",
+        "label": "rural health transformation program",
+        "member_count": 3,
+        "statements": [
+          "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b",
+          "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994",
+          "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084"
+        ],
+        "fragments": [
+          {
+            "text": "through the rural health transformation program",
+            "statement": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084"
+          },
+          {
+            "text": "the law’s rural health transformation program and will",
+            "statement": "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b"
+          },
+          {
+            "text": "under the rural health transformation program",
+            "statement": "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994"
+          }
+        ],
+        "topics": [
+          "agriculture"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-09-R-00",
+        "support_phrase": {
+          "normalized": "rural health transformation program",
+          "text": "Rural Health Transformation Program",
+          "occurrence_id": "occ:94b651d2c02a91725944a8b4"
+        },
+        "display_quote": "Rural Health Transformation Program",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:94b651d2c02a91725944a8b4",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b",
+            "publication_id": "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b",
+            "office_id": "G000386",
+            "family_id": "dfam:c531845034514af8cfd6554c",
+            "family_revision": "dfrev:a0b4da645188069b174fe8bb",
+            "support_unit_id": "G000386",
+            "party": "R",
+            "start_char": 337,
+            "end_char": 372,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 288,
+            "sentence_end_char": 481,
+            "sentence_offset_start": 49,
+            "sentence_offset_end": 84,
+            "clause_start_char": 111,
+            "clause_end_char": 434,
+            "clause_offset_start": 226,
+            "clause_offset_end": 261,
+            "adjacent_tokens_before": [
+              "be",
+              "disbursed",
+              "through",
+              "the",
+              "law’s"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "will",
+              "help",
+              "provide",
+              "for"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:30dd9a41051580c0ef981bb2",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b",
+            "publication_id": "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b",
+            "office_id": "G000386",
+            "family_id": "dfam:c531845034514af8cfd6554c",
+            "family_revision": "dfrev:a0b4da645188069b174fe8bb",
+            "support_unit_id": "G000386",
+            "party": "R",
+            "start_char": 1443,
+            "end_char": 1478,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1353,
+            "sentence_end_char": 1623,
+            "sentence_offset_start": 90,
+            "sentence_offset_end": 125,
+            "clause_start_char": 1366,
+            "clause_end_char": 1498,
+            "clause_offset_start": 77,
+            "clause_offset_end": 112,
+            "adjacent_tokens_before": [
+              "law",
+              "included",
+              "the",
+              "50",
+              "billion"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "ensure",
+              "hospitals",
+              "nursing",
+              "homes"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:cdc65fe200d180d018e949f5",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994",
+            "publication_id": "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994",
+            "office_id": "G000568",
+            "family_id": "dfam:328a66756d702b2be687444a",
+            "family_revision": "dfrev:095d9789f43b0649916530a6",
+            "support_unit_id": "G000568",
+            "party": "R",
+            "start_char": 139,
+            "end_char": 174,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 8,
+            "sentence_end_char": 174,
+            "sentence_offset_start": 131,
+            "sentence_offset_end": 166,
+            "clause_start_char": 93,
+            "clause_end_char": 200,
+            "clause_offset_start": 46,
+            "clause_offset_end": 81,
+            "adjacent_tokens_before": [
+              "year",
+              "two",
+              "funding",
+              "under",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "this",
+              "federal",
+              "initiative",
+              "which",
+              "was"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:42b5915d6aeef4566608eb83",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994",
+            "publication_id": "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994",
+            "office_id": "G000568",
+            "family_id": "dfam:328a66756d702b2be687444a",
+            "family_revision": "dfrev:095d9789f43b0649916530a6",
+            "support_unit_id": "G000568",
+            "party": "R",
+            "start_char": 734,
+            "end_char": 769,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 502,
+            "sentence_end_char": 911,
+            "sentence_offset_start": 232,
+            "sentence_offset_end": 267,
+            "clause_start_char": 691,
+            "clause_end_char": 769,
+            "clause_offset_start": 43,
+            "clause_offset_end": 78,
+            "adjacent_tokens_before": [
+              "hhs",
+              "announcement",
+              "confirms",
+              "that",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "which",
+              "was",
+              "launched",
+              "by",
+              "republicans"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:66260f6402a6259fbc7c22fe",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "publication_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "office_id": "C001047",
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2",
+            "support_unit_id": "C001047",
+            "party": "R",
+            "start_char": 258,
+            "end_char": 293,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 138,
+            "sentence_end_char": 293,
+            "sentence_offset_start": 120,
+            "sentence_offset_end": 155,
+            "clause_start_char": 119,
+            "clause_end_char": 306,
+            "clause_offset_start": 139,
+            "clause_offset_end": 174,
+            "adjacent_tokens_before": [
+              "to",
+              "west",
+              "virginia",
+              "through",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "program",
+              "made",
+              "possible",
+              "by"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c72b309f8d4324af9cb44df9",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "publication_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "office_id": "C001047",
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2",
+            "support_unit_id": "C001047",
+            "party": "R",
+            "start_char": 846,
+            "end_char": 881,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 593,
+            "sentence_end_char": 881,
+            "sentence_offset_start": 253,
+            "sentence_offset_end": 288,
+            "clause_start_char": 800,
+            "clause_end_char": 1301,
+            "clause_offset_start": 46,
+            "clause_offset_end": 81,
+            "adjacent_tokens_before": [
+              "in",
+              "the",
+              "creation",
+              "of",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "i",
+              "am",
+              "pleased",
+              "to",
+              "see"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:afd46712a7e1bf8f9ecc1cf9",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "publication_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "office_id": "C001047",
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2",
+            "support_unit_id": "C001047",
+            "party": "R",
+            "start_char": 981,
+            "end_char": 1016,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 882,
+            "sentence_end_char": 1016,
+            "sentence_offset_start": 99,
+            "sentence_offset_end": 134,
+            "clause_start_char": 800,
+            "clause_end_char": 1301,
+            "clause_offset_start": 181,
+            "clause_offset_end": 216,
+            "adjacent_tokens_before": [
+              "west",
+              "virginia",
+              "awarded",
+              "through",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "i",
+              "was",
+              "proud",
+              "to",
+              "help"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7d95d5668dac22fe9e232e40",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "publication_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "office_id": "C001047",
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2",
+            "support_unit_id": "C001047",
+            "party": "R",
+            "start_char": 1366,
+            "end_char": 1401,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1324,
+            "sentence_end_char": 1624,
+            "sentence_offset_start": 42,
+            "sentence_offset_end": 77,
+            "clause_start_char": 1355,
+            "clause_end_char": 1551,
+            "clause_offset_start": 11,
+            "clause_offset_end": 46,
+            "adjacent_tokens_before": [
+              "background",
+              "the",
+              "50",
+              "billion",
+              "five-year"
+            ],
+            "adjacent_tokens_after": [
+              "was",
+              "authorized",
+              "by",
+              "the",
+              "working"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4eb0a99e2a3b32cb4b2f794e",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "publication_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "office_id": "C001047",
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2",
+            "support_unit_id": "C001047",
+            "party": "R",
+            "start_char": 1960,
+            "end_char": 1995,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1844,
+            "sentence_end_char": 1995,
+            "sentence_offset_start": 116,
+            "sentence_offset_end": 151,
+            "clause_start_char": 1787,
+            "clause_end_char": 2249,
+            "clause_offset_start": 173,
+            "clause_offset_end": 208,
+            "adjacent_tokens_before": [
+              "million",
+              "in",
+              "investments",
+              "through",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "senator",
+              "capito",
+              "played",
+              "a",
+              "significant"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3d84ecd467ac9931e7d95ab5",
+            "claim_id": "2026-11-09-R-00",
+            "statement_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "publication_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "office_id": "C001047",
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2",
+            "support_unit_id": "C001047",
+            "party": "R",
+            "start_char": 2062,
+            "end_char": 2097,
+            "surface_text": "Rural Health Transformation Program",
+            "normalized_phrase": "rural health transformation program",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1996,
+            "sentence_end_char": 2187,
+            "sentence_offset_start": 66,
+            "sentence_offset_end": 101,
+            "clause_start_char": 1787,
+            "clause_end_char": 2249,
+            "clause_offset_start": 275,
+            "clause_offset_end": 310,
+            "adjacent_tokens_before": [
+              "in",
+              "the",
+              "creation",
+              "of",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "has",
+              "long",
+              "been",
+              "a"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "C001047",
+          "G000386",
+          "G000568"
+        ],
+        "publication_ids": [
+          "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b",
+          "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994",
+          "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084"
+        ],
+        "family_ids": [
+          "dfam:328a66756d702b2be687444a",
+          "dfam:3e924199ae5a12d0aa532a66",
+          "dfam:c531845034514af8cfd6554c"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:328a66756d702b2be687444a",
+            "family_revision": "dfrev:095d9789f43b0649916530a6"
+          },
+          {
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2"
+          },
+          {
+            "family_id": "dfam:c531845034514af8cfd6554c",
+            "family_revision": "dfrev:a0b4da645188069b174fe8bb"
+          }
+        ],
+        "support_unit_ids": [
+          "C001047",
+          "G000386",
+          "G000568"
+        ],
+        "citation_occurrence_ids": [
+          "occ:94b651d2c02a91725944a8b4",
+          "occ:cdc65fe200d180d018e949f5",
+          "occ:66260f6402a6259fbc7c22fe"
+        ],
+        "citations": [
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-11-09",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-welcomes-216-million-in-federal-funds-for-iowa-rural-healthcare-delivered-by-republicans-working-families-tax-cuts-law",
+            "quote": "the law’s rural health transformation program and will",
+            "occurrence_id": "occ:94b651d2c02a91725944a8b4",
+            "office_id": "G000386",
+            "publication_id": "sha256:15c6ced9e3de27b127482c926eec377c9fcd0e33ae3ed81962c1654b520a1e2b",
+            "family_id": "dfam:c531845034514af8cfd6554c",
+            "family_revision": "dfrev:a0b4da645188069b174fe8bb"
+          },
+          {
+            "member": "H. Morgan Griffith",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-11-09",
+            "url": "https://morgangriffith.house.gov/news/documentsingle.aspx?DocumentID=405870",
+            "quote": "under the rural health transformation program",
+            "occurrence_id": "occ:cdc65fe200d180d018e949f5",
+            "office_id": "G000568",
+            "publication_id": "sha256:2fa7a5e3f6dc4b35dfeb592932ed2e79c1690f9bdce459e1fbdb48b5955b4994",
+            "family_id": "dfam:328a66756d702b2be687444a",
+            "family_revision": "dfrev:095d9789f43b0649916530a6"
+          },
+          {
+            "member": "Shelley Moore Capito",
+            "party": "R",
+            "state": "WV",
+            "date": "2026-11-09",
+            "url": "https://www.capito.senate.gov/news/press-releases/capito-applauds-announcement-of-202-million-for-west-virginia-through-the-rural-health-transformation-program",
+            "quote": "through the rural health transformation program",
+            "occurrence_id": "occ:66260f6402a6259fbc7c22fe",
+            "office_id": "C001047",
+            "publication_id": "sha256:efbf0ba82055514cd54471fcf00159a52438c3b075ca638db697e1c6a7e26084",
+            "family_id": "dfam:3e924199ae5a12d0aa532a66",
+            "family_revision": "dfrev:8ef0ccad981fbce5424febb2"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "agriculture",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-09",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 6,
+          "numerator_unit": "offices",
+          "denominator": 63,
+          "denominator_unit": "offices",
+          "share": 0.095238,
+          "window": "party-day 2026-11-09",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 6,
+          "numerator_unit": "publications",
+          "denominator": 77,
+          "denominator_unit": "publications",
+          "share": 0.077922,
+          "window": "party-day 2026-11-09",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 6,
+          "numerator_unit": "document families",
+          "denominator": 71,
+          "denominator_unit": "document families",
+          "share": 0.084507,
+          "window": "party-day 2026-11-09",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-09",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 30,
+          "denominator_unit": "offices",
+          "share": 0.1,
+          "window": "party-day 2026-11-09",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 36,
+          "denominator_unit": "publications",
+          "share": 0.083333,
+          "window": "party-day 2026-11-09",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 34,
+          "denominator_unit": "document families",
+          "share": 0.088235,
+          "window": "party-day 2026-11-09",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "ripping off the american people",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 1
+      }
+    ],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "data centers pay",
+      "slug": "4008633b2b66bf3b",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2026-01-14",
+        "bioguide": "L000593",
+        "statement": "sha256:334a5efc3677f2b636100f6f306dba7a3e2a66c8ef75be86adba25d1b94a9b6d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        5,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "its current form",
+      "slug": "70aeda66630455da",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.12,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "F000466",
+        "statement": "sha256:fddc2218c81c2a108d0aa06ca5e7e1e54d25164ec1c9b7ea96eaf10c59f78d02",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "statement after voting",
+      "slug": "ad5810750e301c01",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.79,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000369",
+        "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
+        "tie": [
+          "B000740",
+          "B001291"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        1,
+        1,
+        8,
+        8,
+        8,
+        1,
+        1,
+        1,
+        1,
+        4,
+        1,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "sent a clear message",
+      "slug": "e10e79a0f8c93f75",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "T000278",
+        "statement": "sha256:bed0f32b3a0dbd614aaca730eabc722cf8083557a00e923f03b1dad181c5e0ce",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "lower energy costs",
+      "slug": "ea5ccadc2b041323",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "F000480",
+        "statement": "sha256:68ebb6f96900456f43bf00b3c6154fbbc45410fe479f009523d77a3637a8cbb3",
+        "tie": [
+          "B001285"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "series": [
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "pay their fair share",
+      "slug": "97c068b71b98e7cd",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "G000586",
+        "statement": "sha256:d0a4c36d180b39697f48396201c9856af5688b6ea4b5686c8dd2dafc04537386",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.993,
+      "series": [
+        1,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "rural health care",
+      "slug": "a65d858d08742a1c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.67,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "C000880",
+        "statement": "sha256:af7a0b02f903679e75b3eb2721ddd7b1cda6a6937cbddaba6f1bfec13994fb43",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        2,
+        1,
+        2,
+        2,
+        2,
+        1,
+        3,
+        1,
+        2,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "centers pay their",
+      "slug": "ac324e56de8d4c3a",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2026-01-14",
+        "bioguide": "L000593",
+        "statement": "sha256:334a5efc3677f2b636100f6f306dba7a3e2a66c8ef75be86adba25d1b94a9b6d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "will vote against",
+      "slug": "46b39791a84463a5",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2025-01-22",
+        "bioguide": "G000592",
+        "statement": "sha256:effdc1d2c22085553e593394d1369a37ab98adbd5bc94261918c6c9e6feef559",
+        "tie": [
+          "T000250"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "centers for medicare",
+      "slug": "1dd8d8b325111606",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.24,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "S000344",
+        "statement": "sha256:71098b32855f24855cfe8b6ddcbb286d682a5d8c64560e60380042af9b9d417a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        3,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        4,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "serious concerns about",
+      "slug": "ccdd5191d14ed461",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.33,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        3,
+        1,
+        2,
+        1,
+        1,
+        3,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "lower costs for",
+      "slug": "754e42c3b3e9ea38",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "S001156",
+        "statement": "sha256:a403d7103910bc34b1eb0f7ff6542a7aacdfcaffb149b08fef28b96ea74cbba0",
+        "tie": [
+          "H001046",
+          "V000129",
+          "W000798"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "the house floor",
+      "slug": "6360114b9c2c20ee",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001103",
+        "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+        "tie": [
+          "F000483",
+          "M001215",
+          "P000609"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.984,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "cost of living",
+      "slug": "78aad30559a5ec89",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "G000553",
+        "statement": "sha256:84a065cbce6d91d26bdbcd0806df3fdcbffec6b95989ba0e47710c7f5ce566c5",
+        "tie": [
+          "A000381",
+          "B001285",
+          "C001069",
+          "C001080",
+          "C001125",
+          "E000300",
+          "G000592",
+          "G000601",
+          "J000304",
+          "L000593",
+          "M001160",
+          "M001163",
+          "M001210",
+          "M001231",
+          "R000621",
+          "S001159",
+          "S001213",
+          "T000482",
+          "W000808",
+          "W000822"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.976,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "make it easier",
+      "slug": "d9851f9f2bdfa87c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.67,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "S000168",
+        "statement": "sha256:33e67961cfb5fbd241d712e5c0ca54d6a0e8dd075360862049f476c3c6ff0f7f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "lower costs and",
+      "slug": "5ee426304a4c8e1f",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.67,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "N000015",
+        "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        3,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "data centers pay their fair share",
+      "slug": "2521e338bac50ea0",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-01-14",
+        "bioguide": "L000593",
+        "statement": "sha256:334a5efc3677f2b636100f6f306dba7a3e2a66c8ef75be86adba25d1b94a9b6d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "permitting reform legislation",
+      "slug": "49d60863dadc2214",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2025-12-11",
+        "bioguide": "H001046",
+        "statement": "sha256:df2f82e2ab9e5804fe7fa9e784c95d38055dc25c12dc283dac9edf642dc8d199",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "permitting reform bill",
+      "slug": "f4a101079ad59ed5",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.79,
+      "first_seen": {
+        "date": "2025-05-09",
+        "bioguide": "H001046",
+        "statement": "sha256:c2432ec94789176f8065dafe721f7181b1a047607637452bbd40570d38cd8b03",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "discharge petition to force",
+      "slug": "070c5a06aa8f2d3a",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.62,
+      "first_seen": {
+        "date": "2025-04-08",
+        "bioguide": "P000620",
+        "statement": "sha256:a2f7b1dfff7f672dba4c26309cf876050fac2642a8a049bb0e5512db502a2e4a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "data centers pay",
+        "slug": "4008633b2b66bf3b",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2026-01-14",
+          "bioguide": "L000593",
+          "statement": "sha256:334a5efc3677f2b636100f6f306dba7a3e2a66c8ef75be86adba25d1b94a9b6d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          5,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "its current form",
+        "slug": "70aeda66630455da",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.12,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000466",
+          "statement": "sha256:fddc2218c81c2a108d0aa06ca5e7e1e54d25164ec1c9b7ea96eaf10c59f78d02",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "statement after voting",
+        "slug": "ad5810750e301c01",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.79,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000369",
+          "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
+          "tie": [
+            "B000740",
+            "B001291"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          1,
+          8,
+          8,
+          8,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "sent a clear message",
+        "slug": "e10e79a0f8c93f75",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "T000278",
+          "statement": "sha256:bed0f32b3a0dbd614aaca730eabc722cf8083557a00e923f03b1dad181c5e0ce",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "lower energy costs",
+        "slug": "ea5ccadc2b041323",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000480",
+          "statement": "sha256:68ebb6f96900456f43bf00b3c6154fbbc45410fe479f009523d77a3637a8cbb3",
+          "tie": [
+            "B001285"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          2,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "pay their fair share",
+        "slug": "97c068b71b98e7cd",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "G000586",
+          "statement": "sha256:d0a4c36d180b39697f48396201c9856af5688b6ea4b5686c8dd2dafc04537386",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          2,
+          3,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "centers pay their",
+        "slug": "ac324e56de8d4c3a",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2026-01-14",
+          "bioguide": "L000593",
+          "statement": "sha256:334a5efc3677f2b636100f6f306dba7a3e2a66c8ef75be86adba25d1b94a9b6d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "will vote against",
+        "slug": "46b39791a84463a5",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-01-22",
+          "bioguide": "G000592",
+          "statement": "sha256:effdc1d2c22085553e593394d1369a37ab98adbd5bc94261918c6c9e6feef559",
+          "tie": [
+            "T000250"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "serious concerns about",
+        "slug": "ccdd5191d14ed461",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          3,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "lower costs for",
+        "slug": "754e42c3b3e9ea38",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001156",
+          "statement": "sha256:a403d7103910bc34b1eb0f7ff6542a7aacdfcaffb149b08fef28b96ea74cbba0",
+          "tie": [
+            "H001046",
+            "V000129",
+            "W000798"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "rural health care",
+        "slug": "a65d858d08742a1c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.67,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "C000880",
+          "statement": "sha256:af7a0b02f903679e75b3eb2721ddd7b1cda6a6937cbddaba6f1bfec13994fb43",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "centers for medicare",
+        "slug": "1dd8d8b325111606",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.24,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "S000344",
+          "statement": "sha256:71098b32855f24855cfe8b6ddcbb286d682a5d8c64560e60380042af9b9d417a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          3,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          1,
+          4,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "to strengthen rural",
+        "slug": "91cbec9e74145f02",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-03-27",
+          "bioguide": "F000482",
+          "statement": "sha256:2d6d6554bad9911a211c7cd22f52527edaf9f70a14e9cbfb95a3aa18ca40c5cc",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "investment in rural",
+        "slug": "ed5df136f49c12a5",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.1,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "B001267",
+          "statement": "sha256:2bdd9bc70736055a3f986c79fc1ba190660f1eb630b9cdf14cdd569d91f6f8c7",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "in american history",
+        "slug": "4f53a1b5bcf1e73e",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001098",
+          "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          3,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "access to care",
+        "slug": "189c0b33f1b368e3",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001216",
+          "statement": "sha256:3da5ddfae7686c6640e9f2b696676a65399513505f7aa8908bd74319f48e60e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.97,
+        "series": [
+          2,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}

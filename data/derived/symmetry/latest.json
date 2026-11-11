@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "day": "2026-11-08",
+  "day": "2026-11-09",
   "day_scoped": true,
   "statement": "Both parties use the same pipeline, prompts, thresholds, and publication checks. The nightly audit publishes the shared fingerprints.",
   "prompts_sha": {
@@ -34,31 +34,31 @@
   },
   "parties": {
     "D": {
-      "statements_ingested": 1,
-      "members_covered": 1,
+      "statements_ingested": 77,
+      "members_covered": 63,
       "caucus_size": 263,
-      "coverage_pct": 0.4,
-      "observed_publishing_offices": 1,
+      "coverage_pct": 24.0,
+      "observed_publishing_offices": 63,
       "eligible_caucus_offices": 263,
       "date_effective_eligible_caucus_offices": 257,
       "source_supported_offices": 0,
-      "publications": 1,
-      "document_families": 1,
+      "publications": 77,
+      "document_families": 71,
       "office_source_states": {
         "source_supported": 0,
         "source_unsupported": 0,
         "unattestable": 257
       },
       "denominator_method_version": "date-effective-denominators-v1",
-      "denominator_window": "party-day 2026-11-08",
+      "denominator_window": "party-day 2026-11-09",
       "date_effective_denominators": {
         "method_version": "date-effective-denominators-v1",
-        "window": "party-day 2026-11-08",
+        "window": "party-day 2026-11-09",
         "eligible_caucus_offices": 257,
         "source_supported_offices": 0,
-        "observed_publishing_offices": 1,
-        "publications": 1,
-        "document_families": 1,
+        "observed_publishing_offices": 63,
+        "publications": 77,
+        "document_families": 71,
         "office_source_states": {
           "source_supported": 0,
           "source_unsupported": 0,
@@ -66,40 +66,40 @@
         }
       },
       "source_collection_health": "not_attested",
-      "tokens_in": 0,
-      "tokens_out": 0,
-      "claims_published": 0,
-      "claims_dropped": 0,
+      "tokens_in": 2923,
+      "tokens_out": 144,
+      "claims_published": 2,
+      "claims_dropped": 1,
       "nomenclature_tagged": 0,
-      "nomenclature_total": 0,
-      "nomenclature_rate": null
+      "nomenclature_total": 51,
+      "nomenclature_rate": 0.0
     },
     "R": {
-      "statements_ingested": 0,
-      "members_covered": 0,
+      "statements_ingested": 36,
+      "members_covered": 30,
       "caucus_size": 276,
-      "coverage_pct": 0.0,
-      "observed_publishing_offices": 0,
+      "coverage_pct": 10.9,
+      "observed_publishing_offices": 30,
       "eligible_caucus_offices": 276,
       "date_effective_eligible_caucus_offices": 269,
       "source_supported_offices": 0,
-      "publications": 0,
-      "document_families": 0,
+      "publications": 36,
+      "document_families": 34,
       "office_source_states": {
         "source_supported": 0,
         "source_unsupported": 0,
         "unattestable": 269
       },
       "denominator_method_version": "date-effective-denominators-v1",
-      "denominator_window": "party-day 2026-11-08",
+      "denominator_window": "party-day 2026-11-09",
       "date_effective_denominators": {
         "method_version": "date-effective-denominators-v1",
-        "window": "party-day 2026-11-08",
+        "window": "party-day 2026-11-09",
         "eligible_caucus_offices": 269,
         "source_supported_offices": 0,
-        "observed_publishing_offices": 0,
-        "publications": 0,
-        "document_families": 0,
+        "observed_publishing_offices": 30,
+        "publications": 36,
+        "document_families": 34,
         "office_source_states": {
           "source_supported": 0,
           "source_unsupported": 0,
@@ -107,13 +107,13 @@
         }
       },
       "source_collection_health": "not_attested",
-      "tokens_in": 0,
-      "tokens_out": 0,
-      "claims_published": 0,
+      "tokens_in": 2099,
+      "tokens_out": 101,
+      "claims_published": 1,
       "claims_dropped": 0,
       "nomenclature_tagged": 0,
-      "nomenclature_total": 0,
-      "nomenclature_rate": null
+      "nomenclature_total": 6,
+      "nomenclature_rate": 0.0
     }
   }
 }

@@ -12,33 +12,51 @@
     },
     {
       "name": "spend",
-      "value": 0.0393,
-      "projected": 0.1071,
+      "value": 0.058,
+      "projected": 0.1582,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 8,
-      "note": "$0.0393 MTD, $0.11 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 9,
+      "note": "$0.0580 MTD, $0.16 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "value": null,
-      "status": "unknown",
-      "day": "2026-11-08",
+      "day": "2026-11-09",
+      "scored_age_days": 2,
+      "parties": {
+        "D": {
+          "statements": 77,
+          "median": 54.0,
+          "share": 1.426,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 36,
+          "median": 42.0,
+          "share": 0.857,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "green",
       "freshness": {
         "age_hours": 4.0,
         "day": "2026-11-11",
         "status": "green"
       },
-      "note": "newest symmetry report is 2026-11-08 (3d old), cannot describe current coverage"
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-11-09 (2d): D 77/54=143% R 36/42=86% of own same-weekday baseline (green >= 60%); upstream 4.0h (green < 36h)"
     },
     {
       "name": "verifier_drop",
-      "value": 0.4,
-      "dropped": 2,
-      "offered": 5,
+      "value": 0.3333,
+      "dropped": 3,
+      "offered": 9,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "2/5 claims dropped over 7d (green < 25%)"
+      "note": "3/9 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -51,9 +69,7 @@
     "streak",
     "verifier_drop"
   ],
-  "unknowns": [
-    "coverage"
-  ],
+  "unknowns": [],
   "degraded_days": [],
   "top_phrase": {
     "ngram": "get to work",
