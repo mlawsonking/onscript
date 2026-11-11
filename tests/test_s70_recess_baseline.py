@@ -166,13 +166,46 @@ def test_the_recess_sunday_that_paged_the_operator_is_quiet():
                               maturity=sat)["anomalously_low"] is False
 
 
+def _force_finalized_days() -> set:
+    """Days the gate published DEGRADED because upstream never filled them, from the manifests.
+
+    A force-finalized day is by definition NOT regime-normal: the gate waited out MAX_WAIT_DAYS,
+    said so in its alerts, and published the little that arrived. The volume alert firing on such a
+    day is the dead-man working, which is the opposite of the alert fatigue this file exists to
+    measure.
+
+    Added S73. `_committed_day_counts` reads the LIVE day records, so the census below silently
+    depended on production never publishing a genuinely thin day. On 2026-09-10 it did: 2026-09-07,
+    a Labor Day Monday, was force-finalized on 20 statements against a 131 same-weekday baseline
+    (share 0.153) and the census failed the moment that commit landed. The assertion was right about
+    alert fatigue and wrong about its population (docs/37 rule 3: a property asserted over mutable
+    live files must be one production cannot legitimately violate). The manifests are the authority
+    on how a day was published, so the population now comes from them and this stays true as more
+    force-finalized days land.
+    """
+    out = set()
+    for path in sorted((DERIVED / "manifest").glob("assemble-2*.json")):
+        try:
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if manifest.get("forced_finalize") and manifest.get("day"):
+            out.add(manifest["day"])
+    return out
+
+
 def test_no_regime_normal_day_in_the_committed_series_pages():
-    """The whole series, judged. Alert fatigue is the failure being fixed, so count the pages."""
+    """The whole series, judged. Alert fatigue is the failure being fixed, so count the pages.
+
+    Stated as containment rather than emptiness: a day may page ONLY if the record says the gate
+    force-finalized it. That is the same claim S70 made, with the population it always meant.
+    """
     counts = _august()
     statements = _corpus(counts)
-    paged = [day for day in sorted(counts)
-             if ops.volume_anomaly(statements, day)["anomalously_low"]]
-    assert paged == [], f"regime-normal days still paging: {paged}"
+    forced = _force_finalized_days()
+    paged = {day for day in sorted(counts)
+             if ops.volume_anomaly(statements, day)["anomalously_low"]}
+    assert paged <= forced, f"regime-normal days still paging: {sorted(paged - forced)}"
 
 
 # --- the outage that must still be caught -------------------------------------------------------

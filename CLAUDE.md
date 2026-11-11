@@ -199,6 +199,9 @@ self-description integrity constitutional. The headline traps:
   sessions run in isolated worktrees.
 - A liveness probe runs outside the process it watches; fail-closed gates establish at first use,
   never at import time.
+- A stage that writes one item out of an advancing series sweeps its window instead of following a
+  maximum, and reaches as far back as the stage that publishes it. Impossible quantities are made
+  unreachable where they are computed, never narrated where they are displayed.
 
 ## Current status
 

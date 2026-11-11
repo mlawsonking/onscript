@@ -49,9 +49,27 @@ def collection_maturity(statements, focus_day, *, reference_day: str | None = No
             age_days = (date.fromisoformat(reference_day) - date.fromisoformat(focus_day)).days
         except (TypeError, ValueError):
             age_days = None
+    # A NEGATIVE AGE IS ALWAYS A BUG, AND IT IS NEVER REPORTED AS ONE (S73). A focus day dated after
+    # the reference day has not happened yet, so no statement about how long upstream has had to
+    # deliver it can be true. Production printed the nonsense instead of catching it: the 2026-09-09
+    # collect alert read "upstream is still landing the focus day, -1 days old", and that alert was
+    # the only visible trace of the cursor having jumped over 2026-09-08. `resolve_focus_day` now
+    # makes it unreachable on the derived path; this keeps it unreachable on every other path,
+    # including an operator's `--focus-day`. The age is floored at zero (the honest reading: the day
+    # has had no time at all) and the condition is carried as its own field so a caller can page on
+    # it rather than having to parse a sentence. Flooring cannot change a verdict: `waited_out`
+    # compares against MAX_WAIT_DAYS, which is positive, so a negative age and a zero age both fail
+    # it exactly as before.
+    future_focus_day = age_days is not None and age_days < 0
+    if future_focus_day:
+        age_days = 0
     waited_out = age_days is not None and age_days >= readiness.MAX_WAIT_DAYS
     mature = bool(row["ready"] or waited_out)
-    if row["ready"]:
+    if future_focus_day:
+        reason = (f"the focus day is dated after {reference_day}, the day the run is measuring "
+                  f"against, so it has not happened yet and its age is not meaningful "
+                  f"({row['reason']})")
+    elif row["ready"]:
         reason = "the focus day cleared the readiness gate"
     elif waited_out:
         reason = (f"the focus day is {age_days} days old, past the {readiness.MAX_WAIT_DAYS}-day "
@@ -61,6 +79,7 @@ def collection_maturity(statements, focus_day, *, reference_day: str | None = No
                   if age_days is None else
                   f"upstream is still landing the focus day, {age_days} days old ({row['reason']})")
     return {"mature": mature, "ready": bool(row["ready"]), "age_days": age_days,
+            "future_focus_day": future_focus_day,
             "same_weekday_baseline": row["baseline"], "share": row["share"], "reason": reason}
 
 

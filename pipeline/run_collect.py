@@ -60,16 +60,44 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
 
     roster.load()  # ensure the corpus-derived roster cache exists
     run_id = f"collect-{date.today().isoformat()}"
-    res = deterministic.run(records, run_id=run_id, focus_day=focus_day, source_freshness=freshness)
+    # ONE CLOCK FOR THE WHOLE RUN (S73). The cursor, the sweep window and the maturity age are three
+    # readings of the same question, "what is the last day that is actually over", and they used to
+    # sample it separately. Sampling it once means a run that straddles New York midnight cannot
+    # measure one day and age it against another, and it gives every test a frozen clock to pass in
+    # (docs/37 rule 5).
+    product_day = reference_day or util.product_day()
+    res = deterministic.run(records, run_id=run_id, focus_day=focus_day, source_freshness=freshness,
+                            product_day=product_day)
     statements = res["statements"]
     focus_day = res["focus_day"]
+    cursor = res["manifest"].get("focus_cursor") or {}
+    sweep = res["manifest"].get("day_sweep") or {}
+    if cursor.get("clamped"):
+        # Not an alert. This is the normal, healthy shape of an evening run once the mirror has
+        # pushed a few statements dated today, and it is recorded so the manifest shows the cursor
+        # holding rather than looking like it never saw the newer day at all.
+        alerts.append(f"focus held at {focus_day}: {cursor['reason']}")
+    if sweep.get("records_written") or sweep.get("boards_written"):
+        alerts.append(f"backfilled day records {sweep.get('records_written')} and silence boards "
+                      f"{sweep.get('boards_written')} that earlier runs left unwritten")
 
     # RUN A meets the focus day while upstream is still delivering it, so the volume
     # comparison is gated on collection maturity. An immature day is logged, never paged: a
     # partial count is not a thin day. The upstream-stale alert above remains the dead-man for
     # a feed that has stopped. §S65.
-    maturity = ops.collection_maturity(statements, focus_day,
-                                       reference_day=reference_day or util.product_day())
+    maturity = ops.collection_maturity(statements, focus_day, reference_day=product_day)
+    # A focus day that has not happened yet is a defect in the cursor, and it is the one condition
+    # here that is never a fact about upstream. It pages, because the last time it happened nothing
+    # did: the 2026-09-09 run printed "-1 days old" inside a withheld-comparison line and skipped
+    # 2026-09-08 in the same breath, and every workflow stayed green. Reachable now only through an
+    # explicit --focus-day, since `readiness.resolve_focus_day` clamps the derived path.
+    if maturity.get("future_focus_day"):
+        alerts.append(f"focus day {focus_day} is dated after the product day {product_day}: the "
+                      f"day cursor is ahead of the calendar")
+        ops.ntfy("OnScript collect",
+                 f"focus day {focus_day} is past the product day {product_day}; the cursor is ahead "
+                 f"of the calendar and this day cannot be honestly aged",
+                 priority="high")
     vol = _volume_anomaly(statements, focus_day, maturity=maturity)
     pct = int(config.NULL_SERVICE_VOLUME_RATIO * 100)
     if vol["anomalously_low"]:
@@ -119,6 +147,8 @@ def main() -> int:
     m = out["manifest"]
     print(f"===== RUN A collect — focus {out['focus_day']} (dry_run={llm.dry_run()}) =====")
     print(f"days present:  {m['days_present']}")
+    print(f"focus cursor:  {m.get('focus_cursor')}")
+    print(f"day sweep:     {m.get('day_sweep')}")
     print(f"normalize:     {m['normalize']}")
     print(f"phrase engine: {m['phrase_engine']}")
     print(f"volume:        {m['volume']}")

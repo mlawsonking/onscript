@@ -47,14 +47,18 @@ def main() -> int:
     # One rebuild invocation is one measured run. Freeze its real start time across both passes so
     # generated_at keeps its meaning while time sampling cannot make otherwise identical JSON differ.
     generated_at = util.now_utc_iso()
+    # The day cursor and the backfill sweep both key on the product day (S73), so it is frozen here
+    # alongside generated_at for the same reason: a rebuild that straddled New York midnight would
+    # otherwise focus two different days and report itself irreproducible over a clock tick.
+    product_day = util.product_day()
 
-    deterministic.run(records, run_id="rebuild-A", generated_at=generated_at)
+    deterministic.run(records, run_id="rebuild-A", generated_at=generated_at, product_day=product_day)
     h1 = _derived_tree_hash()
     print(f"[rebuild] derived tree hash A: {h1}")
     if args.once:
         return 0
 
-    deterministic.run(records, run_id="rebuild-B", generated_at=generated_at)
+    deterministic.run(records, run_id="rebuild-B", generated_at=generated_at, product_day=product_day)
     h2 = _derived_tree_hash()
     print(f"[rebuild] derived tree hash B: {h2}")
     if h1 == h2:

@@ -669,6 +669,46 @@ def withdrawn_discipline_view(day_data: dict | None) -> dict:
     }
 
 
+def day_record(ledger: dict, discipline: dict, day: str) -> dict:
+    """The deterministic half of one day's public record, as RUN A writes it.
+
+    ONE OWNER (docs/37 rule 1). Two callers build this object: `build_derived`, for the day the run
+    is focused on, and `deterministic`'s backfill sweep, for a day inside the lookback window that
+    is missing its record. They were one inline literal until S73, when the sweep needed the same
+    shape; a second literal would have drifted the moment either grew a field, and a day written by
+    the sweep would then have differed from a day written by the focus path for no reason a reader
+    could see.
+
+    `daily_lines` is None because the LLM assemble stage fills it. That is exactly what makes this
+    object dangerous over a PUBLISHED day and why every caller checks `util.day_is_final` first:
+    writing it over a published day deletes that day's composites (docs/23 section 7.5 R-C).
+    """
+    return {
+        "day": day,
+        "top_synchronized": top_synchronized(ledger, day, k=20),
+        # R-36.3: the discipline index is withdrawn from newly generated day records
+        # and carried here labeled withdrawn. Historical records keep it top level and
+        # are not rewritten; readers use withdrawn_discipline_view for both shapes.
+        "legacy_unvalidated_metrics": {
+            "status": "withdrawn",
+            "reason": DISCIPLINE_WITHDRAWN_REASON,
+            "metrics": {"discipline": {p: discipline.get(p, {}).get(day)
+                                       for p in config.COMPOSITE_PARTIES}},
+        },
+        "daily_lines": None,  # filled by the LLM assemble stage
+    }
+
+
+def day_record_keys() -> frozenset:
+    """Which keys a day record carries, asked of the owner rather than listed next to it.
+
+    docs/37 rule 1. The sweep needs to recognise a record that is missing its deterministic half, and
+    a literal tuple beside `day_record` is a registry that goes stale the first time the record grows
+    a field. Deriving it from the function cannot drift.
+    """
+    return frozenset(day_record({}, {}, "1970-01-01"))
+
+
 def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_phrases: int = 50,
                   coverage: dict | None = None, allow_final_overwrite: bool = False) -> dict:
     """Write all deterministic derived JSON. Returns a summary for the manifest. Takes the
@@ -720,21 +760,9 @@ def build_derived(statements, ledger, discipline, out_dir, *, focus_day: str, k_
               f"(repair path: python -m pipeline.run_assemble --day {focus_day})")
         day_top, focus_day_write = None, "skipped-final"
     else:
-        day_top = top_synchronized(ledger, focus_day, k=20)
-        day_discipline = {p: discipline.get(p, {}).get(focus_day) for p in config.COMPOSITE_PARTIES}
-        _u.write_json(days_dir / f"{focus_day}.json", {
-            "day": focus_day,
-            "top_synchronized": day_top,
-            # R-36.3: the discipline index is withdrawn from newly generated day records
-            # and carried here labeled withdrawn. Historical records keep it top level and
-            # are not rewritten; readers use withdrawn_discipline_view for both shapes.
-            "legacy_unvalidated_metrics": {
-                "status": "withdrawn",
-                "reason": DISCIPLINE_WITHDRAWN_REASON,
-                "metrics": {"discipline": day_discipline},
-            },
-            "daily_lines": None,  # filled by the LLM assemble stage
-        })
+        record = day_record(ledger, discipline, focus_day)
+        day_top = record["top_synchronized"]
+        _u.write_json(days_dir / f"{focus_day}.json", record)
         focus_day_write = "written"
 
     # Peak-day source evidence for every public phrase page. It is deliberately downstream of the

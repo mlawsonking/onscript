@@ -135,6 +135,78 @@ def day_readiness(counts_by_day: dict, day: str, ratio: float = READY_RATIO) -> 
                        f"({share:.0%} < {ratio:.0%}), upstream likely still landing")}
 
 
+def resolve_focus_day(days_present, product_day: str, *, explicit: str | None = None) -> dict:
+    """Which day does RUN A measure and write? The cursor, and the one rule it must obey.
+
+    THE HOLE THIS CLOSES (S73, the 2026-09-08 orphan). RUN A used to take the newest day present
+    in the corpus: `focus_day = days_present[-1]` in `deterministic.run`. The congress-press mirror
+    pushes every morning around 09:30Z, so by the evening collect a handful of statements dated the
+    RUN's OWN day have usually landed. The cursor followed them, and that had two consequences,
+    both of which reached production:
+
+      * A SAME-DAY FOCUS. The run measured a day that was still hours from being over, and every
+        surface keyed to it was built from a fraction of it. On 2026-09-09 the whole instrument
+        keyed to a day holding ONE statement, and `phrases/top.json` went to zero rows.
+      * A SKIPPED DAY. The cursor was a maximum with no memory of what it had already written, so
+        yesterday was vaulted over the moment a same-day statement appeared. Between 2026-07-12 and
+        2026-09-09 it skipped thirteen days. Of the nine that fell after the silence board was wired
+        on 2026-07-29, ALL NINE are missing their board: 2026-08-03, 08-05, 08-13, 08-16, 08-21,
+        08-26, 08-31, 09-06 and 09-08. 2026-09-08, Congress's first day back from recess, lost its
+        day record as well, and no later run would ever have written it.
+
+    THE RULE. The focus day is never later than the product day, which is by definition the last
+    New York calendar day that is actually over. A corpus ending BEFORE the product day still
+    governs, so a backfill or a stalled mirror focuses the newest day it holds. This clamps the
+    future and never the past.
+
+    Skipping is prevented separately, by the sweep over `sweep_window`: clamping alone would still
+    leave a hole on any day a run does not happen. The two together are the invariant that matters,
+    which is that no judgeable day passes through the window unwritten.
+
+    `explicit` is the operator's `--focus-day`. It is honored, because a repair knows which day it
+    means, but a day past the product day is REPORTED: nothing downstream can compute an honest age
+    for a day that has not happened.
+
+    Pure. The clock arrives as `product_day`, never sampled here (docs/37 rule 5). ISO dates compare
+    correctly as strings, which is why this needs no date parsing.
+
+    Returns {day, requested, clamped, future, reason}.
+    """
+    newest = max(days_present) if days_present else None
+    if explicit:
+        future = explicit > product_day
+        return {"day": explicit, "requested": explicit, "clamped": False, "future": future,
+                "reason": ("explicit --focus-day override" if not future else
+                           f"explicit --focus-day {explicit} is past the product day {product_day}; "
+                           f"honored as an override, but its age is not meaningful")}
+    if newest is None:
+        return {"day": product_day, "requested": None, "clamped": False, "future": False,
+                "reason": "no statements in the corpus, so the product day stands in"}
+    if newest > product_day:
+        return {"day": product_day, "requested": newest, "clamped": True, "future": False,
+                "reason": (f"the corpus already holds {newest}, a day that is not over yet; "
+                           f"measuring the product day {product_day} instead")}
+    return {"day": newest, "requested": newest, "clamped": False, "future": False,
+            "reason": ("the newest day in the corpus is the product day" if newest == product_day
+                       else f"the corpus ends at {newest}, behind the product day {product_day}")}
+
+
+def sweep_window(focus_day: str, *, lookback: int = LOOKBACK_DAYS) -> list[str]:
+    """Every day RUN A is responsible for keeping written this run, oldest first.
+
+    Same width and same direction as `select_target_day`'s walk, deliberately: the stage that
+    WRITES a day and the stage that PUBLISHES it must reach exactly as far back as each other. A
+    write window narrower than the publication window would hand assemble a day whose deterministic
+    half nobody built; a wider one would rebuild days that are long since final.
+
+    Bounded by `LOOKBACK_DAYS`, so the cost of the sweep is a constant, not a function of how long
+    the corpus is. A hole older than the window is out of reach by design and is an operator repair,
+    not a daily cost.
+    """
+    d0 = _d(focus_day)
+    return [(d0 - timedelta(days=k)).isoformat() for k in range(lookback, -1, -1)]
+
+
 def select_target_day(counts_by_day: dict, is_final, product_day: str, *,
                       lookback: int = LOOKBACK_DAYS, max_wait: int = MAX_WAIT_DAYS,
                       ratio: float = READY_RATIO) -> dict:
@@ -156,6 +228,17 @@ def select_target_day(counts_by_day: dict, is_final, product_day: str, *,
         if r["ready"] and r["count"] >= MIN_PUBLISHABLE:
             return {"day": day, "forced": False, "readiness": r, "reason": "ready"}
         # not ready — but has it waited too long? Publish what we have rather than livelock.
+        #
+        # AGE IS COUNTED IN PRODUCT DAYS, NOT CALENDAR DAYS, and the difference is one full day.
+        # `p0` is already the PRIOR New York day, so a day is "0 days old" on the first run after
+        # it ends, and `MAX_WAIT_DAYS` of 2 force-finalizes it on the third calendar day after it.
+        # Worked from the incident that made this worth writing down (S73): 2026-09-07 was held on
+        # the 09-08 runs (age 0) and the 09-09 runs (age 1, the "only 1d old" in the 09-09 23:28Z
+        # log), and force-finalized on 09-10 (age 2). That is three calendar days of lag on a day
+        # upstream never filled, and it is the intended reading of MAX_WAIT_DAYS rather than an
+        # arithmetic slip: the unit is the pipeline's own product day throughout, so this number
+        # and `ops.collection_maturity`'s `age_days` always agree. Changing the lag means changing
+        # MAX_WAIT_DAYS, which is a threshold and therefore not an implementation decision.
         age = (p0 - _d(day)).days
         if age >= max_wait:
             if r["count"] < MIN_PUBLISHABLE:
