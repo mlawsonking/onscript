@@ -1,0 +1,2587 @@
+{
+  "day": "2026-11-02",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-02",
+      "party": "D",
+      "composite": "Across 54 statements today, no message rises to a shared position beyond the language itself. The most synchronized phrase is in federal funding, recorded 7 times among us, first recorded in our corpus from Tammy Duckworth (D-IL).",
+      "measurement_lead": "Measurement: 54 publications were observed for the Democratic party on 2026-11-02.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-02",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "a89e413c7c62111b3595b0474d911a8a572f11c57876a4ba7302c49fda3ef02e",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 54 statements today, no message rises to a shared position beyond the language itself. The most synchronized phrase is in federal funding, recorded 7 times among us, first recorded in our corpus from Tammy Duckworth (D-IL).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "27fa366c9802252740e80ba6f8c41a52712b9b788fa95ae57aedb73fb14f6e19",
+        "response_sha256": "1700b0f8fce04f0868fd6c1093eb60f320cebf3230022e2be3ff5e6ded69eb93",
+        "model_response_sha256": "06e19b216c0bd2129dd455c1adf2b1bb0bc02895d975b6c040e6c6728837c690"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-02",
+        "statements": 54,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "in federal funding",
+          "members": 7,
+          "family_count": 7,
+          "first_sayer": "Tammy Duckworth",
+          "first_sayer_party": "D",
+          "first_sayer_state": "IL"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1254,
+        "tokens_out": 79,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-02",
+      "party": "R",
+      "composite": "Today 42 of us released statements. 4 of us carried \"million in federal funding\". Our most synchronized phrase, used by 6 of us: across the state.",
+      "measurement_lead": "Measurement: 42 publications were observed for the Republican party on 2026-11-02.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-02",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "c985ed66df676a9f2a42cb4b13205f2b28a42a4ca744ed97ed9564d67307e333",
+        "claim_ids": [
+          "2026-11-02-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 42 of us released statements. 4 of us carried \"million in federal funding\". Our most synchronized phrase, used by 6 of us: across the state.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-02-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "bd2006390ec90ef00c530875f9f8b4f6b30ef07c16cae9f21ecbb28d36579959",
+        "response_sha256": "8c6bfec054e7ddb80c03cffda93cfb15239ecaec759486f788e61eb4077b3e55",
+        "model_response_sha256": "fed85f7de96ca374ec68a8d31876d5435469c40b2ac16379b0c167d422821679"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-02-R-00"
+          ],
+          "claim_ids": [
+            "2026-11-02-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-02-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-02",
+        "statements": 42,
+        "talking_points": [
+          {
+            "label": "million in federal funding",
+            "members": 4,
+            "quote": "million in federal funding",
+            "topics": [
+              "district_funding"
+            ],
+            "claim_id": "2026-11-02-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "district_funding",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "across the state",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Nicholas J. Begich III",
+          "first_sayer_party": "R",
+          "first_sayer_state": "AK"
+        },
+        "selected_claims": [
+          {
+            "label": "million in federal funding",
+            "members": 4,
+            "quote": "million in federal funding",
+            "topics": [
+              "district_funding"
+            ],
+            "claim_id": "2026-11-02-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "district_funding",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-02-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2084,
+        "tokens_out": 119,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [],
+    "R": [
+      {
+        "id": "2026-11-02-R-00",
+        "party": "R",
+        "day": "2026-11-02",
+        "label": "million in federal funding",
+        "member_count": 4,
+        "statements": [
+          "sha256:4473831682dc2c5274d9842f22d11a5759c0a35c9691be03d01dd14b959e2c0b",
+          "sha256:5b781b66a8619ee66ae077dd4d23f13e8c31b5223ae9681435c897ce93e0c19b",
+          "sha256:a8dcf57179f6d8113d34eeed09d2d945314ab6c802fff13e856ece31b3d0444d",
+          "sha256:f5567131a35ed543e68554b65958192712ee6764bf81f1135bec40d8069f88a2"
+        ],
+        "fragments": [
+          {
+            "text": "2 million in federal funding to improve roadway",
+            "statement": "sha256:4473831682dc2c5274d9842f22d11a5759c0a35c9691be03d01dd14b959e2c0b"
+          },
+          {
+            "text": "5 million in federal funding for projects across",
+            "statement": "sha256:f5567131a35ed543e68554b65958192712ee6764bf81f1135bec40d8069f88a2"
+          },
+          {
+            "text": "5 million in federal funding to support the expansion",
+            "statement": "sha256:5b781b66a8619ee66ae077dd4d23f13e8c31b5223ae9681435c897ce93e0c19b"
+          },
+          {
+            "text": "9 million in federal funding will support a",
+            "statement": "sha256:a8dcf57179f6d8113d34eeed09d2d945314ab6c802fff13e856ece31b3d0444d"
+          }
+        ],
+        "topics": [
+          "district_funding"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-02-R-00",
+        "support_phrase": {
+          "normalized": "million in federal funding",
+          "text": "million in federal funding",
+          "occurrence_id": "occ:a150818fc50910b6ec9c5d06"
+        },
+        "display_quote": "million in federal funding",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a150818fc50910b6ec9c5d06",
+            "claim_id": "2026-11-02-R-00",
+            "statement_id": "sha256:4473831682dc2c5274d9842f22d11a5759c0a35c9691be03d01dd14b959e2c0b",
+            "publication_id": "sha256:4473831682dc2c5274d9842f22d11a5759c0a35c9691be03d01dd14b959e2c0b",
+            "office_id": "G000386",
+            "family_id": "dfam:9f9f9316a9c54774f918e2f9",
+            "family_revision": "dfrev:61d7af6e06ea7e05e741839e",
+            "support_unit_id": "G000386",
+            "party": "R",
+            "start_char": 153,
+            "end_char": 179,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 151,
+            "sentence_end_char": 222,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 28,
+            "clause_start_char": 22,
+            "clause_end_char": 268,
+            "clause_offset_start": 131,
+            "clause_offset_end": 157,
+            "adjacent_tokens_before": [
+              "will",
+              "receive",
+              "over",
+              "76",
+              "2"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "improve",
+              "roadway",
+              "safety",
+              "across"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bc4207d02086bb7c7cd4fb1d",
+            "claim_id": "2026-11-02-R-00",
+            "statement_id": "sha256:5b781b66a8619ee66ae077dd4d23f13e8c31b5223ae9681435c897ce93e0c19b",
+            "publication_id": "sha256:5b781b66a8619ee66ae077dd4d23f13e8c31b5223ae9681435c897ce93e0c19b",
+            "office_id": "M001211",
+            "family_id": "dfam:4be554784d80483c5789dfe3",
+            "family_revision": "dfrev:1a0d0a18423a3bcb66f9c71f",
+            "support_unit_id": "M001211",
+            "party": "R",
+            "start_char": 98,
+            "end_char": 124,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 96,
+            "sentence_end_char": 211,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 28,
+            "clause_start_char": 48,
+            "clause_end_char": 273,
+            "clause_offset_start": 50,
+            "clause_offset_end": 76,
+            "adjacent_tokens_before": [
+              "miller",
+              "il-15",
+              "announced",
+              "4",
+              "5"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "support",
+              "the",
+              "expansion",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:24a9ff1dadc3b9b26ee074f3",
+            "claim_id": "2026-11-02-R-00",
+            "statement_id": "sha256:a8dcf57179f6d8113d34eeed09d2d945314ab6c802fff13e856ece31b3d0444d",
+            "publication_id": "sha256:a8dcf57179f6d8113d34eeed09d2d945314ab6c802fff13e856ece31b3d0444d",
+            "office_id": "Y000064",
+            "family_id": "dfam:81e7f88983af14129a0d883f",
+            "family_revision": "dfrev:006859cd2f3d6b036cb490bf",
+            "support_unit_id": "Y000064",
+            "party": "R",
+            "start_char": 798,
+            "end_char": 824,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 796,
+            "sentence_end_char": 973,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 28,
+            "clause_start_char": 425,
+            "clause_end_char": 914,
+            "clause_offset_start": 373,
+            "clause_offset_end": 399,
+            "adjacent_tokens_before": [
+              "fields",
+              "program",
+              "approximately",
+              "116",
+              "9"
+            ],
+            "adjacent_tokens_after": [
+              "will",
+              "support",
+              "a",
+              "360",
+              "million"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bd735146968bf3805bc8e891",
+            "claim_id": "2026-11-02-R-00",
+            "statement_id": "sha256:f5567131a35ed543e68554b65958192712ee6764bf81f1135bec40d8069f88a2",
+            "publication_id": "sha256:f5567131a35ed543e68554b65958192712ee6764bf81f1135bec40d8069f88a2",
+            "office_id": "K000398",
+            "family_id": "dfam:7e2a8b2df1e2e31e1e0dab85",
+            "family_revision": "dfrev:5c718b8c10f197eb7d7ea205",
+            "support_unit_id": "K000398",
+            "party": "R",
+            "start_char": 206,
+            "end_char": 232,
+            "surface_text": "million in federal funding",
+            "normalized_phrase": "million in federal funding",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 204,
+            "sentence_end_char": 263,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 28,
+            "clause_start_char": 175,
+            "clause_end_char": 312,
+            "clause_offset_start": 31,
+            "clause_offset_end": 57,
+            "adjacent_tokens_before": [
+              "secured",
+              "more",
+              "than",
+              "5",
+              "5"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "projects",
+              "across",
+              "the",
+              "county"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "G000386",
+          "K000398",
+          "M001211",
+          "Y000064"
+        ],
+        "publication_ids": [
+          "sha256:4473831682dc2c5274d9842f22d11a5759c0a35c9691be03d01dd14b959e2c0b",
+          "sha256:5b781b66a8619ee66ae077dd4d23f13e8c31b5223ae9681435c897ce93e0c19b",
+          "sha256:a8dcf57179f6d8113d34eeed09d2d945314ab6c802fff13e856ece31b3d0444d",
+          "sha256:f5567131a35ed543e68554b65958192712ee6764bf81f1135bec40d8069f88a2"
+        ],
+        "family_ids": [
+          "dfam:4be554784d80483c5789dfe3",
+          "dfam:7e2a8b2df1e2e31e1e0dab85",
+          "dfam:81e7f88983af14129a0d883f",
+          "dfam:9f9f9316a9c54774f918e2f9"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:4be554784d80483c5789dfe3",
+            "family_revision": "dfrev:1a0d0a18423a3bcb66f9c71f"
+          },
+          {
+            "family_id": "dfam:7e2a8b2df1e2e31e1e0dab85",
+            "family_revision": "dfrev:5c718b8c10f197eb7d7ea205"
+          },
+          {
+            "family_id": "dfam:81e7f88983af14129a0d883f",
+            "family_revision": "dfrev:006859cd2f3d6b036cb490bf"
+          },
+          {
+            "family_id": "dfam:9f9f9316a9c54774f918e2f9",
+            "family_revision": "dfrev:61d7af6e06ea7e05e741839e"
+          }
+        ],
+        "support_unit_ids": [
+          "G000386",
+          "K000398",
+          "M001211",
+          "Y000064"
+        ],
+        "citation_occurrence_ids": [
+          "occ:a150818fc50910b6ec9c5d06",
+          "occ:bc4207d02086bb7c7cd4fb1d",
+          "occ:24a9ff1dadc3b9b26ee074f3"
+        ],
+        "citations": [
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-11-02",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-welcomes-over-762-million-in-federal-funding-to-support-safety-and-repair-of-iowa-roads",
+            "quote": "2 million in federal funding to improve roadway",
+            "occurrence_id": "occ:a150818fc50910b6ec9c5d06",
+            "office_id": "G000386",
+            "publication_id": "sha256:4473831682dc2c5274d9842f22d11a5759c0a35c9691be03d01dd14b959e2c0b",
+            "family_id": "dfam:9f9f9316a9c54774f918e2f9",
+            "family_revision": "dfrev:61d7af6e06ea7e05e741839e"
+          },
+          {
+            "member": "Mary E. Miller",
+            "party": "R",
+            "state": "IL",
+            "date": "2026-11-02",
+            "url": "https://marymiller.house.gov/media/press-releases/rep-miller-announced-45-million-rural-water-infrastructure-expansion",
+            "quote": "5 million in federal funding to support the expansion",
+            "occurrence_id": "occ:bc4207d02086bb7c7cd4fb1d",
+            "office_id": "M001211",
+            "publication_id": "sha256:5b781b66a8619ee66ae077dd4d23f13e8c31b5223ae9681435c897ce93e0c19b",
+            "family_id": "dfam:4be554784d80483c5789dfe3",
+            "family_revision": "dfrev:1a0d0a18423a3bcb66f9c71f"
+          },
+          {
+            "member": "Todd Young",
+            "party": "R",
+            "state": "IN",
+            "date": "2026-11-02",
+            "url": "https://www.young.senate.gov/newsroom/press-releases/young-praises-federal-investment-in-northwest-indiana-fertilizer-manufacturing/",
+            "quote": "9 million in federal funding will support a",
+            "occurrence_id": "occ:24a9ff1dadc3b9b26ee074f3",
+            "office_id": "Y000064",
+            "publication_id": "sha256:a8dcf57179f6d8113d34eeed09d2d945314ab6c802fff13e856ece31b3d0444d",
+            "family_id": "dfam:81e7f88983af14129a0d883f",
+            "family_revision": "dfrev:006859cd2f3d6b036cb490bf"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "district_funding",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-02",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 40,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-02",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 54,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-02",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 41,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-02",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-02",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 26,
+          "denominator_unit": "offices",
+          "share": 0.153846,
+          "window": "party-day 2026-11-02",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 42,
+          "denominator_unit": "publications",
+          "share": 0.095238,
+          "window": "party-day 2026-11-02",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 4,
+          "numerator_unit": "document families",
+          "denominator": 42,
+          "denominator_unit": "document families",
+          "share": 0.095238,
+          "window": "party-day 2026-11-02",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "million in federal funding",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "certain non-citizens from census counts",
+        "reason": "REJECT_CLAIM_CONTRACT",
+        "member_count": 3
+      },
+      {
+        "label": "this letter comes after reports",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      },
+      {
+        "label": "a bipartisan group of 24",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "in federal funding",
+      "slug": "27d5305fed92a475",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 6,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 7,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 1.48,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000622",
+        "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.965,
+      "series": [
+        4,
+        6,
+        4,
+        4,
+        3,
+        5,
+        4,
+        3,
+        7,
+        8,
+        4,
+        7,
+        1,
+        7
+      ]
+    },
+    {
+      "ngram": "federal funding for",
+      "slug": "6ed8efa415776803",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.79,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "M001223",
+        "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+        "tie": [
+          "M001163"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.966,
+      "series": [
+        3,
+        4,
+        1,
+        2,
+        3,
+        5,
+        3,
+        2,
+        3,
+        3,
+        7,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "ngram": "across the state",
+      "slug": "6a6b0d830bfc947c",
+      "n": 3,
+      "day_peak": 6,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 6,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 6,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001323",
+        "statement": "sha256:a0c8032ea2c45288425863048906ab5923e51a1ca6beef8b66cd4bf89b15c539",
+        "tie": [
+          "B001230"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.958,
+      "series": [
+        3,
+        2,
+        1,
+        1,
+        1,
+        3,
+        3,
+        1,
+        2,
+        3,
+        2,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "ngram": "and public safety",
+      "slug": "99694f40a763a2c2",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.33,
+      "first_seen": {
+        "date": "2025-01-05",
+        "bioguide": "K000009",
+        "statement": "sha256:7e46900a36c689bb1e696ff546e4bd03430302480ca6c6c99e5b1c542d5ead56",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "ngram": "communities across our state",
+      "slug": "64c64d092278baf1",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.73,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "S001218",
+        "statement": "sha256:10948c319e7efa5d6112fea1a72a9af3777726d0ded054177568a6be4ad87686",
+        "tie": [
+          "H001046",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.993,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "million in federal funding",
+      "slug": "3edf9fb2999b89ff",
+      "n": 4,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 3,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.19,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "H001061",
+        "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
+        "tie": [
+          "S000148"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.98,
+      "series": [
+        4,
+        3,
+        4,
+        4,
+        1,
+        3,
+        4,
+        3,
+        2,
+        4,
+        3,
+        3,
+        7,
+        4
+      ]
+    },
+    {
+      "ngram": "rising costs and",
+      "slug": "18527fc83e1ac43d",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-14",
+        "bioguide": "C001117",
+        "statement": "sha256:9b265419c1129b6f308bcec3bb0b4752b6b192979c6b1570130b5e7c7d11994a",
+        "tie": [
+          "H001068",
+          "M001227"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.996,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "projects across the",
+      "slug": "8e3ff31b0c27150a",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000617",
+        "statement": "sha256:bc497b338a36f44b2282f8d199c2278a31c1a73686112dda8f944a84f26bbc21",
+        "tie": [
+          "M001163"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "series": [
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "centers for medicare",
+      "slug": "1dd8d8b325111606",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.07,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "S000344",
+        "statement": "sha256:71098b32855f24855cfe8b6ddcbb286d682a5d8c64560e60380042af9b9d417a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        2,
+        2,
+        3,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "across the country to",
+      "slug": "e53e3205d3392f13",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "K000398",
+        "statement": "sha256:69e8ab974dd39145bddeb0724efb47fe77c109999d7be305a0e4a93d63fc6b28",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.984,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "federal funding to",
+      "slug": "472a760aeae1d4f2",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.7,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "G000555",
+        "statement": "sha256:eb638a997acc8901dc25261bb63f7028171bd64df0100e940a27f8959800fdee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        3,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "rates cancer rates poverty rates unemployment",
+      "slug": "332108815ac1d588",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "mortality rates cancer rates poverty rates",
+      "slug": "33beb513cfd4b1c4",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "fertility mortality rates cancer rates poverty",
+      "slug": "929e7cecb614da92",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "cancer rates poverty rates unemployment rates",
+      "slug": "06a99ba69fe5f637",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "exclude certain non-citizens from census counts",
+      "slug": "fe06f5afccb9db1f",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "unemployment rates and labor force participation",
+      "slug": "f5d48d60b6315dd7",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "decennial census counts and omit questions",
+      "slug": "69fc261cbfe5140e",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "accurate population estimates for small geographic",
+      "slug": "2f38728b67b34fe7",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "public safety services the senators wrote",
+      "slug": "79cd02859a79e5f2",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-11-02",
+        "bioguide": "G000574",
+        "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+        "tie": [
+          "K000394",
+          "V000128"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "in federal funding",
+        "slug": "27d5305fed92a475",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.48,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000622",
+          "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.965,
+        "series": [
+          4,
+          6,
+          4,
+          4,
+          3,
+          5,
+          4,
+          3,
+          7,
+          8,
+          4,
+          7,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "federal funding for",
+        "slug": "6ed8efa415776803",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.79,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001223",
+          "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.966,
+        "series": [
+          3,
+          4,
+          1,
+          2,
+          3,
+          5,
+          3,
+          2,
+          3,
+          3,
+          7,
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "ngram": "and public safety",
+        "slug": "99694f40a763a2c2",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.33,
+        "first_seen": {
+          "date": "2025-01-05",
+          "bioguide": "K000009",
+          "statement": "sha256:7e46900a36c689bb1e696ff546e4bd03430302480ca6c6c99e5b1c542d5ead56",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "communities across our state",
+        "slug": "64c64d092278baf1",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "S001218",
+          "statement": "sha256:10948c319e7efa5d6112fea1a72a9af3777726d0ded054177568a6be4ad87686",
+          "tie": [
+            "H001046",
+            "V000128"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "rising costs and",
+        "slug": "18527fc83e1ac43d",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-14",
+          "bioguide": "C001117",
+          "statement": "sha256:9b265419c1129b6f308bcec3bb0b4752b6b192979c6b1570130b5e7c7d11994a",
+          "tie": [
+            "H001068",
+            "M001227"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.996,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "across the country to",
+        "slug": "e53e3205d3392f13",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "K000398",
+          "statement": "sha256:69e8ab974dd39145bddeb0724efb47fe77c109999d7be305a0e4a93d63fc6b28",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "federal funding to",
+        "slug": "472a760aeae1d4f2",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.7,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "G000555",
+          "statement": "sha256:eb638a997acc8901dc25261bb63f7028171bd64df0100e940a27f8959800fdee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          3,
+          2,
+          2,
+          3,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          4,
+          3,
+          3,
+          4
+        ]
+      },
+      {
+        "ngram": "rates cancer rates poverty rates unemployment",
+        "slug": "332108815ac1d588",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-11-02",
+          "bioguide": "G000574",
+          "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+          "tie": [
+            "K000394",
+            "V000128"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "mortality rates cancer rates poverty rates",
+        "slug": "33beb513cfd4b1c4",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-11-02",
+          "bioguide": "G000574",
+          "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+          "tie": [
+            "K000394",
+            "V000128"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          3
+        ]
+      },
+      {
+        "ngram": "fertility mortality rates cancer rates poverty",
+        "slug": "929e7cecb614da92",
+        "n": 6,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-11-02",
+          "bioguide": "G000574",
+          "statement": "sha256:042f8b7a747e12f55375b1ce3fc9deb66023c7d1adadb8570bd00e39e71be0be",
+          "tie": [
+            "K000394",
+            "V000128"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          3
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "in federal funding",
+        "slug": "27d5305fed92a475",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 1.48,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000622",
+          "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.965,
+        "series": [
+          4,
+          6,
+          4,
+          4,
+          3,
+          5,
+          4,
+          3,
+          7,
+          8,
+          4,
+          7,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "across the state",
+        "slug": "6a6b0d830bfc947c",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.55,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001323",
+          "statement": "sha256:a0c8032ea2c45288425863048906ab5923e51a1ca6beef8b66cd4bf89b15c539",
+          "tie": [
+            "B001230"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.958,
+        "series": [
+          3,
+          2,
+          1,
+          1,
+          1,
+          3,
+          3,
+          1,
+          2,
+          3,
+          2,
+          3,
+          5,
+          6
+        ]
+      },
+      {
+        "ngram": "million in federal funding",
+        "slug": "3edf9fb2999b89ff",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.19,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "H001061",
+          "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
+          "tie": [
+            "S000148"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.98,
+        "series": [
+          4,
+          3,
+          4,
+          4,
+          1,
+          3,
+          4,
+          3,
+          2,
+          4,
+          3,
+          3,
+          7,
+          4
+        ]
+      },
+      {
+        "ngram": "projects across the",
+        "slug": "8e3ff31b0c27150a",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000617",
+          "statement": "sha256:bc497b338a36f44b2282f8d199c2278a31c1a73686112dda8f944a84f26bbc21",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "centers for medicare",
+        "slug": "1dd8d8b325111606",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.07,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "S000344",
+          "statement": "sha256:71098b32855f24855cfe8b6ddcbb286d682a5d8c64560e60380042af9b9d417a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          2,
+          2,
+          3,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "safety improvements along",
+        "slug": "cb8155bb75d358cd",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.7,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "T000193",
+          "statement": "sha256:c38b1da8e3f9eb6145f51c64aed4cd71973f18db4bb1f5016befc1ef6345ca8b",
+          "tie": [
+            "B001230"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "5 million in federal",
+        "slug": "09bafae4eff2a68a",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001295",
+          "statement": "sha256:2fea1f060ec846ec4073ac5b68fb531da7b90151b737248558c4c494fb6dbeab",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "federal funding will",
+        "slug": "92393fc489fd6b2f",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.83,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "H001061",
+          "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
+          "tie": [
+            "S000148"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          3,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "million in funding",
+        "slug": "d747e722001f8aa4",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.91,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001096",
+          "statement": "sha256:61f8a474830f8fea054b8a37e7e5de13f4c916063064f9582bd492c5d0fdee56",
+          "tie": [
+            "H001046"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          4,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "care they need",
+        "slug": "08f53972e38193cb",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001169",
+          "statement": "sha256:d8c39d885c181e5beb7928c2f9c92eaa77cd3a482b132c150ddaa1bfd9584c19",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "in federal funding",
+      "slug": "27d5305fed92a475",
+      "n": 3,
+      "both": 6,
+      "day_peak": 6,
+      "counts": {
+        "D": 7,
+        "R": 6,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000622",
+        "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.965,
+      "velocity": 1.48,
+      "sides": {
+        "D": [
+          {
+            "member": "Vicente Gonzalez",
+            "party": "D",
+            "state": "TX",
+            "date": "2026-11-02",
+            "url": "https://gonzalez.house.gov/media/press-releases/congressman-vicente-gonzalez-delivers-800000-safer-streets-improved-trauma",
+            "quote": "Since being elected to Congress, I have brought down nearly $8 billion in federal funding to our region, and I will continue working with our federal and local partners to build on these investments to create a better future for South Texas families."
+          },
+          {
+            "member": "Josh Gottheimer",
+            "party": "D",
+            "state": "NJ",
+            "date": "2026-11-02",
+            "url": "https://gottheimer.house.gov/posts/release-gottheimer-claws-back-450k-from-washington-for-englewoods-dispatch-and-emergency-management-center",
+            "quote": "ENGLEWOOD, NJ — Today, Monday, November 2, 2026, Congressman Josh Gottheimer (NJ-5) announced that he secured $450,000 in federal funding from Washington for the City of Englewood to invest in the completion of its new Dispatch and Emergency Management Center."
+          },
+          {
+            "member": "Jimmy Panetta",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-02",
+            "url": "https://panetta.house.gov/media/press-releases/rep-panetta-announces-over-38-million-santa-cruz-fire-department-medical",
+            "quote": "Santa Cruz, CA – United States Representative Jimmy Panetta (CA-19) announced $3,837,779 in federal funding for the Santa Cruz Fire Department to test a faster, more targeted response to medical emergencies, including traffic crashes."
+          }
+        ],
+        "R": [
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-11-02",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-welcomes-over-762-million-in-federal-funding-to-support-safety-and-repair-of-iowa-roads",
+            "quote": "BUTLER COUNTY, IOWA – U.S. Sen. Chuck Grassley (R-Iowa) welcomed news from the U.S. Department of Transportation (DOT) that Iowa will receive over $76.2 million in federal funding to improve roadway safety across the state."
+          },
+          {
+            "member": "Thomas H. Kean, Jr.",
+            "party": "R",
+            "state": "NJ",
+            "date": "2026-11-02",
+            "url": "https://kean.house.gov/media/press-releases/kean-secures-more-55-million-federal-funding-warren-county",
+            "quote": "Since taking office in 2023, he has secured more than $5.5 million in federal funding for projects across the county."
+          },
+          {
+            "member": "Kimberlyn King-Hinds",
+            "party": "R",
+            "state": "MP",
+            "date": "2026-11-02",
+            "url": "https://king-hinds.house.gov/media/newsletters/more-13-million-fema-funding-cuc-emergency-generator-support",
+            "quote": "The Commonwealth Utilities Corporation (CUC) has received $1,308,655.88 in federal funding to support emergency generator operations following Super Typhoon Sinlaku."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
