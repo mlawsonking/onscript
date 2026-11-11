@@ -45,7 +45,7 @@ permissions:
 
 jobs:
   assemble:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # 210, was 60: the serializer below may spend up to its 150-minute bound waiting out RUN A, and
     # the assemble work keeps the 60 it always had. A JOB timeout cancels rather than fails, and a
     # cancelled job skips the `if: failure()` dead-man, so the budget has to cover the wait or the
