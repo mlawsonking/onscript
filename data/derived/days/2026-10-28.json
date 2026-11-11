@@ -1,0 +1,3061 @@
+{
+  "day": "2026-10-28",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-10-28",
+      "party": "D",
+      "composite": "Today 65 of us released statements. 6 of us carried \"statement on the passing\". 3 of us carried \"the loss of Dolores Huerta\". Our most synchronized phrase, used by 8 of us: and civil rights.",
+      "measurement_lead": "Measurement: 65 publications were observed for the Democratic party on 2026-10-28.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-10-28",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "63a3d6e3064d7b209e2de3e3a89ce355fb3774e2ee54ed2cb583aaeb16f2e2cb",
+        "claim_ids": [
+          "2026-10-28-D-00",
+          "2026-10-28-D-02"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 65 of us released statements. 6 of us carried \"statement on the passing\". 3 of us carried \"the loss of Dolores Huerta\". Our most synchronized phrase, used by 8 of us: and civil rights.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-10-28-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-10-28-D-02"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "2879642bb0ccea242b05a254f3d2e48ba93754b2baaead39a312034627cdba37",
+        "response_sha256": "839c1feb07b737cf484aaf839cda119f8cfb5008ec6cdb6e83189c3fc1c5ab3b",
+        "model_response_sha256": "422f39b3a9fb113a06cba42b015d3c88a5dabf47fe6e441f00fc8cf2a23e6999"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-10-28-D-00"
+          ],
+          "claim_ids": [
+            "2026-10-28-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-10-28-D-02"
+          ],
+          "claim_ids": [
+            "2026-10-28-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-10-28-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-10-28-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-10-28",
+        "statements": 65,
+        "talking_points": [
+          {
+            "label": "statement on the passing",
+            "members": 6,
+            "quote": "statement on the passing",
+            "topics": [
+              "labor",
+              "other"
+            ],
+            "claim_id": "2026-10-28-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "labor",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 6,
+              "publications": 6,
+              "families": 6,
+              "support_units": 6
+            }
+          },
+          {
+            "label": "the loss of dolores huerta",
+            "members": 3,
+            "quote": "the loss of Dolores Huerta",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-28-D-02",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "and civil rights",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Deborah K. Ross",
+          "first_sayer_party": "D",
+          "first_sayer_state": "NC"
+        },
+        "selected_claims": [
+          {
+            "label": "statement on the passing",
+            "members": 6,
+            "quote": "statement on the passing",
+            "topics": [
+              "labor",
+              "other"
+            ],
+            "claim_id": "2026-10-28-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "labor",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 6,
+              "publications": 6,
+              "families": 6,
+              "support_units": 6
+            }
+          },
+          {
+            "label": "the loss of dolores huerta",
+            "members": 3,
+            "quote": "the loss of Dolores Huerta",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-10-28-D-02",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 2,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-10-28-D-00",
+          "2026-10-28-D-02"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 2
+      },
+      "usage": {
+        "tokens_in": 3133,
+        "tokens_out": 131,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-10-28",
+      "party": "R",
+      "composite": "Across 52 statements, no phrase was shared by more than a few of us today, with one exception: the phrase generations to come registered among 5 of us, first recorded in our corpus from Jodey C. Arrington (R-TX). Beyond that single point of alignment, we find no dominant message to report for this day — our statements range too widely to name a shared focus.",
+      "measurement_lead": "Measurement: 52 publications were observed for the Republican party on 2026-10-28.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-10-28",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "e065f755f4e1e06fe21e1376e466ebbb1734335af422aa71a39fee9afcc7fb97",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 52 statements, no phrase was shared by more than a few of us today, with one exception: the phrase generations to come registered among 5 of us, first recorded in our corpus from Jodey C. Arrington (R-TX). Beyond that single point of alignment, we find no dominant message to report for this day — our statements range too widely to name a shared focus.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "7470750a5ec850681de47230e53acfd976d69c7add4c72925896410187838c5b",
+        "response_sha256": "026d0a080dd62ca4221271e1e1cbf4f3c29cebd569f09e091dc2ed28ea9a4359",
+        "model_response_sha256": "e21c79da8e35dfec7ca7ed8b28ca3d5e492c64bebf65a39fba05202328f86cdb"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-10-28",
+        "statements": 52,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "generations to come",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Jodey C. Arrington",
+          "first_sayer_party": "R",
+          "first_sayer_state": "TX"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1252,
+        "tokens_out": 114,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-10-28-D-00",
+        "party": "D",
+        "day": "2026-10-28",
+        "label": "statement on the passing",
+        "member_count": 6,
+        "statements": [
+          "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+          "sha256:1aad7b9fb5f0c3e782e9e4e605df64ee79c18ea4854102cba65c7302bad06aed",
+          "sha256:44026b04632b8f61bcd828405405ee4da3fe41da29f6c054b4c56e6f66696752",
+          "sha256:45c895e706e01fd13fd7fe53f41b0696cb57391aae8644c558738c566582af26",
+          "sha256:53eb8c059e445b925f9bea6319e9fef5d7a44c6ce3853b873c8d621d32ae3b3e",
+          "sha256:a14c170c93842d3db8d1f033a6476194d869cae45ffd544810aa229c1dfc8319"
+        ],
+        "fragments": [
+          {
+            "text": "activist and civil rights icon",
+            "statement": "sha256:44026b04632b8f61bcd828405405ee4da3fe41da29f6c054b4c56e6f66696752"
+          },
+          {
+            "text": "labor and civil rights leader dolores huerta at",
+            "statement": "sha256:a14c170c93842d3db8d1f033a6476194d869cae45ffd544810aa229c1dfc8319"
+          },
+          {
+            "text": "statement on the passing of labor leader and civil",
+            "statement": "sha256:53eb8c059e445b925f9bea6319e9fef5d7a44c6ce3853b873c8d621d32ae3b3e"
+          },
+          {
+            "text": "labor leader and civil rights icon dolores huerta",
+            "statement": "sha256:1aad7b9fb5f0c3e782e9e4e605df64ee79c18ea4854102cba65c7302bad06aed"
+          },
+          {
+            "text": "statement on the passing of labor leader dolores huerta",
+            "statement": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c"
+          },
+          {
+            "text": "statement on the passing of labor and civil rights",
+            "statement": "sha256:45c895e706e01fd13fd7fe53f41b0696cb57391aae8644c558738c566582af26"
+          }
+        ],
+        "topics": [
+          "labor",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-28-D-00",
+        "support_phrase": {
+          "normalized": "statement on the passing",
+          "text": "statement on the passing",
+          "occurrence_id": "occ:c17baa9821533d19fa10200b"
+        },
+        "display_quote": "statement on the passing",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c17baa9821533d19fa10200b",
+            "claim_id": "2026-10-28-D-00",
+            "statement_id": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+            "publication_id": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+            "office_id": "P000197",
+            "family_id": "dfam:05afbc5cabf6d7431741f926",
+            "family_revision": "dfrev:72a568312ea62c5b5e3aead2",
+            "support_unit_id": "P000197",
+            "party": "D",
+            "start_char": 69,
+            "end_char": 93,
+            "surface_text": "statement on the passing",
+            "normalized_phrase": "statement on the passing",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 289,
+            "sentence_offset_start": 53,
+            "sentence_offset_end": 77,
+            "clause_start_char": 11,
+            "clause_end_char": 124,
+            "clause_offset_start": 58,
+            "clause_offset_end": 82,
+            "adjacent_tokens_before": [
+              "nancy",
+              "pelosi",
+              "issued",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "labor",
+              "leader",
+              "dolores",
+              "huerta"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d3b395d30b2a1f3b88959338",
+            "claim_id": "2026-10-28-D-00",
+            "statement_id": "sha256:1aad7b9fb5f0c3e782e9e4e605df64ee79c18ea4854102cba65c7302bad06aed",
+            "publication_id": "sha256:1aad7b9fb5f0c3e782e9e4e605df64ee79c18ea4854102cba65c7302bad06aed",
+            "office_id": "L000582",
+            "family_id": "dfam:c39218a54b4b4a0ab0f5310c",
+            "family_revision": "dfrev:7e29415709029320e2d4e0d0",
+            "support_unit_id": "L000582",
+            "party": "D",
+            "start_char": 94,
+            "end_char": 118,
+            "surface_text": "statement on the passing",
+            "normalized_phrase": "statement on the passing",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 44,
+            "sentence_end_char": 180,
+            "sentence_offset_start": 50,
+            "sentence_offset_end": 74,
+            "clause_start_char": 25,
+            "clause_end_char": 292,
+            "clause_offset_start": 69,
+            "clause_offset_end": 93,
+            "adjacent_tokens_before": [
+              "angeles",
+              "county",
+              "issued",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "american",
+              "labor",
+              "leader",
+              "and"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:8e6dbdb2d56616ff2dccb825",
+            "claim_id": "2026-10-28-D-00",
+            "statement_id": "sha256:44026b04632b8f61bcd828405405ee4da3fe41da29f6c054b4c56e6f66696752",
+            "publication_id": "sha256:44026b04632b8f61bcd828405405ee4da3fe41da29f6c054b4c56e6f66696752",
+            "office_id": "C001059",
+            "family_id": "dfam:c15a52fbe2dc11ef20e6b3ab",
+            "family_revision": "dfrev:966b7e2256e5fa8498735754",
+            "support_unit_id": "C001059",
+            "party": "D",
+            "start_char": 68,
+            "end_char": 92,
+            "surface_text": "statement on the passing",
+            "normalized_phrase": "statement on the passing",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 14,
+            "sentence_end_char": 150,
+            "sentence_offset_start": 54,
+            "sentence_offset_end": 78,
+            "clause_start_char": 17,
+            "clause_end_char": 110,
+            "clause_offset_start": 51,
+            "clause_offset_end": 75,
+            "adjacent_tokens_before": [
+              "costa",
+              "ca-21",
+              "issued",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "dolores",
+              "huerta",
+              "a",
+              "labor"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:46d8170977c191b00d47375b",
+            "claim_id": "2026-10-28-D-00",
+            "statement_id": "sha256:45c895e706e01fd13fd7fe53f41b0696cb57391aae8644c558738c566582af26",
+            "publication_id": "sha256:45c895e706e01fd13fd7fe53f41b0696cb57391aae8644c558738c566582af26",
+            "office_id": "P000613",
+            "family_id": "dfam:995f8ddb4524461385f14b4d",
+            "family_revision": "dfrev:cf8991a5f5a3909a07365142",
+            "support_unit_id": "P000613",
+            "party": "D",
+            "start_char": 87,
+            "end_char": 111,
+            "surface_text": "statement on the passing",
+            "normalized_phrase": "statement on the passing",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 159,
+            "sentence_offset_start": 87,
+            "sentence_offset_end": 111,
+            "clause_start_char": 15,
+            "clause_end_char": 216,
+            "clause_offset_start": 72,
+            "clause_offset_end": 96,
+            "adjacent_tokens_before": [
+              "panetta",
+              "ca-19",
+              "issued",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "labor",
+              "and",
+              "civil",
+              "rights"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:497026b45a816232bfecc8c5",
+            "claim_id": "2026-10-28-D-00",
+            "statement_id": "sha256:53eb8c059e445b925f9bea6319e9fef5d7a44c6ce3853b873c8d621d32ae3b3e",
+            "publication_id": "sha256:53eb8c059e445b925f9bea6319e9fef5d7a44c6ce3853b873c8d621d32ae3b3e",
+            "office_id": "G000598",
+            "family_id": "dfam:d07d2097e0f97e4a321a1f89",
+            "family_revision": "dfrev:8ec45151c7926dde50daa27c",
+            "support_unit_id": "G000598",
+            "party": "D",
+            "start_char": 81,
+            "end_char": 105,
+            "surface_text": "statement on the passing",
+            "normalized_phrase": "statement on the passing",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 162,
+            "sentence_offset_start": 81,
+            "sentence_offset_end": 105,
+            "clause_start_char": 23,
+            "clause_end_char": 342,
+            "clause_offset_start": 58,
+            "clause_offset_end": 82,
+            "adjacent_tokens_before": [
+              "garcia",
+              "ca-42",
+              "released",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "labor",
+              "leader",
+              "and",
+              "civil"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:28fe8651773ed95a04b4bb6a",
+            "claim_id": "2026-10-28-D-00",
+            "statement_id": "sha256:a14c170c93842d3db8d1f033a6476194d869cae45ffd544810aa229c1dfc8319",
+            "publication_id": "sha256:a14c170c93842d3db8d1f033a6476194d869cae45ffd544810aa229c1dfc8319",
+            "office_id": "G000587",
+            "family_id": "dfam:ec14cc00c528430ffb616a23",
+            "family_revision": "dfrev:4e45311d4ae1f7a29be4ba39",
+            "support_unit_id": "G000587",
+            "party": "D",
+            "start_char": 82,
+            "end_char": 106,
+            "surface_text": "statement on the passing",
+            "normalized_phrase": "statement on the passing",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 227,
+            "sentence_offset_start": 82,
+            "sentence_offset_end": 106,
+            "clause_start_char": 20,
+            "clause_end_char": 174,
+            "clause_offset_start": 62,
+            "clause_offset_end": 86,
+            "adjacent_tokens_before": [
+              "garcia",
+              "d-tx-29",
+              "released",
+              "the",
+              "following"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "legendary",
+              "labor",
+              "and",
+              "civil"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 6,
+          "publications": 6,
+          "families": 6,
+          "support_units": 6
+        },
+        "office_ids": [
+          "C001059",
+          "G000587",
+          "G000598",
+          "L000582",
+          "P000197",
+          "P000613"
+        ],
+        "publication_ids": [
+          "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+          "sha256:1aad7b9fb5f0c3e782e9e4e605df64ee79c18ea4854102cba65c7302bad06aed",
+          "sha256:44026b04632b8f61bcd828405405ee4da3fe41da29f6c054b4c56e6f66696752",
+          "sha256:45c895e706e01fd13fd7fe53f41b0696cb57391aae8644c558738c566582af26",
+          "sha256:53eb8c059e445b925f9bea6319e9fef5d7a44c6ce3853b873c8d621d32ae3b3e",
+          "sha256:a14c170c93842d3db8d1f033a6476194d869cae45ffd544810aa229c1dfc8319"
+        ],
+        "family_ids": [
+          "dfam:05afbc5cabf6d7431741f926",
+          "dfam:995f8ddb4524461385f14b4d",
+          "dfam:c15a52fbe2dc11ef20e6b3ab",
+          "dfam:c39218a54b4b4a0ab0f5310c",
+          "dfam:d07d2097e0f97e4a321a1f89",
+          "dfam:ec14cc00c528430ffb616a23"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:05afbc5cabf6d7431741f926",
+            "family_revision": "dfrev:72a568312ea62c5b5e3aead2"
+          },
+          {
+            "family_id": "dfam:995f8ddb4524461385f14b4d",
+            "family_revision": "dfrev:cf8991a5f5a3909a07365142"
+          },
+          {
+            "family_id": "dfam:c15a52fbe2dc11ef20e6b3ab",
+            "family_revision": "dfrev:966b7e2256e5fa8498735754"
+          },
+          {
+            "family_id": "dfam:c39218a54b4b4a0ab0f5310c",
+            "family_revision": "dfrev:7e29415709029320e2d4e0d0"
+          },
+          {
+            "family_id": "dfam:d07d2097e0f97e4a321a1f89",
+            "family_revision": "dfrev:8ec45151c7926dde50daa27c"
+          },
+          {
+            "family_id": "dfam:ec14cc00c528430ffb616a23",
+            "family_revision": "dfrev:4e45311d4ae1f7a29be4ba39"
+          }
+        ],
+        "support_unit_ids": [
+          "C001059",
+          "G000587",
+          "G000598",
+          "L000582",
+          "P000197",
+          "P000613"
+        ],
+        "citation_occurrence_ids": [
+          "occ:c17baa9821533d19fa10200b",
+          "occ:46d8170977c191b00d47375b",
+          "occ:497026b45a816232bfecc8c5"
+        ],
+        "citations": [
+          {
+            "member": "Nancy Pelosi",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-28",
+            "url": "https://pelosi.house.gov/news/press-releases/pelosi-statement-passing-dolores-huerta",
+            "quote": "statement on the passing of labor leader dolores huerta",
+            "occurrence_id": "occ:c17baa9821533d19fa10200b",
+            "office_id": "P000197",
+            "publication_id": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+            "family_id": "dfam:05afbc5cabf6d7431741f926",
+            "family_revision": "dfrev:72a568312ea62c5b5e3aead2"
+          },
+          {
+            "member": "Jimmy Panetta",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-28",
+            "url": "https://panetta.house.gov/media/press-releases/rep-panettas-statement-passing-dolores-huerta",
+            "quote": "statement on the passing of labor and civil rights",
+            "occurrence_id": "occ:46d8170977c191b00d47375b",
+            "office_id": "P000613",
+            "publication_id": "sha256:45c895e706e01fd13fd7fe53f41b0696cb57391aae8644c558738c566582af26",
+            "family_id": "dfam:995f8ddb4524461385f14b4d",
+            "family_revision": "dfrev:cf8991a5f5a3909a07365142"
+          },
+          {
+            "member": "Robert Garcia",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-28",
+            "url": "https://robertgarcia.house.gov/media/press-releases/congressman-robert-garcia-statement-passing-dolores-huerta",
+            "quote": "statement on the passing of labor leader and civil",
+            "occurrence_id": "occ:497026b45a816232bfecc8c5",
+            "office_id": "G000598",
+            "publication_id": "sha256:53eb8c059e445b925f9bea6319e9fef5d7a44c6ce3853b873c8d621d32ae3b3e",
+            "family_id": "dfam:d07d2097e0f97e4a321a1f89",
+            "family_revision": "dfrev:8ec45151c7926dde50daa27c"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "labor",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-10-28-D-02",
+        "party": "D",
+        "day": "2026-10-28",
+        "label": "the loss of dolores huerta",
+        "member_count": 3,
+        "statements": [
+          "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+          "sha256:56cd809a40f4307478b7d7892d49d789ba580394e30c790d3c009ef1baedb364",
+          "sha256:bbecb4e777bab683ebd1187b7b8de44b3e5682b91dc9ed92a0c040d3e69be8af"
+        ],
+        "fragments": [
+          {
+            "text": "we sadly mourn the loss of dolores huerta",
+            "statement": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c"
+          },
+          {
+            "text": "and community in mourning the loss of dolores huerta",
+            "statement": "sha256:bbecb4e777bab683ebd1187b7b8de44b3e5682b91dc9ed92a0c040d3e69be8af"
+          },
+          {
+            "text": "as we mourn the loss of dolores huerta",
+            "statement": "sha256:56cd809a40f4307478b7d7892d49d789ba580394e30c790d3c009ef1baedb364"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-28-D-02",
+        "support_phrase": {
+          "normalized": "the loss of dolores huerta",
+          "text": "the loss of Dolores Huerta",
+          "occurrence_id": "occ:76195cb09c88f76958edfa61"
+        },
+        "display_quote": "the loss of Dolores Huerta",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:76195cb09c88f76958edfa61",
+            "claim_id": "2026-10-28-D-02",
+            "statement_id": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+            "publication_id": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+            "office_id": "P000197",
+            "family_id": "dfam:05afbc5cabf6d7431741f926",
+            "family_revision": "dfrev:72a568312ea62c5b5e3aead2",
+            "support_unit_id": "P000197",
+            "party": "D",
+            "start_char": 150,
+            "end_char": 176,
+            "surface_text": "the loss of Dolores Huerta",
+            "normalized_phrase": "the loss of dolores huerta",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 289,
+            "sentence_offset_start": 134,
+            "sentence_offset_end": 160,
+            "clause_start_char": 134,
+            "clause_end_char": 176,
+            "clause_offset_start": 16,
+            "clause_offset_end": 42,
+            "adjacent_tokens_before": [
+              "huerta",
+              "today",
+              "we",
+              "sadly",
+              "mourn"
+            ],
+            "adjacent_tokens_after": [
+              "a",
+              "leader",
+              "in",
+              "the",
+              "american"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f6c4ecf9e7e24031fced2d5e",
+            "claim_id": "2026-10-28-D-02",
+            "statement_id": "sha256:56cd809a40f4307478b7d7892d49d789ba580394e30c790d3c009ef1baedb364",
+            "publication_id": "sha256:56cd809a40f4307478b7d7892d49d789ba580394e30c790d3c009ef1baedb364",
+            "office_id": "T000474",
+            "family_id": "dfam:e6055f63399669ce92c959d8",
+            "family_revision": "dfrev:26872d1bcd75ea63900d06ab",
+            "support_unit_id": "T000474",
+            "party": "D",
+            "start_char": 155,
+            "end_char": 181,
+            "surface_text": "the loss of Dolores Huerta",
+            "normalized_phrase": "the loss of dolores huerta",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 311,
+            "sentence_offset_start": 155,
+            "sentence_offset_end": 181,
+            "clause_start_char": 122,
+            "clause_end_char": 181,
+            "clause_offset_start": 33,
+            "clause_offset_end": 59,
+            "adjacent_tokens_before": [
+              "is",
+              "heavy",
+              "as",
+              "we",
+              "mourn"
+            ],
+            "adjacent_tokens_after": [
+              "a",
+              "fearless",
+              "leader",
+              "whose",
+              "courage"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:19b08d411d80dbf50a0a83a4",
+            "claim_id": "2026-10-28-D-02",
+            "statement_id": "sha256:bbecb4e777bab683ebd1187b7b8de44b3e5682b91dc9ed92a0c040d3e69be8af",
+            "publication_id": "sha256:bbecb4e777bab683ebd1187b7b8de44b3e5682b91dc9ed92a0c040d3e69be8af",
+            "office_id": "R000620",
+            "family_id": "dfam:0daee7e2a20a45f06b7c618d",
+            "family_revision": "dfrev:14142c89c50c359ed1716e55",
+            "support_unit_id": "R000620",
+            "party": "D",
+            "start_char": 269,
+            "end_char": 295,
+            "surface_text": "the loss of Dolores Huerta",
+            "normalized_phrase": "the loss of dolores huerta",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 359,
+            "sentence_offset_start": 269,
+            "sentence_offset_end": 295,
+            "clause_start_char": 242,
+            "clause_end_char": 295,
+            "clause_offset_start": 27,
+            "clause_offset_end": 53,
+            "adjacent_tokens_before": [
+              "friends",
+              "and",
+              "community",
+              "in",
+              "mourning"
+            ],
+            "adjacent_tokens_after": [
+              "a",
+              "trailblazer",
+              "in",
+              "the",
+              "civil"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "P000197",
+          "R000620",
+          "T000474"
+        ],
+        "publication_ids": [
+          "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+          "sha256:56cd809a40f4307478b7d7892d49d789ba580394e30c790d3c009ef1baedb364",
+          "sha256:bbecb4e777bab683ebd1187b7b8de44b3e5682b91dc9ed92a0c040d3e69be8af"
+        ],
+        "family_ids": [
+          "dfam:05afbc5cabf6d7431741f926",
+          "dfam:0daee7e2a20a45f06b7c618d",
+          "dfam:e6055f63399669ce92c959d8"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:05afbc5cabf6d7431741f926",
+            "family_revision": "dfrev:72a568312ea62c5b5e3aead2"
+          },
+          {
+            "family_id": "dfam:0daee7e2a20a45f06b7c618d",
+            "family_revision": "dfrev:14142c89c50c359ed1716e55"
+          },
+          {
+            "family_id": "dfam:e6055f63399669ce92c959d8",
+            "family_revision": "dfrev:26872d1bcd75ea63900d06ab"
+          }
+        ],
+        "support_unit_ids": [
+          "P000197",
+          "R000620",
+          "T000474"
+        ],
+        "citation_occurrence_ids": [
+          "occ:76195cb09c88f76958edfa61",
+          "occ:f6c4ecf9e7e24031fced2d5e",
+          "occ:19b08d411d80dbf50a0a83a4"
+        ],
+        "citations": [
+          {
+            "member": "Nancy Pelosi",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-28",
+            "url": "https://pelosi.house.gov/news/press-releases/pelosi-statement-passing-dolores-huerta",
+            "quote": "we sadly mourn the loss of dolores huerta",
+            "occurrence_id": "occ:76195cb09c88f76958edfa61",
+            "office_id": "P000197",
+            "publication_id": "sha256:01e721ed396a020bca819498b83f4041fdedd5952b4e7ad8a22461bb4a25011c",
+            "family_id": "dfam:05afbc5cabf6d7431741f926",
+            "family_revision": "dfrev:72a568312ea62c5b5e3aead2"
+          },
+          {
+            "member": "Norma J. Torres",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-28",
+            "url": "https://torres.house.gov/media-center/press-releases/congresswoman-norma-torres-statement-on-the-passing-of-civil-rights-icon-dolores-huerta",
+            "quote": "as we mourn the loss of dolores huerta",
+            "occurrence_id": "occ:f6c4ecf9e7e24031fced2d5e",
+            "office_id": "T000474",
+            "publication_id": "sha256:56cd809a40f4307478b7d7892d49d789ba580394e30c790d3c009ef1baedb364",
+            "family_id": "dfam:e6055f63399669ce92c959d8",
+            "family_revision": "dfrev:26872d1bcd75ea63900d06ab"
+          },
+          {
+            "member": "Luz M. Rivas",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-28",
+            "url": "https://rivas.house.gov/media/press-releases/congresswoman-luz-rivas-mourns-loss-dolores-huerta",
+            "quote": "and community in mourning the loss of dolores huerta",
+            "occurrence_id": "occ:19b08d411d80dbf50a0a83a4",
+            "office_id": "R000620",
+            "publication_id": "sha256:bbecb4e777bab683ebd1187b7b8de44b3e5682b91dc9ed92a0c040d3e69be8af",
+            "family_id": "dfam:0daee7e2a20a45f06b7c618d",
+            "family_revision": "dfrev:14142c89c50c359ed1716e55"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-10-28",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 8,
+          "numerator_unit": "offices",
+          "denominator": 54,
+          "denominator_unit": "offices",
+          "share": 0.148148,
+          "window": "party-day 2026-10-28",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 8,
+          "numerator_unit": "publications",
+          "denominator": 65,
+          "denominator_unit": "publications",
+          "share": 0.123077,
+          "window": "party-day 2026-10-28",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 8,
+          "numerator_unit": "document families",
+          "denominator": 59,
+          "denominator_unit": "document families",
+          "share": 0.135593,
+          "window": "party-day 2026-10-28",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-10-28",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 39,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-10-28",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 52,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-10-28",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 52,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-10-28",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "million in federal funding",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      }
+    ],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "and civil rights",
+      "slug": "c1a7ec87edc1befe",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 5.6,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "R000305",
+        "statement": "sha256:d177db03099d5237fcc75db1b3e019e03adf64087a7f90fe034d4125aa9dd8fe",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        8
+      ]
+    },
+    {
+      "ngram": "statement on the passing",
+      "slug": "2144a7d31e677b8e",
+      "n": 4,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 5.6,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001053",
+        "statement": "sha256:1a49e9efde45a9824924efe73dcf12ced463984ad931178445ca72226ed2f1d9",
+        "tie": [
+          "W000805"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        3,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        8
+      ]
+    },
+    {
+      "ngram": "in federal funding",
+      "slug": "27d5305fed92a475",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 1.93,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000622",
+        "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.965,
+      "series": [
+        5,
+        3,
+        2,
+        6,
+        4,
+        6,
+        4,
+        4,
+        3,
+        5,
+        4,
+        3,
+        7,
+        8
+      ]
+    },
+    {
+      "ngram": "federal funding for",
+      "slug": "6ed8efa415776803",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 2.28,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "M001223",
+        "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+        "tie": [
+          "M001163"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.966,
+      "series": [
+        4,
+        2,
+        5,
+        3,
+        4,
+        1,
+        2,
+        3,
+        5,
+        3,
+        2,
+        3,
+        3,
+        7
+      ]
+    },
+    {
+      "ngram": "s se puede",
+      "slug": "3b39444949ac6e7f",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2025-01-22",
+        "bioguide": "G000586",
+        "statement": "sha256:6c31f58ef9f2fd67c5d5af3aa6e035368bd69a2105fc8f37141f546b458c10d4",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "generations to come",
+      "slug": "e5b2d728d6e0ccb4",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.12,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000375",
+        "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+        "tie": [
+          "B001285",
+          "M000194",
+          "M001204"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "series": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        3,
+        3,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "resources they need",
+      "slug": "37ccc78cc6a4d4b9",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.59,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "F000468",
+        "statement": "sha256:85610104dcbcd355441f3a9e350a66c8249fb2e164026da3e089386be7d93af9",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        4,
+        3,
+        3,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "ngram": "passing of labor",
+      "slug": "071c8a9e9d879e3c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-10-28",
+        "bioguide": "M001163",
+        "statement": "sha256:67c8db3d425fb30965ec1663a0a6b7371280dcc5e15719d85cf287089308bb1f",
+        "tie": [
+          "G000598",
+          "P000197",
+          "P000613"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "dedicated her life",
+      "slug": "02e8b1c9bc775070",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-13",
+        "bioguide": "S000148",
+        "statement": "sha256:a78e83168b62557a4a4485071affe5f636fb48493ea35f61104eca4b56da14c8",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "funding will support",
+      "slug": "f91ca94f02ea8dcb",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.93,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "S000148",
+        "statement": "sha256:58672497f36ff2bf0791c4298faa2f4073584d2641d1698dda980dfa4c3c1117",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.993,
+      "series": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        4,
+        4,
+        2,
+        2,
+        1,
+        1,
+        4,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "working families and",
+      "slug": "5703742a6bfbeada",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.73,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "G000585",
+        "statement": "sha256:fa8d1fe93492e39044ed8de6a6a4c84e5529b42b0964477ee9e57afadba7b85c",
+        "tie": [
+          "M001230",
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "health and safety",
+      "slug": "3f5b1f04adeb8f5d",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "G000386",
+        "statement": "sha256:3be93c343af245739f881a00123edb1b12ee71f12075c5e9cb981fa3912511e1",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "series": [
+        4,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "the first time",
+      "slug": "8fe6d589eaa68645",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001069",
+        "statement": "sha256:daa123314c438532c216b5c73bd14620a4f1e9c5d9ca096c9edcc6a22b578b6e",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        3,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "federal funding to",
+      "slug": "472a760aeae1d4f2",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "G000555",
+        "statement": "sha256:eb638a997acc8901dc25261bb63f7028171bd64df0100e940a27f8959800fdee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        3,
+        1,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "letter is available",
+      "slug": "87de773e9f6c7eb0",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 0.85,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "T000476",
+        "statement": "sha256:9bc394ba6e110d27a1d28799ac22e4861a66c259b37384bbd3c7efed91102c84",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.952,
+      "series": [
+        5,
+        3,
+        4,
+        9,
+        8,
+        6,
+        8,
+        4,
+        4,
+        4,
+        1,
+        4,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "labor leader and civil rights",
+      "slug": "aac4e092ec1ed242",
+      "n": 5,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2025-04-10",
+        "bioguide": "G000587",
+        "statement": "sha256:89b1e831c6edf48468d9fbb8716f00b36e2d045dafe8ae17d9595d5540a371c5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "statement on the passing of labor",
+      "slug": "68a6fc4b78540116",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-10-28",
+        "bioguide": "P000613",
+        "statement": "sha256:45c895e706e01fd13fd7fe53f41b0696cb57391aae8644c558738c566582af26",
+        "tie": [
+          "G000598",
+          "P000197"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "passing of labor leader",
+      "slug": "ad2656c0afdb7191",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-10-28",
+        "bioguide": "M001163",
+        "statement": "sha256:67c8db3d425fb30965ec1663a0a6b7371280dcc5e15719d85cf287089308bb1f",
+        "tie": [
+          "G000598",
+          "P000197"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        3
+      ]
+    },
+    {
+      "ngram": "lower electricity costs",
+      "slug": "930e015128b97c96",
+      "n": 3,
+      "day_peak": 3,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2025-10-02",
+        "bioguide": "H001046",
+        "statement": "sha256:93b2525fab38bdb1526d3c24f9405fe762f62aeb89baa6fdc6b3543a2377196e",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "civil rights icon",
+      "slug": "81205fa09842e8e8",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.62,
+      "first_seen": {
+        "date": "2025-01-20",
+        "bioguide": "S001145",
+        "statement": "sha256:945e97148d3362dd66421096e5b4d893a4f17627e3f17b6c2aab472f3e9f3bcc",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "and civil rights",
+        "slug": "c1a7ec87edc1befe",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 5.6,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "R000305",
+          "statement": "sha256:d177db03099d5237fcc75db1b3e019e03adf64087a7f90fe034d4125aa9dd8fe",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          8
+        ]
+      },
+      {
+        "ngram": "statement on the passing",
+        "slug": "2144a7d31e677b8e",
+        "n": 4,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 5.6,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:1a49e9efde45a9824924efe73dcf12ced463984ad931178445ca72226ed2f1d9",
+          "tie": [
+            "W000805"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          8
+        ]
+      },
+      {
+        "ngram": "in federal funding",
+        "slug": "27d5305fed92a475",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 1.93,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000622",
+          "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.965,
+        "series": [
+          5,
+          3,
+          2,
+          6,
+          4,
+          6,
+          4,
+          4,
+          3,
+          5,
+          4,
+          3,
+          7,
+          8
+        ]
+      },
+      {
+        "ngram": "federal funding for",
+        "slug": "6ed8efa415776803",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.28,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001223",
+          "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.966,
+        "series": [
+          4,
+          2,
+          5,
+          3,
+          4,
+          1,
+          2,
+          3,
+          5,
+          3,
+          2,
+          3,
+          3,
+          7
+        ]
+      },
+      {
+        "ngram": "s se puede",
+        "slug": "3b39444949ac6e7f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 5.0,
+        "first_seen": {
+          "date": "2025-01-22",
+          "bioguide": "G000586",
+          "statement": "sha256:6c31f58ef9f2fd67c5d5af3aa6e035368bd69a2105fc8f37141f546b458c10d4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "resources they need",
+        "slug": "37ccc78cc6a4d4b9",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.59,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000468",
+          "statement": "sha256:85610104dcbcd355441f3a9e350a66c8249fb2e164026da3e089386be7d93af9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          4,
+          3,
+          3,
+          1,
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "passing of labor",
+        "slug": "071c8a9e9d879e3c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-10-28",
+          "bioguide": "M001163",
+          "statement": "sha256:67c8db3d425fb30965ec1663a0a6b7371280dcc5e15719d85cf287089308bb1f",
+          "tie": [
+            "G000598",
+            "P000197",
+            "P000613"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          4
+        ]
+      },
+      {
+        "ngram": "dedicated her life",
+        "slug": "02e8b1c9bc775070",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-13",
+          "bioguide": "S000148",
+          "statement": "sha256:a78e83168b62557a4a4485071affe5f636fb48493ea35f61104eca4b56da14c8",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "working families and",
+        "slug": "5703742a6bfbeada",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "G000585",
+          "statement": "sha256:fa8d1fe93492e39044ed8de6a6a4c84e5529b42b0964477ee9e57afadba7b85c",
+          "tie": [
+            "M001230",
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "health and safety",
+        "slug": "3f5b1f04adeb8f5d",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "G000386",
+          "statement": "sha256:3be93c343af245739f881a00123edb1b12ee71f12075c5e9cb981fa3912511e1",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          4,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "generations to come",
+        "slug": "e5b2d728d6e0ccb4",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.12,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000375",
+          "statement": "sha256:66a25d211d70e1884845cf60752a6454fea29973a8b50c7cdfcd5ad5204cc9e4",
+          "tie": [
+            "B001285",
+            "M000194",
+            "M001204"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          3,
+          2,
+          2,
+          3,
+          1,
+          3,
+          3,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "funding will support",
+        "slug": "f91ca94f02ea8dcb",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.93,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "S000148",
+          "statement": "sha256:58672497f36ff2bf0791c4298faa2f4073584d2641d1698dda980dfa4c3c1117",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          4,
+          4,
+          2,
+          2,
+          1,
+          1,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "the first time",
+        "slug": "8fe6d589eaa68645",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001069",
+          "statement": "sha256:daa123314c438532c216b5c73bd14620a4f1e9c5d9ca096c9edcc6a22b578b6e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "lower electricity costs",
+        "slug": "930e015128b97c96",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-10-02",
+          "bioguide": "H001046",
+          "statement": "sha256:93b2525fab38bdb1526d3c24f9405fe762f62aeb89baa6fdc6b3543a2377196e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "infrastructure across the",
+        "slug": "b6e34fa883d817b7",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "P000614",
+          "statement": "sha256:1e60b911126259efa510d3f5f5f10e2156c8a3102660f0e0f47515161b373255",
+          "tie": [
+            "S001181"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "letter of support",
+        "slug": "2f58e2ace82451cf",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "G000585",
+          "statement": "sha256:0e598f190972c8773e88ca5a0a8d98a55bcd3ba91ffa20cc4d8bf939846216e4",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "investment will help",
+        "slug": "7432f92061e62ab3",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "P000034",
+          "statement": "sha256:eb92caf143d5479cc3f157000d4d3b02a75baf7e8fac8f24301957807d5e5c5a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          3,
+          3,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "families and businesses",
+        "slug": "8f7ad35ddbf7967a",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.62,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001326",
+          "statement": "sha256:a01a79727784e13a29ff68432d5b9d83a47d10ced37873bcd43d8509e72268f8",
+          "tie": [
+            "C001098",
+            "H001099"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          3,
+          3,
+          1,
+          1,
+          3,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "keep our communities",
+        "slug": "a05470914f0ae181",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000593",
+          "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+          "tie": [
+            "H001046",
+            "M001163",
+            "S001225"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          6,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "raised concerns about",
+        "slug": "90232e28ddb4c1b9",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.5,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "G000592",
+          "statement": "sha256:1ca2f2de0c5b34fd540453888b3d90ddab565947a13954387a1b3b7888f747b2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          4,
+          1,
+          1,
+          1,
+          5,
+          3,
+          2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}

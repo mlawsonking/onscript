@@ -1,0 +1,2215 @@
+{
+  "day": "2026-10-29",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-10-29",
+      "party": "D",
+      "composite": "Across 82 statements, no phrase was shared widely enough to call a dominant message. We note the day's most synchronized phrase, how the trump, recorded 6 times, first recorded in our corpus from Elizabeth Warren (D-MA).",
+      "measurement_lead": "Measurement: 82 publications were observed for the Democratic party on 2026-10-29.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-10-29",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "aa1add86d9e6754330939ed99cf645a2327c68b684cf4e36418dafb5f66d5876",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 82 statements, no phrase was shared widely enough to call a dominant message. We note the day's most synchronized phrase, how the trump, recorded 6 times, first recorded in our corpus from Elizabeth Warren (D-MA).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "8f9f07c9856051822825f8c5b51c8c4d1912b20cb71a5c481cf4f51a95dfc915",
+        "response_sha256": "6acf7ef18696a3508f91c98aa2b4a6aee5d7a43b10d0984d5ca7b79876fb78cf",
+        "model_response_sha256": "79865af6156f3cc94524f9adf32b1f7ab117e882a2dbd3c6891d1110bf262ab3"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-10-29",
+        "statements": 82,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "how the trump",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Elizabeth Warren",
+          "first_sayer_party": "D",
+          "first_sayer_state": "MA"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 1,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 1,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 1253,
+        "tokens_out": 81,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-10-29",
+      "party": "R",
+      "composite": "Across 41 statements, no phrase was shared by more than a few of us today. The closest to a shared phrase was funding will support, which appears among 4 of us, first recorded in our corpus from Charles E. Schumer (D-NY). Beyond that, we do not find a dominant message to report.",
+      "measurement_lead": "Measurement: 41 publications were observed for the Republican party on 2026-10-29.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-10-29",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "c793b66d0b78451532f60e85643b78c5ed0de538b064cf77544796c5063a0155",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 41 statements, no phrase was shared by more than a few of us today. The closest to a shared phrase was funding will support, which appears among 4 of us, first recorded in our corpus from Charles E. Schumer (D-NY). Beyond that, we do not find a dominant message to report.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "aecb92d0056e931a37c903f334562b868b90748d236f13a7237bbf9fb3d98af3",
+        "response_sha256": "ad14a219131754c27a699e4ede975d53ab5aabd18813ef57274e92607e2c2de7",
+        "model_response_sha256": "0a3e6be0c59a63c98581d77cf255be0f15fb1d75990207e82911de5bdfb870ae"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-10-29",
+        "statements": 41,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "funding will support",
+          "members": 4,
+          "family_count": 4,
+          "first_sayer": "Charles E. Schumer",
+          "first_sayer_party": "D",
+          "first_sayer_state": "NY"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1251,
+        "tokens_out": 95,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-10-29-D-00",
+        "party": "D",
+        "day": "2026-10-29",
+        "label": "how the trump administration",
+        "member_count": 3,
+        "statements": [
+          "sha256:11ca1696e2daec2a4a1a9df8e70deefc0ba3ae052855008f0c34d214e60f4eec",
+          "sha256:77a85d816df3d9b462eb2429980553c6fb4fd1499c6595dedfcd4624edb10e20",
+          "sha256:8122a247074725f94b3dc4f93766812373050c9ea1fcdf84cc921151342eea3f"
+        ],
+        "fragments": [
+          {
+            "text": "letter details how the trump administration could use",
+            "statement": "sha256:11ca1696e2daec2a4a1a9df8e70deefc0ba3ae052855008f0c34d214e60f4eec"
+          },
+          {
+            "text": "how the trump administration and stephen miller’s mass",
+            "statement": "sha256:8122a247074725f94b3dc4f93766812373050c9ea1fcdf84cc921151342eea3f"
+          },
+          {
+            "text": "into how the trump administration has accelerated a crisis",
+            "statement": "sha256:77a85d816df3d9b462eb2429980553c6fb4fd1499c6595dedfcd4624edb10e20"
+          }
+        ],
+        "topics": [
+          "other",
+          "tech_ai"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-10-29-D-00",
+        "support_phrase": {
+          "normalized": "how the trump administration",
+          "text": "how the Trump administration",
+          "occurrence_id": "occ:fc4674e7d424cfbe12c8eac6"
+        },
+        "display_quote": "how the Trump administration",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:fc4674e7d424cfbe12c8eac6",
+            "claim_id": "2026-10-29-D-00",
+            "statement_id": "sha256:11ca1696e2daec2a4a1a9df8e70deefc0ba3ae052855008f0c34d214e60f4eec",
+            "publication_id": "sha256:11ca1696e2daec2a4a1a9df8e70deefc0ba3ae052855008f0c34d214e60f4eec",
+            "office_id": "H001068",
+            "family_id": "dfam:e1e4452745403ed459ff12b6",
+            "family_revision": "dfrev:651a028adf092791c9840f65",
+            "support_unit_id": "H001068",
+            "party": "D",
+            "start_char": 15,
+            "end_char": 43,
+            "surface_text": "how the Trump administration",
+            "normalized_phrase": "how the trump administration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 244,
+            "sentence_offset_start": 15,
+            "sentence_offset_end": 43,
+            "clause_start_char": 0,
+            "clause_end_char": 156,
+            "clause_offset_start": 15,
+            "clause_offset_end": 43,
+            "adjacent_tokens_before": [
+              "letter",
+              "details"
+            ],
+            "adjacent_tokens_after": [
+              "could",
+              "use",
+              "national",
+              "park",
+              "service"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:5273919a2c3cd467c33f3f1d",
+            "claim_id": "2026-10-29-D-00",
+            "statement_id": "sha256:77a85d816df3d9b462eb2429980553c6fb4fd1499c6595dedfcd4624edb10e20",
+            "publication_id": "sha256:77a85d816df3d9b462eb2429980553c6fb4fd1499c6595dedfcd4624edb10e20",
+            "office_id": "W000779",
+            "family_id": "dfam:4f57f416705e876c2799a8fc",
+            "family_revision": "dfrev:8a4ddaac20e44d55c4100890",
+            "support_unit_id": "W000779",
+            "party": "D",
+            "start_char": 662,
+            "end_char": 690,
+            "surface_text": "how the Trump administration",
+            "normalized_phrase": "how the trump administration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 574,
+            "sentence_end_char": 904,
+            "sentence_offset_start": 88,
+            "sentence_offset_end": 116,
+            "clause_start_char": 361,
+            "clause_end_char": 850,
+            "clause_offset_start": 301,
+            "clause_offset_end": 329,
+            "adjacent_tokens_before": [
+              "finance",
+              "committee",
+              "minority",
+              "investigation",
+              "into"
+            ],
+            "adjacent_tokens_after": [
+              "has",
+              "accelerated",
+              "a",
+              "crisis",
+              "that"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": true,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:76d02b031c4f842328135005",
+            "claim_id": "2026-10-29-D-00",
+            "statement_id": "sha256:8122a247074725f94b3dc4f93766812373050c9ea1fcdf84cc921151342eea3f",
+            "publication_id": "sha256:8122a247074725f94b3dc4f93766812373050c9ea1fcdf84cc921151342eea3f",
+            "office_id": "J000298",
+            "family_id": "dfam:90609bc66515ceea7bd2f68e",
+            "family_revision": "dfrev:c93288279b5a011e753adc48",
+            "support_unit_id": "J000298",
+            "party": "D",
+            "start_char": 808,
+            "end_char": 836,
+            "surface_text": "how the Trump administration",
+            "normalized_phrase": "how the trump administration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 799,
+            "sentence_end_char": 1044,
+            "sentence_offset_start": 9,
+            "sentence_offset_end": 37,
+            "clause_start_char": 680,
+            "clause_end_char": 887,
+            "clause_offset_start": 128,
+            "clause_offset_end": 156,
+            "adjacent_tokens_before": [
+              "no",
+              "criminal",
+              "record",
+              "this",
+              "is"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "stephen",
+              "miller’s",
+              "mass",
+              "deportation"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "negated"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "H001068",
+          "J000298",
+          "W000779"
+        ],
+        "publication_ids": [
+          "sha256:11ca1696e2daec2a4a1a9df8e70deefc0ba3ae052855008f0c34d214e60f4eec",
+          "sha256:77a85d816df3d9b462eb2429980553c6fb4fd1499c6595dedfcd4624edb10e20",
+          "sha256:8122a247074725f94b3dc4f93766812373050c9ea1fcdf84cc921151342eea3f"
+        ],
+        "family_ids": [
+          "dfam:4f57f416705e876c2799a8fc",
+          "dfam:90609bc66515ceea7bd2f68e",
+          "dfam:e1e4452745403ed459ff12b6"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:4f57f416705e876c2799a8fc",
+            "family_revision": "dfrev:8a4ddaac20e44d55c4100890"
+          },
+          {
+            "family_id": "dfam:90609bc66515ceea7bd2f68e",
+            "family_revision": "dfrev:c93288279b5a011e753adc48"
+          },
+          {
+            "family_id": "dfam:e1e4452745403ed459ff12b6",
+            "family_revision": "dfrev:651a028adf092791c9840f65"
+          }
+        ],
+        "support_unit_ids": [
+          "H001068",
+          "J000298",
+          "W000779"
+        ],
+        "citation_occurrence_ids": [
+          "occ:fc4674e7d424cfbe12c8eac6",
+          "occ:5273919a2c3cd467c33f3f1d",
+          "occ:76d02b031c4f842328135005"
+        ],
+        "citations": [
+          {
+            "member": "Jared Huffman",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-10-29",
+            "url": "https://huffman.house.gov/media-center/press-releases/huffman-warns-loophole-could-let-trump-take-dc-golf-course-urges-appropriators-to-put-guardrails-on-nps-funds",
+            "quote": "letter details how the trump administration could use",
+            "occurrence_id": "occ:fc4674e7d424cfbe12c8eac6",
+            "office_id": "H001068",
+            "publication_id": "sha256:11ca1696e2daec2a4a1a9df8e70deefc0ba3ae052855008f0c34d214e60f4eec",
+            "family_id": "dfam:e1e4452745403ed459ff12b6",
+            "family_revision": "dfrev:651a028adf092791c9840f65"
+          },
+          {
+            "member": "Ron Wyden",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-10-29",
+            "url": "https://www.wyden.senate.gov/news/press-releases/wyden-whitehouse-kim-and-warren-expose-trump-for-rewarding-nursing-home-fraudsters-and-harming-residents",
+            "quote": "into how the trump administration has accelerated a crisis",
+            "occurrence_id": "occ:5273919a2c3cd467c33f3f1d",
+            "office_id": "W000779",
+            "publication_id": "sha256:77a85d816df3d9b462eb2429980553c6fb4fd1499c6595dedfcd4624edb10e20",
+            "family_id": "dfam:4f57f416705e876c2799a8fc",
+            "family_revision": "dfrev:8a4ddaac20e44d55c4100890"
+          },
+          {
+            "member": "Pramila Jayapal",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-10-29",
+            "url": "https://jayapal.house.gov/2026/10/29/jayapal-randall-conduct-oversight-at-the-northwest-detention-center/",
+            "quote": "how the trump administration and stephen miller’s mass",
+            "occurrence_id": "occ:76d02b031c4f842328135005",
+            "office_id": "J000298",
+            "publication_id": "sha256:8122a247074725f94b3dc4f93766812373050c9ea1fcdf84cc921151342eea3f",
+            "family_id": "dfam:90609bc66515ceea7bd2f68e",
+            "family_revision": "dfrev:c93288279b5a011e753adc48"
+          }
+        ],
+        "surface_class": "unknown",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "mixed-stance"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "tech_ai",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-10-29",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 64,
+          "denominator_unit": "offices",
+          "share": 0.046875,
+          "window": "party-day 2026-10-29",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 82,
+          "denominator_unit": "publications",
+          "share": 0.036585,
+          "window": "party-day 2026-10-29",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 74,
+          "denominator_unit": "document families",
+          "share": 0.040541,
+          "window": "party-day 2026-10-29",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-10-29",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 33,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-10-29",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 41,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-10-29",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 41,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-10-29",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": [
+      {
+        "label": "the funding will support",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "top_synchronized": [
+    {
+      "ngram": "how the trump",
+      "slug": "2170923efc8cb870",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 5.6,
+      "first_seen": {
+        "date": "2025-01-16",
+        "bioguide": "W000817",
+        "statement": "sha256:b4d6227a264c862f1e9b2ef97692c62f97d5c76d13fb17bcb79bd3b884402044",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "keep fighting to",
+      "slug": "ce34d8212128c3f0",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.23,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        2,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        3,
+        3,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "the trump administration’s",
+      "slug": "6cd624c98e95c190",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.15,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "D000530",
+        "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.96,
+      "series": [
+        2,
+        1,
+        2,
+        5,
+        7,
+        3,
+        4,
+        3,
+        2,
+        2,
+        1,
+        4,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "i’m grateful to",
+      "slug": "d207953af3ede662",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.59,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "B001325"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        1,
+        4,
+        2,
+        4,
+        1,
+        2,
+        1,
+        3,
+        1,
+        1,
+        2,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "i’ll keep fighting",
+      "slug": "d3723031bf9bac7b",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "health care coverage",
+      "slug": "e223af4f4901f1c7",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "S001190",
+        "statement": "sha256:3301a23405fef036db40a9d2fc5384e6a19bfe12dcd2efd59882eb4a57f84544",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "funding will support",
+      "slug": "f91ca94f02ea8dcb",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 1,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.75,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "S000148",
+        "statement": "sha256:58672497f36ff2bf0791c4298faa2f4073584d2641d1698dda980dfa4c3c1117",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.993,
+      "series": [
+        1,
+        2,
+        2,
+        2,
+        4,
+        4,
+        2,
+        2,
+        1,
+        1,
+        4,
+        2,
+        4,
+        4
+      ]
+    },
+    {
+      "ngram": "the top democrat",
+      "slug": "ff66e66eabf6789a",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.67,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "K000367",
+        "statement": "sha256:1e71aeb16727a199c76d1a3f394d8ea426912a2994da1b3cc04d7fb41b134c13",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.992,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        3,
+        1,
+        2,
+        2,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "top democrat on",
+      "slug": "4b3f43d5ba0b40b0",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.43,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "K000367",
+        "statement": "sha256:1e71aeb16727a199c76d1a3f394d8ea426912a2994da1b3cc04d7fb41b134c13",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        1,
+        1,
+        3,
+        1,
+        1,
+        3,
+        1,
+        3,
+        2,
+        2,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "deserve to know",
+      "slug": "c42e27b93170529c",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.07,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "B001243",
+        "statement": "sha256:09325af0fb301f836f532a3b2fdfc782f5c496e04f8f95ab3dfa8c38e0445dbd",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.99,
+      "series": [
+        1,
+        1,
+        2,
+        3,
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "million in funding",
+      "slug": "d747e722001f8aa4",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001096",
+        "statement": "sha256:61f8a474830f8fea054b8a37e7e5de13f4c916063064f9582bd492c5d0fdee56",
+        "tie": [
+          "H001046"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        3,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "war with iran",
+      "slug": "b1a3e4655dabde0b",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.33,
+      "first_seen": {
+        "date": "2025-05-06",
+        "bioguide": "K000384",
+        "statement": "sha256:807f53162a9deef18208b806efa24ad7a0eca3a22e99d338085b78690707f3f6",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        3,
+        1,
+        3,
+        4,
+        1,
+        2,
+        1,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "access to affordable",
+      "slug": "90d469a5cc382a34",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001296",
+        "statement": "sha256:9dad811aca53320dd4a698fea09dff69c04935f29b7ef882f06755ad57f7c0f8",
+        "tie": [
+          "C000880",
+          "D000635",
+          "M001210",
+          "T000482"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "transparency and accountability",
+      "slug": "7365d666a4dbe25e",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.81,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "T000478",
+        "statement": "sha256:780452216954092bde84e6a47b0701b2044859aef8a5bbe1530354fff8306f2f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        1,
+        2,
+        1,
+        5,
+        1,
+        3,
+        4,
+        2,
+        1,
+        4,
+        1,
+        3,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "proud to join",
+      "slug": "0eb1e7285c7e5088",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.87,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "S001172",
+        "statement": "sha256:b4a594cca7839e63d8a1eb035792dbdb49bc74a88580a38d1a12181a600eb485",
+        "tie": [
+          "L000593",
+          "R000610"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.969,
+      "series": [
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "million in federal",
+      "slug": "b04cb6da38f47ab4",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 1.0,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "D000230",
+        "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        4,
+        4,
+        5,
+        6,
+        7,
+        2,
+        4,
+        4,
+        5,
+        1,
+        3,
+        6,
+        3,
+        4
+      ]
+    },
+    {
+      "ngram": "in federal funding",
+      "slug": "27d5305fed92a475",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 0.88,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000622",
+        "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.965,
+      "series": [
+        3,
+        2,
+        6,
+        4,
+        6,
+        4,
+        4,
+        3,
+        5,
+        4,
+        3,
+        7,
+        8,
+        4
+      ]
+    },
+    {
+      "ngram": "how the trump administration",
+      "slug": "8781fb7ae8f5648e",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.62,
+      "first_seen": {
+        "date": "2025-01-21",
+        "bioguide": "M001169",
+        "statement": "sha256:e8cc36dae026bdb45e6fdeed92dd7e78201f0f1c2b064f19a4975f270d0b1b74",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "how the trump administration’s",
+      "slug": "aeb8b512b6ee9eac",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-29",
+        "bioguide": "H001046",
+        "statement": "sha256:12832190244f520926511bb7edc21f53e988561f5e3072124c4cc971bd419455",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "next five years",
+      "slug": "8c4750fae2214bb7",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "S001216",
+        "statement": "sha256:3da5ddfae7686c6640e9f2b696676a65399513505f7aa8908bd74319f48e60e0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "how the trump",
+        "slug": "2170923efc8cb870",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 5.6,
+        "first_seen": {
+          "date": "2025-01-16",
+          "bioguide": "W000817",
+          "statement": "sha256:b4d6227a264c862f1e9b2ef97692c62f97d5c76d13fb17bcb79bd3b884402044",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "keep fighting to",
+        "slug": "ce34d8212128c3f0",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 3.23,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "S001156"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3,
+          3,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.15,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          2,
+          1,
+          2,
+          5,
+          7,
+          3,
+          4,
+          3,
+          2,
+          2,
+          1,
+          4,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "i’m grateful to",
+        "slug": "d207953af3ede662",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.59,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001325"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          1,
+          4,
+          2,
+          4,
+          1,
+          2,
+          1,
+          3,
+          1,
+          1,
+          2,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "i’ll keep fighting",
+        "slug": "d3723031bf9bac7b",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "health care coverage",
+        "slug": "e223af4f4901f1c7",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "S001190",
+          "statement": "sha256:3301a23405fef036db40a9d2fc5384e6a19bfe12dcd2efd59882eb4a57f84544",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "the top democrat",
+        "slug": "ff66e66eabf6789a",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.67,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "K000367",
+          "statement": "sha256:1e71aeb16727a199c76d1a3f394d8ea426912a2994da1b3cc04d7fb41b134c13",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.992,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          3,
+          1,
+          2,
+          2,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "top democrat on",
+        "slug": "4b3f43d5ba0b40b0",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.43,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "K000367",
+          "statement": "sha256:1e71aeb16727a199c76d1a3f394d8ea426912a2994da1b3cc04d7fb41b134c13",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          3,
+          1,
+          1,
+          3,
+          1,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "deserve to know",
+        "slug": "c42e27b93170529c",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.07,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "B001243",
+          "statement": "sha256:09325af0fb301f836f532a3b2fdfc782f5c496e04f8f95ab3dfa8c38e0445dbd",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          4,
+          3,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "war with iran",
+        "slug": "b1a3e4655dabde0b",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-05-06",
+          "bioguide": "K000384",
+          "statement": "sha256:807f53162a9deef18208b806efa24ad7a0eca3a22e99d338085b78690707f3f6",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          3,
+          1,
+          3,
+          4,
+          1,
+          2,
+          1,
+          2,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "funding will support",
+        "slug": "f91ca94f02ea8dcb",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "S000148",
+          "statement": "sha256:58672497f36ff2bf0791c4298faa2f4073584d2641d1698dda980dfa4c3c1117",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          2,
+          2,
+          2,
+          4,
+          4,
+          2,
+          2,
+          1,
+          1,
+          4,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "million in funding",
+        "slug": "d747e722001f8aa4",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.95,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001096",
+          "statement": "sha256:61f8a474830f8fea054b8a37e7e5de13f4c916063064f9582bd492c5d0fdee56",
+          "tie": [
+            "H001046"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "investments will help",
+        "slug": "85500a11747b60f4",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "B001267",
+          "statement": "sha256:1952a64093dd7314f32356180e47348acd3c9107cad0b7a2117dc462eca646df",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "and help ensure",
+        "slug": "f37189c5e4e2a341",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000622",
+          "statement": "sha256:98556726804592f77ab487990fd6474471986dad61c0fd834f94cc6497d8c157",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          2,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}

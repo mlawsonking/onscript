@@ -1,0 +1,1122 @@
+{
+  "day": "2026-11-05",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-05",
+      "party": "D",
+      "composite": "Across 45 statements today, no message rose to a dominant level among us. The phrase war in iran appears 4 times, our most synchronized formulation, first recorded in our corpus from Luz M. Rivas (D-CA). Beyond that count, we have no shared claims or language to report today.",
+      "measurement_lead": "Measurement: 45 publications were observed for the Democratic party on 2026-11-05.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-05",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "c848767f1d1a99a01b138b4971de0458785f61ad60f8aaa81c0e484ec7ce9793",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 45 statements today, no message rose to a dominant level among us. The phrase war in iran appears 4 times, our most synchronized formulation, first recorded in our corpus from Luz M. Rivas (D-CA). Beyond that count, we have no shared claims or language to report today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "10ad87bbbc921244f502685a86ca04078f148679fbff587516d50d2c33ffa004",
+        "response_sha256": "269c5ab72dc66a92dfb16f20037402288adccbc7d0cdfa686fc9b7e134e3f13b",
+        "model_response_sha256": "bc6e2ee0e23c26b4c641a939bb65071b6ba4fadf7790aac2410054bcc778d544"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-05",
+        "statements": 45,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "war in iran",
+          "members": 4,
+          "family_count": 6,
+          "first_sayer": "Luz M. Rivas",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CA"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1253,
+        "tokens_out": 94,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-05",
+      "party": "R",
+      "composite": "We released 13 statements today.",
+      "measurement_lead": "Measurement: 13 publications were observed for the Republican party on 2026-11-05.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-05",
+        "prompt": {
+          "id": "P3",
+          "version": "1.1",
+          "sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+        },
+        "stats_sha256": "b8629042fc8e1bfd58ece780554a545b852623da5f5f91c5e87aa54e9fdb6def",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "We released 13 statements today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "d82b90f4039ad859275af6f4e5dcb1f4673549ddf9b00b54d613efb711e2c399",
+        "response_sha256": "b3356d119afccb65f3e03a035b5c1937f8ad3dbab8c4075bedb8b73cac5a063a",
+        "model_response_sha256": null
+      },
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        }
+      ],
+      "model": "P3:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.1",
+      "prompt_sha": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-05",
+        "statements": 13,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P3:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-05",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 34,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-05",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 45,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-05",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 43,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-05",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-05",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 12,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-05",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 13,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-05",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 13,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-05",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "million in federal funding",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "war in iran",
+      "slug": "4abd5ede26e39eb9",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 1.7,
+      "first_seen": {
+        "date": "2026-02-24",
+        "bioguide": "R000620",
+        "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        6,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        6,
+        4
+      ]
+    },
+    {
+      "ngram": "million in federal",
+      "slug": "b04cb6da38f47ab4",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 0.95,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "D000230",
+        "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        7,
+        2,
+        4,
+        4,
+        5,
+        1,
+        3,
+        6,
+        3,
+        4,
+        7,
+        5,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "350 000 homes",
+      "slug": "ab14321e8c82afde",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.6,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001117",
+        "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "improving safety and",
+      "slug": "ba4e70ec53a96e4e",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "B001326",
+        "statement": "sha256:dfe3647a294d1b14f9765e37a712e6c0dc412f4c8f54aa89457d58c38bd0d774",
+        "tie": [
+          "C000537",
+          "H001094",
+          "L000560"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "the house floor",
+      "slug": "6360114b9c2c20ee",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001103",
+        "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+        "tie": [
+          "F000483",
+          "M001215",
+          "P000609"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.984,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "to lower costs",
+      "slug": "10e0b9788fba1877",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.5,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "B001261",
+          "E000300",
+          "H001046",
+          "M001223",
+          "M001237",
+          "P000610",
+          "S000168",
+          "S001230",
+          "T000460",
+          "V000129",
+          "V000136",
+          "V000138"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.979,
+      "series": [
+        4,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        1,
+        2,
+        2,
+        4,
+        3
+      ]
+    },
+    {
+      "ngram": "federal funding for",
+      "slug": "6ed8efa415776803",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 0.89,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "M001223",
+        "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+        "tie": [
+          "M001163"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.966,
+      "series": [
+        1,
+        2,
+        3,
+        5,
+        3,
+        2,
+        3,
+        3,
+        7,
+        2,
+        4,
+        6,
+        2,
+        3
+      ]
+    },
+    {
+      "ngram": "in federal funding",
+      "slug": "27d5305fed92a475",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 0.65,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "D000622",
+        "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.965,
+      "series": [
+        4,
+        4,
+        3,
+        5,
+        4,
+        3,
+        7,
+        8,
+        4,
+        7,
+        1,
+        7,
+        2,
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "war in iran",
+        "slug": "4abd5ede26e39eb9",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 1.7,
+        "first_seen": {
+          "date": "2026-02-24",
+          "bioguide": "R000620",
+          "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          6,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          6,
+          4
+        ]
+      },
+      {
+        "ngram": "million in federal",
+        "slug": "b04cb6da38f47ab4",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 0.95,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:6ecd229d548f20bdc004beb83e7644fa41eca73dd786c69fdc40f205b2db420b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          7,
+          2,
+          4,
+          4,
+          5,
+          1,
+          3,
+          6,
+          3,
+          4,
+          7,
+          5,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "350 000 homes",
+        "slug": "ab14321e8c82afde",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.6,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001117",
+          "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "improving safety and",
+        "slug": "ba4e70ec53a96e4e",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "B001326",
+          "statement": "sha256:dfe3647a294d1b14f9765e37a712e6c0dc412f4c8f54aa89457d58c38bd0d774",
+          "tie": [
+            "C000537",
+            "H001094",
+            "L000560"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "the house floor",
+        "slug": "6360114b9c2c20ee",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001103",
+          "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+          "tie": [
+            "F000483",
+            "M001215",
+            "P000609"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "to lower costs",
+        "slug": "10e0b9788fba1877",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001261",
+            "E000300",
+            "H001046",
+            "M001223",
+            "M001237",
+            "P000610",
+            "S000168",
+            "S001230",
+            "T000460",
+            "V000129",
+            "V000136",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          4,
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          3,
+          1,
+          1,
+          2,
+          2,
+          4,
+          3
+        ]
+      },
+      {
+        "ngram": "federal funding for",
+        "slug": "6ed8efa415776803",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 0.89,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001223",
+          "statement": "sha256:bfc899adffa1780bcbc47ccaf16459cc8775290340dc74ec97aeb775bb2f577b",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.966,
+        "series": [
+          1,
+          2,
+          3,
+          5,
+          3,
+          2,
+          3,
+          3,
+          7,
+          2,
+          4,
+          6,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "in federal funding",
+        "slug": "27d5305fed92a475",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 0.65,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "D000622",
+          "statement": "sha256:ba6245bd047bfa8da6ebd0ca8233615a98299139b7fa0233820526e447338313",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.965,
+        "series": [
+          4,
+          4,
+          3,
+          5,
+          4,
+          3,
+          7,
+          8,
+          4,
+          7,
+          1,
+          7,
+          2,
+          3
+        ]
+      }
+    ],
+    "R": []
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
