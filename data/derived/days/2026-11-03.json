@@ -1,0 +1,307 @@
+{
+  "day": "2026-11-03",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-03",
+      "party": "D",
+      "composite": "Today 18 of us released statements. No phrase was shared by 3 or more of us today.",
+      "measurement_lead": "Measurement: 18 publications were observed for the Democratic party on 2026-11-03.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-03",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "e522ac584facdfdae989fb340b6fba099bf24c51fe97e2339a6f4d431f898c36",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Today 18 of us released statements. No phrase was shared by 3 or more of us today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "705ff9881839fbf4b8fe346790a91abe657adac5f2529d931c1f0a28b4b9a5eb",
+        "response_sha256": "7561c112a33917b608ec99bad19603c7e9e61ad86d32ac239998943a2032d7ff",
+        "model_response_sha256": null
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-03",
+        "statements": 18,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-03",
+      "party": "R",
+      "composite": "We released 7 statements today.",
+      "measurement_lead": "Measurement: 7 publications were observed for the Republican party on 2026-11-03.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-03",
+        "prompt": {
+          "id": "P3",
+          "version": "1.1",
+          "sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+        },
+        "stats_sha256": "36a071f707d81a03f60f301330fc25ab7a0f0ed9f088db44ce0df4eb170d2037",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "We released 7 statements today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "d86b5fd4a228a9b4aeca0a40e50f9eaf0f646f2c9f2068b589f793dcade47d7a",
+        "response_sha256": "31ba931ee0ebf7685eb92c927026fa0dbcca31535085e78af6cb712a4dddb487",
+        "model_response_sha256": null
+      },
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        }
+      ],
+      "model": "P3:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.1",
+      "prompt_sha": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-03",
+        "statements": 7,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P3:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-03",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 16,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-03",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 18,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-03",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 18,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-03",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-03",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 7,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-03",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 7,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-03",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 7,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-03",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "top_synchronized": [],
+  "sync_by_party": {
+    "D": [],
+    "R": []
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": true,
+      "zero_eligible_claims_both_parties": true
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
