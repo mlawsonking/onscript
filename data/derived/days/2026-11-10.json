@@ -965,5 +965,1977 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-10",
+      "party": "D",
+      "composite": "We raise \"articles of impeachment against\" across 3 of our statements today, our dominant message of the day, touching tech and AI matters. Across 62 statements, the most synchronized phrase of the day is an important step, recorded among 8 of us, first recorded in our corpus from Mike Collins (R-GA). We do not have additional shared messages to report beyond these today.",
+      "measurement_lead": "Measurement: 62 publications were observed for the Democratic party on 2026-11-10.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-10",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "c3a9b763d91857491e58f229923bf6a2dcba4d55e64b32bd73529cb166173b5d",
+        "claim_ids": [
+          "2026-11-10-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "We raise \"articles of impeachment against\" across 3 of our statements today, our dominant message of the day, touching tech and AI matters. Across 62 statements, the most synchronized phrase of the day is an important step, recorded among 8 of us, first recorded in our corpus from Mike Collins (R-GA). We do not have additional shared messages to report beyond these today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": [
+              "2026-11-10-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "8243b380922a360e52db22857c49418bb8f06cb33fc3cc8229c7d7a9a2aa1d3e",
+        "response_sha256": "9f3da22b7c91b9c12252e24ea51428d9d7c427c8906067465c0bee90955c6a21",
+        "model_response_sha256": "38f9bd6fd0f94c4922293b6362848ecefadd94b466e623fdc05fad77734cbda3"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [
+            "2026-11-10-D-00"
+          ],
+          "claim_ids": [
+            "2026-11-10-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": [
+            "2026-11-10-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-10",
+        "statements": 62,
+        "talking_points": [
+          {
+            "label": "articles of impeachment against",
+            "members": 3,
+            "quote": "articles of impeachment against",
+            "topics": [
+              "tech_ai"
+            ],
+            "claim_id": "2026-11-10-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "an important step",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Mike Collins",
+          "first_sayer_party": "R",
+          "first_sayer_state": "GA"
+        },
+        "selected_claims": [
+          {
+            "label": "articles of impeachment against",
+            "members": 3,
+            "quote": "articles of impeachment against",
+            "topics": [
+              "tech_ai"
+            ],
+            "claim_id": "2026-11-10-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "tech_ai",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-10-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2099,
+        "tokens_out": 119,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-10",
+      "party": "R",
+      "composite": "Across 35 statements today, our most synchronized phrase is the 120th congress, shared by 5 of us, first recorded in our corpus from Robert P. Bresnahan, Jr. (R-PA). Beyond that measurement, no other message rose to a shared level among us today.",
+      "measurement_lead": "Measurement: 35 publications were observed for the Republican party on 2026-11-10.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-10",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "e30229d48b4ff8b8d9522328ebff1c528b6a4c15baf156a16f047ad37e88a1c6",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 35 statements today, our most synchronized phrase is the 120th congress, shared by 5 of us, first recorded in our corpus from Robert P. Bresnahan, Jr. (R-PA). Beyond that measurement, no other message rose to a shared level among us today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "26c90fb7bf93c1899b0af8797b6fb13f146aa0f50cba40bccc35a5fcc4e7e477",
+        "response_sha256": "914fa68e10d0527512bfcdf9c63dcf97056aa0935f348e7bd38a34a9e7c63c76",
+        "model_response_sha256": "16658b0dc4dd4758425e1565a88258492415c73b27232e271e17e74521447354"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-10",
+        "statements": 35,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "the 120th congress",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Robert P. Bresnahan, Jr.",
+          "first_sayer_party": "R",
+          "first_sayer_state": "PA"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 1,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 1,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 1260,
+        "tokens_out": 92,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-11-10-D-00",
+        "party": "D",
+        "day": "2026-11-10",
+        "label": "articles of impeachment against",
+        "member_count": 3,
+        "statements": [
+          "sha256:313e6963d1b6d71202c9530546d4a09de2e9f5f65e8f6e7201f23774b315cd48",
+          "sha256:7dd99af094798f534eb469e17a2394b83433370ace4a5f5eaf65d95c74699d7c",
+          "sha256:821845b48d684a57094542dbf88eac0693b3ac0dc20333d2e9ccb14806e47f8d"
+        ],
+        "fragments": [
+          {
+            "text": "refer articles of impeachment against secretary of defense",
+            "statement": "sha256:821845b48d684a57094542dbf88eac0693b3ac0dc20333d2e9ccb14806e47f8d"
+          },
+          {
+            "text": "eight privileged articles of impeachment against secretary of",
+            "statement": "sha256:7dd99af094798f534eb469e17a2394b83433370ace4a5f5eaf65d95c74699d7c"
+          },
+          {
+            "text": "to table articles of impeachment against defense secretary pete",
+            "statement": "sha256:313e6963d1b6d71202c9530546d4a09de2e9f5f65e8f6e7201f23774b315cd48"
+          }
+        ],
+        "topics": [
+          "tech_ai"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-10-D-00",
+        "support_phrase": {
+          "normalized": "articles of impeachment against",
+          "text": "articles of impeachment against",
+          "occurrence_id": "occ:137e43d8b03c64cc81f6b1a2"
+        },
+        "display_quote": "articles of impeachment against",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:137e43d8b03c64cc81f6b1a2",
+            "claim_id": "2026-11-10-D-00",
+            "statement_id": "sha256:313e6963d1b6d71202c9530546d4a09de2e9f5f65e8f6e7201f23774b315cd48",
+            "publication_id": "sha256:313e6963d1b6d71202c9530546d4a09de2e9f5f65e8f6e7201f23774b315cd48",
+            "office_id": "R000579",
+            "family_id": "dfam:a94d7b9dfc6adf4bda30328e",
+            "family_revision": "dfrev:978ae2ee1a18165d18602999",
+            "support_unit_id": "R000579",
+            "party": "D",
+            "start_char": 673,
+            "end_char": 704,
+            "surface_text": "articles of impeachment against",
+            "normalized_phrase": "articles of impeachment against",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 735,
+            "sentence_offset_start": 673,
+            "sentence_offset_end": 704,
+            "clause_start_char": 609,
+            "clause_end_char": 758,
+            "clause_offset_start": 64,
+            "clause_offset_end": 95,
+            "adjacent_tokens_before": [
+              "voters",
+              "and",
+              "voted",
+              "to",
+              "table"
+            ],
+            "adjacent_tokens_after": [
+              "defense",
+              "secretary",
+              "pete",
+              "hegseth",
+              "congressman"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:b35077fe001fd3388cf29730",
+            "claim_id": "2026-11-10-D-00",
+            "statement_id": "sha256:7dd99af094798f534eb469e17a2394b83433370ace4a5f5eaf65d95c74699d7c",
+            "publication_id": "sha256:7dd99af094798f534eb469e17a2394b83433370ace4a5f5eaf65d95c74699d7c",
+            "office_id": "M001227",
+            "family_id": "dfam:bd210f902877c89337df72c5",
+            "family_revision": "dfrev:04d306e5945ab7e3022a9221",
+            "support_unit_id": "M001227",
+            "party": "D",
+            "start_char": 185,
+            "end_char": 216,
+            "surface_text": "articles of impeachment against",
+            "normalized_phrase": "articles of impeachment against",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 143,
+            "sentence_end_char": 543,
+            "sentence_offset_start": 42,
+            "sentence_offset_end": 73,
+            "clause_start_char": 25,
+            "clause_end_char": 295,
+            "clause_offset_start": 160,
+            "clause_offset_end": 191,
+            "adjacent_tokens_before": [
+              "massie",
+              "ky-04",
+              "s",
+              "eight",
+              "privileged"
+            ],
+            "adjacent_tokens_after": [
+              "secretary",
+              "of",
+              "defense",
+              "pete",
+              "hegseth"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6f9053ccc69206e6417296cd",
+            "claim_id": "2026-11-10-D-00",
+            "statement_id": "sha256:821845b48d684a57094542dbf88eac0693b3ac0dc20333d2e9ccb14806e47f8d",
+            "publication_id": "sha256:821845b48d684a57094542dbf88eac0693b3ac0dc20333d2e9ccb14806e47f8d",
+            "office_id": "C001059",
+            "family_id": "dfam:5115ae4fb8f5f23744429fa5",
+            "family_revision": "dfrev:89d8f1cc9769e88e4fa8fe06",
+            "support_unit_id": "C001059",
+            "party": "D",
+            "start_char": 172,
+            "end_char": 203,
+            "surface_text": "articles of impeachment against",
+            "normalized_phrase": "articles of impeachment against",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 470,
+            "sentence_offset_start": 172,
+            "sentence_offset_end": 203,
+            "clause_start_char": 99,
+            "clause_end_char": 270,
+            "clause_offset_start": 73,
+            "clause_offset_end": 104,
+            "adjacent_tokens_before": [
+              "house",
+              "voted",
+              "211-204",
+              "to",
+              "refer"
+            ],
+            "adjacent_tokens_after": [
+              "secretary",
+              "of",
+              "defense",
+              "pete",
+              "hegseth"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "C001059",
+          "M001227",
+          "R000579"
+        ],
+        "publication_ids": [
+          "sha256:313e6963d1b6d71202c9530546d4a09de2e9f5f65e8f6e7201f23774b315cd48",
+          "sha256:7dd99af094798f534eb469e17a2394b83433370ace4a5f5eaf65d95c74699d7c",
+          "sha256:821845b48d684a57094542dbf88eac0693b3ac0dc20333d2e9ccb14806e47f8d"
+        ],
+        "family_ids": [
+          "dfam:5115ae4fb8f5f23744429fa5",
+          "dfam:a94d7b9dfc6adf4bda30328e",
+          "dfam:bd210f902877c89337df72c5"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:5115ae4fb8f5f23744429fa5",
+            "family_revision": "dfrev:89d8f1cc9769e88e4fa8fe06"
+          },
+          {
+            "family_id": "dfam:a94d7b9dfc6adf4bda30328e",
+            "family_revision": "dfrev:978ae2ee1a18165d18602999"
+          },
+          {
+            "family_id": "dfam:bd210f902877c89337df72c5",
+            "family_revision": "dfrev:04d306e5945ab7e3022a9221"
+          }
+        ],
+        "support_unit_ids": [
+          "C001059",
+          "M001227",
+          "R000579"
+        ],
+        "citation_occurrence_ids": [
+          "occ:137e43d8b03c64cc81f6b1a2",
+          "occ:b35077fe001fd3388cf29730",
+          "occ:6f9053ccc69206e6417296cd"
+        ],
+        "citations": [
+          {
+            "member": "Patrick Ryan",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-10",
+            "url": "https://patryan.house.gov/media/press-releases/historic-cowardice-congressman-pat-ryan-slams-republicans-refusal-hold-hegseth",
+            "quote": "to table articles of impeachment against defense secretary pete",
+            "occurrence_id": "occ:137e43d8b03c64cc81f6b1a2",
+            "office_id": "R000579",
+            "publication_id": "sha256:313e6963d1b6d71202c9530546d4a09de2e9f5f65e8f6e7201f23774b315cd48",
+            "family_id": "dfam:a94d7b9dfc6adf4bda30328e",
+            "family_revision": "dfrev:978ae2ee1a18165d18602999"
+          },
+          {
+            "member": "Jennifer L. McClellan",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-11-10",
+            "url": "https://mcclellan.house.gov/2026/11/10/mcclellan-statement-on-house-republicans-blocking-hegseth-impeachment/",
+            "quote": "eight privileged articles of impeachment against secretary of",
+            "occurrence_id": "occ:b35077fe001fd3388cf29730",
+            "office_id": "M001227",
+            "publication_id": "sha256:7dd99af094798f534eb469e17a2394b83433370ace4a5f5eaf65d95c74699d7c",
+            "family_id": "dfam:bd210f902877c89337df72c5",
+            "family_revision": "dfrev:04d306e5945ab7e3022a9221"
+          },
+          {
+            "member": "Jim Costa",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-10",
+            "url": "https://costa.house.gov/media/press-releases/costa-statement-following-house-vote-impeachment-defense-secretary-pete",
+            "quote": "refer articles of impeachment against secretary of defense",
+            "occurrence_id": "occ:6f9053ccc69206e6417296cd",
+            "office_id": "C001059",
+            "publication_id": "sha256:821845b48d684a57094542dbf88eac0693b3ac0dc20333d2e9ccb14806e47f8d",
+            "family_id": "dfam:5115ae4fb8f5f23744429fa5",
+            "family_revision": "dfrev:89d8f1cc9769e88e4fa8fe06"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "tech_ai",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-11-10-R-00",
+        "party": "R",
+        "day": "2026-11-10",
+        "label": "look forward to working",
+        "member_count": 3,
+        "statements": [
+          "sha256:6223242abd7355d7b18cf20c52cbef6eabc2bbfc3a6dacd57969e5638fa8b624",
+          "sha256:7e635728bfc3a5cdfd0bb9f0c5be9e0533eb57d2f86b69a8a5e6cd9c9eabeb32",
+          "sha256:bf8cd554a9b0d379a2043851d6a6919491c198018ada9933c2b59e6c600c7581"
+        ],
+        "fragments": [
+          {
+            "text": "and look forward to working together to reclaim the majority",
+            "statement": "sha256:6223242abd7355d7b18cf20c52cbef6eabc2bbfc3a6dacd57969e5638fa8b624"
+          },
+          {
+            "text": "and i look forward to working alongside this leadership team",
+            "statement": "sha256:bf8cd554a9b0d379a2043851d6a6919491c198018ada9933c2b59e6c600c7581"
+          },
+          {
+            "text": "look forward to working alongside him to advance",
+            "statement": "sha256:7e635728bfc3a5cdfd0bb9f0c5be9e0533eb57d2f86b69a8a5e6cd9c9eabeb32"
+          }
+        ],
+        "topics": [
+          "tech_ai",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-10-R-00",
+        "support_phrase": {
+          "normalized": "look forward to working",
+          "text": "look forward to working",
+          "occurrence_id": "occ:bf067307641666064bb58d02"
+        },
+        "display_quote": "look forward to working",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bf067307641666064bb58d02",
+            "claim_id": "2026-11-10-R-00",
+            "statement_id": "sha256:6223242abd7355d7b18cf20c52cbef6eabc2bbfc3a6dacd57969e5638fa8b624",
+            "publication_id": "sha256:6223242abd7355d7b18cf20c52cbef6eabc2bbfc3a6dacd57969e5638fa8b624",
+            "office_id": "H001093",
+            "family_id": "dfam:938741e927d600c62cc38bd7",
+            "family_revision": "dfrev:1897484611e67ff640e7bdbf",
+            "support_unit_id": "H001093",
+            "party": "R",
+            "start_char": 453,
+            "end_char": 476,
+            "surface_text": "look forward to working",
+            "normalized_phrase": "look forward to working",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 412,
+            "sentence_end_char": 509,
+            "sentence_offset_start": 41,
+            "sentence_offset_end": 64,
+            "clause_start_char": 180,
+            "clause_end_char": 667,
+            "clause_offset_start": 273,
+            "clause_offset_end": 296,
+            "adjacent_tokens_before": [
+              "i",
+              "congratulate",
+              "chairwoman",
+              "mcclain",
+              "and"
+            ],
+            "adjacent_tokens_after": [
+              "together",
+              "to",
+              "reclaim",
+              "the",
+              "majority"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6512a8869d362ab1f87c514c",
+            "claim_id": "2026-11-10-R-00",
+            "statement_id": "sha256:7e635728bfc3a5cdfd0bb9f0c5be9e0533eb57d2f86b69a8a5e6cd9c9eabeb32",
+            "publication_id": "sha256:7e635728bfc3a5cdfd0bb9f0c5be9e0533eb57d2f86b69a8a5e6cd9c9eabeb32",
+            "office_id": "L000585",
+            "family_id": "dfam:7d753e35a5644c8e6618ff6e",
+            "family_revision": "dfrev:b46822c6dc53acfee2672461",
+            "support_unit_id": "L000585",
+            "party": "R",
+            "start_char": 619,
+            "end_char": 642,
+            "surface_text": "look forward to working",
+            "normalized_phrase": "look forward to working",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 616,
+            "sentence_end_char": 765,
+            "sentence_offset_start": 3,
+            "sentence_offset_end": 26,
+            "clause_start_char": 510,
+            "clause_end_char": 767,
+            "clause_offset_start": 109,
+            "clause_offset_end": 132,
+            "adjacent_tokens_before": [
+              "make",
+              "an",
+              "excellent",
+              "leader",
+              "i"
+            ],
+            "adjacent_tokens_after": [
+              "alongside",
+              "him",
+              "to",
+              "advance",
+              "our"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:016f10446dbbf88f1404edda",
+            "claim_id": "2026-11-10-R-00",
+            "statement_id": "sha256:bf8cd554a9b0d379a2043851d6a6919491c198018ada9933c2b59e6c600c7581",
+            "publication_id": "sha256:bf8cd554a9b0d379a2043851d6a6919491c198018ada9933c2b59e6c600c7581",
+            "office_id": "J000299",
+            "family_id": "dfam:8f0f13a358a9c8d6e05b70db",
+            "family_revision": "dfrev:d2877cdd1f582f71fb5daa7e",
+            "support_unit_id": "J000299",
+            "party": "R",
+            "start_char": 748,
+            "end_char": 771,
+            "surface_text": "look forward to working",
+            "normalized_phrase": "look forward to working",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 672,
+            "sentence_end_char": 891,
+            "sentence_offset_start": 76,
+            "sentence_offset_end": 99,
+            "clause_start_char": 741,
+            "clause_end_char": 898,
+            "clause_offset_start": 7,
+            "clause_offset_end": 30,
+            "adjacent_tokens_before": [
+              "no",
+              "means",
+              "insurmountable",
+              "and",
+              "i"
+            ],
+            "adjacent_tokens_after": [
+              "alongside",
+              "this",
+              "leadership",
+              "team",
+              "to"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "negated"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "H001093",
+          "J000299",
+          "L000585"
+        ],
+        "publication_ids": [
+          "sha256:6223242abd7355d7b18cf20c52cbef6eabc2bbfc3a6dacd57969e5638fa8b624",
+          "sha256:7e635728bfc3a5cdfd0bb9f0c5be9e0533eb57d2f86b69a8a5e6cd9c9eabeb32",
+          "sha256:bf8cd554a9b0d379a2043851d6a6919491c198018ada9933c2b59e6c600c7581"
+        ],
+        "family_ids": [
+          "dfam:7d753e35a5644c8e6618ff6e",
+          "dfam:8f0f13a358a9c8d6e05b70db",
+          "dfam:938741e927d600c62cc38bd7"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:7d753e35a5644c8e6618ff6e",
+            "family_revision": "dfrev:b46822c6dc53acfee2672461"
+          },
+          {
+            "family_id": "dfam:8f0f13a358a9c8d6e05b70db",
+            "family_revision": "dfrev:d2877cdd1f582f71fb5daa7e"
+          },
+          {
+            "family_id": "dfam:938741e927d600c62cc38bd7",
+            "family_revision": "dfrev:1897484611e67ff640e7bdbf"
+          }
+        ],
+        "support_unit_ids": [
+          "H001093",
+          "J000299",
+          "L000585"
+        ],
+        "citation_occurrence_ids": [
+          "occ:bf067307641666064bb58d02",
+          "occ:6512a8869d362ab1f87c514c",
+          "occ:016f10446dbbf88f1404edda"
+        ],
+        "citations": [
+          {
+            "member": "Erin Houchin",
+            "party": "R",
+            "state": "IN",
+            "date": "2026-11-10",
+            "url": "https://houchin.house.gov/media/press-releases/rep-houchin-statement-following-house-republican-conference-chair-election",
+            "quote": "and look forward to working together to reclaim the majority",
+            "occurrence_id": "occ:bf067307641666064bb58d02",
+            "office_id": "H001093",
+            "publication_id": "sha256:6223242abd7355d7b18cf20c52cbef6eabc2bbfc3a6dacd57969e5638fa8b624",
+            "family_id": "dfam:938741e927d600c62cc38bd7",
+            "family_revision": "dfrev:1897484611e67ff640e7bdbf"
+          },
+          {
+            "member": "Darin LaHood",
+            "party": "R",
+            "state": "IL",
+            "date": "2026-11-10",
+            "url": "https://lahood.house.gov/2026/11/lahood-statement-on-the-election-of-republican-leader-jim-jordan",
+            "quote": "look forward to working alongside him to advance",
+            "occurrence_id": "occ:6512a8869d362ab1f87c514c",
+            "office_id": "L000585",
+            "publication_id": "sha256:7e635728bfc3a5cdfd0bb9f0c5be9e0533eb57d2f86b69a8a5e6cd9c9eabeb32",
+            "family_id": "dfam:7d753e35a5644c8e6618ff6e",
+            "family_revision": "dfrev:b46822c6dc53acfee2672461"
+          },
+          {
+            "member": "Mike Johnson",
+            "party": "R",
+            "state": "LA",
+            "date": "2026-11-10",
+            "url": "https://mikejohnson.house.gov/news/documentsingle.aspx?DocumentID=2953",
+            "quote": "and i look forward to working alongside this leadership team",
+            "occurrence_id": "occ:016f10446dbbf88f1404edda",
+            "office_id": "J000299",
+            "publication_id": "sha256:bf8cd554a9b0d379a2043851d6a6919491c198018ada9933c2b59e6c600c7581",
+            "family_id": "dfam:8f0f13a358a9c8d6e05b70db",
+            "family_revision": "dfrev:d2877cdd1f582f71fb5daa7e"
+          }
+        ],
+        "surface_class": "unknown",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "mixed-stance"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "tech_ai",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-10",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 53,
+          "denominator_unit": "offices",
+          "share": 0.056604,
+          "window": "party-day 2026-11-10",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 62,
+          "denominator_unit": "publications",
+          "share": 0.048387,
+          "window": "party-day 2026-11-10",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 61,
+          "denominator_unit": "document families",
+          "share": 0.04918,
+          "window": "party-day 2026-11-10",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-10",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 30,
+          "denominator_unit": "offices",
+          "share": 0.1,
+          "window": "party-day 2026-11-10",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 35,
+          "denominator_unit": "publications",
+          "share": 0.085714,
+          "window": "party-day 2026-11-10",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 35,
+          "denominator_unit": "document families",
+          "share": 0.085714,
+          "window": "party-day 2026-11-10",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "move forward with impeaching secretary",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "an important step",
+        "slug": "79f874be4a2748ec",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 4.48,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001129",
+          "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          2,
+          2,
+          2,
+          4,
+          1,
+          1,
+          3,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          8
+        ]
+      },
+      {
+        "ngram": "our service members",
+        "slug": "96cdc4d20989e280",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.18,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "B001243",
+          "statement": "sha256:2358f4bfb6f725e8c9d94eea769cc670df77571110bdbbf01575feae944a9e9d",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          5,
+          1,
+          1,
+          1,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "the house floor",
+        "slug": "6360114b9c2c20ee",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001103",
+          "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+          "tie": [
+            "F000483",
+            "M001215",
+            "P000609"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "support they need",
+        "slug": "c471f43eebc5efae",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.92,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "B001301",
+          "statement": "sha256:74b8bbbc030faaca71638a8f6e357c2ad5eed90b2e922f0d320670210f3719d3",
+          "tie": [
+            "D000594"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.983,
+        "series": [
+          2,
+          3,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3,
+          3,
+          1,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "proud to support",
+        "slug": "26e9b1e8da0a1211",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.04,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "L000600",
+          "statement": "sha256:14ad2a8d2ef003d9e07a24a3188422dffb1d6754a7348ac13845116c306a754b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          2,
+          4,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "for the american people",
+        "slug": "495c7da743c93f81",
+        "n": 4,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "N000015",
+          "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6,
+          2,
+          1,
+          1,
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "important step toward",
+        "slug": "3060ca3cd5d89ce4",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.24,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "E000246",
+          "statement": "sha256:c22319edde8a08cfff810bc47eeac6ffb5d5846848e991bb00e4d4e01363f6d5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          3,
+          4,
+          1,
+          1,
+          2,
+          2,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "access to health care",
+        "slug": "9b5c57350224b7e2",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001243",
+            "M001163",
+            "M001238",
+            "S001185"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "the 120th congress",
+        "slug": "14d2b0e24b5ec69f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.68,
+        "first_seen": {
+          "date": "2025-05-03",
+          "bioguide": "B001327",
+          "statement": "sha256:a5ecf00f8bbf0d61bd4e94a5ee9dbc461c1308c627c201d8afe7c06fbe99f577",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "of toxic exposure",
+        "slug": "a6e9e91309f6570f",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-01-22",
+          "bioguide": "B001236",
+          "statement": "sha256:cf51afb365e6308fcc336ba8171e2a7d5fa7de00974dd9831beadaf2538a2c4b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the 120th congress",
+        "slug": "14d2b0e24b5ec69f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.68,
+        "first_seen": {
+          "date": "2025-05-03",
+          "bioguide": "B001327",
+          "statement": "sha256:a5ecf00f8bbf0d61bd4e94a5ee9dbc461c1308c627c201d8afe7c06fbe99f577",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "over five years",
+        "slug": "bd54c065a2c7e09a",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001196",
+          "statement": "sha256:388029a6accc095b5954665df7db9ada0701f2f03783c1feb1042fece862380b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "remarks as delivered",
+        "slug": "d94f4075fb64cd70",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "M000934",
+          "statement": "sha256:8fe9a4b32bc8cdad4b88b634aecde8bb389509bec67befbf51d6ac323cf4c113",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "grateful to my colleagues",
+        "slug": "c899fd4be6dce424",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "C001075",
+          "statement": "sha256:e88a6701c362cdabbcbbb757af67d98d652d824d416500a07dd0c6d809498de2",
+          "tie": [
+            "S001217"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "the house floor",
+        "slug": "6360114b9c2c20ee",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001103",
+          "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+          "tie": [
+            "F000483",
+            "M001215",
+            "P000609"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "served our country",
+        "slug": "86150d53c66f38bd",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001053",
+          "statement": "sha256:1a49e9efde45a9824924efe73dcf12ced463984ad931178445ca72226ed2f1d9",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "lower costs and",
+        "slug": "5ee426304a4c8e1f",
+        "n": 3,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.75,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "N000015",
+          "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          3,
+          1,
+          2,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          2,
+          4,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "the 120th congress",
+      "slug": "14d2b0e24b5ec69f",
+      "n": 3,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 4,
+        "R": 5,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-05-03",
+        "bioguide": "B001327",
+        "statement": "sha256:a5ecf00f8bbf0d61bd4e94a5ee9dbc461c1308c627c201d8afe7c06fbe99f577",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "velocity": 3.68,
+      "sides": {
+        "D": [
+          {
+            "member": "Al Green",
+            "party": "D",
+            "state": "TX",
+            "date": "2026-11-10",
+            "url": "https://algreen.house.gov/media/press-releases/congressman-al-green-join-removal-coalition-press-conference-impeachment",
+            "quote": "As we pass the baton to the 120th Congress, I encourage them to honor their oath, uphold the Constitution, and ensure that impeachment is not merely discussed but brought before Congress for a vote."
+          },
+          {
+            "member": "Jennifer L. McClellan",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-11-10",
+            "url": "https://mcclellan.house.gov/2026/11/10/mcclellan-statement-on-house-republicans-blocking-hegseth-impeachment/",
+            "quote": "As Democrats fight to lower costs and put a decisive end to rogue actions by this Administration and its corruption in Washington, soon with expanded authority in the 120th Congress, I will continue to push for greater oversight to ensure this Administration abides by the Constitution and international law."
+          },
+          {
+            "member": "Marilyn Strickland",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-11-10",
+            "url": "https://strickland.house.gov/2026/11/10/strickland-elected-vice-chair-for-communications-for-the-new-democrat-coalition/",
+            "quote": "I am committed to working with my colleagues to build an economy that lowers costs and works for all Americans in the 120th Congress."
+          }
+        ],
+        "R": [
+          {
+            "member": "Mark Alford",
+            "party": "R",
+            "state": "MO",
+            "date": "2026-11-10",
+            "url": "https://alford.house.gov/news/documentsingle.aspx?DocumentID=1951",
+            "quote": "Today, Congressman Mark Alford (MO-04) was elected by his Republican colleagues to serve as the Secretary of the House Republican Conference for the 120th Congress."
+          },
+          {
+            "member": "Tom Cotton",
+            "party": "R",
+            "state": "AR",
+            "date": "2026-11-10",
+            "url": "https://www.cotton.senate.gov/news/press-releases/cotton-reelected-as-republican-conference-chair/",
+            "quote": "WASHINGTON—Today, Senator Tom Cotton (R-Arkansas) gave remarks following his reelection as Chairman of the Senate Republican Conference for the 120th Congress:"
+          },
+          {
+            "member": "Mike Johnson",
+            "party": "R",
+            "state": "LA",
+            "date": "2026-11-10",
+            "url": "https://mikejohnson.house.gov/news/documentsingle.aspx?DocumentID=2953",
+            "quote": "I congratulate Reps. Jordan, Emmer, McClain, and the entire House GOP Leadership team on their elections to lead our Conference in the 120th Congress."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "the house floor",
+      "slug": "6360114b9c2c20ee",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 5,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001103",
+        "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+        "tie": [
+          "F000483",
+          "M001215",
+          "P000609"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.984,
+      "velocity": 3.5,
+      "sides": {
+        "D": [
+          {
+            "member": "Janelle S. Bynum",
+            "party": "D",
+            "state": "OR",
+            "date": "2026-11-10",
+            "url": "https://bynum.house.gov/media/press-releases/bynum-holds-moment-silence-silver-rail-elementary-school-victims-house-floor",
+            "quote": "She was joined on the House floor by members of the Oregon Delegation and the Gun Prevention Violence Task Force."
+          },
+          {
+            "member": "Patrick Ryan",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-10",
+            "url": "https://patryan.house.gov/media/press-releases/historic-cowardice-congressman-pat-ryan-slams-republicans-refusal-hold-hegseth",
+            "quote": "He confronted Hegseth directly about force protection failures at Port Shuaiba in a House Armed Services Committee hearing, blasted Hegseth and Trump for attempting to cover-up the casualties from the war, spoke on the House floor against giving Hegseth a $1.5 trillion blank check, introduced legislation to cut off funding for the Iran War, and voted to end the conflict five separate times."
+          },
+          {
+            "member": "Raul Ruiz",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-10",
+            "url": "https://ruiz.house.gov/media-center/press-releases/ruiz-leads-call-pass-major-richard-star-act-veterans-day",
+            "quote": "In just five months, we secured the necessary support to discharge the rules and bring the Major Richard Star Act to the House floor for a final vote."
+          }
+        ],
+        "R": [
+          {
+            "member": "Vern Buchanan",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-11-10",
+            "url": "https://buchanan.house.gov/2026/11/10/buchanan-backs-bipartisan-bill-to-improve-hurricane-warnings-for-vulnerable-floridians/",
+            "quote": "Buchanan is urging Congress to bring the package to the House floor and get it across the finish line."
+          },
+          {
+            "member": "Brian K. Fitzpatrick",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-11-10",
+            "url": "https://fitzpatrick.house.gov/2026/11/fitzpatrick-makes-official-referral-to-house-judiciary-committee-regarding-secretary-of-war-pete-hegseth",
+            "quote": "All facts must be uncovered, all witnesses must be called, and the results of the investigation must be reported to the House Floor for appropriate action."
+          },
+          {
+            "member": "Mike Johnson",
+            "party": "R",
+            "state": "LA",
+            "date": "2026-11-10",
+            "url": "https://mikejohnson.house.gov/news/documentsingle.aspx?DocumentID=2952",
+            "quote": "I was delighted to welcome all the new Members on the House floor last night."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }

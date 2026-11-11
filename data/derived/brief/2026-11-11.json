@@ -5,38 +5,38 @@
   "numbers": [
     {
       "name": "streak",
-      "value": 0,
-      "status": "red",
-      "last_missed": "2026-11-10",
-      "note": "no publish for 2026-11-10 — Playbook P1"
+      "value": 123,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "note": "123 consecutive days published (through 2026-11-10)"
     },
     {
       "name": "spend",
-      "value": 0.058,
-      "projected": 0.1582,
+      "value": 0.0713,
+      "projected": 0.1943,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 9,
-      "note": "$0.0580 MTD, $0.16 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 10,
+      "note": "$0.0713 MTD, $0.19 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
-      "day": "2026-11-09",
-      "scored_age_days": 2,
+      "day": "2026-11-10",
+      "scored_age_days": 1,
       "parties": {
         "D": {
-          "statements": 77,
-          "median": 54.0,
-          "share": 1.426,
+          "statements": 62,
+          "median": 29.0,
+          "share": 2.138,
           "status": "green",
-          "baseline_method": "trailing 6-week same-weekday median"
+          "baseline_method": "recent 3-week same-weekday median"
         },
         "R": {
-          "statements": 36,
-          "median": 42.0,
-          "share": 0.857,
+          "statements": 35,
+          "median": 22.0,
+          "share": 1.591,
           "status": "green",
-          "baseline_method": "trailing 6-week same-weekday median"
+          "baseline_method": "recent 3-week same-weekday median"
         }
       },
       "status": "green",
@@ -47,16 +47,16 @@
       },
       "excluded_reports": 0,
       "skipped_days": [],
-      "note": "2026-11-09 (2d): D 77/54=143% R 36/42=86% of own same-weekday baseline (green >= 60%); upstream 4.0h (green < 36h)"
+      "note": "2026-11-10 (1d): D 62/29=214% R 35/22=159% of own same-weekday baseline (green >= 60%); upstream 4.0h (green < 36h)"
     },
     {
       "name": "verifier_drop",
       "value": 0.3333,
-      "dropped": 3,
-      "offered": 9,
+      "dropped": 4,
+      "offered": 12,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "3/9 claims dropped over 7d (green < 25%)"
+      "note": "4/12 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -66,7 +66,6 @@
     }
   ],
   "reds": [
-    "streak",
     "verifier_drop"
   ],
   "unknowns": [],
@@ -103,5 +102,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak, verifier_drop"
+  "headline": "RED: verifier_drop"
 }
