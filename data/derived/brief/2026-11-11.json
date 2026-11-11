@@ -12,12 +12,12 @@
     },
     {
       "name": "spend",
-      "value": 0.0182,
-      "projected": 0.0495,
+      "value": 0.0234,
+      "projected": 0.0637,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 4,
-      "note": "$0.0182 MTD, $0.05 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 5,
+      "note": "$0.0234 MTD, $0.06 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
@@ -33,12 +33,12 @@
     },
     {
       "name": "verifier_drop",
-      "value": 1.0,
+      "value": 0.5,
       "dropped": 1,
-      "offered": 1,
+      "offered": 2,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "1/1 claims dropped over 7d (green < 25%)"
+      "note": "1/2 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -56,10 +56,10 @@
   ],
   "degraded_days": [],
   "top_phrase": {
-    "ngram": "an important step",
+    "ngram": "get to work",
     "party": "D",
-    "day_peak": 8,
-    "day": "2026-11-10"
+    "day_peak": 9,
+    "day": "2026-11-04"
   },
   "shelf": {
     "dark": [

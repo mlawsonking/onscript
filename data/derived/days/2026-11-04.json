@@ -1,0 +1,2205 @@
+{
+  "day": "2026-11-04",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-04",
+      "party": "D",
+      "composite": "Across 43 statements today, our most synchronized phrase is get to work, recorded 9 times, first recorded in our corpus from Adrian Smith (R-NE). Beyond that measurement, no additional message was shared widely enough among us to report. We do not have further quotes or figures to offer today.",
+      "measurement_lead": "Measurement: 43 publications were observed for the Democratic party on 2026-11-04.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-04",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "436a05271a0744035dbe74e97c616a7f227936b8e09f2b317d0bab2665b85ff4",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 43 statements today, our most synchronized phrase is get to work, recorded 9 times, first recorded in our corpus from Adrian Smith (R-NE). Beyond that measurement, no additional message was shared widely enough among us to report. We do not have further quotes or figures to offer today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "c7138b57858281d9d8686d2695538948c5be0078b9ccc177e5005eafe35b37c5",
+        "response_sha256": "46f966501c325805fc95d5692908a209cfb38804f885beb399ebb6e41addf94f",
+        "model_response_sha256": "456759cc5631966c8b9a9f0ab9093de511698a8dcad4c4cd687434d16f5777ef"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-04",
+        "statements": 43,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "get to work",
+          "members": 9,
+          "family_count": 9,
+          "first_sayer": "Adrian Smith",
+          "first_sayer_party": "R",
+          "first_sayer_state": "NE"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 1,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 1,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 1250,
+        "tokens_out": 97,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-04",
+      "party": "R",
+      "composite": "We released 8 statements today.",
+      "measurement_lead": "Measurement: 8 publications were observed for the Republican party on 2026-11-04.",
+      "composite_state": "withheld_no_eligible_claim",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-04",
+        "prompt": {
+          "id": "P3",
+          "version": "1.1",
+          "sha256": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+        },
+        "stats_sha256": "f910c67cfffb053e1929b11b27958b09a7b8d03895002d5080b8cf5d4acf4ed4",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "We released 8 statements today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "55bb5a8a12ab600193574230ba0338f8b26f8218703dcc8767592a14a109d57f",
+        "response_sha256": "88d78d262f795d901ff07f72f22896d8c228e2bd6c99471944961d75b2138bd0",
+        "model_response_sha256": null
+      },
+      "quiet": true,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        }
+      ],
+      "model": "P3:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.1",
+      "prompt_sha": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-04",
+        "statements": 8,
+        "talking_points": [],
+        "top_phrase": null,
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "model": "P3:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-11-04-D-00",
+        "party": "D",
+        "day": "2026-11-04",
+        "label": "the house of representatives",
+        "member_count": 4,
+        "statements": [
+          "sha256:4aa4dd98955832135c617a7759c49b253cfa8767aef27cda5b517ec69fe8c012",
+          "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c",
+          "sha256:ae5d270f88428af3f8e8a8e8f09874d64549a030a5c7d0f869e291f7567cc5f7",
+          "sha256:e78a62e9d9666f33b0fe1c546b1e9f5656e1d5b90796bbdb245173dd646fec57"
+        ],
+        "fragments": [
+          {
+            "text": "across the house of representatives and senate",
+            "statement": "sha256:e78a62e9d9666f33b0fe1c546b1e9f5656e1d5b90796bbdb245173dd646fec57"
+          },
+          {
+            "text": "next speaker of the house of representatives",
+            "statement": "sha256:4aa4dd98955832135c617a7759c49b253cfa8767aef27cda5b517ec69fe8c012"
+          },
+          {
+            "text": "democratic women to the house of representatives",
+            "statement": "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c"
+          },
+          {
+            "text": "of the senate and the house of representatives in",
+            "statement": "sha256:ae5d270f88428af3f8e8a8e8f09874d64549a030a5c7d0f869e291f7567cc5f7"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-04-D-00",
+        "support_phrase": {
+          "normalized": "the house of representatives",
+          "text": "the House of Representatives",
+          "occurrence_id": "occ:612d7518d812c818786c6ca0"
+        },
+        "display_quote": "the House of Representatives",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:612d7518d812c818786c6ca0",
+            "claim_id": "2026-11-04-D-00",
+            "statement_id": "sha256:4aa4dd98955832135c617a7759c49b253cfa8767aef27cda5b517ec69fe8c012",
+            "publication_id": "sha256:4aa4dd98955832135c617a7759c49b253cfa8767aef27cda5b517ec69fe8c012",
+            "office_id": "J000294",
+            "family_id": "dfam:e0ca0efb06296e23047f93ed",
+            "family_revision": "dfrev:2c8026c09a0a00fa870d9986",
+            "support_unit_id": "J000294",
+            "party": "D",
+            "start_char": 194,
+            "end_char": 222,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 90,
+            "sentence_end_char": 222,
+            "sentence_offset_start": 104,
+            "sentence_offset_end": 132,
+            "clause_start_char": 15,
+            "clause_end_char": 245,
+            "clause_offset_start": 179,
+            "clause_offset_end": 207,
+            "adjacent_tokens_before": [
+              "as",
+              "the",
+              "next",
+              "speaker",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "almost",
+              "two",
+              "years",
+              "ago",
+              "donald"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:6e14ec94d86808411fea9ad3",
+            "claim_id": "2026-11-04-D-00",
+            "statement_id": "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c",
+            "publication_id": "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c",
+            "office_id": "P000197",
+            "family_id": "dfam:650aa4a8f2b06dab493015b9",
+            "family_revision": "dfrev:b43ebd264d52a3784473bf17",
+            "support_unit_id": "P000197",
+            "party": "D",
+            "start_char": 120,
+            "end_char": 148,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 202,
+            "sentence_offset_start": 120,
+            "sentence_offset_end": 148,
+            "clause_start_char": 0,
+            "clause_end_char": 148,
+            "clause_offset_start": 120,
+            "clause_offset_end": 148,
+            "adjacent_tokens_before": [
+              "than",
+              "100",
+              "democratic",
+              "women",
+              "to"
+            ],
+            "adjacent_tokens_after": [
+              "today",
+              "house",
+              "democrats",
+              "made",
+              "history"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f4c9f22f877160792b1b8f83",
+            "claim_id": "2026-11-04-D-00",
+            "statement_id": "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c",
+            "publication_id": "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c",
+            "office_id": "P000197",
+            "family_id": "dfam:650aa4a8f2b06dab493015b9",
+            "family_revision": "dfrev:b43ebd264d52a3784473bf17",
+            "support_unit_id": "P000197",
+            "party": "D",
+            "start_char": 308,
+            "end_char": 336,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 203,
+            "sentence_end_char": 336,
+            "sentence_offset_start": 105,
+            "sentence_offset_end": 133,
+            "clause_start_char": 257,
+            "clause_end_char": 551,
+            "clause_offset_start": 51,
+            "clause_offset_end": 79,
+            "adjacent_tokens_before": [
+              "than",
+              "100",
+              "democratic",
+              "women",
+              "to"
+            ],
+            "adjacent_tokens_after": [
+              "this",
+              "victory",
+              "reflects",
+              "the",
+              "extraordinary"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:41e48e27ace10b59f700b765",
+            "claim_id": "2026-11-04-D-00",
+            "statement_id": "sha256:ae5d270f88428af3f8e8a8e8f09874d64549a030a5c7d0f869e291f7567cc5f7",
+            "publication_id": "sha256:ae5d270f88428af3f8e8a8e8f09874d64549a030a5c7d0f869e291f7567cc5f7",
+            "office_id": "W000802",
+            "family_id": "dfam:97c5bb29c87b653aef582fa9",
+            "family_revision": "dfrev:9e79546ff19e13a7fafe4e94",
+            "support_unit_id": "W000802",
+            "party": "D",
+            "start_char": 134,
+            "end_char": 162,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 21,
+            "sentence_end_char": 240,
+            "sentence_offset_start": 113,
+            "sentence_offset_end": 141,
+            "clause_start_char": 17,
+            "clause_end_char": 207,
+            "clause_offset_start": 117,
+            "clause_offset_end": 145,
+            "adjacent_tokens_before": [
+              "control",
+              "of",
+              "the",
+              "senate",
+              "and"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "a",
+              "massive",
+              "victory",
+              "for"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:564db7707326e69b50327a5c",
+            "claim_id": "2026-11-04-D-00",
+            "statement_id": "sha256:e78a62e9d9666f33b0fe1c546b1e9f5656e1d5b90796bbdb245173dd646fec57",
+            "publication_id": "sha256:e78a62e9d9666f33b0fe1c546b1e9f5656e1d5b90796bbdb245173dd646fec57",
+            "office_id": "H001046",
+            "family_id": "dfam:64488c497800656840c06501",
+            "family_revision": "dfrev:b9bcd65694f7debd322e784d",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 157,
+            "end_char": 185,
+            "surface_text": "the House of Representatives",
+            "normalized_phrase": "the house of representatives",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 196,
+            "sentence_offset_start": 157,
+            "sentence_offset_end": 185,
+            "clause_start_char": 132,
+            "clause_end_char": 208,
+            "clause_offset_start": 25,
+            "clause_offset_end": 53,
+            "adjacent_tokens_before": [
+              "from",
+              "red",
+              "to",
+              "blue",
+              "across"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "senate",
+              "early",
+              "on",
+              "it"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "H001046",
+          "J000294",
+          "P000197",
+          "W000802"
+        ],
+        "publication_ids": [
+          "sha256:4aa4dd98955832135c617a7759c49b253cfa8767aef27cda5b517ec69fe8c012",
+          "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c",
+          "sha256:ae5d270f88428af3f8e8a8e8f09874d64549a030a5c7d0f869e291f7567cc5f7",
+          "sha256:e78a62e9d9666f33b0fe1c546b1e9f5656e1d5b90796bbdb245173dd646fec57"
+        ],
+        "family_ids": [
+          "dfam:64488c497800656840c06501",
+          "dfam:650aa4a8f2b06dab493015b9",
+          "dfam:97c5bb29c87b653aef582fa9",
+          "dfam:e0ca0efb06296e23047f93ed"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:64488c497800656840c06501",
+            "family_revision": "dfrev:b9bcd65694f7debd322e784d"
+          },
+          {
+            "family_id": "dfam:650aa4a8f2b06dab493015b9",
+            "family_revision": "dfrev:b43ebd264d52a3784473bf17"
+          },
+          {
+            "family_id": "dfam:97c5bb29c87b653aef582fa9",
+            "family_revision": "dfrev:9e79546ff19e13a7fafe4e94"
+          },
+          {
+            "family_id": "dfam:e0ca0efb06296e23047f93ed",
+            "family_revision": "dfrev:2c8026c09a0a00fa870d9986"
+          }
+        ],
+        "support_unit_ids": [
+          "H001046",
+          "J000294",
+          "P000197",
+          "W000802"
+        ],
+        "citation_occurrence_ids": [
+          "occ:612d7518d812c818786c6ca0",
+          "occ:6e14ec94d86808411fea9ad3",
+          "occ:41e48e27ace10b59f700b765"
+        ],
+        "citations": [
+          {
+            "member": "Hakeem S. Jeffries",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-04",
+            "url": "https://jeffries.house.gov/2026/11/04/dear-colleague-announcing-candidacy-for-speaker-of-the-house/",
+            "quote": "next speaker of the house of representatives",
+            "occurrence_id": "occ:612d7518d812c818786c6ca0",
+            "office_id": "J000294",
+            "publication_id": "sha256:4aa4dd98955832135c617a7759c49b253cfa8767aef27cda5b517ec69fe8c012",
+            "family_id": "dfam:e0ca0efb06296e23047f93ed",
+            "family_revision": "dfrev:2c8026c09a0a00fa870d9986"
+          },
+          {
+            "member": "Nancy Pelosi",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-04",
+            "url": "https://pelosi.house.gov/news/press-releases/pelosi-statement-historic-election-more-100-democratic-women-house",
+            "quote": "democratic women to the house of representatives",
+            "occurrence_id": "occ:6e14ec94d86808411fea9ad3",
+            "office_id": "P000197",
+            "publication_id": "sha256:7dbc5d557f67a9955dfbcbc83887a7cbae61a4d5185b758f0a90b5dee6bb3a7c",
+            "family_id": "dfam:650aa4a8f2b06dab493015b9",
+            "family_revision": "dfrev:b43ebd264d52a3784473bf17"
+          },
+          {
+            "member": "Sheldon Whitehouse",
+            "party": "D",
+            "state": "RI",
+            "date": "2026-11-04",
+            "url": "https://www.whitehouse.senate.gov/news/release/whitehouse-statement-on-the-maga-wipeout-of-2026/",
+            "quote": "of the senate and the house of representatives in",
+            "occurrence_id": "occ:41e48e27ace10b59f700b765",
+            "office_id": "W000802",
+            "publication_id": "sha256:ae5d270f88428af3f8e8a8e8f09874d64549a030a5c7d0f869e291f7567cc5f7",
+            "family_id": "dfam:97c5bb29c87b653aef582fa9",
+            "family_revision": "dfrev:9e79546ff19e13a7fafe4e94"
+          }
+        ],
+        "surface_class": "unknown",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "title-reference-only"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-04",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 34,
+          "denominator_unit": "offices",
+          "share": 0.117647,
+          "window": "party-day 2026-11-04",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 43,
+          "denominator_unit": "publications",
+          "share": 0.093023,
+          "window": "party-day 2026-11-04",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 4,
+          "numerator_unit": "document families",
+          "denominator": 40,
+          "denominator_unit": "document families",
+          "share": 0.1,
+          "window": "party-day 2026-11-04",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-04",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 6,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-04",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 8,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-04",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 8,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-04",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "get to work",
+      "slug": "28bc085e15851d66",
+      "n": 3,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": null,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 7.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "S001172",
+        "statement": "sha256:cf6244b38ff5612e425dda155e1b3450519b5415925d5a49985856077cc75227",
+        "tie": [
+          "A000372",
+          "B001230",
+          "B001291",
+          "B001305",
+          "B001322",
+          "B001326",
+          "C001053",
+          "C001067",
+          "C001098",
+          "C001114",
+          "C001136",
+          "C001137",
+          "D000618",
+          "D000629",
+          "D000635",
+          "E000300",
+          "F000459",
+          "H001046",
+          "H001067",
+          "H001082",
+          "H001091",
+          "H001099",
+          "H001100",
+          "J000301",
+          "J000311",
+          "K000376",
+          "L000600",
+          "M001143",
+          "M001169",
+          "M001234",
+          "M001235",
+          "M001237",
+          "M001238",
+          "M001239",
+          "M001240",
+          "N000026",
+          "P000609",
+          "P000610",
+          "R000610",
+          "S001184",
+          "S001199",
+          "S001217",
+          "S001228",
+          "T000490",
+          "V000138"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.994,
+      "series": [
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        9
+      ]
+    },
+    {
+      "ngram": "house and senate",
+      "slug": "85580fe45e159220",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 6.12,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "F000459",
+        "statement": "sha256:92a928fc598070cc182d7ee9251b349894f32bda67fbebac21fef30962073363",
+        "tie": [
+          "C001096",
+          "M001215",
+          "R000395",
+          "S001188",
+          "W000795"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7
+      ]
+    },
+    {
+      "ngram": "war in iran",
+      "slug": "4abd5ede26e39eb9",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.9,
+      "first_seen": {
+        "date": "2026-02-24",
+        "bioguide": "R000620",
+        "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        4,
+        6,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "for the american people",
+      "slug": "495c7da743c93f81",
+      "n": 4,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 4.42,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "N000015",
+        "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "the 120th congress",
+      "slug": "14d2b0e24b5ec69f",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.67,
+      "first_seen": {
+        "date": "2025-05-03",
+        "bioguide": "B001327",
+        "statement": "sha256:a5ecf00f8bbf0d61bd4e94a5ee9dbc461c1308c627c201d8afe7c06fbe99f577",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "hold this administration accountable",
+      "slug": "38cfd083a5ee486d",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-02-06",
+        "bioguide": "S001185",
+        "statement": "sha256:efa84468332ad1aa3a59d502ee6ca3b5ce8c88065487fe6578dc43e8470eabae",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "text of the letter is available",
+      "slug": "f8a37997a6fd8531",
+      "n": 6,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.81,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "K000400",
+        "statement": "sha256:7b386329d891a071423a61c794a404f711d295808d25269cd4206e8d06d4ca70",
+        "tie": [
+          "L000397",
+          "L000582",
+          "R000620",
+          "T000476"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.963,
+      "series": [
+        3,
+        3,
+        3,
+        4,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "administration accountable for",
+      "slug": "b6689c5c881718e3",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-09",
+        "bioguide": "T000278",
+        "statement": "sha256:d50ccf2c75cfa70622b8394ccbf9cc93fcd5ea62d22142d9ad364dcd16e845ee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "a clear message",
+      "slug": "e5fe93ded5ef1509",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001282",
+        "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+        "tie": [
+          "M000194"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "to lower costs",
+      "slug": "10e0b9788fba1877",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.15,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "B001261",
+          "E000300",
+          "H001046",
+          "M001223",
+          "M001237",
+          "P000610",
+          "S000168",
+          "S001230",
+          "T000460",
+          "V000129",
+          "V000136",
+          "V000138"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.979,
+      "series": [
+        1,
+        4,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        1,
+        2,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "the new congress",
+      "slug": "39a3052b889b4c62",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001095",
+        "statement": "sha256:c570c3dcefde1f24020a7fa50d277053592334e3f6747d5c34f2f050449ee56b",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "it’s time to",
+      "slug": "89357d9bfee8e0a5",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.55,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "S001201",
+        "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        3,
+        1,
+        3,
+        2,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "health care and food assistance",
+      "slug": "e2f8e4026ad6780d",
+      "n": 5,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-02-25",
+        "bioguide": "E000301",
+        "statement": "sha256:2e8c104c1b2bf4b2daa5bcb313df036705179d015e5cb4c77495ffa17cb5ab69",
+        "tie": [
+          "C001101",
+          "G000585",
+          "L000557",
+          "N000015",
+          "P000614",
+          "W000830"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.997,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "sent a clear message",
+      "slug": "e10e79a0f8c93f75",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "T000278",
+        "statement": "sha256:bed0f32b3a0dbd614aaca730eabc722cf8083557a00e923f03b1dad181c5e0ce",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "next two years",
+      "slug": "d0d6f79ecd5563b7",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001130",
+        "statement": "sha256:7b4368a00a357145fb811f5669d1ef78f4e29f9d4d2c93afd38df660c94c7c66",
+        "tie": [
+          "H000874",
+          "P000609",
+          "P000614",
+          "S001188",
+          "T000460",
+          "W000798"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "fight like hell",
+      "slug": "2006d02ed7988851",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.8,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "K000400",
+        "statement": "sha256:79e8e189f6531098b597c4f4e06982d6f43d5c8dcd3170abab97dc33d92e245c",
+        "tie": [
+          "T000487"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "affordable health care",
+      "slug": "02ad997e3fb573df",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.33,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001296",
+        "statement": "sha256:9dad811aca53320dd4a698fea09dff69c04935f29b7ef882f06755ad57f7c0f8",
+        "tie": [
+          "D000635"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "full text of the letter is",
+      "slug": "264915c69f7253b1",
+      "n": 6,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.24,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001056",
+        "statement": "sha256:f43bc70e0eb9701b89bf84f448ed607bd1251e2bafbc45d0f802bf1c585f56e4",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.965,
+      "series": [
+        5,
+        2,
+        3,
+        2,
+        3,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "affordability and accountability",
+      "slug": "06e59bdde48b1da0",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-02-23",
+        "bioguide": "M001238",
+        "statement": "sha256:4177e06d58b0303d206a420cc908cf035d9cc0a5e5d01bc5a42f441e202111ae",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "statement after democrats",
+      "slug": "03102570a9dd6417",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.8,
+      "first_seen": {
+        "date": "2025-08-04",
+        "bioguide": "N000015",
+        "statement": "sha256:1417aa4fc2f535b3d3aaf5c36fcacae5136b8c35f93c927080a9f900efcdae01",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        2,
+        6,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "get to work",
+        "slug": "28bc085e15851d66",
+        "n": 3,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": null,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 7.0,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001172",
+          "statement": "sha256:cf6244b38ff5612e425dda155e1b3450519b5415925d5a49985856077cc75227",
+          "tie": [
+            "A000372",
+            "B001230",
+            "B001291",
+            "B001305",
+            "B001322",
+            "B001326",
+            "C001053",
+            "C001067",
+            "C001098",
+            "C001114",
+            "C001136",
+            "C001137",
+            "D000618",
+            "D000629",
+            "D000635",
+            "E000300",
+            "F000459",
+            "H001046",
+            "H001067",
+            "H001082",
+            "H001091",
+            "H001099",
+            "H001100",
+            "J000301",
+            "J000311",
+            "K000376",
+            "L000600",
+            "M001143",
+            "M001169",
+            "M001234",
+            "M001235",
+            "M001237",
+            "M001238",
+            "M001239",
+            "M001240",
+            "N000026",
+            "P000609",
+            "P000610",
+            "R000610",
+            "S001184",
+            "S001199",
+            "S001217",
+            "S001228",
+            "T000490",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          9
+        ]
+      },
+      {
+        "ngram": "house and senate",
+        "slug": "85580fe45e159220",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000459",
+          "statement": "sha256:92a928fc598070cc182d7ee9251b349894f32bda67fbebac21fef30962073363",
+          "tie": [
+            "C001096",
+            "M001215",
+            "R000395",
+            "S001188",
+            "W000795"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "war in iran",
+        "slug": "4abd5ede26e39eb9",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.9,
+        "first_seen": {
+          "date": "2026-02-24",
+          "bioguide": "R000620",
+          "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          4,
+          6,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "for the american people",
+        "slug": "495c7da743c93f81",
+        "n": 4,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 4.42,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "N000015",
+          "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "the 120th congress",
+        "slug": "14d2b0e24b5ec69f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-05-03",
+          "bioguide": "B001327",
+          "statement": "sha256:a5ecf00f8bbf0d61bd4e94a5ee9dbc461c1308c627c201d8afe7c06fbe99f577",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "hold this administration accountable",
+        "slug": "38cfd083a5ee486d",
+        "n": 4,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-02-06",
+          "bioguide": "S001185",
+          "statement": "sha256:efa84468332ad1aa3a59d502ee6ca3b5ce8c88065487fe6578dc43e8470eabae",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "administration accountable for",
+        "slug": "b6689c5c881718e3",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-09",
+          "bioguide": "T000278",
+          "statement": "sha256:d50ccf2c75cfa70622b8394ccbf9cc93fcd5ea62d22142d9ad364dcd16e845ee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.997,
+        "series": [
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "a clear message",
+        "slug": "e5fe93ded5ef1509",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.8,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "M000194"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "to lower costs",
+        "slug": "10e0b9788fba1877",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 2.15,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001261",
+            "E000300",
+            "H001046",
+            "M001223",
+            "M001237",
+            "P000610",
+            "S000168",
+            "S001230",
+            "T000460",
+            "V000129",
+            "V000136",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          1,
+          4,
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          3,
+          1,
+          1,
+          2,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "the new congress",
+        "slug": "39a3052b889b4c62",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": null,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001095",
+          "statement": "sha256:c570c3dcefde1f24020a7fa50d277053592334e3f6747d5c34f2f050449ee56b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      }
+    ],
+    "R": []
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}
