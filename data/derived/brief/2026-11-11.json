@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-11-11",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-11-10",
+      "note": "no publish for 2026-11-10 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": null,
+      "status": "unknown",
+      "note": "no cost ledger for 2026-11 — spend not measured (the $10 Console cap is the backstop)"
+    },
+    {
+      "name": "coverage",
+      "value": null,
+      "status": "unknown",
+      "day": "2026-10-28",
+      "freshness": {
+        "age_hours": 1.89,
+        "day": "2026-11-11",
+        "status": "green"
+      },
+      "note": "newest symmetry report is 2026-10-28 (14d old), cannot describe current coverage"
+    },
+    {
+      "name": "verifier_drop",
+      "value": null,
+      "status": "unknown",
+      "note": "no measured claims in 7d (0 unmeasured party-rows) — drop rate not measured"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak"
+  ],
+  "unknowns": [
+    "spend",
+    "coverage",
+    "verifier_drop"
+  ],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "an important step",
+    "party": "D",
+    "day_peak": 8,
+    "day": "2026-11-10"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak"
+}
