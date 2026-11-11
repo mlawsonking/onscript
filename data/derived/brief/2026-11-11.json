@@ -12,27 +12,33 @@
     },
     {
       "name": "spend",
-      "value": null,
-      "status": "unknown",
-      "note": "no cost ledger for 2026-11 — spend not measured (the $10 Console cap is the backstop)"
+      "value": 0.0052,
+      "projected": 0.0192,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 1,
+      "note": "$0.0052 MTD, $0.02 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
       "value": null,
       "status": "unknown",
-      "day": "2026-10-28",
+      "day": "2026-11-05",
       "freshness": {
-        "age_hours": 1.89,
+        "age_hours": 4.0,
         "day": "2026-11-11",
         "status": "green"
       },
-      "note": "newest symmetry report is 2026-10-28 (14d old), cannot describe current coverage"
+      "note": "newest symmetry report is 2026-11-05 (6d old), cannot describe current coverage"
     },
     {
       "name": "verifier_drop",
-      "value": null,
-      "status": "unknown",
-      "note": "no measured claims in 7d (0 unmeasured party-rows) — drop rate not measured"
+      "value": 1.0,
+      "dropped": 1,
+      "offered": 1,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "1/1 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
@@ -42,12 +48,11 @@
     }
   ],
   "reds": [
-    "streak"
+    "streak",
+    "verifier_drop"
   ],
   "unknowns": [
-    "spend",
-    "coverage",
-    "verifier_drop"
+    "coverage"
   ],
   "degraded_days": [],
   "top_phrase": {
@@ -82,5 +87,5 @@
       "phrase_search"
     ]
   },
-  "headline": "RED: streak"
+  "headline": "RED: streak, verifier_drop"
 }
