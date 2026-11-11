@@ -183,7 +183,7 @@ def _force_finalized_days() -> set:
     on how a day was published, so the population now comes from them and this stays true as more
     force-finalized days land.
     """
-    out = set()
+    out, counts = set(), None
     for path in sorted((DERIVED / "manifest").glob("assemble-2*.json")):
         try:
             manifest = json.loads(path.read_text(encoding="utf-8"))
@@ -191,6 +191,15 @@ def _force_finalized_days() -> set:
             continue
         if manifest.get("forced_finalize") and manifest.get("day"):
             out.add(manifest["day"])
+        # S74: an explicit `run_assemble --day` publish bypasses the gate (readiness None, forced
+        # hard-coded False), so a day the gate would have HELD carries no forced flag. 2026-11-03,
+        # Election Day, backfilled after the 26.04 outage: 25 statements vs a baseline of 80. The
+        # gate's own verdict, replayed, decides membership; the published manifest is not rewritten.
+        elif manifest.get("day") and manifest.get("readiness") is None \
+                and manifest.get("event") == "workflow_dispatch":
+            counts = counts if counts is not None else _committed_day_counts()
+            if not readiness.day_readiness(counts, manifest["day"])["ready"]:
+                out.add(manifest["day"])
     return out
 
 

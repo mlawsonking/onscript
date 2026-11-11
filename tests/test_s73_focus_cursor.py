@@ -224,9 +224,23 @@ def test_every_day_production_skipped_is_reachable_again():
     assert ORPHANED_DAY in skipped, "the pinned incident must be in the skipped set"
 
     windows = [set(readiness.sweep_window(day)) for day in resolved]
+    run_days = {_product_day_of(m["generated_at"]) for m in manifests}
+    outage = set()
     for day in sorted(skipped):
+        # An outage is not a cursor skip. If no collect ran in the LOOKBACK_DAYS after a day, no
+        # cursor could have reached it and the sweep never had the chance; readiness.sweep_window
+        # calls that "an operator repair, not a daily cost". Derived from the manifests, not listed.
+        reach = set(readiness.sweep_window(
+            (datetime.fromisoformat(day).date() + timedelta(days=readiness.LOOKBACK_DAYS)).isoformat()))
+        if not (reach & run_days):
+            outage.add(day)
+            continue
         assert day in focused or any(day in w for w in windows), \
             f"{day} was skipped by production and is still unreachable"
+    # The one outage in the record: ubuntu-latest moved to 26.04 and every run failed at setup from
+    # 2026-10-28 to the S74-2 pin on 2026-11-11. Those days were backfilled by `run_assemble --day`.
+    # Pinned so a NEW outage cannot pass in silence through the exemption above.
+    assert outage <= set(_between("2026-10-27", "2026-11-05")), sorted(outage)
 
 
 def test_a_corpus_behind_the_product_day_still_governs():

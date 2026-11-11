@@ -4094,3 +4094,45 @@ labeled as such, with the freeze itself as the only legitimate before-the-fact f
 
 This record is committed on a local branch and deliberately not pushed: a push deploys,
 and the freeze means quiet. It rides to main with the #343 bundle after Nov 10.
+
+### Session 74-2 (2026-11-11, Opus): the instrument did not heal itself; it went dark on Oct 28
+
+Correction to the record above. On 2026-10-28 GitHub moved `ubuntu-latest` to Ubuntu 26.04,
+which has no setup-python 3.12.10. From that day every workflow failed at setup, so the last day
+published on schedule was 2026-10-27. Election week went unmeasured while it was happening, and
+"the instrument healed itself" was true only through Oct 27. The freeze and the outage overlapped,
+which is why nobody acted: a push was barred, and the dead-man pages read as freeze noise.
+
+Repair, in order. `POSTING_ENABLED` was set false (14:32Z) before anything moved, so no backfilled
+day could post. Commit 0d445069 pinned all seven workflows to `ubuntu-24.04`. One dispatched collect
+(run 43046243414, green, 90,290 records through 11-11) ingested the whole gap. Then
+`run_assemble --day` assembled each missing day oldest-first, one at a time: 10-28 through 11-04
+and 11-06 through 11-10, all dispatched. The 18:49Z scheduled pass took 11-05. All 14 have a day
+record and an assemble manifest, `degraded: false`. Every RUN C post was a dry run ("posting
+disabled"), and no post manifest holds a root URI, so each day can still be posted for real later.
+
+Two honest marks the backfill left on the record:
+
+- **The deterministic half is missing on 10-28 through 11-09.** No RUN A wrote those days, so
+  assemble's read-modify-write started from bare stubs. Thirteen more published days now lack
+  `legacy_unvalidated_metrics`, the class `deterministic.py` already names as S73-open with no
+  one-command repair. Running the S73 sweep before assembling would have reached only five of them;
+  the outage was longer than `LOOKBACK_DAYS`. Completing them is still a decision about published
+  records.
+- **Election Day was published below readiness.** 2026-11-03 carried 25 statements against a
+  same-weekday median of 80 (31% < 40%). The gate would have held it and force-finalized it after
+  two days. The explicit `--day` bypass recorded it as an ordinary day (`readiness: null`,
+  `forced_finalize: false`). The manifest is not rewritten. The census test now replays the gate's
+  own verdict for gate-bypassed days.
+
+The backfilled manifests carry `event: workflow_dispatch`, `unattended: false`, so the unattended
+streak correctly breaks at the outage instead of laundering it.
+
+### Session 74-3 (2026-11-11, Opus): #343 applied
+
+The S73 cursor branch is merged, and RUN A now sends the Actions token to api.github.com only
+(`util._base_headers`, exact-hostname match, tested against look-alike hosts). Two real-history
+tests met the outage. The S73 reachability invariant now separates an outage, where no collect ran
+within `LOOKBACK_DAYS` after a day, from a cursor skip, and it pins the one outage (10-28..11-04) so
+a new one cannot pass silently. The S70 paging census admits gate-bypassed days the gate would have
+held. Suite 1247 passed, 0 failed.
