@@ -1,0 +1,2294 @@
+{
+  "day": "2026-11-06",
+  "schema_version": 2,
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-06",
+      "party": "D",
+      "composite": "Today 37 of us released statements. 4 of us carried \"Stephen Miller is the architect\". Our most synchronized phrase, used by 3 of us: stephen miller is the architect.",
+      "measurement_lead": "Measurement: 37 publications were observed for the Democratic party on 2026-11-06.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-06",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "4bc480c80f8fa58302349c4a8dcb27c48db0cc2d51ba5a2a78c496adac96b26d",
+        "claim_ids": [
+          "2026-11-06-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 37 of us released statements. 4 of us carried \"Stephen Miller is the architect\". Our most synchronized phrase, used by 3 of us: stephen miller is the architect.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-06-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "81621c76c9411376f8b4f2b7e460feec04af277ab598ae423828f9dacc11c1c5",
+        "response_sha256": "433fdcaf87fb6f380c42b20ccc6086a5fed7cef10b4b41f9992a70b988e6ee5c",
+        "model_response_sha256": "a4a126b075abe9956bd80c870d05f0d5f55c5e67077a4e262b3df9c87cd47d38"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-06-D-00"
+          ],
+          "claim_ids": [
+            "2026-11-06-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-06-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-06",
+        "statements": 37,
+        "talking_points": [
+          {
+            "label": "stephen miller is the architect",
+            "members": 4,
+            "quote": "Stephen Miller is the architect",
+            "topics": [
+              "other",
+              "immigration"
+            ],
+            "claim_id": "2026-11-06-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "immigration",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "stephen miller is the architect",
+          "members": 3,
+          "family_count": 3,
+          "first_sayer": "Ben Ray Luján",
+          "first_sayer_party": "D",
+          "first_sayer_state": "NM"
+        },
+        "selected_claims": [
+          {
+            "label": "stephen miller is the architect",
+            "members": 4,
+            "quote": "Stephen Miller is the architect",
+            "topics": [
+              "other",
+              "immigration"
+            ],
+            "claim_id": "2026-11-06-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "immigration",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-06-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2321,
+        "tokens_out": 143,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-06",
+      "party": "R",
+      "composite": "Today 18 of us released statements. 3 of us carried \"a Major Disaster Declaration\".",
+      "measurement_lead": "Measurement: 18 publications were observed for the Republican party on 2026-11-06.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-06",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "d3d1d22c5cddb476187703600c31b46400106584e19de8f2c1172d7d551ee69f",
+        "claim_ids": [
+          "2026-11-06-R-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 18 of us released statements. 3 of us carried \"a Major Disaster Declaration\".",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-06-R-00"
+            ]
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "8aacb818e98f893b30694c300ba0bb914764653d36304aea4e31a03f8ce33cb1",
+        "response_sha256": "ab50377f7776f3614f29480053b9b4dcec71833b976d031e2007268d9f00f6cd",
+        "model_response_sha256": "d24f896e05013645ff500c0b95fda836d82387fcc16fbb7f85b2c6b4f3a0df18"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-06-R-00"
+          ],
+          "claim_ids": [
+            "2026-11-06-R-00"
+          ]
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-06-R-00"
+          ]
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-06",
+        "statements": 18,
+        "talking_points": [
+          {
+            "label": "a major disaster declaration",
+            "members": 3,
+            "quote": "a Major Disaster Declaration",
+            "topics": [
+              "disasters"
+            ],
+            "claim_id": "2026-11-06-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "disasters",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": null,
+        "selected_claims": [
+          {
+            "label": "a major disaster declaration",
+            "members": 3,
+            "quote": "a Major Disaster Declaration",
+            "topics": [
+              "disasters"
+            ],
+            "claim_id": "2026-11-06-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "disasters",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 3,
+              "families": 3,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": null,
+        "claim_ids": [
+          "2026-11-06-R-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 1962,
+        "tokens_out": 61,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-11-06-D-00",
+        "party": "D",
+        "day": "2026-11-06",
+        "label": "stephen miller is the architect",
+        "member_count": 4,
+        "statements": [
+          "sha256:69495ab2ac4643e8b2c4d11e9fe7f45604b163a4318119359133f7c71e66ec15",
+          "sha256:6d89321cdef03a8010da83f53a3d3b0640409f12d5581a41c9fbba22ca446250",
+          "sha256:b5f5405a6b4c75fa1b2d1af936c4d9f2ecb526cf17c49316f7911ab1384fd01c",
+          "sha256:f0b18ccc9d350402b0d41ba76e3f0707d7f7636396e89c9f0c607f1ee17bf1eb"
+        ],
+        "fragments": [
+          {
+            "text": "stephen miller is the architect of",
+            "statement": "sha256:b5f5405a6b4c75fa1b2d1af936c4d9f2ecb526cf17c49316f7911ab1384fd01c"
+          },
+          {
+            "text": "stephen miller is the architect behind",
+            "statement": "sha256:69495ab2ac4643e8b2c4d11e9fe7f45604b163a4318119359133f7c71e66ec15"
+          },
+          {
+            "text": "stephen miller is the architect of project",
+            "statement": "sha256:6d89321cdef03a8010da83f53a3d3b0640409f12d5581a41c9fbba22ca446250"
+          },
+          {
+            "text": "stephen miller is the architect of the cruelest",
+            "statement": "sha256:f0b18ccc9d350402b0d41ba76e3f0707d7f7636396e89c9f0c607f1ee17bf1eb"
+          }
+        ],
+        "topics": [
+          "other",
+          "immigration"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-06-D-00",
+        "support_phrase": {
+          "normalized": "stephen miller is the architect",
+          "text": "Stephen Miller is the architect",
+          "occurrence_id": "occ:ba54d35d2eb291918d0fb278"
+        },
+        "display_quote": "Stephen Miller is the architect",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ba54d35d2eb291918d0fb278",
+            "claim_id": "2026-11-06-D-00",
+            "statement_id": "sha256:69495ab2ac4643e8b2c4d11e9fe7f45604b163a4318119359133f7c71e66ec15",
+            "publication_id": "sha256:69495ab2ac4643e8b2c4d11e9fe7f45604b163a4318119359133f7c71e66ec15",
+            "office_id": "D000216",
+            "family_id": "dfam:a33c25f437fc2325d168ba9a",
+            "family_revision": "dfrev:7dff3fa58ee29c0869c293ef",
+            "support_unit_id": "D000216",
+            "party": "D",
+            "start_char": 198,
+            "end_char": 229,
+            "surface_text": "Stephen Miller is the architect",
+            "normalized_phrase": "stephen miller is the architect",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 197,
+            "sentence_end_char": 284,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 32,
+            "clause_start_char": 127,
+            "clause_end_char": 338,
+            "clause_offset_start": 71,
+            "clause_offset_end": 102,
+            "adjacent_tokens_before": [
+              "business",
+              "in",
+              "the",
+              "white",
+              "house"
+            ],
+            "adjacent_tokens_after": [
+              "behind",
+              "president",
+              "trump’s",
+              "cruel",
+              "mass"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:95ccf0c54d6b6a09030e2846",
+            "claim_id": "2026-11-06-D-00",
+            "statement_id": "sha256:6d89321cdef03a8010da83f53a3d3b0640409f12d5581a41c9fbba22ca446250",
+            "publication_id": "sha256:6d89321cdef03a8010da83f53a3d3b0640409f12d5581a41c9fbba22ca446250",
+            "office_id": "J000298",
+            "family_id": "dfam:e573a20045b6f284585c8ea4",
+            "family_revision": "dfrev:c9f3fb1f496ffb45b3a27240",
+            "support_unit_id": "J000298",
+            "party": "D",
+            "start_char": 456,
+            "end_char": 487,
+            "surface_text": "Stephen Miller is the architect",
+            "normalized_phrase": "stephen miller is the architect",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 453,
+            "sentence_end_char": 888,
+            "sentence_offset_start": 3,
+            "sentence_offset_end": 34,
+            "clause_start_char": 247,
+            "clause_end_char": 503,
+            "clause_offset_start": 209,
+            "clause_offset_end": 240,
+            "adjacent_tokens_before": [
+              "of",
+              "the",
+              "last",
+              "two",
+              "years"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "project",
+              "2025",
+              "which",
+              "included"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:24b7173d0a526d5e66c681e9",
+            "claim_id": "2026-11-06-D-00",
+            "statement_id": "sha256:b5f5405a6b4c75fa1b2d1af936c4d9f2ecb526cf17c49316f7911ab1384fd01c",
+            "publication_id": "sha256:b5f5405a6b4c75fa1b2d1af936c4d9f2ecb526cf17c49316f7911ab1384fd01c",
+            "office_id": "B001292",
+            "family_id": "dfam:fb978d9d69f8e98e8746ed04",
+            "family_revision": "dfrev:c75bb89a25cdbab63df39da8",
+            "support_unit_id": "B001292",
+            "party": "D",
+            "start_char": 308,
+            "end_char": 339,
+            "surface_text": "Stephen Miller is the architect",
+            "normalized_phrase": "stephen miller is the architect",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 305,
+            "sentence_end_char": 425,
+            "sentence_offset_start": 3,
+            "sentence_offset_end": 34,
+            "clause_start_char": 235,
+            "clause_end_char": 448,
+            "clause_offset_start": 73,
+            "clause_offset_end": 104,
+            "adjacent_tokens_before": [
+              "soundly",
+              "rejected",
+              "three",
+              "days",
+              "ago"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "trump’s",
+              "immigration",
+              "policies",
+              "that"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:70e6be3aa93b4c0df94f8458",
+            "claim_id": "2026-11-06-D-00",
+            "statement_id": "sha256:f0b18ccc9d350402b0d41ba76e3f0707d7f7636396e89c9f0c607f1ee17bf1eb",
+            "publication_id": "sha256:f0b18ccc9d350402b0d41ba76e3f0707d7f7636396e89c9f0c607f1ee17bf1eb",
+            "office_id": "P000145",
+            "family_id": "dfam:c028d312f3c2534dec42c130",
+            "family_revision": "dfrev:886f3fbf77f048fd049400fb",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 579,
+            "end_char": 610,
+            "surface_text": "Stephen Miller is the architect",
+            "normalized_phrase": "stephen miller is the architect",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 576,
+            "sentence_end_char": 844,
+            "sentence_offset_start": 3,
+            "sentence_offset_end": 34,
+            "clause_start_char": 452,
+            "clause_end_char": 685,
+            "clause_offset_start": 127,
+            "clause_offset_end": 158,
+            "adjacent_tokens_before": [
+              "failures",
+              "and",
+              "most",
+              "harmful",
+              "policies"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "the",
+              "cruelest",
+              "immigration",
+              "policies"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "B001292",
+          "D000216",
+          "J000298",
+          "P000145"
+        ],
+        "publication_ids": [
+          "sha256:69495ab2ac4643e8b2c4d11e9fe7f45604b163a4318119359133f7c71e66ec15",
+          "sha256:6d89321cdef03a8010da83f53a3d3b0640409f12d5581a41c9fbba22ca446250",
+          "sha256:b5f5405a6b4c75fa1b2d1af936c4d9f2ecb526cf17c49316f7911ab1384fd01c",
+          "sha256:f0b18ccc9d350402b0d41ba76e3f0707d7f7636396e89c9f0c607f1ee17bf1eb"
+        ],
+        "family_ids": [
+          "dfam:a33c25f437fc2325d168ba9a",
+          "dfam:c028d312f3c2534dec42c130",
+          "dfam:e573a20045b6f284585c8ea4",
+          "dfam:fb978d9d69f8e98e8746ed04"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:a33c25f437fc2325d168ba9a",
+            "family_revision": "dfrev:7dff3fa58ee29c0869c293ef"
+          },
+          {
+            "family_id": "dfam:c028d312f3c2534dec42c130",
+            "family_revision": "dfrev:886f3fbf77f048fd049400fb"
+          },
+          {
+            "family_id": "dfam:e573a20045b6f284585c8ea4",
+            "family_revision": "dfrev:c9f3fb1f496ffb45b3a27240"
+          },
+          {
+            "family_id": "dfam:fb978d9d69f8e98e8746ed04",
+            "family_revision": "dfrev:c75bb89a25cdbab63df39da8"
+          }
+        ],
+        "support_unit_ids": [
+          "B001292",
+          "D000216",
+          "J000298",
+          "P000145"
+        ],
+        "citation_occurrence_ids": [
+          "occ:ba54d35d2eb291918d0fb278",
+          "occ:95ccf0c54d6b6a09030e2846",
+          "occ:24b7173d0a526d5e66c681e9"
+        ],
+        "citations": [
+          {
+            "member": "Rosa L. DeLauro",
+            "party": "D",
+            "state": "CT",
+            "date": "2026-11-06",
+            "url": "https://delauro.house.gov/media-center/press-releases/delauro-statement-president-trump-naming-stephen-miller-white-house",
+            "quote": "stephen miller is the architect behind",
+            "occurrence_id": "occ:ba54d35d2eb291918d0fb278",
+            "office_id": "D000216",
+            "publication_id": "sha256:69495ab2ac4643e8b2c4d11e9fe7f45604b163a4318119359133f7c71e66ec15",
+            "family_id": "dfam:a33c25f437fc2325d168ba9a",
+            "family_revision": "dfrev:7dff3fa58ee29c0869c293ef"
+          },
+          {
+            "member": "Pramila Jayapal",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-11-06",
+            "url": "https://jayapal.house.gov/2026/11/06/jayapal-statement-on-stephen-millers-appointment-to-white-house-chief-of-staff/",
+            "quote": "stephen miller is the architect of project",
+            "occurrence_id": "occ:95ccf0c54d6b6a09030e2846",
+            "office_id": "J000298",
+            "publication_id": "sha256:6d89321cdef03a8010da83f53a3d3b0640409f12d5581a41c9fbba22ca446250",
+            "family_id": "dfam:e573a20045b6f284585c8ea4",
+            "family_revision": "dfrev:c9f3fb1f496ffb45b3a27240"
+          },
+          {
+            "member": "Donald S. Beyer, Jr.",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-11-06",
+            "url": "https://beyer.house.gov/news/documentsingle.aspx?DocumentID=9294",
+            "quote": "stephen miller is the architect of",
+            "occurrence_id": "occ:24b7173d0a526d5e66c681e9",
+            "office_id": "B001292",
+            "publication_id": "sha256:b5f5405a6b4c75fa1b2d1af936c4d9f2ecb526cf17c49316f7911ab1384fd01c",
+            "family_id": "dfam:fb978d9d69f8e98e8746ed04",
+            "family_revision": "dfrev:c75bb89a25cdbab63df39da8"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "immigration",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-11-06-R-00",
+        "party": "R",
+        "day": "2026-11-06",
+        "label": "a major disaster declaration",
+        "member_count": 3,
+        "statements": [
+          "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+          "sha256:e8cf50c4e2b029bcc88b81ffb4fb889058ba39de3080e7b2666687b7e83c3b1e",
+          "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7"
+        ],
+        "fragments": [
+          {
+            "text": "jim pillen’s request for a major disaster declaration following",
+            "statement": "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7"
+          },
+          {
+            "text": "assistance requires a major disaster declaration under the",
+            "statement": "sha256:e8cf50c4e2b029bcc88b81ffb4fb889058ba39de3080e7b2666687b7e83c3b1e"
+          },
+          {
+            "text": "minnesota’s request for a major disaster declaration for individual assistance",
+            "statement": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586"
+          }
+        ],
+        "topics": [
+          "disasters"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-06-R-00",
+        "support_phrase": {
+          "normalized": "a major disaster declaration",
+          "text": "a Major Disaster Declaration",
+          "occurrence_id": "occ:d8693e854785ea30acc49389"
+        },
+        "display_quote": "a Major Disaster Declaration",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d8693e854785ea30acc49389",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "publication_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "office_id": "F000475",
+            "family_id": "dfam:4888770eafff73549d4706af",
+            "family_revision": "dfrev:6f47cdc379e9873f74a2b2a0",
+            "support_unit_id": "F000475",
+            "party": "R",
+            "start_char": 217,
+            "end_char": 245,
+            "surface_text": "a Major Disaster Declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 60,
+            "sentence_end_char": 327,
+            "sentence_offset_start": 157,
+            "sentence_offset_end": 185,
+            "clause_start_char": 16,
+            "clause_end_char": 289,
+            "clause_offset_start": 201,
+            "clause_offset_end": 229,
+            "adjacent_tokens_before": [
+              "state",
+              "of",
+              "minnesota’s",
+              "request",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "individual",
+              "assistance",
+              "covering",
+              "fillmore"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:080f62118d02f249d84df411",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "publication_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "office_id": "F000475",
+            "family_id": "dfam:4888770eafff73549d4706af",
+            "family_revision": "dfrev:6f47cdc379e9873f74a2b2a0",
+            "support_unit_id": "F000475",
+            "party": "R",
+            "start_char": 946,
+            "end_char": 974,
+            "surface_text": "a Major Disaster Declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 750,
+            "sentence_end_char": 974,
+            "sentence_offset_start": 196,
+            "sentence_offset_end": 224,
+            "clause_start_char": 735,
+            "clause_end_char": 993,
+            "clause_offset_start": 211,
+            "clause_offset_end": 239,
+            "adjacent_tokens_before": [
+              "under",
+              "the",
+              "stafford",
+              "act",
+              "through"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "letter",
+              "reads",
+              "dear",
+              "mr"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d07ffbb485ef5b1ea5a00fe8",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "publication_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "office_id": "F000475",
+            "family_id": "dfam:4888770eafff73549d4706af",
+            "family_revision": "dfrev:6f47cdc379e9873f74a2b2a0",
+            "support_unit_id": "F000475",
+            "party": "R",
+            "start_char": 1091,
+            "end_char": 1119,
+            "surface_text": "a Major Disaster Declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1004,
+            "sentence_end_char": 1238,
+            "sentence_offset_start": 87,
+            "sentence_offset_end": 115,
+            "clause_start_char": 1015,
+            "clause_end_char": 1294,
+            "clause_offset_start": 76,
+            "clause_offset_end": 104,
+            "adjacent_tokens_before": [
+              "state",
+              "of",
+              "minnesota’s",
+              "request",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "individual",
+              "assistance",
+              "under",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:54c73a7113b03a7e25f9db12",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "publication_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "office_id": "F000475",
+            "family_id": "dfam:4888770eafff73549d4706af",
+            "family_revision": "dfrev:6f47cdc379e9873f74a2b2a0",
+            "support_unit_id": "F000475",
+            "party": "R",
+            "start_char": 2515,
+            "end_char": 2543,
+            "surface_text": "a Major Disaster Declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2307,
+            "sentence_end_char": 2543,
+            "sentence_offset_start": 208,
+            "sentence_offset_end": 236,
+            "clause_start_char": 1823,
+            "clause_end_char": 2663,
+            "clause_offset_start": 692,
+            "clause_offset_end": 720,
+            "adjacent_tokens_before": [
+              "under",
+              "the",
+              "stafford",
+              "act",
+              "through"
+            ],
+            "adjacent_tokens_after": [
+              "governor",
+              "walz",
+              "has",
+              "submitted",
+              "an"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3d4f5385ac078610d9ab0f62",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "publication_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "office_id": "F000475",
+            "family_id": "dfam:4888770eafff73549d4706af",
+            "family_revision": "dfrev:6f47cdc379e9873f74a2b2a0",
+            "support_unit_id": "F000475",
+            "party": "R",
+            "start_char": 3208,
+            "end_char": 3236,
+            "surface_text": "a Major Disaster Declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 3162,
+            "sentence_end_char": 3435,
+            "sentence_offset_start": 46,
+            "sentence_offset_end": 74,
+            "clause_start_char": 3097,
+            "clause_end_char": 3262,
+            "clause_offset_start": 111,
+            "clause_offset_end": 139,
+            "adjacent_tokens_before": [
+              "strongly",
+              "support",
+              "minnesota’s",
+              "request",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "for",
+              "individual",
+              "assistance",
+              "including",
+              "for"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2d2011ab7185e9c6e6774951",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:e8cf50c4e2b029bcc88b81ffb4fb889058ba39de3080e7b2666687b7e83c3b1e",
+            "publication_id": "sha256:e8cf50c4e2b029bcc88b81ffb4fb889058ba39de3080e7b2666687b7e83c3b1e",
+            "office_id": "C001132",
+            "family_id": "dfam:c3ad79d4a3cbc90e3c189c9d",
+            "family_revision": "dfrev:9d1a48485887ca4199c10f0d",
+            "support_unit_id": "C001132",
+            "party": "R",
+            "start_char": 1360,
+            "end_char": 1388,
+            "surface_text": "a major disaster declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1315,
+            "sentence_end_char": 1407,
+            "sentence_offset_start": 45,
+            "sentence_offset_end": 73,
+            "clause_start_char": 1253,
+            "clause_end_char": 1536,
+            "clause_offset_start": 107,
+            "clause_offset_end": 135,
+            "adjacent_tokens_before": [
+              "of",
+              "fema’s",
+              "disaster",
+              "assistance",
+              "requires"
+            ],
+            "adjacent_tokens_after": [
+              "under",
+              "the",
+              "robert",
+              "t",
+              "stafford"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:5c5dc6d8af500871046799ab",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7",
+            "publication_id": "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7",
+            "office_id": "B001298",
+            "family_id": "dfam:483b39018e2466bf8349f026",
+            "family_revision": "dfrev:f778dea1f4737712fc8c26ee",
+            "support_unit_id": "B001298",
+            "party": "R",
+            "start_char": 241,
+            "end_char": 269,
+            "surface_text": "a major disaster declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 215,
+            "sentence_end_char": 328,
+            "sentence_offset_start": 26,
+            "sentence_offset_end": 54,
+            "clause_start_char": 99,
+            "clause_end_char": 347,
+            "clause_offset_start": 142,
+            "clause_offset_end": 170,
+            "adjacent_tokens_before": [
+              "gov",
+              "jim",
+              "pillen’s",
+              "request",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "following",
+              "severe",
+              "storms",
+              "and",
+              "flooding"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:04fb5e2c2efceb3916a95dd1",
+            "claim_id": "2026-11-06-R-00",
+            "statement_id": "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7",
+            "publication_id": "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7",
+            "office_id": "B001298",
+            "family_id": "dfam:483b39018e2466bf8349f026",
+            "family_revision": "dfrev:f778dea1f4737712fc8c26ee",
+            "support_unit_id": "B001298",
+            "party": "R",
+            "start_char": 615,
+            "end_char": 643,
+            "surface_text": "a major disaster declaration",
+            "normalized_phrase": "a major disaster declaration",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 588,
+            "sentence_end_char": 665,
+            "sentence_offset_start": 27,
+            "sentence_offset_end": 55,
+            "clause_start_char": 550,
+            "clause_end_char": 730,
+            "clause_offset_start": 65,
+            "clause_offset_end": 93,
+            "adjacent_tokens_before": [
+              "gov",
+              "jim",
+              "pillen’s",
+              "requests",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "hazard",
+              "mitigation",
+              "these",
+              "requests"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "B001298",
+          "C001132",
+          "F000475"
+        ],
+        "publication_ids": [
+          "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+          "sha256:e8cf50c4e2b029bcc88b81ffb4fb889058ba39de3080e7b2666687b7e83c3b1e",
+          "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7"
+        ],
+        "family_ids": [
+          "dfam:483b39018e2466bf8349f026",
+          "dfam:4888770eafff73549d4706af",
+          "dfam:c3ad79d4a3cbc90e3c189c9d"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:483b39018e2466bf8349f026",
+            "family_revision": "dfrev:f778dea1f4737712fc8c26ee"
+          },
+          {
+            "family_id": "dfam:4888770eafff73549d4706af",
+            "family_revision": "dfrev:6f47cdc379e9873f74a2b2a0"
+          },
+          {
+            "family_id": "dfam:c3ad79d4a3cbc90e3c189c9d",
+            "family_revision": "dfrev:9d1a48485887ca4199c10f0d"
+          }
+        ],
+        "support_unit_ids": [
+          "B001298",
+          "C001132",
+          "F000475"
+        ],
+        "citation_occurrence_ids": [
+          "occ:d8693e854785ea30acc49389",
+          "occ:2d2011ab7185e9c6e6774951",
+          "occ:5c5dc6d8af500871046799ab"
+        ],
+        "citations": [
+          {
+            "member": "Brad Finstad",
+            "party": "R",
+            "state": "MN",
+            "date": "2026-11-06",
+            "url": "https://finstad.house.gov/2026/11/06/finstad-urges-trump-administration-to-approve-disaster-declaration-in-southeastern-minnesota/",
+            "quote": "minnesota’s request for a major disaster declaration for individual assistance",
+            "occurrence_id": "occ:d8693e854785ea30acc49389",
+            "office_id": "F000475",
+            "publication_id": "sha256:5813ed1de440ebed07801b2bda9b4a19a6723b7706ba77ac44accee11738f586",
+            "family_id": "dfam:4888770eafff73549d4706af",
+            "family_revision": "dfrev:6f47cdc379e9873f74a2b2a0"
+          },
+          {
+            "member": "Elijah Crane",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-11-06",
+            "url": "https://crane.house.gov/2026/11/06/resources-and-updates-for-arizonans-impacted-by-severe-flooding/",
+            "quote": "assistance requires a major disaster declaration under the",
+            "occurrence_id": "occ:2d2011ab7185e9c6e6774951",
+            "office_id": "C001132",
+            "publication_id": "sha256:e8cf50c4e2b029bcc88b81ffb4fb889058ba39de3080e7b2666687b7e83c3b1e",
+            "family_id": "dfam:c3ad79d4a3cbc90e3c189c9d",
+            "family_revision": "dfrev:9d1a48485887ca4199c10f0d"
+          },
+          {
+            "member": "Don Bacon",
+            "party": "R",
+            "state": "NE",
+            "date": "2026-11-06",
+            "url": "https://bacon.house.gov/news/documentsingle.aspx?DocumentID=2916",
+            "quote": "jim pillen’s request for a major disaster declaration following",
+            "occurrence_id": "occ:5c5dc6d8af500871046799ab",
+            "office_id": "B001298",
+            "publication_id": "sha256:f35a4fd3d93cb326ca17ae4f0a52579b9305d7ad196acd1c184f9819532fd8e7",
+            "family_id": "dfam:483b39018e2466bf8349f026",
+            "family_revision": "dfrev:f778dea1f4737712fc8c26ee"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "disasters",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-06",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 30,
+          "denominator_unit": "offices",
+          "share": 0.133333,
+          "window": "party-day 2026-11-06",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 37,
+          "denominator_unit": "publications",
+          "share": 0.108108,
+          "window": "party-day 2026-11-06",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 4,
+          "numerator_unit": "document families",
+          "denominator": 37,
+          "denominator_unit": "document families",
+          "share": 0.108108,
+          "window": "party-day 2026-11-06",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-06",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 3,
+          "numerator_unit": "offices",
+          "denominator": 15,
+          "denominator_unit": "offices",
+          "share": 0.2,
+          "window": "party-day 2026-11-06",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 3,
+          "numerator_unit": "publications",
+          "denominator": 18,
+          "denominator_unit": "publications",
+          "share": 0.166667,
+          "window": "party-day 2026-11-06",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 3,
+          "numerator_unit": "document families",
+          "denominator": 18,
+          "denominator_unit": "document families",
+          "share": 0.166667,
+          "window": "party-day 2026-11-06",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "access to care for veterans",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 1
+      }
+    ],
+    "R": []
+  },
+  "top_synchronized": [
+    {
+      "ngram": "stephen miller is",
+      "slug": "5c34ffa81ffb8cb2",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 5.5,
+      "first_seen": {
+        "date": "2025-08-08",
+        "bioguide": "G000586",
+        "statement": "sha256:4f551ac71ec74b24eb86339857503dc5cf6df4408886f095aabea9193799517b",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "stephen miller is the architect",
+      "slug": "87a47c5bc3af7b83",
+      "n": 5,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2026-01-28",
+        "bioguide": "L000570",
+        "statement": "sha256:0fc8bb69026b68c3695ae0c46d4840188395113f338a482d5fb3e48df8a44a8b",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "last two years",
+      "slug": "7c3f8144fa8ea5d5",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.47,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001282",
+        "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "ngram": "million in federal funding",
+      "slug": "3edf9fb2999b89ff",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 0.91,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "H001061",
+        "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
+        "tie": [
+          "S000148"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.98,
+      "series": [
+        4,
+        1,
+        3,
+        4,
+        3,
+        2,
+        4,
+        3,
+        3,
+        7,
+        4,
+        2,
+        2,
+        3
+      ]
+    },
+    {
+      "ngram": "d-calif released the",
+      "slug": "c8495142c3890ca6",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.47,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001285",
+        "statement": "sha256:d3d86f97997a5385d1d7bb0bc46a8add26fb099962dbd6dd6a1a2855c6c470cc",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "ngram": "the last two",
+      "slug": "02227820b0b5ae88",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.62,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001282",
+        "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+        "tie": [
+          "J000304"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "ngram": "to expand access",
+      "slug": "6a36bd10995e48cb",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 2.33,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C000880",
+        "statement": "sha256:879b6c9d22466862184ddfc9825e3855e68ce796c7dd3b264283df4109c2522e",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        2,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "ngram": "cost of living",
+      "slug": "78aad30559a5ec89",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.91,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "G000553",
+        "statement": "sha256:84a065cbce6d91d26bdbcd0806df3fdcbffec6b95989ba0e47710c7f5ce566c5",
+        "tie": [
+          "A000381",
+          "B001285",
+          "C001069",
+          "C001080",
+          "C001125",
+          "E000300",
+          "G000592",
+          "G000601",
+          "J000304",
+          "L000593",
+          "M001160",
+          "M001163",
+          "M001210",
+          "M001231",
+          "R000621",
+          "S001159",
+          "S001213",
+          "T000482",
+          "W000808",
+          "W000822"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.976,
+      "series": [
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3
+      ]
+    },
+    {
+      "ngram": "federal funding to",
+      "slug": "472a760aeae1d4f2",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.2,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "G000555",
+        "statement": "sha256:eb638a997acc8901dc25261bb63f7028171bd64df0100e940a27f8959800fdee",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        2,
+        3,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        3,
+        4,
+        3
+      ]
+    },
+    {
+      "ngram": "expand access to",
+      "slug": "0c3cd1524acb667f",
+      "n": 3,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": null,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 1.17,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "B001260",
+        "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+        "tie": [
+          "D000622"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        5,
+        2,
+        2,
+        2,
+        4,
+        4,
+        1,
+        3,
+        1,
+        3,
+        1,
+        2,
+        2,
+        3
+      ]
+    }
+  ],
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "stephen miller is",
+        "slug": "5c34ffa81ffb8cb2",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 5.5,
+        "first_seen": {
+          "date": "2025-08-08",
+          "bioguide": "G000586",
+          "statement": "sha256:4f551ac71ec74b24eb86339857503dc5cf6df4408886f095aabea9193799517b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "stephen miller is the architect",
+        "slug": "87a47c5bc3af7b83",
+        "n": 5,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-01-28",
+          "bioguide": "L000570",
+          "statement": "sha256:0fc8bb69026b68c3695ae0c46d4840188395113f338a482d5fb3e48df8a44a8b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "last two years",
+        "slug": "7c3f8144fa8ea5d5",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "million in federal funding",
+        "slug": "3edf9fb2999b89ff",
+        "n": 4,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 0.91,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "H001061",
+          "statement": "sha256:3430233dea8a365ea1f4851a6362bdb5fa0f3417ac8dfdb8e6035561eff67402",
+          "tie": [
+            "S000148"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.98,
+        "series": [
+          4,
+          1,
+          3,
+          4,
+          3,
+          2,
+          4,
+          3,
+          3,
+          7,
+          4,
+          2,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "d-calif released the",
+        "slug": "c8495142c3890ca6",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001285",
+          "statement": "sha256:d3d86f97997a5385d1d7bb0bc46a8add26fb099962dbd6dd6a1a2855c6c470cc",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "the last two",
+        "slug": "02227820b0b5ae88",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "J000304"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "to expand access",
+        "slug": "6a36bd10995e48cb",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.33,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C000880",
+          "statement": "sha256:879b6c9d22466862184ddfc9825e3855e68ce796c7dd3b264283df4109c2522e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          2,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "cost of living",
+        "slug": "78aad30559a5ec89",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.91,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "G000553",
+          "statement": "sha256:84a065cbce6d91d26bdbcd0806df3fdcbffec6b95989ba0e47710c7f5ce566c5",
+          "tie": [
+            "A000381",
+            "B001285",
+            "C001069",
+            "C001080",
+            "C001125",
+            "E000300",
+            "G000592",
+            "G000601",
+            "J000304",
+            "L000593",
+            "M001160",
+            "M001163",
+            "M001210",
+            "M001231",
+            "R000621",
+            "S001159",
+            "S001213",
+            "T000482",
+            "W000808",
+            "W000822"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.976,
+        "series": [
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          3,
+          2,
+          3
+        ]
+      },
+      {
+        "ngram": "federal funding to",
+        "slug": "472a760aeae1d4f2",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.2,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "G000555",
+          "statement": "sha256:eb638a997acc8901dc25261bb63f7028171bd64df0100e940a27f8959800fdee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          2,
+          3,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          4,
+          3,
+          3,
+          4,
+          3
+        ]
+      },
+      {
+        "ngram": "expand access to",
+        "slug": "0c3cd1524acb667f",
+        "n": 3,
+        "day_peak": 3,
+        "party": "D",
+        "counts": {
+          "D": 3,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": null,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 1.17,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [
+            "D000622"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          5,
+          2,
+          2,
+          2,
+          4,
+          4,
+          1,
+          3,
+          1,
+          3,
+          1,
+          2,
+          2,
+          3
+        ]
+      }
+    ],
+    "R": []
+  },
+  "duets": [],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "c820392218aef542fde7b19151907cc45893e9e39c63163091dc7e4f18663eb3",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "be56d40d6b755f580957ad2c7fa6382ebb351864c45469b9cda991bc2614273f",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
+}

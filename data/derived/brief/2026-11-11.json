@@ -12,33 +12,33 @@
     },
     {
       "name": "spend",
-      "value": 0.0234,
-      "projected": 0.0637,
+      "value": 0.0393,
+      "projected": 0.1071,
       "status": "green",
       "governor": "nominal",
-      "ledger_days": 5,
-      "note": "$0.0234 MTD, $0.06 projected month-end (green <= $8); governor nominal"
+      "ledger_days": 6,
+      "note": "$0.0393 MTD, $0.11 projected month-end (green <= $8); governor nominal"
     },
     {
       "name": "coverage",
       "value": null,
       "status": "unknown",
-      "day": "2026-11-05",
+      "day": "2026-11-06",
       "freshness": {
         "age_hours": 4.0,
         "day": "2026-11-11",
         "status": "green"
       },
-      "note": "newest symmetry report is 2026-11-05 (6d old), cannot describe current coverage"
+      "note": "newest symmetry report is 2026-11-06 (5d old), cannot describe current coverage"
     },
     {
       "name": "verifier_drop",
-      "value": 0.5,
-      "dropped": 1,
-      "offered": 2,
+      "value": 0.4,
+      "dropped": 2,
+      "offered": 5,
       "unmeasured_rows": 0,
       "status": "red",
-      "note": "1/2 claims dropped over 7d (green < 25%)"
+      "note": "2/5 claims dropped over 7d (green < 25%)"
     },
     {
       "name": "reach",
