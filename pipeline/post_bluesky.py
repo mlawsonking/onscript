@@ -482,6 +482,16 @@ def _post_thread(session: dict, thread: list[str], on_root=None, root_rkey=None)
             "recovered": recovered, "resumed_from": start}
 
 
+# Days published to the site that never post, by operator ruling. Task #392 (2026-11-12): the
+# 2026-10-28..2026-11-10 days were backfilled by `run_assemble --day` after the ubuntu 26.04
+# outage. Posting fourteen stale threads at once would read as a malfunction, so they stay
+# site-only. The list is needed because RUN C posts whatever assemble-latest.json names and also
+# runs after a no-op assemble. When posting came back on, that day was 2026-11-10, a backfilled day.
+WITHHELD_DAYS = frozenset(
+    f"2026-10-{d:02d}" for d in range(28, 32)) | frozenset(f"2026-11-{d:02d}" for d in range(1, 11))
+WITHHELD_REASON = "withheld: backfilled after the 2026-10-28 outage, site-only (ruling #392)"
+
+
 def resolve_day(arg: str | None) -> str:
     """The day to post = the day ASSEMBLE built (assemble-latest.json). Explicit --day wins."""
     if arg:
@@ -643,6 +653,13 @@ def main() -> int:
                                       "idempotent_skip": True}
 
     to_post = [p for p in config.COMPOSITE_PARTIES if p not in already_posted]
+
+    # Operator-withheld day: held as dry for every party (symmetric, no network, no page).
+    if day in WITHHELD_DAYS:
+        for p in to_post:
+            result_by_party[p] = _dry_result(day, p, day_json, WITHHELD_REASON)
+        _flush()
+        return 0
 
     # Gated / dry-run: posting off, or nothing due -> hold all as dry (no network).
     if not (posting_enabled and to_post):

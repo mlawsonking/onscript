@@ -4136,3 +4136,13 @@ tests met the outage. The S73 reachability invariant now separates an outage, wh
 within `LOOKBACK_DAYS` after a day, from a cursor skip, and it pins the one outage (10-28..11-04) so
 a new one cannot pass silently. The S70 paging census admits gate-bypassed days the gate would have
 held. Suite 1247 passed, 0 failed.
+
+### Session 74-4 (2026-11-12, Opus): ruling #392, posting back on, backfilled days site-only
+
+Michael accepted the recommendation. The 14 backfilled days (10-28..11-10) stay site-only, and
+posting resumes with the first scheduled day, 2026-11-11. One hazard had to close first. RUN C
+posts whatever `assemble-latest.json` names, and it also runs after a no-op assemble. That day was
+2026-11-10, a backfilled day, so flipping the flag alone would have posted it on the next no-op pass.
+`post_bluesky.WITHHELD_DAYS` pins the 14 days. They are held as a symmetric dry result with no
+network and no page (`tests/test_s74_post_withheld.py`, which also proves 2026-11-11 still posts).
+The guard was pushed before `POSTING_ENABLED` went back to `true`.
