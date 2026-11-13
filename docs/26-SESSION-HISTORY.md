@@ -4146,3 +4146,5 @@ posts whatever `assemble-latest.json` names, and it also runs after a no-op asse
 `post_bluesky.WITHHELD_DAYS` pins the 14 days. They are held as a symmetric dry result with no
 network and no page (`tests/test_s74_post_withheld.py`, which also proves 2026-11-11 still posts).
 The guard was pushed before `POSTING_ENABLED` went back to `true`.
+
+Outcome (2026-11-13 ~15:40Z): POSTING_ENABLED=true at ~15:37Z. Because posting was still off when 2026-11-11 assembled, it was repair-assembled (run 43454462629). `repair_safe_manifest` kept `event: schedule, unattended: true`, so the streak held at 1/3. RUN C 43454841492 posted both threads, symmetric and verified on the public Bluesky API: blue 2 posts, red 4 posts. The first live posts since 2026-10-27.
