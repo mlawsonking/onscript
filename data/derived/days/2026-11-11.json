@@ -912,9 +912,9 @@
       "schema_version": 2,
       "day": "2026-11-11",
       "party": "D",
-      "composite": "Across 46 statements today, no message rose to the level of a dominant theme — no claim was shared widely enough among us to call it our focus. We can note that the phrase communities across the country was our most synchronized language, appearing 4 times, first recorded in our corpus from Emily Randall (D-WA). Beyond that measured overlap, we have nothing further to report; we are not given the substance behind it, so we will not characterize it further.",
+      "composite": "Today 46 of us released statements. Our most synchronized phrase, used by 4 of us: communities across the country.",
       "measurement_lead": "Measurement: 46 publications were observed for the Democratic party on 2026-11-11.",
-      "composite_state": "generated_verified",
+      "composite_state": "deterministic_fallback",
       "structured_request": {
         "method": "structured-composite-v1",
         "party": "D",
@@ -928,7 +928,7 @@
         "claim_ids": []
       },
       "structured_output": {
-        "composite": "Across 46 statements today, no message rose to the level of a dominant theme — no claim was shared widely enough among us to call it our focus. We can note that the phrase communities across the country was our most synchronized language, appearing 4 times, first recorded in our corpus from Emily Randall (D-WA). Beyond that measured overlap, we have nothing further to report; we are not given the substance behind it, so we will not characterize it further.",
+        "composite": "Today 46 of us released statements. Our most synchronized phrase, used by 4 of us: communities across the country.",
         "sentence_claims": [
           {
             "sentence_idx": 0,
@@ -937,18 +937,14 @@
           {
             "sentence_idx": 1,
             "claim_ids": []
-          },
-          {
-            "sentence_idx": 2,
-            "claim_ids": []
           }
         ]
       },
       "generation_hashes": {
         "method": "structured-composite-v1",
         "request_sha256": "b2f915fefd3a0b09285baf7609d2ca526e786b68896b45b699d4c55793618bc5",
-        "response_sha256": "846a6ae2db78e170651fcdc428f25acbc04546aea070fc27ea3bd9d086c49860",
-        "model_response_sha256": "8a0e0afc679ea9ff7c57d9234da44123b0222118ae4a3966cd55e5ad1bb623cd"
+        "response_sha256": "7476be006c09f146e5795c8a6d9038bc8609bcbeeaa6e3638d9c11064d121595",
+        "model_response_sha256": "43f5443852d526de5029b520d5f0d03c69c359a8c29e80bbabdf27ebca630385"
       },
       "quiet": false,
       "fallback": false,
@@ -962,11 +958,6 @@
           "sentence_idx": 1,
           "talking_points": [],
           "claim_ids": []
-        },
-        {
-          "sentence_idx": 2,
-          "talking_points": [],
-          "claim_ids": []
         }
       ],
       "sentence_claims": [
@@ -977,14 +968,10 @@
         {
           "sentence_idx": 1,
           "claim_ids": []
-        },
-        {
-          "sentence_idx": 2,
-          "claim_ids": []
         }
       ],
-      "model": "claude-sonnet-5",
-      "generator": "sonnet_direct",
+      "model": "P2:deterministic",
+      "generator": "deterministic",
       "prompt_version": "1.3",
       "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
       "stats": {
@@ -1032,15 +1019,15 @@
       },
       "usage": {
         "tokens_in": 1251,
-        "tokens_out": 138,
-        "model": "claude-sonnet-5"
+        "tokens_out": 112,
+        "model": "P2:deterministic"
       }
     },
     "R": {
       "schema_version": 2,
       "day": "2026-11-11",
       "party": "R",
-      "composite": "Today we honor the \"brave men and women\" who serve, with 5 of us invoking that phrase. We also note our work advancing \"more than 60 bipartisan bills\" on behalf of veterans, cited by 3 of us. Our most synchronized phrase today is brave men and women, appearing across 8 of us, first recorded in our corpus from Juan Ciscomani (R-AZ). We additionally reference the Care of America's Veterans Act by shared name.",
+      "composite": "We honor \"brave men and women\" today, standing with 5 of our members on this. We also point to \"more than 60 bipartisan bills\" moving through our work, echoed by 3 of us. The day's most synchronized phrase is brave men and women, recorded 8 times, first recorded in our corpus from Juan Ciscomani (R-AZ). Alongside these messages, we note shared reference to the care of america's veterans act, cited by 3 of us.",
       "measurement_lead": "Measurement: 36 publications were observed for the Republican party on 2026-11-11.",
       "composite_state": "generated_verified",
       "structured_request": {
@@ -1059,7 +1046,7 @@
         ]
       },
       "structured_output": {
-        "composite": "Today we honor the \"brave men and women\" who serve, with 5 of us invoking that phrase. We also note our work advancing \"more than 60 bipartisan bills\" on behalf of veterans, cited by 3 of us. Our most synchronized phrase today is brave men and women, appearing across 8 of us, first recorded in our corpus from Juan Ciscomani (R-AZ). We additionally reference the Care of America's Veterans Act by shared name.",
+        "composite": "We honor \"brave men and women\" today, standing with 5 of our members on this. We also point to \"more than 60 bipartisan bills\" moving through our work, echoed by 3 of us. The day's most synchronized phrase is brave men and women, recorded 8 times, first recorded in our corpus from Juan Ciscomani (R-AZ). Alongside these messages, we note shared reference to the care of america's veterans act, cited by 3 of us.",
         "sentence_claims": [
           {
             "sentence_idx": 0,
@@ -1086,8 +1073,8 @@
       "generation_hashes": {
         "method": "structured-composite-v1",
         "request_sha256": "3cc478866ee726302aaf78c3d10467882c3ebb5ddce3d0879570e68651a97950",
-        "response_sha256": "aa1fb4f18990555bc2d23d6f370785d38b2c5c97641d69605c18a41205bd4c26",
-        "model_response_sha256": "8e5f203a806fc905f2c00b7eec49292daf93ddf133e74ccd64b09a685325d314"
+        "response_sha256": "f0d152601a478800248f8e0482b64c5b5d8183281d65f8670ea0d1bd971737c6",
+        "model_response_sha256": "24b04fc7dc43664a87361ed74ac3eac329f6a15db7ea6e609e80b4fa78902b78"
       },
       "quiet": false,
       "fallback": false,
@@ -1368,7 +1355,7 @@
       },
       "usage": {
         "tokens_in": 3263,
-        "tokens_out": 150,
+        "tokens_out": 146,
         "model": "claude-sonnet-5"
       }
     }
@@ -3486,7 +3473,7 @@
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
     "component_hashes": {
-      "code_tree": "a367f4b34302653025a173fdf09ec64f5028376eb29fa88e43e8f5054a66e24f",
+      "code_tree": "fd4a60174fd1fc652daf3df9c01c079b58ebf43d512b9a7ea54c2935f1564a7b",
       "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
       "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
       "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
@@ -3494,7 +3481,7 @@
       "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
       "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
     },
-    "sha256": "9e88c98746b07d8abd83318ff70302427657e080354f515c26da90fbf53857bf",
+    "sha256": "68e1ee14cab469fa7502ba2ac0c5201e333d0086b46ffa8626f0bc0b81046bf6",
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   }
 }
