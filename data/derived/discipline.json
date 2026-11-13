@@ -3331,14 +3331,14 @@
       "index": 0.7209
     },
     "2026-11-05": {
-      "statements": 46,
-      "on_message_units": 33,
-      "index": 0.7174
+      "statements": 47,
+      "on_message_units": 34,
+      "index": 0.7234
     },
     "2026-11-06": {
-      "statements": 38,
-      "on_message_units": 31,
-      "index": 0.8158
+      "statements": 39,
+      "on_message_units": 32,
+      "index": 0.8205
     },
     "2026-11-07": {
       "statements": 5,
@@ -3351,24 +3351,24 @@
       "index": 1.0
     },
     "2026-11-09": {
-      "statements": 78,
-      "on_message_units": 61,
-      "index": 0.7821
+      "statements": 80,
+      "on_message_units": 62,
+      "index": 0.775
     },
     "2026-11-10": {
-      "statements": 78,
-      "on_message_units": 65,
-      "index": 0.8333
+      "statements": 84,
+      "on_message_units": 68,
+      "index": 0.8095
     },
     "2026-11-11": {
-      "statements": 46,
-      "on_message_units": 41,
-      "index": 0.8913
+      "statements": 62,
+      "on_message_units": 51,
+      "index": 0.8226
     },
     "2026-11-12": {
-      "statements": 1,
-      "on_message_units": 1,
-      "index": 1.0
+      "statements": 88,
+      "on_message_units": 60,
+      "index": 0.6818
     }
   },
   "I": {
@@ -4883,9 +4883,14 @@
       "index": 1.0
     },
     "2026-11-11": {
-      "statements": 1,
-      "on_message_units": 1,
+      "statements": 2,
+      "on_message_units": 2,
       "index": 1.0
+    },
+    "2026-11-12": {
+      "statements": 3,
+      "on_message_units": 2,
+      "index": 0.6667
     }
   },
   "R": {
@@ -8095,9 +8100,9 @@
       "index": 0.8788
     },
     "2026-10-15": {
-      "statements": 64,
-      "on_message_units": 45,
-      "index": 0.7031
+      "statements": 65,
+      "on_message_units": 46,
+      "index": 0.7077
     },
     "2026-10-16": {
       "statements": 39,
@@ -8125,9 +8130,9 @@
       "index": 0.7391
     },
     "2026-10-21": {
-      "statements": 44,
-      "on_message_units": 39,
-      "index": 0.8864
+      "statements": 45,
+      "on_message_units": 40,
+      "index": 0.8889
     },
     "2026-10-22": {
       "statements": 44,
@@ -8155,9 +8160,9 @@
       "index": 0.74
     },
     "2026-10-27": {
-      "statements": 33,
-      "on_message_units": 30,
-      "index": 0.9091
+      "statements": 34,
+      "on_message_units": 31,
+      "index": 0.9118
     },
     "2026-10-28": {
       "statements": 52,
@@ -8170,13 +8175,13 @@
       "index": 0.8293
     },
     "2026-10-30": {
-      "statements": 46,
-      "on_message_units": 37,
-      "index": 0.8043
+      "statements": 47,
+      "on_message_units": 38,
+      "index": 0.8085
     },
     "2026-10-31": {
-      "statements": 1,
-      "on_message_units": 1,
+      "statements": 2,
+      "on_message_units": 2,
       "index": 1.0
     },
     "2026-11-02": {
@@ -8195,9 +8200,9 @@
       "index": 0.625
     },
     "2026-11-05": {
-      "statements": 13,
-      "on_message_units": 12,
-      "index": 0.9231
+      "statements": 16,
+      "on_message_units": 13,
+      "index": 0.8125
     },
     "2026-11-06": {
       "statements": 18,
@@ -8210,19 +8215,24 @@
       "index": 1.0
     },
     "2026-11-09": {
-      "statements": 37,
-      "on_message_units": 29,
-      "index": 0.7838
+      "statements": 38,
+      "on_message_units": 30,
+      "index": 0.7895
     },
     "2026-11-10": {
-      "statements": 43,
-      "on_message_units": 36,
-      "index": 0.8372
+      "statements": 48,
+      "on_message_units": 39,
+      "index": 0.8125
     },
     "2026-11-11": {
-      "statements": 36,
-      "on_message_units": 33,
-      "index": 0.9167
+      "statements": 47,
+      "on_message_units": 41,
+      "index": 0.8723
+    },
+    "2026-11-12": {
+      "statements": 44,
+      "on_message_units": 35,
+      "index": 0.7955
     }
   },
   "schema_version": 1,
@@ -8231,8 +8241,8 @@
   "min_statements": 10,
   "min_statements_note": "A party-day with fewer statements than this cannot carry an interpretable share: the ratio saturates at 1.0 on thin days, and most of the 1.0 readings below come from days in single digits. The floor is stamped, not applied: the values below are the raw per-day measurements and are not rewritten. The authority is config.CONCORDANCE_MIN_STATEMENTS.",
   "days_below_min_statements": {
-    "D": 151,
-    "I": 303,
+    "D": 150,
+    "I": 304,
     "R": 181
   },
   "window": {
