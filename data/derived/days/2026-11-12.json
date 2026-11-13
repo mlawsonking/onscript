@@ -917,5 +917,2144 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-12",
+      "party": "D",
+      "composite": "Across 88 statements today, no message rose to a shared point among more than a handful of us. We note that the phrase full text of the bill was the most synchronized language of the day, recorded among 6 of us, first recorded in our corpus from Jason Crow (D-CO). Beyond that measured overlap, we do not report a unified message for today.",
+      "measurement_lead": "Measurement: 88 publications were observed for the Democratic party on 2026-11-12.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-12",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "11819c58febcb7dbefcfca05405441d7c6c1b465214232ce8da5ff3e9407d8f9",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 88 statements today, no message rose to a shared point among more than a handful of us. We note that the phrase full text of the bill was the most synchronized language of the day, recorded among 6 of us, first recorded in our corpus from Jason Crow (D-CO). Beyond that measured overlap, we do not report a unified message for today.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "c5cd782aa860594af149313712b9f87975d8316bea37d2107a96ae1748944918",
+        "response_sha256": "b2777f36bce59d0d008d3224706fd3d38f3692ccfa1199d1163fd1cef6a1bb78",
+        "model_response_sha256": "f317b59959891df8a96cf54f425186fb0f623f2acd02f94b1ed2b22672e7d626"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-12",
+        "statements": 88,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "full text of the bill",
+          "members": 6,
+          "family_count": 6,
+          "first_sayer": "Jason Crow",
+          "first_sayer_party": "D",
+          "first_sayer_state": "CO"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1252,
+        "tokens_out": 108,
+        "model": "claude-sonnet-5"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-12",
+      "party": "R",
+      "composite": "Today 44 of us released statements. Our most synchronized phrase, used by 8 of us: military retirement pay.",
+      "measurement_lead": "Measurement: 44 publications were observed for the Republican party on 2026-11-12.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-12",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "843f683095707df252e11b8579c24ab17e1115398d5e7c902b09a4b5db73e1e5",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Today 44 of us released statements. Our most synchronized phrase, used by 8 of us: military retirement pay.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "55545def3f63dedcf7d4719e08cbfd9fedb492dacdd6863c9cc60fc3edc1919c",
+        "response_sha256": "1bda67a49765e5a4601f54f3ab72b2204ec988ddcdea87722761dc5cfafed0a9",
+        "model_response_sha256": "6baef51514188175bd22b9b4ab6db6aee7f9386b2d5748b17524418ceaf2bd9b"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-12",
+        "statements": 44,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "military retirement pay",
+          "members": 8,
+          "family_count": 8,
+          "first_sayer": "Gus M. Bilirakis",
+          "first_sayer_party": "R",
+          "first_sayer_state": "FL"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [
+          {
+            "claim_id": "2026-11-12-R-00",
+            "label": "care of america’s veterans act",
+            "counts": {
+              "offices": 4,
+              "publications": 4,
+              "families": 4,
+              "support_units": 4
+            },
+            "surface_class": "nomenclature",
+            "classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "bill:hr9237"
+            }
+          }
+        ],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 1,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 1380,
+        "tokens_out": 124,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [],
+    "R": [
+      {
+        "id": "2026-11-12-R-00",
+        "party": "R",
+        "day": "2026-11-12",
+        "label": "care of america’s veterans act",
+        "member_count": 4,
+        "statements": [
+          "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+          "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4",
+          "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+          "sha256:ed5e750d40e31fc346fd027edd3dbf953ec62b1a2ec65c5eafb71645e1c7b068"
+        ],
+        "fragments": [
+          {
+            "text": "and the take care of america’s veterans act",
+            "statement": "sha256:ed5e750d40e31fc346fd027edd3dbf953ec62b1a2ec65c5eafb71645e1c7b068"
+          },
+          {
+            "text": "take care of america’s veterans act",
+            "statement": "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4"
+          },
+          {
+            "text": "take care of america’s veterans act",
+            "statement": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9"
+          },
+          {
+            "text": "advanced the take care of america’s veterans act",
+            "statement": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9"
+          }
+        ],
+        "topics": [
+          "veterans"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-12-R-00",
+        "support_phrase": {
+          "normalized": "care of america’s veterans act",
+          "text": "Care of America’s Veterans Act",
+          "occurrence_id": "occ:1a0c6839fc8a70bcc7c39f16"
+        },
+        "display_quote": "Care of America’s Veterans Act",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1a0c6839fc8a70bcc7c39f16",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "publication_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "office_id": "H001077",
+            "family_id": "dfam:a65aaa8fa13c733a7540f04b",
+            "family_revision": "dfrev:d4bfc05b0f95169017abe011",
+            "support_unit_id": "H001077",
+            "party": "R",
+            "start_char": 139,
+            "end_char": 169,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 123,
+            "sentence_end_char": 169,
+            "sentence_offset_start": 16,
+            "sentence_offset_end": 46,
+            "clause_start_char": 129,
+            "clause_end_char": 215,
+            "clause_offset_start": 10,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "h",
+              "r",
+              "9237",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "bill",
+              "includes",
+              "the",
+              "major"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:18f4aef5c29693837faaf098",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "publication_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "office_id": "H001077",
+            "family_id": "dfam:a65aaa8fa13c733a7540f04b",
+            "family_revision": "dfrev:d4bfc05b0f95169017abe011",
+            "support_unit_id": "H001077",
+            "party": "R",
+            "start_char": 527,
+            "end_char": 557,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 511,
+            "sentence_end_char": 649,
+            "sentence_offset_start": 16,
+            "sentence_offset_end": 46,
+            "clause_start_char": 517,
+            "clause_end_char": 557,
+            "clause_offset_start": 10,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "h",
+              "r",
+              "9237",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "which",
+              "delivers",
+              "the",
+              "major",
+              "richard"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:afaadb7a6e9a69290db9efa1",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "publication_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "office_id": "H001077",
+            "family_id": "dfam:a65aaa8fa13c733a7540f04b",
+            "family_revision": "dfrev:d4bfc05b0f95169017abe011",
+            "support_unit_id": "H001077",
+            "party": "R",
+            "start_char": 677,
+            "end_char": 707,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 650,
+            "sentence_end_char": 978,
+            "sentence_offset_start": 27,
+            "sentence_offset_end": 57,
+            "clause_start_char": 558,
+            "clause_end_char": 780,
+            "clause_offset_start": 119,
+            "clause_offset_end": 149,
+            "adjacent_tokens_before": [
+              "the",
+              "text",
+              "of",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "below",
+              "showing",
+              "the",
+              "inclusion",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9be48598b235f53a8154e68e",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "publication_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "office_id": "H001077",
+            "family_id": "dfam:a65aaa8fa13c733a7540f04b",
+            "family_revision": "dfrev:d4bfc05b0f95169017abe011",
+            "support_unit_id": "H001077",
+            "party": "R",
+            "start_char": 1025,
+            "end_char": 1055,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 979,
+            "sentence_end_char": 1203,
+            "sentence_offset_start": 46,
+            "sentence_offset_end": 76,
+            "clause_start_char": 1015,
+            "clause_end_char": 1097,
+            "clause_offset_start": 10,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "richard",
+              "star",
+              "act",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "delivers",
+              "more",
+              "than",
+              "60",
+              "veterans"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:33db5320af743ad2806f560f",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "publication_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "office_id": "H001077",
+            "family_id": "dfam:a65aaa8fa13c733a7540f04b",
+            "family_revision": "dfrev:d4bfc05b0f95169017abe011",
+            "support_unit_id": "H001077",
+            "party": "R",
+            "start_char": 1461,
+            "end_char": 1491,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1258,
+            "sentence_end_char": 1491,
+            "sentence_offset_start": 203,
+            "sentence_offset_end": 233,
+            "clause_start_char": 1399,
+            "clause_end_char": 1492,
+            "clause_offset_start": 62,
+            "clause_offset_end": 92,
+            "adjacent_tokens_before": [
+              "as",
+              "part",
+              "of",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e6d55ab5c0331175b5726e90",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4",
+            "publication_id": "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4",
+            "office_id": "G000558",
+            "family_id": "dfam:c092feb16a80205ce8ad8242",
+            "family_revision": "dfrev:82c12f27ded6b7b4be8e866c",
+            "support_unit_id": "G000558",
+            "party": "R",
+            "start_char": 133,
+            "end_char": 163,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 117,
+            "sentence_end_char": 163,
+            "sentence_offset_start": 16,
+            "sentence_offset_end": 46,
+            "clause_start_char": 123,
+            "clause_end_char": 181,
+            "clause_offset_start": 10,
+            "clause_offset_end": 40,
+            "adjacent_tokens_before": [
+              "h",
+              "r",
+              "9237",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "this",
+              "legislation",
+              "which",
+              "includes",
+              "over"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a3962fc021006b62a941b3a5",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4",
+            "publication_id": "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4",
+            "office_id": "G000558",
+            "family_id": "dfam:c092feb16a80205ce8ad8242",
+            "family_revision": "dfrev:82c12f27ded6b7b4be8e866c",
+            "support_unit_id": "G000558",
+            "party": "R",
+            "start_char": 465,
+            "end_char": 495,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 407,
+            "sentence_end_char": 582,
+            "sentence_offset_start": 58,
+            "sentence_offset_end": 88,
+            "clause_start_char": 421,
+            "clause_end_char": 555,
+            "clause_offset_start": 44,
+            "clause_offset_end": 74,
+            "adjacent_tokens_before": [
+              "the",
+              "passage",
+              "of",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "support",
+              "those",
+              "who",
+              "have"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": true,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3c942f90b67a77ff6320ecb5",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+            "publication_id": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+            "office_id": "P000622",
+            "family_id": "dfam:7edeb5e149588f37fad57c5f",
+            "family_revision": "dfrev:0eda5f5410f0e44b56b04042",
+            "support_unit_id": "P000622",
+            "party": "R",
+            "start_char": 83,
+            "end_char": 113,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 230,
+            "sentence_offset_start": 67,
+            "sentence_offset_end": 97,
+            "clause_start_char": 29,
+            "clause_end_char": 113,
+            "clause_offset_start": 54,
+            "clause_offset_end": 84,
+            "adjacent_tokens_before": [
+              "patronis",
+              "fl-01",
+              "advanced",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "a",
+              "legislative",
+              "package",
+              "containing",
+              "more"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:74dc306df9b53ea9ad5924f2",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+            "publication_id": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+            "office_id": "P000622",
+            "family_id": "dfam:7edeb5e149588f37fad57c5f",
+            "family_revision": "dfrev:0eda5f5410f0e44b56b04042",
+            "support_unit_id": "P000622",
+            "party": "R",
+            "start_char": 833,
+            "end_char": 863,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 822,
+            "sentence_end_char": 963,
+            "sentence_offset_start": 11,
+            "sentence_offset_end": 41,
+            "clause_start_char": 743,
+            "clause_end_char": 869,
+            "clause_offset_start": 90,
+            "clause_offset_end": 120,
+            "adjacent_tokens_before": [
+              "for",
+              "our",
+              "freedom",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "would",
+              "expand",
+              "veterans",
+              "access",
+              "to"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c63514052b12d187b45c08e8",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+            "publication_id": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+            "office_id": "P000622",
+            "family_id": "dfam:7edeb5e149588f37fad57c5f",
+            "family_revision": "dfrev:0eda5f5410f0e44b56b04042",
+            "support_unit_id": "P000622",
+            "party": "R",
+            "start_char": 1547,
+            "end_char": 1577,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1528,
+            "sentence_end_char": 1588,
+            "sentence_offset_start": 19,
+            "sentence_offset_end": 49,
+            "clause_start_char": 1184,
+            "clause_end_char": 1642,
+            "clause_offset_start": 363,
+            "clause_offset_end": 393,
+            "adjacent_tokens_before": [
+              "pay",
+              "to",
+              "view",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "click",
+              "here",
+              "to",
+              "view",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f7f6173f85602ea0a1f12c86",
+            "claim_id": "2026-11-12-R-00",
+            "statement_id": "sha256:ed5e750d40e31fc346fd027edd3dbf953ec62b1a2ec65c5eafb71645e1c7b068",
+            "publication_id": "sha256:ed5e750d40e31fc346fd027edd3dbf953ec62b1a2ec65c5eafb71645e1c7b068",
+            "office_id": "B001257",
+            "family_id": "dfam:d8435f1182f013b88214504d",
+            "family_revision": "dfrev:485b0f2759d6140b31f0bc40",
+            "support_unit_id": "B001257",
+            "party": "R",
+            "start_char": 254,
+            "end_char": 284,
+            "surface_text": "Care of America’s Veterans Act",
+            "normalized_phrase": "care of america’s veterans act",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 344,
+            "sentence_offset_start": 238,
+            "sentence_offset_end": 268,
+            "clause_start_char": 202,
+            "clause_end_char": 292,
+            "clause_offset_start": 52,
+            "clause_offset_end": 82,
+            "adjacent_tokens_before": [
+              "star",
+              "act",
+              "and",
+              "the",
+              "take"
+            ],
+            "adjacent_tokens_after": [
+              "tcava",
+              "which",
+              "includes",
+              "major",
+              "provisions"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 4,
+          "families": 4,
+          "support_units": 4
+        },
+        "office_ids": [
+          "B001257",
+          "G000558",
+          "H001077",
+          "P000622"
+        ],
+        "publication_ids": [
+          "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+          "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4",
+          "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+          "sha256:ed5e750d40e31fc346fd027edd3dbf953ec62b1a2ec65c5eafb71645e1c7b068"
+        ],
+        "family_ids": [
+          "dfam:7edeb5e149588f37fad57c5f",
+          "dfam:a65aaa8fa13c733a7540f04b",
+          "dfam:c092feb16a80205ce8ad8242",
+          "dfam:d8435f1182f013b88214504d"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:7edeb5e149588f37fad57c5f",
+            "family_revision": "dfrev:0eda5f5410f0e44b56b04042"
+          },
+          {
+            "family_id": "dfam:a65aaa8fa13c733a7540f04b",
+            "family_revision": "dfrev:d4bfc05b0f95169017abe011"
+          },
+          {
+            "family_id": "dfam:c092feb16a80205ce8ad8242",
+            "family_revision": "dfrev:82c12f27ded6b7b4be8e866c"
+          },
+          {
+            "family_id": "dfam:d8435f1182f013b88214504d",
+            "family_revision": "dfrev:485b0f2759d6140b31f0bc40"
+          }
+        ],
+        "support_unit_ids": [
+          "B001257",
+          "G000558",
+          "H001077",
+          "P000622"
+        ],
+        "citation_occurrence_ids": [
+          "occ:1a0c6839fc8a70bcc7c39f16",
+          "occ:e6d55ab5c0331175b5726e90",
+          "occ:3c942f90b67a77ff6320ecb5"
+        ],
+        "citations": [
+          {
+            "member": "Clay Higgins",
+            "party": "R",
+            "state": "LA",
+            "date": "2026-11-12",
+            "url": "https://clayhiggins.house.gov/2026/11/12/higgins-supports-major-richard-star-act-for-combat-injured-veterans/",
+            "quote": "take care of america’s veterans act",
+            "occurrence_id": "occ:1a0c6839fc8a70bcc7c39f16",
+            "office_id": "H001077",
+            "publication_id": "sha256:2b7047be6520d3d5b055c1762af01c7d38135e8c288136375c0c6f4c247b86d9",
+            "family_id": "dfam:a65aaa8fa13c733a7540f04b",
+            "family_revision": "dfrev:d4bfc05b0f95169017abe011"
+          },
+          {
+            "member": "Brett Guthrie",
+            "party": "R",
+            "state": "KY",
+            "date": "2026-11-12",
+            "url": "https://guthrie.house.gov/news/documentsingle.aspx?DocumentID=391223",
+            "quote": "take care of america’s veterans act",
+            "occurrence_id": "occ:e6d55ab5c0331175b5726e90",
+            "office_id": "G000558",
+            "publication_id": "sha256:2bcb289c324d36619a5dcef8c406f66719b0487994537b55d40ea53d098a40f4",
+            "family_id": "dfam:c092feb16a80205ce8ad8242",
+            "family_revision": "dfrev:82c12f27ded6b7b4be8e866c"
+          },
+          {
+            "member": "Jimmy Patronis",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-11-12",
+            "url": "https://patronis.house.gov/media/press-releases/congressman-patronis-advances-landmark-legislation-to-deliver-for-america-s-veterans",
+            "quote": "advanced the take care of america’s veterans act",
+            "occurrence_id": "occ:3c942f90b67a77ff6320ecb5",
+            "office_id": "P000622",
+            "publication_id": "sha256:a647ceb844a4d76fbb719b3d01b740464add323e7970b36c6d26cf9c767eb4f9",
+            "family_id": "dfam:7edeb5e149588f37fad57c5f",
+            "family_revision": "dfrev:0eda5f5410f0e44b56b04042"
+          }
+        ],
+        "surface_class": "nomenclature",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "bill:hr9237"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "veterans",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-12",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 63,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-12",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 88,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-12",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 81,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-12",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-12",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 4,
+          "numerator_unit": "offices",
+          "denominator": 35,
+          "denominator_unit": "offices",
+          "share": 0.114286,
+          "window": "party-day 2026-11-12",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 4,
+          "numerator_unit": "publications",
+          "denominator": 44,
+          "denominator_unit": "publications",
+          "share": 0.090909,
+          "window": "party-day 2026-11-12",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 4,
+          "numerator_unit": "document families",
+          "denominator": 44,
+          "denominator_unit": "document families",
+          "share": 0.090909,
+          "window": "party-day 2026-11-12",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "pass the bipartisan major richard",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 3.82,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          4,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "the house floor",
+        "slug": "6360114b9c2c20ee",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001103",
+          "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+          "tie": [
+            "F000483",
+            "M001215",
+            "P000609"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4,
+          6,
+          3,
+          6
+        ]
+      },
+      {
+        "ngram": "passed the house",
+        "slug": "5fdd08ccb514c98e",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "D000230",
+          "statement": "sha256:290fb868d7e59018b55f3bab60242f3d542214496edf1fcf2880ab9b4f86929a",
+          "tie": [
+            "T000478"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "put their lives on the line",
+        "slug": "982b18d5c0b57743",
+        "n": 6,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.18,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001110",
+          "statement": "sha256:e3766d9d8208923aa53990a8cf9842d97d89945a27d7cb22dfa93d1ef55dcdf7",
+          "tie": [
+            "C001121",
+            "L000602",
+            "S001226"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.991,
+        "series": [
+          1,
+          2,
+          3,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "force a vote",
+        "slug": "e57915d77cd7e5e6",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.12,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "G000592",
+          "statement": "sha256:9bc838dac1f5fcfafa096e9737851969fb10697908a66fd21e68bc44626f6a9c",
+          "tie": [
+            "G000589"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "years of service",
+        "slug": "53353749a9b3cac9",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.68,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001091",
+          "statement": "sha256:88ceba3ff3190d5431d36327a1f2703a3862d8624f36a5e0a3f533b641bd79f8",
+          "tie": [
+            "H001099"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "continue fighting to",
+        "slug": "41c63b672c5da3d6",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.59,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "S001185",
+          "statement": "sha256:13d4ef147f67fc0096db6442fc5b1311d69fa06b03dbdf88683ff1c5991e99d0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.993,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          3,
+          2,
+          3,
+          1,
+          1,
+          1,
+          5,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "care they need",
+        "slug": "08f53972e38193cb",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.69,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "M001169",
+          "statement": "sha256:d8c39d885c181e5beb7928c2f9c92eaa77cd3a482b132c150ddaa1bfd9584c19",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.981,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          3,
+          2,
+          3,
+          3,
+          1,
+          1,
+          1,
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "ngram": "a bipartisan bill",
+        "slug": "b374b93de346e50b",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "G000602",
+          "statement": "sha256:cc723f3cc18171309ec3d7aa3847ae472712cc0af8a40ecdcce6fda5c3d34358",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "medically retired veterans",
+        "slug": "64ab0895f2ce15fa",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.64,
+        "first_seen": {
+          "date": "2025-03-17",
+          "bioguide": "B001257",
+          "statement": "sha256:ff426d62e325ba93be5d9212f32616f2b209dfc7804efb1ac8d6ca45235dbe3b",
+          "tie": [
+            "R000599"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          4
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "military retirement pay",
+        "slug": "efe29b1159994443",
+        "n": 3,
+        "day_peak": 8,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 8,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 8,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 6.22,
+        "first_seen": {
+          "date": "2025-01-16",
+          "bioguide": "B001257",
+          "statement": "sha256:64294f8b3f6d5c6d02611ba655e7887d887744c01d5a969dcb9c1025ff06214e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          8
+        ]
+      },
+      {
+        "ngram": "va disability compensation",
+        "slug": "8741e678301b80c1",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-16",
+          "bioguide": "B001257",
+          "statement": "sha256:64294f8b3f6d5c6d02611ba655e7887d887744c01d5a969dcb9c1025ff06214e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          7
+        ]
+      },
+      {
+        "ngram": "full military retirement pay",
+        "slug": "8308472fd258f823",
+        "n": 4,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 5.25,
+        "first_seen": {
+          "date": "2025-03-27",
+          "bioguide": "H001079",
+          "statement": "sha256:c193f3e3dd8c1e259d78ca06abf284e08152c3a5baee3422c6c48147d530c5be",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "their full military",
+        "slug": "8c1fc97ffb409a0d",
+        "n": 3,
+        "day_peak": 6,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 6,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 6,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 5.25,
+        "first_seen": {
+          "date": "2025-03-17",
+          "bioguide": "H001042",
+          "statement": "sha256:3d9289ac065d8691820b90094bb4aba61e92bddc61c692bd2842ca74e5a8caef",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "years of service",
+        "slug": "53353749a9b3cac9",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.68,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001091",
+          "statement": "sha256:88ceba3ff3190d5431d36327a1f2703a3862d8624f36a5e0a3f533b641bd79f8",
+          "tie": [
+            "H001099"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "receive their full military retirement pay",
+        "slug": "e594a866f9432597",
+        "n": 6,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2026-06-11",
+          "bioguide": "H001067",
+          "statement": "sha256:cd11346a1dfcbe2d89c5d6e3d127662eb3b93af2f43be03c7739c82e2486771c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "full military retirement pay and va",
+        "slug": "e6ac7bcf0c53cfbe",
+        "n": 6,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2026-05-29",
+          "bioguide": "D000230",
+          "statement": "sha256:cb14ceed54ecd01a47948be33ceeb936c15ffcb91cbbc87a8ec463366a2837bd",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "military retirement pay and va disability",
+        "slug": "4e0fcb5ce4a4ae03",
+        "n": 6,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.0,
+        "first_seen": {
+          "date": "2026-05-29",
+          "bioguide": "D000230",
+          "statement": "sha256:cb14ceed54ecd01a47948be33ceeb936c15ffcb91cbbc87a8ec463366a2837bd",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "ngram": "20 years of service",
+        "slug": "03850a8f7b9b09ee",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 3,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 3,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-16",
+          "bioguide": "B001257",
+          "statement": "sha256:64294f8b3f6d5c6d02611ba655e7887d887744c01d5a969dcb9c1025ff06214e",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "weather forecasting and",
+        "slug": "f45a23910ec8b3d9",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.31,
+        "first_seen": {
+          "date": "2025-02-04",
+          "bioguide": "F000472",
+          "statement": "sha256:f342fe00c6618242a9f44a83ca6b45a2e239987868069e5e25c503771878a06f",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          4
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "years of service",
+      "slug": "53353749a9b3cac9",
+      "n": 3,
+      "both": 5,
+      "day_peak": 5,
+      "counts": {
+        "D": 5,
+        "R": 5,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001091",
+        "statement": "sha256:88ceba3ff3190d5431d36327a1f2703a3862d8624f36a5e0a3f533b641bd79f8",
+        "tie": [
+          "H001099"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "velocity": 3.68,
+      "sides": {
+        "D": [
+          {
+            "member": "Maggie Goodlander",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-11-12",
+            "url": "https://goodlander.house.gov/media/press-releases/house-passes-major-richard-star-act-to-end-the-wounded-veteran-tax-goodlander-calls-on-senate-to-finish-the-job/",
+            "quote": "In 2018, Major Star was diagnosed with stage 4 lung cancer linked to burn pit exposure and was medically retired before reaching 20 years of service."
+          },
+          {
+            "member": "Terri A. Sewell",
+            "party": "D",
+            "state": "AL",
+            "date": "2026-11-12",
+            "url": "https://sewell.house.gov/2026/11/washington-d-c-today-u-s-rep-terri-sewell-al-07-voted-in-favor-of-the-major-richard-star-act-bipartisan-legislation-that-would-end-the-so-called-wounded-warrior-tax-and-ensure-that-veterans-who-were-forced-to-medically-retire-due-to-combat-related-injuries-receive-the-full-military-retire",
+            "quote": "It is simply wrong that our combat-injured veterans are forced to choose between the retirement pay they earned through years of service and the disability compensation they deserve for the sacrifices they made."
+          },
+          {
+            "member": "Tina Smith",
+            "party": "D",
+            "state": "MN",
+            "date": "2026-11-12",
+            "url": "https://www.smith.senate.gov/u-s-senator-tina-smith-introduces-bipartisan-legislation-to-honor-deceased-peace-corps-members/",
+            "quote": "During his four years of service, Tom worked on construction projects and built water holding tanks for places that didn’t have clean drinking water."
+          }
+        ],
+        "R": [
+          {
+            "member": "Mike Crapo",
+            "party": "R",
+            "state": "ID",
+            "date": "2026-11-12",
+            "url": "https://www.crapo.senate.gov/media/newsreleases/crapo-honors-23-idaho-veterans-and-volunteers-with-spirit-of-freedom-award",
+            "quote": "David E. McFerrin, Filer: American Legion Post 47 of Filer nominated David McFerrin, who retired from the U.S. Army after 40 years of service."
+          },
+          {
+            "member": "Juan Ciscomani",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-11-12",
+            "url": "https://ciscomani.house.gov/media/press-releases/ciscomani-applauds-house-passage-richard-star-act",
+            "quote": "Under current law, some combat-injured veterans medically retired with fewer than 20 years of service are prevented from receiving both their full military retirement pay and VA disability compensation."
+          },
+          {
+            "member": "Nicole Malliotakis",
+            "party": "R",
+            "state": "NY",
+            "date": "2026-11-12",
+            "url": "https://malliotakis.house.gov/media/press-releases/malliotakis-backed-legislation-expand-veterans-healthcare-and-benefits-passes",
+            "quote": "Major Richard Star Act: legislation that eliminates the “wounded veteran tax,” allowing eligible combat-injured veterans who were medically retired before completing 20 years of service to receive both their full military retirement pay and VA disability compensation without a reduction in benefits."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "the president’s desk",
+      "slug": "6029b574412e9a5f",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001133",
+        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "velocity": 4.0,
+      "sides": {
+        "D": [
+          {
+            "member": "Jacky Rosen",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-11-12",
+            "url": "https://www.rosen.senate.gov/2026/11/12/rosen-bill-to-improve-weather-forecasting-to-help-nevada-farmers-and-ranchers-passes-senate/",
+            "quote": "The bill now goes to the House of Representatives, and if passed, would go to the President’s desk."
+          },
+          {
+            "member": "Bradley Scott Schneider",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-11-12",
+            "url": "https://schneider.house.gov/media/press-releases/schneider-votes-pass-bipartisan-major-richard-star-act-ensure-full-benefits",
+            "quote": "I urge the Senate to swiftly take up this legislation and send it to the President’s desk to honor our contract to our veterans who served our nation with dedication and love of country."
+          },
+          {
+            "member": "Peter Welch",
+            "party": "D",
+            "state": "VT",
+            "date": "2026-11-12",
+            "url": "https://www.welch.senate.gov/welch-and-britt-celebrate-senates-unanimous-passage-of-bipartisan-bill-to-boost-flood-resiliency-and-hydrology-research/",
+            "quote": "I urge my colleagues in the House to support this bill and send it to the president’s desk."
+          }
+        ],
+        "R": [
+          {
+            "member": "Andy Biggs",
+            "party": "R",
+            "state": "AZ",
+            "date": "2026-11-12",
+            "url": "https://biggs.house.gov/media/press-releases/congressman-biggs-votes-stop-hegseth-impeachment",
+            "quote": "I call upon our Republican leadership in Congress to immediately send bills to the President's desk that reflect the will of the American people, such as the Coercion and Sexual Abuse Free Environment Act (a bipartisan bill protecting children from online predators), the Monitor Accountability Act (also a bipartisan bill to set clear rules for courts' use of federal monitors), and the Colorado River Basin Infrastructure Act (necessary to preserve the Colorado River for all Basin states)."
+          },
+          {
+            "member": "Ted Budd",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-11-12",
+            "url": "https://www.budd.senate.gov/2026/11/12/budd-applauds-senate-passage-of-weather-act-which-includes-budd-led-provisions-to-strengthen-hurricane-forecasting-modernize-radar-systems/",
+            "quote": "Senator Budd’s Hurricane Forecast Improvement Program Enhancement Act and Radar Next Program Act were included in the final Weather Act package, which is now headed to the President’s desk."
+          },
+          {
+            "member": "Ted Cruz",
+            "party": "R",
+            "state": "TX",
+            "date": "2026-11-12",
+            "url": "https://www.cruz.senate.gov/newsroom/press-releases/sens-cruz-cantwell-colleagues-applaud-unanimous-senate-passage-of-bipartisan-bicameral-comprehensive-weather-forecasting-bill",
+            "quote": "In light of this agreement, it is anticipated that the House of Representatives will take up and send the Weather Act to the President’s desk before the end of the 119th Congress."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "care and benefits",
+      "slug": "4d20bb2e4b6c1dc3",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 3,
+        "I": 1
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "H001076",
+        "statement": "sha256:992b4378001576218972ddadf463f0c00fe40ce158664e583bc20af12577a3d9",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.954,
+      "velocity": 1.75,
+      "sides": {
+        "D": [
+          {
+            "member": "Margaret Wood Hassan",
+            "party": "D",
+            "state": "NH",
+            "date": "2026-11-12",
+            "url": "https://www.hassan.senate.gov/news/press-releases/senator-hassan-honors-veterans-day-at-events-across-new-hampshire",
+            "quote": "Helping develop and pass into law the PACT Act, which fundamentally reforms and improves how veterans exposed to toxic substances receive health care and benefits from the VA."
+          },
+          {
+            "member": "Patty Murray",
+            "party": "D",
+            "state": "WA",
+            "date": "2026-11-12",
+            "url": "https://www.murray.senate.gov/murray-joins-colleagues-in-introducing-bill-to-ensure-iran-war-veterans-are-covered-under-pact-act/",
+            "quote": "Cut Red Tape for Iran War veterans by statutorily presuming toxic substance exposure for Iran War Veterans, helping streamline their access to health care and benefits at VA."
+          },
+          {
+            "member": "Gary C. Peters",
+            "party": "D",
+            "state": "MI",
+            "date": "2026-11-12",
+            "url": "https://www.peters.senate.gov/newsroom/press-releases/on-the-job-for-michigan-traverse-city-veterans-service-officer-highlights-peters-efforts-to-pass-the-pact-act",
+            "quote": "The PACT Act delivered VA health care and benefits to all generations of toxic-exposed veterans, and their survivors, for the first time in our nation’s history."
+          }
+        ],
+        "R": [
+          {
+            "member": "Clay Higgins",
+            "party": "R",
+            "state": "LA",
+            "date": "2026-11-12",
+            "url": "https://clayhiggins.house.gov/2026/11/12/higgins-supports-major-richard-star-act-for-combat-injured-veterans/",
+            "quote": "Beyond the Major Richard Star Act, the Take Care of America’s Veterans Act delivers more than 60 Veterans priorities, including improvements to VA health care and benefits, and expanded support for survivors and caregivers."
+          },
+          {
+            "member": "Jennifer A. Kiggans",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-11-12",
+            "url": "https://kiggans.house.gov/2026/11/12/kiggans-champions-major-expansion-of-veterans-benefits-with-house-passage-of-the-take-care-of-americas-veterans-act/",
+            "quote": "The bill is a comprehensive legislative package containing more than 60 bills to modernize the Department of Veterans Affairs (VA), improve veterans’ access to health care and benefits, and strengthen the support system their caregivers, survivors, and families rely on every day."
+          },
+          {
+            "member": "Jimmy Patronis",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-11-12",
+            "url": "https://patronis.house.gov/media/press-releases/congressman-patronis-advances-landmark-legislation-to-deliver-for-america-s-veterans",
+            "quote": "Both measures aim to ensure America’s veterans receive the care and benefits they’ve earned through their service and sacrifice."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "fd4a60174fd1fc652daf3df9c01c079b58ebf43d512b9a7ea54c2935f1564a7b",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "68e1ee14cab469fa7502ba2ac0c5201e333d0086b46ffa8626f0bc0b81046bf6",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
