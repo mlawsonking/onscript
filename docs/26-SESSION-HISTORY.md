@@ -4148,3 +4148,51 @@ network and no page (`tests/test_s74_post_withheld.py`, which also proves 2026-1
 The guard was pushed before `POSTING_ENABLED` went back to `true`.
 
 Outcome (2026-11-13 ~15:40Z): POSTING_ENABLED=true at ~15:37Z. Because posting was still off when 2026-11-11 assembled, it was repair-assembled (run 43454462629). `repair_safe_manifest` kept `event: schedule, unattended: true`, so the streak held at 1/3. RUN C 43454841492 posted both threads, symmetric and verified on the public Bluesky API: blue 2 posts, red 4 posts. The first live posts since 2026-10-27.
+
+### Session 74-5 (2026-11-13, Opus): the essay backlog staged; the record corrected where staging caught it
+
+Michael ruled that the pitch needs no rewrite, now that the outage gap is closed, and asked for the
+essays to be generated and staged in his voice, ready to publish. P2 through P9 were drafted in
+parallel. Each draft took Michael's published P1 as the voice reference, its numbers only from
+committed results or scripts that were run, and its receipts by rule. Each was then read cold by an
+independent Fable reviewer, as docs/27 requires for P4, against Constitution neutrality and the P1
+bar. Every review edit was applied. The packages sit at X:\onscript-data\drafts\staged\<piece>\.
+Nothing was published: an essay goes live only when its JSON lands in content/essays/, and that act
+is Michael's.
+
+What staging changed:
+
+- **P2** is retitled "Who Says the President's Name". It is a press-release-only claim, because on
+  the Congressional Record it held in 8 of 14 years. Three numbers from the old draft could not be
+  sourced and were cut.
+- **P3** is scoped to the registered null on the vocabulary's timing. The planned "Friday Night Dump
+  is dead" headline did not survive reading the matches.
+- **P5** stays conditional. Its first pre-registration failed review because the placebo anchors
+  cancelled algebraically, so it was redesigned before any hash. The earliest honest date is about
+  February 2027.
+- **P6** is held. The planned "recent, not timeless" rests on one cycle, and an unregistered
+  odd-year check points to a season rather than an election. It needs a ruling.
+- **P7** carries the outage plainly, with 25 rule-picked member receipts from
+  `phrase-evidence.json`.
+- **P8 and P9** are staged for December. P8 must follow P4 and the P1 correction.
+
+A correction to the published P1 is staged, not applied, at X:\onscript-data\drafts\staged\P1-CORRECTION\.
+Its S1.4 power-position sentence cites a card that the within-lane revalidation superseded.
+
+Record fixes committed here: the docs/13 errata E-1 to E-4 (S1.6's 2014 cycle; S4.4's lanes, its
+40 forms, and its scope; the stale S1.4 and S1.10 cards; why pre-rewrite SHAs do not resolve);
+the S4.4 registration committed byte-identical with its single-lane check; the docs/20 S1.6
+erratum; and explanation text for two new essay labels.
+
+**Corrections to Session 74-2 above** (found by the P7 staging and review):
+- "Every run failed from 2026-10-28" is imprecise. Seven runs succeeded on Oct 28 before 18:35Z,
+  and the failures began that evening.
+- "25 statements against a same-weekday median of 80 (31%)" is a replay over today's counts. The
+  baseline the live gate would have used is not in the committed record, and the scheduled
+  manifests show live baselines running higher. The honest statement is "at most about 31 percent".
+  The S74-3 census-test rationale carries the same replay. Its conclusion holds, because the gate
+  would have held a share that low.
+- "A push was barred" overstates Article VIII. The freeze locks prompts, thresholds and the code
+  that measures, and it allows a verified defect fix with public notice. Pinning the runner image
+  touches none of those. Nobody acted because nobody recognized the outage as one until after
+  Nov 10. That was our misreading, not the freeze.

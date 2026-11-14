@@ -135,6 +135,8 @@ ESSAY_LABELS = {
     "party-asymmetric": "The result differs by party. The method that produced it does not.",
     "descriptive": "A description of the corpus, not a test of a hypothesis.",
     "pre-registered": "The direction was recorded before the measurement ran.",
+    "mention-not-hostility": "Counts how often a name appears. It does not measure tone or intent.",
+    "null-not-proof-of-absence": "The test found no effect at its threshold. That does not prove there is none.",
 }
 
 ESSAY_STANDING_NOTE = (

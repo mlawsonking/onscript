@@ -1417,3 +1417,62 @@ coordination phrases (member index empty), so the same-instrument page_html-isol
 determined: no change. Separately flagged: whether the propublica-lane S1.1'/S1.3' CONFIRMEDs survive the
 newer normalize is a normalize-robustness question (not an isolation question) and would need a legacy
 rebuild on the current instrument; out of E1 scope.
+
+
+## Errata (2026-11-13, Opus Session 74; found while staging essays P2-P9). Append-only; supersedes named.
+
+Each item was found by an essay-staging read and verified against the committed record before entry.
+No verdict changes.
+
+**E-1. S1.6, the 90-day snap (supersedes the prose at L676 and L696; also docs/20 L58).** The prose
+reads "2018/2020 snap, 2014/2016 don't". The committed result says otherwise:
+`data/derived/search/revalidate_s1_shards.json` `propublica[6]` shows 2014 snapping for both parties
+(D pre90 0.590 vs prior 0.560; R 0.629 vs 0.584). Only 2016 fails (D 0.648 vs 0.656; R 0.696 vs
+0.711). The tally printed in the same row (A-D 1/2, A-R 1/2, B-D 2/2, B-R 2/2) was always right, so
+the verdict stands: REFUTED, failing the all-cells-majority gate in half A. What changes is the
+reading. "Pre-election tightening is a recent-cycle phenomenon" rests on one cycle, 2016; 6 of 8
+party-cycles in the lane snap. An odd-year stand-in check during P6 staging also found the same
+rise in non-election years. That check was never registered and is NOT a verdict. It is recorded
+here only so no one cites "recent-cycle" as settled. Ruling pending.
+
+**E-2. S4.4, the Friday Night Dump (supersedes L570 and L592 "halves ARE the lanes"; amends L307).**
+The halves are not pure lanes. Half A (2013-2020) holds 475,146 ProPublica-lane statements and
+25,491 scraper-lane statements. Half B holds 174,106 scraper-lane statements and 227 ProPublica-lane
+ones. Rerun inside one lane per half with the registered estimator
+(`scripts/search/s4_4_lane_check.py`, 2,000x day-block bootstrap, seed 20260716; output at
+X:/onscript-data/evidence/s4_4-lane-check/out.txt), the null holds in every slice:
+
+| Slice | Walk-back Friday ratio | CI95 | Positive control |
+|---|---|---|---|
+| Half A, ProPublica lane | 0.8553 | 0.7266-1.0042 | 2.1067 |
+| Half A, scraper slice | 0.6843 | 0.2779-1.3112 | 1.8699 |
+| Half B, scraper lane | 0.9594 | 0.7607-1.1913 | 1.7493 |
+
+Every CI upper bound sits below the 1.5 gate. The verdict stands: REFUTED, equivalence.
+Two amendments to L307:
+- The registered core lexicon has **40** forms, not 41. The registration is now committed
+  byte-identical at `data/reference/search/s4_4-registration.json`, sha256
+  `6cbee4a8bda77ce876de4be41184362bda758b26fc33ec93b4452142d636b6d5`. That matches the value L307
+  cites, which was previously stamped on an uncommitted file.
+- Scope: one unblinded reader's look at a small unweighted sample suggests the walk-back lexicon
+  mostly catches statements other than an office retracting its own words: apologies demanded of
+  others, condolences, procedural courtesies. The null is a finding about that vocabulary's
+  timing. It cannot say whether offices time their own retractions. "There is no Friday Night Dump"
+  overstates it.
+
+**E-3. Stale finding cards (S1.4, S1.10).** `data/derived/findings/S1.4.json` predates the
+provenance-seam revalidation. Its "D rises in both halves" and 2023-2025 House-minority concentration
+are superseded by L564, L565, L590, L655, L680 and L700: REFUTED (verbatim) and UNDERPOWERED
+(density-controlled), both lanes. The launch essay cited the card, and a correction is pending.
+`S1.10.json` carries the label REVERSAL, while the governing verdict at L566 and L591 is ARTIFACT
+(robust). Both cards now carry a dated `superseded` block that points to the governing rows. No other
+card field was changed.
+
+**E-4. Pre-rewrite commit hashes (no correction; pointer only).** Most short SHAs cited in this
+ledger and in docs/26 before 2026-07-21 do not resolve: 55 of 72 at this check. They are
+pre-rewrite labels from the two Article XIII history rewrites, as docs/26 already records ("Every
+SHA cited in canon before 2026-07-21 is a pre-rewrite label"). The old-to-new map stays private, in
+the S38 scrub evidence on X:. It is deliberately not published. GitHub can still serve unreachable
+pre-scrub commits by SHA, and those are the commits that carried the redacted material, so a public
+map would point straight at them. Cite current SHAs in new work. Three of the 55 (`1aa84477`,
+`363ecdfc`, `7facc4d2`) are sha256 content prefixes, not commits.

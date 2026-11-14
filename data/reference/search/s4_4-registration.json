@@ -1,0 +1,82 @@
+{
+  "id": "S4.4",
+  "name": "The Friday Night Dump, Autopsied",
+  "prereg_written_before_measurement": true,
+  "note": "This lexicon is written BEFORE any measurement in this session. The recon's 12-form probe is NOT this pre-registration and is not silently promoted; it is reported separately as `recon_probe` for comparison. Forms are chosen by SPEECH-ACT category and face validity, never by outcome.",
+  "span": {
+    "declared": "2013-01-01..2026-12-31",
+    "spec_said": "25 years",
+    "why_restated": "Press lane 2001-2012 = 2,321 statements across 12 distinct offices; 69% are one member (L000551). Cannot carry a weekday analysis. Pre-2013 = UNDERPOWERED, reported not computed."
+  },
+  "halves": {"A": "2013-01-01..2020-12-31", "B": "2021-01-01..2026-12-31",
+             "note": "Split at the 2021 coverage cliff deliberately: the cliff is a real regime boundary of the instrument. Reported as coverage-confounded; the B-decay sub-finding is therefore reported per-office-per-day, never as a raw level."},
+  "gate": {
+    "primary": "CONFIRM iff Friday walk-back rate >= 1.5x the Mon-Thu mean rate in BOTH halves (spec verbatim).",
+    "sub_finding": "Did the Dump die? B-half Friday ratio < A-half Friday ratio, per-office-per-day normalized.",
+    "holiday_eve": "CONFIRM iff holiday-eve rate >= 1.5x matched same-weekday non-holiday-eve rate."
+  },
+  "power_floor_stated_before_looking": {
+    "rule": ">= 200 Friday lexicon hits per half AND >= 20,000 Friday statements per half, else UNDERPOWERED.",
+    "why": "Below this a 1.5x ratio is not separable from Poisson noise at these base rates."
+  },
+  "lexicons": {
+    "core": {
+      "rationale": "High-precision speech acts of CORRECTION / RETRACTION / APOLOGY. If the Friday Night Dump exists as folk theory describes, it lives here.",
+      "forms": [
+        "misspoke", "misstated", "i was wrong", "i was mistaken",
+        "i retract", "retract my", "retract the", "withdraw my remarks", "withdraw my statement",
+        "correct the record", "set the record straight", "setting the record straight",
+        "i apologize", "apologize for", "apologies to", "my apologies",
+        "i am sorry", "i'm sorry", "i regret", "deeply regret", "regret that",
+        "walk back", "walked back", "walking back",
+        "taken out of context", "out of context",
+        "poor choice of words", "wrong choice of words",
+        "should not have said", "shouldn't have said", "should never have said",
+        "did not mean to", "didn't mean to", "was not my intent", "was not my intention",
+        "i take responsibility", "i accept responsibility",
+        "in error", "was an error", "issued in error"
+      ]
+    },
+    "broad": {
+      "rationale": "core + softer CLARIFICATION forms. Reported alongside core regardless of outcome; declared now so neither can be chosen after the fact.",
+      "adds": [
+        "to clarify", "want to clarify", "wish to clarify", "clarify my", "clarification of my",
+        "a clarification", "issued a correction", "correction to", "amend my", "revise my",
+        "upon reflection", "on further reflection", "reconsidered my", "changed my position"
+      ]
+    },
+    "a_priori_exclusions": {
+      "forms": ["let me be clear", "my remarks", "my comments", "my statement"],
+      "why": "Excluded BEFORE measurement on face validity: these are rhetorical intensifiers / bare referents, not correction speech acts. 'Let me be clear' is standard political filler and would swamp the numerator with non-corrections."
+    },
+    "placebo_lexicon": {
+      "rationale": "PLACEBO CONTROL (#5). Register-matched first-person routine vocabulary with NO theoretical link to Friday. If Friday 'excess' appears here too, any walk-back Friday excess is a Friday composition artifact, not a Dump.",
+      "forms": ["i am pleased", "i'm pleased", "i am proud", "i'm proud", "i want to thank",
+                "i look forward", "i was glad", "i am grateful", "i am honored", "i'm honored"]
+    },
+    "positive_control": {
+      "rationale": "INSTRUMENT VALIDATION. Week-ending vocabulary SHOULD be Friday-shaped. If the machinery cannot find a Friday effect here, a null on walk-backs is uninformative. This is what makes a REFUTED verdict mean something.",
+      "forms": ["this week", "week in review", "earlier this week", "later this week",
+                "over the weekend", "this weekend", "next week", "week's"]
+    },
+    "recon_probe_NOT_prereg": {
+      "rationale": "The orchestrator's 12-form recon probe, reproduced verbatim for comparison ONLY. Reported, never used as the gate.",
+      "forms": ["misspoke", "to clarify", "walk back", "i regret", "apologize for",
+                "correct the record", "out of context", "poor choice of words",
+                "i misspoke", "i was wrong", "i apologize", "clarification"]
+    }
+  },
+  "controls_declared": [
+    "#1 rates never counts — every cell is hits/statements and hits/1k-words",
+    "#2 density/length control — per-1k-WORDS rate + within-length-quartile weekday ratios (corrections are short; length is a live confound on the numerator)",
+    "#3 same-weekday baselines — Friday vs Mon-Thu mean RATE; raw Friday volume (75k) vs Wednesday (94k) makes counts meaningless",
+    "#4 split-halves — never pooled",
+    "#5 placebo — placebo lexicon + matched non-holiday-eve dates for the holiday arm",
+    "#6 merged cross-era series (single press lane, 2013+)",
+    "#7 power floor stated above before looking",
+    "#8 party symmetry — identical forms/thresholds both parties, never normalized to parity",
+    "#9 no silent caps — full weekday x half x party grid emitted, no top-N on the gate"
+  ],
+  "unit_note": "Primary cell = statement-level rate (spec says per-1k). Secondary = OFFICE-DAY rate (does office X emit >=1 walk-back on day D) — collapses joint/syndicated releases and volume-per-office. Both reported.",
+  "multi_speaker_note": "A press release is multi-speaker. `attributed_to_other` (pipeline/duet.py) is applied to a sample of core hits to report what fraction of walk-back language is a QUOTED third party rather than the releasing office. The weekday claim is about WHEN, not WHO, so this is a disclosure not a filter."
+}
