@@ -26,6 +26,7 @@ import json
 import re
 import shutil
 import sys
+import urllib.parse
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -3106,10 +3107,16 @@ def _essay_receipts(receipts) -> str:
         who, when = receipt.get("member"), receipt.get("date")
         if not url or not who or not when:
             continue
+        # A member release on a .gov host gets the same Wayback fallback a phrase page gives it
+        # (§Session-8): essays cite releases from 2013 on, and a retired member's site is often gone.
+        # Record receipts (commits, our own manifests) are not archived pages, so they get none.
+        host = (urllib.parse.urlsplit(url).hostname or "").lower()
+        archived = (f' &middot; <a href="{esc(_wayback_url(url, when))}" rel="nofollow noopener">archived</a>'
+                    if host.endswith(".gov") else "")
         rows.append(
             '<div class="receipt"><div class="rhead">'
             f'{esc(who)} &middot; {esc(when)} &middot; '
-            f'<a href="{esc(url)}" rel="nofollow noopener">source</a></div>'
+            f'<a href="{esc(url)}" rel="nofollow noopener">source</a>{archived}</div>'
             + (f'<div class="rtopics">{esc(receipt.get("note"))}</div>'
                if receipt.get("note") else "")
             + "</div>"

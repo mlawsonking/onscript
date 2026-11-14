@@ -201,6 +201,20 @@ def test_an_essay_page_carries_byline_date_labels_and_receipts():
     assert site.esc(public_strings.ESSAY_STANDING_NOTE) in html
 
 
+def test_a_gov_release_receipt_gets_the_archive_fallback_and_a_record_receipt_does_not():
+    """S74-5: 22 of 121 staged essay receipts (2013-2021 releases) no longer resolve live, because
+    retired members' sites are gone. Phrase pages have always carried a Wayback fallback; essays
+    now carry the same one for .gov releases. A commit or a manifest is not an archived page."""
+    html = site._essay_receipts([
+        {"member": "A Member", "date": "2014-03-05", "url": "http://gone.house.gov/news/x"},
+        {"member": "Record", "date": "2026-11-11", "url": "https://github.com/o/r/commit/abc"},
+    ])
+    gov, record = html.split('<div class="receipt">')[1:]
+    assert "https://web.archive.org/web/20140305/http://gone.house.gov/news/x" in gov
+    assert ">archived</a>" in gov
+    assert "archived" not in record and "web.archive.org" not in record
+
+
 def test_the_essay_shell_is_the_same_head_nav_and_footer_as_every_other_page():
     out = _with_essays([_essay()])
     html = (out / "essays" / "p1.html").read_text(encoding="utf-8")
