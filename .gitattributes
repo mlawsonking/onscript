@@ -1,0 +1,5 @@
+# Hashed pre-registrations must keep their exact bytes on every checkout: the record cites their
+# sha256, and a CRLF working copy would break the check. Scoped to the files whose hashes the
+# scripts assert; older registrations are left as they are (S74-5).
+data/reference/search/s4_4-registration.json -text
+data/reference/search/s1_10a-registration.json -text
