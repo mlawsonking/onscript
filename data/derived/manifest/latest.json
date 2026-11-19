@@ -2,14 +2,14 @@
   "schema_version": 1,
   "run_id": "collect-2026-11-19",
   "kind": "deterministic",
-  "generated_at": "2026-11-19T01:19:35Z",
+  "generated_at": "2026-11-19T18:26:42Z",
   "focus_day": "2026-11-17",
   "focus_cursor": {
     "day": "2026-11-17",
     "requested": "2026-11-17",
     "clamped": false,
     "future": false,
-    "reason": "the newest day in the corpus is the product day"
+    "reason": "the corpus ends at 2026-11-17, behind the product day 2026-11-18"
   },
   "day_sweep": {
     "window": [
@@ -28,7 +28,7 @@
   "source_freshness": {
     "ok": true,
     "pushed_at": "2026-11-17T14:09:47Z",
-    "age_hours": 35.16
+    "age_hours": 52.27
   },
   "normalize": {
     "in": 90823,
@@ -73,16 +73,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 6.3,
-    "mirror_pull": 26.3,
-    "normalize": 1606.1,
-    "ledger_build": 1511.1
+    "restore": 7.1,
+    "mirror_pull": 30.0,
+    "normalize": 1395.2,
+    "ledger_build": 1514.3
   },
   "span_scan": {
     "person_spans_calls": 261399,
-    "person_spans_s": 371.7052700708184,
+    "person_spans_s": 375.9840485499815,
     "admitted_form_scans": 261399,
-    "admitted_form_s": 6.753204693070302
+    "admitted_form_s": 5.405651569986503
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
