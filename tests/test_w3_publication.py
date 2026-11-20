@@ -127,9 +127,12 @@ def test_correction_pages_feed_and_affected_day_link_use_stable_ids():
     body = site.correction_permalink_body(row)
     index = site.corrections_index_body(rows)
     feed = site.corrections_feed(rows)
-    day = site.day_corrections(row["affected_days"][0], 1)
-    for rendered in (body, index, feed, day):
+    for rendered in (body, index, feed):
         assert row["correction_id"] in rendered
+    # A correction to an essay names no day (S74: corr-2026-11-20-self-audit-...), so the day
+    # link is checked on the newest row that has one.
+    dated = next(r for r in reversed(rows) if r["affected_days"])
+    assert dated["correction_id"] in site.day_corrections(dated["affected_days"][0], 1)
     assert "Severity:" in body and "Status:" in body
     assert "Page URL:" in index and "Exact sentence or figure:" in index
 
