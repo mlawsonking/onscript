@@ -1,36 +1,35 @@
 {
-  "day": "2026-11-11",
+  "day": "2026-11-19",
   "by_peak": [
     {
-      "ngram": "men and women who have",
-      "slug": "dd531a716601287e",
-      "n": 5,
+      "ngram": "text of the legislation",
+      "slug": "58c2749240464ef7",
+      "n": 4,
       "day_peak": 9,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 3,
-        "R": 9,
+        "D": 9,
+        "R": 2,
         "I": 0
       },
       "family_counts": {
-        "D": 3,
-        "R": 10,
+        "D": 10,
+        "R": 2,
         "I": null
       },
       "family_count": 10,
-      "velocity": 8.4,
+      "velocity": 7.88,
       "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "date": "2025-01-03",
+        "bioguide": "N000193",
+        "statement": "sha256:3f4861ec2fec3eb7ec6e2fe3abdc72087081a87ea624074a9dca01c43beca00a",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.972,
+      "df_weight": 0.985,
       "series": [
-        1,
         1,
         1,
         1,
@@ -42,77 +41,81 @@
         1,
         2,
         1,
+        2,
         1,
         9
       ]
     },
     {
-      "ngram": "brave men and women",
-      "slug": "4a6dfb7ae0b8adc0",
-      "n": 4,
-      "day_peak": 8,
-      "party": "R",
-      "counts": {
-        "D": 3,
-        "R": 8,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 9,
-        "I": null
-      },
-      "family_count": 9,
-      "velocity": 7.47,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        8
-      ]
-    },
-    {
-      "ngram": "the brave men",
-      "slug": "ef215efd0528e781",
+      "ngram": "statement after voting",
+      "slug": "ad5810750e301c01",
       "n": 3,
       "day_peak": 8,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 2,
-        "R": 8,
+        "D": 8,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 2,
-        "R": 8,
+        "D": 8,
+        "R": null,
         "I": null
       },
       "family_count": 8,
-      "velocity": 7.0,
+      "velocity": 2.87,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000369",
+        "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
+        "tie": [
+          "B000740",
+          "B001291"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        8,
+        1,
+        1,
+        1,
+        1,
+        4,
+        1,
+        2,
+        1,
+        5,
+        3,
+        2,
+        1,
+        8
+      ]
+    },
+    {
+      "ngram": "an important step",
+      "slug": "79f874be4a2748ec",
+      "n": 3,
+      "day_peak": 8,
+      "party": "D",
+      "counts": {
+        "D": 8,
+        "R": 0,
+        "I": 1
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": 1
+      },
+      "family_count": 8,
+      "velocity": 3.2,
       "first_seen": {
         "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "bioguide": "C001129",
+        "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -120,60 +123,105 @@
       },
       "df_weight": 0.972,
       "series": [
-        1,
-        1,
-        1,
-        1,
+        2,
         2,
         1,
         1,
         1,
         1,
+        8,
         2,
-        1,
-        1,
-        1,
+        6,
+        2,
+        2,
+        2,
+        2,
         8
       ]
     },
     {
-      "ngram": "benefits they have earned",
-      "slug": "28311e8750961e9a",
-      "n": 4,
+      "ngram": "the federal permitting",
+      "slug": "6a6d25f54a86f4d9",
+      "n": 3,
       "day_peak": 7,
       "party": "R",
       "counts": {
-        "D": 5,
+        "D": 0,
         "R": 7,
         "I": 0
       },
       "family_counts": {
-        "D": 5,
-        "R": 8,
+        "D": null,
+        "R": 7,
         "I": null
       },
-      "family_count": 8,
+      "family_count": 7,
       "velocity": 6.12,
       "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "C001123",
-        "statement": "sha256:71b0debc83a8dade8b5060481d24679f8e6bb06d10fe5f71366c026a24d01c90",
+        "date": "2025-01-21",
+        "bioguide": "H001061",
+        "statement": "sha256:24c276d89bef59e66da7576a08cd7f70f294422cd0f044e0367353cc84d09af5",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.984,
+      "df_weight": 0.998,
       "series": [
         1,
         2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         2,
         1,
         1,
         1,
+        7
+      ]
+    },
+    {
+      "ngram": "war in iran",
+      "slug": "4abd5ede26e39eb9",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": null
+      },
+      "family_count": 8,
+      "velocity": 2.58,
+      "first_seen": {
+        "date": "2026-02-24",
+        "bioguide": "R000620",
+        "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        2,
+        6,
+        4,
         1,
-        1,
-        1,
+        3,
+        6,
+        2,
+        2,
+        6,
         1,
         1,
         1,
@@ -182,34 +230,174 @@
       ]
     },
     {
-      "ngram": "men and women who have served",
-      "slug": "a4cf4f2615a5a84d",
-      "n": 6,
-      "day_peak": 6,
-      "party": "R",
+      "ngram": "food on the table",
+      "slug": "589df2db6ff052d6",
+      "n": 4,
+      "day_peak": 7,
+      "party": "D",
       "counts": {
-        "D": 2,
-        "R": 6,
+        "D": 7,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 2,
-        "R": 6,
+        "D": 7,
+        "R": null,
         "I": null
       },
-      "family_count": 6,
+      "family_count": 7,
+      "velocity": 4.9,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "T000487",
+        "statement": "sha256:3d3e634b889cf59de305f31e8982f8fa4c6fd6c903ebc8336b4fe23f1b2f4018",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.982,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        7
+      ]
+    },
+    {
+      "ngram": "for the american people",
+      "slug": "495c7da743c93f81",
+      "n": 4,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 3.06,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "N000015",
+        "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        3,
+        5,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        6,
+        7
+      ]
+    },
+    {
+      "ngram": "the trump administration’s",
+      "slug": "6cd624c98e95c190",
+      "n": 3,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": null,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 2.28,
+      "first_seen": {
+        "date": "2025-01-15",
+        "bioguide": "D000530",
+        "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.96,
+      "series": [
+        4,
+        1,
+        2,
+        1,
+        3,
+        6,
+        2,
+        4,
+        3,
+        1,
+        2,
+        3,
+        4,
+        7
+      ]
+    },
+    {
+      "ngram": "full text of the legislation",
+      "slug": "d6b3a72357861751",
+      "n": 5,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 7,
       "velocity": 5.6,
       "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "date": "2025-01-03",
+        "bioguide": "N000193",
+        "statement": "sha256:3f4861ec2fec3eb7ec6e2fe3abdc72087081a87ea624074a9dca01c43beca00a",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.972,
+      "df_weight": 0.989,
       "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
         1,
         1,
         1,
@@ -218,91 +406,88 @@
         2,
         1,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
         6
       ]
     },
     {
-      "ngram": "our nation’s veterans",
-      "slug": "f2cb520b569bc930",
+      "ngram": "end the war",
+      "slug": "183199bc7eab5a70",
       "n": 3,
       "day_peak": 6,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 0,
-        "R": 6,
+        "D": 6,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": null,
-        "R": 6,
+        "D": 7,
+        "R": null,
         "I": null
       },
-      "family_count": 6,
-      "velocity": 5.25,
+      "family_count": 7,
+      "velocity": 3.65,
       "first_seen": {
-        "date": "2025-01-04",
-        "bioguide": "B001299",
-        "statement": "sha256:ee7d92f500e411c8ce75ed3a296ced18b81019dfdae156eccdf82a3b08fdb4d0",
+        "date": "2025-01-06",
+        "bioguide": "M001157",
+        "statement": "sha256:05ec4472b51a6f040878ddfb257549e141202b397a7cfd1e509ffe31d016efa8",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.988,
+      "df_weight": 0.995,
       "series": [
-        1,
+        2,
         2,
         1,
         1,
         1,
         1,
-        1,
-        1,
-        1,
-        1,
+        2,
+        3,
         1,
         2,
+        3,
         1,
+        2,
         6
       ]
     },
     {
-      "ngram": "receive the care",
-      "slug": "1ea845c09576840c",
+      "ngram": "the senate passed",
+      "slug": "399b91f9b449add0",
       "n": 3,
       "day_peak": 6,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 1,
-        "R": 6,
-        "I": 0
+        "D": 6,
+        "R": 2,
+        "I": 1
       },
       "family_counts": {
-        "D": 1,
-        "R": 6,
-        "I": null
+        "D": 6,
+        "R": 2,
+        "I": 1
       },
       "family_count": 6,
-      "velocity": 5.25,
+      "velocity": 4.0,
       "first_seen": {
         "date": "2025-01-08",
-        "bioguide": "K000393",
-        "statement": "sha256:a85672a8fa0fa8f0da07c84955e699cd9e30d9dd1b328df6b1a02e69442ac7ee",
+        "bioguide": "C001075",
+        "statement": "sha256:90f58df3dad79ff6a916355ee5b68ae46e752c091420376972152e942287b9e1",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.988,
+      "df_weight": 0.991,
       "series": [
+        2,
         1,
-        1,
-        1,
+        2,
+        3,
+        2,
         3,
         1,
         1,
@@ -311,123 +496,582 @@
         1,
         1,
         1,
-        1,
-        1,
         6
       ]
     },
     {
-      "ngram": "care and benefits",
-      "slug": "4d20bb2e4b6c1dc3",
+      "ngram": "a press conference",
+      "slug": "947cb30ef8f2474c",
       "n": 3,
       "day_peak": 6,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 4,
-        "R": 6,
+        "D": 6,
+        "R": 2,
         "I": 0
       },
       "family_counts": {
-        "D": 4,
-        "R": 7,
+        "D": 6,
+        "R": 2,
         "I": null
       },
-      "family_count": 7,
-      "velocity": 4.67,
+      "family_count": 6,
+      "velocity": 3.36,
       "first_seen": {
         "date": "2025-01-03",
-        "bioguide": "H001076",
-        "statement": "sha256:992b4378001576218972ddadf463f0c00fe40ce158664e583bc20af12577a3d9",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.956,
+      "df_weight": 0.98,
       "series": [
-        1,
-        1,
-        1,
         2,
         1,
-        1,
-        1,
+        2,
+        2,
+        2,
+        3,
         1,
         1,
         1,
         1,
         1,
         4,
+        3,
         6
       ]
     },
     {
-      "ngram": "the men and women",
-      "slug": "ce3a461017c64eea",
-      "n": 4,
+      "ngram": "the lawmakers wrote",
+      "slug": "13d49ed92594daf1",
+      "n": 3,
       "day_peak": 6,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 4,
-        "R": 6,
+        "D": 6,
+        "R": 1,
         "I": 0
       },
       "family_counts": {
-        "D": 4,
-        "R": 6,
+        "D": 6,
+        "R": 1,
         "I": null
       },
       "family_count": 6,
-      "velocity": 4.42,
+      "velocity": 2.71,
       "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
+        "date": "2025-01-06",
+        "bioguide": "C001117",
+        "statement": "sha256:5bc2d362c13623b7cbbae3df48dc294660c2b7ad9b9fb2bfce649047b981ad3f",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.954,
+      "df_weight": 0.977,
       "series": [
+        2,
+        4,
         1,
+        2,
+        2,
         1,
+        3,
         2,
         1,
         2,
-        2,
+        4,
+        4,
         1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
         6
       ]
     },
     {
-      "ngram": "60 bipartisan bills",
-      "slug": "ecf89baa5831febe",
+      "ngram": "this bipartisan legislation",
+      "slug": "95c3c736eba4c20f",
       "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.65,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [
+          "H001076",
+          "M001196"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        3,
+        2,
+        2,
+        2,
+        1,
+        2,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "introduced the bipartisan",
+      "slug": "f9c08c8e26755308",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.957,
+      "series": [
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        3,
+        3,
+        6
+      ]
+    },
+    {
+      "ngram": "6 3 million americans primarily older",
+      "slug": "7c3b535cdf09c13f",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "estimated 6 3 million americans primarily",
+      "slug": "a925e0ddc17dfb36",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "million americans primarily older or disabled",
+      "slug": "23922e46cd136716",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "kick an estimated 6 3 million",
+      "slug": "7476852b482efd3c",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "americans primarily older or disabled beneficiaries",
+      "slug": "a4679af3252a2f75",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "new proposed rule that would kick",
+      "slug": "8439f56269644a51",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "disabled beneficiaries and families with children",
+      "slug": "665b5a6465ee0455",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "older or disabled beneficiaries and families",
+      "slug": "092ce12d55144570",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "opposing a new proposed rule",
+      "slug": "3eba6150f92005a5",
+      "n": 5,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.5,
+      "first_seen": {
+        "date": "2026-04-22",
+        "bioguide": "V000128",
+        "statement": "sha256:b5c828a88358104fdc36a1e2e41032b61512d8a6b19aede9f27ec3360bdf3c73",
+        "tie": [
+          "W000817"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "rule that would kick an estimated",
+      "slug": "a83056605383848e",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "energy and infrastructure projects",
+      "slug": "e3f5c2f0871567b6",
+      "n": 4,
       "day_peak": 5,
       "party": "R",
       "counts": {
-        "D": 0,
+        "D": 1,
         "R": 5,
         "I": 0
       },
       "family_counts": {
-        "D": null,
+        "D": 1,
         "R": 5,
         "I": null
       },
       "family_count": 5,
-      "velocity": 4.17,
+      "velocity": 4.67,
       "first_seen": {
-        "date": "2026-06-10",
-        "bioguide": "B001257",
-        "statement": "sha256:e6b89d663226076c8c4efc6074c7ef34e6331ebfe7212f49ec78dac682e633db",
+        "date": "2025-02-19",
+        "bioguide": "C001047",
+        "statement": "sha256:515adec289789804a0ccd213802962a6949abe2ea9e24fb49c92d0938dca3f24",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -436,7 +1080,15 @@
       "df_weight": 1.0,
       "series": [
         1,
+        1,
+        1,
+        1,
         2,
+        1,
+        1,
+        1,
+        1,
+        1,
         1,
         1,
         1,
@@ -444,27 +1096,72 @@
       ]
     },
     {
-      "ngram": "answered the call to serve",
-      "slug": "0e0bbd179968b502",
-      "n": 5,
+      "ngram": "permitting reform legislation",
+      "slug": "49d60863dadc2214",
+      "n": 3,
       "day_peak": 5,
       "party": "R",
       "counts": {
-        "D": 1,
+        "D": 4,
         "R": 5,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
+        "D": 4,
         "R": 5,
         "I": null
       },
       "family_count": 5,
       "velocity": 4.38,
       "first_seen": {
+        "date": "2025-12-11",
+        "bioguide": "H001046",
+        "statement": "sha256:df2f82e2ab9e5804fe7fa9e784c95d38055dc25c12dc283dac9edf642dc8d199",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "critical infrastructure projects",
+      "slug": "5481b75491e5e035",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.67,
+      "first_seen": {
         "date": "2025-01-03",
-        "bioguide": "G000581",
-        "statement": "sha256:6c3329b8d9d5e38ddb85d4587236e4d0b55c536dd900644eec374fbdf7b79e2a",
+        "bioguide": "B001257",
+        "statement": "sha256:615154e166da1558471be3b75ad75c61739eb2d79ae6288b16109757703d4a39",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -473,15 +1170,15 @@
       "df_weight": 0.998,
       "series": [
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         2,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
         1,
         1,
         1,
@@ -489,143 +1186,8 @@
       ]
     },
     {
-      "ngram": "our veterans and their families",
-      "slug": "11f344c4e98d5418",
-      "n": 5,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 5.0,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "S001213",
-        "statement": "sha256:aea2d337fce2fceba02ba1db34509cb9d034160ddc90dceab87b6918113c99fe",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        5
-      ]
-    },
-    {
-      "ngram": "veterans receive the",
-      "slug": "48b99b2a479099b0",
-      "n": 3,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 4.67,
-      "first_seen": {
-        "date": "2025-01-14",
-        "bioguide": "C001136",
-        "statement": "sha256:0727ab308fd5efb4409ad0a748f36668d613a91d2dbaab217ce457e4173fb8e0",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.988,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        5
-      ]
-    },
-    {
-      "ngram": "service and sacrifice",
-      "slug": "f1be9c055ae75914",
-      "n": 3,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 4.38,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "B001260",
-        "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
-        5
-      ]
-    },
-    {
-      "ngram": "our great nation",
-      "slug": "ab814016a090ef36",
+      "ngram": "federal permitting process",
+      "slug": "450dba36be71911d",
       "n": 3,
       "day_peak": 5,
       "party": "R",
@@ -640,23 +1202,23 @@
         "I": null
       },
       "family_count": 5,
-      "velocity": 3.89,
+      "velocity": 4.67,
       "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001053",
-        "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
+        "date": "2025-01-21",
+        "bioguide": "H001061",
+        "statement": "sha256:24c276d89bef59e66da7576a08cd7f70f294422cd0f044e0367353cc84d09af5",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.972,
+      "df_weight": 0.998,
       "series": [
         1,
         1,
+        2,
         1,
-        2,
-        2,
+        1,
         1,
         1,
         1,
@@ -669,117 +1231,27 @@
       ]
     },
     {
-      "ngram": "honor the brave men and women",
-      "slug": "7d627ceb733a906a",
-      "n": 6,
-      "day_peak": 4,
-      "party": "R",
+      "ngram": "statement after voting against",
+      "slug": "591ce8e95d2d5210",
+      "n": 4,
+      "day_peak": 5,
+      "party": "D",
       "counts": {
-        "D": 1,
-        "R": 4,
+        "D": 5,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
-        "R": 4,
+        "D": 5,
+        "R": null,
         "I": null
       },
-      "family_count": 4,
-      "velocity": 2.95,
+      "family_count": 5,
+      "velocity": 2.8,
       "first_seen": {
-        "date": "2025-05-13",
-        "bioguide": "C001075",
-        "statement": "sha256:8dd0e32b8d769011acac7d69f09675cef3b1bd09f99bc5e1c88e96a06e5ce3b1",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        4
-      ]
-    },
-    {
-      "ngram": "veterans health care",
-      "slug": "b6fb5314d59c2a43",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.5,
-      "first_seen": {
-        "date": "2025-01-14",
-        "bioguide": "H001076",
-        "statement": "sha256:87a45d95b6b432779189546efde0b001113ff570971c1dc03de24a5e8fca71cc",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.995,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "health care access",
-      "slug": "73ebfc47af2b5681",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 2.95,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "M001163",
-        "statement": "sha256:58e1e22b64ae3431b4f58669b6d4813b8f1f3051d735360063982dad27d0d714",
+        "date": "2025-01-10",
+        "bioguide": "C001117",
+        "statement": "sha256:5ec9aa17d10ace75c8276be2549b24fcf57faaa2cf331be6dee044abef023271",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -787,402 +1259,516 @@
       },
       "df_weight": 0.994,
       "series": [
+        6,
+        1,
+        1,
+        1,
+        1,
+        5,
+        1,
+        1,
+        1,
+        1,
+        2,
         2,
         1,
-        1,
-        3,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        4
+        5
       ]
     },
     {
-      "ngram": "communities across the country",
-      "slug": "743e783403b630d9",
-      "n": 4,
-      "day_peak": 4,
+      "ngram": "important step toward",
+      "slug": "3060ca3cd5d89ce4",
+      "n": 3,
+      "day_peak": 5,
       "party": "D",
       "counts": {
-        "D": 4,
+        "D": 5,
         "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 4,
+        "D": 5,
         "R": null,
         "I": null
       },
-      "family_count": 4,
-      "velocity": 2.24,
+      "family_count": 5,
+      "velocity": 2.69,
       "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "R000621",
-        "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
-        "tie": [
-          "G000386"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.978,
-      "series": [
-        3,
-        1,
-        2,
-        1,
-        3,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        2,
-        4
-      ]
-    },
-    {
-      "ngram": "than 60 bipartisan",
-      "slug": "29d2ea28c295a0ea",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-09-29",
-        "bioguide": "C001039",
-        "statement": "sha256:d16e92dbefbb71b9700427fb9cd50bf26de21aff77a77ffab6b7986a4fbfcf7d",
+        "date": "2025-01-06",
+        "bioguide": "E000246",
+        "statement": "sha256:c22319edde8a08cfff810bc47eeac6ffb5d5846848e991bb00e4d4e01363f6d5",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 1.0,
+      "df_weight": 0.99,
       "series": [
         1,
         2,
-        1,
-        1,
+        2,
         2,
         1,
-        4
-      ]
-    },
-    {
-      "ngram": "receive the benefits",
-      "slug": "5827ca53348d5370",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.73,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "C001123",
-        "statement": "sha256:71b0debc83a8dade8b5060481d24679f8e6bb06d10fe5f71366c026a24d01c90",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
         1,
+        4,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+        4,
         2,
-        4
-      ]
-    },
-    {
-      "ngram": "generations of americans",
-      "slug": "0accd9955313b3ce",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 2.33,
-      "first_seen": {
-        "date": "2025-01-10",
-        "bioguide": "U000040",
-        "statement": "sha256:64a6619c5177643acc12b3df4db3437773f096ce166e9245af3f5f6609bc5840",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        3,
-        1,
-        1,
-        1,
         2,
-        3,
+        2,
         1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        4
+        5
       ]
     },
     {
-      "ngram": "served our nation",
-      "slug": "c772d1397d53e081",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.73,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "F000466",
-        "statement": "sha256:fddc2218c81c2a108d0aa06ca5e7e1e54d25164ec1c9b7ea96eaf10c59f78d02",
-        "tie": [
-          "H001101",
-          "T000250"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.997,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "and benefits they have earned",
-      "slug": "2a2e9ef71daeac92",
+      "ngram": "full text of the bill",
+      "slug": "b40273a0c687b8c0",
       "n": 5,
-      "day_peak": 4,
+      "day_peak": 5,
       "party": "D",
       "counts": {
-        "D": 4,
-        "R": 4,
+        "D": 5,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 4,
-        "R": 5,
+        "D": 5,
+        "R": null,
         "I": null
       },
-      "family_count": 4,
-      "velocity": 3.73,
+      "family_count": 5,
+      "velocity": 2.19,
       "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "P000595",
-        "statement": "sha256:4a53b331f1d44d036af2c2ec075164722b82ea447bb2c8bc116cba5a6d5d9d29",
-        "tie": [],
+        "date": "2025-01-06",
+        "bioguide": "C001121",
+        "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+        "tie": [
+          "R000614"
+        ],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.995,
+      "df_weight": 0.977,
       "series": [
         1,
         1,
         1,
         1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "served our country",
-      "slug": "86150d53c66f38bd",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 4,
-        "I": 1
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 4,
-        "I": 1
-      },
-      "family_count": 4,
-      "velocity": 3.5,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001053",
-        "statement": "sha256:1a49e9efde45a9824924efe73dcf12ced463984ad931178445ca72226ed2f1d9",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        4
-      ]
-    },
-    {
-      "ngram": "quality of life",
-      "slug": "cf4bb22c0daa38a7",
-      "n": 3,
-      "day_peak": 4,
-      "party": "D",
-      "counts": {
-        "D": 4,
-        "R": 2,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": 2,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 1.87,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001053",
-        "statement": "sha256:5a13a88260e208fe042493beae69f1a7b84523e57c7c274c2608ddf5d5eeaa48",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        2,
-        1,
-        5,
-        3,
-        2,
         2,
         1,
         2,
         4,
-        2,
         1,
-        1,
+        6,
         2,
-        4
+        6,
+        3,
+        5
       ]
     },
     {
-      "ngram": "proud to support",
-      "slug": "26e9b1e8da0a1211",
+      "ngram": "tribal sovereignty and",
+      "slug": "ced71a1b983ab7e7",
       "n": 3,
-      "day_peak": 4,
-      "party": "R",
+      "day_peak": 5,
+      "party": "D",
       "counts": {
-        "D": 1,
-        "R": 4,
+        "D": 5,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.12,
+      "first_seen": {
+        "date": "2025-01-14",
+        "bioguide": "G000592",
+        "statement": "sha256:0428ba014dd08e48981f4e9961b54d842ff1503e2b1bcb9197550477a5e1414f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "war with iran",
+      "slug": "b1a3e4655dabde0b",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.5,
+      "first_seen": {
+        "date": "2025-05-06",
+        "bioguide": "K000384",
+        "statement": "sha256:807f53162a9deef18208b806efa24ad7a0eca3a22e99d338085b78690707f3f6",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        4,
+        3,
+        1,
+        1,
+        2,
+        5,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "for american families",
+      "slug": "055e857e9ffb03bb",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
         "R": 5,
         "I": null
       },
       "family_count": 5,
-      "velocity": 2.24,
+      "velocity": 3.89,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000582",
+        "statement": "sha256:030b3527131ef12f086666a21479817714dbeba626e6a90809dba6df477ab53d",
+        "tie": [
+          "C000880",
+          "C001098"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "the house floor",
+      "slug": "6360114b9c2c20ee",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": null,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001103",
+        "statement": "sha256:d2568b132bfd2b841ac74de012b3baa61203ebe5c412a7fe2e6d644220df02b6",
+        "tie": [
+          "F000483",
+          "M001215",
+          "P000609"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.984,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        3,
+        4,
+        6,
+        3,
+        6,
+        3,
+        1,
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "ngram": "care they need",
+      "slug": "08f53972e38193cb",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.06,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "M001169",
+        "statement": "sha256:d8c39d885c181e5beb7928c2f9c92eaa77cd3a482b132c150ddaa1bfd9584c19",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.98,
+      "series": [
+        3,
+        3,
+        1,
+        1,
+        1,
+        2,
+        4,
+        6,
+        1,
+        2,
+        2,
+        4,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "to lower costs",
+      "slug": "10e0b9788fba1877",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.0,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "E000296",
+        "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+        "tie": [
+          "B001261",
+          "E000300",
+          "H001046",
+          "M001223",
+          "M001237",
+          "P000610",
+          "S000168",
+          "S001230",
+          "T000460",
+          "V000129",
+          "V000136",
+          "V000138"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.979,
+      "series": [
+        2,
+        2,
+        4,
+        3,
+        1,
+        1,
+        2,
+        5,
+        1,
+        3,
+        2,
+        2,
+        6,
+        5
+      ]
+    },
+    {
+      "ngram": "this important legislation",
+      "slug": "f72dc9dd3483efd1",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.18,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "B001257",
+        "statement": "sha256:305cc05e54ba19ae27ec0c7d2aa8936c8b779a79c34854b16102a3d59840822e",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "earlier this month",
+      "slug": "9afdadf953caad9e",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.18,
       "first_seen": {
         "date": "2025-01-02",
-        "bioguide": "L000600",
-        "statement": "sha256:14ad2a8d2ef003d9e07a24a3188422dffb1d6754a7348ac13845116c306a754b",
+        "bioguide": "H001047",
+        "statement": "sha256:47365d3a9f429d885814ba7220bc3ac708f24def56bd8591a52b0db03ab140f2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "ngram": "resources they need",
+      "slug": "37ccc78cc6a4d4b9",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 3,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.04,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "F000468",
+        "statement": "sha256:85610104dcbcd355441f3a9e350a66c8249fb2e164026da3e089386be7d93af9",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -1191,121 +1777,239 @@
       "df_weight": 0.968,
       "series": [
         1,
+        2,
+        1,
+        2,
+        1,
+        2,
         1,
         3,
+        1,
+        3,
+        1,
+        2,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "lower costs and",
+      "slug": "5ee426304a4c8e1f",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.5,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "N000015",
+        "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4,
+        4,
+        2,
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "ngram": "expand access to",
+      "slug": "0c3cd1524acb667f",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 1.94,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "B001260",
+        "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+        "tie": [
+          "D000622"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        1,
+        2,
+        2,
+        3,
+        1,
+        1,
+        4,
+        2,
+        2,
+        3,
+        3,
+        4,
+        5,
+        5
+      ]
+    },
+    {
+      "ngram": "senior member of",
+      "slug": "7cbcf61f8a7d8270",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.41,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001287",
+        "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+        "tie": [
+          "D000623",
+          "G000386",
+          "H000874",
+          "K000367",
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.955,
+      "series": [
+        1,
+        3,
+        4,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        4,
+        1,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "ngram": "a senior member",
+      "slug": "f34a91c237c39881",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 2.41,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001287",
+        "statement": "sha256:d1786a38671a5fa4450ad5f5a0f5d1f3e63ef88280043038a1ea4319fcfe2c46",
+        "tie": [
+          "D000623",
+          "K000367",
+          "S001156"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.955,
+      "series": [
+        1,
         2,
         4,
         1,
         1,
+        1,
         2,
+        2,
+        2,
+        4,
+        2,
+        4,
         1,
-        1,
-        1,
-        1,
-        5,
-        4
+        5
       ]
     },
     {
-      "ngram": "military retirement pay and va disability",
-      "slug": "4e0fcb5ce4a4ae03",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
+      "ngram": "according to independent analysis",
+      "slug": "e4358e9dcea793c9",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
       "counts": {
-        "D": 1,
-        "R": 3,
+        "D": 4,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
-        "R": 3,
+        "D": 4,
+        "R": null,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 3.0,
+      "family_count": 4,
+      "velocity": 4.0,
       "first_seen": {
-        "date": "2026-05-29",
-        "bioguide": "D000230",
-        "statement": "sha256:cb14ceed54ecd01a47948be33ceeb936c15ffcb91cbbc87a8ec463366a2837bd",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "women who have worn our nation’s",
-      "slug": "0be2a687e5b468e4",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-02-05",
-        "bioguide": "B001236",
-        "statement": "sha256:cdf1d76837029aec88d68f2dd0592368d121d5865701cedef96816810a64f91b",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "women who have served our nation",
-      "slug": "e38f3305ee4c47c9",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.75,
-      "first_seen": {
-        "date": "2025-01-16",
-        "bioguide": "C001136",
-        "statement": "sha256:9152670462dfaae5ccb9fc5534f6303b1c142a4274b79fc46b6b4f4220fd0db2",
+        "date": "2026-11-19",
+        "bioguide": "P000597",
+        "statement": "sha256:f3966015e04b4a5387b1e9f0fc46bddec3de84d1ec6ba700f62f56218842b774",
         "tie": [
-          "M000355",
-          "V000128"
+          "H000273",
+          "T000474",
+          "T000491"
         ],
         "precision": "day",
         "lane": 1,
@@ -1313,306 +2017,31 @@
       },
       "df_weight": 1.0,
       "series": [
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
+        4
       ]
     },
     {
-      "ngram": "worn our nation’s uniform",
-      "slug": "e07fd850da6c930b",
+      "ngram": "environmental review and permitting",
+      "slug": "325e2c6c5bd8e3e1",
       "n": 4,
-      "day_peak": 3,
+      "day_peak": 4,
       "party": "R",
       "counts": {
-        "D": 1,
-        "R": 3,
+        "D": 0,
+        "R": 4,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.75,
-      "first_seen": {
-        "date": "2025-02-05",
-        "bioguide": "B001236",
-        "statement": "sha256:cdf1d76837029aec88d68f2dd0592368d121d5865701cedef96816810a64f91b",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "men and women who have worn",
-      "slug": "31478f5c619f1cc3",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.7,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "S001213",
-        "statement": "sha256:1a9f336d6acd44c197cbd52c6202c53db3415e89c8dae23c59cfb0e937ff9719",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "care and benefits they have earned",
-      "slug": "28eb7fedb85853af",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
+        "D": null,
         "R": 4,
         "I": null
       },
       "family_count": 4,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-17",
-        "bioguide": "R000617",
-        "statement": "sha256:4b1d3762c41afdceca085a896dc20061cf81ada4ce9e165e74a1f80dd258182f",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "veterans receive the benefits",
-      "slug": "629f586d55c746d6",
-      "n": 4,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-14",
-        "bioguide": "C001136",
-        "statement": "sha256:0727ab308fd5efb4409ad0a748f36668d613a91d2dbaab217ce457e4173fb8e0",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "ensure veterans receive",
-      "slug": "c9ebbca69c210cb1",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "U000040",
-        "statement": "sha256:ce8002e4b7174ad30cd7dda2ed47d5d5dc13c9e73d3205c08b299f113cbaa905",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.993,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "retirement pay and",
-      "slug": "ca594cef2cc95507",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
+      "velocity": 4.0,
       "first_seen": {
         "date": "2025-01-16",
-        "bioguide": "B001257",
-        "statement": "sha256:64294f8b3f6d5c6d02611ba655e7887d887744c01d5a969dcb9c1025ff06214e",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "they return home",
-      "slug": "b12fb7d56e75c19a",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-01-16",
-        "bioguide": "M000355",
-        "statement": "sha256:175a24759adfd6c472a34e1c14950b407e20efd033c1fcc6baa2fc34935ded96",
+        "bioguide": "C001047",
+        "statement": "sha256:8ce9e341031d1eacc6bc235775a6b1d2cd823f5f0e5e51a79a9b0a6acf2ee1d3",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -1623,7 +2052,6 @@
         1,
         1,
         1,
-        2,
         1,
         1,
         1,
@@ -1632,38 +2060,41 @@
         1,
         1,
         1,
-        3,
-        3
+        1,
+        1,
+        4
       ]
     },
     {
-      "ngram": "veterans and their families and",
-      "slug": "4bbd60e41418857d",
-      "n": 5,
-      "day_peak": 3,
+      "ngram": "federal environmental review",
+      "slug": "21a6aa2f21c18960",
+      "n": 3,
+      "day_peak": 4,
       "party": "R",
       "counts": {
         "D": 0,
-        "R": 3,
+        "R": 4,
         "I": 0
       },
       "family_counts": {
         "D": null,
-        "R": 3,
+        "R": 4,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 3.0,
+      "family_count": 4,
+      "velocity": 4.0,
       "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "B001277",
-        "statement": "sha256:eb9f6c252fb8a8fc781b8ee0d6356bd0ba15e18c67a8ed8e87fed844cda1f340",
-        "tie": [],
+        "date": "2025-02-19",
+        "bioguide": "C001047",
+        "statement": "sha256:2077bfcc1084824c71a7b69f05c1ffdb50aa689ce1bb8c36c145cc1f66084734",
+        "tie": [
+          "R000618"
+        ],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.998,
+      "df_weight": 0.999,
       "series": [
         1,
         1,
@@ -1678,167 +2109,1177 @@
         1,
         1,
         1,
-        3
+        4
       ]
     },
     {
-      "ngram": "for survivors taps",
-      "slug": "6f1dfbc752dc3b32",
+      "ngram": "data centers pay",
+      "slug": "4008633b2b66bf3b",
       "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-16",
-        "bioguide": "V000135",
-        "statement": "sha256:90519a6ac1d4273854a68020384dbf63dd270ada4b3faf26b23bd115df1b7ae2",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        0,
-        1,
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "bipartisan bills to",
-      "slug": "0c43def97d3ef054",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.8,
-      "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "L000590",
-        "statement": "sha256:5778973da7fbb1fbef08b4280b9dbf791a658bdecccabc8ecf3cddc192f1a531",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "disabled veterans and",
-      "slug": "9182de8d78d4122b",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.1,
-      "first_seen": {
-        "date": "2025-02-10",
-        "bioguide": "W000797",
-        "statement": "sha256:2bc1f7a71640398bf72e15080ff8700879c3940a19949a17262fa935c048ad05",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        2,
-        1,
-        4,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        0,
-        3
-      ]
-    },
-    {
-      "ngram": "articles of impeachment",
-      "slug": "a180a959a812b0b2",
-      "n": 3,
-      "day_peak": 3,
+      "day_peak": 4,
       "party": "D",
       "counts": {
-        "D": 3,
+        "D": 4,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 2.95,
+      "first_seen": {
+        "date": "2026-01-14",
+        "bioguide": "L000593",
+        "statement": "sha256:334a5efc3677f2b636100f6f306dba7a3e2a66c8ef75be86adba25d1b94a9b6d",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "5 5 million",
+      "slug": "43986bbbe1a5fadb",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.73,
+      "first_seen": {
+        "date": "2025-01-18",
+        "bioguide": "H001046",
+        "statement": "sha256:6618edc8411fd722bc4d95e13c7eaa07fa85a956e762e20df76a1c9f5b865943",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        4
+      ]
+    }
+  ],
+  "by_velocity": [
+    {
+      "ngram": "text of the legislation",
+      "slug": "58c2749240464ef7",
+      "n": 4,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 10,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 10,
+      "velocity": 7.88,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "N000193",
+        "statement": "sha256:3f4861ec2fec3eb7ec6e2fe3abdc72087081a87ea624074a9dca01c43beca00a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.985,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        9
+      ]
+    },
+    {
+      "ngram": "the federal permitting",
+      "slug": "6a6d25f54a86f4d9",
+      "n": 3,
+      "day_peak": 7,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 7,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 7,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 6.12,
+      "first_seen": {
+        "date": "2025-01-21",
+        "bioguide": "H001061",
+        "statement": "sha256:24c276d89bef59e66da7576a08cd7f70f294422cd0f044e0367353cc84d09af5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        7
+      ]
+    },
+    {
+      "ngram": "full text of the legislation",
+      "slug": "d6b3a72357861751",
+      "n": 5,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 5.6,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "N000193",
+        "statement": "sha256:3f4861ec2fec3eb7ec6e2fe3abdc72087081a87ea624074a9dca01c43beca00a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "6 3 million americans primarily older",
+      "slug": "7c3b535cdf09c13f",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
         "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 3,
+        "D": 5,
         "R": null,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 2.1,
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "estimated 6 3 million americans primarily",
+      "slug": "a925e0ddc17dfb36",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "million americans primarily older or disabled",
+      "slug": "23922e46cd136716",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "kick an estimated 6 3 million",
+      "slug": "7476852b482efd3c",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "americans primarily older or disabled beneficiaries",
+      "slug": "a4679af3252a2f75",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "new proposed rule that would kick",
+      "slug": "8439f56269644a51",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "disabled beneficiaries and families with children",
+      "slug": "665b5a6465ee0455",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "older or disabled beneficiaries and families",
+      "slug": "092ce12d55144570",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "rule that would kick an estimated",
+      "slug": "a83056605383848e",
+      "n": 6,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 5.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "A000370",
+        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+        "tie": [
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        5
+      ]
+    },
+    {
+      "ngram": "food on the table",
+      "slug": "589df2db6ff052d6",
+      "n": 4,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": null,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 4.9,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "T000487",
+        "statement": "sha256:3d3e634b889cf59de305f31e8982f8fa4c6fd6c903ebc8336b4fe23f1b2f4018",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.982,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        7
+      ]
+    },
+    {
+      "ngram": "energy and infrastructure projects",
+      "slug": "e3f5c2f0871567b6",
+      "n": 4,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 1,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 1,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.67,
+      "first_seen": {
+        "date": "2025-02-19",
+        "bioguide": "C001047",
+        "statement": "sha256:515adec289789804a0ccd213802962a6949abe2ea9e24fb49c92d0938dca3f24",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "critical infrastructure projects",
+      "slug": "5481b75491e5e035",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.67,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "B001257",
+        "statement": "sha256:615154e166da1558471be3b75ad75c61739eb2d79ae6288b16109757703d4a39",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "federal permitting process",
+      "slug": "450dba36be71911d",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.67,
+      "first_seen": {
+        "date": "2025-01-21",
+        "bioguide": "H001061",
+        "statement": "sha256:24c276d89bef59e66da7576a08cd7f70f294422cd0f044e0367353cc84d09af5",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "permitting reform legislation",
+      "slug": "49d60863dadc2214",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 4,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.38,
+      "first_seen": {
+        "date": "2025-12-11",
+        "bioguide": "H001046",
+        "statement": "sha256:df2f82e2ab9e5804fe7fa9e784c95d38055dc25c12dc283dac9edf642dc8d199",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "tribal sovereignty and",
+      "slug": "ced71a1b983ab7e7",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 4.12,
+      "first_seen": {
+        "date": "2025-01-14",
+        "bioguide": "G000592",
+        "statement": "sha256:0428ba014dd08e48981f4e9961b54d842ff1503e2b1bcb9197550477a5e1414f",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "the senate passed",
+      "slug": "399b91f9b449add0",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 1
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 2,
+        "I": 1
+      },
+      "family_count": 6,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "C001075",
+        "statement": "sha256:90f58df3dad79ff6a916355ee5b68ae46e752c091420376972152e942287b9e1",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        2,
+        1,
+        2,
+        3,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "according to independent analysis",
+      "slug": "e4358e9dcea793c9",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2026-11-19",
+        "bioguide": "P000597",
+        "statement": "sha256:f3966015e04b4a5387b1e9f0fc46bddec3de84d1ec6ba700f62f56218842b774",
+        "tie": [
+          "H000273",
+          "T000474",
+          "T000491"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 1.0,
+      "series": [
+        4
+      ]
+    },
+    {
+      "ngram": "environmental review and permitting",
+      "slug": "325e2c6c5bd8e3e1",
+      "n": 4,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
       "first_seen": {
         "date": "2025-01-16",
-        "bioguide": "C001068",
-        "statement": "sha256:94ddc0daaa6d81bedf44501f08ea227680c746f481d22af308d1dc07abaa592a",
+        "bioguide": "C001047",
+        "statement": "sha256:8ce9e341031d1eacc6bc235775a6b1d2cd823f5f0e5e51a79a9b0a6acf2ee1d3",
         "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "federal environmental review",
+      "slug": "21a6aa2f21c18960",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2025-02-19",
+        "bioguide": "C001047",
+        "statement": "sha256:2077bfcc1084824c71a7b69f05c1ffdb50aa689ce1bb8c36c145cc1f66084734",
+        "tie": [
+          "R000618"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "permitting process to",
+      "slug": "6458ae9a49655f51",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 4.0,
+      "first_seen": {
+        "date": "2025-02-14",
+        "bioguide": "A000369",
+        "statement": "sha256:2d48b14fa1c1d771f5f6b2ab425c52128b7b5b28e0a9a8c0a533ddec5dd219c8",
+        "tie": [
+          "B001267"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.999,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "for american families",
+      "slug": "055e857e9ffb03bb",
+      "n": 3,
+      "day_peak": 5,
+      "party": "R",
+      "counts": {
+        "D": 2,
+        "R": 5,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 2,
+        "R": 5,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.89,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000582",
+        "statement": "sha256:030b3527131ef12f086666a21479817714dbeba626e6a90809dba6df477ab53d",
+        "tie": [
+          "C000880",
+          "C001098"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        1,
+        5
+      ]
+    },
+    {
+      "ngram": "5 5 million",
+      "slug": "43986bbbe1a5fadb",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.73,
+      "first_seen": {
+        "date": "2025-01-18",
+        "bioguide": "H001046",
+        "statement": "sha256:6618edc8411fd722bc4d95e13c7eaa07fa85a956e762e20df76a1c9f5b865943",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "the permitting process",
+      "slug": "633e961d298db912",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.73,
+      "first_seen": {
+        "date": "2025-01-07",
+        "bioguide": "C001047",
+        "statement": "sha256:a0853a63dd46d8d90e8a22869d5c37bb84a866ce96178cde5740c889a35a3cf9",
+        "tie": [
+          "C001114"
+        ],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
@@ -1850,91 +3291,7 @@
         1,
         1,
         1,
-        3,
         1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        4,
-        3
-      ]
-    },
-    {
-      "ngram": "worn the uniform",
-      "slug": "a881eecb08978450",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "S001213",
-        "statement": "sha256:1a9f336d6acd44c197cbd52c6202c53db3415e89c8dae23c59cfb0e937ff9719",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.995,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "services and benefits",
-      "slug": "f96931de06388740",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.8,
-      "first_seen": {
-        "date": "2025-01-07",
-        "bioguide": "K000389",
-        "statement": "sha256:5f702a62665e9d5b8b9805893cbc70907a3f1101c6bc208f18f0f5e2c794c41d",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.995,
-      "series": [
         1,
         1,
         2,
@@ -1942,681 +3299,179 @@
         1,
         1,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
+        4
       ]
     },
     {
-      "ngram": "communities that depend",
-      "slug": "c69dd41d1de8d29b",
+      "ngram": "bipartisan legislation would",
+      "slug": "bbeb586fde5334c7",
       "n": 3,
-      "day_peak": 3,
+      "day_peak": 4,
       "party": "D",
       "counts": {
-        "D": 3,
+        "D": 4,
         "R": 1,
         "I": 0
       },
       "family_counts": {
-        "D": 3,
+        "D": 4,
         "R": 1,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 2.1,
+      "family_count": 4,
+      "velocity": 3.73,
       "first_seen": {
-        "date": "2025-01-09",
-        "bioguide": "K000009",
-        "statement": "sha256:9afb543ce3e1ab4e4955cf4a1a9c33a9b705730c4fb53fa51f675a9f59215f81",
+        "date": "2025-01-05",
+        "bioguide": "H001081",
+        "statement": "sha256:17809f8feff51a9c2c37e13dac638f5bbdd81bb204f523a34383c13d0bab8fca",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.995,
+      "df_weight": 0.992,
       "series": [
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        2,
-        2,
-        1,
-        3
+        4
       ]
     },
     {
-      "ngram": "that the american people",
-      "slug": "2932fa7f99645464",
-      "n": 4,
-      "day_peak": 3,
+      "ngram": "end the war",
+      "slug": "183199bc7eab5a70",
+      "n": 3,
+      "day_peak": 6,
       "party": "D",
       "counts": {
-        "D": 3,
+        "D": 6,
         "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 3,
+        "D": 7,
         "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "E000300",
-        "statement": "sha256:1f649f263d96fe0c5c218ab22aa93b715f31f40a8f080a34cd5b285a647ff57a",
-        "tie": [
-          "M001204",
-          "T000250"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.993,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "earned through their service",
-      "slug": "5179b3b3779b531b",
-      "n": 4,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 2,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 2,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.21,
-      "first_seen": {
-        "date": "2025-01-21",
-        "bioguide": "D000622",
-        "statement": "sha256:dbd6b76e6befcf21f325cc6a2ebca5f685c710cd9403fb0e8c2c15118f98ce63",
-        "tie": [
-          "T000278"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.993,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        2,
-        1,
-        3,
-        3
-      ]
-    },
-    {
-      "ngram": "continue fighting to",
-      "slug": "41c63b672c5da3d6",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 1.62,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "S001185",
-        "statement": "sha256:13d4ef147f67fc0096db6442fc5b1311d69fa06b03dbdf88683ff1c5991e99d0",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.993,
-      "series": [
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        3,
-        2,
-        3,
-        1,
-        1,
-        1,
-        5,
-        3
-      ]
-    },
-    {
-      "ngram": "service to our country",
-      "slug": "0268fe00266429ce",
-      "n": 4,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 2.62,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "H001076",
-        "statement": "sha256:992b4378001576218972ddadf463f0c00fe40ce158664e583bc20af12577a3d9",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.991,
-      "series": [
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "benefits and services",
-      "slug": "3ac60aac144870c4",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.62,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "U000040",
-        "statement": "sha256:ce8002e4b7174ad30cd7dda2ed47d5d5dc13c9e73d3205c08b299f113cbaa905",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.991,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    }
-  ],
-  "by_velocity": [
-    {
-      "ngram": "men and women who have",
-      "slug": "dd531a716601287e",
-      "n": 5,
-      "day_peak": 9,
-      "party": "R",
-      "counts": {
-        "D": 3,
-        "R": 9,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 10,
-        "I": null
-      },
-      "family_count": 10,
-      "velocity": 8.4,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        9
-      ]
-    },
-    {
-      "ngram": "brave men and women",
-      "slug": "4a6dfb7ae0b8adc0",
-      "n": 4,
-      "day_peak": 8,
-      "party": "R",
-      "counts": {
-        "D": 3,
-        "R": 8,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 9,
-        "I": null
-      },
-      "family_count": 9,
-      "velocity": 7.47,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        8
-      ]
-    },
-    {
-      "ngram": "the brave men",
-      "slug": "ef215efd0528e781",
-      "n": 3,
-      "day_peak": 8,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 8,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 8,
-        "I": null
-      },
-      "family_count": 8,
-      "velocity": 7.0,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        8
-      ]
-    },
-    {
-      "ngram": "benefits they have earned",
-      "slug": "28311e8750961e9a",
-      "n": 4,
-      "day_peak": 7,
-      "party": "R",
-      "counts": {
-        "D": 5,
-        "R": 7,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 5,
-        "R": 8,
-        "I": null
-      },
-      "family_count": 8,
-      "velocity": 6.12,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "C001123",
-        "statement": "sha256:71b0debc83a8dade8b5060481d24679f8e6bb06d10fe5f71366c026a24d01c90",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.984,
-      "series": [
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        7
-      ]
-    },
-    {
-      "ngram": "men and women who have served",
-      "slug": "a4cf4f2615a5a84d",
-      "n": 6,
-      "day_peak": 6,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 6,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 6,
-        "I": null
-      },
-      "family_count": 6,
-      "velocity": 5.6,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        6
-      ]
-    },
-    {
-      "ngram": "our nation’s veterans",
-      "slug": "f2cb520b569bc930",
-      "n": 3,
-      "day_peak": 6,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 6,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 6,
-        "I": null
-      },
-      "family_count": 6,
-      "velocity": 5.25,
-      "first_seen": {
-        "date": "2025-01-04",
-        "bioguide": "B001299",
-        "statement": "sha256:ee7d92f500e411c8ce75ed3a296ced18b81019dfdae156eccdf82a3b08fdb4d0",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.988,
-      "series": [
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        6
-      ]
-    },
-    {
-      "ngram": "receive the care",
-      "slug": "1ea845c09576840c",
-      "n": 3,
-      "day_peak": 6,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 6,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 6,
-        "I": null
-      },
-      "family_count": 6,
-      "velocity": 5.25,
-      "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "K000393",
-        "statement": "sha256:a85672a8fa0fa8f0da07c84955e699cd9e30d9dd1b328df6b1a02e69442ac7ee",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.988,
-      "series": [
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        6
-      ]
-    },
-    {
-      "ngram": "our veterans and their families",
-      "slug": "11f344c4e98d5418",
-      "n": 5,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 5.0,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "S001213",
-        "statement": "sha256:aea2d337fce2fceba02ba1db34509cb9d034160ddc90dceab87b6918113c99fe",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        5
-      ]
-    },
-    {
-      "ngram": "care and benefits",
-      "slug": "4d20bb2e4b6c1dc3",
-      "n": 3,
-      "day_peak": 6,
-      "party": "R",
-      "counts": {
-        "D": 4,
-        "R": 6,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": 7,
         "I": null
       },
       "family_count": 7,
-      "velocity": 4.67,
+      "velocity": 3.65,
       "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "H001076",
-        "statement": "sha256:992b4378001576218972ddadf463f0c00fe40ce158664e583bc20af12577a3d9",
+        "date": "2025-01-06",
+        "bioguide": "M001157",
+        "statement": "sha256:05ec4472b51a6f040878ddfb257549e141202b397a7cfd1e509ffe31d016efa8",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.956,
+      "df_weight": 0.995,
       "series": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        3,
+        1,
+        2,
+        3,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "ngram": "this bipartisan legislation",
+      "slug": "95c3c736eba4c20f",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.65,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [
+          "H001076",
+          "M001196"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "series": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        3,
+        2,
+        2,
+        2,
+        1,
+        2,
+        1,
+        6
+      ]
+    },
+    {
+      "ngram": "end to the war",
+      "slug": "d49b651dac08e5ff",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "M001157",
+        "statement": "sha256:05ec4472b51a6f040878ddfb257549e141202b397a7cfd1e509ffe31d016efa8",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        2,
+        1,
         1,
         1,
         1,
@@ -2624,1045 +3479,124 @@
         1,
         1,
         1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "food assistance for",
+      "slug": "aef2b917a5076d08",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.5,
+      "first_seen": {
+        "date": "2025-01-29",
+        "bioguide": "G000581",
+        "statement": "sha256:ebcf38837507a237e8bf29538dc5aba1b041018e10906d55c8eddbc23c06783c",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "a press conference",
+      "slug": "947cb30ef8f2474c",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.36,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.98,
+      "series": [
+        2,
+        1,
+        2,
+        2,
+        2,
+        3,
         1,
         1,
         1,
         1,
         1,
         4,
+        3,
         6
       ]
     },
     {
-      "ngram": "veterans receive the",
-      "slug": "48b99b2a479099b0",
+      "ngram": "permitting reform is",
+      "slug": "47b6452631ac5965",
       "n": 3,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 4.67,
-      "first_seen": {
-        "date": "2025-01-14",
-        "bioguide": "C001136",
-        "statement": "sha256:0727ab308fd5efb4409ad0a748f36668d613a91d2dbaab217ce457e4173fb8e0",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.988,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        5
-      ]
-    },
-    {
-      "ngram": "the men and women",
-      "slug": "ce3a461017c64eea",
-      "n": 4,
-      "day_peak": 6,
-      "party": "R",
-      "counts": {
-        "D": 4,
-        "R": 6,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": 6,
-        "I": null
-      },
-      "family_count": 6,
-      "velocity": 4.42,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.954,
-      "series": [
-        1,
-        1,
-        2,
-        1,
-        2,
-        2,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
-        6
-      ]
-    },
-    {
-      "ngram": "answered the call to serve",
-      "slug": "0e0bbd179968b502",
-      "n": 5,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 4.38,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "G000581",
-        "statement": "sha256:6c3329b8d9d5e38ddb85d4587236e4d0b55c536dd900644eec374fbdf7b79e2a",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        5
-      ]
-    },
-    {
-      "ngram": "service and sacrifice",
-      "slug": "f1be9c055ae75914",
-      "n": 3,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 4.38,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "B001260",
-        "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
-        5
-      ]
-    },
-    {
-      "ngram": "60 bipartisan bills",
-      "slug": "ecf89baa5831febe",
-      "n": 3,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 4.17,
-      "first_seen": {
-        "date": "2026-06-10",
-        "bioguide": "B001257",
-        "statement": "sha256:e6b89d663226076c8c4efc6074c7ef34e6331ebfe7212f49ec78dac682e633db",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        2,
-        1,
-        1,
-        1,
-        5
-      ]
-    },
-    {
-      "ngram": "our great nation",
-      "slug": "ab814016a090ef36",
-      "n": 3,
-      "day_peak": 5,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 5,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 3.89,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001053",
-        "statement": "sha256:4d096a4d790b7a827c559313bac02d4d402dc71575d7440c890d22ef240a9370",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        5
-      ]
-    },
-    {
-      "ngram": "receive the benefits",
-      "slug": "5827ca53348d5370",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.73,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "C001123",
-        "statement": "sha256:71b0debc83a8dade8b5060481d24679f8e6bb06d10fe5f71366c026a24d01c90",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        4
-      ]
-    },
-    {
-      "ngram": "served our nation",
-      "slug": "c772d1397d53e081",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.73,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "F000466",
-        "statement": "sha256:fddc2218c81c2a108d0aa06ca5e7e1e54d25164ec1c9b7ea96eaf10c59f78d02",
-        "tie": [
-          "H001101",
-          "T000250"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.997,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "and benefits they have earned",
-      "slug": "2a2e9ef71daeac92",
-      "n": 5,
       "day_peak": 4,
       "party": "D",
       "counts": {
         "D": 4,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 4,
-        "R": 5,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.73,
-      "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "P000595",
-        "statement": "sha256:4a53b331f1d44d036af2c2ec075164722b82ea447bb2c8bc116cba5a6d5d9d29",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.995,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "veterans health care",
-      "slug": "b6fb5314d59c2a43",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.5,
-      "first_seen": {
-        "date": "2025-01-14",
-        "bioguide": "H001076",
-        "statement": "sha256:87a45d95b6b432779189546efde0b001113ff570971c1dc03de24a5e8fca71cc",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.995,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "served our country",
-      "slug": "86150d53c66f38bd",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 4,
-        "I": 1
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 4,
-        "I": 1
-      },
-      "family_count": 4,
-      "velocity": 3.5,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001053",
-        "statement": "sha256:1a49e9efde45a9824924efe73dcf12ced463984ad931178445ca72226ed2f1d9",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        4
-      ]
-    },
-    {
-      "ngram": "than 60 bipartisan",
-      "slug": "29d2ea28c295a0ea",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-09-29",
-        "bioguide": "C001039",
-        "statement": "sha256:d16e92dbefbb71b9700427fb9cd50bf26de21aff77a77ffab6b7986a4fbfcf7d",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        2,
-        1,
-        1,
-        2,
-        1,
-        4
-      ]
-    },
-    {
-      "ngram": "military retirement pay and va disability",
-      "slug": "4e0fcb5ce4a4ae03",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2026-05-29",
-        "bioguide": "D000230",
-        "statement": "sha256:cb14ceed54ecd01a47948be33ceeb936c15ffcb91cbbc87a8ec463366a2837bd",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "women who have worn our nation’s",
-      "slug": "0be2a687e5b468e4",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-02-05",
-        "bioguide": "B001236",
-        "statement": "sha256:cdf1d76837029aec88d68f2dd0592368d121d5865701cedef96816810a64f91b",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "care and benefits they have earned",
-      "slug": "28eb7fedb85853af",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-17",
-        "bioguide": "R000617",
-        "statement": "sha256:4b1d3762c41afdceca085a896dc20061cf81ada4ce9e165e74a1f80dd258182f",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "veterans receive the benefits",
-      "slug": "629f586d55c746d6",
-      "n": 4,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-14",
-        "bioguide": "C001136",
-        "statement": "sha256:0727ab308fd5efb4409ad0a748f36668d613a91d2dbaab217ce457e4173fb8e0",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "ensure veterans receive",
-      "slug": "c9ebbca69c210cb1",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "U000040",
-        "statement": "sha256:ce8002e4b7174ad30cd7dda2ed47d5d5dc13c9e73d3205c08b299f113cbaa905",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.993,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "retirement pay and",
-      "slug": "ca594cef2cc95507",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-16",
-        "bioguide": "B001257",
-        "statement": "sha256:64294f8b3f6d5c6d02611ba655e7887d887744c01d5a969dcb9c1025ff06214e",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "veterans and their families and",
-      "slug": "4bbd60e41418857d",
-      "n": 5,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "B001277",
-        "statement": "sha256:eb9f6c252fb8a8fc781b8ee0d6356bd0ba15e18c67a8ed8e87fed844cda1f340",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "for survivors taps",
-      "slug": "6f1dfbc752dc3b32",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-16",
-        "bioguide": "V000135",
-        "statement": "sha256:90519a6ac1d4273854a68020384dbf63dd270ada4b3faf26b23bd115df1b7ae2",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        0,
-        1,
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "worn the uniform",
-      "slug": "a881eecb08978450",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "S001213",
-        "statement": "sha256:1a9f336d6acd44c197cbd52c6202c53db3415e89c8dae23c59cfb0e937ff9719",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.995,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "program within the",
-      "slug": "1e5a3f45a8df5162",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
         "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 3,
+        "D": 4,
         "R": null,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-09",
-        "bioguide": "N000026",
-        "statement": "sha256:75a3a51248a3477d137a0186b5a14a340b2b0c314828e87389424eeb9171fa2d",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.988,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "the men and women who have",
-      "slug": "b06b5215e0d1f31b",
-      "n": 6,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 2,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 2,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 3.0,
-      "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "C001133",
-        "statement": "sha256:b822b8f23045c92c8d3a25718a821ba1086adaecab366863553734f2813ea992",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.972,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "honor the brave men and women",
-      "slug": "7d627ceb733a906a",
-      "n": 6,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 4,
-        "I": null
-      },
       "family_count": 4,
-      "velocity": 2.95,
+      "velocity": 3.29,
       "first_seen": {
-        "date": "2025-05-13",
-        "bioguide": "C001075",
-        "statement": "sha256:8dd0e32b8d769011acac7d69f09675cef3b1bd09f99bc5e1c88e96a06e5ce3b1",
+        "date": "2025-03-14",
+        "bioguide": "C000059",
+        "statement": "sha256:99872ff4c595f0f816f2e9c1c22e8085b1c286a09746820e1231e2c9610f833d",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -3671,14 +3605,14 @@
       "df_weight": 0.999,
       "series": [
         1,
-        1,
-        1,
-        1,
-        1,
-        3,
         2,
         1,
         1,
+        1,
+        1,
+        1,
+        1,
+        2,
         1,
         1,
         1,
@@ -3687,27 +3621,117 @@
       ]
     },
     {
-      "ngram": "health care access",
-      "slug": "73ebfc47af2b5681",
+      "ngram": "to lower energy",
+      "slug": "131b55b8bfcf210b",
       "n": 3,
       "day_peak": 4,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 1,
-        "R": 4,
+        "D": 4,
+        "R": 1,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
-        "R": 4,
+        "D": 4,
+        "R": 1,
         "I": null
       },
       "family_count": 4,
-      "velocity": 2.95,
+      "velocity": 3.29,
       "first_seen": {
         "date": "2025-01-03",
-        "bioguide": "M001163",
-        "statement": "sha256:58e1e22b64ae3431b4f58669b6d4813b8f1f3051d735360063982dad27d0d714",
+        "bioguide": "F000480",
+        "statement": "sha256:68ebb6f96900456f43bf00b3c6154fbbc45410fe479f009523d77a3637a8cbb3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "series": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "delivered remarks on",
+      "slug": "be226cf54a80149f",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "P000614",
+        "statement": "sha256:76b170dd666483ccab304e4bac85d2cc3db6eaf98856b36500cb464d1f2900cd",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.996,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "need to protect",
+      "slug": "d9f185f3e91d682f",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": null,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001129",
+        "statement": "sha256:d33c6bfe7d0120b73ce9aac6b0d7c7a1c561faed9ac2534d624f7c58d822fec9",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -3715,52 +3739,145 @@
       },
       "df_weight": 0.994,
       "series": [
-        2,
-        1,
         1,
         3,
-        1,
-        1,
         2,
         1,
         1,
         1,
-        2,
+        1,
+        1,
+        1,
+        1,
+        1,
         1,
         1,
         4
       ]
     },
     {
-      "ngram": "bipartisan bills to",
-      "slug": "0c43def97d3ef054",
+      "ngram": "and i’m proud",
+      "slug": "7b61f9ed32b74d7c",
       "n": 3,
-      "day_peak": 3,
-      "party": "R",
+      "day_peak": 4,
+      "party": "D",
       "counts": {
-        "D": 1,
-        "R": 3,
+        "D": 4,
+        "R": 2,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
-        "R": 3,
+        "D": 4,
+        "R": 2,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 2.8,
+      "family_count": 4,
+      "velocity": 3.29,
       "first_seen": {
-        "date": "2025-01-08",
-        "bioguide": "L000590",
-        "statement": "sha256:5778973da7fbb1fbef08b4280b9dbf791a658bdecccabc8ecf3cddc192f1a531",
+        "date": "2025-01-03",
+        "bioguide": "B001296",
+        "statement": "sha256:9dad811aca53320dd4a698fea09dff69c04935f29b7ef882f06755ad57f7c0f8",
         "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.998,
+      "df_weight": 0.989,
       "series": [
         1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "a critical role",
+      "slug": "3be78fe63d54fc70",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 0,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": null,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "H001101",
+        "statement": "sha256:0d0d5966a6df083dad1c07158378aba17015f822020b5a99291f93fa3dcefd1f",
+        "tie": [
+          "C000880",
+          "H001046"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.989,
+      "series": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "legislation will help",
+      "slug": "10bade81ddbb9f73",
+      "n": 3,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.29,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.987,
+      "series": [
+        2,
         1,
         1,
         1,
@@ -3772,33 +3889,260 @@
         2,
         1,
         1,
+        2,
+        4
+      ]
+    },
+    {
+      "ngram": "what the american people",
+      "slug": "2daeeaf77447fea4",
+      "n": 4,
+      "day_peak": 3,
+      "party": "D",
+      "counts": {
+        "D": 3,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 3,
+      "velocity": 3.23,
+      "first_seen": {
+        "date": "2025-01-08",
+        "bioguide": "B001261",
+        "statement": "sha256:ea1ae4c0b573c9e071c99ac69a217293891715d9c0d1906433fb365cb1abda60",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.991,
+      "series": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        0,
+        1,
         1,
         3
       ]
     },
     {
-      "ngram": "services and benefits",
-      "slug": "f96931de06388740",
+      "ngram": "an important step",
+      "slug": "79f874be4a2748ec",
       "n": 3,
-      "day_peak": 3,
-      "party": "R",
+      "day_peak": 8,
+      "party": "D",
       "counts": {
-        "D": 0,
+        "D": 8,
+        "R": 0,
+        "I": 1
+      },
+      "family_counts": {
+        "D": 8,
+        "R": null,
+        "I": 1
+      },
+      "family_count": 8,
+      "velocity": 3.2,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "C001129",
+        "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.972,
+      "series": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        8,
+        2,
+        6,
+        2,
+        2,
+        2,
+        2,
+        8
+      ]
+    },
+    {
+      "ngram": "this important legislation",
+      "slug": "f72dc9dd3483efd1",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
         "R": 3,
         "I": 0
       },
       "family_counts": {
-        "D": null,
+        "D": 5,
         "R": 3,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 2.8,
+      "family_count": 5,
+      "velocity": 3.18,
       "first_seen": {
-        "date": "2025-01-07",
-        "bioguide": "K000389",
-        "statement": "sha256:5f702a62665e9d5b8b9805893cbc70907a3f1101c6bc208f18f0f5e2c794c41d",
+        "date": "2025-01-06",
+        "bioguide": "B001257",
+        "statement": "sha256:305cc05e54ba19ae27ec0c7d2aa8936c8b779a79c34854b16102a3d59840822e",
         "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "series": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4,
+        2,
+        5
+      ]
+    },
+    {
+      "ngram": "earlier this month",
+      "slug": "9afdadf953caad9e",
+      "n": 3,
+      "day_peak": 5,
+      "party": "D",
+      "counts": {
+        "D": 5,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 5,
+        "R": null,
+        "I": null
+      },
+      "family_count": 5,
+      "velocity": 3.18,
+      "first_seen": {
+        "date": "2025-01-02",
+        "bioguide": "H001047",
+        "statement": "sha256:47365d3a9f429d885814ba7220bc3ac708f24def56bd8591a52b0db03ab140f2",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "series": [
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "ngram": "introduced the bipartisan",
+      "slug": "f9c08c8e26755308",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001098",
+        "statement": "sha256:e29178297d1c990832410d7ee8c2e5f03efe7a72849dfb8fd5048e5f950ba9a3",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.957,
+      "series": [
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        3,
+        3,
+        3,
+        6
+      ]
+    },
+    {
+      "ngram": "lower energy costs",
+      "slug": "ea5ccadc2b041323",
+      "n": 3,
+      "day_peak": 4,
+      "party": "R",
+      "counts": {
+        "D": 3,
+        "R": 4,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 3,
+        "R": 4,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "F000480",
+        "statement": "sha256:68ebb6f96900456f43bf00b3c6154fbbc45410fe479f009523d77a3637a8cbb3",
+        "tie": [
+          "B001285"
+        ],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
@@ -3807,311 +4151,88 @@
       "series": [
         1,
         1,
+        1,
+        1,
+        1,
+        1,
         2,
         1,
         1,
+        4,
         1,
         1,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
+        4
       ]
     },
     {
-      "ngram": "women who have served our nation",
-      "slug": "e38f3305ee4c47c9",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.75,
-      "first_seen": {
-        "date": "2025-01-16",
-        "bioguide": "C001136",
-        "statement": "sha256:9152670462dfaae5ccb9fc5534f6303b1c142a4274b79fc46b6b4f4220fd0db2",
-        "tie": [
-          "M000355",
-          "V000128"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "worn our nation’s uniform",
-      "slug": "e07fd850da6c930b",
-      "n": 4,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.75,
-      "first_seen": {
-        "date": "2025-02-05",
-        "bioguide": "B001236",
-        "statement": "sha256:cdf1d76837029aec88d68f2dd0592368d121d5865701cedef96816810a64f91b",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "men and women who have worn",
-      "slug": "31478f5c619f1cc3",
-      "n": 6,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 1,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 1,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.7,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "S001213",
-        "statement": "sha256:1a9f336d6acd44c197cbd52c6202c53db3415e89c8dae23c59cfb0e937ff9719",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "service to our country",
-      "slug": "0268fe00266429ce",
-      "n": 4,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 2.62,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "H001076",
-        "statement": "sha256:992b4378001576218972ddadf463f0c00fe40ce158664e583bc20af12577a3d9",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.991,
-      "series": [
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "benefits and services",
-      "slug": "3ac60aac144870c4",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.62,
-      "first_seen": {
-        "date": "2025-01-13",
-        "bioguide": "U000040",
-        "statement": "sha256:ce8002e4b7174ad30cd7dda2ed47d5d5dc13c9e73d3205c08b299f113cbaa905",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.991,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "they return home",
-      "slug": "b12fb7d56e75c19a",
-      "n": 3,
-      "day_peak": 3,
+      "ngram": "put food on the table",
+      "slug": "310f038818aa1e17",
+      "n": 5,
+      "day_peak": 4,
       "party": "D",
       "counts": {
-        "D": 3,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-01-16",
-        "bioguide": "M000355",
-        "statement": "sha256:175a24759adfd6c472a34e1c14950b407e20efd033c1fcc6baa2fc34935ded96",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.999,
-      "series": [
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        3
-      ]
-    },
-    {
-      "ngram": "that the american people",
-      "slug": "2932fa7f99645464",
-      "n": 4,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
+        "D": 4,
         "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 3,
+        "D": 4,
         "R": null,
         "I": null
       },
-      "family_count": 3,
-      "velocity": 2.47,
+      "family_count": 4,
+      "velocity": 3.11,
       "first_seen": {
         "date": "2025-01-03",
-        "bioguide": "E000300",
-        "statement": "sha256:1f649f263d96fe0c5c218ab22aa93b715f31f40a8f080a34cd5b285a647ff57a",
-        "tie": [
-          "M001204",
-          "T000250"
-        ],
+        "bioguide": "T000487",
+        "statement": "sha256:3d3e634b889cf59de305f31e8982f8fa4c6fd6c903ebc8336b4fe23f1b2f4018",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        2,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "legislation can be found",
+      "slug": "f7f0f9879a24819c",
+      "n": 4,
+      "day_peak": 4,
+      "party": "D",
+      "counts": {
+        "D": 4,
+        "R": 1,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 4,
+        "R": 1,
+        "I": null
+      },
+      "family_count": 4,
+      "velocity": 3.11,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "G000585",
+        "statement": "sha256:0e598f190972c8773e88ca5a0a8d98a55bcd3ba91ffa20cc4d8bf939846216e4",
+        "tie": [],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
@@ -4121,8 +4242,6 @@
         1,
         1,
         1,
-        1,
-        1,
         2,
         2,
         1,
@@ -4130,184 +4249,6 @@
         1,
         1,
         1,
-        2,
-        3
-      ]
-    },
-    {
-      "ngram": "make sure the",
-      "slug": "e9689c4a2b2d7e9f",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-01-04",
-        "bioguide": "S001188",
-        "statement": "sha256:11598b5695ec158406970574ea0de9c6f6193a95125d57229dfe16e3cd1d1132",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.991,
-      "series": [
-        4,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "a top priority",
-      "slug": "58793dc2386c936d",
-      "n": 3,
-      "day_peak": 3,
-      "party": "R",
-      "counts": {
-        "D": 0,
-        "R": 3,
-        "I": 0
-      },
-      "family_counts": {
-        "D": null,
-        "R": 3,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "S001216",
-        "statement": "sha256:3da5ddfae7686c6640e9f2b696676a65399513505f7aa8908bd74319f48e60e0",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.99,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "within the department",
-      "slug": "85e2326c2aeb2474",
-      "n": 3,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": null,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.47,
-      "first_seen": {
-        "date": "2025-01-06",
-        "bioguide": "S001217",
-        "statement": "sha256:a8c46aaab075dbe8bedea8558f72a740f9b423cdf3ab04507ac7216fefc79bb2",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.984,
-      "series": [
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        3
-      ]
-    },
-    {
-      "ngram": "generations of americans",
-      "slug": "0accd9955313b3ce",
-      "n": 3,
-      "day_peak": 4,
-      "party": "R",
-      "counts": {
-        "D": 2,
-        "R": 4,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 2,
-        "R": 4,
-        "I": null
-      },
-      "family_count": 4,
-      "velocity": 2.33,
-      "first_seen": {
-        "date": "2025-01-10",
-        "bioguide": "U000040",
-        "statement": "sha256:64a6619c5177643acc12b3df4db3437773f096ce166e9245af3f5f6609bc5840",
-        "tie": [],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.998,
-      "series": [
-        1,
-        3,
-        1,
-        1,
-        1,
-        2,
-        3,
-        1,
-        1,
-        3,
         1,
         1,
         1,
@@ -4315,74 +4256,122 @@
       ]
     },
     {
-      "ngram": "communities across the country",
-      "slug": "743e783403b630d9",
-      "n": 4,
+      "ngram": "critical role in",
+      "slug": "745d637a7298221f",
+      "n": 3,
       "day_peak": 4,
-      "party": "D",
+      "party": "R",
       "counts": {
-        "D": 4,
-        "R": 0,
+        "D": 0,
+        "R": 4,
         "I": 0
       },
       "family_counts": {
-        "D": 4,
-        "R": null,
+        "D": null,
+        "R": 4,
         "I": null
       },
       "family_count": 4,
-      "velocity": 2.24,
+      "velocity": 3.11,
       "first_seen": {
         "date": "2025-01-03",
-        "bioguide": "R000621",
-        "statement": "sha256:1e4f335b54bdd6a42d43496130c604800b47cd3c4567ac8768ef4294fd3704f4",
+        "bioguide": "H001101",
+        "statement": "sha256:0d0d5966a6df083dad1c07158378aba17015f822020b5a99291f93fa3dcefd1f",
         "tie": [
-          "G000386"
+          "C000880",
+          "H001046"
         ],
         "precision": "day",
         "lane": 1,
         "corpus_start": "2025-01-01"
       },
-      "df_weight": 0.978,
+      "df_weight": 0.989,
       "series": [
-        3,
-        1,
         2,
         1,
-        3,
-        1,
         1,
         3,
-        1,
-        1,
-        1,
-        1,
         2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         4
       ]
     },
     {
-      "ngram": "proud to support",
-      "slug": "26e9b1e8da0a1211",
+      "ngram": "democrats and republicans",
+      "slug": "52615e213166817e",
       "n": 3,
       "day_peak": 4,
-      "party": "R",
+      "party": "D",
       "counts": {
-        "D": 1,
-        "R": 4,
+        "D": 4,
+        "R": 0,
         "I": 0
       },
       "family_counts": {
-        "D": 1,
-        "R": 5,
+        "D": 4,
+        "R": null,
         "I": null
       },
-      "family_count": 5,
-      "velocity": 2.24,
+      "family_count": 4,
+      "velocity": 3.11,
       "first_seen": {
-        "date": "2025-01-02",
-        "bioguide": "L000600",
-        "statement": "sha256:14ad2a8d2ef003d9e07a24a3188422dffb1d6754a7348ac13845116c306a754b",
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [
+          "M001234"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.986,
+      "series": [
+        1,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "ngram": "for the american people",
+      "slug": "495c7da743c93f81",
+      "n": 4,
+      "day_peak": 7,
+      "party": "D",
+      "counts": {
+        "D": 7,
+        "R": 2,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 7,
+        "R": 2,
+        "I": null
+      },
+      "family_count": 7,
+      "velocity": 3.06,
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "N000015",
+        "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
         "tie": [],
         "precision": "day",
         "lane": 1,
@@ -4390,67 +4379,20 @@
       },
       "df_weight": 0.968,
       "series": [
+        2,
+        1,
         1,
         1,
         3,
-        2,
-        4,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
         5,
-        4
-      ]
-    },
-    {
-      "ngram": "earned through their service",
-      "slug": "5179b3b3779b531b",
-      "n": 4,
-      "day_peak": 3,
-      "party": "D",
-      "counts": {
-        "D": 3,
-        "R": 2,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 3,
-        "R": 2,
-        "I": null
-      },
-      "family_count": 3,
-      "velocity": 2.21,
-      "first_seen": {
-        "date": "2025-01-21",
-        "bioguide": "D000622",
-        "statement": "sha256:dbd6b76e6befcf21f325cc6a2ebca5f685c710cd9403fb0e8c2c15118f98ce63",
-        "tie": [
-          "T000278"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.993,
-      "series": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
         2,
         1,
-        3,
-        3
+        1,
+        1,
+        1,
+        1,
+        6,
+        7
       ]
     }
   ]
