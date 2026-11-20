@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-11-20",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-11-19",
+      "note": "no publish for 2026-11-19 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.1396,
+      "projected": 0.2094,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 17,
+      "note": "$0.1396 MTD, $0.21 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "value": null,
+      "status": "unknown",
+      "day": "2026-11-17",
+      "freshness": {
+        "age_hours": 3.2,
+        "day": "2026-11-20",
+        "status": "green"
+      },
+      "note": "newest symmetry report is 2026-11-17 (3d old), cannot describe current coverage"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 1.0,
+      "dropped": 3,
+      "offered": 3,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "3/3 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [
+    "coverage"
+  ],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "the 120th congress",
+    "party": "D",
+    "day_peak": 13,
+    "day": "2026-11-18"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}
