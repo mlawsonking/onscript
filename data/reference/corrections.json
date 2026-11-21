@@ -116,5 +116,41 @@
   "root_cause": "The essay cited the S1.4 finding card, written before the 2021-01-03 provenance seam was found. The within-lane revalidation refuted the verbatim measure in both lanes and found the density-controlled measure underpowered in both. The card was never updated, and the essay cited the card instead of the ledger.",
   "description": "One paragraph of the essay The First Thing We Did Was Audit Ourselves said a related measure shows the Democratic phrase tightness concentrating in the 2023 to 2025 House-minority years, and promised a September follow-up on power position. No measure that stays inside one data source shows that concentration. The essay's own finding (S1.9) is unaffected. No daily record is affected.",
   "resolution": "The paragraph was rewritten to say the power-position question is unanswered, the promise of a follow-up was removed, and a dated correction note was added at the foot of the essay. The S1.4 finding card now carries a superseded block pointing at the governing ledger rows."
+ },
+ {
+  "schema_version": 3,
+  "correction_id": "corr-2026-11-11-runner-image-outage-backfill",
+  "severity": "major",
+  "category": "missed-published-days",
+  "status": "resolved",
+  "affected_days": [
+   "2026-10-28",
+   "2026-10-29",
+   "2026-10-30",
+   "2026-10-31",
+   "2026-11-01",
+   "2026-11-02",
+   "2026-11-03",
+   "2026-11-04",
+   "2026-11-05",
+   "2026-11-06",
+   "2026-11-07",
+   "2026-11-08",
+   "2026-11-09",
+   "2026-11-10"
+  ],
+  "logged": "2026-11-20",
+  "day": "2026-10-28",
+  "detected_at": "2026-11-10",
+  "acknowledged_at": "2026-11-11",
+  "contained_at": "2026-11-11",
+  "corrected_at": "2026-11-11",
+  "closed_at": "2026-11-20",
+  "original_url": null,
+  "corrected_url": null,
+  "detection_method": "Operator status review on 2026-11-10. The dead-man notifications had fired throughout and were not recognized as an outage during the election freeze.",
+  "root_cause": "The workflows ran on the floating ubuntu-latest image. On 2026-10-28 that image moved to Ubuntu 26.04, which did not provide the pinned Python 3.12.10, so every run failed at setup. From 2026-10-28T23:21Z to 2026-11-11T14:51Z, 78 workflow runs failed, 26 were skipped, and none succeeded.",
+  "description": "The fourteen daily records from 2026-10-28 through 2026-11-10, which include Election Day and the week after it, were not measured as they happened. They were assembled on 2026-11-11 from the same public source record, with the same prompts, thresholds and code the freeze had locked. Four things about them differ from an ordinary day. First, none of the fourteen was posted to Bluesky; they are site-only by ruling. Second, 2026-11-03 was published by an explicit repair run that bypasses the readiness gate: it held 25 statements, at most about 31 percent of its same-weekday baseline, a share the gate would have held back and force-finalized with a flag. Third, the records from 2026-10-28 through 2026-11-09 lack the legacy metrics block the collect stage normally writes; that block is not shown on any page. Fourth, the unpublished silence boards for 2026-10-28 through 2026-11-04 were not built. Thirteen of the assemble manifests record a manual run; the manifest for 2026-11-05 records a scheduled run on 2026-11-11.",
+  "resolution": "All seven workflows are pinned to ubuntu-24.04, and a test fails if any workflow returns to a floating image. The fourteen days were assembled and published on 2026-11-11 and are permanently withheld from posting. Each affected day page links this entry. The missing metrics block and silence boards are scheduled for an additive repair that changes no published claim."
  }
 ]

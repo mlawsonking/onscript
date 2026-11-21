@@ -4196,3 +4196,53 @@ erratum; and explanation text for two new essay labels.
   that measures, and it allows a verified defect fix with public notice. Pinning the runner image
   touches none of those. Nobody acted because nobody recognized the outage as one until after
   Nov 10. That was our misreading, not the freeze.
+
+### Session 74-7 (2026-11-20, Fable): the calls, by delegation
+
+Michael delegated the open decisions ("make the calls"), asked for building to go to a builder
+session, and set two aims: the site must say exactly what it can support, and the essay backlog
+must start publishing. These rulings stand until he reverses one. Each is reversible by a single
+commit unless marked otherwise.
+
+- **R-74.1, record fixes and P1 correction: released.** The S74-5 errata, the S4.4 registration,
+  the essay archive links and correction 8 (the self-audit power-position paragraph, minor) were
+  pushed as `5d273372`. Task #397 closed.
+- **R-74.2, the outage is a logged correction.** Correction 9
+  (`corr-2026-11-11-runner-image-outage-backfill`, major) names all fourteen days. The existing
+  day-page banner now links it from each one, so the days are marked for what they are on the
+  page and not only in the manifests. Run counts were verified against the GitHub API: first
+  failure 2026-10-28T23:21Z; 78 failed, 26 skipped, none green until 2026-11-11T14:51Z.
+- **R-74.3, publication order and dates.** P7 Mon Nov 23; P2 Wed Nov 25; P4 Tue Dec 1; P3 Thu
+  Dec 3; P8 Tue Dec 8; P9 Tue Dec 15. Publication is by date gate: an essay whose date is in the
+  future is not loaded, so all six are committed now and each appears on its date in the daily
+  render with no further act. Removing a file cancels its publication. The repository is public,
+  so a committed essay is readable in the repo before its date; that is accepted and is not an
+  embargo breach, because no outlet has been promised exclusivity.
+- **R-74.4, P3 runs in its scoped form.** It claims the registered null on the vocabulary's
+  timing and says the test cannot speak to offices' own retractions.
+- **R-74.5, P6 does not publish.** "Recent, not timeless" rests on the 2016 cycle alone, and the
+  odd-year check that suggests a season was run without registration on data already seen. It
+  cannot be registered after the fact. The seasonal-tightening claim is registered for
+  out-of-sample data as S1.6a, beside S1.10a, and is decided on the 2027 odd-year window. Until
+  then S1.6 stays REFUTED with erratum E-1 and no essay.
+- **R-74.6, P5: the S1.10a registration is committed and hashed now** (revision 3, sha256
+  `67c364fd...cb0bc`), after a search of the private evidence drive for any earlier spring or
+  summer computation. C1 runs after the commit. The piece publishes only if C1 confirms and the
+  2026 cycle passes after 2027-02-16.
+- **R-74.7, P7 keeps `party-asymmetric`.** The counts it reports differ by party; the label says
+  the method does not.
+- **R-74.8, #301: the 21 days get their deterministic half by an additive repair.** A dedicated
+  tool writes only `legacy_unvalidated_metrics`, computed by the same `build.day_record` the
+  sweep uses, into each published day record that lacks it. No other byte of the record moves, no
+  composite is regenerated, and each repaired record's manifest is stamped with the repair. The
+  block is not rendered, so no published claim changes. The silence boards for 10-28 through
+  11-04 are built by the same session.
+- **R-74.9, no flip on Mon Nov 23.** The unattended streak restarted on Nov 11, and the first
+  post-outage week should run without a feature change. A flip packet for Mon Nov 30 is
+  commissioned; concordance is first in line as the date docs/27 protected.
+- **R-74.10, the pitch (#322) is not sent by a session.** Michael asked on Nov 11 to be told
+  before any pitch goes out, and the sends carry his name to people. The Gmail draft gets the
+  five fact fixes and the live P7 link once P7 is up; the sends stay his.
+- **R-74.11, Congress turnover.** A read-only audit of the 2027-01-03 switch to the 120th
+  Congress (roster, date-effective denominators, caucus sizes, the ledger's congress key) is
+  commissioned now, so fixes land in December, well before the turnover.
