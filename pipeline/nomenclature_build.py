@@ -8,10 +8,10 @@ job; between refreshes a brand-new bill title is untagged (bounded, disclosed la
 
 Two lanes, both citing an external party-blind official record (Article IV — the acquisition code
 cannot see party because the sources do not carry it):
-  bills      — govinfo BILLSTATUS bulkdata, congresses 113-119 (the press spine's window). Keyless.
+  bills      — govinfo BILLSTATUS bulkdata, congresses 113 through the Congress seated today (CONGRESSES). Keyless.
   committee  — unitedstates/congress-legislators committees-{current,historical}.yaml.
 
-Run:  python -m pipeline.nomenclature_build            # both lanes, congresses 113-119
+Run:  python -m pipeline.nomenclature_build            # both lanes, congresses 113 through today's
 """
 from __future__ import annotations
 
@@ -32,7 +32,12 @@ from .deep import lanes
 # (docs/16 §7.1: its titleTypeCode vocabulary is unmeasured — verify before extending the allowlist).
 BILLSTATUS_URL = "https://www.govinfo.gov/bulkdata/BILLSTATUS/{congress}/{t}/BILLSTATUS-{congress}-{t}.zip"
 BILL_TYPES = ("hr", "s", "hjres", "sjres", "hconres", "sconres", "hres", "sres")
-CONGRESSES = tuple(range(113, 120))
+# S74-11 (F2): the upper bound is the Congress seated today, derived, never a literal; a literal
+# went stale on the day the 120th was seated. Evaluated at import, which is offline-safe (a date
+# computation, no I/O). Until BILLSTATUS publishes a new Congress's bulk files, its bill fetch stops
+# loudly (the masked-error guard, or the fewer-than-100-names refusal) and no table is written; the
+# daily reader meanwhile judges that Congress with the prior verdicts table (nomenclature.judging_congress).
+CONGRESSES = tuple(range(113, util.congress_for_date(date.today().isoformat()) + 1))
 
 COMMITTEE_YAML = {
     "current": "https://raw.githubusercontent.com/unitedstates/congress-legislators/main/committees-current.yaml",
@@ -574,7 +579,7 @@ def _table(*, kind: str, source: str, rationale: str, names: dict, payload_key: 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Build the nomenclature reference tables (offline capex).")
     ap.add_argument("--congresses", default=",".join(str(c) for c in CONGRESSES),
-                    help="comma-separated congresses (default 113-119; 107 404s, 108-112 deferred)")
+                    help="comma-separated congresses (default 113 through the seated one; 107 404s, 108-112 deferred)")
     ap.add_argument("--skip-bills", action="store_true")
     ap.add_argument("--skip-committees", action="store_true")
     ap.add_argument("--skip-verdicts", action="store_true")
@@ -609,7 +614,7 @@ def main(argv=None) -> int:
             if n < VERDICT_MIN_CORPUS_DOCS:
                 print(f"[nomenclature] congress {c}: {n} statements in the corpus (< "
                       f"{VERDICT_MIN_CORPUS_DOCS}) — a doc-level ratio over that many documents is not "
-                      f"a measurement. No verdicts table written; is_nomenclature returns None there.",
+                      f"a measurement. No verdicts table written; is_nomenclature falls back to the prior table.",
                       flush=True)
                 continue
             path = OUT_DIR / f"verdicts-{c}.json"

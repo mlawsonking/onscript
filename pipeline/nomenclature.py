@@ -162,18 +162,40 @@ def _verdicts(congress: int) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def committed_verdict_congresses() -> list[int]:
+    """Congresses with a committed verdicts table, ascending."""
+    return sorted(int(p.stem.split("-")[1]) for p in _REF.glob("verdicts-*.json")
+                  if p.stem.split("-")[1].isdigit())
+
+
+def judging_congress(congress: int) -> int | None:
+    """The Congress whose verdicts table judges `congress`: its own table when committed, else the
+    highest committed table at or below it (S74-11, F2).
+
+    A new Congress has no verdicts table until its bills exist and the offline build runs, which is
+    weeks after it is seated. Reading an absent table as "nothing is a name" switched the gate off on
+    the seating date, so 7,212 of 9,418 tagged phrases would have become messages overnight and a
+    window crossing Jan 3 would have applied two rules. The prior table is the closest measurement
+    there is; the fallback is stamped on every verdict it produces so the audit shows which table
+    judged. Never a LATER table (the anachronism guard)."""
+    if _REF.joinpath(f"verdicts-{congress}.json").exists():
+        return congress
+    lower = [c for c in committed_verdict_congresses() if c <= congress]
+    return lower[-1] if lower else None
+
+
 def index_version(congress: int | None = None) -> str | None:
     """The index_version stamped on the verdicts table (the reference-data snapshot the tagger reads).
     ops.thresholds_sha folds this in WHEN the tagger is live (docs/19 §2a), so the daily symmetry
     fingerprint reflects which name index shaped the output. Defaults to the highest congress that has
     a verdicts table. Returns None when no table is present (dark box / fresh checkout)."""
     if congress is None:
-        cands = sorted(int(p.stem.split("-")[1]) for p in _REF.glob("verdicts-*.json")
-                       if p.stem.split("-")[1].isdigit())
+        cands = committed_verdict_congresses()
         if not cands:
             return None
         congress = cands[-1]
-    return (_verdicts(congress) or {}).get("index_version")
+    judged = judging_congress(congress)
+    return (_verdicts(judged) or {}).get("index_version") if judged is not None else None
 
 
 def is_nomenclature(ngram: str, congress: int) -> dict | None:
@@ -186,11 +208,20 @@ def is_nomenclature(ngram: str, congress: int) -> dict | None:
     docs/16 §8.4 requires (it measured 'transportation and infrastructure' at 0.802 — one thousandth
     above it — so the threshold does delicate work and must stay movable without a rebuild).
     """
-    table = _verdicts(congress)
+    judged = judging_congress(int(congress))
+    if judged is None:
+        return None
+    table = _verdicts(judged)
     row = (table.get("verdicts") or {}).get(" ".join((ngram or "").split()))
     if not row or row["ratio"] < config.NOMENCLATURE_RATIO_MIN:
         return None
-    return {**row, "class": _CLASS[row["lane"]], "index_version": table.get("index_version")}
+    out = {**row, "class": _CLASS[row["lane"]], "index_version": table.get("index_version")}
+    if judged != int(congress):
+        # The stamp appears only on a fallback, so a verdict from a Congress's own table keeps the
+        # exact bytes it had before S74-11.
+        out["verdicts_congress"] = judged
+        out["verdicts_fallback_for"] = int(congress)
+    return out
 
 
 def tag(rows: list, key: str = "ngram", congress: int | None = None) -> list:

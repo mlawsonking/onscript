@@ -62,6 +62,7 @@ def classify_phrase(phrase: str, *, day: str | None = None, congress: int | None
     so the deterministic floor is unchanged until the gold set validates the stricter rule.
     """
     value = phrase or ""
+    verdict = None
     if privacy.is_suppressed(value) or any(privacy.is_suppressed(surface) for surface in (surfaces or [])):
         cls, rule = "private", "article-xiii"
     else:
@@ -86,14 +87,18 @@ def classify_phrase(phrase: str, *, day: str | None = None, congress: int | None
             cls, rule = "unknown", "family-quorum-unmet"
         else:
             cls, rule = "message", "affirmative-deterministic-floor"
+    classifier = {
+        "name": CLASSIFIER,
+        "method": "deterministic",
+        "rule": rule,
+    }
+    if verdict and verdict.get("verdicts_fallback_for") is not None:
+        # S74-11 (F2): a Congress with no verdicts table of its own was judged by an earlier one.
+        classifier["verdicts_congress"] = verdict["verdicts_congress"]
     return {
         "surface_class": cls,
         "surface_eligible": cls == "message",
-        "classifier": {
-            "name": CLASSIFIER,
-            "method": "deterministic",
-            "rule": rule,
-        },
+        "classifier": classifier,
     }
 
 
