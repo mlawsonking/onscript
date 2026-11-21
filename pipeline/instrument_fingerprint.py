@@ -50,6 +50,7 @@ LEGACY_THRESHOLD_NAMES = (
 # when a production module is neither registered here nor allowlisted below.
 METHOD_VERSION_PROVIDERS = (
     ("document_families", "document_families", "METHOD_VERSION"),
+    ("phrase_ledger", "phrases", "METHOD_VERSION"),
     ("surface_eligibility", "eligibility", "CLASSIFIER"),
     ("phrase_statistics", "surges", "METHOD_VERSION"),
     ("participation", "participation", "METHOD_VERSION"),

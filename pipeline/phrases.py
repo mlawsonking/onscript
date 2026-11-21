@@ -27,6 +27,11 @@ from itertools import accumulate
 
 from . import boilerplate, config, document_families, privacy, util
 
+# The phrase ledger's method identity, read by instrument_fingerprint (docs/37 rule 6: stamped at
+# the owning stage). v2 (S74-11): a (congress, party) stratum below BOILERPLATE_DF_MIN_DOCS no
+# longer contributes to DF suppression. v1 is every ledger built before it.
+METHOD_VERSION = "phrase-ledger-v2"
+
 
 def _sentence_token_spans(text: str) -> list[list[tuple[str, int, int]]]:
     """Tokenized sentences with offsets into the unmodified source string."""
@@ -231,11 +236,24 @@ class PhraseEngine:
         return self._finalize()
 
     def _df_share(self, ngram: str) -> float:
+        """The worst document-frequency share of `ngram` across the (congress, party) strata that
+        hold at least config.BOILERPLATE_DF_MIN_DOCS documents.
+
+        S74-11 (F3). The minimum was in config and in the published instrument fingerprint and no
+        code read it, so a stratum of a few dozen documents could delete a phrase ledger-wide: the
+        31 D and 36 R statements dated 2025-01-01/02 (the 118th Congress, stamped by normalize) took
+        89 phrases out of a 284,301-phrase ledger (raw mirror through 2026-07-09), "look forward to
+        working with" among them, and in the AUDIT-120th replay the fifth day of a new Congress
+        deleted 10,765 of 111,828 (the 120-I stratum at 3 documents). Below the minimum a share is not a measurement of a template, so the stratum
+        does not vote. Bumped METHOD_VERSION, below."""
         worst = 0.0
         for stratum, counts in self.df.items():
+            docs = self.docs_in_stratum[stratum]
+            if docs < config.BOILERPLATE_DF_MIN_DOCS:
+                continue
             c = counts.get(ngram)
-            if c and self.docs_in_stratum[stratum]:
-                worst = max(worst, c / self.docs_in_stratum[stratum])
+            if c:
+                worst = max(worst, c / docs)
         return worst
 
     def _finalize(self) -> dict:
