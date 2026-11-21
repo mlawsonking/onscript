@@ -4343,3 +4343,130 @@ is withdrawn and task #396 closed. P9, dated Dec 15 behind the gate, now buries 
 beside the theory it replaced, with the numbers. The first design of this registration could
 barely have failed; the reviewed one failed on data nobody had looked at. That is the whole
 case for the review step.
+
+### Session 74-11 (2026-11-21, Opus): builder for work order S74-11, the 120th Congress turnover
+
+Work order `X:\onscript-data\drafts\staged\WORK-ORDER-S74-11.md`, implementing
+`X:\onscript-data\drafts\staged\AUDIT-120th\REPORT.md`. Everything below is **committed locally on
+`s74-343-hardening` and unpushed**, one commit per package; the issuing session reviews and pushes.
+The audit's simulations were re-run before use (`sim_roster`, `sim_render`, `sim_nomen`,
+`sim_readiness2`) and reproduced their outputs; after P1 `sim_render.py` fails on `len(None)`,
+because the count it printed is no longer reachable.
+
+- **P1 (F1, F5), the caucus denominator, `0e9797f3`.** `pipeline.denominators` gives a roster
+  snapshot a horizon: the earlier of a provenance `valid_through` and the day before the scheduled
+  end shared by the House intervals open on the retrieval date; 2027-01-02 for the committed file
+  (rev `4458244`, retrieved 2026-07-27). Past it `eligible_offices` returns None, and
+  `eligible_count` and `daily_measures` return `denominator_state: "roster_horizon_exceeded"` with no
+  count. `office_share` is the one place a count-of-eligible share is computed; a count above its
+  eligible set is refused there (`count_exceeds_roster`). Every caller renders the bare count when
+  the state is refused: receipts strip, party columns, peak-day evidence, methodology table (with a
+  note), share cards, the Unison caucus line and `awards.json`. The awards page no longer falls back
+  to the corpus-proxy caucus. Method version `date-effective-denominators-v2`. The real renderer
+  printed "40 of 32 (125.0%)" and "of 31 (145.2%)" for 2027-01-04; it now prints no fraction (a test
+  builds the committed 2026-11-18 day page re-dated to 2027-01-04). On the committed roster every day
+  from 2025-01-03 to 2027-01-02 seats 430 to 434 voting House offices and 98 to 100 senators.
+  **F5:** the eligible set now includes the seated nonvoting offices (3 D, 3 R), because every
+  numerator divided by it counts them; `voting_caucus_offices` stays beside it, and
+  `observed_publishing_offices` is restricted to the eligible set with off-roster authors counted in
+  `observed_offices_outside_roster`. Measured on the raw mirror, published days 2025-01-03 to
+  2026-07-09, unit distinct offices per party-day (550 D and 545 R party-days): delegates were
+  counted in the numerator and excluded from the denominator on 328 D and 276 R days, mean 0.89 D and
+  0.66 R offices a day, maximum 3; off-roster authors appeared on 2 D and 2 R party-days in all. The
+  other fix, taking delegates out of every numerator, would move phrase counts and the three-office
+  floor, and was not taken. **Builder:** `scripts/build_date_effective_roster.py` reproduces the
+  committed file **byte-for-byte** from rev `4458244` with `--no-valid-through` (1,565 offices,
+  6,869 intervals; both source sha256 match the provenance). It matches the X8 transformation
+  exactly, including one semantic defect: X8 ignored `party_affiliations`, so a mid-term party switch
+  is not honored. In the window that is one office, K000401 (Kiley), recorded Independent for the
+  whole 119th term although the source has him Republican until 2026-03-08. With
+  `--split-party-affiliations` the R denominator is one higher on each of the 429 days from
+  2025-01-03 to 2026-03-07. Not changed. **A refresh to today's upstream head** (`a263880`, fetched
+  2026-11-21) would move seated voting offices on 2026-11-21 from D 257 to 259 and R 269 to 271. Of
+  the 160 days from 2026-07-27 to 2027-01-02, 124 would have a different denominator (80 of them
+  published, 2026-09-01 to 2026-11-19): D +1 on 09-01 and +2 from 09-02 (B001328 Blair, W000832
+  Wahab, absent from the July snapshot); R +1 on 11-03 and +2 from 11-04 to 12-14 (the snapshot ends
+  both H001104 Husted and M001244 Moody on 11-03; upstream extends Husted to 12-15 and re-seats Moody
+  from 11-04), +1 from 12-15. The upstream head still ends every open House interval on 2027-01-03,
+  so a refresh today does not move the horizon; the 120th needs a refresh once upstream lists it.
+  `test_x8`'s revision pin is now a provenance-shape check. Suite 1,262 to 1,271.
+- **P2 (F2), nomenclature, `3a624a8e`.** `nomenclature.judging_congress` falls back to the highest
+  committed verdicts table at or below the requested Congress, never a later one. A fallback verdict
+  carries `verdicts_congress` and `verdicts_fallback_for`, and the classifier provenance carries
+  `verdicts_congress`; a verdict from a Congress's own table is byte-identical to before.
+  `nomenclature_build.CONGRESSES` derives its upper bound from `util.congress_for_date(today)`
+  (113 to 119 today). Measured with the audit's `sim_nomen.py`: phrases tagged on 2027-01-02 that
+  classify as message on 2027-01-04, 7,212 of 9,418 before, 0 of 9,418 after. Building verdicts-120:
+  `python -m pipeline.nomenclature_build --congresses 120` once govinfo BILLSTATUS publishes the
+  congress-120 bulk files (the fetch stops loudly before then), scanning
+  `data/state/statements.jsonl.gz`; no verdicts table is written below 1,000 congress-120
+  statements. Suite 1,275.
+- **P3 (F3), the minimum stratum size, `db3882a8`.** `PhraseEngine._df_share` skips (congress, party)
+  strata below `BOILERPLATE_DF_MIN_DOCS` (40); the value and its fingerprint entry are unchanged.
+  `phrases.METHOD_VERSION = "phrase-ledger-v2"` is registered in the fingerprint at its owner, the
+  pattern of the cosigned fix. A registry test now fails if any name in `LIVE_THRESHOLD_NAMES` is
+  read by no pipeline module. **Measured** over the raw mirror, months 2025-01 to 2026-07, through the
+  production `normalize.normalize_records`, one engine build with `_finalize` run with and without the
+  minimum (75,989 statements; strata 118-D 31, 118-R 36, 119-D 44,460, 119-I 360, 119-R 30,937): the
+  ledger goes from 284,212 to 284,301 phrases, 89 restored and 0 removed; 63 had been deleted by
+  118-R and 27 by 118-D (one by both). 82 restored phrases reach the three-office floor for D on some
+  day, 81 for R. `df_weight` changes on 1,326 kept phrases. None of the 89 has a phrase page or a
+  phrase-evidence entry. On 2026-06-30, the only published day in the window where one reaches the
+  floor, none would enter the repeated-phrase table (its smallest row 9 offices, the largest
+  restored phrase 5). Two of them ("the house of representatives", "look forward to working") are
+  Daily Line talking-point labels on 2026-07-20, 07-21, 11-04 and 11-10; those come from claim
+  clustering, which never read the cap, and do not change. Days after 2026-07-09 cannot be replayed
+  on this machine. The corrections entry is drafted, not appended:
+  `X:\onscript-data\drafts\staged\S74-11\corr-draft-df-min-docs.json`. **Reported, not decided:** the
+  67 records dated 2025-01-01 and 01-02 (118th Congress, before `STAGE1_EPOCH`) are kept by
+  normalize. After this fix they delete nothing, but they still set the ledger's `corpus_start` and
+  can be a phrase's first carrier, which public surfaces already leave unattributed under the epoch
+  rule. Suite 1,279.
+- **P4 (F4), holidays, `65727b5f`.** The current gate, replayed on the committed daily counts (D+R+I
+  statements per day from `discipline.json`, frozen in the test) with the audit's model (two
+  assemble runs a day, every day landed at first look), force-finalizes exactly the eight days the
+  audit named: 2025-12-24, 12-25, 12-26, 12-29, 12-30, 12-31, 2026-01-01 and 01-02; at Thanksgiving
+  2025 it forces 11-26, 11-27 and 11-28. The calendar is committed in config (Thanksgiving Thursday
+  through Sunday; Dec 24 through Jan 2). `readiness.expected_volume`, the S70 owner, names the
+  holiday regime, and `day_readiness` treats a holiday day that is CLOSED as ready, recording
+  `readiness.regime: "holiday"`, the count and `closed`. CLOSED is read from `collect-latest.json`:
+  its `generated_at` and its `source_freshness.pushed_at` must both fall after the day ends in New
+  York; missing evidence closes nothing and leaves today's gate. After: zero forced days over
+  2025-12-15 to 2026-01-10, each holiday day published on the first run after it, and 2026-01-03 no
+  longer two days late. Thanksgiving: Thursday to Sunday are not forced. The Wednesday before
+  (2025-11-26, 61 statements against a 164 same-weekday baseline, 37 percent) is outside the window
+  as ordered and is still forced, which delays Thursday and Friday by a day. A non-holiday collapse
+  still holds and forces on the third calendar day, and a holiday day with no upstream push after it
+  is held and forced as today. The forced reason and manifest alert now state the count, the
+  baseline and share, and the days held. R-36.5 is unchanged: the assemble-side conditions are
+  computed as before, a closed holiday day is not force-finalized, so R-36.5 does not hold it and it
+  posts when it has claims. The collect volume alert withholds the ratio on holiday days and still
+  pages a day holding nothing. Judged safe for release before Thu 2026-11-26 by its own tests.
+  Suite 1,291.
+- **P5 (F7), names, `c4907d16`.** `roster.refresh`, called by every collect in place of
+  `roster.load()`, merges the members the cache has not seen, from the records just loaded and from
+  the committed date-effective roster (offices serving after the epoch only). It never drops an
+  entry, never blanks a present field, and sets chamber from the term data. On the local cache
+  (888 entries, 2026-11-11), over the offices seated on 2026-07-26 (537) and 2026-11-20 (535): missing
+  names 3 to 0 (A000383 Alan Armstrong, G000607 James Gallagher, G000608 Darline Graham); wrong
+  chamber 77 to 0, 76 of them senators marked "house". A seated member present in the refreshed
+  roster is classified `public_official`, not quarantined, and every author in the last seven
+  committed day records (130 bioguides) resolves to a name through `site.member_name`. Suite 1,297.
+
+Published numbers that would change on release:
+
+| Surface | Before | After | Why |
+|---|---|---|---|
+| Date-effective caucus (symmetry, receipts strip, party columns, peak-day evidence, share cards, methodology table, awards), new days | D 257, R 269 | D 260, R 272 | F5: the six seated delegates join the population the numerators count |
+| The same, from 2027-01-03 | D 32, R 31 ("40 of 32 (125.0%)") | no denominator, bare counts | F1: past the roster horizon the count is refused |
+| `observed_publishing_offices` | every observed D or R office | offices the roster seats that day | F5: 4 of 1,095 party-days differ in the measured window |
+| Surface class from 2027-01-03 | 7,212 of 9,418 tagged phrases read as message | 0 | F2: the 119 table judges the 120th, stamped |
+| Phrase ledger | 284,212 phrases (raw mirror through 2026-07-09) | 284,301; 1,326 `df_weight` values move | F3 |
+| Instrument fingerprint method versions | no `phrase_ledger`; denominators v1 | `phrase-ledger-v2`; `date-effective-denominators-v2` | P1, P3 |
+| Holiday days (Thanksgiving Thu to Sun, Dec 24 to Jan 2) | held, force-finalized degraded, alerted | published on schedule, not degraded, posted when they have claims | F4 |
+| Member names and chamber | 3 seated members unnamed, 77 wrong chambers | 0 and 0 | F7 |
+
+Left for the issuing session: the roster refresh (a release decision, and the 120th needs one after
+upstream lists it); the `party_affiliations` defect; whether the Thanksgiving window should include
+the Wednesday before (2026-11-25 is next week); the P3 corrections entry; whether the pre-epoch
+records stay in the corpus.
