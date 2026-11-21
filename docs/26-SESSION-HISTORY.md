@@ -4315,3 +4315,22 @@ Open for the issuing session: the one-day appearance lag of the gate against the
 Package C ruling; correction 9's text ("lack the legacy metrics block", "silence boards were not
 built"), which stays true while C is stopped; P9's freeze-commit receipt URL resolves only once
 `269ca50c` is pushed with its SHA unchanged.
+
+### Session 74-9 (2026-11-21, Fable): two rulings revised on the builder's evidence
+
+- **R-74.8 is withdrawn. Task #301 closes with no repair.** The builder recomputed the
+  deterministic block for the 84 days that have one. It matched the committed block on 4 and
+  differed on 80, always upward (4,827 D+R statements committed against 8,697 today). The block
+  is written once, on the first RUN A over a day that is still filling in, so it is a first-pass
+  snapshot and not a function of the final corpus. Writing a recomputed block into a published
+  record would put numbers there that production never wrote. The 35 records without the block
+  stay as they are, and the key's own name, `legacy_unvalidated_metrics`, is accurate. It
+  is rendered nowhere. Correction 9's resolution, which promised the repair, is amended in place
+  with a dated note. The silence boards for 10-28 through 11-04 remain unbuilt; no public
+  surface reads them, and they are a precondition of the #300 flip, not of anything live.
+- **R-74.3 is amended: the essay gate compares against today in New York, not the product
+  day.** The product day is yesterday, so the first build of the gate would have published each
+  essay a day after its date.
+- R-74.6 called the registration "revision 3". The file's own field reads 2; the bytes and
+  the sha256 are the ones reviewed. The hash is the identity.
+- C1 for S1.10a runs only after freeze commit `269ca50c` is public.

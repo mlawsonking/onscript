@@ -70,8 +70,11 @@ def test_load_essays_drops_future_dates_and_keeps_today_and_earlier():
         ["future", "today", "past"]
 
 
-def test_the_default_gate_day_is_the_product_day():
-    assert site.essay_gate_day() == site.util.product_day()
+def test_the_default_gate_day_is_today_in_new_york_not_the_product_day():
+    """An essay dated Monday is read on Monday. The product day is the day before."""
+    from datetime import date, timedelta
+    gate, product = site.essay_gate_day(), site.util.product_day()
+    assert date.fromisoformat(gate) - date.fromisoformat(product) == timedelta(days=1)
 
 
 def test_a_future_essay_leaves_zero_bytes_in_a_build_of_the_real_tree():

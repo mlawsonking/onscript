@@ -3071,8 +3071,12 @@ _ESSAY_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 def essay_gate_day() -> str:
     """The day the essay gate compares against. A function, not a constant, so a test can rebind
-    it and a long-lived process never freezes an import-time clock."""
-    return util.product_day()
+    it and a long-lived process never freezes an import-time clock.
+
+    Today in New York, not the product day. The product day is yesterday, because a day's
+    statements are measured after the day ends; an essay is dated the day it is meant to be read.
+    Gating on the product day published every essay one day late (S74-8 report)."""
+    return util.product_day(datetime.now(timezone.utc) + timedelta(days=1))
 
 
 def essay_is_due(essay: dict, product_day: str) -> bool:
