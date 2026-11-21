@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "kind": "search-s1.10a-registration",
+  "revision": 2,
+  "hypothesis": "S1.10a: the autumn reframe of S1.10 (Bipartisanship Has a Season). H1: the share of D+R press-release statements containing at least one frozen bipartisan phrase is lower in autumn (Aug 6-Nov 3) than in the preceding summer (May 8-Aug 5), lower than in the preceding spring (Feb 7-May 7), and lower than the mean of summer and the following winter (Nov 5-Feb 2), each by more than 0.01, in at least ceil(0.9 n) valid years.",
+  "source": "Drafted 2026-11-13 (P5 staging); binding only once committed, alone, BEFORE any confirmatory run; the run lands in a separate later commit. Revision 2 replaces revision 1 (same day, never hashed or run), whose anchor-contrast statistic S(y) telescoped to committed autumn and winter levels (Fable review, NEUTRALITY-REVIEW.md).",
+  "seen_disclosure": "Seen and excluded from the decision: autumn (Q3) and winter (Q4) levels for 2013-2025, held to within a few anchor days in data/derived/search/revalidate_s1_4_s1_10.json (commit ffc03104); read by the drafting agent and the reviewer. Unseen: spring (Q1) and summer (Q2) levels for every year, and every 2026/2027 season. Checked 2026-11-13 by git grep for _BIPARTISAN / s1_10 / bipartisan_season across pipeline, scripts, tests, data, docs, content, site/public; git log --all -S placebo_troughs; the window geometry of wave_s1.s1_10_bipartisan_season (earliest window start Aug 6, latest end Feb 6); and the staged drafts P1-P9 on X:. Michael's local scratch not checked (gate G2).",
+
+  "unit_and_metric": {
+    "phrases": ["bipartisan", "across the aisle", "both sides of the aisle", "reach across the aisle", "my republican colleague", "my democratic colleague", "republican and democratic colleague"],
+    "phrase_rule": "Case-insensitive substring match on statement text (title excluded), as wave_s1.s1_10_bipartisan_season. Must equal pipeline.search.wave_s1._BIPARTISAN at the registration commit; the script refuses otherwise.",
+    "unit": "one statement record from pipeline.search.harness.iter_statements",
+    "population": "member party D or R; independents and unknown party excluded",
+    "seasons": {"Q1_spring": "y-02-07..y-05-07", "Q2_summer": "y-05-08..y-08-05", "Q3_autumn": "y-08-06..y-11-03", "Q4_winter": "y-11-05..(y+1)-02-02"},
+    "rate": "statements with >=1 phrase / all D+R statements, per season per lane (share, 0..1)",
+    "statistics": {"D_summer": "Q2 - Q3", "D_spring": "Q1 - Q3", "T": "mean(Q2, Q4) - Q3", "W": "Q4 - Q3, reported only (committed contrast, strict-lane recount)"},
+    "delta": 0.01,
+    "delta_rationale": "DELTA is below every committed autumn-to-winter difference, so it constrains T only in new years. For the blind criteria it is about one standard error in the thinnest seasons; the 11-of-12 rule, not any single year, carries the inference.",
+    "year_supports_H1": "D_summer > 0.01 AND D_spring > 0.01 AND T > 0.01, pooled D+R",
+    "decision_scope": "pooled D+R; D and R computed identically and always reported, never decisive",
+    "blindness_note": "D_summer and D_spring are blind (Q1, Q2 unmeasured). T is half committed (T = D_summer/2 + W/2). T cannot bind in C1: every committed W exceeds 0.01, so T passes whenever D_summer does. It does real work only in C2/C3, as the guard against a falling within-year ramp (Q1 > Q2 > Q3 > Q4), which passes both blind criteria while T is about 0.",
+    "reported_only": "per-criterion and per-party counts; W under strict lanes; folded-scraped robustness; binomial tails; every season's rate and n; each of D_summer, D_spring, T, W in standard-error units (binomial SE of the difference, sqrt(p1(1-p1)/n1 + p2(1-p2)/n2); for T the Q2-Q4 mean carries a quarter of the sum of their variances)"
+  },
+
+  "lanes": {
+    "legacy": "season wholly within 2013-01-03..2020-12-31; count date_source == legacy only",
+    "scraper": "season wholly on or after 2021-01-04; count date_source == scraper only",
+    "invalid": "any season spanning the 2021-01-03 seam or reaching before 2013-01-03",
+    "expected_invalid_years": {"2020": "Q4 2020-11-05..2021-02-02 spans the seam"},
+    "robustness_view": "post-seam years recounted on folded scraped (scraper + page_html); reported, never decisive",
+    "disclosure_2021": "Scraper coverage was still growing through 2021 (docs/13 L411-416), so 2021's season differences mix roster change with calendar. The year stays in; no rule change."
+  },
+
+  "floors": {
+    "min_statements_per_season": 200,
+    "min_valid_years_C1": 8,
+    "note": "A year is valid only if all four seasons clear 200 pooled D+R statements and each lies in one lane."
+  },
+
+  "tests": {
+    "C1": {"years": "2013-2025 (expected valid: 2013-2019, 2021-2025; n = 12, need = 11)", "earliest_run": "immediately after the registration commit",
+           "rule": "n = valid years; need = ceil(0.9*n); k = years supporting H1. UNDERPOWERED if n < 8; CONFIRMED if k >= need; REFUTED otherwise. Per-criterion counts reported."},
+    "C2": {"years": "2026", "earliest_run": "2027-02-16, and only with the mirror refreshed through at least 2027-02-02",
+           "rule": "PASS if all four seasons clear the floor and 2026 supports H1; UNDERPOWERED if any season is below the floor; FAIL otherwise."},
+    "C3": {"years": "2027", "earliest_run": "2028-02-16", "rule": "as C2; follow-up, not a publication gate; a FAIL after publication adds a correction to the essay."}
+  },
+
+  "publication_rule": "P5 may publish the autumn headline only if C1 is CONFIRMED and C2 is PASS. Otherwise S1.10 stays on the graveyard and methods shelf (docs/27 section 6, Artifacts row). C2 UNDERPOWERED holds publication; no substitute year.",
+
+  "script": "scripts/search/s1_10a_autumn.py, revision 2 (staged at X:/onscript-data/drafts/staged/P5/scripts/). Tested on synthetic fixtures only (test_s1_10a_fixture.py): drift (5 seeds), ramp with January reset (3 seeds), winter rebound with no autumn trough (3 seeds; W passes every year yet the verdict is REFUTED), summer trough, sub-DELTA dip, flat, falling within-year ramp, and an autumn dip present in only 10 of 12 years are never CONFIRMED; the falling ramp is a single-year FAIL; an autumn dip with and without drift, and one present in exactly 11 of 12 years, is CONFIRMED; thin corpus UNDERPOWERED; lane hygiene. Refuses to run without --confirmatory, refuses if this file is untracked or modified, refuses C2/C3 before their dates, and stamps this file's sha256 into its output.",
+
+  "amend_policy": "FROZEN at commit. No edits to unit_and_metric, lanes, floors, tests or publication_rule after the hash. A design change is a new registration with a new date; the old one stays in the record with its result.",
+  "amendments": [
+    {"date": "2026-11-13", "by": "Opus P5 staging agent (revision 1, void)",
+     "reason": "Anchor-contrast design S(y). Withdrawn before hashing: it telescoped to committed Q3/Q4 levels."},
+    {"date": "2026-11-13", "by": "Opus P5 staging agent (revision 2, draft; binding on Michael's commit)",
+     "reason": "Fixed seasons; decision on unseen spring and summer levels with a 0.01 minimum size, per the Fable review. Written before any Q1 or Q2 rate was computed and before any 2026 rate was computed. No corpus measurement was run in drafting."},
+    {"date": "2026-11-13", "by": "Opus P5 staging agent (revision 2 with reviewer edits; the version to hash)",
+     "reason": "Fable re-review PASS-WITH-EDITS: T cannot bind in C1 (text corrected); DELTA rationale reworded, numeral kept; standard-error-unit reporting added; 2021 coverage disclosed; falling-ramp and 10/11-of-12 boundary fixtures added. Decision rule unchanged. Still no corpus measurement."}
+  ]
+}
