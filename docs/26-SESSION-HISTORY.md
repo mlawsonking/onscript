@@ -4334,3 +4334,12 @@ built"), which stays true while C is stopped; P9's freeze-commit receipt URL res
 - R-74.6 called the registration "revision 3". The file's own field reads 2; the bytes and
   the sha256 are the ones reviewed. The hash is the identity.
 - C1 for S1.10a runs only after freeze commit `269ca50c` is public.
+
+### Session 74-10 (2026-11-21, Fable): S1.10a ran and was refuted; P5 does not publish
+
+With freeze commit `269ca50c` public, C1 ran: the registered autumn criteria held in 8 of 12
+years against 11 required (below summer 10, below spring 8). REFUTED, recorded in docs/13. P5
+is withdrawn and task #396 closed. P9, dated Dec 15 behind the gate, now buries the reframe
+beside the theory it replaced, with the numbers. The first design of this registration could
+barely have failed; the reviewed one failed on data nobody had looked at. That is the whole
+case for the review step.

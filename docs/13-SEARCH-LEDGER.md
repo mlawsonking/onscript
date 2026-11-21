@@ -1476,3 +1476,26 @@ the S38 scrub evidence on X:. It is deliberately not published. GitHub can still
 pre-scrub commits by SHA, and those are the commits that carried the redacted material, so a public
 map would point straight at them. Cite current SHAs in new work. Three of the 55 (`1aa84477`,
 `363ecdfc`, `7facc4d2`) are sha256 content prefixes, not commits.
+
+## S1.10a, the autumn reframe: REGISTERED, then REFUTED (2026-11-21, Session 74). Append-only.
+
+S1.10 stays ARTIFACT (L566, L591). Its reframe, that bipartisan-signaling language has an autumn
+low, was registered before measurement: `data/reference/search/s1_10a-registration.json`, sha256
+`67c364fd7e5e4651144f987b0b95942d5e506247e2cbaa3d2c785469db6cb0bc`, freeze commit `269ca50c`,
+pushed before the run. An independent review failed the first design, whose placebo anchors
+cancelled out of the statistic, and passed this one. Before the freeze, the private evidence
+drive was searched for any earlier spring or summer computation; none was found.
+
+| Test | Rule | Result | Verdict |
+|---|---|---|---|
+| C1 (2013-2025, 12 qualifying years) | autumn more than 0.01 below summer, below spring, and below the summer/winter mean, in at least 11 of 12 years | all three held in **8 of 12**; below summer 10; below spring 8; below the summer/winter mean 11 | **REFUTED** |
+
+Per party (descriptive, not decisive): D 7 of 12, R 9 of 12. Output:
+`data/derived/search/s1_10a_c1.json`; command `scripts/search/s1_10a_autumn.py --test C1
+--confirmatory`. C2 (the 2026 cycle) is moot and will not run. P5 does not publish. The
+pre-election dip S1.10 measured is real in its windows; it is not reliably an autumn low, because
+spring is as low or lower in a third of years.
+
+**S1.6a (seasonal tightening, R-74.5): DRAFT, not frozen.** Staged at
+X:/onscript-data/drafts/staged/P6/s1_6a-registration.json. It would test the 2027 odd-year window
+with the S1.6 rule unchanged and run no earlier than 2027-12-01. S1.6 stays REFUTED with erratum E-1.
