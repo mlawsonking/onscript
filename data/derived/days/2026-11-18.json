@@ -965,5 +965,2326 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-18",
+      "party": "D",
+      "composite": "Today 106 of us released statements. 9 of us carried \"Speaker of the House\". Our most synchronized phrase, used by 13 of us: the 120th congress.",
+      "measurement_lead": "Measurement: 106 publications were observed for the Democratic party on 2026-11-18.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-18",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "138dde5375b365fab2f24bf66d23ee9f4c408f79f13de02b12c5f509f7dff15e",
+        "claim_ids": [
+          "2026-11-18-D-00"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 106 of us released statements. 9 of us carried \"Speaker of the House\". Our most synchronized phrase, used by 13 of us: the 120th congress.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-18-D-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "96c445ec4f3746ccfd40d72c5741b689acfc5d7d6e3c5cbbb3087ff227d12562",
+        "response_sha256": "522c0d3c194bfe178b66be169e40de56b5686eb6a99ad0f2fb44bd608c3725bb",
+        "model_response_sha256": "98993ef770901b7662fc3d51c8e79c4e56cf48ba96818e808e5068a89b01761e"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-18-D-00"
+          ],
+          "claim_ids": [
+            "2026-11-18-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-18-D-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-18",
+        "statements": 106,
+        "talking_points": [
+          {
+            "label": "speaker of the house",
+            "members": 9,
+            "quote": "Speaker of the House",
+            "topics": [
+              "other",
+              "courts"
+            ],
+            "claim_id": "2026-11-18-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "courts",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 9,
+              "publications": 9,
+              "families": 9,
+              "support_units": 9
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "the 120th congress",
+          "members": 13,
+          "family_count": 15,
+          "first_sayer": "Robert P. Bresnahan, Jr.",
+          "first_sayer_party": "R",
+          "first_sayer_state": "PA"
+        },
+        "selected_claims": [
+          {
+            "label": "speaker of the house",
+            "members": 9,
+            "quote": "Speaker of the House",
+            "topics": [
+              "other",
+              "courts"
+            ],
+            "claim_id": "2026-11-18-D-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              },
+              {
+                "topic_id": "courts",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 9,
+              "publications": 9,
+              "families": 9,
+              "support_units": 9
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 1,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-18-D-00"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 1
+      },
+      "usage": {
+        "tokens_in": 2298,
+        "tokens_out": 134,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-18",
+      "party": "R",
+      "composite": "Across 63 statements today, no message rose to the level of a shared message among more than a handful of us. The most synchronized phrase was one step closer, recorded 5 times, first recorded in our corpus from Marlin A. Stutzman (R-IN).",
+      "measurement_lead": "Measurement: 63 publications were observed for the Republican party on 2026-11-18.",
+      "composite_state": "generated_verified",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-18",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "92f6a0381b8079066727908cc4d1e9f7cc5fdda46a80b1feaec904bc4455bbae",
+        "claim_ids": []
+      },
+      "structured_output": {
+        "composite": "Across 63 statements today, no message rose to the level of a shared message among more than a handful of us. The most synchronized phrase was one step closer, recorded 5 times, first recorded in our corpus from Marlin A. Stutzman (R-IN).",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "f5c57e1ddc73cce851c174afe5ac2f0bbbf04064fa63f145d7ed37308148a3fb",
+        "response_sha256": "ce78872acc091b435ea345eae7ba99c5d980ce102b387486a2b5b62e07dd3dce",
+        "model_response_sha256": "d8abdee2f5c85c7b8698b470987acc52c8edd56ccd8616fcd4a39db0a8288906"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": []
+        }
+      ],
+      "model": "claude-sonnet-5",
+      "generator": "sonnet_direct",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-18",
+        "statements": 63,
+        "talking_points": [],
+        "top_phrase": {
+          "text": "one step closer",
+          "members": 5,
+          "family_count": 5,
+          "first_sayer": "Marlin A. Stutzman",
+          "first_sayer_party": "R",
+          "first_sayer_state": "IN"
+        },
+        "selected_claims": [],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 0,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 0
+      },
+      "usage": {
+        "tokens_in": 1253,
+        "tokens_out": 82,
+        "model": "claude-sonnet-5"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-11-18-D-00",
+        "party": "D",
+        "day": "2026-11-18",
+        "label": "speaker of the house",
+        "member_count": 9,
+        "statements": [
+          "sha256:2b223a612a0252417f48b99bc3d7f5f940dd270195d98a725aecfee2317e7f07",
+          "sha256:3921602e9468792750e66eee472f4ba27cedad3a52fd53f7730001bb23f0e283",
+          "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a",
+          "sha256:8ba1c9284f1b50454e2bac2c2b9fb76395cc861d131ca5f51ae48935b6320309",
+          "sha256:9e4dfc9cc19016123eda51133d765320b531281e242152ea9e3d49cf06b838bf",
+          "sha256:a1e35a92a77a0d85ce675d5c6cf51066dd266802e5096d409d81f8fe8f256a2c",
+          "sha256:b14ab9de7219c4d051ae0346d60eebe1ed2a8e589c79d719d291707697b52455",
+          "sha256:b96c74d1e4b3f8aa3e22eba74aac08da9e9e376312332eb428625b842330d837",
+          "sha256:fafd5e9c32157bd07f805c3101cfd7db68af0fc83e216c3034ad1c9e5704a8a2"
+        ],
+        "fragments": [
+          {
+            "text": "as speaker-designate of the house of representatives",
+            "statement": "sha256:a1e35a92a77a0d85ce675d5c6cf51066dd266802e5096d409d81f8fe8f256a2c"
+          },
+          {
+            "text": "served as speaker of the house",
+            "statement": "sha256:2b223a612a0252417f48b99bc3d7f5f940dd270195d98a725aecfee2317e7f07"
+          },
+          {
+            "text": "jeffries for speaker of the house in the 120th",
+            "statement": "sha256:8ba1c9284f1b50454e2bac2c2b9fb76395cc861d131ca5f51ae48935b6320309"
+          },
+          {
+            "text": "as the first black speaker of the",
+            "statement": "sha256:3921602e9468792750e66eee472f4ba27cedad3a52fd53f7730001bb23f0e283"
+          },
+          {
+            "text": "his nomination for speaker of the house and made clear",
+            "statement": "sha256:9e4dfc9cc19016123eda51133d765320b531281e242152ea9e3d49cf06b838bf"
+          },
+          {
+            "text": "the 57th speaker of the house",
+            "statement": "sha256:fafd5e9c32157bd07f805c3101cfd7db68af0fc83e216c3034ad1c9e5704a8a2"
+          },
+          {
+            "text": "united states house of representatives for the upcoming 120th",
+            "statement": "sha256:b96c74d1e4b3f8aa3e22eba74aac08da9e9e376312332eb428625b842330d837"
+          },
+          {
+            "text": "first black speaker of the house in the 120th",
+            "statement": "sha256:b14ab9de7219c4d051ae0346d60eebe1ed2a8e589c79d719d291707697b52455"
+          },
+          {
+            "text": "for the speaker of the house of representatives for the",
+            "statement": "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a"
+          }
+        ],
+        "topics": [
+          "other",
+          "courts"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-18-D-00",
+        "support_phrase": {
+          "normalized": "speaker of the house",
+          "text": "Speaker of the House",
+          "occurrence_id": "occ:4d3dbeedc580b466cb2c7fba"
+        },
+        "display_quote": "Speaker of the House",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4d3dbeedc580b466cb2c7fba",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:2b223a612a0252417f48b99bc3d7f5f940dd270195d98a725aecfee2317e7f07",
+            "publication_id": "sha256:2b223a612a0252417f48b99bc3d7f5f940dd270195d98a725aecfee2317e7f07",
+            "office_id": "F000110",
+            "family_id": "dfam:cb3370c824872e1f84b37c8f",
+            "family_revision": "dfrev:d0873ccd0b66b869ef667863",
+            "support_unit_id": "F000110",
+            "party": "D",
+            "start_char": 664,
+            "end_char": 684,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 563,
+            "sentence_end_char": 684,
+            "sentence_offset_start": 101,
+            "sentence_offset_end": 121,
+            "clause_start_char": 620,
+            "clause_end_char": 863,
+            "clause_offset_start": 44,
+            "clause_offset_end": 64,
+            "adjacent_tokens_before": [
+              "american",
+              "has",
+              "ever",
+              "served",
+              "as"
+            ],
+            "adjacent_tokens_after": [
+              "we",
+              "now",
+              "stand",
+              "at",
+              "the"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a6f267fdeff22450d4f17802",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:3921602e9468792750e66eee472f4ba27cedad3a52fd53f7730001bb23f0e283",
+            "publication_id": "sha256:3921602e9468792750e66eee472f4ba27cedad3a52fd53f7730001bb23f0e283",
+            "office_id": "H001094",
+            "family_id": "dfam:0635f76aed8a9648fc7b551a",
+            "family_revision": "dfrev:badf5ec4affadbac8e85406b",
+            "support_unit_id": "H001094",
+            "party": "D",
+            "start_char": 135,
+            "end_char": 155,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 255,
+            "sentence_offset_start": 119,
+            "sentence_offset_end": 139,
+            "clause_start_char": 19,
+            "clause_end_char": 155,
+            "clause_offset_start": 116,
+            "clause_offset_end": 136,
+            "adjacent_tokens_before": [
+              "hakeem",
+              "jeffries",
+              "being",
+              "nominated",
+              "as"
+            ],
+            "adjacent_tokens_after": [
+              "i",
+              "congratulate",
+              "speaker-elect",
+              "jeffries",
+              "and"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4850b2321c5ac767e25d3671",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:3921602e9468792750e66eee472f4ba27cedad3a52fd53f7730001bb23f0e283",
+            "publication_id": "sha256:3921602e9468792750e66eee472f4ba27cedad3a52fd53f7730001bb23f0e283",
+            "office_id": "H001094",
+            "family_id": "dfam:0635f76aed8a9648fc7b551a",
+            "family_revision": "dfrev:badf5ec4affadbac8e85406b",
+            "support_unit_id": "H001094",
+            "party": "D",
+            "start_char": 276,
+            "end_char": 296,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 256,
+            "sentence_end_char": 323,
+            "sentence_offset_start": 20,
+            "sentence_offset_end": 40,
+            "clause_start_char": 156,
+            "clause_end_char": 296,
+            "clause_offset_start": 120,
+            "clause_offset_end": 140,
+            "adjacent_tokens_before": [
+              "election",
+              "as",
+              "the",
+              "first",
+              "black"
+            ],
+            "adjacent_tokens_after": [
+              "this",
+              "is",
+              "not",
+              "a",
+              "small"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:5c68de292581a73cceabd28c",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a",
+            "publication_id": "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a",
+            "office_id": "T000491",
+            "family_id": "dfam:e25440f74e07ef9fbe85f08a",
+            "family_revision": "dfrev:522debff98c49e42632b5067",
+            "support_unit_id": "T000491",
+            "party": "D",
+            "start_char": 237,
+            "end_char": 257,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 142,
+            "sentence_end_char": 491,
+            "sentence_offset_start": 95,
+            "sentence_offset_end": 115,
+            "clause_start_char": 173,
+            "clause_end_char": 299,
+            "clause_offset_start": 64,
+            "clause_offset_end": 84,
+            "adjacent_tokens_before": [
+              "the",
+              "democratic",
+              "nominee",
+              "for",
+              "the"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "representatives",
+              "for",
+              "the",
+              "120th"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:735d128962640aa87b0fbfa2",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a",
+            "publication_id": "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a",
+            "office_id": "T000491",
+            "family_id": "dfam:e25440f74e07ef9fbe85f08a",
+            "family_revision": "dfrev:522debff98c49e42632b5067",
+            "support_unit_id": "T000491",
+            "party": "D",
+            "start_char": 2003,
+            "end_char": 2023,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1769,
+            "sentence_end_char": 2042,
+            "sentence_offset_start": 234,
+            "sentence_offset_end": 254,
+            "clause_start_char": 1923,
+            "clause_end_char": 2206,
+            "clause_offset_start": 80,
+            "clause_offset_end": 100,
+            "adjacent_tokens_before": [
+              "history",
+              "as",
+              "the",
+              "first",
+              "black"
+            ],
+            "adjacent_tokens_after": [
+              "of",
+              "representatives",
+              "i",
+              "have",
+              "full"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4dc39191c024ca0554e2a199",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:8ba1c9284f1b50454e2bac2c2b9fb76395cc861d131ca5f51ae48935b6320309",
+            "publication_id": "sha256:8ba1c9284f1b50454e2bac2c2b9fb76395cc861d131ca5f51ae48935b6320309",
+            "office_id": "H000874",
+            "family_id": "dfam:202dd884130724c7fffcb021",
+            "family_revision": "dfrev:e460787ecca561df9b9d4380",
+            "support_unit_id": "H000874",
+            "party": "D",
+            "start_char": 164,
+            "end_char": 184,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 44,
+            "sentence_end_char": 357,
+            "sentence_offset_start": 120,
+            "sentence_offset_end": 140,
+            "clause_start_char": 23,
+            "clause_end_char": 206,
+            "clause_offset_start": 141,
+            "clause_offset_end": 161,
+            "adjacent_tokens_before": [
+              "to",
+              "nominate",
+              "hakeem",
+              "jeffries",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "the",
+              "120th",
+              "congress",
+              "for"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7abdd9f4b859b5f213b45a35",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:9e4dfc9cc19016123eda51133d765320b531281e242152ea9e3d49cf06b838bf",
+            "publication_id": "sha256:9e4dfc9cc19016123eda51133d765320b531281e242152ea9e3d49cf06b838bf",
+            "office_id": "J000294",
+            "family_id": "dfam:fdaf00724a3094fa98ccd860",
+            "family_revision": "dfrev:76af2943e14058e8ec57eb97",
+            "support_unit_id": "J000294",
+            "party": "D",
+            "start_char": 161,
+            "end_char": 181,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 333,
+            "sentence_offset_start": 161,
+            "sentence_offset_end": 181,
+            "clause_start_char": 96,
+            "clause_end_char": 222,
+            "clause_offset_start": 65,
+            "clause_offset_end": 85,
+            "adjacent_tokens_before": [
+              "nature",
+              "of",
+              "his",
+              "nomination",
+              "for"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "made",
+              "clear",
+              "that",
+              "under"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9ac1e566cb15c033d381f202",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:a1e35a92a77a0d85ce675d5c6cf51066dd266802e5096d409d81f8fe8f256a2c",
+            "publication_id": "sha256:a1e35a92a77a0d85ce675d5c6cf51066dd266802e5096d409d81f8fe8f256a2c",
+            "office_id": "C001067",
+            "family_id": "dfam:e2f1013d7ea575485b6fc70d",
+            "family_revision": "dfrev:2391a05303966a0acef0b7f2",
+            "support_unit_id": "C001067",
+            "party": "D",
+            "start_char": 1343,
+            "end_char": 1363,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1318,
+            "sentence_end_char": 1486,
+            "sentence_offset_start": 25,
+            "sentence_offset_end": 45,
+            "clause_start_char": 1339,
+            "clause_end_char": 1363,
+            "clause_offset_start": 4,
+            "clause_offset_end": 24,
+            "adjacent_tokens_before": [
+              "i",
+              "am",
+              "confident",
+              "that",
+              "as"
+            ],
+            "adjacent_tokens_after": [
+              "he",
+              "will",
+              "unite",
+              "the",
+              "diverse"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2a3ac0058850bf6d4abb4749",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:a1e35a92a77a0d85ce675d5c6cf51066dd266802e5096d409d81f8fe8f256a2c",
+            "publication_id": "sha256:a1e35a92a77a0d85ce675d5c6cf51066dd266802e5096d409d81f8fe8f256a2c",
+            "office_id": "C001067",
+            "family_id": "dfam:e2f1013d7ea575485b6fc70d",
+            "family_revision": "dfrev:2391a05303966a0acef0b7f2",
+            "support_unit_id": "C001067",
+            "party": "D",
+            "start_char": 1662,
+            "end_char": 1682,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1487,
+            "sentence_end_char": 1733,
+            "sentence_offset_start": 175,
+            "sentence_offset_end": 195,
+            "clause_start_char": 1587,
+            "clause_end_char": 1682,
+            "clause_offset_start": 75,
+            "clause_offset_end": 95,
+            "adjacent_tokens_before": [
+              "vote",
+              "for",
+              "the",
+              "first",
+              "black"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "bad",
+              "brilliant",
+              "brother",
+              "from"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0b276c73b0ab3287f55a9ee9",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:b14ab9de7219c4d051ae0346d60eebe1ed2a8e589c79d719d291707697b52455",
+            "publication_id": "sha256:b14ab9de7219c4d051ae0346d60eebe1ed2a8e589c79d719d291707697b52455",
+            "office_id": "P000610",
+            "family_id": "dfam:0d5b2fc07c4c288a4dd81dbe",
+            "family_revision": "dfrev:d4dcf221fdd5bef199543e10",
+            "support_unit_id": "P000610",
+            "party": "D",
+            "start_char": 215,
+            "end_char": 235,
+            "surface_text": "SPEAKER OF THE HOUSE",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 272,
+            "sentence_offset_start": 215,
+            "sentence_offset_end": 235,
+            "clause_start_char": 60,
+            "clause_end_char": 269,
+            "clause_offset_start": 155,
+            "clause_offset_end": 175,
+            "adjacent_tokens_before": [
+              "to",
+              "be",
+              "the",
+              "first",
+              "black"
+            ],
+            "adjacent_tokens_after": [
+              "in",
+              "the",
+              "120th",
+              "congress",
+              "washington"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0de10a64978e108c50d29d3e",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:b96c74d1e4b3f8aa3e22eba74aac08da9e9e376312332eb428625b842330d837",
+            "publication_id": "sha256:b96c74d1e4b3f8aa3e22eba74aac08da9e9e376312332eb428625b842330d837",
+            "office_id": "N000191",
+            "family_id": "dfam:95e2523cb1a59ed8add5a5be",
+            "family_revision": "dfrev:d6c0fc413fba49c9f7efb4cf",
+            "support_unit_id": "N000191",
+            "party": "D",
+            "start_char": 1499,
+            "end_char": 1519,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1418,
+            "sentence_end_char": 1665,
+            "sentence_offset_start": 81,
+            "sentence_offset_end": 101,
+            "clause_start_char": 1488,
+            "clause_end_char": 1557,
+            "clause_offset_start": 11,
+            "clause_offset_end": 31,
+            "adjacent_tokens_before": [
+              "democrats",
+              "top",
+              "leadership",
+              "team",
+              "alongside"
+            ],
+            "adjacent_tokens_after": [
+              "designate",
+              "hakeem",
+              "jeffries",
+              "of",
+              "new"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:8c958c7dcced3e81a1173778",
+            "claim_id": "2026-11-18-D-00",
+            "statement_id": "sha256:fafd5e9c32157bd07f805c3101cfd7db68af0fc83e216c3034ad1c9e5704a8a2",
+            "publication_id": "sha256:fafd5e9c32157bd07f805c3101cfd7db68af0fc83e216c3034ad1c9e5704a8a2",
+            "office_id": "L000397",
+            "family_id": "dfam:9d85187b15371ba7feeea5ba",
+            "family_revision": "dfrev:af6ce386a8b1c8fbabaa1705",
+            "support_unit_id": "L000397",
+            "party": "D",
+            "start_char": 122,
+            "end_char": 142,
+            "surface_text": "Speaker of the House",
+            "normalized_phrase": "speaker of the house",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 4,
+            "sentence_end_char": 142,
+            "sentence_offset_start": 118,
+            "sentence_offset_end": 138,
+            "clause_start_char": 0,
+            "clause_end_char": 373,
+            "clause_offset_start": 122,
+            "clause_offset_end": 142,
+            "adjacent_tokens_before": [
+              "morning",
+              "to",
+              "become",
+              "the",
+              "57th"
+            ],
+            "adjacent_tokens_after": [
+              "the",
+              "congresswoman",
+              "takes",
+              "her",
+              "vote"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 9,
+          "publications": 9,
+          "families": 9,
+          "support_units": 9
+        },
+        "office_ids": [
+          "C001067",
+          "F000110",
+          "H000874",
+          "H001094",
+          "J000294",
+          "L000397",
+          "N000191",
+          "P000610",
+          "T000491"
+        ],
+        "publication_ids": [
+          "sha256:2b223a612a0252417f48b99bc3d7f5f940dd270195d98a725aecfee2317e7f07",
+          "sha256:3921602e9468792750e66eee472f4ba27cedad3a52fd53f7730001bb23f0e283",
+          "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a",
+          "sha256:8ba1c9284f1b50454e2bac2c2b9fb76395cc861d131ca5f51ae48935b6320309",
+          "sha256:9e4dfc9cc19016123eda51133d765320b531281e242152ea9e3d49cf06b838bf",
+          "sha256:a1e35a92a77a0d85ce675d5c6cf51066dd266802e5096d409d81f8fe8f256a2c",
+          "sha256:b14ab9de7219c4d051ae0346d60eebe1ed2a8e589c79d719d291707697b52455",
+          "sha256:b96c74d1e4b3f8aa3e22eba74aac08da9e9e376312332eb428625b842330d837",
+          "sha256:fafd5e9c32157bd07f805c3101cfd7db68af0fc83e216c3034ad1c9e5704a8a2"
+        ],
+        "family_ids": [
+          "dfam:0635f76aed8a9648fc7b551a",
+          "dfam:0d5b2fc07c4c288a4dd81dbe",
+          "dfam:202dd884130724c7fffcb021",
+          "dfam:95e2523cb1a59ed8add5a5be",
+          "dfam:9d85187b15371ba7feeea5ba",
+          "dfam:cb3370c824872e1f84b37c8f",
+          "dfam:e25440f74e07ef9fbe85f08a",
+          "dfam:e2f1013d7ea575485b6fc70d",
+          "dfam:fdaf00724a3094fa98ccd860"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:0635f76aed8a9648fc7b551a",
+            "family_revision": "dfrev:badf5ec4affadbac8e85406b"
+          },
+          {
+            "family_id": "dfam:0d5b2fc07c4c288a4dd81dbe",
+            "family_revision": "dfrev:d4dcf221fdd5bef199543e10"
+          },
+          {
+            "family_id": "dfam:202dd884130724c7fffcb021",
+            "family_revision": "dfrev:e460787ecca561df9b9d4380"
+          },
+          {
+            "family_id": "dfam:95e2523cb1a59ed8add5a5be",
+            "family_revision": "dfrev:d6c0fc413fba49c9f7efb4cf"
+          },
+          {
+            "family_id": "dfam:9d85187b15371ba7feeea5ba",
+            "family_revision": "dfrev:af6ce386a8b1c8fbabaa1705"
+          },
+          {
+            "family_id": "dfam:cb3370c824872e1f84b37c8f",
+            "family_revision": "dfrev:d0873ccd0b66b869ef667863"
+          },
+          {
+            "family_id": "dfam:e25440f74e07ef9fbe85f08a",
+            "family_revision": "dfrev:522debff98c49e42632b5067"
+          },
+          {
+            "family_id": "dfam:e2f1013d7ea575485b6fc70d",
+            "family_revision": "dfrev:2391a05303966a0acef0b7f2"
+          },
+          {
+            "family_id": "dfam:fdaf00724a3094fa98ccd860",
+            "family_revision": "dfrev:76af2943e14058e8ec57eb97"
+          }
+        ],
+        "support_unit_ids": [
+          "C001067",
+          "F000110",
+          "H000874",
+          "H001094",
+          "J000294",
+          "L000397",
+          "N000191",
+          "P000610",
+          "T000491"
+        ],
+        "citation_occurrence_ids": [
+          "occ:4d3dbeedc580b466cb2c7fba",
+          "occ:5c68de292581a73cceabd28c",
+          "occ:4dc39191c024ca0554e2a199"
+        ],
+        "citations": [
+          {
+            "member": "Cleo Fields",
+            "party": "D",
+            "state": "LA",
+            "date": "2026-11-18",
+            "url": "https://fields.house.gov/media/press-releases/congressman-cleo-fields-celebrates-historic-nomination-democratic-leader",
+            "quote": "served as speaker of the house",
+            "occurrence_id": "occ:4d3dbeedc580b466cb2c7fba",
+            "office_id": "F000110",
+            "publication_id": "sha256:2b223a612a0252417f48b99bc3d7f5f940dd270195d98a725aecfee2317e7f07",
+            "family_id": "dfam:cb3370c824872e1f84b37c8f",
+            "family_revision": "dfrev:d0873ccd0b66b869ef667863"
+          },
+          {
+            "member": "Derek Tran",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-18",
+            "url": "https://tran.house.gov/media/press-releases/rep-derek-tran-statement-hakeem-jeffries-historic-election-democratic-nominee",
+            "quote": "for the speaker of the house of representatives for the",
+            "occurrence_id": "occ:5c68de292581a73cceabd28c",
+            "office_id": "T000491",
+            "publication_id": "sha256:5f0859db2d9c134710d9fd0b57e8f85ac5d30464a06cdca31f26539e0119e72a",
+            "family_id": "dfam:e25440f74e07ef9fbe85f08a",
+            "family_revision": "dfrev:522debff98c49e42632b5067"
+          },
+          {
+            "member": "Steny H. Hoyer",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-11-18",
+            "url": "https://hoyer.house.gov/media/press-releases/hoyer-statement-nomination-leader-jeffries-speaker-house",
+            "quote": "jeffries for speaker of the house in the 120th",
+            "occurrence_id": "occ:4dc39191c024ca0554e2a199",
+            "office_id": "H000874",
+            "publication_id": "sha256:8ba1c9284f1b50454e2bac2c2b9fb76395cc861d131ca5f51ae48935b6320309",
+            "family_id": "dfam:202dd884130724c7fffcb021",
+            "family_revision": "dfrev:e460787ecca561df9b9d4380"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "courts",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": []
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-18",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 9,
+          "numerator_unit": "offices",
+          "denominator": 86,
+          "denominator_unit": "offices",
+          "share": 0.104651,
+          "window": "party-day 2026-11-18",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 9,
+          "numerator_unit": "publications",
+          "denominator": 106,
+          "denominator_unit": "publications",
+          "share": 0.084906,
+          "window": "party-day 2026-11-18",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 9,
+          "numerator_unit": "document families",
+          "denominator": 101,
+          "denominator_unit": "document families",
+          "share": 0.089109,
+          "window": "party-day 2026-11-18",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-18",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 0,
+          "numerator_unit": "offices",
+          "denominator": 47,
+          "denominator_unit": "offices",
+          "share": 0.0,
+          "window": "party-day 2026-11-18",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 0,
+          "numerator_unit": "publications",
+          "denominator": 63,
+          "denominator_unit": "publications",
+          "share": 0.0,
+          "window": "party-day 2026-11-18",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 0,
+          "numerator_unit": "document families",
+          "denominator": 63,
+          "denominator_unit": "document families",
+          "share": 0.0,
+          "window": "party-day 2026-11-18",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "for the american people",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "by the trump administration",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": []
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "the 120th congress",
+        "slug": "14d2b0e24b5ec69f",
+        "n": 3,
+        "day_peak": 13,
+        "party": "D",
+        "counts": {
+          "D": 13,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 15,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 15,
+        "velocity": 6.28,
+        "first_seen": {
+          "date": "2025-05-03",
+          "bioguide": "B001327",
+          "statement": "sha256:a5ecf00f8bbf0d61bd4e94a5ee9dbc461c1308c627c201d8afe7c06fbe99f577",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          5,
+          1,
+          1,
+          7,
+          4,
+          2,
+          1,
+          1,
+          1,
+          13
+        ]
+      },
+      {
+        "ngram": "speaker of the house",
+        "slug": "d4922d7fb2f62911",
+        "n": 4,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 10,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 10,
+        "velocity": 7.88,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "S001172",
+          "statement": "sha256:48364a2b36d000a62426f07595ee90132f08472fd2f5b1cd42c6c75da1753190",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          9
+        ]
+      },
+      {
+        "ngram": "to lower costs",
+        "slug": "10e0b9788fba1877",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.71,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "E000296",
+          "statement": "sha256:4bed672baaae360d9129d96446f0874ddc657b350ffbb7ab74ec43defbf18aa3",
+          "tie": [
+            "B001261",
+            "E000300",
+            "H001046",
+            "M001223",
+            "M001237",
+            "P000610",
+            "S000168",
+            "S001230",
+            "T000460",
+            "V000129",
+            "V000136",
+            "V000138"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.979,
+        "series": [
+          1,
+          2,
+          2,
+          4,
+          3,
+          1,
+          1,
+          2,
+          5,
+          1,
+          3,
+          2,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "to the american people",
+        "slug": "35caba15a18aa10e",
+        "n": 4,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 3.65,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000466",
+          "statement": "sha256:fddc2218c81c2a108d0aa06ca5e7e1e54d25164ec1c9b7ea96eaf10c59f78d02",
+          "tie": [
+            "C001098",
+            "H001067",
+            "L000585",
+            "M000194",
+            "W000829"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          2,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "ngram": "and look forward",
+        "slug": "2565b8dc37521123",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 3.36,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [
+            "F000468"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      {
+        "ngram": "for the american people",
+        "slug": "495c7da743c93f81",
+        "n": 4,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "N000015",
+          "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          6,
+          2,
+          1,
+          1,
+          1,
+          3,
+          5,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "billions of dollars",
+        "slug": "ef73ccf05a80670c",
+        "n": 3,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.71,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001282",
+          "statement": "sha256:b18b410b3dd04f5a5575b23ff81365889ca4aea0dbec6b31083515ebb5ec5bcb",
+          "tie": [
+            "M001163"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.964,
+        "series": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          4,
+          2,
+          7,
+          6
+        ]
+      },
+      {
+        "ngram": "report to congress",
+        "slug": "5f3c53c346cff340",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 1,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 1,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.5,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "D000594",
+          "statement": "sha256:51381091ca605549b9f02666779b71163811e715bc4069dea79bdc5502df8221",
+          "tie": [
+            "S000250"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.984,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "ngram": "rule of law",
+        "slug": "ca267b9e0d15e01f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.18,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "S001201",
+          "statement": "sha256:a5b03a0a9b348afab983442c76abf8ade051f799aa9b205ff6fdcc58f35cf7e0",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          2,
+          3,
+          2,
+          2,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "expand access to",
+        "slug": "0c3cd1524acb667f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "D",
+        "counts": {
+          "D": 5,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 5,
+          "R": null,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 2.19,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "B001260",
+          "statement": "sha256:de117e9698e1dd2e853d2c1e184f9584e8f0e59b7207d1e56c613df440c40380",
+          "tie": [
+            "D000622"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          3,
+          1,
+          2,
+          2,
+          3,
+          1,
+          1,
+          4,
+          2,
+          2,
+          3,
+          3,
+          4,
+          5
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "one step closer",
+        "slug": "60abf99f2848cf05",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-01-04",
+          "bioguide": "S001188",
+          "statement": "sha256:11598b5695ec158406970574ea0de9c6f6193a95125d57229dfe16e3cd1d1132",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "step closer to",
+        "slug": "93fd49b9e317a74f",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.12,
+        "first_seen": {
+          "date": "2025-01-04",
+          "bioguide": "S001188",
+          "statement": "sha256:11598b5695ec158406970574ea0de9c6f6193a95125d57229dfe16e3cd1d1132",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "ngram": "public service and",
+        "slug": "94de047dbdc5763d",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.29,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "C001123",
+          "statement": "sha256:71b0debc83a8dade8b5060481d24679f8e6bb06d10fe5f71366c026a24d01c90",
+          "tie": [
+            "F000482",
+            "M001227"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "remarks as prepared",
+        "slug": "d18bdfdef2d79ae1",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-07",
+          "bioguide": "K000391",
+          "statement": "sha256:3c721359fd1a517afb9fdd08dbca20a4fbd748ca0fc1c3dc9e05945c513a64dd",
+          "tie": [
+            "B001261"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.99,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "ngram": "for the american people",
+        "slug": "495c7da743c93f81",
+        "n": 4,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "N000015",
+          "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          6,
+          2,
+          1,
+          1,
+          1,
+          3,
+          5,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "to public service",
+        "slug": "8da8c86cb6af32c8",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.73,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "E000297",
+          "statement": "sha256:517c2b3697fe0669018c9c906bb0827ae73c6dbbcf84f356acf5baaa5a9d1a17",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "the next generation",
+        "slug": "6158281d917beb8e",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 1.56,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "F000469",
+          "statement": "sha256:90f989fb12ab60e9ab6c2f4b6d0144f92259770c2a8f92c80423512e82d0eeee",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          1,
+          4,
+          1,
+          1,
+          2,
+          1,
+          3,
+          2,
+          4,
+          2,
+          3,
+          2,
+          7,
+          4
+        ]
+      },
+      {
+        "ngram": "full house of representatives",
+        "slug": "fe09b2dd687194ba",
+        "n": 4,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-22",
+          "bioguide": "H001066",
+          "statement": "sha256:1639f0372f27d7e0a8b9654aba942cdfdc2a1c827e4efbbf389d927a40ae7f7b",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "remarks as prepared for delivery",
+        "slug": "2faafc9fe4fe14db",
+        "n": 5,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 3,
+          "I": null
+        },
+        "family_count": 3,
+        "velocity": 2.47,
+        "first_seen": {
+          "date": "2025-01-08",
+          "bioguide": "C001047",
+          "statement": "sha256:42f926ea1a8dc2760d5f30ba033781a59122188116617d43f7d5d61b63aad17c",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 3,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 3,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 1.35,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          4,
+          1,
+          6,
+          2,
+          6,
+          3
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "for the american people",
+      "slug": "495c7da743c93f81",
+      "n": 4,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 6,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-01",
+        "bioguide": "N000015",
+        "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.968,
+      "velocity": 3.11,
+      "sides": {
+        "D": [
+          {
+            "member": "Yvette D. Clarke",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-18",
+            "url": "https://clarke.house.gov/clarke-issues-statement-on-nomination-of-hakeem-jeffries-for-speaker-of-the-house/",
+            "quote": "I am confident that, as Speaker of the House, he will unite the diverse coalitions of our Democratic Caucus nationwide to deliver a bold agenda for the American people."
+          },
+          {
+            "member": "Steny H. Hoyer",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-11-18",
+            "url": "https://hoyer.house.gov/media/press-releases/hoyer-statement-nomination-leader-jeffries-speaker-house",
+            "quote": "Though I will no longer be a Member of Congress next year, I look forward to watching Speaker-designate Jeffries and his leadership team work hard for the American people, for this institution that he and I both cherish as the jewel in our democracy, and for the principles of equality and opportunity our Caucus continues to champion."
+          },
+          {
+            "member": "Hakeem S. Jeffries",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-18",
+            "url": "https://jeffries.house.gov/2026/11/18/speaker-designate-jeffries-on-ms-now-weve-got-to-make-meaningful-dramatic-decisive-progress/",
+            "quote": "But step two is a recognition that the status quo is not acceptable, and we’ve got to build the best possible healthcare system for the American people."
+          }
+        ],
+        "R": [
+          {
+            "member": "Jim Banks",
+            "party": "R",
+            "state": "IN",
+            "date": "2026-11-18",
+            "url": "https://www.banks.senate.gov/news/press-releases/sen-banks-and-colleagues-introduce-package-to-dismantle-department-of-education-bureaucracy/",
+            "quote": "I am glad to see my colleagues in the Seante take action to end the bureaucracy and deliver on that vision for the American people."
+          },
+          {
+            "member": "Ben Cline",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-11-18",
+            "url": "https://cline.house.gov/news/documentsingle.aspx?DocumentID=2717",
+            "quote": "As Chairman of the Republican Study Committee, I will continue championing meaningful legislation that reflects our conservative values and deliver real results for the American people."
+          },
+          {
+            "member": "Steve Daines",
+            "party": "R",
+            "state": "MT",
+            "date": "2026-11-18",
+            "url": "https://www.daines.senate.gov/2026/11/18/daines-urges-colleagues-to-support-bipartisan-proposal-to-save-the-senate/",
+            "quote": "And I am near certain that they would want members who are now privileged to hold this office to do everything in their power, in a bipartisan way, to get the Senate working again for the American people."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "the 120th congress",
+      "slug": "14d2b0e24b5ec69f",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 13,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-05-03",
+        "bioguide": "B001327",
+        "statement": "sha256:a5ecf00f8bbf0d61bd4e94a5ee9dbc461c1308c627c201d8afe7c06fbe99f577",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.998,
+      "velocity": 6.28,
+      "sides": {
+        "D": [
+          {
+            "member": "Yvette D. Clarke",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-18",
+            "url": "https://clarke.house.gov/clarke-issues-statement-on-nomination-of-hakeem-jeffries-for-speaker-of-the-house/",
+            "quote": "As we prepare to enter the majority in the 120th Congress, House Democrats are focused not only on delivering meaningful solutions that lower costs and expand access to affordable housing, healthcare, and economic opportunities, but also on holding the Trump Administration accountable for leading us into an unlawful war, imposing unconstitutional tariffs, and the cruel and inhumane treatment of immigrants and citizens alike."
+          },
+          {
+            "member": "Katherine M. Clark",
+            "party": "D",
+            "state": "MA",
+            "date": "2026-11-18",
+            "url": "https://katherineclark.house.gov/2026/11/18/whip-clark-delivers-remarks-after-election-as-house-majority-leader/",
+            "quote": "And fittingly, the 120th Congress will boast a record shattering 120 Democratic Congresswomen."
+          },
+          {
+            "member": "Jason Crow",
+            "party": "D",
+            "state": "CO",
+            "date": "2026-11-18",
+            "url": "https://crow.house.gov/media/in-the-news/ark-valley-voice-crow-calls-for-action-to-ban-stock-trading-by-members-of-congress",
+            "quote": "That’s why 57 incoming members and I have taken the Political Integrity Pledge to refuse corporate PAC money, to push for a ban on stock trading by Members of Congress, to ban lobbying by former Members of Congress for at least five years, and to support the overturning of Citizens United… We can do those things when we start the 120th Congress."
+          }
+        ],
+        "R": [
+          {
+            "member": "Ben Cline",
+            "party": "R",
+            "state": "VA",
+            "date": "2026-11-18",
+            "url": "https://cline.house.gov/news/documentsingle.aspx?DocumentID=2717",
+            "quote": "As we look forward to the 120th Congress, the RSC’s mission is more important than ever as we continue to defend the principles of limited government, individual liberty, and economic opportunity that serve as the foundation for our shared conservative values."
+          },
+          {
+            "member": "Glenn Grothman",
+            "party": "R",
+            "state": "WI",
+            "date": "2026-11-18",
+            "url": "https://grothman.house.gov/news/documentsingle.aspx?DocumentID=5507",
+            "quote": "Congressman Jay Obernolte has provided outstanding leadership as Policy Chair over the past two years, and I am pleased to continue to work alongside him in the 120th Congress."
+          },
+          {
+            "member": "Diana Harshbarger",
+            "party": "R",
+            "state": "TN",
+            "date": "2026-11-18",
+            "url": "https://harshbarger.house.gov/media/press-releases/harshbarger-elected-house-gop-steering-committee-120th-congress",
+            "quote": "With Republicans in the minority in the 120th Congress, the committee will nominate the conference’s Ranking Members."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "340b94304a2cb8d13825254d5ccd6569a79ff7fcedacae50c6a96c269332a58d",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "a261984fe3b501b1e2e6f93d6926dbe93858ec42ae1e7592c75de3dd7db26ba7",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
