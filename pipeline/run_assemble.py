@@ -403,8 +403,8 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
     util.write_json(day_file, day_json)
 
     freshness = {"note": "assemble stage; freshness measured in RUN A"}
-    # `forced` = the readiness gate waited out MAX_WAIT_DAYS and upstream never filled: we publish what
-    # we have rather than leave a hole in the series, but it is honestly degraded. §deploy-hardening.
+    # `forced` = the readiness gate waited out MAX_WAIT_DAYS below its baseline: we publish what we
+    # have rather than leave a hole in the series, but it is honestly degraded. §deploy-hardening.
     degraded = forced or any(day_payload[p]["daily_line"]["fallback"] for p in config.COMPOSITE_PARTIES)
     # docs/19 §2a MEASURE — UNCONDITIONAL (does not read FEATURES["nomenclature_tags"]): of this day's
     # FULL synchronized set per party, what share is an official name (bill title / committee name)?
@@ -448,7 +448,10 @@ def assemble(day: str, statements=None, *, readiness_info=None, forced=False) ->
         # finalized degraded). final=True means PUBLISHED — never re-assembled, and never skipped.
         "final": True, "forced_finalize": forced, "readiness": readiness_info,
         "symmetry": {"prompts_sha": report["prompts_sha"], "thresholds_sha": report["thresholds_sha"]},
-        "alerts": (["degraded"] if degraded else []) + (["forced-finalize: upstream never filled"] if forced else []),
+        # S74-11 (b): the forced alert states what is known (count, baseline, days held). It used
+        # to assert an upstream failure, which the gate cannot establish.
+        "alerts": (["degraded"] if degraded else [])
+                  + ([f"forced-finalize: {readiness.forced_summary(readiness_info)}"] if forced else []),
     }
     # REPAIR-SAFE PROVENANCE (docs/23 §7.5 R-C, amendment) — see `repair_safe_manifest` for why the
     # obvious unconditional write would have failed the §1.4.1 launch gate.
@@ -549,7 +552,13 @@ def main() -> int:
     if args.day:
         day, forced, sel = args.day, False, {"reason": "explicit --day override", "readiness": None}
     else:
-        sel = readiness.select_target_day(_counts_by_day(statements), _is_final, util.product_day())
+        # S74-11 (F4): closure for the holiday regime is read from the latest collect manifest
+        # (when it ran, and which upstream push it read). Missing or unreadable, no day is closed
+        # and the gate behaves exactly as before.
+        collect_manifest = util.read_json(config.DERIVED / "manifest" / "collect-latest.json", None)
+        sel = readiness.select_target_day(
+            _counts_by_day(statements), _is_final, util.product_day(),
+            closed=lambda d: readiness.day_closed(d, collect_manifest))
         if sel["day"] is None:
             print(f"===== RUN B assemble — NO-OP (no cluster, no distill, no API spend) =====")
             print(sel["reason"])

@@ -115,11 +115,23 @@ def volume_anomaly(statements, focus_day, *, maturity: dict | None = None) -> di
     today = by_day.get(focus_day, 0)
     exp = readiness.expected_volume(by_day, focus_day)
     baseline, judgeable = exp["baseline"], exp["judgeable"]
+    # S74-11 (F4): in a committed holiday window the ratio measures the holiday, not upstream, so
+    # the ALERT arm (a caller passing `maturity`, i.e. collect) withholds it like an unjudgeable
+    # weekend. The absolute arm still pages on a matured day holding nothing, and the transport
+    # dead-man is independent of this function. The assemble caller (no `maturity`) still judges
+    # the ratio, so the persisted R-36.5 condition is computed exactly as before; R-36.5 needs
+    # force_finalized as well, which a closed holiday day is not.
+    holiday = exp.get("regime") == "holiday"
+    if holiday and maturity is not None:
+        judgeable = False
     mature = True if maturity is None else bool(maturity.get("mature"))
     low = mature and (today < MIN_LIVE_VOLUME
                       or (judgeable and today < config.NULL_SERVICE_VOLUME_RATIO * baseline))
     out = {"today": today, "baseline": baseline, "baseline_method": exp["method"],
            "judgeable": judgeable, "anomalously_low": low}
+    if holiday:
+        out["regime"] = "holiday"
+        out["holiday"] = exp["holiday"]
     if maturity is not None:
         out["collection_mature"] = mature
         out["comparison"] = "judged" if (mature and judgeable) else "withheld"

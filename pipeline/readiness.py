@@ -31,11 +31,28 @@ THE OWNER (docs/37 rule 1). `expected_volume` is the single definition of "what 
 hold". The publication gate reads it here and the volume alert reads it through `ops.volume_anomaly`,
 so the two can never judge the same day against two different baselines. That seam is exactly how
 2026-08-09, a regime-normal recess Sunday, cleared this gate and then paged the operator anyway.
+
+  5. **Holidays (S74-11).** The S70 regime arm tracks a level change within two weeks; a holiday
+     is shorter than that, so the year-end collapse read as upstream failure and force-finalized
+     eight real days in the 2025 replay (12-24 through 01-02 less the weekend), each degraded and
+     paging "upstream never filled". `expected_volume` now names the HOLIDAY regime from the
+     committed calendar (config.HOLIDAY_*), and a holiday day that is CLOSED is not held for
+     volume. Closure is evidence, not a clock: the day is over, and a collect ran after it
+     against an upstream push made after it. A holiday day that never closes (upstream silent)
+     is judged exactly as before, so the dead-man path through MAX_WAIT_DAYS still works.
 """
 from __future__ import annotations
 
 import statistics
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
+
+from . import config
+
+try:  # pragma: no cover - zoneinfo is stdlib on every supported interpreter
+    from zoneinfo import ZoneInfo
+    _NY = ZoneInfo("America/New_York")
+except Exception:  # pragma: no cover
+    _NY = None
 
 READY_RATIO = 0.40        # ready when the day has >= this share of its expected volume
 BASELINE_WEEKS = 6        # long arm: how many prior same-weekdays form the stable baseline
@@ -49,6 +66,59 @@ MIN_PUBLISHABLE = 1       # a day with ZERO statements is never force-published 
 
 def _d(s: str) -> date:
     return date.fromisoformat(s)
+
+
+def thanksgiving(year: int) -> date:
+    """The fourth Thursday of November."""
+    first = date(year, 11, 1)
+    return first + timedelta(days=(3 - first.weekday()) % 7 + 21)
+
+
+def holiday_regime(day: str) -> str | None:
+    """The committed holiday window `day` falls in ("thanksgiving", "year-end"), or None."""
+    d0 = _d(day)
+    start = thanksgiving(d0.year)
+    if start <= d0 < start + timedelta(days=config.HOLIDAY_THANKSGIVING_DAYS):
+        return "thanksgiving"
+    first, last = config.HOLIDAY_YEAR_END
+    if day[5:] >= first or day[5:] <= last:
+        return "year-end"
+    return None
+
+
+def _utc(value) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+
+
+def day_end_utc(day: str) -> datetime:
+    """The instant `day` ends in New York (midnight that begins the next day), in UTC."""
+    nxt = _d(day) + timedelta(days=1)
+    if _NY is None:  # pragma: no cover
+        return datetime(nxt.year, nxt.month, nxt.day, 5, tzinfo=timezone.utc)
+    return datetime(nxt.year, nxt.month, nxt.day, tzinfo=_NY).astimezone(timezone.utc)
+
+
+def day_closed(day: str, collect_manifest: dict | None) -> bool:
+    """Is `day` CLOSED: its calendar day is over and at least one collect has run after it?
+
+    Read from the latest collect manifest. Both instants must fall after the day ends in New
+    York: the collect's own `generated_at`, and the upstream push it read
+    (`source_freshness.pushed_at`). A collect that ran after midnight against a push from before
+    it has not collected anything the day produced late, so it does not close the day. Any field
+    missing or unparseable answers False, which leaves the day under the ordinary gate.
+    """
+    if not isinstance(collect_manifest, dict):
+        return False
+    ran = _utc(collect_manifest.get("generated_at"))
+    pushed = _utc((collect_manifest.get("source_freshness") or {}).get("pushed_at"))
+    end = day_end_utc(day)
+    return bool(ran and pushed and ran >= end and pushed >= end)
 
 
 def _same_weekday(counts_by_day: dict, day: str, weeks: int) -> tuple[float, int]:
@@ -87,6 +157,17 @@ def expected_volume(counts_by_day: dict, day: str, *, weeks: int = BASELINE_WEEK
     gate is more permissive than it needs to be. That costs a thin day published rather than a
     real day held, and `MAX_WAIT_DAYS` would have published it two days later regardless.
     """
+    out = _expected_volume(counts_by_day, day, weeks=weeks, recent_weeks=recent_weeks)
+    holiday = holiday_regime(day)
+    if holiday:
+        # S74-11: named, not acted on, here. The baseline is still computed and published, so a
+        # reader sees what the day would have been judged against; the callers decide what the
+        # holiday regime changes (a CLOSED day is not held; the volume ratio is withheld).
+        out = {**out, "regime": "holiday", "holiday": holiday}
+    return out
+
+
+def _expected_volume(counts_by_day: dict, day: str, *, weeks: int, recent_weeks: int) -> dict:
     long_, n_long = _same_weekday(counts_by_day, day, weeks)
     recent, n_recent = _same_weekday(counts_by_day, day, recent_weeks)
     if n_long < MIN_BASELINE_DAYS:
@@ -109,19 +190,30 @@ def expected_volume(counts_by_day: dict, day: str, *, weeks: int = BASELINE_WEEK
             "judgeable": baseline >= MIN_JUDGEABLE_BASELINE, "method": method}
 
 
-def day_readiness(counts_by_day: dict, day: str, ratio: float = READY_RATIO) -> dict:
+def day_readiness(counts_by_day: dict, day: str, ratio: float = READY_RATIO, *,
+                  closed: bool = False) -> dict:
     """Is this day's data actually IN the mirror yet?
 
     {ready, count, baseline, share, judgeable, baseline_method, reason}. An unjudgeable day (no
     same-weekday history, or a baseline too small to carry a ratio) is READY: absence of a usable
     baseline is not evidence of incompleteness. Publishability is a separate question and is
     answered by `select_target_day`, which never publishes a day holding nothing.
+
+    S74-11: a day in a committed holiday window carries `regime: "holiday"`, and when it is also
+    `closed` (see `day_closed`) it is READY whatever its volume: a holiday is not upstream being
+    late. An unclosed holiday day is judged exactly as any other day.
     """
     count = counts_by_day.get(day, 0)
     exp = expected_volume(counts_by_day, day)
     baseline, judgeable = exp["baseline"], exp["judgeable"]
     row = {"count": count, "baseline": baseline, "judgeable": judgeable,
            "baseline_method": exp["method"]}
+    if exp.get("regime") == "holiday":
+        row = {**row, "regime": "holiday", "holiday": exp["holiday"], "closed": bool(closed)}
+        if closed:
+            return {"ready": True, "share": (round(count / baseline, 3) if judgeable else None), **row,
+                    "reason": (f"holiday regime ({exp['holiday']}): the day is closed, so it is not "
+                               f"held for volume ({count} statements; {exp['method']} {baseline:g})")}
     if not judgeable:
         why = (exp["method"] if baseline <= 0 or exp["method"].startswith("only") else
                f"same-weekday baseline {baseline:g} is under the {MIN_JUDGEABLE_BASELINE} needed "
@@ -133,6 +225,21 @@ def day_readiness(counts_by_day: dict, day: str, ratio: float = READY_RATIO) -> 
     return {"ready": ready, "share": round(share, 3), **row,
             "reason": ("ready" if ready else f"only {count} vs {exp['method']} {baseline:g} "
                        f"({share:.0%} < {ratio:.0%}), upstream likely still landing")}
+
+
+def forced_summary(readiness_row: dict | None) -> str:
+    """The known facts about a force-finalized day, for alerts and manifests (S74-11 b)."""
+    r = readiness_row if isinstance(readiness_row, dict) else {}
+    count, baseline, share = r.get("count"), r.get("baseline"), r.get("share")
+    parts = [f"{count} statements" if count is not None else "count unknown"]
+    if baseline:
+        parts.append(f"against a {r.get('baseline_method') or 'same-weekday'} baseline of {baseline:g}"
+                     + (f" ({share:.0%})" if isinstance(share, (int, float)) else ""))
+    if r.get("days_waited") is not None:
+        parts.append(f"held {r['days_waited']} product days")
+    if r.get("regime") == "holiday":
+        parts.append(f"holiday regime ({r.get('holiday')}), not closed by a later collect")
+    return ", ".join(parts)
 
 
 def resolve_focus_day(days_present, product_day: str, *, explicit: str | None = None) -> dict:
@@ -209,11 +316,13 @@ def sweep_window(focus_day: str, *, lookback: int = LOOKBACK_DAYS) -> list[str]:
 
 def select_target_day(counts_by_day: dict, is_final, product_day: str, *,
                       lookback: int = LOOKBACK_DAYS, max_wait: int = MAX_WAIT_DAYS,
-                      ratio: float = READY_RATIO) -> dict:
+                      ratio: float = READY_RATIO, closed=None) -> dict:
     """Pick the day this run should assemble. Oldest-first over the lookback window so a late day is
     RECOVERED rather than skipped; chronological, so the series never gets a hole.
 
     `is_final(day) -> bool` reports whether that day was already finalized (never re-assemble it).
+    `closed(day) -> bool` (S74-11) reports whether the day is CLOSED; omitted, no day is, and the
+    holiday regime changes nothing.
     Returns {day|None, forced, readiness, reason}. day=None => this run should NO-OP ($0).
     """
     p0 = _d(product_day)
@@ -221,7 +330,8 @@ def select_target_day(counts_by_day: dict, is_final, product_day: str, *,
         day = (p0 - timedelta(days=k)).isoformat()
         if is_final(day):
             continue
-        r = day_readiness(counts_by_day, day, ratio=ratio)
+        r = day_readiness(counts_by_day, day, ratio=ratio,
+                          closed=bool(closed(day)) if closed is not None else False)
         # MIN_PUBLISHABLE guards BOTH routes to publication, not just the forced one (S70). An
         # unjudgeable day is ready by design, so without this guard a dataless Saturday would take
         # the ready route and print an empty "nothing today" page rather than self-healing.
@@ -235,7 +345,7 @@ def select_target_day(counts_by_day: dict, is_final, product_day: str, *,
         # Worked from the incident that made this worth writing down (S73): 2026-09-07 was held on
         # the 09-08 runs (age 0) and the 09-09 runs (age 1, the "only 1d old" in the 09-09 23:28Z
         # log), and force-finalized on 09-10 (age 2). That is three calendar days of lag on a day
-        # upstream never filled, and it is the intended reading of MAX_WAIT_DAYS rather than an
+        # upstream did not fill, and it is the intended reading of MAX_WAIT_DAYS rather than an
         # arithmetic slip: the unit is the pipeline's own product day throughout, so this number
         # and `ops.collection_maturity`'s `age_days` always agree. Changing the lag means changing
         # MAX_WAIT_DAYS, which is a threshold and therefore not an implementation decision.
@@ -247,8 +357,13 @@ def select_target_day(counts_by_day: dict, is_final, product_day: str, *,
                 # skip past it. It stays un-final and costless to re-check, so if data EVER lands it is
                 # picked up on a later run — self-healing, no marker, no empty page. §deploy-hardening.
                 continue
+            # S74-11 (b). State what is known, not a cause nobody established: the count, the
+            # baseline it was judged against, and how long the gate waited. A thin day past the
+            # wait is either upstream never delivering it or a genuinely quiet day; the gate
+            # cannot tell which, so the text does not say.
+            r = {**r, "days_waited": age}
             return {"day": day, "forced": True, "readiness": r,
-                    "reason": f"waited {age}d and upstream never filled — finalizing degraded on "
+                    "reason": f"waited {age}d: {forced_summary(r)}; finalizing degraded on "
                               f"{r['count']} statements, never leave a hole in the series"}
         return {"day": None, "forced": False, "readiness": r,
                 "reason": f"{day} not ready ({r['reason']}) and only {age}d old — HOLD, retry later"}

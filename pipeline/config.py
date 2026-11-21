@@ -297,6 +297,19 @@ NULL_SERVICE_CONDITIONS = (
 # Lane-1 daily volume below this share of the trailing-14-day median is anomalously low.
 NULL_SERVICE_VOLUME_RATIO = 0.4
 
+# ---------------------------------------------------------------------------
+# HOLIDAY REGIME (S74-11, F4). The committed holiday calendar the readiness gate reads
+# (pipeline/readiness.holiday_regime). Inside a window, a CLOSED day (its calendar day is over
+# and a collect has run after it, against an upstream push made after it) is not held for
+# volume: it publishes on the normal schedule with readiness.regime "holiday". Outside the
+# windows nothing changes. Replayed on the committed 2025 counts, the year-end window alone
+# force-finalized eight days (12-24, 12-25, 12-26, 12-29, 12-30, 12-31, 01-01, 01-02) and the
+# Thanksgiving window two (11-27, 11-28). A calendar, not a measurement threshold, so it is not
+# part of the instrument fingerprint, like the readiness gate's own constants.
+# ---------------------------------------------------------------------------
+HOLIDAY_THANKSGIVING_DAYS = 4            # Thanksgiving Thursday through the following Sunday
+HOLIDAY_YEAR_END = ("12-24", "01-02")    # December 24 through January 2, both inclusive
+
 
 def null_service_note_enabled() -> bool:
     """Deployment gate for the one neutral service-status note. Dark by default.
