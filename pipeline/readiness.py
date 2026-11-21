@@ -78,7 +78,8 @@ def holiday_regime(day: str) -> str | None:
     """The committed holiday window `day` falls in ("thanksgiving", "year-end"), or None."""
     d0 = _d(day)
     start = thanksgiving(d0.year)
-    if start <= d0 < start + timedelta(days=config.HOLIDAY_THANKSGIVING_DAYS):
+    if (start - timedelta(days=config.HOLIDAY_THANKSGIVING_LEAD_DAYS) <= d0
+            < start + timedelta(days=config.HOLIDAY_THANKSGIVING_DAYS)):
         return "thanksgiving"
     first, last = config.HOLIDAY_YEAR_END
     if day[5:] >= first or day[5:] <= last:

@@ -304,9 +304,13 @@ NULL_SERVICE_VOLUME_RATIO = 0.4
 # volume: it publishes on the normal schedule with readiness.regime "holiday". Outside the
 # windows nothing changes. Replayed on the committed 2025 counts, the year-end window alone
 # force-finalized eight days (12-24, 12-25, 12-26, 12-29, 12-30, 12-31, 01-01, 01-02) and the
-# Thanksgiving window two (11-27, 11-28). A calendar, not a measurement threshold, so it is not
+# Thanksgiving week three (11-26, 11-27, 11-28). A calendar, not a measurement threshold, so it is not
 # part of the instrument fingerprint, like the readiness gate's own constants.
 # ---------------------------------------------------------------------------
+# R-74.12 (2026-11-21): the window opens the Wednesday before. Replayed on 2025, that Wednesday
+# (61 statements, 37 percent of its baseline) was force-finalized and its hold published Thursday
+# and Friday a day late. It is a travel day, not an upstream failure, and closure is still required.
+HOLIDAY_THANKSGIVING_LEAD_DAYS = 1       # the Wednesday before
 HOLIDAY_THANKSGIVING_DAYS = 4            # Thanksgiving Thursday through the following Sunday
 HOLIDAY_YEAR_END = ("12-24", "01-02")    # December 24 through January 2, both inclusive
 

@@ -97,8 +97,9 @@ def test_the_calendar_is_the_committed_one():
     assert readiness.thanksgiving(2025) == date(2025, 11, 27)
     assert readiness.thanksgiving(2026) == date(2026, 11, 26)
     assert readiness.thanksgiving(2027) == date(2027, 11, 25)
-    assert [readiness.holiday_regime(f"2026-11-{d:02d}") for d in range(25, 31)] == [
-        None, "thanksgiving", "thanksgiving", "thanksgiving", "thanksgiving", None]
+    assert [readiness.holiday_regime(f"2026-11-{d:02d}") for d in range(24, 31)] == [
+        None, "thanksgiving", "thanksgiving", "thanksgiving", "thanksgiving",
+        "thanksgiving", None]
     assert readiness.holiday_regime("2026-12-23") is None
     assert readiness.holiday_regime("2026-12-24") == "year-end"
     assert readiness.holiday_regime("2027-01-02") == "year-end"
@@ -143,11 +144,10 @@ def test_thanksgiving_2025_replays_without_forcing_the_window():
     assert sorted(r["day"] for r in before if r["forced"]) == ["2025-11-26", "2025-11-27", "2025-11-28"]
     rows = _replay("2025-11-20", "2025-12-05", counts)
     forced = sorted(r["day"] for r in rows if r["forced"])
-    # Thursday through Sunday are inside the committed window and are not forced. The Wednesday
-    # before (61 statements against a 164 same-weekday baseline, 37 percent) is outside the window
-    # as ordered and is still force-finalized; its hold delays Thursday and Friday by one day.
-    assert forced == ["2025-11-26"], forced
-    for iso in ("2025-11-27", "2025-11-28", "2025-11-29", "2025-11-30"):
+    # R-74.12: the Wednesday before (61 statements against a 164 same-weekday baseline, 37
+    # percent) is inside the window, so nothing in the week is forced and nothing publishes late.
+    assert forced == [], forced
+    for iso in ("2025-11-26", "2025-11-27", "2025-11-28", "2025-11-29", "2025-11-30"):
         row = next(r for r in rows if r["day"] == iso)
         assert row["forced"] is False and row["readiness"]["regime"] == "holiday"
 

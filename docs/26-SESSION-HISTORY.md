@@ -4470,3 +4470,36 @@ Left for the issuing session: the roster refresh (a release decision, and the 12
 upstream lists it); the `party_affiliations` defect; whether the Thanksgiving window should include
 the Wednesday before (2026-11-25 is next week); the P3 corrections entry; whether the pre-epoch
 records stay in the corpus.
+
+### Session 74-12 (2026-11-21, Fable): review and release of the S74-11 stack
+
+The builder's six commits (`0e9797f3` to `0025016b`) were read in full and released with one
+change and two ledger entries. Rulings:
+
+- **R-74.12, the Thanksgiving window opens on Wednesday.** `HOLIDAY_THANKSGIVING_LEAD_DAYS = 1`.
+  On the 2025 replay the Wednesday (61 statements, 37 percent of a 164 baseline) was forced and
+  its hold published Thursday and Friday a day late; with it inside the window nothing in the
+  week is forced. Closure evidence is still required, so a silent upstream holds as before.
+  One year of evidence, a calendar and not a threshold; revisit after 2026-11-30 with this
+  year's counts.
+- **R-74.13, delegates join the denominator.** One population on both sides of the fraction
+  (D 260, R 272 from the next assembled day). Removing them from numerators would have moved
+  phrase counts and the three-office floor. Logged as
+  `corr-2026-11-21-delegates-counted-above-not-below`.
+- **R-74.14, the minimum stratum size is released** with
+  `corr-2026-11-21-df-minimum-stratum-unread` (the builder's draft, dated). The measurement
+  covers the raw mirror through 2026-07-09 only; the live ledger reported 166 phrases dropped
+  as boilerplate on 2026-11-21 (`collect-latest.json`), and the first collect after release is
+  the production measurement of how many return.
+- **R-74.15, the roster refresh is its own release, not this one.** The July snapshot is two
+  Democratic and up to two Republican seats stale on 80 published days. The refresh goes out
+  the week of 2026-11-30 at a pinned revision, with `--split-party-affiliations` (a party
+  switch is effective on its date; K000401 is the one office affected), and with a ledger entry
+  naming the stale days. The 120th needs a second refresh once upstream lists it, about
+  2027-01-05; until then days from 2027-01-03 print bare counts.
+- **R-74.16, the 67 records dated 2025-01-01 and 01-02 stay.** Raw is append-only and the
+  ledger no longer lets them vote. Public surfaces already leave pre-epoch carriers
+  unattributed.
+
+Corrections ledger: 9 to 11 entries. Not done here: verdicts-120 (needs 120th bill files), F6
+(the legacy corpus-proxy caucus key), F8 (feed attestation for freshmen), F9 (task #403).
