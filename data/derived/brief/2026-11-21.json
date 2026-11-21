@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-11-21",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 0,
+      "status": "red",
+      "last_missed": "2026-11-20",
+      "note": "no publish for 2026-11-20 — Playbook P1"
+    },
+    {
+      "name": "spend",
+      "value": 0.1745,
+      "projected": 0.2493,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 19,
+      "note": "$0.1745 MTD, $0.25 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-11-19",
+      "scored_age_days": 2,
+      "parties": {
+        "D": {
+          "statements": 135,
+          "median": 76.0,
+          "share": 1.776,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 73,
+          "median": 41.0,
+          "share": 1.78,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "green",
+      "freshness": {
+        "age_hours": 3.54,
+        "day": "2026-11-21",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-11-19 (2d): D 135/76=178% R 73/41=178% of own same-weekday baseline (green >= 60%); upstream 3.5h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.4667,
+      "dropped": 7,
+      "offered": 15,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "7/15 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "streak",
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "the 120th congress",
+    "party": "D",
+    "day_peak": 13,
+    "day": "2026-11-18"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: streak, verifier_drop"
+}

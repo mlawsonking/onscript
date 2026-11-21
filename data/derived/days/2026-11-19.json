@@ -2,6 +2,54 @@
   "day": "2026-11-19",
   "top_synchronized": [
     {
+      "ngram": "statement after voting",
+      "slug": "ad5810750e301c01",
+      "n": 3,
+      "day_peak": 9,
+      "party": "D",
+      "counts": {
+        "D": 9,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 9,
+        "R": null,
+        "I": null
+      },
+      "family_count": 9,
+      "velocity": 3.23,
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "A000369",
+        "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
+        "tie": [
+          "B000740",
+          "B001291"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        8,
+        1,
+        1,
+        1,
+        1,
+        4,
+        1,
+        2,
+        1,
+        5,
+        3,
+        2,
+        1,
+        9
+      ]
+    },
+    {
       "ngram": "text of the legislation",
       "slug": "58c2749240464ef7",
       "n": 4,
@@ -44,54 +92,6 @@
         2,
         1,
         9
-      ]
-    },
-    {
-      "ngram": "statement after voting",
-      "slug": "ad5810750e301c01",
-      "n": 3,
-      "day_peak": 8,
-      "party": "D",
-      "counts": {
-        "D": 8,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 8,
-        "R": null,
-        "I": null
-      },
-      "family_count": 8,
-      "velocity": 2.87,
-      "first_seen": {
-        "date": "2025-01-03",
-        "bioguide": "A000369",
-        "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
-        "tie": [
-          "B000740",
-          "B001291"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 0.988,
-      "series": [
-        8,
-        1,
-        1,
-        1,
-        1,
-        4,
-        1,
-        2,
-        1,
-        5,
-        3,
-        2,
-        1,
-        8
       ]
     },
     {
@@ -336,7 +336,7 @@
         "I": null
       },
       "family_count": 7,
-      "velocity": 2.28,
+      "velocity": 2.23,
       "first_seen": {
         "date": "2025-01-15",
         "bioguide": "D000530",
@@ -360,8 +360,53 @@
         1,
         2,
         3,
-        4,
+        5,
         7
+      ]
+    },
+    {
+      "ngram": "statement after voting against",
+      "slug": "591ce8e95d2d5210",
+      "n": 4,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.36,
+      "first_seen": {
+        "date": "2025-01-10",
+        "bioguide": "C001117",
+        "statement": "sha256:5ec9aa17d10ace75c8276be2549b24fcf57faaa2cf331be6dee044abef023271",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.994,
+      "series": [
+        6,
+        1,
+        1,
+        1,
+        1,
+        5,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        6
       ]
     },
     {
@@ -406,6 +451,53 @@
         2,
         1,
         1,
+        6
+      ]
+    },
+    {
+      "ngram": "full text of the bill",
+      "slug": "b40273a0c687b8c0",
+      "n": 5,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 2.62,
+      "first_seen": {
+        "date": "2025-01-06",
+        "bioguide": "C001121",
+        "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+        "tie": [
+          "R000614"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "series": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        4,
+        1,
+        6,
+        2,
+        6,
+        3,
         6
       ]
     },
@@ -496,6 +588,51 @@
         1,
         1,
         1,
+        6
+      ]
+    },
+    {
+      "ngram": "war with iran",
+      "slug": "b1a3e4655dabde0b",
+      "n": 3,
+      "day_peak": 6,
+      "party": "D",
+      "counts": {
+        "D": 6,
+        "R": 0,
+        "I": 0
+      },
+      "family_counts": {
+        "D": 6,
+        "R": null,
+        "I": null
+      },
+      "family_count": 6,
+      "velocity": 3.0,
+      "first_seen": {
+        "date": "2025-05-06",
+        "bioguide": "K000384",
+        "statement": "sha256:807f53162a9deef18208b806efa24ad7a0eca3a22e99d338085b78690707f3f6",
+        "tie": [],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.988,
+      "series": [
+        4,
+        3,
+        1,
+        1,
+        2,
+        5,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
         6
       ]
     },
@@ -755,117 +892,6 @@
       "series": [
         5
       ]
-    },
-    {
-      "ngram": "kick an estimated 6 3 million",
-      "slug": "7476852b482efd3c",
-      "n": 6,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 5,
-        "R": null,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 5.0,
-      "first_seen": {
-        "date": "2026-11-19",
-        "bioguide": "A000370",
-        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
-        "tie": [
-          "C001110",
-          "P000597",
-          "T000474",
-          "T000491"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        5
-      ]
-    },
-    {
-      "ngram": "americans primarily older or disabled beneficiaries",
-      "slug": "a4679af3252a2f75",
-      "n": 6,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 5,
-        "R": null,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 5.0,
-      "first_seen": {
-        "date": "2026-11-19",
-        "bioguide": "A000370",
-        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
-        "tie": [
-          "C001110",
-          "P000597",
-          "T000474",
-          "T000491"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        5
-      ]
-    },
-    {
-      "ngram": "million americans primarily older or disabled",
-      "slug": "23922e46cd136716",
-      "n": 6,
-      "day_peak": 5,
-      "party": "D",
-      "counts": {
-        "D": 5,
-        "R": 0,
-        "I": 0
-      },
-      "family_counts": {
-        "D": 5,
-        "R": null,
-        "I": null
-      },
-      "family_count": 5,
-      "velocity": 5.0,
-      "first_seen": {
-        "date": "2026-11-19",
-        "bioguide": "A000370",
-        "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
-        "tie": [
-          "C001110",
-          "P000597",
-          "T000474",
-          "T000491"
-        ],
-        "precision": "day",
-        "lane": 1,
-        "corpus_start": "2025-01-01"
-      },
-      "df_weight": 1.0,
-      "series": [
-        5
-      ]
     }
   ],
   "legacy_unvalidated_metrics": {
@@ -886,5 +912,5153 @@
       }
     }
   },
-  "daily_lines": null
+  "daily_lines": {
+    "D": {
+      "schema_version": 2,
+      "day": "2026-11-19",
+      "party": "D",
+      "composite": "Today 135 of us released statements. 5 of us carried \"Brooke Rollins opposing a new\". 4 of us carried \"on the House floor\". Our most synchronized phrase, used by 9 of us: statement after voting.",
+      "measurement_lead": "Measurement: 135 publications were observed for the Democratic party on 2026-11-19.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "D",
+        "day": "2026-11-19",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "1b0b217bedb2c75cde1c7ac2add3b06f7b0a8ad60bdd686689064d28a716e53b",
+        "claim_ids": [
+          "2026-11-19-D-01",
+          "2026-11-19-D-02"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 135 of us released statements. 5 of us carried \"Brooke Rollins opposing a new\". 4 of us carried \"on the House floor\". Our most synchronized phrase, used by 9 of us: statement after voting.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-19-D-01"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-11-19-D-02"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "ab8214c1bdb19ce6c8e28110a7ec49aa25498247388d80ffa69476988eceeec6",
+        "response_sha256": "cc7b2863c0f4f345d8595fb89de7212b3950a612b832aa9b61b174934e6aaf6a",
+        "model_response_sha256": "bd62c4ddbbb65735cdd95ff6fb8dda2a47488ba7550961376937ecbe9afa0d01"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-19-D-01"
+          ],
+          "claim_ids": [
+            "2026-11-19-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-11-19-D-02"
+          ],
+          "claim_ids": [
+            "2026-11-19-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-19-D-01"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-11-19-D-02"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "D",
+        "day": "2026-11-19",
+        "statements": 135,
+        "talking_points": [
+          {
+            "label": "brooke rollins opposing a new",
+            "members": 5,
+            "quote": "Brooke Rollins opposing a new",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "on the house floor",
+            "members": 4,
+            "quote": "on the House floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-D-02",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 6,
+              "families": 6,
+              "support_units": 4
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "statement after voting",
+          "members": 9,
+          "family_count": 9,
+          "first_sayer": "Mark E. Amodei",
+          "first_sayer_party": "R",
+          "first_sayer_state": "NV"
+        },
+        "selected_claims": [
+          {
+            "label": "brooke rollins opposing a new",
+            "members": 5,
+            "quote": "Brooke Rollins opposing a new",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-D-01",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "on the house floor",
+            "members": 4,
+            "quote": "on the House floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-D-02",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 4,
+              "publications": 6,
+              "families": 6,
+              "support_units": 4
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 3,
+          "unknown": 1,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 1,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-19-D-01",
+          "2026-11-19-D-02"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 4
+      },
+      "usage": {
+        "tokens_in": 2914,
+        "tokens_out": 118,
+        "model": "P2:deterministic"
+      }
+    },
+    "R": {
+      "schema_version": 2,
+      "day": "2026-11-19",
+      "party": "R",
+      "composite": "Today 73 of us released statements. 5 of us carried \"the Bipartisan American Affordability\". 3 of us carried \"on the Senate floor\". Our most synchronized phrase, used by 7 of us: the federal permitting.",
+      "measurement_lead": "Measurement: 73 publications were observed for the Republican party on 2026-11-19.",
+      "composite_state": "deterministic_fallback",
+      "structured_request": {
+        "method": "structured-composite-v1",
+        "party": "R",
+        "day": "2026-11-19",
+        "prompt": {
+          "id": "P2",
+          "version": "1.3",
+          "sha256": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7"
+        },
+        "stats_sha256": "8c29e63aaaa67bd64b933a2534b946ac75507ae9a1c94b76ef1ee510a547aab0",
+        "claim_ids": [
+          "2026-11-19-R-00",
+          "2026-11-19-R-03"
+        ]
+      },
+      "structured_output": {
+        "composite": "Today 73 of us released statements. 5 of us carried \"the Bipartisan American Affordability\". 3 of us carried \"on the Senate floor\". Our most synchronized phrase, used by 7 of us: the federal permitting.",
+        "sentence_claims": [
+          {
+            "sentence_idx": 0,
+            "claim_ids": []
+          },
+          {
+            "sentence_idx": 1,
+            "claim_ids": [
+              "2026-11-19-R-00"
+            ]
+          },
+          {
+            "sentence_idx": 2,
+            "claim_ids": [
+              "2026-11-19-R-03"
+            ]
+          },
+          {
+            "sentence_idx": 3,
+            "claim_ids": []
+          }
+        ]
+      },
+      "generation_hashes": {
+        "method": "structured-composite-v1",
+        "request_sha256": "aa5ff769e92bae2bb5927fb1647d08d044207c10dafa57b27b43b6a66779c8eb",
+        "response_sha256": "ad1c42f51352e060780d957f6e1d930710ac19b3626ed97a79ec4bb3160ab109",
+        "model_response_sha256": "78f8d48e039b3a66a7497728fb8989554ece41d0d1ad8c13724c85bcab5a9155"
+      },
+      "quiet": false,
+      "fallback": false,
+      "sentence_receipts": [
+        {
+          "sentence_idx": 0,
+          "talking_points": [],
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "talking_points": [
+            "2026-11-19-R-00"
+          ],
+          "claim_ids": [
+            "2026-11-19-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "talking_points": [
+            "2026-11-19-R-03"
+          ],
+          "claim_ids": [
+            "2026-11-19-R-03"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "talking_points": [],
+          "claim_ids": []
+        }
+      ],
+      "sentence_claims": [
+        {
+          "sentence_idx": 0,
+          "claim_ids": []
+        },
+        {
+          "sentence_idx": 1,
+          "claim_ids": [
+            "2026-11-19-R-00"
+          ]
+        },
+        {
+          "sentence_idx": 2,
+          "claim_ids": [
+            "2026-11-19-R-03"
+          ]
+        },
+        {
+          "sentence_idx": 3,
+          "claim_ids": []
+        }
+      ],
+      "model": "P2:deterministic",
+      "generator": "deterministic",
+      "prompt_version": "1.3",
+      "prompt_sha": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "stats": {
+        "schema_version": 2,
+        "party": "R",
+        "day": "2026-11-19",
+        "statements": 73,
+        "talking_points": [
+          {
+            "label": "the bipartisan american affordability",
+            "members": 5,
+            "quote": "the Bipartisan American Affordability",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "on the senate floor",
+            "members": 3,
+            "quote": "on the Senate floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-R-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 4,
+              "families": 4,
+              "support_units": 3
+            }
+          }
+        ],
+        "top_phrase": {
+          "text": "the federal permitting",
+          "members": 7,
+          "family_count": 7,
+          "first_sayer": "John Hoeven",
+          "first_sayer_party": "R",
+          "first_sayer_state": "ND"
+        },
+        "selected_claims": [
+          {
+            "label": "the bipartisan american affordability",
+            "members": 5,
+            "quote": "the Bipartisan American Affordability",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-R-00",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 5,
+              "publications": 5,
+              "families": 5,
+              "support_units": 5
+            }
+          },
+          {
+            "label": "on the senate floor",
+            "members": 3,
+            "quote": "on the Senate floor",
+            "topics": [
+              "other"
+            ],
+            "claim_id": "2026-11-19-R-03",
+            "claim_type": "phrase_claim",
+            "object_type": "phrase_claim",
+            "surface_class": "message",
+            "surface_eligible": true,
+            "surface_classifier": {
+              "name": "surface-eligibility-v3",
+              "method": "deterministic",
+              "rule": "affirmative-deterministic-floor"
+            },
+            "topic_provenance": [
+              {
+                "topic_id": "other",
+                "classifier": {
+                  "name": "taxonomy-seed-match-v1",
+                  "method": "deterministic"
+                },
+                "epistemic_label": "classifier output, not an observed fact"
+              }
+            ],
+            "counts": {
+              "offices": 3,
+              "publications": 4,
+              "families": 4,
+              "support_units": 3
+            }
+          }
+        ],
+        "shared_nomenclature": [],
+        "surface_class_counts": {
+          "message": 3,
+          "unknown": 0,
+          "nomenclature": 0,
+          "procedural": 0,
+          "biographical": 0,
+          "private": 0
+        },
+        "eligibility_withheld_count": 0,
+        "top_phrase_classification": {
+          "surface_class": "message",
+          "surface_eligible": true,
+          "classifier": {
+            "name": "surface-eligibility-v3",
+            "method": "deterministic",
+            "rule": "affirmative-deterministic-floor"
+          }
+        },
+        "claim_ids": [
+          "2026-11-19-R-00",
+          "2026-11-19-R-03"
+        ],
+        "sync_min": 3
+      },
+      "verifier": {
+        "checked": true,
+        "passed": true,
+        "reasons": [],
+        "talking_points_published": 3
+      },
+      "usage": {
+        "tokens_in": 2913,
+        "tokens_out": 114,
+        "model": "P2:deterministic"
+      }
+    }
+  },
+  "schema_version": 2,
+  "talking_points": {
+    "D": [
+      {
+        "id": "2026-11-19-D-00",
+        "party": "D",
+        "day": "2026-11-19",
+        "label": "the bipartisan american affordability",
+        "member_count": 9,
+        "statements": [
+          "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+          "sha256:1e5003d52b404a75e4022f150666b1f07df07a1270cb19ca6b1b9f1623b54297",
+          "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+          "sha256:3e8705c24ea5fa75e042e2a792ad6b1feea56116c5f61c2224355f52b7e2760e",
+          "sha256:4fa3699a30ef0fb9d924fa7a6befa5464b8c5daf12713f8a6fb83a23d80470a1",
+          "sha256:5336ec515acf712b70fd934d201743da05c1f28d5df613d4fa6c5c6066494c27",
+          "sha256:5792f67d74372ad413346d7a4ef72a773e8829333a2ab5308424675d105860e0",
+          "sha256:729fc07c41b54a01a2196ef0d83628d4b9d92fabacdef4dd535afe77d5f24725",
+          "sha256:786737bc34b0ed2118465cd006c6fdf82cc172a855c0aad5a38fbee8f204c6c7"
+        ],
+        "fragments": [
+          {
+            "text": "statement after the senate passed the bipartisan american affordability",
+            "statement": "sha256:1e5003d52b404a75e4022f150666b1f07df07a1270cb19ca6b1b9f1623b54297"
+          },
+          {
+            "text": "statement after the senate passed the bipartisan american affordability",
+            "statement": "sha256:5336ec515acf712b70fd934d201743da05c1f28d5df613d4fa6c5c6066494c27"
+          },
+          {
+            "text": "voting to pass the bipartisan american affordability and",
+            "statement": "sha256:729fc07c41b54a01a2196ef0d83628d4b9d92fabacdef4dd535afe77d5f24725"
+          },
+          {
+            "text": "after the senate passed the bipartisan american affordability",
+            "statement": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f"
+          },
+          {
+            "text": "statement after voting against the bipartisan american affordability",
+            "statement": "sha256:3e8705c24ea5fa75e042e2a792ad6b1feea56116c5f61c2224355f52b7e2760e"
+          },
+          {
+            "text": "senate passed the bipartisan american affordability",
+            "statement": "sha256:786737bc34b0ed2118465cd006c6fdf82cc172a855c0aad5a38fbee8f204c6c7"
+          },
+          {
+            "text": "statement after voting against the bipartisan american affordability",
+            "statement": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5"
+          },
+          {
+            "text": "after the senate passed the bipartisan american affordability",
+            "statement": "sha256:5792f67d74372ad413346d7a4ef72a773e8829333a2ab5308424675d105860e0"
+          },
+          {
+            "text": "statement after voting against the bipartisan american affordability",
+            "statement": "sha256:4fa3699a30ef0fb9d924fa7a6befa5464b8c5daf12713f8a6fb83a23d80470a1"
+          }
+        ],
+        "topics": [
+          "other",
+          "elections_democracy",
+          "tech_ai"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-19-D-00",
+        "support_phrase": {
+          "normalized": "the bipartisan american affordability",
+          "text": "the Bipartisan American Affordability",
+          "occurrence_id": "occ:96660407c842e9ea8d42252c"
+        },
+        "display_quote": "the Bipartisan American Affordability",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:96660407c842e9ea8d42252c",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+            "publication_id": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+            "office_id": "H001046",
+            "family_id": "dfam:f9ea32666fb89f05227955b4",
+            "family_revision": "dfrev:b6eac8b933b1981e9fc0630a",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 183,
+            "end_char": 220,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 78,
+            "sentence_end_char": 365,
+            "sentence_offset_start": 105,
+            "sentence_offset_end": 142,
+            "clause_start_char": 125,
+            "clause_end_char": 241,
+            "clause_offset_start": 58,
+            "clause_offset_end": 95,
+            "adjacent_tokens_before": [
+              "statement",
+              "after",
+              "the",
+              "senate",
+              "passed"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "bipartisan"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7edc97160adb4f24662a19b4",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+            "publication_id": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+            "office_id": "H001046",
+            "family_id": "dfam:f9ea32666fb89f05227955b4",
+            "family_revision": "dfrev:b6eac8b933b1981e9fc0630a",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 912,
+            "end_char": 949,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 909,
+            "sentence_end_char": 1239,
+            "sentence_offset_start": 3,
+            "sentence_offset_end": 40,
+            "clause_start_char": 692,
+            "clause_end_char": 1015,
+            "clause_offset_start": 220,
+            "clause_offset_end": 257,
+            "adjacent_tokens_before": [
+              "we",
+              "can",
+              "act",
+              "right",
+              "now"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "will",
+              "get"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ecba78c9930962997c8f3fed",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+            "publication_id": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+            "office_id": "H001046",
+            "family_id": "dfam:f9ea32666fb89f05227955b4",
+            "family_revision": "dfrev:b6eac8b933b1981e9fc0630a",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 2097,
+            "end_char": 2134,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2038,
+            "sentence_end_char": 2160,
+            "sentence_offset_start": 59,
+            "sentence_offset_end": 96,
+            "clause_start_char": 2085,
+            "clause_end_char": 2196,
+            "clause_offset_start": 12,
+            "clause_offset_end": 49,
+            "adjacent_tokens_before": [
+              "and",
+              "natural",
+              "resources",
+              "committee",
+              "introduced"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "in",
+              "september"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d4b8c87d36216c6869478bdb",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:1e5003d52b404a75e4022f150666b1f07df07a1270cb19ca6b1b9f1623b54297",
+            "publication_id": "sha256:1e5003d52b404a75e4022f150666b1f07df07a1270cb19ca6b1b9f1623b54297",
+            "office_id": "C001088",
+            "family_id": "dfam:d58afba5ed038823b94bad50",
+            "family_revision": "dfrev:ce3110e458d692a57b6a5bf1",
+            "support_unit_id": "C001088",
+            "party": "D",
+            "start_char": 110,
+            "end_char": 147,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 52,
+            "sentence_end_char": 276,
+            "sentence_offset_start": 58,
+            "sentence_offset_end": 95,
+            "clause_start_char": 19,
+            "clause_end_char": 187,
+            "clause_offset_start": 91,
+            "clause_offset_end": 128,
+            "adjacent_tokens_before": [
+              "statement",
+              "after",
+              "the",
+              "senate",
+              "passed"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a357394a40a683e52ae1fb9a",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "publication_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "office_id": "P000145",
+            "family_id": "dfam:95ebf4f55ef554cf230066ec",
+            "family_revision": "dfrev:09748b46573f0f0c943c84fd",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 213,
+            "end_char": 250,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 62,
+            "sentence_end_char": 472,
+            "sentence_offset_start": 151,
+            "sentence_offset_end": 188,
+            "clause_start_char": 160,
+            "clause_end_char": 271,
+            "clause_offset_start": 53,
+            "clause_offset_end": 90,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "after",
+              "voting",
+              "against"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "negated"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:f51187d0f1cb1682154e50e0",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:3e8705c24ea5fa75e042e2a792ad6b1feea56116c5f61c2224355f52b7e2760e",
+            "publication_id": "sha256:3e8705c24ea5fa75e042e2a792ad6b1feea56116c5f61c2224355f52b7e2760e",
+            "office_id": "L000570",
+            "family_id": "dfam:99f71f5b479ccfa5870756cd",
+            "family_revision": "dfrev:88f9870611cfe63010930b37",
+            "support_unit_id": "L000570",
+            "party": "D",
+            "start_char": 107,
+            "end_char": 144,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 54,
+            "sentence_end_char": 342,
+            "sentence_offset_start": 53,
+            "sentence_offset_end": 90,
+            "clause_start_char": 19,
+            "clause_end_char": 173,
+            "clause_offset_start": 88,
+            "clause_offset_end": 125,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "after",
+              "voting",
+              "against"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "negated"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:250ea11c91399ad9514f0624",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:4fa3699a30ef0fb9d924fa7a6befa5464b8c5daf12713f8a6fb83a23d80470a1",
+            "publication_id": "sha256:4fa3699a30ef0fb9d924fa7a6befa5464b8c5daf12713f8a6fb83a23d80470a1",
+            "office_id": "S001203",
+            "family_id": "dfam:59a5e0918403dcdff301b711",
+            "family_revision": "dfrev:5fa00cdc0da5abb9822846f2",
+            "support_unit_id": "S001203",
+            "party": "D",
+            "start_char": 0,
+            "end_char": 37,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 173,
+            "sentence_offset_start": 0,
+            "sentence_offset_end": 37,
+            "clause_start_char": 0,
+            "clause_end_char": 93,
+            "clause_offset_start": 0,
+            "clause_offset_end": 37,
+            "adjacent_tokens_before": [],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "would"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9f8d74152a4ba82c93434471",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:4fa3699a30ef0fb9d924fa7a6befa5464b8c5daf12713f8a6fb83a23d80470a1",
+            "publication_id": "sha256:4fa3699a30ef0fb9d924fa7a6befa5464b8c5daf12713f8a6fb83a23d80470a1",
+            "office_id": "S001203",
+            "family_id": "dfam:59a5e0918403dcdff301b711",
+            "family_revision": "dfrev:5fa00cdc0da5abb9822846f2",
+            "support_unit_id": "S001203",
+            "party": "D",
+            "start_char": 264,
+            "end_char": 301,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 183,
+            "sentence_end_char": 374,
+            "sentence_offset_start": 81,
+            "sentence_offset_end": 118,
+            "clause_start_char": 179,
+            "clause_end_char": 322,
+            "clause_offset_start": 85,
+            "clause_offset_end": 122,
+            "adjacent_tokens_before": [
+              "following",
+              "statement",
+              "after",
+              "voting",
+              "against"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "which"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "negated"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:abee3a40bd0e6e2fefdb2a39",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:5336ec515acf712b70fd934d201743da05c1f28d5df613d4fa6c5c6066494c27",
+            "publication_id": "sha256:5336ec515acf712b70fd934d201743da05c1f28d5df613d4fa6c5c6066494c27",
+            "office_id": "C001113",
+            "family_id": "dfam:209bfd666c4d37660bbacc68",
+            "family_revision": "dfrev:274e5cdd1ada2ac8871657c7",
+            "support_unit_id": "C001113",
+            "party": "D",
+            "start_char": 251,
+            "end_char": 288,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 193,
+            "sentence_end_char": 309,
+            "sentence_offset_start": 58,
+            "sentence_offset_end": 95,
+            "clause_start_char": 148,
+            "clause_end_char": 701,
+            "clause_offset_start": 103,
+            "clause_offset_end": 140,
+            "adjacent_tokens_before": [
+              "statement",
+              "after",
+              "the",
+              "senate",
+              "passed"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "cortez"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:189b5a1e395046778b04ef3a",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:5336ec515acf712b70fd934d201743da05c1f28d5df613d4fa6c5c6066494c27",
+            "publication_id": "sha256:5336ec515acf712b70fd934d201743da05c1f28d5df613d4fa6c5c6066494c27",
+            "office_id": "C001113",
+            "family_id": "dfam:209bfd666c4d37660bbacc68",
+            "family_revision": "dfrev:274e5cdd1ada2ac8871657c7",
+            "support_unit_id": "C001113",
+            "party": "D",
+            "start_char": 1165,
+            "end_char": 1202,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1147,
+            "sentence_end_char": 1371,
+            "sentence_offset_start": 18,
+            "sentence_offset_end": 55,
+            "clause_start_char": 948,
+            "clause_end_char": 1468,
+            "clause_offset_start": 217,
+            "clause_offset_end": 254,
+            "adjacent_tokens_before": [
+              "these",
+              "goals",
+              "the",
+              "version",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "that",
+              "passed"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:9e07b6f5b214a305c783fd57",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:5792f67d74372ad413346d7a4ef72a773e8829333a2ab5308424675d105860e0",
+            "publication_id": "sha256:5792f67d74372ad413346d7a4ef72a773e8829333a2ab5308424675d105860e0",
+            "office_id": "P000608",
+            "family_id": "dfam:8bdbf8a98a10968bf3e2cee6",
+            "family_revision": "dfrev:922ec5423ac99bec77c26554",
+            "support_unit_id": "P000608",
+            "party": "D",
+            "start_char": 124,
+            "end_char": 161,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 30,
+            "sentence_end_char": 182,
+            "sentence_offset_start": 94,
+            "sentence_offset_end": 131,
+            "clause_start_char": 25,
+            "clause_end_char": 273,
+            "clause_offset_start": 99,
+            "clause_offset_end": 136,
+            "adjacent_tokens_before": [
+              "statement",
+              "after",
+              "the",
+              "senate",
+              "passed"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "central"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:e2831195c3245d6230e9eb4d",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:729fc07c41b54a01a2196ef0d83628d4b9d92fabacdef4dd535afe77d5f24725",
+            "publication_id": "sha256:729fc07c41b54a01a2196ef0d83628d4b9d92fabacdef4dd535afe77d5f24725",
+            "office_id": "H000273",
+            "family_id": "dfam:b6bba9d0f04953f3ad6a3cf6",
+            "family_revision": "dfrev:095cb07067c6ddbb7eddb9e8",
+            "support_unit_id": "H000273",
+            "party": "D",
+            "start_char": 170,
+            "end_char": 207,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 89,
+            "sentence_end_char": 220,
+            "sentence_offset_start": 81,
+            "sentence_offset_end": 118,
+            "clause_start_char": 84,
+            "clause_end_char": 485,
+            "clause_offset_start": 86,
+            "clause_offset_end": 123,
+            "adjacent_tokens_before": [
+              "statement",
+              "after",
+              "voting",
+              "to",
+              "pass"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "hickenlooper",
+              "has"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:48524c5a90b05069d7dfaf47",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:729fc07c41b54a01a2196ef0d83628d4b9d92fabacdef4dd535afe77d5f24725",
+            "publication_id": "sha256:729fc07c41b54a01a2196ef0d83628d4b9d92fabacdef4dd535afe77d5f24725",
+            "office_id": "H000273",
+            "family_id": "dfam:b6bba9d0f04953f3ad6a3cf6",
+            "family_revision": "dfrev:095cb07067c6ddbb7eddb9e8",
+            "support_unit_id": "H000273",
+            "party": "D",
+            "start_char": 4051,
+            "end_char": 4088,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 4023,
+            "sentence_end_char": 4149,
+            "sentence_offset_start": 28,
+            "sentence_offset_end": 65,
+            "clause_start_char": 3927,
+            "clause_end_char": 4101,
+            "clause_offset_start": 124,
+            "clause_offset_end": 161,
+            "adjacent_tokens_before": [
+              "done",
+              "the",
+              "senate",
+              "just",
+              "introduced"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "and",
+              "there"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:95dc3956696bbd0010628a43",
+            "claim_id": "2026-11-19-D-00",
+            "statement_id": "sha256:786737bc34b0ed2118465cd006c6fdf82cc172a855c0aad5a38fbee8f204c6c7",
+            "publication_id": "sha256:786737bc34b0ed2118465cd006c6fdf82cc172a855c0aad5a38fbee8f204c6c7",
+            "office_id": "M000133",
+            "family_id": "dfam:99c20f010e95d0c2f5a92dfb",
+            "family_revision": "dfrev:4c25837649424478949933d9",
+            "support_unit_id": "M000133",
+            "party": "D",
+            "start_char": 185,
+            "end_char": 222,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 170,
+            "sentence_end_char": 251,
+            "sentence_offset_start": 15,
+            "sentence_offset_end": 52,
+            "clause_start_char": 122,
+            "clause_end_char": 344,
+            "clause_offset_start": 63,
+            "clause_offset_end": 100,
+            "adjacent_tokens_before": [
+              "the",
+              "u",
+              "s",
+              "senate",
+              "passed"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "of"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 9,
+          "publications": 9,
+          "families": 9,
+          "support_units": 9
+        },
+        "office_ids": [
+          "C001088",
+          "C001113",
+          "H000273",
+          "H001046",
+          "L000570",
+          "M000133",
+          "P000145",
+          "P000608",
+          "S001203"
+        ],
+        "publication_ids": [
+          "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+          "sha256:1e5003d52b404a75e4022f150666b1f07df07a1270cb19ca6b1b9f1623b54297",
+          "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+          "sha256:3e8705c24ea5fa75e042e2a792ad6b1feea56116c5f61c2224355f52b7e2760e",
+          "sha256:4fa3699a30ef0fb9d924fa7a6befa5464b8c5daf12713f8a6fb83a23d80470a1",
+          "sha256:5336ec515acf712b70fd934d201743da05c1f28d5df613d4fa6c5c6066494c27",
+          "sha256:5792f67d74372ad413346d7a4ef72a773e8829333a2ab5308424675d105860e0",
+          "sha256:729fc07c41b54a01a2196ef0d83628d4b9d92fabacdef4dd535afe77d5f24725",
+          "sha256:786737bc34b0ed2118465cd006c6fdf82cc172a855c0aad5a38fbee8f204c6c7"
+        ],
+        "family_ids": [
+          "dfam:209bfd666c4d37660bbacc68",
+          "dfam:59a5e0918403dcdff301b711",
+          "dfam:8bdbf8a98a10968bf3e2cee6",
+          "dfam:95ebf4f55ef554cf230066ec",
+          "dfam:99c20f010e95d0c2f5a92dfb",
+          "dfam:99f71f5b479ccfa5870756cd",
+          "dfam:b6bba9d0f04953f3ad6a3cf6",
+          "dfam:d58afba5ed038823b94bad50",
+          "dfam:f9ea32666fb89f05227955b4"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:209bfd666c4d37660bbacc68",
+            "family_revision": "dfrev:274e5cdd1ada2ac8871657c7"
+          },
+          {
+            "family_id": "dfam:59a5e0918403dcdff301b711",
+            "family_revision": "dfrev:5fa00cdc0da5abb9822846f2"
+          },
+          {
+            "family_id": "dfam:8bdbf8a98a10968bf3e2cee6",
+            "family_revision": "dfrev:922ec5423ac99bec77c26554"
+          },
+          {
+            "family_id": "dfam:95ebf4f55ef554cf230066ec",
+            "family_revision": "dfrev:09748b46573f0f0c943c84fd"
+          },
+          {
+            "family_id": "dfam:99c20f010e95d0c2f5a92dfb",
+            "family_revision": "dfrev:4c25837649424478949933d9"
+          },
+          {
+            "family_id": "dfam:99f71f5b479ccfa5870756cd",
+            "family_revision": "dfrev:88f9870611cfe63010930b37"
+          },
+          {
+            "family_id": "dfam:b6bba9d0f04953f3ad6a3cf6",
+            "family_revision": "dfrev:095cb07067c6ddbb7eddb9e8"
+          },
+          {
+            "family_id": "dfam:d58afba5ed038823b94bad50",
+            "family_revision": "dfrev:ce3110e458d692a57b6a5bf1"
+          },
+          {
+            "family_id": "dfam:f9ea32666fb89f05227955b4",
+            "family_revision": "dfrev:b6eac8b933b1981e9fc0630a"
+          }
+        ],
+        "support_unit_ids": [
+          "C001088",
+          "C001113",
+          "H000273",
+          "H001046",
+          "L000570",
+          "M000133",
+          "P000145",
+          "P000608",
+          "S001203"
+        ],
+        "citation_occurrence_ids": [
+          "occ:96660407c842e9ea8d42252c",
+          "occ:d4b8c87d36216c6869478bdb",
+          "occ:a357394a40a683e52ae1fb9a"
+        ],
+        "citations": [
+          {
+            "member": "Martin Heinrich",
+            "party": "D",
+            "state": "NM",
+            "date": "2026-11-19",
+            "url": "https://www.heinrich.senate.gov/newsroom/press-releases/heinrich-senate-passage-of-landmark-bipartisan-permitting-deal-will-lower-electricity-bills-hold-data-centers-accountable-create-over-one-hundred-thousand-jobs-reduce-carbon-emissions",
+            "quote": "after the senate passed the bipartisan american affordability",
+            "occurrence_id": "occ:96660407c842e9ea8d42252c",
+            "office_id": "H001046",
+            "publication_id": "sha256:07430d1c729a0161a70e063bd6c1e0687e18fe899b02ab32546fad46549dfb2f",
+            "family_id": "dfam:f9ea32666fb89f05227955b4",
+            "family_revision": "dfrev:b6eac8b933b1981e9fc0630a"
+          },
+          {
+            "member": "Christopher A. Coons",
+            "party": "D",
+            "state": "DE",
+            "date": "2026-11-19",
+            "url": "https://www.coons.senate.gov/news/press-releases/senator-coons-statement-on-final-passage-of-permitting-reform-bill/",
+            "quote": "statement after the senate passed the bipartisan american affordability",
+            "occurrence_id": "occ:d4b8c87d36216c6869478bdb",
+            "office_id": "C001088",
+            "publication_id": "sha256:1e5003d52b404a75e4022f150666b1f07df07a1270cb19ca6b1b9f1623b54297",
+            "family_id": "dfam:d58afba5ed038823b94bad50",
+            "family_revision": "dfrev:ce3110e458d692a57b6a5bf1"
+          },
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-19",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padilla-statement-on-vote-against-permitting-bill/",
+            "quote": "statement after voting against the bipartisan american affordability",
+            "occurrence_id": "occ:a357394a40a683e52ae1fb9a",
+            "office_id": "P000145",
+            "publication_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "family_id": "dfam:95ebf4f55ef554cf230066ec",
+            "family_revision": "dfrev:09748b46573f0f0c943c84fd"
+          }
+        ],
+        "surface_class": "unknown",
+        "surface_eligible": false,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "mixed-stance"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "elections_democracy",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "tech_ai",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-11-19-D-01",
+        "party": "D",
+        "day": "2026-11-19",
+        "label": "brooke rollins opposing a new",
+        "member_count": 5,
+        "statements": [
+          "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+          "sha256:265b6619ff116642ae2b4a89a24e8d6dda13eeaf80f25baa8743eb08d4b63092",
+          "sha256:35313e8ef408f65dc54f5f799a4eaab96a9034b172436d918ddcbd2edb5421c1",
+          "sha256:ee3e2e0d333177dd6256c597c07a098c5083b73c9d15640a377f45c67c810e03",
+          "sha256:f3966015e04b4a5387b1e9f0fc46bddec3de84d1ec6ba700f62f56218842b774"
+        ],
+        "fragments": [
+          {
+            "text": "brooke rollins opposing a new proposed rule that would kick",
+            "statement": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d"
+          },
+          {
+            "text": "brooke rollins opposing a new proposed rule that would kick",
+            "statement": "sha256:265b6619ff116642ae2b4a89a24e8d6dda13eeaf80f25baa8743eb08d4b63092"
+          },
+          {
+            "text": "brooke rollins opposing a new proposed rule that would kick",
+            "statement": "sha256:f3966015e04b4a5387b1e9f0fc46bddec3de84d1ec6ba700f62f56218842b774"
+          },
+          {
+            "text": "brooke rollins opposing a new proposed rule that would kick an",
+            "statement": "sha256:35313e8ef408f65dc54f5f799a4eaab96a9034b172436d918ddcbd2edb5421c1"
+          },
+          {
+            "text": "brooke rollins opposing a new proposed rule that would kick",
+            "statement": "sha256:ee3e2e0d333177dd6256c597c07a098c5083b73c9d15640a377f45c67c810e03"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-19-D-01",
+        "support_phrase": {
+          "normalized": "brooke rollins opposing a new",
+          "text": "Brooke Rollins opposing a new",
+          "occurrence_id": "occ:921bba9af2bda5adf403526f"
+        },
+        "display_quote": "Brooke Rollins opposing a new",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:921bba9af2bda5adf403526f",
+            "claim_id": "2026-11-19-D-01",
+            "statement_id": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+            "publication_id": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+            "office_id": "A000370",
+            "family_id": "dfam:7f6fe53149ab5a54df0cccb9",
+            "family_revision": "dfrev:16cc177ebfd97a3452d86cac",
+            "support_unit_id": "A000370",
+            "party": "D",
+            "start_char": 200,
+            "end_char": 229,
+            "surface_text": "Brooke Rollins opposing a new",
+            "normalized_phrase": "brooke rollins opposing a new",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 163,
+            "sentence_end_char": 274,
+            "sentence_offset_start": 37,
+            "sentence_offset_end": 66,
+            "clause_start_char": 69,
+            "clause_end_char": 294,
+            "clause_offset_start": 131,
+            "clause_offset_end": 160,
+            "adjacent_tokens_before": [
+              "s",
+              "department",
+              "of",
+              "agriculture",
+              "secretary"
+            ],
+            "adjacent_tokens_after": [
+              "proposed",
+              "rule",
+              "that",
+              "would",
+              "kick"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:55533e6dbd3a1d8eb22e8c82",
+            "claim_id": "2026-11-19-D-01",
+            "statement_id": "sha256:265b6619ff116642ae2b4a89a24e8d6dda13eeaf80f25baa8743eb08d4b63092",
+            "publication_id": "sha256:265b6619ff116642ae2b4a89a24e8d6dda13eeaf80f25baa8743eb08d4b63092",
+            "office_id": "C001110",
+            "family_id": "dfam:bc448534d6fa07db6f9b45a1",
+            "family_revision": "dfrev:0fb91c113a5b858429884291",
+            "support_unit_id": "C001110",
+            "party": "D",
+            "start_char": 108,
+            "end_char": 137,
+            "surface_text": "Brooke Rollins opposing a new",
+            "normalized_phrase": "brooke rollins opposing a new",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 71,
+            "sentence_end_char": 182,
+            "sentence_offset_start": 37,
+            "sentence_offset_end": 66,
+            "clause_start_char": 19,
+            "clause_end_char": 202,
+            "clause_offset_start": 89,
+            "clause_offset_end": 118,
+            "adjacent_tokens_before": [
+              "s",
+              "department",
+              "of",
+              "agriculture",
+              "secretary"
+            ],
+            "adjacent_tokens_after": [
+              "proposed",
+              "rule",
+              "that",
+              "would",
+              "kick"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:24bb22b7dc90e3eb4e9f6c5c",
+            "claim_id": "2026-11-19-D-01",
+            "statement_id": "sha256:35313e8ef408f65dc54f5f799a4eaab96a9034b172436d918ddcbd2edb5421c1",
+            "publication_id": "sha256:35313e8ef408f65dc54f5f799a4eaab96a9034b172436d918ddcbd2edb5421c1",
+            "office_id": "T000474",
+            "family_id": "dfam:7af2c894083cd663c037e239",
+            "family_revision": "dfrev:3a7d75f0e840a21f610e8727",
+            "support_unit_id": "T000474",
+            "party": "D",
+            "start_char": 113,
+            "end_char": 142,
+            "surface_text": "Brooke Rollins opposing a new",
+            "normalized_phrase": "brooke rollins opposing a new",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 76,
+            "sentence_end_char": 187,
+            "sentence_offset_start": 37,
+            "sentence_offset_end": 66,
+            "clause_start_char": 19,
+            "clause_end_char": 276,
+            "clause_offset_start": 94,
+            "clause_offset_end": 123,
+            "adjacent_tokens_before": [
+              "s",
+              "department",
+              "of",
+              "agriculture",
+              "secretary"
+            ],
+            "adjacent_tokens_after": [
+              "proposed",
+              "rule",
+              "that",
+              "would",
+              "kick"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:1c45e8ed7defe0eaf88750cb",
+            "claim_id": "2026-11-19-D-01",
+            "statement_id": "sha256:ee3e2e0d333177dd6256c597c07a098c5083b73c9d15640a377f45c67c810e03",
+            "publication_id": "sha256:ee3e2e0d333177dd6256c597c07a098c5083b73c9d15640a377f45c67c810e03",
+            "office_id": "T000491",
+            "family_id": "dfam:c44326863015a5cadb57f69d",
+            "family_revision": "dfrev:19c11d362b38ed67edec8f58",
+            "support_unit_id": "T000491",
+            "party": "D",
+            "start_char": 164,
+            "end_char": 193,
+            "surface_text": "Brooke Rollins opposing a new",
+            "normalized_phrase": "brooke rollins opposing a new",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 127,
+            "sentence_end_char": 238,
+            "sentence_offset_start": 37,
+            "sentence_offset_end": 66,
+            "clause_start_char": 64,
+            "clause_end_char": 258,
+            "clause_offset_start": 100,
+            "clause_offset_end": 129,
+            "adjacent_tokens_before": [
+              "s",
+              "department",
+              "of",
+              "agriculture",
+              "secretary"
+            ],
+            "adjacent_tokens_after": [
+              "proposed",
+              "rule",
+              "that",
+              "would",
+              "kick"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:3ca3fc915b479d5dd15401f2",
+            "claim_id": "2026-11-19-D-01",
+            "statement_id": "sha256:f3966015e04b4a5387b1e9f0fc46bddec3de84d1ec6ba700f62f56218842b774",
+            "publication_id": "sha256:f3966015e04b4a5387b1e9f0fc46bddec3de84d1ec6ba700f62f56218842b774",
+            "office_id": "P000597",
+            "family_id": "dfam:d3e64821f4db8343526e26b8",
+            "family_revision": "dfrev:6ba15202de10a945a38712c3",
+            "support_unit_id": "P000597",
+            "party": "D",
+            "start_char": 144,
+            "end_char": 173,
+            "surface_text": "Brooke Rollins opposing a new",
+            "normalized_phrase": "brooke rollins opposing a new",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 107,
+            "sentence_end_char": 218,
+            "sentence_offset_start": 37,
+            "sentence_offset_end": 66,
+            "clause_start_char": 85,
+            "clause_end_char": 238,
+            "clause_offset_start": 59,
+            "clause_offset_end": 88,
+            "adjacent_tokens_before": [
+              "s",
+              "department",
+              "of",
+              "agriculture",
+              "secretary"
+            ],
+            "adjacent_tokens_after": [
+              "proposed",
+              "rule",
+              "that",
+              "would",
+              "kick"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 5,
+          "publications": 5,
+          "families": 5,
+          "support_units": 5
+        },
+        "office_ids": [
+          "A000370",
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "publication_ids": [
+          "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+          "sha256:265b6619ff116642ae2b4a89a24e8d6dda13eeaf80f25baa8743eb08d4b63092",
+          "sha256:35313e8ef408f65dc54f5f799a4eaab96a9034b172436d918ddcbd2edb5421c1",
+          "sha256:ee3e2e0d333177dd6256c597c07a098c5083b73c9d15640a377f45c67c810e03",
+          "sha256:f3966015e04b4a5387b1e9f0fc46bddec3de84d1ec6ba700f62f56218842b774"
+        ],
+        "family_ids": [
+          "dfam:7af2c894083cd663c037e239",
+          "dfam:7f6fe53149ab5a54df0cccb9",
+          "dfam:bc448534d6fa07db6f9b45a1",
+          "dfam:c44326863015a5cadb57f69d",
+          "dfam:d3e64821f4db8343526e26b8"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:7af2c894083cd663c037e239",
+            "family_revision": "dfrev:3a7d75f0e840a21f610e8727"
+          },
+          {
+            "family_id": "dfam:7f6fe53149ab5a54df0cccb9",
+            "family_revision": "dfrev:16cc177ebfd97a3452d86cac"
+          },
+          {
+            "family_id": "dfam:bc448534d6fa07db6f9b45a1",
+            "family_revision": "dfrev:0fb91c113a5b858429884291"
+          },
+          {
+            "family_id": "dfam:c44326863015a5cadb57f69d",
+            "family_revision": "dfrev:19c11d362b38ed67edec8f58"
+          },
+          {
+            "family_id": "dfam:d3e64821f4db8343526e26b8",
+            "family_revision": "dfrev:6ba15202de10a945a38712c3"
+          }
+        ],
+        "support_unit_ids": [
+          "A000370",
+          "C001110",
+          "P000597",
+          "T000474",
+          "T000491"
+        ],
+        "citation_occurrence_ids": [
+          "occ:921bba9af2bda5adf403526f",
+          "occ:55533e6dbd3a1d8eb22e8c82",
+          "occ:24bb22b7dc90e3eb4e9f6c5c"
+        ],
+        "citations": [
+          {
+            "member": "Alma S. Adams",
+            "party": "D",
+            "state": "NC",
+            "date": "2026-11-19",
+            "url": "https://adams.house.gov/media-center/press-releases/rep-adams-opposes-usda-proposal-remove-6-million-americans-food",
+            "quote": "brooke rollins opposing a new proposed rule that would kick",
+            "occurrence_id": "occ:921bba9af2bda5adf403526f",
+            "office_id": "A000370",
+            "publication_id": "sha256:0660eaf2b0ca9d27ab4be7ea83e6016d951c046dc991d7bb0a690ab1e64a049d",
+            "family_id": "dfam:7f6fe53149ab5a54df0cccb9",
+            "family_revision": "dfrev:16cc177ebfd97a3452d86cac"
+          },
+          {
+            "member": "J. Luis Correa",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-19",
+            "url": "https://correa.house.gov/news/press-releases/correa-opposes-usda-effort-to-kick-6-million-americans-off-food-assistance",
+            "quote": "brooke rollins opposing a new proposed rule that would kick",
+            "occurrence_id": "occ:55533e6dbd3a1d8eb22e8c82",
+            "office_id": "C001110",
+            "publication_id": "sha256:265b6619ff116642ae2b4a89a24e8d6dda13eeaf80f25baa8743eb08d4b63092",
+            "family_id": "dfam:bc448534d6fa07db6f9b45a1",
+            "family_revision": "dfrev:0fb91c113a5b858429884291"
+          },
+          {
+            "member": "Norma J. Torres",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-19",
+            "url": "https://torres.house.gov/media-center/press-releases/congresswoman-norma-torres-opposes-usda-effort-to-kick-6-million-americans-off-food-assistance",
+            "quote": "brooke rollins opposing a new proposed rule that would kick an",
+            "occurrence_id": "occ:24bb22b7dc90e3eb4e9f6c5c",
+            "office_id": "T000474",
+            "publication_id": "sha256:35313e8ef408f65dc54f5f799a4eaab96a9034b172436d918ddcbd2edb5421c1",
+            "family_id": "dfam:7af2c894083cd663c037e239",
+            "family_revision": "dfrev:3a7d75f0e840a21f610e8727"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-11-19-D-02",
+        "party": "D",
+        "day": "2026-11-19",
+        "label": "on the house floor",
+        "member_count": 4,
+        "statements": [
+          "sha256:5253382f612d996b57179fe916818118f332cb0fe7431b665ca9343f05e78954",
+          "sha256:5e30d235a212e8544d8c1e0236023cd667a87a5267afcf0604cbd79b421b69a3",
+          "sha256:89fe4fe6e14ecb9d1c78c8bb9dce2d8fd88c8cd3c3efb0a9362e8071fc01011d",
+          "sha256:95e2b6f39ec7bf56c67d507b67c515d688acc8d15609e270f457ef6f2f35361e",
+          "sha256:a0ae9a1e4d3ef3c43084274edeb95f59bd4221359e9afaef75d848039f6e87c5",
+          "sha256:d1fe7ec1b19796620e8c395e6d7b20b5b4eaef8618c058bd7d636ca9ad12be65"
+        ],
+        "fragments": [
+          {
+            "text": "al green delivered remarks on the house floor",
+            "statement": "sha256:5253382f612d996b57179fe916818118f332cb0fe7431b665ca9343f05e78954"
+          },
+          {
+            "text": "closing remarks on the house floor ahead of his",
+            "statement": "sha256:d1fe7ec1b19796620e8c395e6d7b20b5b4eaef8618c058bd7d636ca9ad12be65"
+          },
+          {
+            "text": "nancy pelosi delivered remarks on the house floor honoring",
+            "statement": "sha256:5e30d235a212e8544d8c1e0236023cd667a87a5267afcf0604cbd79b421b69a3"
+          },
+          {
+            "text": "honor the life and legacy of louisa gag",
+            "statement": "sha256:a0ae9a1e4d3ef3c43084274edeb95f59bd4221359e9afaef75d848039f6e87c5"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-19-D-02",
+        "support_phrase": {
+          "normalized": "on the house floor",
+          "text": "on the House floor",
+          "occurrence_id": "occ:09a1913b29cfe2d8e626a5dd"
+        },
+        "display_quote": "on the House floor",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:09a1913b29cfe2d8e626a5dd",
+            "claim_id": "2026-11-19-D-02",
+            "statement_id": "sha256:5253382f612d996b57179fe916818118f332cb0fe7431b665ca9343f05e78954",
+            "publication_id": "sha256:5253382f612d996b57179fe916818118f332cb0fe7431b665ca9343f05e78954",
+            "office_id": "G000553",
+            "family_id": "dfam:2bcc42b42714070b30cf3ba7",
+            "family_revision": "dfrev:e500f6d7d7515242c23ea9a1",
+            "support_unit_id": "G000553",
+            "party": "D",
+            "start_char": 90,
+            "end_char": 108,
+            "surface_text": "on the House floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 121,
+            "sentence_offset_start": 90,
+            "sentence_offset_end": 108,
+            "clause_start_char": 50,
+            "clause_end_char": 159,
+            "clause_offset_start": 40,
+            "clause_offset_end": 58,
+            "adjacent_tokens_before": [
+              "congressman",
+              "al",
+              "green",
+              "delivered",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "honoring",
+              "rep",
+              "thomas",
+              "massie",
+              "r-ky"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:04d803cb2da3da00f86ee332",
+            "claim_id": "2026-11-19-D-02",
+            "statement_id": "sha256:5e30d235a212e8544d8c1e0236023cd667a87a5267afcf0604cbd79b421b69a3",
+            "publication_id": "sha256:5e30d235a212e8544d8c1e0236023cd667a87a5267afcf0604cbd79b421b69a3",
+            "office_id": "P000197",
+            "family_id": "dfam:61d44ea3c06eeb20d5f21cf5",
+            "family_revision": "dfrev:cda138be3318d5f10178e813",
+            "support_unit_id": "P000197",
+            "party": "D",
+            "start_char": 73,
+            "end_char": 91,
+            "surface_text": "on the House Floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 211,
+            "sentence_offset_start": 57,
+            "sentence_offset_end": 75,
+            "clause_start_char": 25,
+            "clause_end_char": 138,
+            "clause_offset_start": 48,
+            "clause_offset_end": 66,
+            "adjacent_tokens_before": [
+              "emerita",
+              "nancy",
+              "pelosi",
+              "delivered",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "honoring",
+              "the",
+              "life",
+              "and",
+              "legacy"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:aec8d9787541ced446f3810c",
+            "claim_id": "2026-11-19-D-02",
+            "statement_id": "sha256:89fe4fe6e14ecb9d1c78c8bb9dce2d8fd88c8cd3c3efb0a9362e8071fc01011d",
+            "publication_id": "sha256:89fe4fe6e14ecb9d1c78c8bb9dce2d8fd88c8cd3c3efb0a9362e8071fc01011d",
+            "office_id": "G000553",
+            "family_id": "dfam:a874c0412512e864501558ee",
+            "family_revision": "dfrev:0a5cd49d6738c4d37b0565f9",
+            "support_unit_id": "G000553",
+            "party": "D",
+            "start_char": 90,
+            "end_char": 108,
+            "surface_text": "on the House floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 121,
+            "sentence_offset_start": 90,
+            "sentence_offset_end": 108,
+            "clause_start_char": 50,
+            "clause_end_char": 387,
+            "clause_offset_start": 40,
+            "clause_offset_end": 58,
+            "adjacent_tokens_before": [
+              "congressman",
+              "al",
+              "green",
+              "delivered",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "honoring",
+              "rep",
+              "thomas",
+              "massie",
+              "r-ky"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:29332d2fafa42537c9953267",
+            "claim_id": "2026-11-19-D-02",
+            "statement_id": "sha256:95e2b6f39ec7bf56c67d507b67c515d688acc8d15609e270f457ef6f2f35361e",
+            "publication_id": "sha256:95e2b6f39ec7bf56c67d507b67c515d688acc8d15609e270f457ef6f2f35361e",
+            "office_id": "G000553",
+            "family_id": "dfam:4ce713bcace1132701a331ed",
+            "family_revision": "dfrev:34a6c2576d433eb031f4b6d8",
+            "support_unit_id": "G000553",
+            "party": "D",
+            "start_char": 90,
+            "end_char": 108,
+            "surface_text": "on the House floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 223,
+            "sentence_offset_start": 90,
+            "sentence_offset_end": 108,
+            "clause_start_char": 50,
+            "clause_end_char": 138,
+            "clause_offset_start": 40,
+            "clause_offset_end": 58,
+            "adjacent_tokens_before": [
+              "congressman",
+              "al",
+              "green",
+              "delivered",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "defending",
+              "impeachment",
+              "efforts",
+              "asserting",
+              "that"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:00425623b5eb428c36a4d4d1",
+            "claim_id": "2026-11-19-D-02",
+            "statement_id": "sha256:a0ae9a1e4d3ef3c43084274edeb95f59bd4221359e9afaef75d848039f6e87c5",
+            "publication_id": "sha256:a0ae9a1e4d3ef3c43084274edeb95f59bd4221359e9afaef75d848039f6e87c5",
+            "office_id": "P000617",
+            "family_id": "dfam:48e67f57b7e97d0a574f1964",
+            "family_revision": "dfrev:33b87a63b9bff6cd8a0e6ecc",
+            "support_unit_id": "P000617",
+            "party": "D",
+            "start_char": 149,
+            "end_char": 167,
+            "surface_text": "on the House floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 450,
+            "sentence_offset_start": 149,
+            "sentence_offset_end": 167,
+            "clause_start_char": 132,
+            "clause_end_char": 167,
+            "clause_offset_start": 17,
+            "clause_offset_end": 35,
+            "adjacent_tokens_before": [
+              "washington",
+              "today",
+              "during",
+              "a",
+              "speech"
+            ],
+            "adjacent_tokens_after": [
+              "congresswoman",
+              "ayanna",
+              "pressley",
+              "ma-07",
+              "chair"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:78999601d245f6741ca73016",
+            "claim_id": "2026-11-19-D-02",
+            "statement_id": "sha256:d1fe7ec1b19796620e8c395e6d7b20b5b4eaef8618c058bd7d636ca9ad12be65",
+            "publication_id": "sha256:d1fe7ec1b19796620e8c395e6d7b20b5b4eaef8618c058bd7d636ca9ad12be65",
+            "office_id": "H000874",
+            "family_id": "dfam:bd3096ec5352028dc70635fb",
+            "family_revision": "dfrev:41a8f36a2e09184547e13c3a",
+            "support_unit_id": "H000874",
+            "party": "D",
+            "start_char": 110,
+            "end_char": 128,
+            "surface_text": "on the House Floor",
+            "normalized_phrase": "on the house floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 44,
+            "sentence_end_char": 185,
+            "sentence_offset_start": 66,
+            "sentence_offset_end": 84,
+            "clause_start_char": 23,
+            "clause_end_char": 245,
+            "clause_offset_start": 87,
+            "clause_offset_end": 105,
+            "adjacent_tokens_before": [
+              "first",
+              "installment",
+              "of",
+              "closing",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "ahead",
+              "of",
+              "his",
+              "retirement",
+              "at"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 4,
+          "publications": 6,
+          "families": 6,
+          "support_units": 4
+        },
+        "office_ids": [
+          "G000553",
+          "H000874",
+          "P000197",
+          "P000617"
+        ],
+        "publication_ids": [
+          "sha256:5253382f612d996b57179fe916818118f332cb0fe7431b665ca9343f05e78954",
+          "sha256:5e30d235a212e8544d8c1e0236023cd667a87a5267afcf0604cbd79b421b69a3",
+          "sha256:89fe4fe6e14ecb9d1c78c8bb9dce2d8fd88c8cd3c3efb0a9362e8071fc01011d",
+          "sha256:95e2b6f39ec7bf56c67d507b67c515d688acc8d15609e270f457ef6f2f35361e",
+          "sha256:a0ae9a1e4d3ef3c43084274edeb95f59bd4221359e9afaef75d848039f6e87c5",
+          "sha256:d1fe7ec1b19796620e8c395e6d7b20b5b4eaef8618c058bd7d636ca9ad12be65"
+        ],
+        "family_ids": [
+          "dfam:2bcc42b42714070b30cf3ba7",
+          "dfam:48e67f57b7e97d0a574f1964",
+          "dfam:4ce713bcace1132701a331ed",
+          "dfam:61d44ea3c06eeb20d5f21cf5",
+          "dfam:a874c0412512e864501558ee",
+          "dfam:bd3096ec5352028dc70635fb"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:2bcc42b42714070b30cf3ba7",
+            "family_revision": "dfrev:e500f6d7d7515242c23ea9a1"
+          },
+          {
+            "family_id": "dfam:48e67f57b7e97d0a574f1964",
+            "family_revision": "dfrev:33b87a63b9bff6cd8a0e6ecc"
+          },
+          {
+            "family_id": "dfam:4ce713bcace1132701a331ed",
+            "family_revision": "dfrev:34a6c2576d433eb031f4b6d8"
+          },
+          {
+            "family_id": "dfam:61d44ea3c06eeb20d5f21cf5",
+            "family_revision": "dfrev:cda138be3318d5f10178e813"
+          },
+          {
+            "family_id": "dfam:a874c0412512e864501558ee",
+            "family_revision": "dfrev:0a5cd49d6738c4d37b0565f9"
+          },
+          {
+            "family_id": "dfam:bd3096ec5352028dc70635fb",
+            "family_revision": "dfrev:41a8f36a2e09184547e13c3a"
+          }
+        ],
+        "support_unit_ids": [
+          "G000553",
+          "H000874",
+          "P000197",
+          "P000617"
+        ],
+        "citation_occurrence_ids": [
+          "occ:09a1913b29cfe2d8e626a5dd",
+          "occ:04d803cb2da3da00f86ee332",
+          "occ:78999601d245f6741ca73016"
+        ],
+        "citations": [
+          {
+            "member": "Al Green",
+            "party": "D",
+            "state": "TX",
+            "date": "2026-11-19",
+            "url": "https://algreen.house.gov/media/press-releases/rep-al-green-honors-rep-thomas-massies-courage-continues-countdown-president",
+            "quote": "al green delivered remarks on the house floor",
+            "occurrence_id": "occ:09a1913b29cfe2d8e626a5dd",
+            "office_id": "G000553",
+            "publication_id": "sha256:5253382f612d996b57179fe916818118f332cb0fe7431b665ca9343f05e78954",
+            "family_id": "dfam:2bcc42b42714070b30cf3ba7",
+            "family_revision": "dfrev:e500f6d7d7515242c23ea9a1"
+          },
+          {
+            "member": "Nancy Pelosi",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-19",
+            "url": "https://pelosi.house.gov/news/press-releases/pelosi-pays-tribute-gloria-steinem-house-floor-she-was-star",
+            "quote": "nancy pelosi delivered remarks on the house floor honoring",
+            "occurrence_id": "occ:04d803cb2da3da00f86ee332",
+            "office_id": "P000197",
+            "publication_id": "sha256:5e30d235a212e8544d8c1e0236023cd667a87a5267afcf0604cbd79b421b69a3",
+            "family_id": "dfam:61d44ea3c06eeb20d5f21cf5",
+            "family_revision": "dfrev:cda138be3318d5f10178e813"
+          },
+          {
+            "member": "Steny H. Hoyer",
+            "party": "D",
+            "state": "MD",
+            "date": "2026-11-19",
+            "url": "https://hoyer.house.gov/media/press-releases/hoyer-forging-consensus-requires-compromise-and-its-leadership-lead-example",
+            "quote": "closing remarks on the house floor ahead of his",
+            "occurrence_id": "occ:78999601d245f6741ca73016",
+            "office_id": "H000874",
+            "publication_id": "sha256:d1fe7ec1b19796620e8c395e6d7b20b5b4eaef8618c058bd7d636ca9ad12be65",
+            "family_id": "dfam:bd3096ec5352028dc70635fb",
+            "family_revision": "dfrev:41a8f36a2e09184547e13c3a"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-11-19-D-03",
+        "party": "D",
+        "day": "2026-11-19",
+        "label": "energy and natural resources",
+        "member_count": 3,
+        "statements": [
+          "sha256:0969f8f013af36c16c7305eb02100d36dbf6d2a00a4b8236529318ef00d46ab3",
+          "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7",
+          "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5"
+        ],
+        "fragments": [
+          {
+            "text": "senate energy and natural resources committee hearing to",
+            "statement": "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7"
+          },
+          {
+            "text": "on energy and natural resources passed the bipartisan",
+            "statement": "sha256:0969f8f013af36c16c7305eb02100d36dbf6d2a00a4b8236529318ef00d46ab3"
+          },
+          {
+            "text": "energy and natural resources and environment and public",
+            "statement": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5"
+          }
+        ],
+        "topics": [
+          "energy_climate",
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-19-D-03",
+        "support_phrase": {
+          "normalized": "energy and natural resources",
+          "text": "Energy and Natural Resources",
+          "occurrence_id": "occ:652d9c433995b0dfbb938f6f"
+        },
+        "display_quote": "Energy and Natural Resources",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:652d9c433995b0dfbb938f6f",
+            "claim_id": "2026-11-19-D-03",
+            "statement_id": "sha256:0969f8f013af36c16c7305eb02100d36dbf6d2a00a4b8236529318ef00d46ab3",
+            "publication_id": "sha256:0969f8f013af36c16c7305eb02100d36dbf6d2a00a4b8236529318ef00d46ab3",
+            "office_id": "O000174",
+            "family_id": "dfam:0a3c54f9fee9988c0eb619d6",
+            "family_revision": "dfrev:5d49ecd7c5ca20b109b30825",
+            "support_unit_id": "O000174",
+            "party": "D",
+            "start_char": 1196,
+            "end_char": 1224,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1175,
+            "sentence_end_char": 1343,
+            "sentence_offset_start": 21,
+            "sentence_offset_end": 49,
+            "clause_start_char": 1166,
+            "clause_end_char": 1246,
+            "clause_offset_start": 30,
+            "clause_offset_end": 58,
+            "adjacent_tokens_before": [
+              "u",
+              "s",
+              "senate",
+              "committee",
+              "on"
+            ],
+            "adjacent_tokens_after": [
+              "passed",
+              "the",
+              "bipartisan",
+              "bicameral",
+              "bill"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d4f7fa55cbd56db0084748b7",
+            "claim_id": "2026-11-19-D-03",
+            "statement_id": "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7",
+            "publication_id": "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7",
+            "office_id": "H001046",
+            "family_id": "dfam:3033e3c5a3a67daf21825fbd",
+            "family_revision": "dfrev:94965c5b5aeb9769198ac870",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 34,
+            "end_char": 62,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 26,
+            "sentence_end_char": 118,
+            "sentence_offset_start": 8,
+            "sentence_offset_end": 36,
+            "clause_start_char": 0,
+            "clause_end_char": 115,
+            "clause_offset_start": 34,
+            "clause_offset_end": 62,
+            "adjacent_tokens_before": [
+              "during",
+              "a",
+              "u",
+              "s",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "committee",
+              "hearing",
+              "to",
+              "consider",
+              "pending"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:8693b88cd2f2617377e879a3",
+            "claim_id": "2026-11-19-D-03",
+            "statement_id": "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7",
+            "publication_id": "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7",
+            "office_id": "H001046",
+            "family_id": "dfam:3033e3c5a3a67daf21825fbd",
+            "family_revision": "dfrev:94965c5b5aeb9769198ac870",
+            "support_unit_id": "H001046",
+            "party": "D",
+            "start_char": 190,
+            "end_char": 218,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 182,
+            "sentence_end_char": 584,
+            "sentence_offset_start": 8,
+            "sentence_offset_end": 36,
+            "clause_start_char": 155,
+            "clause_end_char": 228,
+            "clause_offset_start": 35,
+            "clause_offset_end": 63,
+            "adjacent_tokens_before": [
+              "of",
+              "the",
+              "u",
+              "s",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "committee",
+              "cross",
+              "examined",
+              "dennis",
+              "kirk"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:fe05a998132893e1328729d2",
+            "claim_id": "2026-11-19-D-03",
+            "statement_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "publication_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "office_id": "P000145",
+            "family_id": "dfam:95ebf4f55ef554cf230066ec",
+            "family_revision": "dfrev:09748b46573f0f0c943c84fd",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 87,
+            "end_char": 115,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 62,
+            "sentence_end_char": 472,
+            "sentence_offset_start": 25,
+            "sentence_offset_end": 53,
+            "clause_start_char": 63,
+            "clause_end_char": 159,
+            "clause_offset_start": 24,
+            "clause_offset_end": 52,
+            "adjacent_tokens_before": [
+              "a",
+              "member",
+              "of",
+              "the",
+              "senate"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "environment",
+              "and",
+              "public",
+              "works"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:beda3e7d6e960fd869267682",
+            "claim_id": "2026-11-19-D-03",
+            "statement_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "publication_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "office_id": "P000145",
+            "family_id": "dfam:95ebf4f55ef554cf230066ec",
+            "family_revision": "dfrev:09748b46573f0f0c943c84fd",
+            "support_unit_id": "P000145",
+            "party": "D",
+            "start_char": 1732,
+            "end_char": 1760,
+            "surface_text": "Energy and Natural Resources",
+            "normalized_phrase": "energy and natural resources",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1727,
+            "sentence_end_char": 1845,
+            "sentence_offset_start": 5,
+            "sentence_offset_end": 33,
+            "clause_start_char": 1638,
+            "clause_end_char": 1948,
+            "clause_offset_start": 94,
+            "clause_offset_end": 122,
+            "adjacent_tokens_before": [
+              "and",
+              "john",
+              "hickenlooper",
+              "d-colo",
+              "led"
+            ],
+            "adjacent_tokens_after": [
+              "committee",
+              "democrats",
+              "in",
+              "drafting",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "H001046",
+          "O000174",
+          "P000145"
+        ],
+        "publication_ids": [
+          "sha256:0969f8f013af36c16c7305eb02100d36dbf6d2a00a4b8236529318ef00d46ab3",
+          "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7",
+          "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5"
+        ],
+        "family_ids": [
+          "dfam:0a3c54f9fee9988c0eb619d6",
+          "dfam:3033e3c5a3a67daf21825fbd",
+          "dfam:95ebf4f55ef554cf230066ec"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:0a3c54f9fee9988c0eb619d6",
+            "family_revision": "dfrev:5d49ecd7c5ca20b109b30825"
+          },
+          {
+            "family_id": "dfam:3033e3c5a3a67daf21825fbd",
+            "family_revision": "dfrev:94965c5b5aeb9769198ac870"
+          },
+          {
+            "family_id": "dfam:95ebf4f55ef554cf230066ec",
+            "family_revision": "dfrev:09748b46573f0f0c943c84fd"
+          }
+        ],
+        "support_unit_ids": [
+          "H001046",
+          "O000174",
+          "P000145"
+        ],
+        "citation_occurrence_ids": [
+          "occ:652d9c433995b0dfbb938f6f",
+          "occ:d4f7fa55cbd56db0084748b7",
+          "occ:fe05a998132893e1328729d2"
+        ],
+        "citations": [
+          {
+            "member": "Jon Ossoff",
+            "party": "D",
+            "state": "GA",
+            "date": "2026-11-19",
+            "url": "https://www.ossoff.senate.gov/press-releases/sen-ossoff-applauds-house-committee-passage-of-ocmulgee-mounds-national-park-legislation/",
+            "quote": "on energy and natural resources passed the bipartisan",
+            "occurrence_id": "occ:652d9c433995b0dfbb938f6f",
+            "office_id": "O000174",
+            "publication_id": "sha256:0969f8f013af36c16c7305eb02100d36dbf6d2a00a4b8236529318ef00d46ab3",
+            "family_id": "dfam:0a3c54f9fee9988c0eb619d6",
+            "family_revision": "dfrev:5d49ecd7c5ca20b109b30825"
+          },
+          {
+            "member": "Martin Heinrich",
+            "party": "D",
+            "state": "NM",
+            "date": "2026-11-19",
+            "url": "https://www.heinrich.senate.gov/newsroom/press-releases/heinrich-questions-trump-interior-nominee-on-unlawful-firings-of-inspectors-general-by-the-trump-administration-and-trump-energy-nominee-on-skyrocketing-gas-prices-due-to-trumps-war-with-iran",
+            "quote": "senate energy and natural resources committee hearing to",
+            "occurrence_id": "occ:d4f7fa55cbd56db0084748b7",
+            "office_id": "H001046",
+            "publication_id": "sha256:0a029908770943675c4e9fdfed0f03fc06a95ee23b693665e72a459b105542b7",
+            "family_id": "dfam:3033e3c5a3a67daf21825fbd",
+            "family_revision": "dfrev:94965c5b5aeb9769198ac870"
+          },
+          {
+            "member": "Alex Padilla",
+            "party": "D",
+            "state": "CA",
+            "date": "2026-11-19",
+            "url": "https://www.padilla.senate.gov/newsroom/press-releases/padilla-statement-on-vote-against-permitting-bill/",
+            "quote": "energy and natural resources and environment and public",
+            "occurrence_id": "occ:fe05a998132893e1328729d2",
+            "office_id": "P000145",
+            "publication_id": "sha256:35c76ffc33b7323db085e88306c6bdedbbaf28e19e18d7721f89d5b76d1517f5",
+            "family_id": "dfam:95ebf4f55ef554cf230066ec",
+            "family_revision": "dfrev:09748b46573f0f0c943c84fd"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "energy_climate",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          },
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "2026-11-19-R-00",
+        "party": "R",
+        "day": "2026-11-19",
+        "label": "the bipartisan american affordability",
+        "member_count": 5,
+        "statements": [
+          "sha256:0631ece2bd3eabb6003f2c2768557fc6f3d2bb151e95fedc56aaf67460699eb5",
+          "sha256:5c5cabeaa2897582a2f8338ffab47c2d5b2ef6e00fa23cf443189bb89d594480",
+          "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+          "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+          "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310"
+        ],
+        "fragments": [
+          {
+            "text": "senate passed the bipartisan american affordability",
+            "statement": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd"
+          },
+          {
+            "text": "applauded the passage of the bipartisan american affordability and",
+            "statement": "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310"
+          },
+          {
+            "text": "senate passage of the bipartisan american affordability",
+            "statement": "sha256:5c5cabeaa2897582a2f8338ffab47c2d5b2ef6e00fa23cf443189bb89d594480"
+          },
+          {
+            "text": "celebrated senate passage of the bipartisan american affordability and",
+            "statement": "sha256:0631ece2bd3eabb6003f2c2768557fc6f3d2bb151e95fedc56aaf67460699eb5"
+          },
+          {
+            "text": "today to pass the bipartisan american affordability and",
+            "statement": "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-19-R-00",
+        "support_phrase": {
+          "normalized": "the bipartisan american affordability",
+          "text": "the Bipartisan American Affordability",
+          "occurrence_id": "occ:7c73153fe8661ae635849dc2"
+        },
+        "display_quote": "the Bipartisan American Affordability",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:7c73153fe8661ae635849dc2",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:0631ece2bd3eabb6003f2c2768557fc6f3d2bb151e95fedc56aaf67460699eb5",
+            "publication_id": "sha256:0631ece2bd3eabb6003f2c2768557fc6f3d2bb151e95fedc56aaf67460699eb5",
+            "office_id": "R000584",
+            "family_id": "dfam:2e71319809cc3981caea2acd",
+            "family_revision": "dfrev:ad81d42b9a07d89e19b69774",
+            "support_unit_id": "R000584",
+            "party": "R",
+            "start_char": 81,
+            "end_char": 118,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 17,
+            "sentence_end_char": 139,
+            "sentence_offset_start": 64,
+            "sentence_offset_end": 101,
+            "clause_start_char": 13,
+            "clause_end_char": 237,
+            "clause_offset_start": 68,
+            "clause_offset_end": 105,
+            "adjacent_tokens_before": [
+              "today",
+              "celebrated",
+              "senate",
+              "passage",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "baaja",
+              "baaja"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:bd2d18872b580a5ad53453e4",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:5c5cabeaa2897582a2f8338ffab47c2d5b2ef6e00fa23cf443189bb89d594480",
+            "publication_id": "sha256:5c5cabeaa2897582a2f8338ffab47c2d5b2ef6e00fa23cf443189bb89d594480",
+            "office_id": "M001243",
+            "family_id": "dfam:63dac21d48181cd46f29e493",
+            "family_revision": "dfrev:360077fded22152fd6104d2a",
+            "support_unit_id": "M001243",
+            "party": "R",
+            "start_char": 242,
+            "end_char": 279,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 223,
+            "sentence_end_char": 475,
+            "sentence_offset_start": 19,
+            "sentence_offset_end": 56,
+            "clause_start_char": 164,
+            "clause_end_char": 308,
+            "clause_offset_start": 78,
+            "clause_offset_end": 115,
+            "adjacent_tokens_before": [
+              "u",
+              "s",
+              "senate",
+              "passage",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:2f5196dafe54a4e56b95e7f6",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "publication_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "office_id": "B001261",
+            "family_id": "dfam:634ed4267c4020571cde8bc5",
+            "family_revision": "dfrev:82ff839226faff49f42d0936",
+            "support_unit_id": "B001261",
+            "party": "R",
+            "start_char": 124,
+            "end_char": 161,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 109,
+            "sentence_end_char": 338,
+            "sentence_offset_start": 15,
+            "sentence_offset_end": 52,
+            "clause_start_char": 25,
+            "clause_end_char": 182,
+            "clause_offset_start": 99,
+            "clause_offset_end": 136,
+            "adjacent_tokens_before": [
+              "the",
+              "u",
+              "s",
+              "senate",
+              "passed"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a131de537ac5ccb69e80e04b",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "publication_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "office_id": "B001261",
+            "family_id": "dfam:634ed4267c4020571cde8bc5",
+            "family_revision": "dfrev:82ff839226faff49f42d0936",
+            "support_unit_id": "B001261",
+            "party": "R",
+            "start_char": 885,
+            "end_char": 922,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 884,
+            "sentence_end_char": 962,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 38,
+            "clause_start_char": 624,
+            "clause_end_char": 1016,
+            "clause_offset_start": 261,
+            "clause_offset_end": 298,
+            "adjacent_tokens_before": [
+              "bipartisan",
+              "energy",
+              "permitting",
+              "reform",
+              "act"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:c3c0a4daa291975ea1d21cb8",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "publication_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "office_id": "B001261",
+            "family_id": "dfam:634ed4267c4020571cde8bc5",
+            "family_revision": "dfrev:82ff839226faff49f42d0936",
+            "support_unit_id": "B001261",
+            "party": "R",
+            "start_char": 1358,
+            "end_char": 1395,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1343,
+            "sentence_end_char": 1477,
+            "sentence_offset_start": 15,
+            "sentence_offset_end": 52,
+            "clause_start_char": 1356,
+            "clause_end_char": 1684,
+            "clause_offset_start": 2,
+            "clause_offset_end": 39,
+            "adjacent_tokens_before": [
+              "as",
+              "soon",
+              "as",
+              "possible",
+              "background"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ba1aae162ebbaef4cb6d39cb",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "publication_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "office_id": "B001261",
+            "family_id": "dfam:634ed4267c4020571cde8bc5",
+            "family_revision": "dfrev:82ff839226faff49f42d0936",
+            "support_unit_id": "B001261",
+            "party": "R",
+            "start_char": 2324,
+            "end_char": 2361,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2322,
+            "sentence_end_char": 2473,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 39,
+            "clause_start_char": 2215,
+            "clause_end_char": 2740,
+            "clause_offset_start": 109,
+            "clause_offset_end": 146,
+            "adjacent_tokens_before": [
+              "only",
+              "in",
+              "certain",
+              "reasonable",
+              "circumstances"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:58449d7b2fecfdc2b0f9e457",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+            "publication_id": "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+            "office_id": "S001184",
+            "family_id": "dfam:f45aa36cde9cda13f55697e2",
+            "family_revision": "dfrev:bd6ed9c829b644d5fa393253",
+            "support_unit_id": "S001184",
+            "party": "R",
+            "start_char": 65,
+            "end_char": 102,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 44,
+            "sentence_end_char": 205,
+            "sentence_offset_start": 21,
+            "sentence_offset_end": 58,
+            "clause_start_char": 0,
+            "clause_end_char": 123,
+            "clause_offset_start": 65,
+            "clause_offset_end": 102,
+            "adjacent_tokens_before": [
+              "c",
+              "voted",
+              "today",
+              "to",
+              "pass"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "of",
+              "2026"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:a7133653f9d81c604c71664e",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310",
+            "publication_id": "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310",
+            "office_id": "C001096",
+            "family_id": "dfam:a5fb846940f2f6934742b5bd",
+            "family_revision": "dfrev:b8e89d263ae6e1359fa71f99",
+            "support_unit_id": "C001096",
+            "party": "R",
+            "start_char": 147,
+            "end_char": 184,
+            "surface_text": "the Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 16,
+            "sentence_end_char": 206,
+            "sentence_offset_start": 131,
+            "sentence_offset_end": 168,
+            "clause_start_char": 98,
+            "clause_end_char": 262,
+            "clause_offset_start": 49,
+            "clause_offset_end": 86,
+            "adjacent_tokens_before": [
+              "firms",
+              "applauded",
+              "the",
+              "passage",
+              "of"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "in",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:ca57a6b8d263dbfb34b88f86",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310",
+            "publication_id": "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310",
+            "office_id": "C001096",
+            "family_id": "dfam:a5fb846940f2f6934742b5bd",
+            "family_revision": "dfrev:b8e89d263ae6e1359fa71f99",
+            "support_unit_id": "C001096",
+            "party": "R",
+            "start_char": 1262,
+            "end_char": 1299,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 1261,
+            "sentence_end_char": 1357,
+            "sentence_offset_start": 1,
+            "sentence_offset_end": 38,
+            "clause_start_char": 1221,
+            "clause_end_char": 1410,
+            "clause_offset_start": 41,
+            "clause_offset_end": 78,
+            "adjacent_tokens_before": [
+              "and",
+              "stifles",
+              "our",
+              "global",
+              "competitiveness"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "is",
+              "an"
+            ],
+            "is_quoted": true,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:45ea3b09dfe08eb9d6b3c381",
+            "claim_id": "2026-11-19-R-00",
+            "statement_id": "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310",
+            "publication_id": "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310",
+            "office_id": "C001096",
+            "family_id": "dfam:a5fb846940f2f6934742b5bd",
+            "family_revision": "dfrev:b8e89d263ae6e1359fa71f99",
+            "support_unit_id": "C001096",
+            "party": "R",
+            "start_char": 2713,
+            "end_char": 2750,
+            "surface_text": "The Bipartisan American Affordability",
+            "normalized_phrase": "the bipartisan american affordability",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 2711,
+            "sentence_end_char": 3011,
+            "sentence_offset_start": 2,
+            "sentence_offset_end": 39,
+            "clause_start_char": 2683,
+            "clause_end_char": 2856,
+            "clause_offset_start": 30,
+            "clause_offset_end": 67,
+            "adjacent_tokens_before": [
+              "our",
+              "country",
+              "depends",
+              "on",
+              "us"
+            ],
+            "adjacent_tokens_after": [
+              "and",
+              "jobs",
+              "act",
+              "is",
+              "historic"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 5,
+          "publications": 5,
+          "families": 5,
+          "support_units": 5
+        },
+        "office_ids": [
+          "B001261",
+          "C001096",
+          "M001243",
+          "R000584",
+          "S001184"
+        ],
+        "publication_ids": [
+          "sha256:0631ece2bd3eabb6003f2c2768557fc6f3d2bb151e95fedc56aaf67460699eb5",
+          "sha256:5c5cabeaa2897582a2f8338ffab47c2d5b2ef6e00fa23cf443189bb89d594480",
+          "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+          "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+          "sha256:c27c9555452c5bdf24ff57f9be91510e07bc03d73ee506661b283f0edeb31310"
+        ],
+        "family_ids": [
+          "dfam:2e71319809cc3981caea2acd",
+          "dfam:634ed4267c4020571cde8bc5",
+          "dfam:63dac21d48181cd46f29e493",
+          "dfam:a5fb846940f2f6934742b5bd",
+          "dfam:f45aa36cde9cda13f55697e2"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:2e71319809cc3981caea2acd",
+            "family_revision": "dfrev:ad81d42b9a07d89e19b69774"
+          },
+          {
+            "family_id": "dfam:634ed4267c4020571cde8bc5",
+            "family_revision": "dfrev:82ff839226faff49f42d0936"
+          },
+          {
+            "family_id": "dfam:63dac21d48181cd46f29e493",
+            "family_revision": "dfrev:360077fded22152fd6104d2a"
+          },
+          {
+            "family_id": "dfam:a5fb846940f2f6934742b5bd",
+            "family_revision": "dfrev:b8e89d263ae6e1359fa71f99"
+          },
+          {
+            "family_id": "dfam:f45aa36cde9cda13f55697e2",
+            "family_revision": "dfrev:bd6ed9c829b644d5fa393253"
+          }
+        ],
+        "support_unit_ids": [
+          "B001261",
+          "C001096",
+          "M001243",
+          "R000584",
+          "S001184"
+        ],
+        "citation_occurrence_ids": [
+          "occ:7c73153fe8661ae635849dc2",
+          "occ:bd2d18872b580a5ad53453e4",
+          "occ:2f5196dafe54a4e56b95e7f6"
+        ],
+        "citations": [
+          {
+            "member": "James E. Risch",
+            "party": "R",
+            "state": "ID",
+            "date": "2026-11-19",
+            "url": "https://www.risch.senate.gov/news/press-releases/risch-celebrates-passage-of-bipartisan-permitting-reform/",
+            "quote": "celebrated senate passage of the bipartisan american affordability and",
+            "occurrence_id": "occ:7c73153fe8661ae635849dc2",
+            "office_id": "R000584",
+            "publication_id": "sha256:0631ece2bd3eabb6003f2c2768557fc6f3d2bb151e95fedc56aaf67460699eb5",
+            "family_id": "dfam:2e71319809cc3981caea2acd",
+            "family_revision": "dfrev:ad81d42b9a07d89e19b69774"
+          },
+          {
+            "member": "David McCormick",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-11-19",
+            "url": "https://www.mccormick.senate.gov/news/press-releases/mccormick-applauds-u-s-senate-delivering-on-landmark-permitting-reform-legislation/",
+            "quote": "senate passage of the bipartisan american affordability",
+            "occurrence_id": "occ:bd2d18872b580a5ad53453e4",
+            "office_id": "M001243",
+            "publication_id": "sha256:5c5cabeaa2897582a2f8338ffab47c2d5b2ef6e00fa23cf443189bb89d594480",
+            "family_id": "dfam:63dac21d48181cd46f29e493",
+            "family_revision": "dfrev:360077fded22152fd6104d2a"
+          },
+          {
+            "member": "John Barrasso",
+            "party": "R",
+            "state": "WY",
+            "date": "2026-11-19",
+            "url": "https://www.barrasso.senate.gov/senate-passes-bipartisan-permitting-reform-bill/",
+            "quote": "senate passed the bipartisan american affordability",
+            "occurrence_id": "occ:2f5196dafe54a4e56b95e7f6",
+            "office_id": "B001261",
+            "publication_id": "sha256:755011914d34bf8967fc1d3696ccb8fb306e651fad717bc7ac227b8c83b874fd",
+            "family_id": "dfam:634ed4267c4020571cde8bc5",
+            "family_revision": "dfrev:82ff839226faff49f42d0936"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-11-19-R-02",
+        "party": "R",
+        "day": "2026-11-19",
+        "label": "environmental review and permitting",
+        "member_count": 3,
+        "statements": [
+          "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f",
+          "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+          "sha256:ecde775c0f827240422267253f061d692d8dc3134faa439df32ea6a568c5725c"
+        ],
+        "fragments": [
+          {
+            "text": "country’s broken federal environmental review and permitting system",
+            "statement": "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f"
+          },
+          {
+            "text": "the federal environmental review and permitting processes",
+            "statement": "sha256:ecde775c0f827240422267253f061d692d8dc3134faa439df32ea6a568c5725c"
+          },
+          {
+            "text": "improve environmental review and permitting processes",
+            "statement": "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-19-R-02",
+        "support_phrase": {
+          "normalized": "environmental review and permitting",
+          "text": "environmental review and permitting",
+          "occurrence_id": "occ:440b776c1b4bf3f48aa32b79"
+        },
+        "display_quote": "environmental review and permitting",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:440b776c1b4bf3f48aa32b79",
+            "claim_id": "2026-11-19-R-02",
+            "statement_id": "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f",
+            "publication_id": "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f",
+            "office_id": "G000386",
+            "family_id": "dfam:3a2eabaf252a2de6acad920c",
+            "family_revision": "dfrev:e405b72abe693a5c9a37c224",
+            "support_unit_id": "G000386",
+            "party": "R",
+            "start_char": 154,
+            "end_char": 189,
+            "surface_text": "environmental review and permitting",
+            "normalized_phrase": "environmental review and permitting",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 17,
+            "sentence_end_char": 231,
+            "sentence_offset_start": 137,
+            "sentence_offset_end": 172,
+            "clause_start_char": 13,
+            "clause_end_char": 196,
+            "clause_offset_start": 141,
+            "clause_offset_end": 176,
+            "adjacent_tokens_before": [
+              "overhaul",
+              "the",
+              "country’s",
+              "broken",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "system",
+              "which",
+              "is",
+              "currently",
+              "holding"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:0f536bfa23b01b035f67a480",
+            "claim_id": "2026-11-19-R-02",
+            "statement_id": "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f",
+            "publication_id": "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f",
+            "office_id": "G000386",
+            "family_id": "dfam:3a2eabaf252a2de6acad920c",
+            "family_revision": "dfrev:e405b72abe693a5c9a37c224",
+            "support_unit_id": "G000386",
+            "party": "R",
+            "start_char": 3757,
+            "end_char": 3792,
+            "surface_text": "environmental review and permitting",
+            "normalized_phrase": "environmental review and permitting",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 3682,
+            "sentence_end_char": 3983,
+            "sentence_offset_start": 75,
+            "sentence_offset_end": 110,
+            "clause_start_char": 3586,
+            "clause_end_char": 3851,
+            "clause_offset_start": 171,
+            "clause_offset_end": 206,
+            "adjacent_tokens_before": [
+              "jobs",
+              "act",
+              "overhauls",
+              "the",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "system",
+              "by",
+              "establishing",
+              "deadlines",
+              "for"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:66cff752b56c9616220d385f",
+            "claim_id": "2026-11-19-R-02",
+            "statement_id": "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+            "publication_id": "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+            "office_id": "S001184",
+            "family_id": "dfam:f45aa36cde9cda13f55697e2",
+            "family_revision": "dfrev:bd6ed9c829b644d5fa393253",
+            "support_unit_id": "S001184",
+            "party": "R",
+            "start_char": 160,
+            "end_char": 195,
+            "surface_text": "environmental review and permitting",
+            "normalized_phrase": "environmental review and permitting",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 44,
+            "sentence_end_char": 205,
+            "sentence_offset_start": 116,
+            "sentence_offset_end": 151,
+            "clause_start_char": 124,
+            "clause_end_char": 325,
+            "clause_offset_start": 36,
+            "clause_offset_end": 71,
+            "adjacent_tokens_before": [
+              "legislation",
+              "to",
+              "clarify",
+              "and",
+              "improve"
+            ],
+            "adjacent_tokens_after": [
+              "processes",
+              "by",
+              "providing",
+              "greater",
+              "certainty"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:abca8f8392af65a9897fe923",
+            "claim_id": "2026-11-19-R-02",
+            "statement_id": "sha256:ecde775c0f827240422267253f061d692d8dc3134faa439df32ea6a568c5725c",
+            "publication_id": "sha256:ecde775c0f827240422267253f061d692d8dc3134faa439df32ea6a568c5725c",
+            "office_id": "H001061",
+            "family_id": "dfam:6ed928f823b9e40a18f59884",
+            "family_revision": "dfrev:10bdcf75ca873b4b4aef052b",
+            "support_unit_id": "H001061",
+            "party": "R",
+            "start_char": 195,
+            "end_char": 230,
+            "surface_text": "environmental review and permitting",
+            "normalized_phrase": "environmental review and permitting",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 0,
+            "sentence_end_char": 240,
+            "sentence_offset_start": 195,
+            "sentence_offset_end": 230,
+            "clause_start_char": 96,
+            "clause_end_char": 300,
+            "clause_offset_start": 99,
+            "clause_offset_end": 134,
+            "adjacent_tokens_before": [
+              "legislation",
+              "to",
+              "reform",
+              "the",
+              "federal"
+            ],
+            "adjacent_tokens_after": [
+              "processes",
+              "the",
+              "bipartisan",
+              "american",
+              "affordability"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 3,
+          "families": 3,
+          "support_units": 3
+        },
+        "office_ids": [
+          "G000386",
+          "H001061",
+          "S001184"
+        ],
+        "publication_ids": [
+          "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f",
+          "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+          "sha256:ecde775c0f827240422267253f061d692d8dc3134faa439df32ea6a568c5725c"
+        ],
+        "family_ids": [
+          "dfam:3a2eabaf252a2de6acad920c",
+          "dfam:6ed928f823b9e40a18f59884",
+          "dfam:f45aa36cde9cda13f55697e2"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:3a2eabaf252a2de6acad920c",
+            "family_revision": "dfrev:e405b72abe693a5c9a37c224"
+          },
+          {
+            "family_id": "dfam:6ed928f823b9e40a18f59884",
+            "family_revision": "dfrev:10bdcf75ca873b4b4aef052b"
+          },
+          {
+            "family_id": "dfam:f45aa36cde9cda13f55697e2",
+            "family_revision": "dfrev:bd6ed9c829b644d5fa393253"
+          }
+        ],
+        "support_unit_ids": [
+          "G000386",
+          "H001061",
+          "S001184"
+        ],
+        "citation_occurrence_ids": [
+          "occ:440b776c1b4bf3f48aa32b79",
+          "occ:66cff752b56c9616220d385f",
+          "occ:abca8f8392af65a9897fe923"
+        ],
+        "citations": [
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-11-19",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-votes-to-advance-bipartisan-permitting-reform-to-cut-red-tape-and-get-america-building-again",
+            "quote": "country’s broken federal environmental review and permitting system",
+            "occurrence_id": "occ:440b776c1b4bf3f48aa32b79",
+            "office_id": "G000386",
+            "publication_id": "sha256:7d6983480601017f878e35ad75217da847c9509c3fb89c2554fa87acd4dd3c8f",
+            "family_id": "dfam:3a2eabaf252a2de6acad920c",
+            "family_revision": "dfrev:e405b72abe693a5c9a37c224"
+          },
+          {
+            "member": "Tim Scott",
+            "party": "R",
+            "state": "SC",
+            "date": "2026-11-19",
+            "url": "https://www.scott.senate.gov/media-center/press-releases/sen-tim-scott-votes-to-bolster-american-energy-and-infrastructure/",
+            "quote": "improve environmental review and permitting processes",
+            "occurrence_id": "occ:66cff752b56c9616220d385f",
+            "office_id": "S001184",
+            "publication_id": "sha256:98d9915ad7e152f4fb9ffb1d8fc090cd93e5c21ee5581a5e8a62564591802749",
+            "family_id": "dfam:f45aa36cde9cda13f55697e2",
+            "family_revision": "dfrev:bd6ed9c829b644d5fa393253"
+          },
+          {
+            "member": "John Hoeven",
+            "party": "R",
+            "state": "ND",
+            "date": "2026-11-19",
+            "url": "https://www.hoeven.senate.gov/newsroom/press-releases/hoeven-senate-passes-bipartisan-permitting-reform-to-create-jobs-make-energy-more-affordable",
+            "quote": "the federal environmental review and permitting processes",
+            "occurrence_id": "occ:abca8f8392af65a9897fe923",
+            "office_id": "H001061",
+            "publication_id": "sha256:ecde775c0f827240422267253f061d692d8dc3134faa439df32ea6a568c5725c",
+            "family_id": "dfam:6ed928f823b9e40a18f59884",
+            "family_revision": "dfrev:10bdcf75ca873b4b4aef052b"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      },
+      {
+        "id": "2026-11-19-R-03",
+        "party": "R",
+        "day": "2026-11-19",
+        "label": "on the senate floor",
+        "member_count": 3,
+        "statements": [
+          "sha256:23fdfab751c26eab2b86cdc6d1114a75f43a9312e996fd1302100ce97145040b",
+          "sha256:409578111865af7ca4fa94db23d41d9607f0f08dd948cc9853d2fe55ef4d60dd",
+          "sha256:8f7c53a981be633aa244beb224244c0510f5881edad8d2d4e3af4135e0426297",
+          "sha256:8fc49cb5f14eae12783f860dda3d3c6b0bf88ef18db832f47f93a5a2ecc5d31a"
+        ],
+        "fragments": [
+          {
+            "text": "on the senate floor about his mega act",
+            "statement": "sha256:23fdfab751c26eab2b86cdc6d1114a75f43a9312e996fd1302100ce97145040b"
+          },
+          {
+            "text": "rick scott spoke on the senate floor to request",
+            "statement": "sha256:409578111865af7ca4fa94db23d41d9607f0f08dd948cc9853d2fe55ef4d60dd"
+          },
+          {
+            "text": "delivered the following remarks on the senate floor",
+            "statement": "sha256:8f7c53a981be633aa244beb224244c0510f5881edad8d2d4e3af4135e0426297"
+          }
+        ],
+        "topics": [
+          "other"
+        ],
+        "leadership_first": false,
+        "schema_version": 2,
+        "object_type": "phrase_claim",
+        "claim_id": "2026-11-19-R-03",
+        "support_phrase": {
+          "normalized": "on the senate floor",
+          "text": "on the Senate floor",
+          "occurrence_id": "occ:65795d4427e5a319f56d4e55"
+        },
+        "display_quote": "on the Senate floor",
+        "occurrences": [
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:65795d4427e5a319f56d4e55",
+            "claim_id": "2026-11-19-R-03",
+            "statement_id": "sha256:23fdfab751c26eab2b86cdc6d1114a75f43a9312e996fd1302100ce97145040b",
+            "publication_id": "sha256:23fdfab751c26eab2b86cdc6d1114a75f43a9312e996fd1302100ce97145040b",
+            "office_id": "R000618",
+            "family_id": "dfam:469f4afe8b9d522b262ba9c0",
+            "family_revision": "dfrev:e7aee7e8d9cb44aa25ef68ee",
+            "support_unit_id": "R000618",
+            "party": "R",
+            "start_char": 66,
+            "end_char": 85,
+            "surface_text": "on the Senate floor",
+            "normalized_phrase": "on the senate floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 30,
+            "sentence_end_char": 104,
+            "sentence_offset_start": 36,
+            "sentence_offset_end": 55,
+            "clause_start_char": 25,
+            "clause_end_char": 556,
+            "clause_offset_start": 41,
+            "clause_offset_end": 60,
+            "adjacent_tokens_before": [
+              "senator",
+              "pete",
+              "ricketts",
+              "r-ne",
+              "spoke"
+            ],
+            "adjacent_tokens_after": [
+              "about",
+              "his",
+              "mega",
+              "act",
+              "the"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:4e5aa65d7ebabf08b73f5d72",
+            "claim_id": "2026-11-19-R-03",
+            "statement_id": "sha256:409578111865af7ca4fa94db23d41d9607f0f08dd948cc9853d2fe55ef4d60dd",
+            "publication_id": "sha256:409578111865af7ca4fa94db23d41d9607f0f08dd948cc9853d2fe55ef4d60dd",
+            "office_id": "S001217",
+            "family_id": "dfam:02e84e47922c5731f8125dab",
+            "family_revision": "dfrev:58ded3878337d76c26503181",
+            "support_unit_id": "S001217",
+            "party": "R",
+            "start_char": 60,
+            "end_char": 79,
+            "surface_text": "on the Senate floor",
+            "normalized_phrase": "on the senate floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 34,
+            "sentence_end_char": 262,
+            "sentence_offset_start": 26,
+            "sentence_offset_end": 45,
+            "clause_start_char": 29,
+            "clause_end_char": 135,
+            "clause_offset_start": 31,
+            "clause_offset_end": 50,
+            "adjacent_tokens_before": [
+              "s",
+              "senator",
+              "rick",
+              "scott",
+              "spoke"
+            ],
+            "adjacent_tokens_after": [
+              "to",
+              "request",
+              "the",
+              "immediate",
+              "passage"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:06b0045e6c3c3a1145b4a2cd",
+            "claim_id": "2026-11-19-R-03",
+            "statement_id": "sha256:8f7c53a981be633aa244beb224244c0510f5881edad8d2d4e3af4135e0426297",
+            "publication_id": "sha256:8f7c53a981be633aa244beb224244c0510f5881edad8d2d4e3af4135e0426297",
+            "office_id": "T000250",
+            "family_id": "dfam:0b5a152ac17b68a2639f8444",
+            "family_revision": "dfrev:35b23bf945458e32685efc40",
+            "support_unit_id": "T000250",
+            "party": "R",
+            "start_char": 131,
+            "end_char": 150,
+            "surface_text": "on the Senate floor",
+            "normalized_phrase": "on the senate floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 92,
+            "sentence_end_char": 195,
+            "sentence_offset_start": 39,
+            "sentence_offset_end": 58,
+            "clause_start_char": 0,
+            "clause_end_char": 150,
+            "clause_offset_start": 131,
+            "clause_offset_end": 150,
+            "adjacent_tokens_before": [
+              "today",
+              "delivered",
+              "the",
+              "following",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "thune’s",
+              "remarks",
+              "below",
+              "as",
+              "delivered"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          },
+          {
+            "schema_version": 2,
+            "object_type": "phrase_occurrence",
+            "occurrence_id": "occ:d7e133a309369b1a01592516",
+            "claim_id": "2026-11-19-R-03",
+            "statement_id": "sha256:8fc49cb5f14eae12783f860dda3d3c6b0bf88ef18db832f47f93a5a2ecc5d31a",
+            "publication_id": "sha256:8fc49cb5f14eae12783f860dda3d3c6b0bf88ef18db832f47f93a5a2ecc5d31a",
+            "office_id": "T000250",
+            "family_id": "dfam:bea22481a9db4de57ca72f26",
+            "family_revision": "dfrev:72d5c6c73ee20597ab6b8907",
+            "support_unit_id": "T000250",
+            "party": "R",
+            "start_char": 131,
+            "end_char": 150,
+            "surface_text": "on the Senate floor",
+            "normalized_phrase": "on the senate floor",
+            "context_version": "occurrence-context-v1",
+            "sentence_start_char": 92,
+            "sentence_end_char": 195,
+            "sentence_offset_start": 39,
+            "sentence_offset_end": 58,
+            "clause_start_char": 0,
+            "clause_end_char": 150,
+            "clause_offset_start": 131,
+            "clause_offset_end": 150,
+            "adjacent_tokens_before": [
+              "today",
+              "delivered",
+              "the",
+              "following",
+              "remarks"
+            ],
+            "adjacent_tokens_after": [
+              "thune’s",
+              "remarks",
+              "below",
+              "as",
+              "delivered"
+            ],
+            "is_quoted": false,
+            "quoted_speaker_detected": false,
+            "stance": "affirmative"
+          }
+        ],
+        "counts": {
+          "offices": 3,
+          "publications": 4,
+          "families": 4,
+          "support_units": 3
+        },
+        "office_ids": [
+          "R000618",
+          "S001217",
+          "T000250"
+        ],
+        "publication_ids": [
+          "sha256:23fdfab751c26eab2b86cdc6d1114a75f43a9312e996fd1302100ce97145040b",
+          "sha256:409578111865af7ca4fa94db23d41d9607f0f08dd948cc9853d2fe55ef4d60dd",
+          "sha256:8f7c53a981be633aa244beb224244c0510f5881edad8d2d4e3af4135e0426297",
+          "sha256:8fc49cb5f14eae12783f860dda3d3c6b0bf88ef18db832f47f93a5a2ecc5d31a"
+        ],
+        "family_ids": [
+          "dfam:02e84e47922c5731f8125dab",
+          "dfam:0b5a152ac17b68a2639f8444",
+          "dfam:469f4afe8b9d522b262ba9c0",
+          "dfam:bea22481a9db4de57ca72f26"
+        ],
+        "family_revisions": [
+          {
+            "family_id": "dfam:02e84e47922c5731f8125dab",
+            "family_revision": "dfrev:58ded3878337d76c26503181"
+          },
+          {
+            "family_id": "dfam:0b5a152ac17b68a2639f8444",
+            "family_revision": "dfrev:35b23bf945458e32685efc40"
+          },
+          {
+            "family_id": "dfam:469f4afe8b9d522b262ba9c0",
+            "family_revision": "dfrev:e7aee7e8d9cb44aa25ef68ee"
+          },
+          {
+            "family_id": "dfam:bea22481a9db4de57ca72f26",
+            "family_revision": "dfrev:72d5c6c73ee20597ab6b8907"
+          }
+        ],
+        "support_unit_ids": [
+          "R000618",
+          "S001217",
+          "T000250"
+        ],
+        "citation_occurrence_ids": [
+          "occ:65795d4427e5a319f56d4e55",
+          "occ:4e5aa65d7ebabf08b73f5d72",
+          "occ:06b0045e6c3c3a1145b4a2cd"
+        ],
+        "citations": [
+          {
+            "member": "Pete Ricketts",
+            "party": "R",
+            "state": "NE",
+            "date": "2026-11-19",
+            "url": "https://www.ricketts.senate.gov/news/press-releases/ricketts-we-must-take-action-on-megaspeed/",
+            "quote": "on the senate floor about his mega act",
+            "occurrence_id": "occ:65795d4427e5a319f56d4e55",
+            "office_id": "R000618",
+            "publication_id": "sha256:23fdfab751c26eab2b86cdc6d1114a75f43a9312e996fd1302100ce97145040b",
+            "family_id": "dfam:469f4afe8b9d522b262ba9c0",
+            "family_revision": "dfrev:e7aee7e8d9cb44aa25ef68ee"
+          },
+          {
+            "member": "Rick Scott",
+            "party": "R",
+            "state": "FL",
+            "date": "2026-11-19",
+            "url": "https://www.rickscott.senate.gov/2026/11/get-the-swamp-out-of-the-way-sen-rick-scott-leads-bipartisan-fight-to-ban-lobbying-by-former-members-of-congress",
+            "quote": "rick scott spoke on the senate floor to request",
+            "occurrence_id": "occ:4e5aa65d7ebabf08b73f5d72",
+            "office_id": "S001217",
+            "publication_id": "sha256:409578111865af7ca4fa94db23d41d9607f0f08dd948cc9853d2fe55ef4d60dd",
+            "family_id": "dfam:02e84e47922c5731f8125dab",
+            "family_revision": "dfrev:58ded3878337d76c26503181"
+          },
+          {
+            "member": "John Thune",
+            "party": "R",
+            "state": "SD",
+            "date": "2026-11-19",
+            "url": "https://www.thune.senate.gov/news/press-releases/thune-underscores-importance-of-strengthening-rural-health-care/",
+            "quote": "delivered the following remarks on the senate floor",
+            "occurrence_id": "occ:06b0045e6c3c3a1145b4a2cd",
+            "office_id": "T000250",
+            "publication_id": "sha256:8f7c53a981be633aa244beb224244c0510f5881edad8d2d4e3af4135e0426297",
+            "family_id": "dfam:0b5a152ac17b68a2639f8444",
+            "family_revision": "dfrev:35b23bf945458e32685efc40"
+          }
+        ],
+        "surface_class": "message",
+        "surface_eligible": true,
+        "classifier": {
+          "name": "surface-eligibility-v3",
+          "method": "deterministic",
+          "rule": "affirmative-deterministic-floor"
+        },
+        "topic_provenance": [
+          {
+            "topic_id": "other",
+            "classifier": {
+              "name": "taxonomy-seed-match-v1",
+              "method": "deterministic"
+            },
+            "epistemic_label": "classifier output, not an observed fact"
+          }
+        ]
+      }
+    ]
+  },
+  "participation": {
+    "D": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "D",
+      "day": "2026-11-19",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 19,
+          "numerator_unit": "offices",
+          "denominator": 87,
+          "denominator_unit": "offices",
+          "share": 0.218391,
+          "window": "party-day 2026-11-19",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 22,
+          "numerator_unit": "publications",
+          "denominator": 135,
+          "denominator_unit": "publications",
+          "share": 0.162963,
+          "window": "party-day 2026-11-19",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 22,
+          "numerator_unit": "document families",
+          "denominator": 126,
+          "denominator_unit": "document families",
+          "share": 0.174603,
+          "window": "party-day 2026-11-19",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    },
+    "R": {
+      "schema_version": 1,
+      "method_version": "participation-measures-v1",
+      "party": "R",
+      "day": "2026-11-19",
+      "measures": {
+        "office_participation": {
+          "label": "Office participation",
+          "numerator": 10,
+          "numerator_unit": "offices",
+          "denominator": 55,
+          "denominator_unit": "offices",
+          "share": 0.181818,
+          "window": "party-day 2026-11-19",
+          "method_version": "participation-measures-v1"
+        },
+        "publication_participation": {
+          "label": "Publication participation",
+          "numerator": 11,
+          "numerator_unit": "publications",
+          "denominator": 73,
+          "denominator_unit": "publications",
+          "share": 0.150685,
+          "window": "party-day 2026-11-19",
+          "method_version": "participation-measures-v1"
+        },
+        "family_participation": {
+          "label": "Document-family participation",
+          "numerator": 11,
+          "numerator_unit": "document families",
+          "denominator": 72,
+          "denominator_unit": "document families",
+          "share": 0.152778,
+          "window": "party-day 2026-11-19",
+          "method_version": "participation-measures-v1"
+        }
+      }
+    }
+  },
+  "rejected_keys": {
+    "D": [
+      {
+        "label": "for the american people",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ],
+    "R": [
+      {
+        "label": "energy and infrastructure projects",
+        "reason": "REJECT_RECEIPT_BINDING",
+        "member_count": 3
+      },
+      {
+        "label": "bipartisan permitting reform legislation",
+        "reason": "REJECT_FAMILY_QUORUM",
+        "member_count": 2
+      }
+    ]
+  },
+  "sync_by_party": {
+    "D": [
+      {
+        "ngram": "statement after voting",
+        "slug": "ad5810750e301c01",
+        "n": 3,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 9,
+          "R": null,
+          "I": null
+        },
+        "family_count": 9,
+        "velocity": 3.23,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "A000369",
+          "statement": "sha256:07dbd7571d1496d2585a5fafd475d5215b303a0c9ceae43d44903c74a1c29ff9",
+          "tie": [
+            "B000740",
+            "B001291"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.988,
+        "series": [
+          8,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          2,
+          1,
+          5,
+          3,
+          2,
+          1,
+          9
+        ]
+      },
+      {
+        "ngram": "text of the legislation",
+        "slug": "58c2749240464ef7",
+        "n": 4,
+        "day_peak": 9,
+        "party": "D",
+        "counts": {
+          "D": 9,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 10,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 10,
+        "velocity": 7.88,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "N000193",
+          "statement": "sha256:3f4861ec2fec3eb7ec6e2fe3abdc72087081a87ea624074a9dca01c43beca00a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          9
+        ]
+      },
+      {
+        "ngram": "an important step",
+        "slug": "79f874be4a2748ec",
+        "n": 3,
+        "day_peak": 8,
+        "party": "D",
+        "counts": {
+          "D": 8,
+          "R": 0,
+          "I": 1
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": 1
+        },
+        "family_count": 8,
+        "velocity": 3.2,
+        "first_seen": {
+          "date": "2025-01-02",
+          "bioguide": "C001129",
+          "statement": "sha256:00bab941bd6cd2d9a928ec701f089b626358aba5ae658dd3def8d3aa518fed9a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.972,
+        "series": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          8,
+          2,
+          6,
+          2,
+          2,
+          2,
+          2,
+          8
+        ]
+      },
+      {
+        "ngram": "war in iran",
+        "slug": "4abd5ede26e39eb9",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 8,
+          "R": null,
+          "I": null
+        },
+        "family_count": 8,
+        "velocity": 2.58,
+        "first_seen": {
+          "date": "2026-02-24",
+          "bioguide": "R000620",
+          "statement": "sha256:c596f09d14568c3100dfb3c3ec2c218b4022a164f0f993782067edce246892d2",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.985,
+        "series": [
+          2,
+          6,
+          4,
+          1,
+          3,
+          6,
+          2,
+          2,
+          6,
+          1,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "food on the table",
+        "slug": "589df2db6ff052d6",
+        "n": 4,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": null,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 4.9,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "T000487",
+          "statement": "sha256:3d3e634b889cf59de305f31e8982f8fa4c6fd6c903ebc8336b4fe23f1b2f4018",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.982,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          7
+        ]
+      },
+      {
+        "ngram": "for the american people",
+        "slug": "495c7da743c93f81",
+        "n": 4,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 3.06,
+        "first_seen": {
+          "date": "2025-01-01",
+          "bioguide": "N000015",
+          "statement": "sha256:995a65c2bcd42442fb90f67402217d6cb39192b60f24fa100a4d4d957f0fb733",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.968,
+        "series": [
+          2,
+          1,
+          1,
+          1,
+          3,
+          5,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          6,
+          7
+        ]
+      },
+      {
+        "ngram": "the trump administration’s",
+        "slug": "6cd624c98e95c190",
+        "n": 3,
+        "day_peak": 7,
+        "party": "D",
+        "counts": {
+          "D": 7,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": null,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 2.23,
+        "first_seen": {
+          "date": "2025-01-15",
+          "bioguide": "D000530",
+          "statement": "sha256:72deeac69c3c36b8accad19442875e935a930400f338e0b65a7905e8e19a2ef5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.96,
+        "series": [
+          4,
+          1,
+          2,
+          1,
+          3,
+          6,
+          2,
+          4,
+          3,
+          1,
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "ngram": "statement after voting against",
+        "slug": "591ce8e95d2d5210",
+        "n": 4,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 3.36,
+        "first_seen": {
+          "date": "2025-01-10",
+          "bioguide": "C001117",
+          "statement": "sha256:5ec9aa17d10ace75c8276be2549b24fcf57faaa2cf331be6dee044abef023271",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.994,
+        "series": [
+          6,
+          1,
+          1,
+          1,
+          1,
+          5,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "full text of the legislation",
+        "slug": "d6b3a72357861751",
+        "n": 5,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 2,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 7,
+          "R": 2,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 5.6,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "N000193",
+          "statement": "sha256:3f4861ec2fec3eb7ec6e2fe3abdc72087081a87ea624074a9dca01c43beca00a",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.989,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "ngram": "full text of the bill",
+        "slug": "b40273a0c687b8c0",
+        "n": 5,
+        "day_peak": 6,
+        "party": "D",
+        "counts": {
+          "D": 6,
+          "R": 0,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 6,
+          "R": null,
+          "I": null
+        },
+        "family_count": 6,
+        "velocity": 2.62,
+        "first_seen": {
+          "date": "2025-01-06",
+          "bioguide": "C001121",
+          "statement": "sha256:d280bfaac5be2c4edd721faafc6f94339ea2490670af0d012e8a3fd478fff6db",
+          "tie": [
+            "R000614"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.977,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          4,
+          1,
+          6,
+          2,
+          6,
+          3,
+          6
+        ]
+      }
+    ],
+    "R": [
+      {
+        "ngram": "the federal permitting",
+        "slug": "6a6d25f54a86f4d9",
+        "n": 3,
+        "day_peak": 7,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 7,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 7,
+          "I": null
+        },
+        "family_count": 7,
+        "velocity": 6.12,
+        "first_seen": {
+          "date": "2025-01-21",
+          "bioguide": "H001061",
+          "statement": "sha256:24c276d89bef59e66da7576a08cd7f70f294422cd0f044e0367353cc84d09af5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "ngram": "energy and infrastructure projects",
+        "slug": "e3f5c2f0871567b6",
+        "n": 4,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 1,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 1,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-02-19",
+          "bioguide": "C001047",
+          "statement": "sha256:515adec289789804a0ccd213802962a6949abe2ea9e24fb49c92d0938dca3f24",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "permitting reform legislation",
+        "slug": "49d60863dadc2214",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 4,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.38,
+        "first_seen": {
+          "date": "2025-12-11",
+          "bioguide": "H001046",
+          "statement": "sha256:df2f82e2ab9e5804fe7fa9e784c95d38055dc25c12dc283dac9edf642dc8d199",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 1.0,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "critical infrastructure projects",
+        "slug": "5481b75491e5e035",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "B001257",
+          "statement": "sha256:615154e166da1558471be3b75ad75c61739eb2d79ae6288b16109757703d4a39",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "federal permitting process",
+        "slug": "450dba36be71911d",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 4.67,
+        "first_seen": {
+          "date": "2025-01-21",
+          "bioguide": "H001061",
+          "statement": "sha256:24c276d89bef59e66da7576a08cd7f70f294422cd0f044e0367353cc84d09af5",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.998,
+        "series": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "for american families",
+        "slug": "055e857e9ffb03bb",
+        "n": 3,
+        "day_peak": 5,
+        "party": "R",
+        "counts": {
+          "D": 2,
+          "R": 5,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 2,
+          "R": 5,
+          "I": null
+        },
+        "family_count": 5,
+        "velocity": 3.89,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "L000582",
+          "statement": "sha256:030b3527131ef12f086666a21479817714dbeba626e6a90809dba6df477ab53d",
+          "tie": [
+            "C000880",
+            "C001098"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.986,
+        "series": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          5
+        ]
+      },
+      {
+        "ngram": "environmental review and permitting",
+        "slug": "325e2c6c5bd8e3e1",
+        "n": 4,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-01-16",
+          "bioguide": "C001047",
+          "statement": "sha256:8ce9e341031d1eacc6bc235775a6b1d2cd823f5f0e5e51a79a9b0a6acf2ee1d3",
+          "tie": [],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "federal environmental review",
+        "slug": "21a6aa2f21c18960",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-02-19",
+          "bioguide": "C001047",
+          "statement": "sha256:2077bfcc1084824c71a7b69f05c1ffdb50aa689ce1bb8c36c145cc1f66084734",
+          "tie": [
+            "R000618"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "lower energy costs",
+        "slug": "ea5ccadc2b041323",
+        "n": 3,
+        "day_peak": 4,
+        "party": "D",
+        "counts": {
+          "D": 4,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": 4,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 3.11,
+        "first_seen": {
+          "date": "2025-01-03",
+          "bioguide": "F000480",
+          "statement": "sha256:68ebb6f96900456f43bf00b3c6154fbbc45410fe479f009523d77a3637a8cbb3",
+          "tie": [
+            "B001285"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.995,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "ngram": "permitting process to",
+        "slug": "6458ae9a49655f51",
+        "n": 3,
+        "day_peak": 4,
+        "party": "R",
+        "counts": {
+          "D": 0,
+          "R": 4,
+          "I": 0
+        },
+        "family_counts": {
+          "D": null,
+          "R": 4,
+          "I": null
+        },
+        "family_count": 4,
+        "velocity": 4.0,
+        "first_seen": {
+          "date": "2025-02-14",
+          "bioguide": "A000369",
+          "statement": "sha256:2d48b14fa1c1d771f5f6b2ab425c52128b7b5b28e0a9a8c0a533ddec5dd219c8",
+          "tie": [
+            "B001267"
+          ],
+          "precision": "day",
+          "lane": 1,
+          "corpus_start": "2025-01-01"
+        },
+        "df_weight": 0.999,
+        "series": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4
+        ]
+      }
+    ]
+  },
+  "duets": [
+    {
+      "ngram": "lower energy costs",
+      "slug": "ea5ccadc2b041323",
+      "n": 3,
+      "both": 4,
+      "day_peak": 4,
+      "counts": {
+        "D": 4,
+        "R": 4,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "F000480",
+        "statement": "sha256:68ebb6f96900456f43bf00b3c6154fbbc45410fe479f009523d77a3637a8cbb3",
+        "tie": [
+          "B001285"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.995,
+      "velocity": 3.11,
+      "sides": {
+        "D": [
+          {
+            "member": "Tammy Baldwin",
+            "party": "D",
+            "state": "WI",
+            "date": "2026-11-19",
+            "url": "https://www.baldwin.senate.gov/news/press-releases/baldwin-statement-on-permitting-reform-bill",
+            "quote": "Next year, Americans gave us the opportunity to tackle this crisis and get it right – and I look forward to working with my colleagues to lower energy costs, get more clean energy online, and protect families from paying the price for data centers’ energy usage."
+          },
+          {
+            "member": "Catherine Cortez Masto",
+            "party": "D",
+            "state": "NV",
+            "date": "2026-11-19",
+            "url": "https://www.cortezmasto.senate.gov/news/press-releases/cortez-masto-statement-on-senate-passage-of-permitting-reform-bill/",
+            "quote": "I support efforts to lower energy costs and have championed proposals to make it easier to build clean energy projects, upgrade our electrical grid, and grow our critical mineral supply chain in the U.S. In fact, I fought to ensure this bill includes my Mining Regulatory Clarity Act and High-Capacity Grid Act, language I drafted to support geothermal development, and provisions from my FREEDOM Act to streamline NEPA reviews and deliver project certainty to clean energy projects."
+          },
+          {
+            "member": "Tina Smith",
+            "party": "D",
+            "state": "MN",
+            "date": "2026-11-19",
+            "url": "https://www.smith.senate.gov/u-s-senator-tina-smiths-statement-in-opposition-to-permitting-reform-legislation/",
+            "quote": "We need to update our outdated permitting process so we can lower energy costs by getting cleaner, cheaper power connected to the grid, but this bill is a bad deal that Democrats should not take"
+          }
+        ],
+        "R": [
+          {
+            "member": "John Barrasso",
+            "party": "R",
+            "state": "WY",
+            "date": "2026-11-19",
+            "url": "https://www.barrasso.senate.gov/senate-passes-bipartisan-permitting-reform-bill/",
+            "quote": "It will help us build better, faster, cheaper, and smarter, and lower energy costs for American families."
+          },
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-11-19",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-votes-to-advance-bipartisan-permitting-reform-to-cut-red-tape-and-get-america-building-again",
+            "quote": "By reducing project delays and giving businesses more certainty to invest and build in America, the Bipartisan American Affordability and Jobs Act (BAAJA) will help lower energy costs for American families, create good-paying jobs and accelerate economic growth."
+          },
+          {
+            "member": "David McCormick",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-11-19",
+            "url": "https://www.mccormick.senate.gov/news/press-releases/mccormick-applauds-u-s-senate-delivering-on-landmark-permitting-reform-legislation/",
+            "quote": "Permitting reform legislation builds on Senator McCormick’s longstanding efforts to cut red tape, lower energy costs, unlock American economic growth"
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "years to come",
+      "slug": "62729ee9b1d09cef",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 3,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "C001136",
+        "statement": "sha256:24188353343d7f7b13581187eae846eb39d210cc2020ab3f6a5c32d08b4ab6e0",
+        "tie": [
+          "M001214"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.977,
+      "velocity": 1.56,
+      "sides": {
+        "D": [
+          {
+            "member": "Richard J. Durbin",
+            "party": "D",
+            "state": "IL",
+            "date": "2026-11-19",
+            "url": "https://www.durbin.senate.gov/newsroom/press-releases/durbin-calls-out-senate-republicans-for-jamming-through-extreme-and-unqualified-judicial-nominees",
+            "quote": "My colleagues on the other side of the aisle are opening Pandora’s box—their flouting of longstanding norms will reshape the way that we approach judicial confirmations for years to come."
+          },
+          {
+            "member": "Kirsten E. Gillibrand",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-19",
+            "url": "https://www.gillibrand.senate.gov/news/press/release/senate-passes-gillibrand-tenney-legislation-to-designate-the-finger-lakes-region-as-a-national-heritage-area/",
+            "quote": "This designation will promote tourism, create jobs, conserve natural resources, and make sure local communities have what they need to thrive for years to come."
+          },
+          {
+            "member": "John W. Mannion",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-19",
+            "url": "https://mannion.house.gov/media/press-releases/representative-mannion-seeks-protection-us-candle-industry-and-syracuse-jobs",
+            "quote": "This anti-dumping duty has been critical to ensuring that our family business can compete with a level playing field and continue manufacturing in Syracuse with our over 90 union employees for many years to come."
+          }
+        ],
+        "R": [
+          {
+            "member": "Mark Harris",
+            "party": "R",
+            "state": "NC",
+            "date": "2026-11-19",
+            "url": "https://markharris.house.gov/media/press-releases/harris-celebrates-100th-birthday-red-springs-resident-bettie-mae-buie",
+            "quote": "Bettie Mae Buie’s servant heart reminds us all what it means to be a good neighbor, and her legacy will be remembered for years to come."
+          },
+          {
+            "member": "John Thune",
+            "party": "R",
+            "state": "SD",
+            "date": "2026-11-19",
+            "url": "https://www.thune.senate.gov/news/press-releases/thune-historic-permitting-bill-will-cut-costs-spur-economic-growth/",
+            "quote": "His time with us has been short, but he can be assured that the impact of this one bill will echo for many years to come."
+          },
+          {
+            "member": "Glenn Thompson",
+            "party": "R",
+            "state": "PA",
+            "date": "2026-11-19",
+            "url": "https://thompson.house.gov/media-center/press-releases/thompson-schrier-introduce-legislation-improve-forest-management",
+            "quote": "These commonsense provisions will keep Pennsylvania's forestry industry going for years to come, and ensure businesses have the tools necessary to meet increasing demand,\" Rep. Thompson said."
+          }
+        ]
+      }
+    },
+    {
+      "ngram": "this bipartisan legislation",
+      "slug": "95c3c736eba4c20f",
+      "n": 3,
+      "both": 3,
+      "day_peak": 3,
+      "counts": {
+        "D": 6,
+        "R": 3,
+        "I": 0
+      },
+      "first_seen": {
+        "date": "2025-01-03",
+        "bioguide": "L000593",
+        "statement": "sha256:8e9368d5beaeb2d20a5d8faeaba3cda817ec424368ba8714b68fa88c8a428522",
+        "tie": [
+          "H001076",
+          "M001196"
+        ],
+        "precision": "day",
+        "lane": 1,
+        "corpus_start": "2025-01-01"
+      },
+      "df_weight": 0.971,
+      "velocity": 3.65,
+      "sides": {
+        "D": [
+          {
+            "member": "Amy Klobuchar",
+            "party": "D",
+            "state": "MN",
+            "date": "2026-11-19",
+            "url": "https://www.klobuchar.senate.gov/public/index.cfm/news-releases?ID=5B63C36E-60EF-41C1-A237-A23A259167BE",
+            "quote": "This bipartisan legislation would clarify that Medicaid must cover genomic sequencing for children with suspected rare diseases or genetic disorders who are enrolled in the program."
+          },
+          {
+            "member": "Mark R. Warner",
+            "party": "D",
+            "state": "VA",
+            "date": "2026-11-19",
+            "url": "https://www.warner.senate.gov/newsroom/press-releases/warner-kennedy-alsobrooks-rounds-introduce-bipartisan-legislation-to-increase-transparency-and-oversight-of-ai-investments/",
+            "quote": "This bipartisan legislation would bring much-needed transparency and accountability to AI investments and help ensure we’re not setting ourselves up for the next financial crisis."
+          },
+          {
+            "member": "Alexandria Ocasio-Cortez",
+            "party": "D",
+            "state": "NY",
+            "date": "2026-11-19",
+            "url": "https://ocasio-cortez.house.gov/media/press-releases/icymi-ocasio-cortez-lee-paris-hilton-call-immediate-house-passage-defiance-act",
+            "quote": "This bipartisan legislation would grant survivors the right to take civil action against individuals who knowingly produce, distribute, solicit, receive, or possess, with the intent to distribute, nonconsensual sexually explicit digital forgeries."
+          }
+        ],
+        "R": [
+          {
+            "member": "Chuck Grassley",
+            "party": "R",
+            "state": "IA",
+            "date": "2026-11-19",
+            "url": "https://www.grassley.senate.gov/news/news-releases/grassley-votes-to-advance-bipartisan-permitting-reform-to-cut-red-tape-and-get-america-building-again",
+            "quote": "Grassley also highlighted Iowans’ support for the legislation, including Joe Murphy of the Iowa Business Council who said, “This bipartisan legislation will bring greater certainty and predictability to the federal permitting process, establish clear timelines for reviews and decisions and make important changes to the way major energy and infrastructure projects are approved."
+          },
+          {
+            "member": "Carol D. Miller",
+            "party": "R",
+            "state": "WV",
+            "date": "2026-11-19",
+            "url": "https://miller.house.gov/media/press-releases/miller-delaney-introduce-agri-flood-resilience-and-infrastructure-act",
+            "quote": "This bipartisan legislation strengthens rural water infrastructure by restoring degraded watersheds and modernizing flood prevention systems to better protect communities from devastating floods and other water-related disasters."
+          },
+          {
+            "member": "Gary J. Palmer",
+            "party": "R",
+            "state": "AL",
+            "date": "2026-11-19",
+            "url": "https://palmer.house.gov/media-center/press-releases/palmer-bill-creating-transparency-within-federal-agencies-passes-house",
+            "quote": "I was honored to introduce this bipartisan legislation alongside Rep. Mfume, and I encourage the Senate to act swiftly."
+          }
+        ]
+      }
+    }
+  ],
+  "service_status": {
+    "rule": "R-36.5",
+    "conditions": {
+      "force_finalized": false,
+      "anomalously_low_volume": false,
+      "zero_eligible_claims_both_parties": false
+    }
+  },
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "95ad8b7df3a9f49c7a48cfc8441980c560f19b9367131fbea452d276c6a2a3d7",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
+    },
+    "sha256": "40d8dcb2ca4c0034100b5320153db8a644c45288068ab91805d17a9a451add78",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  }
 }
