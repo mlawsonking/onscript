@@ -576,10 +576,11 @@ def build_awards(statements, ledger, *, out_dir=None, focus_day: str | None = No
     }
     if focus_day:
         from . import denominators
-        result["date_effective_caucus"] = {
-            p: len(denominators.eligible_offices(focus_day, p))
-            for p in config.COMPOSITE_PARTIES
-        }
+        # S74-11: None for a party whose count is refused (focus day past the roster horizon);
+        # the renderer then prints bare counts and never falls back to the corpus-proxy "caucus".
+        dated = {p: denominators.eligible_count(focus_day, p) for p in config.COMPOSITE_PARTIES}
+        result["date_effective_caucus"] = {p: dated[p]["eligible_caucus_offices"] for p in dated}
+        result["date_effective_caucus_state"] = {p: dated[p]["denominator_state"] for p in dated}
     if out_dir is not None:
         util.write_json(out_dir / "awards.json", result)
     return result

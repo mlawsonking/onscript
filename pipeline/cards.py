@@ -41,7 +41,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from . import config, privacy, util
+from . import config, denominators, privacy, util
 
 # The Open Graph frame every consumer crops to. Read from config so the declared og:image:width and
 # the actual pixels cannot disagree (tests/test_og_meta.py already reads the real PNG header).
@@ -283,7 +283,9 @@ def build_cards(days: list[tuple[str, dict]], phrases: list[tuple[str, dict]], o
             return {}
         report = util.read_json(symmetry_dir / f"{day}.json", {}) or {}
         parties = report.get("parties") or {}
-        return {p: (parties.get(p) or {}).get("date_effective_eligible_caucus_offices")
+        # S74-11: a refused date-effective count (past the roster horizon) is None here, never
+        # another denominator.
+        return {p: denominators.party_denominator(parties.get(p))[0]
                 for p in config.COMPOSITE_PARTIES}
 
     for day, data in days:
@@ -318,7 +320,7 @@ def build_cards(days: list[tuple[str, dict]], phrases: list[tuple[str, dict]], o
         series = window.get("series") or []
         if not peak_day or not series:
             continue
-        denominators = caucus(peak_day)
+        day_caucus = caucus(peak_day)
         rows = []
         for party in config.COMPOSITE_PARTIES:
             peak = 0
@@ -327,7 +329,8 @@ def build_cards(days: list[tuple[str, dict]], phrases: list[tuple[str, dict]], o
                     peak = max(peak, int(row.get(party) or 0))
                 except (TypeError, ValueError):
                     continue
-            denominator = denominators.get(party)
+            shared = denominators.office_share(peak, day_caucus.get(party))
+            denominator = shared["eligible"] if shared["denominator_state"] == denominators.STATE_OK else None
             headline = (f"peak {peak} of {denominator} offices" if denominator
                         else f"peak {peak} offices")
             base = (f"largest single day, window from {window.get('first_day') or peak_day}"

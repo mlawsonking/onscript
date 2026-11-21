@@ -311,11 +311,21 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
             # W1 adds explicit units without changing the legacy fields above. The observed count is
             # evidence from this day. The eligible count is the corpus caucus proxy. Source health is
             # separate because the mirror cannot attest to every office endpoint.
-            "observed_publishing_offices": len(members),
+            # S74-11 (F5): the numerator is restricted to the offices the roster seats that day, so it
+            # is a subset of the date-effective denominator below; an off-roster author is counted
+            # in its own field. Past the roster horizon there is no eligible set and this is the bare
+            # count of observed offices.
+            "observed_publishing_offices": dated["observed_publishing_offices"],
+            "observed_offices_outside_roster": dated["observed_offices_outside_roster"],
             # Transition compatibility: this flat key keeps its W1 corpus-proxy meaning for one
             # schema cycle. Public surfaces use the date-effective field below.
             "eligible_caucus_offices": caucus.get(p),
+            # S74-11 (F1): None with denominator_state "roster_horizon_exceeded" past the roster
+            # snapshot's horizon. Renderers print bare counts then; no caller substitutes the proxy.
             "date_effective_eligible_caucus_offices": dated["eligible_caucus_offices"],
+            "denominator_state": dated["denominator_state"],
+            "roster_horizon": dated["roster_horizon"],
+            "voting_caucus_offices": dated["voting_caucus_offices"],
             "source_supported_offices": dated["source_supported_offices"],
             "publications": dated["publications"],
             "document_families": dated["document_families"],

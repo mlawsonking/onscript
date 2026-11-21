@@ -163,6 +163,12 @@ COVERAGE_DEPRECATION_NOTE = (
     "offices, eligible caucus offices, and source collection health as separate fields."
 )
 
+# S74-11 (F1). Shown when the dated roster snapshot cannot speak for the audited day.
+ROSTER_HORIZON_NOTE = (
+    "This day is past the last date the committed roster snapshot covers, so no eligible caucus "
+    "count is published for it. Counts on this day are shown without a denominator."
+)
+
 SOURCE_HEALTH_LIMIT = (
     "The mirror can attest to the files used by this run. It cannot attest to every eligible office "
     "endpoint, so endpoint completeness is not claimed."

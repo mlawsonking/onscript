@@ -48,6 +48,12 @@ def test_symmetry_report_separates_observation_eligibility_and_source_health():
             _statement("D", "D1"), _statement("D", "D2"),
             _statement("R", "R1"), _statement("R", "R2", day="2026-07-23"),
         ]
+        # S74-11 (F5): observed offices are counted inside the roster that seats them, so the
+        # fixture offices are seated by a fixture roster rather than looked up in the real one.
+        seat = {"start": "2025-01-03", "end_exclusive": "2027-01-03", "chamber": "House",
+                "voting_status": "voting"}
+        roster = {"offices": {bio: {"intervals": [{**seat, "party": party}]}
+                              for bio, party in (("D1", "D"), ("D2", "D"), ("R1", "R"), ("R2", "R"))}}
         try:
             report = ops.symmetry_report(
                 "2026-07-24",
@@ -55,10 +61,12 @@ def test_symmetry_report_separates_observation_eligibility_and_source_health():
                 {"D": {}, "R": {}},
                 freshness={"note": "assemble cannot attest endpoint health"},
                 degraded=False,
+                roster_table=roster,
             )
         finally:
             ops.config.DERIVED = old
     assert report["parties"]["D"]["observed_publishing_offices"] == 2
+    assert report["parties"]["D"]["observed_offices_outside_roster"] == 0
     assert report["parties"]["D"]["eligible_caucus_offices"] == 2
     assert report["parties"]["R"]["observed_publishing_offices"] == 1
     assert report["parties"]["R"]["eligible_caucus_offices"] == 2

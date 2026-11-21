@@ -213,6 +213,9 @@ def test_void_rolls_up_loudest_silence_both_directions():
 def _adata_one(du=30, da=40, caucus=200):
     return {"window": {"start": "2026-06-09", "end": "2026-06-15"}, "min_active": 15,
             "caucus": {"D": caucus, "R": caucus}, "nomenclature_index_version": "idx-119-abc",
+            # S74-11: the page reads only the date-effective caucus (production awards.json
+            # carries both); the corpus proxy is never substituted for it.
+            "date_effective_caucus": {"D": caucus, "R": caucus},
             "span_gated": True,
             "unison": {"D": [{"ngram": "protect social security benefits", "slug": "abc123",
                               "day": "2026-06-15", "offices_using": du, "offices_active": da,

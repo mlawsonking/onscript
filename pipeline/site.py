@@ -32,8 +32,8 @@ from pathlib import Path
 
 # Make ``from pipeline import config`` work when run as a script.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from pipeline import (boilerplate, build, config, contracts, corrections, distill, eligibility,
-                      nomenclature, privacy,
+from pipeline import (boilerplate, build, config, contracts, corrections, denominators, distill,
+                      eligibility, nomenclature, privacy,
                       public_strings, roster, status_exports, surges, util, verify)  # noqa: E402
 from pipeline.phrase_window import public_phrase_window  # noqa: E402
 
@@ -1383,8 +1383,12 @@ def receipts_strip(party: str, talking_points: list, caucus: int | None = None, 
         # the exact claim is that the phrase appeared IN these members' statements. Denominator travels
         # with the count so a peak never reads as typical. §Session-8.
         if isinstance(count, int):
-            frac = (f' <span class="faint">&middot; {esc(count)} of {esc(caucus)} ({round(100 * count / caucus, 1)}%)</span>'
-                    if isinstance(caucus, int) and caucus > 0 else "")
+            # S74-11: the share is computed (and refused) in one place; a refused share renders the
+            # bare count with no fraction and no percentage.
+            shared = denominators.office_share(count, caucus)
+            frac = (f' <span class="faint">&middot; {esc(count)} of {esc(shared["eligible"])} '
+                    f'({round(100 * shared["share"], 1)}%)</span>'
+                    if shared["denominator_state"] == denominators.STATE_OK else "")
             counts = tp.get("counts") or {}
             if all(isinstance(counts.get(key), int) for key in ("offices", "publications", "families")):
                 legacy_count = (
@@ -1852,8 +1856,9 @@ def _party_column(party, rows, slugs_with_pages, depth, caucus_size) -> str:
             continue
         ngram, slug = r.get("ngram", ""), r.get("slug", "")
         cnt = (r.get("counts") or {}).get(party, 0)
-        denom = (f' <span class="faint">of {caucus_size} ({round(100 * cnt / caucus_size, 1)}%)</span>'
-                 if isinstance(caucus_size, int) and caucus_size else "")
+        shared = denominators.office_share(cnt, caucus_size)
+        denom = (f' <span class="faint">of {esc(shared["eligible"])} ({round(100 * shared["share"], 1)}%)</span>'
+                 if shared["denominator_state"] == denominators.STATE_OK else "")
         cell = (f'<a href="{root}phrases/{esc(slug)}.html">{esc(ngram)}</a>'
                 if slug in slugs_with_pages else esc(ngram))
         series = [int(v) for v in (r.get("series") or []) if v is not None]
@@ -2112,7 +2117,7 @@ def day_view_body(day, day_data, slugs_with_pages, depth, prev_day=None, next_da
     parts.append(day_corrections(day, depth))
 
     # Two Daily Lines side by side (caucus sizes from the day's symmetry audit → denominators in view)
-    caucus = {p: ((symmetry or {}).get("parties", {}).get(p, {}) or {}).get("date_effective_eligible_caucus_offices")
+    caucus = {p: denominators.party_denominator(((symmetry or {}).get("parties", {}) or {}).get(p))[0]
               for p in ("D", "R")} if isinstance(symmetry, dict) else {}
     parts.append('<div class="lines">')
     parts.append(daily_line_panel("D", day_data, caucus=caucus.get("D")))
@@ -2334,9 +2339,12 @@ def phrase_evidence_body(pdata: dict, evidence: dict | None = None) -> str:
         count = int((record.get("counts") or {}).get(party) or 0)
         if not count:
             continue
-        denom = ((parties.get(party) or {}).get("date_effective_eligible_caucus_offices")
+        denom = (denominators.party_denominator(parties.get(party))[0]
                  if isinstance(parties, dict) else None)
-        count_bits.append(f"{esc(party)}: {esc(count)} of {esc(denom)}" if denom else f"{esc(party)}: {esc(count)}")
+        shared = denominators.office_share(count, denom)
+        count_bits.append(f"{esc(party)}: {esc(count)} of {esc(shared['eligible'])}"
+                          if shared["denominator_state"] == denominators.STATE_OK
+                          else f"{esc(party)}: {esc(count)}")
     denominator_line = f' <span class="faint">({"; ".join(count_bits)})</span>' if count_bits else ""
 
     rows = []
@@ -2573,7 +2581,11 @@ def symmetry_table(sym):
     detail = sym.get("source_collection_health_detail") or public_strings.SOURCE_HEALTH_LIMIT
     deprecated = ((sym.get("deprecated_fields") or {}).get("parties.*.coverage_pct")
                   or public_strings.COVERAGE_DEPRECATION_NOTE)
-    return table + f'<p class="muted"><small>{esc(detail)} {esc(deprecated)}</small></p>'
+    refused = ""
+    if any(denominators.party_denominator(parties.get(p))[1] == denominators.STATE_HORIZON
+           for p in ("D", "R")):
+        refused = f'<p class="muted"><small>{esc(public_strings.ROSTER_HORIZON_NOTE)}</small></p>'
+    return table + refused + f'<p class="muted"><small>{esc(detail)} {esc(deprecated)}</small></p>'
 
 
 def methodology_body():
@@ -3556,7 +3568,9 @@ def _unison_denoms(row, caucus) -> tuple:
     """(share_pct, denominator-on-its-face string) — offices-using / offices-active, plus the caucus."""
     using, active, day = _num(row.get("offices_using")), _num(row.get("offices_active")), row.get("day")
     share = round(100 * float(row.get("office_share") or 0), 1)
-    cd = f" &middot; of {esc(caucus)} in the caucus" if isinstance(caucus, int) and caucus else ""
+    shared = denominators.office_share(row.get("offices_using"), caucus)
+    cd = (f" &middot; of {esc(shared['eligible'])} in the caucus"
+          if shared["denominator_state"] == denominators.STATE_OK else "")
     return share, f"{esc(using)} of {esc(active)} offices that published on {esc(day)}{cd}"
 
 
@@ -3630,7 +3644,9 @@ def awards_body(adata, slugs_with_pages=None, depth: int = 0) -> str:
     root = "../" * depth
     adata = adata or {}
     win = adata.get("window") or {}
-    caucus = adata.get("date_effective_caucus") or adata.get("caucus") or {}
+    # S74-11: the date-effective caucus only. The corpus-proxy "caucus" is never substituted for a
+    # refused or missing date-effective count; a missing one renders the bare counts.
+    caucus = adata.get("date_effective_caucus") or {}
     unison = adata.get("unison") or {}
     parts = ["<h1>The Unison &amp; The Void</h1>"]
     parts.append('<p class="subhead">Two symmetric awards, picked by the data on identical rules for both '

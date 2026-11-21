@@ -1,6 +1,7 @@
 """X8 acceptance tests for dated denominators and explicit source coverage."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -35,11 +36,16 @@ def _roster_fixture() -> dict:
 
 def test_vacancy_and_party_switch_change_the_correct_daily_denominators():
     roster = _roster_fixture()
-    assert set(denominators.eligible_offices("2026-01-15", "D", roster_table=roster)) == {"D1", "S1"}
-    assert set(denominators.eligible_offices("2026-02-05", "D", roster_table=roster)) == {"S1"}
-    assert set(denominators.eligible_offices("2026-02-15", "D", roster_table=roster)) == {"D1", "S1"}
-    assert set(denominators.eligible_offices("2026-03-01", "D", roster_table=roster)) == {"D1"}
-    assert set(denominators.eligible_offices("2026-03-01", "R", roster_table=roster)) == {"S1"}
+    # S74-11 (F5): the nonvoting office NV is inside the population the numerators count, so it is
+    # inside the eligible set; voting_only keeps the X8 voting-office view available.
+    def voting(day, party):
+        return set(denominators.eligible_offices(day, party, roster_table=roster, voting_only=True))
+    assert voting("2026-01-15", "D") == {"D1", "S1"}
+    assert voting("2026-02-05", "D") == {"S1"}
+    assert voting("2026-02-15", "D") == {"D1", "S1"}
+    assert voting("2026-03-01", "D") == {"D1"}
+    assert voting("2026-03-01", "R") == {"S1"}
+    assert set(denominators.eligible_offices("2026-01-15", "D", roster_table=roster)) == {"D1", "S1", "NV"}
 
 
 def test_corpus_presence_never_becomes_source_support_without_attestation():
@@ -53,12 +59,13 @@ def test_corpus_presence_never_becomes_source_support_without_attestation():
         "2026-01-15", "D", rows, roster_table=roster,
         source_registry={"attestations": {}},
     )
-    assert measured["eligible_caucus_offices"] == 2
+    assert measured["eligible_caucus_offices"] == 3  # D1, S1 and the nonvoting NV (S74-11 F5)
+    assert measured["voting_caucus_offices"] == 2
     assert measured["source_supported_offices"] == 0
     assert measured["observed_publishing_offices"] == 1
     assert measured["publications"] == 1
     assert measured["document_families"] == 1
-    assert measured["office_source_states"]["unattestable"] == 2
+    assert measured["office_source_states"]["unattestable"] == 3
 
 
 def test_explicit_interval_attestation_is_the_only_supported_path():
@@ -72,7 +79,12 @@ def test_explicit_interval_attestation_is_the_only_supported_path():
 def test_committed_roster_has_pinned_open_provenance_and_intervals():
     payload = util.read_json(ROOT / "data/reference/date-effective-roster.json")
     provenance = payload["provenance"]
-    assert provenance["revision"] == "4458244308621d0570a15008f46888b7a87645eb"
+    # S74-11: a provenance-shape check, not a pin (docs/37 rule 3). A refresh to a new pinned
+    # revision through scripts/build_date_effective_roster.py must not break this test.
+    assert re.fullmatch(r"[0-9a-f]{40}", provenance["revision"])
+    assert all(provenance["revision"] in row["url"] for row in provenance["files"])
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}T.*", provenance["retrieved_at"])
+    assert provenance["source"] == "unitedstates/congress-legislators"
     assert provenance["license"] == "CC0-1.0"
     assert len(provenance["files"]) == 2
     assert all(len(row["sha256"]) == 64 for row in provenance["files"])
