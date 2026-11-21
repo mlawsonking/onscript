@@ -193,11 +193,20 @@ def test_closure_needs_a_collect_and_a_push_after_the_day_ends_in_new_york():
     assert not readiness.day_closed("2025-12-25", {"generated_at": "2025-12-26T10:00:00Z",
                                                    "source_freshness": {"ok": True, "note": "offline"}})
     assert not readiness.day_closed("2025-12-25", None)
-    # Production-shaped: the committed collect manifest of 2026-11-21 (generated 00:53Z against a
-    # 2026-11-20 14:43Z push) closes 2026-11-19 and not 2026-11-20.
-    real = json.loads((DERIVED / "manifest" / "collect-2026-11-21.json").read_text(encoding="utf-8"))
-    assert readiness.day_closed("2026-11-19", real)
-    assert not readiness.day_closed("2026-11-20", real)
+    # Production-shaped, frozen here: the two collect manifests production wrote on 2026-11-21.
+    # The file itself is rewritten by every collect of the day (S74-12: reading it live made this
+    # test fail as soon as the second collect landed; docs/37 rule 3), so its fields are pinned.
+    first = {"generated_at": "2026-11-21T00:53:00Z",
+             "source_freshness": {"ok": True, "pushed_at": "2026-11-20T14:43:00Z"}}
+    assert readiness.day_closed("2026-11-19", first)
+    assert not readiness.day_closed("2026-11-20", first)
+    second = {"generated_at": "2026-11-21T16:52:27Z",
+              "source_freshness": {"ok": True, "pushed_at": "2026-11-21T13:19:51Z", "age_hours": 3.54}}
+    assert readiness.day_closed("2026-11-20", second)
+    assert not readiness.day_closed("2026-11-21", second)
+    # The live file still has the shape the gate reads.
+    live = json.loads((DERIVED / "manifest" / "collect-latest.json").read_text(encoding="utf-8"))
+    assert readiness._utc(live["generated_at"]) and readiness._utc(live["source_freshness"]["pushed_at"])
 
 
 def test_the_forced_alert_states_what_is_known():
