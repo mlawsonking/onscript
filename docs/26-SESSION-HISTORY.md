@@ -4246,3 +4246,72 @@ commit unless marked otherwise.
 - **R-74.11, Congress turnover.** A read-only audit of the 2027-01-03 switch to the 120th
   Congress (roster, date-effective denominators, caucus sizes, the ledger's congress key) is
   commissioned now, so fixes land in December, well before the turnover.
+
+### Session 74-8 (2026-11-21, Opus): builder for work order S74-8; one package stopped on its own check
+
+Work order `X:\onscript-data\drafts\staged\WORK-ORDER-S74-8.md`, issued by Fable under
+R-74.1..11. Everything below is **committed locally on `s74-343-hardening` and unpushed**; the
+issuing session reviews and pushes. Commits were made in the order A, D, B, E, because Package B's
+P9 edit cites the file Package D commits and the D freeze commit has to stand alone.
+
+- **A, the essay date gate (R-74.3), `9e93f906`.** `pipeline.site.load_essays` drops any essay dated
+  after the product day (`util.product_day()`, injectable through `essay_gate_day` and a
+  `product_day` parameter). A gated essay has no page, index row, sitemap entry, nav link or copied
+  figure. `load_essays` is the only reader of `content/essays` (a test asserts it), so the gate covers
+  every surface; the Atom feed and the API exports never read essays. A date that is not YYYY-MM-DD is
+  never due. Figures on gated essays are still validated at load. Because the product day is the prior
+  New York day, an essay first appears in the render on the morning after its date.
+- **D, the S1.10a freeze (R-74.6, #396), `269ca50c`.** The unseen-data search ran first, read-only,
+  over `X:\onscript-data` `evidence`, `drafts` (excluding `staged\P5`), `reviews`, `academic` and
+  `historical-probe`: `*.json`, `*.csv`, `*.txt`, `*.log`, `*.py` for "bipartisan", the other six
+  frozen phrases, "S1.10" and "s1_10"; the same trees for "bipartisan" within 60 characters of a
+  season or month word; and file names for s1_10, season, bipartisan and autumn. Hits outside P5:
+  receipt URLs and release titles that contain "bipartisan"; P8 and P9 scripts and outputs that
+  read the committed S1.10 result (`revalidate_s1_4_s1_10.json`, 90-day pre-election windows);
+  one prose line in the S4.4 verdict JSON; 9,352 files in `academic\raw\grimmer-senate`, which are
+  raw 2005-2007 Senate release texts, not computations; zero files in `historical-probe` and
+  `reviews`. No computation of bipartisan-language rates outside Aug 6..Feb 6 was found. The
+  registration is committed byte-identical (sha256 `67c364fd...cb0bc`) with
+  `scripts/search/s1_10a_autumn.py`, which now refuses any registration whose bytes hash otherwise.
+  C1 was not run. The file's own `revision` field reads 2; R-74.6 calls the same bytes revision 3.
+  The S1.6a registration (R-74.5) is drafted, not committed, at
+  `X:\onscript-data\drafts\staged\P6\s1_6a-registration.json`.
+- **B, the six essays (R-74.3, R-74.4, R-74.7), `b0ba2489`.** P7 2026-11-23, P2 2026-11-25, P4
+  2026-12-01, P3 2026-12-03, P8 2026-12-08, P9 2026-12-15, with six figures. P5 and P6 are not
+  committed. Edits were applied by script (`X:\onscript-data\drafts\staged\S74-8-B\apply_s74_8_b.py`),
+  mirrored back to the staged JSON, and listed at the end of each piece's `receipts.md`. P7 no longer
+  says the day pages carry no notice: it says each links correction 9, and it cites the corrections
+  page. P2 says the first essay left the power-position question open. P8 says the launch essay was
+  corrected on November 20, cites correction 8 and erratum E-1, keeps S1.6 REFUTED, and says the
+  seasonal reading will be tested only on 2027 data and is not a finding. P9 says S1.10a has its own
+  committed pre-registration and cites the freeze commit. P3's provenance line says the registration
+  is committed in `85ec804f` and public. P4 no longer refers to P1, so only its date changed. P7's
+  "it did not" ship within seven days of the election stays true: the computed lag is 20 days. All
+  seven essays load on their dates and not the day before; every figure resolves;
+  `python -m pipeline.redact --check content/essays` is clean (SVGs are not scanned by it; their text
+  nodes pass `privacy.redact` unchanged); no em dash; every commit-like token resolves.
+- **C, the deterministic-half repair (R-74.8, #301): STOPPED at its pre-trust check. Nothing was
+  written and no tool was committed.** Recomputing `legacy_unvalidated_metrics` with
+  `build.day_record` for the 84 published days that already carry it matches the committed block on
+  4 days (2026-08-09, 11-17, 11-18, 11-19) and differs on 80. On every one of the 80 the committed
+  block counts fewer statements than a recomputation does now (4,827 against 8,697 D+R statements in
+  total). Examples, D/R statements committed against now: 2026-10-27 29/22 against 66/34; 2026-11-10
+  62/35 against 89/49; 2026-11-16 48/40 against 60/42. The block is a snapshot of the first RUN A
+  over a day that was still landing, so no recomputation now writes the block production would have
+  written. `data/state` could not have been used either: its `ledger.json` and `statements.jsonl.gz`
+  date from 2026-07-12 and 2026-07-10. The recomputation used the committed `discipline.json` series,
+  which is the only input the block reads. The day count also differs from the order: 35 published
+  records lack the key and carry no top-level discipline (2026-07-11, 07-13, 07-19, 07-27, 07-28,
+  08-03, 08-05, 08-13, 08-16, 08-21, 08-26, 08-31, 09-06, 09-08, 09-13, 09-15, 09-24, 09-28, 10-07,
+  10-11, 10-20, 10-25, and 10-28 through 11-09), and 15 more from 2026-06-30 to 07-26 carry the
+  pre-R-36.3 top-level shape. The order expected 21. The silence boards for 10-28 through 11-04 were
+  not built under the same stop. No public surface reads them: the silence page and The Void render
+  only under `FEATURES["silence_board"]` and `FEATURES["awards"]`, both False; the files would be
+  public only as committed JSON. A ruling is needed: accept a block computed from today's counts, and
+  label it so, or leave the days held.
+- **Suite:** 1,251 at handoff; 1,259 after A and D; 1,262 after B.
+
+Open for the issuing session: the one-day appearance lag of the gate against the R-74.3 dates; the
+Package C ruling; correction 9's text ("lack the legacy metrics block", "silence boards were not
+built"), which stays true while C is stopped; P9's freeze-commit receipt URL resolves only once
+`269ca50c` is pushed with its SHA unchanged.
