@@ -283,7 +283,14 @@ def test_the_committed_essay_renders_its_committed_figures_where_the_author_put_
     figures = essay["figures"]
     assert len(figures) == 2, "this test is about the two day-one figures"
 
-    out = _build()
+    # S74-8: the committed tree now holds date-gated essays with figures of their own, so the build
+    # is pinned to a product day before any of them comes due. The test stays about self-audit.
+    saved_gate = site.essay_gate_day
+    try:
+        site.essay_gate_day = lambda: "2026-11-20"
+        out = _build()
+    finally:
+        site.essay_gate_day = saved_gate
     page = (out / "essays" / f"{REAL_ESSAY}.html").read_text(encoding="utf-8")
 
     # 1. Both files were copied beside the page, byte for byte, and nothing else was.

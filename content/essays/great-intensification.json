@@ -1,0 +1,131 @@
+{
+  "title": "The Great Intensification, 2013 to 2020",
+  "dek": "From 2013 through 2020, talking points in congressional press releases reached their peak in fewer days and stopped being used sooner. On the source that came after, we cannot see whether that continued.",
+  "byline": "Michael King",
+  "date": "2026-12-01",
+  "labels": [
+    "correlation-not-cause",
+    "pre-registered",
+    "symmetric-instrument"
+  ],
+  "body": [
+    "In 2013, the median talking point in Congress took 34 days to reach its peak. In 2019 and 2020 it took 3. We measured this on eight years of official press releases from a single source, and it passed a test whose bar we set in advance. What happened after 2020 we cannot say yet, and this piece explains why.",
+    "## What we measured",
+    "Take a phrase that members' offices use. Most days a few offices say it, or none do. Sometimes it flares, and 15 or more offices of one party use the same words on the same day. We call that stretch a burst. A burst starts on the first day the phrase is used and ends when the phrase goes unused for more than 14 days. A joint release signed by many members counts once.",
+    "For each burst we record two numbers. Ignition width is the days from the burst's first day to its peak, the day the most offices used it. Lifespan is the days from its first day to its last. For each year we take the median across every burst that started that year.",
+    "## The finding, stated exactly",
+    "Within the first source, which runs from 2013 through 2020, the median ignition width was 34 days for bursts that started in 2013 and 3 days for bursts that started in 2019 and in 2020. Year by year the medians were 34, 13, 8, 12, 6, 12, 3 and 3 days, so 2013 is the high point and most of the fall came after it. The middle of the yearly medians was 12.5 days for 2013 to 2016 and 4.5 days for 2017 to 2020. The test's own ratio, 2013 against 2020, is 11.33. The medians did not fall every year. They fell within each half, and that was the test. For ignition width, 928 bursts started in 2013 and 12,548 in 2020.",
+    "Lifespan moved the same way. Across 2013 to 2016 the median of the yearly medians was 31.5 days. Across 2017 to 2020 it was 19.75 days. That is a 37.3 percent drop, against a bar of 30 percent set in advance. By year it ran from 55.5 days in 2013 to 15 days in 2020, with a rise to 35 days in 2018 along the way.",
+    "## How a refuted result became a confirmed one",
+    "We first ran this test in July over the whole corpus, 2013 through 2026. On the full span the second half did not point down, so the test failed. Then we found that our corpus is two datasets joined at 2021-01-03. The first is an import of member press releases collected through ProPublica, and it stops on that date. The second is a scraper that took over. Any comparison across that date measures the change of source along with whatever members did.",
+    "Before rerunning, we wrote down that each source would be tested on its own, split into its own two halves. When we wrote that down we had already seen the 2013 to 2020 medians in the failed run, so the pass was not a surprise. What was fixed in advance was the hypothesis, the bar and the halves. Run that way, the first source passes. The second does not.",
+    "An earlier version of this measurement passed and was wrong. It timed how long a phrase took to peak inside each two-year Congress, and its clock reset each time a Congress began. That produced a sawtooth, long times in the first year of every Congress and short ones in the second. It showed the same drop, and the drop came from the calendar. We discarded it and rebuilt the measure on bursts, which ignore where a Congress begins or ends. On the first source the sawtooth is gone. On the second source the sawtooth check still trips on ignition width, one more reason we read no trend there.",
+    "## What happened after 2020",
+    "We do not know. On the second source, 2021 to 2026, neither measure shows a speed-up that survives the same tests. The ignition-width trend fails the volume check described below, and lifespan did not shrink. This does not show that the speed-up stopped. It shows that this source cannot settle the question. The chart keeps the two sources in separate panels, and their levels are not comparable.",
+    "## The checks, and what they leave open",
+    "Bill titles. Offices that mention the same bill share its title. We removed every phrase covered by an official bill, committee or office name, 364 of 25,188 phrases (1.4 percent), and ran the test again. The ignition ratio went from 11.33 to 12.0, and the lifespan drop from 37.3 to 38.1 percent.",
+    "Coverage. The source grew. It carried 37,363 statements in 2013 and 72,470 in 2020, or 104.4 and 198.0 per day that had any statements, and it had statements from 390 members in 2013 and 501 in 2020. A burst needs 15 offices on one day, and a fixed bar is easier to reach when more offices are being collected. Our volume check thins each later year to the number of bursts in the smallest early year (928 for ignition width, 768 for lifespan) and asks whether the trend still points down. It does. The check matches the number of bursts. It does not match how many members or statements arrive on a single day. Some of the speed-up may come from wider coverage, and this test cannot separate it out.",
+    "Party. On each day the measure follows whichever party used a phrase more. We did not split the result by party, and it says nothing about either party alone.",
+    "## The receipts",
+    "Each example is a burst whose ignition width equals its year's median. Its lifespan need not be typical. We took one led by each party in each era, and in all four, offices of the other party used the same words on the peak day too. The three links per phrase are releases from the peak day.",
+    "\"the employer mandate\": started 2013-06-13 and peaked 2013-07-17, 34 days later, when 43 Republican offices used it on the day of a House vote to delay the requirement. The burst ran 356 days, against a 2013 median lifespan of 55.5.",
+    "\"50th anniversary of the march on\": started 2013-07-25 and peaked 2013-08-28, 34 days later, when 32 Democratic offices marked the anniversary of the March on Washington. A burst can peak on a date fixed in advance, and the measure counts it the same way.",
+    "\"an additional 13 weeks of\": started 2020-03-24 and peaked 2020-03-27, 3 days later, when 61 Democratic offices used it in statements on the coronavirus relief bill the House passed that day.",
+    "\"nomination of judge\": started 2020-09-23 and peaked 2020-09-26, 3 days later, when 28 Republican offices used it on the day a Supreme Court nomination was announced.",
+    "## What this means",
+    "From 2013 through 2020, on one consistent source, talking points in congressional press releases reached their peak in fewer days and stopped being used sooner. That held in both halves of the period and through the bill-title and volume checks, with the coverage limit above. It says nothing about either party alone, about why it happened, or about what came after the source changed."
+  ],
+  "figures": [
+    {
+      "src": "figures/great-intensification-lanes.svg",
+      "after_block": 6,
+      "alt": "Two separate line charts, one per data source. Left, 2013 to 2020: median ignition width falls from 34 days to 3 and median lifespan from 55.5 days to 15. Right, 2021 to 2026, in grey: neither series shows a trend that passed the same tests.",
+      "caption": "Median days per burst-start year. Left: the first source, 2013 to 2020, where both measures fall in both halves (ignition width 34 to 3 days; lifespan half-medians 31.5 to 19.75 days). Right: the second source, 2021 to 2026, drawn in grey because neither trend passed. The panels are not joined across 2021-01-03, when the source changes. Levels are not comparable between panels."
+    }
+  ],
+  "receipts": [
+    {
+      "member": "Andy Barr (R-KY)",
+      "date": "2013-07-17",
+      "url": "http://barr.house.gov/media-center/press-releases/barr-votes-delay-obamacare-implementation",
+      "note": "\"the employer mandate\", burst 2013-06-13 to peak 2013-07-17 (34 days)"
+    },
+    {
+      "member": "Chris Collins (R-NY)",
+      "date": "2013-07-17",
+      "url": "http://chriscollins.house.gov/media-center/press-releases/statement-from-congressman-chris-collins-on-the-delay-of-the-health-care",
+      "note": "\"the employer mandate\", burst 2013-06-13 to peak 2013-07-17 (34 days)"
+    },
+    {
+      "member": "Dennis Ross (R-FL)",
+      "date": "2013-07-17",
+      "url": "http://dennisross.house.gov/News/DocumentSingle.aspx?DocumentID=342851",
+      "note": "\"the employer mandate\", burst 2013-06-13 to peak 2013-07-17 (34 days)"
+    },
+    {
+      "member": "Alcee Hastings (D-FL)",
+      "date": "2013-08-28",
+      "url": "http://alceehastings.house.gov/news/documentsingle.aspx?DocumentID=346895",
+      "note": "\"50th anniversary of the march on\", burst 2013-07-25 to peak 2013-08-28 (34 days)"
+    },
+    {
+      "member": "Matt Cartwright (D-PA)",
+      "date": "2013-08-28",
+      "url": "http://cartwright.house.gov/media-center/press-releases/rep-cartwright-marks-50th-anniversary-of-march-on-washington",
+      "note": "\"50th anniversary of the march on\", burst 2013-07-25 to peak 2013-08-28 (34 days)"
+    },
+    {
+      "member": "Judy Chu (D-CA)",
+      "date": "2013-08-28",
+      "url": "http://chu.house.gov/press-release/congresswoman-chu-marks-50th-anniversary-march-washington",
+      "note": "\"50th anniversary of the march on\", burst 2013-07-25 to peak 2013-08-28 (34 days)"
+    },
+    {
+      "member": "David Scott (D-GA)",
+      "date": "2020-03-27",
+      "url": "http://davidscott.house.gov/news/documentsingle.aspx?DocumentID=399378",
+      "note": "\"an additional 13 weeks of\", burst 2020-03-24 to peak 2020-03-27 (3 days)"
+    },
+    {
+      "member": "Dave Loebsack (D-IA)",
+      "date": "2020-03-27",
+      "url": "http://loebsack.house.gov/news/documentsingle.aspx?DocumentID=397351",
+      "note": "\"an additional 13 weeks of\", burst 2020-03-24 to peak 2020-03-27 (3 days)"
+    },
+    {
+      "member": "Lucille Roybal-Allard (D-CA)",
+      "date": "2020-03-27",
+      "url": "http://roybal-allard.house.gov/news/documentsingle.aspx?DocumentID=401714",
+      "note": "\"an additional 13 weeks of\", burst 2020-03-24 to peak 2020-03-27 (3 days)"
+    },
+    {
+      "member": "Robert Latta (R-OH)",
+      "date": "2020-09-26",
+      "url": "http://latta.house.gov/news/documentsingle.aspx?DocumentID=402368",
+      "note": "\"nomination of judge\", burst 2020-09-23 to peak 2020-09-26 (3 days)"
+    },
+    {
+      "member": "Ted Cruz (R-TX)",
+      "date": "2020-09-26",
+      "url": "http://www.cruz.senate.gov?p=press_release&id=5396",
+      "note": "\"nomination of judge\", burst 2020-09-23 to peak 2020-09-26 (3 days)"
+    },
+    {
+      "member": "Jodey Arrington (R-TX)",
+      "date": "2020-09-26",
+      "url": "https://arrington.house.gov/news/documentsingle.aspx?DocumentID=398",
+      "note": "\"nomination of judge\", burst 2020-09-23 to peak 2020-09-26 (3 days)"
+    }
+  ],
+  "provenance": {
+    "finding": "S1.1' and S1.3', CONFIRMED within the propublica lane only (docs/13, shard-lanes revalidation, Session 19); ARTIFACT/REFUTED in the second lane",
+    "registration scope": "hypotheses and bars from docs/12; within-lane halves fixed in docs/18 section 5 after the 2026-07-15 full-span run (docs/13 line 88) had already shown the 2013-2020 medians",
+    "narrative card": "data/derived/findings/GREAT-INTENSIFICATION.json (banked reversal card; its cross-seam numbers are superseded by the within-lane rows and are not used here)",
+    "estimator": "bursts in a phrase's merged daily series (gap 14 days, peak >= 15 distinct units of one party in a day, joint releases once); ignition width = first day to peak day, lifespan = first to last day; median per burst-start year; gate: Spearman direction < 0 in both halves, ratio >= 1.5 (S1.1') or drop >= 30% (S1.3'), density-matched control survives",
+    "window": "propublica lane 2013-01-01 to 2021-01-03 (lane edge, bursts alive at the edge censored); halves 2013-16 / 2017-20 per docs/18 section 5; second panel scraper lane 2021-2026 isolated per R-S50.1",
+    "rerun, finding": "python scripts/search/revalidate_s1_shards.py propublica",
+    "rerun, source-lane isolation": "python scripts/search/build_source_lane_shards.py, then the isolated revalidation (data/derived/search/revalidate_s1_isolated.json)",
+    "rerun, bill-title rider": "python scripts/search/revalidate_nomenclature_rider.py",
+    "receipts method": "median-width bursts (34 d in 2013, 3 d in 2020) from the propublica daily series after the bill-title rider; one led by each party per era; raw mirror walked on the peak day, legacy records only; first three leading-party offices by URL; scripts archived with the draft assets"
+  }
+}

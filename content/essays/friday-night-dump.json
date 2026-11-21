@@ -1,0 +1,94 @@
+{
+  "title": "Looking for the Friday Night Dump",
+  "dek": "We registered a test before running it, checked that it could see a Friday effect, and ran it on 674,970 congressional press releases. The language of retraction and apology shows up on Fridays at the usual rate. That word list also catches many things besides an office taking back its own words, so the test says less about the Friday dump than we planned.",
+  "byline": "Michael King",
+  "date": "2026-12-03",
+  "labels": [
+    "pre-registered",
+    "null-not-proof-of-absence",
+    "symmetric-instrument"
+  ],
+  "body": [
+    "The Friday news dump is one of Washington's oldest pieces of folk wisdom: if you have to admit something, put it out late Friday, when reporters have gone home and readers have stopped looking. We tested a version of it on members of Congress. The words people use to walk something back appear in congressional press releases on Fridays at about the same rate as on any other weekday. We wrote the test down and fingerprinted it before running it, and we checked that it could see a Friday effect when one exists. Then we looked at what the word list actually catches, and it catches many things besides an office retracting its own words. The result is a null, and it covers less than we planned.",
+    "## What we tested",
+    "The claim, as registered before measuring: if the Friday Night Dump is real in congressional press releases, walk-back language should appear on Fridays at least 1.5 times as often as the Monday-to-Thursday average, in both halves of our data. We set 1.5 in advance as the size a dump would need to be worth the name.",
+    "Walk-back language means a fixed list of 40 phrases chosen for the act they name, not for how often they appear: \"misspoke\", \"I was wrong\", \"I apologize\", \"set the record straight\", \"walk back\", \"poor choice of words\" and others like them. The rate is matches per release, so a busy Thursday does not outweigh a quiet Friday.",
+    "The corpus is 674,970 official press releases from House and Senate offices, January 2013 through July 9, 2026. Both parties went through the same list, threshold and checks. We split at 2021, where our corpus changes source: most of 2013 to 2020 comes from one collection, and 2021 onward from our own scraper. Before 2013 the record is too thin for a weekday analysis (2,321 releases, from no more than 10 offices in any year), so we did not compute it.",
+    "## What we found",
+    "From 2013 to 2020, the Friday rate was 0.85 times the Monday-to-Thursday average: 390 matches in 91,065 Friday releases, or 0.43 per 100 releases, against 0.50 per 100 Monday to Thursday. From 2021 to July 2026 it was 0.96 times: 139 matches in 32,298 Friday releases, 0.43 per 100 against 0.45. The registered threshold was 1.5.",
+    "We also asked how large a Friday effect the data could still be hiding. Resampling whole calendar days 2,000 times, the 95 percent interval for 2013 to 2020 runs from 0.72 to 1.00, and for 2021 onward from 0.76 to 1.20. Both upper ends sit below 1.5. One caveat: we set a floor of 200 Friday matches per half before looking, and 2021 onward has 139, so that half is underpowered by our own rule. A broader registered list with softer clarification phrases clears the floor there (313 Friday matches) and gives 0.97, interval 0.83 to 1.12. The test needed both halves to pass, and 2013 to 2020 fails on its own.",
+    "## Why the null is not a broken instrument",
+    "A test that never fires tells you nothing by not firing. So we also registered a list we expected to be Friday-shaped: week-ending words such as \"this week\", \"over the weekend\" and \"next week\", the vocabulary of weekly wrap-ups. Same corpus, same estimator, same threshold: they ran 2.10 times the Monday-to-Thursday rate in 2013 to 2020 and 1.75 times in 2021 onward. Both clear 1.5. A placebo list of routine phrases with no reason to care about Friday (\"I am pleased\", \"I want to thank\", \"I look forward\") came out flat, at 0.98 and 0.96. The machinery finds a Friday effect where one should exist and none where none should.",
+    "The result held under every registered check. Per 1,000 words instead of per release: 0.87 and 0.99. Collapsing identical releases sent by several offices on the same day (7,870 duplicate rows): 0.85 and 0.96. Counting office-days instead of releases: 0.82 and 0.99. Dropping each of the 40 phrases in turn keeps 2013 to 2020 between 0.83 and 0.88 and 2021 onward between 0.93 and 1.01. Neither party, measured separately with the same list, shows a Friday ratio above 1.01 in either half. The holiday version of the theory, burying news on the last business day before a federal holiday, showed 1.31 in 2013 to 2020, but 500 sets of random non-holiday dates with the same weekday mix produce rates up to the same level: the real rate, 0.58 per 100 releases, sits inside their range of 0.35 to 0.61, and 6.0 percent of the random sets beat it.",
+    "After the registered run, we found that the first half also holds 25,491 releases from our scraper, so the halves were not single sources. We reran each half inside one source. 2013 to 2020 gives 0.86 (interval 0.73 to 1.00) and 2021 onward 0.96 (interval 0.76 to 1.19). The week-ending control stays at 2.11 and 1.75.",
+    "## What the word list catches",
+    "A null only means something if the test measures the thing in question. The list was built to name the act of walking something back, but the same words do other work. \"Set the record straight\" can be aimed at an opponent. \"Out of context\" can describe someone else's use of data. \"I'm sorry\" can be an interruption in a hearing transcript, and \"regret\" can be a condolence. That is a property of the vocabulary, not a measured share, and two of the receipts below show it.",
+    "That sets the limit. The words of walking something back do not cluster on Fridays. Because the list catches many other things, this test cannot speak to whether offices time their own retractions for Friday.",
+    "## What this does and does not show",
+    "A null is not proof of absence. What we can say is narrow: in congressional press releases from 2013 to July 2026, the vocabulary of correction and apology is not concentrated on Fridays. We cannot say whether offices bury their own retractions on Fridays, because the word list does not isolate them.",
+    "We see dates, not times, so this is a test of Friday, not Friday night. Agencies, campaigns and the White House are outside the corpus. And we do not claim the reverse, that Congress apologizes less on Fridays. The 2013 to 2020 interval sits at the edge of 1.0, the second half shows nothing, and the ratio is not consistent across length bands: within them, the 2013 to 2020 Friday ratios range from 0.78 to 1.11.",
+    "## The pre-registration",
+    "The registration is one file naming the 40 phrases, the broader list, the placebo, the positive control, the 1.5 threshold, the split at 2021 and the minimum counts. Its SHA-256 fingerprint is 6cbee4a8bda77ce876de4be41184362bda758b26fc33ec93b4452142d636b6d5. Every script in the run recomputed it and stamped it on its output, so the lists we measured are the lists we registered. The file is committed in our public repository at data/reference/search/s4_4-registration.json, so anyone can recompute the fingerprint.",
+    "Two disclosures. A fingerprint shows a file has not changed since it was taken; it does not show when the file was written, and our record of the order is our own. And a rough 12-phrase probe had already been run before the registration, so its answer, no Friday excess, was known when the registered list was written. The registered list was built separately with its own controls, and the two agree. That reduces the problem. It does not remove it.",
+    "## The receipts",
+    "This piece measures an absence, so its receipts work differently from a finding's. The evidence for the null is the full count, which reruns from the registered file. The links below illustrate the measure. Two are walk-back matches that name someone else's error, one from each party: examples of what the list catches besides an office's own retraction. Four are Friday releases carrying week-ending words, the positive control, two per party. Within each group they were taken in a fixed hash order of their URLs, not chosen by hand. They do not prove the null.",
+    "## Why publish this",
+    "Most of what we test comes back negative, which is the normal outcome when the threshold is set in advance. We are publishing this one for two reasons. The registered test holds: the vocabulary of retraction does not pile up on Fridays, and the instrument would have seen it if it did. And looking at what the list catches showed the limit of the test before anyone else had to. This record cannot show whether offices bury their own retractions on Fridays."
+  ],
+  "figures": [
+    {
+      "src": "figures/friday-dump-ratios.svg",
+      "after_block": 9,
+      "alt": "Dot chart of six Friday-to-midweek ratios. Walk-back language 0.85 and 0.96, both intervals below the 1.5 threshold; placebo 0.98 and 0.96; week-ending positive control 2.10 and 1.75, the only marks past 1.5.",
+      "caption": "Friday rate divided by the Monday-to-Thursday average, per release, for the three registered word lists, 2013 to 2020 and 2021 to July 9, 2026. Whiskers are 95 percent day-block bootstrap intervals for walk-back language. Marker shape, not color, identifies the list."
+    }
+  ],
+  "receipts": [
+    {
+      "member": "Joseph Crowley (D-NY)",
+      "date": "2017-02-03",
+      "url": "http://crowley.house.gov/press-release/chairman-crowley-introduces-resolution-condemning-white-house-exclusion-jewish-people",
+      "note": "walk-back match \"setting the record straight\" (Friday, 2013-2020): the words name someone else's error, not the office's own"
+    },
+    {
+      "member": "Paul Gosar (R-AZ)",
+      "date": "2015-09-11",
+      "url": "http://gosar.house.gov/press-release/rep-gosar-files-articles-impeachment-against-epa-administrator-gina-mccarthy",
+      "note": "walk-back match \"out of context\" (Friday, 2013-2020): the words name someone else's error, not the office's own"
+    },
+    {
+      "member": "Adam Smith (D-WA)",
+      "date": "2020-07-17",
+      "url": "https://adamsmith.house.gov/news/press-releases/congressman-smith-slams-trump-administration-blocking-cdc-testifying-school",
+      "note": "positive control match \"this week\" (Friday, 2013-2020): week-ending words"
+    },
+    {
+      "member": "Devin Nunes (R-CA)",
+      "date": "2017-01-13",
+      "url": "http://nunes.house.gov/news/documentsingle.aspx?DocumentID=398678",
+      "note": "positive control match \"this week\" (Friday, 2013-2020): week-ending words"
+    },
+    {
+      "member": "John Fetterman (D-PA)",
+      "date": "2024-06-07",
+      "url": "https://www.fetterman.senate.gov/fetterman-leads-bipartisan-bicameral-letter-urging-usda-to-consider-mushroom-growers-concerns-in-rulemaking/",
+      "note": "positive control match \"this week\" (Friday, 2021-2026): week-ending words"
+    },
+    {
+      "member": "Cindy Hyde-Smith (R-MS)",
+      "date": "2025-02-28",
+      "url": "https://www.hydesmith.senate.gov/hyde-smith-backs-bills-stop-taxpayer-dollars-funding-sanctuary-cities",
+      "note": "positive control match \"this week\" (Friday, 2021-2026): week-ending words"
+    }
+  ],
+  "provenance": {
+    "finding": "docs/13 search ledger, S4.4 (L307), REFUTED; no finding card exists",
+    "pre-registration": "data/reference/search/s4_4-registration.json, committed in 85ec804f and public on main, sha256 6cbee4a8bda77ce876de4be41184362bda758b26fc33ec93b4452142d636b6d5",
+    "estimator": "Friday lexicon matches per statement / mean of the four Mon-Thu rates; 95% CI from a 2,000x calendar-day block bootstrap",
+    "window": "2013-01-01 to 2026-07-09, split 2013-2020 / 2021-2026, press-release corpus",
+    "denominator": "674,970 statements of 20+ words with party and bioguide",
+    "rerun, finding": "S4_4_pass1_extract.py then S4_4_pass2_analyze.py (S4.4 scratch, not in repository)",
+    "rerun, numbers and lane check": "p3_numbers.py, p3_receipts.py, p3_lane_check.py (draft assets)",
+    "receipts method": "lowest blake2b(url) per stratum (half x party x Friday/Mon-Thu), hash order within group; two word-list examples (one per party) and four positive-control examples (two per party); illustrations, not a measurement"
+  }
+}

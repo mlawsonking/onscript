@@ -8,11 +8,12 @@ unaffected. One test is built from the real committed content/essays tree (docs/
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import tempfile
 from pathlib import Path
 
-from pipeline import site
+from pipeline import public_strings, site
 
 from tests.test_s67_essays_and_clarity import STUB_SVG, _build, _essay
 
@@ -127,6 +128,50 @@ def test_a_gated_essay_with_a_malformed_figure_still_fails_the_load():
         assert "figure src" in str(e)
     else:
         raise AssertionError("a malformed figure on a gated essay loaded silently")
+
+
+def _committed_essays() -> list[tuple[str, dict]]:
+    return [(p.stem, json.loads(p.read_text(encoding="utf-8")))
+            for p in sorted(site.ESSAYS_DIR.glob("*.json"))]
+
+
+def test_every_committed_essay_label_has_its_explanation():
+    """S74-8 B. A label with no text in ESSAY_LABELS renders as a bare word: the reader is told a
+    standing caveat applies and not what it is."""
+    essays = _committed_essays()
+    assert len(essays) >= 7, [s for s, _ in essays]
+    for slug, essay in essays:
+        assert essay.get("labels"), slug
+        for label in essay["labels"]:
+            text = public_strings.ESSAY_LABELS.get(label)
+            assert isinstance(text, str) and text.strip(), (slug, label)
+
+
+def test_every_committed_receipt_has_member_date_and_a_web_url():
+    """S74-8 B. _essay_receipts drops a receipt missing any of the three, silently, so a malformed
+    receipt in a committed essay would vanish from the page instead of failing anywhere."""
+    for slug, essay in _committed_essays():
+        assert essay.get("receipts"), slug
+        for i, receipt in enumerate(essay["receipts"]):
+            assert str(receipt.get("member") or "").strip(), (slug, i)
+            assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(receipt.get("date") or "")), (slug, i)
+            assert re.match(r"https?://[^\s/]+\.[^\s/]+", str(receipt.get("url") or "")), (slug, i)
+            assert site._safe_http_url(receipt["url"]), (slug, i)
+
+
+def test_every_committed_essay_comes_due_on_its_own_date_with_its_figures():
+    """S74-8 B. Each committed essay loads on its date and not the day before, and every figure it
+    names is a committed file."""
+    from datetime import date, timedelta
+    for slug, essay in _committed_essays():
+        day = essay["date"]
+        before = (date.fromisoformat(day) - timedelta(days=1)).isoformat()
+        assert slug in {e["slug"] for e in site.load_essays(product_day=day)}, slug
+        assert slug not in {e["slug"] for e in site.load_essays(product_day=before)}, slug
+        for figure in site.essay_figures({**essay, "slug": slug}):
+            assert (site.essay_figures_dir() / figure["name"]).is_file(), (slug, figure["name"])
+        for text in [essay.get("title"), essay.get("dek"), *essay.get("body", [])]:
+            assert "—" not in str(text or ""), slug
 
 
 def test_load_essays_is_the_only_reader_of_the_essays_tree():

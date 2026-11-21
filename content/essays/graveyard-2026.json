@@ -1,0 +1,126 @@
+{
+  "title": "The Shelf: What We Tested This Year and Did Not Publish",
+  "dek": "Every finding OnScript published in 2026 stood next to tests that failed. This is the shelf where those tests went: what each one asked, how it was tested, and why it did not become a finding.",
+  "byline": "Michael King",
+  "date": "2026-12-15",
+  "labels": [
+    "pre-registered",
+    "symmetric-instrument",
+    "correlation-not-cause"
+  ],
+  "body": [
+    "OnScript publishes a finding only after it passes a test we wrote down before we ran it. Most tests do not pass. This piece lists the ones that failed or were held this year, one entry each, with the reason. None of them is a finding and none should be quoted as one. They are here so that anyone deciding whether to trust what we did publish can see what we threw out, and why.",
+    "## How to read an entry",
+    "Each hypothesis was registered before it was measured: the question, the test, the threshold it had to clear, and the minimum sample. Every test ran on both parties with the same rule. Refuted means the effect was not there at the size we said would matter. Artifact means a signal appeared, but it came from how we measured rather than from what members said. Held means a measurement stands but a condition we set for publishing it failed.",
+    "Our press-release corpus is two datasets in the same public mirror, joined at 2021-01-03: an imported archive covering 2013 to 2020, and a newer scraper after it. We call each one a lane. When we found that seam in July, we re-ran every verdict that had produced a number inside one lane at a time. Each entry below was either re-run that way or measured inside one lane from the start, and none moved toward a positive result. The receipts at the bottom are the records of each verdict, with their dates.",
+    "## Refuted",
+    "**Does leadership start the talking points? Refuted.** The theory: big talking points begin in a leadership office and the rank and file repeat them. The test: for every phrase that reached 20 or more offices on a single day within a Congress, find the office that said it first. Offices holding the nine core leadership titles had to be first at least 3 times as often as their share of all press releases, in both halves of each lane. They were first at 0.82 times their share in 2013 to 2016 (2,460 qualifying phrases, counted once per Congress) and 0.89 times in 2017 to 2020 (12,702 phrases), then 1.61 times in 2021 to 2023 (1,510 phrases) and 0.95 times in 2024 to 2026 (844 phrases). Every cell met its sample floor. One variant counts leadership as first whenever it is among the offices using a phrase on its first day; that ratio runs from 1.92 to 2.67 across the same four periods, still under 3. We did not register that question.",
+    "**Does a safe seat change how a member talks? Refuted in the House.** The theory came in two opposite versions: a safe seat frees a member's own voice, or it lets the party script take over. Either direction would have counted. The test: each member's margin of victory against their on-script index (how much of their language is phrasing their party shared widely), as a rank correlation (Spearman's rho) within each chamber. A cell needed at least 100 members, and a result needed a correlation of at least 0.20 in size, statistically significant, with the same sign in both halves of a lane. All four House cells came in under that bar: 0.004 for 2013 to 2016 (399 members), -0.041 for 2017 to 2020 (510), -0.107 for 2021 to 2022 (226), and -0.122 for 2023 to 2026 (422). That last number is statistically significant (p = 0.012) and below the size we registered as meaningful. The Senate could not be tested: no Senate cell reached 100 members, and the older lane carried press releases from only 2 senators for 2013 to 2016.",
+    "## Killed by a placebo",
+    "A placebo here means running the same test where the effect should not exist. If the result shows up there too, the original result was not about what we thought.",
+    "**Does bipartisan language fade before elections? Artifact.** The theory: members talk less about working across the aisle as an election approaches. The test: a dip in bipartisan-signaling language in the 90 days before Election Day and a rebound after, in every cycle. The dip appeared in 6 of 6 election cycles. Then we ran the same test on odd years with a fake November election, and the same dip appeared in every odd year we tested, 7 of 7. Re-run so that no cycle crossed the seam (the 2020 cycle was dropped because its window does), the result was 5 of 5 real cycles and 7 of 7 placebo years. The election framing is dead. Whether the dip is an autumn pattern instead is a separate question: that reframe has its own pre-registration, committed before its test ran, at data/reference/search/s1_10a-registration.json. We make no claim about it here.",
+    "**Does shutdown blame point outward? Refuted.** The theory: during a government shutdown, each party's blame language points at the other side. The first result said yes, about 95 percent outward. But the placebo had been run on how often blame language appeared, not on the outward share in the headline. Run on the headline number across 10 matched windows with no shutdown: for Democratic statements, 74 of 74 blame units pointed outward (100.0 percent), against 291 of 301 during shutdowns (96.7 percent); for Republican statements, 16 of 18 (88.9 percent), against 196 of 208 during shutdowns. The measure pointed outward with or without a shutdown, because of how it was built. The same language also fired in 8 of 11 September to November windows with no shutdown, which is what a budget-season pattern would produce. The rule we took from it: the placebo runs on the exact number in the headline.",
+    "**Are attack lines recycled more than celebrations? Artifact.** The theory: within each party, language condemning something is reused across the party's statements more than language celebrating something. The test: the share of each group's four- to six-word phrases that appear again in another statement of the same group, with groups matched in size, per party and per lane (2013 to 2020 and 2021 to 2026). The real gap in that share was significant in 3 of 4 party-and-lane cells, from 0.049 to 0.135. The placebo split the condemnation word list itself into two arbitrary halves and measured the same gap between them: 0.136 to 0.218, larger than the real one. A narrower word list produces more self-similar text, whatever the tone.",
+    "## Artifacts of the instrument",
+    "**Do talking points move faster and die sooner? Artifact.** Both parts first came back confirmed, and both were produced by how we stored the data. Our phrase ledger was kept one Congress at a time, and each Congress begins in an odd year. A phrase first seen in a Congress's first year had up to two years to reach its peak; one first seen in the second year did not. The median days from first appearance to peak, capped at 60, was 60 in first years and 3 in second years (23,117 and 13,872 phrases, 2013 to 2026). The trend was that sawtooth, and lifespans were cut off at the same boundary. The pattern held inside each lane separately, so the per-Congress storage caused it, not the seam. A redefined version that measures bursts on a merged series is a separate ledger entry and is not part of this shelf.",
+    "**Is the State of the Union the one shared day? Artifact, then refuted.** The theory: State of the Union night is when both parties use the same words, and that shared window is shrinking. The first run found that the year's peak day for phrases shared across parties was not the State of the Union (in 2013 it fell on October 29, in 2019 on April 2), because procedural boilerplate on high-volume days dominated the count. Re-run inside each lane, the shared window showed no decline in either one.",
+    "## Held",
+    "**Do minority-party talking points last longer? Held.** The theory: a party's coordinated phrases stay in circulation longer when it is in the House minority. A first measurement cleared its threshold, but it could not tell majority status from party: in the older lane, the House majority was the same party for three of four Congresses. Before measuring anything further, we registered a condition for publishing: each party's own phrases had to show the effect in the Congresses when that party held the House. One party's did. The other's did not, in the one lane where it could be tested. So the result is held, and we are not printing its number. Held is not refuted. It means we cannot yet say what the number measures. The one-party pattern would be a new hypothesis, registered fresh before anyone measures it.",
+    "## Why this shelf is published",
+    "Several entries here first came back looking confirmed. Each control that removed them was fixed before the re-run it governed. These tests removed results. The published findings went through the same ones."
+  ],
+  "figures": [],
+  "receipts": [
+    {
+      "member": "OnScript search ledger: S1.12 leadership origin, REFUTED both lanes",
+      "date": "2026-07-19",
+      "url": "https://github.com/mlawsonking/onscript/commit/66f302dcd894eabcc4cdd41270941e877a24a1c0",
+      "note": "docs/13 section 'S1.12 · Leadership Ignites, Backbenches Amplify'; evidence scripts/search/evidence/s1_12_leadership.result.json"
+    },
+    {
+      "member": "OnScript search ledger: S3.7 safe seat, REFUTED (House), Senate underpowered",
+      "date": "2026-07-20",
+      "url": "https://github.com/mlawsonking/onscript/commit/fe50c1c1664e58a02b2090c8c1feb2c8a564101b",
+      "note": "docs/13 section 'S3.7 · The Safe-Seat Vessel Test, REFUTED'; evidence scripts/search/evidence/s3_7_safe_seat.result.json"
+    },
+    {
+      "member": "OnScript search ledger: S3.7 registration (frozen before the House data arrived)",
+      "date": "2026-07-19",
+      "url": "https://github.com/mlawsonking/onscript/commit/66f302dcd894eabcc4cdd41270941e877a24a1c0",
+      "note": "docs/13 section 'S3.7 · The Safe-Seat Vessel Test, REGISTERED'"
+    },
+    {
+      "member": "OnScript search ledger: S1.10 bipartisanship season, ARTIFACT (placebo)",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/commit/760f59f5cc7f0da86cea26b3f9412cd8c057550d",
+      "note": "docs/13 verdict row S1.10 (row dated 2026-07-15); finding card data/derived/findings/S1.10.json"
+    },
+    {
+      "member": "OnScript search ledger: within-lane re-run, S1.10 ARTIFACT holds; S4.2 stands",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/commit/ffc03104450e02e7603c7e40a8e32c99594cd939",
+      "note": "docs/13 'The runnable verdicts' table, rows S1.10 and S4.2"
+    },
+    {
+      "member": "OnScript search ledger: S4.2 shutdown blame, REFUTED by placebo",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/commit/851ebf81c50680cf8c55abe2de4758b1192faee8",
+      "note": "docs/13 Wave S4 table, row 'S4.2 The Shutdown Blame Grammar (AMENDED)'"
+    },
+    {
+      "member": "OnScript search ledger: HX.5 registration frozen before measurement",
+      "date": "2026-07-20",
+      "url": "https://github.com/mlawsonking/onscript/commit/5fef1618c7923f07e00171398395cec2c6e5d891",
+      "note": "data/reference/search/hx_5-registration.json"
+    },
+    {
+      "member": "OnScript search ledger: HX.5 attack-line reuse, ARTIFACT (placebo)",
+      "date": "2026-07-20",
+      "url": "https://github.com/mlawsonking/onscript/commit/3ecd618f356354d24d33c684534382027ef72fdb",
+      "note": "docs/13 section 'HX.5 · Opposition-vs-celebration reuse, ARTIFACT'; evidence scripts/search/evidence/hx_5_opposition_reuse.result.json"
+    },
+    {
+      "member": "OnScript search ledger: S1.1 and S1.3 first verdicts, ARTIFACT",
+      "date": "2026-07-15",
+      "url": "https://github.com/mlawsonking/onscript/commit/6a3b0a13b257cecc733b24e4f2138b095d095427",
+      "note": "docs/13 verdict rows S1.1 and S1.3; docs/12 amendment A2"
+    },
+    {
+      "member": "OnScript search ledger: per-lane re-run, S1.1/S1.3 ARTIFACT and S1.8 REFUTED in both lanes",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/commit/8dc0a554fe3e777448cbd5991681b3a7b341faa7",
+      "note": "docs/13 'Shard-lanes revalidation' tables"
+    },
+    {
+      "member": "OnScript search ledger: S1.8 State of the Union, ARTIFACT",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/commit/e56c5f0c546652f0e921c83da6ee5ca9c4629e1c",
+      "note": "docs/13 verdict row S1.8 (row dated 2026-07-15)"
+    },
+    {
+      "member": "OnScript release order: minority persistence (HX.4/HX.4-D) held, number unpublished",
+      "date": "2026-07-23",
+      "url": "https://github.com/mlawsonking/onscript/blob/5c90e89a7e268d139e2057b95798f02214c54e43/docs/27-RELEASE-AND-ROLLOUT-ORDER.md#L257",
+      "note": "docs/27 section 6, line 257: precondition HELD; does not advance; no publication"
+    },
+    {
+      "member": "OnScript S1.10a registration: the autumn reframe, committed before its test",
+      "date": "2026-11-21",
+      "url": "https://github.com/mlawsonking/onscript/blob/269ca50ceb054cce3d723fba358b663357ad1e52/data/reference/search/s1_10a-registration.json",
+      "note": "sha256 67c364fd7e5e4651144f987b0b95942d5e506247e2cbaa3d2c785469db6cb0bc; no result yet"
+    }
+  ],
+  "provenance": {
+    "ledger": "docs/13-SEARCH-LEDGER.md: rows S1.1, S1.3, S1.8, S1.10 (Wave S1 table), S4.2 (Wave S4 AMENDED row), S1.12, S3.7, HX.5 sections; within-lane, shard-lanes and E1 re-validation tables",
+    "programme": "docs/12-SEARCH-PROGRAM.md: S1.1, S1.3, S1.8, S1.10, S1.12, S3.7, S4.2 specs; amendment A2; lesson L3 (placebo targets the headline)",
+    "finding card": "data/derived/findings/S1.10.json (the only shelf entry with a card)",
+    "editorial order": "docs/27 section 6: graveyard shelf entries, not headlines; HX.4/HX.4-D held, number unpublished",
+    "rerun, S1.12": "PYTHONHASHSEED=0 python scripts/search/s1_12_leadership.py",
+    "rerun, S3.7": "PYTHONHASHSEED=0 python scripts/search/build_mov_table.py, then scripts/search/s3_7_safe_seat.py",
+    "rerun, S1.10": "python scripts/search/revalidate_s1_4_s1_10.py",
+    "rerun, S1.1 S1.3 S1.8": "PYTHONHASHSEED=0 python scripts/search/revalidate_s1_isolated.py",
+    "rerun, HX.5": "PYTHONHASHSEED=0 python scripts/search/hx_5_opposition_reuse.py",
+    "S4.2": "verdict recorded from the Wave S4 adversarial review; docs/13 lists no standalone rerun script",
+    "receipts method": "ledger commits resolved read-only against origin/main by scripts/p9_receipts.py in the P9 staging folder; every number copied from that script's output"
+  }
+}

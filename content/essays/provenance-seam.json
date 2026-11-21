@@ -1,0 +1,243 @@
+{
+  "title": "The Provenance Seam",
+  "dek": "Our historical corpus turned out to be two datasets joined on 2021-01-03. We re-ran every verdict that had produced a number, one dataset at a time. Here is what held, what changed, and the rule that came out of it.",
+  "byline": "Michael King",
+  "date": "2026-12-08",
+  "labels": [
+    "descriptive",
+    "pre-registered",
+    "replication",
+    "symmetric-instrument",
+    "correlation-not-cause"
+  ],
+  "body": [
+    "In July we learned that the press-release corpus under every historical number on this site was two datasets joined on one day, 2021-01-03. Our main robustness check had been comparing one dataset with the other and calling it early versus late. We re-ran every verdict that had produced a number, one dataset at a time. None moved toward a false positive. One sub-claim failed. Three measures that had been refuted confirmed inside one dataset and not the other, and none of them is a finding yet. One queued study would have reported a drop that was the data ending.",
+    "## What the seam is",
+    "Our historical record is a public mirror of congressional press releases: 303 monthly files, January 2001 through July 2026. Every record carries a field, date_source, that says how it was collected. We call each value a lane. The legacy lane is an import of ProPublica's collection, 485,948 records. The scraper lane is a newer collector, 200,033 records. A third lane, page_html, holds 2,839.",
+    "The legacy lane stops on 2021-01-03, the day the 117th Congress was seated. It carried 4,691 records from 405 member offices in December 2020, 229 in the first three days of January 2021, and none after. The scraper lane reaches back to 2009-01-06 but stayed small for years. Across all lanes, the corpus held releases from 462 distinct member offices in December 2020, 312 in January 2021, and 191 in February 2021. None of this was hidden. It sits in the data's own field, and our analysis code dropped that field before any measurement saw it.",
+    "## How we found it",
+    "It surfaced on 2026-07-16 as what looked like a coverage collapse between 2020 and 2021. Democratic records in the corpus fell from 48,901 to 9,065, records per Democratic office from 177 to 54, and Democratic offices from 276 to 167. Republican records fell from 32,490 to 8,234, records per Republican office from 131 to 48, and Republican offices from 248 to 170. Two adversarial checks traced it to the source. One rebuilt every critical number from the raw mirror files, bypassing our analysis code. The corpus had lost the legacy lane and was left holding a scraper that had not reached full coverage.",
+    "The damage was to our main control. Before calling anything confirmed, we required it to hold in an early half and a late half of the record, and those halves split at the start of 2021. Half A was about 95 percent legacy lane and half B about 100 percent scraper lane. The halves were two instruments. Every \"holds in both halves\" had passed a weaker test than we said, and every failure might have been plumbing.",
+    "The two instruments also carry different mixes. Holding the years at 2013 to 2020, Democrats are 54.05 percent of two-party records in the legacy lane and 48.38 percent in the scraper lane, a gap of 5.67 points. Before getting it right we stated it wrong twice, once by comparing the lanes across different years and once by quoting a difference of two ratios as percentage points. Both corrections sit on the record beside the original wording.",
+    "## How we re-measured",
+    "On 2026-07-16 we adopted lane isolation as a law of the search program: no comparison, half-split, or baseline may span 2021-01-03. Each lane got its own halves, registered before anything was measured: 2013 to 2016 against 2017 to 2020 inside the ProPublica lane, and 2021 to 2023 against 2024 to 2026 inside the scraped lane. Power floors were written as numbers in advance. A finding that confirms on both halves of each lane is twice-confirmed. Hypotheses that never produced a number, because a reference table they needed did not exist, stayed blocked and are not part of this count.",
+    "Eleven hypotheses read phrase shards built without the lane field, so they waited until the shards were rebuilt per lane. For each of the seven Congresses from the 113th on, per-lane record counts added up exactly to the combined count. Later we split page_html out on its own and ran the eleven again; no verdict changed because of the split. Our first fix had a gap of its own: the guard we added to the confirmation check was never called by the measurement code. We moved each measurement onto lane-explicit inputs as we re-ran it.",
+    "## What each verdict became",
+    "The ledger keeps every old verdict and appends the new one with a pointer to the row it supersedes. The table is drawn from those rows.",
+    "S1.9, the self-audit in our launch essay, held. Congress 117 is 99.6 percent scraper lane; the rest is 144 legacy records dated 2021-01-03. Without them, mean weekly five-gram overlap with matched member counts is 0.00200 for Democrats and 0.00119 for Republicans, Democrats higher in 75 of 105 weeks. Same verdict.",
+    "S2.9, a measure of how often each party names the sitting president, stayed confirmed and now confirms inside each lane on that lane's own halves. A separate piece reports it.",
+    "S1.4, the copy-paste test, stayed refuted, and one part of it failed. Before the seam was found, the ledger recorded that the Democratic share of near-identical releases rose in both halves. Inside one lane, no lane has both parties rising in both halves. That sub-claim was the seam. Our launch essay cited the earlier version of this measure for one observation, that Democratic tightness concentrates in the 2023 to 2025 House-minority years. No lane-valid measure shows that, and on November 20 we corrected that paragraph of the launch essay; the correction is in our corrections log.",
+    "S1.1′ and S1.3′, measures of how fast talking points ignite and how long they last, moved the other way. Across the seam they were refuted, because the record after 2021 did not continue the trend. Inside the ProPublica lane, under the same gate, both confirm. The density control they pass matches burst counts, not within-day statement density. Inside the scraped lane neither confirms. Those are two statements about two instruments, and we do not join them into a story about something stopping in 2021. The measurements are under review and will appear in their own piece.",
+    "The rest, briefly. S1.6, pre-election tightening, stays refuted as a rule. Inside the ProPublica lane it appears for both parties in 2014, 2018 and 2020 but not 2016, so 1 of 2 cycles in the early half and 2 of 2 in the late half; the scraped lane has too few elections to test. That is the reading our ledger's erratum E-1 records. Whether the rise is seasonal rather than electoral will be tested only on 2027 data, under a registration written before that data exists; until then it is not a finding. S2.7 confirmed in one lane only, so it is not a finding. S2.3, a test of whether the minority party sounds different, stayed refuted in both lanes with at least 5,520 statements in every half, party, and majority-status cell. S1.10, a pre-election dip in bipartisan language, stays an artifact, present in 7 of 7 placebo years with no election; an autumn reading of it has its own pre-registration and is not a finding. Eleven other refutations held in both lanes.",
+    "## The one we did not publish",
+    "A queued event study on statements around January 6, 2021, measured on raw counts across the seam, showed a steep drop in volume that reads as a muted response. The drop was the ProPublica import ending three days earlier. The review gate held it. A second queued test would have passed its confirmation criterion on the import's end alone.",
+    "## The standing rule",
+    "A comparison lives inside one provenance lane. No split, baseline, or raw-volume comparison crosses 2021-01-03. The lane is a field the code carries, and a split across the seam raises an error instead of returning a number. The page_html lane, the most party-skewed in the corpus, stays isolated. A question that has to cross 2021 needs a record that spans it, calibrated on its own first; our first candidate, the Congressional Record's Extensions of Remarks, did not calibrate for the president-naming measure.",
+    "Our launch essay pointed the instrument at our own past work. This one points it at the instrument. The seam was in the data's own field the whole time. The code now carries that field and raises an error on any split that crosses the date."
+  ],
+  "figures": [
+    {
+      "src": "figures/p8-seam-lanes.svg",
+      "after_block": 3,
+      "alt": "Line chart of monthly press-release records by provenance lane, 2017 to 2022: the legacy lane falls to zero after 2021-01-03 while the smaller scraper lane continues",
+      "caption": "Records per month in the legacy (ProPublica import) and scraper lanes of the press-release mirror, 2017 to 2022. The legacy lane carries 4,691 records in December 2020, 229 in the first three days of January 2021, and none after 2021-01-03."
+    },
+    {
+      "src": "figures/p8-verdict-table.svg",
+      "after_block": 12,
+      "alt": "Table of search-ledger verdicts before the seam was found and inside each provenance lane afterward, with a one-line reading per finding",
+      "caption": "Verdicts before and after lane isolation, copied from the search ledger's append-only rows. Filled circle: confirmed. Open circle: refuted or not confirmed. Triangle: artifact. Dash: underpowered. No verdict moved toward a false positive."
+    }
+  ],
+  "receipts": [
+    {
+      "member": "OnScript search ledger (docs/13): provenance-seam warning",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L406-L418",
+      "note": "the seam found: legacy lane ends 2021-01-03; verdict UPSTREAM-REGRESSION; two adversarial checks, neither refuted"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): program-level findings, Wave S4",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L360-L368",
+      "note": "how it surfaced: the 2021 coverage collapse recorded as an open factual question"
+    },
+    {
+      "member": "OnScript build log (docs/04): Session 13b",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/04-BUILDLOG.md#L1283-L1301",
+      "note": "the same finding in the build record, with the split-halves consequence"
+    },
+    {
+      "member": "Dianne Feinstein (D-CA)",
+      "date": "2021-01-03",
+      "url": "http://www.feinstein.senate.gov//public/index.cfm/press-releases?ContentRecord_id=F71D62C0-5C58-47B9-978C-E6F0E5C46ECC",
+      "note": "a legacy-lane (ProPublica import) record dated 2021-01-03, the lane's last day; drawn by sha256(url) order, release pages only"
+    },
+    {
+      "member": "Steve Cohen (D-TN)",
+      "date": "2021-01-03",
+      "url": "https://cohen.house.gov/media-center/press-releases/congressman-cohen-sworn-117th-congress",
+      "note": "a legacy-lane (ProPublica import) record dated 2021-01-03, the lane's last day; drawn by sha256(url) order, release pages only"
+    },
+    {
+      "member": "Steve Womack (R-AR)",
+      "date": "2021-01-03",
+      "url": "https://womack.house.gov/news/documentsingle.aspx?DocumentID=404288",
+      "note": "a legacy-lane (ProPublica import) record dated 2021-01-03, the lane's last day; drawn by sha256(url) order, release pages only"
+    },
+    {
+      "member": "Ben Cline (R-VA)",
+      "date": "2021-01-03",
+      "url": "https://cline.house.gov/media/press-releases/rep-cline-statement-being-sworn-117th-congress",
+      "note": "a legacy-lane (ProPublica import) record dated 2021-01-03, the lane's last day; drawn by sha256(url) order, release pages only"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): remedy, lane isolation in code",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L499-L504",
+      "note": "the analysis harness dropped date_source before any measurement saw it"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): effect on split-halves",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L420-L435",
+      "note": "half A about 95 percent legacy, half B about 100 percent scraper: two instruments"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): correction, three lanes and the same-era lane effect",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L437-L477",
+      "note": "first correction: era held constant; three lanes, not two"
+    },
+    {
+      "member": "OnScript session history (docs/26): amendments to the seam record",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/26-SESSION-HISTORY.md#L1935-L1954",
+      "note": "second correction: the gap is 5.67 points of Democratic share, not a ratio difference"
+    },
+    {
+      "member": "OnScript search program (docs/12): Law L1, lane isolation",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/12-SEARCH-PROGRAM.md#L442-L447",
+      "note": "the rule: no comparison, half-split, or baseline may span the seam"
+    },
+    {
+      "member": "OnScript revalidation brief (docs/17): lanes and pre-registered halves",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/17-REVALIDATION-BRIEF.md#L17-L38",
+      "note": "within-lane halves and floors registered before measurement"
+    },
+    {
+      "member": "OnScript shard-lanes brief (docs/18): shard design and acceptance",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/18-SHARD-LANES-BRIEF.md#L26-L56",
+      "note": "per-lane shards; exact raw partition required for every Congress"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): what the measurement corrected",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L609-L622",
+      "note": "S1.9 is 99.6 percent scraper lane; the first guard was unreachable from the measurement path"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): revalidation within one lane",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L532-L594",
+      "note": "rows for S1.9, S2.9, S2.3, S1.4, S1.10, S2.7 and the S2 wave, each naming the row it supersedes"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): shard-lanes revalidation",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L626-L725",
+      "note": "rows for S1.1, S1.3, S1.1′, S1.3′, S1.2, S1.5, S1.6, S1.7, S1.8, S1.11, S1.4 in each lane"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): E1, page_html isolated",
+      "date": "2026-07-27",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L1324-L1406",
+      "note": "the eleven re-run with page_html as its own lane: isolation changes no verdict"
+    },
+    {
+      "member": "OnScript results file: revalidate_s1_9_s2_9.json",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/data/derived/search/revalidate_s1_9_s2_9.json#L1",
+      "note": "committed output behind the S1.9 and S2.9 rows"
+    },
+    {
+      "member": "OnScript results file: revalidate_s1_isolated.json",
+      "date": "2026-07-27",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/data/derived/search/revalidate_s1_isolated.json#L1",
+      "note": "committed output behind the E1 rows"
+    },
+    {
+      "member": "OnScript results file: revalidate_s1_shards.json",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/data/derived/search/revalidate_s1_shards.json#L1",
+      "note": "committed output behind the shard-lanes rows, including the S1.6 cycle tally (propublica[6]), the source docs/13 erratum E-1 cites"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): classification of the 34",
+      "date": "2026-07-17",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L549-L573",
+      "note": "which verdicts were re-runnable; S3.1-S3.7 and S4.3/5/6/7/8 never produced a number and stayed blocked"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): the two near-misses",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L479-L488",
+      "note": "the January 6 volume study and the volume-decay test, both explained by the import's end"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): Wave S4 blocked rows",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L308-L311",
+      "note": "both studies held unmeasured behind the review gate"
+    },
+    {
+      "member": "OnScript build log (docs/04): ruling R6",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/04-BUILDLOG.md#L1403-L1405",
+      "note": "no raw-volume comparison ever crosses the seam"
+    },
+    {
+      "member": "OnScript code: pipeline/search/metrics.py",
+      "date": "2026-07-16",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/pipeline/search/metrics.py#L111-L125",
+      "note": "a split-halves check across lanes raises LaneIsolationError"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): ruling R-S50.1",
+      "date": "2026-07-27",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L1234-L1242",
+      "note": "page_html isolated as its own lane, never folded into a primary number"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): SD.8, Congressional Record concordance",
+      "date": "2026-07-27",
+      "url": "https://github.com/mlawsonking/onscript/blob/1b94cbf82db9e9a6bc7a76918eff1433e2da9607/docs/13-SEARCH-LEDGER.md#L1292-L1320",
+      "note": "HELD: the Extensions lane is not calibrated for the president-naming measure"
+    },
+    {
+      "member": "OnScript corrections log: correction 8, the launch essay's power-position paragraph",
+      "date": "2026-11-20",
+      "url": "https://onscript.news/corrections/corr-2026-11-20-self-audit-power-position-sentence.html",
+      "note": "the paragraph was rewritten and the promised follow-up withdrawn; the S1.9 finding is unchanged"
+    },
+    {
+      "member": "OnScript search ledger (docs/13): erratum E-1, S1.6",
+      "date": "2026-11-13",
+      "url": "https://github.com/mlawsonking/onscript/blob/85ec804feb827691377f266c42b58e90d64cd73e/docs/13-SEARCH-LEDGER.md#L1427-L1436",
+      "note": "2014 snaps for both parties, only 2016 fails; the verdict stays REFUTED"
+    }
+  ],
+  "provenance": {
+    "ledger": "docs/13 search ledger: seam warning and correction (2026-07-16), within-lane revalidation (2026-07-17), shard-lanes revalidation (2026-07-17), E1 isolated re-run (2026-07-27)",
+    "rule": "docs/12 Amendment A3, Law L1 (lane isolation); docs/04 ruling R6; docs/13 ruling R-S50.1",
+    "seam evidence": "lane totals, monthly records, offices and same-era party shares recomputed from the 303 raw mirror files by the draft's seam script (p8_seam_evidence.py, archived with the draft assets); every figure matches the ledger",
+    "estimators": "lane share: records by date_source; offices: distinct bioguide IDs per month or year; party share: Democratic records over two-party records, 2013 to 2020; verdict estimators as stated in each ledger row",
+    "window": "mirror 2001-01 to 2026-07; ProPublica lane halves 2013-2016 / 2017-2020; scraped lane halves 2021-2023 / 2024-2026",
+    "rerun, within-lane": "python scripts/search/revalidate_s1_9_s2_9.py; revalidate_s2_3.py; revalidate_s2_wave.py; revalidate_s1_4_s1_10.py",
+    "rerun, shard lanes": "PYTHONHASHSEED=0 python scripts/search/revalidate_s1_isolated.py"
+  }
+}
