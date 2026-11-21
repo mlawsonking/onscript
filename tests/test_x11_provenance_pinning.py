@@ -21,6 +21,7 @@ def test_collect_manifest_names_commit_hash_etag_and_collection_time():
         "pull_range": fetch.pull_range,
         "load_mirror": fetch.load_mirror,
         "roster": run_collect.roster.load,
+        "roster_refresh": run_collect.roster.refresh,
         "deterministic": run_collect.deterministic.run,
     }
     statement = {"id": "s1", "published_at": "2026-07-24", "lane": 1,
@@ -40,6 +41,7 @@ def test_collect_manifest_names_commit_hash_etag_and_collection_time():
         fetch.pull_range = lambda _start, _end: ([statement], provenance)
         fetch.load_mirror = lambda: [statement]
         run_collect.roster.load = lambda: {}
+        run_collect.roster.refresh = lambda *_a, **_k: {}  # S74-11: collect now refreshes the cache
         run_collect.deterministic.run = lambda *args, **kwargs: {
             "statements": [statement], "focus_day": "2026-07-24", "ledger": {},
             "manifest": {"days_present": ["2026-07-24"], "normalize": {}, "phrase_engine": {}},
@@ -55,6 +57,7 @@ def test_collect_manifest_names_commit_hash_etag_and_collection_time():
             fetch.pull_range = originals["pull_range"]
             fetch.load_mirror = originals["load_mirror"]
             run_collect.roster.load = originals["roster"]
+            run_collect.roster.refresh = originals["roster_refresh"]
             run_collect.deterministic.run = originals["deterministic"]
     assert manifest["upstream_provenance"] == provenance
     assert manifest["runtime_environment"]["timezone"] == "America/New_York"

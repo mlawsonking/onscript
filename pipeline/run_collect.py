@@ -58,7 +58,10 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
             records = fetch.load_mirror()
             alerts += ([] if pull["months_missing"] == 0 else [f"{pull['months_missing']} months missing"])
 
-    roster.load()  # ensure the corpus-derived roster cache exists
+    # S74-11 (F7): merge members the cache has not seen (from the records just loaded and from the
+    # committed term data) and correct chamber, rather than only ensuring a cache exists. A
+    # write-once cache never named a member seated after it was built.
+    roster.refresh(records)
     run_id = f"collect-{date.today().isoformat()}"
     # ONE CLOCK FOR THE WHOLE RUN (S73). The cursor, the sweep window and the maturity age are three
     # readings of the same question, "what is the last day that is actually over", and they used to
