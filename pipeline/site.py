@@ -3060,13 +3060,39 @@ HAS_POSTS = bool(_POSTED_THREADS)
 # makes publishing an essay one act instead of two.
 ESSAYS_DIR = config.REPO_ROOT / "content" / "essays"
 
+# R-74.3 (S74-8): publication is by DATE GATE. An essay whose `date` is after the product day is
+# not loaded at all, so it has no page, no index row, no sitemap entry, no nav link and no copied
+# figure; it appears in the first render whose product day reaches its date, with no further act.
+# load_essays is the only reader of content/essays, so gating here gates every surface. The date
+# must be an ISO day: one the gate cannot compare is skipped and logged rather than published early.
+# Day one meets no legacy state (docs/37 §4): the one committed essay is dated 2026-08-19.
+_ESSAY_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
-def load_essays(directory: Path | None = None) -> list[dict]:
-    """Authored essays, newest first. Authored JSON, not derived output: prose is Michael's.
 
-    A malformed FILE is skipped (a half-written essay is not worth a failed render), but a
-    malformed ``figures`` entry raises here, before anything renders — see essay_figures()."""
+def essay_gate_day() -> str:
+    """The day the essay gate compares against. A function, not a constant, so a test can rebind
+    it and a long-lived process never freezes an import-time clock."""
+    return util.product_day()
+
+
+def essay_is_due(essay: dict, product_day: str) -> bool:
+    """True when the essay's date is on or before ``product_day``. Raises nothing: a date the gate
+    cannot read is not due."""
+    date = str(essay.get("date") or "")
+    return bool(_ESSAY_DATE.fullmatch(date)) and date <= product_day
+
+
+def load_essays(directory: Path | None = None, *, product_day: str | None = None) -> list[dict]:
+    """Authored essays dated on or before the product day, newest first. Authored JSON, not
+    derived output: prose is Michael's.
+
+    ``product_day`` defaults to essay_gate_day() (util.product_day()); an essay dated after it is
+    not loaded (R-74.3). A malformed FILE is skipped (a half-written essay is not worth a failed
+    render), but a malformed ``figures`` entry raises here, before anything renders (see
+    essay_figures()). Figures are validated for gated essays too, so a bad one fails the commit that
+    adds it rather than the morning it comes due."""
     directory = ESSAYS_DIR if directory is None else Path(directory)
+    gate = essay_gate_day() if product_day is None else str(product_day)
     out = []
     if directory.exists():
         for path in sorted(directory.glob("*.json")):
@@ -3074,6 +3100,11 @@ def load_essays(directory: Path | None = None) -> list[dict]:
             if isinstance(essay, dict) and essay.get("title") and essay.get("date"):
                 essay.setdefault("slug", path.stem)
                 essay_figures(essay)          # validate at load: a bad src never reaches a renderer
+                if not essay_is_due(essay, gate):
+                    if not _ESSAY_DATE.fullmatch(str(essay.get("date"))):
+                        print(f"[essay-gate] {path.name}: date {essay.get('date')!r} is not "
+                              f"YYYY-MM-DD; not loaded", flush=True)
+                    continue
                 out.append(essay)
     out.sort(key=lambda e: (str(e.get("date") or ""), str(e.get("slug") or "")), reverse=True)
     return out
