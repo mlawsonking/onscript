@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "collect-2026-11-21",
   "kind": "deterministic",
-  "generated_at": "2026-11-21T16:52:27Z",
+  "generated_at": "2026-11-21T23:52:03Z",
   "focus_day": "2026-11-20",
   "focus_cursor": {
     "day": "2026-11-20",
@@ -27,12 +27,12 @@
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-11-21T13:19:51Z",
-    "age_hours": 3.54
+    "pushed_at": "2026-11-21T19:14:41Z",
+    "age_hours": 4.62
   },
   "normalize": {
-    "in": 91533,
-    "kept": 91495,
+    "in": 91538,
+    "kept": 91500,
     "rejects": 38,
     "joint_groups": 192,
     "near_joint_groups": 3287,
@@ -40,17 +40,17 @@
     "syndicated": 63
   },
   "phrase_engine": {
-    "candidates": 339542,
-    "df_boilerplate": 166,
-    "ledger_entries": 339376
+    "candidates": 339552,
+    "df_boilerplate": 73,
+    "ledger_entries": 339479
   },
   "per_party": {
     "D": {
-      "statements_in": 54022,
+      "statements_in": 54024,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 36845,
+      "statements_in": 36848,
       "members_covered": 276
     },
     "I": {
@@ -59,7 +59,7 @@
     }
   },
   "derived": {
-    "ledger_entries": 339376,
+    "ledger_entries": 339479,
     "phrase_pages": 70,
     "focus_day": "2026-11-20",
     "focus_day_write": "written",
@@ -73,29 +73,29 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 6.6,
-    "mirror_pull": 13.1,
-    "normalize": 1679.9,
-    "ledger_build": 1580.5
+    "restore": 6.8,
+    "mirror_pull": 13.8,
+    "normalize": 1668.5,
+    "ledger_build": 1582.9
   },
   "span_scan": {
-    "person_spans_calls": 263424,
-    "person_spans_s": 387.01190052015227,
-    "admitted_form_scans": 263424,
-    "admitted_form_s": 7.447766294917301
+    "person_spans_calls": 263439,
+    "person_spans_s": 387.5515461989535,
+    "admitted_form_scans": 263439,
+    "admitted_form_s": 6.837373481105715
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
     "component_hashes": {
-      "code_tree": "95ad8b7df3a9f49c7a48cfc8441980c560f19b9367131fbea452d276c6a2a3d7",
+      "code_tree": "74e3ee41482b3d419ba4981294e34b7d41ed1751c4258c39344ed2508116eb0d",
       "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
-      "method_versions": "35af17343a8f1259612dcbcde4c991dd63b7cfe7de485cdc9bf18b33e1ae2b55",
+      "method_versions": "84dd635c6f9edd38a16c476fde1152c95016f960c43108dbbc82ec383d5e32a9",
       "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
       "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
       "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
       "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
     },
-    "sha256": "40d8dcb2ca4c0034100b5320153db8a644c45288068ab91805d17a9a451add78",
+    "sha256": "edd245bb8d3c639ac42d391e65a2d2b23b4099d7cf821a76296860728a860d40",
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   }
 }

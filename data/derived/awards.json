@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T16:52:27Z",
+  "generated_at": "2026-11-21T23:52:03Z",
   "window": {
     "start": "2026-11-14",
     "end": "2026-11-20"
@@ -383,6 +383,48 @@
         "members_more": 0
       },
       {
+        "ngram": "look forward to working",
+        "slug": "4d9f2b9ca81f4bba",
+        "day": "2026-11-18",
+        "party": "R",
+        "offices_using": 6,
+        "offices_active": 45,
+        "office_share": 0.1333,
+        "members": [
+          {
+            "bioguide": "B001299",
+            "name": "Jim Banks",
+            "state": "IN"
+          },
+          {
+            "bioguide": "B001319",
+            "name": "Katie Boyd Britt",
+            "state": "AL"
+          },
+          {
+            "bioguide": "C001047",
+            "name": "Shelley Moore Capito",
+            "state": "WV"
+          },
+          {
+            "bioguide": "T000278",
+            "name": "Tommy Tuberville",
+            "state": "AL"
+          },
+          {
+            "bioguide": "T000478",
+            "name": "Claudia Tenney",
+            "state": "NY"
+          },
+          {
+            "bioguide": "W000437",
+            "name": "Roger F. Wicker",
+            "state": "MS"
+          }
+        ],
+        "members_more": 0
+      },
+      {
         "ngram": "critical infrastructure projects",
         "slug": "5481b75491e5e035",
         "day": "2026-11-20",
@@ -413,38 +455,6 @@
           }
         ],
         "members_more": 0
-      },
-      {
-        "ngram": "bill now heads",
-        "slug": "574516b78a55be5f",
-        "day": "2026-11-20",
-        "party": "R",
-        "offices_using": 4,
-        "offices_active": 31,
-        "office_share": 0.129,
-        "members": [
-          {
-            "bioguide": "C001047",
-            "name": "Shelley Moore Capito",
-            "state": "WV"
-          },
-          {
-            "bioguide": "K000376",
-            "name": "Mike Kelly",
-            "state": "PA"
-          },
-          {
-            "bioguide": "L000571",
-            "name": "Cynthia M. Lummis",
-            "state": "WY"
-          },
-          {
-            "bioguide": "S001227",
-            "name": "Eric Schmitt",
-            "state": "MO"
-          }
-        ],
-        "members_more": 0
       }
     ]
   },
@@ -458,7 +468,11 @@
     "note": "the absence map has not been built for this window, so no silence is scored — a gap is never reported as a silence"
   },
   "date_effective_caucus": {
-    "D": 257,
-    "R": 269
+    "D": 260,
+    "R": 272
+  },
+  "date_effective_caucus_state": {
+    "D": "date_effective",
+    "R": "date_effective"
   }
 }
