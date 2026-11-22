@@ -4503,3 +4503,95 @@ change and two ledger entries. Rulings:
 
 Corrections ledger: 9 to 11 entries. Not done here: verdicts-120 (needs 120th bill files), F6
 (the legacy corpus-proxy caucus key), F8 (feed attestation for freshmen), F9 (task #403).
+
+### Session 74-13 (2026-11-22, Opus): builder for work order S74-13, the roster refresh release
+
+Work order S74-13, implementing R-74.15. Everything below is **committed locally on
+`s74-343-hardening` and unpushed**; the issuing session reviews and pushes it the week of
+2026-11-30.
+
+- **P1, the refresh, `bd7b7e15`.** The roster is rebuilt by the committed builder at pinned
+  revision `a263880e99a78b8cfaf0a2487e05558be389de3d`, still upstream's head on 2026-11-22
+  (committed 2026-11-15, "Sen. Moody / Sen. Husted updates"), with `--split-party-affiliations`.
+  Source sha256: `legislators-current.yaml` `e805231b...e5e753`, `legislators-historical.yaml`
+  `ea7a1e35...e8a355`. 1,565 offices, 6,887 intervals. `valid_through` is 2027-01-02 by the code's
+  own rule, so the horizon does not move. The unsplit path still reproduces the July file from
+  `4458244` byte-for-byte against the committed blob (the working-tree copy differs only by the
+  CRLF that `core.autocrlf` adds). **The split flag was wrong before it was used.** Upstream
+  writes an affiliation's `end` in two conventions: equal to the next start (Jeffords, Specter,
+  Manchin, Forbes, Martinez, Goode, Griffith, Alexander, Hall, Sablan) or as an inclusive last
+  day, one day before the next start (Van Drew, Amash twice, Mitchell, Sinema, Kiley). The flag
+  copied `end` into an exclusive bound, so K000401 sat in no party on 2026-03-08; S74-11's "429
+  days" was measured with that gap. Segments now end where the next affiliation starts and the
+  last ends with the term; any other shape stops the build. The flag changes 13 offices on some
+  day from 2001 on: Alexander, Amash, Goode, Griffith, Hall, Jeffords, Kiley, Manchin, Mitchell,
+  Specter, Sablan, Sinema and Van Drew (Forbes and Martinez split only before 2001). In the
+  published era only Kiley moves: Republican through 2026-03-08, Independent from 2026-03-09, as
+  upstream records. Upstream also changed, unrelated to the flag: Dixon (CA-32) and Vento (MN-4)
+  no longer have a term ending in 2001 or later and leave the file; start dates moved for Baca
+  (1999-11-06 to 11-18), Isakson (1999-01-06 to 02-25) and Wilson (2001-12-18 to 12-19); Gallagher
+  gained an official URL. None of these touches a day from 2025-01-03.
+- **The diff,** eligible offices per day and party (voting and nonvoting, the F5 population),
+  July snapshot to refreshed:
+
+  | Days | D | R | Offices, as upstream's term data states |
+  |---|---|---|---|
+  | 2025-01-03 to 2026-03-08 (430) | 0 | +1 (273 to 274 on 01-03) | K000401 Kiley: `party_affiliations` Republican to 2026-03-08 |
+  | 2026-03-09 to 08-31 (176) | 0 | 0 | |
+  | 2026-09-01 | +1 (260 to 261) | 0 | B001328 Blair, GA-13, term from 2026-09-01, `how: special-election` |
+  | 2026-09-02 to 11-02 (62) | +2 (260 to 262) | 0 | and W000832 Wahab, CA-14, term from 2026-09-02 (no `how`) |
+  | 2026-11-03 | +2 | +1 (272 to 273) | H001104 Husted, OH, appointed term's end moved from 2026-11-03 to 2026-12-15, `end-type: special-election` |
+  | 2026-11-04 to 12-14 (41) | +2 | +2 (272 to 274) | and M001244 Moody, FL, new term 2026-11-04 to 2029-01-03, `how: special-election` |
+  | 2026-12-15 to 2027-01-02 (19) | +2 | +1 (272 to 273) | Husted's term ends; upstream lists no Ohio successor |
+
+  The predecessors (S001157 Scott, GA-13, to 2026-04-21; S001193 Swalwell, CA-14, to 2026-04-14)
+  end identically in both files. Moody is unseated on 2026-11-03 in both, because upstream ends
+  the appointed term on 2026-11-03 and starts the new one on 2026-11-04. Invariants on the new
+  file, now tests: every day from 2025-01-03 to 2027-01-02 seats 430 to 434 voting House offices
+  and 98 to 100 senators (the tests allow 425 to 435 and 96 to 100); no office has overlapping
+  intervals and no interval starts on or after its end, in any year; `valid_through` equals the
+  derived horizon. One test pinned an old value, `test_s74_11_denominators`'s inside-horizon
+  control ("of 272 / of 260"); it now reads the counts from the committed roster.
+- **P2, the stale window: drafted, not appended,** at
+  `X:\onscript-data\drafts\staged\S74-13\corr-draft-roster-stale.json`, with the measurement
+  scripts beside it. Committed audits exist for 133 days, 2026-06-30 to 2026-11-19, and every one
+  is `date-effective-denominators-v1` (voting members only); 2026-11-20 has a collect-written
+  record and no audit yet. Every published denominator equals the July snapshot's voting count
+  for its day, so the comparison is voting to voting; the five offices involved are all voting
+  members. Of the 116 audits from 2026-07-27, 80 (2026-09-01 to 11-19) carry a denominator the
+  refresh changes: D 257 to 258 on 09-01 and 257 to 259 from 09-02; R 269 to 270 on 11-03 and 269
+  to 271 from 11-04. 55 of those day pages print a share or total over it; the other 25 (weekends,
+  10-26 and 11-03) print none, and only the 55 are `affected_days`. Rendering each committed
+  record against its committed audit gives 983 printed shares (65 receipts strip, 918 party
+  column). The largest effect is 0.084 percentage points (D, 28 of 257 printed 10.9 percent, 10.8
+  percent of 259, 2026-09-11); 198 change in their printed decimal, none by more than 0.1. 516 of
+  1,865 phrase-evidence records have a peak day in the window and print a changed total without a
+  percentage. Days assembled from 2026-11-20 until the release carry v2 on the July snapshot
+  (D 260, R 272) and are stale by 2 and 2; they do not exist yet, and the draft says to measure
+  them before appending. Published records are not rewritten.
+- **P3, the next refresh, `813ecfdd`.** docs/07 gains playbook P13 (the command, the invariants,
+  the diff, when an entry is needed, the January step). `scripts/diff_date_effective_roster.py`
+  prints the per-party runs with named offices and every office whose intervals moved. The
+  watchdog, which already pages through ntfy twice a day, gains `check_roster_horizon`: every
+  tick reports the committed horizon and the days left from the product day, and it alarms at 14
+  days or fewer and past the horizon. On this snapshot it reads "speaks through 2027-01-02, 42d
+  ahead" for product day 2026-11-21 and alarms from product day 2026-12-19.
+- **Suite:** 1,297 at handoff; 1,303 after P1; 1,308 after P3.
+
+Published numbers that would change on release:
+
+| Surface | Before | After | Why |
+|---|---|---|---|
+| Date-effective party total on new days (symmetry audit, receipts strip, party columns, peak-day evidence, share cards, methodology table, `awards.json`), 2026-11-04 to 12-14 | D 260, R 272 (v2 on the July snapshot; the last published audit, 11-19 v1, reads D 257, R 269) | D 262, R 274 | Blair and Wahab seated; Husted's term extended; Moody re-seated |
+| The same, 2026-12-15 to 2027-01-02 | D 260, R 272 | D 262, R 273 | Husted's term ends 2026-12-15 per upstream, no successor listed |
+| The same, from 2027-01-03 | bare counts | bare counts | horizon unchanged until upstream lists the 120th |
+| `observed_publishing_offices` | Blair or Wahab, if they publish, counted outside the roster | counted inside | seated in the refreshed roster |
+| 55 published day pages, 2026-09-01 to 11-19 | no notice | linked to the roster correction once it is appended | P2; their numbers are not rewritten |
+| Corrections ledger | 11 entries | 12, when the draft is appended | P2 |
+| Watchdog | no roster finding | `roster_horizon` on every tick; alarms from product day 2026-12-19 | P3 |
+
+Left for the issuing session: append the P2 entry after measuring the v2 days assembled before
+the release; whether the watchdog should page twice a day from 2026-12-19 until upstream lists
+the 120th (about 34 pages if upstream lists it near 2027-01-05) or at a lower priority; the Ohio
+Senate seat from 2026-12-15 is vacant in upstream's data, so the Republican total drops by one
+until upstream records a successor.
