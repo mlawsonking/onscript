@@ -83,10 +83,38 @@ def _intervals(term: dict, *, split_affiliations: bool) -> list[dict]:
                     if split_affiliations else [])
     if not affiliations:
         return [{**base, "end_exclusive": end, "party": term.get("party"), "start": start}]
+    return [{**base, "end_exclusive": seg_end, "party": party, "start": seg_start}
+            for seg_start, seg_end, party in _affiliation_segments(term, affiliations)]
+
+
+def _affiliation_segments(term: dict, affiliations: list[dict]) -> list[tuple[str, str, str]]:
+    """Partition one term at each affiliation's recorded start: (start, end_exclusive, party).
+
+    S74-13. A party switch is effective on the date its new affiliation starts. Upstream writes an
+    affiliation's `end` in two conventions: equal to the next start (Jeffords 2001, Specter 2009,
+    Manchin 2024) or the day before it, an inclusive last day (Van Drew 2019, Amash 2019 and 2020,
+    Mitchell 2020, Sinema 2022, Kiley 2026). Copying `end` into an exclusive bound, as the first
+    version of this flag did, seated the office nowhere on that last day. So every segment ends where
+    the next one starts, and the last ends with the term. Any other shape (a start outside the term,
+    starts out of order, an end that fits neither convention) stops the build: it is reported, not
+    worked around."""
+    term_start, term_end = _iso(term.get("start")), _iso(term.get("end"))
+    rows = [(_iso(row.get("start")), _iso(row.get("end")), row.get("party")) for row in affiliations]
+    who = f"{term.get('type')} {term.get('state')} {term_start}..{term_end}"
+    if rows[0][0] != term_start or rows[-1][1] != term_end:
+        raise ValueError(f"party_affiliations do not span the term ({who}): {rows}")
+    starts = [row[0] for row in rows]
+    if any(not value for value in starts) or starts != sorted(set(starts)):
+        raise ValueError(f"party_affiliations starts are missing or out of order ({who}): {rows}")
     out = []
-    for row in affiliations:
-        out.append({**base, "end_exclusive": _iso(row.get("end")) or end,
-                    "party": row.get("party"), "start": _iso(row.get("start")) or start})
+    for index, (row_start, row_end, party) in enumerate(rows):
+        seg_end = rows[index + 1][0] if index + 1 < len(rows) else term_end
+        if index + 1 < len(rows):
+            inclusive = (date.fromisoformat(seg_end) - timedelta(days=1)).isoformat()
+            if row_end not in (seg_end, inclusive):
+                raise ValueError(f"party_affiliations end {row_end} fits neither convention before the "
+                                 f"next start {seg_end} ({who}): {rows}")
+        out.append((row_start, seg_end, party))
     return out
 
 
@@ -158,7 +186,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--valid-through", help="explicit horizon (YYYY-MM-DD); default derived")
     parser.add_argument("--no-valid-through", action="store_true", help="omit valid_through (pre-S74-11 shape)")
     parser.add_argument("--split-party-affiliations", action="store_true",
-                        help="split a term at each party_affiliations start (NOT the committed X8 shape)")
+                        help="split a term at each party_affiliations start (the committed shape from S74-13)")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args(argv)
     if len(args.revision) != 40 or any(c not in "0123456789abcdef" for c in args.revision):

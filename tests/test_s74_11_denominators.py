@@ -121,7 +121,11 @@ def test_the_real_day_page_past_the_horizon_prints_no_fraction():
     assert not FRACTION.search(html), FRACTION.search(html).group(0)
     # The same page inside the horizon does carry fractions, so the assertion above is not vacuous.
     assert FRACTION.search(control)
-    assert "of 272 (" in control or "of 260 (" in control
+    # S74-13: read from the committed roster, not pinned (D 260 / R 272 on the July snapshot,
+    # D 262 / R 274 after the refresh to a263880).
+    inside_counts = [denominators.eligible_count("2026-11-18", p)["eligible_caucus_offices"]
+                     for p in config.COMPOSITE_PARTIES]
+    assert any(f"of {n} (" in control for n in inside_counts), inside_counts
     table = site.symmetry_table(report)
     assert "past the last date the committed roster snapshot covers" in table
 
