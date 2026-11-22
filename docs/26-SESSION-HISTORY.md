@@ -4595,3 +4595,38 @@ the release; whether the watchdog should page twice a day from 2026-12-19 until 
 the 120th (about 34 pages if upstream lists it near 2027-01-05) or at a lower priority; the Ohio
 Senate seat from 2026-12-15 is vacant in upstream's data, so the Republican total drops by one
 until upstream records a successor.
+
+### Session 74-14 (2026-11-21, Fable): roster refresh released; no flip on Nov 30
+
+The S74-13 commits (`bd7b7e15`, `813ecfdd`, `39a07c0b`) were read and released the same evening,
+before the first assemble on the S74-11 stack. The flip packet commissioned by R-74.9 came back
+(X:/onscript-data/drafts/staged/FLIP-PACKET-2026-11-30/PACKET.md). Rulings:
+
+- **R-74.17, the roster-horizon warning pages on set days.** Inside the 14-day window the
+  watchdog carries the finding on every tick and pages only at 14, 7, 3, 1 and 0 days left
+  (`ROSTER_HORIZON_PAGE_DAYS`); past the horizon every tick pages. As built it would have paged
+  twice a day for seventeen days with nothing to act on until upstream lists the 120th, which
+  is how the October outage's alerts stopped being read.
+- **R-74.18, the roster refresh is released now, amending the timing in R-74.15.** No day had
+  yet been assembled on the S74-11 stack, so releasing first means the published total moves
+  once (D 257 to 262, R 269 to 274) and never prints the intermediate 260 and 272, and no day
+  is added to the stale window. Logged as `corr-2026-11-21-roster-snapshot-stale`: 55 day
+  pages, largest effect on a printed share 0.08 percentage points. Upstream ends one Ohio
+  Senate term on 2026-12-15 and lists no successor, so R is 273 from that day until upstream
+  changes; that is upstream's record and is not adjusted here.
+- **R-74.19, duet quotes pass the person-span screen.** A quote containing a quarantined
+  (non-official) person span is not shown; a duet with an empty side does not render. Applied
+  at render time; stored records are not rewritten. Build work is in work order S74-15.
+- **R-74.20, no flip on Mon Nov 30; concordance is not first (amends R-74.9).** The packet
+  opened the artifacts: the concordance page would print a window that starts before the epoch
+  and ends on an unfinished day, names one member on two receipts, and rests on generic
+  phrases; no dark surface renders clean; the digest clause of the gate has been green on 1 of
+  16 Mondays. Provisional order, each flip Michael's and each under the gate: duet Dec 7,
+  nomenclature_tags Dec 14, none Dec 21 to Jan 4, authors_vessels Jan 11, concordance Jan 18.
+  The order is confirmed or amended when S74-15 and the verifier-drop diagnosis report.
+- **R-74.21, the bill and committee name index gets its own measured release.** The committed
+  tables are a 2026-07-16 snapshot; tag rates fell to about zero from August, so titles
+  introduced since then pass the name gate as messages. S74-15 Package 1 rebuilds, measures
+  the effect on published selections, and drafts the ledger entry.
+
+Corrections ledger: 11 to 12 entries.

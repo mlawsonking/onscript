@@ -35,6 +35,13 @@ def test_fourteen_days_or_fewer_alarms_and_past_the_horizon_keeps_alarming():
         assert finding["level"] == "alarm", (offset, finding)
         assert finding["evidence"]["days_left"] == offset
         assert "P13" in finding["detail"]
+    # R-74.17: between the set page days the finding is carried, not paged.
+    assert watchdog.ROSTER_HORIZON_PAGE_DAYS == frozenset({14, 7, 3, 1, 0})
+    for offset in range(watchdog.ROSTER_HORIZON_WARN_DAYS + 1):
+        [finding] = watchdog.check_roster_horizon(_shift(horizon, -offset))
+        expected = "alarm" if offset in watchdog.ROSTER_HORIZON_PAGE_DAYS else "ok"
+        assert finding["level"] == expected, (offset, finding)
+        assert finding["evidence"]["days_left"] == offset and "P13" in finding["detail"]
     [past] = watchdog.check_roster_horizon(_shift(horizon, 2))
     assert past["level"] == "alarm" and past["evidence"]["days_left"] == -2
     assert "bare counts" in past["detail"]

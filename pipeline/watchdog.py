@@ -141,6 +141,9 @@ RDAP_BAD_STATUS_TOKENS = ("hold", "redemption", "pendingdelete")
 # begin (S74-13: the horizon stays 2027-01-02 until congress-legislators lists the 120th). It
 # stops as soon as a refreshed snapshot moves the horizon more than 14 days past the product day.
 ROSTER_HORIZON_WARN_DAYS = 14
+# The days-left values on which the warning pages. Between them the finding is carried without a
+# page. Past the horizon every tick pages, because pages are then printing bare counts.
+ROSTER_HORIZON_PAGE_DAYS = frozenset({14, 7, 3, 1, 0})
 
 _OK, _ALARM = "ok", "alarm"
 
@@ -518,6 +521,14 @@ def check_roster_horizon(product_day: str, roster_table: dict | None = None) -> 
                          f"the date-effective roster ends {horizon}, {-days_left}d before product day "
                          f"{product_day}: pages print bare counts until the roster is refreshed "
                          f"(docs/07 P13)", **evidence)]
+    if days_left <= ROSTER_HORIZON_WARN_DAYS and days_left not in ROSTER_HORIZON_PAGE_DAYS:
+        # R-74.17 (S74-14): inside the warning window the finding is carried on every tick, but it
+        # pages only on the set days. A page that fires twice a day for seventeen days and cannot
+        # be acted on is how the October outage's alerts stopped being read.
+        return [_finding("roster_horizon", _OK,
+                         f"date-effective roster ends {horizon}, {days_left}d ahead (inside the "
+                         f"{ROSTER_HORIZON_WARN_DAYS}d warning window; pages on days "
+                         f"{sorted(ROSTER_HORIZON_PAGE_DAYS, reverse=True)}; docs/07 P13)", **evidence)]
     if days_left <= ROSTER_HORIZON_WARN_DAYS:
         return [_finding("roster_horizon", _ALARM,
                          f"the date-effective roster ends {horizon}, {days_left}d after product day "
