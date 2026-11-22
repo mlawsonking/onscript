@@ -11,8 +11,8 @@ from collections import Counter
 
 from datetime import date
 
-from . import (config, denominators, instrument_fingerprint, llm, public_strings, readiness,
-               roster, util)
+from . import (config, denominators, instrument_fingerprint, llm, nomenclature, public_strings,
+               readiness, roster, util)
 
 
 # The absolute arm of the volume alert (S70). A matured day below this count pages whatever its
@@ -298,6 +298,9 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
     marketed phrase surfaces the release flag gates."""
     caucus = caucus_sizes(statements)  # full corpus caucus proxy (all members with official sites)
     nomen = nomen_measure or {}
+    # S74-15 P1c: the age of the name index beside the rate it shapes. Party-blind by construction
+    # (one index judges both parties), so both rows carry the same value.
+    index_age = nomenclature.index_age(day)
     source_health = "not_attested"
     if isinstance(freshness, dict) and freshness.get("status") in {"healthy", "degraded", "unknown"}:
         source_health = freshness["status"]
@@ -357,6 +360,8 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
             "nomenclature_tagged": nm.get("tagged"),
             "nomenclature_total": nm.get("total"),
             "nomenclature_rate": nm.get("rate"),
+            "nomenclature_index_version": index_age["index_version"],
+            "nomenclature_index_age_days": index_age["age_days"],
         }
     report = {
         # `day_scoped` marks `statements_ingested` as THIS DAY's ingest. It changed meaning once

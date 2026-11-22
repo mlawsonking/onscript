@@ -175,6 +175,14 @@ NOMENCLATURE_MIN_NAME_CONTENT_TOKENS = 2  # a name thinner than this is not inde
 # names are < 3 tokens and 65 are < 3 CONTENT tokens ('Defense', 'Readiness', 'Aviation'). Indexed
 # bare they would tag ordinary English, so they enter ONLY qualified ('subcommittee on aviation').
 COMMITTEE_UNQUALIFIED_MIN_TOKENS = 3
+# S74-15 P1c: the age, in days from the product day back to the committed name index's fetch date
+# (verdicts `index_version`), above which the watchdog warns the operator. AN OPERATIONS CONSTANT,
+# NOT A MEASUREMENT THRESHOLD: it changes no selection, no tag and no published number, so it is
+# deliberately absent from instrument_fingerprint.LIVE_THRESHOLD_NAMES. Derivation: a refresh is one
+# offline builder run plus a measured release (docs/07 P14); 21 days spans three Monday rituals, so a
+# stale index is seen before a month of new bill titles has passed the name gate as messages. The
+# 2026-07-16 snapshot went 128 days unrefreshed with nothing recording it (S74-15 P1).
+NOMENCLATURE_INDEX_MAX_AGE_DAYS = 21
 
 # Cadence / quiet-day (§6.2 P3, §13)
 QUIET_DAY_MAX_STATEMENTS = 15                # < this many new Lane-1 statements -> quiet line

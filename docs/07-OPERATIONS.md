@@ -171,6 +171,26 @@ committed record stops advancing. See P12 and docs/04-BUILDLOG.md, Session 46.
   seated, and confirm the builder prints a horizon of 2029-01-02 before committing; a horizon
   derived while upstream has listed only part of the House is not a full Congress, and the seat
   invariants will fail on it.
+- **P14. Refresh the bill-and-committee name index (added 2026-11-22, S74-15).** The name gate
+  (`eligibility.classify_phrase`, which feeds Daily Line selection, posting, party columns and
+  alerts) reads `data/reference/nomenclature/bill-titles-<congress>.json` and
+  `verdicts-<congress>.json`, a dated snapshot. A bill introduced after the snapshot's fetch date
+  cannot tag, so its title passes the gate as a message. Symptom: an ntfy page titled "OnScript
+  watchdog" with a `nomenclature_index` alarm (the age first exceeds
+  `config.NOMENCLATURE_INDEX_MAX_AGE_DAYS`, then weekly), or `nomenclature_index_age_days` in
+  `symmetry/<day>.json` above it. A refresh changes selections going forward, so it is a release.
+  Sequence: (1) the verdicts are a ratio over the WHOLE congress's statements corpus, so the build
+  needs the production corpus (`statements.jsonl.gz` from the `data-latest` release's
+  `state.tar.gz`); a local `data/state` is a July copy on the operator machine and must not be
+  used (S74-15: 75,989 local rows ending 2026-07-09 against 91,500 in production). (2) The bill
+  fetch resumes from its mirror, so point it at an empty root or it rebuilds the old snapshot:
+  `$env:ONSCRIPT_DEEP_ROOT = '<empty dir>'`, then
+  `C:\ProgramData\miniconda3\python.exe -m pipeline.nomenclature_build --congresses 119
+  --skip-committees --corpus <restored>\data\state\statements.jsonl.gz`. (3) Diff old and new names
+  and verdicts, measure which published selections the new table classes as official names, and
+  draft a corrections entry if any published selection changes. (4) Commit both tables, then
+  release under the docs/27 order. The index also moves `nomenclature_index_version` in the
+  dark concordance and awards data.
 
 ## §5 Doc map, who's who (so nothing gets lost)
 

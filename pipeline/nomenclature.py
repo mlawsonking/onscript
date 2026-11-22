@@ -198,6 +198,23 @@ def index_version(congress: int | None = None) -> str | None:
     return (_verdicts(judged) or {}).get("index_version") if judged is not None else None
 
 
+def index_age(day: str, congress: int | None = None) -> dict:
+    """How old the name index judging `day` is: {index_version, age_days, postdates_day}.
+
+    S74-15 P1c. The index is a dated snapshot; a bill introduced after its fetch date cannot tag, so
+    its age is the bound on how many new titles may be passing the name gate as messages. The age
+    cannot be negative (docs/37 rule 17): a day re-assembled after a later refresh is judged by an
+    index newer than itself, which is reported as age 0 with `postdates_day` true, never as -N days.
+    With no committed table every field is None (dark box)."""
+    from datetime import date as _date
+
+    version = index_version(congress)
+    if not version:
+        return {"index_version": None, "age_days": None, "postdates_day": None}
+    raw = (_date.fromisoformat(day) - _date.fromisoformat(version)).days
+    return {"index_version": version, "age_days": max(raw, 0), "postdates_day": raw < 0}
+
+
 def is_nomenclature(ngram: str, congress: int) -> dict | None:
     """verdicts-{congress}.json lookup. Returns {'ratio','lane','cite','class','docs','nom_docs',
     'rule','index_version'} or None. MUST NOT accept a `party` argument (Article IV).

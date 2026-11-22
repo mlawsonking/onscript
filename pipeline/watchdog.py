@@ -539,6 +539,44 @@ def check_roster_horizon(product_day: str, roster_table: dict | None = None) -> 
                      **evidence)]
 
 
+def nomenclature_index_pages(age_days: int) -> bool:
+    """S74-15 P1c, the R-74.17 pattern: a stale name index pages on the day its age first exceeds
+    config.NOMENCLATURE_INDEX_MAX_AGE_DAYS and every 7 days after; between those days the finding is
+    carried without a page."""
+    over = age_days - config.NOMENCLATURE_INDEX_MAX_AGE_DAYS
+    return over >= 1 and (over - 1) % 7 == 0
+
+
+def check_nomenclature_index(product_day: str, index_age: dict | None = None) -> list[dict]:
+    """Judge the committed bill-and-committee name index's age against the product day. Reads the
+    committed verdicts table (data/reference), never the network. The import is lazy and guarded so
+    a broken table yields an alarm finding, never a watchdog that fails to start (docs/37 rule 4)."""
+    if index_age is None:
+        try:
+            from . import nomenclature
+            index_age = nomenclature.index_age(product_day)
+        except Exception as e:   # noqa: BLE001 - the probe reports, it never dies on its input
+            return [_finding("nomenclature_index", _ALARM,
+                             f"cannot read the committed name index: {type(e).__name__}: {e}")]
+    version, age = index_age.get("index_version"), index_age.get("age_days")
+    limit = config.NOMENCLATURE_INDEX_MAX_AGE_DAYS
+    if not version or age is None:
+        return [_finding("nomenclature_index", _ALARM,
+                         "no committed name index: every bill title passes the name gate as a "
+                         "message (docs/07 P14)")]
+    evidence = {"index_version": version, "age_days": age, "max_age_days": limit}
+    if age <= limit:
+        return [_finding("nomenclature_index", _OK,
+                         f"name index fetched {version}, {age}d old (limit {limit}d)", **evidence)]
+    detail = (f"the bill-and-committee name index was fetched {version}, {age}d before product day "
+              f"{product_day} (>{limit}d): bills introduced since then pass the name gate as "
+              f"messages; refresh it (docs/07 P14)")
+    if nomenclature_index_pages(age):
+        return [_finding("nomenclature_index", _ALARM, detail, **evidence)]
+    return [_finding("nomenclature_index", _OK,
+                     detail + f"; pages when the age is {limit + 1}d and every 7d after", **evidence)]
+
+
 def evaluate(*, derived: Path, now: datetime, product_day: str,
              collect_runs: list[dict] | None = None,
              assemble_runs: list[dict] | None = None,
@@ -552,6 +590,7 @@ def evaluate(*, derived: Path, now: datetime, product_day: str,
                 + check_runs("assemble", assemble_runs, now)
                 + check_manifests(derived, now, product_day)
                 + check_roster_horizon(product_day, roster_table)
+                + check_nomenclature_index(product_day)
                 + check_domain(domain_outcome)
                 + check_rdap(rdap_outcome, now))
     alarms = [f for f in findings if f["level"] == _ALARM]
