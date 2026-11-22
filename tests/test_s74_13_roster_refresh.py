@@ -114,6 +114,25 @@ def test_split_handles_both_upstream_end_conventions_as_one_contiguous_partition
         ("2025-01-03", "2027-01-03", "Independent")]
 
 
+def test_the_refresh_diff_names_the_office_behind_every_changed_run():
+    spec = importlib.util.spec_from_file_location(
+        "diff_date_effective_roster", ROOT / "scripts" / "diff_date_effective_roster.py")
+    diff = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(diff)  # type: ignore[union-attr]
+    table = denominators.load_roster()
+    same = diff.day_runs(table, table, "2026-11-01", "2026-11-30")
+    assert len(same) == 1 and all(not k[2] and not k[3] for k in same[0]["key"].values())
+    assert diff.office_changes(table, table) == []
+    import copy
+    edited = copy.deepcopy(table)
+    edited["offices"]["M001244"]["intervals"] = edited["offices"]["M001244"]["intervals"][:-1]
+    runs = [run for run in diff.day_runs(edited, table, "2026-11-01", "2026-11-30") if run["key"]["R"][2]]
+    assert [(r["first"], r["last"], r["key"]["R"][2]) for r in runs] == [
+        ("2026-11-04", "2026-11-30", ("M001244",))]
+    assert runs[0]["totals"]["R"][1] - runs[0]["totals"]["R"][0] == 1
+    assert [row[0] for row in diff.office_changes(edited, table)] == ["M001244"]
+
+
 def test_split_stops_on_an_affiliation_shape_it_cannot_read():
     bad = (
         [("2025-01-05", "2026-03-08", "Republican"), ("2026-03-09", "2027-01-03", "Independent")],

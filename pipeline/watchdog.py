@@ -69,7 +69,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import config, ops, util
+from . import config, denominators, ops, util
 
 # --- Thresholds. Each one states its estimator, unit, window, and derivation (Art. XVI). ---
 
@@ -130,6 +130,17 @@ RDAP_EXPIRY_MIN_DAYS = 30
 # containing these substrings are exactly the out-of-service ones; "client transfer prohibited",
 # the normal locked state, does not match.
 RDAP_BAD_STATUS_TOKENS = ("hold", "redemption", "pendingdelete")
+
+# Days from the product day to the committed roster's horizon (denominators.roster_horizon) at or
+# below which the probe alarms. Past the horizon every page prints bare counts with no party total
+# (S74-11, F1); that is safe but it is a loss of information the operator should see coming.
+# Derivation: a refresh is one builder run at a pinned revision, the old/new diff, a corrections
+# check and a release push (docs/07 P13), about an hour of work; 14 days spans two Monday rituals
+# (§3), so the warning is seen at least twice before the totals drop. The alarm can be
+# unactionable for a while: at a Congress boundary upstream lists the new terms only after they
+# begin (S74-13: the horizon stays 2027-01-02 until congress-legislators lists the 120th). It
+# stops as soon as a refreshed snapshot moves the horizon more than 14 days past the product day.
+ROSTER_HORIZON_WARN_DAYS = 14
 
 _OK, _ALARM = "ok", "alarm"
 
@@ -485,16 +496,51 @@ def check_rdap(outcome: dict | None, now: datetime) -> list[dict]:
     return out
 
 
+def check_roster_horizon(product_day: str, roster_table: dict | None = None) -> list[dict]:
+    """Judge the committed date-effective roster against the product day. Reads the committed
+    snapshot (data/reference), never the network."""
+    table = roster_table if roster_table is not None else denominators.load_roster()
+    horizon = denominators.roster_horizon(table)
+    revision = str(((table.get("provenance") or {}).get("revision")) or "")[:7] or None
+    if not horizon:
+        return [_finding("roster_horizon", _ALARM,
+                         "the committed date-effective roster speaks for no day: every page prints "
+                         "bare counts with no party total", revision=revision)]
+    try:
+        days_left = (datetime.fromisoformat(horizon).date()
+                     - datetime.fromisoformat(product_day).date()).days
+    except ValueError:
+        return [_finding("roster_horizon", _ALARM,
+                         f"cannot compare roster horizon {horizon!r} with product day {product_day!r}")]
+    evidence = {"roster_horizon": horizon, "days_left": days_left, "revision": revision}
+    if days_left < 0:
+        return [_finding("roster_horizon", _ALARM,
+                         f"the date-effective roster ends {horizon}, {-days_left}d before product day "
+                         f"{product_day}: pages print bare counts until the roster is refreshed "
+                         f"(docs/07 P13)", **evidence)]
+    if days_left <= ROSTER_HORIZON_WARN_DAYS:
+        return [_finding("roster_horizon", _ALARM,
+                         f"the date-effective roster ends {horizon}, {days_left}d after product day "
+                         f"{product_day} (<={ROSTER_HORIZON_WARN_DAYS}d): refresh it (docs/07 P13) or "
+                         f"pages print bare counts from the day after", **evidence)]
+    return [_finding("roster_horizon", _OK,
+                     f"date-effective roster ({revision}) speaks through {horizon}, {days_left}d ahead",
+                     **evidence)]
+
+
 def evaluate(*, derived: Path, now: datetime, product_day: str,
              collect_runs: list[dict] | None = None,
              assemble_runs: list[dict] | None = None,
              domain_outcome: dict | None = None,
-             rdap_outcome: dict | None = None) -> dict:
+             rdap_outcome: dict | None = None,
+             roster_table: dict | None = None) -> dict:
     """Full probe. Returns {findings, alarms, ok}. Pure: no network, no writes, no clock reads.
-    The edge outcomes are pre-fetched summaries (fetch_domain/fetch_rdap) or None for not-run."""
+    The edge outcomes are pre-fetched summaries (fetch_domain/fetch_rdap) or None for not-run.
+    `roster_table` defaults to the committed date-effective roster."""
     findings = (check_runs("collect", collect_runs, now)
                 + check_runs("assemble", assemble_runs, now)
                 + check_manifests(derived, now, product_day)
+                + check_roster_horizon(product_day, roster_table)
                 + check_domain(domain_outcome)
                 + check_rdap(rdap_outcome, now))
     alarms = [f for f in findings if f["level"] == _ALARM]

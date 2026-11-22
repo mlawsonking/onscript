@@ -133,6 +133,44 @@ committed record stops advancing. See P12 and docs/04-BUILDLOG.md, Session 46.
   run first: with `cancel-in-progress: false` a new run can displace one already waiting. (4) A
   missed publication day is still P1. Log it either way, because a silent recovery still spent a
   day of the streak.
+- **P13. Refresh the date-effective roster (added 2026-11-22, S74-13).** The party totals printed
+  beside shares ("28 of 259") come from `data/reference/date-effective-roster.json`, a dated copy of
+  `unitedstates/congress-legislators`. It goes stale when upstream records a special election, a
+  resignation or a party switch, and it stops speaking at its horizon: the day before the scheduled
+  end shared by the House terms open on its retrieval day. Past the horizon pages print bare counts
+  with no total. Symptom: an ntfy page titled "OnScript watchdog" with a `roster_horizon` alarm
+  (14 days or fewer left, or already past), or a seat change you know upstream has listed. A
+  refresh changes published numbers going forward, so it is a release. Sequence: (1) take the
+  upstream head, `git ls-remote https://github.com/unitedstates/congress-legislators HEAD`, and
+  pin its full hash; never a branch name. (2) Build:
+  `C:\ProgramData\miniconda3\python.exe scripts\build_date_effective_roster.py --revision <40-hex>
+  --retrieved-at <UTC now> --split-party-affiliations --out data\reference\date-effective-roster.json`.
+  Provenance records the revision, both source sha256 and `valid_through`; the builder prints the
+  horizon. (3) Invariants, in `tests/test_s74_13_roster_refresh.py`, then the full suite: every
+  day from `STAGE1_EPOCH` to the horizon seats 425 to 435 voting House offices and 96 to 100
+  senators; no office has overlapping intervals; no interval starts on or after its end;
+  `valid_through` equals the horizon the intervals derive. A test that pins a total from the old
+  snapshot is updated only where the number legitimately changed. (4) Read the diff:
+  `C:\ProgramData\miniconda3\python.exe scripts\diff_date_effective_roster.py --old HEAD` prints,
+  per party, runs of days with old and new totals and the offices responsible, then every office
+  whose intervals moved, including upstream's own historical corrections. Check each named
+  office against upstream's term dates and its `how` and `end-type` fields; say only what
+  upstream states. (5) Corrections: an entry is needed when any published day's page printed a
+  total the refresh changes. The S74-13 measurement,
+  `X:\onscript-data\drafts\staged\S74-13\stale.py`, lists those days (only days whose page prints a
+  total belong in `affected_days`), compares like with like (audits written before 2026-11-21
+  count voting members only; `--voting-only` gives the same population in the diff), and computes
+  the largest effect on a printed share by rendering each committed day record against its
+  committed audit. Published day records are never rewritten. A refresh that changes only days not yet published needs no entry. (6) Commit,
+  then release under the docs/27 order. **The January step.** Upstream ends every open House term
+  on the Congress boundary until it lists the new terms, so on the 2026-11-22 snapshot the horizon
+  is 2027-01-02 and the watchdog alarms from product day 2026-12-19. From 2027-01-03 pages print
+  bare counts. Those days keep bare counts after the refresh, because their audits are not
+  rewritten; that is a loss of a total, not a wrong number, so it needs no corrections entry.
+  Refresh once upstream lists the 120th Congress, with `--retrieved-at` on a day the new House is
+  seated, and confirm the builder prints a horizon of 2029-01-02 before committing; a horizon
+  derived while upstream has listed only part of the House is not a full Congress, and the seat
+  invariants will fail on it.
 
 ## §5 Doc map, who's who (so nothing gets lost)
 
