@@ -4630,3 +4630,103 @@ before the first assemble on the S74-11 stack. The flip packet commissioned by R
   the effect on published selections, and drafts the ledger entry.
 
 Corrections ledger: 11 to 12 entries.
+
+### Session 74-15 (2026-11-23, Opus): builder for work order S74-15
+
+Work order S74-15 (`X:\onscript-data\drafts\staged\WORK-ORDER-S74-15.md`), implementing the flip
+packet's sections 2.1, 2.6, 2.7 and 5 and the verifier-drop diagnosis. P1c/d was reviewed and pushed
+(`956ab44a`, main `1c5694c4`); everything after it is **committed locally on `s74-343-hardening` and
+unpushed**. Scripts and outputs are in `X:\onscript-data\drafts\staged\S74-15\`. Day records,
+manifests and the concordance artifact were read at the pinned commit `1c5694c4` (new helper
+`tests/_pinned.py`, docs/37 rule 3).
+
+- **P1, the name index. a/b stopped; c/d `956ab44a`.** The verdicts table is a ratio over the whole
+  congress-119 corpus. The local `data/state/statements.jsonl.gz` is the July corpus the 2026-07-16
+  table was built on (75,989 rows, 2025-01-01 to 2026-07-09, 75,757 eligible); production holds
+  91,500 kept statements (`collect-latest.json`). The `data-latest` download was not authorised
+  (task #409), so no table was rebuilt, no selection measured and no corrections entry drafted. The
+  command and the mirror-resume trap (the bill fetch reuses the July zips unless
+  `ONSCRIPT_DEEP_ROOT` points at an empty root) are in docs/07 P14. Built: `nomenclature.index_age`;
+  `nomenclature_index_version` and `nomenclature_index_age_days` beside `nomenclature_rate` in both
+  party rows of the symmetry audit; `watchdog.check_nomenclature_index`, paging when the age first
+  exceeds `config.NOMENCLATURE_INDEX_MAX_AGE_DAYS` (21, an operations constant outside the
+  fingerprint) and every 7 days after. On the July index (age 128 on 2026-11-21) it pages on product
+  days 2026-11-27, 12-04 and weekly.
+- **P4b, fallback reasons, `21ee9ca5`.** distill records an additive `rejection` field (categories
+  only: banned-style, counted-phrase, sentence-mapping, unbound-quote, uncounted-number, claim-ids,
+  ungrounded-quote, voice-error); `verify.daily_line_reason_categories` owns the mapping. Every public
+  explanation of a fallback or withheld line is `site.composite_reasons`, from the recorded state;
+  a past day with no category reads "composed deterministically after the model text failed a
+  publication check". `corrected_line` carries the cause of a withholding. Measured over 135 pinned
+  day pages: 121 gain a recorded-reason clause; four party-days that read "withheld under the privacy
+  floor" had no privacy cause (2026-07-11, 07-15, 07-16 R: connective scaffolding; 09-16 R: quote
+  binding) and now state theirs; 09-16 R's panel state reads `withheld_verifier_failure`, not
+  `corrected`. The recomposed-for-privacy clause says "the stored version", not "the model's
+  version". **P4d:** 09-16 R is the curly apostrophe. `quotes_bound_to_talking_points` folds the
+  quote's typography (U+2019 to ') and then asks `contains_gram` whether the folded quote carries the
+  unfolded label; "president's" and "president\u2019s" (U+2019) differ, so the deterministic composite failed
+  binding to its own label. Reproduced as an expected-fail test; no verifier check was changed.
+  HOMEPAGE_HONESTY_NOTE, before: "when a day's verified claims cannot support a model-written
+  composite, that party's line is composed deterministically...". After: "a party's line is composed
+  deterministically from the day's measured statistics whenever the model voice is not called or its
+  text fails a publication check... Each line states its own generator and reason, so the two parties
+  can differ on the same day." For approval.
+- **P2, the digest, `467b1fa2`.** `site.reading_state` is the one resolution of the R-36.4 state
+  from a reading's manifest; the homepage renders through it and the brief's streak arm reads it, so
+  a pending product day (lag 1) is green on both. The arm prints two labelled counts: consecutive
+  days with a published record, and `ops.unattended_streak` (now `limit=None`-walkable; the gate's
+  cap is unchanged). On the pinned manifests the second starts 2026-11-11 and breaks at the
+  dispatched backfill; the first spans the outage. The ops.py comment now says `degraded` covers
+  forced finalize and the withheld stub, not `deterministic_fallback`. Docs: docs/27 states the
+  observed delay after the cron slot, 2026-11-12 to 11-21 (20 collect, 20 assemble runs,
+  `gh-run-list.tsv`, `p2_cron_delay.py`): collect 0.2 to 9.2 hours (median 6.2), assemble 3.7 to 9.7
+  (median 6.1). docs/23's "precisely two lines" is scoped to the launch flip. docs/07 section 2
+  matches the code (gate clause, same-weekday baseline, claims offered). docs/37 rule 14 still says
+  crons drift up to 90 minutes; it is binding and was not edited here.
+- **P3, the Duet, `843ed868`.** Labels go through `member_name`; no raw bioguide renders on
+  2026-09-24 or 09-30. R-74.19 at render time with `privacy.person_spans` (private or quarantine):
+  over the 498 pinned quotes it withholds **261 (D 123, R 138)**; **27 of 83 duets** lose a side and
+  stop rendering, on 18 days; 25 of 33 duet days still show a panel. Almost every held span is a
+  capitalized bill, place or title run ("National Defense Authorization Act" 10, "U.S" 9, "H.R" 7,
+  "President Trump" 6), not a private person: the quarantine class is what the ledger already
+  excludes, applied to whole sentences. Author resolution uses the local roster cache. The
+  other-speaker rule, one sentence: a quote is withheld when the nearest capitalized run before a
+  speech verb (said, says, saying, stated, added, noted), ignoring pronouns, articles and titles,
+  lacks the member's surname. It withholds 1 of 498 (the 11-19 Grassley release quoting Joe Murphy
+  of the Iowa Business Council), which the person-span screen also withholds; read correct. 40 kept
+  quotes read, none another speaker's. Of the packet's 16 "not the member's own sentence", 15 are
+  the member's own words in office attribution ("Courtney said", "Senator Britt said") or quoted
+  terms. The ships-OFF literal in test_duet.py is gone; duet is not in `DELIBERATELY_RELEASED`.
+- **P4, the Concordance, `cb234e67`.** The window is `STAGE1_EPOCH` to the last final day, enforced
+  on the statements that enter the index. Receipts are distinct phrases only; a member with fewer
+  than `CONCORDANCE_RECEIPTS_MAX` distinct receipts is omitted and counted
+  (`excluded_below_receipts`), the option consistent with config.py's written naming gate; this
+  also omits any index-0 member. Measured on the pinned artifact (generated 2026-11-23T00:23Z,
+  window 2025-01-01 to 2026-11-21, 535 named): D n 262, mean 0.656, median 0.658, share above 0.5
+  0.943; R n 273, mean 0.611, median 0.612, share 0.824; gap +0.045 mean, +0.047 median. 15 named
+  rows carry only 2 distinct receipt phrases; 26 rows carry 31 pre-epoch receipts; 0 rows are
+  index 0. **Not measured:** the 45- and 90-day windows and the volume-equalised subsampling need
+  the statements corpus and ledger through November; the local corpus ends 2026-07-09. The window
+  length and `CONCORDANCE_PEAK_FLOOR` are unchanged.
+- **P4c, the clusterer replay: stopped, as ordered** (needs the same corpus as P1).
+- **Suite:** 1,313 at the P1c/d handoff; 1,321 after P4b; 1,324 after P2; 1,328 after P3; 1,330
+  after P4.
+
+Published or repository-public numbers that would change on release:
+
+| Surface | Before | After | Why |
+|---|---|---|---|
+| Honesty banner, homepage and 121 of 135 day pages | one asserted cause | the recorded reason per party | P4b |
+| Day pages 2026-07-11, 07-15, 07-16, 09-16 (R) | "withheld under the privacy floor" | the scaffolding or quote-binding reason | P4b |
+| 2026-09-16 R panel state | `corrected` | `withheld_verifier_failure` | P4b |
+| New day records | no rejection reason | additive `rejection` categories | P4b |
+| `data/derived/brief/<day>.json` streak arm | RED on a pending day; one count (128 over the outage) | gate colour; two labelled counts | P2 |
+| `concordance.json` (dark, public in the repo) | window 2025-01-01 to an unfinished day; 15 rows on 2 distinct phrases; 31 pre-epoch receipts | window from 2025-01-03 to the last final day; distinct receipts or the row omitted; every index recomputed on the new window; `excluded_below_receipts`, `window_rule` | P4 |
+| Duet panel (dark) | raw bioguides on 4 quotes; all 498 quotes shown | names; 261 quotes and 27 duets withheld | P3 |
+| docs/27, docs/23, docs/07 | stated cron drift and health definitions | observed values | P2 |
+
+Left for the issuing session: the honesty-note wording; whether the person-span screen should
+exempt names the bill-and-committee index or the roster resolves, since as built it withholds half
+the Duet's quotes for bill titles and place names; that the naming gate omits index-0 members, which
+raises the published distribution; P1a/b, P4c and the P4 window measurements once the production
+corpus is authorised (#409); the curly-apostrophe fix (a verifier change, not made here).
