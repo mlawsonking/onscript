@@ -1573,7 +1573,7 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     # composite from the surviving set so the PROSE never narrates a phrase whose receipt was removed.
     line, tps, pstate, wcause = corrected_line(party, day_data)
 
-    who =f'<div class="who">{esc(PARTY_NAME.get(party, party))}</div>'
+    who = f'<div class="who">{esc(PARTY_NAME.get(party, party))}</div>'
     raw_line = line if isinstance(line, dict) else None
     stats = (raw_line or {}).get("stats") or {}
     lead = (raw_line or {}).get("measurement_lead") or distill.measurement_lead(

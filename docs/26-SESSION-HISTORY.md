@@ -4730,3 +4730,29 @@ exempt names the bill-and-committee index or the roster resolves, since as built
 the Duet's quotes for bill titles and place names; that the naming gate omits index-0 members, which
 raises the published distribution; P1a/b, P4c and the P4 window measurements once the production
 corpus is authorised (#409); the curly-apostrophe fix (a verifier change, not made here).
+
+### Session 74-16 (2026-11-23, Fable): review and release of S74-15
+
+Weekend check: every scheduled run from 11-21 to 11-23 succeeded, none forced or degraded; the
+11-20 and 11-21 audits carry D 262 and R 274. The first collect on the S74-11 stack reported 73
+phrases dropped as boilerplate against 166 the run before, so 93 returned to the ledger
+(`collect-latest.json`, `phrase_engine.df_boilerplate`). The verifier-drop diagnosis is saved at
+X:/onscript-data/drafts/staged/VERIFIER-DROP/. Rulings:
+
+- **R-74.22, the homepage honesty note is approved as the builder reworded it.** It no longer
+  asserts one cause for every deterministic line.
+- **R-74.23, S74-15 is released whole.** Packages 4b and 2 change live pages and the owner's
+  digest. Packages 3 and 4 stay behind their flags; `concordance.json` changes in the repository.
+- **R-74.24, open before any duet flip.** The person-span screen of R-74.19 withholds 261 of 498
+  stored quotes because it holds bill titles, places and offices as if they were private people.
+  The ruling stands as the safe default; a measured exemption for spans the roster or the name
+  index resolves is a later order, and duet does not flip on a half-empty panel.
+- **R-74.25, open before any concordance flip.** Omitting members without three distinct receipts
+  removes every index-0 member and lifts the published mean. The distribution must be computed
+  over all members and only the naming gated. Window length and the floor remain unruled until
+  the 45- and 90-day measurements run on the production corpus (#409).
+- **R-74.26, the curly-apostrophe mismatch in `verify_daily_line` is a defect to fix.** It
+  withheld R on 2026-09-16 against its own label. The fix ships with a method-version bump and
+  a ledger entry, in the next order.
+- **On #279 (Michael's):** the recommendation is to leave the 25 percent line alone until the
+  clusterer stops offering groups no phrase of which has three carriers, then re-measure.
