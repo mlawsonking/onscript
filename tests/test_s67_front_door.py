@@ -150,7 +150,8 @@ def test_adjacent_denominators_say_they_are_different_bases():
 
 def test_the_two_s66_honesty_strings_are_untouched():
     """S67 was a polish order, not a copy edit of the honesty notes."""
-    assert public_strings.HOMEPAGE_HONESTY_NOTE.startswith("Honesty note: when a day's verified")
+    # S74-15 P4b reworded the honesty note deliberately; S67 itself did not touch it.
+    assert public_strings.HOMEPAGE_HONESTY_NOTE.startswith("Honesty note: a party's line is composed")
     assert public_strings.LANE_TWO_POPULATION_NOTE.startswith("Lane 2 is not currently populated")
 
 

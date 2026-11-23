@@ -444,6 +444,31 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
     return (len(reasons) == 0, reasons)
 
 
+# S74-15 P4b. The categories of a verify_daily_line rejection, keyed on the prefix of each reason this
+# module emits. A day record keeps the CATEGORY, never the rejected prose or the quoted span, so a
+# public page can state the real reason a line was not model-written (Constitution Article XVII).
+# Owned here, beside the strings it classifies; tests hold every emitted reason to a category.
+DAILY_LINE_REASON_CATEGORIES = (
+    ("banned style leakage", "banned-style"),
+    ("un-whitelisted numbers", "uncounted-number"),
+    ("unbound talking-point quotes", "unbound-quote"),
+    ("typed claim ids", "claim-ids"),
+    ("each quoted sentence must map", "sentence-mapping"),
+    ("the counted phrase must be the only quoted phrase", "counted-phrase"),
+    ("un-grounded quotes", "ungrounded-quote"),
+)
+
+
+def daily_line_reason_categories(reasons) -> list[str]:
+    """verify_daily_line reasons -> their sorted distinct categories ("other" for an unknown one)."""
+    out: set[str] = set()
+    for reason in reasons or []:
+        text = str(reason).casefold()
+        out.add(next((cat for prefix, cat in DAILY_LINE_REASON_CATEGORIES if text.startswith(prefix)),
+                     "other"))
+    return sorted(out)
+
+
 def verify_day(distillation: dict, talking_points: list[dict], statements_by_id: dict[str, dict],
                stats_blob: str) -> dict:
     """Full B4 report for one party-day. Drops failing claims; reports counts."""

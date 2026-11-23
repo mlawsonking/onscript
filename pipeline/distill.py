@@ -351,6 +351,10 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     model_response_sha256 = None
 
     tokens_in = tokens_out = 0
+    # S74-15 P4b: why the text that published is not the model's, as categories only (never the
+    # rejected prose). The Sonnet rejection reasons used to be overwritten below, so the page
+    # explained a fallback with a reason that was not the logged one (Constitution Article XVII).
+    rejection: dict = {}
     # R-36.5: a day with zero code-selected claims and no top phrase renders a deterministic
     # null. The model is never called to produce what a template already says.
     if allow_llm_voice and not llm.dry_run() and _has_voiceable_content(stats):
@@ -363,6 +367,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
             model = llm.VOICE_MODEL
         except Exception as e:  # transport/API error/empty -> deterministic; a voice failure never crashes
             print(f"[voice:{party}] LLM voice failed ({e}); deterministic fallback")
+            rejection["model_text"] = ["voice-error"]
             composite = _quiet_dry(stats) if quiet else _compose_dry(stats)
             generator = "deterministic"
             model = prompt["id"] + ":deterministic"
@@ -389,6 +394,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
         # the RICH deterministic composite, which is verifier-clean BY CONSTRUCTION (code numbers +
         # verbatim fragments only), then re-verify. The site keeps a real, informative Daily Line.
         print(f"[voice:{party}] Sonnet failed verify ({reasons}); deterministic-composite fallback")
+        rejection["model_text"] = verify.daily_line_reason_categories(reasons)
         composite = _quiet_dry(stats) if quiet else _compose_dry(stats)
         generator = "deterministic"
         model = prompt["id"] + ":deterministic"
@@ -396,6 +402,7 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
     if not ok:
         # Last resort: even the deterministic composite failed to verify (should be impossible — it uses
         # only code numbers + verbatim fragments). The honest stub, never silence. §7.2.
+        rejection["deterministic"] = verify.daily_line_reason_categories(reasons)
         composite = "Composite withheld because its claims could not be verified."
         fallback = True
         # The published text is the deterministic fallback — attribute it honestly, never as the
@@ -432,6 +439,10 @@ def daily_line(party: str, day: str, party_statements: list[dict], talking_point
             "model_response_sha256": model_response_sha256,
         },
         "quiet": quiet, "fallback": fallback,
+        # Additive (S74-15 P4b), present only when a text was rejected: "model_text" (the model's
+        # text failed verify, or ["voice-error"] when the voice returned nothing usable) and
+        # "deterministic" (the deterministic composite also failed; the withheld stub published).
+        **({"rejection": rejection} if rejection else {}),
         "sentence_receipts": receipts,
         "sentence_claims": sentence_claims,
         "model": model, "generator": generator,

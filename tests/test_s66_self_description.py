@@ -20,11 +20,12 @@ from __future__ import annotations
 from pipeline import public_strings, site
 
 
+# Reworded by S74-15 P4b (the old text asserted one cause for every deterministic line).
 HONESTY = (
-    "Honesty note: when a day's verified claims cannot support a model-written composite, that "
-    "party's line is composed deterministically from the day's measured statistics. The numbers, "
+    "Honesty note: a party's line is composed deterministically from the day's measured statistics "
+    "whenever the model voice is not called or its text fails a publication check. The numbers, "
     "quotes, and receipts are always real and verified; only the connective phrasing differs. "
-    "Each line states its own generator, so the two parties can legitimately differ on the same day."
+    "Each line states its own generator and reason, so the two parties can differ on the same day."
 )
 LANE_TWO = (
     "Lane 2 is not currently populated: every citation on this site today is Lane 1, a press "

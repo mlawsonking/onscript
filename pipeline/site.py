@@ -1027,7 +1027,18 @@ _STUB_VOICE_MSG = {
 
 def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     """RENDER-TIME Article XIII correction for one party-day. Returns (line, talking_points, state)
-    where state is "clean" | "recomposed" | "withheld".
+    where state is "clean" | "recomposed" | "readmitted" | "reclassified" | "withheld". The cause of a
+    withholding is `corrected_line`'s fourth element (S74-15 P4b)."""
+    return corrected_line(party, day_data)[:3]
+
+
+def corrected_line(party: str, day_data) -> tuple[dict | None, list, str, dict | None]:
+    """privacy_correct_line plus the recorded cause of a "withheld" state: {"cause": "privacy" |
+    "admission" | "eligibility" | "verifier", "categories": [...]} or None when not withheld.
+
+    S74-15 P4b: "withheld" was rendered as "withheld under the privacy floor" whatever withheld it.
+    On 2026-09-16 R the re-composed deterministic text failed quote binding; no private name was
+    involved, so that page stated a false reason.
 
     Why render-time and not a one-time JSON rewrite: a rewrite is undone by the next cloud run that
     rebuilds the day, and protects no future day. Render-time is idempotent and re-applies forever —
@@ -1062,7 +1073,7 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     tps = [t for t in tps if not boilerplate.is_scaffold_key((t or {}).get("label", ""))]
     adm_dropped = len(tps) < _n_tp
     if not isinstance(line, dict):
-        return line, tps, "clean"
+        return line, tps, "clean", None
 
     composite = (line.get("structured_output") or {}).get("composite") or line.get("composite") or ""
     stats_raw = line.get("stats")
@@ -1099,13 +1110,15 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
             )
     priv_dropped = tps_dropped or stats_dropped or privacy.is_suppressed(composite)
     if not (priv_dropped or adm_dropped or class_dropped):
-        return line, tps, "clean"
+        return line, tps, "clean", None
+    cause = {"cause": "privacy" if priv_dropped else "admission" if adm_dropped else "eligibility",
+             "categories": []}
 
     # Something in this line must not publish — it names a private individual (privacy) and/or a
     # talking point was bound by connective/attribution scaffolding (docs/19 §4b). Either way, re-derive
     # the composite from the FILTERED stats so the prose matches the surviving receipts.
     if not isinstance(stats, dict):
-        return None, tps, "withheld"           # no stats to recompose from -> withhold, never guess
+        return None, tps, "withheld", cause    # no stats to recompose from -> withhold, never guess
     selected_stats = (stats.get("selected_claims") if "selected_claims" in stats
                       else stats.get("talking_points") or [])
     has_quote = any((t or {}).get("quote") for t in selected_stats)
@@ -1116,7 +1129,7 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
         # "No phrase was shared by 3 or more of us today" — a fabricated silence FINDING manufactured
         # by our own privacy fix (Art. II). allow_absence_claim=False stops that line; withholding
         # stops the empty shell it would leave.
-        return None, tps, "withheld"
+        return None, tps, "withheld", cause
 
     text = distill._quiet_dry(stats) if line.get("quiet") \
         else distill._compose_dry(
@@ -1129,7 +1142,8 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
         {"composite": text}, json.dumps(stats, ensure_ascii=False), stats=stats
     )
     if not ok:
-        return None, tps, "withheld"
+        return None, tps, "withheld", {"cause": "verifier",
+                                       "categories": verify.daily_line_reason_categories(_reasons)}
     out = dict(line)
     out["composite"] = text
     sentence_claims = contracts.sentence_claims(text, stats)
@@ -1155,7 +1169,7 @@ def privacy_correct_line(party: str, day_data) -> tuple[dict | None, list, str]:
     # fires either way.
     return out, tps, (
         "recomposed" if priv_dropped else "readmitted" if adm_dropped else "reclassified"
-    )
+    ), None
 
 
 def privacy_states(day_data) -> dict:
@@ -1165,6 +1179,88 @@ def privacy_states(day_data) -> dict:
     uncorrected banner. "recomposed" and "withheld" are Article XIII privacy states. "readmitted"
     is a scaffold-key correction. "reclassified" applies the current fail-closed classifier."""
     return {p: privacy_correct_line(p, day_data)[2] for p in ("D", "R")}
+
+
+# S74-15 P4b. Plain-language names for verify.DAILY_LINE_REASON_CATEGORIES, plus "voice-error".
+REJECTION_CATEGORY_TEXT = {
+    "banned-style": "a banned style word",
+    "uncounted-number": "a number the code did not compute",
+    "unbound-quote": "a quote not bound to its claim's receipt",
+    "claim-ids": "inconsistent claim identifiers",
+    "sentence-mapping": "a quoted sentence that did not map to exactly one claim",
+    "counted-phrase": "a quoted phrase other than the counted phrase",
+    "ungrounded-quote": "a quote that was not verbatim member text",
+    "voice-error": "no usable text from the model",
+    "other": "another publication check",
+}
+
+
+def _category_clause(categories) -> str:
+    labels = [REJECTION_CATEGORY_TEXT.get(c, REJECTION_CATEGORY_TEXT["other"]) for c in categories or []]
+    return f" ({'; '.join(labels)})" if labels else ""
+
+
+def composite_reasons(party: str, day_data) -> list[str]:
+    """THE one source of every public explanation of a fallback or a withheld Daily Line (S74-15
+    P4b, Constitution Article XVII). Plain-text clauses, rendered from the RECORDED state: the stored
+    composite_state with its recorded rejection categories, then the render-time correction and its
+    cause. Where a past day recorded no category, the clause says only that the model text failed a
+    publication check, never a more specific cause it cannot show. Empty for a clean model line."""
+    dl = day_data.get("daily_lines") or {}
+    stored = dl.get(party) if isinstance(dl, dict) else None
+    _line, _tps, pstate, cause = corrected_line(party, day_data)
+    name = PARTY_NAME.get(party, party)
+    out: list[str] = []
+    stored_det: list[str] = []
+    if isinstance(stored, dict):
+        state = distill.state_for_line(stored)
+        rejection = stored.get("rejection") if isinstance(stored.get("rejection"), dict) else {}
+        model_cats = rejection.get("model_text") or []
+        called = ((stored.get("usage") or {}).get("tokens_in") or 0) > 0
+        if state == "deterministic_fallback":
+            if model_cats == ["voice-error"]:
+                out.append(f"{name}' line was composed deterministically because the model voice "
+                           f"returned no usable text")
+            elif model_cats:
+                out.append(f"{name}' line was composed deterministically because the model-written "
+                           f"text failed a publication check{_category_clause(model_cats)}")
+            elif called:
+                out.append(f"{name}' line was composed deterministically after the model text failed "
+                           f"a publication check")
+            else:
+                out.append(f"{name}' line was composed deterministically; the model voice was not called")
+        elif state == "withheld_no_eligible_claim":
+            out.append(f"{name}' line is a deterministic count: no claim or shared phrase met the "
+                       f"publication standard, so the model voice was not called")
+        elif state == "withheld_verifier_failure":
+            stored_det = (rejection.get("deterministic")
+                          or verify.daily_line_reason_categories((stored.get("verifier") or {}).get("reasons")))
+            first = ("the model text failed a publication check and then " if called else "")
+            out.append(f"{name}' line is withheld because {first}the deterministic composite failed "
+                       f"one too{_category_clause(stored_det)}")
+    if pstate == "recomposed":
+        out.append(f"{name}' Daily Line was re-composed by the deterministic composer because the "
+                   f"stored version named a private individual")
+    elif pstate == "readmitted":
+        out.append(f"{name}' Daily Line was re-composed by the deterministic composer because a talking "
+                   f"point was bound by connective or attribution phrasing rather than a shared message")
+    elif pstate == "reclassified":
+        out.append(f"{name}' Daily Line was re-composed by the deterministic composer because its "
+                   f"measured phrases did not meet the current message-eligibility standard")
+    elif pstate == "withheld":
+        why = (cause or {}).get("cause")
+        if why == "privacy":
+            out.append(f"{name}' Daily Line is withheld under the privacy floor")
+        elif why == "admission":
+            out.append(f"{name}' Daily Line is withheld because its talking points were bound by "
+                       f"connective or attribution phrasing")
+        elif why == "eligibility":
+            out.append(f"{name}' Daily Line is withheld because its measured phrases did not meet the "
+                       f"current message-eligibility standard")
+        elif (cause or {}).get("categories") != stored_det or not stored_det:
+            out.append(f"{name}' Daily Line is withheld because its deterministic re-composition failed "
+                       f"a publication check{_category_clause((cause or {}).get('categories'))}")
+    return out
 
 
 def honesty_state(day_data, symmetry):
@@ -1210,39 +1306,17 @@ def banner_html(day_data, symmetry, depth: int = 1) -> str:
     # wired in" — that copy is stale (the voice went live in Session 6b) and on a corrected day it
     # would state a FALSE REASON (voice not built) for what is actually privacy protection.
     pstates = privacy_states(day_data)
-    corrected = [p for p, s in pstates.items() if s == "recomposed"]
-    withheld = [p for p, s in pstates.items() if s == "withheld"]
-    readmitted = [p for p, s in pstates.items() if s == "readmitted"]   # docs/19 §4b scaffold correction
-    reclassified = [p for p, s in pstates.items() if s == "reclassified"]
-    if corrected or withheld or readmitted or reclassified:
-        bits = []
-        if corrected:
-            bits.append(
-                f"{' and '.join(PARTY_NAME[p] for p in sorted(corrected))}' Daily Line was "
-                f"<strong>re-composed by the deterministic composer</strong> because the model&rsquo;s "
-                f"version named a private individual")
-        if readmitted:
-            # Its OWN honest reason — never the stale "voice not wired" tail, and never the privacy claim.
-            bits.append(
-                f"{' and '.join(PARTY_NAME[p] for p in sorted(readmitted))}' Daily Line was "
-                f"<strong>re-composed by the deterministic composer</strong> because a talking point was "
-                f"bound by connective or attribution phrasing rather than a shared message")
-        if reclassified:
-            bits.append(
-                f"{' and '.join(PARTY_NAME[p] for p in sorted(reclassified))}' Daily Line was "
-                f"<strong>re-composed by the deterministic composer</strong> because its measured "
-                f"phrases did not meet the current message-eligibility standard")
-        if withheld:
-            bits.append(
-                f"{' and '.join(PARTY_NAME[p] for p in sorted(withheld))}' Daily Line is "
-                f"<strong>withheld under the privacy floor</strong>")
+    # S74-15 P4b: every reason on this banner comes from composite_reasons, the one function that
+    # reads the recorded state and category; no branch here states a cause of its own.
+    reasons = [esc(r) for p in ("D", "R") for r in composite_reasons(p, day_data)]
+    if any(s != "clean" for s in pstates.values()):
         # depth-correct: this banner also renders on index.html (depth 0), where "../" would 404.
         tail = (" Every number is the day&rsquo;s real measurement; nothing about the instrument or its "
                 "thresholds changed, and the same rule is applied identically to both parties. "
                 f'See the <a href="{"../" * depth}methodology.html">privacy floor</a> and the '
                 "corrections log.")
         extra = f"{msg}; " if need else ""
-        return f'<div class="banner">Honesty note: {extra}{"; ".join(bits)}.{tail}</div>'
+        return f'<div class="banner">Honesty note: {extra}{"; ".join(reasons)}.{tail}</div>'
     if not need:
         return ""
     if has_stub_voice:
@@ -1253,8 +1327,9 @@ def banner_html(day_data, symmetry, depth: int = 1) -> str:
         # read live from public_strings so a review has one surface.
         # Authored copy, emitted like the sibling paragraphs on this page and not escaped, so the
         # reviewed wording survives verbatim in the page source. A test holds it to plain text.
+        why = f"; {'; '.join(reasons)}" if reasons else ""
         return (f'<div class="banner">{public_strings.HOMEPAGE_HONESTY_NOTE} '
-                f'On this day: {msg}.</div>')
+                f'On this day: {msg}{why}.</div>')
     # Genuine LLM voice, just a transparency flag (quiet / fallback / degraded).
     tail = " Numbers, quotes, and receipts are real and verified; the note above is a transparency flag."
     return f'<div class="banner">Honesty note: {msg}.{tail}</div>'
@@ -1496,17 +1571,32 @@ def daily_line_panel(party: str, day_data, caucus: int | None = None) -> str:
     # Render-time correction, BEFORE anything is rendered: privacy_correct_line drops both suppressed
     # (Art. XIII) AND connective/attribution scaffold (docs/19 §4b) talking points, and re-derives the
     # composite from the surviving set so the PROSE never narrates a phrase whose receipt was removed.
-    line, tps, pstate = privacy_correct_line(party, day_data)
+    line, tps, pstate, wcause = corrected_line(party, day_data)
 
-    who = f'<div class="who">{esc(PARTY_NAME.get(party, party))}</div>'
+    who =f'<div class="who">{esc(PARTY_NAME.get(party, party))}</div>'
     raw_line = line if isinstance(line, dict) else None
     stats = (raw_line or {}).get("stats") or {}
     lead = (raw_line or {}).get("measurement_lead") or distill.measurement_lead(
         party, day_data.get("day") or "unknown day", stats.get("statements")
     )
     state = distill.state_for_line(raw_line, corrected=pstate != "clean")
+    if pstate == "withheld" and (wcause or {}).get("cause") == "verifier":
+        # S74-15 P4b: a line withheld because its text failed the verifier is in that state, not
+        # "corrected" (2026-09-16 R printed "corrected" over a withheld line).
+        state = "withheld_verifier_failure"
     lead_html = f'<p class="measurement-lead">{esc(lead)}</p>'
     state_html = f'<div class="composite-state">Composite state: <code>{esc(state)}</code></div>'
+    if pstate == "withheld" and (wcause or {}).get("cause") != "privacy":
+        # S74-15 P4b: a withholding that is not a privacy withholding states its recorded reason,
+        # from the same function as the banner, never the privacy-floor paragraph below.
+        why = "; ".join(composite_reasons(party, day_data))
+        return (
+            f'<div class="line {esc(party)}">{who}'
+            f'{lead_html}{state_html}'
+            f'<p class="composite muted">{esc(why)}. The underlying record of what members said is '
+            f'retained unaltered.</p>'
+            f'</div>'
+        )
     if pstate == "withheld":
         return (
             f'<div class="line {esc(party)}">{who}'

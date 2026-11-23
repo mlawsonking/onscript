@@ -44,11 +44,14 @@ ABOUT_DESCRIPTION = "A symmetric, citation-backed measurement of observed congre
 # docs/39 M3, Constitution Article XVII. The homepage note used to say the composite phrasing was
 # "a placeholder until the live model voice is wired in" while the same page showed the other
 # party's line generated and verified by the model. The instrument may not misdescribe itself.
+# S74-15 P4b: the note used to assert one cause ("verified claims cannot support a model-written
+# composite") for every deterministic line, including lines whose model text was rejected for a style
+# word. It now states the rule true of every case; each day's own reason follows it on the page.
 HOMEPAGE_HONESTY_NOTE = (
-    "Honesty note: when a day's verified claims cannot support a model-written composite, that "
-    "party's line is composed deterministically from the day's measured statistics. The numbers, "
+    "Honesty note: a party's line is composed deterministically from the day's measured statistics "
+    "whenever the model voice is not called or its text fails a publication check. The numbers, "
     "quotes, and receipts are always real and verified; only the connective phrasing differs. "
-    "Each line states its own generator, so the two parties can legitimately differ on the same day."
+    "Each line states its own generator and reason, so the two parties can differ on the same day."
 )
 
 # docs/39 M2. The methodology described Lane 2 in the present tense while the corpus is entirely
