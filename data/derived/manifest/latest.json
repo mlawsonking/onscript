@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
-  "run_id": "collect-2026-11-21",
+  "run_id": "collect-2026-11-23",
   "kind": "deterministic",
-  "generated_at": "2026-11-21T23:52:03Z",
-  "focus_day": "2026-11-20",
+  "generated_at": "2026-11-23T00:23:49Z",
+  "focus_day": "2026-11-21",
   "focus_cursor": {
-    "day": "2026-11-20",
+    "day": "2026-11-21",
     "requested": "2026-11-21",
-    "clamped": true,
+    "clamped": false,
     "future": false,
-    "reason": "the corpus already holds 2026-11-21, a day that is not over yet; measuring the product day 2026-11-20 instead"
+    "reason": "the newest day in the corpus is the product day"
   },
   "day_sweep": {
     "window": [
-      "2026-11-15",
-      "2026-11-19"
+      "2026-11-16",
+      "2026-11-20"
     ],
     "records_written": [],
     "boards_written": [],
@@ -27,12 +27,12 @@
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-11-21T19:14:41Z",
-    "age_hours": 4.62
+    "pushed_at": "2026-11-22T22:20:11Z",
+    "age_hours": 2.05
   },
   "normalize": {
-    "in": 91538,
-    "kept": 91500,
+    "in": 91542,
+    "kept": 91504,
     "rejects": 38,
     "joint_groups": 192,
     "near_joint_groups": 3287,
@@ -46,11 +46,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 54024,
+      "statements_in": 54027,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 36848,
+      "statements_in": 36849,
       "members_covered": 276
     },
     "I": {
@@ -60,10 +60,10 @@
   },
   "derived": {
     "ledger_entries": 339479,
-    "phrase_pages": 70,
-    "focus_day": "2026-11-20",
-    "focus_day_write": "written",
-    "focus_day_top_phrases": 20,
+    "phrase_pages": 0,
+    "focus_day": "2026-11-21",
+    "focus_day_write": "skipped-final",
+    "focus_day_top_phrases": null,
     "coverage_years": [
       "2025",
       "2026"
@@ -73,21 +73,21 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 6.8,
-    "mirror_pull": 13.8,
-    "normalize": 1668.5,
-    "ledger_build": 1582.9
+    "restore": 6.3,
+    "mirror_pull": 23.3,
+    "normalize": 1925.9,
+    "ledger_build": 1790.2
   },
   "span_scan": {
-    "person_spans_calls": 263439,
-    "person_spans_s": 387.5515461989535,
-    "admitted_form_scans": 263439,
-    "admitted_form_s": 6.837373481105715
+    "person_spans_calls": 263451,
+    "person_spans_s": 460.928310612665,
+    "admitted_form_scans": 263451,
+    "admitted_form_s": 6.2446513036147735
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
     "component_hashes": {
-      "code_tree": "74e3ee41482b3d419ba4981294e34b7d41ed1751c4258c39344ed2508116eb0d",
+      "code_tree": "fb73b872e8b8d33cec213b0f163b03dcb4f925c02533978153c3b396fefaf9e9",
       "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
       "method_versions": "84dd635c6f9edd38a16c476fde1152c95016f960c43108dbbc82ec383d5e32a9",
       "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
@@ -95,7 +95,7 @@
       "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
       "nomenclature_index": "8f12ee07e0c0a04d4836ab830354b003f195c09ce7b74fb0631e037bc4651009"
     },
-    "sha256": "edd245bb8d3c639ac42d391e65a2d2b23b4099d7cf821a76296860728a860d40",
+    "sha256": "db4d58fba327882e244c6cdee92954963038333fe0467ebafa39845004227b0c",
     "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
   }
 }
