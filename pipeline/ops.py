@@ -401,18 +401,28 @@ def symmetry_report(day: str, statements: list[dict], per_party_llm: dict, *, fr
 #   * a manifest with no `event` field predates this instrumentation -> NOT counted as unattended.
 #     The streak therefore reads 0 until three genuinely-instrumented clean crons accumulate, which
 #     is honest: we cannot retroactively prove a run was unattended, so we do not claim it.
-#   * `degraded` covers BOTH the voice falling back and a forced-finalize, so a day that published an
-#     apology can never be counted as a real run.
+#   * `degraded` (run_assemble: `forced or any daily_line["fallback"]`) covers a forced-finalize and
+#     the withheld stub ("Composite withheld because its claims could not be verified"), so a day that
+#     published an apology can never be counted as a real run. It does NOT cover a model text that
+#     failed verify and published as the deterministic composite (`composite_state:
+#     deterministic_fallback`, `fallback: false`): such a day counts as clean here, by design since
+#     2026-07-16. "Clean" means published unforced and without the stub, not model-written (S74-15).
 # ---------------------------------------------------------------------------
 GATE_RUNS_REQUIRED = 3
 
 
-def unattended_streak(today: str, manifest_dir=None) -> dict:
+_HEAD_ONLY = object()
+
+
+def unattended_streak(today: str, manifest_dir=None, *, limit=_HEAD_ONLY) -> dict:
     """Consecutive clean UNATTENDED assemble runs ending at the most recent one.
 
     Returns {"value", "days", "weekend_day", "passes", "note"}. `passes` is the §1.4.1 gate itself:
     GATE_RUNS_REQUIRED consecutive clean unattended runs INCLUDING at least one weekend day.
-    `manifest_dir` is injectable so tests never write into the real derived data."""
+    `manifest_dir` is injectable so tests never write into the real derived data. The walk stops at
+    GATE_RUNS_REQUIRED * 3 by default (the gate needs only the head); `limit=None` walks the whole
+    streak, which is how the owners brief reports its length (S74-15 P2)."""
+    cap = GATE_RUNS_REQUIRED * 3 if limit is _HEAD_ONLY else limit
     from datetime import date as _date
 
     rows = []
@@ -444,7 +454,7 @@ def unattended_streak(today: str, manifest_dir=None) -> dict:
             break
         prev_day = d
         streak.append(day)
-        if len(streak) >= GATE_RUNS_REQUIRED * 3:  # bounded; we only need the head of the streak
+        if cap is not None and len(streak) >= cap:  # bounded; the gate needs only the head
             break
     streak.reverse()
 

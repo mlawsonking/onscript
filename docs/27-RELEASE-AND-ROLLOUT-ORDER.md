@@ -54,8 +54,12 @@ Conflicts found between documentation and reality, ruled on below:
 Steps run in order. A step's failure stops the sequence at that step. No manual workflow
 dispatch anywhere; scheduled runs are the only production exercise. Clean push window:
 gh run list shows nothing queued or running, and the next cron slot (09:30, 11:30, 19:30,
-21:30 UTC, all drifting up to two hours late) is not imminent. Waves are not combined to
-recover time.
+21:30 UTC) is not imminent. Observed start delay of scheduled runs after their slot, 20 collect
+and 20 assemble runs created 2026-11-12 to 2026-11-21: collect 0.2 to 9.2 hours (median 6.2),
+assemble 3.7 to 9.7 hours (median 6.1); no evening collect ran between 2026-11-16T21:17Z and
+2026-11-17T18:40Z. Source: the flip packet's read-only `gh run list` capture
+(`X:\onscript-data\drafts\staged\FLIP-PACKET-2026-11-30\gh-run-list.tsv`, measured by
+`S74-15\p2_cron_delay.py`, S74-15). Waves are not combined to recover time.
 
 ### R0. Voice compliance fix (implementation agent, may run first or parallel to R1)
 

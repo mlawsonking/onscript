@@ -32,13 +32,20 @@ playbook (§4), file the postmortem, resume the same state, the ladder position 
 Read weekly (or from the Owner's Brief, §3). Green/red thresholds are deliberately crude,
 they exist so you never have to *interpret* on a tired Monday.
 
-1. **Streak**, days since last missed publish. Green: unbroken. Red: any miss → Playbook P1.
+1. **Streak**, days since last missed publish. Green: the site is current under the docs/23 §7.3
+   clause (`site.reading_state` is `today` or `latest_complete`: the newest published day trails
+   the product day by at most 1 and is neither degraded nor force-finalized). Red: anything else →
+   Playbook P1. The brief prints two labelled counts beside it: consecutive days with a published
+   record (backfilled days count) and consecutive clean unattended runs (`ops.unattended_streak`,
+   which a dispatched backfill breaks). S74-15.
 2. **Spend (mtd, projected)**, manifest `est_cost_usd` sum. Green: ≤ $8 projected. Red: governor
    already degraded twice this month → decide: raise cap or ride degraded (your call, one line in
    buildlog).
 3. **Coverage**. Lane-1 statements vs. trailing median, per party, + upstream freshness. Green: both
-   parties ≥ 60% of trailing 14-day median and upstream < 36h stale. Red → Playbook P2.
-4. **Verifier drop rate**, claims dropped ÷ claims published, 7-day. Green: < 25%. Red (sustained
+   parties ≥ 60% of their own trailing 6-week same-weekday median (S70-2; it was a trailing
+   14-day all-days median) and upstream < 36h stale. Red → Playbook P2.
+4. **Verifier drop rate**, claims dropped ÷ claims offered (dropped + published; the brief's
+   logged deviation from the original "÷ published"), 7-day. Green: < 25%. Red (sustained
    rise): upstream text quality shifted or prompt drift → Opus session, don't hand-tune.
 5. **Reach**, citations/embeds + site sessions (analytics live since 2026-08-10; count monthly,
    not daily; vanity is a monthly vitamin, not a daily meal). Follower counts are retired as a

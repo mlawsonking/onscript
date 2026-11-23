@@ -542,7 +542,9 @@ Both Monday worker sessions ran and their open points are ruled:
 5. Execute, in order: `POSTING_ENABLED` on → repo public → announce (`announce.yml` dispatch,
    approved text verbatim, `confirm=POST`) → the flip commit (`party_columns` + `owners_brief` +
    `phrase_search` = True, all three added to `DELIBERATELY_RELEASED`, per S30b it is precisely
-   two lines) → push (step-0 check again) → re-dispatch `assemble.yml -f day=2026-07-20` so the
+   two lines; that held for the launch flip only: every later dark flag also has a ships-OFF test
+   literal to convert into a flag-off/flag-on behaviour pair, so its flip commit is the config
+   line, the registry line and that test, S74-15) → push (step-0 check again) → re-dispatch `assemble.yml -f day=2026-07-20` so the
    composites' first threads post in the same morning window, linking a site with columns, search,
    and og cards live.
 6. **Expected artifact, do not "fix":** the dispatch writes `unattended:False`, so

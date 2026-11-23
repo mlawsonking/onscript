@@ -2155,6 +2155,29 @@ def temporal_state(measured_day, product_day, *, age_hours=None, degraded=False,
     return "today"
 
 
+def reading_state(measured_day, product_day, manifest, *, age_hours=None, source_ok=True) -> dict:
+    """The resolved R-36.4 state of a measured reading against its assemble manifest: THE one
+    resolution the homepage renders and the docs/23 section 7.3 site-current clause reads, and the
+    one the owners brief's streak arm reads (S74-15 P2), so the two cannot disagree on a Monday.
+
+    Returns {"state", "measured_day", "product_day", "lag_days", "degraded", "forced_finalize"}.
+    The gate clause passes on state "today" or "latest_complete": lag at most 1 and the measured day
+    neither degraded nor force-finalized. age_hours refines "today" against a stale render clock
+    for the homepage; the clause as written does not read it, so the brief passes None."""
+    manifest = manifest if isinstance(manifest, dict) else {}
+    degraded, forced = bool(manifest.get("degraded")), bool(manifest.get("forced_finalize"))
+    return {
+        "state": temporal_state(measured_day, product_day, age_hours=age_hours, degraded=degraded,
+                                forced_finalize=forced, source_ok=source_ok),
+        "measured_day": measured_day, "product_day": product_day,
+        "lag_days": _calendar_lag_days(measured_day, product_day) if measured_day else None,
+        "degraded": degraded, "forced_finalize": forced,
+    }
+
+
+SITE_CURRENT_STATES = frozenset({"today", "latest_complete"})
+
+
 def temporal_state_banner(state, day, lag_days=0):
     """Render the honest state line for the homepage under the R-36.4 ladder."""
     if state == "today":
@@ -3937,14 +3960,13 @@ def build_site():
         # reading as current.
         prod_day = util.product_day()
         manifest = _load_json(DERIVED / "manifest" / f"assemble-{today_day}.json") or {}
-        state = temporal_state(
-            today_day, prod_day,
+        reading = reading_state(
+            today_day, prod_day, manifest,
             age_hours=_reading_age_hours(manifest.get("generated_at")),
-            degraded=bool(manifest.get("degraded")),
-            forced_finalize=bool(manifest.get("forced_finalize")),
             source_ok=has_daily_lines(data),
         )
-        lag_days = _calendar_lag_days(today_day, prod_day)
+        state = reading["state"]
+        lag_days = reading["lag_days"]
         # The window ends at the day the homepage is SHOWING, not at wall-clock today: the render
         # must reproduce byte for byte whenever it is re-run for this reading (docs/37 rule 5).
         exemplars = adoption_exemplars(records, today_day)

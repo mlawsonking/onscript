@@ -117,26 +117,53 @@ def _published_days() -> set[str]:
 
 # --- the five numbers ----------------------------------------------------------------------------
 def streak(today: str) -> dict:
-    """§2.1 — days since the last missed publish. Day D publishes on D+1, so the newest EXPECTED day
-    is yesterday; a hole there is a miss happening now (RED -> Playbook P1), not a pending run."""
+    """§2.1, scored by the gate's own site-current clause (S74-15 P2).
+
+    The colour is `site.reading_state` on the newest published day against the product day (the
+    day before the brief's day): green on "today" or "latest_complete", i.e. lag at most 1 and that
+    day neither degraded nor force-finalized, exactly as docs/23 section 7.3 reads it. The arm used
+    to read RED whenever the product day was merely pending, so it disagreed with the gate on the
+    same Monday (13 brief days, VERIFIER-DROP streak.py).
+
+    Two numbers, each labelled, because one hid the outage: `value` counts consecutive days with a
+    published record, which backfilled days keep unbroken (128 across 2026-10-28..11-10); the
+    `unattended_streak` field is ops.unattended_streak's own count of consecutive clean unattended
+    runs, which the dispatched backfill breaks."""
+    from . import site   # lazy: site is the render module; only this arm needs its resolution
+
     pub = _published_days()
     if not pub:
         return {"name": "streak", "value": None, "status": UNKNOWN,
                 "note": "no assemble manifests — nothing has published yet"}
-    expected = _iso(_parse(today) - dt.timedelta(days=1))
-    if expected not in pub:
-        return {"name": "streak", "value": 0, "status": RED, "last_missed": expected,
-                "note": f"no publish for {expected} — Playbook P1"}
-    n, cur = 0, _parse(expected)
-    while _iso(cur) in pub:
+    product = _iso(_parse(today) - dt.timedelta(days=1))
+    newest = max(d for d in pub if d <= product) if any(d <= product for d in pub) else None
+    manifest = _read(config.DERIVED / "manifest" / f"assemble-{newest}.json") if newest else None
+    reading = site.reading_state(newest, product, manifest, source_ok=newest is not None)
+    try:
+        unattended = ops.unattended_streak(today, limit=None)
+    except Exception:   # an unreadable manifest is an UNKNOWN count, never a brief that dies
+        unattended = {"value": None, "days": []}
+    n, cur = 0, _parse(newest) if newest else None
+    while cur is not None and _iso(cur) in pub:
         n += 1
         cur -= dt.timedelta(days=1)
     # `cur` is the day the walk stopped. That is only a MISS if it postdates the first publish ever;
     # before that there was no streak to break, and reporting one would invent a failure.
     first = min(pub)
-    last_missed = _iso(cur) if _iso(cur) > first else None
-    return {"name": "streak", "value": n, "status": GREEN, "last_missed": last_missed,
-            "note": f"{n} consecutive days published (through {expected})"}
+    last_missed = _iso(cur) if cur is not None and _iso(cur) > first else None
+    current = reading["state"] in site.SITE_CURRENT_STATES
+    if not current and newest != product and (reading["lag_days"] or 0) > 1:
+        last_missed = _iso(_parse(newest) + dt.timedelta(days=1)) if newest else product
+    note = (f"site {reading['state']}: newest published day {newest} for product day {product}"
+            f" (lag {reading['lag_days']}); {n} consecutive days with a published record; "
+            f"{unattended['value']} consecutive clean unattended runs (ops.unattended_streak)")
+    if not current:
+        note += "; Playbook P1"
+    return {"name": "streak", "value": n, "status": GREEN if current else RED,
+            "last_missed": last_missed, "temporal_state": reading["state"],
+            "measured_day": newest, "lag_days": reading["lag_days"],
+            "published_record_days": n, "unattended_streak": unattended["value"],
+            "unattended_since": (unattended["days"] or [None])[0], "note": note}
 
 
 def spend(today: str) -> dict:

@@ -262,9 +262,13 @@ def test_ALL_GREEN_is_impossible_while_anything_is_unmeasured():
     f["symmetry__2026-07-08.json"] = _sym("2026-07-08")            # stale by 12 days
     with _derived_fixture(**f):
         (config.DERIVED / "manifest" / "assemble-2026-07-19.json").write_text("", encoding="utf-8")
+        # S74-15 P2: one unpublished product day is the gate's healthy lag of 1, so the streak arm
+        # alone is green here and ALL GREEN is still impossible through the three unknowns.
+        assert brief.build_brief("2026-07-20")["headline"] != "ALL GREEN"
+        (config.DERIVED / "manifest" / "assemble-2026-07-18.json").write_text("", encoding="utf-8")
         b = brief.build_brief("2026-07-20")
         assert b["headline"] != "ALL GREEN"
-        assert b["reds"] == ["streak"]                              # the zero-byte newest manifest
+        assert b["reds"] == ["streak"]                              # two zero-byte manifests: lag 2
         assert set(b["unknowns"]) == {"spend", "coverage", "verifier_drop"}
         assert not any(n["status"] == "green" for n in b["numbers"])
 
@@ -377,7 +381,13 @@ def test_an_unreadable_manifest_is_not_a_publish():
     with _derived_fixture(**_healthy()):
         (config.DERIVED / "manifest" / "assemble-2026-07-19.json").write_text("{tru",
                                                                              encoding="utf-8")
-        assert brief.streak("2026-07-20")["status"] == "red"       # a corrupt receipt is no receipt
+        s = brief.streak("2026-07-20")
+        # A corrupt receipt is no receipt: 07-19 is not counted. S74-15 P2: one pending day is the
+        # gate's healthy lag of 1, so the arm reads the newest REAL publish, 07-18.
+        assert s["measured_day"] == "2026-07-18" and s["lag_days"] == 1
+        (config.DERIVED / "manifest" / "assemble-2026-07-18.json").write_text("{tru",
+                                                                             encoding="utf-8")
+        assert brief.streak("2026-07-20")["status"] == "red"       # two unreadable: lag 2, a miss
 
 
 def test_reach_is_reported_as_a_manual_count_not_fabricated():
