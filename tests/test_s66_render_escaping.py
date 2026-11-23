@@ -40,7 +40,9 @@ def _cdata() -> dict:
 def _duet_day() -> dict:
     def side(name, party, state):
         return [{"member": name, "party": party, "state": state, "date": "2026-06-30",
-                 "url": POISON, "quote": f"That is a victory for the rule of law, said {name}."}]
+                 # S74-15 P3: no name inside the quote. "said Dana Adams" is an unresolved person
+                 # span, which R-74.19 withholds, and this test is about the URL, not the screen.
+                 "url": POISON, "quote": "That is a victory for the rule of law."}]
     return {"duets": [{"ngram": "rule of law", "counts": {"D": 9, "R": 5}, "both": 5,
                        "sides": {"D": side("Dana Adams", "D", "CA"),
                                  "R": side("Rhea Rivera", "R", "TX")}}]}

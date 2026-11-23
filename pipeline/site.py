@@ -1874,6 +1874,90 @@ being absent here means it never cleared that bar &mdash; not that nobody ever s
 </script>"""
 
 
+_BIOGUIDE = re.compile(r"[A-Z]\d{6}")
+_SPEECH_VERB = re.compile(r"(?i)^(said|says|saying|stated|added|noted)$")
+_WORD = re.compile(r"[A-Za-z][A-Za-z0-9.’'\-]*")
+# Words that open a capitalized run without naming a speaker: pronouns, articles, and titles.
+_NOT_A_SPEAKER = frozenset({
+    "he", "she", "they", "we", "i", "it", "the", "a", "an", "this", "that", "his", "her", "our",
+    "rep", "rep.", "representative", "sen", "sen.", "senator", "congressman", "congresswoman",
+    "chairman", "chairwoman", "chair", "ranking", "member", "leader", "whip", "speaker", "president",
+    "governor", "mr", "mr.", "mrs", "mrs.", "ms", "ms.", "dr", "dr.",
+})
+_NAME_SUFFIXES = frozenset({"jr", "jr.", "sr", "sr.", "ii", "iii", "iv"})
+DUET_SPEAKER_WINDOW = 12   # words searched back from a speech verb for its speaker
+
+
+def _duet_member_bioguide(cite: dict) -> str | None:
+    """The cite's office: its stored bioguide, a raw bioguide stored as the label, or the roster
+    name the ledger's own person-span screen resolves (privacy._roster_names)."""
+    member = str(cite.get("member") or "").strip()
+    if cite.get("bioguide"):
+        return str(cite["bioguide"])
+    if _BIOGUIDE.fullmatch(member):
+        return member
+    return privacy._roster_names().get(privacy._normalized_words(member))
+
+
+def duet_member_label(cite: dict) -> str:
+    """S74-15 P3a: a duet side's member through the hardened label path (member_name), so a stored
+    raw bioguide (four quotes, e.g. 2026-09-24 and 09-30) never renders as a name. HTML-escaped."""
+    member = str(cite.get("member") or "").strip()
+    return member_name(_duet_member_bioguide(cite), member or None, include_suffix=False)
+
+
+def _surname(cite: dict) -> str | None:
+    member = str(cite.get("member") or "").strip()
+    if _BIOGUIDE.fullmatch(member):
+        entry = ROSTER.get(member) if isinstance(ROSTER, dict) else None
+        member = (entry or {}).get("name") or ""
+    words = [w.strip(".,").lower() for w in member.split() if w.strip(".,").lower() not in _NAME_SUFFIXES]
+    return words[-1] if words else None
+
+
+def duet_quote_is_other_speaker(quote: str, member: str | dict) -> bool:
+    """S74-15 P3c, the rule in one sentence: a quote is another speaker's when the nearest run of
+    capitalized words before a speech verb (said, says, saying, stated, added, noted), ignoring
+    pronouns, articles and titles, does not contain the member's surname. A member whose surname is
+    unknown is never judged by this rule."""
+    cite = member if isinstance(member, dict) else {"member": member}
+    surname = _surname(cite)
+    if not surname:
+        return False
+    words = [m.group(0) for m in _WORD.finditer(quote or "")]
+    for v, word in enumerate(words):
+        if not _SPEECH_VERB.match(word.rstrip(".")):
+            continue
+        run: list[str] = []
+        for w in reversed(words[max(0, v - DUET_SPEAKER_WINDOW):v]):
+            low = w.lower().rstrip(".").replace("’s", "").replace("'s", "")
+            if w[0].isupper() and low not in _NOT_A_SPEAKER:
+                run.append(low)
+            elif w[0].isupper() and run:
+                continue                    # a title inside the run ("Senator Britt")
+            elif run:
+                break                       # the nearest run has ended
+        if run and surname not in run:
+            return True
+    return False
+
+
+def duet_quote_withheld(cite: dict) -> str | None:
+    """Why a duet quote is not shown, or None. Render time only; stored records are never rewritten.
+
+    "person_span" (ruling R-74.19, Art. XIII): the quote carries a private or quarantined
+    (non-official) person span under privacy.person_spans, the screen the ledger applies before any
+    phrase exists. "other_speaker" (S74-15 P3c): duet_quote_is_other_speaker."""
+    quote = cite.get("quote") or ""
+    author = _duet_member_bioguide(cite)
+    spans = privacy.person_spans(quote, statement={"member": {"bioguide": author}})
+    if any(s["classification"] in ("private", "quarantine") for s in spans):
+        return "person_span"
+    if duet_quote_is_other_speaker(quote, cite):
+        return "other_speaker"
+    return None
+
+
 def duet_panel(day_data, depth: int = 0) -> str:
     """1.7a The Duet — the same phrase, both parties, the same day, side by side.
 
@@ -1897,6 +1981,16 @@ def duet_panel(day_data, depth: int = 0) -> str:
              and not any(privacy.is_suppressed((c or {}).get("quote") or "")
                          for p in ("D", "R")
                          for c in ((d.get("sides") or {}).get(p) or []) if isinstance(c, dict))]
+    # R-74.19 and S74-15 P3c, at render time: a withheld quote leaves its side; a duet with an empty
+    # side does not render (a one-sided duet is not a duet).
+    shown = []
+    for d in duets:
+        sides = {p: [c for c in ((d.get("sides") or {}).get(p) or [])
+                     if isinstance(c, dict) and duet_quote_withheld(c) is None]
+                 for p in ("D", "R")}
+        if all(sides.values()):
+            shown.append({**d, "sides": sides})
+    duets = shown
     if not duets:
         return ""
     out = ["<h2>The Duet</h2>",
@@ -1916,7 +2010,7 @@ def duet_panel(day_data, depth: int = 0) -> str:
             cites = [c for c in ((d.get("sides") or {}).get(party) or []) if isinstance(c, dict)]
             col = [f'<div class="line {party}"><div class="rlabel"><span class="pill {party}">{party}</span></div>']
             for c in cites:
-                nm = esc(c.get("member"))
+                nm = duet_member_label(c)
                 pp, st = c.get("party"), c.get("state")
                 suffix = f" ({esc(pp)}-{esc(st)})" if pp and st else ""
                 url = _safe_http_url(c.get("url"))

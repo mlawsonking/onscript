@@ -229,7 +229,9 @@ def test_duet_is_dark_until_its_flag_flips():
         assert "rule of law" in site.duet_panel(_DAY_FIXTURE)
     finally:
         config.FEATURES["duet"] = before
-    assert config.FEATURES["duet"] is False, "the duet flag must ship OFF"
+    # S74-15 P3d: the ships-OFF literal is gone; the pair above is the behaviour. Whether the flag
+    # ships on is a release decision held by tests/test_wave0.py DELIBERATELY_RELEASED, not here,
+    # so the flip commit is the config line and the registry line.
 
 
 def test_render_never_quotes_the_code_computed_phrase():
