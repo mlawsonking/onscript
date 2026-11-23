@@ -127,6 +127,6 @@ def test_unknown_is_excluded_from_public_surfaces_but_retained_in_exports_and_co
     concordance = build.build_concordance(
         [statement], {phrase: {"peak_units": 4}},
         roster_map={"B000001": statement["member"]},
-        min_statements=1, receipts_max=1, peak_floor=1,
+        min_statements=1, receipts_max=1, peak_floor=1, is_final=lambda day: True,
     )
     assert concordance["members"][0]["on_script"] == 1

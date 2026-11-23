@@ -138,7 +138,7 @@ def test_concordance_keeps_a_non_surface_class_in_its_measurement_input():
     ledger = {phrase: {"peak_units": 3}}
     result = build.build_concordance(
         [statement], ledger, roster_map={"B000001": statement["member"]},
-        min_statements=1, receipts_max=1, peak_floor=1,
+        min_statements=1, receipts_max=1, peak_floor=1, is_final=lambda day: True,
     )
     assert result["members"][0]["on_script"] == 1
 

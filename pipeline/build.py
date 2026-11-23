@@ -235,7 +235,8 @@ def coverage_tables(statements: list[dict]) -> dict:
 
 def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
                       min_statements: int | None = None, receipts_max: int | None = None,
-                      peak_floor: int | None = None, generated_at: str | None = None) -> dict:
+                      peak_floor: int | None = None, generated_at: str | None = None,
+                      is_final=None) -> dict:
     """1.4 The Concordance (R4 / docs/21 §3.2) — the per-MEMBER on-script index.
 
     The discipline index is per-party-per-day; this is the per-member version. For each member, of
@@ -286,6 +287,17 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
             and not boilerplate.is_low_content(ng)
             and not boilerplate.is_weak_label(ng)}
 
+    # S74-15 P4a, docs/37 rule 17: the window is made possible where it is computed. It starts at
+    # config.STAGE1_EPOCH and ends at the last FINAL (published) day present; a statement outside
+    # [epoch, last final] never enters the index, so the page can no longer print a pre-epoch start
+    # or an unfinished end ("Window: 2025-01-01 -> 2026-11-21", flip packet 2.1). `is_final` is the
+    # one definition of published (util.day_is_final), injectable for tests.
+    is_final = is_final or util.day_is_final
+    epoch = config.STAGE1_EPOCH
+    present = sorted({s.get("published_at") for s in statements
+                      if isinstance(s.get("published_at"), str) and s["published_at"] >= epoch})
+    last_final = next((d for d in reversed(present) if is_final(d)), None)
+
     denom: dict[str, int] = defaultdict(int)          # bio -> solo statement count
     numer: dict[str, int] = defaultdict(int)          # bio -> solo statements with >=1 non-name sync phrase
     receipts: dict[str, list] = defaultdict(list)     # bio -> [{phrase,date,url}] (distinct phrases, capped)
@@ -309,6 +321,8 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
         if party not in config.COMPOSITE_PARTIES or not bio:
             continue
         day = s.get("published_at")
+        if last_final is None or not isinstance(day, str) or not (epoch <= day <= last_final):
+            continue
         days.append(day)
         denom[bio] += 1
         if bio not in meta:
@@ -322,15 +336,26 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
         if matches:
             numer[bio] += 1
             if len(receipts[bio]) < receipts_max:
-                ng = next((g for g in matches if g not in seen_phrase[bio]), matches[0])
-                seen_phrase[bio].add(ng)
-                receipts[bio].append({"phrase": ng, "date": day, "url": s.get("url")})
+                # S74-15 P4b: a receipt is a DISTINCT phrase or nothing; the old fallback to
+                # matches[0] repeated one phrase as three receipts (Josh Riley, "around the world").
+                ng = next((g for g in matches if g not in seen_phrase[bio]), None)
+                if ng is not None:
+                    seen_phrase[bio].add(ng)
+                    receipts[bio].append({"phrase": ng, "date": day, "url": s.get("url")})
 
     members = []
     excluded = 0
+    excluded_receipts = 0
     for bio, n in denom.items():
         if n < min_statements:
             excluded += 1
+            continue
+        # S74-15 P4b, config.CONCORDANCE_RECEIPTS_MAX is the member-NAMING gate ("dated citations per
+        # named member", docs/11 0.5): a member with fewer distinct-phrase receipts is not named. The
+        # row is omitted and counted in aggregate, the same treatment as the statement floor, so no
+        # member is named on two receipts (Max L. Miller was) and no row claims receipts it lacks.
+        if len(receipts.get(bio, [])) < receipts_max:
+            excluded_receipts += 1
             continue
         on = numer.get(bio, 0)
         info = meta[bio]
@@ -349,11 +374,13 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
         "schema_version": 1,
         "generated_at": generated_at or util.now_utc_iso(),
         "window": {"start": min(days) if days else None, "end": max(days) if days else None},
+        "window_rule": "STAGE1_EPOCH through the last final day",
         "min_statements": min_statements,
         "peak_floor": peak_floor,
         "span_gated": True,
         "nomenclature_index_version": nomenclature.index_version(),
-        "counts": {"named": len(members), "excluded_below_floor": excluded, "members_seen": len(denom)},
+        "counts": {"named": len(members), "excluded_below_floor": excluded,
+                   "excluded_below_receipts": excluded_receipts, "members_seen": len(denom)},
         "members": members,
     }
     if out_dir is not None:

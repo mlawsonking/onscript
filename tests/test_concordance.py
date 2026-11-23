@@ -38,6 +38,15 @@ def _led(*ngrams, peak=20):
     return {ng: {"peak_units": peak} for ng in ngrams}
 
 
+def _bc(stmts, led, **kw):
+    """build_concordance with every fixture day final and, unless a test sets it, a one-receipt
+    naming gate (S74-15 P4: the window ends at the last final day, and naming needs
+    receipts_max distinct-phrase receipts; these fixtures carry one phrase each)."""
+    kw.setdefault("is_final", lambda day: True)
+    kw.setdefault("receipts_max", 1)
+    return build.build_concordance(stmts, led, **kw)
+
+
 def _member(res, bio):
     return next(m for m in res["members"] if m["bioguide"] == bio)
 
@@ -47,7 +56,7 @@ def test_solo_on_script_share_has_raw_counts_and_span_flag():
     led = _led("protect social security benefits")
     stmts = ([_stmt("A", "D", "we must protect social security benefits", day=f"2026-06-1{i}") for i in range(4)]
              + [_stmt("A", "D", "an unrelated statement about roads", day="2026-06-15")])  # not on-script
-    res = build.build_concordance(stmts, led, min_statements=1)
+    res = _bc(stmts, led, min_statements=1)
     a = _member(res, "A")
     assert a["statements"] == 5 and a["on_script"] == 4          # 4 of 5 used the synchronized phrase
     assert a["index"] == round(4 / 5, 4)                          # the share, with its denominator visible
@@ -60,8 +69,12 @@ def test_a_phrase_below_the_coordination_floor_is_not_party_script():
     # index saturates near 1.0 (every release shares SOME 3-member-co-used gram) — a measurement artifact.
     led = {"protect social security benefits": {"peak_units": 5}}
     stmts = [_stmt("A", "D", "we protect social security benefits", day=f"2026-06-0{i+1}") for i in range(3)]
-    a = _member(build.build_concordance(stmts, led, min_statements=1), "A")
+    # receipts_max=0 isolates the floor from the S74-15 naming gate (an index-0 member has no receipts).
+    a = _member(_bc(stmts, led, min_statements=1, receipts_max=0), "A")
     assert a["statements"] == 3 and a["on_script"] == 0
+    # Under the default gate that member is not named, and is counted in aggregate.
+    res = _bc(stmts, led, min_statements=1)
+    assert res["members"] == [] and res["counts"]["excluded_below_receipts"] == 1
 
 
 # --- SPAN gate: an official name is never counted as being on-script (the #143 confound) ----------
@@ -70,14 +83,14 @@ def test_span_gate_excludes_official_names_denominator_unchanged():
     stmts = [_stmt("A", "D", "today i reintroduced the secure american families act", day=f"2026-06-0{i+1}")
              for i in range(3)]
     # baseline: the tagger says NOT a name -> the phrase counts (this also proves the phrase is matchable)
-    base = build.build_concordance(stmts, led, min_statements=1)
+    base = _bc(stmts, led, min_statements=1)
     assert _member(base, "A")["on_script"] == 3
 
     # now make that exact span an official name; the numerator must drop it, the denominator must not.
     orig = nomenclature.is_nomenclature
     nomenclature.is_nomenclature = lambda ng, c: {"ratio": 1.0} if ng == "secure american families act" else None
     try:
-        gated = build.build_concordance(stmts, led, min_statements=1)
+        gated = _bc(stmts, led, min_statements=1, receipts_max=0)   # isolate the span gate
     finally:
         nomenclature.is_nomenclature = orig
     a = _member(gated, "A")
@@ -89,7 +102,7 @@ def test_joint_releases_are_excluded_from_the_member_index():
     led = _led("defend affordable health care")
     stmts = ([_stmt("A", "D", "we defend affordable health care", day=f"2026-06-0{i+1}") for i in range(2)]
              + [_stmt("A", "D", "we defend affordable health care", day="2026-06-09", joint="joint:abcd")])
-    a = _member(build.build_concordance(stmts, led, min_statements=1), "A")
+    a = _member(_bc(stmts, led, min_statements=1), "A")
     assert a["statements"] == 2                                   # the joint release counts for neither part
 
 
@@ -97,9 +110,10 @@ def test_joint_releases_are_excluded_from_the_member_index():
 def test_below_floor_member_is_not_named_but_is_counted_in_aggregate():
     led = _led("protect social security benefits")
     stmts = [_stmt("A", "D", "we protect social security benefits", day=f"2026-06-0{i+1}") for i in range(2)]
-    res = build.build_concordance(stmts, led, min_statements=3)
+    res = _bc(stmts, led, min_statements=3)
     assert res["members"] == []                                  # 2 < 3 -> not named
-    assert res["counts"] == {"named": 0, "excluded_below_floor": 1, "members_seen": 1}
+    assert res["counts"] == {"named": 0, "excluded_below_floor": 1, "excluded_below_receipts": 0,
+                             "members_seen": 1}
 
 
 # --- symmetry: both parties scored by one rule; Independents are not in the composites ------------
@@ -108,7 +122,7 @@ def test_both_parties_scored_and_independents_excluded():
     stmts = []
     for bio, party in (("D1", "D"), ("R1", "R"), ("I1", "I")):
         stmts += [_stmt(bio, party, "we stand up for workers", day=f"2026-06-0{i+1}") for i in range(3)]
-    res = build.build_concordance(stmts, led, min_statements=1)
+    res = _bc(stmts, led, min_statements=1)
     assert {m["party"] for m in res["members"]} == {"D", "R"}
     assert res["counts"]["members_seen"] == 2                    # the Independent is not counted at all
 
@@ -120,7 +134,7 @@ def test_receipts_are_capped_distinct_and_carry_date_and_url():
     led = _led(*phrases)
     stmts = [_stmt("A", "D", f"today we will {p}", day=f"2026-06-0{i+1}", url=f"https://a.house.gov/{i}")
              for i, p in enumerate(phrases)]
-    a = _member(build.build_concordance(stmts, led, min_statements=1, receipts_max=3), "A")
+    a = _member(_bc(stmts, led, min_statements=1, receipts_max=3), "A")
     assert a["on_script"] == 4 and len(a["receipts"]) == 3       # all 4 on-script, receipts capped at 3
     assert len({r["phrase"] for r in a["receipts"]}) == 3        # distinct phrases
     assert all(r.get("date") and r.get("url") for r in a["receipts"])
