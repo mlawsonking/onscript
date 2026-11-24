@@ -271,5 +271,55 @@
   "root_cause": "The count of a party's seated offices that pages print beside a share is read from a dated copy of the public congress-legislators roster. The copy in use was taken on 2026-07-27 and was not refreshed. Upstream has since added two House members who took office on 2026-09-01 (GA-13) and 2026-09-02 (CA-14), extended one Ohio Senate term from 2026-11-03 to 2026-12-15, and added a new Florida Senate term from 2026-11-04 for the senator whose appointed term ended on 2026-11-03.",
   "description": "On 55 published day pages from 2026-09-01 to 2026-11-19 the party totals that shares were printed against were too small. Democrats: 257 where the refreshed roster has 258 on 2026-09-01 and 259 from 2026-09-02. Republicans: 269 where it has 271 on the 12 pages from 2026-11-04 to 2026-11-19. No Republican total printed before 2026-11-04 changes (the 2026-11-03 audit changes by one, but that page prints no total). These pages were assembled before 2026-11-21 and count voting members only, so they are compared with the refreshed roster's voting members; the five offices involved are all voting members. Each printed share was therefore slightly overstated. Computed over all 983 shares printed on those 55 pages, the largest difference is 0.08 percentage points (28 of 257, printed 10.9 percent, is 10.8 percent of 259, Democrats, 2026-09-11); 198 shares change in their printed decimal, none by more than 0.1 points. The same totals appear as counts, without a percentage, on 516 phrase pages whose peak day falls in the window. No ranking, threshold or selection used these totals, so no phrase or Daily Line changes.",
   "resolution": "The roster is refreshed from congress-legislators at revision a263880e99a78b8cfaf0a2487e05558be389de3d, recorded with both source file hashes. A party switch is now effective on its recorded date, which adds one Republican office from 2025-01-03 to 2026-03-08 (CA-3, recorded Independent from 2026-03-09); no published page used that range. From the first day assembled after this entry the totals are 262 Democratic and 274 Republican offices, delegates included. Published day records and their audits are not rewritten; this entry is linked from each listed day. The next refresh is due when upstream lists the 120th Congress; until then pages dated from 2027-01-03 print counts without a total."
+ },
+ {
+  "schema_version": 3,
+  "correction_id": "corr-2026-11-23-name-index-snapshot-stale",
+  "severity": "minor",
+  "category": "stale-reference-snapshot",
+  "status": "resolved",
+  "affected_days": [
+   "2026-08-07",
+   "2026-09-16",
+   "2026-11-09",
+   "2026-11-19",
+   "2026-11-20"
+  ],
+  "logged": "2026-11-24",
+  "day": "2026-08-07",
+  "detected_at": "2026-11-21",
+  "acknowledged_at": "2026-11-21",
+  "contained_at": "2026-11-24",
+  "corrected_at": "2026-11-24",
+  "closed_at": "2026-11-24",
+  "original_url": null,
+  "corrected_url": null,
+  "detection_method": "Flip-packet review (2026-11-21), then measured by rebuilding the bill-and-committee name index from govinfo BILLSTATUS (congress 119, fetched 2026-11-23) and the congress-legislators committee files, measuring its verdicts over the production corpus of 91,200 statements, and checking every Daily Line talking point, posted line, party-column row and weekly Unison pick published from 2026-07-27 to 2026-11-22 against the refreshed table.",
+  "root_cause": "The table that separates official bill and committee names from shared messages is a dated snapshot. The copy in use was built on 2026-07-16 from statements through 2026-07-09 and was not refreshed. A phrase first used after that date has no measurement in it, so it was treated as a message even when it was part of a bill's name, and bills titled after 2026-07-16 were absent from it.",
+  "description": "On five published days a Daily Line carried, as a shared message, a phrase that the refreshed table classes as part of a bill's official name: on 2026-08-07 (Republican) two fragments of the Lindsey O. Graham Sanctioning Russia and Iran Act (H.R. 5334), both also posted; on 2026-09-16 one fragment of the same Act in each party's line; and on 2026-11-09, 11-19 and 11-20 \"the bipartisan american affordability\", from the Bipartisan American Affordability Act (H.R. 2347), in four lines (Democratic on 11-09, 11-19 and 11-20; Republican on 11-19), two of them posted. That is 8 talking points (4 Democratic, 4 Republican) and 4 posted lines (1 Democratic, 3 Republican). Both bills were already in the July snapshot; the phrases were coined after the snapshot's statements ended, so it held no measurement for them. Three party-column rows (two Democratic, one Republican, 2026-09-16 and 09-17) and one weekly Unison pick, on a dark page, carried \"the water resources\" or \"act wrda of\" from the Water Resources Development Act of 2026 (S. 601), titled after 2026-07-16. No other published selection changes, and no published item loses an official-name class it had. The counts and the phrases are otherwise correct; only their classification as a message was wrong.",
+  "resolution": "The name index is rebuilt from the official records fetched 2026-11-23 and measured on the production corpus; the operator is warned when it is more than 21 days old. Day records already published are not rewritten. The name index version moves from 2026-07-16 to 2026-11-23."
+ },
+ {
+  "schema_version": 3,
+  "correction_id": "corr-2026-11-23-curly-apostrophe-quote-binding",
+  "severity": "minor",
+  "category": "verifier-false-negative",
+  "status": "resolved",
+  "affected_days": [
+   "2026-09-16"
+  ],
+  "logged": "2026-11-24",
+  "day": "2026-09-16",
+  "detected_at": "2026-11-21",
+  "acknowledged_at": "2026-11-23",
+  "contained_at": "2026-11-24",
+  "corrected_at": "2026-11-24",
+  "closed_at": "2026-11-24",
+  "original_url": "https://www.onscript.news/day/2026-09-16.html",
+  "corrected_url": "https://www.onscript.news/day/2026-09-16.html",
+  "detection_method": "Verifier-drop diagnosis (2026-11-21), then reproduced on the committed day record: the Republican deterministic composite for 2026-09-16, rebuilt from its recorded statistics, fails the quote-binding check under the old verifier and passes under the corrected one. Every other stored withheld line (four Democratic party-days from 2026-07-27 to 2026-08-03) was rebuilt the same way and is not affected.",
+  "root_cause": "The publication check that binds each quoted phrase in a Daily Line to its talking point normalized the quote's typography (a curly apostrophe became a straight one) but compared it with the talking point's label as written. A label containing a curly apostrophe therefore never matched its own verbatim quote.",
+  "description": "On 2026-09-16 the Republican Daily Line was withheld with the note that its claims could not be verified. Its talking point was the phrase \"to the president’s desk\", carried by 7 offices, and the composite quoted it exactly. The quote failed the binding check only because of the apostrophe. The model-written text for that day was rejected first for a separate reason (it quoted a phrase other than the counted phrase) and would have been rejected under the corrected check as well. No other published party-day was withheld by this defect. Of the deterministic fallbacks after a model call, the run logs that survive show no other rejection caused by it; the model texts of the rest were not kept, so they cannot be checked.",
+  "resolution": "Both sides of the comparison are now normalized the same way, and the check that maps each quoted sentence to one talking point is normalized the same way too. The method version is structured-composite-v2. The published day record is not rewritten. Because the page re-checks a re-composed line when it renders, the 2026-09-16 page now shows the Republican line composed deterministically from that day's recorded statistics, with a note that it was withheld when first published."
  }
 ]

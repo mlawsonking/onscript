@@ -392,6 +392,10 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
         "method_version": METHOD_VERSION,
         "generated_at": generated_at,
         "overall_status": overall_status,
+        # S74-18: the ladder ranks "unknown" below green, so the overall line can read green
+        # while a check is unknown. The count travels with it so the page never implies an
+        # unmeasured check is healthy.
+        "unknown_checks": sum(1 for row in checks if row["status"] == "unknown"),
         "streaks": {
             "publication": {"value": publication_streak, "unit": "days", "sources": publication_sources},
             "clean_run": {"value": clean_streak, "unit": "days", "sources": streak_sources},

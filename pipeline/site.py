@@ -3942,7 +3942,10 @@ def awards_body(adata, slugs_with_pages=None, depth: int = 0) -> str:
 def status_body(model: dict) -> str:
     """Render a precomputed manifest-backed status model without calculating status values."""
     parts = ["<h1>Instrument status</h1>"]
-    parts.append(f'<p><strong>Overall status:</strong> {esc(model.get("overall_status") or "unknown")}</p>')
+    unknown = model.get("unknown_checks") or 0
+    unknown_note = (f" ({unknown} check{'s' if unknown != 1 else ''} unknown)" if unknown else "")
+    parts.append(f'<p><strong>Overall status:</strong> {esc(model.get("overall_status") or "unknown")}'
+                 f'{esc(unknown_note)}</p>')
     streaks = model.get("streaks") or {}
     parts.append(
         f'<p><strong>Publication streak:</strong> {esc((streaks.get("publication") or {}).get("value"))} days. '

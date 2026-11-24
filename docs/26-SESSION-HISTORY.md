@@ -4860,3 +4860,34 @@ Left for the issuing session: the two ledger entries; the candidate clusterer ru
 removes only quorum-short offers; the Concordance window and floor; whether the duet exemption
 should extend to places and offices; whether overall status should read unknown when a check is
 unknown.
+
+### Session 74-18 (2026-11-24, Fable): review and release of S74-17
+
+P7 published 2026-11-23 about 22:54Z. The production corpus was downloaded with Michael's
+approval (task #409, closed) to X:/onscript-data/replay/data-latest-2026-11-23/. Michael asked
+why the status page read red; Package 0 (`7abbef24`) was released alone on 2026-11-23. Rulings:
+
+- **R-74.27, S74-17 is released:** the refreshed name index, the quote-binding fix, and the
+  dark duet and concordance changes. Ledger entries
+  `corr-2026-11-23-name-index-snapshot-stale` (five days) and
+  `corr-2026-11-23-curly-apostrophe-quote-binding` (2026-09-16 R) are appended; 12 to 14.
+- **R-74.28, R-74.21's premise is corrected.** The fall in name-tag rates from August was not
+  caused by the stale index. The person-span gate added 2026-07-25 keeps capitalized runs,
+  which is how bill titles are written, out of the phrase ledger, so there was little left to
+  tag. The stale index did misclass phrases on five published days, which is what the ledger
+  entry states. The verdict builder now counts its domain without that gate, because the claim
+  clusterer does not apply it; the daily ledger is unchanged.
+- **R-74.29, the clusterer candidate is not adopted here.** Replayed on 69 days it changes no
+  published claim and takes the drop rate from 46.9 to 22.5 percent, but it does so by never
+  offering a below-quorum group, which also removes that group's logged rejection
+  (`tests/test_claim_binding.py` holds the log as intended behaviour). The alternative keeps
+  the log and counts quorum-short candidates separately from offered claims. Which of the two
+  the gate should measure is the substance of task #279 and goes to Michael with the evidence
+  (X:/onscript-data/drafts/staged/S74-17/b_*).
+- **R-74.30, the overall status line states how many checks are unknown.** The ladder ranks
+  unknown below green, so the line could read green beside an unmeasured check.
+- **R-74.31, the duet exemption stays narrow** (roster or name index only; places and offices
+  are not exempted). 65 of 83 duets render. Not ruled: the concordance window and floor; the
+  floor is only meaningful with peaks taken over the whole corpus, and with statement volume
+  equalised the D-R gap disappears in all three windows, so no cross-party reading of that
+  page is supportable.
