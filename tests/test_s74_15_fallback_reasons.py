@@ -85,17 +85,27 @@ def test_2026_09_16_r_states_the_quote_binding_failure_not_the_privacy_floor():
     line = day["daily_lines"]["R"]
     assert line["composite_state"] == "withheld_verifier_failure"
     assert verify.daily_line_reason_categories(line["verifier"]["reasons"]) == ["unbound-quote"]
+    # S74-17 C fixed the verifier defect that withheld it, so the render-time re-composition now
+    # verifies: the page shows the re-composed line and says it was withheld when published.
     _line, _tps, state, cause = site.corrected_line("R", day)
-    assert state == "withheld" and cause["cause"] == "verifier"
+    assert state == "reclassified" and cause is None
     banner = _text(site.banner_html(day, {}))
-    panel = _text(site.daily_line_panel("R", day))
-    for html in (banner, panel):
-        assert "withheld under the privacy floor" not in html
-        assert "Republicans' line is withheld because the model text failed a publication check and " \
-               "then the deterministic composite failed one too" in html
-        assert site.REJECTION_CATEGORY_TEXT["unbound-quote"] in html
+    assert "withheld under the privacy floor" not in banner
+    assert "Republicans' line was withheld when published because the model text failed a " \
+           "publication check and then the deterministic composite failed one too" in banner
+    assert site.REJECTION_CATEGORY_TEXT["unbound-quote"] in banner
+    # The verifier-withheld branch itself: forced through a failing re-verification.
+    saved = site.verify.verify_daily_line
+    site.verify.verify_daily_line = lambda *a, **k: (False, ["unbound talking-point quotes: ['x']"])
+    try:
+        _line, _tps, state, cause = site.corrected_line("R", day)
+        panel = _text(site.daily_line_panel("R", day))
+    finally:
+        site.verify.verify_daily_line = saved
+    assert state == "withheld" and cause == {"cause": "verifier", "categories": ["unbound-quote"]}
+    assert "withheld under the privacy floor" not in panel
+    assert "Republicans' line is withheld because" in panel
     assert "Composite state:  withheld_verifier_failure" in panel
-    assert "corrected" not in panel.split("Composite state:")[1].split()[0]
 
 
 def test_2026_11_19_states_both_the_fallback_and_the_correction():
@@ -128,25 +138,32 @@ def test_the_honesty_note_asserts_no_single_cause():
     assert "not called" in note and "fails a publication check" in note
 
 
-# --- 4d: the reproduction, expected to fail until the defect is fixed --------------------------
+# --- 4d / S74-17 C: the curly-apostrophe defect, fixed (R-74.26) --------------------------------
 
-def _curly_apostrophe_binds_to_its_own_label() -> None:
-    """The correct behaviour: a deterministic composite quoting a label verbatim is bound to it."""
-    label = "to the president’s desk"
-    ok, off = verify.quotes_bound_to_talking_points(
-        f'7 of us carried "{label}".', {"talking_points": [{"label": label, "quote": label, "members": 7}]})
-    assert ok, off
+def test_a_curly_apostrophe_label_binds_to_its_own_verbatim_quote():
+    """2026-09-16 R: quotes_bound_to_talking_points folded the quote's typography (U+2019 to ') and
+    compared it with the UNFOLDED label, so a deterministic composite quoting its own label verbatim
+    failed binding. Both sides are now folded (structured-composite-v2)."""
+    for label in ("to the president’s desk", "to the president's desk"):
+        for quoted in ("to the president’s desk", "to the president's desk"):
+            ok, off = verify.quotes_bound_to_talking_points(
+                f'7 of us carried "{quoted}".',
+                {"talking_points": [{"label": label, "quote": label, "members": 7}]})
+            assert ok, (label, quoted, off)
+    # A different word still fails: only typography is folded.
+    ok, _ = verify.quotes_bound_to_talking_points(
+        '7 of us carried "to the governor’s desk".',
+        {"talking_points": [{"label": "to the president’s desk",
+                             "quote": "to the president’s desk", "members": 7}]})
+    assert not ok
 
 
-def test_EXPECTED_FAIL_curly_apostrophe_unbinds_a_label_from_its_own_quote():
-    """REPRODUCTION of 2026-09-16 R (S74-15 P4d), expected-fail. quotes_bound_to_talking_points folds
-    the quote's typography (_norm turns U+2019 into ') and then asks boilerplate.contains_gram whether
-    the folded quote carries the UNFOLDED label; the tokens "president's" and "president’s"
-    differ, so a deterministic composite quoting its own label verbatim fails binding. This test
-    passes while the defect stands and fails once it is fixed: then delete it and keep the helper as
-    a real test. No verifier check is changed here."""
-    try:
-        _curly_apostrophe_binds_to_its_own_label()
-    except AssertionError:
-        return
-    raise AssertionError("the curly-apostrophe defect is fixed: convert this expected-fail test")
+def test_the_2026_09_16_r_deterministic_composite_now_verifies_from_its_recorded_stats():
+    import json as _json
+    day = pinned_day("2026-09-16")
+    stats = day["daily_lines"]["R"]["stats"]
+    composite = distill._compose_dry(stats)
+    ok, reasons = verify.verify_daily_line({"composite": composite},
+                                           _json.dumps(stats, ensure_ascii=False), stats=stats)
+    assert ok, reasons
+    assert distill.STRUCTURED_COMPOSITE_VERSION == "structured-composite-v2"

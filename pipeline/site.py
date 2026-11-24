@@ -1236,7 +1236,11 @@ def composite_reasons(party: str, day_data) -> list[str]:
             stored_det = (rejection.get("deterministic")
                           or verify.daily_line_reason_categories((stored.get("verifier") or {}).get("reasons")))
             first = ("the model text failed a publication check and then " if called else "")
-            out.append(f"{name}' line is withheld because {first}the deterministic composite failed "
+            # S74-17 C: once a render-time correction re-composes the line, it was withheld when
+            # published, and the page says so in the past tense rather than "is withheld".
+            verb = ("was withheld when published" if pstate in ("recomposed", "readmitted", "reclassified")
+                    else "is withheld")
+            out.append(f"{name}' line {verb} because {first}the deterministic composite failed "
                        f"one too{_category_clause(stored_det)}")
     if pstate == "recomposed":
         out.append(f"{name}' Daily Line was re-composed by the deterministic composer because the "

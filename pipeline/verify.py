@@ -330,7 +330,10 @@ def quotes_bound_to_talking_points(composite_text: str, stats: dict) -> tuple[bo
         for tp in tps:
             label = tp.get("label") or ""
             supplied = tp.get("quote") or ""
-            if not label or not boilerplate.contains_gram(q, label):
+            # S74-15 P4d / R-74.26: q is typography-folded by _norm, so the label is folded the same
+            # way. Comparing a folded quote with an unfolded label failed every curly-apostrophe
+            # label against its own verbatim quote (2026-09-16 R, "to the president's desk").
+            if not label or not boilerplate.contains_gram(q, _norm(label)):
                 continue
             grounded, _ = quotes_grounded(f'"{raw}"', [supplied])
             if grounded:
@@ -417,7 +420,10 @@ def verify_daily_line(distillation: dict, stats_blob: str, fragments: list[str] 
                 for match in _QUOTE.finditer(sentence):
                     raw = match.group(1) or match.group(2) or ""
                     for tp in typed:
-                        if tp.get("claim_id") and boilerplate.contains_gram(raw, tp.get("label") or ""):
+                        # S74-17 C: both sides folded, as in quote binding above, so a quote and
+                        # its label that differ only in typography map to the same claim.
+                        if tp.get("claim_id") and boilerplate.contains_gram(
+                                _norm(raw), _norm(tp.get("label") or "")):
                             ids.add(tp["claim_id"])
                 mapping.append({"sentence_idx": index, "claim_ids": sorted(ids)})
             quoted_sentences = {

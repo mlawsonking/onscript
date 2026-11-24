@@ -15,7 +15,9 @@ from . import boilerplate, config, contracts, eligibility, llm, nomenclature, ut
 
 # Owning constant for the structured-composite method. The instrument fingerprint
 # imports this so its attestation cannot drift from the running method (docs/36 Y1).
-STRUCTURED_COMPOSITE_VERSION = "structured-composite-v1"
+# v2 (S74-17, R-74.26): verify_daily_line folds typography on both sides of quote binding and
+# sentence-to-claim mapping; v1 compared a folded quote with an unfolded label.
+STRUCTURED_COMPOSITE_VERSION = "structured-composite-v2"
 
 _QUOTE_MAX_WORDS = 10
 
