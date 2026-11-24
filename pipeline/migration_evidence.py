@@ -7,6 +7,8 @@ import json
 import os
 from pathlib import Path
 
+from . import collect_notes
+
 
 PARTIES = ("D", "R")
 
@@ -59,7 +61,7 @@ def find_latest_complete_cycle(manifest_dir: Path) -> tuple[str, dict[str, Path]
             if (
                 collect.get("focus_day") == day
                 and collect.get("degraded") is False
-                and not collect.get("alerts")
+                and not collect_notes.real_alerts(collect)   # S74-17 P0: notes are not faults
                 and collect.get("volume", {}).get("anomalously_low") is False
             ):
                 collects.append((collect.get("generated_at", ""), collect_path))
@@ -98,7 +100,7 @@ def build_manifest(manifest_dir: Path, *, repository_root: Path) -> dict:
         "checks": {
             "collect": {
                 "degraded": collect["degraded"],
-                "alerts": collect["alerts"],
+                "alerts": collect_notes.real_alerts(collect),
                 "anomalously_low": collect["volume"]["anomalously_low"],
             },
             "assemble": {

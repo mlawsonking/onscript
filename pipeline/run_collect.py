@@ -21,8 +21,8 @@ try:
 except Exception:
     pass
 
-from pipeline import (config, deterministic, extract, fetch, llm, ops, readiness, roster,
-                      runtime_environment, util)  # noqa: E402
+from pipeline import (collect_notes, config, deterministic, extract, fetch, llm, ops, readiness,
+                      roster, runtime_environment, util)  # noqa: E402
 
 STALE_HOURS = 36.0
 
@@ -75,14 +75,16 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
     focus_day = res["focus_day"]
     cursor = res["manifest"].get("focus_cursor") or {}
     sweep = res["manifest"].get("day_sweep") or {}
+    # S74-17 P0: informational lines go to `notes`, never `alerts`; the status page opens an incident
+    # on `alerts`, and these three opened one on most days since S73. collect_notes owns the wording.
+    notes = []
     if cursor.get("clamped"):
         # Not an alert. This is the normal, healthy shape of an evening run once the mirror has
         # pushed a few statements dated today, and it is recorded so the manifest shows the cursor
         # holding rather than looking like it never saw the newer day at all.
-        alerts.append(f"focus held at {focus_day}: {cursor['reason']}")
+        notes.append(collect_notes.focus_held(focus_day, cursor["reason"]))
     if sweep.get("records_written") or sweep.get("boards_written"):
-        alerts.append(f"backfilled day records {sweep.get('records_written')} and silence boards "
-                      f"{sweep.get('boards_written')} that earlier runs left unwritten")
+        notes.append(collect_notes.backfilled(sweep.get("records_written"), sweep.get("boards_written")))
 
     # RUN A meets the focus day while upstream is still delivering it, so the volume
     # comparison is gated on collection maturity. An immature day is logged, never paged: a
@@ -116,8 +118,7 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
                f"the baseline cannot carry a ratio ({vol['baseline_method']}, "
                f"{vol['baseline']:g}, against a floor of "
                f"{readiness.MIN_JUDGEABLE_BASELINE})")
-        alerts.append(f"volume comparison withheld on {focus_day}: {why} "
-                      f"({vol['today']} statements)")
+        notes.append(collect_notes.volume_withheld(focus_day, why, vol["today"]))
 
     extract_cost = {"skipped": True}
     if do_extract:
@@ -128,7 +129,7 @@ def collect(*, offline: bool, start: str, end: str, focus_day: str | None, do_ex
 
     manifest = dict(res["manifest"])
     manifest.update({"kind": "collect", "degraded": degraded, "volume": vol,
-                     "extract": extract_cost, "alerts": alerts,
+                     "extract": extract_cost, "alerts": alerts, "notes": notes,
                      "upstream_provenance": pull,
                      "stage_timings_s": util.stage_timings(),
                      "runtime_environment": runtime_environment.disclosure()})
@@ -155,7 +156,7 @@ def main() -> int:
     print(f"normalize:     {m['normalize']}")
     print(f"phrase engine: {m['phrase_engine']}")
     print(f"volume:        {m['volume']}")
-    print(f"degraded:      {m['degraded']}   alerts: {m['alerts']}")
+    print(f"degraded:      {m['degraded']}   alerts: {m['alerts']}   notes: {m['notes']}")
     print(f"extract:       {m['extract']}")
     print(f"stage timings: {m['stage_timings_s']}")
     return 0

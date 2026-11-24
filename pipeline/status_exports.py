@@ -10,7 +10,7 @@ import re
 from datetime import date, timedelta
 from pathlib import Path
 
-from . import config, corrections, eligibility, instrument_fingerprint, util
+from . import collect_notes, config, corrections, eligibility, instrument_fingerprint, util
 
 
 METHOD_VERSION = "status-exports-v1"
@@ -362,19 +362,25 @@ def build_status(manifests: dict[str, dict], assemble_history: list[tuple[str, d
         [_source(assemble_name, "corrections_count", correction_count)],
     ))
 
+    # S74-17 P0: the collect side opens an incident on its fault `alerts` only. Its informational
+    # `notes` (cursor held, backfill, volume comparison withheld) never do; a manifest written before
+    # the split carries them inside `alerts`, and collect_notes.real_alerts removes them by the
+    # writer's own prefixes.
+    collect_alerts = collect_notes.real_alerts(collect)
     alert_sources = [
-        _source(collect_name, "alerts", collect.get("alerts")),
+        _source(collect_name, "alerts", collect_alerts),
         _source(assemble_name, "alerts", assemble.get("alerts")),
         _source(post_name, "asymmetric", post.get("asymmetric")),
         _source(post_name, "atomic_hold", post.get("atomic_hold")),
     ]
     incident_available = all(source["value"] is not None for source in alert_sources)
-    incident_open = bool((collect.get("alerts") or []) or (assemble.get("alerts") or [])
+    incident_open = bool((collect_alerts or []) or (assemble.get("alerts") or [])
                          or post.get("asymmetric") or post.get("atomic_hold")) if incident_available else None
     checks.append(_check(
         "incident", "Incident state", "open" if incident_open else "clear" if incident_open is False else None,
         "state", "green" if incident_open is False else "red", alert_sources,
-        "open when either manifest has alerts or the post manifest is asymmetric or held",
+        "open when the collect manifest has fault alerts (its informational notes excluded), the "
+        "assemble manifest has alerts, or the post manifest is asymmetric or held",
     ))
 
     generated_at = assemble.get("generated_at") or collect.get("generated_at") or post.get("generated_at")
