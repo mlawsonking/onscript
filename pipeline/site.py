@@ -1946,17 +1946,65 @@ def duet_quote_is_other_speaker(quote: str, member: str | dict) -> bool:
     return False
 
 
+_DUET_TITLES = frozenset(privacy._TITLE_TOKENS | {"chairman", "chairwoman", "leader", "whip",
+                                                  "speaker", "ranking", "member", "u.s", "us",
+                                                  "united", "states", "house", "democratic",
+                                                  "republican", "minority", "majority"})
+_DUET_INDEX: dict = {}
+
+
+def _duet_name_index(congress: int):
+    if congress not in _DUET_INDEX:
+        _DUET_INDEX[congress] = nomenclature.load_index(congress)
+    return _DUET_INDEX[congress]
+
+
+def duet_span_resolved(span: str, quote: str, day: str | None) -> bool:
+    """S74-17 D (R-74.24): a quarantined span the duet may show because a public record resolves it.
+    Exactly two resolutions, both external party-blind records: the span, titles stripped, is a seated
+    or former member's full name in the roster, or a title plus the surname of a roster member whose
+    given name or title accompanies it; or the span lies inside a bill or committee name the name
+    index finds in the quote (nomenclature.name_spans). Anything else, including every place,
+    office and organisation run a keyword list could guess, stays withheld. A private (admitted)
+    span is never resolved here."""
+    words = privacy._normalized_words(span)
+    bare = tuple(w for w in words if w.rstrip(".") not in _DUET_TITLES)
+    names = privacy._roster_names(ROSTER if isinstance(ROSTER, dict) else {})
+    if (bare and bare in names) or words in names:
+        return True
+    if bare and len(bare) < len(words):
+        # A title plus a surname ("Senator Britt", "Chairman Garbarino") resolves when that surname
+        # belongs to a roster member; a title is what makes the reference official (privacy.py).
+        if any(n[-1] == bare[-1] and (len(bare) == 1 or n[0] == bare[0]) for n in names):
+            return True
+    congress = util.congress_for_date(day) if day else None
+    if not congress:
+        return False
+    toks = nomenclature._toks(quote)
+    stoks = nomenclature._toks(span)
+    if not stoks:
+        return False
+    runs = nomenclature.name_spans(toks, _duet_name_index(int(congress)))
+    n = len(stoks)
+    return any(toks[i:i + n] == stoks and any(r0 <= i and i + n - 1 <= r1 for r0, r1, _c in runs)
+               for i in range(len(toks) - n + 1))
+
+
 def duet_quote_withheld(cite: dict) -> str | None:
     """Why a duet quote is not shown, or None. Render time only; stored records are never rewritten.
 
-    "person_span" (ruling R-74.19, Art. XIII): the quote carries a private or quarantined
-    (non-official) person span under privacy.person_spans, the screen the ledger applies before any
-    phrase exists. "other_speaker" (S74-15 P3c): duet_quote_is_other_speaker."""
+    "person_span" (ruling R-74.19, Art. XIII): the quote carries a private span, or a quarantined
+    (non-official) person span under privacy.person_spans that no public record resolves
+    (duet_span_resolved, S74-17 D). "other_speaker" (S74-15 P3c): duet_quote_is_other_speaker."""
     quote = cite.get("quote") or ""
     author = _duet_member_bioguide(cite)
     spans = privacy.person_spans(quote, statement={"member": {"bioguide": author}})
-    if any(s["classification"] in ("private", "quarantine") for s in spans):
-        return "person_span"
+    for s in spans:
+        if s["classification"] == "private":
+            return "person_span"
+        if s["classification"] == "quarantine" and not duet_span_resolved(
+                quote[s["start_char"]:s["end_char"]], quote, cite.get("date")):
+            return "person_span"
     if duet_quote_is_other_speaker(quote, cite):
         return "other_speaker"
     return None
