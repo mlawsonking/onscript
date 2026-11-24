@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-11-24",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 136,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "temporal_state": "today",
+      "measured_day": "2026-11-23",
+      "lag_days": 0,
+      "published_record_days": 136,
+      "unattended_streak": 13,
+      "unattended_since": "2026-11-11",
+      "note": "site today: newest published day 2026-11-23 for product day 2026-11-23 (lag 0); 136 consecutive days with a published record; 13 consecutive clean unattended runs (ops.unattended_streak)"
+    },
+    {
+      "name": "spend",
+      "value": 0.1951,
+      "projected": 0.2438,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 23,
+      "note": "$0.1951 MTD, $0.24 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-11-23",
+      "scored_age_days": 1,
+      "parties": {
+        "D": {
+          "statements": 51,
+          "median": 51.0,
+          "share": 1.0,
+          "status": "green",
+          "baseline_method": "trailing 6-week same-weekday median"
+        },
+        "R": {
+          "statements": 22,
+          "median": 38.0,
+          "share": 0.579,
+          "status": "red",
+          "baseline_method": "trailing 6-week same-weekday median"
+        }
+      },
+      "status": "red",
+      "freshness": {
+        "age_hours": 3.44,
+        "day": "2026-11-24",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-11-23 (1d): D 51/51=100% R 22/38=58% of own same-weekday baseline (green >= 60%); upstream 3.4h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.4211,
+      "dropped": 8,
+      "offered": 19,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "8/19 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "coverage",
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "the 120th congress",
+    "party": "D",
+    "day_peak": 13,
+    "day": "2026-11-18"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: coverage, verifier_drop"
+}
