@@ -343,6 +343,20 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
                     seen_phrase[bio].add(ng)
                     receipts[bio].append({"phrase": ng, "date": day, "url": s.get("url")})
 
+    # S74-17 E / R-74.25: the distribution is computed over EVERY member with solo statements in the
+    # window; only naming is gated. Gating the distribution on receipts dropped every index-0 member
+    # and lifted the mean. A member below a naming gate counts here and is never named.
+    import statistics as _st
+    distribution = {}
+    for p in config.COMPOSITE_PARTIES:
+        xs = sorted(numer.get(b, 0) / n for b, n in denom.items() if n and meta[b]["party"] == p)
+        distribution[p] = {
+            "members": len(xs),
+            "mean": round(_st.mean(xs), 4) if xs else None,
+            "median": round(_st.median(xs), 4) if xs else None,
+            "share_above_half": round(sum(x > 0.5 for x in xs) / len(xs), 4) if xs else None,
+        }
+
     members = []
     excluded = 0
     excluded_receipts = 0
@@ -381,6 +395,8 @@ def build_concordance(statements, ledger, *, out_dir=None, roster_map=None,
         "nomenclature_index_version": nomenclature.index_version(),
         "counts": {"named": len(members), "excluded_below_floor": excluded,
                    "excluded_below_receipts": excluded_receipts, "members_seen": len(denom)},
+        "distribution": distribution,
+        "distribution_population": "every member with solo statements in the window; naming is gated",
         "members": members,
     }
     if out_dir is not None:
