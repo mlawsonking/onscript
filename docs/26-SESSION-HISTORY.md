@@ -4756,3 +4756,107 @@ X:/onscript-data/drafts/staged/VERIFIER-DROP/. Rulings:
   a ledger entry, in the next order.
 - **On #279 (Michael's):** the recommendation is to leave the 25 percent line alone until the
   clusterer stops offering groups no phrase of which has three carriers, then re-measure.
+
+### Session 74-17 (2026-11-24, Opus): builder for work order S74-17
+
+Work order S74-17 (`X:\onscript-data\drafts\staged\WORK-ORDER-S74-17.md`) with the priority insert
+P0. Everything below is **committed locally on `s74-343-hardening` and unpushed**. Inputs: the
+`data-latest` assets of 2026-11-23 (task #409), read in place at
+`X:\onscript-data\replay\data-latest-2026-11-23\`; day records, manifests and audits read at main
+`2426aedc`. Scripts and outputs: `X:\onscript-data\drafts\staged\S74-17\`. **Redaction:** the
+public assets replace each admitted private form with a `<private-individual-…>` label and change
+nothing else; 116 of 91,200 congress-119 statements (0.13 percent) carry one, the same text
+production's own ledger reads, so no ratio below moves by more than those documents.
+
+- **P0, `7abbef24`.** The status page read "Overall status: red" on a healthy day because RUN A put
+  three informational lines (cursor held, backfill, volume comparison withheld) in the `alerts`
+  list the incident check reads. Collect now writes them to an additive `notes` list composed by
+  `pipeline/collect_notes.py`; the incident reads fault alerts only, and manifests written before
+  the split are classified by the writer's own prefixes. Replay over the 120 committed collect
+  manifests: 81 carried alerts, 57 notes alone, **51 read red for notes alone** with a clean
+  assemble and post (2026-08-13 to 2026-11-23). Reported, not changed: `_worst` ranks unknown below
+  green, so the overall reads green while verifier-drop is unknown, which the page's own sentence
+  ("an unavailable value is unknown, never green") contradicts.
+- **A, `ea2324f1`.** The name index is rebuilt (bills 20,197, names 15,502 from 13,570; committee
+  names 1,097, one renamed) and measured on the production corpus. **The builder had to change:**
+  its verdict domain went through the person-span gate, which since W4 (2026-07-25) drops every
+  n-gram touching a capitalized run, which is how bill titles are written; a first build kept 726
+  tagged phrases of the July table's 9,418 and dropped titles the clusterer still offers as talking
+  points. The domain is now counted without the gate (offline builder only; the ledger is
+  unchanged): 446,843 sync phrases, 9,646 tagged; 1,577 newly tagged, 1,349 no longer (1,283 no
+  longer measured in the domain on the production corpus, 66 below the 0.80 ratio); no published
+  item loses the class. **Effect on what was published, 2026-07-27 to 11-22:** 8 Daily Line
+  talking points (D 4, R 4) and 4 posted lines (D 1, R 3) on 5 days (08-07, 09-16, 11-09, 11-19,
+  11-20) carried a phrase the refreshed table classes as an official name: fragments of the
+  Lindsey O. Graham Sanctioning Russia and Iran Act and of the Bipartisan American Affordability Act.
+  Both bills were in the July snapshot; the phrases were coined after its statements ended. Also 3
+  party-column rows (D 2, R 1) and 1 dark Unison pick, from the WRDA of 2026 (S. 601), titled after
+  July. Rendered pages are unchanged. **Correction to R-74.21's premise:** the tag-rate collapse
+  from August is the W4 person-span gate removing capitalized titles from the ledger, not the stale
+  index; the refresh moves selections on 5 days. Ledger entry drafted
+  (`S74-17\corr-draft-name-index-stale.json`). On release the fingerprint's `nomenclature_index`
+  and the audit's `nomenclature_index_version` move to 2026-11-23 and the code-tree hash moves;
+  `thresholds_sha` does not (the tagger flag is dark). P14 corrected: the mirror lands in the
+  parent of `ONSCRIPT_DEEP_ROOT`.
+- **C, `87d3f2a5`.** Both sides of quote binding and of the sentence-to-claim mapping are folded;
+  every other comparison in verify.py and the receipt path already folded both sides or compares a
+  label with the text it was coined from. `structured-composite-v2`. Of the 5 stored withheld lines
+  only **2026-09-16 R** was this defect; the logged Sonnet rejection that day also failed the
+  counted-phrase check, so no model-written line was lost to it in the surviving logs. The 09-16 R
+  page now shows its re-composed line with a note that it was withheld when published. Ledger
+  entry drafted (`S74-17\corr-draft-curly-apostrophe-binding.json`).
+- **B, measured only (`S74-17\b_candidate.patch`, `b_replay.py`, `b_summary.py`).** The replay
+  covers 119 published days (238 party-days) from 2026-07-27 using production's own extraction
+  cache; 174 party-days on 69 days reproduce the committed kept claims and `rejected_keys`
+  exactly; every one that does not has a different statement population today than at
+  publication (late statements), none differs otherwise. The candidate (offer only when the naming
+  phrase has 3 carriers) is an offer filter, because the clusterer already names by the
+  most-carried phrase: offered 318 to 218, kept 169 to 169, dropped 149 to 49 (46.9 to 22.5
+  percent; D 50.5 to 24.3, R 38.8 to 18.9); FAMILY_QUORUM drops 100 to 0; receipt-binding 48 and
+  claim-contract 1 stay. **Claims newly kept: 0. Claims lost: 0.** No party-day changes state. On
+  the 174 reproducing party-days: 39.8 to 13.9 percent. The 7-day digest arm over the 17 Monday
+  briefs: 2 green under the current rule, 11 green under the candidate. "Energy and
+  infrastructure projects" (R 11-19) stays lost: it failed receipt binding, not quorum.
+- **E, `c06d97cd` and measurements.** `concordance.json` gains `distribution` over every member
+  with solo statements in the window; naming stays gated. Window table, production corpus, ledger
+  peaks as `build_concordance` reads them (index by party, mean / median / share above 0.5):
+
+  | Window | D | R | Gap (mean) | Equalised volume, 20 draws, peaks re-measured: gap |
+  |---|---|---|---|---|
+  | (i) 2025-01-03 to 2026-11-22 | 0.657 / 0.660 / 0.943 | 0.610 / 0.613 / 0.819 | +0.047 | -0.012 (-0.029 to +0.001) |
+  | (ii) 45 days from 2026-10-09 | 0.624 / 0.625 / 0.636 | 0.546 / 0.500 / 0.495 | +0.079 | 0.000 |
+  | (iii) 90 days from 2026-08-25 | 0.616 / 0.617 / 0.709 | 0.568 / 0.583 / 0.584 | +0.048 | -0.003 |
+
+  Two findings for the ruling. On equal volume the D-R gap disappears in every window. And the 15
+  office floor only works with peaks taken over the whole ledger: measured inside a 45-day window
+  no phrase reaches it (every index 0) and inside 90 days the mean is 0.05. These runs read the
+  first, gated verdicts table (a `kept` set of 627 phrases, all ledger phrases that already exclude
+  capitalized titles), so the name exclusion is slightly weaker than the committed table's.
+- **D, `c23d58f9`.** The duet screen exempts a quarantined span only when the roster or the
+  refreshed name index resolves it. 480 held spans in 261 quotes: member 66, name index 63, place
+  48, office 130, organisation 22, other 151 (`S74-17\d_spans.json`). Every "other" span and 60 of
+  the rest were read; 9 are private individuals (a journalist held abroad, a former hostage and the
+  street named for him, veterans and constituents honoured, a business-council official), all in
+  "other", none released. Quotes shown D 126 to 143, R 111 to 130; withheld D 123 to 106, R 138 to
+  119; duets rendering 56 to 65 of 83. Exempting places, offices and organisations too would leave
+  110 withheld. Phrase-evidence rendering does not use this screen.
+- **Suite:** 1,330 at handoff; 1,335 after P0, C and E; 1,338 after A and D; 1,340 with this entry.
+
+Published or repository-public numbers that would change on release:
+
+| Surface | Before | After | Why |
+|---|---|---|---|
+| Status page overall | red on notes alone (51 of 120 collect runs) | the faults' status | P0 |
+| Collect manifests | `alerts` only | `alerts` plus `notes` | P0 |
+| Daily Line selection (new days) | July name index | refreshed index; titles coined since July segregate | A |
+| Symmetry audit | `nomenclature_index_version` 2026-07-16, age 130+ | 2026-11-23 | A |
+| Instrument fingerprint | July index, structured-composite-v1 | 2026-11-23, v2 | A, C |
+| Day page 2026-09-16 (R) | withheld | the re-composed line, noted as withheld when published | C |
+| Corrections ledger | 12 entries | 14 when the two drafts are appended | A, C |
+| `concordance.json` (dark) | no distribution | `distribution` over all members | E |
+| Duet (dark) | 56 of 83 duets render | 65 of 83 | D |
+
+Left for the issuing session: the two ledger entries; the candidate clusterer rule (#279), which
+removes only quorum-short offers; the Concordance window and floor; whether the duet exemption
+should extend to places and offices; whether overall status should read unknown when a check is
+unknown.
