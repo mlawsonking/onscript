@@ -190,10 +190,14 @@ committed record stops advancing. See P12 and docs/04-BUILDLOG.md, Session 46.
   needs the production corpus (`statements.jsonl.gz` from the `data-latest` release's
   `state.tar.gz`); a local `data/state` is a July copy on the operator machine and must not be
   used (S74-15: 75,989 local rows ending 2026-07-09 against 91,500 in production). (2) The bill
-  fetch resumes from its mirror, so point it at an empty root or it rebuilds the old snapshot:
-  `$env:ONSCRIPT_DEEP_ROOT = '<empty dir>'`, then
+  fetch resumes from its mirror, so point it at an empty root or it rebuilds the old snapshot. The
+  mirror lands in the PARENT of `ONSCRIPT_DEEP_ROOT` (`lanes.DEEP_ROOT` is its parent), so name a
+  child of an empty directory: `$env:ONSCRIPT_DEEP_ROOT = '<empty dir>\state'`, then
   `C:\ProgramData\miniconda3\python.exe -m pipeline.nomenclature_build --congresses 119
-  --skip-committees --corpus <restored>\data\state\statements.jsonl.gz`. (3) Diff old and new names
+  --corpus <restored>\data\state\statements.jsonl.gz`. The committee lane travels with the bill
+  lane (both feed the index the verdicts measure); it needs PyYAML, present on the operator machine.
+  The verdict pass over the full corpus takes hours; run it detached. S74-17 found the verdict
+  domain had to be counted without the person-span gate (the builder now does so). (3) Diff old and new names
   and verdicts, measure which published selections the new table classes as official names, and
   draft a corrections entry if any published selection changes. (4) Commit both tables, then
   release under the docs/27 order. The index also moves `nomenclature_index_version` in the

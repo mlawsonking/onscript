@@ -92,11 +92,18 @@ def _held_prefix(text: str, held: list[tuple[int, int]]) -> list[int]:
     return prefix
 
 
-def _doc_ngrams(text: str, statement: dict | None = None, roster_map: dict | None = None):
+def _doc_ngrams(text: str, statement: dict | None = None, roster_map: dict | None = None,
+                *, hold_person_spans: bool = True):
     """Set of (ngram, n) for a document, deduped within the doc, n in [MIN, MAX],
-    with boilerplate-regex n-grams and person-span intersections already excluded."""
+    with boilerplate-regex n-grams and person-span intersections already excluded.
+
+    `hold_person_spans=False` is for the OFFLINE name-index verdict builder only (S74-17 A): the
+    verdict domain must also cover phrases the claim clusterer can offer, and the clusterer does not
+    apply the person-span gate, so a capitalized bill title it offers as a talking point would
+    otherwise have no verdict at all. The ledger always holds them (the default)."""
     grams: set[tuple[str, int]] = set()
-    person_rows = privacy.person_spans(text, statement=statement, roster_map=roster_map)
+    person_rows = (privacy.person_spans(text, statement=statement, roster_map=roster_map)
+                   if hold_person_spans else [])
     held = [
         (row["start_char"], row["end_char"])
         for row in person_rows if row["classification"] in {"private", "quarantine"}

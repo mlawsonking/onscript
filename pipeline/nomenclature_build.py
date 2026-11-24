@@ -409,7 +409,13 @@ def _sync_domain(by_day: dict, *, progress: bool = True) -> set[str]:
         for s in group:
             unit = phrases._unit_key(s)
             party = s["member"]["party"]
-            for ng, _n in phrases._doc_ngrams(s.get("text", ""), s):
+            # S74-17 A: without the person-span gate. Since W4 (2026-07-25) the ledger drops every
+            # n-gram touching a quarantined capitalized run, which is how bill titles are written, so
+            # a domain built through the gate lost 8,848 of the July table's 9,418 tagged phrases,
+            # including titles the clusterer still offers as talking points (R 2026-11-11 and 11-12
+            # "care of america's veterans act"). The domain is the ledger's sync rule over the
+            # ungated n-grams: a superset of the ledger and of the clusterer's labels.
+            for ng, _n in phrases._doc_ngrams(s.get("text", ""), s, hold_person_spans=False):
                 counts.setdefault(ng, {}).setdefault(party, set()).add(unit)
         for ng, parties in counts.items():
             if ng not in sync and any(len(u) >= config.SYNC_MIN_MEMBERS for u in parties.values()):
@@ -504,9 +510,10 @@ def build_verdicts(congress: int, corpus_path=None, *, progress: bool = True) ->
                   "name span / docs containing the phrase.",
         congress=congress,
         index_version=versions[-1] if versions else None,
-        domain="the ledger's own rule (pipeline/phrases.py): an n-gram used by >= SYNC_MIN_MEMBERS "
-               "distinct units of one party on one day. Phrases outside it are not displayable, so they "
-               "are not measured; is_nomenclature returns None for them.",
+        domain="the ledger's own sync rule (pipeline/phrases.py): an n-gram used by >= SYNC_MIN_MEMBERS "
+               "distinct units of one party on one day, counted over n-grams WITHOUT the person-span "
+               "gate, so the domain covers the ledger and every label the claim clusterer can offer. "
+               "Phrases outside it are not measured; is_nomenclature returns None for them.",
         threshold_at_build={"NOMENCLATURE_RATIO_MIN": config.NOMENCLATURE_RATIO_MIN,
                             "note": "RECORDED, NOT APPLIED — the threshold is a disclosed knob applied "
                                     "at read time by is_nomenclature. docs/16 §8.4 measured "
@@ -537,6 +544,14 @@ def build_verdicts(congress: int, corpus_path=None, *, progress: bool = True) ->
                        "'Patient Protection and Affordable Care Act' (the ACA was enacted in the 111th, "
                        "outside the index), so 'affordable care act' is not an indexed name and §9.2's "
                        "premise does not hold. Reported, not ruled on."},
+            {"date": "2026-11-23", "by": "Opus, S74-17 Package A refresh",
+             "reason": "refreshed on the production corpus (91,200 congress-119 statements to "
+                       "2026-11-23). The sync domain is counted without the person-span gate: since "
+                       "W4 (2026-07-25) the ledger drops every n-gram touching a quarantined "
+                       "capitalized run, which is how bill titles are written, and a domain built "
+                       "through that gate kept 726 tagged phrases of the July table's 9,418, dropping "
+                       "titles the claim clusterer (which applies no person-span gate) still offers "
+                       "as talking points. Rules and threshold unchanged."},
         ],
     )
 
