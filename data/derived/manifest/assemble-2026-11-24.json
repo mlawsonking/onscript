@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "run_id": "assemble-2026-11-25",
+  "kind": "assemble",
+  "generated_at": "2026-11-25T20:47:37Z",
+  "day": "2026-11-24",
+  "dry_run": false,
+  "extract_cost": {
+    "stage": "extract",
+    "model": "claude-haiku-4-5",
+    "generator": "deterministic",
+    "new_statements": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "est_cost_usd": 0.0
+  },
+  "per_party_llm": {
+    "D": {
+      "tokens_in": 1250,
+      "tokens_out": 81,
+      "claims_published": 0,
+      "claims_dropped": 1
+    },
+    "R": {
+      "tokens_in": 1249,
+      "tokens_out": 81,
+      "claims_published": 0,
+      "claims_dropped": 0
+    }
+  },
+  "daily_voice_cost_usd": 0.009927,
+  "llm_voice_enabled": true,
+  "voice_used": true,
+  "voice_budget_state": "nominal",
+  "month_to_date_usd": 0.204999,
+  "governor_state": "nominal",
+  "degraded": false,
+  "corrections_count": 14,
+  "instrument_fingerprint": {
+    "fingerprint_version": "instrument-v1",
+    "component_hashes": {
+      "code_tree": "02856e98513689fc4bc19dda4013e58524b7fae2915ef5fae4250c5e003da8da",
+      "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+      "method_versions": "4e2d7dbb0b553f0fb086f06f7767853457ff918d7303a43839f960d5b0504291",
+      "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+      "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+      "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+      "nomenclature_index": "860cc931f2746b53b7ef28ab1cbfbfb3340695f47990c74420cbd95368a5e60c"
+    },
+    "sha256": "2c210ea0bebe83bfedba42c87ed3018503ef9fb526753cb30554fe9c49c16c71",
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  },
+  "event": "schedule",
+  "unattended": true,
+  "final": true,
+  "forced_finalize": false,
+  "readiness": {
+    "ready": true,
+    "share": 0.811,
+    "count": 86,
+    "baseline": 106.0,
+    "judgeable": true,
+    "baseline_method": "trailing 6-week same-weekday median",
+    "reason": "ready"
+  },
+  "symmetry": {
+    "prompts_sha": {
+      "P1": "0cddc44ce3b70062f8bce6e98e50132553ff16b3e383a51a29fd867b3b134e9f",
+      "P2": "34735652cb8c728c56711364edf3ffabf4ff1f0070cd62ca0128d32dc99073d7",
+      "P3": "a26cc6b283268c6cf4a874ec585b535395e9c1233055fcc9e7cbdc25a6bab424"
+    },
+    "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+  },
+  "alerts": [],
+  "publication_state": "published",
+  "content_address": "sha256:ed9f2910b12f094a9d59946dab2330d0a565ada42191386baaa7d7e3eaa7b1f1",
+  "revision": 1,
+  "revision_chain": [
+    {
+      "revision": 1,
+      "content_address": "sha256:ed9f2910b12f094a9d59946dab2330d0a565ada42191386baaa7d7e3eaa7b1f1",
+      "supersedes": null,
+      "instrument_fingerprint": {
+        "fingerprint_version": "instrument-v1",
+        "component_hashes": {
+          "code_tree": "02856e98513689fc4bc19dda4013e58524b7fae2915ef5fae4250c5e003da8da",
+          "schema_versions": "fbcb0521ab39fdd697817c023f8cff8edfdfc071086190e43622d943fe365af8",
+          "method_versions": "4e2d7dbb0b553f0fb086f06f7767853457ff918d7303a43839f960d5b0504291",
+          "live_thresholds": "96949bf1af33cc0155196eb1b592d6b0f419c2e0262a758b8acc0bd1eb660033",
+          "prompts": "dc3912235b9cf859bd035a6f32160c31b7c56623c6f711b5846e06b2857d918e",
+          "privacy_forms": "18224ec8f9bdffa5af76e58cfd2b1a7a975b940247e13ea33525ecb9033697fc",
+          "nomenclature_index": "860cc931f2746b53b7ef28ab1cbfbfb3340695f47990c74420cbd95368a5e60c"
+        },
+        "sha256": "2c210ea0bebe83bfedba42c87ed3018503ef9fb526753cb30554fe9c49c16c71",
+        "thresholds_sha": "0291ebf51640f3935241a50dd1066c7221b17caea87cae6cf49085cedf57d376"
+      }
+    }
+  ],
+  "correction_ids": []
+}
