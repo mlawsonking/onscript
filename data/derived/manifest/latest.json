@@ -2,19 +2,19 @@
   "schema_version": 1,
   "run_id": "collect-2026-11-26",
   "kind": "deterministic",
-  "generated_at": "2026-11-26T02:23:33Z",
-  "focus_day": "2026-11-24",
+  "generated_at": "2026-11-26T19:11:54Z",
+  "focus_day": "2026-11-25",
   "focus_cursor": {
-    "day": "2026-11-24",
+    "day": "2026-11-25",
     "requested": "2026-11-25",
-    "clamped": true,
+    "clamped": false,
     "future": false,
-    "reason": "the corpus already holds 2026-11-25, a day that is not over yet; measuring the product day 2026-11-24 instead"
+    "reason": "the newest day in the corpus is the product day"
   },
   "day_sweep": {
     "window": [
-      "2026-11-19",
-      "2026-11-23"
+      "2026-11-20",
+      "2026-11-24"
     ],
     "records_written": [],
     "boards_written": [],
@@ -27,16 +27,16 @@
   ],
   "source_freshness": {
     "ok": true,
-    "pushed_at": "2026-11-25T15:22:21Z",
-    "age_hours": 11.02
+    "pushed_at": "2026-11-26T16:08:59Z",
+    "age_hours": 3.04
   },
   "normalize": {
-    "in": 91758,
-    "kept": 91720,
+    "in": 91798,
+    "kept": 91760,
     "rejects": 38,
-    "joint_groups": 193,
-    "near_joint_groups": 3296,
-    "cosigned_groups": 2641,
+    "joint_groups": 194,
+    "near_joint_groups": 3298,
+    "cosigned_groups": 2645,
     "syndicated": 63
   },
   "phrase_engine": {
@@ -46,11 +46,11 @@
   },
   "per_party": {
     "D": {
-      "statements_in": 54183,
+      "statements_in": 54211,
       "members_covered": 263
     },
     "R": {
-      "statements_in": 36908,
+      "statements_in": 36920,
       "members_covered": 276
     },
     "I": {
@@ -60,10 +60,10 @@
   },
   "derived": {
     "ledger_entries": 339749,
-    "phrase_pages": 42,
-    "focus_day": "2026-11-24",
-    "focus_day_write": "skipped-final",
-    "focus_day_top_phrases": null,
+    "phrase_pages": 0,
+    "focus_day": "2026-11-25",
+    "focus_day_write": "written",
+    "focus_day_top_phrases": 0,
     "coverage_years": [
       "2025",
       "2026"
@@ -73,16 +73,16 @@
   "governor_state": "nominal",
   "alerts": [],
   "stage_timings_s": {
-    "restore": 7.0,
-    "mirror_pull": 14.1,
-    "normalize": 1668.8,
-    "ledger_build": 1581.7
+    "restore": 6.9,
+    "mirror_pull": 19.0,
+    "normalize": 1677.4,
+    "ledger_build": 1551.0
   },
   "span_scan": {
-    "person_spans_calls": 264000,
-    "person_spans_s": 394.27936429398756,
-    "admitted_form_scans": 264000,
-    "admitted_form_s": 6.461493698124514
+    "person_spans_calls": 264081,
+    "person_spans_s": 377.6456202319912,
+    "admitted_form_scans": 264081,
+    "admitted_form_s": 6.508739635097072
   },
   "instrument_fingerprint": {
     "fingerprint_version": "instrument-v1",
