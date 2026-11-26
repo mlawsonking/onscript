@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "kind": "owners-brief",
+  "day": "2026-11-26",
+  "numbers": [
+    {
+      "name": "streak",
+      "value": 138,
+      "status": "green",
+      "last_missed": "2026-07-10",
+      "temporal_state": "today",
+      "measured_day": "2026-11-25",
+      "lag_days": 0,
+      "published_record_days": 138,
+      "unattended_streak": 15,
+      "unattended_since": "2026-11-11",
+      "note": "site today: newest published day 2026-11-25 for product day 2026-11-25 (lag 0); 138 consecutive days with a published record; 15 consecutive clean unattended runs (ops.unattended_streak)"
+    },
+    {
+      "name": "spend",
+      "value": 0.205,
+      "projected": 0.2365,
+      "status": "green",
+      "governor": "nominal",
+      "ledger_days": 25,
+      "note": "$0.2050 MTD, $0.24 projected month-end (green <= $8); governor nominal"
+    },
+    {
+      "name": "coverage",
+      "day": "2026-11-25",
+      "scored_age_days": 1,
+      "parties": {
+        "D": {
+          "statements": 28,
+          "median": 46.0,
+          "share": 0.609,
+          "status": "green",
+          "baseline_method": "recent 3-week same-weekday median"
+        },
+        "R": {
+          "statements": 12,
+          "median": 36.0,
+          "share": 0.333,
+          "status": "red",
+          "baseline_method": "recent 3-week same-weekday median"
+        }
+      },
+      "status": "red",
+      "freshness": {
+        "age_hours": 3.04,
+        "day": "2026-11-26",
+        "status": "green"
+      },
+      "excluded_reports": 0,
+      "skipped_days": [],
+      "note": "2026-11-25 (1d): D 28/46=61% R 12/36=33% of own same-weekday baseline (green >= 60%); upstream 3.0h (green < 36h)"
+    },
+    {
+      "name": "verifier_drop",
+      "value": 0.3333,
+      "dropped": 5,
+      "offered": 15,
+      "unmeasured_rows": 0,
+      "status": "red",
+      "note": "5/15 claims dropped over 7d (green < 25%)"
+    },
+    {
+      "name": "reach",
+      "value": null,
+      "status": "manual",
+      "note": "monthly hand count (followers + sessions + citations) — not machine-collected"
+    }
+  ],
+  "reds": [
+    "coverage",
+    "verifier_drop"
+  ],
+  "unknowns": [],
+  "degraded_days": [],
+  "top_phrase": {
+    "ngram": "statement after voting",
+    "party": "D",
+    "day_peak": 9,
+    "day": "2026-11-19"
+  },
+  "shelf": {
+    "dark": [
+      "annotation_packet",
+      "archive",
+      "authors_vessels",
+      "awards",
+      "bill_brand",
+      "concordance",
+      "credit_claim",
+      "duet",
+      "eval_table",
+      "floor",
+      "memo_cadence_flag",
+      "memory_hole",
+      "nomenclature_tags",
+      "off_script_alerts",
+      "public_api",
+      "silence_board",
+      "upstream_graph"
+    ],
+    "released": [
+      "owners_brief",
+      "party_columns",
+      "phrase_search"
+    ]
+  },
+  "headline": "RED: coverage, verifier_drop"
+}
